@@ -1,0 +1,44 @@
+[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
+[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
+[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: clojure (client)
+[main] INFO  o.o.codegen.DefaultGenerator - Generator 'clojure' is considered stable.
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] INFO  o.o.codegen.DefaultGenerator - Model MailOrders not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] INFO  o.o.codegen.DefaultGenerator - Model SendMailForm not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/clojure/src/mail_baby_api/specs/error_response.clj
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/clojure/src/mail_baby_api/specs/generic_response.clj
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/clojure/src/mail_baby_api/specs/mail_attachment.clj
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/clojure/src/mail_baby_api/specs/mail_contact.clj
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/clojure/src/mail_baby_api/specs/mail_log.clj
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/clojure/src/mail_baby_api/specs/mail_order.clj
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/clojure/src/mail_baby_api/specs/send_mail.clj
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - #/components/schemas/ErrorResposne is not defined
+[main] WARN  o.o.codegen.utils.ModelUtils - #/components/schemas/ErrorResposne is not defined
+[main] WARN  o.o.codegen.utils.ModelUtils - #/components/schemas/ErrorResposne is not defined
+[main] WARN  o.o.codegen.utils.ModelUtils - #/components/schemas/ErrorResposne is not defined
+[main] WARN  o.o.codegen.utils.ModelUtils - #/components/schemas/ErrorResposne is not defined
+[main] WARN  o.o.codegen.utils.ModelUtils - #/components/schemas/ErrorResposne is not defined
+[main] WARN  o.o.codegen.utils.ModelUtils - #/components/schemas/ErrorResposne is not defined
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - #/components/schemas/ErrorResposne is not defined
+[main] WARN  o.o.codegen.utils.ModelUtils - #/components/schemas/ErrorResposne is not defined
+[main] WARN  o.o.codegen.utils.ModelUtils - #/components/schemas/ErrorResposne is not defined
+[main] WARN  o.o.codegen.utils.ModelUtils - #/components/schemas/ErrorResposne is not defined
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.DefaultCodegen - Multiple MediaTypes found, using only the first one
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/clojure/src/mail_baby_api/api/default.clj
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/clojure/project.clj
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/clojure/src/mail_baby_api/core.clj
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/clojure/git_push.sh
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/clojure/.gitignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/clojure/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/clojure/.openapi-generator/VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/clojure/.openapi-generator/FILES
+################################################################################
+# Thanks for using OpenAPI Generator.                                          #
+# Please consider donation to help us maintain this project 🙏                 #
+# https://opencollective.com/openapi_generator/donate                          #
+################################################################################

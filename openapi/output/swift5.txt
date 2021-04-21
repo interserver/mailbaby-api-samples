@@ -1,0 +1,80 @@
+[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
+[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
+[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: swift5 (client)
+[main] INFO  o.o.codegen.DefaultGenerator - Generator 'swift5' is considered beta.
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] INFO  o.o.c.languages.Swift5ClientCodegen - Environment variable SWIFT_POST_PROCESS_FILE not defined so the Swift code may not be properly formatted. To define it, try 'export SWIFT_POST_PROCESS_FILE=/usr/local/bin/swiftformat' (Linux/Mac)
+[main] INFO  o.o.c.languages.Swift5ClientCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
+[main] WARN  o.o.codegen.DefaultCodegen - The value (generator's option) must be either boolean or string. Default to `false`.
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] INFO  o.o.codegen.DefaultGenerator - Model MailOrders not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] INFO  o.o.codegen.DefaultGenerator - Model SendMailForm not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/Models/GenericResponse.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/docs/GenericResponse.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/Models/MailAttachment.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/docs/MailAttachment.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/Models/MailContact.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/docs/MailContact.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/Models/MailLog.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/docs/MailLog.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/Models/MailOrder.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/docs/MailOrder.md
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/Models/ModelErrorResponse.swift
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/docs/ModelErrorResponse.md
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/Models/SendMail.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/docs/SendMail.md
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.DefaultCodegen - Multiple MediaTypes found, using only the first one
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/APIs/DefaultAPI.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/docs/DefaultAPI.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient.podspec
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/Cartfile
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/Package.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/APIHelper.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/Configuration.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/Extensions.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/Models.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/APIs.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/CodableHelper.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/OpenISO8601DateFormatter.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/JSONDataEncoding.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/JSONEncodingHelper.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/git_push.sh
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/SynchronizedDictionary.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/.gitignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/README.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/project.yml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/OpenAPIClient/Classes/OpenAPIs/URLSessionImplementations.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/.openapi-generator/VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/swift5/.openapi-generator/FILES
+################################################################################
+# Thanks for using OpenAPI Generator.                                          #
+# Please consider donation to help us maintain this project 🙏                 #
+# https://opencollective.com/openapi_generator/donate                          #
+#                                                                              #
+# swift5 generator is contributed by Bruno Coelho (https://github.com/4brunu). #
+# Please support his work directly via https://paypal.com/paypalme/4brunu 🙏   #
+################################################################################

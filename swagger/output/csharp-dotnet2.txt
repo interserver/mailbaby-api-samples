@@ -1,10 +1,9 @@
-00:13:23.693 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+13:29:34.756 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
  - [debugOperations] prints operations passed to the template engine
  - [debugSupportingFiles] prints additional data passed to the template engine
-00:13:23.764 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 {
   "openapi" : "3.0.0",
   "info" : {
@@ -718,25 +717,25 @@ VERBOSE MODE: ON. Additional debug options are injected
     "callbacks" : { }
   }
 }
-00:13:24.157 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/ErrorResponse.cs
-00:13:24.172 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/ErrorResponse.md
-00:13:24.191 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/GenericResponse.cs
-00:13:24.199 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/GenericResponse.md
-00:13:24.215 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailAttachment.cs
-00:13:24.223 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/MailAttachment.md
-00:13:24.242 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailContact.cs
-00:13:24.252 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/MailContact.md
-00:13:24.271 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailLog.cs
-00:13:24.278 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/MailLog.md
-00:13:24.296 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailOrder.cs
-00:13:24.303 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/MailOrder.md
-00:13:24.313 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailOrders.cs
-00:13:24.319 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/MailOrders.md
-00:13:24.330 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/SendMail.cs
-00:13:24.336 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/SendMail.md
-00:13:24.346 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/SendMailForm.cs
-00:13:24.351 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/SendMailForm.md
-00:13:24.351 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+13:29:35.216 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/ErrorResponse.cs
+13:29:35.226 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/ErrorResponse.md
+13:29:35.237 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/GenericResponse.cs
+13:29:35.243 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/GenericResponse.md
+13:29:35.253 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailAttachment.cs
+13:29:35.258 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/MailAttachment.md
+13:29:35.267 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailContact.cs
+13:29:35.273 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/MailContact.md
+13:29:35.284 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailLog.cs
+13:29:35.289 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/MailLog.md
+13:29:35.299 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailOrder.cs
+13:29:35.304 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/MailOrder.md
+13:29:35.313 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailOrders.cs
+13:29:35.318 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/MailOrders.md
+13:29:35.328 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/SendMail.cs
+13:29:35.333 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/SendMail.md
+13:29:35.342 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/SendMailForm.cs
+13:29:35.346 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/SendMailForm.md
+13:29:35.347 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -8519,7 +8518,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasMore" : false
   }
 } ]
-00:13:24.404 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+13:29:35.383 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -8551,7 +8550,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-00:13:24.412 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+13:29:35.389 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -8749,7 +8748,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-00:13:24.420 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+13:29:35.416 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -8819,7 +8818,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-00:13:24.423 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+13:29:35.418 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -8945,7 +8944,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-00:13:24.431 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+13:29:35.425 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -9060,7 +9059,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-00:13:24.443 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+13:29:35.432 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -9578,7 +9577,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-00:13:24.482 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/advsend	;post class Operation {
+13:29:35.438 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/advsend	;post class Operation {
     tags: null
     summary: Sends an Email with Advanced Options
     description: Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
@@ -9942,7 +9941,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-00:13:24.499 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+13:29:35.452 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -10253,9 +10252,9 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-00:13:24.539 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Api/DefaultApi.cs
-00:13:24.578 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/DefaultApi.md
-00:13:24.579 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+13:29:35.486 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Api/DefaultApi.cs
+13:29:35.522 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/docs/DefaultApi.md
+13:29:35.522 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.dotnet.CsharpDotNet2ClientCodegen",
@@ -17231,12 +17230,12 @@ VERBOSE MODE: ON. Additional debug options are injected
   "classname" : "DefaultApi",
   "gitRepoId" : "GIT_REPO_ID",
   "packageAuthors" : "Swagger",
-  "generatedDate" : "2021-04-21T00:13:23.914234-04:00[America/New_York]",
+  "generatedDate" : "2021-04-27T13:29:35.015592-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-00:13:24.660 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+13:29:35.574 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.dotnet.CsharpDotNet2ClientCodegen",
@@ -32214,7 +32213,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "classname" : "DefaultApi",
       "gitRepoId" : "GIT_REPO_ID",
       "packageAuthors" : "Swagger",
-      "generatedDate" : "2021-04-21T00:13:23.914234-04:00[America/New_York]",
+      "generatedDate" : "2021-04-27T13:29:35.015592-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -32978,7 +32977,7 @@ VERBOSE MODE: ON. Additional debug options are injected
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
   "packageAuthors" : "Swagger",
-  "generatedDate" : "2021-04-21T00:13:23.914234-04:00[America/New_York]",
+  "generatedDate" : "2021-04-27T13:29:35.015592-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -32987,11 +32986,10 @@ VERBOSE MODE: ON. Additional debug options are injected
   },
   "gitUserId" : "GIT_USER_ID"
 }
-00:13:24.770 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Client/Configuration.cs
-00:13:24.864 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Client/ApiClient.cs
-00:13:24.871 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Client/ApiException.cs
-00:13:24.873 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/vendor/packages.config
-00:13:24.876 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/compile-mono.sh
-00:13:24.901 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/README.md
-00:13:24.908 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/.swagger-codegen-ignore
-00:13:24.909 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/.swagger-codegen/VERSION
+13:29:35.651 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Client/Configuration.cs
+13:29:35.679 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Client/ApiClient.cs
+13:29:35.692 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Client/ApiException.cs
+13:29:35.693 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/vendor/packages.config
+13:29:35.695 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/compile-mono.sh
+13:29:35.716 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/README.md
+13:29:35.717 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/csharp-dotnet2/.swagger-codegen/VERSION

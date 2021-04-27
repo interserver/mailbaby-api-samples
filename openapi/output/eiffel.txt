@@ -1,5 +1,4 @@
 [main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
-[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
 [main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: eiffel (client)
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'eiffel' is considered stable.
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
@@ -26,7 +25,7 @@
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.codegen.DefaultCodegen - Multiple MediaTypes found, using only the first one
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/eiffel/src/api/default_api.e
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/eiffel/test/apis/default_api_test.e
+[main] INFO  o.o.codegen.TemplateManager - Skipped /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/eiffel/test/apis/default_api_test.e (Test files never overwrite an existing file of the same name.)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/eiffel/docs/DEFAULT_API.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/eiffel/README.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/eiffel/.travis.yml
@@ -49,7 +48,7 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/eiffel/src/framework/serialization/api_serializer.e
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/eiffel/src/framework/serialization/json_basic_reflector_deserializer.e
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/eiffel/src/framework/serialization/json_type_utilities_ext.e
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/eiffel/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - Skipped /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/eiffel/.openapi-generator-ignore (Skipped by supportingFiles options supplied by user.)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/eiffel/.openapi-generator/VERSION
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/eiffel/.openapi-generator/FILES
 ################################################################################

@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -47,11 +46,3 @@ src/main/java/org/openapitools/client/model/MailContact.java
 src/main/java/org/openapitools/client/model/MailLog.java
 src/main/java/org/openapitools/client/model/MailOrder.java
 src/main/java/org/openapitools/client/model/SendMail.java
-src/test/java/org/openapitools/client/api/DefaultApiTest.java
-src/test/java/org/openapitools/client/model/ErrorResponseTest.java
-src/test/java/org/openapitools/client/model/GenericResponseTest.java
-src/test/java/org/openapitools/client/model/MailAttachmentTest.java
-src/test/java/org/openapitools/client/model/MailContactTest.java
-src/test/java/org/openapitools/client/model/MailLogTest.java
-src/test/java/org/openapitools/client/model/MailOrderTest.java
-src/test/java/org/openapitools/client/model/SendMailTest.java

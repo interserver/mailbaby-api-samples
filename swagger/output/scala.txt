@@ -1,10 +1,9 @@
-00:14:30.173 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+13:30:41.557 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
  - [debugOperations] prints operations passed to the template engine
  - [debugSupportingFiles] prints additional data passed to the template engine
-00:14:30.247 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 {
   "openapi" : "3.0.0",
   "info" : {
@@ -723,16 +722,16 @@ WARNING: Illegal reflective access by com.github.jknack.handlebars.context.Membe
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-00:14:30.583 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/ErrorResponse.scala
-00:14:30.598 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/GenericResponse.scala
-00:14:30.609 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/MailAttachment.scala
-00:14:30.621 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/MailContact.scala
-00:14:30.631 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/MailLog.scala
-00:14:30.643 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/MailOrder.scala
-00:14:30.654 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/MailOrders.scala
-00:14:30.666 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/SendMail.scala
-00:14:30.677 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/SendMailForm.scala
-00:14:30.677 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+13:30:42.036 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/ErrorResponse.scala
+13:30:42.051 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/GenericResponse.scala
+13:30:42.063 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/MailAttachment.scala
+13:30:42.075 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/MailContact.scala
+13:30:42.086 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/MailLog.scala
+13:30:42.098 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/MailOrder.scala
+13:30:42.110 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/MailOrders.scala
+13:30:42.123 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/SendMail.scala
+13:30:42.135 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/model/SendMailForm.scala
+13:30:42.136 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -8631,7 +8630,7 @@ WARNING: All illegal access operations will be denied in a future release
     "isMapContainer" : false
   }
 } ]
-00:14:30.720 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+13:30:42.180 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -8663,7 +8662,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:30.727 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+13:30:42.187 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -8861,7 +8860,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:30.733 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+13:30:42.194 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -8931,7 +8930,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:30.734 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+13:30:42.195 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -9057,7 +9056,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:30.739 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+13:30:42.201 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -9172,7 +9171,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:30.747 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+13:30:42.209 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -9690,7 +9689,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:30.754 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/advsend	;post class Operation {
+13:30:42.217 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/advsend	;post class Operation {
     tags: null
     summary: Sends an Email with Advanced Options
     description: Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
@@ -10054,7 +10053,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:30.770 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+13:30:42.236 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -10365,8 +10364,8 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:30.882 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/api/DefaultApi.scala
-00:14:30.883 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+13:30:42.333 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/api/DefaultApi.scala
+13:30:42.334 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.scala.ScalaClientCodegen",
@@ -11106,12 +11105,6 @@ WARNING: All illegal access operations will be denied in a future release
       "operationIdCamelCase" : "GetMailById",
       "operationIdSnakeCase" : "get_mail_by_id",
       "hasQueryParams" : false,
-      "hasHeaderParams" : false,
-      "hasCookieParams" : false,
-      "hasPathParams" : true,
-      "hasFormParams" : false,
-      "hasExamples" : true,
-      "isBodyAllowed" : false,
       "isDeprecated" : false,
       "hasAuthMethods" : true,
       "hasConsumes" : false,
@@ -11120,6 +11113,12 @@ WARNING: All illegal access operations will be denied in a future release
       "hasOptionalParams" : false,
       "hasRequiredParams" : true,
       "hasReference" : true,
+      "hasHeaderParams" : false,
+      "hasCookieParams" : false,
+      "hasPathParams" : true,
+      "hasFormParams" : false,
+      "hasExamples" : true,
+      "isBodyAllowed" : false,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -11498,12 +11497,6 @@ WARNING: All illegal access operations will be denied in a future release
       "operationIdCamelCase" : "GetMailOrders",
       "operationIdSnakeCase" : "get_mail_orders",
       "hasQueryParams" : false,
-      "hasHeaderParams" : false,
-      "hasCookieParams" : false,
-      "hasPathParams" : false,
-      "hasFormParams" : false,
-      "hasExamples" : true,
-      "isBodyAllowed" : false,
       "isDeprecated" : false,
       "hasAuthMethods" : true,
       "hasConsumes" : false,
@@ -11512,6 +11505,12 @@ WARNING: All illegal access operations will be denied in a future release
       "hasOptionalParams" : false,
       "hasRequiredParams" : false,
       "hasReference" : true,
+      "hasHeaderParams" : false,
+      "hasCookieParams" : false,
+      "hasPathParams" : false,
+      "hasFormParams" : false,
+      "hasExamples" : true,
+      "isBodyAllowed" : false,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -11701,12 +11700,6 @@ WARNING: All illegal access operations will be denied in a future release
       "operationIdCamelCase" : "PingServer",
       "operationIdSnakeCase" : "ping_server",
       "hasQueryParams" : false,
-      "hasHeaderParams" : false,
-      "hasCookieParams" : false,
-      "hasPathParams" : false,
-      "hasFormParams" : false,
-      "hasExamples" : false,
-      "isBodyAllowed" : false,
       "isDeprecated" : false,
       "hasAuthMethods" : false,
       "hasConsumes" : false,
@@ -11715,6 +11708,12 @@ WARNING: All illegal access operations will be denied in a future release
       "hasOptionalParams" : false,
       "hasRequiredParams" : false,
       "hasReference" : false,
+      "hasHeaderParams" : false,
+      "hasCookieParams" : false,
+      "hasPathParams" : false,
+      "hasFormParams" : false,
+      "hasExamples" : false,
+      "isBodyAllowed" : false,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -12420,12 +12419,6 @@ WARNING: All illegal access operations will be denied in a future release
       "operationIdCamelCase" : "PlaceMailOrder",
       "operationIdSnakeCase" : "place_mail_order",
       "hasQueryParams" : false,
-      "hasHeaderParams" : false,
-      "hasCookieParams" : false,
-      "hasPathParams" : false,
-      "hasFormParams" : false,
-      "hasExamples" : false,
-      "isBodyAllowed" : true,
       "isDeprecated" : true,
       "hasAuthMethods" : true,
       "hasConsumes" : true,
@@ -12434,6 +12427,12 @@ WARNING: All illegal access operations will be denied in a future release
       "hasOptionalParams" : true,
       "hasRequiredParams" : false,
       "hasReference" : false,
+      "hasHeaderParams" : false,
+      "hasCookieParams" : false,
+      "hasPathParams" : false,
+      "hasFormParams" : false,
+      "hasExamples" : false,
+      "isBodyAllowed" : true,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -13835,12 +13834,6 @@ WARNING: All illegal access operations will be denied in a future release
       "operationIdCamelCase" : "SendAdvMailById",
       "operationIdSnakeCase" : "send_adv_mail_by_id",
       "hasQueryParams" : false,
-      "hasHeaderParams" : false,
-      "hasCookieParams" : false,
-      "hasPathParams" : true,
-      "hasFormParams" : true,
-      "hasExamples" : true,
-      "isBodyAllowed" : true,
       "isDeprecated" : false,
       "hasAuthMethods" : true,
       "hasConsumes" : true,
@@ -13849,6 +13842,12 @@ WARNING: All illegal access operations will be denied in a future release
       "hasOptionalParams" : false,
       "hasRequiredParams" : true,
       "hasReference" : true,
+      "hasHeaderParams" : false,
+      "hasCookieParams" : false,
+      "hasPathParams" : true,
+      "hasFormParams" : true,
+      "hasExamples" : true,
+      "isBodyAllowed" : true,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -15639,12 +15638,6 @@ WARNING: All illegal access operations will be denied in a future release
       "operationIdCamelCase" : "SendMailById",
       "operationIdSnakeCase" : "send_mail_by_id",
       "hasQueryParams" : true,
-      "hasHeaderParams" : false,
-      "hasCookieParams" : false,
-      "hasPathParams" : true,
-      "hasFormParams" : false,
-      "hasExamples" : true,
-      "isBodyAllowed" : true,
       "isDeprecated" : false,
       "hasAuthMethods" : true,
       "hasConsumes" : false,
@@ -15653,6 +15646,12 @@ WARNING: All illegal access operations will be denied in a future release
       "hasOptionalParams" : true,
       "hasRequiredParams" : true,
       "hasReference" : true,
+      "hasHeaderParams" : false,
+      "hasCookieParams" : false,
+      "hasPathParams" : true,
+      "hasFormParams" : false,
+      "hasExamples" : true,
+      "isBodyAllowed" : true,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -16014,12 +16013,6 @@ WARNING: All illegal access operations will be denied in a future release
       "operationIdCamelCase" : "ValidateMailOrder",
       "operationIdSnakeCase" : "validate_mail_order",
       "hasQueryParams" : false,
-      "hasHeaderParams" : false,
-      "hasCookieParams" : false,
-      "hasPathParams" : false,
-      "hasFormParams" : false,
-      "hasExamples" : false,
-      "isBodyAllowed" : false,
       "isDeprecated" : true,
       "hasAuthMethods" : true,
       "hasConsumes" : false,
@@ -16028,6 +16021,12 @@ WARNING: All illegal access operations will be denied in a future release
       "hasOptionalParams" : false,
       "hasRequiredParams" : false,
       "hasReference" : false,
+      "hasHeaderParams" : false,
+      "hasCookieParams" : false,
+      "hasPathParams" : false,
+      "hasFormParams" : false,
+      "hasExamples" : false,
+      "isBodyAllowed" : false,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -17247,12 +17246,6 @@ WARNING: All illegal access operations will be denied in a future release
       "operationIdCamelCase" : "ViewMailLogById",
       "operationIdSnakeCase" : "view_mail_log_by_id",
       "hasQueryParams" : true,
-      "hasHeaderParams" : false,
-      "hasCookieParams" : false,
-      "hasPathParams" : true,
-      "hasFormParams" : false,
-      "hasExamples" : true,
-      "isBodyAllowed" : false,
       "isDeprecated" : false,
       "hasAuthMethods" : true,
       "hasConsumes" : false,
@@ -17261,6 +17254,12 @@ WARNING: All illegal access operations will be denied in a future release
       "hasOptionalParams" : true,
       "hasRequiredParams" : true,
       "hasReference" : true,
+      "hasHeaderParams" : false,
+      "hasCookieParams" : false,
+      "hasPathParams" : true,
+      "hasFormParams" : false,
+      "hasExamples" : true,
+      "isBodyAllowed" : false,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -17316,12 +17315,12 @@ WARNING: All illegal access operations will be denied in a future release
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "DefaultApi",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-21T00:14:30.383707-04:00[America/New_York]",
+  "generatedDate" : "2021-04-27T13:30:41.838517-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-00:14:30.933 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+13:30:42.375 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.scala.ScalaClientCodegen",
@@ -26164,12 +26163,6 @@ WARNING: All illegal access operations will be denied in a future release
           "operationIdCamelCase" : "GetMailById",
           "operationIdSnakeCase" : "get_mail_by_id",
           "hasQueryParams" : false,
-          "hasHeaderParams" : false,
-          "hasCookieParams" : false,
-          "hasPathParams" : true,
-          "hasFormParams" : false,
-          "hasExamples" : true,
-          "isBodyAllowed" : false,
           "isDeprecated" : false,
           "hasAuthMethods" : true,
           "hasConsumes" : false,
@@ -26178,6 +26171,12 @@ WARNING: All illegal access operations will be denied in a future release
           "hasOptionalParams" : false,
           "hasRequiredParams" : true,
           "hasReference" : true,
+          "hasHeaderParams" : false,
+          "hasCookieParams" : false,
+          "hasPathParams" : true,
+          "hasFormParams" : false,
+          "hasExamples" : true,
+          "isBodyAllowed" : false,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -26556,12 +26555,6 @@ WARNING: All illegal access operations will be denied in a future release
           "operationIdCamelCase" : "GetMailOrders",
           "operationIdSnakeCase" : "get_mail_orders",
           "hasQueryParams" : false,
-          "hasHeaderParams" : false,
-          "hasCookieParams" : false,
-          "hasPathParams" : false,
-          "hasFormParams" : false,
-          "hasExamples" : true,
-          "isBodyAllowed" : false,
           "isDeprecated" : false,
           "hasAuthMethods" : true,
           "hasConsumes" : false,
@@ -26570,6 +26563,12 @@ WARNING: All illegal access operations will be denied in a future release
           "hasOptionalParams" : false,
           "hasRequiredParams" : false,
           "hasReference" : true,
+          "hasHeaderParams" : false,
+          "hasCookieParams" : false,
+          "hasPathParams" : false,
+          "hasFormParams" : false,
+          "hasExamples" : true,
+          "isBodyAllowed" : false,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -26759,12 +26758,6 @@ WARNING: All illegal access operations will be denied in a future release
           "operationIdCamelCase" : "PingServer",
           "operationIdSnakeCase" : "ping_server",
           "hasQueryParams" : false,
-          "hasHeaderParams" : false,
-          "hasCookieParams" : false,
-          "hasPathParams" : false,
-          "hasFormParams" : false,
-          "hasExamples" : false,
-          "isBodyAllowed" : false,
           "isDeprecated" : false,
           "hasAuthMethods" : false,
           "hasConsumes" : false,
@@ -26773,6 +26766,12 @@ WARNING: All illegal access operations will be denied in a future release
           "hasOptionalParams" : false,
           "hasRequiredParams" : false,
           "hasReference" : false,
+          "hasHeaderParams" : false,
+          "hasCookieParams" : false,
+          "hasPathParams" : false,
+          "hasFormParams" : false,
+          "hasExamples" : false,
+          "isBodyAllowed" : false,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -27478,12 +27477,6 @@ WARNING: All illegal access operations will be denied in a future release
           "operationIdCamelCase" : "PlaceMailOrder",
           "operationIdSnakeCase" : "place_mail_order",
           "hasQueryParams" : false,
-          "hasHeaderParams" : false,
-          "hasCookieParams" : false,
-          "hasPathParams" : false,
-          "hasFormParams" : false,
-          "hasExamples" : false,
-          "isBodyAllowed" : true,
           "isDeprecated" : true,
           "hasAuthMethods" : true,
           "hasConsumes" : true,
@@ -27492,6 +27485,12 @@ WARNING: All illegal access operations will be denied in a future release
           "hasOptionalParams" : true,
           "hasRequiredParams" : false,
           "hasReference" : false,
+          "hasHeaderParams" : false,
+          "hasCookieParams" : false,
+          "hasPathParams" : false,
+          "hasFormParams" : false,
+          "hasExamples" : false,
+          "isBodyAllowed" : true,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -28893,12 +28892,6 @@ WARNING: All illegal access operations will be denied in a future release
           "operationIdCamelCase" : "SendAdvMailById",
           "operationIdSnakeCase" : "send_adv_mail_by_id",
           "hasQueryParams" : false,
-          "hasHeaderParams" : false,
-          "hasCookieParams" : false,
-          "hasPathParams" : true,
-          "hasFormParams" : true,
-          "hasExamples" : true,
-          "isBodyAllowed" : true,
           "isDeprecated" : false,
           "hasAuthMethods" : true,
           "hasConsumes" : true,
@@ -28907,6 +28900,12 @@ WARNING: All illegal access operations will be denied in a future release
           "hasOptionalParams" : false,
           "hasRequiredParams" : true,
           "hasReference" : true,
+          "hasHeaderParams" : false,
+          "hasCookieParams" : false,
+          "hasPathParams" : true,
+          "hasFormParams" : true,
+          "hasExamples" : true,
+          "isBodyAllowed" : true,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -30697,12 +30696,6 @@ WARNING: All illegal access operations will be denied in a future release
           "operationIdCamelCase" : "SendMailById",
           "operationIdSnakeCase" : "send_mail_by_id",
           "hasQueryParams" : true,
-          "hasHeaderParams" : false,
-          "hasCookieParams" : false,
-          "hasPathParams" : true,
-          "hasFormParams" : false,
-          "hasExamples" : true,
-          "isBodyAllowed" : true,
           "isDeprecated" : false,
           "hasAuthMethods" : true,
           "hasConsumes" : false,
@@ -30711,6 +30704,12 @@ WARNING: All illegal access operations will be denied in a future release
           "hasOptionalParams" : true,
           "hasRequiredParams" : true,
           "hasReference" : true,
+          "hasHeaderParams" : false,
+          "hasCookieParams" : false,
+          "hasPathParams" : true,
+          "hasFormParams" : false,
+          "hasExamples" : true,
+          "isBodyAllowed" : true,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -31072,12 +31071,6 @@ WARNING: All illegal access operations will be denied in a future release
           "operationIdCamelCase" : "ValidateMailOrder",
           "operationIdSnakeCase" : "validate_mail_order",
           "hasQueryParams" : false,
-          "hasHeaderParams" : false,
-          "hasCookieParams" : false,
-          "hasPathParams" : false,
-          "hasFormParams" : false,
-          "hasExamples" : false,
-          "isBodyAllowed" : false,
           "isDeprecated" : true,
           "hasAuthMethods" : true,
           "hasConsumes" : false,
@@ -31086,6 +31079,12 @@ WARNING: All illegal access operations will be denied in a future release
           "hasOptionalParams" : false,
           "hasRequiredParams" : false,
           "hasReference" : false,
+          "hasHeaderParams" : false,
+          "hasCookieParams" : false,
+          "hasPathParams" : false,
+          "hasFormParams" : false,
+          "hasExamples" : false,
+          "isBodyAllowed" : false,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -32305,12 +32304,6 @@ WARNING: All illegal access operations will be denied in a future release
           "operationIdCamelCase" : "ViewMailLogById",
           "operationIdSnakeCase" : "view_mail_log_by_id",
           "hasQueryParams" : true,
-          "hasHeaderParams" : false,
-          "hasCookieParams" : false,
-          "hasPathParams" : true,
-          "hasFormParams" : false,
-          "hasExamples" : true,
-          "isBodyAllowed" : false,
           "isDeprecated" : false,
           "hasAuthMethods" : true,
           "hasConsumes" : false,
@@ -32319,6 +32312,12 @@ WARNING: All illegal access operations will be denied in a future release
           "hasOptionalParams" : true,
           "hasRequiredParams" : true,
           "hasReference" : true,
+          "hasHeaderParams" : false,
+          "hasCookieParams" : false,
+          "hasPathParams" : true,
+          "hasFormParams" : false,
+          "hasExamples" : true,
+          "isBodyAllowed" : false,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -32374,7 +32373,7 @@ WARNING: All illegal access operations will be denied in a future release
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "DefaultApi",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-21T00:14:30.383707-04:00[America/New_York]",
+      "generatedDate" : "2021-04-27T13:30:41.838517-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -33131,7 +33130,7 @@ WARNING: All illegal access operations will be denied in a future release
   "apiPackage" : "io.swagger.client.api",
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-21T00:14:30.383707-04:00[America/New_York]",
+  "generatedDate" : "2021-04-27T13:30:41.838517-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -33140,19 +33139,18 @@ WARNING: All illegal access operations will be denied in a future release
   },
   "gitUserId" : "GIT_USER_ID"
 }
-00:14:31.021 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/pom.xml
-00:14:31.065 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/ApiInvoker.scala
-00:14:31.067 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/AsyncClient.scala
-00:14:31.073 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/git_push.sh
-00:14:31.074 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/.gitignore
-00:14:31.081 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/build.gradle
-00:14:31.082 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/settings.gradle
-00:14:31.083 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/gradle.properties
-00:14:31.097 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/gradlew
-00:14:31.104 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/gradlew.bat
-00:14:31.105 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/gradle/wrapper/gradle-wrapper.properties
-00:14:31.106 [Thread-0] WARN  i.s.codegen.v3.DefaultGenerator - can't open handlebars/scala/client/gradle-wrapper.jar for input
-00:14:31.109 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/build.sbt
-00:14:31.125 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/README.md
-00:14:31.131 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/.swagger-codegen-ignore
-00:14:31.132 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/.swagger-codegen/VERSION
+13:30:42.455 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/pom.xml
+13:30:42.484 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/ApiInvoker.scala
+13:30:42.490 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/src/main/scala/io/swagger/client/AsyncClient.scala
+13:30:42.502 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/git_push.sh
+13:30:42.506 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/.gitignore
+13:30:42.524 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/build.gradle
+13:30:42.527 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/settings.gradle
+13:30:42.529 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/gradle.properties
+13:30:42.567 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/gradlew
+13:30:42.583 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/gradlew.bat
+13:30:42.586 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/gradle/wrapper/gradle-wrapper.properties
+13:30:42.587 [Thread-0] WARN  i.s.codegen.v3.DefaultGenerator - can't open handlebars/scala/client/gradle-wrapper.jar for input
+13:30:42.593 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/build.sbt
+13:30:42.617 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/README.md
+13:30:42.618 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/scala/.swagger-codegen/VERSION

@@ -1,10 +1,9 @@
-00:13:49.462 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+13:30:00.250 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
  - [debugOperations] prints operations passed to the template engine
  - [debugSupportingFiles] prints additional data passed to the template engine
-00:13:49.524 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 {
   "openapi" : "3.0.0",
   "info" : {
@@ -718,21 +717,23 @@ VERBOSE MODE: ON. Additional debug options are injected
     "callbacks" : { }
   }
 }
+13:30:00.469 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting pom.xml as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec//pom.xml
+13:30:00.470 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting RestApplication.java as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/api/RestApplication.java
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by com.github.jknack.handlebars.context.MemberValueResolver (file:/home/sites/mailbaby-mail-api/swagger-codegen-cli.jar) to method java.util.Collections$EmptyMap.isEmpty()
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-00:13:49.995 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/ErrorResponse.java
-00:13:50.063 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/GenericResponse.java
-00:13:50.147 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/MailAttachment.java
-00:13:50.237 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/MailContact.java
-00:13:50.262 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/MailLog.java
-00:13:50.306 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/MailOrder.java
-00:13:50.325 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/MailOrders.java
-00:13:50.398 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/SendMail.java
-00:13:50.437 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/SendMailForm.java
-00:13:50.438 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+13:30:00.839 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/ErrorResponse.java
+13:30:00.892 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/GenericResponse.java
+13:30:00.941 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/MailAttachment.java
+13:30:01.009 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/MailContact.java
+13:30:01.036 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/MailLog.java
+13:30:01.079 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/MailOrder.java
+13:30:01.097 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/MailOrders.java
+13:30:01.172 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/SendMail.java
+13:30:01.195 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/model/SendMailForm.java
+13:30:01.195 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -8631,7 +8632,7 @@ WARNING: All illegal access operations will be denied in a future release
     "isEnum" : false
   }
 } ]
-00:13:50.486 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+13:30:01.242 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -8663,7 +8664,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:50.495 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+13:30:01.249 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -8861,7 +8862,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:50.506 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+13:30:01.256 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -8931,7 +8932,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:50.508 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+13:30:01.258 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -9057,7 +9058,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:50.516 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+13:30:01.263 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -9172,7 +9173,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:50.526 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+13:30:01.268 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -9690,7 +9691,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:50.538 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/advsend	;post class Operation {
+13:30:01.280 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/advsend	;post class Operation {
     tags: null
     summary: Sends an Email with Advanced Options
     description: Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
@@ -10054,7 +10055,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:50.571 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+13:30:01.303 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -10365,9 +10366,9 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:50.934 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/api/MailApi.java
-00:13:50.942 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/api/PingApi.java
-00:13:50.943 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+13:30:01.729 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/api/MailApi.java
+13:30:01.738 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/api/PingApi.java
+13:30:01.738 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "appVersion" : "1.0.0",
   "legacyDates" : true,
@@ -17210,7 +17211,7 @@ WARNING: All illegal access operations will be denied in a future release
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "MailApi",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-21T00:13:49.688562-04:00[America/New_York]",
+  "generatedDate" : "2021-04-27T13:30:00.491396-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
@@ -17656,12 +17657,12 @@ WARNING: All illegal access operations will be denied in a future release
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "PingApi",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-21T00:13:49.688562-04:00[America/New_York]",
+  "generatedDate" : "2021-04-27T13:30:00.491396-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-00:13:50.981 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+13:30:01.777 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "appVersion" : "1.0.0",
   "legacyDates" : true,
@@ -32615,7 +32616,7 @@ WARNING: All illegal access operations will be denied in a future release
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "MailApi",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-21T00:13:49.688562-04:00[America/New_York]",
+      "generatedDate" : "2021-04-27T13:30:00.491396-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -33061,7 +33062,7 @@ WARNING: All illegal access operations will be denied in a future release
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "PingApi",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-21T00:13:49.688562-04:00[America/New_York]",
+      "generatedDate" : "2021-04-27T13:30:00.491396-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -33828,7 +33829,7 @@ WARNING: All illegal access operations will be denied in a future release
   "scmUrl" : "https://github.com/swagger-api/swagger-codegen",
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-21T00:13:49.688562-04:00[America/New_York]",
+  "generatedDate" : "2021-04-27T13:30:00.491396-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -33837,7 +33838,4 @@ WARNING: All illegal access operations will be denied in a future release
   },
   "gitUserId" : "GIT_USER_ID"
 }
-00:13:51.038 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/pom.xml
-00:13:51.040 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/src/gen/java/io/swagger/api/RestApplication.java
-00:13:51.045 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/.swagger-codegen-ignore
-00:13:51.045 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/.swagger-codegen/VERSION
+13:30:01.835 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-spec/.swagger-codegen/VERSION

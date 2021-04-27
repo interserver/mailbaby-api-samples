@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 README.md
 analysis_options.yaml
 doc/DefaultApi.md
@@ -26,11 +25,3 @@ lib/model/mail_order.dart
 lib/model/send_mail.dart
 lib/serializers.dart
 pubspec.yaml
-test/default_api_test.dart
-test/error_response_test.dart
-test/generic_response_test.dart
-test/mail_attachment_test.dart
-test/mail_contact_test.dart
-test/mail_log_test.dart
-test/mail_order_test.dart
-test/send_mail_test.dart

@@ -1,5 +1,4 @@
 [main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
-[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
 [main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: python (client)
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'python' is considered experimental.
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
@@ -13,28 +12,28 @@
 [main] WARN  o.o.c.l.AbstractPythonCodegen - Type null not handled properly in toExampleValue
 [main] INFO  o.o.codegen.DefaultGenerator - Model SendMailForm not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/openapi_client/model/error_response.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_error_response.py
+[main] INFO  o.o.codegen.TemplateManager - Skipped /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_error_response.py (Test files never overwrite an existing file of the same name.)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/docs/ErrorResponse.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/openapi_client/model/generic_response.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_generic_response.py
+[main] INFO  o.o.codegen.TemplateManager - Skipped /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_generic_response.py (Test files never overwrite an existing file of the same name.)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/docs/GenericResponse.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/openapi_client/model/mail_attachment.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_mail_attachment.py
+[main] INFO  o.o.codegen.TemplateManager - Skipped /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_mail_attachment.py (Test files never overwrite an existing file of the same name.)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/docs/MailAttachment.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/openapi_client/model/mail_contact.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_mail_contact.py
+[main] INFO  o.o.codegen.TemplateManager - Skipped /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_mail_contact.py (Test files never overwrite an existing file of the same name.)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/docs/MailContact.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/openapi_client/model/mail_log.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_mail_log.py
+[main] INFO  o.o.codegen.TemplateManager - Skipped /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_mail_log.py (Test files never overwrite an existing file of the same name.)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/docs/MailLog.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/openapi_client/model/mail_order.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_mail_order.py
+[main] INFO  o.o.codegen.TemplateManager - Skipped /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_mail_order.py (Test files never overwrite an existing file of the same name.)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/docs/MailOrder.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/openapi_client/model/mail_orders.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_mail_orders.py
+[main] INFO  o.o.codegen.TemplateManager - Skipped /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_mail_orders.py (Test files never overwrite an existing file of the same name.)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/docs/MailOrders.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/openapi_client/model/send_mail.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_send_mail.py
+[main] INFO  o.o.codegen.TemplateManager - Skipped /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_send_mail.py (Test files never overwrite an existing file of the same name.)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/docs/SendMail.md
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
@@ -42,7 +41,7 @@
 [main] WARN  o.o.c.languages.PythonClientCodegen - Multiple MediaTypes found, using only the first one
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/openapi_client/api/default_api.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_default_api.py
+[main] INFO  o.o.codegen.TemplateManager - Skipped /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/test/test_default_api.py (Test files never overwrite an existing file of the same name.)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/docs/DefaultApi.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/README.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/tox.ini
@@ -66,7 +65,7 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/openapi_client/models/__init__.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/openapi_client/model/__init__.py
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/openapi_client/apis/__init__.py
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - Skipped /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/.openapi-generator-ignore (Skipped by supportingFiles options supplied by user.)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/.openapi-generator/VERSION
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi/python/.openapi-generator/FILES
 ################################################################################

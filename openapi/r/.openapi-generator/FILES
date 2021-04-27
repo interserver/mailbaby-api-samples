@@ -1,6 +1,5 @@
 .Rbuildignore
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 DESCRIPTION
 NAMESPACE
@@ -25,11 +24,3 @@ docs/MailOrder.md
 docs/SendMail.md
 git_push.sh
 tests/testthat.R
-tests/testthat/test_default_api.R
-tests/testthat/test_error_response.R
-tests/testthat/test_generic_response.R
-tests/testthat/test_mail_attachment.R
-tests/testthat/test_mail_contact.R
-tests/testthat/test_mail_log.R
-tests/testthat/test_mail_order.R
-tests/testthat/test_send_mail.R

@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .php_cs
 .travis.yml
 README.md
@@ -27,11 +26,3 @@ lib/Model/ModelInterface.php
 lib/Model/SendMail.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Api/DefaultApiTest.php
-test/Model/ErrorResponseTest.php
-test/Model/GenericResponseTest.php
-test/Model/MailAttachmentTest.php
-test/Model/MailContactTest.php
-test/Model/MailLogTest.php
-test/Model/MailOrderTest.php
-test/Model/SendMailTest.php

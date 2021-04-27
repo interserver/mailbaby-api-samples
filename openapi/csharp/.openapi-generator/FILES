@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 Org.OpenAPITools.sln
 README.md
@@ -15,14 +14,6 @@ docs/MailOrder.md
 docs/SendMail.md
 git_push.sh
 mono_nunit_test.sh
-src/Org.OpenAPITools.Test/Api/DefaultApiTests.cs
-src/Org.OpenAPITools.Test/Model/ErrorResponseTests.cs
-src/Org.OpenAPITools.Test/Model/GenericResponseTests.cs
-src/Org.OpenAPITools.Test/Model/MailAttachmentTests.cs
-src/Org.OpenAPITools.Test/Model/MailContactTests.cs
-src/Org.OpenAPITools.Test/Model/MailLogTests.cs
-src/Org.OpenAPITools.Test/Model/MailOrderTests.cs
-src/Org.OpenAPITools.Test/Model/SendMailTests.cs
 src/Org.OpenAPITools.Test/Org.OpenAPITools.Test.csproj
 src/Org.OpenAPITools.Test/packages.config
 src/Org.OpenAPITools/Api/DefaultApi.cs

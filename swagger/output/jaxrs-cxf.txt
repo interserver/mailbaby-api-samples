@@ -1,10 +1,9 @@
-00:13:42.345 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+13:29:53.074 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
  - [debugOperations] prints operations passed to the template engine
  - [debugSupportingFiles] prints additional data passed to the template engine
-00:13:42.413 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 {
   "openapi" : "3.0.0",
   "info" : {
@@ -718,21 +717,23 @@ VERBOSE MODE: ON. Additional debug options are injected
     "callbacks" : { }
   }
 }
+13:29:53.330 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting pom.xml as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf//pom.xml
+13:29:53.330 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting .swagger-codegen-ignore as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf//.swagger-codegen-ignore
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by com.github.jknack.handlebars.context.MemberValueResolver (file:/home/sites/mailbaby-mail-api/swagger-codegen-cli.jar) to method java.util.Collections$EmptyMap.isEmpty()
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-00:13:42.882 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/ErrorResponse.java
-00:13:42.950 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/GenericResponse.java
-00:13:43.005 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/MailAttachment.java
-00:13:43.072 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/MailContact.java
-00:13:43.101 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/MailLog.java
-00:13:43.153 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/MailOrder.java
-00:13:43.176 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/MailOrders.java
-00:13:43.243 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/SendMail.java
-00:13:43.269 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/SendMailForm.java
-00:13:43.269 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+13:29:53.644 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/ErrorResponse.java
+13:29:53.714 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/GenericResponse.java
+13:29:53.802 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/MailAttachment.java
+13:29:53.839 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/MailContact.java
+13:29:53.871 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/MailLog.java
+13:29:53.945 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/MailOrder.java
+13:29:53.970 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/MailOrders.java
+13:29:54.037 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/SendMail.java
+13:29:54.058 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/model/SendMailForm.java
+13:29:54.059 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -1247,6 +1248,7 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -1255,7 +1257,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -1811,6 +1812,7 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -1819,7 +1821,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -2405,6 +2406,7 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ "File", "Schema" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -2413,7 +2415,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -2991,6 +2992,7 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ "Schema" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -2999,7 +3001,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -3314,6 +3315,7 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ "Schema" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -3322,7 +3324,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -4627,6 +4628,7 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -4635,7 +4637,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -4701,6 +4702,7 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ "ArrayList", "List", "MailOrder" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : false,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -4709,7 +4711,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -8266,6 +8267,7 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ "ArrayList", "List", "MailAttachment", "MailContact", "Schema" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -8274,7 +8276,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -8589,6 +8590,7 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ "Schema" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -8597,7 +8599,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -8631,7 +8632,7 @@ WARNING: All illegal access operations will be denied in a future release
     "hasMore" : false
   }
 } ]
-00:13:43.313 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+13:29:54.101 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -8663,7 +8664,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:43.323 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+13:29:54.107 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -8861,7 +8862,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:43.335 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+13:29:54.114 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -8931,7 +8932,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:43.337 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+13:29:54.115 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -9057,7 +9058,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:43.344 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+13:29:54.121 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -9172,7 +9173,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:43.352 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+13:29:54.131 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -9690,7 +9691,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:43.361 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/advsend	;post class Operation {
+13:29:54.142 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/advsend	;post class Operation {
     tags: null
     summary: Sends an Email with Advanced Options
     description: Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
@@ -10054,7 +10055,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:43.382 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+13:29:54.163 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -10365,10 +10366,10 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:13:43.523 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/main/java/io/swagger/api/impl/DefaultApiServiceImpl.java
-00:13:43.752 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/api/DefaultApi.java
-00:13:43.767 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/test/java/io/swagger/api/DefaultApiTest.java
-00:13:43.768 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+13:29:54.170 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - Skipped generation of /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/main/java/io/swagger/api/impl/DefaultApiServiceImpl.java due to rule in .swagger-codegen-ignore
+13:29:54.471 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/gen/java/io/swagger/api/DefaultApi.java
+13:29:54.472 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/src/test/java/io/swagger/api/DefaultApiTest.java
+13:29:54.472 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "appVersion" : "1.0.0",
   "legacyDates" : true,
@@ -17443,12 +17444,12 @@ WARNING: All illegal access operations will be denied in a future release
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "DefaultApi",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-21T00:13:42.598633-04:00[America/New_York]",
+  "generatedDate" : "2021-04-27T13:29:53.338633-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-00:13:43.812 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+13:29:54.515 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "appVersion" : "1.0.0",
   "legacyDates" : true,
@@ -18146,6 +18147,7 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -18154,7 +18156,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -18715,6 +18716,7 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -18723,7 +18725,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -19310,6 +19311,7 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ "File", "Schema" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -19318,7 +19320,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -19897,6 +19898,7 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ "Schema" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -19905,7 +19907,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -20224,6 +20225,7 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ "Schema" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -20232,7 +20234,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -21545,6 +21546,7 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -21553,7 +21555,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -21620,6 +21621,7 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ "ArrayList", "List", "MailOrder" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : false,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -21628,7 +21630,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -25186,6 +25187,7 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ "ArrayList", "List", "MailAttachment", "MailContact", "Schema" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -25194,7 +25196,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -25509,6 +25510,7 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ "Schema" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : false,
       "hasEnums" : false,
@@ -25517,7 +25519,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -32634,7 +32635,7 @@ WARNING: All illegal access operations will be denied in a future release
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "DefaultApi",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-21T00:13:42.598633-04:00[America/New_York]",
+      "generatedDate" : "2021-04-27T13:29:53.338633-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -33401,7 +33402,7 @@ WARNING: All illegal access operations will be denied in a future release
   "scmUrl" : "https://github.com/swagger-api/swagger-codegen",
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-21T00:13:42.598633-04:00[America/New_York]",
+  "generatedDate" : "2021-04-27T13:29:53.338633-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -33410,6 +33411,4 @@ WARNING: All illegal access operations will be denied in a future release
   },
   "gitUserId" : "GIT_USER_ID"
 }
-00:13:43.896 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/pom.xml
-00:13:43.898 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/.swagger-codegen-ignore
-00:13:43.899 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/.swagger-codegen/VERSION
+13:29:54.572 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/jaxrs-cxf/.swagger-codegen/VERSION

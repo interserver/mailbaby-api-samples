@@ -1,10 +1,9 @@
-00:14:20.550 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+13:30:31.888 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
  - [debugOperations] prints operations passed to the template engine
  - [debugSupportingFiles] prints additional data passed to the template engine
-00:14:20.624 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 {
   "openapi" : "3.0.0",
   "info" : {
@@ -723,34 +722,34 @@ WARNING: Illegal reflective access by com.github.jknack.handlebars.context.Membe
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-00:14:21.055 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/error_response.py
-00:14:21.068 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_error_response.py
-00:14:21.076 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/ErrorResponse.md
-00:14:21.147 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/generic_response.py
-00:14:21.162 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_generic_response.py
-00:14:21.169 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/GenericResponse.md
-00:14:21.245 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/mail_attachment.py
-00:14:21.253 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_mail_attachment.py
-00:14:21.258 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/MailAttachment.md
-00:14:21.308 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/mail_contact.py
-00:14:21.316 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_mail_contact.py
-00:14:21.321 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/MailContact.md
-00:14:21.362 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/mail_log.py
-00:14:21.370 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_mail_log.py
-00:14:21.375 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/MailLog.md
-00:14:21.418 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/mail_order.py
-00:14:21.426 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_mail_order.py
-00:14:21.430 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/MailOrder.md
-00:14:21.473 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/mail_orders.py
-00:14:21.480 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_mail_orders.py
-00:14:21.484 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/MailOrders.md
-00:14:21.523 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/send_mail.py
-00:14:21.530 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_send_mail.py
-00:14:21.534 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/SendMail.md
-00:14:21.580 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/send_mail_form.py
-00:14:21.585 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_send_mail_form.py
-00:14:21.588 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/SendMailForm.md
-00:14:21.588 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+13:30:32.501 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/error_response.py
+13:30:32.502 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_error_response.py
+13:30:32.510 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/ErrorResponse.md
+13:30:32.576 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/generic_response.py
+13:30:32.576 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_generic_response.py
+13:30:32.583 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/GenericResponse.md
+13:30:32.685 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/mail_attachment.py
+13:30:32.686 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_mail_attachment.py
+13:30:32.690 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/MailAttachment.md
+13:30:32.728 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/mail_contact.py
+13:30:32.728 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_mail_contact.py
+13:30:32.733 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/MailContact.md
+13:30:32.789 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/mail_log.py
+13:30:32.790 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_mail_log.py
+13:30:32.795 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/MailLog.md
+13:30:32.846 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/mail_order.py
+13:30:32.846 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_mail_order.py
+13:30:32.851 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/MailOrder.md
+13:30:32.886 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/mail_orders.py
+13:30:32.886 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_mail_orders.py
+13:30:32.889 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/MailOrders.md
+13:30:32.919 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/send_mail.py
+13:30:32.920 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_send_mail.py
+13:30:32.923 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/SendMail.md
+13:30:32.949 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/send_mail_form.py
+13:30:32.950 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_send_mail_form.py
+13:30:32.955 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/SendMailForm.md
+13:30:32.956 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -1257,6 +1256,8 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
     "hasRequired" : false,
@@ -1264,8 +1265,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -1813,6 +1812,8 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
     "hasRequired" : false,
@@ -1820,8 +1821,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -2399,6 +2398,8 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
     "hasRequired" : false,
@@ -2406,8 +2407,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -2977,6 +2976,8 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
     "hasRequired" : false,
@@ -2984,8 +2985,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -3296,6 +3295,8 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
     "hasRequired" : false,
@@ -3303,8 +3304,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -4589,6 +4588,8 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
     "hasRequired" : false,
@@ -4596,8 +4597,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -4662,6 +4661,8 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : false,
+    "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
     "hasRequired" : false,
@@ -4669,8 +4670,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : false,
-    "hasOnlyReadOnly" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -8171,6 +8170,8 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
     "hasRequired" : false,
@@ -8178,8 +8179,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -8490,6 +8489,8 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
     "hasRequired" : false,
@@ -8497,8 +8498,6 @@ WARNING: All illegal access operations will be denied in a future release
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -8532,7 +8531,7 @@ WARNING: All illegal access operations will be denied in a future release
     "isEnum" : false
   }
 } ]
-00:14:21.632 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+13:30:33.006 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -8564,7 +8563,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:21.640 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+13:30:33.015 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -8762,7 +8761,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:21.647 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+13:30:33.023 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -8832,7 +8831,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:21.649 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+13:30:33.025 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -8958,7 +8957,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:21.654 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+13:30:33.030 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -9073,7 +9072,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:21.662 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+13:30:33.039 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -9591,7 +9590,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:21.670 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/advsend	;post class Operation {
+13:30:33.081 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/advsend	;post class Operation {
     tags: null
     summary: Sends an Email with Advanced Options
     description: Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
@@ -9955,7 +9954,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:21.689 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+13:30:33.105 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -10266,10 +10265,10 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-00:14:21.739 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/api/default_api.py
-00:14:21.745 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_default_api.py
-00:14:21.768 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/DefaultApi.md
-00:14:21.769 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+13:30:33.215 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/api/default_api.py
+13:30:33.217 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/test_default_api.py
+13:30:33.253 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/docs/DefaultApi.md
+13:30:33.253 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.python.PythonClientCodegen",
@@ -17220,12 +17219,12 @@ WARNING: All illegal access operations will be denied in a future release
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "DefaultApi",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-21T00:14:20.763275-04:00[America/New_York]",
+  "generatedDate" : "2021-04-27T13:30:32.163096-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-00:14:21.810 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+13:30:33.295 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "infoName" : "Joe Huss",
   "licenseUrl" : "http://www.apache.org/licenses/LICENSE-2.0.html",
@@ -18647,6 +18646,8 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
       "hasRequired" : false,
@@ -18654,8 +18655,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -19208,6 +19207,8 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
       "hasRequired" : false,
@@ -19215,8 +19216,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -19795,6 +19794,8 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
       "hasRequired" : false,
@@ -19802,8 +19803,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -20374,6 +20373,8 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
       "hasRequired" : false,
@@ -20381,8 +20382,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -20697,6 +20696,8 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
       "hasRequired" : false,
@@ -20704,8 +20705,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -21998,6 +21997,8 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
       "hasRequired" : false,
@@ -22005,8 +22006,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -22072,6 +22071,8 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : false,
+      "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
       "hasRequired" : false,
@@ -22079,8 +22080,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : false,
-      "hasOnlyReadOnly" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -25582,6 +25581,8 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
       "hasRequired" : false,
@@ -25589,8 +25590,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -25901,6 +25900,8 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
       "hasMoreModels" : false,
       "hasEnums" : false,
       "hasRequired" : false,
@@ -25908,8 +25909,6 @@ WARNING: All illegal access operations will be denied in a future release
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -32904,7 +32903,7 @@ WARNING: All illegal access operations will be denied in a future release
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "DefaultApi",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-21T00:14:20.763275-04:00[America/New_York]",
+      "generatedDate" : "2021-04-27T13:30:32.163096-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -32915,7 +32914,7 @@ WARNING: All illegal access operations will be denied in a future release
   "useOas2" : false,
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-21T00:14:20.763275-04:00[America/New_York]",
+  "generatedDate" : "2021-04-27T13:30:32.163096-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -32925,20 +32924,19 @@ WARNING: All illegal access operations will be denied in a future release
   "projectName" : "swagger-client",
   "gitUserId" : "GIT_USER_ID"
 }
-00:14:21.890 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/README.md
-00:14:21.893 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/tox.ini
-00:14:21.895 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test-requirements.txt
-00:14:21.896 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/requirements.txt
-00:14:21.910 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/configuration.py
-00:14:21.913 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/__init__.py
-00:14:21.916 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/__init__.py
-00:14:21.917 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/api/__init__.py
-00:14:21.918 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/__init__.py
-00:14:21.922 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/git_push.sh
-00:14:21.926 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/.gitignore
-00:14:21.928 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/.travis.yml
-00:14:21.934 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/setup.py
-00:14:22.040 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/api_client.py
-00:14:22.065 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/rest.py
-00:14:22.073 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/.swagger-codegen-ignore
-00:14:22.074 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/.swagger-codegen/VERSION
+13:30:33.380 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/README.md
+13:30:33.383 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/tox.ini
+13:30:33.385 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test-requirements.txt
+13:30:33.387 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/requirements.txt
+13:30:33.414 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/configuration.py
+13:30:33.417 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/__init__.py
+13:30:33.420 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/models/__init__.py
+13:30:33.422 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/api/__init__.py
+13:30:33.423 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/test/__init__.py
+13:30:33.429 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/git_push.sh
+13:30:33.432 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/.gitignore
+13:30:33.433 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/.travis.yml
+13:30:33.437 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/setup.py
+13:30:33.494 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/api_client.py
+13:30:33.526 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/swagger_client/rest.py
+13:30:33.526 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger/python/.swagger-codegen/VERSION

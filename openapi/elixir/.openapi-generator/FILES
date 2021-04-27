@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 README.md
 config/config.exs
 lib/mail_baby_api/api/default.ex

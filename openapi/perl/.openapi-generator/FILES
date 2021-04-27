@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 bin/autodoc
@@ -25,11 +24,3 @@ lib/WWW/OpenAPIClient/Object/MailOrder.pm
 lib/WWW/OpenAPIClient/Object/SendMail.pm
 lib/WWW/OpenAPIClient/Role.pm
 lib/WWW/OpenAPIClient/Role/AutoDoc.pm
-t/DefaultApiTest.t
-t/ErrorResponseTest.t
-t/GenericResponseTest.t
-t/MailAttachmentTest.t
-t/MailContactTest.t
-t/MailLogTest.t
-t/MailOrderTest.t
-t/SendMailTest.t

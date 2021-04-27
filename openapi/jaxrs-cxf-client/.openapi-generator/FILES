@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 pom.xml
 src/gen/java/org/openapitools/api/DefaultApi.java
 src/gen/java/org/openapitools/model/ErrorResponse.java
@@ -8,4 +7,3 @@ src/gen/java/org/openapitools/model/MailContact.java
 src/gen/java/org/openapitools/model/MailLog.java
 src/gen/java/org/openapitools/model/MailOrder.java
 src/gen/java/org/openapitools/model/SendMail.java
-src/test/java/org/openapitools/api/DefaultApiTest.java

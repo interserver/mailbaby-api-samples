@@ -1,0 +1,57 @@
+@startuml
+
+title Mail Baby API Schemas Diagram
+
+entity ErrorResponse { 
+    * code: String
+    * message: String
+}
+
+entity GenericResponse { 
+    status: String
+    status_text: String
+}
+
+entity MailAttachment { 
+    * data: File
+    filename: String
+}
+
+entity MailContact { 
+    * email: String
+    name: String
+}
+
+entity MailLog { 
+    id: Long
+}
+
+entity MailOrder { 
+    * id: Integer
+    * status: String
+    * username: String
+    password: String
+    comment: String
+}
+
+entity SendMail { 
+    * id: Long
+    * from: MailContact
+    * to: List<MailContact>
+    * subject: String
+    * body: String
+    replyto: List<MailContact>
+    cc: List<MailContact>
+    bcc: List<MailContact>
+    attachments: List<MailAttachment>
+}
+
+
+SendMail -- MailContact : from
+SendMail -- "0..*" MailContact : to
+SendMail -- "0..*" MailContact : replyto
+SendMail -- "0..*" MailContact : cc
+SendMail -- "0..*" MailContact : bcc
+SendMail -- "0..*" MailAttachment : attachments
+
+@enduml

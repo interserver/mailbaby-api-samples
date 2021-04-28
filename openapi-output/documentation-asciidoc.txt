@@ -4,11 +4,13 @@
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'asciidoc' is considered stable.
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
-[main] WARN  o.o.c.l.AsciidocDocumentationCodegen - base part for include markup lambda not found: null as /home/sites/mailbaby-mail-api/null
-[main] WARN  o.o.c.l.AsciidocDocumentationCodegen - base part for include markup lambda not found: null as /home/sites/mailbaby-mail-api/null
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] INFO  o.o.codegen.DefaultGenerator - Model MailOrders not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] INFO  o.o.codegen.DefaultGenerator - Model SendMailForm not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.DefaultCodegen - Multiple MediaTypes found, using only the first one
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-documentation/asciidoc/index.adoc
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-documentation/asciidoc/.openapi-generator-ignore
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-documentation/asciidoc/.openapi-generator/VERSION

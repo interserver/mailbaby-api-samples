@@ -1,0 +1,14 @@
+pub mod error_response;
+pub use self::error_response::ErrorResponse;
+pub mod generic_response;
+pub use self::generic_response::GenericResponse;
+pub mod mail_attachment;
+pub use self::mail_attachment::MailAttachment;
+pub mod mail_contact;
+pub use self::mail_contact::MailContact;
+pub mod mail_log;
+pub use self::mail_log::MailLog;
+pub mod mail_order;
+pub use self::mail_order::MailOrder;
+pub mod send_mail;
+pub use self::send_mail::SendMail;

@@ -1,24 +1,10 @@
-[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
-[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
-[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: elm (client)
-[main] INFO  o.o.codegen.DefaultGenerator - Generator 'elm' is considered stable.
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
-[main] INFO  o.o.codegen.DefaultGenerator - Model MailOrders not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elm/src/Api/Data.elm
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elm/src/Api/Request/Default.elm
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elm/src/Api.elm
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elm/src/Api/Time.elm
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elm/elm.json
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elm/.gitignore
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elm/README.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elm/.openapi-generator-ignore
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elm/.openapi-generator/VERSION
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elm/.openapi-generator/FILES
-################################################################################
-# Thanks for using OpenAPI Generator.                                          #
-# Please consider donation to help us maintain this project 🙏                 #
-# https://opencollective.com/openapi_generator/donate                          #
-################################################################################
+[main] ERROR o.o.c.config.CodegenConfigurator - No content to map due to end-of-input
+ at [Source: (File); line: 1, column: 1]
+[main] ERROR o.o.c.config.CodegenConfigurator - No content to map due to end-of-input
+ at [Source: (File); line: 1, column: 1]
+Exception in thread "main" java.lang.RuntimeException: Unable to deserialize config file: /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-config/elm.yaml
+	at org.openapitools.codegen.config.CodegenConfigurator.readDynamicSettings(CodegenConfigurator.java:155)
+	at org.openapitools.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:86)
+	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:271)
+	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
+	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)

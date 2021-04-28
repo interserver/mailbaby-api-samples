@@ -1,47 +1,49 @@
+15:14:53.940 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by com.github.jknack.handlebars.context.MemberValueResolver (file:/home/sites/mailbaby-mail-api/swagger-codegen-cli.jar) to method java.util.Collections$EmptyMap.isEmpty()
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-14:52:20.829 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/ErrorResponse.php
-14:52:20.834 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/ErrorResponseTest.php
-14:52:20.846 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/ErrorResponse.md
-14:52:21.016 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/GenericResponse.php
-14:52:21.017 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/GenericResponseTest.php
-14:52:21.023 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/GenericResponse.md
-14:52:21.106 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/MailAttachment.php
-14:52:21.106 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/MailAttachmentTest.php
-14:52:21.111 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/MailAttachment.md
-14:52:21.245 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/MailContact.php
-14:52:21.245 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/MailContactTest.php
-14:52:21.251 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/MailContact.md
-14:52:21.331 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/MailLog.php
-14:52:21.332 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/MailLogTest.php
-14:52:21.337 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/MailLog.md
-14:52:21.397 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/MailOrder.php
-14:52:21.398 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/MailOrderTest.php
-14:52:21.402 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/MailOrder.md
-14:52:21.438 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/MailOrders.php
-14:52:21.439 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/MailOrdersTest.php
-14:52:21.442 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/MailOrders.md
-14:52:21.481 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/SendMail.php
-14:52:21.482 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/SendMailTest.php
-14:52:21.487 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/SendMail.md
-14:52:21.530 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/SendMailForm.php
-14:52:21.531 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/SendMailFormTest.php
-14:52:21.534 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/SendMailForm.md
-14:52:21.653 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Api/DefaultApi.php
-14:52:21.654 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Api/DefaultApiTest.php
-14:52:21.678 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Api/DefaultApi.md
-14:52:21.688 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/ApiException.php
-14:52:21.717 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Configuration.php
-14:52:21.756 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/ObjectSerializer.php
-14:52:21.767 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/ModelInterface.php
-14:52:21.778 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/HeaderSelector.php
-14:52:21.783 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/composer.json
-14:52:21.809 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/README.md
-14:52:21.813 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/phpunit.xml.dist
-14:52:21.814 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/.travis.yml
-14:52:21.820 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/.php_cs
-14:52:21.827 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/git_push.sh
-14:52:21.827 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/.swagger-codegen/VERSION
+15:14:54.470 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/ErrorResponse.php
+15:14:54.504 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/ErrorResponseTest.php
+15:14:54.514 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/ErrorResponse.md
+15:14:54.639 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/GenericResponse.php
+15:14:54.663 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/GenericResponseTest.php
+15:14:54.671 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/GenericResponse.md
+15:14:54.780 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/MailAttachment.php
+15:14:54.794 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/MailAttachmentTest.php
+15:14:54.798 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/MailAttachment.md
+15:14:54.894 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/MailContact.php
+15:14:54.905 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/MailContactTest.php
+15:14:54.912 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/MailContact.md
+15:14:55.005 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/MailLog.php
+15:14:55.011 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/MailLogTest.php
+15:14:55.013 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/MailLog.md
+15:14:55.048 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/MailOrder.php
+15:14:55.059 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/MailOrderTest.php
+15:14:55.062 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/MailOrder.md
+15:14:55.112 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/MailOrders.php
+15:14:55.120 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/MailOrdersTest.php
+15:14:55.123 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/MailOrders.md
+15:14:55.180 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/SendMail.php
+15:14:55.188 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/SendMailTest.php
+15:14:55.191 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/SendMail.md
+15:14:55.232 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/SendMailForm.php
+15:14:55.239 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Model/SendMailFormTest.php
+15:14:55.242 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Model/SendMailForm.md
+15:14:55.384 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Api/DefaultApi.php
+15:14:55.394 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/test/Api/DefaultApiTest.php
+15:14:55.422 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/docs/Api/DefaultApi.md
+15:14:55.434 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/ApiException.php
+15:14:55.471 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Configuration.php
+15:14:55.525 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/ObjectSerializer.php
+15:14:55.538 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/Model/ModelInterface.php
+15:14:55.547 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/src/HeaderSelector.php
+15:14:55.552 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/composer.json
+15:14:55.572 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/README.md
+15:14:55.575 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/phpunit.xml.dist
+15:14:55.576 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/.travis.yml
+15:14:55.580 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/.php_cs
+15:14:55.585 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/Api/git_push.sh
+15:14:55.594 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/.swagger-codegen-ignore
+15:14:55.594 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/.swagger-codegen/VERSION

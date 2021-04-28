@@ -1,4 +1,4 @@
-13:55:52.396 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+14:00:59.906 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
@@ -516,10 +516,10 @@ VERBOSE MODE: ON. Additional debug options are injected
     "callbacks" : { }
   }
 }
-13:55:53.041 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting index.js as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server//index.js
-13:55:53.041 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting package.json as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server//package.json
-13:55:53.041 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting README.md as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server//README.md
-13:55:53.138 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+14:01:00.676 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting index.js as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server//index.js
+14:01:00.677 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting package.json as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server//package.json
+14:01:00.677 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting README.md as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server//README.md
+14:01:00.762 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -1034,6 +1034,8 @@ VERBOSE MODE: ON. Additional debug options are injected
     "imports" : [ "string" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "isInteger" : false,
+    "isNumber" : false,
     "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
@@ -1041,8 +1043,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasRequired" : false,
     "hasOptional" : false,
     "hasChildren" : false,
-    "isInteger" : false,
-    "isNumber" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -1598,6 +1598,8 @@ VERBOSE MODE: ON. Additional debug options are injected
     "imports" : [ "string" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "isInteger" : false,
+    "isNumber" : false,
     "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
@@ -1605,8 +1607,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasRequired" : false,
     "hasOptional" : true,
     "hasChildren" : false,
-    "isInteger" : false,
-    "isNumber" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -1921,6 +1921,8 @@ VERBOSE MODE: ON. Additional debug options are injected
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "isInteger" : false,
+    "isNumber" : false,
     "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
@@ -1928,8 +1930,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasRequired" : false,
     "hasOptional" : true,
     "hasChildren" : false,
-    "isInteger" : false,
-    "isNumber" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -3234,6 +3234,8 @@ VERBOSE MODE: ON. Additional debug options are injected
     "imports" : [ "integer", "string" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "isInteger" : false,
+    "isNumber" : false,
     "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
@@ -3241,8 +3243,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasRequired" : false,
     "hasOptional" : true,
     "hasChildren" : false,
-    "isInteger" : false,
-    "isNumber" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -3308,6 +3308,8 @@ VERBOSE MODE: ON. Additional debug options are injected
     "imports" : [ "List", "MailOrder" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "isInteger" : false,
+    "isNumber" : false,
     "hasVars" : false,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
@@ -3315,8 +3317,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasRequired" : false,
     "hasOptional" : false,
     "hasChildren" : false,
-    "isInteger" : false,
-    "isNumber" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -3350,7 +3350,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "isEnum" : false
   }
 } ]
-13:55:53.178 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+14:01:00.796 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -3382,7 +3382,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-13:55:53.184 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+14:01:00.802 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -3580,7 +3580,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-13:55:53.194 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+14:01:00.812 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -3650,7 +3650,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-13:55:53.196 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+14:01:00.814 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -3776,7 +3776,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-13:55:53.200 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+14:01:00.817 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -3891,7 +3891,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-13:55:53.204 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+14:01:00.821 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -4307,7 +4307,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-13:55:53.212 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+14:01:00.828 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -4618,9 +4618,9 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-13:55:53.382 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server/service/DefaultService.js
-13:55:53.397 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server/controllers/Default.js
-13:55:53.398 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+14:01:00.971 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server/service/DefaultService.js
+14:01:00.986 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server/controllers/Default.js
+14:01:00.986 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "importPath" : "controllers.Default",
   "infoName" : "Joe Huss",
@@ -9801,13 +9801,13 @@ VERBOSE MODE: ON. Additional debug options are injected
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "Default",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T13:55:53.049910-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T14:01:00.685678-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "projectName" : "mail-baby-api",
   "gitUserId" : "GIT_USER_ID"
 } ]
-13:55:53.513 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+14:01:01.082 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "infoName" : "Joe Huss",
   "licenseUrl" : "http://www.apache.org/licenses/LICENSE-2.0.html",
@@ -11044,6 +11044,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "imports" : [ "string" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "isInteger" : false,
+      "isNumber" : false,
       "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
@@ -11051,8 +11053,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasRequired" : false,
       "hasOptional" : false,
       "hasChildren" : false,
-      "isInteger" : false,
-      "isNumber" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -11613,6 +11613,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "imports" : [ "string" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "isInteger" : false,
+      "isNumber" : false,
       "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
@@ -11620,8 +11622,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasRequired" : false,
       "hasOptional" : true,
       "hasChildren" : false,
-      "isInteger" : false,
-      "isNumber" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -11940,6 +11940,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "isInteger" : false,
+      "isNumber" : false,
       "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
@@ -11947,8 +11949,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasRequired" : false,
       "hasOptional" : true,
       "hasChildren" : false,
-      "isInteger" : false,
-      "isNumber" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -13261,6 +13261,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "imports" : [ "integer", "string" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "isInteger" : false,
+      "isNumber" : false,
       "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
@@ -13268,8 +13270,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasRequired" : false,
       "hasOptional" : true,
       "hasChildren" : false,
-      "isInteger" : false,
-      "isNumber" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -13335,6 +13335,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "imports" : [ "List", "MailOrder" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "isInteger" : false,
+      "isNumber" : false,
       "hasVars" : false,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : false,
@@ -13342,8 +13344,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasRequired" : false,
       "hasOptional" : false,
       "hasChildren" : false,
-      "isInteger" : false,
-      "isNumber" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -23559,7 +23559,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "Default",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-28T13:55:53.049910-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T14:01:00.685678-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "projectName" : "mail-baby-api",
@@ -23570,7 +23570,7 @@ VERBOSE MODE: ON. Additional debug options are injected
   "useOas2" : false,
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T13:55:53.049910-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T14:01:00.685678-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -23580,6 +23580,6 @@ VERBOSE MODE: ON. Additional debug options are injected
   "projectName" : "mail-baby-api",
   "gitUserId" : "GIT_USER_ID"
 }
-13:55:53.584 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server/utils/writer.js
-13:55:53.587 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server/api/openapi.yaml
-13:55:53.587 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server/.swagger-codegen/VERSION
+14:01:01.141 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server/utils/writer.js
+14:01:01.144 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server/api/openapi.yaml
+14:01:01.145 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/nodejs-server/.swagger-codegen/VERSION

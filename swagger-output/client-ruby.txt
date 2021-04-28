@@ -1,4 +1,4 @@
-13:56:14.351 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+14:01:22.735 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
@@ -516,32 +516,32 @@ VERBOSE MODE: ON. Additional debug options are injected
     "callbacks" : { }
   }
 }
-13:56:14.924 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting .rspec as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby//.rspec
-13:56:14.924 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting spec_helper.rb as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/spec_helper.rb
-13:56:14.924 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting configuration_spec.rb as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/configuration_spec.rb
-13:56:14.924 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting api_client_spec.rb as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/api_client_spec.rb
-13:56:14.924 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting base_object_spec.rb as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/base_object_spec.rb
+14:01:23.414 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting .rspec as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby//.rspec
+14:01:23.415 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting spec_helper.rb as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/spec_helper.rb
+14:01:23.415 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting configuration_spec.rb as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/configuration_spec.rb
+14:01:23.415 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting api_client_spec.rb as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/api_client_spec.rb
+14:01:23.415 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting base_object_spec.rb as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/base_object_spec.rb
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by com.github.jknack.handlebars.context.MemberValueResolver (file:/home/sites/mailbaby-mail-api/swagger-codegen-cli.jar) to method java.util.Collections$EmptyMap.isEmpty()
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-13:56:15.283 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/error.rb
-13:56:15.284 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/error_spec.rb
-13:56:15.291 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/Error.md
-13:56:15.370 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/generic_response.rb
-13:56:15.371 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/generic_response_spec.rb
-13:56:15.375 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/GenericResponse.md
-13:56:15.488 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/mail_log.rb
-13:56:15.490 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/mail_log_spec.rb
-13:56:15.497 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/MailLog.md
-13:56:15.619 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/mail_order.rb
-13:56:15.621 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/mail_order_spec.rb
-13:56:15.630 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/MailOrder.md
-13:56:15.728 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/mail_orders.rb
-13:56:15.729 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/mail_orders_spec.rb
-13:56:15.732 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/MailOrders.md
-13:56:15.732 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+14:01:23.782 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/error.rb
+14:01:23.783 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/error_spec.rb
+14:01:23.789 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/Error.md
+14:01:23.877 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/generic_response.rb
+14:01:23.878 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/generic_response_spec.rb
+14:01:23.882 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/GenericResponse.md
+14:01:23.966 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/mail_log.rb
+14:01:23.967 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/mail_log_spec.rb
+14:01:23.973 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/MailLog.md
+14:01:24.092 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/mail_order.rb
+14:01:24.092 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/mail_order_spec.rb
+14:01:24.101 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/MailOrder.md
+14:01:24.191 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/mail_orders.rb
+14:01:24.192 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/mail_orders_spec.rb
+14:01:24.198 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/MailOrders.md
+14:01:24.198 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -3332,7 +3332,7 @@ WARNING: All illegal access operations will be denied in a future release
     "isMapContainer" : false
   }
 } ]
-13:56:15.766 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+14:01:24.239 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -3364,7 +3364,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:56:15.775 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+14:01:24.247 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -3562,7 +3562,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:56:15.792 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+14:01:24.264 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -3632,7 +3632,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:56:15.795 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+14:01:24.266 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -3758,7 +3758,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:56:15.802 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+14:01:24.275 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -3873,7 +3873,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:56:15.811 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+14:01:24.285 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -4289,7 +4289,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:56:15.823 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+14:01:24.300 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -4600,10 +4600,10 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:56:15.900 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/api/default_api.rb
-13:56:15.901 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/api/default_api_spec.rb
-13:56:15.925 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/DefaultApi.md
-13:56:15.926 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+14:01:24.376 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/api/default_api.rb
+14:01:24.377 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/api/default_api_spec.rb
+14:01:24.401 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/DefaultApi.md
+14:01:24.402 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.ruby.RubyClientCodegen",
@@ -9818,12 +9818,12 @@ WARNING: All illegal access operations will be denied in a future release
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "DefaultApi",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T13:56:14.970391-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T14:01:23.460355-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-13:56:15.956 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+14:01:24.439 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "infoName" : "Joe Huss",
   "licenseUrl" : "http://www.apache.org/licenses/LICENSE-2.0.html",
@@ -18571,7 +18571,7 @@ WARNING: All illegal access operations will be denied in a future release
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "DefaultApi",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-28T13:56:14.970391-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T14:01:23.460355-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -18582,7 +18582,7 @@ WARNING: All illegal access operations will be denied in a future release
   "useOas2" : false,
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T13:56:14.970391-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T14:01:23.460355-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -18591,16 +18591,16 @@ WARNING: All illegal access operations will be denied in a future release
   },
   "gitUserId" : "GIT_USER_ID"
 }
-13:56:15.989 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/swagger_client.gemspec
-13:56:15.995 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client.rb
-13:56:16.024 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/api_client.rb
-13:56:16.028 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/api_error.rb
-13:56:16.048 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/configuration.rb
-13:56:16.051 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/version.rb
-13:56:16.072 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/README.md
-13:56:16.078 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/git_push.sh
-13:56:16.080 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/.gitignore
-13:56:16.082 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/Rakefile
-13:56:16.083 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/Gemfile
-13:56:16.093 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/.rubocop.yml
-13:56:16.093 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/.swagger-codegen/VERSION
+14:01:24.475 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/swagger_client.gemspec
+14:01:24.481 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client.rb
+14:01:24.510 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/api_client.rb
+14:01:24.517 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/api_error.rb
+14:01:24.538 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/configuration.rb
+14:01:24.542 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/version.rb
+14:01:24.571 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/README.md
+14:01:24.575 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/git_push.sh
+14:01:24.577 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/.gitignore
+14:01:24.578 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/Rakefile
+14:01:24.580 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/Gemfile
+14:01:24.586 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/.rubocop.yml
+14:01:24.586 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/.swagger-codegen/VERSION

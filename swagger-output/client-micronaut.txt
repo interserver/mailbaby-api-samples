@@ -1,4 +1,4 @@
-13:55:46.710 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+14:00:54.228 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
@@ -521,12 +521,12 @@ WARNING: Illegal reflective access by com.github.jknack.handlebars.context.Membe
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-13:55:47.665 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/model/Error.java
-13:55:47.750 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/model/GenericResponse.java
-13:55:47.805 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/model/MailLog.java
-13:55:47.892 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/model/MailOrder.java
-13:55:47.936 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/model/MailOrders.java
-13:55:47.936 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+14:00:55.223 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/model/Error.java
+14:00:55.290 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/model/GenericResponse.java
+14:00:55.340 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/model/MailLog.java
+14:00:55.421 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/model/MailOrder.java
+14:00:55.452 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/model/MailOrders.java
+14:00:55.452 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -3357,7 +3357,7 @@ WARNING: All illegal access operations will be denied in a future release
     "isEnum" : false
   }
 } ]
-13:55:47.974 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+14:00:55.489 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -3389,7 +3389,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:55:47.985 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+14:00:55.497 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -3587,7 +3587,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:55:48.006 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+14:00:55.513 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -3657,7 +3657,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:55:48.009 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+14:00:55.514 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -3783,7 +3783,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:55:48.019 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+14:00:55.521 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -3898,7 +3898,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:55:48.029 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+14:00:55.529 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -4314,7 +4314,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:55:48.044 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+14:00:55.539 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -4625,11 +4625,11 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:55:48.315 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/api/MailApi.java
-13:55:48.316 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/test/java/io/swagger/api/MailApiControllerTest.java
-13:55:48.335 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/api/PingApi.java
-13:55:48.336 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/test/java/io/swagger/api/PingApiControllerTest.java
-13:55:48.336 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+14:00:55.775 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/api/MailApi.java
+14:00:55.776 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/test/java/io/swagger/api/MailApiControllerTest.java
+14:00:55.790 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/api/PingApi.java
+14:00:55.791 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/test/java/io/swagger/api/PingApiControllerTest.java
+14:00:55.791 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.java.MicronautCodegen",
@@ -5398,8 +5398,8 @@ WARNING: All illegal access operations will be denied in a future release
         "example" : "{\n  \"password\" : \"guest123\",\n  \"comment\" : \"main mail account\",\n  \"id\" : 1234,\n  \"status\" : \"active\",\n  \"username\" : \"mb1234\"\n}"
       } ],
       "nickname" : "getMailById",
-      "hasHeaderParams" : false,
       "hasQueryParams" : false,
+      "hasHeaderParams" : false,
       "hasCookieParams" : false,
       "hasPathParams" : true,
       "hasFormParams" : false,
@@ -5788,8 +5788,8 @@ WARNING: All illegal access operations will be denied in a future release
         "example" : "[ {\n  \"password\" : \"guest123\",\n  \"comment\" : \"main mail account\",\n  \"id\" : 1234,\n  \"status\" : \"active\",\n  \"username\" : \"mb1234\"\n}, {\n  \"password\" : \"guest123\",\n  \"comment\" : \"main mail account\",\n  \"id\" : 1234,\n  \"status\" : \"active\",\n  \"username\" : \"mb1234\"\n} ]"
       } ],
       "nickname" : "getMailOrders",
-      "hasHeaderParams" : false,
       "hasQueryParams" : false,
+      "hasHeaderParams" : false,
       "hasCookieParams" : false,
       "hasPathParams" : false,
       "hasFormParams" : false,
@@ -6518,8 +6518,8 @@ WARNING: All illegal access operations will be denied in a future release
       } ],
       "imports" : [ "MailOrder", "Error" ],
       "nickname" : "placeMailOrder",
-      "hasHeaderParams" : false,
       "hasQueryParams" : false,
+      "hasHeaderParams" : false,
       "hasCookieParams" : false,
       "hasPathParams" : false,
       "hasFormParams" : false,
@@ -7985,8 +7985,8 @@ WARNING: All illegal access operations will be denied in a future release
         "example" : "{\n  \"status_text\" : \"The command completed successfully.\",\n  \"status\" : \"ok\"\n}"
       } ],
       "nickname" : "sendMailById",
-      "hasHeaderParams" : false,
       "hasQueryParams" : true,
+      "hasHeaderParams" : false,
       "hasCookieParams" : false,
       "hasPathParams" : true,
       "hasFormParams" : false,
@@ -8360,8 +8360,8 @@ WARNING: All illegal access operations will be denied in a future release
       } ],
       "imports" : [ "Error" ],
       "nickname" : "validateMailOrder",
-      "hasHeaderParams" : false,
       "hasQueryParams" : false,
+      "hasHeaderParams" : false,
       "hasCookieParams" : false,
       "hasPathParams" : false,
       "hasFormParams" : false,
@@ -9606,8 +9606,8 @@ WARNING: All illegal access operations will be denied in a future release
         "example" : "[ {\n  \"id\" : 0\n}, {\n  \"id\" : 0\n} ]"
       } ],
       "nickname" : "viewMailLogById",
-      "hasHeaderParams" : false,
       "hasQueryParams" : true,
+      "hasHeaderParams" : false,
       "hasCookieParams" : false,
       "hasPathParams" : true,
       "hasFormParams" : false,
@@ -9683,7 +9683,7 @@ WARNING: All illegal access operations will be denied in a future release
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "MailApi",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T13:55:47.322588-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T14:00:54.838290-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
@@ -10064,8 +10064,8 @@ WARNING: All illegal access operations will be denied in a future release
       } ],
       "imports" : [ ],
       "nickname" : "pingServer",
-      "hasHeaderParams" : false,
       "hasQueryParams" : false,
+      "hasHeaderParams" : false,
       "hasCookieParams" : false,
       "hasPathParams" : false,
       "hasFormParams" : false,
@@ -10141,12 +10141,12 @@ WARNING: All illegal access operations will be denied in a future release
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "PingApi",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T13:55:47.322588-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T14:00:54.838290-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-13:55:48.394 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+14:00:55.852 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.java.MicronautCodegen",
@@ -13969,8 +13969,8 @@ WARNING: All illegal access operations will be denied in a future release
             "example" : "{\n  \"password\" : \"guest123\",\n  \"comment\" : \"main mail account\",\n  \"id\" : 1234,\n  \"status\" : \"active\",\n  \"username\" : \"mb1234\"\n}"
           } ],
           "nickname" : "getMailById",
-          "hasHeaderParams" : false,
           "hasQueryParams" : false,
+          "hasHeaderParams" : false,
           "hasCookieParams" : false,
           "hasPathParams" : true,
           "hasFormParams" : false,
@@ -14359,8 +14359,8 @@ WARNING: All illegal access operations will be denied in a future release
             "example" : "[ {\n  \"password\" : \"guest123\",\n  \"comment\" : \"main mail account\",\n  \"id\" : 1234,\n  \"status\" : \"active\",\n  \"username\" : \"mb1234\"\n}, {\n  \"password\" : \"guest123\",\n  \"comment\" : \"main mail account\",\n  \"id\" : 1234,\n  \"status\" : \"active\",\n  \"username\" : \"mb1234\"\n} ]"
           } ],
           "nickname" : "getMailOrders",
-          "hasHeaderParams" : false,
           "hasQueryParams" : false,
+          "hasHeaderParams" : false,
           "hasCookieParams" : false,
           "hasPathParams" : false,
           "hasFormParams" : false,
@@ -15089,8 +15089,8 @@ WARNING: All illegal access operations will be denied in a future release
           } ],
           "imports" : [ "MailOrder", "Error" ],
           "nickname" : "placeMailOrder",
-          "hasHeaderParams" : false,
           "hasQueryParams" : false,
+          "hasHeaderParams" : false,
           "hasCookieParams" : false,
           "hasPathParams" : false,
           "hasFormParams" : false,
@@ -16556,8 +16556,8 @@ WARNING: All illegal access operations will be denied in a future release
             "example" : "{\n  \"status_text\" : \"The command completed successfully.\",\n  \"status\" : \"ok\"\n}"
           } ],
           "nickname" : "sendMailById",
-          "hasHeaderParams" : false,
           "hasQueryParams" : true,
+          "hasHeaderParams" : false,
           "hasCookieParams" : false,
           "hasPathParams" : true,
           "hasFormParams" : false,
@@ -16931,8 +16931,8 @@ WARNING: All illegal access operations will be denied in a future release
           } ],
           "imports" : [ "Error" ],
           "nickname" : "validateMailOrder",
-          "hasHeaderParams" : false,
           "hasQueryParams" : false,
+          "hasHeaderParams" : false,
           "hasCookieParams" : false,
           "hasPathParams" : false,
           "hasFormParams" : false,
@@ -18177,8 +18177,8 @@ WARNING: All illegal access operations will be denied in a future release
             "example" : "[ {\n  \"id\" : 0\n}, {\n  \"id\" : 0\n} ]"
           } ],
           "nickname" : "viewMailLogById",
-          "hasHeaderParams" : false,
           "hasQueryParams" : true,
+          "hasHeaderParams" : false,
           "hasCookieParams" : false,
           "hasPathParams" : true,
           "hasFormParams" : false,
@@ -18254,7 +18254,7 @@ WARNING: All illegal access operations will be denied in a future release
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "MailApi",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-28T13:55:47.322588-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T14:00:54.838290-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -18635,8 +18635,8 @@ WARNING: All illegal access operations will be denied in a future release
           } ],
           "imports" : [ ],
           "nickname" : "pingServer",
-          "hasHeaderParams" : false,
           "hasQueryParams" : false,
+          "hasHeaderParams" : false,
           "hasCookieParams" : false,
           "hasPathParams" : false,
           "hasFormParams" : false,
@@ -18712,7 +18712,7 @@ WARNING: All illegal access operations will be denied in a future release
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "PingApi",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-28T13:55:47.322588-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T14:00:54.838290-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -19289,7 +19289,7 @@ WARNING: All illegal access operations will be denied in a future release
   "scmUrl" : "https://github.com/swagger-api/swagger-codegen",
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T13:55:47.322588-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T14:00:54.838290-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -19298,10 +19298,10 @@ WARNING: All illegal access operations will be denied in a future release
   },
   "gitUserId" : "GIT_USER_ID"
 }
-13:55:48.442 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/pom.xml
-13:55:48.446 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/README.md
-13:55:48.447 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/mvnw
-13:55:48.450 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/mvnw.cmd
-13:55:48.452 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/configuration/UnsupportedOperationExceptionHandler.java
-13:55:48.454 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java//MainApplication.java
-13:55:48.454 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/.swagger-codegen/VERSION
+14:00:55.884 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/pom.xml
+14:00:55.887 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/README.md
+14:00:55.888 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/mvnw
+14:00:55.892 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/mvnw.cmd
+14:00:55.894 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java/io/swagger/configuration/UnsupportedOperationExceptionHandler.java
+14:00:55.897 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/src/main/java//MainApplication.java
+14:00:55.898 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/micronaut/.swagger-codegen/VERSION

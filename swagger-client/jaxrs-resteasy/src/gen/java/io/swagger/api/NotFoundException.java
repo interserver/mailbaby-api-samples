@@ -1,6 +1,6 @@
 package io.swagger.api;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-04-28T13:55:44.635826-04:00[America/New_York]")public class NotFoundException extends ApiException {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-04-28T14:00:52.233175-04:00[America/New_York]")public class NotFoundException extends ApiException {
     private int code;
     public NotFoundException (int code, String msg) {
         super(code, msg);

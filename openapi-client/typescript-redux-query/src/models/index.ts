@@ -1,7 +1,0 @@
-export * from './ErrorResponse';
-export * from './GenericResponse';
-export * from './MailAttachment';
-export * from './MailContact';
-export * from './MailLog';
-export * from './MailOrder';
-export * from './SendMail';

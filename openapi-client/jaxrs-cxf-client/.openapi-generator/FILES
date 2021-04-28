@@ -1,8 +1,0 @@
-.openapi-generator-ignore
-pom.xml
-src/gen/java/org/openapitools/api/DefaultApi.java
-src/gen/java/org/openapitools/model/Error.java
-src/gen/java/org/openapitools/model/GenericResponse.java
-src/gen/java/org/openapitools/model/MailLog.java
-src/gen/java/org/openapitools/model/MailOrder.java
-src/test/java/org/openapitools/api/DefaultApiTest.java

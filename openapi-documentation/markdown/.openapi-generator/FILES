@@ -1,7 +1,0 @@
-.openapi-generator-ignore
-Apis/DefaultApi.md
-Models/Error.md
-Models/GenericResponse.md
-Models/MailLog.md
-Models/MailOrder.md
-README.md

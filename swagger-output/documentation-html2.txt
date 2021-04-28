@@ -1,4 +1,4 @@
-15:14:03.399 [Thread-0] ERROR i.s.c.v3.config.CodegenConfigurator - Unable to deserialize config file: /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-config/html2.json
+16:58:14.049 [Thread-0] ERROR i.s.c.v3.config.CodegenConfigurator - Unable to deserialize config file: /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-config/html2.json
 com.fasterxml.jackson.core.JsonParseException: Unexpected character ('}' (code 125)): was expecting double-quote to start field name
  at [Source: (File); line: 16, column: 2]
 	at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:1851)
@@ -14,12 +14,12 @@ com.fasterxml.jackson.core.JsonParseException: Unexpected character ('}' (code 1
 	at io.swagger.codegen.v3.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:649)
 	at io.swagger.codegen.v3.cli.cmd.Generate.run(Generate.java:242)
 	at java.base/java.lang.Thread.run(Thread.java:829)
-15:14:03.994 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
+16:58:14.595 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by com.github.jknack.handlebars.context.MemberValueResolver (file:/home/sites/mailbaby-mail-api/swagger-codegen-cli.jar) to method java.util.Collections$EmptyMap.isEmpty()
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-15:14:06.949 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/html2/index.html
-15:14:06.963 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/html2/.swagger-codegen-ignore
-15:14:06.964 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/html2/.swagger-codegen/VERSION
+16:58:17.076 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/html2/index.html
+16:58:17.088 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/html2/.swagger-codegen-ignore
+16:58:17.088 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/html2/.swagger-codegen/VERSION

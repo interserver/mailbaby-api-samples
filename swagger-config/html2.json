@@ -1,0 +1,16 @@
+{
+  "sortParamsByRequiredFlag": "true",
+  "ensureUniqueParams": "true",
+  "allowUnicodeIdentifiers": "true",
+  "appName": "MailBaby API",
+  "appDescription": "API interface for sending mail through the MailBaby system.",
+  "infoUrl": "https://mail.baby/",
+  "infoEmail": "support@mail.baby",
+  "licenseInfo": "GNU GPL v3",
+  "licenseUrl": "https://www.gnu.org/licenses/gpl-3.0.en.html",
+  "invokerPackage": "MailBabyApi",
+  "phpInvokerPackage": "interserver/mailbaby-client-php",
+  "perlModuleName": "MailBabyApi",
+  "pythonPackageName": "MailBabyApi",
+  "packageName": "MailBabyApi",
+}

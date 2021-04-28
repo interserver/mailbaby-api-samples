@@ -1,0 +1,17 @@
+{
+  "sortParamsByRequiredFlag": "true",
+  "ensureUniqueParams": "true",
+  "allowUnicodeIdentifiers": "true",
+  "modelPackage": "MailBabyModel",
+  "apiPackage": "MailBabyApi",
+  "variableNamingConvention": "camelCase",
+  "invokerPackage": "Interserver\\Mailbaby",
+  "packagePath": "MailBabyPhp",
+  "srcBasePath": "",
+  "gitUserId": "interserver",
+  "gitRepoId": "mailbaby-client-php",
+  "composerVendorName": "interserver",
+  "composerProjectName": "mailbaby-client-php",
+  "artifactVersion": "1.0.0",
+  "hideGenerationTimestamp": "true"
+}

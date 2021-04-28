@@ -1,10 +1,9 @@
-10:34:15.659 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+13:51:42.002 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
  - [debugOperations] prints operations passed to the template engine
  - [debugSupportingFiles] prints additional data passed to the template engine
-10:34:16.151 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 {
   "openapi" : "3.0.0",
   "info" : {
@@ -517,7 +516,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "callbacks" : { }
   }
 }
-10:34:16.454 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+13:51:42.770 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -573,8 +572,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Code",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -631,8 +630,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Message",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -692,8 +691,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Code",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -750,8 +749,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Message",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -813,8 +812,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Code",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -871,8 +870,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Message",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -932,8 +931,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Code",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -990,8 +989,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Message",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -1130,8 +1129,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Status",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -1189,8 +1188,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "StatusText",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -1252,8 +1251,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Status",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -1311,8 +1310,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "StatusText",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -1374,8 +1373,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Status",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -1433,8 +1432,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "StatusText",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -1495,8 +1494,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Status",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -1554,8 +1553,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "StatusText",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -1692,8 +1691,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Id",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -1754,8 +1753,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Id",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -1816,8 +1815,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Id",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -1877,8 +1876,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Id",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2031,8 +2030,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Id",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : true,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2092,8 +2091,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Status",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2153,8 +2152,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Username",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2214,8 +2213,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Password",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2273,8 +2272,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Comment",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2336,8 +2335,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Id",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : true,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2397,8 +2396,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Status",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2458,8 +2457,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Username",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2520,8 +2519,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Password",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2579,8 +2578,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Comment",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2643,8 +2642,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Id",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : true,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2704,8 +2703,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Status",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2765,8 +2764,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Username",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2826,8 +2825,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Password",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2885,8 +2884,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Comment",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -2948,8 +2947,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Id",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : true,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -3009,8 +3008,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Status",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -3070,8 +3069,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Username",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -3131,8 +3130,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Password",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : true,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -3190,8 +3189,8 @@ VERBOSE MODE: ON. Additional debug options are injected
       "secondaryParam" : false,
       "nullable" : false,
       "nameInCamelCase" : "Comment",
-      "iexclusiveMaximum" : false,
       "moreNonReadOnly" : false,
+      "iexclusiveMaximum" : false,
       "isInteger" : false,
       "isNumber" : false,
       "hasHeaders" : false,
@@ -3348,7 +3347,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "isEnum" : false
   }
 } ]
-10:34:16.499 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+13:51:42.805 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -3380,7 +3379,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:16.506 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+13:51:42.811 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -3578,7 +3577,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:16.519 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+13:51:42.821 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -3648,7 +3647,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:16.522 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+13:51:42.823 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -3774,7 +3773,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:16.532 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+13:51:42.827 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -3889,7 +3888,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:16.539 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+13:51:42.831 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -4305,7 +4304,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:16.547 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+13:51:42.836 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -4616,7 +4615,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:16.556 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+13:51:42.841 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "importPath" : ".Default",
   "infoName" : "Joe Huss",
@@ -9790,12 +9789,12 @@ VERBOSE MODE: ON. Additional debug options are injected
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "DefaultApi",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T10:34:16.325274-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:51:42.698172-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-10:34:16.607 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+13:51:42.874 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "infoName" : "Joe Huss",
   "licenseUrl" : "http://www.apache.org/licenses/LICENSE-2.0.html",
@@ -10563,8 +10562,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Code",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -10621,8 +10620,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Message",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -10682,8 +10681,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Code",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -10740,8 +10739,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Message",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -10803,8 +10802,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Code",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -10861,8 +10860,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Message",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -10922,8 +10921,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Code",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -10980,8 +10979,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Message",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -11125,8 +11124,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Status",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -11184,8 +11183,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "StatusText",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -11247,8 +11246,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Status",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -11306,8 +11305,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "StatusText",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -11369,8 +11368,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Status",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -11428,8 +11427,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "StatusText",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -11490,8 +11489,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Status",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -11549,8 +11548,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "StatusText",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -11691,8 +11690,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Id",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -11753,8 +11752,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Id",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -11815,8 +11814,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Id",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -11876,8 +11875,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Id",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12038,8 +12037,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Id",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : true,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12099,8 +12098,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Status",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12160,8 +12159,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Username",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12221,8 +12220,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Password",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12280,8 +12279,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Comment",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12343,8 +12342,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Id",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : true,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12404,8 +12403,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Status",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12465,8 +12464,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Username",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12527,8 +12526,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Password",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12586,8 +12585,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Comment",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12650,8 +12649,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Id",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : true,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12711,8 +12710,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Status",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12772,8 +12771,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Username",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12833,8 +12832,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Password",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12892,8 +12891,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Comment",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12955,8 +12954,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Id",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : true,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -13016,8 +13015,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Status",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -13077,8 +13076,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Username",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -13138,8 +13137,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Password",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : true,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -13197,8 +13196,8 @@ VERBOSE MODE: ON. Additional debug options are injected
         "secondaryParam" : false,
         "nullable" : false,
         "nameInCamelCase" : "Comment",
-        "iexclusiveMaximum" : false,
         "moreNonReadOnly" : false,
+        "iexclusiveMaximum" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -18538,7 +18537,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "DefaultApi",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-28T10:34:16.325274-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T13:51:42.698172-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -18548,7 +18547,7 @@ VERBOSE MODE: ON. Additional debug options are injected
   "useOas2" : false,
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T10:34:16.325274-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:51:42.698172-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -18557,6 +18556,5 @@ VERBOSE MODE: ON. Additional debug options are injected
   },
   "gitUserId" : "GIT_USER_ID"
 }
-10:34:16.635 [Thread-0] WARN  i.s.codegen.v3.DefaultGenerator - can't open handlebars/openapi/README.md for input
-10:34:16.641 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/openapi/.swagger-codegen-ignore
-10:34:16.642 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/openapi/.swagger-codegen/VERSION
+13:51:42.903 [Thread-0] WARN  i.s.codegen.v3.DefaultGenerator - can't open handlebars/openapi/README.md for input
+13:51:42.903 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/openapi/.swagger-codegen/VERSION

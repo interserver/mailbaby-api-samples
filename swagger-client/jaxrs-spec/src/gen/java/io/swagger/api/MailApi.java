@@ -25,7 +25,7 @@ import javax.validation.Valid;
 
 @Path("/mail")
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-04-28T10:33:54.410826-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-04-28T13:51:20.961178-04:00[America/New_York]")
 public class MailApi {
 
     @GET

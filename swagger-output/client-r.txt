@@ -1,10 +1,9 @@
-10:34:33.258 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+13:51:58.173 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
  - [debugOperations] prints operations passed to the template engine
  - [debugSupportingFiles] prints additional data passed to the template engine
-10:34:33.682 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 {
   "openapi" : "3.0.0",
   "info" : {
@@ -522,12 +521,12 @@ WARNING: Illegal reflective access by com.github.jknack.handlebars.context.Membe
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-10:34:34.158 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/R/Error.r
-10:34:34.201 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/R/GenericResponse.r
-10:34:34.232 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/R/MailLog.r
-10:34:34.273 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/R/MailOrder.r
-10:34:34.302 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/R/MailOrders.r
-10:34:34.303 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+13:51:59.092 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/R/Error.r
+13:51:59.133 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/R/GenericResponse.r
+13:51:59.174 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/R/MailLog.r
+13:51:59.207 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/R/MailOrder.r
+13:51:59.233 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/R/MailOrders.r
+13:51:59.234 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -3358,7 +3357,7 @@ WARNING: All illegal access operations will be denied in a future release
     "isEnum" : false
   }
 } ]
-10:34:34.341 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+13:51:59.269 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -3390,7 +3389,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-10:34:34.357 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+13:51:59.279 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -3588,7 +3587,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-10:34:34.378 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+13:51:59.293 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -3658,7 +3657,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-10:34:34.381 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+13:51:59.295 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -3784,7 +3783,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-10:34:34.391 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+13:51:59.301 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -3899,7 +3898,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-10:34:34.399 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+13:51:59.307 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -4315,7 +4314,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-10:34:34.412 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+13:51:59.317 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -4626,8 +4625,8 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-10:34:34.449 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/R/DefaultApi.r
-10:34:34.450 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+13:51:59.351 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/R/DefaultApi.r
+13:51:59.352 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "importPath" : "swagger.Default",
   "infoName" : "Joe Huss",
@@ -4651,7 +4650,6 @@ WARNING: All illegal access operations will be denied in a future release
     "name" : "apiKeyAuth",
     "type" : "apiKey",
     "keyParamName" : "X-API-KEY",
-    "isKeyInQuery" : false,
     "hasScopes" : false,
     "isBasic" : false,
     "isBearer" : false,
@@ -4662,6 +4660,7 @@ WARNING: All illegal access operations will be denied in a future release
     "isPassword" : false,
     "isApplication" : false,
     "isImplicit" : false,
+    "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
     "hasHeaders" : false,
@@ -4705,7 +4704,6 @@ WARNING: All illegal access operations will be denied in a future release
     "name" : "apiLoginAuth",
     "type" : "apiKey",
     "keyParamName" : "X-API-LOGIN",
-    "isKeyInQuery" : false,
     "hasScopes" : false,
     "isBasic" : false,
     "isBearer" : false,
@@ -4716,6 +4714,7 @@ WARNING: All illegal access operations will be denied in a future release
     "isPassword" : false,
     "isApplication" : false,
     "isImplicit" : false,
+    "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
     "hasHeaders" : false,
@@ -4759,7 +4758,6 @@ WARNING: All illegal access operations will be denied in a future release
     "name" : "apiPasswordAuth",
     "type" : "apiKey",
     "keyParamName" : "X-API-PASS",
-    "isKeyInQuery" : false,
     "hasScopes" : false,
     "isBasic" : false,
     "isBearer" : false,
@@ -4770,6 +4768,7 @@ WARNING: All illegal access operations will be denied in a future release
     "isPassword" : false,
     "isApplication" : false,
     "isImplicit" : false,
+    "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
     "hasHeaders" : false,
@@ -5117,7 +5116,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiKeyAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -5128,6 +5126,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -5171,7 +5170,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiLoginAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -5182,6 +5180,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -5225,7 +5224,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiPasswordAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -5236,6 +5234,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -5454,7 +5453,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiKeyAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -5465,6 +5463,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -5508,7 +5507,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiLoginAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -5519,6 +5517,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -5562,7 +5561,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiPasswordAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -5573,6 +5571,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -6282,7 +6281,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiKeyAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -6293,6 +6291,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -6336,7 +6335,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiLoginAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -6347,6 +6345,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -6390,7 +6389,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiPasswordAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -6401,6 +6399,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -7720,7 +7719,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiKeyAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -7731,6 +7729,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -7774,7 +7773,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiLoginAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -7785,6 +7783,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -7828,7 +7827,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiPasswordAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -7839,6 +7837,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -8209,7 +8208,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiKeyAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -8220,6 +8218,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -8263,7 +8262,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiLoginAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -8274,6 +8272,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -8317,7 +8316,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiPasswordAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -8328,6 +8326,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -9431,7 +9430,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiKeyAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -9442,6 +9440,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -9485,7 +9484,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiLoginAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -9496,6 +9494,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -9539,7 +9538,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiPasswordAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -9550,6 +9548,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -9801,12 +9800,12 @@ WARNING: All illegal access operations will be denied in a future release
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "DefaultApi",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T10:34:33.834847-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:51:58.796681-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-10:34:34.490 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+13:51:59.388 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "infoName" : "Joe Huss",
   "licenseUrl" : "http://www.apache.org/licenses/LICENSE-2.0.html",
@@ -10357,7 +10356,6 @@ WARNING: All illegal access operations will be denied in a future release
     "name" : "apiKeyAuth",
     "type" : "apiKey",
     "keyParamName" : "X-API-KEY",
-    "isKeyInQuery" : false,
     "hasScopes" : false,
     "isBasic" : false,
     "isBearer" : false,
@@ -10368,6 +10366,7 @@ WARNING: All illegal access operations will be denied in a future release
     "isPassword" : false,
     "isApplication" : false,
     "isImplicit" : false,
+    "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
     "hasHeaders" : false,
@@ -10411,7 +10410,6 @@ WARNING: All illegal access operations will be denied in a future release
     "name" : "apiLoginAuth",
     "type" : "apiKey",
     "keyParamName" : "X-API-LOGIN",
-    "isKeyInQuery" : false,
     "hasScopes" : false,
     "isBasic" : false,
     "isBearer" : false,
@@ -10422,6 +10420,7 @@ WARNING: All illegal access operations will be denied in a future release
     "isPassword" : false,
     "isApplication" : false,
     "isImplicit" : false,
+    "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
     "hasHeaders" : false,
@@ -10465,7 +10464,6 @@ WARNING: All illegal access operations will be denied in a future release
     "name" : "apiPasswordAuth",
     "type" : "apiKey",
     "keyParamName" : "X-API-PASS",
-    "isKeyInQuery" : false,
     "hasScopes" : false,
     "isBasic" : false,
     "isBearer" : false,
@@ -10476,6 +10474,7 @@ WARNING: All illegal access operations will be denied in a future release
     "isPassword" : false,
     "isApplication" : false,
     "isImplicit" : false,
+    "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
     "hasHeaders" : false,
@@ -13402,7 +13401,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiKeyAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -13413,6 +13411,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -13456,7 +13455,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiLoginAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -13467,6 +13465,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -13510,7 +13509,6 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiPasswordAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
-        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -13521,6 +13519,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
+        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -13868,7 +13867,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiKeyAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -13879,6 +13877,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -13922,7 +13921,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiLoginAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -13933,6 +13931,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -13976,7 +13975,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiPasswordAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -13987,6 +13985,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -14205,7 +14204,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiKeyAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -14216,6 +14214,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -14259,7 +14258,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiLoginAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -14270,6 +14268,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -14313,7 +14312,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiPasswordAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -14324,6 +14322,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -15033,7 +15032,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiKeyAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -15044,6 +15042,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -15087,7 +15086,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiLoginAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -15098,6 +15096,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -15141,7 +15140,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiPasswordAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -15152,6 +15150,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -16471,7 +16470,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiKeyAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -16482,6 +16480,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -16525,7 +16524,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiLoginAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -16536,6 +16534,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -16579,7 +16578,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiPasswordAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -16590,6 +16588,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -16960,7 +16959,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiKeyAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -16971,6 +16969,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -17014,7 +17013,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiLoginAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -17025,6 +17023,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -17068,7 +17067,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiPasswordAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -17079,6 +17077,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -18182,7 +18181,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiKeyAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -18193,6 +18191,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -18236,7 +18235,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiLoginAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -18247,6 +18245,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -18290,7 +18289,6 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiPasswordAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
-            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -18301,6 +18299,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
+            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -18552,7 +18551,7 @@ WARNING: All illegal access operations will be denied in a future release
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "DefaultApi",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-28T10:34:33.834847-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T13:51:58.796681-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -18563,7 +18562,7 @@ WARNING: All illegal access operations will be denied in a future release
   "useOas2" : false,
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T10:34:33.834847-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:51:58.796681-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -18572,15 +18571,14 @@ WARNING: All illegal access operations will be denied in a future release
   },
   "gitUserId" : "GIT_USER_ID"
 }
-10:34:34.535 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/README.md
-10:34:34.550 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/git_push.sh
-10:34:34.557 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/.gitignore
-10:34:34.564 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/DESCRIPTION
-10:34:34.566 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/.Rbuildignore
-10:34:34.568 [Thread-0] WARN  i.s.codegen.v3.DefaultGenerator - can't open handlebars/R/.travis.yml for input
-10:34:34.571 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r//R/Response.r
-10:34:34.576 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r//R/Element.r
-10:34:34.593 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r//R/ApiClient.r
-10:34:34.596 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/NAMESPACE
-10:34:34.606 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/.swagger-codegen-ignore
-10:34:34.607 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/.swagger-codegen/VERSION
+13:51:59.426 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/README.md
+13:51:59.434 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/git_push.sh
+13:51:59.438 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/.gitignore
+13:51:59.441 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/DESCRIPTION
+13:51:59.442 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/.Rbuildignore
+13:51:59.443 [Thread-0] WARN  i.s.codegen.v3.DefaultGenerator - can't open handlebars/R/.travis.yml for input
+13:51:59.445 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r//R/Response.r
+13:51:59.448 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r//R/Element.r
+13:51:59.459 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r//R/ApiClient.r
+13:51:59.462 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/NAMESPACE
+13:51:59.462 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/r/.swagger-codegen/VERSION

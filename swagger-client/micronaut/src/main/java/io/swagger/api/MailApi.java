@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-04-28T10:34:08.474326-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-04-28T13:51:34.728666-04:00[America/New_York]")
 @Controller
 public interface MailApi {
 

@@ -1,10 +1,9 @@
-10:33:33.595 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+13:51:00.752 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
  - [debugOperations] prints operations passed to the template engine
  - [debugSupportingFiles] prints additional data passed to the template engine
-10:33:34.110 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 {
   "openapi" : "3.0.0",
   "info" : {
@@ -517,7 +516,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "callbacks" : { }
   }
 }
-10:33:34.346 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+13:51:01.335 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "title" : "",
@@ -1069,6 +1068,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "imports" : [ "string" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -1077,7 +1077,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -1670,6 +1669,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "imports" : [ "string" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -1678,7 +1678,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -2003,6 +2002,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "imports" : [ "long" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -2011,7 +2011,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -3393,6 +3392,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "imports" : [ "integer", "string" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -3401,7 +3401,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -3472,6 +3471,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "imports" : [ "List", "MailOrder" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : false,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -3480,7 +3480,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -3514,7 +3513,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasMore" : false
   }
 } ]
-10:33:34.425 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+13:51:01.436 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -3546,7 +3545,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:33:34.433 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+13:51:01.444 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -3744,7 +3743,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:33:34.444 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+13:51:01.455 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -3814,7 +3813,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:33:34.446 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+13:51:01.456 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -3940,7 +3939,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:33:34.452 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+13:51:01.462 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -4055,7 +4054,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:33:34.457 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+13:51:01.471 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -4471,7 +4470,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:33:34.465 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+13:51:01.482 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -4782,7 +4781,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:33:34.473 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+13:51:01.492 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.html.StaticHtmlCodegen",
@@ -10050,12 +10049,12 @@ VERBOSE MODE: ON. Additional debug options are injected
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "DefaultApi",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T10:33:34.323656-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:51:01.312710-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-10:33:34.504 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+13:51:01.536 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "licenseUrl" : "http://www.apache.org/licenses/LICENSE-2.0.html",
   "infoName" : "Joe Huss",
@@ -11332,6 +11331,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "imports" : [ "string" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -11340,7 +11340,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -11938,6 +11937,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "imports" : [ "string" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -11946,7 +11946,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -12275,6 +12274,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "imports" : [ "long" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -12283,7 +12283,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -13673,6 +13672,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "imports" : [ "integer", "string" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -13681,7 +13681,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -13752,6 +13751,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "imports" : [ "List", "MailOrder" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : false,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : false,
       "hasEnums" : false,
@@ -13760,7 +13760,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -19072,7 +19071,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "DefaultApi",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-28T10:33:34.323656-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T13:51:01.312710-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -19082,7 +19081,7 @@ VERBOSE MODE: ON. Additional debug options are injected
   "useOas2" : false,
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T10:33:34.323656-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:51:01.312710-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -19096,6 +19095,5 @@ WARNING: Illegal reflective access by com.github.jknack.handlebars.context.Membe
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-10:33:34.852 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/html/index.html
-10:33:34.862 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/html/.swagger-codegen-ignore
-10:33:34.862 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/html/.swagger-codegen/VERSION
+13:51:01.903 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/html/index.html
+13:51:01.905 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/html/.swagger-codegen/VERSION

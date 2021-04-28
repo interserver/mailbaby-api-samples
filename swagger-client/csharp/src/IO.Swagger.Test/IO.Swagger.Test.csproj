@@ -81,7 +81,7 @@ Contact: detain@interserver.net
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
       <ProjectReference Include="..\IO.Swagger\IO.Swagger.csproj">
-          <Project>{7D673EDE-58D6-4722-8620-48AA0E757C15}</Project>
+          <Project>{21E917C3-75C8-41AC-8D03-BA0466AD54F7}</Project>
           <Name>IO.Swagger</Name>
       </ProjectReference>
   </ItemGroup>

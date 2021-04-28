@@ -1,10 +1,9 @@
-10:33:29.055 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+13:50:56.417 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
  - [debugOperations] prints operations passed to the template engine
  - [debugSupportingFiles] prints additional data passed to the template engine
-10:33:29.577 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 {
   "openapi" : "3.0.0",
   "info" : {
@@ -517,29 +516,30 @@ VERBOSE MODE: ON. Additional debug options are injected
     "callbacks" : { }
   }
 }
-10:33:29.812 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:29.821 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:29.822 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:29.823 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:29.829 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:29.835 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:29.846 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:29.846 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:29.847 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:29.849 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.056 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting README.md as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/README.md
+13:50:57.084 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.094 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.094 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.095 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.100 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.107 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.118 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.118 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.119 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.121 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by com.github.jknack.handlebars.context.MemberValueResolver (file:/home/sites/mailbaby-mail-api/swagger-codegen-cli.jar) to method java.util.Collections$EmptyMap.isEmpty()
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-10:33:30.067 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_generic_response.go
-10:33:30.084 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_mail_log.go
-10:33:30.101 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_mail_order.go
-10:33:30.102 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:30.102 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:30.102 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:30.118 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_error.go
-10:33:30.119 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+13:50:57.390 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_generic_response.go
+13:50:57.408 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_mail_log.go
+13:50:57.424 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_mail_order.go
+13:50:57.425 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.425 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.425 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.440 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_error.go
+13:50:57.440 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "type" : "object",
@@ -1063,15 +1063,15 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
+    "hasMoreModels" : false,
+    "hasEnums" : false,
     "hasRequired" : false,
     "hasOptional" : true,
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
-    "hasMoreModels" : false,
-    "hasEnums" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -1386,15 +1386,15 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
+    "hasMoreModels" : false,
+    "hasEnums" : false,
     "hasRequired" : false,
     "hasOptional" : true,
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
-    "hasMoreModels" : false,
-    "hasEnums" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -2699,15 +2699,15 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
+    "hasMoreModels" : false,
+    "hasEnums" : false,
     "hasRequired" : false,
     "hasOptional" : true,
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
-    "hasMoreModels" : false,
-    "hasEnums" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -3254,15 +3254,15 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
+    "hasMoreModels" : false,
+    "hasEnums" : false,
     "hasRequired" : false,
     "hasOptional" : false,
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
-    "hasMoreModels" : false,
-    "hasEnums" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -3296,7 +3296,7 @@ WARNING: All illegal access operations will be denied in a future release
     "hasMore" : false
   }
 } ]
-10:33:30.164 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+13:50:57.471 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -3328,7 +3328,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-10:33:30.175 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+13:50:57.477 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -3526,8 +3526,8 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-10:33:30.180 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:30.193 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+13:50:57.480 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.488 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -3597,8 +3597,8 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-10:33:30.194 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:30.196 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+13:50:57.489 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.489 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -3724,8 +3724,8 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-10:33:30.198 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:30.207 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+13:50:57.490 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.497 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -3840,7 +3840,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-10:33:30.214 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+13:50:57.510 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -4256,9 +4256,9 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-10:33:30.217 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:30.217 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
-10:33:30.226 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+13:50:57.512 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.512 [Thread-0] WARN  i.s.c.v.g.go.AbstractGoCodegen - Error (reserved word) cannot be used as model name. Renamed to model_Error
+13:50:57.520 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -4569,8 +4569,8 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-10:33:30.249 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/api_default.go
-10:33:30.250 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+13:50:57.539 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/api_default.go
+13:50:57.540 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "importPath" : "go.Default",
   "infoName" : "Joe Huss",
@@ -9798,12 +9798,12 @@ WARNING: All illegal access operations will be denied in a future release
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "DefaultApi",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T10:33:29.791983-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:50:57.063100-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-10:33:30.370 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+13:50:57.644 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "infoName" : "Joe Huss",
   "licenseUrl" : "http://www.apache.org/licenses/LICENSE-2.0.html",
@@ -11048,15 +11048,15 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
+      "hasMoreModels" : true,
+      "hasEnums" : false,
       "hasRequired" : false,
       "hasOptional" : true,
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
-      "hasMoreModels" : true,
-      "hasEnums" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -11375,15 +11375,15 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
+      "hasMoreModels" : true,
+      "hasEnums" : false,
       "hasRequired" : false,
       "hasOptional" : true,
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
-      "hasMoreModels" : true,
-      "hasEnums" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -12696,15 +12696,15 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
+      "hasMoreModels" : true,
+      "hasEnums" : false,
       "hasRequired" : false,
       "hasOptional" : true,
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
-      "hasMoreModels" : true,
-      "hasEnums" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -13251,15 +13251,15 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
+      "hasMoreModels" : false,
+      "hasEnums" : false,
       "hasRequired" : false,
       "hasOptional" : false,
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
-      "hasMoreModels" : false,
-      "hasEnums" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -18531,7 +18531,7 @@ WARNING: All illegal access operations will be denied in a future release
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "DefaultApi",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-28T10:33:29.791983-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T13:50:57.063100-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -18541,7 +18541,7 @@ WARNING: All illegal access operations will be denied in a future release
   "useOas2" : false,
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T10:33:29.791983-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:50:57.063100-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -18550,11 +18550,9 @@ WARNING: All illegal access operations will be denied in a future release
   },
   "gitUserId" : "GIT_USER_ID"
 }
-10:33:30.412 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/api/swagger.yaml
-10:33:30.414 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/Dockerfile
-10:33:30.428 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/main.go
-10:33:30.447 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/routers.go
-10:33:30.459 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/logger.go
-10:33:30.467 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/README.md
-10:33:30.473 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/.swagger-codegen-ignore
-10:33:30.474 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/.swagger-codegen/VERSION
+13:50:57.691 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/api/swagger.yaml
+13:50:57.693 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/Dockerfile
+13:50:57.713 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/main.go
+13:50:57.731 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/routers.go
+13:50:57.740 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/logger.go
+13:50:57.740 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/.swagger-codegen/VERSION

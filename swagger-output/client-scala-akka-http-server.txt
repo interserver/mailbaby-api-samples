@@ -1,10 +1,9 @@
-10:34:41.112 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+13:52:05.864 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
  - [debugOperations] prints operations passed to the template engine
  - [debugSupportingFiles] prints additional data passed to the template engine
-10:34:41.590 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 {
   "openapi" : "3.0.0",
   "info" : {
@@ -517,12 +516,12 @@ VERBOSE MODE: ON. Additional debug options are injected
     "callbacks" : { }
   }
 }
-10:34:41.934 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/Error.scala
-10:34:41.949 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/GenericResponse.scala
-10:34:41.957 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailLog.scala
-10:34:41.965 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailOrder.scala
-10:34:41.972 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailOrders.scala
-10:34:41.972 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+13:52:06.758 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/Error.scala
+13:52:06.780 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/GenericResponse.scala
+13:52:06.790 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailLog.scala
+13:52:06.803 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailOrder.scala
+13:52:06.810 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailOrders.scala
+13:52:06.811 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -1037,6 +1036,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -1045,7 +1045,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -1601,6 +1600,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -1609,7 +1609,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -1924,6 +1923,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -1932,7 +1932,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -3237,6 +3236,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : true,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -3245,7 +3245,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : true,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -3311,6 +3310,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "imports" : [ "MailOrder" ],
     "emptyVars" : false,
     "isComposedModel" : false,
+    "hasVars" : false,
     "hasOnlyReadOnly" : false,
     "hasMoreModels" : false,
     "hasEnums" : false,
@@ -3319,7 +3319,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
-    "hasVars" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -3353,7 +3352,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "isMapContainer" : false
   }
 } ]
-10:34:42.006 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+13:52:06.843 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -3385,7 +3384,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:42.015 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+13:52:06.853 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -3583,11 +3582,11 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:42.015 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-10:34:42.015 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-10:34:42.015 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-10:34:42.017 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-10:34:42.026 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+13:52:06.853 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+13:52:06.853 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+13:52:06.853 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+13:52:06.855 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+13:52:06.866 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -3657,8 +3656,8 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:42.027 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-10:34:42.028 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+13:52:06.867 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+13:52:06.868 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -3784,9 +3783,9 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:42.028 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-10:34:42.029 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-10:34:42.033 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+13:52:06.868 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+13:52:06.869 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+13:52:06.874 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -3901,8 +3900,8 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:42.034 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-10:34:42.038 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+13:52:06.874 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+13:52:06.880 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -4318,10 +4317,10 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:42.038 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-10:34:42.039 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-10:34:42.039 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-10:34:42.046 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+13:52:06.880 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+13:52:06.880 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+13:52:06.881 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+13:52:06.888 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -4632,9 +4631,9 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:42.046 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-10:34:42.118 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/api/DefaultApi.scala
-10:34:42.119 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+13:52:06.889 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+13:52:06.986 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/api/DefaultApi.scala
+13:52:06.987 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.scala.AkkaHttpServerCodegen",
@@ -4653,7 +4652,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "type" : "apiKey",
     "keyParamName" : "X-API-KEY",
     "hasScopes" : false,
-    "isImplicit" : false,
     "isBasic" : false,
     "isBearer" : false,
     "isOAuth" : false,
@@ -4662,6 +4660,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "isCode" : false,
     "isPassword" : false,
     "isApplication" : false,
+    "isImplicit" : false,
     "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
@@ -4707,7 +4706,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "type" : "apiKey",
     "keyParamName" : "X-API-LOGIN",
     "hasScopes" : false,
-    "isImplicit" : false,
     "isBasic" : false,
     "isBearer" : false,
     "isOAuth" : false,
@@ -4716,6 +4714,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "isCode" : false,
     "isPassword" : false,
     "isApplication" : false,
+    "isImplicit" : false,
     "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
@@ -4761,7 +4760,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "type" : "apiKey",
     "keyParamName" : "X-API-PASS",
     "hasScopes" : false,
-    "isImplicit" : false,
     "isBasic" : false,
     "isBearer" : false,
     "isOAuth" : false,
@@ -4770,6 +4768,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "isCode" : false,
     "isPassword" : false,
     "isApplication" : false,
+    "isImplicit" : false,
     "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
@@ -5774,7 +5773,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -5783,6 +5781,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -5828,7 +5827,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -5837,6 +5835,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -5882,7 +5881,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -5891,6 +5889,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -6226,7 +6225,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -6235,6 +6233,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -6280,7 +6279,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -6289,6 +6287,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -6334,7 +6333,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -6343,6 +6341,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -7177,7 +7176,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -7186,6 +7184,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -7231,7 +7230,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -7240,6 +7238,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -7285,7 +7284,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -7294,6 +7292,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -9319,7 +9318,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -9328,6 +9326,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -9373,7 +9372,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -9382,6 +9380,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -9427,7 +9426,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -9436,6 +9434,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -9868,7 +9867,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -9877,6 +9875,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -9922,7 +9921,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -9931,6 +9929,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -9976,7 +9975,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -9985,6 +9983,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -11613,7 +11612,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -11622,6 +11620,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -11667,7 +11666,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -11676,6 +11674,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -11721,7 +11720,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -11730,6 +11728,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -11962,12 +11961,12 @@ VERBOSE MODE: ON. Additional debug options are injected
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "DefaultApi",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T10:34:41.771525-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:52:06.542715-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-10:34:42.155 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+13:52:07.041 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "infoName" : "Joe Huss",
   "licenseUrl" : "http://www.apache.org/licenses/LICENSE-2.0.html",
@@ -12520,7 +12519,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "type" : "apiKey",
     "keyParamName" : "X-API-KEY",
     "hasScopes" : false,
-    "isImplicit" : false,
     "isBasic" : false,
     "isBearer" : false,
     "isOAuth" : false,
@@ -12529,6 +12527,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "isCode" : false,
     "isPassword" : false,
     "isApplication" : false,
+    "isImplicit" : false,
     "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
@@ -12574,7 +12573,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "type" : "apiKey",
     "keyParamName" : "X-API-LOGIN",
     "hasScopes" : false,
-    "isImplicit" : false,
     "isBasic" : false,
     "isBearer" : false,
     "isOAuth" : false,
@@ -12583,6 +12581,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "isCode" : false,
     "isPassword" : false,
     "isApplication" : false,
+    "isImplicit" : false,
     "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
@@ -12628,7 +12627,6 @@ VERBOSE MODE: ON. Additional debug options are injected
     "type" : "apiKey",
     "keyParamName" : "X-API-PASS",
     "hasScopes" : false,
-    "isImplicit" : false,
     "isBasic" : false,
     "isBearer" : false,
     "isOAuth" : false,
@@ -12637,6 +12635,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "isCode" : false,
     "isPassword" : false,
     "isApplication" : false,
+    "isImplicit" : false,
     "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
@@ -13197,6 +13196,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -13205,7 +13205,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -13766,6 +13765,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -13774,7 +13774,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -14093,6 +14092,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -14101,7 +14101,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -15414,6 +15413,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : true,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : true,
       "hasEnums" : false,
@@ -15422,7 +15422,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : true,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -15488,6 +15487,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "imports" : [ "MailOrder" ],
       "emptyVars" : false,
       "isComposedModel" : false,
+      "hasVars" : false,
       "hasOnlyReadOnly" : false,
       "hasMoreModels" : false,
       "hasEnums" : false,
@@ -15496,7 +15496,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
-      "hasVars" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -15559,7 +15558,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -15568,6 +15566,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -15613,7 +15612,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -15622,6 +15620,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -15667,7 +15666,6 @@ VERBOSE MODE: ON. Additional debug options are injected
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
         "hasScopes" : false,
-        "isImplicit" : false,
         "isBasic" : false,
         "isBearer" : false,
         "isOAuth" : false,
@@ -15676,6 +15674,7 @@ VERBOSE MODE: ON. Additional debug options are injected
         "isCode" : false,
         "isPassword" : false,
         "isApplication" : false,
+        "isImplicit" : false,
         "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -16680,7 +16679,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -16689,6 +16687,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -16734,7 +16733,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -16743,6 +16741,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -16788,7 +16787,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -16797,6 +16795,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -17132,7 +17131,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -17141,6 +17139,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -17186,7 +17185,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -17195,6 +17193,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -17240,7 +17239,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -17249,6 +17247,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -18083,7 +18082,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -18092,6 +18090,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -18137,7 +18136,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -18146,6 +18144,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -18191,7 +18190,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -18200,6 +18198,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -20225,7 +20224,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -20234,6 +20232,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -20279,7 +20278,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -20288,6 +20286,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -20333,7 +20332,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -20342,6 +20340,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -20774,7 +20773,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -20783,6 +20781,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -20828,7 +20827,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -20837,6 +20835,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -20882,7 +20881,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -20891,6 +20889,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -22519,7 +22518,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -22528,6 +22526,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -22573,7 +22572,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -22582,6 +22580,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -22627,7 +22626,6 @@ VERBOSE MODE: ON. Additional debug options are injected
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
             "hasScopes" : false,
-            "isImplicit" : false,
             "isBasic" : false,
             "isBearer" : false,
             "isOAuth" : false,
@@ -22636,6 +22634,7 @@ VERBOSE MODE: ON. Additional debug options are injected
             "isCode" : false,
             "isPassword" : false,
             "isApplication" : false,
+            "isImplicit" : false,
             "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -22868,7 +22867,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "DefaultApi",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-28T10:34:41.771525-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T13:52:06.542715-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -22878,7 +22877,7 @@ VERBOSE MODE: ON. Additional debug options are injected
   "useOas2" : false,
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T10:34:41.771525-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:52:06.542715-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -22887,8 +22886,7 @@ VERBOSE MODE: ON. Additional debug options are injected
   },
   "gitUserId" : "GIT_USER_ID"
 }
-10:34:42.188 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/build.sbt
-10:34:42.197 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/Controller.scala
-10:34:42.216 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/AkkaHttpHelper.scala
-10:34:42.224 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/.swagger-codegen-ignore
-10:34:42.224 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/.swagger-codegen/VERSION
+13:52:07.078 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/build.sbt
+13:52:07.088 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/Controller.scala
+13:52:07.103 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/AkkaHttpHelper.scala
+13:52:07.103 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/.swagger-codegen/VERSION

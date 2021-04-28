@@ -1,10 +1,9 @@
-10:34:17.612 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+13:51:43.766 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
  - [debugOperations] prints operations passed to the template engine
  - [debugSupportingFiles] prints additional data passed to the template engine
-10:34:18.111 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 {
   "openapi" : "3.0.0",
   "info" : {
@@ -517,7 +516,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "callbacks" : { }
   }
 }
-10:34:18.440 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+13:51:44.551 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -3348,7 +3347,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "isEnum" : false
   }
 } ]
-10:34:18.489 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+13:51:44.600 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -3380,7 +3379,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:18.497 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+13:51:44.612 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -3578,7 +3577,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:18.509 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+13:51:44.628 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -3648,7 +3647,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:18.511 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+13:51:44.630 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -3774,7 +3773,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:18.519 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+13:51:44.637 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -3889,7 +3888,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:18.527 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+13:51:44.646 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -4305,7 +4304,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:18.536 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+13:51:44.655 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -4616,7 +4615,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-10:34:18.545 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+13:51:44.665 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "importPath" : ".Default",
   "infoName" : "Joe Huss",
@@ -5327,12 +5326,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "operationIdCamelCase" : "GetMailById",
       "operationIdSnakeCase" : "get_mail_by_id",
       "hasQueryParams" : false,
-      "hasHeaderParams" : false,
-      "hasCookieParams" : false,
-      "hasPathParams" : true,
-      "hasFormParams" : false,
-      "hasExamples" : true,
-      "isBodyAllowed" : false,
       "isDeprecated" : false,
       "hasAuthMethods" : true,
       "hasConsumes" : false,
@@ -5341,6 +5334,12 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasOptionalParams" : false,
       "hasRequiredParams" : true,
       "hasReference" : true,
+      "hasHeaderParams" : false,
+      "hasCookieParams" : false,
+      "hasPathParams" : true,
+      "hasFormParams" : false,
+      "hasExamples" : true,
+      "isBodyAllowed" : false,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -5719,12 +5718,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "operationIdCamelCase" : "GetMailOrders",
       "operationIdSnakeCase" : "get_mail_orders",
       "hasQueryParams" : false,
-      "hasHeaderParams" : false,
-      "hasCookieParams" : false,
-      "hasPathParams" : false,
-      "hasFormParams" : false,
-      "hasExamples" : true,
-      "isBodyAllowed" : false,
       "isDeprecated" : false,
       "hasAuthMethods" : true,
       "hasConsumes" : false,
@@ -5733,6 +5726,12 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasOptionalParams" : false,
       "hasRequiredParams" : false,
       "hasReference" : true,
+      "hasHeaderParams" : false,
+      "hasCookieParams" : false,
+      "hasPathParams" : false,
+      "hasFormParams" : false,
+      "hasExamples" : true,
+      "isBodyAllowed" : false,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -5922,12 +5921,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "operationIdCamelCase" : "PingServer",
       "operationIdSnakeCase" : "ping_server",
       "hasQueryParams" : false,
-      "hasHeaderParams" : false,
-      "hasCookieParams" : false,
-      "hasPathParams" : false,
-      "hasFormParams" : false,
-      "hasExamples" : false,
-      "isBodyAllowed" : false,
       "isDeprecated" : false,
       "hasAuthMethods" : false,
       "hasConsumes" : false,
@@ -5936,6 +5929,12 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasOptionalParams" : false,
       "hasRequiredParams" : false,
       "hasReference" : false,
+      "hasHeaderParams" : false,
+      "hasCookieParams" : false,
+      "hasPathParams" : false,
+      "hasFormParams" : false,
+      "hasExamples" : false,
+      "isBodyAllowed" : false,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -6641,12 +6640,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "operationIdCamelCase" : "PlaceMailOrder",
       "operationIdSnakeCase" : "place_mail_order",
       "hasQueryParams" : false,
-      "hasHeaderParams" : false,
-      "hasCookieParams" : false,
-      "hasPathParams" : false,
-      "hasFormParams" : false,
-      "hasExamples" : false,
-      "isBodyAllowed" : true,
       "isDeprecated" : true,
       "hasAuthMethods" : true,
       "hasConsumes" : true,
@@ -6655,6 +6648,12 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasOptionalParams" : true,
       "hasRequiredParams" : false,
       "hasReference" : false,
+      "hasHeaderParams" : false,
+      "hasCookieParams" : false,
+      "hasPathParams" : false,
+      "hasFormParams" : false,
+      "hasExamples" : false,
+      "isBodyAllowed" : true,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -8091,12 +8090,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "operationIdCamelCase" : "SendMailById",
       "operationIdSnakeCase" : "send_mail_by_id",
       "hasQueryParams" : true,
-      "hasHeaderParams" : false,
-      "hasCookieParams" : false,
-      "hasPathParams" : true,
-      "hasFormParams" : false,
-      "hasExamples" : true,
-      "isBodyAllowed" : true,
       "isDeprecated" : false,
       "hasAuthMethods" : true,
       "hasConsumes" : false,
@@ -8105,6 +8098,12 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasOptionalParams" : true,
       "hasRequiredParams" : true,
       "hasReference" : true,
+      "hasHeaderParams" : false,
+      "hasCookieParams" : false,
+      "hasPathParams" : true,
+      "hasFormParams" : false,
+      "hasExamples" : true,
+      "isBodyAllowed" : true,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -8466,12 +8465,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "operationIdCamelCase" : "ValidateMailOrder",
       "operationIdSnakeCase" : "validate_mail_order",
       "hasQueryParams" : false,
-      "hasHeaderParams" : false,
-      "hasCookieParams" : false,
-      "hasPathParams" : false,
-      "hasFormParams" : false,
-      "hasExamples" : false,
-      "isBodyAllowed" : false,
       "isDeprecated" : true,
       "hasAuthMethods" : true,
       "hasConsumes" : false,
@@ -8480,6 +8473,12 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasOptionalParams" : false,
       "hasRequiredParams" : false,
       "hasReference" : false,
+      "hasHeaderParams" : false,
+      "hasCookieParams" : false,
+      "hasPathParams" : false,
+      "hasFormParams" : false,
+      "hasExamples" : false,
+      "isBodyAllowed" : false,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -9699,12 +9698,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "operationIdCamelCase" : "ViewMailLogById",
       "operationIdSnakeCase" : "view_mail_log_by_id",
       "hasQueryParams" : true,
-      "hasHeaderParams" : false,
-      "hasCookieParams" : false,
-      "hasPathParams" : true,
-      "hasFormParams" : false,
-      "hasExamples" : true,
-      "isBodyAllowed" : false,
       "isDeprecated" : false,
       "hasAuthMethods" : true,
       "hasConsumes" : false,
@@ -9713,6 +9706,12 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasOptionalParams" : true,
       "hasRequiredParams" : true,
       "hasReference" : true,
+      "hasHeaderParams" : false,
+      "hasCookieParams" : false,
+      "hasPathParams" : true,
+      "hasFormParams" : false,
+      "hasExamples" : true,
+      "isBodyAllowed" : false,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -9790,12 +9789,12 @@ VERBOSE MODE: ON. Additional debug options are injected
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "DefaultApi",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T10:34:18.384351-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:51:44.514332-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-10:34:18.611 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+13:51:44.726 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "infoName" : "Joe Huss",
   "licenseUrl" : "http://www.apache.org/licenses/LICENSE-2.0.html",
@@ -14075,12 +14074,6 @@ VERBOSE MODE: ON. Additional debug options are injected
           "operationIdCamelCase" : "GetMailById",
           "operationIdSnakeCase" : "get_mail_by_id",
           "hasQueryParams" : false,
-          "hasHeaderParams" : false,
-          "hasCookieParams" : false,
-          "hasPathParams" : true,
-          "hasFormParams" : false,
-          "hasExamples" : true,
-          "isBodyAllowed" : false,
           "isDeprecated" : false,
           "hasAuthMethods" : true,
           "hasConsumes" : false,
@@ -14089,6 +14082,12 @@ VERBOSE MODE: ON. Additional debug options are injected
           "hasOptionalParams" : false,
           "hasRequiredParams" : true,
           "hasReference" : true,
+          "hasHeaderParams" : false,
+          "hasCookieParams" : false,
+          "hasPathParams" : true,
+          "hasFormParams" : false,
+          "hasExamples" : true,
+          "isBodyAllowed" : false,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -14467,12 +14466,6 @@ VERBOSE MODE: ON. Additional debug options are injected
           "operationIdCamelCase" : "GetMailOrders",
           "operationIdSnakeCase" : "get_mail_orders",
           "hasQueryParams" : false,
-          "hasHeaderParams" : false,
-          "hasCookieParams" : false,
-          "hasPathParams" : false,
-          "hasFormParams" : false,
-          "hasExamples" : true,
-          "isBodyAllowed" : false,
           "isDeprecated" : false,
           "hasAuthMethods" : true,
           "hasConsumes" : false,
@@ -14481,6 +14474,12 @@ VERBOSE MODE: ON. Additional debug options are injected
           "hasOptionalParams" : false,
           "hasRequiredParams" : false,
           "hasReference" : true,
+          "hasHeaderParams" : false,
+          "hasCookieParams" : false,
+          "hasPathParams" : false,
+          "hasFormParams" : false,
+          "hasExamples" : true,
+          "isBodyAllowed" : false,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -14670,12 +14669,6 @@ VERBOSE MODE: ON. Additional debug options are injected
           "operationIdCamelCase" : "PingServer",
           "operationIdSnakeCase" : "ping_server",
           "hasQueryParams" : false,
-          "hasHeaderParams" : false,
-          "hasCookieParams" : false,
-          "hasPathParams" : false,
-          "hasFormParams" : false,
-          "hasExamples" : false,
-          "isBodyAllowed" : false,
           "isDeprecated" : false,
           "hasAuthMethods" : false,
           "hasConsumes" : false,
@@ -14684,6 +14677,12 @@ VERBOSE MODE: ON. Additional debug options are injected
           "hasOptionalParams" : false,
           "hasRequiredParams" : false,
           "hasReference" : false,
+          "hasHeaderParams" : false,
+          "hasCookieParams" : false,
+          "hasPathParams" : false,
+          "hasFormParams" : false,
+          "hasExamples" : false,
+          "isBodyAllowed" : false,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -15389,12 +15388,6 @@ VERBOSE MODE: ON. Additional debug options are injected
           "operationIdCamelCase" : "PlaceMailOrder",
           "operationIdSnakeCase" : "place_mail_order",
           "hasQueryParams" : false,
-          "hasHeaderParams" : false,
-          "hasCookieParams" : false,
-          "hasPathParams" : false,
-          "hasFormParams" : false,
-          "hasExamples" : false,
-          "isBodyAllowed" : true,
           "isDeprecated" : true,
           "hasAuthMethods" : true,
           "hasConsumes" : true,
@@ -15403,6 +15396,12 @@ VERBOSE MODE: ON. Additional debug options are injected
           "hasOptionalParams" : true,
           "hasRequiredParams" : false,
           "hasReference" : false,
+          "hasHeaderParams" : false,
+          "hasCookieParams" : false,
+          "hasPathParams" : false,
+          "hasFormParams" : false,
+          "hasExamples" : false,
+          "isBodyAllowed" : true,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -16839,12 +16838,6 @@ VERBOSE MODE: ON. Additional debug options are injected
           "operationIdCamelCase" : "SendMailById",
           "operationIdSnakeCase" : "send_mail_by_id",
           "hasQueryParams" : true,
-          "hasHeaderParams" : false,
-          "hasCookieParams" : false,
-          "hasPathParams" : true,
-          "hasFormParams" : false,
-          "hasExamples" : true,
-          "isBodyAllowed" : true,
           "isDeprecated" : false,
           "hasAuthMethods" : true,
           "hasConsumes" : false,
@@ -16853,6 +16846,12 @@ VERBOSE MODE: ON. Additional debug options are injected
           "hasOptionalParams" : true,
           "hasRequiredParams" : true,
           "hasReference" : true,
+          "hasHeaderParams" : false,
+          "hasCookieParams" : false,
+          "hasPathParams" : true,
+          "hasFormParams" : false,
+          "hasExamples" : true,
+          "isBodyAllowed" : true,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -17214,12 +17213,6 @@ VERBOSE MODE: ON. Additional debug options are injected
           "operationIdCamelCase" : "ValidateMailOrder",
           "operationIdSnakeCase" : "validate_mail_order",
           "hasQueryParams" : false,
-          "hasHeaderParams" : false,
-          "hasCookieParams" : false,
-          "hasPathParams" : false,
-          "hasFormParams" : false,
-          "hasExamples" : false,
-          "isBodyAllowed" : false,
           "isDeprecated" : true,
           "hasAuthMethods" : true,
           "hasConsumes" : false,
@@ -17228,6 +17221,12 @@ VERBOSE MODE: ON. Additional debug options are injected
           "hasOptionalParams" : false,
           "hasRequiredParams" : false,
           "hasReference" : false,
+          "hasHeaderParams" : false,
+          "hasCookieParams" : false,
+          "hasPathParams" : false,
+          "hasFormParams" : false,
+          "hasExamples" : false,
+          "isBodyAllowed" : false,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -18447,12 +18446,6 @@ VERBOSE MODE: ON. Additional debug options are injected
           "operationIdCamelCase" : "ViewMailLogById",
           "operationIdSnakeCase" : "view_mail_log_by_id",
           "hasQueryParams" : true,
-          "hasHeaderParams" : false,
-          "hasCookieParams" : false,
-          "hasPathParams" : true,
-          "hasFormParams" : false,
-          "hasExamples" : true,
-          "isBodyAllowed" : false,
           "isDeprecated" : false,
           "hasAuthMethods" : true,
           "hasConsumes" : false,
@@ -18461,6 +18454,12 @@ VERBOSE MODE: ON. Additional debug options are injected
           "hasOptionalParams" : true,
           "hasRequiredParams" : true,
           "hasReference" : true,
+          "hasHeaderParams" : false,
+          "hasCookieParams" : false,
+          "hasPathParams" : true,
+          "hasFormParams" : false,
+          "hasExamples" : true,
+          "isBodyAllowed" : false,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -18538,7 +18537,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "DefaultApi",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-28T10:34:18.384351-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T13:51:44.514332-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -18548,7 +18547,7 @@ VERBOSE MODE: ON. Additional debug options are injected
   "useOas2" : false,
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T10:34:18.384351-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:51:44.514332-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -18557,6 +18556,5 @@ VERBOSE MODE: ON. Additional debug options are injected
   },
   "gitUserId" : "GIT_USER_ID"
 }
-10:34:18.650 [Thread-0] WARN  i.s.codegen.v3.DefaultGenerator - can't open handlebars/openapi/README.md for input
-10:34:18.656 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/openapi-yaml/.swagger-codegen-ignore
-10:34:18.656 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/openapi-yaml/.swagger-codegen/VERSION
+13:51:44.765 [Thread-0] WARN  i.s.codegen.v3.DefaultGenerator - can't open handlebars/openapi/README.md for input
+13:51:44.766 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/openapi-yaml/.swagger-codegen/VERSION

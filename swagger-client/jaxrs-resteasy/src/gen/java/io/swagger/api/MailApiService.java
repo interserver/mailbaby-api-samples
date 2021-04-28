@@ -17,7 +17,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-04-28T14:09:00.143227-04:00[America/New_York]")public interface MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-04-28T14:12:05.592736-04:00[America/New_York]")public interface MailApiService {
       Response getMailById(Long id,SecurityContext securityContext)
       throws NotFoundException;
       Response getMailOrders(SecurityContext securityContext)

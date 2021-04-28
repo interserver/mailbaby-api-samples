@@ -6,7 +6,7 @@
   "apiPackage": "Api",
   "variableNamingConvention": "camelCase",
   "invokerPackage": "Interserver\\Mailbaby",
-  "packagePath": "",
+  "packagePath": "Api",
   "srcBasePath": "src",
   "gitUserId": "interserver",
   "gitRepoId": "mailbaby-client-php",

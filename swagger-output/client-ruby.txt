@@ -1,9 +1,10 @@
-14:09:29.879 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+14:12:35.701 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
  - [debugOperations] prints operations passed to the template engine
  - [debugSupportingFiles] prints additional data passed to the template engine
+14:12:36.190 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 {
   "openapi" : "3.0.0",
   "info" : {
@@ -516,32 +517,27 @@ VERBOSE MODE: ON. Additional debug options are injected
     "callbacks" : { }
   }
 }
-14:09:30.554 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting .rspec as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby//.rspec
-14:09:30.555 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting spec_helper.rb as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/spec_helper.rb
-14:09:30.555 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting configuration_spec.rb as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/configuration_spec.rb
-14:09:30.555 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting api_client_spec.rb as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/api_client_spec.rb
-14:09:30.555 [Thread-0] INFO  i.s.c.v.g.DefaultCodegenConfig - Skipped overwriting base_object_spec.rb as the file already exists in /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/base_object_spec.rb
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by com.github.jknack.handlebars.context.MemberValueResolver (file:/home/sites/mailbaby-mail-api/swagger-codegen-cli.jar) to method java.util.Collections$EmptyMap.isEmpty()
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-14:09:30.930 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/error.rb
-14:09:30.931 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/error_spec.rb
-14:09:30.937 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/Error.md
-14:09:31.031 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/generic_response.rb
-14:09:31.032 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/generic_response_spec.rb
-14:09:31.037 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/GenericResponse.md
-14:09:31.128 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/mail_log.rb
-14:09:31.128 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/mail_log_spec.rb
-14:09:31.133 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/MailLog.md
-14:09:31.230 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/mail_order.rb
-14:09:31.231 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/mail_order_spec.rb
-14:09:31.236 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/MailOrder.md
-14:09:31.300 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/mail_orders.rb
-14:09:31.301 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/mail_orders_spec.rb
-14:09:31.304 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/MailOrders.md
-14:09:31.305 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+14:12:36.761 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/error.rb
+14:12:36.773 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/error_spec.rb
+14:12:36.783 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/Error.md
+14:12:36.920 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/generic_response.rb
+14:12:36.938 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/generic_response_spec.rb
+14:12:36.944 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/GenericResponse.md
+14:12:37.016 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/mail_log.rb
+14:12:37.026 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/mail_log_spec.rb
+14:12:37.061 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/MailLog.md
+14:12:37.149 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/mail_order.rb
+14:12:37.159 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/mail_order_spec.rb
+14:12:37.165 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/MailOrder.md
+14:12:37.245 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/models/mail_orders.rb
+14:12:37.251 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/models/mail_orders_spec.rb
+14:12:37.253 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/MailOrders.md
+14:12:37.254 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -3332,7 +3328,7 @@ WARNING: All illegal access operations will be denied in a future release
     "isMapContainer" : false
   }
 } ]
-14:09:31.335 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+14:12:37.284 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -3364,7 +3360,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:09:31.342 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+14:12:37.292 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -3562,7 +3558,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:09:31.354 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+14:12:37.306 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -3632,7 +3628,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:09:31.356 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+14:12:37.308 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -3758,7 +3754,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:09:31.362 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+14:12:37.313 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -3873,7 +3869,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:09:31.368 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+14:12:37.319 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -4289,7 +4285,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:09:31.382 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+14:12:37.328 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -4600,10 +4596,10 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:09:31.433 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/api/default_api.rb
-14:09:31.433 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/api/default_api_spec.rb
-14:09:31.454 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/DefaultApi.md
-14:09:31.454 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+14:12:37.379 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/api/default_api.rb
+14:12:37.386 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/api/default_api_spec.rb
+14:12:37.411 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/docs/DefaultApi.md
+14:12:37.412 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.ruby.RubyClientCodegen",
@@ -5294,8 +5290,8 @@ WARNING: All illegal access operations will be denied in a future release
           "$ref" : "#/components/schemas/MailOrder"
         },
         "jsonSchema" : "{\n  \"description\" : \"Successful operation\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/MailOrder\"\n      }\n    }\n  }\n}",
-        "wildcard" : false,
         "simpleType" : true,
+        "wildcard" : false,
         "primitiveType" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -5631,8 +5627,8 @@ WARNING: All illegal access operations will be denied in a future release
           "$ref" : "#/components/schemas/MailOrders"
         },
         "jsonSchema" : "{\n  \"description\" : \"OK\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/MailOrders\"\n      }\n    },\n    \"application/xml\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/MailOrders\"\n      }\n    },\n    \"text/plain\" : {\n      \"schema\" : {\n        \"type\" : \"string\"\n      }\n    }\n  },\n  \"links\" : {\n    \"sendMailByIdLink\" : {\n      \"operationId\" : \"sendMailById\",\n      \"parameters\" : {\n        \"id\" : \"$response.body#/0/id\"\n      },\n      \"description\" : \"The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}/send`.\"\n    },\n    \"getMailByIdLink\" : {\n      \"operationId\" : \"getMailById\",\n      \"parameters\" : {\n        \"id\" : \"$response.body#/0/id\"\n      },\n      \"description\" : \"The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}`.\"\n    }\n  }\n}",
-        "wildcard" : false,
         "simpleType" : true,
+        "wildcard" : false,
         "primitiveType" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -5686,8 +5682,8 @@ WARNING: All illegal access operations will be denied in a future release
           "$ref" : "#/components/schemas/Error"
         },
         "jsonSchema" : "{\n  \"description\" : \"Unauthorized\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/Error\"\n      }\n    }\n  }\n}",
-        "wildcard" : false,
         "simpleType" : true,
+        "wildcard" : false,
         "primitiveType" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -5843,8 +5839,8 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "Server is up and running",
         "contents" : [ ],
         "jsonSchema" : "{\n  \"description\" : \"Server is up and running\"\n}",
-        "wildcard" : false,
         "simpleType" : true,
+        "wildcard" : false,
         "primitiveType" : true,
         "isInteger" : false,
         "isNumber" : false,
@@ -5894,8 +5890,8 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "Something is wrong",
         "contents" : [ ],
         "jsonSchema" : "{\n  \"description\" : \"Something is wrong\"\n}",
-        "wildcard" : true,
         "simpleType" : true,
+        "wildcard" : true,
         "primitiveType" : true,
         "isInteger" : false,
         "isNumber" : false,
@@ -6463,8 +6459,8 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "list of mail orders",
         "contents" : [ ],
         "jsonSchema" : "{\n  \"description\" : \"list of mail orders\"\n}",
-        "wildcard" : false,
         "simpleType" : true,
+        "wildcard" : false,
         "primitiveType" : true,
         "isInteger" : false,
         "isNumber" : false,
@@ -6514,8 +6510,8 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "invalid input, object invalid",
         "contents" : [ ],
         "jsonSchema" : "{\n  \"description\" : \"invalid input, object invalid\"\n}",
-        "wildcard" : false,
         "simpleType" : true,
+        "wildcard" : false,
         "primitiveType" : true,
         "isInteger" : false,
         "isNumber" : false,
@@ -6565,8 +6561,8 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "an existing item already exists",
         "contents" : [ ],
         "jsonSchema" : "{\n  \"description\" : \"an existing item already exists\"\n}",
-        "wildcard" : false,
         "simpleType" : true,
+        "wildcard" : false,
         "primitiveType" : true,
         "isInteger" : false,
         "isNumber" : false,
@@ -6620,8 +6616,8 @@ WARNING: All illegal access operations will be denied in a future release
           "$ref" : "#/components/schemas/Error"
         },
         "jsonSchema" : "{\n  \"description\" : \"Unauthorized\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/Error\"\n      }\n    }\n  }\n}",
-        "wildcard" : false,
         "simpleType" : true,
+        "wildcard" : false,
         "primitiveType" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -7921,8 +7917,8 @@ WARNING: All illegal access operations will be denied in a future release
           "$ref" : "#/components/schemas/GenericResponse"
         },
         "jsonSchema" : "{\n  \"description\" : \"search results matching criteria\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/GenericResponse\"\n      }\n    }\n  }\n}",
-        "wildcard" : false,
         "simpleType" : true,
+        "wildcard" : false,
         "primitiveType" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -7972,8 +7968,8 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "bad input parameter",
         "contents" : [ ],
         "jsonSchema" : "{\n  \"description\" : \"bad input parameter\"\n}",
-        "wildcard" : false,
         "simpleType" : true,
+        "wildcard" : false,
         "primitiveType" : true,
         "isInteger" : false,
         "isNumber" : false,
@@ -8027,8 +8023,8 @@ WARNING: All illegal access operations will be denied in a future release
           "$ref" : "#/components/schemas/Error"
         },
         "jsonSchema" : "{\n  \"description\" : \"Unauthorized\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/Error\"\n      }\n    }\n  }\n}",
-        "wildcard" : false,
         "simpleType" : true,
+        "wildcard" : false,
         "primitiveType" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -8082,8 +8078,8 @@ WARNING: All illegal access operations will be denied in a future release
           "$ref" : "#/components/schemas/Error"
         },
         "jsonSchema" : "{\n  \"description\" : \"The specified resource was not found\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/Error\"\n      }\n    }\n  }\n}",
-        "wildcard" : false,
         "simpleType" : true,
+        "wildcard" : false,
         "primitiveType" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -8407,8 +8403,8 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "list of mail orders",
         "contents" : [ ],
         "jsonSchema" : "{\n  \"description\" : \"list of mail orders\"\n}",
-        "wildcard" : false,
         "simpleType" : true,
+        "wildcard" : false,
         "primitiveType" : true,
         "isInteger" : false,
         "isNumber" : false,
@@ -8462,8 +8458,8 @@ WARNING: All illegal access operations will be denied in a future release
           "$ref" : "#/components/schemas/Error"
         },
         "jsonSchema" : "{\n  \"description\" : \"Unauthorized\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/Error\"\n      }\n    }\n  }\n}",
-        "wildcard" : false,
         "simpleType" : true,
+        "wildcard" : false,
         "primitiveType" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -9652,8 +9648,8 @@ WARNING: All illegal access operations will be denied in a future release
           "x-content-type" : "application/json"
         },
         "jsonSchema" : "{\n  \"description\" : \"search results matching criteria\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"type\" : \"array\",\n        \"items\" : {\n          \"$ref\" : \"#/components/schemas/MailLog\"\n        },\n        \"x-content-type\" : \"application/json\"\n      }\n    }\n  }\n}",
-        "wildcard" : false,
         "simpleType" : false,
+        "wildcard" : false,
         "primitiveType" : false,
         "isInteger" : false,
         "isNumber" : false,
@@ -9703,8 +9699,8 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "bad input parameter",
         "contents" : [ ],
         "jsonSchema" : "{\n  \"description\" : \"bad input parameter\"\n}",
-        "wildcard" : false,
         "simpleType" : true,
+        "wildcard" : false,
         "primitiveType" : true,
         "isInteger" : false,
         "isNumber" : false,
@@ -9818,12 +9814,12 @@ WARNING: All illegal access operations will be denied in a future release
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "DefaultApi",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T14:09:30.605744-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T14:12:36.387952-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-14:09:31.483 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+14:12:37.452 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "infoName" : "Joe Huss",
   "licenseUrl" : "http://www.apache.org/licenses/LICENSE-2.0.html",
@@ -14047,8 +14043,8 @@ WARNING: All illegal access operations will be denied in a future release
               "$ref" : "#/components/schemas/MailOrder"
             },
             "jsonSchema" : "{\n  \"description\" : \"Successful operation\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/MailOrder\"\n      }\n    }\n  }\n}",
-            "wildcard" : false,
             "simpleType" : true,
+            "wildcard" : false,
             "primitiveType" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -14384,8 +14380,8 @@ WARNING: All illegal access operations will be denied in a future release
               "$ref" : "#/components/schemas/MailOrders"
             },
             "jsonSchema" : "{\n  \"description\" : \"OK\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/MailOrders\"\n      }\n    },\n    \"application/xml\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/MailOrders\"\n      }\n    },\n    \"text/plain\" : {\n      \"schema\" : {\n        \"type\" : \"string\"\n      }\n    }\n  },\n  \"links\" : {\n    \"sendMailByIdLink\" : {\n      \"operationId\" : \"sendMailById\",\n      \"parameters\" : {\n        \"id\" : \"$response.body#/0/id\"\n      },\n      \"description\" : \"The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}/send`.\"\n    },\n    \"getMailByIdLink\" : {\n      \"operationId\" : \"getMailById\",\n      \"parameters\" : {\n        \"id\" : \"$response.body#/0/id\"\n      },\n      \"description\" : \"The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}`.\"\n    }\n  }\n}",
-            "wildcard" : false,
             "simpleType" : true,
+            "wildcard" : false,
             "primitiveType" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -14439,8 +14435,8 @@ WARNING: All illegal access operations will be denied in a future release
               "$ref" : "#/components/schemas/Error"
             },
             "jsonSchema" : "{\n  \"description\" : \"Unauthorized\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/Error\"\n      }\n    }\n  }\n}",
-            "wildcard" : false,
             "simpleType" : true,
+            "wildcard" : false,
             "primitiveType" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -14596,8 +14592,8 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "Server is up and running",
             "contents" : [ ],
             "jsonSchema" : "{\n  \"description\" : \"Server is up and running\"\n}",
-            "wildcard" : false,
             "simpleType" : true,
+            "wildcard" : false,
             "primitiveType" : true,
             "isInteger" : false,
             "isNumber" : false,
@@ -14647,8 +14643,8 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "Something is wrong",
             "contents" : [ ],
             "jsonSchema" : "{\n  \"description\" : \"Something is wrong\"\n}",
-            "wildcard" : true,
             "simpleType" : true,
+            "wildcard" : true,
             "primitiveType" : true,
             "isInteger" : false,
             "isNumber" : false,
@@ -15216,8 +15212,8 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "list of mail orders",
             "contents" : [ ],
             "jsonSchema" : "{\n  \"description\" : \"list of mail orders\"\n}",
-            "wildcard" : false,
             "simpleType" : true,
+            "wildcard" : false,
             "primitiveType" : true,
             "isInteger" : false,
             "isNumber" : false,
@@ -15267,8 +15263,8 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "invalid input, object invalid",
             "contents" : [ ],
             "jsonSchema" : "{\n  \"description\" : \"invalid input, object invalid\"\n}",
-            "wildcard" : false,
             "simpleType" : true,
+            "wildcard" : false,
             "primitiveType" : true,
             "isInteger" : false,
             "isNumber" : false,
@@ -15318,8 +15314,8 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "an existing item already exists",
             "contents" : [ ],
             "jsonSchema" : "{\n  \"description\" : \"an existing item already exists\"\n}",
-            "wildcard" : false,
             "simpleType" : true,
+            "wildcard" : false,
             "primitiveType" : true,
             "isInteger" : false,
             "isNumber" : false,
@@ -15373,8 +15369,8 @@ WARNING: All illegal access operations will be denied in a future release
               "$ref" : "#/components/schemas/Error"
             },
             "jsonSchema" : "{\n  \"description\" : \"Unauthorized\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/Error\"\n      }\n    }\n  }\n}",
-            "wildcard" : false,
             "simpleType" : true,
+            "wildcard" : false,
             "primitiveType" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -16674,8 +16670,8 @@ WARNING: All illegal access operations will be denied in a future release
               "$ref" : "#/components/schemas/GenericResponse"
             },
             "jsonSchema" : "{\n  \"description\" : \"search results matching criteria\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/GenericResponse\"\n      }\n    }\n  }\n}",
-            "wildcard" : false,
             "simpleType" : true,
+            "wildcard" : false,
             "primitiveType" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -16725,8 +16721,8 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "bad input parameter",
             "contents" : [ ],
             "jsonSchema" : "{\n  \"description\" : \"bad input parameter\"\n}",
-            "wildcard" : false,
             "simpleType" : true,
+            "wildcard" : false,
             "primitiveType" : true,
             "isInteger" : false,
             "isNumber" : false,
@@ -16780,8 +16776,8 @@ WARNING: All illegal access operations will be denied in a future release
               "$ref" : "#/components/schemas/Error"
             },
             "jsonSchema" : "{\n  \"description\" : \"Unauthorized\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/Error\"\n      }\n    }\n  }\n}",
-            "wildcard" : false,
             "simpleType" : true,
+            "wildcard" : false,
             "primitiveType" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -16835,8 +16831,8 @@ WARNING: All illegal access operations will be denied in a future release
               "$ref" : "#/components/schemas/Error"
             },
             "jsonSchema" : "{\n  \"description\" : \"The specified resource was not found\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/Error\"\n      }\n    }\n  }\n}",
-            "wildcard" : false,
             "simpleType" : true,
+            "wildcard" : false,
             "primitiveType" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -17160,8 +17156,8 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "list of mail orders",
             "contents" : [ ],
             "jsonSchema" : "{\n  \"description\" : \"list of mail orders\"\n}",
-            "wildcard" : false,
             "simpleType" : true,
+            "wildcard" : false,
             "primitiveType" : true,
             "isInteger" : false,
             "isNumber" : false,
@@ -17215,8 +17211,8 @@ WARNING: All illegal access operations will be denied in a future release
               "$ref" : "#/components/schemas/Error"
             },
             "jsonSchema" : "{\n  \"description\" : \"Unauthorized\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/Error\"\n      }\n    }\n  }\n}",
-            "wildcard" : false,
             "simpleType" : true,
+            "wildcard" : false,
             "primitiveType" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -18405,8 +18401,8 @@ WARNING: All illegal access operations will be denied in a future release
               "x-content-type" : "application/json"
             },
             "jsonSchema" : "{\n  \"description\" : \"search results matching criteria\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"type\" : \"array\",\n        \"items\" : {\n          \"$ref\" : \"#/components/schemas/MailLog\"\n        },\n        \"x-content-type\" : \"application/json\"\n      }\n    }\n  }\n}",
-            "wildcard" : false,
             "simpleType" : false,
+            "wildcard" : false,
             "primitiveType" : false,
             "isInteger" : false,
             "isNumber" : false,
@@ -18456,8 +18452,8 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "bad input parameter",
             "contents" : [ ],
             "jsonSchema" : "{\n  \"description\" : \"bad input parameter\"\n}",
-            "wildcard" : false,
             "simpleType" : true,
+            "wildcard" : false,
             "primitiveType" : true,
             "isInteger" : false,
             "isNumber" : false,
@@ -18571,7 +18567,7 @@ WARNING: All illegal access operations will be denied in a future release
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "DefaultApi",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-28T14:09:30.605744-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T14:12:36.387952-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -18582,7 +18578,7 @@ WARNING: All illegal access operations will be denied in a future release
   "useOas2" : false,
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T14:09:30.605744-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T14:12:36.387952-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -18591,16 +18587,22 @@ WARNING: All illegal access operations will be denied in a future release
   },
   "gitUserId" : "GIT_USER_ID"
 }
-14:09:31.518 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/swagger_client.gemspec
-14:09:31.525 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client.rb
-14:09:31.557 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/api_client.rb
-14:09:31.564 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/api_error.rb
-14:09:31.590 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/configuration.rb
-14:09:31.593 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/version.rb
-14:09:31.641 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/README.md
-14:09:31.645 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/git_push.sh
-14:09:31.648 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/.gitignore
-14:09:31.649 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/Rakefile
-14:09:31.651 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/Gemfile
-14:09:31.661 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/.rubocop.yml
-14:09:31.661 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/.swagger-codegen/VERSION
+14:12:37.489 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/swagger_client.gemspec
+14:12:37.493 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client.rb
+14:12:37.526 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/api_client.rb
+14:12:37.532 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/api_error.rb
+14:12:37.555 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/configuration.rb
+14:12:37.558 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/lib/swagger_client/version.rb
+14:12:37.591 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/README.md
+14:12:37.597 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/git_push.sh
+14:12:37.600 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/.gitignore
+14:12:37.601 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/Rakefile
+14:12:37.602 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/Gemfile
+14:12:37.609 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/.rubocop.yml
+14:12:37.611 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/.rspec
+14:12:37.624 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/spec_helper.rb
+14:12:37.628 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/configuration_spec.rb
+14:12:37.642 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/api_client_spec.rb
+14:12:37.648 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/spec/base_object_spec.rb
+14:12:37.654 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/.swagger-codegen-ignore
+14:12:37.654 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/ruby/.swagger-codegen/VERSION

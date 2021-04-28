@@ -30,44 +30,44 @@ legacyDiscriminatorBehavior: true
 disallowAdditionalPropertiesIfNotPresent: true
 
 # Description: short name of the application
-# appName: 
+appName: MailBaby API 
 
 # Description: description of the application
-# appDescription: 
+appDescription: API interface for sending mail through the MailBaby system. 
 
 # Description: a URL where users can get more information about the application
-# infoUrl: 
+infoUrl: https://mail.baby/ 
 
 # Description: an email address to contact for inquiries about the application
-# infoEmail: 
+infoEmail: support@mail.baby 
 
 # Description: a short description of the license
-# licenseInfo: 
+licenseInfo: GNU GPL v3 
 
 # Description: a URL pointing to the full license
-# licenseUrl: 
+licenseUrl: https://www.gnu.org/licenses/gpl-3.0.en.html 
 
 # Description: root package for generated code
-# invokerPackage: 
+invokerPackage: MailBabyApi 
 
 # Description: root package for generated php code
-# phpInvokerPackage: 
+phpInvokerPackage: interserver/mailbaby-client-php 
 
 # Description: root module name for generated perl code
-# perlModuleName: 
+perlModuleName: MailBabyApi 
 
 # Description: package name for generated python code
-# pythonPackageName: 
+pythonPackageName: MailBabyApi
 
 # Description: C# package name
-# packageName: 
+packageName: MailBabyApi 
 
 # Description: groupId in generated pom.xml
-# groupId: 
+groupId: com.mail.baby 
 
 # Description: artifactId in generated pom.xml. This also becomes part of the generated library's filename
-# artifactId: 
+artifactId: MailBabyApi 
 
 # Description: artifact version in generated pom.xml. This also becomes part of the generated library's filename
-# artifactVersion: 
+artifactVersion: 1.0.0 
 

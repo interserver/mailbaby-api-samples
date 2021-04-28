@@ -8,7 +8,7 @@ sortModelPropertiesByRequiredFlag: true
 ensureUniqueParams: true
 
 # Description: boolean, toggles whether unicode identifiers are allowed in names or not, default is false
-allowUnicodeIdentifiers: false
+allowUnicodeIdentifiers: true
 
 # Description: Add form or body parameters to the beginning of the parameter list.
 prependFormOrBodyParameters: false
@@ -30,25 +30,25 @@ legacyDiscriminatorBehavior: true
 disallowAdditionalPropertiesIfNotPresent: true
 
 # Description: package for generated models
-# modelPackage: 
+modelPackage: Model 
 
 # Description: package for generated api classes
-# apiPackage: 
+apiPackage: Api 
 
 # Description: naming convention of variable name, e.g. camelCase.
-variableNamingConvention: snake_case
+variableNamingConvention: camelCase
 
 # Description: The main namespace to use for all classes. e.g. Yay\Pets
-# invokerPackage: 
+invokerPackage: Interserver\Mailbaby 
 
 # Description: The main package name for classes. e.g. GeneratedPetstore
 # packageName: 
 
 # Description: The directory to serve as source root.
-# srcBasePath: 
+srcBasePath: src 
 
 # Description: The version to use in the composer package version field. e.g. 1.2.3
-# artifactVersion: 
+artifactVersion: 1.0.0 
 
 # Description: boolean, toggles whether unicode identifiers are allowed in names or not, default is false
 hideGenerationTimestamp: true

@@ -1,4 +1,4 @@
-17:21:45.083 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
-17:21:45.464 [Thread-0] WARN  i.s.codegen.v3.DefaultGenerator - can't open handlebars/openapi/README.md for input
-17:21:45.469 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/openapi-yaml/.swagger-codegen-ignore
-17:21:45.470 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/openapi-yaml/.swagger-codegen/VERSION
+17:32:23.142 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
+17:32:23.522 [Thread-0] WARN  i.s.codegen.v3.DefaultGenerator - can't open handlebars/openapi/README.md for input
+17:32:23.530 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/openapi-yaml/.swagger-codegen-ignore
+17:32:23.530 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-documentation/openapi-yaml/.swagger-codegen/VERSION

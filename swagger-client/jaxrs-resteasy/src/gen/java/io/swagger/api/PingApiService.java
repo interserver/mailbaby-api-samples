@@ -12,7 +12,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-04-28T17:21:29.942742-04:00[America/New_York]")public interface PingApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-04-28T17:32:10.150259-04:00[America/New_York]")public interface PingApiService {
       Response pingServer(SecurityContext securityContext)
       throws NotFoundException;
 }

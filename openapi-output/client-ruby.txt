@@ -18,7 +18,7 @@ expected chomping or indentation indicators, but found =(61)
                              ^
 
  at [Source: (File); line: 45, column: 23]
-Exception in thread "main" java.lang.RuntimeException: Unable to deserialize config file: /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-config/ruby.yaml
+Exception in thread "main" java.lang.RuntimeException: Unable to deserialize config file: openapi-config/ruby.yaml
 	at org.openapitools.codegen.config.CodegenConfigurator.readDynamicSettings(CodegenConfigurator.java:155)
 	at org.openapitools.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:86)
 	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:271)

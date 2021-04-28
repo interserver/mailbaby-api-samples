@@ -10,7 +10,7 @@ import java.io.File;
  * A File attachment for an email
  **/
 @Schema(description = "A File attachment for an email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-04-28T17:21:10.710924-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-04-28T17:31:52.762508-04:00[America/New_York]")
 public class MailAttachment   {
   @JsonProperty("filename")
   private String filename = null;

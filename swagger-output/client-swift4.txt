@@ -1,72 +1,72 @@
-17:22:15.984 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
-17:22:16.010 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.010 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.071 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.071 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.072 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.116 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.147 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.193 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.194 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.199 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.199 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.199 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.200 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.203 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Data (reserved word) cannot be used as model name. Renamed to ModelData
-17:22:16.206 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.112 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
+17:32:51.136 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.136 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.244 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.244 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.245 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.251 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.271 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.311 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.312 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.315 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.316 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.316 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.316 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.318 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Data (reserved word) cannot be used as model name. Renamed to ModelData
+17:32:51.321 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by com.github.jknack.handlebars.context.MemberValueResolver (file:/home/sites/mailbaby-mail-api/swagger-codegen-cli.jar) to method java.util.Collections$EmptyMap.isEmpty()
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-17:22:16.469 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/GenericResponse.swift
-17:22:16.500 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailAttachment.swift
-17:22:16.526 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailContact.swift
-17:22:16.564 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailLog.swift
-17:22:16.601 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailOrder.swift
-17:22:16.608 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailOrders.swift
-17:22:16.609 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.609 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.609 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.609 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.609 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.633 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/ModelErrorResponse.swift
-17:22:16.657 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/SendMail.swift
-17:22:16.683 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/SendMailForm.swift
-17:22:16.702 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.702 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.702 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.712 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.712 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.712 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.714 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.714 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.714 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.733 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.733 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.734 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.734 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.734 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.734 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.744 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.744 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.744 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.745 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.745 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.745 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
-17:22:16.876 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs/DefaultAPI.swift
-17:22:16.886 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient.podspec
-17:22:16.888 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/Cartfile
-17:22:16.930 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIHelper.swift
-17:22:17.026 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/AlamofireImplementations.swift
-17:22:17.029 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Configuration.swift
-17:22:17.043 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Extensions.swift
-17:22:17.046 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models.swift
-17:22:17.051 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs.swift
-17:22:17.056 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/git_push.sh
-17:22:17.059 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/.gitignore
-17:22:17.064 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/CodableHelper.swift
-17:22:17.068 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/JSONEncodableEncoding.swift
-17:22:17.071 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/JSONEncodingHelper.swift
-17:22:17.077 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/.swagger-codegen-ignore
-17:22:17.077 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/.swagger-codegen/VERSION
+17:32:51.524 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/GenericResponse.swift
+17:32:51.557 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailAttachment.swift
+17:32:51.595 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailContact.swift
+17:32:51.634 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailLog.swift
+17:32:51.682 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailOrder.swift
+17:32:51.692 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailOrders.swift
+17:32:51.692 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.692 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.693 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.693 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.693 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.710 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/ModelErrorResponse.swift
+17:32:51.733 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/SendMail.swift
+17:32:51.762 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/SendMailForm.swift
+17:32:51.781 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.781 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.781 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.789 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.789 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.789 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.791 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.791 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.791 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.811 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.811 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.812 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.813 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.813 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.813 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.825 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.826 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.826 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.826 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.827 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.827 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+17:32:51.970 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs/DefaultAPI.swift
+17:32:51.997 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient.podspec
+17:32:51.999 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/Cartfile
+17:32:52.012 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIHelper.swift
+17:32:52.064 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/AlamofireImplementations.swift
+17:32:52.068 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Configuration.swift
+17:32:52.079 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Extensions.swift
+17:32:52.082 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models.swift
+17:32:52.086 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs.swift
+17:32:52.090 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/git_push.sh
+17:32:52.094 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/.gitignore
+17:32:52.099 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/CodableHelper.swift
+17:32:52.102 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/JSONEncodableEncoding.swift
+17:32:52.105 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/JSONEncodingHelper.swift
+17:32:52.111 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/.swagger-codegen-ignore
+17:32:52.111 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/.swagger-codegen/VERSION

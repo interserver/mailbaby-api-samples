@@ -2,7 +2,7 @@
  at [Source: (File); line: 1, column: 1]
 [main] ERROR o.o.c.config.CodegenConfigurator - No content to map due to end-of-input
  at [Source: (File); line: 1, column: 1]
-Exception in thread "main" java.lang.RuntimeException: Unable to deserialize config file: /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-config/elm.yaml
+Exception in thread "main" java.lang.RuntimeException: Unable to deserialize config file: openapi-config/elm.yaml
 	at org.openapitools.codegen.config.CodegenConfigurator.readDynamicSettings(CodegenConfigurator.java:155)
 	at org.openapitools.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:86)
 	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:271)

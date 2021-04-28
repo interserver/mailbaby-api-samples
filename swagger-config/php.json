@@ -7,7 +7,7 @@
   "variableNamingConvention": "camelCase",
   "invokerPackage": "Interserver\\Mailbaby",
   "packagePath": "MailBabyPhp",
-  "srcBasePath": "",
+  "srcBasePath": "src",
   "gitUserId": "interserver",
   "gitRepoId": "mailbaby-client-php",
   "composerVendorName": "interserver",

@@ -1,4 +1,4 @@
-14:01:38.508 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+14:09:45.552 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
@@ -516,33 +516,33 @@ VERBOSE MODE: ON. Additional debug options are injected
     "callbacks" : { }
   }
 }
-14:01:39.193 [Thread-0] INFO  i.s.c.v.g.t.TypeScriptAngularClientCodegen - generating code for Angular 8.0.0 ...
-14:01:39.194 [Thread-0] INFO  i.s.c.v.g.t.TypeScriptAngularClientCodegen -   (you can select the angular version by setting the additionalProperty ngVersion)
-14:01:39.220 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
-14:01:39.221 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
-14:01:39.228 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
-14:01:39.228 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
-14:01:39.229 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
-14:01:39.233 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
-14:01:39.240 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
-14:01:39.251 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
-14:01:39.251 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
-14:01:39.252 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+14:09:46.205 [Thread-0] INFO  i.s.c.v.g.t.TypeScriptAngularClientCodegen - generating code for Angular 8.0.0 ...
+14:09:46.206 [Thread-0] INFO  i.s.c.v.g.t.TypeScriptAngularClientCodegen -   (you can select the angular version by setting the additionalProperty ngVersion)
+14:09:46.227 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+14:09:46.228 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+14:09:46.234 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+14:09:46.234 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+14:09:46.235 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+14:09:46.239 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+14:09:46.245 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+14:09:46.253 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+14:09:46.253 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+14:09:46.253 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by com.github.jknack.handlebars.context.MemberValueResolver (file:/home/sites/mailbaby-mail-api/swagger-codegen-cli.jar) to method java.util.Collections$EmptyMap.isEmpty()
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-14:01:39.452 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/model/genericResponse.ts
-14:01:39.471 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/model/mailLog.ts
-14:01:39.492 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/model/mailOrder.ts
-14:01:39.515 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/model/mailOrders.ts
-14:01:39.516 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
-14:01:39.516 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
-14:01:39.517 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
-14:01:39.517 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
-14:01:39.538 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/model/modelError.ts
-14:01:39.538 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+14:09:46.459 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/model/genericResponse.ts
+14:09:46.488 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/model/mailLog.ts
+14:09:46.506 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/model/mailOrder.ts
+14:09:46.526 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/model/mailOrders.ts
+14:09:46.527 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+14:09:46.527 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+14:09:46.527 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+14:09:46.527 [Thread-0] WARN  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Error (model name matches existing language type) cannot be used as a model name. Renamed to ModelError
+14:09:46.543 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/model/modelError.ts
+14:09:46.543 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "type" : "object",
@@ -1067,15 +1067,15 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
-    "hasMoreModels" : false,
-    "hasEnums" : false,
     "hasRequired" : false,
     "hasOptional" : true,
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
+    "hasMoreModels" : false,
+    "hasEnums" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -1391,15 +1391,15 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
-    "hasMoreModels" : false,
-    "hasEnums" : false,
     "hasRequired" : false,
     "hasOptional" : true,
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
+    "hasMoreModels" : false,
+    "hasEnums" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -2705,15 +2705,15 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
-    "hasMoreModels" : false,
-    "hasEnums" : false,
     "hasRequired" : false,
     "hasOptional" : true,
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
+    "hasMoreModels" : false,
+    "hasEnums" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -2783,15 +2783,15 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ "MailOrder" ],
     "emptyVars" : false,
     "isComposedModel" : false,
-    "hasVars" : false,
-    "hasOnlyReadOnly" : false,
-    "hasMoreModels" : false,
-    "hasEnums" : false,
     "hasRequired" : false,
     "hasOptional" : false,
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
+    "hasVars" : false,
+    "hasOnlyReadOnly" : false,
+    "hasMoreModels" : false,
+    "hasEnums" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -3339,15 +3339,15 @@ WARNING: All illegal access operations will be denied in a future release
     "imports" : [ ],
     "emptyVars" : false,
     "isComposedModel" : false,
-    "hasVars" : true,
-    "hasOnlyReadOnly" : false,
-    "hasMoreModels" : false,
-    "hasEnums" : false,
     "hasRequired" : false,
     "hasOptional" : false,
     "hasChildren" : false,
     "isInteger" : false,
     "isNumber" : false,
+    "hasVars" : true,
+    "hasOnlyReadOnly" : false,
+    "hasMoreModels" : false,
+    "hasEnums" : false,
     "hasHeaders" : false,
     "isString" : false,
     "isNumeric" : false,
@@ -3381,7 +3381,7 @@ WARNING: All illegal access operations will be denied in a future release
     "isAlias" : false
   }
 } ]
-14:01:39.574 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+14:09:46.573 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -3413,7 +3413,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:01:39.582 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+14:09:46.580 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -3611,7 +3611,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:01:39.610 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+14:09:46.593 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -3681,7 +3681,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:01:39.612 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+14:09:46.595 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -3807,7 +3807,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:01:39.621 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+14:09:46.602 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -3922,7 +3922,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:01:39.629 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+14:09:46.609 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -4338,7 +4338,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:01:39.645 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+14:09:46.618 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -4649,8 +4649,8 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:01:39.824 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/api/default.service.ts
-14:01:39.824 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+14:09:46.741 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/api/default.service.ts
+14:09:46.742 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.typescript.TypeScriptAngularClientCodegen",
@@ -9843,13 +9843,13 @@ WARNING: All illegal access operations will be denied in a future release
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "DefaultService",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T14:01:39.200493-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T14:09:46.211426-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID",
   "useHttpClientPackage" : false
 } ]
-14:01:39.862 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+14:09:46.776 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.typescript.TypeScriptAngularClientCodegen",
@@ -10557,15 +10557,15 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
-      "hasMoreModels" : true,
-      "hasEnums" : false,
       "hasRequired" : false,
       "hasOptional" : true,
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
+      "hasMoreModels" : true,
+      "hasEnums" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -10885,15 +10885,15 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
-      "hasMoreModels" : true,
-      "hasEnums" : false,
       "hasRequired" : false,
       "hasOptional" : true,
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
+      "hasMoreModels" : true,
+      "hasEnums" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -12207,15 +12207,15 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
-      "hasMoreModels" : true,
-      "hasEnums" : false,
       "hasRequired" : false,
       "hasOptional" : true,
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
+      "hasMoreModels" : true,
+      "hasEnums" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -12286,15 +12286,15 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ "MailOrder" ],
       "emptyVars" : false,
       "isComposedModel" : false,
-      "hasVars" : false,
-      "hasOnlyReadOnly" : false,
-      "hasMoreModels" : true,
-      "hasEnums" : false,
       "hasRequired" : false,
       "hasOptional" : false,
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
+      "hasVars" : false,
+      "hasOnlyReadOnly" : false,
+      "hasMoreModels" : true,
+      "hasEnums" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -12842,15 +12842,15 @@ WARNING: All illegal access operations will be denied in a future release
       "imports" : [ ],
       "emptyVars" : false,
       "isComposedModel" : false,
-      "hasVars" : true,
-      "hasOnlyReadOnly" : false,
-      "hasMoreModels" : false,
-      "hasEnums" : false,
       "hasRequired" : false,
       "hasOptional" : false,
       "hasChildren" : false,
       "isInteger" : false,
       "isNumber" : false,
+      "hasVars" : true,
+      "hasOnlyReadOnly" : false,
+      "hasMoreModels" : false,
+      "hasEnums" : false,
       "hasHeaders" : false,
       "isString" : false,
       "isNumeric" : false,
@@ -18084,7 +18084,7 @@ WARNING: All illegal access operations will be denied in a future release
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "DefaultService",
       "gitRepoId" : "GIT_REPO_ID",
-      "generatedDate" : "2021-04-28T14:01:39.200493-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T14:09:46.211426-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID",
@@ -18646,7 +18646,7 @@ WARNING: All illegal access operations will be denied in a future release
   "apiPackage" : "api",
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
-  "generatedDate" : "2021-04-28T14:01:39.200493-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T14:09:46.211426-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -18656,15 +18656,15 @@ WARNING: All illegal access operations will be denied in a future release
   "gitUserId" : "GIT_USER_ID",
   "useHttpClientPackage" : false
 }
-14:01:39.892 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/model/models.ts
-14:01:39.897 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/api/api.ts
-14:01:39.899 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/index.ts
-14:01:39.907 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/api.module.ts
-14:01:39.920 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/configuration.ts
-14:01:39.924 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/variables.ts
-14:01:39.929 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/encoder.ts
-14:01:39.931 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/.gitignore
-14:01:39.934 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/.npmignore
-14:01:39.942 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/git_push.sh
-14:01:39.944 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/ng-package.json
-14:01:39.945 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/.swagger-codegen/VERSION
+14:09:46.808 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/model/models.ts
+14:09:46.813 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/api/api.ts
+14:09:46.816 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/index.ts
+14:09:46.822 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/api.module.ts
+14:09:46.837 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/configuration.ts
+14:09:46.840 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/variables.ts
+14:09:46.846 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/encoder.ts
+14:09:46.847 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/.gitignore
+14:09:46.850 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/.npmignore
+14:09:46.859 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/git_push.sh
+14:09:46.860 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/ng-package.json
+14:09:46.861 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-angular/.swagger-codegen/VERSION

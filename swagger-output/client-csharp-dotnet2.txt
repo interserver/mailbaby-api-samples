@@ -1,4 +1,4 @@
-14:00:12.259 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+14:08:20.464 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
@@ -516,17 +516,17 @@ VERBOSE MODE: ON. Additional debug options are injected
     "callbacks" : { }
   }
 }
-14:00:13.112 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/Error.cs
-14:00:13.124 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/docs/Error.md
-14:00:13.136 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/GenericResponse.cs
-14:00:13.143 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/docs/GenericResponse.md
-14:00:13.153 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailLog.cs
-14:00:13.159 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/docs/MailLog.md
-14:00:13.171 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailOrder.cs
-14:00:13.179 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/docs/MailOrder.md
-14:00:13.193 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailOrders.cs
-14:00:13.200 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/docs/MailOrders.md
-14:00:13.200 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+14:08:21.288 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/Error.cs
+14:08:21.300 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/docs/Error.md
+14:08:21.313 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/GenericResponse.cs
+14:08:21.320 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/docs/GenericResponse.md
+14:08:21.332 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailLog.cs
+14:08:21.338 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/docs/MailLog.md
+14:08:21.352 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailOrder.cs
+14:08:21.361 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/docs/MailOrder.md
+14:08:21.376 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Model/MailOrders.cs
+14:08:21.385 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/docs/MailOrders.md
+14:08:21.386 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -3317,7 +3317,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     "hasMore" : false
   }
 } ]
-14:00:13.236 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+14:08:21.426 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -3349,7 +3349,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-14:00:13.244 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+14:08:21.434 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -3547,7 +3547,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-14:00:13.259 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+14:08:21.450 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -3617,7 +3617,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-14:00:13.261 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+14:08:21.452 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -3743,7 +3743,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-14:00:13.267 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+14:08:21.458 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -3858,7 +3858,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-14:00:13.272 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+14:08:21.463 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -4274,7 +4274,7 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-14:00:13.282 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+14:08:21.473 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -4585,9 +4585,9 @@ VERBOSE MODE: ON. Additional debug options are injected
     servers: null
 }
 
-14:00:13.333 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Api/DefaultApi.cs
-14:00:13.405 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/docs/DefaultApi.md
-14:00:13.407 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+14:08:21.521 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Api/DefaultApi.cs
+14:08:21.562 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/docs/DefaultApi.md
+14:08:21.563 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.dotnet.CsharpDotNet2ClientCodegen",
@@ -5342,14 +5342,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "operationIdLowerCase" : "getmailbyid",
       "operationIdCamelCase" : "GetMailById",
       "operationIdSnakeCase" : "get_mail_by_id",
-      "isDeprecated" : false,
-      "hasAuthMethods" : true,
-      "hasConsumes" : false,
-      "hasProduces" : true,
-      "hasParams" : true,
-      "hasOptionalParams" : false,
-      "hasRequiredParams" : true,
-      "hasReference" : true,
       "hasBodyParam" : false,
       "hasQueryParams" : false,
       "hasHeaderParams" : false,
@@ -5358,6 +5350,14 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasFormParams" : false,
       "hasExamples" : true,
       "isBodyAllowed" : false,
+      "isDeprecated" : false,
+      "hasAuthMethods" : true,
+      "hasConsumes" : false,
+      "hasProduces" : true,
+      "hasParams" : true,
+      "hasOptionalParams" : false,
+      "hasRequiredParams" : true,
+      "hasReference" : true,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -5735,14 +5735,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "operationIdLowerCase" : "getmailorders",
       "operationIdCamelCase" : "GetMailOrders",
       "operationIdSnakeCase" : "get_mail_orders",
-      "isDeprecated" : false,
-      "hasAuthMethods" : true,
-      "hasConsumes" : false,
-      "hasProduces" : true,
-      "hasParams" : false,
-      "hasOptionalParams" : false,
-      "hasRequiredParams" : false,
-      "hasReference" : true,
       "hasBodyParam" : false,
       "hasQueryParams" : false,
       "hasHeaderParams" : false,
@@ -5751,6 +5743,14 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasFormParams" : false,
       "hasExamples" : true,
       "isBodyAllowed" : false,
+      "isDeprecated" : false,
+      "hasAuthMethods" : true,
+      "hasConsumes" : false,
+      "hasProduces" : true,
+      "hasParams" : false,
+      "hasOptionalParams" : false,
+      "hasRequiredParams" : false,
+      "hasReference" : true,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -5938,14 +5938,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "operationIdLowerCase" : "pingserver",
       "operationIdCamelCase" : "PingServer",
       "operationIdSnakeCase" : "ping_server",
-      "isDeprecated" : false,
-      "hasAuthMethods" : false,
-      "hasConsumes" : false,
-      "hasProduces" : false,
-      "hasParams" : false,
-      "hasOptionalParams" : false,
-      "hasRequiredParams" : false,
-      "hasReference" : false,
       "hasBodyParam" : false,
       "hasQueryParams" : false,
       "hasHeaderParams" : false,
@@ -5954,6 +5946,14 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasFormParams" : false,
       "hasExamples" : false,
       "isBodyAllowed" : false,
+      "isDeprecated" : false,
+      "hasAuthMethods" : false,
+      "hasConsumes" : false,
+      "hasProduces" : false,
+      "hasParams" : false,
+      "hasOptionalParams" : false,
+      "hasRequiredParams" : false,
+      "hasReference" : false,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -6657,14 +6657,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "operationIdLowerCase" : "placemailorder",
       "operationIdCamelCase" : "PlaceMailOrder",
       "operationIdSnakeCase" : "place_mail_order",
-      "isDeprecated" : true,
-      "hasAuthMethods" : true,
-      "hasConsumes" : true,
-      "hasProduces" : true,
-      "hasParams" : true,
-      "hasOptionalParams" : true,
-      "hasRequiredParams" : false,
-      "hasReference" : false,
       "hasBodyParam" : true,
       "hasQueryParams" : false,
       "hasHeaderParams" : false,
@@ -6673,6 +6665,14 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasFormParams" : false,
       "hasExamples" : false,
       "isBodyAllowed" : true,
+      "isDeprecated" : true,
+      "hasAuthMethods" : true,
+      "hasConsumes" : true,
+      "hasProduces" : true,
+      "hasParams" : true,
+      "hasOptionalParams" : true,
+      "hasRequiredParams" : false,
+      "hasReference" : false,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -8108,14 +8108,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "operationIdLowerCase" : "sendmailbyid",
       "operationIdCamelCase" : "SendMailById",
       "operationIdSnakeCase" : "send_mail_by_id",
-      "isDeprecated" : false,
-      "hasAuthMethods" : true,
-      "hasConsumes" : false,
-      "hasProduces" : true,
-      "hasParams" : true,
-      "hasOptionalParams" : true,
-      "hasRequiredParams" : true,
-      "hasReference" : true,
       "hasBodyParam" : false,
       "hasQueryParams" : true,
       "hasHeaderParams" : false,
@@ -8124,6 +8116,14 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasFormParams" : false,
       "hasExamples" : true,
       "isBodyAllowed" : true,
+      "isDeprecated" : false,
+      "hasAuthMethods" : true,
+      "hasConsumes" : false,
+      "hasProduces" : true,
+      "hasParams" : true,
+      "hasOptionalParams" : true,
+      "hasRequiredParams" : true,
+      "hasReference" : true,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -8483,14 +8483,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "operationIdLowerCase" : "validatemailorder",
       "operationIdCamelCase" : "ValidateMailOrder",
       "operationIdSnakeCase" : "validate_mail_order",
-      "isDeprecated" : true,
-      "hasAuthMethods" : true,
-      "hasConsumes" : false,
-      "hasProduces" : true,
-      "hasParams" : false,
-      "hasOptionalParams" : false,
-      "hasRequiredParams" : false,
-      "hasReference" : false,
       "hasBodyParam" : false,
       "hasQueryParams" : false,
       "hasHeaderParams" : false,
@@ -8499,6 +8491,14 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasFormParams" : false,
       "hasExamples" : false,
       "isBodyAllowed" : false,
+      "isDeprecated" : true,
+      "hasAuthMethods" : true,
+      "hasConsumes" : false,
+      "hasProduces" : true,
+      "hasParams" : false,
+      "hasOptionalParams" : false,
+      "hasRequiredParams" : false,
+      "hasReference" : false,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -9716,14 +9716,6 @@ VERBOSE MODE: ON. Additional debug options are injected
       "operationIdLowerCase" : "viewmaillogbyid",
       "operationIdCamelCase" : "ViewMailLogById",
       "operationIdSnakeCase" : "view_mail_log_by_id",
-      "isDeprecated" : false,
-      "hasAuthMethods" : true,
-      "hasConsumes" : false,
-      "hasProduces" : true,
-      "hasParams" : true,
-      "hasOptionalParams" : true,
-      "hasRequiredParams" : true,
-      "hasReference" : true,
       "hasBodyParam" : false,
       "hasQueryParams" : true,
       "hasHeaderParams" : false,
@@ -9732,6 +9724,14 @@ VERBOSE MODE: ON. Additional debug options are injected
       "hasFormParams" : false,
       "hasExamples" : true,
       "isBodyAllowed" : false,
+      "isDeprecated" : false,
+      "hasAuthMethods" : true,
+      "hasConsumes" : false,
+      "hasProduces" : true,
+      "hasParams" : true,
+      "hasOptionalParams" : true,
+      "hasRequiredParams" : true,
+      "hasReference" : true,
       "isRestfulShow" : false,
       "isRestfulIndex" : false,
       "isRestfulCreate" : false,
@@ -9791,12 +9791,12 @@ VERBOSE MODE: ON. Additional debug options are injected
   "classname" : "DefaultApi",
   "gitRepoId" : "GIT_REPO_ID",
   "packageAuthors" : "Swagger",
-  "generatedDate" : "2021-04-28T14:00:12.832815-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T14:08:21.051705-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-14:00:13.477 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+14:08:21.609 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.dotnet.CsharpDotNet2ClientCodegen",
@@ -13557,14 +13557,6 @@ VERBOSE MODE: ON. Additional debug options are injected
           "operationIdLowerCase" : "getmailbyid",
           "operationIdCamelCase" : "GetMailById",
           "operationIdSnakeCase" : "get_mail_by_id",
-          "isDeprecated" : false,
-          "hasAuthMethods" : true,
-          "hasConsumes" : false,
-          "hasProduces" : true,
-          "hasParams" : true,
-          "hasOptionalParams" : false,
-          "hasRequiredParams" : true,
-          "hasReference" : true,
           "hasBodyParam" : false,
           "hasQueryParams" : false,
           "hasHeaderParams" : false,
@@ -13573,6 +13565,14 @@ VERBOSE MODE: ON. Additional debug options are injected
           "hasFormParams" : false,
           "hasExamples" : true,
           "isBodyAllowed" : false,
+          "isDeprecated" : false,
+          "hasAuthMethods" : true,
+          "hasConsumes" : false,
+          "hasProduces" : true,
+          "hasParams" : true,
+          "hasOptionalParams" : false,
+          "hasRequiredParams" : true,
+          "hasReference" : true,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -13950,14 +13950,6 @@ VERBOSE MODE: ON. Additional debug options are injected
           "operationIdLowerCase" : "getmailorders",
           "operationIdCamelCase" : "GetMailOrders",
           "operationIdSnakeCase" : "get_mail_orders",
-          "isDeprecated" : false,
-          "hasAuthMethods" : true,
-          "hasConsumes" : false,
-          "hasProduces" : true,
-          "hasParams" : false,
-          "hasOptionalParams" : false,
-          "hasRequiredParams" : false,
-          "hasReference" : true,
           "hasBodyParam" : false,
           "hasQueryParams" : false,
           "hasHeaderParams" : false,
@@ -13966,6 +13958,14 @@ VERBOSE MODE: ON. Additional debug options are injected
           "hasFormParams" : false,
           "hasExamples" : true,
           "isBodyAllowed" : false,
+          "isDeprecated" : false,
+          "hasAuthMethods" : true,
+          "hasConsumes" : false,
+          "hasProduces" : true,
+          "hasParams" : false,
+          "hasOptionalParams" : false,
+          "hasRequiredParams" : false,
+          "hasReference" : true,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -14153,14 +14153,6 @@ VERBOSE MODE: ON. Additional debug options are injected
           "operationIdLowerCase" : "pingserver",
           "operationIdCamelCase" : "PingServer",
           "operationIdSnakeCase" : "ping_server",
-          "isDeprecated" : false,
-          "hasAuthMethods" : false,
-          "hasConsumes" : false,
-          "hasProduces" : false,
-          "hasParams" : false,
-          "hasOptionalParams" : false,
-          "hasRequiredParams" : false,
-          "hasReference" : false,
           "hasBodyParam" : false,
           "hasQueryParams" : false,
           "hasHeaderParams" : false,
@@ -14169,6 +14161,14 @@ VERBOSE MODE: ON. Additional debug options are injected
           "hasFormParams" : false,
           "hasExamples" : false,
           "isBodyAllowed" : false,
+          "isDeprecated" : false,
+          "hasAuthMethods" : false,
+          "hasConsumes" : false,
+          "hasProduces" : false,
+          "hasParams" : false,
+          "hasOptionalParams" : false,
+          "hasRequiredParams" : false,
+          "hasReference" : false,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -14872,14 +14872,6 @@ VERBOSE MODE: ON. Additional debug options are injected
           "operationIdLowerCase" : "placemailorder",
           "operationIdCamelCase" : "PlaceMailOrder",
           "operationIdSnakeCase" : "place_mail_order",
-          "isDeprecated" : true,
-          "hasAuthMethods" : true,
-          "hasConsumes" : true,
-          "hasProduces" : true,
-          "hasParams" : true,
-          "hasOptionalParams" : true,
-          "hasRequiredParams" : false,
-          "hasReference" : false,
           "hasBodyParam" : true,
           "hasQueryParams" : false,
           "hasHeaderParams" : false,
@@ -14888,6 +14880,14 @@ VERBOSE MODE: ON. Additional debug options are injected
           "hasFormParams" : false,
           "hasExamples" : false,
           "isBodyAllowed" : true,
+          "isDeprecated" : true,
+          "hasAuthMethods" : true,
+          "hasConsumes" : true,
+          "hasProduces" : true,
+          "hasParams" : true,
+          "hasOptionalParams" : true,
+          "hasRequiredParams" : false,
+          "hasReference" : false,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -16323,14 +16323,6 @@ VERBOSE MODE: ON. Additional debug options are injected
           "operationIdLowerCase" : "sendmailbyid",
           "operationIdCamelCase" : "SendMailById",
           "operationIdSnakeCase" : "send_mail_by_id",
-          "isDeprecated" : false,
-          "hasAuthMethods" : true,
-          "hasConsumes" : false,
-          "hasProduces" : true,
-          "hasParams" : true,
-          "hasOptionalParams" : true,
-          "hasRequiredParams" : true,
-          "hasReference" : true,
           "hasBodyParam" : false,
           "hasQueryParams" : true,
           "hasHeaderParams" : false,
@@ -16339,6 +16331,14 @@ VERBOSE MODE: ON. Additional debug options are injected
           "hasFormParams" : false,
           "hasExamples" : true,
           "isBodyAllowed" : true,
+          "isDeprecated" : false,
+          "hasAuthMethods" : true,
+          "hasConsumes" : false,
+          "hasProduces" : true,
+          "hasParams" : true,
+          "hasOptionalParams" : true,
+          "hasRequiredParams" : true,
+          "hasReference" : true,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -16698,14 +16698,6 @@ VERBOSE MODE: ON. Additional debug options are injected
           "operationIdLowerCase" : "validatemailorder",
           "operationIdCamelCase" : "ValidateMailOrder",
           "operationIdSnakeCase" : "validate_mail_order",
-          "isDeprecated" : true,
-          "hasAuthMethods" : true,
-          "hasConsumes" : false,
-          "hasProduces" : true,
-          "hasParams" : false,
-          "hasOptionalParams" : false,
-          "hasRequiredParams" : false,
-          "hasReference" : false,
           "hasBodyParam" : false,
           "hasQueryParams" : false,
           "hasHeaderParams" : false,
@@ -16714,6 +16706,14 @@ VERBOSE MODE: ON. Additional debug options are injected
           "hasFormParams" : false,
           "hasExamples" : false,
           "isBodyAllowed" : false,
+          "isDeprecated" : true,
+          "hasAuthMethods" : true,
+          "hasConsumes" : false,
+          "hasProduces" : true,
+          "hasParams" : false,
+          "hasOptionalParams" : false,
+          "hasRequiredParams" : false,
+          "hasReference" : false,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -17931,14 +17931,6 @@ VERBOSE MODE: ON. Additional debug options are injected
           "operationIdLowerCase" : "viewmaillogbyid",
           "operationIdCamelCase" : "ViewMailLogById",
           "operationIdSnakeCase" : "view_mail_log_by_id",
-          "isDeprecated" : false,
-          "hasAuthMethods" : true,
-          "hasConsumes" : false,
-          "hasProduces" : true,
-          "hasParams" : true,
-          "hasOptionalParams" : true,
-          "hasRequiredParams" : true,
-          "hasReference" : true,
           "hasBodyParam" : false,
           "hasQueryParams" : true,
           "hasHeaderParams" : false,
@@ -17947,6 +17939,14 @@ VERBOSE MODE: ON. Additional debug options are injected
           "hasFormParams" : false,
           "hasExamples" : true,
           "isBodyAllowed" : false,
+          "isDeprecated" : false,
+          "hasAuthMethods" : true,
+          "hasConsumes" : false,
+          "hasProduces" : true,
+          "hasParams" : true,
+          "hasOptionalParams" : true,
+          "hasRequiredParams" : true,
+          "hasReference" : true,
           "isRestfulShow" : false,
           "isRestfulIndex" : false,
           "isRestfulCreate" : false,
@@ -18006,7 +18006,7 @@ VERBOSE MODE: ON. Additional debug options are injected
       "classname" : "DefaultApi",
       "gitRepoId" : "GIT_REPO_ID",
       "packageAuthors" : "Swagger",
-      "generatedDate" : "2021-04-28T14:00:12.832815-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T14:08:21.051705-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -18569,7 +18569,7 @@ VERBOSE MODE: ON. Additional debug options are injected
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
   "packageAuthors" : "Swagger",
-  "generatedDate" : "2021-04-28T14:00:12.832815-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T14:08:21.051705-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -18578,10 +18578,10 @@ VERBOSE MODE: ON. Additional debug options are injected
   },
   "gitUserId" : "GIT_USER_ID"
 }
-14:00:13.539 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Client/Configuration.cs
-14:00:13.596 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Client/ApiClient.cs
-14:00:13.622 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Client/ApiException.cs
-14:00:13.625 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/vendor/packages.config
-14:00:13.628 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/compile-mono.sh
-14:00:13.668 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/README.md
-14:00:13.669 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/.swagger-codegen/VERSION
+14:08:21.657 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Client/Configuration.cs
+14:08:21.706 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Client/ApiClient.cs
+14:08:21.726 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/src/main/CsharpDotNet2/IO/Swagger/Client/ApiException.cs
+14:08:21.728 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/vendor/packages.config
+14:08:21.731 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/compile-mono.sh
+14:08:21.756 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/README.md
+14:08:21.757 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp-dotnet2/.swagger-codegen/VERSION

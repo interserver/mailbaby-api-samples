@@ -25,7 +25,7 @@ import java.io.IOException;
  * MailOrder
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-28T14:00:28.488708-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-28T14:08:36.289327-04:00[America/New_York]")
 public class MailOrder {
   @SerializedName("id")
   private Integer id = null;

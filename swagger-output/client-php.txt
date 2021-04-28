@@ -1,4 +1,4 @@
-14:01:11.561 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+14:09:19.423 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
@@ -521,22 +521,22 @@ WARNING: Illegal reflective access by com.github.jknack.handlebars.context.Membe
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-14:01:12.644 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/src/MailBabyModel/Error.php
-14:01:12.666 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/test/Model/ErrorTest.php
-14:01:12.673 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/docs/Model/Error.md
-14:01:12.778 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/src/MailBabyModel/GenericResponse.php
-14:01:12.798 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/test/Model/GenericResponseTest.php
-14:01:12.806 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/docs/Model/GenericResponse.md
-14:01:12.877 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/src/MailBabyModel/MailLog.php
-14:01:12.888 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/test/Model/MailLogTest.php
-14:01:12.893 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/docs/Model/MailLog.md
-14:01:12.978 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/src/MailBabyModel/MailOrder.php
-14:01:12.987 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/test/Model/MailOrderTest.php
-14:01:12.992 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/docs/Model/MailOrder.md
-14:01:13.036 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/src/MailBabyModel/MailOrders.php
-14:01:13.044 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/test/Model/MailOrdersTest.php
-14:01:13.048 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/docs/Model/MailOrders.md
-14:01:13.048 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+14:09:20.435 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/src/Model/Error.php
+14:09:20.469 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/test/Model/ErrorTest.php
+14:09:20.480 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/docs/Model/Error.md
+14:09:20.585 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/src/Model/GenericResponse.php
+14:09:20.603 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/test/Model/GenericResponseTest.php
+14:09:20.609 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/docs/Model/GenericResponse.md
+14:09:20.678 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/src/Model/MailLog.php
+14:09:20.692 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/test/Model/MailLogTest.php
+14:09:20.705 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/docs/Model/MailLog.md
+14:09:20.763 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/src/Model/MailOrder.php
+14:09:20.771 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/test/Model/MailOrderTest.php
+14:09:20.775 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/docs/Model/MailOrder.md
+14:09:20.810 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/src/Model/MailOrders.php
+14:09:20.817 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/test/Model/MailOrdersTest.php
+14:09:20.819 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/docs/Model/MailOrders.md
+14:09:20.820 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -550,7 +550,7 @@ WARNING: All illegal access operations will be denied in a future release
       }
     }
   },
-  "importPath" : "Interserver\\Mailbaby\\MailBabyModel.Error",
+  "importPath" : "Interserver\\Mailbaby\\Model.Error",
   "model" : {
     "vendorExtensions" : {
       "x-is-alias" : false,
@@ -1098,7 +1098,7 @@ WARNING: All illegal access operations will be denied in a future release
       }
     }
   },
-  "importPath" : "Interserver\\Mailbaby\\MailBabyModel.GenericResponse",
+  "importPath" : "Interserver\\Mailbaby\\Model.GenericResponse",
   "model" : {
     "vendorExtensions" : {
       "x-is-alias" : false,
@@ -1651,7 +1651,7 @@ WARNING: All illegal access operations will be denied in a future release
     },
     "description" : "Mail Order Details"
   },
-  "importPath" : "Interserver\\Mailbaby\\MailBabyModel.MailLog",
+  "importPath" : "Interserver\\Mailbaby\\Model.MailLog",
   "model" : {
     "vendorExtensions" : {
       "x-is-alias" : false,
@@ -1986,7 +1986,7 @@ WARNING: All illegal access operations will be denied in a future release
       }
     }
   },
-  "importPath" : "Interserver\\Mailbaby\\MailBabyModel.MailOrder",
+  "importPath" : "Interserver\\Mailbaby\\Model.MailOrder",
   "model" : {
     "vendorExtensions" : {
       "x-is-alias" : false,
@@ -3259,7 +3259,7 @@ WARNING: All illegal access operations will be denied in a future release
       "$ref" : "#/components/schemas/MailOrder"
     }
   },
-  "importPath" : "Interserver\\Mailbaby\\MailBabyModel.MailOrders",
+  "importPath" : "Interserver\\Mailbaby\\Model.MailOrders",
   "model" : {
     "vendorExtensions" : {
       "x-is-array-model" : true,
@@ -3327,7 +3327,7 @@ WARNING: All illegal access operations will be denied in a future release
     "isEnum" : false
   }
 } ]
-14:01:13.082 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+14:09:20.845 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -3359,7 +3359,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:01:13.089 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+14:09:20.852 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -3557,7 +3557,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:01:13.104 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+14:09:20.863 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -3627,7 +3627,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:01:13.106 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+14:09:20.865 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -3753,7 +3753,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:01:13.112 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+14:09:20.869 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -3868,7 +3868,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:01:13.118 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+14:09:20.874 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -4284,7 +4284,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:01:13.128 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+14:09:20.882 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -4595,12 +4595,12 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-14:01:13.196 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/src/MailBabyApi/DefaultApi.php
-14:01:13.206 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/test/Api/DefaultApiTest.php
-14:01:13.235 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/docs/Api/DefaultApi.md
-14:01:13.236 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+14:09:20.937 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/src/Api/DefaultApi.php
+14:09:20.945 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/test/Api/DefaultApiTest.php
+14:09:20.967 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/docs/Api/DefaultApi.md
+14:09:20.967 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
-  "modelSrcPath" : "./src/MailBabyModel",
+  "modelSrcPath" : "./src/Model",
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.php.PhpClientCodegen",
   "sortParamsByRequiredFlag" : true,
@@ -4616,6 +4616,7 @@ WARNING: All illegal access operations will be denied in a future release
     "name" : "apiKeyAuth",
     "type" : "apiKey",
     "keyParamName" : "X-API-KEY",
+    "isKeyInQuery" : false,
     "hasScopes" : false,
     "isBasic" : false,
     "isBearer" : false,
@@ -4626,7 +4627,6 @@ WARNING: All illegal access operations will be denied in a future release
     "isPassword" : false,
     "isApplication" : false,
     "isImplicit" : false,
-    "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
     "hasHeaders" : false,
@@ -4670,6 +4670,7 @@ WARNING: All illegal access operations will be denied in a future release
     "name" : "apiLoginAuth",
     "type" : "apiKey",
     "keyParamName" : "X-API-LOGIN",
+    "isKeyInQuery" : false,
     "hasScopes" : false,
     "isBasic" : false,
     "isBearer" : false,
@@ -4680,7 +4681,6 @@ WARNING: All illegal access operations will be denied in a future release
     "isPassword" : false,
     "isApplication" : false,
     "isImplicit" : false,
-    "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
     "hasHeaders" : false,
@@ -4724,6 +4724,7 @@ WARNING: All illegal access operations will be denied in a future release
     "name" : "apiPasswordAuth",
     "type" : "apiKey",
     "keyParamName" : "X-API-PASS",
+    "isKeyInQuery" : false,
     "hasScopes" : false,
     "isBasic" : false,
     "isBearer" : false,
@@ -4734,7 +4735,6 @@ WARNING: All illegal access operations will be denied in a future release
     "isPassword" : false,
     "isApplication" : false,
     "isImplicit" : false,
-    "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
     "hasHeaders" : false,
@@ -4777,20 +4777,20 @@ WARNING: All illegal access operations will be denied in a future release
   "infoUrl" : "https://www.interserver.net/contact-information.html",
   "inputSpec" : "openapi: 3.0.0\nservers:\n  - description: Live API Endpoint\n    url: 'https://api.mailbaby.net/'\n  - description: Temporary API Endpoint\n    url: 'http://mynew.interserver.net:8787/'\n  - description: SwaggerHub API Auto Mocking\n    url: 'https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0'\ninfo:\n  description: This is an API for accesssing the mail services.\n  version: 1.0.0\n  title: Mail Baby API\n  contact:\n    email: detain@interserver.net\n    url: 'https://www.interserver.net/contact-information.html'\n    name: Joe Huss\n  license:\n    name: Apache 2.0\n    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'\n  termsOfService: 'https://www.interserver.net/terms-of-service.html'\npaths:\n  /ping:\n    get:\n      summary: Checks if the server is running\n      operationId: pingServer\n      security: []\n      responses:\n        '200':\n          description: Server is up and running\n        default:\n          description: Something is wrong\n      parameters: []\n  /mail:\n    get:\n      summary: displays a list of mail service orders\n      operationId: getMailOrders\n      responses:\n        '200':\n          description: OK\n          content:\n            application/json:\n              schema:\n                $ref: '#/components/schemas/MailOrders'\n            application/xml:\n              schema:\n                $ref: '#/components/schemas/MailOrders'\n            text/plain:\n              schema:\n                type: string\n          links:\n            sendMailByIdLink:\n              operationId: sendMailById\n              parameters:\n                id: '$response.body#/0/id'\n              description: The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}/send`.\n            getMailByIdLink:\n              operationId: getMailById\n              parameters:\n                id: '$response.body#/0/id'\n              description: The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}`.\n        '401':\n          $ref: '#/components/responses/Unauthorized'\n      parameters: []\n  /mail/order:\n    get:\n      summary: validatess order details before placing an order\n      operationId: validateMailOrder\n      deprecated: true\n      responses:\n        '200':\n          description: list of mail orders\n        '401':\n          $ref: '#/components/responses/Unauthorized'\n      parameters: []\n    post:\n      summary: places a mail order\n      operationId: placeMailOrder\n      deprecated: true\n      responses:\n        '200':\n          description: list of mail orders\n        '400':\n          description: 'invalid input, object invalid'\n        '409':\n          description: an existing item already exists\n        '401':\n          $ref: '#/components/responses/Unauthorized'\n      parameters: []\n      description: Adds an item to the system\n      requestBody:\n        content:\n          application/json:\n            schema:\n              $ref: '#/components/schemas/MailOrder'\n        description: Inventory item to add\n  /mail/{id}:\n    get:\n      summary: Gets mail order information by id\n      description: returns information about a mail order in the system with the given id.\n      operationId: getMailById\n      parameters:\n        - name: id\n          in: path\n          description: User ID\n          required: true\n          schema:\n            type: integer\n            format: int64\n      responses:\n        '200':\n          description: Successful operation\n          content:\n            application/json:\n              schema:\n                $ref: '#/components/schemas/MailOrder'      \n  /mail/{id}/send:\n    post:\n      summary: Sends an Email\n      operationId: sendMailById\n      description: Sends An email through one of your mail orders.\n      parameters:\n        - name: id\n          in: path\n          description: User ID\n          required: true\n          schema:\n            type: integer\n            format: int64\n        - in: query\n          name: subject\n          schema:\n            type: string\n        - in: query\n          name: body\n          schema:\n            type: string\n        - in: query\n          name: to\n          schema:\n            type: string\n        - in: query\n          name: from\n          schema:\n            type: string\n      responses:\n        '200':\n          description: search results matching criteria\n          content:\n            application/json:\n              schema:\n                $ref: '#/components/schemas/GenericResponse'\n        '400':\n          description: bad input parameter\n        '401':\n          $ref: '#/components/responses/Unauthorized'\n        '404':\n          $ref: '#/components/responses/NotFound'                \n  /mail/{id}/log:\n    get:\n      summary: displays the mail log\n      operationId: viewMailLogById\n      description: |\n        By passing in the appropriate options, you can search for\n        available inventory in the system\n      parameters:\n        - name: id\n          in: path\n          description: User ID\n          required: true\n          schema:\n            type: integer\n            format: int64\n        - in: query\n          name: searchString\n          description: pass an optional search string for looking up inventory\n          required: false\n          schema:\n            type: string\n        - in: query\n          name: skip\n          description: number of records to skip for pagination\n          schema:\n            type: integer\n            format: int32\n            minimum: 0\n        - in: query\n          name: limit\n          description: maximum number of records to return\n          schema:\n            type: integer\n            format: int32\n            minimum: 0\n            maximum: 50\n      responses:\n        '200':\n          description: search results matching criteria\n          content:\n            application/json:\n              schema:\n                type: array\n                items:\n                  $ref: '#/components/schemas/MailLog'\n        '400':\n          description: bad input parameter\ncomponents:\n  # Security scheme definitions (see Authentication)\n  securitySchemes:\n    apiLoginAuth:\n      type: apiKey\n      in: header\n      name: X-API-LOGIN\n    apiPasswordAuth:\n      type: apiKey\n      in: header\n      name: X-API-PASS\n    apiKeyAuth:\n      type: apiKey\n      in: header\n      name: X-API-KEY\n  # Reusable schemas (data models)\n  schemas:\n    # Schema for error response body\n    Error:\n      type: object\n      properties:\n        code:\n          type: string\n        message:\n          type: string\n      required:\n        - code\n        - message  \n    GenericResponse:\n      type: object\n      properties:\n        status:\n          type: string\n          example: ok\n        status_text:\n          type: string\n          example: The command completed successfully.\n    MailOrders:\n      type: array\n      items:\n        $ref: '#/components/schemas/MailOrder'\n    MailOrder:\n      type: object\n      properties:\n        id:\n          type: integer\n          example: 1234\n        status:\n          type: string\n          example: active\n        username:\n          type: string\n          example: mb1234\n        password:\n          type: string\n          example: guest123\n        comment:\n          type: string\n          example: main mail account\n      required:\n        - id\n        - status\n        - username\n    MailLog:\n      type: object\n      properties:\n        id:\n          type: integer\n          format: int64\n      description: Mail Order Details\n  # Reusable request bodies\n  requestBodies: {}\n  # Reusable responses, such as 401 Unauthorized or 400 Bad Request\n  responses:\n    NotFound:\n      description: The specified resource was not found\n      content:\n        application/json:\n          schema:\n            $ref: '#/components/schemas/Error'\n    Unauthorized:\n      description: Unauthorized\n      content:\n        application/json:\n          schema:\n            $ref: '#/components/schemas/Error'  \n  # Reusable response headers\n  headers: {}\n  # Reusable examples\n  examples: {}\n  # Reusable links\n  links: {}\n  # Reusable callbacks\n  callbacks: {}\n  # Reusable path, query, header and cookie parameters\n  parameters:\n    offsetParam:      # Can be referenced via '#/components/parameters/offsetParam'\n      name: offset\n      in: query\n      description: Number of items to skip before returning the results.\n      required: false\n      schema:\n        type: integer\n        format: int32\n        minimum: 0\n        default: 0\n    limitParam:       # Can be referenced as '#/components/parameters/limitParam'\n      name: limit\n      in: query\n      description: Maximum number of items to return.\n      required: false\n      schema:\n        type: integer\n        format: int32\n        minimum: 1\n        maximum: 100\n        default: 20  \nsecurity:\n  - apiLoginAuth: []\n    apiPasswordAuth: []\n  - apiLoginAuth: []\n    apiKeyAuth: []\nexternalDocs:\n  description: |\n    https://www.interserver.net/blog/\n  url: 'https://interserver.net/tips/'\n",
   "baseName" : "Default",
-  "packagePath" : "MailBabyPhp",
-  "package" : "Interserver\\Mailbaby\\MailBabyApi",
+  "packagePath" : "",
+  "package" : "Interserver\\Mailbaby\\Api",
   "imports" : [ {
-    "import" : "Interserver\\Mailbaby\\MailBabyModel.Error"
+    "import" : "Interserver\\Mailbaby\\Model.Error"
   }, {
-    "import" : "Interserver\\Mailbaby\\MailBabyModel.GenericResponse"
+    "import" : "Interserver\\Mailbaby\\Model.GenericResponse"
   }, {
-    "import" : "Interserver\\Mailbaby\\MailBabyModel.MailLog"
+    "import" : "Interserver\\Mailbaby\\Model.MailLog"
   }, {
-    "import" : "Interserver\\Mailbaby\\MailBabyModel.MailOrder"
+    "import" : "Interserver\\Mailbaby\\Model.MailOrder"
   }, {
-    "import" : "Interserver\\Mailbaby\\MailBabyModel.MailOrders"
+    "import" : "Interserver\\Mailbaby\\Model.MailOrders"
   }, {
-    "import" : "Interserver\\Mailbaby\\MailBabyModel.\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder"
+    "import" : "Interserver\\Mailbaby\\Model.\\Interserver\\Mailbaby\\Model\\MailOrder"
   } ],
   "ensureUniqueParams" : "true",
   "hasAuthMethods" : true,
@@ -4804,12 +4804,12 @@ WARNING: All illegal access operations will be denied in a future release
   "escapedInvokerPackage" : "Interserver\\\\Mailbaby",
   "srcBasePath" : "src",
   "testBasePath" : "test",
-  "importPath" : "Interserver\\Mailbaby\\MailBabyApi.Default",
+  "importPath" : "Interserver\\Mailbaby\\Api.Default",
   "infoName" : "Joe Huss",
   "licenseUrl" : "http://www.apache.org/licenses/LICENSE-2.0.html",
   "generatedYear" : "2021",
-  "modelPackage" : "Interserver\\Mailbaby\\MailBabyModel",
-  "apiSrcPath" : "./src/MailBabyApi",
+  "modelPackage" : "Interserver\\Mailbaby\\Model",
+  "apiSrcPath" : "./src/Api",
   "apiTestPath" : "./test/Api",
   "apiDocPath" : "docs/Api",
   "licenseInfo" : "Apache 2.0",
@@ -4843,7 +4843,7 @@ WARNING: All illegal access operations will be denied in a future release
       "subresourceOperation" : false,
       "path" : "/mail/{id}",
       "operationId" : "getMailById",
-      "returnType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder",
+      "returnType" : "\\Interserver\\Mailbaby\\Model\\MailOrder",
       "httpMethod" : "GET",
       "returnBaseType" : "MailOrder",
       "summary" : "Gets mail order information by id",
@@ -5124,6 +5124,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiKeyAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -5134,7 +5135,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -5178,6 +5178,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiLoginAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -5188,7 +5189,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -5232,6 +5232,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiPasswordAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -5242,7 +5243,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -5293,7 +5293,7 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "Successful operation",
         "contents" : [ ],
         "examples" : [ ],
-        "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder",
+        "dataType" : "\\Interserver\\Mailbaby\\Model\\MailOrder",
         "baseType" : "MailOrder",
         "schema" : {
           "$ref" : "#/components/schemas/MailOrder"
@@ -5423,7 +5423,7 @@ WARNING: All illegal access operations will be denied in a future release
       "subresourceOperation" : false,
       "path" : "/mail",
       "operationId" : "getMailOrders",
-      "returnType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrders",
+      "returnType" : "\\Interserver\\Mailbaby\\Model\\MailOrders",
       "httpMethod" : "GET",
       "returnBaseType" : "MailOrders",
       "summary" : "displays a list of mail service orders",
@@ -5461,6 +5461,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiKeyAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -5471,7 +5472,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -5515,6 +5515,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiLoginAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -5525,7 +5526,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -5569,6 +5569,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiPasswordAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -5579,7 +5580,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -5630,7 +5630,7 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "OK",
         "contents" : [ ],
         "examples" : [ ],
-        "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrders",
+        "dataType" : "\\Interserver\\Mailbaby\\Model\\MailOrders",
         "baseType" : "MailOrders",
         "schema" : {
           "$ref" : "#/components/schemas/MailOrders"
@@ -5685,7 +5685,7 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "Unauthorized",
         "contents" : [ ],
         "examples" : [ ],
-        "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\Error",
+        "dataType" : "\\Interserver\\Mailbaby\\Model\\Error",
         "baseType" : "Error",
         "schema" : {
           "$ref" : "#/components/schemas/Error"
@@ -6040,11 +6040,11 @@ WARNING: All illegal access operations will be denied in a future release
         "secondaryParam" : false,
         "baseName" : "body",
         "paramName" : "body",
-        "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder",
+        "dataType" : "\\Interserver\\Mailbaby\\Model\\MailOrder",
         "description" : "Inventory item to add",
         "unescapedDescription" : "Inventory item to add",
         "baseType" : "MailOrder",
-        "example" : "new \\Interserver\\Mailbaby\\MailBabyModel\\MailOrder()",
+        "example" : "new \\Interserver\\Mailbaby\\Model\\MailOrder()",
         "jsonSchema" : "{\n  \"description\" : \"Inventory item to add\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/MailOrder\"\n      }\n    }\n  }\n}",
         "nullable" : false,
         "required" : false,
@@ -6102,11 +6102,11 @@ WARNING: All illegal access operations will be denied in a future release
           "secondaryParam" : false,
           "baseName" : "body",
           "paramName" : "body",
-          "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder",
+          "dataType" : "\\Interserver\\Mailbaby\\Model\\MailOrder",
           "description" : "Inventory item to add",
           "unescapedDescription" : "Inventory item to add",
           "baseType" : "MailOrder",
-          "example" : "new \\Interserver\\Mailbaby\\MailBabyModel\\MailOrder()",
+          "example" : "new \\Interserver\\Mailbaby\\Model\\MailOrder()",
           "jsonSchema" : "{\n  \"description\" : \"Inventory item to add\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/MailOrder\"\n      }\n    }\n  }\n}",
           "nullable" : false,
           "required" : false,
@@ -6167,11 +6167,11 @@ WARNING: All illegal access operations will be denied in a future release
         "secondaryParam" : false,
         "baseName" : "body",
         "paramName" : "body",
-        "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder",
+        "dataType" : "\\Interserver\\Mailbaby\\Model\\MailOrder",
         "description" : "Inventory item to add",
         "unescapedDescription" : "Inventory item to add",
         "baseType" : "MailOrder",
-        "example" : "new \\Interserver\\Mailbaby\\MailBabyModel\\MailOrder()",
+        "example" : "new \\Interserver\\Mailbaby\\Model\\MailOrder()",
         "jsonSchema" : "{\n  \"description\" : \"Inventory item to add\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/MailOrder\"\n      }\n    }\n  }\n}",
         "nullable" : false,
         "required" : false,
@@ -6227,11 +6227,11 @@ WARNING: All illegal access operations will be denied in a future release
         "secondaryParam" : false,
         "baseName" : "body",
         "paramName" : "body",
-        "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder",
+        "dataType" : "\\Interserver\\Mailbaby\\Model\\MailOrder",
         "description" : "Inventory item to add",
         "unescapedDescription" : "Inventory item to add",
         "baseType" : "MailOrder",
-        "example" : "new \\Interserver\\Mailbaby\\MailBabyModel\\MailOrder()",
+        "example" : "new \\Interserver\\Mailbaby\\Model\\MailOrder()",
         "jsonSchema" : "{\n  \"description\" : \"Inventory item to add\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/MailOrder\"\n      }\n    }\n  }\n}",
         "nullable" : false,
         "required" : false,
@@ -6295,6 +6295,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiKeyAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -6305,7 +6306,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -6349,6 +6349,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiLoginAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -6359,7 +6360,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -6403,6 +6403,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiPasswordAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -6413,7 +6414,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -6617,7 +6617,7 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "Unauthorized",
         "contents" : [ ],
         "examples" : [ ],
-        "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\Error",
+        "dataType" : "\\Interserver\\Mailbaby\\Model\\Error",
         "baseType" : "Error",
         "schema" : {
           "$ref" : "#/components/schemas/Error"
@@ -6660,7 +6660,7 @@ WARNING: All illegal access operations will be denied in a future release
         "isPrimitiveType" : false,
         "isEnum" : false
       } ],
-      "imports" : [ "Error", "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder" ],
+      "imports" : [ "\\Interserver\\Mailbaby\\Model\\MailOrder", "Error" ],
       "nickname" : "placeMailOrder",
       "operationIdLowerCase" : "placemailorder",
       "operationIdCamelCase" : "PlaceMailOrder",
@@ -6744,7 +6744,7 @@ WARNING: All illegal access operations will be denied in a future release
       "subresourceOperation" : false,
       "path" : "/mail/{id}/send",
       "operationId" : "sendMailById",
-      "returnType" : "\\Interserver\\Mailbaby\\MailBabyModel\\GenericResponse",
+      "returnType" : "\\Interserver\\Mailbaby\\Model\\GenericResponse",
       "httpMethod" : "POST",
       "returnBaseType" : "GenericResponse",
       "summary" : "Sends an Email",
@@ -7733,6 +7733,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiKeyAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -7743,7 +7744,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -7787,6 +7787,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiLoginAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -7797,7 +7798,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -7841,6 +7841,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiPasswordAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -7851,7 +7852,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -7902,7 +7902,7 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "search results matching criteria",
         "contents" : [ ],
         "examples" : [ ],
-        "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\GenericResponse",
+        "dataType" : "\\Interserver\\Mailbaby\\Model\\GenericResponse",
         "baseType" : "GenericResponse",
         "schema" : {
           "$ref" : "#/components/schemas/GenericResponse"
@@ -8008,7 +8008,7 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "Unauthorized",
         "contents" : [ ],
         "examples" : [ ],
-        "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\Error",
+        "dataType" : "\\Interserver\\Mailbaby\\Model\\Error",
         "baseType" : "Error",
         "schema" : {
           "$ref" : "#/components/schemas/Error"
@@ -8063,7 +8063,7 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "The specified resource was not found",
         "contents" : [ ],
         "examples" : [ ],
-        "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\Error",
+        "dataType" : "\\Interserver\\Mailbaby\\Model\\Error",
         "baseType" : "Error",
         "schema" : {
           "$ref" : "#/components/schemas/Error"
@@ -8223,6 +8223,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiKeyAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -8233,7 +8234,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -8277,6 +8277,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiLoginAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -8287,7 +8288,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -8331,6 +8331,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiPasswordAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -8341,7 +8342,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -8443,7 +8443,7 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "Unauthorized",
         "contents" : [ ],
         "examples" : [ ],
-        "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\Error",
+        "dataType" : "\\Interserver\\Mailbaby\\Model\\Error",
         "baseType" : "Error",
         "schema" : {
           "$ref" : "#/components/schemas/Error"
@@ -8572,7 +8572,7 @@ WARNING: All illegal access operations will be denied in a future release
       "subresourceOperation" : false,
       "path" : "/mail/{id}/log",
       "operationId" : "viewMailLogById",
-      "returnType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailLog[]",
+      "returnType" : "\\Interserver\\Mailbaby\\Model\\MailLog[]",
       "httpMethod" : "GET",
       "returnBaseType" : "MailLog",
       "returnContainer" : "array",
@@ -9445,6 +9445,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiKeyAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -9455,7 +9456,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -9499,6 +9499,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiLoginAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -9509,7 +9510,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -9553,6 +9553,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiPasswordAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -9563,7 +9564,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -9616,7 +9616,7 @@ WARNING: All illegal access operations will be denied in a future release
         "message" : "search results matching criteria",
         "contents" : [ ],
         "examples" : [ ],
-        "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailLog[]",
+        "dataType" : "\\Interserver\\Mailbaby\\Model\\MailLog[]",
         "baseType" : "MailLog",
         "containerType" : "array",
         "schema" : {
@@ -9792,23 +9792,23 @@ WARNING: All illegal access operations will be denied in a future release
   "generateApiDocs" : true,
   "termsOfService" : "https://www.interserver.net/terms-of-service.html",
   "generatorVersion" : "3.0.25",
-  "apiPackage" : "Interserver\\Mailbaby\\MailBabyApi",
+  "apiPackage" : "Interserver\\Mailbaby\\Api",
   "basePath" : "https://api.mailbaby.net/",
   "classname" : "DefaultApi",
   "gitRepoId" : "mailbaby-client-php",
-  "generatedDate" : "2021-04-28T14:01:12.230265-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T14:09:20.047012-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "interserver"
 } ]
-14:01:13.269 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+14:09:20.996 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
-  "modelSrcPath" : "./src/MailBabyModel",
+  "modelSrcPath" : "./src/Model",
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.php.PhpClientCodegen",
   "sortParamsByRequiredFlag" : "true",
   "invokerPackage" : "Interserver\\Mailbaby",
-  "apiFolder" : "Interserver\\Mailbaby\\MailBabyApi",
+  "apiFolder" : "Interserver\\Mailbaby\\Api",
   "authMethods" : [ {
     "vendorExtensions" : {
       "x-is-key-in-header" : true,
@@ -9819,6 +9819,7 @@ WARNING: All illegal access operations will be denied in a future release
     "name" : "apiKeyAuth",
     "type" : "apiKey",
     "keyParamName" : "X-API-KEY",
+    "isKeyInQuery" : false,
     "hasScopes" : false,
     "isBasic" : false,
     "isBearer" : false,
@@ -9829,7 +9830,6 @@ WARNING: All illegal access operations will be denied in a future release
     "isPassword" : false,
     "isApplication" : false,
     "isImplicit" : false,
-    "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
     "hasHeaders" : false,
@@ -9873,6 +9873,7 @@ WARNING: All illegal access operations will be denied in a future release
     "name" : "apiLoginAuth",
     "type" : "apiKey",
     "keyParamName" : "X-API-LOGIN",
+    "isKeyInQuery" : false,
     "hasScopes" : false,
     "isBasic" : false,
     "isBearer" : false,
@@ -9883,7 +9884,6 @@ WARNING: All illegal access operations will be denied in a future release
     "isPassword" : false,
     "isApplication" : false,
     "isImplicit" : false,
-    "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
     "hasHeaders" : false,
@@ -9927,6 +9927,7 @@ WARNING: All illegal access operations will be denied in a future release
     "name" : "apiPasswordAuth",
     "type" : "apiKey",
     "keyParamName" : "X-API-PASS",
+    "isKeyInQuery" : false,
     "hasScopes" : false,
     "isBasic" : false,
     "isBearer" : false,
@@ -9937,7 +9938,6 @@ WARNING: All illegal access operations will be denied in a future release
     "isPassword" : false,
     "isApplication" : false,
     "isImplicit" : false,
-    "isKeyInQuery" : false,
     "isInteger" : false,
     "isNumber" : false,
     "hasHeaders" : false,
@@ -9978,7 +9978,7 @@ WARNING: All illegal access operations will be denied in a future release
   "infoUrl" : "https://www.interserver.net/contact-information.html",
   "inputSpec" : "openapi: 3.0.0\nservers:\n  - description: Live API Endpoint\n    url: 'https://api.mailbaby.net/'\n  - description: Temporary API Endpoint\n    url: 'http://mynew.interserver.net:8787/'\n  - description: SwaggerHub API Auto Mocking\n    url: 'https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0'\ninfo:\n  description: This is an API for accesssing the mail services.\n  version: 1.0.0\n  title: Mail Baby API\n  contact:\n    email: detain@interserver.net\n    url: 'https://www.interserver.net/contact-information.html'\n    name: Joe Huss\n  license:\n    name: Apache 2.0\n    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'\n  termsOfService: 'https://www.interserver.net/terms-of-service.html'\npaths:\n  /ping:\n    get:\n      summary: Checks if the server is running\n      operationId: pingServer\n      security: []\n      responses:\n        '200':\n          description: Server is up and running\n        default:\n          description: Something is wrong\n      parameters: []\n  /mail:\n    get:\n      summary: displays a list of mail service orders\n      operationId: getMailOrders\n      responses:\n        '200':\n          description: OK\n          content:\n            application/json:\n              schema:\n                $ref: '#/components/schemas/MailOrders'\n            application/xml:\n              schema:\n                $ref: '#/components/schemas/MailOrders'\n            text/plain:\n              schema:\n                type: string\n          links:\n            sendMailByIdLink:\n              operationId: sendMailById\n              parameters:\n                id: '$response.body#/0/id'\n              description: The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}/send`.\n            getMailByIdLink:\n              operationId: getMailById\n              parameters:\n                id: '$response.body#/0/id'\n              description: The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}`.\n        '401':\n          $ref: '#/components/responses/Unauthorized'\n      parameters: []\n  /mail/order:\n    get:\n      summary: validatess order details before placing an order\n      operationId: validateMailOrder\n      deprecated: true\n      responses:\n        '200':\n          description: list of mail orders\n        '401':\n          $ref: '#/components/responses/Unauthorized'\n      parameters: []\n    post:\n      summary: places a mail order\n      operationId: placeMailOrder\n      deprecated: true\n      responses:\n        '200':\n          description: list of mail orders\n        '400':\n          description: 'invalid input, object invalid'\n        '409':\n          description: an existing item already exists\n        '401':\n          $ref: '#/components/responses/Unauthorized'\n      parameters: []\n      description: Adds an item to the system\n      requestBody:\n        content:\n          application/json:\n            schema:\n              $ref: '#/components/schemas/MailOrder'\n        description: Inventory item to add\n  /mail/{id}:\n    get:\n      summary: Gets mail order information by id\n      description: returns information about a mail order in the system with the given id.\n      operationId: getMailById\n      parameters:\n        - name: id\n          in: path\n          description: User ID\n          required: true\n          schema:\n            type: integer\n            format: int64\n      responses:\n        '200':\n          description: Successful operation\n          content:\n            application/json:\n              schema:\n                $ref: '#/components/schemas/MailOrder'      \n  /mail/{id}/send:\n    post:\n      summary: Sends an Email\n      operationId: sendMailById\n      description: Sends An email through one of your mail orders.\n      parameters:\n        - name: id\n          in: path\n          description: User ID\n          required: true\n          schema:\n            type: integer\n            format: int64\n        - in: query\n          name: subject\n          schema:\n            type: string\n        - in: query\n          name: body\n          schema:\n            type: string\n        - in: query\n          name: to\n          schema:\n            type: string\n        - in: query\n          name: from\n          schema:\n            type: string\n      responses:\n        '200':\n          description: search results matching criteria\n          content:\n            application/json:\n              schema:\n                $ref: '#/components/schemas/GenericResponse'\n        '400':\n          description: bad input parameter\n        '401':\n          $ref: '#/components/responses/Unauthorized'\n        '404':\n          $ref: '#/components/responses/NotFound'                \n  /mail/{id}/log:\n    get:\n      summary: displays the mail log\n      operationId: viewMailLogById\n      description: |\n        By passing in the appropriate options, you can search for\n        available inventory in the system\n      parameters:\n        - name: id\n          in: path\n          description: User ID\n          required: true\n          schema:\n            type: integer\n            format: int64\n        - in: query\n          name: searchString\n          description: pass an optional search string for looking up inventory\n          required: false\n          schema:\n            type: string\n        - in: query\n          name: skip\n          description: number of records to skip for pagination\n          schema:\n            type: integer\n            format: int32\n            minimum: 0\n        - in: query\n          name: limit\n          description: maximum number of records to return\n          schema:\n            type: integer\n            format: int32\n            minimum: 0\n            maximum: 50\n      responses:\n        '200':\n          description: search results matching criteria\n          content:\n            application/json:\n              schema:\n                type: array\n                items:\n                  $ref: '#/components/schemas/MailLog'\n        '400':\n          description: bad input parameter\ncomponents:\n  # Security scheme definitions (see Authentication)\n  securitySchemes:\n    apiLoginAuth:\n      type: apiKey\n      in: header\n      name: X-API-LOGIN\n    apiPasswordAuth:\n      type: apiKey\n      in: header\n      name: X-API-PASS\n    apiKeyAuth:\n      type: apiKey\n      in: header\n      name: X-API-KEY\n  # Reusable schemas (data models)\n  schemas:\n    # Schema for error response body\n    Error:\n      type: object\n      properties:\n        code:\n          type: string\n        message:\n          type: string\n      required:\n        - code\n        - message  \n    GenericResponse:\n      type: object\n      properties:\n        status:\n          type: string\n          example: ok\n        status_text:\n          type: string\n          example: The command completed successfully.\n    MailOrders:\n      type: array\n      items:\n        $ref: '#/components/schemas/MailOrder'\n    MailOrder:\n      type: object\n      properties:\n        id:\n          type: integer\n          example: 1234\n        status:\n          type: string\n          example: active\n        username:\n          type: string\n          example: mb1234\n        password:\n          type: string\n          example: guest123\n        comment:\n          type: string\n          example: main mail account\n      required:\n        - id\n        - status\n        - username\n    MailLog:\n      type: object\n      properties:\n        id:\n          type: integer\n          format: int64\n      description: Mail Order Details\n  # Reusable request bodies\n  requestBodies: {}\n  # Reusable responses, such as 401 Unauthorized or 400 Bad Request\n  responses:\n    NotFound:\n      description: The specified resource was not found\n      content:\n        application/json:\n          schema:\n            $ref: '#/components/schemas/Error'\n    Unauthorized:\n      description: Unauthorized\n      content:\n        application/json:\n          schema:\n            $ref: '#/components/schemas/Error'  \n  # Reusable response headers\n  headers: {}\n  # Reusable examples\n  examples: {}\n  # Reusable links\n  links: {}\n  # Reusable callbacks\n  callbacks: {}\n  # Reusable path, query, header and cookie parameters\n  parameters:\n    offsetParam:      # Can be referenced via '#/components/parameters/offsetParam'\n      name: offset\n      in: query\n      description: Number of items to skip before returning the results.\n      required: false\n      schema:\n        type: integer\n        format: int32\n        minimum: 0\n        default: 0\n    limitParam:       # Can be referenced as '#/components/parameters/limitParam'\n      name: limit\n      in: query\n      description: Maximum number of items to return.\n      required: false\n      schema:\n        type: integer\n        format: int32\n        minimum: 1\n        maximum: 100\n        default: 20  \nsecurity:\n  - apiLoginAuth: []\n    apiPasswordAuth: []\n  - apiLoginAuth: []\n    apiKeyAuth: []\nexternalDocs:\n  description: |\n    https://www.interserver.net/blog/\n  url: 'https://interserver.net/tips/'\n",
   "host" : "api.mailbaby.net",
-  "packagePath" : "MailBabyPhp",
+  "packagePath" : "",
   "models" : [ {
     "schema" : {
       "required" : [ "code", "message" ],
@@ -9992,7 +9992,7 @@ WARNING: All illegal access operations will be denied in a future release
         }
       }
     },
-    "importPath" : "Interserver\\Mailbaby\\MailBabyModel.Error",
+    "importPath" : "Interserver\\Mailbaby\\Model.Error",
     "model" : {
       "vendorExtensions" : {
         "x-is-alias" : false,
@@ -10545,7 +10545,7 @@ WARNING: All illegal access operations will be denied in a future release
         "status" : "ok"
       }
     },
-    "importPath" : "Interserver\\Mailbaby\\MailBabyModel.GenericResponse",
+    "importPath" : "Interserver\\Mailbaby\\Model.GenericResponse",
     "model" : {
       "vendorExtensions" : {
         "x-is-alias" : false,
@@ -11102,7 +11102,7 @@ WARNING: All illegal access operations will be denied in a future release
         "id" : 0
       }
     },
-    "importPath" : "Interserver\\Mailbaby\\MailBabyModel.MailLog",
+    "importPath" : "Interserver\\Mailbaby\\Model.MailLog",
     "model" : {
       "vendorExtensions" : {
         "x-is-alias" : false,
@@ -11445,7 +11445,7 @@ WARNING: All illegal access operations will be denied in a future release
         "username" : "mb1234"
       }
     },
-    "importPath" : "Interserver\\Mailbaby\\MailBabyModel.MailOrder",
+    "importPath" : "Interserver\\Mailbaby\\Model.MailOrder",
     "model" : {
       "vendorExtensions" : {
         "x-is-alias" : false,
@@ -12719,7 +12719,7 @@ WARNING: All illegal access operations will be denied in a future release
         "$ref" : "#/components/schemas/MailOrder"
       }
     },
-    "importPath" : "Interserver\\Mailbaby\\MailBabyModel.MailOrders",
+    "importPath" : "Interserver\\Mailbaby\\Model.MailOrders",
     "model" : {
       "vendorExtensions" : {
         "x-is-array-model" : true,
@@ -12795,7 +12795,7 @@ WARNING: All illegal access operations will be denied in a future release
   "version" : "1.0.0",
   "apiInfo" : {
     "apis" : [ {
-      "modelSrcPath" : "./src/MailBabyModel",
+      "modelSrcPath" : "./src/Model",
       "appVersion" : "1.0.0",
       "generatorClass" : "io.swagger.codegen.v3.generators.php.PhpClientCodegen",
       "sortParamsByRequiredFlag" : true,
@@ -12811,6 +12811,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiKeyAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-KEY",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -12821,7 +12822,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12865,6 +12865,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiLoginAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-LOGIN",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -12875,7 +12876,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12919,6 +12919,7 @@ WARNING: All illegal access operations will be denied in a future release
         "name" : "apiPasswordAuth",
         "type" : "apiKey",
         "keyParamName" : "X-API-PASS",
+        "isKeyInQuery" : false,
         "hasScopes" : false,
         "isBasic" : false,
         "isBearer" : false,
@@ -12929,7 +12930,6 @@ WARNING: All illegal access operations will be denied in a future release
         "isPassword" : false,
         "isApplication" : false,
         "isImplicit" : false,
-        "isKeyInQuery" : false,
         "isInteger" : false,
         "isNumber" : false,
         "hasHeaders" : false,
@@ -12972,20 +12972,20 @@ WARNING: All illegal access operations will be denied in a future release
       "infoUrl" : "https://www.interserver.net/contact-information.html",
       "inputSpec" : "openapi: 3.0.0\nservers:\n  - description: Live API Endpoint\n    url: 'https://api.mailbaby.net/'\n  - description: Temporary API Endpoint\n    url: 'http://mynew.interserver.net:8787/'\n  - description: SwaggerHub API Auto Mocking\n    url: 'https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0'\ninfo:\n  description: This is an API for accesssing the mail services.\n  version: 1.0.0\n  title: Mail Baby API\n  contact:\n    email: detain@interserver.net\n    url: 'https://www.interserver.net/contact-information.html'\n    name: Joe Huss\n  license:\n    name: Apache 2.0\n    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'\n  termsOfService: 'https://www.interserver.net/terms-of-service.html'\npaths:\n  /ping:\n    get:\n      summary: Checks if the server is running\n      operationId: pingServer\n      security: []\n      responses:\n        '200':\n          description: Server is up and running\n        default:\n          description: Something is wrong\n      parameters: []\n  /mail:\n    get:\n      summary: displays a list of mail service orders\n      operationId: getMailOrders\n      responses:\n        '200':\n          description: OK\n          content:\n            application/json:\n              schema:\n                $ref: '#/components/schemas/MailOrders'\n            application/xml:\n              schema:\n                $ref: '#/components/schemas/MailOrders'\n            text/plain:\n              schema:\n                type: string\n          links:\n            sendMailByIdLink:\n              operationId: sendMailById\n              parameters:\n                id: '$response.body#/0/id'\n              description: The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}/send`.\n            getMailByIdLink:\n              operationId: getMailById\n              parameters:\n                id: '$response.body#/0/id'\n              description: The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}`.\n        '401':\n          $ref: '#/components/responses/Unauthorized'\n      parameters: []\n  /mail/order:\n    get:\n      summary: validatess order details before placing an order\n      operationId: validateMailOrder\n      deprecated: true\n      responses:\n        '200':\n          description: list of mail orders\n        '401':\n          $ref: '#/components/responses/Unauthorized'\n      parameters: []\n    post:\n      summary: places a mail order\n      operationId: placeMailOrder\n      deprecated: true\n      responses:\n        '200':\n          description: list of mail orders\n        '400':\n          description: 'invalid input, object invalid'\n        '409':\n          description: an existing item already exists\n        '401':\n          $ref: '#/components/responses/Unauthorized'\n      parameters: []\n      description: Adds an item to the system\n      requestBody:\n        content:\n          application/json:\n            schema:\n              $ref: '#/components/schemas/MailOrder'\n        description: Inventory item to add\n  /mail/{id}:\n    get:\n      summary: Gets mail order information by id\n      description: returns information about a mail order in the system with the given id.\n      operationId: getMailById\n      parameters:\n        - name: id\n          in: path\n          description: User ID\n          required: true\n          schema:\n            type: integer\n            format: int64\n      responses:\n        '200':\n          description: Successful operation\n          content:\n            application/json:\n              schema:\n                $ref: '#/components/schemas/MailOrder'      \n  /mail/{id}/send:\n    post:\n      summary: Sends an Email\n      operationId: sendMailById\n      description: Sends An email through one of your mail orders.\n      parameters:\n        - name: id\n          in: path\n          description: User ID\n          required: true\n          schema:\n            type: integer\n            format: int64\n        - in: query\n          name: subject\n          schema:\n            type: string\n        - in: query\n          name: body\n          schema:\n            type: string\n        - in: query\n          name: to\n          schema:\n            type: string\n        - in: query\n          name: from\n          schema:\n            type: string\n      responses:\n        '200':\n          description: search results matching criteria\n          content:\n            application/json:\n              schema:\n                $ref: '#/components/schemas/GenericResponse'\n        '400':\n          description: bad input parameter\n        '401':\n          $ref: '#/components/responses/Unauthorized'\n        '404':\n          $ref: '#/components/responses/NotFound'                \n  /mail/{id}/log:\n    get:\n      summary: displays the mail log\n      operationId: viewMailLogById\n      description: |\n        By passing in the appropriate options, you can search for\n        available inventory in the system\n      parameters:\n        - name: id\n          in: path\n          description: User ID\n          required: true\n          schema:\n            type: integer\n            format: int64\n        - in: query\n          name: searchString\n          description: pass an optional search string for looking up inventory\n          required: false\n          schema:\n            type: string\n        - in: query\n          name: skip\n          description: number of records to skip for pagination\n          schema:\n            type: integer\n            format: int32\n            minimum: 0\n        - in: query\n          name: limit\n          description: maximum number of records to return\n          schema:\n            type: integer\n            format: int32\n            minimum: 0\n            maximum: 50\n      responses:\n        '200':\n          description: search results matching criteria\n          content:\n            application/json:\n              schema:\n                type: array\n                items:\n                  $ref: '#/components/schemas/MailLog'\n        '400':\n          description: bad input parameter\ncomponents:\n  # Security scheme definitions (see Authentication)\n  securitySchemes:\n    apiLoginAuth:\n      type: apiKey\n      in: header\n      name: X-API-LOGIN\n    apiPasswordAuth:\n      type: apiKey\n      in: header\n      name: X-API-PASS\n    apiKeyAuth:\n      type: apiKey\n      in: header\n      name: X-API-KEY\n  # Reusable schemas (data models)\n  schemas:\n    # Schema for error response body\n    Error:\n      type: object\n      properties:\n        code:\n          type: string\n        message:\n          type: string\n      required:\n        - code\n        - message  \n    GenericResponse:\n      type: object\n      properties:\n        status:\n          type: string\n          example: ok\n        status_text:\n          type: string\n          example: The command completed successfully.\n    MailOrders:\n      type: array\n      items:\n        $ref: '#/components/schemas/MailOrder'\n    MailOrder:\n      type: object\n      properties:\n        id:\n          type: integer\n          example: 1234\n        status:\n          type: string\n          example: active\n        username:\n          type: string\n          example: mb1234\n        password:\n          type: string\n          example: guest123\n        comment:\n          type: string\n          example: main mail account\n      required:\n        - id\n        - status\n        - username\n    MailLog:\n      type: object\n      properties:\n        id:\n          type: integer\n          format: int64\n      description: Mail Order Details\n  # Reusable request bodies\n  requestBodies: {}\n  # Reusable responses, such as 401 Unauthorized or 400 Bad Request\n  responses:\n    NotFound:\n      description: The specified resource was not found\n      content:\n        application/json:\n          schema:\n            $ref: '#/components/schemas/Error'\n    Unauthorized:\n      description: Unauthorized\n      content:\n        application/json:\n          schema:\n            $ref: '#/components/schemas/Error'  \n  # Reusable response headers\n  headers: {}\n  # Reusable examples\n  examples: {}\n  # Reusable links\n  links: {}\n  # Reusable callbacks\n  callbacks: {}\n  # Reusable path, query, header and cookie parameters\n  parameters:\n    offsetParam:      # Can be referenced via '#/components/parameters/offsetParam'\n      name: offset\n      in: query\n      description: Number of items to skip before returning the results.\n      required: false\n      schema:\n        type: integer\n        format: int32\n        minimum: 0\n        default: 0\n    limitParam:       # Can be referenced as '#/components/parameters/limitParam'\n      name: limit\n      in: query\n      description: Maximum number of items to return.\n      required: false\n      schema:\n        type: integer\n        format: int32\n        minimum: 1\n        maximum: 100\n        default: 20  \nsecurity:\n  - apiLoginAuth: []\n    apiPasswordAuth: []\n  - apiLoginAuth: []\n    apiKeyAuth: []\nexternalDocs:\n  description: |\n    https://www.interserver.net/blog/\n  url: 'https://interserver.net/tips/'\n",
       "baseName" : "Default",
-      "packagePath" : "MailBabyPhp",
-      "package" : "Interserver\\Mailbaby\\MailBabyApi",
+      "packagePath" : "",
+      "package" : "Interserver\\Mailbaby\\Api",
       "imports" : [ {
-        "import" : "Interserver\\Mailbaby\\MailBabyModel.Error"
+        "import" : "Interserver\\Mailbaby\\Model.Error"
       }, {
-        "import" : "Interserver\\Mailbaby\\MailBabyModel.GenericResponse"
+        "import" : "Interserver\\Mailbaby\\Model.GenericResponse"
       }, {
-        "import" : "Interserver\\Mailbaby\\MailBabyModel.MailLog"
+        "import" : "Interserver\\Mailbaby\\Model.MailLog"
       }, {
-        "import" : "Interserver\\Mailbaby\\MailBabyModel.MailOrder"
+        "import" : "Interserver\\Mailbaby\\Model.MailOrder"
       }, {
-        "import" : "Interserver\\Mailbaby\\MailBabyModel.MailOrders"
+        "import" : "Interserver\\Mailbaby\\Model.MailOrders"
       }, {
-        "import" : "Interserver\\Mailbaby\\MailBabyModel.\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder"
+        "import" : "Interserver\\Mailbaby\\Model.\\Interserver\\Mailbaby\\Model\\MailOrder"
       } ],
       "ensureUniqueParams" : "true",
       "hasAuthMethods" : true,
@@ -12999,12 +12999,12 @@ WARNING: All illegal access operations will be denied in a future release
       "escapedInvokerPackage" : "Interserver\\\\Mailbaby",
       "srcBasePath" : "src",
       "testBasePath" : "test",
-      "importPath" : "Interserver\\Mailbaby\\MailBabyApi.Default",
+      "importPath" : "Interserver\\Mailbaby\\Api.Default",
       "infoName" : "Joe Huss",
       "licenseUrl" : "http://www.apache.org/licenses/LICENSE-2.0.html",
       "generatedYear" : "2021",
-      "modelPackage" : "Interserver\\Mailbaby\\MailBabyModel",
-      "apiSrcPath" : "./src/MailBabyApi",
+      "modelPackage" : "Interserver\\Mailbaby\\Model",
+      "apiSrcPath" : "./src/Api",
       "apiTestPath" : "./test/Api",
       "apiDocPath" : "docs/Api",
       "licenseInfo" : "Apache 2.0",
@@ -13038,7 +13038,7 @@ WARNING: All illegal access operations will be denied in a future release
           "subresourceOperation" : false,
           "path" : "/mail/{id}",
           "operationId" : "getMailById",
-          "returnType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder",
+          "returnType" : "\\Interserver\\Mailbaby\\Model\\MailOrder",
           "httpMethod" : "GET",
           "returnBaseType" : "MailOrder",
           "summary" : "Gets mail order information by id",
@@ -13319,6 +13319,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiKeyAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -13329,7 +13330,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -13373,6 +13373,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiLoginAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -13383,7 +13384,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -13427,6 +13427,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiPasswordAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -13437,7 +13438,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -13488,7 +13488,7 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "Successful operation",
             "contents" : [ ],
             "examples" : [ ],
-            "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder",
+            "dataType" : "\\Interserver\\Mailbaby\\Model\\MailOrder",
             "baseType" : "MailOrder",
             "schema" : {
               "$ref" : "#/components/schemas/MailOrder"
@@ -13618,7 +13618,7 @@ WARNING: All illegal access operations will be denied in a future release
           "subresourceOperation" : false,
           "path" : "/mail",
           "operationId" : "getMailOrders",
-          "returnType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrders",
+          "returnType" : "\\Interserver\\Mailbaby\\Model\\MailOrders",
           "httpMethod" : "GET",
           "returnBaseType" : "MailOrders",
           "summary" : "displays a list of mail service orders",
@@ -13656,6 +13656,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiKeyAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -13666,7 +13667,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -13710,6 +13710,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiLoginAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -13720,7 +13721,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -13764,6 +13764,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiPasswordAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -13774,7 +13775,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -13825,7 +13825,7 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "OK",
             "contents" : [ ],
             "examples" : [ ],
-            "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrders",
+            "dataType" : "\\Interserver\\Mailbaby\\Model\\MailOrders",
             "baseType" : "MailOrders",
             "schema" : {
               "$ref" : "#/components/schemas/MailOrders"
@@ -13880,7 +13880,7 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "Unauthorized",
             "contents" : [ ],
             "examples" : [ ],
-            "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\Error",
+            "dataType" : "\\Interserver\\Mailbaby\\Model\\Error",
             "baseType" : "Error",
             "schema" : {
               "$ref" : "#/components/schemas/Error"
@@ -14235,11 +14235,11 @@ WARNING: All illegal access operations will be denied in a future release
             "secondaryParam" : false,
             "baseName" : "body",
             "paramName" : "body",
-            "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder",
+            "dataType" : "\\Interserver\\Mailbaby\\Model\\MailOrder",
             "description" : "Inventory item to add",
             "unescapedDescription" : "Inventory item to add",
             "baseType" : "MailOrder",
-            "example" : "new \\Interserver\\Mailbaby\\MailBabyModel\\MailOrder()",
+            "example" : "new \\Interserver\\Mailbaby\\Model\\MailOrder()",
             "jsonSchema" : "{\n  \"description\" : \"Inventory item to add\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/MailOrder\"\n      }\n    }\n  }\n}",
             "nullable" : false,
             "required" : false,
@@ -14297,11 +14297,11 @@ WARNING: All illegal access operations will be denied in a future release
               "secondaryParam" : false,
               "baseName" : "body",
               "paramName" : "body",
-              "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder",
+              "dataType" : "\\Interserver\\Mailbaby\\Model\\MailOrder",
               "description" : "Inventory item to add",
               "unescapedDescription" : "Inventory item to add",
               "baseType" : "MailOrder",
-              "example" : "new \\Interserver\\Mailbaby\\MailBabyModel\\MailOrder()",
+              "example" : "new \\Interserver\\Mailbaby\\Model\\MailOrder()",
               "jsonSchema" : "{\n  \"description\" : \"Inventory item to add\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/MailOrder\"\n      }\n    }\n  }\n}",
               "nullable" : false,
               "required" : false,
@@ -14362,11 +14362,11 @@ WARNING: All illegal access operations will be denied in a future release
             "secondaryParam" : false,
             "baseName" : "body",
             "paramName" : "body",
-            "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder",
+            "dataType" : "\\Interserver\\Mailbaby\\Model\\MailOrder",
             "description" : "Inventory item to add",
             "unescapedDescription" : "Inventory item to add",
             "baseType" : "MailOrder",
-            "example" : "new \\Interserver\\Mailbaby\\MailBabyModel\\MailOrder()",
+            "example" : "new \\Interserver\\Mailbaby\\Model\\MailOrder()",
             "jsonSchema" : "{\n  \"description\" : \"Inventory item to add\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/MailOrder\"\n      }\n    }\n  }\n}",
             "nullable" : false,
             "required" : false,
@@ -14422,11 +14422,11 @@ WARNING: All illegal access operations will be denied in a future release
             "secondaryParam" : false,
             "baseName" : "body",
             "paramName" : "body",
-            "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder",
+            "dataType" : "\\Interserver\\Mailbaby\\Model\\MailOrder",
             "description" : "Inventory item to add",
             "unescapedDescription" : "Inventory item to add",
             "baseType" : "MailOrder",
-            "example" : "new \\Interserver\\Mailbaby\\MailBabyModel\\MailOrder()",
+            "example" : "new \\Interserver\\Mailbaby\\Model\\MailOrder()",
             "jsonSchema" : "{\n  \"description\" : \"Inventory item to add\",\n  \"content\" : {\n    \"application/json\" : {\n      \"schema\" : {\n        \"$ref\" : \"#/components/schemas/MailOrder\"\n      }\n    }\n  }\n}",
             "nullable" : false,
             "required" : false,
@@ -14490,6 +14490,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiKeyAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -14500,7 +14501,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -14544,6 +14544,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiLoginAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -14554,7 +14555,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -14598,6 +14598,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiPasswordAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -14608,7 +14609,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -14812,7 +14812,7 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "Unauthorized",
             "contents" : [ ],
             "examples" : [ ],
-            "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\Error",
+            "dataType" : "\\Interserver\\Mailbaby\\Model\\Error",
             "baseType" : "Error",
             "schema" : {
               "$ref" : "#/components/schemas/Error"
@@ -14855,7 +14855,7 @@ WARNING: All illegal access operations will be denied in a future release
             "isPrimitiveType" : false,
             "isEnum" : false
           } ],
-          "imports" : [ "Error", "\\Interserver\\Mailbaby\\MailBabyModel\\MailOrder" ],
+          "imports" : [ "\\Interserver\\Mailbaby\\Model\\MailOrder", "Error" ],
           "nickname" : "placeMailOrder",
           "operationIdLowerCase" : "placemailorder",
           "operationIdCamelCase" : "PlaceMailOrder",
@@ -14939,7 +14939,7 @@ WARNING: All illegal access operations will be denied in a future release
           "subresourceOperation" : false,
           "path" : "/mail/{id}/send",
           "operationId" : "sendMailById",
-          "returnType" : "\\Interserver\\Mailbaby\\MailBabyModel\\GenericResponse",
+          "returnType" : "\\Interserver\\Mailbaby\\Model\\GenericResponse",
           "httpMethod" : "POST",
           "returnBaseType" : "GenericResponse",
           "summary" : "Sends an Email",
@@ -15928,6 +15928,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiKeyAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -15938,7 +15939,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -15982,6 +15982,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiLoginAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -15992,7 +15993,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -16036,6 +16036,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiPasswordAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -16046,7 +16047,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -16097,7 +16097,7 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "search results matching criteria",
             "contents" : [ ],
             "examples" : [ ],
-            "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\GenericResponse",
+            "dataType" : "\\Interserver\\Mailbaby\\Model\\GenericResponse",
             "baseType" : "GenericResponse",
             "schema" : {
               "$ref" : "#/components/schemas/GenericResponse"
@@ -16203,7 +16203,7 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "Unauthorized",
             "contents" : [ ],
             "examples" : [ ],
-            "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\Error",
+            "dataType" : "\\Interserver\\Mailbaby\\Model\\Error",
             "baseType" : "Error",
             "schema" : {
               "$ref" : "#/components/schemas/Error"
@@ -16258,7 +16258,7 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "The specified resource was not found",
             "contents" : [ ],
             "examples" : [ ],
-            "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\Error",
+            "dataType" : "\\Interserver\\Mailbaby\\Model\\Error",
             "baseType" : "Error",
             "schema" : {
               "$ref" : "#/components/schemas/Error"
@@ -16418,6 +16418,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiKeyAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -16428,7 +16429,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -16472,6 +16472,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiLoginAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -16482,7 +16483,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -16526,6 +16526,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiPasswordAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -16536,7 +16537,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -16638,7 +16638,7 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "Unauthorized",
             "contents" : [ ],
             "examples" : [ ],
-            "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\Error",
+            "dataType" : "\\Interserver\\Mailbaby\\Model\\Error",
             "baseType" : "Error",
             "schema" : {
               "$ref" : "#/components/schemas/Error"
@@ -16767,7 +16767,7 @@ WARNING: All illegal access operations will be denied in a future release
           "subresourceOperation" : false,
           "path" : "/mail/{id}/log",
           "operationId" : "viewMailLogById",
-          "returnType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailLog[]",
+          "returnType" : "\\Interserver\\Mailbaby\\Model\\MailLog[]",
           "httpMethod" : "GET",
           "returnBaseType" : "MailLog",
           "returnContainer" : "array",
@@ -17640,6 +17640,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiKeyAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-KEY",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -17650,7 +17651,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -17694,6 +17694,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiLoginAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-LOGIN",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -17704,7 +17705,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -17748,6 +17748,7 @@ WARNING: All illegal access operations will be denied in a future release
             "name" : "apiPasswordAuth",
             "type" : "apiKey",
             "keyParamName" : "X-API-PASS",
+            "isKeyInQuery" : false,
             "hasScopes" : false,
             "isBasic" : false,
             "isBearer" : false,
@@ -17758,7 +17759,6 @@ WARNING: All illegal access operations will be denied in a future release
             "isPassword" : false,
             "isApplication" : false,
             "isImplicit" : false,
-            "isKeyInQuery" : false,
             "isInteger" : false,
             "isNumber" : false,
             "hasHeaders" : false,
@@ -17811,7 +17811,7 @@ WARNING: All illegal access operations will be denied in a future release
             "message" : "search results matching criteria",
             "contents" : [ ],
             "examples" : [ ],
-            "dataType" : "\\Interserver\\Mailbaby\\MailBabyModel\\MailLog[]",
+            "dataType" : "\\Interserver\\Mailbaby\\Model\\MailLog[]",
             "baseType" : "MailLog",
             "containerType" : "array",
             "schema" : {
@@ -17987,11 +17987,11 @@ WARNING: All illegal access operations will be denied in a future release
       "generateApiDocs" : true,
       "termsOfService" : "https://www.interserver.net/terms-of-service.html",
       "generatorVersion" : "3.0.25",
-      "apiPackage" : "Interserver\\Mailbaby\\MailBabyApi",
+      "apiPackage" : "Interserver\\Mailbaby\\Api",
       "basePath" : "https://api.mailbaby.net/",
       "classname" : "DefaultApi",
       "gitRepoId" : "mailbaby-client-php",
-      "generatedDate" : "2021-04-28T14:01:12.230265-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T14:09:20.047012-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "interserver"
@@ -18006,7 +18006,7 @@ WARNING: All illegal access operations will be denied in a future release
   "infoName" : "Joe Huss",
   "licenseUrl" : "http://www.apache.org/licenses/LICENSE-2.0.html",
   "generatedYear" : "2021",
-  "modelPackage" : "Interserver\\Mailbaby\\MailBabyModel",
+  "modelPackage" : "Interserver\\Mailbaby\\Model",
   "openAPI" : {
     "openapi" : "3.0.0",
     "info" : {
@@ -18535,7 +18535,7 @@ WARNING: All illegal access operations will be denied in a future release
     }
   },
   "scheme" : "https",
-  "apiSrcPath" : "./src/MailBabyApi",
+  "apiSrcPath" : "./src/Api",
   "apiTestPath" : "./test/Api",
   "apiDocPath" : "docs/Api",
   "licenseInfo" : "Apache 2.0",
@@ -18553,10 +18553,10 @@ WARNING: All illegal access operations will be denied in a future release
   "generateApiDocs" : true,
   "termsOfService" : "https://www.interserver.net/terms-of-service.html",
   "generatorVersion" : "3.0.25",
-  "apiPackage" : "Interserver\\Mailbaby\\MailBabyApi",
+  "apiPackage" : "Interserver\\Mailbaby\\Api",
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "mailbaby-client-php",
-  "generatedDate" : "2021-04-28T14:01:12.230265-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T14:09:20.047012-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -18565,15 +18565,15 @@ WARNING: All illegal access operations will be denied in a future release
   },
   "gitUserId" : "interserver"
 }
-14:01:13.299 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/src/ApiException.php
-14:01:13.341 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/src/Configuration.php
-14:01:13.371 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/src/ObjectSerializer.php
-14:01:13.379 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/src/MailBabyModel/ModelInterface.php
-14:01:13.386 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/src/HeaderSelector.php
-14:01:13.390 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/composer.json
-14:01:13.405 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/README.md
-14:01:13.408 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/phpunit.xml.dist
-14:01:13.409 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/.travis.yml
-14:01:13.412 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/.php_cs
-14:01:13.417 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/MailBabyPhp/git_push.sh
-14:01:13.417 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/.swagger-codegen/VERSION
+14:09:21.026 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php//src/ApiException.php
+14:09:21.063 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php//src/Configuration.php
+14:09:21.090 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php//src/ObjectSerializer.php
+14:09:21.097 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php//src/Model/ModelInterface.php
+14:09:21.104 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php//src/HeaderSelector.php
+14:09:21.108 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/composer.json
+14:09:21.124 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/README.md
+14:09:21.126 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/phpunit.xml.dist
+14:09:21.127 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/.travis.yml
+14:09:21.131 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/.php_cs
+14:09:21.136 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/git_push.sh
+14:09:21.136 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/php/.swagger-codegen/VERSION

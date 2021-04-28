@@ -1,0 +1,17 @@
+.openapi-generator-ignore
+README.md
+dune
+dune-project
+openapi.opam
+src/apis/default_api.ml
+src/apis/default_api.mli
+src/models/error_response.ml
+src/models/generic_response.ml
+src/models/mail_attachment.ml
+src/models/mail_contact.ml
+src/models/mail_log.ml
+src/models/mail_order.ml
+src/models/send_mail.ml
+src/support/enums.ml
+src/support/jsonSupport.ml
+src/support/request.ml

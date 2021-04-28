@@ -1,4 +1,4 @@
-13:50:48.921 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+13:55:01.212 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
@@ -516,28 +516,28 @@ VERBOSE MODE: ON. Additional debug options are injected
     "callbacks" : { }
   }
 }
-13:50:49.512 [Thread-0] INFO  i.s.c.v.g.dotnet.CSharpClientCodegen - Generating code for .NET Framework v4.5
+13:55:01.958 [Thread-0] INFO  i.s.c.v.g.dotnet.CSharpClientCodegen - Generating code for .NET Framework v4.5
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by com.github.jknack.handlebars.context.MemberValueResolver (file:/home/sites/mailbaby-mail-api/swagger-codegen-cli.jar) to method java.util.Collections$EmptyMap.isEmpty()
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-13:50:49.905 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Model/Error.cs
-13:50:49.907 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test/Model/ErrorTests.cs
-13:50:49.919 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/docs/Error.md
-13:50:50.000 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Model/GenericResponse.cs
-13:50:50.001 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test/Model/GenericResponseTests.cs
-13:50:50.009 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/docs/GenericResponse.md
-13:50:50.079 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Model/MailLog.cs
-13:50:50.080 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test/Model/MailLogTests.cs
-13:50:50.087 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/docs/MailLog.md
-13:50:50.181 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Model/MailOrder.cs
-13:50:50.182 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test/Model/MailOrderTests.cs
-13:50:50.188 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/docs/MailOrder.md
-13:50:50.238 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Model/MailOrders.cs
-13:50:50.238 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test/Model/MailOrdersTests.cs
-13:50:50.243 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/docs/MailOrders.md
-13:50:50.244 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+13:55:02.402 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Model/Error.cs
+13:55:02.403 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test/Model/ErrorTests.cs
+13:55:02.414 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/docs/Error.md
+13:55:02.505 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Model/GenericResponse.cs
+13:55:02.506 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test/Model/GenericResponseTests.cs
+13:55:02.514 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/docs/GenericResponse.md
+13:55:02.613 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Model/MailLog.cs
+13:55:02.613 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test/Model/MailLogTests.cs
+13:55:02.623 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/docs/MailLog.md
+13:55:02.709 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Model/MailOrder.cs
+13:55:02.710 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test/Model/MailOrderTests.cs
+13:55:02.719 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/docs/MailOrder.md
+13:55:02.768 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Model/MailOrders.cs
+13:55:02.769 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test/Model/MailOrdersTests.cs
+13:55:02.773 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/docs/MailOrders.md
+13:55:02.773 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -3328,7 +3328,7 @@ WARNING: All illegal access operations will be denied in a future release
     "hasMore" : false
   }
 } ]
-13:50:50.274 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+13:55:02.804 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -3360,7 +3360,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:50:50.281 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+13:55:02.811 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -3558,7 +3558,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:50:50.294 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+13:55:02.823 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -3628,7 +3628,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:50:50.296 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+13:55:02.824 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -3754,7 +3754,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:50:50.302 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+13:55:02.829 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -3869,7 +3869,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:50:50.308 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+13:55:02.834 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -4285,7 +4285,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:50:50.317 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+13:55:02.843 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -4596,10 +4596,10 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:50:50.412 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Api/DefaultApi.cs
-13:50:50.413 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test/Api/DefaultApiTests.cs
-13:50:50.430 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/docs/DefaultApi.md
-13:50:50.430 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+13:55:02.919 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Api/DefaultApi.cs
+13:55:02.921 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - File exists. Skipped overwriting /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test/Api/DefaultApiTests.cs
+13:55:02.940 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/docs/DefaultApi.md
+13:55:02.941 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.dotnet.CSharpClientCodegen",
@@ -4827,7 +4827,7 @@ WARNING: All illegal access operations will be denied in a future release
   "generatedYear" : "2021",
   "modelPackage" : "Model",
   "sourceFolder" : "src",
-  "packageGuid" : "{21E917C3-75C8-41AC-8D03-BA0466AD54F7}",
+  "packageGuid" : "{4F938F9A-417A-434F-BFF8-E8380BCCCE1D}",
   "apiDocPath" : "docs/",
   "licenseInfo" : "Apache 2.0",
   "hasModel" : true,
@@ -9819,12 +9819,12 @@ WARNING: All illegal access operations will be denied in a future release
   "gitRepoId" : "GIT_REPO_ID",
   "optionalAssemblyInfo" : true,
   "packageAuthors" : "Swagger",
-  "generatedDate" : "2021-04-28T13:50:49.519027-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:55:01.964102-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-13:50:50.477 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+13:55:02.998 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.dotnet.CSharpClientCodegen",
@@ -13064,7 +13064,7 @@ WARNING: All illegal access operations will be denied in a future release
       "generatedYear" : "2021",
       "modelPackage" : "Model",
       "sourceFolder" : "src",
-      "packageGuid" : "{21E917C3-75C8-41AC-8D03-BA0466AD54F7}",
+      "packageGuid" : "{4F938F9A-417A-434F-BFF8-E8380BCCCE1D}",
       "apiDocPath" : "docs/",
       "licenseInfo" : "Apache 2.0",
       "hasModel" : true,
@@ -18056,7 +18056,7 @@ WARNING: All illegal access operations will be denied in a future release
       "gitRepoId" : "GIT_REPO_ID",
       "optionalAssemblyInfo" : true,
       "packageAuthors" : "Swagger",
-      "generatedDate" : "2021-04-28T13:50:49.519027-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T13:55:01.964102-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -18599,7 +18599,7 @@ WARNING: All illegal access operations will be denied in a future release
   },
   "scheme" : "https",
   "sourceFolder" : "src",
-  "packageGuid" : "{21E917C3-75C8-41AC-8D03-BA0466AD54F7}",
+  "packageGuid" : "{4F938F9A-417A-434F-BFF8-E8380BCCCE1D}",
   "apiDocPath" : "docs/",
   "licenseInfo" : "Apache 2.0",
   "hasModel" : true,
@@ -18629,7 +18629,7 @@ WARNING: All illegal access operations will be denied in a future release
   "gitRepoId" : "GIT_REPO_ID",
   "optionalAssemblyInfo" : true,
   "packageAuthors" : "Swagger",
-  "generatedDate" : "2021-04-28T13:50:49.519027-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:55:01.964102-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -18638,27 +18638,27 @@ WARNING: All illegal access operations will be denied in a future release
   },
   "gitUserId" : "GIT_USER_ID"
 }
-13:50:50.502 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/IApiAccessor.cs
-13:50:50.535 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/Configuration.cs
-13:50:50.607 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/ApiClient.cs
-13:50:50.613 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/ApiException.cs
-13:50:50.617 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/ApiResponse.cs
-13:50:50.620 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/ExceptionFactory.cs
-13:50:50.623 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/SwaggerDateConverter.cs
-13:50:50.626 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/build.bat
-13:50:50.630 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/build.sh
-13:50:50.632 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger//packages.config
-13:50:50.633 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/.travis.yml
-13:50:50.639 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/IReadableConfiguration.cs
-13:50:50.642 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/GlobalConfiguration.cs
-13:50:50.644 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/mono_nunit_test.sh
-13:50:50.645 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test//packages.config
-13:50:50.660 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/README.md
-13:50:50.663 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/git_push.sh
-13:50:50.667 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/.gitignore
-13:50:50.670 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Properties/AssemblyInfo.cs
-13:50:50.674 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/IO.Swagger.sln
-13:50:50.681 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/IO.Swagger.csproj
-13:50:50.685 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/IO.Swagger.nuspec
-13:50:50.691 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test/IO.Swagger.Test.csproj
-13:50:50.691 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/.swagger-codegen/VERSION
+13:55:03.034 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/IApiAccessor.cs
+13:55:03.063 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/Configuration.cs
+13:55:03.112 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/ApiClient.cs
+13:55:03.118 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/ApiException.cs
+13:55:03.123 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/ApiResponse.cs
+13:55:03.127 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/ExceptionFactory.cs
+13:55:03.130 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/SwaggerDateConverter.cs
+13:55:03.133 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/build.bat
+13:55:03.138 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/build.sh
+13:55:03.140 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger//packages.config
+13:55:03.142 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/.travis.yml
+13:55:03.147 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/IReadableConfiguration.cs
+13:55:03.151 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Client/GlobalConfiguration.cs
+13:55:03.153 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/mono_nunit_test.sh
+13:55:03.155 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test//packages.config
+13:55:03.173 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/README.md
+13:55:03.177 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/git_push.sh
+13:55:03.183 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/.gitignore
+13:55:03.187 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/Properties/AssemblyInfo.cs
+13:55:03.192 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/IO.Swagger.sln
+13:55:03.201 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/IO.Swagger.csproj
+13:55:03.206 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger/IO.Swagger.nuspec
+13:55:03.213 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/src/IO.Swagger.Test/IO.Swagger.Test.csproj
+13:55:03.214 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/csharp/.swagger-codegen/VERSION

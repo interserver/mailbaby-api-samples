@@ -1,4 +1,4 @@
-13:50:46.326 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
+13:54:58.354 [Thread-0] INFO  i.s.c.v3.config.CodegenConfigurator - 
 VERBOSE MODE: ON. Additional debug options are injected
  - [debugSwagger] prints the swagger specification as interpreted by the codegen
  - [debugModels] prints models passed to the template engine
@@ -521,12 +521,12 @@ WARNING: Illegal reflective access by com.github.jknack.handlebars.context.Membe
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-13:50:47.353 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Models/Error.cs
-13:50:47.412 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Models/GenericResponse.cs
-13:50:47.459 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Models/MailLog.cs
-13:50:47.489 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Models/MailOrder.cs
-13:50:47.513 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Models/MailOrders.cs
-13:50:47.514 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
+13:54:59.459 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Models/Error.cs
+13:54:59.501 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Models/GenericResponse.cs
+13:54:59.548 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Models/MailLog.cs
+13:54:59.603 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Models/MailOrder.cs
+13:54:59.644 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Models/MailOrders.cs
+13:54:59.645 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Model info ############
 [ {
   "schema" : {
     "required" : [ "code", "message" ],
@@ -3317,7 +3317,7 @@ WARNING: All illegal access operations will be denied in a future release
     "hasMore" : false
   }
 } ]
-13:50:47.550 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
+13:54:59.682 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /ping	;get class Operation {
     tags: null
     summary: Checks if the server is running
     description: null
@@ -3349,7 +3349,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:50:47.559 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
+13:54:59.691 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail	;get class Operation {
     tags: null
     summary: displays a list of mail service orders
     description: null
@@ -3547,7 +3547,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:50:47.574 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
+13:54:59.710 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;get class Operation {
     tags: null
     summary: validatess order details before placing an order
     description: null
@@ -3617,7 +3617,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:50:47.576 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
+13:54:59.713 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/order	;post class Operation {
     tags: null
     summary: places a mail order
     description: Adds an item to the system
@@ -3743,7 +3743,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:50:47.582 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
+13:54:59.722 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}	;get class Operation {
     tags: null
     summary: Gets mail order information by id
     description: returns information about a mail order in the system with the given id.
@@ -3858,7 +3858,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:50:47.588 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
+13:54:59.731 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/send	;post class Operation {
     tags: null
     summary: Sends an Email
     description: Sends An email through one of your mail orders.
@@ -4274,7 +4274,7 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:50:47.599 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
+13:54:59.746 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - processOperation: resourcePath= /mail/{id}/log	;get class Operation {
     tags: null
     summary: displays the mail log
     description: By passing in the appropriate options, you can search for
@@ -4585,8 +4585,8 @@ WARNING: All illegal access operations will be denied in a future release
     servers: null
 }
 
-13:50:47.805 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Controllers/DefaultApi.cs
-13:50:47.806 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
+13:54:59.936 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Controllers/DefaultApi.cs
+13:54:59.936 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Operation info ############
 [ {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.dotnet.AspNetCoreServerCodegen",
@@ -4807,7 +4807,7 @@ WARNING: All illegal access operations will be denied in a future release
   "generatedYear" : "2021",
   "modelPackage" : "IO.Swagger.Models",
   "sourceFolder" : "src",
-  "packageGuid" : "{EDE36F54-3FB7-4516-98D2-9707DAB063B2}",
+  "packageGuid" : "{78F7102B-7ADD-4027-A3A1-C1C3454F6306}",
   "licenseInfo" : "Apache 2.0",
   "hasModel" : true,
   "packageTitle" : "Swagger Library",
@@ -9790,12 +9790,12 @@ WARNING: All illegal access operations will be denied in a future release
   "classname" : "DefaultApi",
   "gitRepoId" : "GIT_REPO_ID",
   "packageAuthors" : "Swagger",
-  "generatedDate" : "2021-04-28T13:50:47.048591-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:54:59.182081-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "gitUserId" : "GIT_USER_ID"
 } ]
-13:50:47.870 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
+13:54:59.999 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - ############ Supporting file info ############
 {
   "appVersion" : "1.0.0",
   "generatorClass" : "io.swagger.codegen.v3.generators.dotnet.AspNetCoreServerCodegen",
@@ -13023,7 +13023,7 @@ WARNING: All illegal access operations will be denied in a future release
       "generatedYear" : "2021",
       "modelPackage" : "IO.Swagger.Models",
       "sourceFolder" : "src",
-      "packageGuid" : "{EDE36F54-3FB7-4516-98D2-9707DAB063B2}",
+      "packageGuid" : "{78F7102B-7ADD-4027-A3A1-C1C3454F6306}",
       "licenseInfo" : "Apache 2.0",
       "hasModel" : true,
       "packageTitle" : "Swagger Library",
@@ -18006,7 +18006,7 @@ WARNING: All illegal access operations will be denied in a future release
       "classname" : "DefaultApi",
       "gitRepoId" : "GIT_REPO_ID",
       "packageAuthors" : "Swagger",
-      "generatedDate" : "2021-04-28T13:50:47.048591-04:00[America/New_York]",
+      "generatedDate" : "2021-04-28T13:54:59.182081-04:00[America/New_York]",
       "infoEmail" : "detain@interserver.net",
       "templateEngine" : "handlebars",
       "gitUserId" : "GIT_USER_ID"
@@ -18547,7 +18547,7 @@ WARNING: All illegal access operations will be denied in a future release
   },
   "scheme" : "https",
   "sourceFolder" : "src",
-  "packageGuid" : "{EDE36F54-3FB7-4516-98D2-9707DAB063B2}",
+  "packageGuid" : "{78F7102B-7ADD-4027-A3A1-C1C3454F6306}",
   "licenseInfo" : "Apache 2.0",
   "hasModel" : true,
   "packageTitle" : "Swagger Library",
@@ -18569,7 +18569,7 @@ WARNING: All illegal access operations will be denied in a future release
   "basePath" : "https://api.mailbaby.net/",
   "gitRepoId" : "GIT_REPO_ID",
   "packageAuthors" : "Swagger",
-  "generatedDate" : "2021-04-28T13:50:47.048591-04:00[America/New_York]",
+  "generatedDate" : "2021-04-28T13:54:59.182081-04:00[America/New_York]",
   "infoEmail" : "detain@interserver.net",
   "templateEngine" : "handlebars",
   "externalDocs" : {
@@ -18578,32 +18578,32 @@ WARNING: All illegal access operations will be denied in a future release
   },
   "gitUserId" : "GIT_USER_ID"
 }
-13:50:47.905 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Filters/BasePathFilter.cs
-13:50:47.914 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Filters/GeneratePathParamsValidationFilter.cs
-13:50:47.931 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Startup.cs
-13:50:47.934 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Program.cs
-13:50:47.937 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/IO.Swagger.csproj
-13:50:47.940 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Dockerfile
-13:50:47.941 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/NuGet.Config
-13:50:47.943 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/build.sh
-13:50:47.946 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/build.bat
-13:50:47.948 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/README.md
-13:50:47.956 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/IO.Swagger.sln
-13:50:47.957 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/.gitignore
-13:50:47.958 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/appsettings.json
-13:50:47.967 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Attributes/ValidateModelStateAttribute.cs
-13:50:47.968 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/web.config
-13:50:47.969 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Properties/launchSettings.json
-13:50:47.970 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/wwwroot/README.md
-13:50:47.971 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/wwwroot/index.html
-13:50:47.971 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/wwwroot/web.config
-13:50:47.973 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/wwwroot/swagger-original.json
-13:50:47.981 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
-13:50:47.988 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
-13:50:47.995 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
-13:50:48.002 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
-13:50:48.007 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
-13:50:48.012 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
-13:50:48.017 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
-13:50:48.021 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
-13:50:48.021 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/.swagger-codegen/VERSION
+13:55:00.032 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Filters/BasePathFilter.cs
+13:55:00.051 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Filters/GeneratePathParamsValidationFilter.cs
+13:55:00.083 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Startup.cs
+13:55:00.087 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Program.cs
+13:55:00.091 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/IO.Swagger.csproj
+13:55:00.095 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Dockerfile
+13:55:00.097 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/NuGet.Config
+13:55:00.100 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/build.sh
+13:55:00.103 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/build.bat
+13:55:00.107 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/README.md
+13:55:00.119 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/IO.Swagger.sln
+13:55:00.121 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/.gitignore
+13:55:00.122 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/appsettings.json
+13:55:00.133 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Attributes/ValidateModelStateAttribute.cs
+13:55:00.135 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/web.config
+13:55:00.135 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Properties/launchSettings.json
+13:55:00.136 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/wwwroot/README.md
+13:55:00.137 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/wwwroot/index.html
+13:55:00.138 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/wwwroot/web.config
+13:55:00.139 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/wwwroot/swagger-original.json
+13:55:00.147 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
+13:55:00.159 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
+13:55:00.167 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
+13:55:00.172 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
+13:55:00.176 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
+13:55:00.180 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
+13:55:00.183 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
+13:55:00.187 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/src/IO.Swagger/Security/ApiKeyAuthenticationHandler.cs
+13:55:00.187 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/aspnetcore/.swagger-codegen/VERSION

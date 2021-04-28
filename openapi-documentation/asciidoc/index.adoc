@@ -1,0 +1,798 @@
+= Mail Baby API
+detain@interserver.net
+1.0.0
+:toc: left
+:numbered:
+:toclevels: 3
+:source-highlighter: highlightjs
+:keywords: openapi, rest, Mail Baby API 
+:specDir: 
+:snippetDir: 
+:generator-template: v1 2019-12-20
+:info-url: https://www.interserver.net/contact-information.html
+:app-name: Mail Baby API
+
+[abstract]
+.Abstract
+This is an API for accesssing the mail services.
+
+
+// markup not found, no include::{specDir}intro.adoc[opts=optional]
+
+
+== Access
+
+
+* *APIKey* KeyParamName:     _X-API-KEY_,     KeyInQuery: _false_, KeyInHeader: _true_
+
+* *APIKey* KeyParamName:     _X-API-LOGIN_,     KeyInQuery: _false_, KeyInHeader: _true_
+
+* *APIKey* KeyParamName:     _X-API-PASS_,     KeyInQuery: _false_, KeyInHeader: _true_
+
+
+== Endpoints
+
+
+[.Default]
+=== Default
+
+
+[.getMailById]
+==== getMailById
+    
+`GET /mail/{id}`
+
+Gets mail order information by id
+
+===== Description 
+
+returns information about a mail order in the system with the given id.
+
+
+// markup not found, no include::{specDir}mail/\{id\}/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===         
+|Name| Description| Required| Default| Pattern
+
+| id 
+| User ID  
+| X 
+| null 
+|  
+
+|===         
+
+
+
+
+
+
+===== Return Type
+
+<<MailOrder>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.http response codes
+[cols="2,3,1"]
+|===         
+| Code | Message | Datatype 
+
+
+| 200
+| Successful operation
+|  <<MailOrder>>
+
+|===         
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}mail/\{id\}/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}mail/\{id\}/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :mail/{id}/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}mail/\{id\}/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.getMailOrders]
+==== getMailOrders
+    
+`GET /mail`
+
+displays a list of mail service orders
+
+===== Description 
+
+
+
+
+// markup not found, no include::{specDir}mail/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+
+
+===== Return Type
+
+array[<<MailOrder>>]
+
+
+===== Content Type
+
+* application/json
+* application/xml
+* text/plain
+
+===== Responses
+
+.http response codes
+[cols="2,3,1"]
+|===         
+| Code | Message | Datatype 
+
+
+| 200
+| OK
+| List[<<MailOrder>>] 
+
+
+| 401
+| Unauthorized
+|  <<Error>>
+
+|===         
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}mail/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}mail/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :mail/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}mail/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.pingServer]
+==== pingServer
+    
+`GET /ping`
+
+Checks if the server is running
+
+===== Description 
+
+
+
+
+// markup not found, no include::{specDir}ping/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+
+
+===== Return Type
+
+
+
+-
+
+
+===== Responses
+
+.http response codes
+[cols="2,3,1"]
+|===         
+| Code | Message | Datatype 
+
+
+| 200
+| Server is up and running
+|  <<>>
+
+
+| 0
+| Something is wrong
+|  <<>>
+
+|===         
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}ping/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}ping/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :ping/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}ping/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.placeMailOrder]
+==== placeMailOrder
+    
+`POST /mail/order`
+
+places a mail order
+
+===== Description 
+
+Adds an item to the system
+
+
+// markup not found, no include::{specDir}mail/order/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+====== Body Parameter
+
+[cols="2,3,1,1,1"]
+|===         
+|Name| Description| Required| Default| Pattern
+
+| MailOrder 
+| Inventory item to add <<MailOrder>> 
+| - 
+|  
+|  
+
+|===         
+
+
+
+
+
+===== Return Type
+
+
+
+-
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.http response codes
+[cols="2,3,1"]
+|===         
+| Code | Message | Datatype 
+
+
+| 200
+| list of mail orders
+|  <<>>
+
+
+| 400
+| invalid input, object invalid
+|  <<>>
+
+
+| 409
+| an existing item already exists
+|  <<>>
+
+
+| 401
+| Unauthorized
+|  <<Error>>
+
+|===         
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}mail/order/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}mail/order/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :mail/order/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}mail/order/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.sendMailById]
+==== sendMailById
+    
+`POST /mail/{id}/send`
+
+Sends an Email
+
+===== Description 
+
+Sends An email through one of your mail orders.
+
+
+// markup not found, no include::{specDir}mail/\{id\}/send/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===         
+|Name| Description| Required| Default| Pattern
+
+| id 
+| User ID  
+| X 
+| null 
+|  
+
+|===         
+
+
+
+
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===         
+|Name| Description| Required| Default| Pattern
+
+| subject 
+|   
+| - 
+| null 
+|  
+
+| body 
+|   
+| - 
+| null 
+|  
+
+| to 
+|   
+| - 
+| null 
+|  
+
+| from 
+|   
+| - 
+| null 
+|  
+
+|===         
+
+
+===== Return Type
+
+<<GenericResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.http response codes
+[cols="2,3,1"]
+|===         
+| Code | Message | Datatype 
+
+
+| 200
+| search results matching criteria
+|  <<GenericResponse>>
+
+
+| 400
+| bad input parameter
+|  <<>>
+
+
+| 401
+| Unauthorized
+|  <<Error>>
+
+
+| 404
+| The specified resource was not found
+|  <<Error>>
+
+|===         
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}mail/\{id\}/send/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}mail/\{id\}/send/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :mail/{id}/send/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}mail/\{id\}/send/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.validateMailOrder]
+==== validateMailOrder
+    
+`GET /mail/order`
+
+validatess order details before placing an order
+
+===== Description 
+
+
+
+
+// markup not found, no include::{specDir}mail/order/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+
+
+===== Return Type
+
+
+
+-
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.http response codes
+[cols="2,3,1"]
+|===         
+| Code | Message | Datatype 
+
+
+| 200
+| list of mail orders
+|  <<>>
+
+
+| 401
+| Unauthorized
+|  <<Error>>
+
+|===         
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}mail/order/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}mail/order/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :mail/order/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}mail/order/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.viewMailLogById]
+==== viewMailLogById
+    
+`GET /mail/{id}/log`
+
+displays the mail log
+
+===== Description 
+
+By passing in the appropriate options, you can search for available inventory in the system 
+
+
+// markup not found, no include::{specDir}mail/\{id\}/log/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===         
+|Name| Description| Required| Default| Pattern
+
+| id 
+| User ID  
+| X 
+| null 
+|  
+
+|===         
+
+
+
+
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===         
+|Name| Description| Required| Default| Pattern
+
+| searchString 
+| pass an optional search string for looking up inventory  
+| - 
+| null 
+|  
+
+| skip 
+| number of records to skip for pagination  
+| - 
+| null 
+|  
+
+| limit 
+| maximum number of records to return  
+| - 
+| null 
+|  
+
+|===         
+
+
+===== Return Type
+
+array[<<MailLog>>]
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.http response codes
+[cols="2,3,1"]
+|===         
+| Code | Message | Datatype 
+
+
+| 200
+| search results matching criteria
+| List[<<MailLog>>] 
+
+
+| 400
+| bad input parameter
+|  <<>>
+
+|===         
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}mail/\{id\}/log/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}mail/\{id\}/log/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :mail/{id}/log/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}mail/\{id\}/log/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[#models]
+== Models
+
+
+[#Error]
+=== _Error_ 
+
+
+
+[.fields-Error]
+[cols="2,1,2,4,1"]
+|===         
+| Field Name| Required| Type| Description| Format
+
+| code 
+| X 
+| String  
+| 
+|  
+
+| message 
+| X 
+| String  
+| 
+|  
+
+|===
+
+
+[#GenericResponse]
+=== _GenericResponse_ 
+
+
+
+[.fields-GenericResponse]
+[cols="2,1,2,4,1"]
+|===         
+| Field Name| Required| Type| Description| Format
+
+| status 
+|  
+| String  
+| 
+|  
+
+| status_text 
+|  
+| String  
+| 
+|  
+
+|===
+
+
+[#MailLog]
+=== _MailLog_ 
+
+Mail Order Details
+
+[.fields-MailLog]
+[cols="2,1,2,4,1"]
+|===         
+| Field Name| Required| Type| Description| Format
+
+| id 
+|  
+| Long  
+| 
+| int64 
+
+|===
+
+
+[#MailOrder]
+=== _MailOrder_ 
+
+
+
+[.fields-MailOrder]
+[cols="2,1,2,4,1"]
+|===         
+| Field Name| Required| Type| Description| Format
+
+| id 
+| X 
+| Integer  
+| 
+|  
+
+| status 
+| X 
+| String  
+| 
+|  
+
+| username 
+| X 
+| String  
+| 
+|  
+
+| password 
+|  
+| String  
+| 
+|  
+
+| comment 
+|  
+| String  
+| 
+|  
+
+|===
+
+

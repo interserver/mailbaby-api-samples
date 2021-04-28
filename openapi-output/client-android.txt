@@ -1,0 +1,49 @@
+[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
+[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
+[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: android (client)
+[main] INFO  o.o.codegen.DefaultGenerator - Generator 'android' is considered stable.
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] INFO  o.o.codegen.DefaultGenerator - Model MailOrders not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/model/Error.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/docs/Error.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/model/GenericResponse.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/docs/GenericResponse.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/model/MailLog.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/docs/MailLog.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/model/MailOrder.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/docs/MailOrder.md
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/api/DefaultApi.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/docs/DefaultApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/README.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/git_push.sh
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/.gitignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/pom.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/build.gradle
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/AndroidManifest.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/ApiInvoker.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/JsonUtil.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/ApiException.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/Pair.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/request/GetRequest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/request/PostRequest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/request/PutRequest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/request/DeleteRequest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/request/PatchRequest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/auth/ApiKeyAuth.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/auth/HttpBasicAuth.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/src/main/java/org/openapitools/client/auth/Authentication.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/gradlew
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/gradlew.bat
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/gradle/wrapper/gradle-wrapper.properties
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/gradle/wrapper/gradle-wrapper.jar
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/.openapi-generator/VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/android/.openapi-generator/FILES
+################################################################################
+# Thanks for using OpenAPI Generator.                                          #
+# Please consider donation to help us maintain this project 🙏                 #
+# https://opencollective.com/openapi_generator/donate                          #
+################################################################################

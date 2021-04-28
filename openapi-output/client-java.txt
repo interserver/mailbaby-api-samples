@@ -1,0 +1,73 @@
+[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
+[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
+[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: java (client)
+[main] INFO  o.o.codegen.DefaultGenerator - Generator 'java' is considered stable.
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Environment variable JAVA_POST_PROCESS_FILE not defined so the Java code may not be properly formatted. To define it, try 'export JAVA_POST_PROCESS_FILE="/usr/local/bin/clang-format -i"' (Linux/Mac)
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation pingServer
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation getMailOrders
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation validateMailOrder
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation placeMailOrder
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation getMailById
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation sendMailById
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation viewMailLogById
+[main] INFO  o.o.codegen.DefaultGenerator - Model MailOrders not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/model/Error.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/test/java/org/openapitools/client/model/ErrorTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/docs/Error.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/model/GenericResponse.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/test/java/org/openapitools/client/model/GenericResponseTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/docs/GenericResponse.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/model/MailLog.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/test/java/org/openapitools/client/model/MailLogTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/docs/MailLog.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/model/MailOrder.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/test/java/org/openapitools/client/model/MailOrderTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/docs/MailOrder.md
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/api/DefaultApi.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/test/java/org/openapitools/client/api/DefaultApiTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/docs/DefaultApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/pom.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/README.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/build.gradle
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/build.sbt
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/settings.gradle
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/gradle.properties
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/AndroidManifest.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/.travis.yml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/ApiClient.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/ServerConfiguration.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/ServerVariable.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/api/openapi.yaml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/StringUtil.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/auth/HttpBasicAuth.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/auth/HttpBearerAuth.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/auth/ApiKeyAuth.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/gradlew
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/gradlew.bat
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/gradle/wrapper/gradle-wrapper.properties
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/gradle/wrapper/gradle-wrapper.jar
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/git_push.sh
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/.gitignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/ApiException.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/Configuration.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/Pair.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/auth/Authentication.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/ApiCallback.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/ApiResponse.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/JSON.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/ProgressRequestBody.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/ProgressResponseBody.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/src/main/java/org/openapitools/client/GzipRequestInterceptor.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/.openapi-generator/VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java/.openapi-generator/FILES
+################################################################################
+# Thanks for using OpenAPI Generator.                                          #
+# Please consider donation to help us maintain this project 🙏                 #
+# https://opencollective.com/openapi_generator/donate                          #
+################################################################################

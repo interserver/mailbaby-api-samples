@@ -1,0 +1,29 @@
+@startuml
+
+title Mail Baby API Schemas Diagram
+
+entity Error { 
+    * code: String
+    * message: String
+}
+
+entity GenericResponse { 
+    status: String
+    status_text: String
+}
+
+entity MailLog { 
+    id: Long
+}
+
+entity MailOrder { 
+    * id: Integer
+    * status: String
+    * username: String
+    password: String
+    comment: String
+}
+
+
+
+@enduml

@@ -1,0 +1,46 @@
+[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
+[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
+[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: php (client)
+[main] INFO  o.o.codegen.DefaultGenerator - Generator 'php' is considered stable.
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] INFO  o.o.c.languages.AbstractPhpCodegen - Environment variable PHP_POST_PROCESS_FILE not defined so the PHP code may not be properly formatted. To define it, try 'export PHP_POST_PROCESS_FILE="/usr/local/bin/prettier --write"' (Linux/Mac)
+[main] INFO  o.o.c.languages.AbstractPhpCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
+[main] INFO  o.o.codegen.DefaultGenerator - Model MailOrders not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/lib/Model/Error.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/test/Model/ErrorTest.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/docs/Model/Error.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/lib/Model/GenericResponse.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/test/Model/GenericResponseTest.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/docs/Model/GenericResponse.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/lib/Model/MailLog.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/test/Model/MailLogTest.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/docs/Model/MailLog.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/lib/Model/MailOrder.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/test/Model/MailOrderTest.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/docs/Model/MailOrder.md
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/lib/Api/DefaultApi.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/test/Api/DefaultApiTest.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/docs/Api/DefaultApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/.gitignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/lib/ApiException.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/lib/Configuration.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/lib/ObjectSerializer.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/lib/Model/ModelInterface.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/lib/HeaderSelector.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/composer.json
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/README.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/phpunit.xml.dist
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/.travis.yml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/.php_cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/git_push.sh
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/.openapi-generator/VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php/.openapi-generator/FILES
+################################################################################
+# Thanks for using OpenAPI Generator.                                          #
+# Please consider donation to help us maintain this project 🙏                 #
+# https://opencollective.com/openapi_generator/donate                          #
+################################################################################

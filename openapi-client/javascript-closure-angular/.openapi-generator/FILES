@@ -1,0 +1,6 @@
+.openapi-generator-ignore
+API/Client/DefaultApi.js
+API/Client/Error.js
+API/Client/GenericResponse.js
+API/Client/MailLog.js
+API/Client/MailOrder.js

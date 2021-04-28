@@ -1,0 +1,12 @@
+.openapi-generator-ignore
+api/DefaultApi.ts
+api/api.ts
+configuration.ts
+git_push.sh
+index.ts
+model/GenericResponse.ts
+model/MailLog.ts
+model/MailOrder.ts
+model/ModelError.ts
+model/models.ts
+variables.ts

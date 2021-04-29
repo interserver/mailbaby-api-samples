@@ -20,7 +20,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-04-28T17:31:55.541822-04:00[America/New_York]")public interface MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-04-29T02:39:43.099602-04:00[America/New_York]")public interface MailApiService {
       public Response getMailById(Long id, SecurityContext securityContext);
       public Response getMailOrders(SecurityContext securityContext);
       public Response placeMailOrder(MailOrder body, SecurityContext securityContext);

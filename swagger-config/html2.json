@@ -12,5 +12,5 @@
   "phpInvokerPackage": "interserver/mailbaby-client-php",
   "perlModuleName": "MailBabyApi",
   "pythonPackageName": "MailBabyApi",
-  "packageName": "MailBabyApi",
+  "packageName": "MailBabyApi"
 }

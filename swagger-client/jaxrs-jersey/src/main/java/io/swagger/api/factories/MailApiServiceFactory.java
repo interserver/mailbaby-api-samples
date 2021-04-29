@@ -3,7 +3,7 @@ package io.swagger.api.factories;
 import io.swagger.api.MailApiService;
 import io.swagger.api.impl.MailApiServiceImpl;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-04-28T17:32:00.917899-04:00[America/New_York]")public class MailApiServiceFactory {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-04-29T02:39:48.314741-04:00[America/New_York]")public class MailApiServiceFactory {
     private final static MailApiService service = new MailApiServiceImpl();
 
     public static MailApiService getMailApi() {

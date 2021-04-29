@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
  * MailOrder
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-04-28T17:32:13.034065-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-04-29T02:40:00.830198-04:00[America/New_York]")
 public class MailOrder   {
   @JsonProperty("id")
   private Integer id = null;

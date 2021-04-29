@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-04-28T17:32:10.150259-04:00[America/New_York]")public class PingApiServiceImpl implements PingApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-04-29T02:39:57.662081-04:00[America/New_York]")public class PingApiServiceImpl implements PingApiService {
       public Response pingServer(SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!

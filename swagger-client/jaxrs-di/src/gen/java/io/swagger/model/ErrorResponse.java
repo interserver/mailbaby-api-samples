@@ -22,7 +22,7 @@ import javax.validation.Valid;
 /**
  * ErrorResponse
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-04-28T17:32:04.153090-04:00[America/New_York]")public class ErrorResponse   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-04-29T02:39:51.643748-04:00[America/New_York]")public class ErrorResponse   {
   @JsonProperty("code")
   private String code = null;
 

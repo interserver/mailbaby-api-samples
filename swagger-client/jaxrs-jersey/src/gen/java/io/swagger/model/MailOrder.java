@@ -22,7 +22,7 @@ import javax.validation.Valid;
 /**
  * MailOrder
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-04-28T17:32:00.917899-04:00[America/New_York]")public class MailOrder   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-04-29T02:39:48.314741-04:00[America/New_York]")public class MailOrder   {
   @JsonProperty("id")
   private Integer id = null;
 

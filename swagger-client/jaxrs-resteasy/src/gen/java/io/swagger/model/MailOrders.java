@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-04-29T02:39:57.662081-04:00[America/New_York]")public class MailOrders extends ArrayList<MailOrder>  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-04-29T02:41:54.188085-04:00[America/New_York]")public class MailOrders extends ArrayList<MailOrder>  {
 
 
 

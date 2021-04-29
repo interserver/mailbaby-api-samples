@@ -962,10 +962,10 @@
 "https://api.mailbaby.net//mail/{id}"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getMailById-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
+import MailBabyApi.auth.*;
+import MailBabyApi.model.*;
+import MailBabyApi.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -1007,7 +1007,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-getMailById-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
 
 public class DefaultApiExample {
 
@@ -1101,9 +1101,9 @@ api.getMailById(id, callback);
                             <div class="tab-pane" id="examples-Default-getMailById-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using MailBabyApi.Api;
+using MailBabyApi.Client;
+using MailBabyApi.Model;
 
 namespace Example
 {
@@ -1149,17 +1149,17 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 // Configure API key authorization: apiLoginAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
 // Configure API key authorization: apiPasswordAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 $id = 789; // Long | User ID
@@ -1175,23 +1175,23 @@ try {
 
                             <div class="tab-pane" id="examples-Default-getMailById-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
+use MailBabyApi::Configuration;
+use MailBabyApi::DefaultApi;
 
 # Configure API key authorization: apiKeyAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 # Configure API key authorization: apiLoginAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
 # Configure API key authorization: apiPasswordAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
 
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $api_instance = MailBabyApi::DefaultApi->new();
 my $id = 789; # Long | User ID
 
 eval { 
@@ -1206,25 +1206,25 @@ if ($@) {
                             <div class="tab-pane" id="examples-Default-getMailById-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import MailBabyApi
+from MailBabyApi.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-swagger_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 # Configure API key authorization: apiLoginAuth
-swagger_client.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
 # Configure API key authorization: apiPasswordAuth
-swagger_client.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.DefaultApi()
+api_instance = MailBabyApi.DefaultApi()
 id = 789 # Long | User ID
 
 try: 
@@ -1367,10 +1367,10 @@ except ApiException as e:
 "https://api.mailbaby.net//mail"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getMailOrders-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
+import MailBabyApi.auth.*;
+import MailBabyApi.model.*;
+import MailBabyApi.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -1411,7 +1411,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-getMailOrders-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
 
 public class DefaultApiExample {
 
@@ -1501,9 +1501,9 @@ api.getMailOrders(callback);
                             <div class="tab-pane" id="examples-Default-getMailOrders-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using MailBabyApi.Api;
+using MailBabyApi.Client;
+using MailBabyApi.Model;
 
 namespace Example
 {
@@ -1548,17 +1548,17 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 // Configure API key authorization: apiLoginAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
 // Configure API key authorization: apiPasswordAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 
@@ -1573,23 +1573,23 @@ try {
 
                             <div class="tab-pane" id="examples-Default-getMailOrders-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
+use MailBabyApi::Configuration;
+use MailBabyApi::DefaultApi;
 
 # Configure API key authorization: apiKeyAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 # Configure API key authorization: apiLoginAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
 # Configure API key authorization: apiPasswordAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
 
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $api_instance = MailBabyApi::DefaultApi->new();
 
 eval { 
     my $result = $api_instance->getMailOrders();
@@ -1603,25 +1603,25 @@ if ($@) {
                             <div class="tab-pane" id="examples-Default-getMailOrders-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import MailBabyApi
+from MailBabyApi.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-swagger_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 # Configure API key authorization: apiLoginAuth
-swagger_client.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
 # Configure API key authorization: apiPasswordAuth
-swagger_client.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.DefaultApi()
+api_instance = MailBabyApi.DefaultApi()
 
 try: 
     # displays a list of mail service orders
@@ -1801,10 +1801,10 @@ except ApiException as e:
 "https://api.mailbaby.net//ping"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-pingServer-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
+import MailBabyApi.auth.*;
+import MailBabyApi.model.*;
+import MailBabyApi.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -1825,7 +1825,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-pingServer-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
 
 public class DefaultApiExample {
 
@@ -1879,9 +1879,9 @@ api.pingServer(callback);
                             <div class="tab-pane" id="examples-Default-pingServer-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using MailBabyApi.Api;
+using MailBabyApi.Client;
+using MailBabyApi.Model;
 
 namespace Example
 {
@@ -1923,10 +1923,10 @@ try {
 
                             <div class="tab-pane" id="examples-Default-pingServer-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
+use MailBabyApi::Configuration;
+use MailBabyApi::DefaultApi;
 
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $api_instance = MailBabyApi::DefaultApi->new();
 
 eval { 
     $api_instance->pingServer();
@@ -1939,12 +1939,12 @@ if ($@) {
                             <div class="tab-pane" id="examples-Default-pingServer-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import MailBabyApi
+from MailBabyApi.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.DefaultApi()
+api_instance = MailBabyApi.DefaultApi()
 
 try: 
     # Checks if the server is running
@@ -2022,10 +2022,10 @@ except ApiException as e:
 "https://api.mailbaby.net//mail/order"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-placeMailOrder-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
+import MailBabyApi.auth.*;
+import MailBabyApi.model.*;
+import MailBabyApi.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -2066,7 +2066,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-placeMailOrder-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
 
 public class DefaultApiExample {
 
@@ -2157,9 +2157,9 @@ api.placeMailOrder(opts, callback);
                             <div class="tab-pane" id="examples-Default-placeMailOrder-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using MailBabyApi.Api;
+using MailBabyApi.Client;
+using MailBabyApi.Model;
 
 namespace Example
 {
@@ -2204,17 +2204,17 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 // Configure API key authorization: apiLoginAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
 // Configure API key authorization: apiPasswordAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 $body = ; // MailOrder | Inventory item to add
@@ -2229,24 +2229,24 @@ try {
 
                             <div class="tab-pane" id="examples-Default-placeMailOrder-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
+use MailBabyApi::Configuration;
+use MailBabyApi::DefaultApi;
 
 # Configure API key authorization: apiKeyAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 # Configure API key authorization: apiLoginAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
 # Configure API key authorization: apiPasswordAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
 
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $body = WWW::SwaggerClient::Object::MailOrder->new(); # MailOrder | Inventory item to add
+my $api_instance = MailBabyApi::DefaultApi->new();
+my $body = MailBabyApi::Object::MailOrder->new(); # MailOrder | Inventory item to add
 
 eval { 
     $api_instance->placeMailOrder(body => $body);
@@ -2259,25 +2259,25 @@ if ($@) {
                             <div class="tab-pane" id="examples-Default-placeMailOrder-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import MailBabyApi
+from MailBabyApi.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-swagger_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 # Configure API key authorization: apiLoginAuth
-swagger_client.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
 # Configure API key authorization: apiPasswordAuth
-swagger_client.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.DefaultApi()
+api_instance = MailBabyApi.DefaultApi()
 body =  # MailOrder | Inventory item to add (optional)
 
 try: 
@@ -2455,10 +2455,10 @@ except ApiException as e:
 "https://api.mailbaby.net//mail/{id}/advsend"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-sendAdvMailById-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
+import MailBabyApi.auth.*;
+import MailBabyApi.model.*;
+import MailBabyApi.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -2501,7 +2501,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-sendAdvMailById-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
 
 public class DefaultApiExample {
 
@@ -2599,9 +2599,9 @@ api.sendAdvMailById(bodyid, callback);
                             <div class="tab-pane" id="examples-Default-sendAdvMailById-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using MailBabyApi.Api;
+using MailBabyApi.Client;
+using MailBabyApi.Model;
 
 namespace Example
 {
@@ -2648,17 +2648,17 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 // Configure API key authorization: apiLoginAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
 // Configure API key authorization: apiPasswordAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 $body = ; // SendMail | 
@@ -2675,24 +2675,24 @@ try {
 
                             <div class="tab-pane" id="examples-Default-sendAdvMailById-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
+use MailBabyApi::Configuration;
+use MailBabyApi::DefaultApi;
 
 # Configure API key authorization: apiKeyAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 # Configure API key authorization: apiLoginAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
 # Configure API key authorization: apiPasswordAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
 
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
-my $body = WWW::SwaggerClient::Object::SendMail->new(); # SendMail | 
+my $api_instance = MailBabyApi::DefaultApi->new();
+my $body = MailBabyApi::Object::SendMail->new(); # SendMail | 
 my $id = 789; # Long | User ID
 
 eval { 
@@ -2707,25 +2707,25 @@ if ($@) {
                             <div class="tab-pane" id="examples-Default-sendAdvMailById-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import MailBabyApi
+from MailBabyApi.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-swagger_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 # Configure API key authorization: apiLoginAuth
-swagger_client.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
 # Configure API key authorization: apiPasswordAuth
-swagger_client.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.DefaultApi()
+api_instance = MailBabyApi.DefaultApi()
 body =  # SendMail | 
 id = 789 # Long | User ID
 
@@ -3060,10 +3060,10 @@ except ApiException as e:
 "https://api.mailbaby.net//mail/{id}/send?subject=&body=&to=&toName=&from=&fromName="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-sendMailById-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
+import MailBabyApi.auth.*;
+import MailBabyApi.model.*;
+import MailBabyApi.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -3111,7 +3111,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-sendMailById-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
 
 public class DefaultApiExample {
 
@@ -3230,9 +3230,9 @@ api.sendMailById(id, opts, callback);
                             <div class="tab-pane" id="examples-Default-sendMailById-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using MailBabyApi.Api;
+using MailBabyApi.Client;
+using MailBabyApi.Model;
 
 namespace Example
 {
@@ -3284,17 +3284,17 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 // Configure API key authorization: apiLoginAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
 // Configure API key authorization: apiPasswordAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 $id = 789; // Long | User ID
@@ -3316,23 +3316,23 @@ try {
 
                             <div class="tab-pane" id="examples-Default-sendMailById-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
+use MailBabyApi::Configuration;
+use MailBabyApi::DefaultApi;
 
 # Configure API key authorization: apiKeyAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 # Configure API key authorization: apiLoginAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
 # Configure API key authorization: apiPasswordAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
 
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $api_instance = MailBabyApi::DefaultApi->new();
 my $id = 789; # Long | User ID
 my $subject = subject_example; # String | 
 my $body = body_example; # String | 
@@ -3353,25 +3353,25 @@ if ($@) {
                             <div class="tab-pane" id="examples-Default-sendMailById-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import MailBabyApi
+from MailBabyApi.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-swagger_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 # Configure API key authorization: apiLoginAuth
-swagger_client.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
 # Configure API key authorization: apiPasswordAuth
-swagger_client.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.DefaultApi()
+api_instance = MailBabyApi.DefaultApi()
 id = 789 # Long | User ID
 subject = subject_example # String |  (optional)
 body = body_example # String |  (optional)
@@ -3727,10 +3727,10 @@ except ApiException as e:
 "https://api.mailbaby.net//mail/order"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-validateMailOrder-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
+import MailBabyApi.auth.*;
+import MailBabyApi.model.*;
+import MailBabyApi.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -3770,7 +3770,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-validateMailOrder-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
 
 public class DefaultApiExample {
 
@@ -3856,9 +3856,9 @@ api.validateMailOrder(callback);
                             <div class="tab-pane" id="examples-Default-validateMailOrder-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using MailBabyApi.Api;
+using MailBabyApi.Client;
+using MailBabyApi.Model;
 
 namespace Example
 {
@@ -3902,17 +3902,17 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 // Configure API key authorization: apiLoginAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
 // Configure API key authorization: apiPasswordAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 
@@ -3926,23 +3926,23 @@ try {
 
                             <div class="tab-pane" id="examples-Default-validateMailOrder-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
+use MailBabyApi::Configuration;
+use MailBabyApi::DefaultApi;
 
 # Configure API key authorization: apiKeyAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 # Configure API key authorization: apiLoginAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
 # Configure API key authorization: apiPasswordAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
 
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $api_instance = MailBabyApi::DefaultApi->new();
 
 eval { 
     $api_instance->validateMailOrder();
@@ -3955,25 +3955,25 @@ if ($@) {
                             <div class="tab-pane" id="examples-Default-validateMailOrder-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import MailBabyApi
+from MailBabyApi.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-swagger_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 # Configure API key authorization: apiLoginAuth
-swagger_client.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
 # Configure API key authorization: apiPasswordAuth
-swagger_client.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.DefaultApi()
+api_instance = MailBabyApi.DefaultApi()
 
 try: 
     # validatess order details before placing an order
@@ -4092,10 +4092,10 @@ available inventory in the system
 "https://api.mailbaby.net//mail/{id}/log?searchString=&skip=&limit="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-viewMailLogById-0-java">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
+import MailBabyApi.auth.*;
+import MailBabyApi.model.*;
+import MailBabyApi.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
@@ -4140,7 +4140,7 @@ public class DefaultApiExample {
                           </div>
 
                           <div class="tab-pane" id="examples-Default-viewMailLogById-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
 
 public class DefaultApiExample {
 
@@ -4247,9 +4247,9 @@ api.viewMailLogById(id, opts, callback);
                             <div class="tab-pane" id="examples-Default-viewMailLogById-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using MailBabyApi.Api;
+using MailBabyApi.Client;
+using MailBabyApi.Model;
 
 namespace Example
 {
@@ -4298,17 +4298,17 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 // Configure API key authorization: apiLoginAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
 // Configure API key authorization: apiPasswordAuth
-Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
+interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
+// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 $id = 789; // Long | User ID
@@ -4327,23 +4327,23 @@ try {
 
                             <div class="tab-pane" id="examples-Default-viewMailLogById-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
+use MailBabyApi::Configuration;
+use MailBabyApi::DefaultApi;
 
 # Configure API key authorization: apiKeyAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 # Configure API key authorization: apiLoginAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
 # Configure API key authorization: apiPasswordAuth
-$WWW::SwaggerClient::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
+$MailBabyApi::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$WWW::SwaggerClient::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
 
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $api_instance = MailBabyApi::DefaultApi->new();
 my $id = 789; # Long | User ID
 my $searchString = searchString_example; # String | pass an optional search string for looking up inventory
 my $skip = 56; # Integer | number of records to skip for pagination
@@ -4361,25 +4361,25 @@ if ($@) {
                             <div class="tab-pane" id="examples-Default-viewMailLogById-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import MailBabyApi
+from MailBabyApi.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-swagger_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 # Configure API key authorization: apiLoginAuth
-swagger_client.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
 # Configure API key authorization: apiPasswordAuth
-swagger_client.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
+MailBabyApi.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# swagger_client.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
+# MailBabyApi.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.DefaultApi()
+api_instance = MailBabyApi.DefaultApi()
 id = 789 # Long | User ID
 searchString = searchString_example # String | pass an optional search string for looking up inventory (optional)
 skip = 56 # Integer | number of records to skip for pagination (optional)

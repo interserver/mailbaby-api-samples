@@ -21,7 +21,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-03T11:52:26.344167-04:00[America/New_York]")public class MailApiServiceImpl extends MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-03T13:38:19.452581-04:00[America/New_York]")public class MailApiServiceImpl extends MailApiService {
     @Override
     public Response getMailById(Long id, SecurityContext securityContext) throws NotFoundException {
         // do some magic!

@@ -32,16 +32,6 @@ SwaggerClient.configure do |config|
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
-
-  # Configure API key authorization: apiLoginAuth
-  config.api_key['X-API-LOGIN'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-
-  # Configure API key authorization: apiPasswordAuth
-  config.api_key['X-API-PASS'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-PASS'] = 'Bearer'
 end
 
 api_instance = SwaggerClient::DefaultApi.new
@@ -69,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -93,16 +83,6 @@ SwaggerClient.configure do |config|
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
-
-  # Configure API key authorization: apiLoginAuth
-  config.api_key['X-API-LOGIN'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-
-  # Configure API key authorization: apiPasswordAuth
-  config.api_key['X-API-PASS'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-PASS'] = 'Bearer'
 end
 
 api_instance = SwaggerClient::DefaultApi.new
@@ -125,7 +105,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -189,16 +169,6 @@ SwaggerClient.configure do |config|
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
-
-  # Configure API key authorization: apiLoginAuth
-  config.api_key['X-API-LOGIN'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-
-  # Configure API key authorization: apiPasswordAuth
-  config.api_key['X-API-PASS'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-PASS'] = 'Bearer'
 end
 
 api_instance = SwaggerClient::DefaultApi.new
@@ -226,7 +196,7 @@ nil (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -252,16 +222,6 @@ SwaggerClient.configure do |config|
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
-
-  # Configure API key authorization: apiLoginAuth
-  config.api_key['X-API-LOGIN'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-
-  # Configure API key authorization: apiPasswordAuth
-  config.api_key['X-API-PASS'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-PASS'] = 'Bearer'
 end
 
 api_instance = SwaggerClient::DefaultApi.new
@@ -291,7 +251,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -317,16 +277,6 @@ SwaggerClient.configure do |config|
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
-
-  # Configure API key authorization: apiLoginAuth
-  config.api_key['X-API-LOGIN'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-
-  # Configure API key authorization: apiPasswordAuth
-  config.api_key['X-API-PASS'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-PASS'] = 'Bearer'
 end
 
 api_instance = SwaggerClient::DefaultApi.new
@@ -356,7 +306,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -382,16 +332,6 @@ SwaggerClient.configure do |config|
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
-
-  # Configure API key authorization: apiLoginAuth
-  config.api_key['X-API-LOGIN'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-
-  # Configure API key authorization: apiPasswordAuth
-  config.api_key['X-API-PASS'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-PASS'] = 'Bearer'
 end
 
 api_instance = SwaggerClient::DefaultApi.new
@@ -421,7 +361,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -447,16 +387,6 @@ SwaggerClient.configure do |config|
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
-
-  # Configure API key authorization: apiLoginAuth
-  config.api_key['X-API-LOGIN'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-
-  # Configure API key authorization: apiPasswordAuth
-  config.api_key['X-API-PASS'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-PASS'] = 'Bearer'
 end
 
 api_instance = SwaggerClient::DefaultApi.new
@@ -497,7 +427,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -521,16 +451,6 @@ SwaggerClient.configure do |config|
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
-
-  # Configure API key authorization: apiLoginAuth
-  config.api_key['X-API-LOGIN'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-
-  # Configure API key authorization: apiPasswordAuth
-  config.api_key['X-API-PASS'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-PASS'] = 'Bearer'
 end
 
 api_instance = SwaggerClient::DefaultApi.new
@@ -552,7 +472,7 @@ nil (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -578,16 +498,6 @@ SwaggerClient.configure do |config|
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
-
-  # Configure API key authorization: apiLoginAuth
-  config.api_key['X-API-LOGIN'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-
-  # Configure API key authorization: apiPasswordAuth
-  config.api_key['X-API-PASS'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-PASS'] = 'Bearer'
 end
 
 api_instance = SwaggerClient::DefaultApi.new
@@ -622,7 +532,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

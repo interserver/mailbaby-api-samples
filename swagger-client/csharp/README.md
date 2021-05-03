@@ -74,14 +74,6 @@ namespace Example
             Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.ApiKey.Add("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.ApiKey.Add("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi();
             var id = 789;  // long? | User ID

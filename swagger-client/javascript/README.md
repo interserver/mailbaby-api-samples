@@ -78,18 +78,6 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
 
-// Configure API key authorization: apiLoginAuth
-var apiLoginAuth = defaultClient.authentications['apiLoginAuth'];
-apiLoginAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.apiKeyPrefix['X-API-LOGIN'] = "Token"
-
-// Configure API key authorization: apiPasswordAuth
-var apiPasswordAuth = defaultClient.authentications['apiPasswordAuth'];
-apiPasswordAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.apiKeyPrefix['X-API-PASS'] = "Token"
-
 var api = new MailBabyApi.DefaultApi()
 var id = 789; // {Number} User ID
 

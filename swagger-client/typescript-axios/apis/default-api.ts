@@ -60,22 +60,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-LOGIN")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-PASS")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
-            }
-
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -116,22 +100,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                     ? await configuration.apiKey("X-API-KEY")
                     : await configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-LOGIN")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-PASS")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -211,22 +179,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-LOGIN")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-PASS")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
-            }
-
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -283,22 +235,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                     ? await configuration.apiKey("X-API-KEY")
                     : await configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-LOGIN")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-PASS")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
             }
 
 
@@ -365,22 +301,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-LOGIN")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-PASS")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
-            }
-
 
             if (id !== undefined) { 
                 localVarFormParams.set('id', id as any);
@@ -445,22 +365,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-LOGIN")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-PASS")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
-            }
-
 
             if (id !== undefined) { 
                 localVarFormParams.set('id', id as any);
@@ -523,22 +427,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                     ? await configuration.apiKey("X-API-KEY")
                     : await configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-LOGIN")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-PASS")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
             }
 
             if (subject !== undefined) {
@@ -607,22 +495,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-LOGIN")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-PASS")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
-            }
-
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -672,22 +544,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                     ? await configuration.apiKey("X-API-KEY")
                     : await configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-LOGIN")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-PASS")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
             }
 
             if (searchString !== undefined) {

@@ -157,7 +157,7 @@ namespace IO.Swagger.Api
     
                                     
             // authentication setting, if any
-            String[] authSettings = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+            String[] authSettings = new String[] { "apiKeyAuth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -188,7 +188,7 @@ namespace IO.Swagger.Api
     
                                     
             // authentication setting, if any
-            String[] authSettings = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+            String[] authSettings = new String[] { "apiKeyAuth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -252,7 +252,7 @@ namespace IO.Swagger.Api
                                     postBody = ApiClient.Serialize(body); // http body (model) parameter
 
             // authentication setting, if any
-            String[] authSettings = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+            String[] authSettings = new String[] { "apiKeyAuth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -291,7 +291,7 @@ namespace IO.Swagger.Api
                                     postBody = ApiClient.Serialize(body); // http body (model) parameter
 
             // authentication setting, if any
-            String[] authSettings = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+            String[] authSettings = new String[] { "apiKeyAuth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -330,7 +330,7 @@ namespace IO.Swagger.Api
                                     if (id != null) formParams.Add("id", ApiClient.ParameterToString(id)); // form parameter
 
             // authentication setting, if any
-            String[] authSettings = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+            String[] authSettings = new String[] { "apiKeyAuth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -369,7 +369,7 @@ namespace IO.Swagger.Api
                                     postBody = ApiClient.Serialize(body); // http body (model) parameter
 
             // authentication setting, if any
-            String[] authSettings = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+            String[] authSettings = new String[] { "apiKeyAuth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -416,7 +416,7 @@ namespace IO.Swagger.Api
  if (fromName != null) queryParams.Add("fromName", ApiClient.ParameterToString(fromName)); // query parameter
                         
             // authentication setting, if any
-            String[] authSettings = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+            String[] authSettings = new String[] { "apiKeyAuth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -447,7 +447,7 @@ namespace IO.Swagger.Api
     
                                     
             // authentication setting, if any
-            String[] authSettings = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+            String[] authSettings = new String[] { "apiKeyAuth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
@@ -488,7 +488,7 @@ namespace IO.Swagger.Api
  if (limit != null) queryParams.Add("limit", ApiClient.ParameterToString(limit)); // query parameter
                         
             // authentication setting, if any
-            String[] authSettings = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+            String[] authSettings = new String[] { "apiKeyAuth" };
     
             // make the HTTP request
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);

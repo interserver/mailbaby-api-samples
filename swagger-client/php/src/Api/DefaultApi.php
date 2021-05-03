@@ -332,16 +332,6 @@ class DefaultApi
         if ($apiKey !== null) {
             $headers['X-API-KEY'] = $apiKey;
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -597,16 +587,6 @@ class DefaultApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
         if ($apiKey !== null) {
             $headers['X-API-KEY'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1041,16 +1021,6 @@ class DefaultApi
         if ($apiKey !== null) {
             $headers['X-API-KEY'] = $apiKey;
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1351,16 +1321,6 @@ class DefaultApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
         if ($apiKey !== null) {
             $headers['X-API-KEY'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1663,16 +1623,6 @@ class DefaultApi
         if ($apiKey !== null) {
             $headers['X-API-KEY'] = $apiKey;
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1973,16 +1923,6 @@ class DefaultApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
         if ($apiKey !== null) {
             $headers['X-API-KEY'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2321,16 +2261,6 @@ class DefaultApi
         if ($apiKey !== null) {
             $headers['X-API-KEY'] = $apiKey;
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -2549,16 +2479,6 @@ class DefaultApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
         if ($apiKey !== null) {
             $headers['X-API-KEY'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2853,16 +2773,6 @@ class DefaultApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
         if ($apiKey !== null) {
             $headers['X-API-KEY'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
         }
 
         $defaultHeaders = [];

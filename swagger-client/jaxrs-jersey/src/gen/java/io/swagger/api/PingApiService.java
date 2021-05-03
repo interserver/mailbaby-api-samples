@@ -15,6 +15,6 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-04-29T02:41:45.183728-04:00[America/New_York]")public abstract class PingApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-03T11:52:26.344167-04:00[America/New_York]")public abstract class PingApiService {
     public abstract Response pingServer(SecurityContext securityContext) throws NotFoundException;
 }

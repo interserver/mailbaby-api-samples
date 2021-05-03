@@ -62,14 +62,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-// Configure API key authorization: apiLoginAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-// Configure API key authorization: apiPasswordAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -90,14 +82,6 @@ try {
 $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-// Configure API key authorization: apiLoginAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-// Configure API key authorization: apiPasswordAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -129,14 +113,6 @@ try {
 $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-// Configure API key authorization: apiLoginAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-// Configure API key authorization: apiPasswordAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -156,14 +132,6 @@ try {
 $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-// Configure API key authorization: apiLoginAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-// Configure API key authorization: apiPasswordAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -185,14 +153,6 @@ try {
 $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-// Configure API key authorization: apiLoginAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-// Configure API key authorization: apiPasswordAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -219,14 +179,6 @@ try {
 $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-// Configure API key authorization: apiLoginAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-// Configure API key authorization: apiPasswordAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -245,14 +197,6 @@ try {
 $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-// Configure API key authorization: apiLoginAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-// Configure API key authorization: apiPasswordAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

@@ -47,14 +47,6 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-// TODO Configure API key authorization: apiLoginAuth
-//swagger.api.Configuration.apiKey{'X-API-LOGIN'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-LOGIN'} = "Bearer";
-// TODO Configure API key authorization: apiPasswordAuth
-//swagger.api.Configuration.apiKey{'X-API-PASS'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-PASS'} = "Bearer";
 
 var api_instance = new DefaultApi();
 var id = 789; // int | User ID

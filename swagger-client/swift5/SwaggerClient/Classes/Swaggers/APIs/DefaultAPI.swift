@@ -30,12 +30,6 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
      - examples: [{contentType=application/json, example={
   "password" : "guest123",
   "comment" : "main mail account",
@@ -81,12 +75,6 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
      - examples: [{contentType=application/json, example=[ {
   "password" : "guest123",
   "comment" : "main mail account",
@@ -173,12 +161,6 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
      - parameter body: (body) Inventory item to add (optional)
 
      - returns: RequestBuilder<Void> 
@@ -215,12 +197,6 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
      - examples: [{contentType=application/json, example={
   "status_text" : "The command completed successfully.",
   "status" : "ok"
@@ -265,12 +241,6 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
      - examples: [{contentType=application/json, example={
   "status_text" : "The command completed successfully.",
   "status" : "ok"
@@ -315,12 +285,6 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
      - examples: [{contentType=application/json, example={
   "status_text" : "The command completed successfully.",
   "status" : "ok"
@@ -370,12 +334,6 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
      - examples: [{contentType=application/json, example={
   "status_text" : "The command completed successfully.",
   "status" : "ok"
@@ -436,12 +394,6 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
 
      - returns: RequestBuilder<Void> 
      */
@@ -479,12 +431,6 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
      - examples: [{contentType=application/json, example=[ {
   "id" : 0
 }, {

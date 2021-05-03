@@ -83,16 +83,6 @@ export class DefaultService {
             headers = headers.set('X-API-KEY', this.configuration.apiKeys["X-API-KEY"]);
         }
 
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers = headers.set('X-API-LOGIN', this.configuration.apiKeys["X-API-LOGIN"]);
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-PASS"]) {
-            headers = headers.set('X-API-PASS', this.configuration.apiKeys["X-API-PASS"]);
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
             'application/json'
@@ -132,16 +122,6 @@ export class DefaultService {
         // authentication (apiKeyAuth) required
         if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-KEY"]) {
             headers = headers.set('X-API-KEY', this.configuration.apiKeys["X-API-KEY"]);
-        }
-
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers = headers.set('X-API-LOGIN', this.configuration.apiKeys["X-API-LOGIN"]);
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-PASS"]) {
-            headers = headers.set('X-API-PASS', this.configuration.apiKeys["X-API-PASS"]);
         }
 
         // to determine the Accept header
@@ -224,16 +204,6 @@ export class DefaultService {
             headers = headers.set('X-API-KEY', this.configuration.apiKeys["X-API-KEY"]);
         }
 
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers = headers.set('X-API-LOGIN', this.configuration.apiKeys["X-API-LOGIN"]);
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-PASS"]) {
-            headers = headers.set('X-API-PASS', this.configuration.apiKeys["X-API-PASS"]);
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
             'application/json'
@@ -289,16 +259,6 @@ export class DefaultService {
         // authentication (apiKeyAuth) required
         if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-KEY"]) {
             headers = headers.set('X-API-KEY', this.configuration.apiKeys["X-API-KEY"]);
-        }
-
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers = headers.set('X-API-LOGIN', this.configuration.apiKeys["X-API-LOGIN"]);
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-PASS"]) {
-            headers = headers.set('X-API-PASS', this.configuration.apiKeys["X-API-PASS"]);
         }
 
         // to determine the Accept header
@@ -359,16 +319,6 @@ export class DefaultService {
         // authentication (apiKeyAuth) required
         if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-KEY"]) {
             headers = headers.set('X-API-KEY', this.configuration.apiKeys["X-API-KEY"]);
-        }
-
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers = headers.set('X-API-LOGIN', this.configuration.apiKeys["X-API-LOGIN"]);
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-PASS"]) {
-            headers = headers.set('X-API-PASS', this.configuration.apiKeys["X-API-PASS"]);
         }
 
         // to determine the Accept header
@@ -440,16 +390,6 @@ export class DefaultService {
         // authentication (apiKeyAuth) required
         if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-KEY"]) {
             headers = headers.set('X-API-KEY', this.configuration.apiKeys["X-API-KEY"]);
-        }
-
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers = headers.set('X-API-LOGIN', this.configuration.apiKeys["X-API-LOGIN"]);
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-PASS"]) {
-            headers = headers.set('X-API-PASS', this.configuration.apiKeys["X-API-PASS"]);
         }
 
         // to determine the Accept header
@@ -539,16 +479,6 @@ export class DefaultService {
             headers = headers.set('X-API-KEY', this.configuration.apiKeys["X-API-KEY"]);
         }
 
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers = headers.set('X-API-LOGIN', this.configuration.apiKeys["X-API-LOGIN"]);
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-PASS"]) {
-            headers = headers.set('X-API-PASS', this.configuration.apiKeys["X-API-PASS"]);
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
             'application/json'
@@ -589,16 +519,6 @@ export class DefaultService {
         // authentication (apiKeyAuth) required
         if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-KEY"]) {
             headers = headers.set('X-API-KEY', this.configuration.apiKeys["X-API-KEY"]);
-        }
-
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers = headers.set('X-API-LOGIN', this.configuration.apiKeys["X-API-LOGIN"]);
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-PASS"]) {
-            headers = headers.set('X-API-PASS', this.configuration.apiKeys["X-API-PASS"]);
         }
 
         // to determine the Accept header
@@ -662,16 +582,6 @@ export class DefaultService {
         // authentication (apiKeyAuth) required
         if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-KEY"]) {
             headers = headers.set('X-API-KEY', this.configuration.apiKeys["X-API-KEY"]);
-        }
-
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers = headers.set('X-API-LOGIN', this.configuration.apiKeys["X-API-LOGIN"]);
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-PASS"]) {
-            headers = headers.set('X-API-PASS', this.configuration.apiKeys["X-API-PASS"]);
         }
 
         // to determine the Accept header

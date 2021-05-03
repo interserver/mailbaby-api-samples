@@ -32,18 +32,6 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: apiLoginAuth
-let apiLoginAuth = defaultClient.authentications['apiLoginAuth'];
-apiLoginAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiPasswordAuth
-let apiPasswordAuth = defaultClient.authentications['apiPasswordAuth'];
-apiPasswordAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.apiKeyPrefix = 'Token';
-
 let apiInstance = new MailBabyApi.DefaultApi();
 let id = 789; // Number | User ID
 
@@ -68,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -92,18 +80,6 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: apiLoginAuth
-let apiLoginAuth = defaultClient.authentications['apiLoginAuth'];
-apiLoginAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiPasswordAuth
-let apiPasswordAuth = defaultClient.authentications['apiPasswordAuth'];
-apiPasswordAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.apiKeyPrefix = 'Token';
-
 let apiInstance = new MailBabyApi.DefaultApi();
 apiInstance.getMailOrders((error, data, response) => {
   if (error) {
@@ -123,7 +99,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -185,18 +161,6 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: apiLoginAuth
-let apiLoginAuth = defaultClient.authentications['apiLoginAuth'];
-apiLoginAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiPasswordAuth
-let apiPasswordAuth = defaultClient.authentications['apiPasswordAuth'];
-apiPasswordAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.apiKeyPrefix = 'Token';
-
 let apiInstance = new MailBabyApi.DefaultApi();
 let opts = { 
   'body': new MailBabyApi.MailOrder() // MailOrder | Inventory item to add
@@ -222,7 +186,7 @@ null (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -247,18 +211,6 @@ let apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
 apiKeyAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiLoginAuth
-let apiLoginAuth = defaultClient.authentications['apiLoginAuth'];
-apiLoginAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiPasswordAuth
-let apiPasswordAuth = defaultClient.authentications['apiPasswordAuth'];
-apiPasswordAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyApi.DefaultApi();
 let body = new MailBabyApi.SendMail(); // SendMail | 
@@ -286,7 +238,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -311,18 +263,6 @@ let apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
 apiKeyAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiLoginAuth
-let apiLoginAuth = defaultClient.authentications['apiLoginAuth'];
-apiLoginAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiPasswordAuth
-let apiPasswordAuth = defaultClient.authentications['apiPasswordAuth'];
-apiPasswordAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyApi.DefaultApi();
 let id = 789; // Number | User ID
@@ -361,7 +301,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -385,18 +325,6 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
-// Configure API key authorization: apiLoginAuth
-let apiLoginAuth = defaultClient.authentications['apiLoginAuth'];
-apiLoginAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiPasswordAuth
-let apiPasswordAuth = defaultClient.authentications['apiPasswordAuth'];
-apiPasswordAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.apiKeyPrefix = 'Token';
-
 let apiInstance = new MailBabyApi.DefaultApi();
 apiInstance.validateMailOrder((error, data, response) => {
   if (error) {
@@ -416,7 +344,7 @@ null (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -441,18 +369,6 @@ let apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
 apiKeyAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiLoginAuth
-let apiLoginAuth = defaultClient.authentications['apiLoginAuth'];
-apiLoginAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.apiKeyPrefix = 'Token';
-
-// Configure API key authorization: apiPasswordAuth
-let apiPasswordAuth = defaultClient.authentications['apiPasswordAuth'];
-apiPasswordAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyApi.DefaultApi();
 let id = 789; // Number | User ID
@@ -485,7 +401,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

@@ -32,14 +32,6 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-// TODO Configure API key authorization: apiLoginAuth
-//swagger.api.Configuration.apiKey{'X-API-LOGIN'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-LOGIN'} = "Bearer";
-// TODO Configure API key authorization: apiPasswordAuth
-//swagger.api.Configuration.apiKey{'X-API-PASS'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-PASS'} = "Bearer";
 
 var api_instance = new DefaultApi();
 var id = 789; // int | User ID
@@ -64,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -85,14 +77,6 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-// TODO Configure API key authorization: apiLoginAuth
-//swagger.api.Configuration.apiKey{'X-API-LOGIN'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-LOGIN'} = "Bearer";
-// TODO Configure API key authorization: apiPasswordAuth
-//swagger.api.Configuration.apiKey{'X-API-PASS'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-PASS'} = "Bearer";
 
 var api_instance = new DefaultApi();
 
@@ -113,7 +97,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -172,14 +156,6 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-// TODO Configure API key authorization: apiLoginAuth
-//swagger.api.Configuration.apiKey{'X-API-LOGIN'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-LOGIN'} = "Bearer";
-// TODO Configure API key authorization: apiPasswordAuth
-//swagger.api.Configuration.apiKey{'X-API-PASS'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-PASS'} = "Bearer";
 
 var api_instance = new DefaultApi();
 var body = new MailOrder(); // MailOrder | Inventory item to add
@@ -203,7 +179,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -226,14 +202,6 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-// TODO Configure API key authorization: apiLoginAuth
-//swagger.api.Configuration.apiKey{'X-API-LOGIN'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-LOGIN'} = "Bearer";
-// TODO Configure API key authorization: apiPasswordAuth
-//swagger.api.Configuration.apiKey{'X-API-PASS'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-PASS'} = "Bearer";
 
 var api_instance = new DefaultApi();
 var body = new SendMail(); // SendMail | 
@@ -262,7 +230,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -285,14 +253,6 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-// TODO Configure API key authorization: apiLoginAuth
-//swagger.api.Configuration.apiKey{'X-API-LOGIN'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-LOGIN'} = "Bearer";
-// TODO Configure API key authorization: apiPasswordAuth
-//swagger.api.Configuration.apiKey{'X-API-PASS'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-PASS'} = "Bearer";
 
 var api_instance = new DefaultApi();
 var id = 789; // int | User ID
@@ -329,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -350,14 +310,6 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-// TODO Configure API key authorization: apiLoginAuth
-//swagger.api.Configuration.apiKey{'X-API-LOGIN'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-LOGIN'} = "Bearer";
-// TODO Configure API key authorization: apiPasswordAuth
-//swagger.api.Configuration.apiKey{'X-API-PASS'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-PASS'} = "Bearer";
 
 var api_instance = new DefaultApi();
 
@@ -377,7 +329,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -400,14 +352,6 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-// TODO Configure API key authorization: apiLoginAuth
-//swagger.api.Configuration.apiKey{'X-API-LOGIN'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-LOGIN'} = "Bearer";
-// TODO Configure API key authorization: apiPasswordAuth
-//swagger.api.Configuration.apiKey{'X-API-PASS'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-PASS'} = "Bearer";
 
 var api_instance = new DefaultApi();
 var id = 789; // int | User ID
@@ -438,7 +382,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

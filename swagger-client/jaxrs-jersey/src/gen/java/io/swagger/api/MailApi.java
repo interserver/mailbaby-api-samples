@@ -41,7 +41,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-04-29T02:41:45.183728-04:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-03T11:52:26.344167-04:00[America/New_York]")public class MailApi  {
    private final MailApiService delegate;
 
    public MailApi(@Context ServletConfig servletContext) {
@@ -70,9 +70,7 @@ import javax.validation.constraints.*;
     
     @Produces({ "application/json" })
     @Operation(summary = "Gets mail order information by id", description = "returns information about a mail order in the system with the given id.", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(schema = @Schema(implementation = MailOrder.class))) })
     public Response getMailById(@Parameter(in = ParameterIn.PATH, description = "User ID",required=true) @PathParam("id") Long id
@@ -85,9 +83,7 @@ import javax.validation.constraints.*;
     
     @Produces({ "application/json", "application/xml", "text/plain" })
     @Operation(summary = "displays a list of mail service orders", description = "", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = MailOrders.class))),
         
@@ -101,9 +97,7 @@ import javax.validation.constraints.*;
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     @Operation(summary = "places a mail order", description = "Adds an item to the system", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "list of mail orders"),
         
@@ -123,9 +117,7 @@ import javax.validation.constraints.*;
     @Consumes({ "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
         
@@ -146,9 +138,7 @@ import javax.validation.constraints.*;
     
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
         
@@ -173,9 +163,7 @@ import javax.validation.constraints.*;
     
     @Produces({ "application/json" })
     @Operation(summary = "validatess order details before placing an order", description = "", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "list of mail orders"),
         
@@ -189,9 +177,7 @@ import javax.validation.constraints.*;
     
     @Produces({ "application/json" })
     @Operation(summary = "displays the mail log", description = "By passing in the appropriate options, you can search for available inventory in the system ", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
         

@@ -643,16 +643,6 @@ namespace IO.Swagger.Api
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
             }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
-            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
@@ -724,16 +714,6 @@ namespace IO.Swagger.Api
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
             }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
-            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -799,16 +779,6 @@ namespace IO.Swagger.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -876,16 +846,6 @@ namespace IO.Swagger.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -1076,16 +1036,6 @@ namespace IO.Swagger.Api
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
             }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
-            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
@@ -1160,16 +1110,6 @@ namespace IO.Swagger.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -1257,16 +1197,6 @@ namespace IO.Swagger.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -1356,16 +1286,6 @@ namespace IO.Swagger.Api
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
             }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
-            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1445,16 +1365,6 @@ namespace IO.Swagger.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -1537,16 +1447,6 @@ namespace IO.Swagger.Api
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
             }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
-            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1633,16 +1533,6 @@ namespace IO.Swagger.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -1731,16 +1621,6 @@ namespace IO.Swagger.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -1829,16 +1709,6 @@ namespace IO.Swagger.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -1929,16 +1799,6 @@ namespace IO.Swagger.Api
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
             }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
-            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -2001,16 +1861,6 @@ namespace IO.Swagger.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -2075,16 +1925,6 @@ namespace IO.Swagger.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -2165,16 +2005,6 @@ namespace IO.Swagger.Api
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
             }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
-            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
@@ -2254,16 +2084,6 @@ namespace IO.Swagger.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request

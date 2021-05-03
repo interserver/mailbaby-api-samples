@@ -29,7 +29,7 @@ class DefaultApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["apiKeyAuth", "apiLoginAuth", "apiPasswordAuth"];
+    List<String> authNames = ["apiKeyAuth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -77,7 +77,7 @@ class DefaultApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["apiKeyAuth", "apiLoginAuth", "apiPasswordAuth"];
+    List<String> authNames = ["apiKeyAuth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -174,7 +174,7 @@ class DefaultApi {
     List<String> contentTypes = ["application/json"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["apiKeyAuth", "apiLoginAuth", "apiPasswordAuth"];
+    List<String> authNames = ["apiKeyAuth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -228,7 +228,7 @@ class DefaultApi {
     List<String> contentTypes = ["application/json","application/xml","application/x-www-form-urlencoded","text/plain"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["apiKeyAuth", "apiLoginAuth", "apiPasswordAuth"];
+    List<String> authNames = ["apiKeyAuth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -303,7 +303,7 @@ class DefaultApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["apiKeyAuth", "apiLoginAuth", "apiPasswordAuth"];
+    List<String> authNames = ["apiKeyAuth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -352,7 +352,7 @@ class DefaultApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["apiKeyAuth", "apiLoginAuth", "apiPasswordAuth"];
+    List<String> authNames = ["apiKeyAuth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
@@ -412,7 +412,7 @@ class DefaultApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["apiKeyAuth", "apiLoginAuth", "apiPasswordAuth"];
+    List<String> authNames = ["apiKeyAuth"];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;

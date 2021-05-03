@@ -25,7 +25,7 @@ import java.io.IOException;
  * An Email Contact
  */
 @Schema(description = "An Email Contact")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-29T02:41:28.263199-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-03T11:52:09.752130-04:00[America/New_York]")
 public class MailContact {
   @SerializedName("email")
   private String email = null;

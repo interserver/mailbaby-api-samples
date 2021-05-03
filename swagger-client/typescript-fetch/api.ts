@@ -317,22 +317,6 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-LOGIN")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-PASS")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
-            }
-
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
@@ -362,22 +346,6 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
 					? configuration.apiKey("X-API-KEY")
 					: configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-LOGIN")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-PASS")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -435,22 +403,6 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-LOGIN")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-PASS")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
-            }
-
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -501,22 +453,6 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
 					? configuration.apiKey("X-API-KEY")
 					: configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-LOGIN")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-PASS")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
             }
 
             if (id !== undefined) {
@@ -571,22 +507,6 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
 					? configuration.apiKey("X-API-KEY")
 					: configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-LOGIN")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-PASS")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
             }
 
             if (subject !== undefined) {
@@ -644,22 +564,6 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-LOGIN")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-PASS")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
-            }
-
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
@@ -698,22 +602,6 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
 					? configuration.apiKey("X-API-KEY")
 					: configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-LOGIN")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-PASS")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
             }
 
             if (searchString !== undefined) {

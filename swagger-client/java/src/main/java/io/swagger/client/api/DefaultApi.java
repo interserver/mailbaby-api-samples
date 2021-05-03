@@ -104,7 +104,7 @@ public class DefaultApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+        String[] localVarAuthNames = new String[] { "apiKeyAuth" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
@@ -227,7 +227,7 @@ public class DefaultApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+        String[] localVarAuthNames = new String[] { "apiKeyAuth" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
@@ -456,7 +456,7 @@ public class DefaultApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+        String[] localVarAuthNames = new String[] { "apiKeyAuth" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
@@ -574,7 +574,7 @@ public class DefaultApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+        String[] localVarAuthNames = new String[] { "apiKeyAuth" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
@@ -709,7 +709,7 @@ public class DefaultApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+        String[] localVarAuthNames = new String[] { "apiKeyAuth" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
@@ -842,7 +842,7 @@ public class DefaultApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+        String[] localVarAuthNames = new String[] { "apiKeyAuth" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
@@ -992,7 +992,7 @@ public class DefaultApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+        String[] localVarAuthNames = new String[] { "apiKeyAuth" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
@@ -1133,7 +1133,7 @@ public class DefaultApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+        String[] localVarAuthNames = new String[] { "apiKeyAuth" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
@@ -1256,7 +1256,7 @@ public class DefaultApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "apiKeyAuth", "apiLoginAuth", "apiPasswordAuth" };
+        String[] localVarAuthNames = new String[] { "apiKeyAuth" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     

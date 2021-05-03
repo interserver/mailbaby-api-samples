@@ -38,18 +38,6 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.setApiKeyPrefix("Token");
 
-// Configure API key authorization: apiLoginAuth
-ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-apiLoginAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiPasswordAuth
-ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-apiPasswordAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.setApiKeyPrefix("Token");
-
 DefaultApi apiInstance = new DefaultApi();
 Long id = 789L; // Long | User ID
 try {
@@ -73,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth)[apiLoginAuth](../README.md#apiLoginAuth)[apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -103,18 +91,6 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.setApiKeyPrefix("Token");
 
-// Configure API key authorization: apiLoginAuth
-ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-apiLoginAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiPasswordAuth
-ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-apiPasswordAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.setApiKeyPrefix("Token");
-
 DefaultApi apiInstance = new DefaultApi();
 try {
     MailOrders result = apiInstance.getMailOrders();
@@ -134,7 +110,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth)[apiLoginAuth](../README.md#apiLoginAuth)[apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -204,18 +180,6 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.setApiKeyPrefix("Token");
 
-// Configure API key authorization: apiLoginAuth
-ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-apiLoginAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiPasswordAuth
-ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-apiPasswordAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.setApiKeyPrefix("Token");
-
 DefaultApi apiInstance = new DefaultApi();
 MailOrder body = new MailOrder(); // MailOrder | Inventory item to add
 try {
@@ -238,7 +202,7 @@ null (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth)[apiLoginAuth](../README.md#apiLoginAuth)[apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -270,18 +234,6 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.setApiKeyPrefix("Token");
 
-// Configure API key authorization: apiLoginAuth
-ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-apiLoginAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiPasswordAuth
-ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-apiPasswordAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.setApiKeyPrefix("Token");
-
 DefaultApi apiInstance = new DefaultApi();
 SendMail body = new SendMail(); // SendMail | 
 Long id = 789L; // Long | User ID
@@ -307,7 +259,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth)[apiLoginAuth](../README.md#apiLoginAuth)[apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -339,18 +291,6 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.setApiKeyPrefix("Token");
 
-// Configure API key authorization: apiLoginAuth
-ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-apiLoginAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiPasswordAuth
-ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-apiPasswordAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.setApiKeyPrefix("Token");
-
 DefaultApi apiInstance = new DefaultApi();
 Long id2 = 789L; // Long | 
 Long id = 789L; // Long | User ID
@@ -376,7 +316,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth)[apiLoginAuth](../README.md#apiLoginAuth)[apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -408,18 +348,6 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.setApiKeyPrefix("Token");
 
-// Configure API key authorization: apiLoginAuth
-ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-apiLoginAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiPasswordAuth
-ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-apiPasswordAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.setApiKeyPrefix("Token");
-
 DefaultApi apiInstance = new DefaultApi();
 SendMail body = new SendMail(); // SendMail | 
 Long id = 789L; // Long | User ID
@@ -445,7 +373,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth)[apiLoginAuth](../README.md#apiLoginAuth)[apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -476,18 +404,6 @@ ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth
 apiKeyAuth.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiLoginAuth
-ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-apiLoginAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiPasswordAuth
-ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-apiPasswordAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.setApiKeyPrefix("Token");
 
 DefaultApi apiInstance = new DefaultApi();
 Long id = 789L; // Long | User ID
@@ -524,7 +440,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth)[apiLoginAuth](../README.md#apiLoginAuth)[apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -554,18 +470,6 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.setApiKeyPrefix("Token");
 
-// Configure API key authorization: apiLoginAuth
-ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-apiLoginAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiPasswordAuth
-ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-apiPasswordAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.setApiKeyPrefix("Token");
-
 DefaultApi apiInstance = new DefaultApi();
 try {
     apiInstance.validateMailOrder();
@@ -584,7 +488,7 @@ null (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth)[apiLoginAuth](../README.md#apiLoginAuth)[apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -616,18 +520,6 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.setApiKeyPrefix("Token");
 
-// Configure API key authorization: apiLoginAuth
-ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-apiLoginAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.setApiKeyPrefix("Token");
-
-// Configure API key authorization: apiPasswordAuth
-ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-apiPasswordAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.setApiKeyPrefix("Token");
-
 DefaultApi apiInstance = new DefaultApi();
 Long id = 789L; // Long | User ID
 String searchString = "searchString_example"; // String | pass an optional search string for looking up inventory
@@ -657,7 +549,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth)[apiLoginAuth](../README.md#apiLoginAuth)[apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

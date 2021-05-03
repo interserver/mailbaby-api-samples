@@ -39,14 +39,6 @@ namespace Example
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.AddApiKey("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.AddApiKey("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi();
             var id = 789;  // long? | User ID
@@ -78,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -110,14 +102,6 @@ namespace Example
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.AddApiKey("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.AddApiKey("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi();
 
@@ -145,7 +129,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -232,14 +216,6 @@ namespace Example
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.AddApiKey("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.AddApiKey("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi();
             var body = new MailOrder(); // MailOrder | Inventory item to add (optional) 
@@ -270,7 +246,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -304,14 +280,6 @@ namespace Example
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.AddApiKey("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.AddApiKey("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi();
             var body = new SendMail(); // SendMail | 
@@ -345,7 +313,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -379,14 +347,6 @@ namespace Example
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.AddApiKey("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.AddApiKey("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi();
             var id = 789;  // long? | User ID
@@ -430,7 +390,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -462,14 +422,6 @@ namespace Example
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.AddApiKey("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.AddApiKey("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi();
 
@@ -496,7 +448,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -530,14 +482,6 @@ namespace Example
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.AddApiKey("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.AddApiKey("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi();
             var id = 789;  // long? | User ID
@@ -575,7 +519,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

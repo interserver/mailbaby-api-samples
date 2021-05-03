@@ -26,16 +26,14 @@ import javax.validation.Valid;
 
 @Path("/mail")
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-04-29T02:41:42.635180-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-05-03T11:52:23.770602-04:00[America/New_York]")
 public class MailApi {
 
     @GET
     @Path("/{id}")
     @Produces({ "application/json" })
     @Operation(summary = "Gets mail order information by id", description = "returns information about a mail order in the system with the given id.", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(schema = @Schema(implementation = MailOrder.class)))
     })
@@ -48,9 +46,7 @@ public class MailApi {
     @GET
     @Produces({ "application/json", "application/xml", "text/plain" })
     @Operation(summary = "displays a list of mail service orders", description = "", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = MailOrders.class))),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
@@ -63,9 +59,7 @@ public class MailApi {
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     @Operation(summary = "places a mail order", description = "Adds an item to the system", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "list of mail orders"),
         @ApiResponse(responseCode = "400", description = "invalid input, object invalid"),
@@ -80,9 +74,7 @@ public class MailApi {
     @Consumes({ "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
@@ -100,9 +92,7 @@ public class MailApi {
     @Consumes({ "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
@@ -120,9 +110,7 @@ public class MailApi {
     @Consumes({ "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
@@ -139,9 +127,7 @@ public class MailApi {
     @Path("/{id}/send")
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
@@ -176,9 +162,7 @@ public class MailApi {
     @Path("/order")
     @Produces({ "application/json" })
     @Operation(summary = "validatess order details before placing an order", description = "", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "list of mail orders"),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
@@ -190,9 +174,7 @@ public class MailApi {
     @Path("/{id}/log")
     @Produces({ "application/json" })
     @Operation(summary = "displays the mail log", description = "By passing in the appropriate options, you can search for available inventory in the system ", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
         @ApiResponse(responseCode = "400", description = "bad input parameter")

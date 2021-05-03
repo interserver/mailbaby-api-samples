@@ -24,7 +24,7 @@ import javax.validation.Valid;
  * A File attachment for an email
  */
 @Schema(description = "A File attachment for an email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-04-29T02:41:45.183728-04:00[America/New_York]")public class MailAttachment   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-03T11:52:26.344167-04:00[America/New_York]")public class MailAttachment   {
   @JsonProperty("filename")
   private String filename = null;
 

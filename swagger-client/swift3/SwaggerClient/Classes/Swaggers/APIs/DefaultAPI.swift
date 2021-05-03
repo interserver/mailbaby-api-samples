@@ -28,11 +28,7 @@ open class DefaultAPI: APIBase {
      - returns information about a mail order in the system with the given id.
      - API Key:
        - type: apiKey X-API-KEY 
-       - name: apiKeyAuth     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
+       - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
   "password" : "guest123",
   "comment" : "main mail account",
@@ -74,11 +70,7 @@ open class DefaultAPI: APIBase {
      - GET /mail
      - API Key:
        - type: apiKey X-API-KEY 
-       - name: apiKeyAuth     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
+       - name: apiKeyAuth
      - examples: [{contentType=application/json, example=[ {
   "password" : "guest123",
   "comment" : "main mail account",
@@ -153,11 +145,7 @@ open class DefaultAPI: APIBase {
      - Adds an item to the system
      - API Key:
        - type: apiKey X-API-KEY 
-       - name: apiKeyAuth     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
+       - name: apiKeyAuth
      - parameter body: (body) Inventory item to add (optional)
      - returns: RequestBuilder<Void> 
      */
@@ -192,11 +180,7 @@ open class DefaultAPI: APIBase {
      - Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      - API Key:
        - type: apiKey X-API-KEY 
-       - name: apiKeyAuth     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
+       - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
   "status_text" : "The command completed successfully.",
   "status" : "ok"
@@ -239,11 +223,7 @@ open class DefaultAPI: APIBase {
      - Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      - API Key:
        - type: apiKey X-API-KEY 
-       - name: apiKeyAuth     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
+       - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
   "status_text" : "The command completed successfully.",
   "status" : "ok"
@@ -286,11 +266,7 @@ open class DefaultAPI: APIBase {
      - Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      - API Key:
        - type: apiKey X-API-KEY 
-       - name: apiKeyAuth     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
+       - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
   "status_text" : "The command completed successfully.",
   "status" : "ok"
@@ -338,11 +314,7 @@ open class DefaultAPI: APIBase {
      - Sends An email through one of your mail orders.
      - API Key:
        - type: apiKey X-API-KEY 
-       - name: apiKeyAuth     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
+       - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
   "status_text" : "The command completed successfully.",
   "status" : "ok"
@@ -394,11 +366,7 @@ open class DefaultAPI: APIBase {
      - GET /mail/order
      - API Key:
        - type: apiKey X-API-KEY 
-       - name: apiKeyAuth     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
+       - name: apiKeyAuth
      - returns: RequestBuilder<Void> 
      */
     open class func validateMailOrderWithRequestBuilder() -> RequestBuilder<Void> {
@@ -434,11 +402,7 @@ open class DefaultAPI: APIBase {
      - By passing in the appropriate options, you can search for available inventory in the system 
      - API Key:
        - type: apiKey X-API-KEY 
-       - name: apiKeyAuth     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
+       - name: apiKeyAuth
      - examples: [{contentType=application/json, example=[ {
   "id" : 0
 }, {

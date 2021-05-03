@@ -37,14 +37,12 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-04-29T02:41:59.986911-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-03T11:52:41.161531-04:00[America/New_York]")
 @Validated
 public interface MailApi {
 
     @Operation(summary = "Gets mail order information by id", description = "returns information about a mail order in the system with the given id.", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(schema = @Schema(implementation = MailOrder.class))) })
     @RequestMapping(value = "/mail/{id}",
@@ -54,9 +52,7 @@ public interface MailApi {
 
 
     @Operation(summary = "displays a list of mail service orders", description = "", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = MailOrders.class))),
         
@@ -68,9 +64,7 @@ public interface MailApi {
 
 
     @Operation(summary = "places a mail order", description = "Adds an item to the system", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "list of mail orders"),
         
@@ -87,9 +81,7 @@ public interface MailApi {
 
 
     @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
         
@@ -106,9 +98,7 @@ public interface MailApi {
 
 
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
         
@@ -124,9 +114,7 @@ public interface MailApi {
 
 
     @Operation(summary = "validatess order details before placing an order", description = "", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "list of mail orders"),
         
@@ -138,9 +126,7 @@ public interface MailApi {
 
 
     @Operation(summary = "displays the mail log", description = "By passing in the appropriate options, you can search for available inventory in the system ", security = {
-        @SecurityRequirement(name = "apiKeyAuth"),
-@SecurityRequirement(name = "apiLoginAuth"),
-@SecurityRequirement(name = "apiPasswordAuth")    }, tags={  })
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
         

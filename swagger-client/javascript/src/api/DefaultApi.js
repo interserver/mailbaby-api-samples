@@ -64,7 +64,7 @@ export default class DefaultApi {
       let formParams = {
       };
 
-      let authNames = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+      let authNames = ['apiKeyAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
       let returnType = MailOrder;
@@ -100,7 +100,7 @@ export default class DefaultApi {
       let formParams = {
       };
 
-      let authNames = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+      let authNames = ['apiKeyAuth'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/xml', 'text/plain'];
       let returnType = MailOrders;
@@ -173,7 +173,7 @@ export default class DefaultApi {
       let formParams = {
       };
 
-      let authNames = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+      let authNames = ['apiKeyAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = null;
@@ -212,7 +212,7 @@ export default class DefaultApi {
         'id': id
       };
 
-      let authNames = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+      let authNames = ['apiKeyAuth'];
       let contentTypes = ['application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain'];
       let accepts = ['application/json'];
       let returnType = GenericResponse;
@@ -258,7 +258,7 @@ export default class DefaultApi {
       let formParams = {
       };
 
-      let authNames = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+      let authNames = ['apiKeyAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
       let returnType = GenericResponse;
@@ -293,7 +293,7 @@ export default class DefaultApi {
       let formParams = {
       };
 
-      let authNames = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+      let authNames = ['apiKeyAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
       let returnType = null;
@@ -336,7 +336,7 @@ export default class DefaultApi {
       let formParams = {
       };
 
-      let authNames = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+      let authNames = ['apiKeyAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
       let returnType = [MailLog];

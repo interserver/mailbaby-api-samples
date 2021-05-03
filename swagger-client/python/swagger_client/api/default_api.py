@@ -109,7 +109,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth']  # noqa: E501
+        auth_settings = ['apiKeyAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/mail/{id}', 'GET',
@@ -194,7 +194,7 @@ class DefaultApi(object):
             ['application/json', 'application/xml', 'text/plain'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth']  # noqa: E501
+        auth_settings = ['apiKeyAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/mail', 'GET',
@@ -370,7 +370,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth']  # noqa: E501
+        auth_settings = ['apiKeyAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/mail/order', 'POST',
@@ -479,7 +479,7 @@ class DefaultApi(object):
             ['application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth']  # noqa: E501
+        auth_settings = ['apiKeyAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/mail/{id}/advsend', 'POST',
@@ -588,7 +588,7 @@ class DefaultApi(object):
             ['application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth']  # noqa: E501
+        auth_settings = ['apiKeyAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/mail/{id}/advsend', 'POST',
@@ -697,7 +697,7 @@ class DefaultApi(object):
             ['application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth']  # noqa: E501
+        auth_settings = ['apiKeyAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/mail/{id}/advsend', 'POST',
@@ -816,7 +816,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth']  # noqa: E501
+        auth_settings = ['apiKeyAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/mail/{id}/send', 'POST',
@@ -901,7 +901,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth']  # noqa: E501
+        auth_settings = ['apiKeyAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/mail/order', 'GET',
@@ -1008,7 +1008,7 @@ class DefaultApi(object):
             ['application/json'])  # noqa: E501
 
         # Authentication setting
-        auth_settings = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth']  # noqa: E501
+        auth_settings = ['apiKeyAuth']  # noqa: E501
 
         return self.api_client.call_api(
             '/mail/{id}/log', 'GET',

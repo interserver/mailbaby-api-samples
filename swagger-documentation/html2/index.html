@@ -956,8 +956,6 @@
                           <div class="tab-pane active" id="examples-Default-getMailById-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
--H "X-API-LOGIN: [[apiKey]]"\
--H "X-API-PASS: [[apiKey]]"\
 -H "Accept: application/json"\
 "https://api.mailbaby.net//mail/{id}"</code></pre>
                           </div>
@@ -980,18 +978,6 @@ public class DefaultApiExample {
         apiKeyAuth.setApiKey("YOUR API KEY");
         // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
         //apiKeyAuth.setApiKeyPrefix("Token");
-
-        // Configure API key authorization: apiLoginAuth
-        ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-        apiLoginAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiLoginAuth.setApiKeyPrefix("Token");
-
-        // Configure API key authorization: apiPasswordAuth
-        ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-        apiPasswordAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiPasswordAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
         Long id = 789; // Long | User ID
@@ -1034,14 +1020,6 @@ public class DefaultApiExample {
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-// Configure API key authorization: (authentication scheme: apiLoginAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-LOGIN"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-LOGIN"];
-// Configure API key authorization: (authentication scheme: apiPasswordAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-PASS"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-PASS"];
 Long *id = 789; // User ID
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
@@ -1068,18 +1046,6 @@ var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
 apiKeyAuth.apiKey = "YOUR API KEY"
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
-
-// Configure API key authorization: apiLoginAuth
-var apiLoginAuth = defaultClient.authentications['apiLoginAuth'];
-apiLoginAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.apiKeyPrefix['X-API-LOGIN'] = "Token"
-
-// Configure API key authorization: apiPasswordAuth
-var apiPasswordAuth = defaultClient.authentications['apiPasswordAuth'];
-apiPasswordAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.apiKeyPrefix['X-API-PASS'] = "Token"
 
 var api = new MailBabyApi.DefaultApi()
 var id = 789; // {{Long}} User ID
@@ -1116,14 +1082,6 @@ namespace Example
             Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.ApiKey.Add("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.ApiKey.Add("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi();
             var id = 789;  // Long | User ID
@@ -1152,14 +1110,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-// Configure API key authorization: apiLoginAuth
-interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-// Configure API key authorization: apiPasswordAuth
-interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 $id = 789; // Long | User ID
@@ -1182,14 +1132,6 @@ use MailBabyApi::DefaultApi;
 $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
-# Configure API key authorization: apiLoginAuth
-$MailBabyApi::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
-# Configure API key authorization: apiPasswordAuth
-$MailBabyApi::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
 
 my $api_instance = MailBabyApi::DefaultApi->new();
 my $id = 789; # Long | User ID
@@ -1214,14 +1156,6 @@ from pprint import pprint
 MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
-# Configure API key authorization: apiLoginAuth
-MailBabyApi.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-# Configure API key authorization: apiPasswordAuth
-MailBabyApi.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
@@ -1361,8 +1295,6 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-getMailOrders-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
--H "X-API-LOGIN: [[apiKey]]"\
--H "X-API-PASS: [[apiKey]]"\
 -H "Accept: application/json,application/xml,text/plain"\
 "https://api.mailbaby.net//mail"</code></pre>
                           </div>
@@ -1385,18 +1317,6 @@ public class DefaultApiExample {
         apiKeyAuth.setApiKey("YOUR API KEY");
         // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
         //apiKeyAuth.setApiKeyPrefix("Token");
-
-        // Configure API key authorization: apiLoginAuth
-        ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-        apiLoginAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiLoginAuth.setApiKeyPrefix("Token");
-
-        // Configure API key authorization: apiPasswordAuth
-        ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-        apiPasswordAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiPasswordAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
         try {
@@ -1437,14 +1357,6 @@ public class DefaultApiExample {
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-// Configure API key authorization: (authentication scheme: apiLoginAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-LOGIN"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-LOGIN"];
-// Configure API key authorization: (authentication scheme: apiPasswordAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-PASS"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-PASS"];
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -1470,18 +1382,6 @@ var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
 apiKeyAuth.apiKey = "YOUR API KEY"
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
-
-// Configure API key authorization: apiLoginAuth
-var apiLoginAuth = defaultClient.authentications['apiLoginAuth'];
-apiLoginAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.apiKeyPrefix['X-API-LOGIN'] = "Token"
-
-// Configure API key authorization: apiPasswordAuth
-var apiPasswordAuth = defaultClient.authentications['apiPasswordAuth'];
-apiPasswordAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.apiKeyPrefix['X-API-PASS'] = "Token"
 
 var api = new MailBabyApi.DefaultApi()
 var callback = function(error, data, response) {
@@ -1516,14 +1416,6 @@ namespace Example
             Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.ApiKey.Add("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.ApiKey.Add("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi();
 
@@ -1551,14 +1443,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-// Configure API key authorization: apiLoginAuth
-interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-// Configure API key authorization: apiPasswordAuth
-interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 
@@ -1580,14 +1464,6 @@ use MailBabyApi::DefaultApi;
 $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
-# Configure API key authorization: apiLoginAuth
-$MailBabyApi::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
-# Configure API key authorization: apiPasswordAuth
-$MailBabyApi::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
 
 my $api_instance = MailBabyApi::DefaultApi->new();
 
@@ -1611,14 +1487,6 @@ from pprint import pprint
 MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
-# Configure API key authorization: apiLoginAuth
-MailBabyApi.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-# Configure API key authorization: apiPasswordAuth
-MailBabyApi.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
@@ -2015,8 +1883,6 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-placeMailOrder-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "X-API-KEY: [[apiKey]]"\
--H "X-API-LOGIN: [[apiKey]]"\
--H "X-API-PASS: [[apiKey]]"\
 -H "Accept: application/json"\
 -H "Content-Type: application/json"\
 "https://api.mailbaby.net//mail/order"</code></pre>
@@ -2040,18 +1906,6 @@ public class DefaultApiExample {
         apiKeyAuth.setApiKey("YOUR API KEY");
         // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
         //apiKeyAuth.setApiKeyPrefix("Token");
-
-        // Configure API key authorization: apiLoginAuth
-        ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-        apiLoginAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiLoginAuth.setApiKeyPrefix("Token");
-
-        // Configure API key authorization: apiPasswordAuth
-        ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-        apiPasswordAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiPasswordAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
         MailOrder body = ; // MailOrder | Inventory item to add
@@ -2092,14 +1946,6 @@ public class DefaultApiExample {
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-// Configure API key authorization: (authentication scheme: apiLoginAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-LOGIN"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-LOGIN"];
-// Configure API key authorization: (authentication scheme: apiPasswordAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-PASS"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-PASS"];
 MailOrder *body = ; // Inventory item to add (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
@@ -2123,18 +1969,6 @@ var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
 apiKeyAuth.apiKey = "YOUR API KEY"
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
-
-// Configure API key authorization: apiLoginAuth
-var apiLoginAuth = defaultClient.authentications['apiLoginAuth'];
-apiLoginAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.apiKeyPrefix['X-API-LOGIN'] = "Token"
-
-// Configure API key authorization: apiPasswordAuth
-var apiPasswordAuth = defaultClient.authentications['apiPasswordAuth'];
-apiPasswordAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.apiKeyPrefix['X-API-PASS'] = "Token"
 
 var api = new MailBabyApi.DefaultApi()
 var opts = { 
@@ -2172,14 +2006,6 @@ namespace Example
             Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.ApiKey.Add("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.ApiKey.Add("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi();
             var body = new MailOrder(); // MailOrder | Inventory item to add (optional) 
@@ -2207,14 +2033,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-// Configure API key authorization: apiLoginAuth
-interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-// Configure API key authorization: apiPasswordAuth
-interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 $body = ; // MailOrder | Inventory item to add
@@ -2236,14 +2054,6 @@ use MailBabyApi::DefaultApi;
 $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
-# Configure API key authorization: apiLoginAuth
-$MailBabyApi::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
-# Configure API key authorization: apiPasswordAuth
-$MailBabyApi::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
 
 my $api_instance = MailBabyApi::DefaultApi->new();
 my $body = MailBabyApi::Object::MailOrder->new(); # MailOrder | Inventory item to add
@@ -2267,14 +2077,6 @@ from pprint import pprint
 MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
-# Configure API key authorization: apiLoginAuth
-MailBabyApi.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-# Configure API key authorization: apiPasswordAuth
-MailBabyApi.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
@@ -2448,8 +2250,6 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-sendAdvMailById-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "X-API-KEY: [[apiKey]]"\
--H "X-API-LOGIN: [[apiKey]]"\
--H "X-API-PASS: [[apiKey]]"\
 -H "Accept: application/json"\
 -H "Content-Type: application/json,application/xml,application/x-www-form-urlencoded,text/plain"\
 "https://api.mailbaby.net//mail/{id}/advsend"</code></pre>
@@ -2473,18 +2273,6 @@ public class DefaultApiExample {
         apiKeyAuth.setApiKey("YOUR API KEY");
         // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
         //apiKeyAuth.setApiKeyPrefix("Token");
-
-        // Configure API key authorization: apiLoginAuth
-        ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-        apiLoginAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiLoginAuth.setApiKeyPrefix("Token");
-
-        // Configure API key authorization: apiPasswordAuth
-        ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-        apiPasswordAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiPasswordAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
         SendMail body = ; // SendMail | 
@@ -2529,14 +2317,6 @@ public class DefaultApiExample {
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-// Configure API key authorization: (authentication scheme: apiLoginAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-LOGIN"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-LOGIN"];
-// Configure API key authorization: (authentication scheme: apiPasswordAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-PASS"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-PASS"];
 SendMail *body = ; // 
 Long *id = 789; // User ID
 
@@ -2565,18 +2345,6 @@ var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
 apiKeyAuth.apiKey = "YOUR API KEY"
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
-
-// Configure API key authorization: apiLoginAuth
-var apiLoginAuth = defaultClient.authentications['apiLoginAuth'];
-apiLoginAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.apiKeyPrefix['X-API-LOGIN'] = "Token"
-
-// Configure API key authorization: apiPasswordAuth
-var apiPasswordAuth = defaultClient.authentications['apiPasswordAuth'];
-apiPasswordAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.apiKeyPrefix['X-API-PASS'] = "Token"
 
 var api = new MailBabyApi.DefaultApi()
 var body = ; // {{SendMail}} 
@@ -2614,14 +2382,6 @@ namespace Example
             Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.ApiKey.Add("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.ApiKey.Add("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi();
             var body = new SendMail(); // SendMail | 
@@ -2651,14 +2411,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-// Configure API key authorization: apiLoginAuth
-interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-// Configure API key authorization: apiPasswordAuth
-interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 $body = ; // SendMail | 
@@ -2682,14 +2434,6 @@ use MailBabyApi::DefaultApi;
 $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
-# Configure API key authorization: apiLoginAuth
-$MailBabyApi::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
-# Configure API key authorization: apiPasswordAuth
-$MailBabyApi::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
 
 my $api_instance = MailBabyApi::DefaultApi->new();
 my $body = MailBabyApi::Object::SendMail->new(); # SendMail | 
@@ -2715,14 +2459,6 @@ from pprint import pprint
 MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
-# Configure API key authorization: apiLoginAuth
-MailBabyApi.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-# Configure API key authorization: apiPasswordAuth
-MailBabyApi.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
@@ -3054,8 +2790,6 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-sendMailById-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "X-API-KEY: [[apiKey]]"\
--H "X-API-LOGIN: [[apiKey]]"\
--H "X-API-PASS: [[apiKey]]"\
 -H "Accept: application/json"\
 "https://api.mailbaby.net//mail/{id}/send?subject=&body=&to=&toName=&from=&fromName="</code></pre>
                           </div>
@@ -3078,18 +2812,6 @@ public class DefaultApiExample {
         apiKeyAuth.setApiKey("YOUR API KEY");
         // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
         //apiKeyAuth.setApiKeyPrefix("Token");
-
-        // Configure API key authorization: apiLoginAuth
-        ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-        apiLoginAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiLoginAuth.setApiKeyPrefix("Token");
-
-        // Configure API key authorization: apiPasswordAuth
-        ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-        apiPasswordAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiPasswordAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
         Long id = 789; // Long | User ID
@@ -3144,14 +2866,6 @@ public class DefaultApiExample {
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-// Configure API key authorization: (authentication scheme: apiLoginAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-LOGIN"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-LOGIN"];
-// Configure API key authorization: (authentication scheme: apiPasswordAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-PASS"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-PASS"];
 Long *id = 789; // User ID
 String *subject = subject_example; //  (optional)
 String *body = body_example; //  (optional)
@@ -3190,18 +2904,6 @@ var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
 apiKeyAuth.apiKey = "YOUR API KEY"
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
-
-// Configure API key authorization: apiLoginAuth
-var apiLoginAuth = defaultClient.authentications['apiLoginAuth'];
-apiLoginAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.apiKeyPrefix['X-API-LOGIN'] = "Token"
-
-// Configure API key authorization: apiPasswordAuth
-var apiPasswordAuth = defaultClient.authentications['apiPasswordAuth'];
-apiPasswordAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.apiKeyPrefix['X-API-PASS'] = "Token"
 
 var api = new MailBabyApi.DefaultApi()
 var id = 789; // {{Long}} User ID
@@ -3245,14 +2947,6 @@ namespace Example
             Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.ApiKey.Add("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.ApiKey.Add("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi();
             var id = 789;  // Long | User ID
@@ -3287,14 +2981,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-// Configure API key authorization: apiLoginAuth
-interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-// Configure API key authorization: apiPasswordAuth
-interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 $id = 789; // Long | User ID
@@ -3323,14 +3009,6 @@ use MailBabyApi::DefaultApi;
 $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
-# Configure API key authorization: apiLoginAuth
-$MailBabyApi::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
-# Configure API key authorization: apiPasswordAuth
-$MailBabyApi::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
 
 my $api_instance = MailBabyApi::DefaultApi->new();
 my $id = 789; # Long | User ID
@@ -3361,14 +3039,6 @@ from pprint import pprint
 MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
-# Configure API key authorization: apiLoginAuth
-MailBabyApi.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-# Configure API key authorization: apiPasswordAuth
-MailBabyApi.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
@@ -3721,8 +3391,6 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-validateMailOrder-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
--H "X-API-LOGIN: [[apiKey]]"\
--H "X-API-PASS: [[apiKey]]"\
 -H "Accept: application/json"\
 "https://api.mailbaby.net//mail/order"</code></pre>
                           </div>
@@ -3745,18 +3413,6 @@ public class DefaultApiExample {
         apiKeyAuth.setApiKey("YOUR API KEY");
         // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
         //apiKeyAuth.setApiKeyPrefix("Token");
-
-        // Configure API key authorization: apiLoginAuth
-        ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-        apiLoginAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiLoginAuth.setApiKeyPrefix("Token");
-
-        // Configure API key authorization: apiPasswordAuth
-        ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-        apiPasswordAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiPasswordAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
         try {
@@ -3795,14 +3451,6 @@ public class DefaultApiExample {
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-// Configure API key authorization: (authentication scheme: apiLoginAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-LOGIN"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-LOGIN"];
-// Configure API key authorization: (authentication scheme: apiPasswordAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-PASS"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-PASS"];
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
@@ -3825,18 +3473,6 @@ var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
 apiKeyAuth.apiKey = "YOUR API KEY"
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
-
-// Configure API key authorization: apiLoginAuth
-var apiLoginAuth = defaultClient.authentications['apiLoginAuth'];
-apiLoginAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.apiKeyPrefix['X-API-LOGIN'] = "Token"
-
-// Configure API key authorization: apiPasswordAuth
-var apiPasswordAuth = defaultClient.authentications['apiPasswordAuth'];
-apiPasswordAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.apiKeyPrefix['X-API-PASS'] = "Token"
 
 var api = new MailBabyApi.DefaultApi()
 var callback = function(error, data, response) {
@@ -3871,14 +3507,6 @@ namespace Example
             Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.ApiKey.Add("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.ApiKey.Add("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi();
 
@@ -3905,14 +3533,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-// Configure API key authorization: apiLoginAuth
-interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-// Configure API key authorization: apiPasswordAuth
-interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 
@@ -3933,14 +3553,6 @@ use MailBabyApi::DefaultApi;
 $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
-# Configure API key authorization: apiLoginAuth
-$MailBabyApi::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
-# Configure API key authorization: apiPasswordAuth
-$MailBabyApi::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
 
 my $api_instance = MailBabyApi::DefaultApi->new();
 
@@ -3963,14 +3575,6 @@ from pprint import pprint
 MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
-# Configure API key authorization: apiLoginAuth
-MailBabyApi.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-# Configure API key authorization: apiPasswordAuth
-MailBabyApi.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
@@ -4086,8 +3690,6 @@ available inventory in the system
                           <div class="tab-pane active" id="examples-Default-viewMailLogById-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
--H "X-API-LOGIN: [[apiKey]]"\
--H "X-API-PASS: [[apiKey]]"\
 -H "Accept: application/json"\
 "https://api.mailbaby.net//mail/{id}/log?searchString=&skip=&limit="</code></pre>
                           </div>
@@ -4110,18 +3712,6 @@ public class DefaultApiExample {
         apiKeyAuth.setApiKey("YOUR API KEY");
         // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
         //apiKeyAuth.setApiKeyPrefix("Token");
-
-        // Configure API key authorization: apiLoginAuth
-        ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-        apiLoginAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiLoginAuth.setApiKeyPrefix("Token");
-
-        // Configure API key authorization: apiPasswordAuth
-        ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-        apiPasswordAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiPasswordAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
         Long id = 789; // Long | User ID
@@ -4170,14 +3760,6 @@ public class DefaultApiExample {
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-// Configure API key authorization: (authentication scheme: apiLoginAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-LOGIN"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-LOGIN"];
-// Configure API key authorization: (authentication scheme: apiPasswordAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-PASS"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-PASS"];
 Long *id = 789; // User ID
 String *searchString = searchString_example; // pass an optional search string for looking up inventory (optional)
 Integer *skip = 56; // number of records to skip for pagination (optional)
@@ -4210,18 +3792,6 @@ var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
 apiKeyAuth.apiKey = "YOUR API KEY"
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
-
-// Configure API key authorization: apiLoginAuth
-var apiLoginAuth = defaultClient.authentications['apiLoginAuth'];
-apiLoginAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiLoginAuth.apiKeyPrefix['X-API-LOGIN'] = "Token"
-
-// Configure API key authorization: apiPasswordAuth
-var apiPasswordAuth = defaultClient.authentications['apiPasswordAuth'];
-apiPasswordAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiPasswordAuth.apiKeyPrefix['X-API-PASS'] = "Token"
 
 var api = new MailBabyApi.DefaultApi()
 var id = 789; // {{Long}} User ID
@@ -4262,14 +3832,6 @@ namespace Example
             Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.ApiKey.Add("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.ApiKey.Add("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi();
             var id = 789;  // Long | User ID
@@ -4301,14 +3863,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-// Configure API key authorization: apiLoginAuth
-interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-// Configure API key authorization: apiPasswordAuth
-interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 $id = 789; // Long | User ID
@@ -4334,14 +3888,6 @@ use MailBabyApi::DefaultApi;
 $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
-# Configure API key authorization: apiLoginAuth
-$MailBabyApi::Configuration::api_key->{'X-API-LOGIN'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-LOGIN'} = "Bearer";
-# Configure API key authorization: apiPasswordAuth
-$MailBabyApi::Configuration::api_key->{'X-API-PASS'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-PASS'} = "Bearer";
 
 my $api_instance = MailBabyApi::DefaultApi->new();
 my $id = 789; # Long | User ID
@@ -4369,14 +3915,6 @@ from pprint import pprint
 MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
-# Configure API key authorization: apiLoginAuth
-MailBabyApi.configuration.api_key['X-API-LOGIN'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-LOGIN'] = 'Bearer'
-# Configure API key authorization: apiPasswordAuth
-MailBabyApi.configuration.api_key['X-API-PASS'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-PASS'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()

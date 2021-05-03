@@ -13,7 +13,7 @@ import java.util.List;
  * Details for an Email
  **/
 @Schema(description = "Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-04-29T02:41:36.925674-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-03T11:52:18.286716-04:00[America/New_York]")
 public class SendMail   {
   @JsonProperty("id")
   private Long id = null;

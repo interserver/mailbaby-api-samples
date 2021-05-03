@@ -23,10 +23,7 @@ servers:
 - url: https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0
   description: SwaggerHub API Auto Mocking
 security:
-- apiLoginAuth: []
-  apiPasswordAuth: []
-- apiLoginAuth: []
-  apiKeyAuth: []
+- apiKeyAuth: []
 paths:
   /ping:
     get:

@@ -20,7 +20,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-03T13:38:28.150828-04:00[America/New_York]")public class MailApiServiceImpl implements MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-03T14:06:27.254869-04:00[America/New_York]")public class MailApiServiceImpl implements MailApiService {
       public Response getMailById(Long id,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!

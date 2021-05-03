@@ -26,7 +26,7 @@ import java.io.IOException;
  * A File attachment for an email
  */
 @Schema(description = "A File attachment for an email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-03T13:38:02.715089-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-03T14:06:00.771650-04:00[America/New_York]")
 public class MailAttachment {
   @SerializedName("filename")
   private String filename = null;

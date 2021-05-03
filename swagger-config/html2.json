@@ -9,7 +9,7 @@
   "licenseInfo": "GNU GPL v3",
   "licenseUrl": "https://www.gnu.org/licenses/gpl-3.0.en.html",
   "invokerPackage": "MailBabyApi",
-  "phpInvokerPackage": "interserver/mailbaby-client-php",
+  "phpInvokerPackage": "interserver\\mailbaby-client-php",
   "perlModuleName": "MailBabyApi",
   "pythonPackageName": "MailBabyApi",
   "packageName": "MailBabyApi"

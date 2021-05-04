@@ -1,5 +1,5 @@
 {
-    "name": "GIT_USER_ID/GIT_REPO_ID",
+    "name": "interserver/mailbaby-client-php",
     "version": "1.0.0",
     "description": "This is an API defintion for accesssing the Mail.Baby mail service.",
     "keywords": [

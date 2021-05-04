@@ -53,3 +53,5 @@ artifactVersion: 1.0.0
 # Description: boolean, toggles whether unicode identifiers are allowed in names or not, default is false
 hideGenerationTimestamp: true
 
+gitRepoId: mailbaby-client-php
+gitUserId: interserver

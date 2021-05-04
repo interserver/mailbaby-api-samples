@@ -17,14 +17,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Schema(description = "Details for an Email")
 
 public class SendMail   {
+
   private @Valid Long id = null;
+
   private @Valid MailContact from = null;
+
   private @Valid List<MailContact> to = new ArrayList<MailContact>();
+
   private @Valid String subject = null;
+
   private @Valid String body = null;
+
   private @Valid List<MailContact> replyto = new ArrayList<MailContact>();
+
   private @Valid List<MailContact> cc = new ArrayList<MailContact>();
+
   private @Valid List<MailContact> bcc = new ArrayList<MailContact>();
+
   private @Valid List<MailAttachment> attachments = new ArrayList<MailAttachment>();
 
   /**

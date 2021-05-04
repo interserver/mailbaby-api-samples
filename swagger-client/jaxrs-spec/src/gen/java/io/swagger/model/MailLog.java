@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Schema(description = "Mail Order Details")
 
 public class MailLog   {
+
   private @Valid Long id = null;
 
   /**

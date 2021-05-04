@@ -31,7 +31,7 @@ import javax.validation.constraints.*;
 @Path("/ping")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-04T14:38:16.718179-04:00[America/New_York]")public class PingApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-04T14:59:29.978115-04:00[America/New_York]")public class PingApi  {
 
    private PingApiService delegate;
 

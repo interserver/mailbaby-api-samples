@@ -13,7 +13,7 @@
  */
 
 import * as url from "url";
-import * as portableFetch from "portable-fetch";
+import * as isomorphicFetch from "isomorphic-fetch";
 import { Configuration } from "./configuration";
 
 const BASE_PATH = "https://api.mailbaby.net/".replace(/\/+$/, "");
@@ -56,7 +56,7 @@ export interface FetchArgs {
 export class BaseAPI {
     protected configuration: Configuration;
 
-    constructor(configuration?: Configuration, protected basePath: string = BASE_PATH, protected fetch: FetchAPI = portableFetch) {
+    constructor(configuration?: Configuration, protected basePath: string = BASE_PATH, protected fetch: FetchAPI = isomorphicFetch) {
         if (configuration) {
             this.configuration = configuration;
             this.basePath = configuration.basePath || this.basePath;
@@ -206,10 +206,8 @@ export interface MailOrder {
 /**
  * 
  * @export
- * @interface MailOrders
  */
-export interface MailOrders extends Array<MailOrder> {
-}
+export type MailOrders = Array<MailOrder>
 /**
  * Details for an Email
  * @export
@@ -578,7 +576,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         getMailOrders(id?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<MailOrders> {
             const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).getMailOrders(id, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
@@ -596,7 +594,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         pingServer(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
             const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).pingServer(options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response;
@@ -615,7 +613,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         placeMailOrder(body?: MailOrder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
             const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).placeMailOrder(body, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response;
@@ -634,7 +632,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         sendAdvMailById(body: SendMail, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
             const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendAdvMailById(body, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
@@ -659,7 +657,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
             const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMailById(subject, body, to, from, id, toName, fromName, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
@@ -677,7 +675,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         validateMailOrder(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
             const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).validateMailOrder(options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response;
@@ -699,7 +697,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<MailLog>> {
             const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).viewMailLogById(id, searchString, skip, limit, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+            return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();

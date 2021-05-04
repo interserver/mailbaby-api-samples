@@ -37,7 +37,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-04T14:38:08.391742-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-04T14:59:21.937942-04:00[America/New_York]")
 public class MailApi  {
 
   @Context SecurityContext securityContext;
@@ -52,8 +52,8 @@ public class MailApi  {
     @Operation(summary = "displays a list of mail service orders", description = "", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = MailOrders.class))),
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailOrders.class))),
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
     public Response getMailOrders( 
 @Parameter(description = "The ID of your mail order this will be sent through.")  @QueryParam("id") Long id
 ) {
@@ -70,7 +70,7 @@ public class MailApi  {
         @ApiResponse(responseCode = "200", description = "list of mail orders"),
         @ApiResponse(responseCode = "400", description = "invalid input, object invalid"),
         @ApiResponse(responseCode = "409", description = "an existing item already exists"),
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
     public Response placeMailOrder(
 @Parameter(description = "Inventory item to add" ) MailOrder body
 ) {
@@ -84,10 +84,10 @@ public class MailApi  {
     @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
+        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
     public Response sendAdvMailById(
 @Parameter(description = "" ,required=true) SendMail body
 ) {
@@ -101,10 +101,10 @@ public class MailApi  {
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
+        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
     public Response sendMailById( 
 @Parameter(description = "The Subject of the email")  @QueryParam("subject") String subject
 ,  
@@ -131,7 +131,7 @@ public class MailApi  {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "list of mail orders"),
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
     public Response validateMailOrder() {
         return delegate.validateMailOrder(securityContext);
     }
@@ -143,7 +143,7 @@ public class MailApi  {
     @Operation(summary = "displays the mail log", description = "By passing in the appropriate options, you can search for available inventory in the system ", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
+        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
     public Response viewMailLogById( 
 @Parameter(description = "The ID of your mail order this will be sent through.")  @QueryParam("id") Long id

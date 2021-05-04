@@ -1,40 +1,40 @@
-14:38:37.000 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
+14:59:50.065 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by com.github.jknack.handlebars.context.MemberValueResolver (file:/home/sites/mailbaby-mail-api/swagger-codegen-cli.jar) to method java.util.Collections$EmptyMap.isEmpty()
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-14:38:37.417 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/ErrorResponse.kt
-14:38:37.431 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/ErrorResponse.md
-14:38:37.462 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/GenericResponse.kt
-14:38:37.474 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/GenericResponse.md
-14:38:37.499 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/MailAttachment.kt
-14:38:37.509 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/MailAttachment.md
-14:38:37.548 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/MailContact.kt
-14:38:37.562 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/MailContact.md
-14:38:37.588 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/MailLog.kt
-14:38:37.601 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/MailLog.md
-14:38:37.637 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/MailOrder.kt
-14:38:37.646 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/MailOrder.md
-14:38:37.662 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/MailOrders.kt
-14:38:37.668 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/MailOrders.md
-14:38:37.695 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/SendMail.kt
-14:38:37.703 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/SendMail.md
-14:38:37.803 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/apis/DefaultApi.kt
-14:38:37.830 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/DefaultApi.md
-14:38:37.846 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/README.md
-14:38:37.849 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/build.gradle
-14:38:37.850 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/settings.gradle
-14:38:37.893 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/ApiClient.kt
-14:38:37.898 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/ApiAbstractions.kt
-14:38:37.906 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/ApiInfrastructureResponse.kt
-14:38:37.914 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/ApplicationDelegates.kt
-14:38:37.918 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/RequestConfig.kt
-14:38:37.920 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/RequestMethod.kt
-14:38:37.927 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/ResponseExtensions.kt
-14:38:37.930 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/Serializer.kt
-14:38:37.937 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/Errors.kt
-14:38:37.941 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/LocalDateAdapter.kt
-14:38:37.945 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/LocalDateTimeAdapter.kt
-14:38:37.950 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/.swagger-codegen-ignore
-14:38:37.951 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/.swagger-codegen/VERSION
+14:59:50.548 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/ErrorResponse.kt
+14:59:50.560 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/ErrorResponse.md
+14:59:50.585 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/GenericResponse.kt
+14:59:50.596 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/GenericResponse.md
+14:59:50.617 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/MailAttachment.kt
+14:59:50.625 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/MailAttachment.md
+14:59:50.646 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/MailContact.kt
+14:59:50.655 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/MailContact.md
+14:59:50.673 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/MailLog.kt
+14:59:50.688 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/MailLog.md
+14:59:50.726 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/MailOrder.kt
+14:59:50.737 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/MailOrder.md
+14:59:50.753 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/MailOrders.kt
+14:59:50.762 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/MailOrders.md
+14:59:50.797 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/models/SendMail.kt
+14:59:50.806 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/SendMail.md
+14:59:50.927 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/apis/DefaultApi.kt
+14:59:50.953 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/docs/DefaultApi.md
+14:59:50.994 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/README.md
+14:59:50.998 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/build.gradle
+14:59:50.999 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/settings.gradle
+14:59:51.025 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/ApiClient.kt
+14:59:51.031 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/ApiAbstractions.kt
+14:59:51.037 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/ApiInfrastructureResponse.kt
+14:59:51.044 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/ApplicationDelegates.kt
+14:59:51.048 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/RequestConfig.kt
+14:59:51.050 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/RequestMethod.kt
+14:59:51.055 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/ResponseExtensions.kt
+14:59:51.057 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/Serializer.kt
+14:59:51.063 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/Errors.kt
+14:59:51.065 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/LocalDateAdapter.kt
+14:59:51.069 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/src/main/kotlin/io/swagger/client/infrastructure/LocalDateTimeAdapter.kt
+14:59:51.075 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/.swagger-codegen-ignore
+14:59:51.076 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/kotlin-client/.swagger-codegen/VERSION

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class ErrorResponse   {
+
   private @Valid String code = null;
+
   private @Valid String message = null;
 
   /**

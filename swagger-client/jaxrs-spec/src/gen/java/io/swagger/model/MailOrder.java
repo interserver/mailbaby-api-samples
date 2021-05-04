@@ -10,10 +10,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class MailOrder   {
+
   private @Valid Integer id = null;
+
   private @Valid String status = null;
+
   private @Valid String username = null;
+
   private @Valid String password = null;
+
   private @Valid String comment = null;
 
   /**

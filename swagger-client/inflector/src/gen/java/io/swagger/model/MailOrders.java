@@ -6,7 +6,7 @@ import java.util.List;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-04T14:38:05.598909-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-04T14:59:19.166522-04:00[America/New_York]")
 public class MailOrders extends ArrayList<MailOrder>  {
 
   @Override

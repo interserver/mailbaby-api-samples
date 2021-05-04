@@ -41,8 +41,8 @@ public interface DefaultApi  {
     @Produces({ "application/json", "application/xml", "text/plain" })
     @Operation(summary = "displays a list of mail service orders", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = MailOrders.class))),
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailOrders.class))),
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
     public MailOrders getMailOrders(@QueryParam("id")Long id);
 
     /**
@@ -72,7 +72,7 @@ public interface DefaultApi  {
         @ApiResponse(responseCode = "200", description = "list of mail orders"),
         @ApiResponse(responseCode = "400", description = "invalid input, object invalid"),
         @ApiResponse(responseCode = "409", description = "an existing item already exists"),
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
     public void placeMailOrder(MailOrder body);
 
     /**
@@ -87,10 +87,10 @@ public interface DefaultApi  {
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email with Advanced Options", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
+        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
     public GenericResponse sendAdvMailById(SendMail body);
 
     /**
@@ -104,10 +104,10 @@ public interface DefaultApi  {
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
+        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
     public GenericResponse sendMailById(@QueryParam("subject")String subject, @QueryParam("body")String body, @QueryParam("to")String to, @QueryParam("from")String from, @QueryParam("id")Long id, @QueryParam("toName")String toName, @QueryParam("fromName")String fromName);
 
     /**
@@ -120,7 +120,7 @@ public interface DefaultApi  {
     @Operation(summary = "validatess order details before placing an order", tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "list of mail orders"),
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
     public void validateMailOrder();
 
     /**
@@ -134,7 +134,7 @@ public interface DefaultApi  {
     @Produces({ "application/json" })
     @Operation(summary = "displays the mail log", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
+        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
     public List<MailLog> viewMailLogById(@QueryParam("id")Long id, @QueryParam("searchString")String searchString, @QueryParam("skip")Integer skip, @QueryParam("limit")Integer limit);
 }

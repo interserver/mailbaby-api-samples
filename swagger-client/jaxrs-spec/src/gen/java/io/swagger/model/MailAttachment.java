@@ -14,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Schema(description = "A File attachment for an email")
 
 public class MailAttachment   {
+
   private @Valid String filename = null;
+
   private @Valid File data = null;
 
   /**

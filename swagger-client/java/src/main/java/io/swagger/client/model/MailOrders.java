@@ -21,7 +21,7 @@ import java.util.List;
  * MailOrders
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-04T14:37:57.164760-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-04T14:59:10.393290-04:00[America/New_York]")
 public class MailOrders extends ArrayList<MailOrder> {
 
   @Override

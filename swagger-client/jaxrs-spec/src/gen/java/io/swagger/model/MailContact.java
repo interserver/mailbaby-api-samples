@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Schema(description = "An Email Contact")
 
 public class MailContact   {
+
   private @Valid String email = null;
+
   private @Valid String name = null;
 
   /**

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class GenericResponse   {
+
   private @Valid String status = null;
+
   private @Valid String statusText = null;
 
   /**

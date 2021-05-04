@@ -22,7 +22,7 @@ import javax.validation.Valid;
 /**
  * MailOrders
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-04T14:38:13.709513-04:00[America/New_York]")public class MailOrders extends ArrayList<MailOrder>  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-04T14:59:27.043255-04:00[America/New_York]")public class MailOrders extends ArrayList<MailOrder>  {
 
   @Override
   public boolean equals(java.lang.Object o) {

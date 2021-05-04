@@ -4,67 +4,17 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetMailById**](DefaultApi.md#GetMailById) | **GET** /mail/{id} | Gets mail order information by id
 [**GetMailOrders**](DefaultApi.md#GetMailOrders) | **GET** /mail | displays a list of mail service orders
 [**PingServer**](DefaultApi.md#PingServer) | **GET** /ping | Checks if the server is running
 [**PlaceMailOrder**](DefaultApi.md#PlaceMailOrder) | **POST** /mail/order | places a mail order
-[**SendAdvMailById**](DefaultApi.md#SendAdvMailById) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-[**SendMailById**](DefaultApi.md#SendMailById) | **POST** /mail/{id}/send | Sends an Email
+[**SendAdvMailById**](DefaultApi.md#SendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**SendMailById**](DefaultApi.md#SendMailById) | **POST** /mail/send | Sends an Email
 [**ValidateMailOrder**](DefaultApi.md#ValidateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**ViewMailLogById**](DefaultApi.md#ViewMailLogById) | **GET** /mail/{id}/log | displays the mail log
+[**ViewMailLogById**](DefaultApi.md#ViewMailLogById) | **GET** /mail/log | displays the mail log
 
-
-# **GetMailById**
-> MailOrder GetMailById(id)
-
-Gets mail order information by id
-
-returns information about a mail order in the system with the given id.
-
-### Example
-```R
-library(openapi)
-
-var.id <- 56 # integer | User ID
-
-#Gets mail order information by id
-api.instance <- DefaultApi$new()
-# Configure API key authorization: apiKeyAuth
-api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-# Configure API key authorization: apiLoginAuth
-api.instance$apiClient$apiKeys['X-API-LOGIN'] <- 'TODO_YOUR_API_KEY';
-# Configure API key authorization: apiPasswordAuth
-api.instance$apiClient$apiKeys['X-API-PASS'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$GetMailById(var.id)
-dput(result)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **integer**| User ID | 
-
-### Return type
-
-[**MailOrder**](MailOrder.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Successful operation |  -  |
 
 # **GetMailOrders**
-> array[MailOrder] GetMailOrders()
+> array[MailOrder] GetMailOrders(id=var.id)
 
 displays a list of mail service orders
 
@@ -72,21 +22,21 @@ displays a list of mail service orders
 ```R
 library(openapi)
 
+var.id <- 56 # integer | The ID of your mail order this will be sent through.
 
 #displays a list of mail service orders
 api.instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
 api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-# Configure API key authorization: apiLoginAuth
-api.instance$apiClient$apiKeys['X-API-LOGIN'] <- 'TODO_YOUR_API_KEY';
-# Configure API key authorization: apiPasswordAuth
-api.instance$apiClient$apiKeys['X-API-PASS'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$GetMailOrders()
+result <- api.instance$GetMailOrders(id=var.id)
 dput(result)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **integer**| The ID of your mail order this will be sent through. | [optional] 
 
 ### Return type
 
@@ -94,7 +44,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -161,10 +111,6 @@ var.mail.order <- MailOrder$new(123, "status_example", "username_example", "pass
 api.instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
 api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-# Configure API key authorization: apiLoginAuth
-api.instance$apiClient$apiKeys['X-API-LOGIN'] <- 'TODO_YOUR_API_KEY';
-# Configure API key authorization: apiPasswordAuth
-api.instance$apiClient$apiKeys['X-API-PASS'] <- 'TODO_YOUR_API_KEY';
 api.instance$PlaceMailOrder(mail.order=var.mail.order)
 ```
 
@@ -180,7 +126,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -196,7 +142,7 @@ void (empty response body)
 | **401** | Unauthorized |  -  |
 
 # **SendAdvMailById**
-> GenericResponse SendAdvMailById(id, send.mail)
+> GenericResponse SendAdvMailById(send.mail)
 
 Sends an Email with Advanced Options
 
@@ -206,18 +152,13 @@ Sends An email through one of your mail orders allowing additional options such 
 ```R
 library(openapi)
 
-var.id <- 56 # integer | User ID
 var.send.mail <- SendMail$new(123, MailContact$new("email_example", "name_example"), list(MailContact$new("email_example", "name_example")), "subject_example", "body_example", list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailAttachment$new(123, "filename_example"))) # SendMail | 
 
 #Sends an Email with Advanced Options
 api.instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
 api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-# Configure API key authorization: apiLoginAuth
-api.instance$apiClient$apiKeys['X-API-LOGIN'] <- 'TODO_YOUR_API_KEY';
-# Configure API key authorization: apiPasswordAuth
-api.instance$apiClient$apiKeys['X-API-PASS'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$SendAdvMailById(var.id, var.send.mail)
+result <- api.instance$SendAdvMailById(var.send.mail)
 dput(result)
 ```
 
@@ -225,7 +166,6 @@ dput(result)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **integer**| User ID | 
  **send.mail** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type
@@ -234,11 +174,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
@@ -250,7 +190,7 @@ Name | Type | Description  | Notes
 | **404** | The specified resource was not found |  -  |
 
 # **SendMailById**
-> GenericResponse SendMailById(id, subject=var.subject, body=var.body, to=var.to, to.name=var.to.name, from=var.from, from.name=var.from.name)
+> GenericResponse SendMailById(subject=var.subject, body=var.body, to=var.to, from=var.from, id=var.id, to.name=var.to.name, from.name=var.from.name)
 
 Sends an Email
 
@@ -260,23 +200,19 @@ Sends An email through one of your mail orders.
 ```R
 library(openapi)
 
-var.id <- 56 # integer | User ID
-var.subject <- 'subject_example' # character | 
-var.body <- 'body_example' # character | 
-var.to <- 'to_example' # character | 
-var.to.name <- 'to.name_example' # character | 
-var.from <- 'from_example' # character | 
-var.from.name <- 'from.name_example' # character | 
+var.subject <- 'subject_example' # character | The Subject of the email
+var.body <- 'body_example' # character | The contents of the email
+var.to <- 'to_example' # character | The email address of who this email will be sent to.
+var.from <- 'from_example' # character | The email address of who this email will be sent from.
+var.id <- 56 # integer | The ID of your mail order this will be sent through.
+var.to.name <- 'to.name_example' # character | The name or title of who this email is being sent to.
+var.from.name <- 'from.name_example' # character | The name or title of who this email is being sent from.
 
 #Sends an Email
 api.instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
 api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-# Configure API key authorization: apiLoginAuth
-api.instance$apiClient$apiKeys['X-API-LOGIN'] <- 'TODO_YOUR_API_KEY';
-# Configure API key authorization: apiPasswordAuth
-api.instance$apiClient$apiKeys['X-API-PASS'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$SendMailById(var.id, subject=var.subject, body=var.body, to=var.to, to.name=var.to.name, from=var.from, from.name=var.from.name)
+result <- api.instance$SendMailById(subject=var.subject, body=var.body, to=var.to, from=var.from, id=var.id, to.name=var.to.name, from.name=var.from.name)
 dput(result)
 ```
 
@@ -284,13 +220,13 @@ dput(result)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **integer**| User ID | 
- **subject** | **character**|  | [optional] 
- **body** | **character**|  | [optional] 
- **to** | **character**|  | [optional] 
- **to.name** | **character**|  | [optional] 
- **from** | **character**|  | [optional] 
- **from.name** | **character**|  | [optional] 
+ **subject** | **character**| The Subject of the email | [optional] 
+ **body** | **character**| The contents of the email | [optional] 
+ **to** | **character**| The email address of who this email will be sent to. | [optional] 
+ **from** | **character**| The email address of who this email will be sent from. | [optional] 
+ **id** | **integer**| The ID of your mail order this will be sent through. | [optional] 
+ **to.name** | **character**| The name or title of who this email is being sent to. | [optional] 
+ **from.name** | **character**| The name or title of who this email is being sent from. | [optional] 
 
 ### Return type
 
@@ -298,7 +234,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -327,10 +263,6 @@ library(openapi)
 api.instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
 api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-# Configure API key authorization: apiLoginAuth
-api.instance$apiClient$apiKeys['X-API-LOGIN'] <- 'TODO_YOUR_API_KEY';
-# Configure API key authorization: apiPasswordAuth
-api.instance$apiClient$apiKeys['X-API-PASS'] <- 'TODO_YOUR_API_KEY';
 api.instance$ValidateMailOrder()
 ```
 
@@ -343,7 +275,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -357,7 +289,7 @@ void (empty response body)
 | **401** | Unauthorized |  -  |
 
 # **ViewMailLogById**
-> array[MailLog] ViewMailLogById(id, search.string=var.search.string, skip=var.skip, limit=var.limit)
+> array[MailLog] ViewMailLogById(id=var.id, search.string=var.search.string, skip=var.skip, limit=var.limit)
 
 displays the mail log
 
@@ -367,7 +299,7 @@ By passing in the appropriate options, you can search for available inventory in
 ```R
 library(openapi)
 
-var.id <- 56 # integer | User ID
+var.id <- 56 # integer | The ID of your mail order this will be sent through.
 var.search.string <- 'search.string_example' # character | pass an optional search string for looking up inventory
 var.skip <- 56 # integer | number of records to skip for pagination
 var.limit <- 56 # integer | maximum number of records to return
@@ -376,11 +308,7 @@ var.limit <- 56 # integer | maximum number of records to return
 api.instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
 api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-# Configure API key authorization: apiLoginAuth
-api.instance$apiClient$apiKeys['X-API-LOGIN'] <- 'TODO_YOUR_API_KEY';
-# Configure API key authorization: apiPasswordAuth
-api.instance$apiClient$apiKeys['X-API-PASS'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$ViewMailLogById(var.id, search.string=var.search.string, skip=var.skip, limit=var.limit)
+result <- api.instance$ViewMailLogById(id=var.id, search.string=var.search.string, skip=var.skip, limit=var.limit)
 dput(result)
 ```
 
@@ -388,7 +316,7 @@ dput(result)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **integer**| User ID | 
+ **id** | **integer**| The ID of your mail order this will be sent through. | [optional] 
  **search.string** | **character**| pass an optional search string for looking up inventory | [optional] 
  **skip** | **integer**| number of records to skip for pagination | [optional] 
  **limit** | **integer**| maximum number of records to return | [optional] 
@@ -399,7 +327,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

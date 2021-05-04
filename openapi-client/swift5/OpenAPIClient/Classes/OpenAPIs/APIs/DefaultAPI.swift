@@ -9,68 +9,14 @@ import Foundation
 
 open class DefaultAPI {
     /**
-     Gets mail order information by id
-     
-     - parameter id: (path) User ID 
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getMailById(id: Int64, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: MailOrder?, _ error: Error?) -> Void)) {
-        getMailByIdWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     Gets mail order information by id
-     - GET /mail/{id}
-     - returns information about a mail order in the system with the given id.
-     - API Key:
-       - type: apiKey X-API-KEY 
-       - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
-     - parameter id: (path) User ID 
-     - returns: RequestBuilder<MailOrder> 
-     */
-    open class func getMailByIdWithRequestBuilder(id: Int64) -> RequestBuilder<MailOrder> {
-        var path = "/mail/{id}"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let URLString = OpenAPIClientAPI.basePath + path
-        let parameters: [String: Any]? = nil
-
-        let url = URLComponents(string: URLString)
-
-        let nillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<MailOrder>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, headers: headerParameters)
-    }
-
-    /**
      displays a list of mail service orders
      
+     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getMailOrders(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [MailOrder]?, _ error: Error?) -> Void)) {
-        getMailOrdersWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+    open class func getMailOrders(id: Int64? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [MailOrder]?, _ error: Error?) -> Void)) {
+        getMailOrdersWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -86,20 +32,18 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
+     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
      - returns: RequestBuilder<[MailOrder]> 
      */
-    open class func getMailOrdersWithRequestBuilder() -> RequestBuilder<[MailOrder]> {
+    open class func getMailOrdersWithRequestBuilder(id: Int64? = nil) -> RequestBuilder<[MailOrder]> {
         let path = "/mail"
         let URLString = OpenAPIClientAPI.basePath + path
         let parameters: [String: Any]? = nil
 
-        let url = URLComponents(string: URLString)
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "id": id?.encodeToJSON(),
+        ])
 
         let nillableHeaders: [String: Any?] = [
             :
@@ -178,12 +122,6 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
      - parameter mailOrder: (body) Inventory item to add (optional)
      - returns: RequestBuilder<Void> 
      */
@@ -209,13 +147,12 @@ open class DefaultAPI {
     /**
      Sends an Email with Advanced Options
      
-     - parameter id: (path) User ID 
      - parameter sendMail: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendAdvMailById(id: Int64, sendMail: SendMail, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) {
-        sendAdvMailByIdWithRequestBuilder(id: id, sendMail: sendMail).execute(apiResponseQueue) { result -> Void in
+    open class func sendAdvMailById(sendMail: SendMail, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) {
+        sendAdvMailByIdWithRequestBuilder(sendMail: sendMail).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -227,26 +164,16 @@ open class DefaultAPI {
 
     /**
      Sends an Email with Advanced Options
-     - POST /mail/{id}/advsend
+     - POST /mail/advsend
      - Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
-     - parameter id: (path) User ID 
      - parameter sendMail: (body)  
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendAdvMailByIdWithRequestBuilder(id: Int64, sendMail: SendMail) -> RequestBuilder<GenericResponse> {
-        var path = "/mail/{id}/advsend"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+    open class func sendAdvMailByIdWithRequestBuilder(sendMail: SendMail) -> RequestBuilder<GenericResponse> {
+        let path = "/mail/advsend"
         let URLString = OpenAPIClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: sendMail)
 
@@ -266,18 +193,18 @@ open class DefaultAPI {
     /**
      Sends an Email
      
-     - parameter id: (path) User ID 
-     - parameter subject: (query)  (optional)
-     - parameter body: (query)  (optional)
-     - parameter to: (query)  (optional)
-     - parameter toName: (query)  (optional)
-     - parameter from: (query)  (optional)
-     - parameter fromName: (query)  (optional)
+     - parameter subject: (query) The Subject of the email (optional)
+     - parameter body: (query) The contents of the email (optional)
+     - parameter to: (query) The email address of who this email will be sent to. (optional)
+     - parameter from: (query) The email address of who this email will be sent from. (optional)
+     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
+     - parameter toName: (query) The name or title of who this email is being sent to. (optional)
+     - parameter fromName: (query) The name or title of who this email is being sent from. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendMailById(id: Int64, subject: String? = nil, body: String? = nil, to: String? = nil, toName: String? = nil, from: String? = nil, fromName: String? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) {
-        sendMailByIdWithRequestBuilder(id: id, subject: subject, body: body, to: to, toName: toName, from: from, fromName: fromName).execute(apiResponseQueue) { result -> Void in
+    open class func sendMailById(subject: String? = nil, body: String? = nil, to: String? = nil, from: String? = nil, id: Int64? = nil, toName: String? = nil, fromName: String? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) {
+        sendMailByIdWithRequestBuilder(subject: subject, body: body, to: to, from: from, id: id, toName: toName, fromName: fromName).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -289,31 +216,22 @@ open class DefaultAPI {
 
     /**
      Sends an Email
-     - POST /mail/{id}/send
+     - POST /mail/send
      - Sends An email through one of your mail orders.
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
-     - parameter id: (path) User ID 
-     - parameter subject: (query)  (optional)
-     - parameter body: (query)  (optional)
-     - parameter to: (query)  (optional)
-     - parameter toName: (query)  (optional)
-     - parameter from: (query)  (optional)
-     - parameter fromName: (query)  (optional)
+     - parameter subject: (query) The Subject of the email (optional)
+     - parameter body: (query) The contents of the email (optional)
+     - parameter to: (query) The email address of who this email will be sent to. (optional)
+     - parameter from: (query) The email address of who this email will be sent from. (optional)
+     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
+     - parameter toName: (query) The name or title of who this email is being sent to. (optional)
+     - parameter fromName: (query) The name or title of who this email is being sent from. (optional)
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendMailByIdWithRequestBuilder(id: Int64, subject: String? = nil, body: String? = nil, to: String? = nil, toName: String? = nil, from: String? = nil, fromName: String? = nil) -> RequestBuilder<GenericResponse> {
-        var path = "/mail/{id}/send"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+    open class func sendMailByIdWithRequestBuilder(subject: String? = nil, body: String? = nil, to: String? = nil, from: String? = nil, id: Int64? = nil, toName: String? = nil, fromName: String? = nil) -> RequestBuilder<GenericResponse> {
+        let path = "/mail/send"
         let URLString = OpenAPIClientAPI.basePath + path
         let parameters: [String: Any]? = nil
 
@@ -322,8 +240,9 @@ open class DefaultAPI {
             "subject": subject?.encodeToJSON(),
             "body": body?.encodeToJSON(),
             "to": to?.encodeToJSON(),
-            "toName": toName?.encodeToJSON(),
             "from": from?.encodeToJSON(),
+            "id": id?.encodeToJSON(),
+            "toName": toName?.encodeToJSON(),
             "fromName": fromName?.encodeToJSON(),
         ])
 
@@ -362,12 +281,6 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
      - returns: RequestBuilder<Void> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
@@ -392,14 +305,14 @@ open class DefaultAPI {
     /**
      displays the mail log
      
-     - parameter id: (path) User ID 
+     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
      - parameter searchString: (query) pass an optional search string for looking up inventory (optional)
      - parameter skip: (query) number of records to skip for pagination (optional)
      - parameter limit: (query) maximum number of records to return (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func viewMailLogById(id: Int64, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [MailLog]?, _ error: Error?) -> Void)) {
+    open class func viewMailLogById(id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [MailLog]?, _ error: Error?) -> Void)) {
         viewMailLogByIdWithRequestBuilder(id: id, searchString: searchString, skip: skip, limit: limit).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
@@ -412,33 +325,25 @@ open class DefaultAPI {
 
     /**
      displays the mail log
-     - GET /mail/{id}/log
+     - GET /mail/log
      - By passing in the appropriate options, you can search for available inventory in the system 
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - API Key:
-       - type: apiKey X-API-LOGIN 
-       - name: apiLoginAuth
-     - API Key:
-       - type: apiKey X-API-PASS 
-       - name: apiPasswordAuth
-     - parameter id: (path) User ID 
+     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
      - parameter searchString: (query) pass an optional search string for looking up inventory (optional)
      - parameter skip: (query) number of records to skip for pagination (optional)
      - parameter limit: (query) maximum number of records to return (optional)
      - returns: RequestBuilder<[MailLog]> 
      */
-    open class func viewMailLogByIdWithRequestBuilder(id: Int64, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil) -> RequestBuilder<[MailLog]> {
-        var path = "/mail/{id}/log"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+    open class func viewMailLogByIdWithRequestBuilder(id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil) -> RequestBuilder<[MailLog]> {
+        let path = "/mail/log"
         let URLString = OpenAPIClientAPI.basePath + path
         let parameters: [String: Any]? = nil
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "id": id?.encodeToJSON(),
             "searchString": searchString?.encodeToJSON(),
             "skip": skip?.encodeToJSON(),
             "limit": limit?.encodeToJSON(),

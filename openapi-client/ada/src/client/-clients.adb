@@ -13,26 +13,10 @@ with Swagger.Streams;
 package body .Clients is
    pragma Style_Checks ("-mr");
 
-   --  Gets mail order information by id
-   --  returns information about a mail order in the system with the given id.
-   procedure Get_Mail_By_Id
-      (Client : in out Client_Type;
-       Id : in Swagger.Long;
-       Result : out .Models.MailOrder_Type) is
-      URI   : Swagger.Clients.URI_Type;
-      Reply : Swagger.Value_Type;
-   begin
-      Client.Set_Accept ((1 => Swagger.Clients.APPLICATION_JSON));
-
-      URI.Set_Path ("/mail/{id}");
-      URI.Set_Path_Param ("id", Swagger.To_String (Id));
-      Client.Call (Swagger.Clients.GET, URI, Reply);
-      .Models.Deserialize (Reply, "", Result);
-   end Get_Mail_By_Id;
-
    --  displays a list of mail service orders
    procedure Get_Mail_Orders
       (Client : in out Client_Type;
+       Id : in Swagger.Nullable_Long;
        Result : out .Models.MailOrder_Type_Vectors.Vector) is
       URI   : Swagger.Clients.URI_Type;
       Reply : Swagger.Value_Type;
@@ -41,6 +25,7 @@ package body .Clients is
                           Swagger.Clients.APPLICATION_XML,
                           Swagger.Clients.TEXT_PLAIN));
 
+      URI.Add_Param ("id", Id);
       URI.Set_Path ("/mail");
       Client.Call (Swagger.Clients.GET, URI, Reply);
       .Models.Deserialize (Reply, "", Result);
@@ -77,7 +62,6 @@ package body .Clients is
    --  Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
    procedure Send_Adv_Mail_By_Id
       (Client : in out Client_Type;
-       Id : in Swagger.Long;
        Send_Mail_Type : in .Models.SendMail_Type;
        Result : out .Models.GenericResponse_Type) is
       URI   : Swagger.Clients.URI_Type;
@@ -85,14 +69,10 @@ package body .Clients is
       Reply : Swagger.Value_Type;
    begin
       Client.Set_Accept ((1 => Swagger.Clients.APPLICATION_JSON));
-      Client.Initialize (Req, (Swagger.Clients.APPLICATION_JSON,
-                               Swagger.Clients.APPLICATION_XML,
-                               Swagger.Clients.APPLICATION_X_WWW_FORM_URLENCODED,
-                               Swagger.Clients.TEXT_PLAIN));
+      Client.Initialize (Req, (1 => Swagger.Clients.APPLICATION_JSON));
       .Models.Serialize (Req.Stream, "", Send_Mail_Type);
 
-      URI.Set_Path ("/mail/{id}/advsend");
-      URI.Set_Path_Param ("id", Swagger.To_String (Id));
+      URI.Set_Path ("/mail/advsend");
       Client.Call (Swagger.Clients.POST, URI, Req, Reply);
       .Models.Deserialize (Reply, "", Result);
    end Send_Adv_Mail_By_Id;
@@ -101,12 +81,12 @@ package body .Clients is
    --  Sends An email through one of your mail orders.
    procedure Send_Mail_By_Id
       (Client : in out Client_Type;
-       Id : in Swagger.Long;
        Subject : in Swagger.Nullable_UString;
        P_Body : in Swagger.Nullable_UString;
        To : in Swagger.Nullable_UString;
-       To_Name : in Swagger.Nullable_UString;
        From : in Swagger.Nullable_UString;
+       Id : in Swagger.Nullable_Long;
+       To_Name : in Swagger.Nullable_UString;
        From_Name : in Swagger.Nullable_UString;
        Result : out .Models.GenericResponse_Type) is
       URI   : Swagger.Clients.URI_Type;
@@ -117,11 +97,11 @@ package body .Clients is
       URI.Add_Param ("subject", Subject);
       URI.Add_Param ("body", P_Body);
       URI.Add_Param ("to", To);
-      URI.Add_Param ("toName", To_Name);
       URI.Add_Param ("from", From);
+      URI.Add_Param ("id", Id);
+      URI.Add_Param ("toName", To_Name);
       URI.Add_Param ("fromName", From_Name);
-      URI.Set_Path ("/mail/{id}/send");
-      URI.Set_Path_Param ("id", Swagger.To_String (Id));
+      URI.Set_Path ("/mail/send");
       Client.Call (Swagger.Clients.POST, URI, Reply);
       .Models.Deserialize (Reply, "", Result);
    end Send_Mail_By_Id;
@@ -142,7 +122,7 @@ package body .Clients is
    --  available inventory in the system
    procedure View_Mail_Log_By_Id
       (Client : in out Client_Type;
-       Id : in Swagger.Long;
+       Id : in Swagger.Nullable_Long;
        Search_String : in Swagger.Nullable_UString;
        Skip : in Swagger.Nullable_Integer;
        Limit : in Swagger.Nullable_Integer;
@@ -152,11 +132,11 @@ package body .Clients is
    begin
       Client.Set_Accept ((1 => Swagger.Clients.APPLICATION_JSON));
 
+      URI.Add_Param ("id", Id);
       URI.Add_Param ("searchString", Search_String);
       URI.Add_Param ("skip", Skip);
       URI.Add_Param ("limit", Limit);
-      URI.Set_Path ("/mail/{id}/log");
-      URI.Set_Path_Param ("id", Swagger.To_String (Id));
+      URI.Set_Path ("/mail/log");
       Client.Call (Swagger.Clients.GET, URI, Reply);
       .Models.Deserialize (Reply, "", Result);
    end View_Mail_Log_By_Id;

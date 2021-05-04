@@ -95,18 +95,17 @@ declare -a result_color_table=( "$WHITE" "$WHITE" "$GREEN" "$YELLOW" "$WHITE" "$
 # 0 - optional
 # 1 - required
 declare -A operation_parameters_minimum_occurrences
-operation_parameters_minimum_occurrences["getMailById:::id"]=1
+operation_parameters_minimum_occurrences["getMailOrders:::id"]=0
 operation_parameters_minimum_occurrences["placeMailOrder:::MailOrder"]=0
-operation_parameters_minimum_occurrences["sendAdvMailById:::id"]=1
 operation_parameters_minimum_occurrences["sendAdvMailById:::SendMail"]=1
-operation_parameters_minimum_occurrences["sendMailById:::id"]=1
 operation_parameters_minimum_occurrences["sendMailById:::subject"]=0
 operation_parameters_minimum_occurrences["sendMailById:::body"]=0
 operation_parameters_minimum_occurrences["sendMailById:::to"]=0
-operation_parameters_minimum_occurrences["sendMailById:::toName"]=0
 operation_parameters_minimum_occurrences["sendMailById:::from"]=0
+operation_parameters_minimum_occurrences["sendMailById:::id"]=0
+operation_parameters_minimum_occurrences["sendMailById:::toName"]=0
 operation_parameters_minimum_occurrences["sendMailById:::fromName"]=0
-operation_parameters_minimum_occurrences["viewMailLogById:::id"]=1
+operation_parameters_minimum_occurrences["viewMailLogById:::id"]=0
 operation_parameters_minimum_occurrences["viewMailLogById:::searchString"]=0
 operation_parameters_minimum_occurrences["viewMailLogById:::skip"]=0
 operation_parameters_minimum_occurrences["viewMailLogById:::limit"]=0
@@ -118,16 +117,15 @@ operation_parameters_minimum_occurrences["viewMailLogById:::limit"]=0
 # N - N values
 # 0 - unlimited
 declare -A operation_parameters_maximum_occurrences
-operation_parameters_maximum_occurrences["getMailById:::id"]=0
+operation_parameters_maximum_occurrences["getMailOrders:::id"]=0
 operation_parameters_maximum_occurrences["placeMailOrder:::MailOrder"]=0
-operation_parameters_maximum_occurrences["sendAdvMailById:::id"]=0
 operation_parameters_maximum_occurrences["sendAdvMailById:::SendMail"]=0
-operation_parameters_maximum_occurrences["sendMailById:::id"]=0
 operation_parameters_maximum_occurrences["sendMailById:::subject"]=0
 operation_parameters_maximum_occurrences["sendMailById:::body"]=0
 operation_parameters_maximum_occurrences["sendMailById:::to"]=0
-operation_parameters_maximum_occurrences["sendMailById:::toName"]=0
 operation_parameters_maximum_occurrences["sendMailById:::from"]=0
+operation_parameters_maximum_occurrences["sendMailById:::id"]=0
+operation_parameters_maximum_occurrences["sendMailById:::toName"]=0
 operation_parameters_maximum_occurrences["sendMailById:::fromName"]=0
 operation_parameters_maximum_occurrences["viewMailLogById:::id"]=0
 operation_parameters_maximum_occurrences["viewMailLogById:::searchString"]=0
@@ -138,16 +136,15 @@ operation_parameters_maximum_occurrences["viewMailLogById:::limit"]=0
 # The type of collection for specifying multiple values for parameter:
 # - multi, csv, ssv, tsv
 declare -A operation_parameters_collection_type
-operation_parameters_collection_type["getMailById:::id"]=""
+operation_parameters_collection_type["getMailOrders:::id"]=""
 operation_parameters_collection_type["placeMailOrder:::MailOrder"]=""
-operation_parameters_collection_type["sendAdvMailById:::id"]=""
 operation_parameters_collection_type["sendAdvMailById:::SendMail"]=""
-operation_parameters_collection_type["sendMailById:::id"]=""
 operation_parameters_collection_type["sendMailById:::subject"]=""
 operation_parameters_collection_type["sendMailById:::body"]=""
 operation_parameters_collection_type["sendMailById:::to"]=""
-operation_parameters_collection_type["sendMailById:::toName"]=""
 operation_parameters_collection_type["sendMailById:::from"]=""
+operation_parameters_collection_type["sendMailById:::id"]=""
+operation_parameters_collection_type["sendMailById:::toName"]=""
 operation_parameters_collection_type["sendMailById:::fromName"]=""
 operation_parameters_collection_type["viewMailLogById:::id"]=""
 operation_parameters_collection_type["viewMailLogById:::searchString"]=""
@@ -173,12 +170,6 @@ host=""
 # The user credentials for basic authentication
 basic_auth_credential=""
 
-##
-# The user API key
-apikey_auth_credential="$false"
-##
-# The user API key
-apikey_auth_credential="$false"
 ##
 # The user API key
 apikey_auth_credential="$false"
@@ -287,39 +278,13 @@ header_arguments_to_curl() {
     local api_key_header=""
     local api_key_header_in_cli=""
     api_key_header="X-API-KEY"
-    local api_key_header=""
-    local api_key_header_in_cli=""
-    api_key_header="X-API-LOGIN"
-    local api_key_header=""
-    local api_key_header_in_cli=""
-    api_key_header="X-API-PASS"
 
     for key in "${!header_arguments[@]}"; do
         headers_curl+="-H \"${key}: ${header_arguments[${key}]}\" "
         if [[ "${key}XX" == "${api_key_header}XX" ]]; then
             api_key_header_in_cli="YES"
         fi
-        if [[ "${key}XX" == "${api_key_header}XX" ]]; then
-            api_key_header_in_cli="YES"
-        fi
-        if [[ "${key}XX" == "${api_key_header}XX" ]]; then
-            api_key_header_in_cli="YES"
-        fi
     done
-    #
-    # If the api_key was not provided in the header, try one from the
-    # environment variable
-    #
-    if [[ -z $api_key_header_in_cli && -n $apikey_auth_credential ]]; then
-        headers_curl+="-H \"${api_key_header}: ${apikey_auth_credential}\""
-    fi
-    #
-    # If the api_key was not provided in the header, try one from the
-    # environment variable
-    #
-    if [[ -z $api_key_header_in_cli && -n $apikey_auth_credential ]]; then
-        headers_curl+="-H \"${api_key_header}: ${apikey_auth_credential}\""
-    fi
     #
     # If the api_key was not provided in the header, try one from the
     # environment variable
@@ -562,23 +527,18 @@ EOF
     echo -e ""
     echo -e "  - ${BLUE}Api-key${OFF} - add '${RED}X-API-KEY:<api-key>${OFF}' after ${YELLOW}<operation>${OFF}"
     echo -e "              or export ${RED}false='<api-key>'${OFF}"
-    echo -e "  - ${BLUE}Api-key${OFF} - add '${RED}X-API-LOGIN:<api-key>${OFF}' after ${YELLOW}<operation>${OFF}"
-    echo -e "              or export ${RED}false='<api-key>'${OFF}"
-    echo -e "  - ${BLUE}Api-key${OFF} - add '${RED}X-API-PASS:<api-key>${OFF}' after ${YELLOW}<operation>${OFF}"
-    echo -e "              or export ${RED}false='<api-key>'${OFF}"
     echo ""
     echo -e "${BOLD}${WHITE}Operations (grouped by tags)${OFF}"
     echo ""
     echo -e "${BOLD}${WHITE}[default]${OFF}"
 read -r -d '' ops <<EOF
-  ${CYAN}getMailById${OFF};Gets mail order information by id (AUTH) (AUTH) (AUTH)
-  ${CYAN}getMailOrders${OFF};displays a list of mail service orders (AUTH) (AUTH) (AUTH)
+  ${CYAN}getMailOrders${OFF};displays a list of mail service orders (AUTH)
   ${CYAN}pingServer${OFF};Checks if the server is running
-  ${CYAN}placeMailOrder${OFF};places a mail order (AUTH) (AUTH) (AUTH)
-  ${CYAN}sendAdvMailById${OFF};Sends an Email with Advanced Options (AUTH) (AUTH) (AUTH)
-  ${CYAN}sendMailById${OFF};Sends an Email (AUTH) (AUTH) (AUTH)
-  ${CYAN}validateMailOrder${OFF};validatess order details before placing an order (AUTH) (AUTH) (AUTH)
-  ${CYAN}viewMailLogById${OFF};displays the mail log (AUTH) (AUTH) (AUTH)
+  ${CYAN}placeMailOrder${OFF};places a mail order (AUTH)
+  ${CYAN}sendAdvMailById${OFF};Sends an Email with Advanced Options (AUTH)
+  ${CYAN}sendMailById${OFF};Sends an Email (AUTH)
+  ${CYAN}validateMailOrder${OFF};validatess order details before placing an order (AUTH)
+  ${CYAN}viewMailLogById${OFF};displays the mail log (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
@@ -634,31 +594,16 @@ print_version() {
 
 ##############################################################################
 #
-# Print help for getMailById operation
-#
-##############################################################################
-print_getMailById_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}getMailById - Gets mail order information by id${OFF}${BLUE}(AUTH - HEADER)${OFF}${BLUE}(AUTH - HEADER)${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "returns information about a mail order in the system with the given id." | paste -sd' ' | fold -sw 80
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - User ID ${YELLOW}Specify as: id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;Successful operation${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
 # Print help for getMailOrders operation
 #
 ##############################################################################
 print_getMailOrders_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getMailOrders - displays a list of mail service orders${OFF}${BLUE}(AUTH - HEADER)${OFF}${BLUE}(AUTH - HEADER)${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getMailOrders - displays a list of mail service orders${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}id${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - The ID of your mail order this will be sent through.${YELLOW} Specify as: id=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -689,7 +634,7 @@ print_pingServer_help() {
 ##############################################################################
 print_placeMailOrder_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}placeMailOrder - places a mail order${OFF}${BLUE}(AUTH - HEADER)${OFF}${BLUE}(AUTH - HEADER)${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}placeMailOrder - places a mail order${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "Adds an item to the system" | paste -sd' ' | fold -sw 80
     echo -e ""
@@ -714,13 +659,12 @@ print_placeMailOrder_help() {
 ##############################################################################
 print_sendAdvMailById_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}sendAdvMailById - Sends an Email with Advanced Options${OFF}${BLUE}(AUTH - HEADER)${OFF}${BLUE}(AUTH - HEADER)${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}sendAdvMailById - Sends an Email with Advanced Options${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc." | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - User ID ${YELLOW}Specify as: id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json,application/xml,application/x-www-form-urlencoded,text/plain]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -740,23 +684,24 @@ print_sendAdvMailById_help() {
 ##############################################################################
 print_sendMailById_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}sendMailById - Sends an Email${OFF}${BLUE}(AUTH - HEADER)${OFF}${BLUE}(AUTH - HEADER)${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}sendMailById - Sends an Email${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "Sends An email through one of your mail orders." | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - User ID ${YELLOW}Specify as: id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}subject${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - ${YELLOW} Specify as: subject=value${OFF}" \
+    echo -e "  * ${GREEN}subject${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - The Subject of the email${YELLOW} Specify as: subject=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - ${YELLOW} Specify as: body=value${OFF}" \
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - The contents of the email${YELLOW} Specify as: body=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}to${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - ${YELLOW} Specify as: to=value${OFF}" \
+    echo -e "  * ${GREEN}to${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - The email address of who this email will be sent to.${YELLOW} Specify as: to=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}toName${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - ${YELLOW} Specify as: toName=value${OFF}" \
+    echo -e "  * ${GREEN}from${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - The email address of who this email will be sent from.${YELLOW} Specify as: from=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}from${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - ${YELLOW} Specify as: from=value${OFF}" \
+    echo -e "  * ${GREEN}id${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - The ID of your mail order this will be sent through.${YELLOW} Specify as: id=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}fromName${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - ${YELLOW} Specify as: fromName=value${OFF}" \
+    echo -e "  * ${GREEN}toName${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - The name or title of who this email is being sent to.${YELLOW} Specify as: toName=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}fromName${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - The name or title of who this email is being sent from.${YELLOW} Specify as: fromName=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -776,7 +721,7 @@ print_sendMailById_help() {
 ##############################################################################
 print_validateMailOrder_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}validateMailOrder - validatess order details before placing an order${OFF}${BLUE}(AUTH - HEADER)${OFF}${BLUE}(AUTH - HEADER)${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}validateMailOrder - validatess order details before placing an order${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -792,13 +737,14 @@ print_validateMailOrder_help() {
 ##############################################################################
 print_viewMailLogById_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}viewMailLogById - displays the mail log${OFF}${BLUE}(AUTH - HEADER)${OFF}${BLUE}(AUTH - HEADER)${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}viewMailLogById - displays the mail log${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "By passing in the appropriate options, you can search for
 available inventory in the system" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}id${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - User ID ${YELLOW}Specify as: id=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}id${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - The ID of your mail order this will be sent through.${YELLOW} Specify as: id=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}searchString${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - pass an optional search string for looking up inventory${YELLOW} Specify as: searchString=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}skip${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - number of records to skip for pagination${YELLOW} Specify as: skip=value${OFF}" \
@@ -816,42 +762,6 @@ available inventory in the system" | paste -sd' ' | fold -sw 80
 
 ##############################################################################
 #
-# Call getMailById operation
-#
-##############################################################################
-call_getMailById() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=(id)
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=(      )
-    local path
-
-    if ! path=$(build_request_path "/mail/{id}" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="GET"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
 # Call getMailOrders operation
 #
 ##############################################################################
@@ -861,7 +771,7 @@ call_getMailOrders() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(      )
+    local query_parameter_names=(id  )
     local path
 
     if ! path=$(build_request_path "/mail" path_parameter_names query_parameter_names); then
@@ -933,7 +843,7 @@ call_placeMailOrder() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(      )
+    local query_parameter_names=(  )
     local path
 
     if ! path=$(build_request_path "/mail/order" path_parameter_names query_parameter_names); then
@@ -1008,13 +918,13 @@ call_placeMailOrder() {
 call_sendAdvMailById() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local path_parameter_names=(id)
+    local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(      )
+    local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/mail/{id}/advsend" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/mail/advsend" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -1036,6 +946,9 @@ call_sendAdvMailById() {
     # command line. If not try to set them based on the OpenAPI specification
     # if values produces and consumes are defined unambigously
     #
+    if [[ -z $header_content_type ]]; then
+        header_content_type="application/json"
+    fi
 
 
     if [[ -z $header_content_type && "$force" = false ]]; then
@@ -1043,9 +956,6 @@ call_sendAdvMailById() {
         echo "ERROR: Request's content-type not specified!!!"
         echo "This operation expects content-type in one of the following formats:"
         echo -e "\\t- application/json"
-        echo -e "\\t- application/xml"
-        echo -e "\\t- application/x-www-form-urlencoded"
-        echo -e "\\t- text/plain"
         echo ""
         echo "Use '--content-type' to set proper content type"
         exit 1
@@ -1086,13 +996,13 @@ call_sendAdvMailById() {
 call_sendMailById() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local path_parameter_names=(id)
+    local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(subject body to toName from fromName      )
+    local query_parameter_names=(subject body to from id toName fromName  )
     local path
 
-    if ! path=$(build_request_path "/mail/{id}/send" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/mail/send" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -1125,7 +1035,7 @@ call_validateMailOrder() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(      )
+    local query_parameter_names=(  )
     local path
 
     if ! path=$(build_request_path "/mail/order" path_parameter_names query_parameter_names); then
@@ -1158,13 +1068,13 @@ call_validateMailOrder() {
 call_viewMailLogById() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local path_parameter_names=(id)
+    local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(searchString skip limit      )
+    local query_parameter_names=(id searchString skip limit  )
     local path
 
-    if ! path=$(build_request_path "/mail/{id}/log" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/mail/log" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -1283,9 +1193,6 @@ case $key in
         OFF=""
         result_color_table=( "" "" "" "" "" "" "" )
     ;;
-    getMailById)
-    operation="getMailById"
-    ;;
     getMailOrders)
     operation="getMailOrders"
     ;;
@@ -1335,20 +1242,6 @@ case $key in
         # header, override the ${apikey_auth_credential} variable
         #
         if [[ $header_name == "X-API-KEY" ]]; then
-            apikey_auth_credential=$header_value
-        fi
-        #
-        # If the header key is the same as the api_key expected by API in the
-        # header, override the ${apikey_auth_credential} variable
-        #
-        if [[ $header_name == "X-API-LOGIN" ]]; then
-            apikey_auth_credential=$header_value
-        fi
-        #
-        # If the header key is the same as the api_key expected by API in the
-        # header, override the ${apikey_auth_credential} variable
-        #
-        if [[ $header_name == "X-API-PASS" ]]; then
             apikey_auth_credential=$header_value
         fi
         header_arguments[$header_name]=$header_value
@@ -1405,9 +1298,6 @@ fi
 
 # Run cURL command based on the operation ID
 case $operation in
-    getMailById)
-    call_getMailById
-    ;;
     getMailOrders)
     call_getMailOrders
     ;;

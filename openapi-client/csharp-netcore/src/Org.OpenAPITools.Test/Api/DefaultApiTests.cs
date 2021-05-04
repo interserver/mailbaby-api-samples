@@ -56,25 +56,14 @@ namespace Org.OpenAPITools.Test.Api
         }
 
         /// <summary>
-        /// Test GetMailById
-        /// </summary>
-        [Fact]
-        public void GetMailByIdTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //long id = null;
-            //var response = instance.GetMailById(id);
-            //Assert.IsType<MailOrder>(response);
-        }
-
-        /// <summary>
         /// Test GetMailOrders
         /// </summary>
         [Fact]
         public void GetMailOrdersTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //var response = instance.GetMailOrders();
+            //long? id = null;
+            //var response = instance.GetMailOrders(id);
             //Assert.IsType<List<MailOrder>>(response);
         }
 
@@ -106,9 +95,8 @@ namespace Org.OpenAPITools.Test.Api
         public void SendAdvMailByIdTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //long id = null;
             //SendMail sendMail = null;
-            //var response = instance.SendAdvMailById(id, sendMail);
+            //var response = instance.SendAdvMailById(sendMail);
             //Assert.IsType<GenericResponse>(response);
         }
 
@@ -119,14 +107,14 @@ namespace Org.OpenAPITools.Test.Api
         public void SendMailByIdTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //long id = null;
             //string subject = null;
             //string body = null;
             //string to = null;
-            //string toName = null;
             //string from = null;
+            //long? id = null;
+            //string toName = null;
             //string fromName = null;
-            //var response = instance.SendMailById(id, subject, body, to, toName, from, fromName);
+            //var response = instance.SendMailById(subject, body, to, from, id, toName, fromName);
             //Assert.IsType<GenericResponse>(response);
         }
 
@@ -147,7 +135,7 @@ namespace Org.OpenAPITools.Test.Api
         public void ViewMailLogByIdTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //long id = null;
+            //long? id = null;
             //string searchString = null;
             //int? skip = null;
             //int? limit = null;

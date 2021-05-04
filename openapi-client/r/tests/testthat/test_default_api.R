@@ -5,22 +5,11 @@ context("Test DefaultApi")
 
 api.instance <- DefaultApi$new()
 
-test_that("GetMailById", {
-  # tests for GetMailById
-  # base path: https://api.mailbaby.net
-  # Gets mail order information by id
-  # returns information about a mail order in the system with the given id.
-  # @param id integer User ID
-  # @return [MailOrder]
-
-  # uncomment below to test the operation
-  #expect_equal(result, "EXPECTED_RESULT")
-})
-
 test_that("GetMailOrders", {
   # tests for GetMailOrders
   # base path: https://api.mailbaby.net
   # displays a list of mail service orders
+  # @param id integer The ID of your mail order this will be sent through. (optional)
   # @return [array[MailOrder]]
 
   # uncomment below to test the operation
@@ -54,7 +43,6 @@ test_that("SendAdvMailById", {
   # base path: https://api.mailbaby.net
   # Sends an Email with Advanced Options
   # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-  # @param id integer User ID
   # @param send.mail SendMail 
   # @return [GenericResponse]
 
@@ -67,13 +55,13 @@ test_that("SendMailById", {
   # base path: https://api.mailbaby.net
   # Sends an Email
   # Sends An email through one of your mail orders.
-  # @param id integer User ID
-  # @param subject character  (optional)
-  # @param body character  (optional)
-  # @param to character  (optional)
-  # @param to.name character  (optional)
-  # @param from character  (optional)
-  # @param from.name character  (optional)
+  # @param subject character The Subject of the email (optional)
+  # @param body character The contents of the email (optional)
+  # @param to character The email address of who this email will be sent to. (optional)
+  # @param from character The email address of who this email will be sent from. (optional)
+  # @param id integer The ID of your mail order this will be sent through. (optional)
+  # @param to.name character The name or title of who this email is being sent to. (optional)
+  # @param from.name character The name or title of who this email is being sent from. (optional)
   # @return [GenericResponse]
 
   # uncomment below to test the operation
@@ -95,7 +83,7 @@ test_that("ViewMailLogById", {
   # base path: https://api.mailbaby.net
   # displays the mail log
   # By passing in the appropriate options, you can search for available inventory in the system 
-  # @param id integer User ID
+  # @param id integer The ID of your mail order this will be sent through. (optional)
   # @param search.string character pass an optional search string for looking up inventory (optional)
   # @param skip integer number of records to skip for pagination (optional)
   # @param limit integer maximum number of records to return (optional)

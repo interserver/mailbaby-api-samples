@@ -58,16 +58,6 @@ cleanup() -> ok.
 initial_state() -> #{}.
 
 %%==============================================================================
-%% get_mail_by_id
-%%==============================================================================
-
-get_mail_by_id(Id) ->
-  openapi_api:get_mail_by_id(Id).
-
-get_mail_by_id_args(_S) ->
-  [integer()].
-
-%%==============================================================================
 %% get_mail_orders
 %%==============================================================================
 
@@ -101,21 +91,21 @@ place_mail_order_args(_S) ->
 %% send_adv_mail_by_id
 %%==============================================================================
 
-send_adv_mail_by_id(Id, OpenapiSendMail) ->
-  openapi_api:send_adv_mail_by_id(Id, OpenapiSendMail).
+send_adv_mail_by_id(OpenapiSendMail) ->
+  openapi_api:send_adv_mail_by_id(OpenapiSendMail).
 
 send_adv_mail_by_id_args(_S) ->
-  [integer(), openapi_send_mail:openapi_send_mail()].
+  [openapi_send_mail:openapi_send_mail()].
 
 %%==============================================================================
 %% send_mail_by_id
 %%==============================================================================
 
-send_mail_by_id(Id) ->
-  openapi_api:send_mail_by_id(Id).
+send_mail_by_id() ->
+  openapi_api:send_mail_by_id().
 
 send_mail_by_id_args(_S) ->
-  [integer()].
+  [].
 
 %%==============================================================================
 %% validate_mail_order
@@ -131,9 +121,9 @@ validate_mail_order_args(_S) ->
 %% view_mail_log_by_id
 %%==============================================================================
 
-view_mail_log_by_id(Id) ->
-  openapi_api:view_mail_log_by_id(Id).
+view_mail_log_by_id() ->
+  openapi_api:view_mail_log_by_id().
 
 view_mail_log_by_id_args(_S) ->
-  [integer()].
+  [].
 

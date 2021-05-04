@@ -5,11 +5,10 @@
  *
  *)
 
-val get_mail_by_id : id:int64 -> Mail_order.t Lwt.t
-val get_mail_orders : unit -> Mail_order.t list Lwt.t
+val get_mail_orders : ?id:int64 -> unit -> Mail_order.t list Lwt.t
 val ping_server : unit -> unit Lwt.t
 val place_mail_order : mail_order_t:Mail_order.t -> unit -> unit Lwt.t
-val send_adv_mail_by_id : id:int64 -> send_mail_t:Send_mail.t -> Generic_response.t Lwt.t
-val send_mail_by_id : id:int64 -> ?subject:string -> ?body:string -> ?_to:string -> ?to_name:string -> ?from:string -> ?from_name:string -> unit -> Generic_response.t Lwt.t
+val send_adv_mail_by_id : send_mail_t:Send_mail.t -> Generic_response.t Lwt.t
+val send_mail_by_id : ?subject:string -> ?body:string -> ?_to:string -> ?from:string -> ?id:int64 -> ?to_name:string -> ?from_name:string -> unit -> Generic_response.t Lwt.t
 val validate_mail_order : unit -> unit Lwt.t
-val view_mail_log_by_id : id:int64 -> ?search_string:string -> ?skip:int32 -> ?limit:int32 -> unit -> Mail_log.t list Lwt.t
+val view_mail_log_by_id : ?id:int64 -> ?search_string:string -> ?skip:int32 -> ?limit:int32 -> unit -> Mail_log.t list Lwt.t

@@ -23,10 +23,7 @@ servers:
 - description: SwaggerHub API Auto Mocking
   url: https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0
 security:
-- apiLoginAuth: []
-  apiPasswordAuth: []
-- apiLoginAuth: []
-  apiKeyAuth: []
+- apiKeyAuth: []
 paths:
   /ping:
     get:
@@ -42,7 +39,16 @@ paths:
   /mail:
     get:
       operationId: getMailOrders
-      parameters: []
+      parameters:
+      - description: The ID of your mail order this will be sent through.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -116,79 +122,62 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
           description: Unauthorized
       summary: places a mail order
-  /mail/{id}:
-    get:
-      description: returns information about a mail order in the system with the given
-        id.
-      operationId: getMailById
-      parameters:
-      - description: User ID
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MailOrder'
-          description: Successful operation
-      summary: Gets mail order information by id
-  /mail/{id}/send:
+  /mail/send:
     post:
       description: Sends An email through one of your mail orders.
       operationId: sendMailById
       parameters:
-      - description: User ID
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
-      - explode: true
+      - description: The Subject of the email
+        explode: true
         in: query
         name: subject
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: The contents of the email
+        explode: true
         in: query
         name: body
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: The email address of who this email will be sent to.
+        explode: true
         in: query
         name: to
         required: false
         schema:
           type: string
         style: form
-      - explode: true
-        in: query
-        name: toName
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
+      - description: The email address of who this email will be sent from.
+        explode: true
         in: query
         name: from
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: The ID of your mail order this will be sent through.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: The name or title of who this email is being sent to.
+        explode: true
+        in: query
+        name: toName
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The name or title of who this email is being sent from.
+        explode: true
         in: query
         name: fromName
         required: false
@@ -217,35 +206,16 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
           description: The specified resource was not found
       summary: Sends an Email
-  /mail/{id}/advsend:
+  /mail/advsend:
     post:
       description: Sends An email through one of your mail orders allowing additional
         options such as file attachments, cc, bcc, etc.
       operationId: sendAdvMailById
-      parameters:
-      - description: User ID
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/SendMail'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/SendMail'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SendMailForm'
-          text/plain:
-            schema:
-              type: string
         required: true
       responses:
         "200":
@@ -269,22 +239,22 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
           description: The specified resource was not found
       summary: Sends an Email with Advanced Options
-  /mail/{id}/log:
+  /mail/log:
     get:
       description: |
         By passing in the appropriate options, you can search for
         available inventory in the system
       operationId: viewMailLogById
       parameters:
-      - description: User ID
-        explode: false
-        in: path
+      - description: The ID of your mail order this will be sent through.
+        explode: true
+        in: query
         name: id
-        required: true
+        required: false
         schema:
           format: int64
           type: integer
-        style: simple
+        style: form
       - description: pass an optional search string for looking up inventory
         explode: true
         in: query
@@ -558,22 +528,7 @@ components:
       - subject
       - to
       type: object
-    SendMailForm:
-      description: Details for an Email
-      properties:
-        id:
-          format: int64
-          type: integer
-      type: object
   securitySchemes:
-    apiLoginAuth:
-      in: header
-      name: X-API-LOGIN
-      type: apiKey
-    apiPasswordAuth:
-      in: header
-      name: X-API-PASS
-      type: apiKey
     apiKeyAuth:
       in: header
       name: X-API-KEY

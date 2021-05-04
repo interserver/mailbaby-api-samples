@@ -61,12 +61,9 @@ public:
     QString getParamStyleDelimiter(QString style, QString name, bool isExplode);
 
     /**
-    * @param[in]  id qint64 [required]
+    * @param[in]  id qint64 [optional]
     */
-    void getMailById(const qint64 &id);
-
-
-    void getMailOrders();
+    void getMailOrders(const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>());
 
 
     void pingServer();
@@ -77,32 +74,31 @@ public:
     Q_DECL_DEPRECATED void placeMailOrder(const ::OpenAPI::OptionalParam<OAIMailOrder> &oai_mail_order = ::OpenAPI::OptionalParam<OAIMailOrder>());
 
     /**
-    * @param[in]  id qint64 [required]
     * @param[in]  oai_send_mail OAISendMail [required]
     */
-    void sendAdvMailById(const qint64 &id, const OAISendMail &oai_send_mail);
+    void sendAdvMailById(const OAISendMail &oai_send_mail);
 
     /**
-    * @param[in]  id qint64 [required]
     * @param[in]  subject QString [optional]
     * @param[in]  body QString [optional]
     * @param[in]  to QString [optional]
-    * @param[in]  to_name QString [optional]
     * @param[in]  from QString [optional]
+    * @param[in]  id qint64 [optional]
+    * @param[in]  to_name QString [optional]
     * @param[in]  from_name QString [optional]
     */
-    void sendMailById(const qint64 &id, const ::OpenAPI::OptionalParam<QString> &subject = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &body = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &to = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &to_name = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from_name = ::OpenAPI::OptionalParam<QString>());
+    void sendMailById(const ::OpenAPI::OptionalParam<QString> &subject = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &body = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &to = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<QString> &to_name = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from_name = ::OpenAPI::OptionalParam<QString>());
 
 
     Q_DECL_DEPRECATED void validateMailOrder();
 
     /**
-    * @param[in]  id qint64 [required]
+    * @param[in]  id qint64 [optional]
     * @param[in]  search_string QString [optional]
     * @param[in]  skip qint32 [optional]
     * @param[in]  limit qint32 [optional]
     */
-    void viewMailLogById(const qint64 &id, const ::OpenAPI::OptionalParam<QString> &search_string = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<qint32> &skip = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &limit = ::OpenAPI::OptionalParam<qint32>());
+    void viewMailLogById(const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<QString> &search_string = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<qint32> &skip = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &limit = ::OpenAPI::OptionalParam<qint32>());
 
 
 private:
@@ -119,7 +115,6 @@ private:
     bool isResponseCompressionEnabled;
     bool isRequestCompressionEnabled;
 
-    void getMailByIdCallback(OAIHttpRequestWorker *worker);
     void getMailOrdersCallback(OAIHttpRequestWorker *worker);
     void pingServerCallback(OAIHttpRequestWorker *worker);
     void placeMailOrderCallback(OAIHttpRequestWorker *worker);
@@ -130,7 +125,6 @@ private:
 
 signals:
 
-    void getMailByIdSignal(OAIMailOrder summary);
     void getMailOrdersSignal(QList<OAIMailOrder> summary);
     void pingServerSignal();
     void placeMailOrderSignal();
@@ -139,7 +133,6 @@ signals:
     void validateMailOrderSignal();
     void viewMailLogByIdSignal(QList<OAIMailLog> summary);
 
-    void getMailByIdSignalFull(OAIHttpRequestWorker *worker, OAIMailOrder summary);
     void getMailOrdersSignalFull(OAIHttpRequestWorker *worker, QList<OAIMailOrder> summary);
     void pingServerSignalFull(OAIHttpRequestWorker *worker);
     void placeMailOrderSignalFull(OAIHttpRequestWorker *worker);
@@ -148,7 +141,6 @@ signals:
     void validateMailOrderSignalFull(OAIHttpRequestWorker *worker);
     void viewMailLogByIdSignalFull(OAIHttpRequestWorker *worker, QList<OAIMailLog> summary);
 
-    void getMailByIdSignalE(OAIMailOrder summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getMailOrdersSignalE(QList<OAIMailOrder> summary, QNetworkReply::NetworkError error_type, QString error_str);
     void pingServerSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void placeMailOrderSignalE(QNetworkReply::NetworkError error_type, QString error_str);
@@ -157,7 +149,6 @@ signals:
     void validateMailOrderSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void viewMailLogByIdSignalE(QList<OAIMailLog> summary, QNetworkReply::NetworkError error_type, QString error_str);
 
-    void getMailByIdSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getMailOrdersSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void pingServerSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void placeMailOrderSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);

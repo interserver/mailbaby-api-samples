@@ -12,7 +12,7 @@
  */
 
 import { Observable } from 'rxjs';
-import { BaseAPI, HttpHeaders, HttpQuery, throwIfNullOrUndefined, encodeURI, OperationOpts, RawAjaxResponse } from '../runtime';
+import { BaseAPI, HttpHeaders, HttpQuery, throwIfNullOrUndefined, OperationOpts, RawAjaxResponse } from '../runtime';
 import {
     ErrorResponse,
     GenericResponse,
@@ -21,8 +21,8 @@ import {
     SendMail,
 } from '../models';
 
-export interface GetMailByIdRequest {
-    id: number;
+export interface GetMailOrdersRequest {
+    id?: number;
 }
 
 export interface PlaceMailOrderRequest {
@@ -30,22 +30,21 @@ export interface PlaceMailOrderRequest {
 }
 
 export interface SendAdvMailByIdRequest {
-    id: number;
     sendMail: SendMail;
 }
 
 export interface SendMailByIdRequest {
-    id: number;
     subject?: string;
     body?: string;
     to?: string;
-    toName?: string;
     from?: string;
+    id?: number;
+    toName?: string;
     fromName?: string;
 }
 
 export interface ViewMailLogByIdRequest {
-    id: number;
+    id?: number;
     searchString?: string;
     skip?: number;
     limit?: number;
@@ -57,43 +56,25 @@ export interface ViewMailLogByIdRequest {
 export class DefaultApi extends BaseAPI {
 
     /**
-     * returns information about a mail order in the system with the given id.
-     * Gets mail order information by id
-     */
-    getMailById({ id }: GetMailByIdRequest): Observable<MailOrder>
-    getMailById({ id }: GetMailByIdRequest, opts?: OperationOpts): Observable<RawAjaxResponse<MailOrder>>
-    getMailById({ id }: GetMailByIdRequest, opts?: OperationOpts): Observable<MailOrder | RawAjaxResponse<MailOrder>> {
-        throwIfNullOrUndefined(id, 'id', 'getMailById');
-
-        const headers: HttpHeaders = {
-            ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication
-            ...(this.configuration.apiKey && { 'X-API-LOGIN': this.configuration.apiKey('X-API-LOGIN') }), // apiLoginAuth authentication
-            ...(this.configuration.apiKey && { 'X-API-PASS': this.configuration.apiKey('X-API-PASS') }), // apiPasswordAuth authentication
-        };
-
-        return this.request<MailOrder>({
-            url: '/mail/{id}'.replace('{id}', encodeURI(id)),
-            method: 'GET',
-            headers,
-        }, opts?.responseOpts);
-    };
-
-    /**
      * displays a list of mail service orders
      */
-    getMailOrders(): Observable<Array<MailOrder>>
-    getMailOrders(opts?: OperationOpts): Observable<RawAjaxResponse<Array<MailOrder>>>
-    getMailOrders(opts?: OperationOpts): Observable<Array<MailOrder> | RawAjaxResponse<Array<MailOrder>>> {
+    getMailOrders({ id }: GetMailOrdersRequest): Observable<Array<MailOrder>>
+    getMailOrders({ id }: GetMailOrdersRequest, opts?: OperationOpts): Observable<RawAjaxResponse<Array<MailOrder>>>
+    getMailOrders({ id }: GetMailOrdersRequest, opts?: OperationOpts): Observable<Array<MailOrder> | RawAjaxResponse<Array<MailOrder>>> {
+
         const headers: HttpHeaders = {
             ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication
-            ...(this.configuration.apiKey && { 'X-API-LOGIN': this.configuration.apiKey('X-API-LOGIN') }), // apiLoginAuth authentication
-            ...(this.configuration.apiKey && { 'X-API-PASS': this.configuration.apiKey('X-API-PASS') }), // apiPasswordAuth authentication
         };
+
+        const query: HttpQuery = {};
+
+        if (id != null) { query['id'] = id; }
 
         return this.request<Array<MailOrder>>({
             url: '/mail',
             method: 'GET',
             headers,
+            query,
         }, opts?.responseOpts);
     };
 
@@ -120,8 +101,6 @@ export class DefaultApi extends BaseAPI {
         const headers: HttpHeaders = {
             'Content-Type': 'application/json',
             ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication
-            ...(this.configuration.apiKey && { 'X-API-LOGIN': this.configuration.apiKey('X-API-LOGIN') }), // apiLoginAuth authentication
-            ...(this.configuration.apiKey && { 'X-API-PASS': this.configuration.apiKey('X-API-PASS') }), // apiPasswordAuth authentication
         };
 
         return this.request<void>({
@@ -136,21 +115,18 @@ export class DefaultApi extends BaseAPI {
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * Sends an Email with Advanced Options
      */
-    sendAdvMailById({ id, sendMail }: SendAdvMailByIdRequest): Observable<GenericResponse>
-    sendAdvMailById({ id, sendMail }: SendAdvMailByIdRequest, opts?: OperationOpts): Observable<RawAjaxResponse<GenericResponse>>
-    sendAdvMailById({ id, sendMail }: SendAdvMailByIdRequest, opts?: OperationOpts): Observable<GenericResponse | RawAjaxResponse<GenericResponse>> {
-        throwIfNullOrUndefined(id, 'id', 'sendAdvMailById');
+    sendAdvMailById({ sendMail }: SendAdvMailByIdRequest): Observable<GenericResponse>
+    sendAdvMailById({ sendMail }: SendAdvMailByIdRequest, opts?: OperationOpts): Observable<RawAjaxResponse<GenericResponse>>
+    sendAdvMailById({ sendMail }: SendAdvMailByIdRequest, opts?: OperationOpts): Observable<GenericResponse | RawAjaxResponse<GenericResponse>> {
         throwIfNullOrUndefined(sendMail, 'sendMail', 'sendAdvMailById');
 
         const headers: HttpHeaders = {
             'Content-Type': 'application/json',
             ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication
-            ...(this.configuration.apiKey && { 'X-API-LOGIN': this.configuration.apiKey('X-API-LOGIN') }), // apiLoginAuth authentication
-            ...(this.configuration.apiKey && { 'X-API-PASS': this.configuration.apiKey('X-API-PASS') }), // apiPasswordAuth authentication
         };
 
         return this.request<GenericResponse>({
-            url: '/mail/{id}/advsend'.replace('{id}', encodeURI(id)),
+            url: '/mail/advsend',
             method: 'POST',
             headers,
             body: sendMail,
@@ -161,15 +137,12 @@ export class DefaultApi extends BaseAPI {
      * Sends An email through one of your mail orders.
      * Sends an Email
      */
-    sendMailById({ id, subject, body, to, toName, from, fromName }: SendMailByIdRequest): Observable<GenericResponse>
-    sendMailById({ id, subject, body, to, toName, from, fromName }: SendMailByIdRequest, opts?: OperationOpts): Observable<RawAjaxResponse<GenericResponse>>
-    sendMailById({ id, subject, body, to, toName, from, fromName }: SendMailByIdRequest, opts?: OperationOpts): Observable<GenericResponse | RawAjaxResponse<GenericResponse>> {
-        throwIfNullOrUndefined(id, 'id', 'sendMailById');
+    sendMailById({ subject, body, to, from, id, toName, fromName }: SendMailByIdRequest): Observable<GenericResponse>
+    sendMailById({ subject, body, to, from, id, toName, fromName }: SendMailByIdRequest, opts?: OperationOpts): Observable<RawAjaxResponse<GenericResponse>>
+    sendMailById({ subject, body, to, from, id, toName, fromName }: SendMailByIdRequest, opts?: OperationOpts): Observable<GenericResponse | RawAjaxResponse<GenericResponse>> {
 
         const headers: HttpHeaders = {
             ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication
-            ...(this.configuration.apiKey && { 'X-API-LOGIN': this.configuration.apiKey('X-API-LOGIN') }), // apiLoginAuth authentication
-            ...(this.configuration.apiKey && { 'X-API-PASS': this.configuration.apiKey('X-API-PASS') }), // apiPasswordAuth authentication
         };
 
         const query: HttpQuery = {};
@@ -177,12 +150,13 @@ export class DefaultApi extends BaseAPI {
         if (subject != null) { query['subject'] = subject; }
         if (body != null) { query['body'] = body; }
         if (to != null) { query['to'] = to; }
-        if (toName != null) { query['toName'] = toName; }
         if (from != null) { query['from'] = from; }
+        if (id != null) { query['id'] = id; }
+        if (toName != null) { query['toName'] = toName; }
         if (fromName != null) { query['fromName'] = fromName; }
 
         return this.request<GenericResponse>({
-            url: '/mail/{id}/send'.replace('{id}', encodeURI(id)),
+            url: '/mail/send',
             method: 'POST',
             headers,
             query,
@@ -197,8 +171,6 @@ export class DefaultApi extends BaseAPI {
     validateMailOrder(opts?: OperationOpts): Observable<void | RawAjaxResponse<void>> {
         const headers: HttpHeaders = {
             ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication
-            ...(this.configuration.apiKey && { 'X-API-LOGIN': this.configuration.apiKey('X-API-LOGIN') }), // apiLoginAuth authentication
-            ...(this.configuration.apiKey && { 'X-API-PASS': this.configuration.apiKey('X-API-PASS') }), // apiPasswordAuth authentication
         };
 
         return this.request<void>({
@@ -215,22 +187,20 @@ export class DefaultApi extends BaseAPI {
     viewMailLogById({ id, searchString, skip, limit }: ViewMailLogByIdRequest): Observable<Array<MailLog>>
     viewMailLogById({ id, searchString, skip, limit }: ViewMailLogByIdRequest, opts?: OperationOpts): Observable<RawAjaxResponse<Array<MailLog>>>
     viewMailLogById({ id, searchString, skip, limit }: ViewMailLogByIdRequest, opts?: OperationOpts): Observable<Array<MailLog> | RawAjaxResponse<Array<MailLog>>> {
-        throwIfNullOrUndefined(id, 'id', 'viewMailLogById');
 
         const headers: HttpHeaders = {
             ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication
-            ...(this.configuration.apiKey && { 'X-API-LOGIN': this.configuration.apiKey('X-API-LOGIN') }), // apiLoginAuth authentication
-            ...(this.configuration.apiKey && { 'X-API-PASS': this.configuration.apiKey('X-API-PASS') }), // apiPasswordAuth authentication
         };
 
         const query: HttpQuery = {};
 
+        if (id != null) { query['id'] = id; }
         if (searchString != null) { query['searchString'] = searchString; }
         if (skip != null) { query['skip'] = skip; }
         if (limit != null) { query['limit'] = limit; }
 
         return this.request<Array<MailLog>>({
-            url: '/mail/{id}/log'.replace('{id}', encodeURI(id)),
+            url: '/mail/log',
             method: 'GET',
             headers,
             query,

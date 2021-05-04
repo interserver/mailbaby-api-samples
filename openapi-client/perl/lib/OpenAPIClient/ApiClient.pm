@@ -342,18 +342,6 @@ sub update_params_for_auth {
                 $header_params->{'X-API-KEY'} = $api_key;
             }
         }
-        elsif ($auth eq 'apiLoginAuth') {
-            my $api_key = $self->get_api_key_with_prefix('X-API-LOGIN');
-            if ($api_key) {
-                $header_params->{'X-API-LOGIN'} = $api_key;
-            }
-        }
-        elsif ($auth eq 'apiPasswordAuth') {
-            my $api_key = $self->get_api_key_with_prefix('X-API-PASS');
-            if ($api_key) {
-                $header_params->{'X-API-PASS'} = $api_key;
-            }
-        }
         else {
            # TODO show warning about security definition not found
         }

@@ -68,7 +68,6 @@ _()
     # The list of available operation in the REST service
     # It's modelled as an associative array for efficient key lookup
     declare -A operations
-    operations["getMailById"]=1
     operations["getMailOrders"]=1
     operations["pingServer"]=1
     operations["placeMailOrder"]=1
@@ -80,12 +79,11 @@ _()
     # An associative array of operations to their parameters
     # Only include path, query and header parameters
     declare -A operation_parameters
-    operation_parameters["getMailById"]="id= "
-    operation_parameters["getMailOrders"]=""
+    operation_parameters["getMailOrders"]="id= "
     operation_parameters["pingServer"]=""
     operation_parameters["placeMailOrder"]=""
-    operation_parameters["sendAdvMailById"]="id= "
-    operation_parameters["sendMailById"]="id= subject= body= to= toName= from= fromName= "
+    operation_parameters["sendAdvMailById"]=""
+    operation_parameters["sendMailById"]="subject= body= to= from= id= toName= fromName= "
     operation_parameters["validateMailOrder"]=""
     operation_parameters["viewMailLogById"]="id= searchString= skip= limit= "
 

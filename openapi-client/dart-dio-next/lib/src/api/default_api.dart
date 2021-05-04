@@ -22,97 +22,11 @@ class DefaultApi {
 
   const DefaultApi(this._dio, this._serializers);
 
-  /// Gets mail order information by id
-  ///
-  /// returns information about a mail order in the system with the given id.
-  Future<Response<MailOrder>> getMailById({ 
-    required int id,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/mail/{id}'.replaceAll('{' r'id' '}', id.toString());
-    final _options = Options(
-      method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[
-          {
-            'type': 'apiKey',
-            'name': 'apiKeyAuth',
-            'keyName': 'X-API-KEY',
-            'where': 'header',
-          },{
-            'type': 'apiKey',
-            'name': 'apiLoginAuth',
-            'keyName': 'X-API-LOGIN',
-            'where': 'header',
-          },{
-            'type': 'apiKey',
-            'name': 'apiPasswordAuth',
-            'keyName': 'X-API-PASS',
-            'where': 'header',
-          },
-        ],
-        ...?extra,
-      },
-      contentType: [
-        'application/json',
-      ].first,
-      validateStatus: validateStatus,
-    );
-
-    final _queryParameters = <String, dynamic>{
-    };
-
-    final _response = await _dio.request<Object>(
-      _path,
-      options: _options,
-      queryParameters: _queryParameters,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    MailOrder _responseData;
-
-    try {
-      const _responseType = FullType(MailOrder);
-      _responseData = _serializers.deserialize(
-        _response.data!,
-        specifiedType: _responseType,
-      ) as MailOrder;
-
-    } catch (error) {
-      throw DioError(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioErrorType.other,
-        error: error,
-      );
-    }
-
-    return Response<MailOrder>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
-  }
-
   /// displays a list of mail service orders
   ///
   /// 
   Future<Response<BuiltList<MailOrder>>> getMailOrders({ 
+    int? id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -133,16 +47,6 @@ class DefaultApi {
             'name': 'apiKeyAuth',
             'keyName': 'X-API-KEY',
             'where': 'header',
-          },{
-            'type': 'apiKey',
-            'name': 'apiLoginAuth',
-            'keyName': 'X-API-LOGIN',
-            'where': 'header',
-          },{
-            'type': 'apiKey',
-            'name': 'apiPasswordAuth',
-            'keyName': 'X-API-PASS',
-            'where': 'header',
           },
         ],
         ...?extra,
@@ -154,6 +58,7 @@ class DefaultApi {
     );
 
     final _queryParameters = <String, dynamic>{
+      if (id != null) r'id': id,
     };
 
     final _response = await _dio.request<Object>(
@@ -262,16 +167,6 @@ class DefaultApi {
             'name': 'apiKeyAuth',
             'keyName': 'X-API-KEY',
             'where': 'header',
-          },{
-            'type': 'apiKey',
-            'name': 'apiLoginAuth',
-            'keyName': 'X-API-LOGIN',
-            'where': 'header',
-          },{
-            'type': 'apiKey',
-            'name': 'apiPasswordAuth',
-            'keyName': 'X-API-PASS',
-            'where': 'header',
           },
         ],
         ...?extra,
@@ -320,7 +215,6 @@ class DefaultApi {
   ///
   /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
   Future<Response<GenericResponse>> sendAdvMailById({ 
-    required int id,
     required SendMail sendMail,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -329,7 +223,7 @@ class DefaultApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/mail/{id}/advsend'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/mail/advsend';
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -342,25 +236,12 @@ class DefaultApi {
             'name': 'apiKeyAuth',
             'keyName': 'X-API-KEY',
             'where': 'header',
-          },{
-            'type': 'apiKey',
-            'name': 'apiLoginAuth',
-            'keyName': 'X-API-LOGIN',
-            'where': 'header',
-          },{
-            'type': 'apiKey',
-            'name': 'apiPasswordAuth',
-            'keyName': 'X-API-PASS',
-            'where': 'header',
           },
         ],
         ...?extra,
       },
       contentType: [
         'application/json',
-        'application/xml',
-        'application/x-www-form-urlencoded',
-        'text/plain',
       ].first,
       validateStatus: validateStatus,
     );
@@ -430,12 +311,12 @@ class DefaultApi {
   ///
   /// Sends An email through one of your mail orders.
   Future<Response<GenericResponse>> sendMailById({ 
-    required int id,
     String? subject,
     String? body,
     String? to,
-    String? toName,
     String? from,
+    int? id,
+    String? toName,
     String? fromName,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -444,7 +325,7 @@ class DefaultApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/mail/{id}/send'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/mail/send';
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -456,16 +337,6 @@ class DefaultApi {
             'type': 'apiKey',
             'name': 'apiKeyAuth',
             'keyName': 'X-API-KEY',
-            'where': 'header',
-          },{
-            'type': 'apiKey',
-            'name': 'apiLoginAuth',
-            'keyName': 'X-API-LOGIN',
-            'where': 'header',
-          },{
-            'type': 'apiKey',
-            'name': 'apiPasswordAuth',
-            'keyName': 'X-API-PASS',
             'where': 'header',
           },
         ],
@@ -481,8 +352,9 @@ class DefaultApi {
       if (subject != null) r'subject': subject,
       if (body != null) r'body': body,
       if (to != null) r'to': to,
-      if (toName != null) r'toName': toName,
       if (from != null) r'from': from,
+      if (id != null) r'id': id,
+      if (toName != null) r'toName': toName,
       if (fromName != null) r'fromName': fromName,
     };
 
@@ -549,16 +421,6 @@ class DefaultApi {
             'name': 'apiKeyAuth',
             'keyName': 'X-API-KEY',
             'where': 'header',
-          },{
-            'type': 'apiKey',
-            'name': 'apiLoginAuth',
-            'keyName': 'X-API-LOGIN',
-            'where': 'header',
-          },{
-            'type': 'apiKey',
-            'name': 'apiPasswordAuth',
-            'keyName': 'X-API-PASS',
-            'where': 'header',
           },
         ],
         ...?extra,
@@ -588,7 +450,7 @@ class DefaultApi {
   ///
   /// By passing in the appropriate options, you can search for available inventory in the system 
   Future<Response<BuiltList<MailLog>>> viewMailLogById({ 
-    required int id,
+    int? id,
     String? searchString,
     int? skip,
     int? limit,
@@ -599,7 +461,7 @@ class DefaultApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/mail/{id}/log'.replaceAll('{' r'id' '}', id.toString());
+    final _path = r'/mail/log';
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -612,16 +474,6 @@ class DefaultApi {
             'name': 'apiKeyAuth',
             'keyName': 'X-API-KEY',
             'where': 'header',
-          },{
-            'type': 'apiKey',
-            'name': 'apiLoginAuth',
-            'keyName': 'X-API-LOGIN',
-            'where': 'header',
-          },{
-            'type': 'apiKey',
-            'name': 'apiPasswordAuth',
-            'keyName': 'X-API-PASS',
-            'where': 'header',
           },
         ],
         ...?extra,
@@ -633,6 +485,7 @@ class DefaultApi {
     );
 
     final _queryParameters = <String, dynamic>{
+      if (id != null) r'id': id,
       if (searchString != null) r'searchString': searchString,
       if (skip != null) r'skip': skip,
       if (limit != null) r'limit': limit,

@@ -79,14 +79,13 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**GetMailById**](docs/DefaultApi.md#getmailbyid) | **Get** /mail/{id} | Gets mail order information by id
 *DefaultApi* | [**GetMailOrders**](docs/DefaultApi.md#getmailorders) | **Get** /mail | displays a list of mail service orders
 *DefaultApi* | [**PingServer**](docs/DefaultApi.md#pingserver) | **Get** /ping | Checks if the server is running
 *DefaultApi* | [**PlaceMailOrder**](docs/DefaultApi.md#placemailorder) | **Post** /mail/order | places a mail order
-*DefaultApi* | [**SendAdvMailById**](docs/DefaultApi.md#sendadvmailbyid) | **Post** /mail/{id}/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**SendMailById**](docs/DefaultApi.md#sendmailbyid) | **Post** /mail/{id}/send | Sends an Email
+*DefaultApi* | [**SendAdvMailById**](docs/DefaultApi.md#sendadvmailbyid) | **Post** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**SendMailById**](docs/DefaultApi.md#sendmailbyid) | **Post** /mail/send | Sends an Email
 *DefaultApi* | [**ValidateMailOrder**](docs/DefaultApi.md#validatemailorder) | **Get** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**ViewMailLogById**](docs/DefaultApi.md#viewmaillogbyid) | **Get** /mail/{id}/log | displays the mail log
+*DefaultApi* | [**ViewMailLogById**](docs/DefaultApi.md#viewmaillogbyid) | **Get** /mail/log | displays the mail log
 
 
 ## Documentation For Models
@@ -111,24 +110,6 @@ Class | Method | HTTP request | Description
 - **Location**: HTTP header
 
 Note, each API key must be added to a map of `map[string]APIKey` where the key is: X-API-KEY and passed in as the auth context for each request.
-
-
-### apiLoginAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-Note, each API key must be added to a map of `map[string]APIKey` where the key is: X-API-LOGIN and passed in as the auth context for each request.
-
-
-### apiPasswordAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-PASS
-- **Location**: HTTP header
-
-Note, each API key must be added to a map of `map[string]APIKey` where the key is: X-API-PASS and passed in as the auth context for each request.
 
 
 ## Documentation for Utility Methods

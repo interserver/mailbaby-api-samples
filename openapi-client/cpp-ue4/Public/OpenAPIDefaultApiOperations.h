@@ -24,31 +24,6 @@
 namespace OpenAPI 
 {
 
-/* Gets mail order information by id
- *
- * returns information about a mail order in the system with the given id.
-*/
-class OPENAPI_API OpenAPIDefaultApi::GetMailByIdRequest : public Request
-{
-public:
-    virtual ~GetMailByIdRequest() {}
-	void SetupHttpRequest(const FHttpRequestRef& HttpRequest) const final;
-	FString ComputePath() const final;
-    
-	/* User ID */
-	int64 Id = 0;
-};
-
-class OPENAPI_API OpenAPIDefaultApi::GetMailByIdResponse : public Response
-{
-public:
-    virtual ~GetMailByIdResponse() {}
-	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) final;
-	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) final;
-    
-    OpenAPIMailOrder Content;
-};
-
 /* displays a list of mail service orders
 
 */
@@ -59,6 +34,8 @@ public:
 	void SetupHttpRequest(const FHttpRequestRef& HttpRequest) const final;
 	FString ComputePath() const final;
     
+	/* The ID of your mail order this will be sent through. */
+	TOptional<int64> Id;
 };
 
 class OPENAPI_API OpenAPIDefaultApi::GetMailOrdersResponse : public Response
@@ -129,8 +106,6 @@ public:
 	void SetupHttpRequest(const FHttpRequestRef& HttpRequest) const final;
 	FString ComputePath() const final;
     
-	/* User ID */
-	int64 Id = 0;
 	OpenAPISendMail OpenAPISendMail;
 };
 
@@ -155,13 +130,19 @@ public:
 	void SetupHttpRequest(const FHttpRequestRef& HttpRequest) const final;
 	FString ComputePath() const final;
     
-	/* User ID */
-	int64 Id = 0;
+	/* The Subject of the email */
 	TOptional<FString> Subject;
+	/* The contents of the email */
 	TOptional<FString> Body;
+	/* The email address of who this email will be sent to. */
 	TOptional<FString> To;
-	TOptional<FString> ToName;
+	/* The email address of who this email will be sent from. */
 	TOptional<FString> From;
+	/* The ID of your mail order this will be sent through. */
+	TOptional<int64> Id;
+	/* The name or title of who this email is being sent to. */
+	TOptional<FString> ToName;
+	/* The name or title of who this email is being sent from. */
 	TOptional<FString> FromName;
 };
 
@@ -208,8 +189,8 @@ public:
 	void SetupHttpRequest(const FHttpRequestRef& HttpRequest) const final;
 	FString ComputePath() const final;
     
-	/* User ID */
-	int64 Id = 0;
+	/* The ID of your mail order this will be sent through. */
+	TOptional<int64> Id;
 	/* pass an optional search string for looking up inventory */
 	TOptional<FString> SearchString;
 	/* number of records to skip for pagination */

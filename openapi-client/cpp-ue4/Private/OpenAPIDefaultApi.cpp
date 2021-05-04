@@ -98,43 +98,6 @@ void OpenAPIDefaultApi::HandleResponse(FHttpResponsePtr HttpResponse, bool bSucc
 	InOutResponse.SetHttpResponseCode(EHttpResponseCodes::RequestTimeout);
 }
 
-bool OpenAPIDefaultApi::GetMailById(const GetMailByIdRequest& Request, const FGetMailByIdDelegate& Delegate /*= FGetMailByIdDelegate()*/) const
-{
-	if (!IsValid())
-		return false;
-
-	FHttpRequestRef HttpRequest = FHttpModule::Get().CreateRequest();
-	HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-	for(const auto& It : AdditionalHeaderParams)
-	{
-		HttpRequest->SetHeader(It.Key, It.Value);
-	}
-
-	Request.SetupHttpRequest(HttpRequest);
-	
-	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnGetMailByIdResponse, Delegate, Request.GetAutoRetryCount());
-	return HttpRequest->ProcessRequest();
-}
-
-void OpenAPIDefaultApi::OnGetMailByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FGetMailByIdDelegate Delegate, int AutoRetryCount) const
-{
-	GetMailByIdResponse Response;
-	Response.SetHttpRequest(HttpRequest);
-
-	HandleResponse(HttpResponse, bSucceeded, Response);
-
-	if(!Response.IsSuccessful() && AutoRetryCount > 0)
-	{
-		HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnGetMailByIdResponse, Delegate, AutoRetryCount - 1);
-		Response.AsyncRetry();
-	}
-	else
-	{
-		Delegate.ExecuteIfBound(Response);
-	}
-}
-
 bool OpenAPIDefaultApi::GetMailOrders(const GetMailOrdersRequest& Request, const FGetMailOrdersDelegate& Delegate /*= FGetMailOrdersDelegate()*/) const
 {
 	if (!IsValid())

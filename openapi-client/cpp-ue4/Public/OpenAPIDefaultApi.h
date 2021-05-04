@@ -28,8 +28,6 @@ public:
 	void AddHeaderParam(const FString& Key, const FString& Value);
 	void ClearHeaderParams();
 
-	class GetMailByIdRequest;
-	class GetMailByIdResponse;
 	class GetMailOrdersRequest;
 	class GetMailOrdersResponse;
 	class PingServerRequest;
@@ -45,7 +43,6 @@ public:
 	class ViewMailLogByIdRequest;
 	class ViewMailLogByIdResponse;
 	
-    DECLARE_DELEGATE_OneParam(FGetMailByIdDelegate, const GetMailByIdResponse&);
     DECLARE_DELEGATE_OneParam(FGetMailOrdersDelegate, const GetMailOrdersResponse&);
     DECLARE_DELEGATE_OneParam(FPingServerDelegate, const PingServerResponse&);
     DECLARE_DELEGATE_OneParam(FPlaceMailOrderDelegate, const PlaceMailOrderResponse&);
@@ -54,7 +51,6 @@ public:
     DECLARE_DELEGATE_OneParam(FValidateMailOrderDelegate, const ValidateMailOrderResponse&);
     DECLARE_DELEGATE_OneParam(FViewMailLogByIdDelegate, const ViewMailLogByIdResponse&);
     
-    bool GetMailById(const GetMailByIdRequest& Request, const FGetMailByIdDelegate& Delegate = FGetMailByIdDelegate()) const;
     bool GetMailOrders(const GetMailOrdersRequest& Request, const FGetMailOrdersDelegate& Delegate = FGetMailOrdersDelegate()) const;
     bool PingServer(const PingServerRequest& Request, const FPingServerDelegate& Delegate = FPingServerDelegate()) const;
     bool PlaceMailOrder(const PlaceMailOrderRequest& Request, const FPlaceMailOrderDelegate& Delegate = FPlaceMailOrderDelegate()) const;
@@ -65,7 +61,6 @@ public:
     
 
 private:
-    void OnGetMailByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FGetMailByIdDelegate Delegate, int AutoRetryCount) const;
     void OnGetMailOrdersResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FGetMailOrdersDelegate Delegate, int AutoRetryCount) const;
     void OnPingServerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FPingServerDelegate Delegate, int AutoRetryCount) const;
     void OnPlaceMailOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FPlaceMailOrderDelegate Delegate, int AutoRetryCount) const;

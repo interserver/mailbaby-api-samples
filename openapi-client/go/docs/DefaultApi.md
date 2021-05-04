@@ -4,90 +4,19 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetMailById**](DefaultApi.md#GetMailById) | **Get** /mail/{id} | Gets mail order information by id
 [**GetMailOrders**](DefaultApi.md#GetMailOrders) | **Get** /mail | displays a list of mail service orders
 [**PingServer**](DefaultApi.md#PingServer) | **Get** /ping | Checks if the server is running
 [**PlaceMailOrder**](DefaultApi.md#PlaceMailOrder) | **Post** /mail/order | places a mail order
-[**SendAdvMailById**](DefaultApi.md#SendAdvMailById) | **Post** /mail/{id}/advsend | Sends an Email with Advanced Options
-[**SendMailById**](DefaultApi.md#SendMailById) | **Post** /mail/{id}/send | Sends an Email
+[**SendAdvMailById**](DefaultApi.md#SendAdvMailById) | **Post** /mail/advsend | Sends an Email with Advanced Options
+[**SendMailById**](DefaultApi.md#SendMailById) | **Post** /mail/send | Sends an Email
 [**ValidateMailOrder**](DefaultApi.md#ValidateMailOrder) | **Get** /mail/order | validatess order details before placing an order
-[**ViewMailLogById**](DefaultApi.md#ViewMailLogById) | **Get** /mail/{id}/log | displays the mail log
+[**ViewMailLogById**](DefaultApi.md#ViewMailLogById) | **Get** /mail/log | displays the mail log
 
-
-
-## GetMailById
-
-> MailOrder GetMailById(ctx, id).Execute()
-
-Gets mail order information by id
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := int64(789) // int64 | User ID
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetMailById(context.Background(), id).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetMailById``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetMailById`: MailOrder
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetMailById`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | User ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetMailByIdRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**MailOrder**](MailOrder.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## GetMailOrders
 
-> []MailOrder GetMailOrders(ctx).Execute()
+> []MailOrder GetMailOrders(ctx).Id(id).Execute()
 
 displays a list of mail service orders
 
@@ -104,10 +33,11 @@ import (
 )
 
 func main() {
+    id := int64(789) // int64 | The ID of your mail order this will be sent through. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetMailOrders(context.Background()).Execute()
+    resp, r, err := api_client.DefaultApi.GetMailOrders(context.Background()).Id(id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetMailOrders``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -119,12 +49,16 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetMailOrdersRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int64** | The ID of your mail order this will be sent through. | 
 
 ### Return type
 
@@ -132,7 +66,7 @@ Other parameters are passed through a pointer to a apiGetMailOrdersRequest struc
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -253,7 +187,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -267,7 +201,7 @@ Name | Type | Description  | Notes
 
 ## SendAdvMailById
 
-> GenericResponse SendAdvMailById(ctx, id).SendMail(sendMail).Execute()
+> GenericResponse SendAdvMailById(ctx).SendMail(sendMail).Execute()
 
 Sends an Email with Advanced Options
 
@@ -286,13 +220,12 @@ import (
 )
 
 func main() {
-    id := int64(789) // int64 | User ID
     sendMail := *openapiclient.NewSendMail(int64(123), *openapiclient.NewMailContact("johndoe@company.com"), []openapiclient.MailContact{*openapiclient.NewMailContact("johndoe@company.com")}, "Your Package has been Delivered!", "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
 ") // SendMail | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.SendAdvMailById(context.Background(), id).SendMail(sendMail).Execute()
+    resp, r, err := api_client.DefaultApi.SendAdvMailById(context.Background()).SendMail(sendMail).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SendAdvMailById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -305,10 +238,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | User ID | 
 
 ### Other Parameters
 
@@ -317,7 +246,6 @@ Other parameters are passed through a pointer to a apiSendAdvMailByIdRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **sendMail** | [**SendMail**](SendMail.md) |  | 
 
 ### Return type
@@ -326,11 +254,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -340,7 +268,7 @@ Name | Type | Description  | Notes
 
 ## SendMailById
 
-> GenericResponse SendMailById(ctx, id).Subject(subject).Body(body).To(to).ToName(toName).From(from).FromName(fromName).Execute()
+> GenericResponse SendMailById(ctx).Subject(subject).Body(body).To(to).From(from).Id(id).ToName(toName).FromName(fromName).Execute()
 
 Sends an Email
 
@@ -359,17 +287,17 @@ import (
 )
 
 func main() {
-    id := int64(789) // int64 | User ID
-    subject := "subject_example" // string |  (optional)
-    body := "body_example" // string |  (optional)
-    to := "to_example" // string |  (optional)
-    toName := "toName_example" // string |  (optional)
-    from := "from_example" // string |  (optional)
-    fromName := "fromName_example" // string |  (optional)
+    subject := "subject_example" // string | The Subject of the email (optional)
+    body := "body_example" // string | The contents of the email (optional)
+    to := "to_example" // string | The email address of who this email will be sent to. (optional)
+    from := "from_example" // string | The email address of who this email will be sent from. (optional)
+    id := int64(789) // int64 | The ID of your mail order this will be sent through. (optional)
+    toName := "toName_example" // string | The name or title of who this email is being sent to. (optional)
+    fromName := "fromName_example" // string | The name or title of who this email is being sent from. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.SendMailById(context.Background(), id).Subject(subject).Body(body).To(to).ToName(toName).From(from).FromName(fromName).Execute()
+    resp, r, err := api_client.DefaultApi.SendMailById(context.Background()).Subject(subject).Body(body).To(to).From(from).Id(id).ToName(toName).FromName(fromName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SendMailById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -382,10 +310,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | User ID | 
 
 ### Other Parameters
 
@@ -394,13 +318,13 @@ Other parameters are passed through a pointer to a apiSendMailByIdRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **subject** | **string** |  | 
- **body** | **string** |  | 
- **to** | **string** |  | 
- **toName** | **string** |  | 
- **from** | **string** |  | 
- **fromName** | **string** |  | 
+ **subject** | **string** | The Subject of the email | 
+ **body** | **string** | The contents of the email | 
+ **to** | **string** | The email address of who this email will be sent to. | 
+ **from** | **string** | The email address of who this email will be sent from. | 
+ **id** | **int64** | The ID of your mail order this will be sent through. | 
+ **toName** | **string** | The name or title of who this email is being sent to. | 
+ **fromName** | **string** | The name or title of who this email is being sent from. | 
 
 ### Return type
 
@@ -408,7 +332,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -465,7 +389,7 @@ Other parameters are passed through a pointer to a apiValidateMailOrderRequest s
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -479,7 +403,7 @@ Other parameters are passed through a pointer to a apiValidateMailOrderRequest s
 
 ## ViewMailLogById
 
-> []MailLog ViewMailLogById(ctx, id).SearchString(searchString).Skip(skip).Limit(limit).Execute()
+> []MailLog ViewMailLogById(ctx).Id(id).SearchString(searchString).Skip(skip).Limit(limit).Execute()
 
 displays the mail log
 
@@ -498,14 +422,14 @@ import (
 )
 
 func main() {
-    id := int64(789) // int64 | User ID
+    id := int64(789) // int64 | The ID of your mail order this will be sent through. (optional)
     searchString := "searchString_example" // string | pass an optional search string for looking up inventory (optional)
     skip := int32(56) // int32 | number of records to skip for pagination (optional)
     limit := int32(56) // int32 | maximum number of records to return (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.ViewMailLogById(context.Background(), id).SearchString(searchString).Skip(skip).Limit(limit).Execute()
+    resp, r, err := api_client.DefaultApi.ViewMailLogById(context.Background()).Id(id).SearchString(searchString).Skip(skip).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ViewMailLogById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -518,10 +442,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | User ID | 
 
 ### Other Parameters
 
@@ -530,7 +450,7 @@ Other parameters are passed through a pointer to a apiViewMailLogByIdRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
+ **id** | **int64** | The ID of your mail order this will be sent through. | 
  **searchString** | **string** | pass an optional search string for looking up inventory | 
  **skip** | **int32** | number of records to skip for pagination | 
  **limit** | **int32** | maximum number of records to return | 
@@ -541,7 +461,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

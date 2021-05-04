@@ -26,14 +26,13 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultAPI* | [**getMailById**](docs/DefaultAPI.md#getmailbyid) | **GET** /mail/{id} | Gets mail order information by id
 *DefaultAPI* | [**getMailOrders**](docs/DefaultAPI.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 *DefaultAPI* | [**pingServer**](docs/DefaultAPI.md#pingserver) | **GET** /ping | Checks if the server is running
 *DefaultAPI* | [**placeMailOrder**](docs/DefaultAPI.md#placemailorder) | **POST** /mail/order | places a mail order
-*DefaultAPI* | [**sendAdvMailById**](docs/DefaultAPI.md#sendadvmailbyid) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-*DefaultAPI* | [**sendMailById**](docs/DefaultAPI.md#sendmailbyid) | **POST** /mail/{id}/send | Sends an Email
+*DefaultAPI* | [**sendAdvMailById**](docs/DefaultAPI.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultAPI* | [**sendMailById**](docs/DefaultAPI.md#sendmailbyid) | **POST** /mail/send | Sends an Email
 *DefaultAPI* | [**validateMailOrder**](docs/DefaultAPI.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultAPI* | [**viewMailLogById**](docs/DefaultAPI.md#viewmaillogbyid) | **GET** /mail/{id}/log | displays the mail log
+*DefaultAPI* | [**viewMailLogById**](docs/DefaultAPI.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
 
 ## Documentation For Models
@@ -54,18 +53,6 @@ Class | Method | HTTP request | Description
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-## apiLoginAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-## apiPasswordAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 
 

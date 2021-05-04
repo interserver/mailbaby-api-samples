@@ -48,71 +48,13 @@ local function new_default_api(authority, basePath, schemes)
 	}, default_api_mt)
 end
 
-function default_api:get_mail_by_id(id)
+function default_api:get_mail_orders(id)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
 		port = self.port;
-		path = string.format("%s/mail/%s",
-			self.basePath, id);
-	})
-
-	-- set HTTP verb
-	req.headers:upsert(":method", "GET")
-	-- TODO: create a function to select proper content-type
-	--local var_accept = { "application/json" }
-	req.headers:upsert("content-type", "application/json")
-
-	-- api key in headers 'X-API-KEY'
-	if self.api_key['X-API-KEY'] then
-		req.headers:upsert("apiKeyAuth", self.api_key['X-API-KEY'])
-	end
-	-- api key in headers 'X-API-LOGIN'
-	if self.api_key['X-API-LOGIN'] then
-		req.headers:upsert("apiLoginAuth", self.api_key['X-API-LOGIN'])
-	end
-	-- api key in headers 'X-API-PASS'
-	if self.api_key['X-API-PASS'] then
-		req.headers:upsert("apiPasswordAuth", self.api_key['X-API-PASS'])
-	end
-
-	-- make the HTTP call
-	local headers, stream, errno = req:go()
-	if not headers then
-		return nil, stream, errno
-	end
-	local http_status = headers:get(":status")
-	if http_status:sub(1,1) == "2" then
-		local body, err, errno2 = stream:get_body_as_string()
-		-- exception when getting the HTTP body
-		if not body then
-			return nil, err, errno2
-		end
-		stream:shutdown()
-		local result, _, err3 = dkjson.decode(body)
-		-- exception when decoding the HTTP body
-		if result == nil then
-			return nil, err3
-		end
-		return openapiclient_mail_order.cast(result), headers
-	else
-		local body, err, errno2 = stream:get_body_as_string()
-		if not body then
-			return nil, err, errno2
-		end
-		stream:shutdown()
-		-- return the error message (http body)
-		return nil, http_status, body
-	end
-end
-
-function default_api:get_mail_orders()
-	local req = http_request.new_from_uri({
-		scheme = self.default_scheme;
-		host = self.host;
-		port = self.port;
-		path = string.format("%s/mail",
-			self.basePath);
+		path = string.format("%s/mail?id=%s",
+			self.basePath, http_util.encodeURIComponent(id));
 	})
 
 	-- set HTTP verb
@@ -124,14 +66,6 @@ function default_api:get_mail_orders()
 	-- api key in headers 'X-API-KEY'
 	if self.api_key['X-API-KEY'] then
 		req.headers:upsert("apiKeyAuth", self.api_key['X-API-KEY'])
-	end
-	-- api key in headers 'X-API-LOGIN'
-	if self.api_key['X-API-LOGIN'] then
-		req.headers:upsert("apiLoginAuth", self.api_key['X-API-LOGIN'])
-	end
-	-- api key in headers 'X-API-PASS'
-	if self.api_key['X-API-PASS'] then
-		req.headers:upsert("apiPasswordAuth", self.api_key['X-API-PASS'])
 	end
 
 	-- make the HTTP call
@@ -223,14 +157,6 @@ function default_api:place_mail_order(mail_order)
 	if self.api_key['X-API-KEY'] then
 		req.headers:upsert("apiKeyAuth", self.api_key['X-API-KEY'])
 	end
-	-- api key in headers 'X-API-LOGIN'
-	if self.api_key['X-API-LOGIN'] then
-		req.headers:upsert("apiLoginAuth", self.api_key['X-API-LOGIN'])
-	end
-	-- api key in headers 'X-API-PASS'
-	if self.api_key['X-API-PASS'] then
-		req.headers:upsert("apiPasswordAuth", self.api_key['X-API-PASS'])
-	end
 
 	-- make the HTTP call
 	local headers, stream, errno = req:go()
@@ -251,19 +177,19 @@ function default_api:place_mail_order(mail_order)
 	end
 end
 
-function default_api:send_adv_mail_by_id(id, send_mail)
+function default_api:send_adv_mail_by_id(send_mail)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
 		port = self.port;
-		path = string.format("%s/mail/%s/advsend",
-			self.basePath, id);
+		path = string.format("%s/mail/advsend",
+			self.basePath);
 	})
 
 	-- set HTTP verb
 	req.headers:upsert(":method", "POST")
 	-- TODO: create a function to select proper accept
-	--local var_content_type = { "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" }
+	--local var_content_type = { "application/json" }
 	req.headers:upsert("accept", "application/json")
 
 	-- TODO: create a function to select proper content-type
@@ -275,14 +201,6 @@ function default_api:send_adv_mail_by_id(id, send_mail)
 	-- api key in headers 'X-API-KEY'
 	if self.api_key['X-API-KEY'] then
 		req.headers:upsert("apiKeyAuth", self.api_key['X-API-KEY'])
-	end
-	-- api key in headers 'X-API-LOGIN'
-	if self.api_key['X-API-LOGIN'] then
-		req.headers:upsert("apiLoginAuth", self.api_key['X-API-LOGIN'])
-	end
-	-- api key in headers 'X-API-PASS'
-	if self.api_key['X-API-PASS'] then
-		req.headers:upsert("apiPasswordAuth", self.api_key['X-API-PASS'])
 	end
 
 	-- make the HTTP call
@@ -315,13 +233,13 @@ function default_api:send_adv_mail_by_id(id, send_mail)
 	end
 end
 
-function default_api:send_mail_by_id(id, subject, body, to, to_name, from, from_name)
+function default_api:send_mail_by_id(subject, body, to, from, id, to_name, from_name)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
 		port = self.port;
-		path = string.format("%s/mail/%s/send?subject=%s&body=%s&to=%s&toName=%s&from=%s&fromName=%s",
-			self.basePath, id, http_util.encodeURIComponent(subject), http_util.encodeURIComponent(body), http_util.encodeURIComponent(to), http_util.encodeURIComponent(to_name), http_util.encodeURIComponent(from), http_util.encodeURIComponent(from_name));
+		path = string.format("%s/mail/send?subject=%s&body=%s&to=%s&from=%s&id=%s&toName=%s&fromName=%s",
+			self.basePath, http_util.encodeURIComponent(subject), http_util.encodeURIComponent(body), http_util.encodeURIComponent(to), http_util.encodeURIComponent(from), http_util.encodeURIComponent(id), http_util.encodeURIComponent(to_name), http_util.encodeURIComponent(from_name));
 	})
 
 	-- set HTTP verb
@@ -333,14 +251,6 @@ function default_api:send_mail_by_id(id, subject, body, to, to_name, from, from_
 	-- api key in headers 'X-API-KEY'
 	if self.api_key['X-API-KEY'] then
 		req.headers:upsert("apiKeyAuth", self.api_key['X-API-KEY'])
-	end
-	-- api key in headers 'X-API-LOGIN'
-	if self.api_key['X-API-LOGIN'] then
-		req.headers:upsert("apiLoginAuth", self.api_key['X-API-LOGIN'])
-	end
-	-- api key in headers 'X-API-PASS'
-	if self.api_key['X-API-PASS'] then
-		req.headers:upsert("apiPasswordAuth", self.api_key['X-API-PASS'])
 	end
 
 	-- make the HTTP call
@@ -392,14 +302,6 @@ function default_api:validate_mail_order()
 	if self.api_key['X-API-KEY'] then
 		req.headers:upsert("apiKeyAuth", self.api_key['X-API-KEY'])
 	end
-	-- api key in headers 'X-API-LOGIN'
-	if self.api_key['X-API-LOGIN'] then
-		req.headers:upsert("apiLoginAuth", self.api_key['X-API-LOGIN'])
-	end
-	-- api key in headers 'X-API-PASS'
-	if self.api_key['X-API-PASS'] then
-		req.headers:upsert("apiPasswordAuth", self.api_key['X-API-PASS'])
-	end
 
 	-- make the HTTP call
 	local headers, stream, errno = req:go()
@@ -425,8 +327,8 @@ function default_api:view_mail_log_by_id(id, search_string, skip, limit)
 		scheme = self.default_scheme;
 		host = self.host;
 		port = self.port;
-		path = string.format("%s/mail/%s/log?searchString=%s&skip=%s&limit=%s",
-			self.basePath, id, http_util.encodeURIComponent(search_string), http_util.encodeURIComponent(skip), http_util.encodeURIComponent(limit));
+		path = string.format("%s/mail/log?id=%s&searchString=%s&skip=%s&limit=%s",
+			self.basePath, http_util.encodeURIComponent(id), http_util.encodeURIComponent(search_string), http_util.encodeURIComponent(skip), http_util.encodeURIComponent(limit));
 	})
 
 	-- set HTTP verb
@@ -438,14 +340,6 @@ function default_api:view_mail_log_by_id(id, search_string, skip, limit)
 	-- api key in headers 'X-API-KEY'
 	if self.api_key['X-API-KEY'] then
 		req.headers:upsert("apiKeyAuth", self.api_key['X-API-KEY'])
-	end
-	-- api key in headers 'X-API-LOGIN'
-	if self.api_key['X-API-LOGIN'] then
-		req.headers:upsert("apiLoginAuth", self.api_key['X-API-LOGIN'])
-	end
-	-- api key in headers 'X-API-PASS'
-	if self.api_key['X-API-PASS'] then
-		req.headers:upsert("apiPasswordAuth", self.api_key['X-API-PASS'])
 	end
 
 	-- make the HTTP call

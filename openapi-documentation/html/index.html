@@ -190,8 +190,6 @@ font-style: italic;
   <h2>Access</h2>
     <ol>
       <li>APIKey KeyParamName:X-API-KEY KeyInQuery:false KeyInHeader:true</li>
-      <li>APIKey KeyParamName:X-API-LOGIN KeyInQuery:false KeyInHeader:true</li>
-      <li>APIKey KeyParamName:X-API-PASS KeyInQuery:false KeyInHeader:true</li>
     </ol>
 
   <h2><a name="__Methods">Methods</a></h2>
@@ -201,67 +199,16 @@ font-style: italic;
   <div class="method-summary"></div>
   <h4><a href="#Default">Default</a></h4>
   <ul>
-  <li><a href="#getMailById"><code><span class="http-method">get</span> /mail/{id}</code></a></li>
   <li><a href="#getMailOrders"><code><span class="http-method">get</span> /mail</code></a></li>
   <li><a href="#pingServer"><code><span class="http-method">get</span> /ping</code></a></li>
   <li><a href="#placeMailOrder"><code><span class="http-method">post</span> /mail/order</code></a></li>
-  <li><a href="#sendAdvMailById"><code><span class="http-method">post</span> /mail/{id}/advsend</code></a></li>
-  <li><a href="#sendMailById"><code><span class="http-method">post</span> /mail/{id}/send</code></a></li>
+  <li><a href="#sendAdvMailById"><code><span class="http-method">post</span> /mail/advsend</code></a></li>
+  <li><a href="#sendMailById"><code><span class="http-method">post</span> /mail/send</code></a></li>
   <li><a href="#validateMailOrder"><code><span class="http-method">get</span> /mail/order</code></a></li>
-  <li><a href="#viewMailLogById"><code><span class="http-method">get</span> /mail/{id}/log</code></a></li>
+  <li><a href="#viewMailLogById"><code><span class="http-method">get</span> /mail/log</code></a></li>
   </ul>
 
   <h1><a name="Default">Default</a></h1>
-  <div class="method"><a name="getMailById"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/{id}</code></pre></div>
-    <div class="method-summary">Gets mail order information by id (<span class="nickname">getMailById</span>)</div>
-    <div class="method-notes">returns information about a mail order in the system with the given id.</div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-
-      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; User ID default: null format: int64</div>
-    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#MailOrder">MailOrder</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "password" : "guest123",
-  "comment" : "main mail account",
-  "id" : 1234,
-  "status" : "active",
-  "username" : "mb1234"
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Successful operation
-        <a href="#MailOrder">MailOrder</a>
-  </div> <!-- method -->
-  <hr/>
   <div class="method"><a name="getMailOrders"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
@@ -273,6 +220,12 @@ font-style: italic;
 
 
 
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The ID of your mail order this will be sent through. default: null format: int64</div>
+    </div>  <!-- field-items -->
 
 
     <h3 class="field-label">Return type</h3>
@@ -401,24 +354,15 @@ font-style: italic;
   <div class="method"><a name="sendAdvMailById"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/{id}/advsend</code></pre></div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/advsend</code></pre></div>
     <div class="method-summary">Sends an Email with Advanced Options (<span class="nickname">sendAdvMailById</span>)</div>
     <div class="method-notes">Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.</div>
 
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-
-      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; User ID default: null format: int64</div>
-    </div>  <!-- field-items -->
 
     <h3 class="field-label">Consumes</h3>
     This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
-      <li><code>application/xml</code></li>
-      <li><code>application/x-www-form-urlencoded</code></li>
-      <li><code>text/plain</code></li>
     </ul>
 
     <h3 class="field-label">Request body</h3>
@@ -472,16 +416,10 @@ font-style: italic;
   <div class="method"><a name="sendMailById"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/{id}/send</code></pre></div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/send</code></pre></div>
     <div class="method-summary">Sends an Email (<span class="nickname">sendMailById</span>)</div>
     <div class="method-notes">Sends An email through one of your mail orders.</div>
 
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-
-      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; User ID default: null format: int64</div>
-    </div>  <!-- field-items -->
 
 
 
@@ -490,17 +428,19 @@ font-style: italic;
     <div class="field-items">
       <div class="param">subject (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  default: null </div><div class="param">body (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The Subject of the email default: null </div><div class="param">body (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  default: null </div><div class="param">to (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The contents of the email default: null </div><div class="param">to (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  default: null </div><div class="param">toName (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The email address of who this email will be sent to. default: null </div><div class="param">from (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  default: null </div><div class="param">from (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The email address of who this email will be sent from. default: null </div><div class="param">id (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  default: null </div><div class="param">fromName (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The ID of your mail order this will be sent through. default: null format: int64</div><div class="param">toName (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  default: null </div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The name or title of who this email is being sent to. default: null </div><div class="param">fromName (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The name or title of who this email is being sent from. default: null </div>
     </div>  <!-- field-items -->
 
 
@@ -577,24 +517,20 @@ font-style: italic;
   <div class="method"><a name="viewMailLogById"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/{id}/log</code></pre></div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/log</code></pre></div>
     <div class="method-summary">displays the mail log (<span class="nickname">viewMailLogById</span>)</div>
     <div class="method-notes">By passing in the appropriate options, you can search for
 available inventory in the system</div>
 
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-
-      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; User ID default: null format: int64</div>
-    </div>  <!-- field-items -->
 
 
 
 
     <h3 class="field-label">Query parameters</h3>
     <div class="field-items">
-      <div class="param">searchString (optional)</div>
+      <div class="param">id (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The ID of your mail order this will be sent through. default: null format: int64</div><div class="param">searchString (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass an optional search string for looking up inventory default: null </div><div class="param">skip (optional)</div>
 

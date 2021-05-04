@@ -12,18 +12,10 @@
 #include "../model/send_mail.h"
 
 
-// Gets mail order information by id
-//
-// returns information about a mail order in the system with the given id.
-//
-mail_order_t*
-DefaultAPI_getMailById(apiClient_t *apiClient, long id );
-
-
 // displays a list of mail service orders
 //
 list_t*
-DefaultAPI_getMailOrders(apiClient_t *apiClient);
+DefaultAPI_getMailOrders(apiClient_t *apiClient, long id );
 
 
 // Checks if the server is running
@@ -45,7 +37,7 @@ DefaultAPI_placeMailOrder(apiClient_t *apiClient, mail_order_t * mail_order );
 // Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 //
 generic_response_t*
-DefaultAPI_sendAdvMailById(apiClient_t *apiClient, long id , send_mail_t * send_mail );
+DefaultAPI_sendAdvMailById(apiClient_t *apiClient, send_mail_t * send_mail );
 
 
 // Sends an Email
@@ -53,7 +45,7 @@ DefaultAPI_sendAdvMailById(apiClient_t *apiClient, long id , send_mail_t * send_
 // Sends An email through one of your mail orders.
 //
 generic_response_t*
-DefaultAPI_sendMailById(apiClient_t *apiClient, long id , char * subject , char * body , char * to , char * toName , char * from , char * fromName );
+DefaultAPI_sendMailById(apiClient_t *apiClient, char * subject , char * body , char * to , char * from , long id , char * toName , char * fromName );
 
 
 // validatess order details before placing an order

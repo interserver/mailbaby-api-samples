@@ -17,8 +17,6 @@ apiClient_t *apiClient_create() {
     apiClient->progress_data = NULL;
     apiClient->response_code = 0;
     apiClient->apiKeys_apiKeyAuth = NULL;
-    apiClient->apiKeys_apiLoginAuth = NULL;
-    apiClient->apiKeys_apiPasswordAuth = NULL;
 
     return apiClient;
 }
@@ -26,8 +24,6 @@ apiClient_t *apiClient_create() {
 apiClient_t *apiClient_create_with_base_path(const char *basePath
 , sslConfig_t *sslConfig
 , list_t *apiKeys_apiKeyAuth
-, list_t *apiKeys_apiLoginAuth
-, list_t *apiKeys_apiPasswordAuth
 ) {
     apiClient_t *apiClient = malloc(sizeof(apiClient_t));
     if(basePath){
@@ -59,28 +55,6 @@ apiClient_t *apiClient_create_with_base_path(const char *basePath
     }else{
         apiClient->apiKeys_apiKeyAuth = NULL;
     }
-    if(apiKeys_apiLoginAuth!= NULL) {
-        apiClient->apiKeys_apiLoginAuth = list_create();
-        listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, apiKeys_apiLoginAuth) {
-            keyValuePair_t *pair = listEntry->data;
-            keyValuePair_t *pairDup = keyValuePair_create(strdup(pair->key), strdup(pair->value));
-            list_addElement(apiClient->apiKeys_apiLoginAuth, pairDup);
-        }
-    }else{
-        apiClient->apiKeys_apiLoginAuth = NULL;
-    }
-    if(apiKeys_apiPasswordAuth!= NULL) {
-        apiClient->apiKeys_apiPasswordAuth = list_create();
-        listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, apiKeys_apiPasswordAuth) {
-            keyValuePair_t *pair = listEntry->data;
-            keyValuePair_t *pairDup = keyValuePair_create(strdup(pair->key), strdup(pair->value));
-            list_addElement(apiClient->apiKeys_apiPasswordAuth, pairDup);
-        }
-    }else{
-        apiClient->apiKeys_apiPasswordAuth = NULL;
-    }
 
     return apiClient;
 }
@@ -105,34 +79,6 @@ void apiClient_free(apiClient_t *apiClient) {
             keyValuePair_free(pair);
         }
         list_free(apiClient->apiKeys_apiKeyAuth);
-    }
-    if(apiClient->apiKeys_apiLoginAuth) {
-        listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, apiClient->apiKeys_apiLoginAuth) {
-            keyValuePair_t *pair = listEntry->data;
-            if(pair->key){
-                free(pair->key);
-            }
-            if(pair->value){
-                free(pair->value);
-            }
-            keyValuePair_free(pair);
-        }
-        list_free(apiClient->apiKeys_apiLoginAuth);
-    }
-    if(apiClient->apiKeys_apiPasswordAuth) {
-        listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, apiClient->apiKeys_apiPasswordAuth) {
-            keyValuePair_t *pair = listEntry->data;
-            if(pair->key){
-                free(pair->key);
-            }
-            if(pair->value){
-                free(pair->value);
-            }
-            keyValuePair_free(pair);
-        }
-        list_free(apiClient->apiKeys_apiPasswordAuth);
     }
     free(apiClient);
 }
@@ -455,36 +401,6 @@ void apiClient_invoke(apiClient_t    *apiClient,
         if (apiClient->apiKeys_apiKeyAuth != NULL)
         {
         list_ForEach(listEntry, apiClient->apiKeys_apiKeyAuth) {
-        keyValuePair_t *apiKey = listEntry->data;
-        if((apiKey->key != NULL) &&
-           (apiKey->value != NULL) )
-        {
-            char *headerValueToWrite = assembleHeaderField(
-                apiKey->key, apiKey->value);
-            curl_slist_append(headers, headerValueToWrite);
-            free(headerValueToWrite);
-        }
-        }
-        }
-        // this would only be generated for apiKey authentication
-        if (apiClient->apiKeys_apiLoginAuth != NULL)
-        {
-        list_ForEach(listEntry, apiClient->apiKeys_apiLoginAuth) {
-        keyValuePair_t *apiKey = listEntry->data;
-        if((apiKey->key != NULL) &&
-           (apiKey->value != NULL) )
-        {
-            char *headerValueToWrite = assembleHeaderField(
-                apiKey->key, apiKey->value);
-            curl_slist_append(headers, headerValueToWrite);
-            free(headerValueToWrite);
-        }
-        }
-        }
-        // this would only be generated for apiKey authentication
-        if (apiClient->apiKeys_apiPasswordAuth != NULL)
-        {
-        list_ForEach(listEntry, apiClient->apiKeys_apiPasswordAuth) {
         keyValuePair_t *apiKey = listEntry->data;
         if((apiKey->key != NULL) &&
            (apiKey->value != NULL) )

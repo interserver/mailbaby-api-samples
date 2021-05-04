@@ -64,24 +64,6 @@ public class DefaultApiTest {
 
     
     /**
-     * Gets mail order information by id
-     *
-     * returns information about a mail order in the system with the given id.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getMailByIdTest() {
-        Long id = null;
-        //MailOrder response = api.getMailById(id);
-        //assertNotNull(response);
-        // TODO: test validations
-        
-        
-    }
-    
-    /**
      * displays a list of mail service orders
      *
      * @throws ApiException
@@ -89,7 +71,8 @@ public class DefaultApiTest {
      */
     @Test
     public void getMailOrdersTest() {
-        //List<MailOrder> response = api.getMailOrders();
+        Long id = null;
+        //List<MailOrder> response = api.getMailOrders(id);
         //assertNotNull(response);
         // TODO: test validations
         
@@ -139,9 +122,8 @@ public class DefaultApiTest {
      */
     @Test
     public void sendAdvMailByIdTest() {
-        Long id = null;
         SendMail sendMail = null;
-        //GenericResponse response = api.sendAdvMailById(id, sendMail);
+        //GenericResponse response = api.sendAdvMailById(sendMail);
         //assertNotNull(response);
         // TODO: test validations
         
@@ -158,14 +140,14 @@ public class DefaultApiTest {
      */
     @Test
     public void sendMailByIdTest() {
-        Long id = null;
         String subject = null;
         String body = null;
         String to = null;
-        String toName = null;
         String from = null;
+        Long id = null;
+        String toName = null;
         String fromName = null;
-        //GenericResponse response = api.sendMailById(id, subject, body, to, toName, from, fromName);
+        //GenericResponse response = api.sendMailById(subject, body, to, from, id, toName, fromName);
         //assertNotNull(response);
         // TODO: test validations
         

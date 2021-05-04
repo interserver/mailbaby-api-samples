@@ -30,10 +30,6 @@
     "url" : "https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0"
   } ],
   "security" : [ {
-    "apiLoginAuth" : [ ],
-    "apiPasswordAuth" : [ ]
-  }, {
-    "apiLoginAuth" : [ ],
     "apiKeyAuth" : [ ]
   } ],
   "paths" : {
@@ -56,7 +52,18 @@
     "/mail" : {
       "get" : {
         "operationId" : "getMailOrders",
-        "parameters" : [ ],
+        "parameters" : [ {
+          "description" : "The ID of your mail order this will be sent through.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "id",
+          "required" : false,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "style" : "form"
+        } ],
         "responses" : {
           "200" : {
             "content" : {
@@ -169,53 +176,12 @@
         "summary" : "places a mail order"
       }
     },
-    "/mail/{id}" : {
-      "get" : {
-        "description" : "returns information about a mail order in the system with the given id.",
-        "operationId" : "getMailById",
-        "parameters" : [ {
-          "description" : "User ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "format" : "int64",
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/MailOrder"
-                }
-              }
-            },
-            "description" : "Successful operation"
-          }
-        },
-        "summary" : "Gets mail order information by id"
-      }
-    },
-    "/mail/{id}/send" : {
+    "/mail/send" : {
       "post" : {
         "description" : "Sends An email through one of your mail orders.",
         "operationId" : "sendMailById",
         "parameters" : [ {
-          "description" : "User ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "format" : "int64",
-            "type" : "integer"
-          },
-          "style" : "simple"
-        }, {
+          "description" : "The Subject of the email",
           "explode" : true,
           "in" : "query",
           "name" : "subject",
@@ -225,6 +191,7 @@
           },
           "style" : "form"
         }, {
+          "description" : "The contents of the email",
           "explode" : true,
           "in" : "query",
           "name" : "body",
@@ -234,6 +201,7 @@
           },
           "style" : "form"
         }, {
+          "description" : "The email address of who this email will be sent to.",
           "explode" : true,
           "in" : "query",
           "name" : "to",
@@ -243,15 +211,7 @@
           },
           "style" : "form"
         }, {
-          "explode" : true,
-          "in" : "query",
-          "name" : "toName",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "form"
-        }, {
+          "description" : "The email address of who this email will be sent from.",
           "explode" : true,
           "in" : "query",
           "name" : "from",
@@ -261,6 +221,28 @@
           },
           "style" : "form"
         }, {
+          "description" : "The ID of your mail order this will be sent through.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "id",
+          "required" : false,
+          "schema" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "The name or title of who this email is being sent to.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "toName",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "The name or title of who this email is being sent from.",
           "explode" : true,
           "in" : "query",
           "name" : "fromName",
@@ -308,42 +290,15 @@
         "summary" : "Sends an Email"
       }
     },
-    "/mail/{id}/advsend" : {
+    "/mail/advsend" : {
       "post" : {
         "description" : "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.",
         "operationId" : "sendAdvMailById",
-        "parameters" : [ {
-          "description" : "User ID",
-          "explode" : false,
-          "in" : "path",
-          "name" : "id",
-          "required" : true,
-          "schema" : {
-            "format" : "int64",
-            "type" : "integer"
-          },
-          "style" : "simple"
-        } ],
         "requestBody" : {
           "content" : {
             "application/json" : {
               "schema" : {
                 "$ref" : "#/components/schemas/SendMail"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/SendMail"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/SendMailForm"
-              }
-            },
-            "text/plain" : {
-              "schema" : {
-                "type" : "string"
               }
             }
           },
@@ -387,21 +342,21 @@
         "summary" : "Sends an Email with Advanced Options"
       }
     },
-    "/mail/{id}/log" : {
+    "/mail/log" : {
       "get" : {
         "description" : "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
         "operationId" : "viewMailLogById",
         "parameters" : [ {
-          "description" : "User ID",
-          "explode" : false,
-          "in" : "path",
+          "description" : "The ID of your mail order this will be sent through.",
+          "explode" : true,
+          "in" : "query",
           "name" : "id",
-          "required" : true,
+          "required" : false,
           "schema" : {
             "format" : "int64",
             "type" : "integer"
           },
-          "style" : "simple"
+          "style" : "form"
         }, {
           "description" : "pass an optional search string for looking up inventory",
           "explode" : true,
@@ -680,29 +635,9 @@
         },
         "required" : [ "body", "from", "id", "subject", "to" ],
         "type" : "object"
-      },
-      "SendMailForm" : {
-        "description" : "Details for an Email",
-        "properties" : {
-          "id" : {
-            "format" : "int64",
-            "type" : "integer"
-          }
-        },
-        "type" : "object"
       }
     },
     "securitySchemes" : {
-      "apiLoginAuth" : {
-        "in" : "header",
-        "name" : "X-API-LOGIN",
-        "type" : "apiKey"
-      },
-      "apiPasswordAuth" : {
-        "in" : "header",
-        "name" : "X-API-PASS",
-        "type" : "apiKey"
-      },
       "apiKeyAuth" : {
         "in" : "header",
         "name" : "X-API-KEY",

@@ -13,8 +13,6 @@ class ApiClient {
   ApiClient({this.basePath = 'https://api.mailbaby.net'}) {
     // Setup authentications (key: authentication name, value: authentication).
     _authentications[r'apiKeyAuth'] = ApiKeyAuth('header', 'X-API-KEY');
-    _authentications[r'apiLoginAuth'] = ApiKeyAuth('header', 'X-API-LOGIN');
-    _authentications[r'apiPasswordAuth'] = ApiKeyAuth('header', 'X-API-PASS');
   }
 
   final String basePath;

@@ -130,24 +130,6 @@ open class ApiClient(val baseUrl: String) {
                 }
             }
         }
-        if (requestConfig.headers["X-API-LOGIN"].isNullOrEmpty()) {
-            if (apiKey["X-API-LOGIN"] != null) {
-                if (apiKeyPrefix["X-API-LOGIN"] != null) {
-                    requestConfig.headers["X-API-LOGIN"] = apiKeyPrefix["X-API-LOGIN"]!! + " " + apiKey["X-API-LOGIN"]!!
-                } else {
-                    requestConfig.headers["X-API-LOGIN"] = apiKey["X-API-LOGIN"]!!
-                }
-            }
-        }
-        if (requestConfig.headers["X-API-PASS"].isNullOrEmpty()) {
-            if (apiKey["X-API-PASS"] != null) {
-                if (apiKeyPrefix["X-API-PASS"] != null) {
-                    requestConfig.headers["X-API-PASS"] = apiKeyPrefix["X-API-PASS"]!! + " " + apiKey["X-API-PASS"]!!
-                } else {
-                    requestConfig.headers["X-API-PASS"] = apiKey["X-API-PASS"]!!
-                }
-            }
-        }
     }
 
     protected inline fun <reified T: Any?> request(requestConfig: RequestConfig): ApiInfrastructureResponse<T?> {

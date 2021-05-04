@@ -22,16 +22,10 @@ import {
 } from './models';
 
 /**
- * getMailById - parameters interface
- */
-export interface IGetMailByIdParams {
-  id: number;
-}
-
-/**
  * getMailOrders - parameters interface
  */
 export interface IGetMailOrdersParams {
+  id?: number;
 }
 
 /**
@@ -51,7 +45,6 @@ export interface IPlaceMailOrderParams {
  * sendAdvMailById - parameters interface
  */
 export interface ISendAdvMailByIdParams {
-  id: number;
   sendMail: SendMail;
 }
 
@@ -59,12 +52,12 @@ export interface ISendAdvMailByIdParams {
  * sendMailById - parameters interface
  */
 export interface ISendMailByIdParams {
-  id: number;
   subject?: string;
   body?: string;
   to?: string;
-  toName?: string;
   from?: string;
+  id?: number;
+  toName?: string;
   fromName?: string;
 }
 
@@ -78,7 +71,7 @@ export interface IValidateMailOrderParams {
  * viewMailLogById - parameters interface
  */
 export interface IViewMailLogByIdParams {
-  id: number;
+  id?: number;
   searchString?: string;
   skip?: number;
   limit?: number;
@@ -101,43 +94,10 @@ export class DefaultApi extends Api {
   }
 
   /**
-   * Gets mail order information by id
-   * returns information about a mail order in the system with the given id.
-   * @param params.id User ID
-   */
-  async getMailById(params: IGetMailByIdParams): Promise<MailOrder> {
-    // Verify required parameters are set
-    this.ensureParamIsSet('getMailById', params, 'id');
-
-    // Create URL to call
-    const url = `${this.basePath}/mail/{id}`
-      .replace(`{${'id'}}`, encodeURIComponent(`${params['id']}`));
-
-    const response = await this.httpClient.createRequest(url)
-      // Set HTTP method
-      .asGet()
-
-      // Authentication 'apiKeyAuth' required
-      .withHeader('X-API-KEY', this.authStorage.getapiKeyAuth())
-      // Authentication 'apiLoginAuth' required
-      .withHeader('X-API-LOGIN', this.authStorage.getapiLoginAuth())
-      // Authentication 'apiPasswordAuth' required
-      .withHeader('X-API-PASS', this.authStorage.getapiPasswordAuth())
-      // Send the request
-      .send();
-
-    if (response.statusCode < 200 || response.statusCode >= 300) {
-      throw new Error(response.content);
-    }
-
-    // Extract the content
-    return response.content;
-  }
-
-  /**
    * displays a list of mail service orders
+   * @param params.id The ID of your mail order this will be sent through.
    */
-  async getMailOrders(): Promise<Array<MailOrder>> {
+  async getMailOrders(params: IGetMailOrdersParams): Promise<Array<MailOrder>> {
     // Verify required parameters are set
 
     // Create URL to call
@@ -146,13 +106,13 @@ export class DefaultApi extends Api {
     const response = await this.httpClient.createRequest(url)
       // Set HTTP method
       .asGet()
+      // Set query parameters
+      .withParams({ 
+        'id': params['id'],
+      })
 
       // Authentication 'apiKeyAuth' required
       .withHeader('X-API-KEY', this.authStorage.getapiKeyAuth())
-      // Authentication 'apiLoginAuth' required
-      .withHeader('X-API-LOGIN', this.authStorage.getapiLoginAuth())
-      // Authentication 'apiPasswordAuth' required
-      .withHeader('X-API-PASS', this.authStorage.getapiPasswordAuth())
       // Send the request
       .send();
 
@@ -208,10 +168,6 @@ export class DefaultApi extends Api {
 
       // Authentication 'apiKeyAuth' required
       .withHeader('X-API-KEY', this.authStorage.getapiKeyAuth())
-      // Authentication 'apiLoginAuth' required
-      .withHeader('X-API-LOGIN', this.authStorage.getapiLoginAuth())
-      // Authentication 'apiPasswordAuth' required
-      .withHeader('X-API-PASS', this.authStorage.getapiPasswordAuth())
       // Send the request
       .send();
 
@@ -226,17 +182,14 @@ export class DefaultApi extends Api {
   /**
    * Sends an Email with Advanced Options
    * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-   * @param params.id User ID
    * @param params.sendMail 
    */
   async sendAdvMailById(params: ISendAdvMailByIdParams): Promise<GenericResponse> {
     // Verify required parameters are set
-    this.ensureParamIsSet('sendAdvMailById', params, 'id');
     this.ensureParamIsSet('sendAdvMailById', params, 'sendMail');
 
     // Create URL to call
-    const url = `${this.basePath}/mail/{id}/advsend`
-      .replace(`{${'id'}}`, encodeURIComponent(`${params['id']}`));
+    const url = `${this.basePath}/mail/advsend`;
 
     const response = await this.httpClient.createRequest(url)
       // Set HTTP method
@@ -247,10 +200,6 @@ export class DefaultApi extends Api {
 
       // Authentication 'apiKeyAuth' required
       .withHeader('X-API-KEY', this.authStorage.getapiKeyAuth())
-      // Authentication 'apiLoginAuth' required
-      .withHeader('X-API-LOGIN', this.authStorage.getapiLoginAuth())
-      // Authentication 'apiPasswordAuth' required
-      .withHeader('X-API-PASS', this.authStorage.getapiPasswordAuth())
       // Send the request
       .send();
 
@@ -265,21 +214,19 @@ export class DefaultApi extends Api {
   /**
    * Sends an Email
    * Sends An email through one of your mail orders.
-   * @param params.id User ID
-   * @param params.subject 
-   * @param params.body 
-   * @param params.to 
-   * @param params.toName 
-   * @param params.from 
-   * @param params.fromName 
+   * @param params.subject The Subject of the email
+   * @param params.body The contents of the email
+   * @param params.to The email address of who this email will be sent to.
+   * @param params.from The email address of who this email will be sent from.
+   * @param params.id The ID of your mail order this will be sent through.
+   * @param params.toName The name or title of who this email is being sent to.
+   * @param params.fromName The name or title of who this email is being sent from.
    */
   async sendMailById(params: ISendMailByIdParams): Promise<GenericResponse> {
     // Verify required parameters are set
-    this.ensureParamIsSet('sendMailById', params, 'id');
 
     // Create URL to call
-    const url = `${this.basePath}/mail/{id}/send`
-      .replace(`{${'id'}}`, encodeURIComponent(`${params['id']}`));
+    const url = `${this.basePath}/mail/send`;
 
     const response = await this.httpClient.createRequest(url)
       // Set HTTP method
@@ -289,17 +236,14 @@ export class DefaultApi extends Api {
         'subject': params['subject'],
         'body': params['body'],
         'to': params['to'],
-        'toName': params['toName'],
         'from': params['from'],
+        'id': params['id'],
+        'toName': params['toName'],
         'fromName': params['fromName'],
       })
 
       // Authentication 'apiKeyAuth' required
       .withHeader('X-API-KEY', this.authStorage.getapiKeyAuth())
-      // Authentication 'apiLoginAuth' required
-      .withHeader('X-API-LOGIN', this.authStorage.getapiLoginAuth())
-      // Authentication 'apiPasswordAuth' required
-      .withHeader('X-API-PASS', this.authStorage.getapiPasswordAuth())
       // Send the request
       .send();
 
@@ -326,10 +270,6 @@ export class DefaultApi extends Api {
 
       // Authentication 'apiKeyAuth' required
       .withHeader('X-API-KEY', this.authStorage.getapiKeyAuth())
-      // Authentication 'apiLoginAuth' required
-      .withHeader('X-API-LOGIN', this.authStorage.getapiLoginAuth())
-      // Authentication 'apiPasswordAuth' required
-      .withHeader('X-API-PASS', this.authStorage.getapiPasswordAuth())
       // Send the request
       .send();
 
@@ -344,24 +284,23 @@ export class DefaultApi extends Api {
   /**
    * displays the mail log
    * By passing in the appropriate options, you can search for available inventory in the system 
-   * @param params.id User ID
+   * @param params.id The ID of your mail order this will be sent through.
    * @param params.searchString pass an optional search string for looking up inventory
    * @param params.skip number of records to skip for pagination
    * @param params.limit maximum number of records to return
    */
   async viewMailLogById(params: IViewMailLogByIdParams): Promise<Array<MailLog>> {
     // Verify required parameters are set
-    this.ensureParamIsSet('viewMailLogById', params, 'id');
 
     // Create URL to call
-    const url = `${this.basePath}/mail/{id}/log`
-      .replace(`{${'id'}}`, encodeURIComponent(`${params['id']}`));
+    const url = `${this.basePath}/mail/log`;
 
     const response = await this.httpClient.createRequest(url)
       // Set HTTP method
       .asGet()
       // Set query parameters
       .withParams({ 
+        'id': params['id'],
         'searchString': params['searchString'],
         'skip': params['skip'],
         'limit': params['limit'],
@@ -369,10 +308,6 @@ export class DefaultApi extends Api {
 
       // Authentication 'apiKeyAuth' required
       .withHeader('X-API-KEY', this.authStorage.getapiKeyAuth())
-      // Authentication 'apiLoginAuth' required
-      .withHeader('X-API-LOGIN', this.authStorage.getapiLoginAuth())
-      // Authentication 'apiPasswordAuth' required
-      .withHeader('X-API-PASS', this.authStorage.getapiPasswordAuth())
       // Send the request
       .send();
 

@@ -42,22 +42,20 @@ All URIs are relative to https://api.mailbaby.nethttps://api.mailbaby.net
 ### DefaultManager
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-*getMailByIdSync* | *GET* /mail/{id} | Gets mail order information by id.
-*getMailByIdASync* | *GET* /mail/{id} | Gets mail order information by id.
 *getMailOrdersSync* | *GET* /mail | displays a list of mail service orders.
 *getMailOrdersASync* | *GET* /mail | displays a list of mail service orders.
 *pingServerSync* | *GET* /ping | Checks if the server is running.
 *pingServerASync* | *GET* /ping | Checks if the server is running.
 *placeMailOrderSync* | *POST* /mail/order | places a mail order.
 *placeMailOrderASync* | *POST* /mail/order | places a mail order.
-*sendAdvMailByIdSync* | *POST* /mail/{id}/advsend | Sends an Email with Advanced Options.
-*sendAdvMailByIdASync* | *POST* /mail/{id}/advsend | Sends an Email with Advanced Options.
-*sendMailByIdSync* | *POST* /mail/{id}/send | Sends an Email.
-*sendMailByIdASync* | *POST* /mail/{id}/send | Sends an Email.
+*sendAdvMailByIdSync* | *POST* /mail/advsend | Sends an Email with Advanced Options.
+*sendAdvMailByIdASync* | *POST* /mail/advsend | Sends an Email with Advanced Options.
+*sendMailByIdSync* | *POST* /mail/send | Sends an Email.
+*sendMailByIdASync* | *POST* /mail/send | Sends an Email.
 *validateMailOrderSync* | *GET* /mail/order | validatess order details before placing an order.
 *validateMailOrderASync* | *GET* /mail/order | validatess order details before placing an order.
-*viewMailLogByIdSync* | *GET* /mail/{id}/log | displays the mail log.
-*viewMailLogByIdASync* | *GET* /mail/{id}/log | displays the mail log.
+*viewMailLogByIdSync* | *GET* /mail/log | displays the mail log.
+*viewMailLogByIdASync* | *GET* /mail/log | displays the mail log.
 
 
 ## What are the Model files for the data structures/objects?

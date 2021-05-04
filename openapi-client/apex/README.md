@@ -52,7 +52,7 @@ Map<String, Object> params = new Map<String, Object>{
 
 try {
     // cross your fingers
-    OASMailOrder result = api.getMailById(params);
+    List<OASMailOrder> result = api.getMailOrders(params);
     System.debug(result);
 } catch (OAS.ApiException e) {
     // ...handle your exceptions
@@ -65,14 +65,13 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*OASDefaultApi* | [**getMailById**](OASDefaultApi.md#getMailById) | **GET** /mail/{id} | Gets mail order information by id
 *OASDefaultApi* | [**getMailOrders**](OASDefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 *OASDefaultApi* | [**pingServer**](OASDefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 *OASDefaultApi* | [**placeMailOrder**](OASDefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-*OASDefaultApi* | [**sendAdvMailById**](OASDefaultApi.md#sendAdvMailById) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-*OASDefaultApi* | [**sendMailById**](OASDefaultApi.md#sendMailById) | **POST** /mail/{id}/send | Sends an Email
+*OASDefaultApi* | [**sendAdvMailById**](OASDefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*OASDefaultApi* | [**sendMailById**](OASDefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
 *OASDefaultApi* | [**validateMailOrder**](OASDefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-*OASDefaultApi* | [**viewMailLogById**](OASDefaultApi.md#viewMailLogById) | **GET** /mail/{id}/log | displays the mail log
+*OASDefaultApi* | [**viewMailLogById**](OASDefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
 
 ## Documentation for Models
@@ -94,20 +93,6 @@ Authentication schemes defined for the API:
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-### apiLoginAuth
-
-
-- **Type**: API key
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-### apiPasswordAuth
-
-
-- **Type**: API key
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 
 

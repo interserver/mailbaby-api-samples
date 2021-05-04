@@ -4,92 +4,19 @@ All URIs are relative to https://api.mailbaby.net.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMailById()**](DefaultApi.md#getMailById) | **GET** /mail/{id} | Gets mail order information by id
 [**getMailOrders()**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer()**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 [**placeMailOrder()**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById()**](DefaultApi.md#sendAdvMailById) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-[**sendMailById()**](DefaultApi.md#sendMailById) | **POST** /mail/{id}/send | Sends an Email
+[**sendAdvMailById()**](DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMailById()**](DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
 [**validateMailOrder()**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLogById()**](DefaultApi.md#viewMailLogById) | **GET** /mail/{id}/log | displays the mail log
+[**viewMailLogById()**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
-
-## `getMailById()`
-
-```php
-getMailById($id): \Interserver\Mailbaby\Model\MailOrder
-```
-
-Gets mail order information by id
-
-returns information about a mail order in the system with the given id.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: apiKeyAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: apiLoginAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-
-// Configure API key authorization: apiPasswordAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
-
-
-$apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$id = 56; // int | User ID
-
-try {
-    $result = $apiInstance->getMailById($id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->getMailById: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| User ID |
-
-### Return type
-
-[**\Interserver\Mailbaby\Model\MailOrder**](../Model/MailOrder.md)
-
-### Authorization
-
-[apiKeyAuth](../../README.md#apiKeyAuth), [apiLoginAuth](../../README.md#apiLoginAuth), [apiPasswordAuth](../../README.md#apiPasswordAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
 
 ## `getMailOrders()`
 
 ```php
-getMailOrders(): \Interserver\Mailbaby\Model\MailOrder[]
+getMailOrders($id): \Interserver\Mailbaby\Model\MailOrder[]
 ```
 
 displays a list of mail service orders
@@ -106,16 +33,6 @@ $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
-// Configure API key authorization: apiLoginAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-
-// Configure API key authorization: apiPasswordAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
-
 
 $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -123,9 +40,10 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
+$id = 56; // int | The ID of your mail order this will be sent through.
 
 try {
-    $result = $apiInstance->getMailOrders();
+    $result = $apiInstance->getMailOrders($id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->getMailOrders: ', $e->getMessage(), PHP_EOL;
@@ -134,7 +52,9 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| The ID of your mail order this will be sent through. | [optional]
 
 ### Return type
 
@@ -142,7 +62,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../../README.md#apiKeyAuth), [apiLoginAuth](../../README.md#apiLoginAuth), [apiPasswordAuth](../../README.md#apiPasswordAuth)
+[apiKeyAuth](../../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -225,16 +145,6 @@ $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
-// Configure API key authorization: apiLoginAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-
-// Configure API key authorization: apiPasswordAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
-
 
 $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -263,7 +173,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../../README.md#apiKeyAuth), [apiLoginAuth](../../README.md#apiLoginAuth), [apiPasswordAuth](../../README.md#apiPasswordAuth)
+[apiKeyAuth](../../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -277,7 +187,7 @@ void (empty response body)
 ## `sendAdvMailById()`
 
 ```php
-sendAdvMailById($id, $sendMail): \Interserver\Mailbaby\Model\GenericResponse
+sendAdvMailById($sendMail): \Interserver\Mailbaby\Model\GenericResponse
 ```
 
 Sends an Email with Advanced Options
@@ -296,16 +206,6 @@ $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
-// Configure API key authorization: apiLoginAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-
-// Configure API key authorization: apiPasswordAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
-
 
 $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -313,11 +213,10 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 56; // int | User ID
 $sendMail = new \Interserver\Mailbaby\Model\SendMail(); // \Interserver\Mailbaby\Model\SendMail
 
 try {
-    $result = $apiInstance->sendAdvMailById($id, $sendMail);
+    $result = $apiInstance->sendAdvMailById($sendMail);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->sendAdvMailById: ', $e->getMessage(), PHP_EOL;
@@ -328,7 +227,6 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| User ID |
  **sendMail** | [**\Interserver\Mailbaby\Model\SendMail**](../Model/SendMail.md)|  |
 
 ### Return type
@@ -337,11 +235,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../../README.md#apiKeyAuth), [apiLoginAuth](../../README.md#apiLoginAuth), [apiPasswordAuth](../../README.md#apiPasswordAuth)
+[apiKeyAuth](../../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`, `application/xml`, `application/x-www-form-urlencoded`, `text/plain`
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -351,7 +249,7 @@ Name | Type | Description  | Notes
 ## `sendMailById()`
 
 ```php
-sendMailById($id, $subject, $body, $to, $toName, $from, $fromName): \Interserver\Mailbaby\Model\GenericResponse
+sendMailById($subject, $body, $to, $from, $id, $toName, $fromName): \Interserver\Mailbaby\Model\GenericResponse
 ```
 
 Sends an Email
@@ -370,16 +268,6 @@ $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
-// Configure API key authorization: apiLoginAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-
-// Configure API key authorization: apiPasswordAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
-
 
 $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -387,16 +275,16 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 56; // int | User ID
-$subject = 'subject_example'; // string
-$body = 'body_example'; // string
-$to = 'to_example'; // string
-$toName = 'toName_example'; // string
-$from = 'from_example'; // string
-$fromName = 'fromName_example'; // string
+$subject = 'subject_example'; // string | The Subject of the email
+$body = 'body_example'; // string | The contents of the email
+$to = 'to_example'; // string | The email address of who this email will be sent to.
+$from = 'from_example'; // string | The email address of who this email will be sent from.
+$id = 56; // int | The ID of your mail order this will be sent through.
+$toName = 'toName_example'; // string | The name or title of who this email is being sent to.
+$fromName = 'fromName_example'; // string | The name or title of who this email is being sent from.
 
 try {
-    $result = $apiInstance->sendMailById($id, $subject, $body, $to, $toName, $from, $fromName);
+    $result = $apiInstance->sendMailById($subject, $body, $to, $from, $id, $toName, $fromName);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->sendMailById: ', $e->getMessage(), PHP_EOL;
@@ -407,13 +295,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| User ID |
- **subject** | **string**|  | [optional]
- **body** | **string**|  | [optional]
- **to** | **string**|  | [optional]
- **toName** | **string**|  | [optional]
- **from** | **string**|  | [optional]
- **fromName** | **string**|  | [optional]
+ **subject** | **string**| The Subject of the email | [optional]
+ **body** | **string**| The contents of the email | [optional]
+ **to** | **string**| The email address of who this email will be sent to. | [optional]
+ **from** | **string**| The email address of who this email will be sent from. | [optional]
+ **id** | **int**| The ID of your mail order this will be sent through. | [optional]
+ **toName** | **string**| The name or title of who this email is being sent to. | [optional]
+ **fromName** | **string**| The name or title of who this email is being sent from. | [optional]
 
 ### Return type
 
@@ -421,7 +309,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../../README.md#apiKeyAuth), [apiLoginAuth](../../README.md#apiLoginAuth), [apiPasswordAuth](../../README.md#apiPasswordAuth)
+[apiKeyAuth](../../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -452,16 +340,6 @@ $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
-// Configure API key authorization: apiLoginAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-
-// Configure API key authorization: apiPasswordAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
-
 
 $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -487,7 +365,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../../README.md#apiKeyAuth), [apiLoginAuth](../../README.md#apiLoginAuth), [apiPasswordAuth](../../README.md#apiPasswordAuth)
+[apiKeyAuth](../../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -520,16 +398,6 @@ $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
-// Configure API key authorization: apiLoginAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-LOGIN', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-LOGIN', 'Bearer');
-
-// Configure API key authorization: apiPasswordAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-PASS', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-PASS', 'Bearer');
-
 
 $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -537,7 +405,7 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 56; // int | User ID
+$id = 56; // int | The ID of your mail order this will be sent through.
 $searchString = 'searchString_example'; // string | pass an optional search string for looking up inventory
 $skip = 56; // int | number of records to skip for pagination
 $limit = 56; // int | maximum number of records to return
@@ -554,7 +422,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| User ID |
+ **id** | **int**| The ID of your mail order this will be sent through. | [optional]
  **searchString** | **string**| pass an optional search string for looking up inventory | [optional]
  **skip** | **int**| number of records to skip for pagination | [optional]
  **limit** | **int**| maximum number of records to return | [optional]
@@ -565,7 +433,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../../README.md#apiKeyAuth), [apiLoginAuth](../../README.md#apiLoginAuth), [apiPasswordAuth](../../README.md#apiPasswordAuth)
+[apiKeyAuth](../../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

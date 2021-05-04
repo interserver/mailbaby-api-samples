@@ -35,7 +35,8 @@ export default function() {
         sleep(SLEEP_DURATION);
     });
     group("/mail", () => {
-        let url = BASE_URL + `/mail`;
+        let id = "TODO_EDIT_THE_ID";
+        let url = BASE_URL + `/mail?id=${id}`;
         // Request No. 1
         let request = http.get(url);
         check(request, {
@@ -62,25 +63,15 @@ export default function() {
         });
         sleep(SLEEP_DURATION);
     });
-    group("/mail/{id}", () => {
-        let id = "TODO_EDIT_THE_ID";
-        let url = BASE_URL + `/mail/${id}`;
-        // Request No. 1
-        let request = http.get(url);
-        check(request, {
-            "Successful operation": (r) => r.status === 200
-        });
-        sleep(SLEEP_DURATION);
-    });
-    group("/mail/{id}/send", () => {
+    group("/mail/send", () => {
         let toName = "TODO_EDIT_THE_TONAME";
         let subject = "TODO_EDIT_THE_SUBJECT";
         let fromName = "TODO_EDIT_THE_FROMNAME";
         let from = "TODO_EDIT_THE_FROM";
-        let id = "TODO_EDIT_THE_ID";
         let to = "TODO_EDIT_THE_TO";
+        let id = "TODO_EDIT_THE_ID";
         let body = "TODO_EDIT_THE_BODY";
-        let url = BASE_URL + `/mail/${id}/send?subject=${subject}&body=${body}&to=${to}&toName=${toName}&from=${from}&fromName=${fromName}`;
+        let url = BASE_URL + `/mail/send?subject=${subject}&body=${body}&to=${to}&from=${from}&id=${id}&toName=${toName}&fromName=${fromName}`;
         // Request No. 1
         let request = http.post(url);
         check(request, {
@@ -88,9 +79,8 @@ export default function() {
         });
         sleep(SLEEP_DURATION);
     });
-    group("/mail/{id}/advsend", () => {
-        let id = "TODO_EDIT_THE_ID";
-        let url = BASE_URL + `/mail/${id}/advsend`;
+    group("/mail/advsend", () => {
+        let url = BASE_URL + `/mail/advsend`;
         // Request No. 1
         // TODO: edit the parameters of the request body.
         let body = {"id": "long", "from": {"email": "string", "name": "string"}, "to": [{"email": "string", "name": "string"}], "subject": "string", "body": "string", "replyto": [{"email": "string", "name": "string"}], "cc": [{"email": "string", "name": "string"}], "bcc": [{"email": "string", "name": "string"}], "attachments": [{"data": "file", "filename": "string"}]};
@@ -101,12 +91,12 @@ export default function() {
         });
         sleep(SLEEP_DURATION);
     });
-    group("/mail/{id}/log", () => {
+    group("/mail/log", () => {
         let searchString = "TODO_EDIT_THE_SEARCHSTRING";
         let limit = "TODO_EDIT_THE_LIMIT";
         let skip = "TODO_EDIT_THE_SKIP";
         let id = "TODO_EDIT_THE_ID";
-        let url = BASE_URL + `/mail/${id}/log?searchString=${searchString}&skip=${skip}&limit=${limit}`;
+        let url = BASE_URL + `/mail/log?id=${id}&searchString=${searchString}&skip=${skip}&limit=${limit}`;
         // Request No. 1
         let request = http.get(url);
         check(request, {

@@ -28,54 +28,29 @@ public:
 	DefaultManager();
 	virtual ~DefaultManager();
 
-/*! \brief Gets mail order information by id. *Synchronous*
- *
- * returns information about a mail order in the system with the given id.
- * \param id User ID *Required*
- * \param handler The callback function to be invoked on completion. *Required*
- * \param accessToken The Authorization token. *Required*
- * \param userData The user data to be passed to the callback function.
- */
-bool getMailByIdSync(char * accessToken,
-	long long id, 
-	void(* handler)(MailOrder, Error, void* )
-	, void* userData);
-
-/*! \brief Gets mail order information by id. *Asynchronous*
- *
- * returns information about a mail order in the system with the given id.
- * \param id User ID *Required*
- * \param handler The callback function to be invoked on completion. *Required*
- * \param accessToken The Authorization token. *Required*
- * \param userData The user data to be passed to the callback function.
- */
-bool getMailByIdAsync(char * accessToken,
-	long long id, 
-	void(* handler)(MailOrder, Error, void* )
-	, void* userData);
-
-
 /*! \brief displays a list of mail service orders. *Synchronous*
  *
  * 
+ * \param id The ID of your mail order this will be sent through.
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool getMailOrdersSync(char * accessToken,
-	
+	long long id, 
 	void(* handler)(std::list<MailOrder>, Error, void* )
 	, void* userData);
 
 /*! \brief displays a list of mail service orders. *Asynchronous*
  *
  * 
+ * \param id The ID of your mail order this will be sent through.
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool getMailOrdersAsync(char * accessToken,
-	
+	long long id, 
 	void(* handler)(std::list<MailOrder>, Error, void* )
 	, void* userData);
 
@@ -135,28 +110,26 @@ bool placeMailOrderAsync(char * accessToken,
 /*! \brief Sends an Email with Advanced Options. *Synchronous*
  *
  * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
- * \param id User ID *Required*
  * \param sendMail  *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool sendAdvMailByIdSync(char * accessToken,
-	long long id, SendMail sendMail, 
+	SendMail sendMail, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 
 /*! \brief Sends an Email with Advanced Options. *Asynchronous*
  *
  * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
- * \param id User ID *Required*
  * \param sendMail  *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool sendAdvMailByIdAsync(char * accessToken,
-	long long id, SendMail sendMail, 
+	SendMail sendMail, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 
@@ -164,38 +137,38 @@ bool sendAdvMailByIdAsync(char * accessToken,
 /*! \brief Sends an Email. *Synchronous*
  *
  * Sends An email through one of your mail orders.
- * \param id User ID *Required*
- * \param subject 
- * \param body 
- * \param to 
- * \param toName 
- * \param from 
- * \param fromName 
+ * \param subject The Subject of the email
+ * \param body The contents of the email
+ * \param to The email address of who this email will be sent to.
+ * \param from The email address of who this email will be sent from.
+ * \param id The ID of your mail order this will be sent through.
+ * \param toName The name or title of who this email is being sent to.
+ * \param fromName The name or title of who this email is being sent from.
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool sendMailByIdSync(char * accessToken,
-	long long id, std::string subject, std::string body, std::string to, std::string toName, std::string from, std::string fromName, 
+	std::string subject, std::string body, std::string to, std::string from, long long id, std::string toName, std::string fromName, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 
 /*! \brief Sends an Email. *Asynchronous*
  *
  * Sends An email through one of your mail orders.
- * \param id User ID *Required*
- * \param subject 
- * \param body 
- * \param to 
- * \param toName 
- * \param from 
- * \param fromName 
+ * \param subject The Subject of the email
+ * \param body The contents of the email
+ * \param to The email address of who this email will be sent to.
+ * \param from The email address of who this email will be sent from.
+ * \param id The ID of your mail order this will be sent through.
+ * \param toName The name or title of who this email is being sent to.
+ * \param fromName The name or title of who this email is being sent from.
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool sendMailByIdAsync(char * accessToken,
-	long long id, std::string subject, std::string body, std::string to, std::string toName, std::string from, std::string fromName, 
+	std::string subject, std::string body, std::string to, std::string from, long long id, std::string toName, std::string fromName, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 
@@ -228,7 +201,7 @@ bool validateMailOrderAsync(char * accessToken,
 /*! \brief displays the mail log. *Synchronous*
  *
  * By passing in the appropriate options, you can search for available inventory in the system 
- * \param id User ID *Required*
+ * \param id The ID of your mail order this will be sent through.
  * \param searchString pass an optional search string for looking up inventory
  * \param skip number of records to skip for pagination
  * \param limit maximum number of records to return
@@ -244,7 +217,7 @@ bool viewMailLogByIdSync(char * accessToken,
 /*! \brief displays the mail log. *Asynchronous*
  *
  * By passing in the appropriate options, you can search for available inventory in the system 
- * \param id User ID *Required*
+ * \param id The ID of your mail order this will be sent through.
  * \param searchString pass an optional search string for looking up inventory
  * \param skip number of records to skip for pagination
  * \param limit maximum number of records to return

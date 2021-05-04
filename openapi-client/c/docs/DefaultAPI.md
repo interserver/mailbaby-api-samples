@@ -4,58 +4,27 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DefaultAPI_getMailById**](DefaultAPI.md#DefaultAPI_getMailById) | **GET** /mail/{id} | Gets mail order information by id
 [**DefaultAPI_getMailOrders**](DefaultAPI.md#DefaultAPI_getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**DefaultAPI_pingServer**](DefaultAPI.md#DefaultAPI_pingServer) | **GET** /ping | Checks if the server is running
 [**DefaultAPI_placeMailOrder**](DefaultAPI.md#DefaultAPI_placeMailOrder) | **POST** /mail/order | places a mail order
-[**DefaultAPI_sendAdvMailById**](DefaultAPI.md#DefaultAPI_sendAdvMailById) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-[**DefaultAPI_sendMailById**](DefaultAPI.md#DefaultAPI_sendMailById) | **POST** /mail/{id}/send | Sends an Email
+[**DefaultAPI_sendAdvMailById**](DefaultAPI.md#DefaultAPI_sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**DefaultAPI_sendMailById**](DefaultAPI.md#DefaultAPI_sendMailById) | **POST** /mail/send | Sends an Email
 [**DefaultAPI_validateMailOrder**](DefaultAPI.md#DefaultAPI_validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**DefaultAPI_viewMailLogById**](DefaultAPI.md#DefaultAPI_viewMailLogById) | **GET** /mail/{id}/log | displays the mail log
+[**DefaultAPI_viewMailLogById**](DefaultAPI.md#DefaultAPI_viewMailLogById) | **GET** /mail/log | displays the mail log
 
-
-# **DefaultAPI_getMailById**
-```c
-// Gets mail order information by id
-//
-// returns information about a mail order in the system with the given id.
-//
-mail_order_t* DefaultAPI_getMailById(apiClient_t *apiClient, long id);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
-**id** | **long** | User ID | 
-
-### Return type
-
-[mail_order_t](mail_order.md) *
-
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **DefaultAPI_getMailOrders**
 ```c
 // displays a list of mail service orders
 //
-list_t* DefaultAPI_getMailOrders(apiClient_t *apiClient);
+list_t* DefaultAPI_getMailOrders(apiClient_t *apiClient, long id);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**id** | **long** | The ID of your mail order this will be sent through. | [optional] 
 
 ### Return type
 
@@ -64,7 +33,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -121,7 +90,7 @@ void
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -136,14 +105,13 @@ void
 //
 // Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 //
-generic_response_t* DefaultAPI_sendAdvMailById(apiClient_t *apiClient, long id, send_mail_t * send_mail);
+generic_response_t* DefaultAPI_sendAdvMailById(apiClient_t *apiClient, send_mail_t * send_mail);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration | 
-**id** | **long** | User ID | 
 **send_mail** | **[send_mail_t](send_mail.md) \*** |  | 
 
 ### Return type
@@ -153,11 +121,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -168,20 +136,20 @@ Name | Type | Description  | Notes
 //
 // Sends An email through one of your mail orders.
 //
-generic_response_t* DefaultAPI_sendMailById(apiClient_t *apiClient, long id, char * subject, char * body, char * to, char * toName, char * from, char * fromName);
+generic_response_t* DefaultAPI_sendMailById(apiClient_t *apiClient, char * subject, char * body, char * to, char * from, long id, char * toName, char * fromName);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration | 
-**id** | **long** | User ID | 
-**subject** | **char \*** |  | [optional] 
-**body** | **char \*** |  | [optional] 
-**to** | **char \*** |  | [optional] 
-**toName** | **char \*** |  | [optional] 
-**from** | **char \*** |  | [optional] 
-**fromName** | **char \*** |  | [optional] 
+**subject** | **char \*** | The Subject of the email | [optional] 
+**body** | **char \*** | The contents of the email | [optional] 
+**to** | **char \*** | The email address of who this email will be sent to. | [optional] 
+**from** | **char \*** | The email address of who this email will be sent from. | [optional] 
+**id** | **long** | The ID of your mail order this will be sent through. | [optional] 
+**toName** | **char \*** | The name or title of who this email is being sent to. | [optional] 
+**fromName** | **char \*** | The name or title of who this email is being sent from. | [optional] 
 
 ### Return type
 
@@ -190,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -217,7 +185,7 @@ void
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -239,7 +207,7 @@ list_t* DefaultAPI_viewMailLogById(apiClient_t *apiClient, long id, char * searc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration | 
-**id** | **long** | User ID | 
+**id** | **long** | The ID of your mail order this will be sent through. | [optional] 
 **searchString** | **char \*** | pass an optional search string for looking up inventory | [optional] 
 **skip** | **int** | number of records to skip for pagination | [optional] 
 **limit** | **int** | maximum number of records to return | [optional] 
@@ -251,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

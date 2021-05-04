@@ -56,7 +56,6 @@ class DefaultApiSimulation extends Simulation {
     }
 
     // Setup all the operations per second for the test to ultimately be generated from configs
-    val getMailByIdPerSecond = config.getDouble("performance.operationsPerSecond.getMailById") * rateMultiplier * instanceMultiplier
     val getMailOrdersPerSecond = config.getDouble("performance.operationsPerSecond.getMailOrders") * rateMultiplier * instanceMultiplier
     val pingServerPerSecond = config.getDouble("performance.operationsPerSecond.pingServer") * rateMultiplier * instanceMultiplier
     val placeMailOrderPerSecond = config.getDouble("performance.operationsPerSecond.placeMailOrder") * rateMultiplier * instanceMultiplier
@@ -68,33 +67,18 @@ class DefaultApiSimulation extends Simulation {
     val scenarioBuilders: mutable.MutableList[PopulationBuilder] = new mutable.MutableList[PopulationBuilder]()
 
     // Set up CSV feeders
-    val getMailByIdPATHFeeder = csv(userDataDirectory + File.separator + "getMailById-pathParams.csv").random
-    val sendAdvMailByIdPATHFeeder = csv(userDataDirectory + File.separator + "sendAdvMailById-pathParams.csv").random
+    val getMailOrdersQUERYFeeder = csv(userDataDirectory + File.separator + "getMailOrders-queryParams.csv").random
     val sendMailByIdQUERYFeeder = csv(userDataDirectory + File.separator + "sendMailById-queryParams.csv").random
-    val sendMailByIdPATHFeeder = csv(userDataDirectory + File.separator + "sendMailById-pathParams.csv").random
     val viewMailLogByIdQUERYFeeder = csv(userDataDirectory + File.separator + "viewMailLogById-queryParams.csv").random
-    val viewMailLogByIdPATHFeeder = csv(userDataDirectory + File.separator + "viewMailLogById-pathParams.csv").random
 
     // Setup all scenarios
 
     
-    val scngetMailById = scenario("getMailByIdSimulation")
-        .feed(getMailByIdPATHFeeder)
-        .exec(http("getMailById")
-        .httpRequest("GET","/mail/${id}")
-)
-
-    // Run scngetMailById with warm up and reach a constant rate for entire duration
-    scenarioBuilders += scngetMailById.inject(
-        rampUsersPerSec(1) to(getMailByIdPerSecond) during(rampUpSeconds),
-        constantUsersPerSec(getMailByIdPerSecond) during(durationSeconds),
-        rampUsersPerSec(getMailByIdPerSecond) to(1) during(rampDownSeconds)
-    )
-
-    
     val scngetMailOrders = scenario("getMailOrdersSimulation")
+        .feed(getMailOrdersQUERYFeeder)
         .exec(http("getMailOrders")
         .httpRequest("GET","/mail")
+        .queryParam("id","${id}")
 )
 
     // Run scngetMailOrders with warm up and reach a constant rate for entire duration
@@ -132,9 +116,8 @@ class DefaultApiSimulation extends Simulation {
 
     
     val scnsendAdvMailById = scenario("sendAdvMailByIdSimulation")
-        .feed(sendAdvMailByIdPATHFeeder)
         .exec(http("sendAdvMailById")
-        .httpRequest("POST","/mail/${id}/advsend")
+        .httpRequest("POST","/mail/advsend")
 )
 
     // Run scnsendAdvMailById with warm up and reach a constant rate for entire duration
@@ -147,15 +130,15 @@ class DefaultApiSimulation extends Simulation {
     
     val scnsendMailById = scenario("sendMailByIdSimulation")
         .feed(sendMailByIdQUERYFeeder)
-        .feed(sendMailByIdPATHFeeder)
         .exec(http("sendMailById")
-        .httpRequest("POST","/mail/${id}/send")
-        .queryParam("fromName","${fromName}")
-        .queryParam("body","${body}")
-        .queryParam("subject","${subject}")
+        .httpRequest("POST","/mail/send")
         .queryParam("toName","${toName}")
-        .queryParam("to","${to}")
+        .queryParam("body","${body}")
+        .queryParam("id","${id}")
+        .queryParam("subject","${subject}")
         .queryParam("from","${from}")
+        .queryParam("fromName","${fromName}")
+        .queryParam("to","${to}")
 )
 
     // Run scnsendMailById with warm up and reach a constant rate for entire duration
@@ -181,12 +164,12 @@ class DefaultApiSimulation extends Simulation {
     
     val scnviewMailLogById = scenario("viewMailLogByIdSimulation")
         .feed(viewMailLogByIdQUERYFeeder)
-        .feed(viewMailLogByIdPATHFeeder)
         .exec(http("viewMailLogById")
-        .httpRequest("GET","/mail/${id}/log")
-        .queryParam("limit","${limit}")
-        .queryParam("searchString","${searchString}")
+        .httpRequest("GET","/mail/log")
         .queryParam("skip","${skip}")
+        .queryParam("limit","${limit}")
+        .queryParam("id","${id}")
+        .queryParam("searchString","${searchString}")
 )
 
     // Run scnviewMailLogById with warm up and reach a constant rate for entire duration

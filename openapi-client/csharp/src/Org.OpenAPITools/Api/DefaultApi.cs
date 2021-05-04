@@ -26,35 +26,15 @@ namespace Org.OpenAPITools.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Gets mail order information by id
-        /// </summary>
-        /// <remarks>
-        /// returns information about a mail order in the system with the given id.
-        /// </remarks>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <returns>MailOrder</returns>
-        MailOrder GetMailById (long id);
-
-        /// <summary>
-        /// Gets mail order information by id
-        /// </summary>
-        /// <remarks>
-        /// returns information about a mail order in the system with the given id.
-        /// </remarks>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <returns>ApiResponse of MailOrder</returns>
-        ApiResponse<MailOrder> GetMailByIdWithHttpInfo (long id);
-        /// <summary>
         /// displays a list of mail service orders
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>List&lt;MailOrder&gt;</returns>
-        List<MailOrder> GetMailOrders ();
+        List<MailOrder> GetMailOrders (long? id = default(long?));
 
         /// <summary>
         /// displays a list of mail service orders
@@ -63,8 +43,9 @@ namespace Org.OpenAPITools.Api
         /// 
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>ApiResponse of List&lt;MailOrder&gt;</returns>
-        ApiResponse<List<MailOrder>> GetMailOrdersWithHttpInfo ();
+        ApiResponse<List<MailOrder>> GetMailOrdersWithHttpInfo (long? id = default(long?));
         /// <summary>
         /// Checks if the server is running
         /// </summary>
@@ -112,10 +93,9 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
         /// <param name="sendMail"></param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendAdvMailById (long id, SendMail sendMail);
+        GenericResponse SendAdvMailById (SendMail sendMail);
 
         /// <summary>
         /// Sends an Email with Advanced Options
@@ -124,10 +104,9 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
         /// <param name="sendMail"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        ApiResponse<GenericResponse> SendAdvMailByIdWithHttpInfo (long id, SendMail sendMail);
+        ApiResponse<GenericResponse> SendAdvMailByIdWithHttpInfo (SendMail sendMail);
         /// <summary>
         /// Sends an Email
         /// </summary>
@@ -135,15 +114,15 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <param name="subject"> (optional)</param>
-        /// <param name="body"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <param name="toName"> (optional)</param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="fromName"> (optional)</param>
+        /// <param name="subject">The Subject of the email (optional)</param>
+        /// <param name="body">The contents of the email (optional)</param>
+        /// <param name="to">The email address of who this email will be sent to. (optional)</param>
+        /// <param name="from">The email address of who this email will be sent from. (optional)</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
+        /// <param name="toName">The name or title of who this email is being sent to. (optional)</param>
+        /// <param name="fromName">The name or title of who this email is being sent from. (optional)</param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendMailById (long id, string subject = default(string), string body = default(string), string to = default(string), string toName = default(string), string from = default(string), string fromName = default(string));
+        GenericResponse SendMailById (string subject = default(string), string body = default(string), string to = default(string), string from = default(string), long? id = default(long?), string toName = default(string), string fromName = default(string));
 
         /// <summary>
         /// Sends an Email
@@ -152,15 +131,15 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <param name="subject"> (optional)</param>
-        /// <param name="body"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <param name="toName"> (optional)</param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="fromName"> (optional)</param>
+        /// <param name="subject">The Subject of the email (optional)</param>
+        /// <param name="body">The contents of the email (optional)</param>
+        /// <param name="to">The email address of who this email will be sent to. (optional)</param>
+        /// <param name="from">The email address of who this email will be sent from. (optional)</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
+        /// <param name="toName">The name or title of who this email is being sent to. (optional)</param>
+        /// <param name="fromName">The name or title of who this email is being sent from. (optional)</param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        ApiResponse<GenericResponse> SendMailByIdWithHttpInfo (long id, string subject = default(string), string body = default(string), string to = default(string), string toName = default(string), string from = default(string), string fromName = default(string));
+        ApiResponse<GenericResponse> SendMailByIdWithHttpInfo (string subject = default(string), string body = default(string), string to = default(string), string from = default(string), long? id = default(long?), string toName = default(string), string fromName = default(string));
         /// <summary>
         /// validatess order details before placing an order
         /// </summary>
@@ -187,12 +166,12 @@ namespace Org.OpenAPITools.Api
         /// By passing in the appropriate options, you can search for available inventory in the system 
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="searchString">pass an optional search string for looking up inventory (optional)</param>
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>List&lt;MailLog&gt;</returns>
-        List<MailLog> ViewMailLogById (long id, string searchString = default(string), int? skip = default(int?), int? limit = default(int?));
+        List<MailLog> ViewMailLogById (long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?));
 
         /// <summary>
         /// displays the mail log
@@ -201,47 +180,25 @@ namespace Org.OpenAPITools.Api
         /// By passing in the appropriate options, you can search for available inventory in the system 
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="searchString">pass an optional search string for looking up inventory (optional)</param>
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>ApiResponse of List&lt;MailLog&gt;</returns>
-        ApiResponse<List<MailLog>> ViewMailLogByIdWithHttpInfo (long id, string searchString = default(string), int? skip = default(int?), int? limit = default(int?));
+        ApiResponse<List<MailLog>> ViewMailLogByIdWithHttpInfo (long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?));
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
-        /// Gets mail order information by id
-        /// </summary>
-        /// <remarks>
-        /// returns information about a mail order in the system with the given id.
-        /// </remarks>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
-        /// <returns>Task of MailOrder</returns>
-        System.Threading.Tasks.Task<MailOrder> GetMailByIdAsync (long id, CancellationToken cancellationToken = default(CancellationToken));
-
-        /// <summary>
-        /// Gets mail order information by id
-        /// </summary>
-        /// <remarks>
-        /// returns information about a mail order in the system with the given id.
-        /// </remarks>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
-        /// <returns>Task of ApiResponse (MailOrder)</returns>
-        System.Threading.Tasks.Task<ApiResponse<MailOrder>> GetMailByIdWithHttpInfoAsync (long id, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
         /// displays a list of mail service orders
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of List&lt;MailOrder&gt;</returns>
-        System.Threading.Tasks.Task<List<MailOrder>> GetMailOrdersAsync (CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<List<MailOrder>> GetMailOrdersAsync (long? id = default(long?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// displays a list of mail service orders
@@ -250,9 +207,10 @@ namespace Org.OpenAPITools.Api
         /// 
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (List&lt;MailOrder&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<MailOrder>>> GetMailOrdersWithHttpInfoAsync (CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<MailOrder>>> GetMailOrdersWithHttpInfoAsync (long? id = default(long?), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Checks if the server is running
         /// </summary>
@@ -304,11 +262,10 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
         /// <param name="sendMail"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of GenericResponse</returns>
-        System.Threading.Tasks.Task<GenericResponse> SendAdvMailByIdAsync (long id, SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<GenericResponse> SendAdvMailByIdAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Sends an Email with Advanced Options
@@ -317,11 +274,10 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
         /// <param name="sendMail"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendAdvMailByIdWithHttpInfoAsync (long id, SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendAdvMailByIdWithHttpInfoAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Sends an Email
         /// </summary>
@@ -329,16 +285,16 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <param name="subject"> (optional)</param>
-        /// <param name="body"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <param name="toName"> (optional)</param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="fromName"> (optional)</param>
+        /// <param name="subject">The Subject of the email (optional)</param>
+        /// <param name="body">The contents of the email (optional)</param>
+        /// <param name="to">The email address of who this email will be sent to. (optional)</param>
+        /// <param name="from">The email address of who this email will be sent from. (optional)</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
+        /// <param name="toName">The name or title of who this email is being sent to. (optional)</param>
+        /// <param name="fromName">The name or title of who this email is being sent from. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of GenericResponse</returns>
-        System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (long id, string subject = default(string), string body = default(string), string to = default(string), string toName = default(string), string from = default(string), string fromName = default(string), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (string subject = default(string), string body = default(string), string to = default(string), string from = default(string), long? id = default(long?), string toName = default(string), string fromName = default(string), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Sends an Email
@@ -347,16 +303,16 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <param name="subject"> (optional)</param>
-        /// <param name="body"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <param name="toName"> (optional)</param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="fromName"> (optional)</param>
+        /// <param name="subject">The Subject of the email (optional)</param>
+        /// <param name="body">The contents of the email (optional)</param>
+        /// <param name="to">The email address of who this email will be sent to. (optional)</param>
+        /// <param name="from">The email address of who this email will be sent from. (optional)</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
+        /// <param name="toName">The name or title of who this email is being sent to. (optional)</param>
+        /// <param name="fromName">The name or title of who this email is being sent from. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdWithHttpInfoAsync (long id, string subject = default(string), string body = default(string), string to = default(string), string toName = default(string), string from = default(string), string fromName = default(string), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdWithHttpInfoAsync (string subject = default(string), string body = default(string), string to = default(string), string from = default(string), long? id = default(long?), string toName = default(string), string fromName = default(string), CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// validatess order details before placing an order
         /// </summary>
@@ -385,13 +341,13 @@ namespace Org.OpenAPITools.Api
         /// By passing in the appropriate options, you can search for available inventory in the system 
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="searchString">pass an optional search string for looking up inventory (optional)</param>
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of List&lt;MailLog&gt;</returns>
-        System.Threading.Tasks.Task<List<MailLog>> ViewMailLogByIdAsync (long id, string searchString = default(string), int? skip = default(int?), int? limit = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<List<MailLog>> ViewMailLogByIdAsync (long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?), CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// displays the mail log
@@ -400,13 +356,13 @@ namespace Org.OpenAPITools.Api
         /// By passing in the appropriate options, you can search for available inventory in the system 
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="searchString">pass an optional search string for looking up inventory (optional)</param>
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (List&lt;MailLog&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<MailLog>>> ViewMailLogByIdWithHttpInfoAsync (long id, string searchString = default(string), int? skip = default(int?), int? limit = default(int?), CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<MailLog>>> ViewMailLogByIdWithHttpInfoAsync (long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?), CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -519,178 +475,14 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        /// Gets mail order information by id returns information about a mail order in the system with the given id.
-        /// </summary>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <returns>MailOrder</returns>
-        public MailOrder GetMailById (long id)
-        {
-             ApiResponse<MailOrder> localVarResponse = GetMailByIdWithHttpInfo(id);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Gets mail order information by id returns information about a mail order in the system with the given id.
-        /// </summary>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <returns>ApiResponse of MailOrder</returns>
-        public ApiResponse<MailOrder> GetMailByIdWithHttpInfo (long id)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->GetMailById");
-
-            var localVarPath = "/mail/{id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
-
-            // authentication (apiKeyAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
-            {
-                localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetMailById", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<MailOrder>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (MailOrder) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(MailOrder)));
-        }
-
-        /// <summary>
-        /// Gets mail order information by id returns information about a mail order in the system with the given id.
-        /// </summary>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
-        /// <returns>Task of MailOrder</returns>
-        public async System.Threading.Tasks.Task<MailOrder> GetMailByIdAsync (long id, CancellationToken cancellationToken = default(CancellationToken))
-        {
-             ApiResponse<MailOrder> localVarResponse = await GetMailByIdWithHttpInfoAsync(id, cancellationToken);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Gets mail order information by id returns information about a mail order in the system with the given id.
-        /// </summary>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
-        /// <returns>Task of ApiResponse (MailOrder)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<MailOrder>> GetMailByIdWithHttpInfoAsync (long id, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->GetMailById");
-
-            var localVarPath = "/mail/{id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
-
-            // authentication (apiKeyAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
-            {
-                localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType, cancellationToken);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetMailById", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<MailOrder>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (MailOrder) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(MailOrder)));
-        }
-
-        /// <summary>
         /// displays a list of mail service orders 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>List&lt;MailOrder&gt;</returns>
-        public List<MailOrder> GetMailOrders ()
+        public List<MailOrder> GetMailOrders (long? id = default(long?))
         {
-             ApiResponse<List<MailOrder>> localVarResponse = GetMailOrdersWithHttpInfo();
+             ApiResponse<List<MailOrder>> localVarResponse = GetMailOrdersWithHttpInfo(id);
              return localVarResponse.Data;
         }
 
@@ -698,8 +490,9 @@ namespace Org.OpenAPITools.Api
         /// displays a list of mail service orders 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>ApiResponse of List&lt;MailOrder&gt;</returns>
-        public ApiResponse<List<MailOrder>> GetMailOrdersWithHttpInfo ()
+        public ApiResponse<List<MailOrder>> GetMailOrdersWithHttpInfo (long? id = default(long?))
         {
 
             var localVarPath = "/mail";
@@ -725,21 +518,12 @@ namespace Org.OpenAPITools.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (id != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "id", id)); // query parameter
 
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -764,11 +548,12 @@ namespace Org.OpenAPITools.Api
         /// displays a list of mail service orders 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of List&lt;MailOrder&gt;</returns>
-        public async System.Threading.Tasks.Task<List<MailOrder>> GetMailOrdersAsync (CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<List<MailOrder>> GetMailOrdersAsync (long? id = default(long?), CancellationToken cancellationToken = default(CancellationToken))
         {
-             ApiResponse<List<MailOrder>> localVarResponse = await GetMailOrdersWithHttpInfoAsync(cancellationToken);
+             ApiResponse<List<MailOrder>> localVarResponse = await GetMailOrdersWithHttpInfoAsync(id, cancellationToken);
              return localVarResponse.Data;
 
         }
@@ -777,9 +562,10 @@ namespace Org.OpenAPITools.Api
         /// displays a list of mail service orders 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (List&lt;MailOrder&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<MailOrder>>> GetMailOrdersWithHttpInfoAsync (CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<List<MailOrder>>> GetMailOrdersWithHttpInfoAsync (long? id = default(long?), CancellationToken cancellationToken = default(CancellationToken))
         {
 
             var localVarPath = "/mail";
@@ -805,21 +591,12 @@ namespace Org.OpenAPITools.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (id != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "id", id)); // query parameter
 
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -1015,16 +792,6 @@ namespace Org.OpenAPITools.Api
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
             }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
-            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
@@ -1103,16 +870,6 @@ namespace Org.OpenAPITools.Api
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
             }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
-            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1136,12 +893,11 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email with Advanced Options Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
         /// <param name="sendMail"></param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendAdvMailById (long id, SendMail sendMail)
+        public GenericResponse SendAdvMailById (SendMail sendMail)
         {
-             ApiResponse<GenericResponse> localVarResponse = SendAdvMailByIdWithHttpInfo(id, sendMail);
+             ApiResponse<GenericResponse> localVarResponse = SendAdvMailByIdWithHttpInfo(sendMail);
              return localVarResponse.Data;
         }
 
@@ -1149,19 +905,15 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email with Advanced Options Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
         /// <param name="sendMail"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        public ApiResponse<GenericResponse> SendAdvMailByIdWithHttpInfo (long id, SendMail sendMail)
+        public ApiResponse<GenericResponse> SendAdvMailByIdWithHttpInfo (SendMail sendMail)
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->SendAdvMailById");
             // verify the required parameter 'sendMail' is set
             if (sendMail == null)
                 throw new ApiException(400, "Missing required parameter 'sendMail' when calling DefaultApi->SendAdvMailById");
 
-            var localVarPath = "/mail/{id}/advsend";
+            var localVarPath = "/mail/advsend";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -1171,10 +923,7 @@ namespace Org.OpenAPITools.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
-                "application/json", 
-                "application/xml", 
-                "application/x-www-form-urlencoded", 
-                "text/plain"
+                "application/json"
             };
             String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -1186,7 +935,6 @@ namespace Org.OpenAPITools.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (sendMail != null && sendMail.GetType() != typeof(byte[]))
             {
                 localVarPostBody = this.Configuration.ApiClient.Serialize(sendMail); // http body (model) parameter
@@ -1200,16 +948,6 @@ namespace Org.OpenAPITools.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -1234,13 +972,12 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email with Advanced Options Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
         /// <param name="sendMail"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of GenericResponse</returns>
-        public async System.Threading.Tasks.Task<GenericResponse> SendAdvMailByIdAsync (long id, SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<GenericResponse> SendAdvMailByIdAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken))
         {
-             ApiResponse<GenericResponse> localVarResponse = await SendAdvMailByIdWithHttpInfoAsync(id, sendMail, cancellationToken);
+             ApiResponse<GenericResponse> localVarResponse = await SendAdvMailByIdWithHttpInfoAsync(sendMail, cancellationToken);
              return localVarResponse.Data;
 
         }
@@ -1249,20 +986,16 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email with Advanced Options Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
         /// <param name="sendMail"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendAdvMailByIdWithHttpInfoAsync (long id, SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendAdvMailByIdWithHttpInfoAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->SendAdvMailById");
             // verify the required parameter 'sendMail' is set
             if (sendMail == null)
                 throw new ApiException(400, "Missing required parameter 'sendMail' when calling DefaultApi->SendAdvMailById");
 
-            var localVarPath = "/mail/{id}/advsend";
+            var localVarPath = "/mail/advsend";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -1272,10 +1005,7 @@ namespace Org.OpenAPITools.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
-                "application/json", 
-                "application/xml", 
-                "application/x-www-form-urlencoded", 
-                "text/plain"
+                "application/json"
             };
             String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -1287,7 +1017,6 @@ namespace Org.OpenAPITools.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (sendMail != null && sendMail.GetType() != typeof(byte[]))
             {
                 localVarPostBody = this.Configuration.ApiClient.Serialize(sendMail); // http body (model) parameter
@@ -1301,16 +1030,6 @@ namespace Org.OpenAPITools.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -1335,17 +1054,17 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <param name="subject"> (optional)</param>
-        /// <param name="body"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <param name="toName"> (optional)</param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="fromName"> (optional)</param>
+        /// <param name="subject">The Subject of the email (optional)</param>
+        /// <param name="body">The contents of the email (optional)</param>
+        /// <param name="to">The email address of who this email will be sent to. (optional)</param>
+        /// <param name="from">The email address of who this email will be sent from. (optional)</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
+        /// <param name="toName">The name or title of who this email is being sent to. (optional)</param>
+        /// <param name="fromName">The name or title of who this email is being sent from. (optional)</param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendMailById (long id, string subject = default(string), string body = default(string), string to = default(string), string toName = default(string), string from = default(string), string fromName = default(string))
+        public GenericResponse SendMailById (string subject = default(string), string body = default(string), string to = default(string), string from = default(string), long? id = default(long?), string toName = default(string), string fromName = default(string))
         {
-             ApiResponse<GenericResponse> localVarResponse = SendMailByIdWithHttpInfo(id, subject, body, to, toName, from, fromName);
+             ApiResponse<GenericResponse> localVarResponse = SendMailByIdWithHttpInfo(subject, body, to, from, id, toName, fromName);
              return localVarResponse.Data;
         }
 
@@ -1353,21 +1072,18 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <param name="subject"> (optional)</param>
-        /// <param name="body"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <param name="toName"> (optional)</param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="fromName"> (optional)</param>
+        /// <param name="subject">The Subject of the email (optional)</param>
+        /// <param name="body">The contents of the email (optional)</param>
+        /// <param name="to">The email address of who this email will be sent to. (optional)</param>
+        /// <param name="from">The email address of who this email will be sent from. (optional)</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
+        /// <param name="toName">The name or title of who this email is being sent to. (optional)</param>
+        /// <param name="fromName">The name or title of who this email is being sent from. (optional)</param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        public ApiResponse<GenericResponse> SendMailByIdWithHttpInfo (long id, string subject = default(string), string body = default(string), string to = default(string), string toName = default(string), string from = default(string), string fromName = default(string))
+        public ApiResponse<GenericResponse> SendMailByIdWithHttpInfo (string subject = default(string), string body = default(string), string to = default(string), string from = default(string), long? id = default(long?), string toName = default(string), string fromName = default(string))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->SendMailById");
 
-            var localVarPath = "/mail/{id}/send";
+            var localVarPath = "/mail/send";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -1388,28 +1104,18 @@ namespace Org.OpenAPITools.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (subject != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "subject", subject)); // query parameter
             if (body != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "body", body)); // query parameter
             if (to != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "to", to)); // query parameter
-            if (toName != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "toName", toName)); // query parameter
             if (from != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "from", from)); // query parameter
+            if (id != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "id", id)); // query parameter
+            if (toName != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "toName", toName)); // query parameter
             if (fromName != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "fromName", fromName)); // query parameter
 
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -1434,18 +1140,18 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <param name="subject"> (optional)</param>
-        /// <param name="body"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <param name="toName"> (optional)</param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="fromName"> (optional)</param>
+        /// <param name="subject">The Subject of the email (optional)</param>
+        /// <param name="body">The contents of the email (optional)</param>
+        /// <param name="to">The email address of who this email will be sent to. (optional)</param>
+        /// <param name="from">The email address of who this email will be sent from. (optional)</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
+        /// <param name="toName">The name or title of who this email is being sent to. (optional)</param>
+        /// <param name="fromName">The name or title of who this email is being sent from. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of GenericResponse</returns>
-        public async System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (long id, string subject = default(string), string body = default(string), string to = default(string), string toName = default(string), string from = default(string), string fromName = default(string), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (string subject = default(string), string body = default(string), string to = default(string), string from = default(string), long? id = default(long?), string toName = default(string), string fromName = default(string), CancellationToken cancellationToken = default(CancellationToken))
         {
-             ApiResponse<GenericResponse> localVarResponse = await SendMailByIdWithHttpInfoAsync(id, subject, body, to, toName, from, fromName, cancellationToken);
+             ApiResponse<GenericResponse> localVarResponse = await SendMailByIdWithHttpInfoAsync(subject, body, to, from, id, toName, fromName, cancellationToken);
              return localVarResponse.Data;
 
         }
@@ -1454,22 +1160,19 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
-        /// <param name="subject"> (optional)</param>
-        /// <param name="body"> (optional)</param>
-        /// <param name="to"> (optional)</param>
-        /// <param name="toName"> (optional)</param>
-        /// <param name="from"> (optional)</param>
-        /// <param name="fromName"> (optional)</param>
+        /// <param name="subject">The Subject of the email (optional)</param>
+        /// <param name="body">The contents of the email (optional)</param>
+        /// <param name="to">The email address of who this email will be sent to. (optional)</param>
+        /// <param name="from">The email address of who this email will be sent from. (optional)</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
+        /// <param name="toName">The name or title of who this email is being sent to. (optional)</param>
+        /// <param name="fromName">The name or title of who this email is being sent from. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdWithHttpInfoAsync (long id, string subject = default(string), string body = default(string), string to = default(string), string toName = default(string), string from = default(string), string fromName = default(string), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdWithHttpInfoAsync (string subject = default(string), string body = default(string), string to = default(string), string from = default(string), long? id = default(long?), string toName = default(string), string fromName = default(string), CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->SendMailById");
 
-            var localVarPath = "/mail/{id}/send";
+            var localVarPath = "/mail/send";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -1490,28 +1193,18 @@ namespace Org.OpenAPITools.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (subject != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "subject", subject)); // query parameter
             if (body != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "body", body)); // query parameter
             if (to != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "to", to)); // query parameter
-            if (toName != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "toName", toName)); // query parameter
             if (from != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "from", from)); // query parameter
+            if (id != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "id", id)); // query parameter
+            if (toName != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "toName", toName)); // query parameter
             if (fromName != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "fromName", fromName)); // query parameter
 
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -1576,16 +1269,6 @@ namespace Org.OpenAPITools.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -1654,16 +1337,6 @@ namespace Org.OpenAPITools.Api
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
             }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
-            }
 
             // make the HTTP request
             IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
@@ -1687,12 +1360,12 @@ namespace Org.OpenAPITools.Api
         /// displays the mail log By passing in the appropriate options, you can search for available inventory in the system 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="searchString">pass an optional search string for looking up inventory (optional)</param>
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>List&lt;MailLog&gt;</returns>
-        public List<MailLog> ViewMailLogById (long id, string searchString = default(string), int? skip = default(int?), int? limit = default(int?))
+        public List<MailLog> ViewMailLogById (long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?))
         {
              ApiResponse<List<MailLog>> localVarResponse = ViewMailLogByIdWithHttpInfo(id, searchString, skip, limit);
              return localVarResponse.Data;
@@ -1702,18 +1375,15 @@ namespace Org.OpenAPITools.Api
         /// displays the mail log By passing in the appropriate options, you can search for available inventory in the system 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="searchString">pass an optional search string for looking up inventory (optional)</param>
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>ApiResponse of List&lt;MailLog&gt;</returns>
-        public ApiResponse<List<MailLog>> ViewMailLogByIdWithHttpInfo (long id, string searchString = default(string), int? skip = default(int?), int? limit = default(int?))
+        public ApiResponse<List<MailLog>> ViewMailLogByIdWithHttpInfo (long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->ViewMailLogById");
 
-            var localVarPath = "/mail/{id}/log";
+            var localVarPath = "/mail/log";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -1734,7 +1404,7 @@ namespace Org.OpenAPITools.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (id != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "id", id)); // query parameter
             if (searchString != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "searchString", searchString)); // query parameter
             if (skip != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "skip", skip)); // query parameter
             if (limit != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
@@ -1743,16 +1413,6 @@ namespace Org.OpenAPITools.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request
@@ -1777,13 +1437,13 @@ namespace Org.OpenAPITools.Api
         /// displays the mail log By passing in the appropriate options, you can search for available inventory in the system 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="searchString">pass an optional search string for looking up inventory (optional)</param>
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of List&lt;MailLog&gt;</returns>
-        public async System.Threading.Tasks.Task<List<MailLog>> ViewMailLogByIdAsync (long id, string searchString = default(string), int? skip = default(int?), int? limit = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<List<MailLog>> ViewMailLogByIdAsync (long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
              ApiResponse<List<MailLog>> localVarResponse = await ViewMailLogByIdWithHttpInfoAsync(id, searchString, skip, limit, cancellationToken);
              return localVarResponse.Data;
@@ -1794,19 +1454,16 @@ namespace Org.OpenAPITools.Api
         /// displays the mail log By passing in the appropriate options, you can search for available inventory in the system 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">User ID</param>
+        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="searchString">pass an optional search string for looking up inventory (optional)</param>
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (List&lt;MailLog&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<MailLog>>> ViewMailLogByIdWithHttpInfoAsync (long id, string searchString = default(string), int? skip = default(int?), int? limit = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<List<MailLog>>> ViewMailLogByIdWithHttpInfoAsync (long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?), CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->ViewMailLogById");
 
-            var localVarPath = "/mail/{id}/log";
+            var localVarPath = "/mail/log";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -1827,7 +1484,7 @@ namespace Org.OpenAPITools.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (id != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "id", id)); // query parameter
             if (searchString != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "searchString", searchString)); // query parameter
             if (skip != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "skip", skip)); // query parameter
             if (limit != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
@@ -1836,16 +1493,6 @@ namespace Org.OpenAPITools.Api
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
                 localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
-            }
-            // authentication (apiLoginAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN")))
-            {
-                localVarHeaderParams["X-API-LOGIN"] = this.Configuration.GetApiKeyWithPrefix("X-API-LOGIN");
-            }
-            // authentication (apiPasswordAuth) required
-            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-PASS")))
-            {
-                localVarHeaderParams["X-API-PASS"] = this.Configuration.GetApiKeyWithPrefix("X-API-PASS");
             }
 
             // make the HTTP request

@@ -48,16 +48,6 @@
   }
 
   describe('DefaultApi', function() {
-    describe('getMailById', function() {
-      it('should call getMailById successfully', function(done) {
-        //uncomment below and update the code to test getMailById
-        //instance.getMailById(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
     describe('getMailOrders', function() {
       it('should call getMailOrders successfully', function(done) {
         //uncomment below and update the code to test getMailOrders

@@ -24,45 +24,11 @@ inherit
 feature -- API Access
 
 
-	mail_by_id (id: INTEGER_64): detachable MAIL_ORDER
-			-- Gets mail order information by id
-			-- returns information about a mail order in the system with the given id.
-			-- 
-			-- argument: id User ID (required)
-			-- 
-			-- 
-			-- Result MAIL_ORDER
-		require
-		local
-  			l_path: STRING
-  			l_request: API_CLIENT_REQUEST
-  			l_response: API_CLIENT_RESPONSE
-		do
-			reset_error
-			create l_request
-			
-			l_path := "/mail/{id}"
-			l_path.replace_substring_all ("{"+"id"+"}", api_client.url_encode (id.out))
-
-
-			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"application/json">>)  as l_accept then
-				l_request.add_header(l_accept,"Accept");
-			end
-			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<>>),"Content-Type")
-			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth", "apiLoginAuth", "apiPasswordAuth">>)
-			l_response := api_client.call_api (l_path, "Get", l_request, Void, agent deserializer)
-			if l_response.has_error then
-				last_error := l_response.error
-			elseif attached { MAIL_ORDER } l_response.data ({ MAIL_ORDER }) as l_data then
-				Result := l_data
-			else
-				create last_error.make ("Unknown error: Status response [ " + l_response.status.out + "]")
-			end
-		end	
-
-	mail_orders : detachable LIST [MAIL_ORDER]
+	mail_orders (id: INTEGER_64): detachable LIST [MAIL_ORDER]
 			-- displays a list of mail service orders
 			-- 
+			-- 
+			-- argument: id The ID of your mail order this will be sent through. (optional, default to null)
 			-- 
 			-- 
 			-- Result LIST [MAIL_ORDER]
@@ -76,13 +42,14 @@ feature -- API Access
 			create l_request
 			
 			l_path := "/mail"
+			l_request.fill_query_params(api_client.parameter_to_tuple("", "id", id));
 
 
 			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"application/json", "application/xml", "text/plain">>)  as l_accept then
 				l_request.add_header(l_accept,"Accept");
 			end
 			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<>>),"Content-Type")
-			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth", "apiLoginAuth", "apiPasswordAuth">>)
+			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth">>)
 			l_response := api_client.call_api (l_path, "Get", l_request, Void, agent deserializer)
 			if l_response.has_error then
 				last_error := l_response.error
@@ -144,18 +111,16 @@ feature -- API Access
 				l_request.add_header(l_accept,"Accept");
 			end
 			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/json">>),"Content-Type")
-			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth", "apiLoginAuth", "apiPasswordAuth">>)
+			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth">>)
 			l_response := api_client.call_api (l_path, "Post", l_request, agent serializer, Void)
 			if l_response.has_error then
 				last_error := l_response.error
 			end
 		end	
 
-	send_adv_mail_by_id (id: INTEGER_64; send_mail: SEND_MAIL): detachable GENERIC_RESPONSE
+	send_adv_mail_by_id (send_mail: SEND_MAIL): detachable GENERIC_RESPONSE
 			-- Sends an Email with Advanced Options
 			-- Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-			-- 
-			-- argument: id User ID (required)
 			-- 
 			-- argument: send_mail  (required)
 			-- 
@@ -170,15 +135,14 @@ feature -- API Access
 			reset_error
 			create l_request
 			l_request.set_body(send_mail)
-			l_path := "/mail/{id}/advsend"
-			l_path.replace_substring_all ("{"+"id"+"}", api_client.url_encode (id.out))
+			l_path := "/mail/advsend"
 
 
 			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"application/json">>)  as l_accept then
 				l_request.add_header(l_accept,"Accept");
 			end
-			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain">>),"Content-Type")
-			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth", "apiLoginAuth", "apiPasswordAuth">>)
+			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/json">>),"Content-Type")
+			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth">>)
 			l_response := api_client.call_api (l_path, "Post", l_request, Void, agent deserializer)
 			if l_response.has_error then
 				last_error := l_response.error
@@ -189,23 +153,23 @@ feature -- API Access
 			end
 		end	
 
-	send_mail_by_id (id: INTEGER_64; subject: STRING_32; body: STRING_32; to: STRING_32; to_name: STRING_32; var_from: STRING_32; from_name: STRING_32): detachable GENERIC_RESPONSE
+	send_mail_by_id (subject: STRING_32; body: STRING_32; to: STRING_32; var_from: STRING_32; id: INTEGER_64; to_name: STRING_32; from_name: STRING_32): detachable GENERIC_RESPONSE
 			-- Sends an Email
 			-- Sends An email through one of your mail orders.
 			-- 
-			-- argument: id User ID (required)
+			-- argument: subject The Subject of the email (optional, default to null)
 			-- 
-			-- argument: subject  (optional, default to null)
+			-- argument: body The contents of the email (optional, default to null)
 			-- 
-			-- argument: body  (optional, default to null)
+			-- argument: to The email address of who this email will be sent to. (optional, default to null)
 			-- 
-			-- argument: to  (optional, default to null)
+			-- argument: var_from The email address of who this email will be sent from. (optional, default to null)
 			-- 
-			-- argument: to_name  (optional, default to null)
+			-- argument: id The ID of your mail order this will be sent through. (optional, default to null)
 			-- 
-			-- argument: var_from  (optional, default to null)
+			-- argument: to_name The name or title of who this email is being sent to. (optional, default to null)
 			-- 
-			-- argument: from_name  (optional, default to null)
+			-- argument: from_name The name or title of who this email is being sent from. (optional, default to null)
 			-- 
 			-- 
 			-- Result GENERIC_RESPONSE
@@ -218,13 +182,13 @@ feature -- API Access
 			reset_error
 			create l_request
 			
-			l_path := "/mail/{id}/send"
-			l_path.replace_substring_all ("{"+"id"+"}", api_client.url_encode (id.out))
+			l_path := "/mail/send"
 			l_request.fill_query_params(api_client.parameter_to_tuple("", "subject", subject));
 			l_request.fill_query_params(api_client.parameter_to_tuple("", "body", body));
 			l_request.fill_query_params(api_client.parameter_to_tuple("", "to", to));
-			l_request.fill_query_params(api_client.parameter_to_tuple("", "toName", to_name));
 			l_request.fill_query_params(api_client.parameter_to_tuple("", "from", var_from));
+			l_request.fill_query_params(api_client.parameter_to_tuple("", "id", id));
+			l_request.fill_query_params(api_client.parameter_to_tuple("", "toName", to_name));
 			l_request.fill_query_params(api_client.parameter_to_tuple("", "fromName", from_name));
 
 
@@ -232,7 +196,7 @@ feature -- API Access
 				l_request.add_header(l_accept,"Accept");
 			end
 			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<>>),"Content-Type")
-			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth", "apiLoginAuth", "apiPasswordAuth">>)
+			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth">>)
 			l_response := api_client.call_api (l_path, "Post", l_request, Void, agent deserializer)
 			if l_response.has_error then
 				last_error := l_response.error
@@ -264,7 +228,7 @@ feature -- API Access
 				l_request.add_header(l_accept,"Accept");
 			end
 			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<>>),"Content-Type")
-			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth", "apiLoginAuth", "apiPasswordAuth">>)
+			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth">>)
 			l_response := api_client.call_api (l_path, "Get", l_request, agent serializer, Void)
 			if l_response.has_error then
 				last_error := l_response.error
@@ -275,7 +239,7 @@ feature -- API Access
 			-- displays the mail log
 			-- By passing in the appropriate options, you can search for available inventory in the system 
 			-- 
-			-- argument: id User ID (required)
+			-- argument: id The ID of your mail order this will be sent through. (optional, default to null)
 			-- 
 			-- argument: search_string pass an optional search string for looking up inventory (optional, default to null)
 			-- 
@@ -297,8 +261,8 @@ feature -- API Access
 			reset_error
 			create l_request
 			
-			l_path := "/mail/{id}/log"
-			l_path.replace_substring_all ("{"+"id"+"}", api_client.url_encode (id.out))
+			l_path := "/mail/log"
+			l_request.fill_query_params(api_client.parameter_to_tuple("", "id", id));
 			l_request.fill_query_params(api_client.parameter_to_tuple("", "searchString", search_string));
 			l_request.fill_query_params(api_client.parameter_to_tuple("", "skip", skip));
 			l_request.fill_query_params(api_client.parameter_to_tuple("", "limit", limit));
@@ -308,7 +272,7 @@ feature -- API Access
 				l_request.add_header(l_accept,"Accept");
 			end
 			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<>>),"Content-Type")
-			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth", "apiLoginAuth", "apiPasswordAuth">>)
+			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth">>)
 			l_response := api_client.call_api (l_path, "Get", l_request, Void, agent deserializer)
 			if l_response.has_error then
 				last_error := l_response.error

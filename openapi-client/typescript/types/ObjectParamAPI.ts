@@ -13,16 +13,13 @@ import { SendMail } from '../models/SendMail';
 import { ObservableDefaultApi } from "./ObservableAPI";
 import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
 
-export interface DefaultApiGetMailByIdRequest {
-    /**
-     * User ID
-     * @type number
-     * @memberof DefaultApigetMailById
-     */
-    id: number
-}
-
 export interface DefaultApiGetMailOrdersRequest {
+    /**
+     * The ID of your mail order this will be sent through.
+     * @type number
+     * @memberof DefaultApigetMailOrders
+     */
+    id?: number
 }
 
 export interface DefaultApiPingServerRequest {
@@ -39,12 +36,6 @@ export interface DefaultApiPlaceMailOrderRequest {
 
 export interface DefaultApiSendAdvMailByIdRequest {
     /**
-     * User ID
-     * @type number
-     * @memberof DefaultApisendAdvMailById
-     */
-    id: number
-    /**
      * 
      * @type SendMail
      * @memberof DefaultApisendAdvMailById
@@ -54,43 +45,43 @@ export interface DefaultApiSendAdvMailByIdRequest {
 
 export interface DefaultApiSendMailByIdRequest {
     /**
-     * User ID
-     * @type number
-     * @memberof DefaultApisendMailById
-     */
-    id: number
-    /**
-     * 
+     * The Subject of the email
      * @type string
      * @memberof DefaultApisendMailById
      */
     subject?: string
     /**
-     * 
+     * The contents of the email
      * @type string
      * @memberof DefaultApisendMailById
      */
     body?: string
     /**
-     * 
+     * The email address of who this email will be sent to.
      * @type string
      * @memberof DefaultApisendMailById
      */
     to?: string
     /**
-     * 
-     * @type string
-     * @memberof DefaultApisendMailById
-     */
-    toName?: string
-    /**
-     * 
+     * The email address of who this email will be sent from.
      * @type string
      * @memberof DefaultApisendMailById
      */
     from?: string
     /**
-     * 
+     * The ID of your mail order this will be sent through.
+     * @type number
+     * @memberof DefaultApisendMailById
+     */
+    id?: number
+    /**
+     * The name or title of who this email is being sent to.
+     * @type string
+     * @memberof DefaultApisendMailById
+     */
+    toName?: string
+    /**
+     * The name or title of who this email is being sent from.
      * @type string
      * @memberof DefaultApisendMailById
      */
@@ -102,11 +93,11 @@ export interface DefaultApiValidateMailOrderRequest {
 
 export interface DefaultApiViewMailLogByIdRequest {
     /**
-     * User ID
+     * The ID of your mail order this will be sent through.
      * @type number
      * @memberof DefaultApiviewMailLogById
      */
-    id: number
+    id?: number
     /**
      * pass an optional search string for looking up inventory
      * @type string
@@ -135,20 +126,11 @@ export class ObjectDefaultApi {
     }
 
     /**
-     * returns information about a mail order in the system with the given id.
-     * Gets mail order information by id
-     * @param param the request object
-     */
-    public getMailById(param: DefaultApiGetMailByIdRequest, options?: Configuration): Promise<MailOrder> {
-        return this.api.getMailById(param.id,  options).toPromise();
-    }
-
-    /**
      * displays a list of mail service orders
      * @param param the request object
      */
     public getMailOrders(param: DefaultApiGetMailOrdersRequest, options?: Configuration): Promise<Array<MailOrder>> {
-        return this.api.getMailOrders( options).toPromise();
+        return this.api.getMailOrders(param.id,  options).toPromise();
     }
 
     /**
@@ -174,7 +156,7 @@ export class ObjectDefaultApi {
      * @param param the request object
      */
     public sendAdvMailById(param: DefaultApiSendAdvMailByIdRequest, options?: Configuration): Promise<GenericResponse> {
-        return this.api.sendAdvMailById(param.id, param.sendMail,  options).toPromise();
+        return this.api.sendAdvMailById(param.sendMail,  options).toPromise();
     }
 
     /**
@@ -183,7 +165,7 @@ export class ObjectDefaultApi {
      * @param param the request object
      */
     public sendMailById(param: DefaultApiSendMailByIdRequest, options?: Configuration): Promise<GenericResponse> {
-        return this.api.sendMailById(param.id, param.subject, param.body, param.to, param.toName, param.from, param.fromName,  options).toPromise();
+        return this.api.sendMailById(param.subject, param.body, param.to, param.from, param.id, param.toName, param.fromName,  options).toPromise();
     }
 
     /**

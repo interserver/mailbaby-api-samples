@@ -64,20 +64,6 @@ export class Configuration {
                 return this.apiKeys['apiKeyAuth'] || this.apiKeys['X-API-KEY'];
             };
         }
-
-        // init default apiLoginAuth credential
-        if (!this.credentials['apiLoginAuth']) {
-            this.credentials['apiLoginAuth'] = () => {
-                return this.apiKeys['apiLoginAuth'] || this.apiKeys['X-API-LOGIN'];
-            };
-        }
-
-        // init default apiPasswordAuth credential
-        if (!this.credentials['apiPasswordAuth']) {
-            this.credentials['apiPasswordAuth'] = () => {
-                return this.apiKeys['apiPasswordAuth'] || this.apiKeys['X-API-PASS'];
-            };
-        }
     }
 
     /**

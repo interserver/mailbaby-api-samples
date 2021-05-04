@@ -22,14 +22,13 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DEFAULT_API* | [**mail_by_id**](docs/DEFAULT_API.md#mail_by_id) | **Get** /mail/{id} | Gets mail order information by id
 *DEFAULT_API* | [**mail_orders**](docs/DEFAULT_API.md#mail_orders) | **Get** /mail | displays a list of mail service orders
 *DEFAULT_API* | [**ping_server**](docs/DEFAULT_API.md#ping_server) | **Get** /ping | Checks if the server is running
 *DEFAULT_API* | [**place_mail_order**](docs/DEFAULT_API.md#place_mail_order) | **Post** /mail/order | places a mail order
-*DEFAULT_API* | [**send_adv_mail_by_id**](docs/DEFAULT_API.md#send_adv_mail_by_id) | **Post** /mail/{id}/advsend | Sends an Email with Advanced Options
-*DEFAULT_API* | [**send_mail_by_id**](docs/DEFAULT_API.md#send_mail_by_id) | **Post** /mail/{id}/send | Sends an Email
+*DEFAULT_API* | [**send_adv_mail_by_id**](docs/DEFAULT_API.md#send_adv_mail_by_id) | **Post** /mail/advsend | Sends an Email with Advanced Options
+*DEFAULT_API* | [**send_mail_by_id**](docs/DEFAULT_API.md#send_mail_by_id) | **Post** /mail/send | Sends an Email
 *DEFAULT_API* | [**validate_mail_order**](docs/DEFAULT_API.md#validate_mail_order) | **Get** /mail/order | validatess order details before placing an order
-*DEFAULT_API* | [**view_mail_log_by_id**](docs/DEFAULT_API.md#view_mail_log_by_id) | **Get** /mail/{id}/log | displays the mail log
+*DEFAULT_API* | [**view_mail_log_by_id**](docs/DEFAULT_API.md#view_mail_log_by_id) | **Get** /mail/log | displays the mail log
 
 
 ## Documentation For Models
@@ -50,18 +49,6 @@ Class | Method | HTTP request | Description
 
 - **Type**: API key 
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-## apiLoginAuth
-
-- **Type**: API key 
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-## apiPasswordAuth
-
-- **Type**: API key 
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 
 

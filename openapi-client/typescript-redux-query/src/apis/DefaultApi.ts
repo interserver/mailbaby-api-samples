@@ -32,8 +32,8 @@ import {
     SendMailToJSON,
 } from '../models';
 
-export interface GetMailByIdRequest {
-    id: number;
+export interface GetMailOrdersRequest {
+    id?: number;
 }
 
 export interface PlaceMailOrderRequest {
@@ -41,22 +41,21 @@ export interface PlaceMailOrderRequest {
 }
 
 export interface SendAdvMailByIdRequest {
-    id: number;
     sendMail: SendMail;
 }
 
 export interface SendMailByIdRequest {
-    id: number;
     subject?: string;
     body?: string;
     to?: string;
-    toName?: string;
     from?: string;
+    id?: number;
+    toName?: string;
     fromName?: string;
 }
 
 export interface ViewMailLogByIdRequest {
-    id: number;
+    id?: number;
     searchString?: string;
     skip?: number;
     limit?: number;
@@ -64,70 +63,23 @@ export interface ViewMailLogByIdRequest {
 
 
 /**
- * returns information about a mail order in the system with the given id.
- * Gets mail order information by id
- */
-function getMailByIdRaw<T>(requestParameters: GetMailByIdRequest, requestConfig: runtime.TypedQueryConfig<T, MailOrder> = {}): QueryConfig<T> {
-    if (requestParameters.id === null || requestParameters.id === undefined) {
-        throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getMailById.');
-    }
-
-    let queryParameters = null;
-
-
-    const headerParameters : runtime.HttpHeaders = {};
-
-
-    const { meta = {} } = requestConfig;
-
-    meta.authType = ['api_key', 'header'];
-    meta.authType = ['api_key', 'header'];
-    meta.authType = ['api_key', 'header'];
-    const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/mail/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
-        meta,
-        update: requestConfig.update,
-        queryKey: requestConfig.queryKey,
-        optimisticUpdate: requestConfig.optimisticUpdate,
-        force: requestConfig.force,
-        rollback: requestConfig.rollback,
-        options: {
-            method: 'GET',
-            headers: headerParameters,
-        },
-        body: queryParameters,
-    };
-
-    const { transform: requestTransform } = requestConfig;
-    if (requestTransform) {
-        config.transform = (body: ResponseBody, text: ResponseBody) => requestTransform(MailOrderFromJSON(body), text);
-    }
-
-    return config;
-}
-
-/**
-* returns information about a mail order in the system with the given id.
-* Gets mail order information by id
-*/
-export function getMailById<T>(requestParameters: GetMailByIdRequest, requestConfig?: runtime.TypedQueryConfig<T, MailOrder>): QueryConfig<T> {
-    return getMailByIdRaw(requestParameters, requestConfig);
-}
-
-/**
  * displays a list of mail service orders
  */
-function getMailOrdersRaw<T>( requestConfig: runtime.TypedQueryConfig<T, Array<MailOrder>> = {}): QueryConfig<T> {
+function getMailOrdersRaw<T>(requestParameters: GetMailOrdersRequest, requestConfig: runtime.TypedQueryConfig<T, Array<MailOrder>> = {}): QueryConfig<T> {
     let queryParameters = null;
 
+    queryParameters = {};
+
+
+    if (requestParameters.id !== undefined) {
+        queryParameters['id'] = requestParameters.id;
+    }
 
     const headerParameters : runtime.HttpHeaders = {};
 
 
     const { meta = {} } = requestConfig;
 
-    meta.authType = ['api_key', 'header'];
-    meta.authType = ['api_key', 'header'];
     meta.authType = ['api_key', 'header'];
     const config: QueryConfig<T> = {
         url: `${runtime.Configuration.basePath}/mail`,
@@ -155,8 +107,8 @@ function getMailOrdersRaw<T>( requestConfig: runtime.TypedQueryConfig<T, Array<M
 /**
 * displays a list of mail service orders
 */
-export function getMailOrders<T>( requestConfig?: runtime.TypedQueryConfig<T, Array<MailOrder>>): QueryConfig<T> {
-    return getMailOrdersRaw( requestConfig);
+export function getMailOrders<T>(requestParameters: GetMailOrdersRequest, requestConfig?: runtime.TypedQueryConfig<T, Array<MailOrder>>): QueryConfig<T> {
+    return getMailOrdersRaw(requestParameters, requestConfig);
 }
 
 /**
@@ -216,8 +168,6 @@ function placeMailOrderRaw<T>(requestParameters: PlaceMailOrderRequest, requestC
     const { meta = {} } = requestConfig;
 
     meta.authType = ['api_key', 'header'];
-    meta.authType = ['api_key', 'header'];
-    meta.authType = ['api_key', 'header'];
     const config: QueryConfig<T> = {
         url: `${runtime.Configuration.basePath}/mail/order`,
         meta,
@@ -253,10 +203,6 @@ export function placeMailOrder<T>(requestParameters: PlaceMailOrderRequest, requ
  * Sends an Email with Advanced Options
  */
 function sendAdvMailByIdRaw<T>(requestParameters: SendAdvMailByIdRequest, requestConfig: runtime.TypedQueryConfig<T, GenericResponse> = {}): QueryConfig<T> {
-    if (requestParameters.id === null || requestParameters.id === undefined) {
-        throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling sendAdvMailById.');
-    }
-
     if (requestParameters.sendMail === null || requestParameters.sendMail === undefined) {
         throw new runtime.RequiredError('sendMail','Required parameter requestParameters.sendMail was null or undefined when calling sendAdvMailById.');
     }
@@ -272,10 +218,8 @@ function sendAdvMailByIdRaw<T>(requestParameters: SendAdvMailByIdRequest, reques
     const { meta = {} } = requestConfig;
 
     meta.authType = ['api_key', 'header'];
-    meta.authType = ['api_key', 'header'];
-    meta.authType = ['api_key', 'header'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/mail/{id}/advsend`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+        url: `${runtime.Configuration.basePath}/mail/advsend`,
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -310,10 +254,6 @@ export function sendAdvMailById<T>(requestParameters: SendAdvMailByIdRequest, re
  * Sends an Email
  */
 function sendMailByIdRaw<T>(requestParameters: SendMailByIdRequest, requestConfig: runtime.TypedQueryConfig<T, GenericResponse> = {}): QueryConfig<T> {
-    if (requestParameters.id === null || requestParameters.id === undefined) {
-        throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling sendMailById.');
-    }
-
     let queryParameters = null;
 
     queryParameters = {};
@@ -334,13 +274,18 @@ function sendMailByIdRaw<T>(requestParameters: SendMailByIdRequest, requestConfi
     }
 
 
-    if (requestParameters.toName !== undefined) {
-        queryParameters['toName'] = requestParameters.toName;
+    if (requestParameters.from !== undefined) {
+        queryParameters['from'] = requestParameters.from;
     }
 
 
-    if (requestParameters.from !== undefined) {
-        queryParameters['from'] = requestParameters.from;
+    if (requestParameters.id !== undefined) {
+        queryParameters['id'] = requestParameters.id;
+    }
+
+
+    if (requestParameters.toName !== undefined) {
+        queryParameters['toName'] = requestParameters.toName;
     }
 
 
@@ -354,10 +299,8 @@ function sendMailByIdRaw<T>(requestParameters: SendMailByIdRequest, requestConfi
     const { meta = {} } = requestConfig;
 
     meta.authType = ['api_key', 'header'];
-    meta.authType = ['api_key', 'header'];
-    meta.authType = ['api_key', 'header'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/mail/{id}/send`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+        url: `${runtime.Configuration.basePath}/mail/send`,
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,
@@ -400,8 +343,6 @@ function validateMailOrderRaw<T>( requestConfig: runtime.TypedQueryConfig<T, voi
     const { meta = {} } = requestConfig;
 
     meta.authType = ['api_key', 'header'];
-    meta.authType = ['api_key', 'header'];
-    meta.authType = ['api_key', 'header'];
     const config: QueryConfig<T> = {
         url: `${runtime.Configuration.basePath}/mail/order`,
         meta,
@@ -436,13 +377,14 @@ export function validateMailOrder<T>( requestConfig?: runtime.TypedQueryConfig<T
  * displays the mail log
  */
 function viewMailLogByIdRaw<T>(requestParameters: ViewMailLogByIdRequest, requestConfig: runtime.TypedQueryConfig<T, Array<MailLog>> = {}): QueryConfig<T> {
-    if (requestParameters.id === null || requestParameters.id === undefined) {
-        throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling viewMailLogById.');
-    }
-
     let queryParameters = null;
 
     queryParameters = {};
+
+
+    if (requestParameters.id !== undefined) {
+        queryParameters['id'] = requestParameters.id;
+    }
 
 
     if (requestParameters.searchString !== undefined) {
@@ -465,10 +407,8 @@ function viewMailLogByIdRaw<T>(requestParameters: ViewMailLogByIdRequest, reques
     const { meta = {} } = requestConfig;
 
     meta.authType = ['api_key', 'header'];
-    meta.authType = ['api_key', 'header'];
-    meta.authType = ['api_key', 'header'];
     const config: QueryConfig<T> = {
-        url: `${runtime.Configuration.basePath}/mail/{id}/log`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+        url: `${runtime.Configuration.basePath}/mail/log`,
         meta,
         update: requestConfig.update,
         queryKey: requestConfig.queryKey,

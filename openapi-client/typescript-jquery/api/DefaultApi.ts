@@ -47,87 +47,11 @@ export class DefaultApi {
     }
 
     /**
-     * returns information about a mail order in the system with the given id.
-     * @summary Gets mail order information by id
-     * @param id User ID
-     */
-    public getMailById(id: number, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
-    { response: JQueryXHR; body: models.MailOrder;  },
-    { response: JQueryXHR; errorThrown: string }
-    > {
-        let localVarPath = this.basePath + '/mail/{id}'.replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-
-        let queryParameters: any = {};
-        let headerParams: any = {};
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getMailById.');
-        }
-
-
-        localVarPath = localVarPath + "?" + $.param(queryParameters);
-        // to determine the Content-Type header
-        let consumes: string[] = [
-        ];
-
-        // to determine the Accept header
-        let produces: string[] = [
-            'application/json'
-        ];
-
-        // authentication (apiKeyAuth) required
-        if (this.configuration.apiKey) {
-            headerParams['X-API-KEY'] = this.configuration.apiKey;
-        }
-
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKey) {
-            headerParams['X-API-LOGIN'] = this.configuration.apiKey;
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKey) {
-            headerParams['X-API-PASS'] = this.configuration.apiKey;
-        }
-
-
-        let requestOptions: JQueryAjaxSettings = {
-            url: localVarPath,
-            type: 'GET',
-            headers: headerParams,
-            processData: false
-        };
-
-        if (headerParams['Content-Type']) {
-            requestOptions.contentType = headerParams['Content-Type'];
-        }
-
-        if (extraJQueryAjaxSettings) {
-            requestOptions = (<any>Object).assign(requestOptions, extraJQueryAjaxSettings);
-        }
-
-        if (this.defaultExtraJQueryAjaxSettings) {
-            requestOptions = (<any>Object).assign(requestOptions, this.defaultExtraJQueryAjaxSettings);
-        }
-
-        let dfd = $.Deferred<
-            { response: JQueryXHR; body: models.MailOrder;  },
-            { response: JQueryXHR; errorThrown: string }
-        >();
-        $.ajax(requestOptions).then(
-            (data: models.MailOrder, textStatus: string, jqXHR: JQueryXHR) =>
-                dfd.resolve({response: jqXHR, body: data}),
-            (xhr: JQueryXHR, textStatus: string, errorThrown: string) =>
-                dfd.reject({response: xhr, errorThrown: errorThrown})
-        );
-        return dfd.promise();
-    }
-
-    /**
      * 
      * @summary displays a list of mail service orders
+     * @param id The ID of your mail order this will be sent through.
      */
-    public getMailOrders(extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public getMailOrders(id?: number, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: Array<models.MailOrder>;  },
     { response: JQueryXHR; errorThrown: string }
     > {
@@ -135,6 +59,9 @@ export class DefaultApi {
 
         let queryParameters: any = {};
         let headerParams: any = {};
+        if (id !== null && id !== undefined) {
+            queryParameters['id'] = <string><any>id;
+        }
 
         localVarPath = localVarPath + "?" + $.param(queryParameters);
         // to determine the Content-Type header
@@ -151,16 +78,6 @@ export class DefaultApi {
         // authentication (apiKeyAuth) required
         if (this.configuration.apiKey) {
             headerParams['X-API-KEY'] = this.configuration.apiKey;
-        }
-
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKey) {
-            headerParams['X-API-LOGIN'] = this.configuration.apiKey;
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKey) {
-            headerParams['X-API-PASS'] = this.configuration.apiKey;
         }
 
 
@@ -281,16 +198,6 @@ export class DefaultApi {
             headerParams['X-API-KEY'] = this.configuration.apiKey;
         }
 
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKey) {
-            headerParams['X-API-LOGIN'] = this.configuration.apiKey;
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKey) {
-            headerParams['X-API-PASS'] = this.configuration.apiKey;
-        }
-
 
         headerParams['Content-Type'] = 'application/json';
 
@@ -330,22 +237,16 @@ export class DefaultApi {
     /**
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * @summary Sends an Email with Advanced Options
-     * @param id User ID
      * @param sendMail 
      */
-    public sendAdvMailById(id: number, sendMail: models.SendMail, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public sendAdvMailById(sendMail: models.SendMail, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: models.GenericResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/mail/{id}/advsend'.replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarPath = this.basePath + '/mail/advsend';
 
         let queryParameters: any = {};
         let headerParams: any = {};
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling sendAdvMailById.');
-        }
-
         // verify required parameter 'sendMail' is not null or undefined
         if (sendMail === null || sendMail === undefined) {
             throw new Error('Required parameter sendMail was null or undefined when calling sendAdvMailById.');
@@ -355,10 +256,7 @@ export class DefaultApi {
         localVarPath = localVarPath + "?" + $.param(queryParameters);
         // to determine the Content-Type header
         let consumes: string[] = [
-            'application/json', 
-            'application/xml', 
-            'application/x-www-form-urlencoded', 
-            'text/plain'
+            'application/json'
         ];
 
         // to determine the Accept header
@@ -369,16 +267,6 @@ export class DefaultApi {
         // authentication (apiKeyAuth) required
         if (this.configuration.apiKey) {
             headerParams['X-API-KEY'] = this.configuration.apiKey;
-        }
-
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKey) {
-            headerParams['X-API-LOGIN'] = this.configuration.apiKey;
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKey) {
-            headerParams['X-API-PASS'] = this.configuration.apiKey;
         }
 
 
@@ -420,27 +308,22 @@ export class DefaultApi {
     /**
      * Sends An email through one of your mail orders.
      * @summary Sends an Email
-     * @param id User ID
-     * @param subject 
-     * @param body 
-     * @param to 
-     * @param toName 
-     * @param from 
-     * @param fromName 
+     * @param subject The Subject of the email
+     * @param body The contents of the email
+     * @param to The email address of who this email will be sent to.
+     * @param from The email address of who this email will be sent from.
+     * @param id The ID of your mail order this will be sent through.
+     * @param toName The name or title of who this email is being sent to.
+     * @param fromName The name or title of who this email is being sent from.
      */
-    public sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: models.GenericResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/mail/{id}/send'.replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarPath = this.basePath + '/mail/send';
 
         let queryParameters: any = {};
         let headerParams: any = {};
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling sendMailById.');
-        }
-
         if (subject !== null && subject !== undefined) {
             queryParameters['subject'] = <string><any>subject;
         }
@@ -450,11 +333,14 @@ export class DefaultApi {
         if (to !== null && to !== undefined) {
             queryParameters['to'] = <string><any>to;
         }
-        if (toName !== null && toName !== undefined) {
-            queryParameters['toName'] = <string><any>toName;
-        }
         if (from !== null && from !== undefined) {
             queryParameters['from'] = <string><any>from;
+        }
+        if (id !== null && id !== undefined) {
+            queryParameters['id'] = <string><any>id;
+        }
+        if (toName !== null && toName !== undefined) {
+            queryParameters['toName'] = <string><any>toName;
         }
         if (fromName !== null && fromName !== undefined) {
             queryParameters['fromName'] = <string><any>fromName;
@@ -473,16 +359,6 @@ export class DefaultApi {
         // authentication (apiKeyAuth) required
         if (this.configuration.apiKey) {
             headerParams['X-API-KEY'] = this.configuration.apiKey;
-        }
-
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKey) {
-            headerParams['X-API-LOGIN'] = this.configuration.apiKey;
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKey) {
-            headerParams['X-API-PASS'] = this.configuration.apiKey;
         }
 
 
@@ -546,16 +422,6 @@ export class DefaultApi {
             headerParams['X-API-KEY'] = this.configuration.apiKey;
         }
 
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKey) {
-            headerParams['X-API-LOGIN'] = this.configuration.apiKey;
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKey) {
-            headerParams['X-API-PASS'] = this.configuration.apiKey;
-        }
-
 
         let requestOptions: JQueryAjaxSettings = {
             url: localVarPath,
@@ -592,24 +458,22 @@ export class DefaultApi {
     /**
      * By passing in the appropriate options, you can search for available inventory in the system 
      * @summary displays the mail log
-     * @param id User ID
+     * @param id The ID of your mail order this will be sent through.
      * @param searchString pass an optional search string for looking up inventory
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      */
-    public viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: Array<models.MailLog>;  },
     { response: JQueryXHR; errorThrown: string }
     > {
-        let localVarPath = this.basePath + '/mail/{id}/log'.replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        let localVarPath = this.basePath + '/mail/log';
 
         let queryParameters: any = {};
         let headerParams: any = {};
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling viewMailLogById.');
+        if (id !== null && id !== undefined) {
+            queryParameters['id'] = <string><any>id;
         }
-
         if (searchString !== null && searchString !== undefined) {
             queryParameters['searchString'] = <string><any>searchString;
         }
@@ -633,16 +497,6 @@ export class DefaultApi {
         // authentication (apiKeyAuth) required
         if (this.configuration.apiKey) {
             headerParams['X-API-KEY'] = this.configuration.apiKey;
-        }
-
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKey) {
-            headerParams['X-API-LOGIN'] = this.configuration.apiKey;
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKey) {
-            headerParams['X-API-PASS'] = this.configuration.apiKey;
         }
 
 

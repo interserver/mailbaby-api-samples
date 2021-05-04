@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
  * ErrorResponse
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-04T14:59:38.357971-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-04T15:26:26.615401-04:00[America/New_York]")
 public class ErrorResponse   {
   @JsonProperty("code")
   private String code = null;

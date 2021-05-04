@@ -12,31 +12,7 @@ class DefaultApi {
     String versionPath = ""
     ApiUtils apiUtils = new ApiUtils();
 
-    def getMailById ( Long id, Closure onSuccess, Closure onFailure)  {
-        String resourcePath = "/mail/${id}"
-
-        // params
-        def queryParams = [:]
-        def headerParams = [:]
-        def bodyParams
-        def contentType
-
-        // verify required params are set
-        if (id == null) {
-            throw new RuntimeException("missing required params id")
-        }
-
-
-
-
-
-        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
-                    "GET", "",
-                    MailOrder.class )
-
-    }
-
-    def getMailOrders ( Closure onSuccess, Closure onFailure)  {
+    def getMailOrders ( Long id, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail"
 
         // params
@@ -46,6 +22,9 @@ class DefaultApi {
         def contentType
 
 
+        if (id != null) {
+            queryParams.put("id", id)
+        }
 
 
 
@@ -98,8 +77,8 @@ class DefaultApi {
 
     }
 
-    def sendAdvMailById ( Long id, SendMail sendMail, Closure onSuccess, Closure onFailure)  {
-        String resourcePath = "/mail/${id}/advsend"
+    def sendAdvMailById ( SendMail sendMail, Closure onSuccess, Closure onFailure)  {
+        String resourcePath = "/mail/advsend"
 
         // params
         def queryParams = [:]
@@ -107,10 +86,6 @@ class DefaultApi {
         def bodyParams
         def contentType
 
-        // verify required params are set
-        if (id == null) {
-            throw new RuntimeException("missing required params id")
-        }
         // verify required params are set
         if (sendMail == null) {
             throw new RuntimeException("missing required params sendMail")
@@ -128,8 +103,8 @@ class DefaultApi {
 
     }
 
-    def sendMailById ( Long id, String subject, String body, String to, String toName, String from, String fromName, Closure onSuccess, Closure onFailure)  {
-        String resourcePath = "/mail/${id}/send"
+    def sendMailById ( String subject, String body, String to, String from, Long id, String toName, String fromName, Closure onSuccess, Closure onFailure)  {
+        String resourcePath = "/mail/send"
 
         // params
         def queryParams = [:]
@@ -137,10 +112,6 @@ class DefaultApi {
         def bodyParams
         def contentType
 
-        // verify required params are set
-        if (id == null) {
-            throw new RuntimeException("missing required params id")
-        }
 
         if (subject != null) {
             queryParams.put("subject", subject)
@@ -151,11 +122,14 @@ class DefaultApi {
         if (to != null) {
             queryParams.put("to", to)
         }
-        if (toName != null) {
-            queryParams.put("toName", toName)
-        }
         if (from != null) {
             queryParams.put("from", from)
+        }
+        if (id != null) {
+            queryParams.put("id", id)
+        }
+        if (toName != null) {
+            queryParams.put("toName", toName)
         }
         if (fromName != null) {
             queryParams.put("fromName", fromName)
@@ -191,7 +165,7 @@ class DefaultApi {
     }
 
     def viewMailLogById ( Long id, String searchString, Integer skip, Integer limit, Closure onSuccess, Closure onFailure)  {
-        String resourcePath = "/mail/${id}/log"
+        String resourcePath = "/mail/log"
 
         // params
         def queryParams = [:]
@@ -199,11 +173,10 @@ class DefaultApi {
         def bodyParams
         def contentType
 
-        // verify required params are set
-        if (id == null) {
-            throw new RuntimeException("missing required params id")
-        }
 
+        if (id != null) {
+            queryParams.put("id", id)
+        }
         if (searchString != null) {
             queryParams.put("searchString", searchString)
         }

@@ -7,17 +7,9 @@
 #
 
 Describe -tag 'PSOpenAPITools' -name 'DefaultApi' {
-    Context 'Get-MailById' {
-        It 'Test Get-MailById' {
-            #$TestResult = Get-MailById -Id "TEST_VALUE"
-            #$TestResult | Should -BeOfType TODO
-            #$TestResult.property | Should -Be 0
-        }
-    }
-
     Context 'Get-MailOrders' {
         It 'Test Get-MailOrders' {
-            #$TestResult = Get-MailOrders
+            #$TestResult = Get-MailOrders -Id "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -41,7 +33,7 @@ Describe -tag 'PSOpenAPITools' -name 'DefaultApi' {
 
     Context 'Send-AdvMailById' {
         It 'Test Send-AdvMailById' {
-            #$TestResult = Send-AdvMailById -Id "TEST_VALUE" -SendMail "TEST_VALUE"
+            #$TestResult = Send-AdvMailById -SendMail "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -49,7 +41,7 @@ Describe -tag 'PSOpenAPITools' -name 'DefaultApi' {
 
     Context 'Send-MailById' {
         It 'Test Send-MailById' {
-            #$TestResult = Send-MailById -Id "TEST_VALUE" -Subject "TEST_VALUE" -Body "TEST_VALUE" -To "TEST_VALUE" -ToName "TEST_VALUE" -From "TEST_VALUE" -FromName "TEST_VALUE"
+            #$TestResult = Send-MailById -Subject "TEST_VALUE" -Body "TEST_VALUE" -To "TEST_VALUE" -From "TEST_VALUE" -Id "TEST_VALUE" -ToName "TEST_VALUE" -FromName "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }

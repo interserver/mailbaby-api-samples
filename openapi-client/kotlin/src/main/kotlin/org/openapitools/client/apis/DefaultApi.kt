@@ -38,63 +38,9 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     }
 
     /**
-    * Gets mail order information by id
-    * returns information about a mail order in the system with the given id.
-    * @param id User ID 
-    * @return MailOrder
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMailById(id: kotlin.Long) : MailOrder {
-        val localVariableConfig = getMailByIdRequestConfig(id = id)
-
-        val localVarResponse = request<MailOrder>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as MailOrder
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation getMailById
-    *
-    * @param id User ID 
-    * @return RequestConfig
-    */
-    fun getMailByIdRequestConfig(id: kotlin.Long) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/mail/{id}".replace("{"+"id"+"}", "$id"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
     * displays a list of mail service orders
     * 
+    * @param id The ID of your mail order this will be sent through. (optional)
     * @return kotlin.collections.List<MailOrder>
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -102,8 +48,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMailOrders() : kotlin.collections.List<MailOrder> {
-        val localVariableConfig = getMailOrdersRequestConfig()
+    fun getMailOrders(id: kotlin.Long?) : kotlin.collections.List<MailOrder> {
+        val localVariableConfig = getMailOrdersRequestConfig(id = id)
 
         val localVarResponse = request<kotlin.collections.List<MailOrder>>(
             localVariableConfig
@@ -127,11 +73,17 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * To obtain the request config of the operation getMailOrders
     *
+    * @param id The ID of your mail order this will be sent through. (optional)
     * @return RequestConfig
     */
-    fun getMailOrdersRequestConfig() : RequestConfig {
+    fun getMailOrdersRequestConfig(id: kotlin.Long?) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (id != null) {
+                    put("id", listOf(id.toString()))
+                }
+            }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
         val localVariableConfig = RequestConfig(
@@ -256,7 +208,6 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * Sends an Email with Advanced Options
     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-    * @param id User ID 
     * @param sendMail  
     * @return GenericResponse
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -265,8 +216,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun sendAdvMailById(id: kotlin.Long, sendMail: SendMail) : GenericResponse {
-        val localVariableConfig = sendAdvMailByIdRequestConfig(id = id, sendMail = sendMail)
+    fun sendAdvMailById(sendMail: SendMail) : GenericResponse {
+        val localVariableConfig = sendAdvMailByIdRequestConfig(sendMail = sendMail)
 
         val localVarResponse = request<GenericResponse>(
             localVariableConfig
@@ -290,18 +241,17 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * To obtain the request config of the operation sendAdvMailById
     *
-    * @param id User ID 
     * @param sendMail  
     * @return RequestConfig
     */
-    fun sendAdvMailByIdRequestConfig(id: kotlin.Long, sendMail: SendMail) : RequestConfig {
+    fun sendAdvMailByIdRequestConfig(sendMail: SendMail) : RequestConfig {
         val localVariableBody: kotlin.Any? = sendMail
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
-            path = "/mail/{id}/advsend".replace("{"+"id"+"}", "$id"),
+            path = "/mail/advsend",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
@@ -313,13 +263,13 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * Sends an Email
     * Sends An email through one of your mail orders.
-    * @param id User ID 
-    * @param subject  (optional)
-    * @param body  (optional)
-    * @param to  (optional)
-    * @param toName  (optional)
-    * @param from  (optional)
-    * @param fromName  (optional)
+    * @param subject The Subject of the email (optional)
+    * @param body The contents of the email (optional)
+    * @param to The email address of who this email will be sent to. (optional)
+    * @param from The email address of who this email will be sent from. (optional)
+    * @param id The ID of your mail order this will be sent through. (optional)
+    * @param toName The name or title of who this email is being sent to. (optional)
+    * @param fromName The name or title of who this email is being sent from. (optional)
     * @return GenericResponse
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -327,8 +277,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun sendMailById(id: kotlin.Long, subject: kotlin.String?, body: kotlin.String?, to: kotlin.String?, toName: kotlin.String?, from: kotlin.String?, fromName: kotlin.String?) : GenericResponse {
-        val localVariableConfig = sendMailByIdRequestConfig(id = id, subject = subject, body = body, to = to, toName = toName, from = from, fromName = fromName)
+    fun sendMailById(subject: kotlin.String?, body: kotlin.String?, to: kotlin.String?, from: kotlin.String?, id: kotlin.Long?, toName: kotlin.String?, fromName: kotlin.String?) : GenericResponse {
+        val localVariableConfig = sendMailByIdRequestConfig(subject = subject, body = body, to = to, from = from, id = id, toName = toName, fromName = fromName)
 
         val localVarResponse = request<GenericResponse>(
             localVariableConfig
@@ -352,16 +302,16 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * To obtain the request config of the operation sendMailById
     *
-    * @param id User ID 
-    * @param subject  (optional)
-    * @param body  (optional)
-    * @param to  (optional)
-    * @param toName  (optional)
-    * @param from  (optional)
-    * @param fromName  (optional)
+    * @param subject The Subject of the email (optional)
+    * @param body The contents of the email (optional)
+    * @param to The email address of who this email will be sent to. (optional)
+    * @param from The email address of who this email will be sent from. (optional)
+    * @param id The ID of your mail order this will be sent through. (optional)
+    * @param toName The name or title of who this email is being sent to. (optional)
+    * @param fromName The name or title of who this email is being sent from. (optional)
     * @return RequestConfig
     */
-    fun sendMailByIdRequestConfig(id: kotlin.Long, subject: kotlin.String?, body: kotlin.String?, to: kotlin.String?, toName: kotlin.String?, from: kotlin.String?, fromName: kotlin.String?) : RequestConfig {
+    fun sendMailByIdRequestConfig(subject: kotlin.String?, body: kotlin.String?, to: kotlin.String?, from: kotlin.String?, id: kotlin.Long?, toName: kotlin.String?, fromName: kotlin.String?) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
@@ -374,11 +324,14 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
                 if (to != null) {
                     put("to", listOf(to.toString()))
                 }
-                if (toName != null) {
-                    put("toName", listOf(toName.toString()))
-                }
                 if (from != null) {
                     put("from", listOf(from.toString()))
+                }
+                if (id != null) {
+                    put("id", listOf(id.toString()))
+                }
+                if (toName != null) {
+                    put("toName", listOf(toName.toString()))
                 }
                 if (fromName != null) {
                     put("fromName", listOf(fromName.toString()))
@@ -388,7 +341,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
         
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
-            path = "/mail/{id}/send".replace("{"+"id"+"}", "$id"),
+            path = "/mail/send",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
@@ -454,7 +407,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * displays the mail log
     * By passing in the appropriate options, you can search for available inventory in the system 
-    * @param id User ID 
+    * @param id The ID of your mail order this will be sent through. (optional)
     * @param searchString pass an optional search string for looking up inventory (optional)
     * @param skip number of records to skip for pagination (optional)
     * @param limit maximum number of records to return (optional)
@@ -465,7 +418,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun viewMailLogById(id: kotlin.Long, searchString: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?) : kotlin.collections.List<MailLog> {
+    fun viewMailLogById(id: kotlin.Long?, searchString: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?) : kotlin.collections.List<MailLog> {
         val localVariableConfig = viewMailLogByIdRequestConfig(id = id, searchString = searchString, skip = skip, limit = limit)
 
         val localVarResponse = request<kotlin.collections.List<MailLog>>(
@@ -490,16 +443,19 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * To obtain the request config of the operation viewMailLogById
     *
-    * @param id User ID 
+    * @param id The ID of your mail order this will be sent through. (optional)
     * @param searchString pass an optional search string for looking up inventory (optional)
     * @param skip number of records to skip for pagination (optional)
     * @param limit maximum number of records to return (optional)
     * @return RequestConfig
     */
-    fun viewMailLogByIdRequestConfig(id: kotlin.Long, searchString: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?) : RequestConfig {
+    fun viewMailLogByIdRequestConfig(id: kotlin.Long?, searchString: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
+                if (id != null) {
+                    put("id", listOf(id.toString()))
+                }
                 if (searchString != null) {
                     put("searchString", listOf(searchString.toString()))
                 }
@@ -514,7 +470,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
         
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
-            path = "/mail/{id}/log".replace("{"+"id"+"}", "$id"),
+            path = "/mail/log",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody

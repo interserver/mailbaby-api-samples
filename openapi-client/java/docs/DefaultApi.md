@@ -4,100 +4,18 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMailById**](DefaultApi.md#getMailById) | **GET** /mail/{id} | Gets mail order information by id
 [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/{id}/send | Sends an Email
+[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/{id}/log | displays the mail log
+[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
-
-<a name="getMailById"></a>
-# **getMailById**
-> MailOrder getMailById(id)
-
-Gets mail order information by id
-
-returns information about a mail order in the system with the given id.
-
-### Example
-```java
-// Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.DefaultApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.mailbaby.net");
-    
-    // Configure API key authorization: apiKeyAuth
-    ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
-    apiKeyAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiKeyAuth.setApiKeyPrefix("Token");
-
-    // Configure API key authorization: apiLoginAuth
-    ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-    apiLoginAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiLoginAuth.setApiKeyPrefix("Token");
-
-    // Configure API key authorization: apiPasswordAuth
-    ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-    apiPasswordAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiPasswordAuth.setApiKeyPrefix("Token");
-
-    DefaultApi apiInstance = new DefaultApi(defaultClient);
-    Long id = 56L; // Long | User ID
-    try {
-      MailOrder result = apiInstance.getMailById(id);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#getMailById");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Long**| User ID |
-
-### Return type
-
-[**MailOrder**](MailOrder.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Successful operation |  -  |
 
 <a name="getMailOrders"></a>
 # **getMailOrders**
-> List&lt;MailOrder&gt; getMailOrders()
+> List&lt;MailOrder&gt; getMailOrders(id)
 
 displays a list of mail service orders
 
@@ -122,21 +40,10 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //apiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: apiLoginAuth
-    ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-    apiLoginAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiLoginAuth.setApiKeyPrefix("Token");
-
-    // Configure API key authorization: apiPasswordAuth
-    ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-    apiPasswordAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiPasswordAuth.setApiKeyPrefix("Token");
-
     DefaultApi apiInstance = new DefaultApi(defaultClient);
+    Long id = 56L; // Long | The ID of your mail order this will be sent through.
     try {
-      List<MailOrder> result = apiInstance.getMailOrders();
+      List<MailOrder> result = apiInstance.getMailOrders(id);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#getMailOrders");
@@ -150,7 +57,10 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Long**| The ID of your mail order this will be sent through. | [optional]
 
 ### Return type
 
@@ -158,7 +68,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -256,18 +166,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //apiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: apiLoginAuth
-    ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-    apiLoginAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiLoginAuth.setApiKeyPrefix("Token");
-
-    // Configure API key authorization: apiPasswordAuth
-    ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-    apiPasswordAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiPasswordAuth.setApiKeyPrefix("Token");
-
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     MailOrder mailOrder = new MailOrder(); // MailOrder | Inventory item to add
     try {
@@ -295,7 +193,7 @@ null (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -312,7 +210,7 @@ null (empty response body)
 
 <a name="sendAdvMailById"></a>
 # **sendAdvMailById**
-> GenericResponse sendAdvMailById(id, sendMail)
+> GenericResponse sendAdvMailById(sendMail)
 
 Sends an Email with Advanced Options
 
@@ -339,23 +237,10 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //apiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: apiLoginAuth
-    ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-    apiLoginAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiLoginAuth.setApiKeyPrefix("Token");
-
-    // Configure API key authorization: apiPasswordAuth
-    ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-    apiPasswordAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiPasswordAuth.setApiKeyPrefix("Token");
-
     DefaultApi apiInstance = new DefaultApi(defaultClient);
-    Long id = 56L; // Long | User ID
     SendMail sendMail = new SendMail(); // SendMail | 
     try {
-      GenericResponse result = apiInstance.sendAdvMailById(id, sendMail);
+      GenericResponse result = apiInstance.sendAdvMailById(sendMail);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#sendAdvMailById");
@@ -372,7 +257,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Long**| User ID |
  **sendMail** | [**SendMail**](SendMail.md)|  |
 
 ### Return type
@@ -381,11 +265,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
@@ -398,7 +282,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMailById"></a>
 # **sendMailById**
-> GenericResponse sendMailById(id, subject, body, to, toName, from, fromName)
+> GenericResponse sendMailById(subject, body, to, from, id, toName, fromName)
 
 Sends an Email
 
@@ -425,28 +309,16 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //apiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: apiLoginAuth
-    ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-    apiLoginAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiLoginAuth.setApiKeyPrefix("Token");
-
-    // Configure API key authorization: apiPasswordAuth
-    ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-    apiPasswordAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiPasswordAuth.setApiKeyPrefix("Token");
-
     DefaultApi apiInstance = new DefaultApi(defaultClient);
-    Long id = 56L; // Long | User ID
-    String subject = "subject_example"; // String | 
-    String body = "body_example"; // String | 
-    String to = "to_example"; // String | 
-    String toName = "toName_example"; // String | 
-    String from = "from_example"; // String | 
-    String fromName = "fromName_example"; // String | 
+    String subject = "subject_example"; // String | The Subject of the email
+    String body = "body_example"; // String | The contents of the email
+    String to = "to_example"; // String | The email address of who this email will be sent to.
+    String from = "from_example"; // String | The email address of who this email will be sent from.
+    Long id = 56L; // Long | The ID of your mail order this will be sent through.
+    String toName = "toName_example"; // String | The name or title of who this email is being sent to.
+    String fromName = "fromName_example"; // String | The name or title of who this email is being sent from.
     try {
-      GenericResponse result = apiInstance.sendMailById(id, subject, body, to, toName, from, fromName);
+      GenericResponse result = apiInstance.sendMailById(subject, body, to, from, id, toName, fromName);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#sendMailById");
@@ -463,13 +335,13 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Long**| User ID |
- **subject** | **String**|  | [optional]
- **body** | **String**|  | [optional]
- **to** | **String**|  | [optional]
- **toName** | **String**|  | [optional]
- **from** | **String**|  | [optional]
- **fromName** | **String**|  | [optional]
+ **subject** | **String**| The Subject of the email | [optional]
+ **body** | **String**| The contents of the email | [optional]
+ **to** | **String**| The email address of who this email will be sent to. | [optional]
+ **from** | **String**| The email address of who this email will be sent from. | [optional]
+ **id** | **Long**| The ID of your mail order this will be sent through. | [optional]
+ **toName** | **String**| The name or title of who this email is being sent to. | [optional]
+ **fromName** | **String**| The name or title of who this email is being sent from. | [optional]
 
 ### Return type
 
@@ -477,7 +349,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -519,18 +391,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //apiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: apiLoginAuth
-    ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-    apiLoginAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiLoginAuth.setApiKeyPrefix("Token");
-
-    // Configure API key authorization: apiPasswordAuth
-    ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-    apiPasswordAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiPasswordAuth.setApiKeyPrefix("Token");
-
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     try {
       apiInstance.validateMailOrder();
@@ -554,7 +414,7 @@ null (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -596,20 +456,8 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //apiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: apiLoginAuth
-    ApiKeyAuth apiLoginAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiLoginAuth");
-    apiLoginAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiLoginAuth.setApiKeyPrefix("Token");
-
-    // Configure API key authorization: apiPasswordAuth
-    ApiKeyAuth apiPasswordAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiPasswordAuth");
-    apiPasswordAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiPasswordAuth.setApiKeyPrefix("Token");
-
     DefaultApi apiInstance = new DefaultApi(defaultClient);
-    Long id = 56L; // Long | User ID
+    Long id = 56L; // Long | The ID of your mail order this will be sent through.
     String searchString = "searchString_example"; // String | pass an optional search string for looking up inventory
     Integer skip = 56; // Integer | number of records to skip for pagination
     Integer limit = 56; // Integer | maximum number of records to return
@@ -631,7 +479,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Long**| User ID |
+ **id** | **Long**| The ID of your mail order this will be sent through. | [optional]
  **searchString** | **String**| pass an optional search string for looking up inventory | [optional]
  **skip** | **Integer**| number of records to skip for pagination | [optional]
  **limit** | **Integer**| maximum number of records to return | [optional]
@@ -642,7 +490,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

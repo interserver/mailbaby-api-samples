@@ -23,58 +23,17 @@
 namespace OpenAPI 
 {
 
-FString OpenAPIDefaultApi::GetMailByIdRequest::ComputePath() const
-{
-	TMap<FString, FStringFormatArg> PathParams = { 
-	{ TEXT("id"), ToStringFormatArg(Id) } };
-
-	FString Path = FString::Format(TEXT("/mail/{id}"), PathParams);
-	
-	return Path;
-}
-
-void OpenAPIDefaultApi::GetMailByIdRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-	static const TArray<FString> Consumes = {  };
-	//static const TArray<FString> Produces = { TEXT("application/json") };
-
-	HttpRequest->SetVerb(TEXT("GET"));
-
-	// Default to Json Body request
-	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json")))
-	{
-	}
-	else if (Consumes.Contains(TEXT("multipart/form-data")))
-	{
-	}
-	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-	{
-	}
-	else
-	{
-		UE_LOG(LogOpenAPI, Error, TEXT("Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-	}
-}
-
-void OpenAPIDefaultApi::GetMailByIdResponse::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-	Response::SetHttpResponseCode(InHttpResponseCode);
-	switch ((int)InHttpResponseCode)
-	{
-	case 200:
-		SetResponseString(TEXT("Successful operation"));
-		break;
-	}
-}
-
-bool OpenAPIDefaultApi::GetMailByIdResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-	return TryGetJsonValue(JsonValue, Content);
-}
-
 FString OpenAPIDefaultApi::GetMailOrdersRequest::ComputePath() const
 {
 	FString Path(TEXT("/mail"));
+	TArray<FString> QueryParams;
+	if(Id.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("id=")) + ToUrlString(Id.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
 	return Path;
 }
 
@@ -239,17 +198,13 @@ bool OpenAPIDefaultApi::PlaceMailOrderResponse::FromJson(const TSharedPtr<FJsonV
 
 FString OpenAPIDefaultApi::SendAdvMailByIdRequest::ComputePath() const
 {
-	TMap<FString, FStringFormatArg> PathParams = { 
-	{ TEXT("id"), ToStringFormatArg(Id) } };
-
-	FString Path = FString::Format(TEXT("/mail/{id}/advsend"), PathParams);
-	
+	FString Path(TEXT("/mail/advsend"));
 	return Path;
 }
 
 void OpenAPIDefaultApi::SendAdvMailByIdRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-	static const TArray<FString> Consumes = { TEXT("application/json"), TEXT("application/xml"), TEXT("application/x-www-form-urlencoded"), TEXT("text/plain") };
+	static const TArray<FString> Consumes = { TEXT("application/json") };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
 
 	HttpRequest->SetVerb(TEXT("POST"));
@@ -308,11 +263,7 @@ bool OpenAPIDefaultApi::SendAdvMailByIdResponse::FromJson(const TSharedPtr<FJson
 
 FString OpenAPIDefaultApi::SendMailByIdRequest::ComputePath() const
 {
-	TMap<FString, FStringFormatArg> PathParams = { 
-	{ TEXT("id"), ToStringFormatArg(Id) } };
-
-	FString Path = FString::Format(TEXT("/mail/{id}/send"), PathParams);
-	
+	FString Path(TEXT("/mail/send"));
 	TArray<FString> QueryParams;
 	if(Subject.IsSet())
 	{
@@ -326,13 +277,17 @@ FString OpenAPIDefaultApi::SendMailByIdRequest::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("to=")) + ToUrlString(To.GetValue()));
 	}
-	if(ToName.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("toName=")) + ToUrlString(ToName.GetValue()));
-	}
 	if(From.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("from=")) + ToUrlString(From.GetValue()));
+	}
+	if(Id.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("id=")) + ToUrlString(Id.GetValue()));
+	}
+	if(ToName.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("toName=")) + ToUrlString(ToName.GetValue()));
 	}
 	if(FromName.IsSet())
 	{
@@ -442,12 +397,12 @@ bool OpenAPIDefaultApi::ValidateMailOrderResponse::FromJson(const TSharedPtr<FJs
 
 FString OpenAPIDefaultApi::ViewMailLogByIdRequest::ComputePath() const
 {
-	TMap<FString, FStringFormatArg> PathParams = { 
-	{ TEXT("id"), ToStringFormatArg(Id) } };
-
-	FString Path = FString::Format(TEXT("/mail/{id}/log"), PathParams);
-	
+	FString Path(TEXT("/mail/log"));
 	TArray<FString> QueryParams;
+	if(Id.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("id=")) + ToUrlString(Id.GetValue()));
+	}
 	if(SearchString.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("searchString=")) + ToUrlString(SearchString.GetValue()));

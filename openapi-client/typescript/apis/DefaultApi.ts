@@ -18,59 +18,12 @@ import { SendMail } from '../models/SendMail';
 export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * returns information about a mail order in the system with the given id.
-     * Gets mail order information by id
-     * @param id User ID
-     */
-    public async getMailById(id: number, options?: Configuration): Promise<RequestContext> {
-        let config = options || this.configuration;
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new RequiredError('Required parameter id was null or undefined when calling getMailById.');
-        }
-
-
-        // Path Params
-        const localVarPath = '/mail/{id}'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-
-        // Make Request Context
-        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
-
-        // Query Params
-
-        // Header Params
-
-        // Form Params
-
-
-        // Body Params
-
-        let authMethod = null;
-        // Apply auth methods
-        authMethod = config.authMethods["apiKeyAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
-        authMethod = config.authMethods["apiLoginAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
-        authMethod = config.authMethods["apiPasswordAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
-
-        return requestContext;
-    }
-
-    /**
      * displays a list of mail service orders
+     * @param id The ID of your mail order this will be sent through.
      */
-    public async getMailOrders(options?: Configuration): Promise<RequestContext> {
+    public async getMailOrders(id?: number, options?: Configuration): Promise<RequestContext> {
         let config = options || this.configuration;
+
 
         // Path Params
         const localVarPath = '/mail';
@@ -80,6 +33,9 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
 
         // Query Params
+        if (id !== undefined) {
+            requestContext.setQueryParam("id", ObjectSerializer.serialize(id, "number", "int64"));
+        }
 
         // Header Params
 
@@ -91,14 +47,6 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         let authMethod = null;
         // Apply auth methods
         authMethod = config.authMethods["apiKeyAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
-        authMethod = config.authMethods["apiLoginAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
-        authMethod = config.authMethods["apiPasswordAuth"]
         if (authMethod) {
             await authMethod.applySecurityAuthentication(requestContext);
         }
@@ -173,14 +121,6 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         if (authMethod) {
             await authMethod.applySecurityAuthentication(requestContext);
         }
-        authMethod = config.authMethods["apiLoginAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
-        authMethod = config.authMethods["apiPasswordAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
 
         return requestContext;
     }
@@ -188,17 +128,10 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * Sends an Email with Advanced Options
-     * @param id User ID
      * @param sendMail 
      */
-    public async sendAdvMailById(id: number, sendMail: SendMail, options?: Configuration): Promise<RequestContext> {
+    public async sendAdvMailById(sendMail: SendMail, options?: Configuration): Promise<RequestContext> {
         let config = options || this.configuration;
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new RequiredError('Required parameter id was null or undefined when calling sendAdvMailById.');
-        }
-
 
         // verify required parameter 'sendMail' is not null or undefined
         if (sendMail === null || sendMail === undefined) {
@@ -207,8 +140,7 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/mail/{id}/advsend'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        const localVarPath = '/mail/advsend';
 
         // Make Request Context
         const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -223,13 +155,7 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
 
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([
-            "application/json",
-        
-            "application/xml",
-        
-            "application/x-www-form-urlencoded",
-        
-            "text/plain"
+            "application/json"
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
@@ -244,14 +170,6 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         if (authMethod) {
             await authMethod.applySecurityAuthentication(requestContext);
         }
-        authMethod = config.authMethods["apiLoginAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
-        authMethod = config.authMethods["apiPasswordAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
 
         return requestContext;
     }
@@ -259,21 +177,16 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Sends An email through one of your mail orders.
      * Sends an Email
-     * @param id User ID
-     * @param subject 
-     * @param body 
-     * @param to 
-     * @param toName 
-     * @param from 
-     * @param fromName 
+     * @param subject The Subject of the email
+     * @param body The contents of the email
+     * @param to The email address of who this email will be sent to.
+     * @param from The email address of who this email will be sent from.
+     * @param id The ID of your mail order this will be sent through.
+     * @param toName The name or title of who this email is being sent to.
+     * @param fromName The name or title of who this email is being sent from.
      */
-    public async sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, options?: Configuration): Promise<RequestContext> {
+    public async sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options?: Configuration): Promise<RequestContext> {
         let config = options || this.configuration;
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new RequiredError('Required parameter id was null or undefined when calling sendMailById.');
-        }
 
 
 
@@ -283,8 +196,7 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/mail/{id}/send'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        const localVarPath = '/mail/send';
 
         // Make Request Context
         const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -300,11 +212,14 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         if (to !== undefined) {
             requestContext.setQueryParam("to", ObjectSerializer.serialize(to, "string", ""));
         }
-        if (toName !== undefined) {
-            requestContext.setQueryParam("toName", ObjectSerializer.serialize(toName, "string", ""));
-        }
         if (from !== undefined) {
             requestContext.setQueryParam("from", ObjectSerializer.serialize(from, "string", ""));
+        }
+        if (id !== undefined) {
+            requestContext.setQueryParam("id", ObjectSerializer.serialize(id, "number", "int64"));
+        }
+        if (toName !== undefined) {
+            requestContext.setQueryParam("toName", ObjectSerializer.serialize(toName, "string", ""));
         }
         if (fromName !== undefined) {
             requestContext.setQueryParam("fromName", ObjectSerializer.serialize(fromName, "string", ""));
@@ -320,14 +235,6 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         let authMethod = null;
         // Apply auth methods
         authMethod = config.authMethods["apiKeyAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
-        authMethod = config.authMethods["apiLoginAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
-        authMethod = config.authMethods["apiPasswordAuth"]
         if (authMethod) {
             await authMethod.applySecurityAuthentication(requestContext);
         }
@@ -363,14 +270,6 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         if (authMethod) {
             await authMethod.applySecurityAuthentication(requestContext);
         }
-        authMethod = config.authMethods["apiLoginAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
-        authMethod = config.authMethods["apiPasswordAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
 
         return requestContext;
     }
@@ -378,32 +277,29 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * By passing in the appropriate options, you can search for available inventory in the system 
      * displays the mail log
-     * @param id User ID
+     * @param id The ID of your mail order this will be sent through.
      * @param searchString pass an optional search string for looking up inventory
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      */
-    public async viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, options?: Configuration): Promise<RequestContext> {
+    public async viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: Configuration): Promise<RequestContext> {
         let config = options || this.configuration;
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new RequiredError('Required parameter id was null or undefined when calling viewMailLogById.');
-        }
 
 
 
 
 
         // Path Params
-        const localVarPath = '/mail/{id}/log'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+        const localVarPath = '/mail/log';
 
         // Make Request Context
         const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
 
         // Query Params
+        if (id !== undefined) {
+            requestContext.setQueryParam("id", ObjectSerializer.serialize(id, "number", "int64"));
+        }
         if (searchString !== undefined) {
             requestContext.setQueryParam("searchString", ObjectSerializer.serialize(searchString, "string", ""));
         }
@@ -427,14 +323,6 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         if (authMethod) {
             await authMethod.applySecurityAuthentication(requestContext);
         }
-        authMethod = config.authMethods["apiLoginAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
-        authMethod = config.authMethods["apiPasswordAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
 
         return requestContext;
     }
@@ -442,36 +330,6 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
 }
 
 export class DefaultApiResponseProcessor {
-
-    /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to getMailById
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-     public async getMailById(response: ResponseContext): Promise<MailOrder > {
-        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
-        if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: MailOrder = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "MailOrder", ""
-            ) as MailOrder;
-            return body;
-        }
-
-        // Work around for missing responses in specification, e.g. for petstore.yaml
-        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: MailOrder = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "MailOrder", ""
-            ) as MailOrder;
-            return body;
-        }
-
-        let body = response.body || "";
-        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
-    }
 
     /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content

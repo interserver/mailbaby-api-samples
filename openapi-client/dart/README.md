@@ -44,23 +44,15 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
-// TODO Configure API key authorization: apiLoginAuth
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiLoginAuth').apiKey = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiLoginAuth').apiKeyPrefix = 'Bearer';
-// TODO Configure API key authorization: apiPasswordAuth
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiPasswordAuth').apiKey = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiPasswordAuth').apiKeyPrefix = 'Bearer';
 
 final api_instance = DefaultApi();
-final id = 789; // int | User ID
+final id = 789; // int | The ID of your mail order this will be sent through.
 
 try {
-    final result = api_instance.getMailById(id);
+    final result = api_instance.getMailOrders(id);
     print(result);
 } catch (e) {
-    print('Exception when calling DefaultApi->getMailById: $e\n');
+    print('Exception when calling DefaultApi->getMailOrders: $e\n');
 }
 
 ```
@@ -71,14 +63,13 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**getMailById**](doc//DefaultApi.md#getmailbyid) | **GET** /mail/{id} | Gets mail order information by id
 *DefaultApi* | [**getMailOrders**](doc//DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**pingServer**](doc//DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**placeMailOrder**](doc//DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**sendAdvMailById**](doc//DefaultApi.md#sendadvmailbyid) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMailById**](doc//DefaultApi.md#sendmailbyid) | **POST** /mail/{id}/send | Sends an Email
+*DefaultApi* | [**sendAdvMailById**](doc//DefaultApi.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**sendMailById**](doc//DefaultApi.md#sendmailbyid) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](doc//DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**viewMailLogById**](doc//DefaultApi.md#viewmaillogbyid) | **GET** /mail/{id}/log | displays the mail log
+*DefaultApi* | [**viewMailLogById**](doc//DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
 
 ## Documentation For Models
@@ -99,18 +90,6 @@ Class | Method | HTTP request | Description
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-## apiLoginAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-## apiPasswordAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 
 

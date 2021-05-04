@@ -4,51 +4,26 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMailById**](DefaultApi.md#getMailById) | **GET** /mail/{id} | Gets mail order information by id
 [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/{id}/send | Sends an Email
+[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/{id}/log | displays the mail log
+[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
 
-<a name="getMailById"></a>
-# **getMailById**
-> MailOrder getMailById(id)
+<a name="getMailOrders"></a>
+# **getMailOrders**
+> List getMailOrders(id)
 
-Gets mail order information by id
-
-    returns information about a mail order in the system with the given id.
+displays a list of mail service orders
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Long**| User ID | [default to null]
-
-### Return type
-
-[**MailOrder**](../Models/MailOrder.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-<a name="getMailOrders"></a>
-# **getMailOrders**
-> List getMailOrders()
-
-displays a list of mail service orders
-
-### Parameters
-This endpoint does not need any parameter.
+ **id** | **Long**| The ID of your mail order this will be sent through. | [optional] [default to null]
 
 ### Return type
 
@@ -56,7 +31,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -105,7 +80,7 @@ null (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -114,7 +89,7 @@ null (empty response body)
 
 <a name="sendAdvMailById"></a>
 # **sendAdvMailById**
-> GenericResponse sendAdvMailById(id, SendMail)
+> GenericResponse sendAdvMailById(SendMail)
 
 Sends an Email with Advanced Options
 
@@ -124,7 +99,6 @@ Sends an Email with Advanced Options
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Long**| User ID | [default to null]
  **SendMail** | [**SendMail**](../Models/SendMail.md)|  |
 
 ### Return type
@@ -133,16 +107,16 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 <a name="sendMailById"></a>
 # **sendMailById**
-> GenericResponse sendMailById(id, subject, body, to, toName, from, fromName)
+> GenericResponse sendMailById(subject, body, to, from, id, toName, fromName)
 
 Sends an Email
 
@@ -152,13 +126,13 @@ Sends an Email
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Long**| User ID | [default to null]
- **subject** | **String**|  | [optional] [default to null]
- **body** | **String**|  | [optional] [default to null]
- **to** | **String**|  | [optional] [default to null]
- **toName** | **String**|  | [optional] [default to null]
- **from** | **String**|  | [optional] [default to null]
- **fromName** | **String**|  | [optional] [default to null]
+ **subject** | **String**| The Subject of the email | [optional] [default to null]
+ **body** | **String**| The contents of the email | [optional] [default to null]
+ **to** | **String**| The email address of who this email will be sent to. | [optional] [default to null]
+ **from** | **String**| The email address of who this email will be sent from. | [optional] [default to null]
+ **id** | **Long**| The ID of your mail order this will be sent through. | [optional] [default to null]
+ **toName** | **String**| The name or title of who this email is being sent to. | [optional] [default to null]
+ **fromName** | **String**| The name or title of who this email is being sent from. | [optional] [default to null]
 
 ### Return type
 
@@ -166,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -188,7 +162,7 @@ null (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -207,7 +181,7 @@ displays the mail log
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Long**| User ID | [default to null]
+ **id** | **Long**| The ID of your mail order this will be sent through. | [optional] [default to null]
  **searchString** | **String**| pass an optional search string for looking up inventory | [optional] [default to null]
  **skip** | **Integer**| number of records to skip for pagination | [optional] [default to null]
  **limit** | **Integer**| maximum number of records to return | [optional] [default to null]
@@ -218,7 +192,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

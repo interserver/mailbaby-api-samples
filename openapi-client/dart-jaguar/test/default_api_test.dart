@@ -7,18 +7,9 @@ void main() {
   var instance = new DefaultApi();
 
   group('tests for DefaultApi', () {
-    // Gets mail order information by id
-    //
-    // returns information about a mail order in the system with the given id.
-    //
-    //Future<MailOrder> getMailById(int id) async
-    test('test getMailById', () async {
-      // TODO
-    });
-
     // displays a list of mail service orders
     //
-    //Future<List<MailOrder>> getMailOrders() async
+    //Future<List<MailOrder>> getMailOrders({ int id }) async
     test('test getMailOrders', () async {
       // TODO
     });
@@ -43,7 +34,7 @@ void main() {
     //
     // Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
     //
-    //Future<GenericResponse> sendAdvMailById(int id, SendMail sendMail) async
+    //Future<GenericResponse> sendAdvMailById(SendMail sendMail) async
     test('test sendAdvMailById', () async {
       // TODO
     });
@@ -52,7 +43,7 @@ void main() {
     //
     // Sends An email through one of your mail orders.
     //
-    //Future<GenericResponse> sendMailById(int id, { String subject, String body, String to, String toName, String from, String fromName }) async
+    //Future<GenericResponse> sendMailById({ String subject, String body, String to, String from, int id, String toName, String fromName }) async
     test('test sendMailById', () async {
       // TODO
     });
@@ -68,7 +59,7 @@ void main() {
     //
     // By passing in the appropriate options, you can search for available inventory in the system 
     //
-    //Future<List<MailLog>> viewMailLogById(int id, { String searchString, int skip, int limit }) async
+    //Future<List<MailLog>> viewMailLogById({ int id, String searchString, int skip, int limit }) async
     test('test viewMailLogById', () async {
       // TODO
     });

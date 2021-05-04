@@ -28,46 +28,21 @@ def apply(baseUrl: String = "https://api.mailbaby.net") = new DefaultApi(baseUrl
 class DefaultApi(baseUrl: String) {
 
   /**
-   * returns information about a mail order in the system with the given id.
-   * 
-   * Expected answers:
-   *   code 200 : MailOrder (Successful operation)
-   * 
-   * Available security schemes:
-   *   apiKeyAuth (apiKey)
-   *   apiLoginAuth (apiKey)
-   *   apiPasswordAuth (apiKey)
-   * 
-   * @param id User ID
-   */
-  def getMailById(apiKey: String, apiKey: String, apiKey: String)(id: Long
-): Request[Either[ResponseError[Exception], MailOrder], Nothing] =
-    basicRequest
-      .method(Method.GET, uri"$baseUrl/mail/${id}")
-      .contentType("application/json")
-      .header("X-API-KEY", apiKey)
-      .header("X-API-LOGIN", apiKey)
-      .header("X-API-PASS", apiKey)
-      .response(asJson[MailOrder])
-
-  /**
    * Expected answers:
    *   code 200 : Seq[MailOrder] (OK)
    *   code 401 : ErrorResponse (Unauthorized)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
-   *   apiLoginAuth (apiKey)
-   *   apiPasswordAuth (apiKey)
+   * 
+   * @param id The ID of your mail order this will be sent through.
    */
-  def getMailOrders(apiKey: String, apiKey: String, apiKey: String)(
+  def getMailOrders(apiKey: String)(id: Option[Long] = None
 ): Request[Either[ResponseError[Exception], Seq[MailOrder]], Nothing] =
     basicRequest
-      .method(Method.GET, uri"$baseUrl/mail")
+      .method(Method.GET, uri"$baseUrl/mail?id=${ id }")
       .contentType("application/json")
       .header("X-API-KEY", apiKey)
-      .header("X-API-LOGIN", apiKey)
-      .header("X-API-PASS", apiKey)
       .response(asJson[Seq[MailOrder]])
 
   /**
@@ -93,19 +68,15 @@ class DefaultApi(baseUrl: String) {
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
-   *   apiLoginAuth (apiKey)
-   *   apiPasswordAuth (apiKey)
    * 
    * @param mailOrder Inventory item to add
    */
-  def placeMailOrder(apiKey: String, apiKey: String, apiKey: String)(mailOrder: Option[MailOrder] = None
+  def placeMailOrder(apiKey: String)(mailOrder: Option[MailOrder] = None
 ): Request[Either[ResponseError[Exception], Unit], Nothing] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/order")
       .contentType("application/json")
       .header("X-API-KEY", apiKey)
-      .header("X-API-LOGIN", apiKey)
-      .header("X-API-PASS", apiKey)
       .body(mailOrder)
       .response(asJson[Unit])
 
@@ -120,20 +91,15 @@ class DefaultApi(baseUrl: String) {
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
-   *   apiLoginAuth (apiKey)
-   *   apiPasswordAuth (apiKey)
    * 
-   * @param id User ID
    * @param sendMail 
    */
-  def sendAdvMailById(apiKey: String, apiKey: String, apiKey: String)(id: Long, sendMail: SendMail
+  def sendAdvMailById(apiKey: String)(sendMail: SendMail
 ): Request[Either[ResponseError[Exception], GenericResponse], Nothing] =
     basicRequest
-      .method(Method.POST, uri"$baseUrl/mail/${id}/advsend")
+      .method(Method.POST, uri"$baseUrl/mail/advsend")
       .contentType("application/json")
       .header("X-API-KEY", apiKey)
-      .header("X-API-LOGIN", apiKey)
-      .header("X-API-PASS", apiKey)
       .body(sendMail)
       .response(asJson[GenericResponse])
 
@@ -148,25 +114,21 @@ class DefaultApi(baseUrl: String) {
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
-   *   apiLoginAuth (apiKey)
-   *   apiPasswordAuth (apiKey)
    * 
-   * @param id User ID
-   * @param subject 
-   * @param body 
-   * @param to 
-   * @param toName 
-   * @param from 
-   * @param fromName 
+   * @param subject The Subject of the email
+   * @param body The contents of the email
+   * @param to The email address of who this email will be sent to.
+   * @param from The email address of who this email will be sent from.
+   * @param id The ID of your mail order this will be sent through.
+   * @param toName The name or title of who this email is being sent to.
+   * @param fromName The name or title of who this email is being sent from.
    */
-  def sendMailById(apiKey: String, apiKey: String, apiKey: String)(id: Long, subject: Option[String] = None, body: Option[String] = None, to: Option[String] = None, toName: Option[String] = None, from: Option[String] = None, fromName: Option[String] = None
+  def sendMailById(apiKey: String)(subject: Option[String] = None, body: Option[String] = None, to: Option[String] = None, from: Option[String] = None, id: Option[Long] = None, toName: Option[String] = None, fromName: Option[String] = None
 ): Request[Either[ResponseError[Exception], GenericResponse], Nothing] =
     basicRequest
-      .method(Method.POST, uri"$baseUrl/mail/${id}/send?subject=${ subject }&body=${ body }&to=${ to }&toName=${ toName }&from=${ from }&fromName=${ fromName }")
+      .method(Method.POST, uri"$baseUrl/mail/send?subject=${ subject }&body=${ body }&to=${ to }&from=${ from }&id=${ id }&toName=${ toName }&fromName=${ fromName }")
       .contentType("application/json")
       .header("X-API-KEY", apiKey)
-      .header("X-API-LOGIN", apiKey)
-      .header("X-API-PASS", apiKey)
       .response(asJson[GenericResponse])
 
   /**
@@ -176,17 +138,13 @@ class DefaultApi(baseUrl: String) {
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
-   *   apiLoginAuth (apiKey)
-   *   apiPasswordAuth (apiKey)
    */
-  def validateMailOrder(apiKey: String, apiKey: String, apiKey: String)(
+  def validateMailOrder(apiKey: String)(
 ): Request[Either[ResponseError[Exception], Unit], Nothing] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/mail/order")
       .contentType("application/json")
       .header("X-API-KEY", apiKey)
-      .header("X-API-LOGIN", apiKey)
-      .header("X-API-PASS", apiKey)
       .response(asJson[Unit])
 
   /**
@@ -198,22 +156,18 @@ class DefaultApi(baseUrl: String) {
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
-   *   apiLoginAuth (apiKey)
-   *   apiPasswordAuth (apiKey)
    * 
-   * @param id User ID
+   * @param id The ID of your mail order this will be sent through.
    * @param searchString pass an optional search string for looking up inventory
    * @param skip number of records to skip for pagination
    * @param limit maximum number of records to return
    */
-  def viewMailLogById(apiKey: String, apiKey: String, apiKey: String)(id: Long, searchString: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None
+  def viewMailLogById(apiKey: String)(id: Option[Long] = None, searchString: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None
 ): Request[Either[ResponseError[Exception], Seq[MailLog]], Nothing] =
     basicRequest
-      .method(Method.GET, uri"$baseUrl/mail/${id}/log?searchString=${ searchString }&skip=${ skip }&limit=${ limit }")
+      .method(Method.GET, uri"$baseUrl/mail/log?id=${ id }&searchString=${ searchString }&skip=${ skip }&limit=${ limit }")
       .contentType("application/json")
       .header("X-API-KEY", apiKey)
-      .header("X-API-LOGIN", apiKey)
-      .header("X-API-PASS", apiKey)
       .response(asJson[Seq[MailLog]])
 
 }

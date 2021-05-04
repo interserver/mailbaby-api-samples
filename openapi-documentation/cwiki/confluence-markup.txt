@@ -13,47 +13,6 @@ This is an API defintion for accesssing the Mail.Baby mail service.
 h2. Endpoints
 
 
-h3. getMailById
-{panel:title=getMailById|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
-    *Summary:* Gets mail order information by id
-    *Description:* returns information about a mail order in the system with the given id.
-
-	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
-    || Protocol | {noformat:nopanel=true}https{noformat} |
-    || Path | {noformat:nopanel=true}/mail/{id}{noformat} |
-    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
-----
-h4. Parameters
-h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
-        |id |User ID | Long | (/) |null |  |  |
-
-
-
-----
-h4. Responses
-
-    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
-    	|| Message | Successful operation |
-    	|| Response Type | MailOrder |
-    	|| Response Model | [MailOrder Model|#MailOrderModelAnchor|Jump to model] |
-    	|| Response Schema | {code:collapse=true}{
-  "description" : "Successful operation",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/MailOrder"
-      }
-    }
-  }
-}{code} |
-       
-
-{panel}
-
-
-
 h3. getMailOrders
 {panel:title=getMailOrders|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
     *Summary:* displays a list of mail service orders
@@ -69,6 +28,9 @@ h4. Parameters
 
 
 
+h5. Query Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |id |The ID of your mail order this will be sent through. | Long | (x) |null |  |  |
 ----
 h4. Responses
 
@@ -254,14 +216,11 @@ h3. sendAdvMailById
 
 	|| HttpMethod | {status:colour=Yellow|title=post|subtle=false} |
     || Protocol | {noformat:nopanel=true}https{noformat} |
-    || Path | {noformat:nopanel=true}/mail/{id}/advsend{noformat} |
+    || Path | {noformat:nopanel=true}/mail/advsend{noformat} |
     || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
     || Produces | {noformat:nopanel=true}application/json{noformat} |
 ----
 h4. Parameters
-h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
-        |id |User ID | Long | (/) |null |  |  |
 
 h5. Body Parameter
         ||Name||Description||Type||Required||Default||Pattern||Enum||
@@ -342,20 +301,17 @@ h3. sendMailById
 
 	|| HttpMethod | {status:colour=Yellow|title=post|subtle=false} |
     || Protocol | {noformat:nopanel=true}https{noformat} |
-    || Path | {noformat:nopanel=true}/mail/{id}/send{noformat} |
+    || Path | {noformat:nopanel=true}/mail/send{noformat} |
     || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
     || Produces | {noformat:nopanel=true}application/json{noformat} |
 ----
 h4. Parameters
-h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
-        |id |User ID | Long | (/) |null |  |  |
 
 
 
 h5. Query Parameters
         ||Name||Description||Required||Default||Pattern||
-        |subject | | String | (x) |null |  |  ||body | | String | (x) |null |  |  ||to | | String | (x) |null |  |  ||toName | | String | (x) |null |  |  ||from | | String | (x) |null |  |  ||fromName | | String | (x) |null |  |  |
+        |subject |The Subject of the email | String | (x) |null |  |  ||body |The contents of the email | String | (x) |null |  |  ||to |The email address of who this email will be sent to. | String | (x) |null |  |  ||from |The email address of who this email will be sent from. | String | (x) |null |  |  ||id |The ID of your mail order this will be sent through. | Long | (x) |null |  |  ||toName |The name or title of who this email is being sent to. | String | (x) |null |  |  ||fromName |The name or title of who this email is being sent from. | String | (x) |null |  |  |
 ----
 h4. Responses
 
@@ -479,20 +435,17 @@ available inventory in the system
 
 	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
     || Protocol | {noformat:nopanel=true}https{noformat} |
-    || Path | {noformat:nopanel=true}/mail/{id}/log{noformat} |
+    || Path | {noformat:nopanel=true}/mail/log{noformat} |
     || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
     || Produces | {noformat:nopanel=true}application/json{noformat} |
 ----
 h4. Parameters
-h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
-        |id |User ID | Long | (/) |null |  |  |
 
 
 
 h5. Query Parameters
         ||Name||Description||Required||Default||Pattern||
-        |searchString |pass an optional search string for looking up inventory | String | (x) |null |  |  ||skip |number of records to skip for pagination | Integer | (x) |null |  |  ||limit |maximum number of records to return | Integer | (x) |null |  |  |
+        |id |The ID of your mail order this will be sent through. | Long | (x) |null |  |  ||searchString |pass an optional search string for looking up inventory | String | (x) |null |  |  ||skip |number of records to skip for pagination | Integer | (x) |null |  |  ||limit |maximum number of records to return | Integer | (x) |null |  |  |
 ----
 h4. Responses
 

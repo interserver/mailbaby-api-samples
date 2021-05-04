@@ -116,300 +116,19 @@ class DefaultApi
     }
 
     /**
-     * Operation getMailById
-     *
-     * Gets mail order information by id
-     *
-     * @param  int $id User ID (required)
-     *
-     * @throws \Interserver\Mailbaby\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Interserver\Mailbaby\Model\MailOrder
-     */
-    public function getMailById($id)
-    {
-        list($response) = $this->getMailByIdWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Operation getMailByIdWithHttpInfo
-     *
-     * Gets mail order information by id
-     *
-     * @param  int $id User ID (required)
-     *
-     * @throws \Interserver\Mailbaby\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Interserver\Mailbaby\Model\MailOrder, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getMailByIdWithHttpInfo($id)
-    {
-        $request = $this->getMailByIdRequest($id);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            switch($statusCode) {
-                case 200:
-                    if ('\Interserver\Mailbaby\Model\MailOrder' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Interserver\Mailbaby\Model\MailOrder', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Interserver\Mailbaby\Model\MailOrder';
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = (string) $responseBody;
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\MailOrder',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getMailByIdAsync
-     *
-     * Gets mail order information by id
-     *
-     * @param  int $id User ID (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getMailByIdAsync($id)
-    {
-        return $this->getMailByIdAsyncWithHttpInfo($id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getMailByIdAsyncWithHttpInfo
-     *
-     * Gets mail order information by id
-     *
-     * @param  int $id User ID (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getMailByIdAsyncWithHttpInfo($id)
-    {
-        $returnType = '\Interserver\Mailbaby\Model\MailOrder';
-        $request = $this->getMailByIdRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getMailById'
-     *
-     * @param  int $id User ID (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getMailByIdRequest($id)
-    {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getMailById'
-            );
-        }
-
-        $resourcePath = '/mail/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
-        if ($apiKey !== null) {
-            $headers['X-API-KEY'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
      * Operation getMailOrders
      *
      * displays a list of mail service orders
      *
+     * @param  int $id The ID of your mail order this will be sent through. (optional)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\MailOrder[]|\Interserver\Mailbaby\Model\ErrorResponse
      */
-    public function getMailOrders()
+    public function getMailOrders($id = null)
     {
-        list($response) = $this->getMailOrdersWithHttpInfo();
+        list($response) = $this->getMailOrdersWithHttpInfo($id);
         return $response;
     }
 
@@ -418,14 +137,15 @@ class DefaultApi
      *
      * displays a list of mail service orders
      *
+     * @param  int $id The ID of your mail order this will be sent through. (optional)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\MailOrder[]|\Interserver\Mailbaby\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getMailOrdersWithHttpInfo()
+    public function getMailOrdersWithHttpInfo($id = null)
     {
-        $request = $this->getMailOrdersRequest();
+        $request = $this->getMailOrdersRequest($id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -525,13 +245,14 @@ class DefaultApi
      *
      * displays a list of mail service orders
      *
+     * @param  int $id The ID of your mail order this will be sent through. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMailOrdersAsync()
+    public function getMailOrdersAsync($id = null)
     {
-        return $this->getMailOrdersAsyncWithHttpInfo()
+        return $this->getMailOrdersAsyncWithHttpInfo($id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -544,14 +265,15 @@ class DefaultApi
      *
      * displays a list of mail service orders
      *
+     * @param  int $id The ID of your mail order this will be sent through. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMailOrdersAsyncWithHttpInfo()
+    public function getMailOrdersAsyncWithHttpInfo($id = null)
     {
         $returnType = '\Interserver\Mailbaby\Model\MailOrder[]';
-        $request = $this->getMailOrdersRequest();
+        $request = $this->getMailOrdersRequest($id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -590,11 +312,12 @@ class DefaultApi
     /**
      * Create request for operation 'getMailOrders'
      *
+     * @param  int $id The ID of your mail order this will be sent through. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getMailOrdersRequest()
+    public function getMailOrdersRequest($id = null)
     {
 
         $resourcePath = '/mail';
@@ -604,6 +327,17 @@ class DefaultApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($id !== null) {
+            if('form' === 'form' && is_array($id)) {
+                foreach($id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['id'] = $id;
+            }
+        }
 
 
 
@@ -648,16 +382,6 @@ class DefaultApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
         if ($apiKey !== null) {
             $headers['X-API-KEY'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1083,16 +807,6 @@ class DefaultApi
         if ($apiKey !== null) {
             $headers['X-API-KEY'] = $apiKey;
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1119,16 +833,15 @@ class DefaultApi
      *
      * Sends an Email with Advanced Options
      *
-     * @param  int $id User ID (required)
      * @param  \Interserver\Mailbaby\Model\SendMail $sendMail sendMail (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse
      */
-    public function sendAdvMailById($id, $sendMail)
+    public function sendAdvMailById($sendMail)
     {
-        list($response) = $this->sendAdvMailByIdWithHttpInfo($id, $sendMail);
+        list($response) = $this->sendAdvMailByIdWithHttpInfo($sendMail);
         return $response;
     }
 
@@ -1137,16 +850,15 @@ class DefaultApi
      *
      * Sends an Email with Advanced Options
      *
-     * @param  int $id User ID (required)
      * @param  \Interserver\Mailbaby\Model\SendMail $sendMail (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sendAdvMailByIdWithHttpInfo($id, $sendMail)
+    public function sendAdvMailByIdWithHttpInfo($sendMail)
     {
-        $request = $this->sendAdvMailByIdRequest($id, $sendMail);
+        $request = $this->sendAdvMailByIdRequest($sendMail);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1266,15 +978,14 @@ class DefaultApi
      *
      * Sends an Email with Advanced Options
      *
-     * @param  int $id User ID (required)
      * @param  \Interserver\Mailbaby\Model\SendMail $sendMail (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendAdvMailByIdAsync($id, $sendMail)
+    public function sendAdvMailByIdAsync($sendMail)
     {
-        return $this->sendAdvMailByIdAsyncWithHttpInfo($id, $sendMail)
+        return $this->sendAdvMailByIdAsyncWithHttpInfo($sendMail)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1287,16 +998,15 @@ class DefaultApi
      *
      * Sends an Email with Advanced Options
      *
-     * @param  int $id User ID (required)
      * @param  \Interserver\Mailbaby\Model\SendMail $sendMail (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendAdvMailByIdAsyncWithHttpInfo($id, $sendMail)
+    public function sendAdvMailByIdAsyncWithHttpInfo($sendMail)
     {
         $returnType = '\Interserver\Mailbaby\Model\GenericResponse';
-        $request = $this->sendAdvMailByIdRequest($id, $sendMail);
+        $request = $this->sendAdvMailByIdRequest($sendMail);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1335,20 +1045,13 @@ class DefaultApi
     /**
      * Create request for operation 'sendAdvMailById'
      *
-     * @param  int $id User ID (required)
      * @param  \Interserver\Mailbaby\Model\SendMail $sendMail (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function sendAdvMailByIdRequest($id, $sendMail)
+    public function sendAdvMailByIdRequest($sendMail)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling sendAdvMailById'
-            );
-        }
         // verify the required parameter 'sendMail' is set
         if ($sendMail === null || (is_array($sendMail) && count($sendMail) === 0)) {
             throw new \InvalidArgumentException(
@@ -1356,7 +1059,7 @@ class DefaultApi
             );
         }
 
-        $resourcePath = '/mail/{id}/advsend';
+        $resourcePath = '/mail/advsend';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1365,14 +1068,6 @@ class DefaultApi
 
 
 
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
 
 
         if ($multipart) {
@@ -1382,7 +1077,7 @@ class DefaultApi
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 ['application/json'],
-                ['application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain']
+                ['application/json']
             );
         }
 
@@ -1422,16 +1117,6 @@ class DefaultApi
         if ($apiKey !== null) {
             $headers['X-API-KEY'] = $apiKey;
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1458,21 +1143,21 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  int $id User ID (required)
-     * @param  string $subject subject (optional)
-     * @param  string $body body (optional)
-     * @param  string $to to (optional)
-     * @param  string $toName toName (optional)
-     * @param  string $from from (optional)
-     * @param  string $fromName fromName (optional)
+     * @param  string $subject The Subject of the email (optional)
+     * @param  string $body The contents of the email (optional)
+     * @param  string $to The email address of who this email will be sent to. (optional)
+     * @param  string $from The email address of who this email will be sent from. (optional)
+     * @param  int $id The ID of your mail order this will be sent through. (optional)
+     * @param  string $toName The name or title of who this email is being sent to. (optional)
+     * @param  string $fromName The name or title of who this email is being sent from. (optional)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse
      */
-    public function sendMailById($id, $subject = null, $body = null, $to = null, $toName = null, $from = null, $fromName = null)
+    public function sendMailById($subject = null, $body = null, $to = null, $from = null, $id = null, $toName = null, $fromName = null)
     {
-        list($response) = $this->sendMailByIdWithHttpInfo($id, $subject, $body, $to, $toName, $from, $fromName);
+        list($response) = $this->sendMailByIdWithHttpInfo($subject, $body, $to, $from, $id, $toName, $fromName);
         return $response;
     }
 
@@ -1481,21 +1166,21 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  int $id User ID (required)
-     * @param  string $subject (optional)
-     * @param  string $body (optional)
-     * @param  string $to (optional)
-     * @param  string $toName (optional)
-     * @param  string $from (optional)
-     * @param  string $fromName (optional)
+     * @param  string $subject The Subject of the email (optional)
+     * @param  string $body The contents of the email (optional)
+     * @param  string $to The email address of who this email will be sent to. (optional)
+     * @param  string $from The email address of who this email will be sent from. (optional)
+     * @param  int $id The ID of your mail order this will be sent through. (optional)
+     * @param  string $toName The name or title of who this email is being sent to. (optional)
+     * @param  string $fromName The name or title of who this email is being sent from. (optional)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sendMailByIdWithHttpInfo($id, $subject = null, $body = null, $to = null, $toName = null, $from = null, $fromName = null)
+    public function sendMailByIdWithHttpInfo($subject = null, $body = null, $to = null, $from = null, $id = null, $toName = null, $fromName = null)
     {
-        $request = $this->sendMailByIdRequest($id, $subject, $body, $to, $toName, $from, $fromName);
+        $request = $this->sendMailByIdRequest($subject, $body, $to, $from, $id, $toName, $fromName);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1615,20 +1300,20 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  int $id User ID (required)
-     * @param  string $subject (optional)
-     * @param  string $body (optional)
-     * @param  string $to (optional)
-     * @param  string $toName (optional)
-     * @param  string $from (optional)
-     * @param  string $fromName (optional)
+     * @param  string $subject The Subject of the email (optional)
+     * @param  string $body The contents of the email (optional)
+     * @param  string $to The email address of who this email will be sent to. (optional)
+     * @param  string $from The email address of who this email will be sent from. (optional)
+     * @param  int $id The ID of your mail order this will be sent through. (optional)
+     * @param  string $toName The name or title of who this email is being sent to. (optional)
+     * @param  string $fromName The name or title of who this email is being sent from. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailByIdAsync($id, $subject = null, $body = null, $to = null, $toName = null, $from = null, $fromName = null)
+    public function sendMailByIdAsync($subject = null, $body = null, $to = null, $from = null, $id = null, $toName = null, $fromName = null)
     {
-        return $this->sendMailByIdAsyncWithHttpInfo($id, $subject, $body, $to, $toName, $from, $fromName)
+        return $this->sendMailByIdAsyncWithHttpInfo($subject, $body, $to, $from, $id, $toName, $fromName)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1641,21 +1326,21 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  int $id User ID (required)
-     * @param  string $subject (optional)
-     * @param  string $body (optional)
-     * @param  string $to (optional)
-     * @param  string $toName (optional)
-     * @param  string $from (optional)
-     * @param  string $fromName (optional)
+     * @param  string $subject The Subject of the email (optional)
+     * @param  string $body The contents of the email (optional)
+     * @param  string $to The email address of who this email will be sent to. (optional)
+     * @param  string $from The email address of who this email will be sent from. (optional)
+     * @param  int $id The ID of your mail order this will be sent through. (optional)
+     * @param  string $toName The name or title of who this email is being sent to. (optional)
+     * @param  string $fromName The name or title of who this email is being sent from. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailByIdAsyncWithHttpInfo($id, $subject = null, $body = null, $to = null, $toName = null, $from = null, $fromName = null)
+    public function sendMailByIdAsyncWithHttpInfo($subject = null, $body = null, $to = null, $from = null, $id = null, $toName = null, $fromName = null)
     {
         $returnType = '\Interserver\Mailbaby\Model\GenericResponse';
-        $request = $this->sendMailByIdRequest($id, $subject, $body, $to, $toName, $from, $fromName);
+        $request = $this->sendMailByIdRequest($subject, $body, $to, $from, $id, $toName, $fromName);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1694,27 +1379,21 @@ class DefaultApi
     /**
      * Create request for operation 'sendMailById'
      *
-     * @param  int $id User ID (required)
-     * @param  string $subject (optional)
-     * @param  string $body (optional)
-     * @param  string $to (optional)
-     * @param  string $toName (optional)
-     * @param  string $from (optional)
-     * @param  string $fromName (optional)
+     * @param  string $subject The Subject of the email (optional)
+     * @param  string $body The contents of the email (optional)
+     * @param  string $to The email address of who this email will be sent to. (optional)
+     * @param  string $from The email address of who this email will be sent from. (optional)
+     * @param  int $id The ID of your mail order this will be sent through. (optional)
+     * @param  string $toName The name or title of who this email is being sent to. (optional)
+     * @param  string $fromName The name or title of who this email is being sent from. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function sendMailByIdRequest($id, $subject = null, $body = null, $to = null, $toName = null, $from = null, $fromName = null)
+    public function sendMailByIdRequest($subject = null, $body = null, $to = null, $from = null, $id = null, $toName = null, $fromName = null)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling sendMailById'
-            );
-        }
 
-        $resourcePath = '/mail/{id}/send';
+        $resourcePath = '/mail/send';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1755,17 +1434,6 @@ class DefaultApi
             }
         }
         // query params
-        if ($toName !== null) {
-            if('form' === 'form' && is_array($toName)) {
-                foreach($toName as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['toName'] = $toName;
-            }
-        }
-        // query params
         if ($from !== null) {
             if('form' === 'form' && is_array($from)) {
                 foreach($from as $key => $value) {
@@ -1774,6 +1442,28 @@ class DefaultApi
             }
             else {
                 $queryParams['from'] = $from;
+            }
+        }
+        // query params
+        if ($id !== null) {
+            if('form' === 'form' && is_array($id)) {
+                foreach($id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['id'] = $id;
+            }
+        }
+        // query params
+        if ($toName !== null) {
+            if('form' === 'form' && is_array($toName)) {
+                foreach($toName as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['toName'] = $toName;
             }
         }
         // query params
@@ -1789,14 +1479,6 @@ class DefaultApi
         }
 
 
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
 
 
         if ($multipart) {
@@ -1839,16 +1521,6 @@ class DefaultApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
         if ($apiKey !== null) {
             $headers['X-API-KEY'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2063,16 +1735,6 @@ class DefaultApi
         if ($apiKey !== null) {
             $headers['X-API-KEY'] = $apiKey;
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
-        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -2099,7 +1761,7 @@ class DefaultApi
      *
      * displays the mail log
      *
-     * @param  int $id User ID (required)
+     * @param  int $id The ID of your mail order this will be sent through. (optional)
      * @param  string $searchString pass an optional search string for looking up inventory (optional)
      * @param  int $skip number of records to skip for pagination (optional)
      * @param  int $limit maximum number of records to return (optional)
@@ -2108,7 +1770,7 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\MailLog[]
      */
-    public function viewMailLogById($id, $searchString = null, $skip = null, $limit = null)
+    public function viewMailLogById($id = null, $searchString = null, $skip = null, $limit = null)
     {
         list($response) = $this->viewMailLogByIdWithHttpInfo($id, $searchString, $skip, $limit);
         return $response;
@@ -2119,7 +1781,7 @@ class DefaultApi
      *
      * displays the mail log
      *
-     * @param  int $id User ID (required)
+     * @param  int $id The ID of your mail order this will be sent through. (optional)
      * @param  string $searchString pass an optional search string for looking up inventory (optional)
      * @param  int $skip number of records to skip for pagination (optional)
      * @param  int $limit maximum number of records to return (optional)
@@ -2128,7 +1790,7 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\MailLog[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function viewMailLogByIdWithHttpInfo($id, $searchString = null, $skip = null, $limit = null)
+    public function viewMailLogByIdWithHttpInfo($id = null, $searchString = null, $skip = null, $limit = null)
     {
         $request = $this->viewMailLogByIdRequest($id, $searchString, $skip, $limit);
 
@@ -2210,7 +1872,7 @@ class DefaultApi
      *
      * displays the mail log
      *
-     * @param  int $id User ID (required)
+     * @param  int $id The ID of your mail order this will be sent through. (optional)
      * @param  string $searchString pass an optional search string for looking up inventory (optional)
      * @param  int $skip number of records to skip for pagination (optional)
      * @param  int $limit maximum number of records to return (optional)
@@ -2218,7 +1880,7 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function viewMailLogByIdAsync($id, $searchString = null, $skip = null, $limit = null)
+    public function viewMailLogByIdAsync($id = null, $searchString = null, $skip = null, $limit = null)
     {
         return $this->viewMailLogByIdAsyncWithHttpInfo($id, $searchString, $skip, $limit)
             ->then(
@@ -2233,7 +1895,7 @@ class DefaultApi
      *
      * displays the mail log
      *
-     * @param  int $id User ID (required)
+     * @param  int $id The ID of your mail order this will be sent through. (optional)
      * @param  string $searchString pass an optional search string for looking up inventory (optional)
      * @param  int $skip number of records to skip for pagination (optional)
      * @param  int $limit maximum number of records to return (optional)
@@ -2241,7 +1903,7 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function viewMailLogByIdAsyncWithHttpInfo($id, $searchString = null, $skip = null, $limit = null)
+    public function viewMailLogByIdAsyncWithHttpInfo($id = null, $searchString = null, $skip = null, $limit = null)
     {
         $returnType = '\Interserver\Mailbaby\Model\MailLog[]';
         $request = $this->viewMailLogByIdRequest($id, $searchString, $skip, $limit);
@@ -2283,7 +1945,7 @@ class DefaultApi
     /**
      * Create request for operation 'viewMailLogById'
      *
-     * @param  int $id User ID (required)
+     * @param  int $id The ID of your mail order this will be sent through. (optional)
      * @param  string $searchString pass an optional search string for looking up inventory (optional)
      * @param  int $skip number of records to skip for pagination (optional)
      * @param  int $limit maximum number of records to return (optional)
@@ -2291,14 +1953,8 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function viewMailLogByIdRequest($id, $searchString = null, $skip = null, $limit = null)
+    public function viewMailLogByIdRequest($id = null, $searchString = null, $skip = null, $limit = null)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling viewMailLogById'
-            );
-        }
         if ($skip !== null && $skip < 0) {
             throw new \InvalidArgumentException('invalid value for "$skip" when calling DefaultApi.viewMailLogById, must be bigger than or equal to 0.');
         }
@@ -2311,13 +1967,24 @@ class DefaultApi
         }
 
 
-        $resourcePath = '/mail/{id}/log';
+        $resourcePath = '/mail/log';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($id !== null) {
+            if('form' === 'form' && is_array($id)) {
+                foreach($id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['id'] = $id;
+            }
+        }
         // query params
         if ($searchString !== null) {
             if('form' === 'form' && is_array($searchString)) {
@@ -2353,14 +2020,6 @@ class DefaultApi
         }
 
 
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
 
 
         if ($multipart) {
@@ -2403,16 +2062,6 @@ class DefaultApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
         if ($apiKey !== null) {
             $headers['X-API-KEY'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-LOGIN');
-        if ($apiKey !== null) {
-            $headers['X-API-LOGIN'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-PASS');
-        if ($apiKey !== null) {
-            $headers['X-API-PASS'] = $apiKey;
         }
 
         $defaultHeaders = [];

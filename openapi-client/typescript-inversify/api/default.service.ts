@@ -41,65 +41,26 @@ export class DefaultService {
     }
 
     /**
-     * Gets mail order information by id
-     * returns information about a mail order in the system with the given id.
-     * @param id User ID
-     
-     */
-    public getMailById(id: number, observe?: 'body', headers?: Headers): Observable<MailOrder>;
-    public getMailById(id: number, observe?: 'response', headers?: Headers): Observable<HttpResponse<MailOrder>>;
-    public getMailById(id: number, observe: any = 'body', headers: Headers = {}): Observable<any> {
-        if (id === null || id === undefined){
-            throw new Error('Required parameter id was null or undefined when calling getMailById.');
-        }
-
-        // authentication (apiKeyAuth) required
-        if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-KEY']) {
-            headers['X-API-KEY'] = this.APIConfiguration.apiKeys['X-API-KEY'];
-        }
-        // authentication (apiLoginAuth) required
-        if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-LOGIN']) {
-            headers['X-API-LOGIN'] = this.APIConfiguration.apiKeys['X-API-LOGIN'];
-        }
-        // authentication (apiPasswordAuth) required
-        if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-PASS']) {
-            headers['X-API-PASS'] = this.APIConfiguration.apiKeys['X-API-PASS'];
-        }
-        headers['Accept'] = 'application/json';
-
-        const response: Observable<HttpResponse<MailOrder>> = this.httpClient.get(`${this.basePath}/mail/${encodeURIComponent(String(id))}`, headers);
-        if (observe === 'body') {
-               return response.pipe(
-                   map((httpResponse: HttpResponse) => <MailOrder>(httpResponse.response))
-               );
-        }
-        return response;
-    }
-
-
-    /**
      * displays a list of mail service orders
      * 
+     * @param id The ID of your mail order this will be sent through.
      
      */
-    public getMailOrders(observe?: 'body', headers?: Headers): Observable<Array<MailOrder>>;
-    public getMailOrders(observe?: 'response', headers?: Headers): Observable<HttpResponse<Array<MailOrder>>>;
-    public getMailOrders(observe: any = 'body', headers: Headers = {}): Observable<any> {
+    public getMailOrders(id?: number, observe?: 'body', headers?: Headers): Observable<Array<MailOrder>>;
+    public getMailOrders(id?: number, observe?: 'response', headers?: Headers): Observable<HttpResponse<Array<MailOrder>>>;
+    public getMailOrders(id?: number, observe: any = 'body', headers: Headers = {}): Observable<any> {
+        let queryParameters: string[] = [];
+        if (id !== undefined) {
+            queryParameters.push('id='+encodeURIComponent(String(id)));
+        }
+
         // authentication (apiKeyAuth) required
         if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-KEY']) {
             headers['X-API-KEY'] = this.APIConfiguration.apiKeys['X-API-KEY'];
-        }
-        // authentication (apiLoginAuth) required
-        if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-LOGIN']) {
-            headers['X-API-LOGIN'] = this.APIConfiguration.apiKeys['X-API-LOGIN'];
-        }
-        // authentication (apiPasswordAuth) required
-        if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-PASS']) {
-            headers['X-API-PASS'] = this.APIConfiguration.apiKeys['X-API-PASS'];
         }
         headers['Accept'] = 'application/json, application/xml, text/plain';
 
-        const response: Observable<HttpResponse<Array<MailOrder>>> = this.httpClient.get(`${this.basePath}/mail`, headers);
+        const response: Observable<HttpResponse<Array<MailOrder>>> = this.httpClient.get(`${this.basePath}/mail?${queryParameters.join('&')}`, headers);
         if (observe === 'body') {
                return response.pipe(
                    map((httpResponse: HttpResponse) => <Array<MailOrder>>(httpResponse.response))
@@ -142,14 +103,6 @@ export class DefaultService {
         if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-KEY']) {
             headers['X-API-KEY'] = this.APIConfiguration.apiKeys['X-API-KEY'];
         }
-        // authentication (apiLoginAuth) required
-        if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-LOGIN']) {
-            headers['X-API-LOGIN'] = this.APIConfiguration.apiKeys['X-API-LOGIN'];
-        }
-        // authentication (apiPasswordAuth) required
-        if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-PASS']) {
-            headers['X-API-PASS'] = this.APIConfiguration.apiKeys['X-API-PASS'];
-        }
         headers['Accept'] = 'application/json';
         headers['Content-Type'] = 'application/json';
 
@@ -166,17 +119,12 @@ export class DefaultService {
     /**
      * Sends an Email with Advanced Options
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @param id User ID
      * @param sendMail 
      
      */
-    public sendAdvMailById(id: number, sendMail: SendMail, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
-    public sendAdvMailById(id: number, sendMail: SendMail, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
-    public sendAdvMailById(id: number, sendMail: SendMail, observe: any = 'body', headers: Headers = {}): Observable<any> {
-        if (id === null || id === undefined){
-            throw new Error('Required parameter id was null or undefined when calling sendAdvMailById.');
-        }
-
+    public sendAdvMailById(sendMail: SendMail, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
+    public sendAdvMailById(sendMail: SendMail, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
+    public sendAdvMailById(sendMail: SendMail, observe: any = 'body', headers: Headers = {}): Observable<any> {
         if (sendMail === null || sendMail === undefined){
             throw new Error('Required parameter sendMail was null or undefined when calling sendAdvMailById.');
         }
@@ -185,18 +133,10 @@ export class DefaultService {
         if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-KEY']) {
             headers['X-API-KEY'] = this.APIConfiguration.apiKeys['X-API-KEY'];
         }
-        // authentication (apiLoginAuth) required
-        if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-LOGIN']) {
-            headers['X-API-LOGIN'] = this.APIConfiguration.apiKeys['X-API-LOGIN'];
-        }
-        // authentication (apiPasswordAuth) required
-        if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-PASS']) {
-            headers['X-API-PASS'] = this.APIConfiguration.apiKeys['X-API-PASS'];
-        }
         headers['Accept'] = 'application/json';
         headers['Content-Type'] = 'application/json';
 
-        const response: Observable<HttpResponse<GenericResponse>> = this.httpClient.post(`${this.basePath}/mail/${encodeURIComponent(String(id))}/advsend`, sendMail , headers);
+        const response: Observable<HttpResponse<GenericResponse>> = this.httpClient.post(`${this.basePath}/mail/advsend`, sendMail , headers);
         if (observe === 'body') {
                return response.pipe(
                    map((httpResponse: HttpResponse) => <GenericResponse>(httpResponse.response))
@@ -209,22 +149,18 @@ export class DefaultService {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param id User ID
-     * @param subject 
-     * @param body 
-     * @param to 
-     * @param toName 
-     * @param from 
-     * @param fromName 
+     * @param subject The Subject of the email
+     * @param body The contents of the email
+     * @param to The email address of who this email will be sent to.
+     * @param from The email address of who this email will be sent from.
+     * @param id The ID of your mail order this will be sent through.
+     * @param toName The name or title of who this email is being sent to.
+     * @param fromName The name or title of who this email is being sent from.
      
      */
-    public sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
-    public sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
-    public sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, observe: any = 'body', headers: Headers = {}): Observable<any> {
-        if (id === null || id === undefined){
-            throw new Error('Required parameter id was null or undefined when calling sendMailById.');
-        }
-
+    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
+    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
+    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, observe: any = 'body', headers: Headers = {}): Observable<any> {
         let queryParameters: string[] = [];
         if (subject !== undefined) {
             queryParameters.push('subject='+encodeURIComponent(String(subject)));
@@ -235,11 +171,14 @@ export class DefaultService {
         if (to !== undefined) {
             queryParameters.push('to='+encodeURIComponent(String(to)));
         }
-        if (toName !== undefined) {
-            queryParameters.push('toName='+encodeURIComponent(String(toName)));
-        }
         if (from !== undefined) {
             queryParameters.push('from='+encodeURIComponent(String(from)));
+        }
+        if (id !== undefined) {
+            queryParameters.push('id='+encodeURIComponent(String(id)));
+        }
+        if (toName !== undefined) {
+            queryParameters.push('toName='+encodeURIComponent(String(toName)));
         }
         if (fromName !== undefined) {
             queryParameters.push('fromName='+encodeURIComponent(String(fromName)));
@@ -249,17 +188,9 @@ export class DefaultService {
         if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-KEY']) {
             headers['X-API-KEY'] = this.APIConfiguration.apiKeys['X-API-KEY'];
         }
-        // authentication (apiLoginAuth) required
-        if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-LOGIN']) {
-            headers['X-API-LOGIN'] = this.APIConfiguration.apiKeys['X-API-LOGIN'];
-        }
-        // authentication (apiPasswordAuth) required
-        if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-PASS']) {
-            headers['X-API-PASS'] = this.APIConfiguration.apiKeys['X-API-PASS'];
-        }
         headers['Accept'] = 'application/json';
 
-        const response: Observable<HttpResponse<GenericResponse>> = this.httpClient.post(`${this.basePath}/mail/${encodeURIComponent(String(id))}/send?${queryParameters.join('&')}`, headers);
+        const response: Observable<HttpResponse<GenericResponse>> = this.httpClient.post(`${this.basePath}/mail/send?${queryParameters.join('&')}`, headers);
         if (observe === 'body') {
                return response.pipe(
                    map((httpResponse: HttpResponse) => <GenericResponse>(httpResponse.response))
@@ -281,14 +212,6 @@ export class DefaultService {
         if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-KEY']) {
             headers['X-API-KEY'] = this.APIConfiguration.apiKeys['X-API-KEY'];
         }
-        // authentication (apiLoginAuth) required
-        if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-LOGIN']) {
-            headers['X-API-LOGIN'] = this.APIConfiguration.apiKeys['X-API-LOGIN'];
-        }
-        // authentication (apiPasswordAuth) required
-        if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-PASS']) {
-            headers['X-API-PASS'] = this.APIConfiguration.apiKeys['X-API-PASS'];
-        }
         headers['Accept'] = 'application/json';
 
         const response: Observable<HttpResponse<any>> = this.httpClient.get(`${this.basePath}/mail/order`, headers);
@@ -304,20 +227,19 @@ export class DefaultService {
     /**
      * displays the mail log
      * By passing in the appropriate options, you can search for available inventory in the system 
-     * @param id User ID
+     * @param id The ID of your mail order this will be sent through.
      * @param searchString pass an optional search string for looking up inventory
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      
      */
-    public viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, observe?: 'body', headers?: Headers): Observable<Array<MailLog>>;
-    public viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, observe?: 'response', headers?: Headers): Observable<HttpResponse<Array<MailLog>>>;
-    public viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, observe: any = 'body', headers: Headers = {}): Observable<any> {
-        if (id === null || id === undefined){
-            throw new Error('Required parameter id was null or undefined when calling viewMailLogById.');
-        }
-
+    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, observe?: 'body', headers?: Headers): Observable<Array<MailLog>>;
+    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, observe?: 'response', headers?: Headers): Observable<HttpResponse<Array<MailLog>>>;
+    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, observe: any = 'body', headers: Headers = {}): Observable<any> {
         let queryParameters: string[] = [];
+        if (id !== undefined) {
+            queryParameters.push('id='+encodeURIComponent(String(id)));
+        }
         if (searchString !== undefined) {
             queryParameters.push('searchString='+encodeURIComponent(String(searchString)));
         }
@@ -332,17 +254,9 @@ export class DefaultService {
         if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-KEY']) {
             headers['X-API-KEY'] = this.APIConfiguration.apiKeys['X-API-KEY'];
         }
-        // authentication (apiLoginAuth) required
-        if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-LOGIN']) {
-            headers['X-API-LOGIN'] = this.APIConfiguration.apiKeys['X-API-LOGIN'];
-        }
-        // authentication (apiPasswordAuth) required
-        if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-PASS']) {
-            headers['X-API-PASS'] = this.APIConfiguration.apiKeys['X-API-PASS'];
-        }
         headers['Accept'] = 'application/json';
 
-        const response: Observable<HttpResponse<Array<MailLog>>> = this.httpClient.get(`${this.basePath}/mail/${encodeURIComponent(String(id))}/log?${queryParameters.join('&')}`, headers);
+        const response: Observable<HttpResponse<Array<MailLog>>> = this.httpClient.get(`${this.basePath}/mail/log?${queryParameters.join('&')}`, headers);
         if (observe === 'body') {
                return response.pipe(
                    map((httpResponse: HttpResponse) => <Array<MailLog>>(httpResponse.response))

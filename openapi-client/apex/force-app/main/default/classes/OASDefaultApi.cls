@@ -26,38 +26,18 @@ public class OASDefaultApi {
     }
 
     /**
-     * Gets mail order information by id
-     * returns information about a mail order in the system with the given id.
-     * @param id User ID (required)
-     * @return OASMailOrder
-     * @throws OAS.ApiException if fails to make API call
-     */
-    public OASMailOrder getMailById(Map<String, Object> params) {
-        client.assertNotNull(params.get('id'), 'id');
-        List<OAS.Param> query = new List<OAS.Param>();
-        List<OAS.Param> form = new List<OAS.Param>();
-
-        return (OASMailOrder) client.invoke(
-            'GET', '/mail/{id}', '',
-            query, form,
-            new Map<String, Object>{
-                'id' => (Long) params.get('id')
-            },
-            new Map<String, Object>(),
-            new List<String>{ 'application/json' },
-            new List<String>(),
-            new List<String> { 'apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth' },
-            OASMailOrder.class
-        );
-    }
-    /**
      * displays a list of mail service orders
      * 
+     * @param id The ID of your mail order this will be sent through. (optional)
      * @return List<OASMailOrder>
      * @throws OAS.ApiException if fails to make API call
      */
-    public List<OASMailOrder> getMailOrders() {
+    public List<OASMailOrder> getMailOrders(Map<String, Object> params) {
         List<OAS.Param> query = new List<OAS.Param>();
+
+        // cast query params to verify their expected type
+        query.addAll(client.makeParam('id', (Long) params.get('id')));
+
         List<OAS.Param> form = new List<OAS.Param>();
 
         return (List<OASMailOrder>) client.invoke(
@@ -67,7 +47,7 @@ public class OASDefaultApi {
             new Map<String, Object>(),
             new List<String>{ 'application/json', 'application/xml', 'text/plain' },
             new List<String>(),
-            new List<String> { 'apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth' },
+            new List<String> { 'apiKeyAuth' },
             List<OASMailOrder>.class
         );
     }
@@ -109,75 +89,69 @@ public class OASDefaultApi {
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>{ 'application/json' },
-            new List<String> { 'apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth' },
+            new List<String> { 'apiKeyAuth' },
             null
         );
     }
     /**
      * Sends an Email with Advanced Options
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @param id User ID (required)
      * @param oaSSendMail  (required)
      * @return OASGenericResponse
      * @throws OAS.ApiException if fails to make API call
      */
     public OASGenericResponse sendAdvMailById(Map<String, Object> params) {
-        client.assertNotNull(params.get('id'), 'id');
         client.assertNotNull(params.get('oaSSendMail'), 'oaSSendMail');
         List<OAS.Param> query = new List<OAS.Param>();
         List<OAS.Param> form = new List<OAS.Param>();
 
         return (OASGenericResponse) client.invoke(
-            'POST', '/mail/{id}/advsend',
+            'POST', '/mail/advsend',
             (OASSendMail) params.get('oaSSendMail'),
             query, form,
-            new Map<String, Object>{
-                'id' => (Long) params.get('id')
-            },
+            new Map<String, Object>(),
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
-            new List<String>{ 'application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain' },
-            new List<String> { 'apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth' },
+            new List<String>{ 'application/json' },
+            new List<String> { 'apiKeyAuth' },
             OASGenericResponse.class
         );
     }
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param id User ID (required)
-     * @param subject  (optional)
-     * @param body  (optional)
-     * @param to  (optional)
-     * @param toName  (optional)
-     * @param r_from  (optional)
-     * @param fromName  (optional)
+     * @param subject The Subject of the email (optional)
+     * @param body The contents of the email (optional)
+     * @param to The email address of who this email will be sent to. (optional)
+     * @param r_from The email address of who this email will be sent from. (optional)
+     * @param id The ID of your mail order this will be sent through. (optional)
+     * @param toName The name or title of who this email is being sent to. (optional)
+     * @param fromName The name or title of who this email is being sent from. (optional)
      * @return OASGenericResponse
      * @throws OAS.ApiException if fails to make API call
      */
     public OASGenericResponse sendMailById(Map<String, Object> params) {
-        client.assertNotNull(params.get('id'), 'id');
         List<OAS.Param> query = new List<OAS.Param>();
 
         // cast query params to verify their expected type
         query.addAll(client.makeParam('subject', (String) params.get('subject')));
         query.addAll(client.makeParam('body', (String) params.get('body')));
         query.addAll(client.makeParam('to', (String) params.get('to')));
-        query.addAll(client.makeParam('toName', (String) params.get('toName')));
         query.addAll(client.makeParam('from', (String) params.get('r_from')));
+        query.addAll(client.makeParam('id', (Long) params.get('id')));
+        query.addAll(client.makeParam('toName', (String) params.get('toName')));
         query.addAll(client.makeParam('fromName', (String) params.get('fromName')));
 
         List<OAS.Param> form = new List<OAS.Param>();
 
         return (OASGenericResponse) client.invoke(
-            'POST', '/mail/{id}/send', '',
+            'POST', '/mail/send', '',
             query, form,
-            new Map<String, Object>{
-                'id' => (Long) params.get('id')
-            },
+            new Map<String, Object>(),
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>(),
-            new List<String> { 'apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth' },
+            new List<String> { 'apiKeyAuth' },
             OASGenericResponse.class
         );
     }
@@ -197,14 +171,14 @@ public class OASDefaultApi {
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>(),
-            new List<String> { 'apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth' },
+            new List<String> { 'apiKeyAuth' },
             null
         );
     }
     /**
      * displays the mail log
      * By passing in the appropriate options, you can search for\navailable inventory in the system\n
-     * @param id User ID (required)
+     * @param id The ID of your mail order this will be sent through. (optional)
      * @param searchString pass an optional search string for looking up inventory (optional)
      * @param skip number of records to skip for pagination (optional)
      * @param r_limit maximum number of records to return (optional)
@@ -212,10 +186,10 @@ public class OASDefaultApi {
      * @throws OAS.ApiException if fails to make API call
      */
     public List<OASMailLog> viewMailLogById(Map<String, Object> params) {
-        client.assertNotNull(params.get('id'), 'id');
         List<OAS.Param> query = new List<OAS.Param>();
 
         // cast query params to verify their expected type
+        query.addAll(client.makeParam('id', (Long) params.get('id')));
         query.addAll(client.makeParam('searchString', (String) params.get('searchString')));
         query.addAll(client.makeParam('skip', (Integer) params.get('skip')));
         query.addAll(client.makeParam('limit', (Integer) params.get('r_limit')));
@@ -223,15 +197,13 @@ public class OASDefaultApi {
         List<OAS.Param> form = new List<OAS.Param>();
 
         return (List<OASMailLog>) client.invoke(
-            'GET', '/mail/{id}/log', '',
+            'GET', '/mail/log', '',
             query, form,
-            new Map<String, Object>{
-                'id' => (Long) params.get('id')
-            },
+            new Map<String, Object>(),
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
             new List<String>(),
-            new List<String> { 'apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth' },
+            new List<String> { 'apiKeyAuth' },
             List<OASMailLog>.class
         );
     }

@@ -44,79 +44,26 @@ export class DefaultService {
     }
 
     /**
-     * Gets mail order information by id
-     * returns information about a mail order in the system with the given id.
-     * @param id User ID
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getMailById(id: number, ): Observable<AxiosResponse<MailOrder>>;
-    public getMailById(id: number, ): Observable<any> {
-
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getMailById.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (apiKeyAuth) required
-        if (this.configuration.apiKeys["X-API-KEY"]) {
-            headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
-        }
-
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers['X-API-LOGIN'] = this.configuration.apiKeys["X-API-LOGIN"];
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys["X-API-PASS"]) {
-            headers['X-API-PASS'] = this.configuration.apiKeys["X-API-PASS"];
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers['Accept'] = httpHeaderAcceptSelected;
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-        return this.httpClient.get<MailOrder>(`${this.basePath}/mail/${encodeURIComponent(String(id))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers
-            }
-        );
-    }
-    /**
      * displays a list of mail service orders
      * 
+     * @param id The ID of your mail order this will be sent through.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getMailOrders(): Observable<AxiosResponse<Array<MailOrder>>>;
-    public getMailOrders(): Observable<any> {
+    public getMailOrders(id?: number, ): Observable<AxiosResponse<Array<MailOrder>>>;
+    public getMailOrders(id?: number, ): Observable<any> {
+
+
+        let queryParameters = {};   
+        if (id !== undefined && id !== null) {
+            queryParameters['id'] = <any>id;
+        }
 
         let headers = this.defaultHeaders;
 
         // authentication (apiKeyAuth) required
         if (this.configuration.apiKeys["X-API-KEY"]) {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
-        }
-
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers['X-API-LOGIN'] = this.configuration.apiKeys["X-API-LOGIN"];
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys["X-API-PASS"]) {
-            headers['X-API-PASS'] = this.configuration.apiKeys["X-API-PASS"];
         }
 
         // to determine the Accept header
@@ -135,6 +82,7 @@ export class DefaultService {
         ];
         return this.httpClient.get<Array<MailOrder>>(`${this.basePath}/mail`,
             {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers
             }
@@ -187,16 +135,6 @@ export class DefaultService {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
         }
 
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers['X-API-LOGIN'] = this.configuration.apiKeys["X-API-LOGIN"];
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys["X-API-PASS"]) {
-            headers['X-API-PASS'] = this.configuration.apiKeys["X-API-PASS"];
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
             'application/json'
@@ -225,17 +163,12 @@ export class DefaultService {
     /**
      * Sends an Email with Advanced Options
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @param id User ID
      * @param sendMail 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendAdvMailById(id: number, sendMail: SendMail, ): Observable<AxiosResponse<GenericResponse>>;
-    public sendAdvMailById(id: number, sendMail: SendMail, ): Observable<any> {
-
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling sendAdvMailById.');
-        }
+    public sendAdvMailById(sendMail: SendMail, ): Observable<AxiosResponse<GenericResponse>>;
+    public sendAdvMailById(sendMail: SendMail, ): Observable<any> {
 
         if (sendMail === null || sendMail === undefined) {
             throw new Error('Required parameter sendMail was null or undefined when calling sendAdvMailById.');
@@ -246,16 +179,6 @@ export class DefaultService {
         // authentication (apiKeyAuth) required
         if (this.configuration.apiKeys["X-API-KEY"]) {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
-        }
-
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers['X-API-LOGIN'] = this.configuration.apiKeys["X-API-LOGIN"];
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys["X-API-PASS"]) {
-            headers['X-API-PASS'] = this.configuration.apiKeys["X-API-PASS"];
         }
 
         // to determine the Accept header
@@ -269,16 +192,13 @@ export class DefaultService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/json',
-            'application/xml',
-            'application/x-www-form-urlencoded',
-            'text/plain'
+            'application/json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
             headers['Content-Type'] = httpContentTypeSelected;
         }
-        return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/${encodeURIComponent(String(id))}/advsend`,
+        return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/advsend`,
             sendMail,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -289,22 +209,19 @@ export class DefaultService {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param id User ID
-     * @param subject 
-     * @param body 
-     * @param to 
-     * @param toName 
-     * @param from 
-     * @param fromName 
+     * @param subject The Subject of the email
+     * @param body The contents of the email
+     * @param to The email address of who this email will be sent to.
+     * @param from The email address of who this email will be sent from.
+     * @param id The ID of your mail order this will be sent through.
+     * @param toName The name or title of who this email is being sent to.
+     * @param fromName The name or title of who this email is being sent from.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, ): Observable<AxiosResponse<GenericResponse>>;
-    public sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, ): Observable<any> {
+    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, ): Observable<AxiosResponse<GenericResponse>>;
+    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, ): Observable<any> {
 
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling sendMailById.');
-        }
 
 
 
@@ -322,11 +239,14 @@ export class DefaultService {
         if (to !== undefined && to !== null) {
             queryParameters['to'] = <any>to;
         }
-        if (toName !== undefined && toName !== null) {
-            queryParameters['toName'] = <any>toName;
-        }
         if (from !== undefined && from !== null) {
             queryParameters['from'] = <any>from;
+        }
+        if (id !== undefined && id !== null) {
+            queryParameters['id'] = <any>id;
+        }
+        if (toName !== undefined && toName !== null) {
+            queryParameters['toName'] = <any>toName;
         }
         if (fromName !== undefined && fromName !== null) {
             queryParameters['fromName'] = <any>fromName;
@@ -337,16 +257,6 @@ export class DefaultService {
         // authentication (apiKeyAuth) required
         if (this.configuration.apiKeys["X-API-KEY"]) {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
-        }
-
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers['X-API-LOGIN'] = this.configuration.apiKeys["X-API-LOGIN"];
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys["X-API-PASS"]) {
-            headers['X-API-PASS'] = this.configuration.apiKeys["X-API-PASS"];
         }
 
         // to determine the Accept header
@@ -361,7 +271,7 @@ export class DefaultService {
         // to determine the Content-Type header
         const consumes: string[] = [
         ];
-        return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/${encodeURIComponent(String(id))}/send`,
+        return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/send`,
             null,
             {
                 params: queryParameters,
@@ -386,16 +296,6 @@ export class DefaultService {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
         }
 
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers['X-API-LOGIN'] = this.configuration.apiKeys["X-API-LOGIN"];
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys["X-API-PASS"]) {
-            headers['X-API-PASS'] = this.configuration.apiKeys["X-API-PASS"];
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
             'application/json'
@@ -418,24 +318,24 @@ export class DefaultService {
     /**
      * displays the mail log
      * By passing in the appropriate options, you can search for available inventory in the system 
-     * @param id User ID
+     * @param id The ID of your mail order this will be sent through.
      * @param searchString pass an optional search string for looking up inventory
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, ): Observable<AxiosResponse<Array<MailLog>>>;
-    public viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, ): Observable<any> {
+    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, ): Observable<AxiosResponse<Array<MailLog>>>;
+    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, ): Observable<any> {
 
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling viewMailLogById.');
-        }
 
 
 
 
         let queryParameters = {};   
+        if (id !== undefined && id !== null) {
+            queryParameters['id'] = <any>id;
+        }
         if (searchString !== undefined && searchString !== null) {
             queryParameters['searchString'] = <any>searchString;
         }
@@ -453,16 +353,6 @@ export class DefaultService {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
         }
 
-        // authentication (apiLoginAuth) required
-        if (this.configuration.apiKeys["X-API-LOGIN"]) {
-            headers['X-API-LOGIN'] = this.configuration.apiKeys["X-API-LOGIN"];
-        }
-
-        // authentication (apiPasswordAuth) required
-        if (this.configuration.apiKeys["X-API-PASS"]) {
-            headers['X-API-PASS'] = this.configuration.apiKeys["X-API-PASS"];
-        }
-
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
             'application/json'
@@ -475,7 +365,7 @@ export class DefaultService {
         // to determine the Content-Type header
         const consumes: string[] = [
         ];
-        return this.httpClient.get<Array<MailLog>>(`${this.basePath}/mail/${encodeURIComponent(String(id))}/log`,
+        return this.httpClient.get<Array<MailLog>>(`${this.basePath}/mail/log`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,

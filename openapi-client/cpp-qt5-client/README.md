@@ -93,24 +93,18 @@ void Example::exampleFunction1(){
      
       // Configure API key authorization: apiKeyAuth
       apiInstance.setApiKey("YOUR API KEY NAME","YOUR API KEY");
-
-      // Configure API key authorization: apiLoginAuth
-      apiInstance.setApiKey("YOUR API KEY NAME","YOUR API KEY");
-
-      // Configure API key authorization: apiPasswordAuth
-      apiInstance.setApiKey("YOUR API KEY NAME","YOUR API KEY");
         
       QEventLoop loop;
-      connect(&apiInstance, &OAIDefaultApi::getMailByIdSignal, [&]() {
+      connect(&apiInstance, &OAIDefaultApi::getMailOrdersSignal, [&]() {
           loop.quit();
       });
-      connect(&apiInstance, &OAIDefaultApi::getMailByIdSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
+      connect(&apiInstance, &OAIDefaultApi::getMailOrdersSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
           qDebug() << "Error happened while issuing request : " << error_str;
           loop.quit();
       });
 
-      qint64 id = create(); // qint64 | User ID
-      apiInstance.getMailById(id);
+      qint64 id = create(); // qint64 | The ID of your mail order this will be sent through.
+      apiInstance.getMailOrders(id);
       QTimer::singleShot(5000, &loop, &QEventLoop::quit);
       loop.exec();
   }
@@ -123,14 +117,13 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*OAIDefaultApi* | [**getMailById**](OAIDefaultApi.md#getMailById) | **GET** /mail/{id} | Gets mail order information by id
 *OAIDefaultApi* | [**getMailOrders**](OAIDefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 *OAIDefaultApi* | [**pingServer**](OAIDefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 *OAIDefaultApi* | [**placeMailOrder**](OAIDefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-*OAIDefaultApi* | [**sendAdvMailById**](OAIDefaultApi.md#sendAdvMailById) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-*OAIDefaultApi* | [**sendMailById**](OAIDefaultApi.md#sendMailById) | **POST** /mail/{id}/send | Sends an Email
+*OAIDefaultApi* | [**sendAdvMailById**](OAIDefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*OAIDefaultApi* | [**sendMailById**](OAIDefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
 *OAIDefaultApi* | [**validateMailOrder**](OAIDefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-*OAIDefaultApi* | [**viewMailLogById**](OAIDefaultApi.md#viewMailLogById) | **GET** /mail/{id}/log | displays the mail log
+*OAIDefaultApi* | [**viewMailLogById**](OAIDefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
 
 ## Documentation for Models
@@ -204,20 +197,6 @@ Authentication schemes defined for the API:
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-### apiLoginAuth
-
-
-- **Type**: API key
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-### apiPasswordAuth
-
-
-- **Type**: API key
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 
 

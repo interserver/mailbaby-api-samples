@@ -12,48 +12,27 @@ defmodule MailBabyAPI.Api.Default do
 
 
   @doc """
-  Gets mail order information by id
-  returns information about a mail order in the system with the given id.
-
-  ## Parameters
-
-  - connection (MailBabyAPI.Connection): Connection to server
-  - id (integer()): User ID
-  - opts (KeywordList): [optional] Optional parameters
-  ## Returns
-
-  {:ok, MailBabyAPI.Model.MailOrder.t} on success
-  {:error, Tesla.Env.t} on failure
-  """
-  @spec get_mail_by_id(Tesla.Env.client, integer(), keyword()) :: {:ok, MailBabyAPI.Model.MailOrder.t} | {:error, Tesla.Env.t}
-  def get_mail_by_id(connection, id, _opts \\ []) do
-    %{}
-    |> method(:get)
-    |> url("/mail/#{id}")
-    |> Enum.into([])
-    |> (&Connection.request(connection, &1)).()
-    |> evaluate_response([
-      { 200, %MailBabyAPI.Model.MailOrder{}}
-    ])
-  end
-
-  @doc """
   displays a list of mail service orders
 
   ## Parameters
 
   - connection (MailBabyAPI.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
+    - :id (integer()): The ID of your mail order this will be sent through.
   ## Returns
 
   {:ok, [%MailOrder{}, ...]} on success
   {:error, Tesla.Env.t} on failure
   """
   @spec get_mail_orders(Tesla.Env.client, keyword()) :: {:ok, list(MailBabyAPI.Model.MailOrder.t)} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:error, Tesla.Env.t}
-  def get_mail_orders(connection, _opts \\ []) do
+  def get_mail_orders(connection, opts \\ []) do
+    optional_params = %{
+      :"id" => :query
+    }
     %{}
     |> method(:get)
     |> url("/mail")
+    |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
@@ -128,7 +107,6 @@ defmodule MailBabyAPI.Api.Default do
   ## Parameters
 
   - connection (MailBabyAPI.Connection): Connection to server
-  - id (integer()): User ID
   - send_mail (SendMail): 
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
@@ -136,11 +114,11 @@ defmodule MailBabyAPI.Api.Default do
   {:ok, MailBabyAPI.Model.GenericResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec send_adv_mail_by_id(Tesla.Env.client, integer(), MailBabyAPI.Model.SendMail.t, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
-  def send_adv_mail_by_id(connection, id, send_mail, _opts \\ []) do
+  @spec send_adv_mail_by_id(Tesla.Env.client, MailBabyAPI.Model.SendMail.t, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
+  def send_adv_mail_by_id(connection, send_mail, _opts \\ []) do
     %{}
     |> method(:post)
-    |> url("/mail/#{id}/advsend")
+    |> url("/mail/advsend")
     |> add_param(:body, :body, send_mail)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
@@ -159,32 +137,33 @@ defmodule MailBabyAPI.Api.Default do
   ## Parameters
 
   - connection (MailBabyAPI.Connection): Connection to server
-  - id (integer()): User ID
   - opts (KeywordList): [optional] Optional parameters
-    - :subject (String.t): 
-    - :body (String.t): 
-    - :to (String.t): 
-    - :to_name (String.t): 
-    - :from (String.t): 
-    - :from_name (String.t): 
+    - :subject (String.t): The Subject of the email
+    - :body (String.t): The contents of the email
+    - :to (String.t): The email address of who this email will be sent to.
+    - :from (String.t): The email address of who this email will be sent from.
+    - :id (integer()): The ID of your mail order this will be sent through.
+    - :to_name (String.t): The name or title of who this email is being sent to.
+    - :from_name (String.t): The name or title of who this email is being sent from.
   ## Returns
 
   {:ok, MailBabyAPI.Model.GenericResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec send_mail_by_id(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
-  def send_mail_by_id(connection, id, opts \\ []) do
+  @spec send_mail_by_id(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
+  def send_mail_by_id(connection, opts \\ []) do
     optional_params = %{
       :"subject" => :query,
       :"body" => :query,
       :"to" => :query,
-      :"toName" => :query,
       :"from" => :query,
+      :"id" => :query,
+      :"toName" => :query,
       :"fromName" => :query
     }
     %{}
     |> method(:post)
-    |> url("/mail/#{id}/send")
+    |> url("/mail/send")
     |> add_optional_params(optional_params, opts)
     |> ensure_body()
     |> Enum.into([])
@@ -229,8 +208,8 @@ defmodule MailBabyAPI.Api.Default do
   ## Parameters
 
   - connection (MailBabyAPI.Connection): Connection to server
-  - id (integer()): User ID
   - opts (KeywordList): [optional] Optional parameters
+    - :id (integer()): The ID of your mail order this will be sent through.
     - :search_string (String.t): pass an optional search string for looking up inventory
     - :skip (integer()): number of records to skip for pagination
     - :limit (integer()): maximum number of records to return
@@ -239,16 +218,17 @@ defmodule MailBabyAPI.Api.Default do
   {:ok, [%MailLog{}, ...]} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec view_mail_log_by_id(Tesla.Env.client, integer(), keyword()) :: {:ok, list(MailBabyAPI.Model.MailLog.t)} | {:ok, nil} | {:error, Tesla.Env.t}
-  def view_mail_log_by_id(connection, id, opts \\ []) do
+  @spec view_mail_log_by_id(Tesla.Env.client, keyword()) :: {:ok, list(MailBabyAPI.Model.MailLog.t)} | {:ok, nil} | {:error, Tesla.Env.t}
+  def view_mail_log_by_id(connection, opts \\ []) do
     optional_params = %{
+      :"id" => :query,
       :"searchString" => :query,
       :"skip" => :query,
       :"limit" => :query
     }
     %{}
     |> method(:get)
-    |> url("/mail/#{id}/log")
+    |> url("/mail/log")
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()

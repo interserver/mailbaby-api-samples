@@ -30,17 +30,11 @@ my $api = OpenAPIClient::DefaultApi->new();
 isa_ok($api, 'OpenAPIClient::DefaultApi');
 
 #
-# get_mail_by_id test
-#
-# uncomment below and update the test
-#my $get_mail_by_id_id = undef; # replace NULL with a proper value
-#my $get_mail_by_id_result = $api->get_mail_by_id(id => $get_mail_by_id_id);
-
-#
 # get_mail_orders test
 #
 # uncomment below and update the test
-#my $get_mail_orders_result = $api->get_mail_orders();
+#my $get_mail_orders_id = undef; # replace NULL with a proper value
+#my $get_mail_orders_result = $api->get_mail_orders(id => $get_mail_orders_id);
 
 #
 # ping_server test
@@ -59,22 +53,21 @@ isa_ok($api, 'OpenAPIClient::DefaultApi');
 # send_adv_mail_by_id test
 #
 # uncomment below and update the test
-#my $send_adv_mail_by_id_id = undef; # replace NULL with a proper value
 #my $send_adv_mail_by_id_send_mail = undef; # replace NULL with a proper value
-#my $send_adv_mail_by_id_result = $api->send_adv_mail_by_id(id => $send_adv_mail_by_id_id, send_mail => $send_adv_mail_by_id_send_mail);
+#my $send_adv_mail_by_id_result = $api->send_adv_mail_by_id(send_mail => $send_adv_mail_by_id_send_mail);
 
 #
 # send_mail_by_id test
 #
 # uncomment below and update the test
-#my $send_mail_by_id_id = undef; # replace NULL with a proper value
 #my $send_mail_by_id_subject = undef; # replace NULL with a proper value
 #my $send_mail_by_id_body = undef; # replace NULL with a proper value
 #my $send_mail_by_id_to = undef; # replace NULL with a proper value
-#my $send_mail_by_id_to_name = undef; # replace NULL with a proper value
 #my $send_mail_by_id_from = undef; # replace NULL with a proper value
+#my $send_mail_by_id_id = undef; # replace NULL with a proper value
+#my $send_mail_by_id_to_name = undef; # replace NULL with a proper value
 #my $send_mail_by_id_from_name = undef; # replace NULL with a proper value
-#my $send_mail_by_id_result = $api->send_mail_by_id(id => $send_mail_by_id_id, subject => $send_mail_by_id_subject, body => $send_mail_by_id_body, to => $send_mail_by_id_to, to_name => $send_mail_by_id_to_name, from => $send_mail_by_id_from, from_name => $send_mail_by_id_from_name);
+#my $send_mail_by_id_result = $api->send_mail_by_id(subject => $send_mail_by_id_subject, body => $send_mail_by_id_body, to => $send_mail_by_id_to, from => $send_mail_by_id_from, id => $send_mail_by_id_id, to_name => $send_mail_by_id_to_name, from_name => $send_mail_by_id_from_name);
 
 #
 # validate_mail_order test

@@ -13,31 +13,17 @@ inherit
 feature -- Test routines
 
     
-    test_mail_by_id
-            -- Gets mail order information by id
-            -- 
-            -- returns information about a mail order in the system with the given id. 
-        local
-            l_response: MAIL_ORDER
-            l_id: INTEGER_64
-        do
-            -- TODO: Initialize required params.
-            -- l_id
-                      
-            -- l_response := api.mail_by_id(l_id)
-            assert ("not_implemented", False)
-        end
-    
     test_mail_orders
             -- displays a list of mail service orders
             -- 
             --  
         local
             l_response: LIST [MAIL_ORDER]
+            l_id: INTEGER_64
         do
             -- TODO: Initialize required params.
                       
-            -- l_response := api.mail_orders
+            -- l_response := api.mail_orders(l_id)
             assert ("not_implemented", False)
         end
     
@@ -72,14 +58,12 @@ feature -- Test routines
             -- Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc. 
         local
             l_response: GENERIC_RESPONSE
-            l_id: INTEGER_64
             l_send_mail: SEND_MAIL
         do
             -- TODO: Initialize required params.
-            -- l_id
             -- l_send_mail
                       
-            -- l_response := api.send_adv_mail_by_id(l_id, l_send_mail)
+            -- l_response := api.send_adv_mail_by_id(l_send_mail)
             assert ("not_implemented", False)
         end
     
@@ -89,18 +73,17 @@ feature -- Test routines
             -- Sends An email through one of your mail orders. 
         local
             l_response: GENERIC_RESPONSE
-            l_id: INTEGER_64
             l_subject: STRING_32
             l_body: STRING_32
             l_to: STRING_32
-            l_to_name: STRING_32
             l_var_from: STRING_32
+            l_id: INTEGER_64
+            l_to_name: STRING_32
             l_from_name: STRING_32
         do
             -- TODO: Initialize required params.
-            -- l_id
                       
-            -- l_response := api.send_mail_by_id(l_id, l_subject, l_body, l_to, l_to_name, l_var_from, l_from_name)
+            -- l_response := api.send_mail_by_id(l_subject, l_body, l_to, l_var_from, l_id, l_to_name, l_from_name)
             assert ("not_implemented", False)
         end
     
@@ -128,7 +111,6 @@ feature -- Test routines
             l_limit: INTEGER_32
         do
             -- TODO: Initialize required params.
-            -- l_id
                       
             -- l_response := api.view_mail_log_by_id(l_id, l_search_string, l_skip, l_limit)
             assert ("not_implemented", False)

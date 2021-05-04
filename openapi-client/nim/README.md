@@ -25,14 +25,13 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Module | Proc | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-api_default | getMailById | **GET** /mail/{id} | Gets mail order information by id
 api_default | getMailOrders | **GET** /mail | displays a list of mail service orders
 api_default | pingServer | **GET** /ping | Checks if the server is running
 api_default | placeMailOrder | **POST** /mail/order | places a mail order
-api_default | sendAdvMailById | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-api_default | sendMailById | **POST** /mail/{id}/send | Sends an Email
+api_default | sendAdvMailById | **POST** /mail/advsend | Sends an Email with Advanced Options
+api_default | sendMailById | **POST** /mail/send | Sends an Email
 api_default | validateMailOrder | **GET** /mail/order | validatess order details before placing an order
-api_default | viewMailLogById | **GET** /mail/{id}/log | displays the mail log
+api_default | viewMailLogById | **GET** /mail/log | displays the mail log
 
 
 To generate documentation with Nim DocGen, use:

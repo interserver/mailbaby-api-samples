@@ -14,27 +14,11 @@
 #'
 #' @section Methods:
 #' \describe{
-#' \strong{ GetMailById } \emph{ Gets mail order information by id }
-#' returns information about a mail order in the system with the given id.
-#'
-#' \itemize{
-#' \item \emph{ @param } id integer
-#' \item \emph{ @returnType } \link{MailOrder} \cr
-#'
-#'
-#' \item status code : 200 | Successful operation
-#'
-#' \item return type : MailOrder 
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' }
-#'
 #' \strong{ GetMailOrders } \emph{ displays a list of mail service orders }
 #' 
 #'
 #' \itemize{
+#' \item \emph{ @param } id integer
 #' \item \emph{ @returnType } list( \link{MailOrder} ) \cr
 #'
 #'
@@ -117,7 +101,6 @@
 #' Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 #'
 #' \itemize{
-#' \item \emph{ @param } id integer
 #' \item \emph{ @param } send.mail \link{SendMail}
 #' \item \emph{ @returnType } \link{GenericResponse} \cr
 #'
@@ -156,12 +139,12 @@
 #' Sends An email through one of your mail orders.
 #'
 #' \itemize{
-#' \item \emph{ @param } id integer
 #' \item \emph{ @param } subject character
 #' \item \emph{ @param } body character
 #' \item \emph{ @param } to character
-#' \item \emph{ @param } to.name character
 #' \item \emph{ @param } from character
+#' \item \emph{ @param } id integer
+#' \item \emph{ @param } to.name character
 #' \item \emph{ @param } from.name character
 #' \item \emph{ @returnType } \link{GenericResponse} \cr
 #'
@@ -250,29 +233,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' ####################  GetMailById  ####################
-#'
-#' library(openapi)
-#' var.id <- 56 # integer | User ID
-#'
-#' #Gets mail order information by id
-#' api.instance <- DefaultApi$new()
-#'
-#' #Configure API key authorization: apiKeyAuth
-#' api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-#'
-#' #Configure API key authorization: apiLoginAuth
-#' api.instance$apiClient$apiKeys['X-API-LOGIN'] <- 'TODO_YOUR_API_KEY';
-#'
-#' #Configure API key authorization: apiPasswordAuth
-#' api.instance$apiClient$apiKeys['X-API-PASS'] <- 'TODO_YOUR_API_KEY';
-#'
-#' result <- api.instance$GetMailById(var.id)
-#'
-#'
 #' ####################  GetMailOrders  ####################
 #'
 #' library(openapi)
+#' var.id <- 56 # integer | The ID of your mail order this will be sent through.
 #'
 #' #displays a list of mail service orders
 #' api.instance <- DefaultApi$new()
@@ -280,13 +244,7 @@
 #' #Configure API key authorization: apiKeyAuth
 #' api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
 #'
-#' #Configure API key authorization: apiLoginAuth
-#' api.instance$apiClient$apiKeys['X-API-LOGIN'] <- 'TODO_YOUR_API_KEY';
-#'
-#' #Configure API key authorization: apiPasswordAuth
-#' api.instance$apiClient$apiKeys['X-API-PASS'] <- 'TODO_YOUR_API_KEY';
-#'
-#' result <- api.instance$GetMailOrders()
+#' result <- api.instance$GetMailOrders(id=var.id)
 #'
 #'
 #' ####################  PingServer  ####################
@@ -310,19 +268,12 @@
 #' #Configure API key authorization: apiKeyAuth
 #' api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
 #'
-#' #Configure API key authorization: apiLoginAuth
-#' api.instance$apiClient$apiKeys['X-API-LOGIN'] <- 'TODO_YOUR_API_KEY';
-#'
-#' #Configure API key authorization: apiPasswordAuth
-#' api.instance$apiClient$apiKeys['X-API-PASS'] <- 'TODO_YOUR_API_KEY';
-#'
 #' result <- api.instance$PlaceMailOrder(mail.order=var.mail.order)
 #'
 #'
 #' ####################  SendAdvMailById  ####################
 #'
 #' library(openapi)
-#' var.id <- 56 # integer | User ID
 #' var.send.mail <- SendMail$new() # SendMail | 
 #'
 #' #Sends an Email with Advanced Options
@@ -331,25 +282,19 @@
 #' #Configure API key authorization: apiKeyAuth
 #' api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
 #'
-#' #Configure API key authorization: apiLoginAuth
-#' api.instance$apiClient$apiKeys['X-API-LOGIN'] <- 'TODO_YOUR_API_KEY';
-#'
-#' #Configure API key authorization: apiPasswordAuth
-#' api.instance$apiClient$apiKeys['X-API-PASS'] <- 'TODO_YOUR_API_KEY';
-#'
-#' result <- api.instance$SendAdvMailById(var.id, var.send.mail)
+#' result <- api.instance$SendAdvMailById(var.send.mail)
 #'
 #'
 #' ####################  SendMailById  ####################
 #'
 #' library(openapi)
-#' var.id <- 56 # integer | User ID
-#' var.subject <- 'subject_example' # character | 
-#' var.body <- 'body_example' # character | 
-#' var.to <- 'to_example' # character | 
-#' var.to.name <- 'to.name_example' # character | 
-#' var.from <- 'from_example' # character | 
-#' var.from.name <- 'from.name_example' # character | 
+#' var.subject <- 'subject_example' # character | The Subject of the email
+#' var.body <- 'body_example' # character | The contents of the email
+#' var.to <- 'to_example' # character | The email address of who this email will be sent to.
+#' var.from <- 'from_example' # character | The email address of who this email will be sent from.
+#' var.id <- 56 # integer | The ID of your mail order this will be sent through.
+#' var.to.name <- 'to.name_example' # character | The name or title of who this email is being sent to.
+#' var.from.name <- 'from.name_example' # character | The name or title of who this email is being sent from.
 #'
 #' #Sends an Email
 #' api.instance <- DefaultApi$new()
@@ -357,13 +302,7 @@
 #' #Configure API key authorization: apiKeyAuth
 #' api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
 #'
-#' #Configure API key authorization: apiLoginAuth
-#' api.instance$apiClient$apiKeys['X-API-LOGIN'] <- 'TODO_YOUR_API_KEY';
-#'
-#' #Configure API key authorization: apiPasswordAuth
-#' api.instance$apiClient$apiKeys['X-API-PASS'] <- 'TODO_YOUR_API_KEY';
-#'
-#' result <- api.instance$SendMailById(var.id, subject=var.subject, body=var.body, to=var.to, to.name=var.to.name, from=var.from, from.name=var.from.name)
+#' result <- api.instance$SendMailById(subject=var.subject, body=var.body, to=var.to, from=var.from, id=var.id, to.name=var.to.name, from.name=var.from.name)
 #'
 #'
 #' ####################  ValidateMailOrder  ####################
@@ -376,19 +315,13 @@
 #' #Configure API key authorization: apiKeyAuth
 #' api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
 #'
-#' #Configure API key authorization: apiLoginAuth
-#' api.instance$apiClient$apiKeys['X-API-LOGIN'] <- 'TODO_YOUR_API_KEY';
-#'
-#' #Configure API key authorization: apiPasswordAuth
-#' api.instance$apiClient$apiKeys['X-API-PASS'] <- 'TODO_YOUR_API_KEY';
-#'
 #' result <- api.instance$ValidateMailOrder()
 #'
 #'
 #' ####################  ViewMailLogById  ####################
 #'
 #' library(openapi)
-#' var.id <- 56 # integer | User ID
+#' var.id <- 56 # integer | The ID of your mail order this will be sent through.
 #' var.search.string <- 'search.string_example' # character | pass an optional search string for looking up inventory
 #' var.skip <- 56 # integer | number of records to skip for pagination
 #' var.limit <- 56 # integer | maximum number of records to return
@@ -399,13 +332,7 @@
 #' #Configure API key authorization: apiKeyAuth
 #' api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
 #'
-#' #Configure API key authorization: apiLoginAuth
-#' api.instance$apiClient$apiKeys['X-API-LOGIN'] <- 'TODO_YOUR_API_KEY';
-#'
-#' #Configure API key authorization: apiPasswordAuth
-#' api.instance$apiClient$apiKeys['X-API-PASS'] <- 'TODO_YOUR_API_KEY';
-#'
-#' result <- api.instance$ViewMailLogById(var.id, search.string=var.search.string, skip=var.skip, limit=var.limit)
+#' result <- api.instance$ViewMailLogById(id=var.id, search.string=var.search.string, skip=var.skip, limit=var.limit)
 #'
 #'
 #' }
@@ -424,8 +351,8 @@ DefaultApi <- R6::R6Class(
         self$apiClient <- ApiClient$new()
       }
     },
-    GetMailById = function(id, ...){
-      apiResponse <- self$GetMailByIdWithHttpInfo(id, ...)
+    GetMailOrders = function(id=NULL, ...){
+      apiResponse <- self$GetMailOrdersWithHttpInfo(id, ...)
       resp <- apiResponse$response
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
         apiResponse$content
@@ -438,89 +365,18 @@ DefaultApi <- R6::R6Class(
       }
     },
 
-    GetMailByIdWithHttpInfo = function(id, ...){
+    GetMailOrdersWithHttpInfo = function(id=NULL, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- c()
 
-      if (missing(`id`)) {
-        stop("Missing required parameter `id`.")
-      }
-
-      body <- NULL
-      urlPath <- "/mail/{id}"
-      if (!missing(`id`)) {
-        urlPath <- gsub(paste0("\\{", "id", "\\}"), URLencode(as.character(`id`), reserved = TRUE), urlPath)
-      }
-
-      # API key authentication
-      if ("X-API-KEY" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-KEY"]) > 0) {
-        headerParams['X-API-KEY'] <- paste(unlist(self$apiClient$apiKeys["X-API-KEY"]), collapse='')
-      }
-      # API key authentication
-      if ("X-API-LOGIN" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-LOGIN"]) > 0) {
-        headerParams['X-API-LOGIN'] <- paste(unlist(self$apiClient$apiKeys["X-API-LOGIN"]), collapse='')
-      }
-      # API key authentication
-      if ("X-API-PASS" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-PASS"]) > 0) {
-        headerParams['X-API-PASS'] <- paste(unlist(self$apiClient$apiKeys["X-API-PASS"]), collapse='')
-      }
-
-      resp <- self$apiClient$CallApi(url = paste0(self$apiClient$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
-
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        deserializedRespObj <- tryCatch(
-          self$apiClient$deserialize(resp, "MailOrder", loadNamespace("openapi")),
-          error = function(e){
-             stop("Failed to deserialize response")
-          }
-        )
-        ApiResponse$new(deserializedRespObj, resp)
-      } else if (httr::status_code(resp) >= 300 && httr::status_code(resp) <= 399) {
-        ApiResponse$new(paste("Server returned " , httr::status_code(resp) , " response status code."), resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        ApiResponse$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        ApiResponse$new("API server error", resp)
-      }
-    },
-    GetMailOrders = function(...){
-      apiResponse <- self$GetMailOrdersWithHttpInfo(...)
-      resp <- apiResponse$response
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        apiResponse$content
-      } else if (httr::status_code(resp) >= 300 && httr::status_code(resp) <= 399) {
-        apiResponse
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        apiResponse
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        apiResponse
-      }
-    },
-
-    GetMailOrdersWithHttpInfo = function(...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- c()
+      queryParams['id'] <- id
 
       body <- NULL
       urlPath <- "/mail"
       # API key authentication
       if ("X-API-KEY" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-KEY"]) > 0) {
         headerParams['X-API-KEY'] <- paste(unlist(self$apiClient$apiKeys["X-API-KEY"]), collapse='')
-      }
-      # API key authentication
-      if ("X-API-LOGIN" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-LOGIN"]) > 0) {
-        headerParams['X-API-LOGIN'] <- paste(unlist(self$apiClient$apiKeys["X-API-LOGIN"]), collapse='')
-      }
-      # API key authentication
-      if ("X-API-PASS" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-PASS"]) > 0) {
-        headerParams['X-API-PASS'] <- paste(unlist(self$apiClient$apiKeys["X-API-PASS"]), collapse='')
       }
 
       resp <- self$apiClient$CallApi(url = paste0(self$apiClient$basePath, urlPath),
@@ -615,14 +471,6 @@ DefaultApi <- R6::R6Class(
       if ("X-API-KEY" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-KEY"]) > 0) {
         headerParams['X-API-KEY'] <- paste(unlist(self$apiClient$apiKeys["X-API-KEY"]), collapse='')
       }
-      # API key authentication
-      if ("X-API-LOGIN" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-LOGIN"]) > 0) {
-        headerParams['X-API-LOGIN'] <- paste(unlist(self$apiClient$apiKeys["X-API-LOGIN"]), collapse='')
-      }
-      # API key authentication
-      if ("X-API-PASS" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-PASS"]) > 0) {
-        headerParams['X-API-PASS'] <- paste(unlist(self$apiClient$apiKeys["X-API-PASS"]), collapse='')
-      }
 
       resp <- self$apiClient$CallApi(url = paste0(self$apiClient$basePath, urlPath),
                                  method = "POST",
@@ -641,8 +489,8 @@ DefaultApi <- R6::R6Class(
         ApiResponse$new("API server error", resp)
       }
     },
-    SendAdvMailById = function(id, send.mail, ...){
-      apiResponse <- self$SendAdvMailByIdWithHttpInfo(id, send.mail, ...)
+    SendAdvMailById = function(send.mail, ...){
+      apiResponse <- self$SendAdvMailByIdWithHttpInfo(send.mail, ...)
       resp <- apiResponse$response
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
         apiResponse$content
@@ -655,14 +503,10 @@ DefaultApi <- R6::R6Class(
       }
     },
 
-    SendAdvMailByIdWithHttpInfo = function(id, send.mail, ...){
+    SendAdvMailByIdWithHttpInfo = function(send.mail, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- c()
-
-      if (missing(`id`)) {
-        stop("Missing required parameter `id`.")
-      }
 
       if (missing(`send.mail`)) {
         stop("Missing required parameter `send.mail`.")
@@ -674,22 +518,10 @@ DefaultApi <- R6::R6Class(
         body <- NULL
       }
 
-      urlPath <- "/mail/{id}/advsend"
-      if (!missing(`id`)) {
-        urlPath <- gsub(paste0("\\{", "id", "\\}"), URLencode(as.character(`id`), reserved = TRUE), urlPath)
-      }
-
+      urlPath <- "/mail/advsend"
       # API key authentication
       if ("X-API-KEY" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-KEY"]) > 0) {
         headerParams['X-API-KEY'] <- paste(unlist(self$apiClient$apiKeys["X-API-KEY"]), collapse='')
-      }
-      # API key authentication
-      if ("X-API-LOGIN" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-LOGIN"]) > 0) {
-        headerParams['X-API-LOGIN'] <- paste(unlist(self$apiClient$apiKeys["X-API-LOGIN"]), collapse='')
-      }
-      # API key authentication
-      if ("X-API-PASS" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-PASS"]) > 0) {
-        headerParams['X-API-PASS'] <- paste(unlist(self$apiClient$apiKeys["X-API-PASS"]), collapse='')
       }
 
       resp <- self$apiClient$CallApi(url = paste0(self$apiClient$basePath, urlPath),
@@ -715,8 +547,8 @@ DefaultApi <- R6::R6Class(
         ApiResponse$new("API server error", resp)
       }
     },
-    SendMailById = function(id, subject=NULL, body=NULL, to=NULL, to.name=NULL, from=NULL, from.name=NULL, ...){
-      apiResponse <- self$SendMailByIdWithHttpInfo(id, subject, body, to, to.name, from, from.name, ...)
+    SendMailById = function(subject=NULL, body=NULL, to=NULL, from=NULL, id=NULL, to.name=NULL, from.name=NULL, ...){
+      apiResponse <- self$SendMailByIdWithHttpInfo(subject, body, to, from, id, to.name, from.name, ...)
       resp <- apiResponse$response
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
         apiResponse$content
@@ -729,14 +561,10 @@ DefaultApi <- R6::R6Class(
       }
     },
 
-    SendMailByIdWithHttpInfo = function(id, subject=NULL, body=NULL, to=NULL, to.name=NULL, from=NULL, from.name=NULL, ...){
+    SendMailByIdWithHttpInfo = function(subject=NULL, body=NULL, to=NULL, from=NULL, id=NULL, to.name=NULL, from.name=NULL, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- c()
-
-      if (missing(`id`)) {
-        stop("Missing required parameter `id`.")
-      }
 
       queryParams['subject'] <- subject
 
@@ -744,29 +572,19 @@ DefaultApi <- R6::R6Class(
 
       queryParams['to'] <- to
 
-      queryParams['toName'] <- to.name
-
       queryParams['from'] <- from
+
+      queryParams['id'] <- id
+
+      queryParams['toName'] <- to.name
 
       queryParams['fromName'] <- from.name
 
       body <- NULL
-      urlPath <- "/mail/{id}/send"
-      if (!missing(`id`)) {
-        urlPath <- gsub(paste0("\\{", "id", "\\}"), URLencode(as.character(`id`), reserved = TRUE), urlPath)
-      }
-
+      urlPath <- "/mail/send"
       # API key authentication
       if ("X-API-KEY" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-KEY"]) > 0) {
         headerParams['X-API-KEY'] <- paste(unlist(self$apiClient$apiKeys["X-API-KEY"]), collapse='')
-      }
-      # API key authentication
-      if ("X-API-LOGIN" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-LOGIN"]) > 0) {
-        headerParams['X-API-LOGIN'] <- paste(unlist(self$apiClient$apiKeys["X-API-LOGIN"]), collapse='')
-      }
-      # API key authentication
-      if ("X-API-PASS" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-PASS"]) > 0) {
-        headerParams['X-API-PASS'] <- paste(unlist(self$apiClient$apiKeys["X-API-PASS"]), collapse='')
       }
 
       resp <- self$apiClient$CallApi(url = paste0(self$apiClient$basePath, urlPath),
@@ -817,14 +635,6 @@ DefaultApi <- R6::R6Class(
       if ("X-API-KEY" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-KEY"]) > 0) {
         headerParams['X-API-KEY'] <- paste(unlist(self$apiClient$apiKeys["X-API-KEY"]), collapse='')
       }
-      # API key authentication
-      if ("X-API-LOGIN" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-LOGIN"]) > 0) {
-        headerParams['X-API-LOGIN'] <- paste(unlist(self$apiClient$apiKeys["X-API-LOGIN"]), collapse='')
-      }
-      # API key authentication
-      if ("X-API-PASS" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-PASS"]) > 0) {
-        headerParams['X-API-PASS'] <- paste(unlist(self$apiClient$apiKeys["X-API-PASS"]), collapse='')
-      }
 
       resp <- self$apiClient$CallApi(url = paste0(self$apiClient$basePath, urlPath),
                                  method = "GET",
@@ -843,7 +653,7 @@ DefaultApi <- R6::R6Class(
         ApiResponse$new("API server error", resp)
       }
     },
-    ViewMailLogById = function(id, search.string=NULL, skip=NULL, limit=NULL, ...){
+    ViewMailLogById = function(id=NULL, search.string=NULL, skip=NULL, limit=NULL, ...){
       apiResponse <- self$ViewMailLogByIdWithHttpInfo(id, search.string, skip, limit, ...)
       resp <- apiResponse$response
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
@@ -857,14 +667,12 @@ DefaultApi <- R6::R6Class(
       }
     },
 
-    ViewMailLogByIdWithHttpInfo = function(id, search.string=NULL, skip=NULL, limit=NULL, ...){
+    ViewMailLogByIdWithHttpInfo = function(id=NULL, search.string=NULL, skip=NULL, limit=NULL, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- c()
 
-      if (missing(`id`)) {
-        stop("Missing required parameter `id`.")
-      }
+      queryParams['id'] <- id
 
       queryParams['searchString'] <- search.string
 
@@ -873,22 +681,10 @@ DefaultApi <- R6::R6Class(
       queryParams['limit'] <- limit
 
       body <- NULL
-      urlPath <- "/mail/{id}/log"
-      if (!missing(`id`)) {
-        urlPath <- gsub(paste0("\\{", "id", "\\}"), URLencode(as.character(`id`), reserved = TRUE), urlPath)
-      }
-
+      urlPath <- "/mail/log"
       # API key authentication
       if ("X-API-KEY" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-KEY"]) > 0) {
         headerParams['X-API-KEY'] <- paste(unlist(self$apiClient$apiKeys["X-API-KEY"]), collapse='')
-      }
-      # API key authentication
-      if ("X-API-LOGIN" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-LOGIN"]) > 0) {
-        headerParams['X-API-LOGIN'] <- paste(unlist(self$apiClient$apiKeys["X-API-LOGIN"]), collapse='')
-      }
-      # API key authentication
-      if ("X-API-PASS" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-PASS"]) > 0) {
-        headerParams['X-API-PASS'] <- paste(unlist(self$apiClient$apiKeys["X-API-PASS"]), collapse='')
       }
 
       resp <- self$apiClient$CallApi(url = paste0(self$apiClient$basePath, urlPath),

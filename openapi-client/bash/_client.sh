@@ -296,7 +296,6 @@ case $state in
   ops)
     # Operations
     _values "Operations" \
-            "getMailById[Gets mail order information by id]" \
             "getMailOrders[displays a list of mail service orders]" \
             "pingServer[Checks if the server is running]" \
             "placeMailOrder[places a mail order]" \
@@ -311,17 +310,11 @@ case $state in
     ;;
   args)
     case $line[1] in
-      getMailById)
-        local -a _op_arguments
-        _op_arguments=(
-          "id=:[PATH] User ID"
-                    )
-        _describe -t actions 'operations' _op_arguments -S '' && ret=0
-        ;;
       getMailOrders)
         local -a _op_arguments
         _op_arguments=(
-                              )
+                    "id=:[QUERY] The ID of your mail order this will be sent through."
+          )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       pingServer)
@@ -339,20 +332,19 @@ case $state in
       sendAdvMailById)
         local -a _op_arguments
         _op_arguments=(
-          "id=:[PATH] User ID"
-                    )
+                              )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       sendMailById)
         local -a _op_arguments
         _op_arguments=(
-          "id=:[PATH] User ID"
-          "subject=:[QUERY] "
-"body=:[QUERY] "
-"to=:[QUERY] "
-"toName=:[QUERY] "
-"from=:[QUERY] "
-"fromName=:[QUERY] "
+                    "subject=:[QUERY] The Subject of the email"
+"body=:[QUERY] The contents of the email"
+"to=:[QUERY] The email address of who this email will be sent to."
+"from=:[QUERY] The email address of who this email will be sent from."
+"id=:[QUERY] The ID of your mail order this will be sent through."
+"toName=:[QUERY] The name or title of who this email is being sent to."
+"fromName=:[QUERY] The name or title of who this email is being sent from."
           )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
@@ -365,8 +357,8 @@ case $state in
       viewMailLogById)
         local -a _op_arguments
         _op_arguments=(
-          "id=:[PATH] User ID"
-          "searchString=:[QUERY] pass an optional search string for looking up inventory"
+                    "id=:[QUERY] The ID of your mail order this will be sent through."
+"searchString=:[QUERY] pass an optional search string for looking up inventory"
 "skip=:[QUERY] number of records to skip for pagination"
 "limit=:[QUERY] maximum number of records to return"
           )

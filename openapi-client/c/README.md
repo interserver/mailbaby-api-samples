@@ -65,14 +65,13 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Category | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultAPI* | [**DefaultAPI_getMailById**](docs/DefaultAPI.md#DefaultAPI_getMailById) | **GET** /mail/{id} | Gets mail order information by id
 *DefaultAPI* | [**DefaultAPI_getMailOrders**](docs/DefaultAPI.md#DefaultAPI_getMailOrders) | **GET** /mail | displays a list of mail service orders
 *DefaultAPI* | [**DefaultAPI_pingServer**](docs/DefaultAPI.md#DefaultAPI_pingServer) | **GET** /ping | Checks if the server is running
 *DefaultAPI* | [**DefaultAPI_placeMailOrder**](docs/DefaultAPI.md#DefaultAPI_placeMailOrder) | **POST** /mail/order | places a mail order
-*DefaultAPI* | [**DefaultAPI_sendAdvMailById**](docs/DefaultAPI.md#DefaultAPI_sendAdvMailById) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-*DefaultAPI* | [**DefaultAPI_sendMailById**](docs/DefaultAPI.md#DefaultAPI_sendMailById) | **POST** /mail/{id}/send | Sends an Email
+*DefaultAPI* | [**DefaultAPI_sendAdvMailById**](docs/DefaultAPI.md#DefaultAPI_sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultAPI* | [**DefaultAPI_sendMailById**](docs/DefaultAPI.md#DefaultAPI_sendMailById) | **POST** /mail/send | Sends an Email
 *DefaultAPI* | [**DefaultAPI_validateMailOrder**](docs/DefaultAPI.md#DefaultAPI_validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultAPI* | [**DefaultAPI_viewMailLogById**](docs/DefaultAPI.md#DefaultAPI_viewMailLogById) | **GET** /mail/{id}/log | displays the mail log
+*DefaultAPI* | [**DefaultAPI_viewMailLogById**](docs/DefaultAPI.md#DefaultAPI_viewMailLogById) | **GET** /mail/log | displays the mail log
 
 
 ## Documentation for Models
@@ -94,22 +93,6 @@ Category | Method | HTTP request | Description
 - **Type**: API key
 
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-
-### apiLoginAuth
-
-- **Type**: API key
-
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-
-### apiPasswordAuth
-
-- **Type**: API key
-
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 
 

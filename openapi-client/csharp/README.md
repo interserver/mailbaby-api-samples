@@ -83,27 +83,19 @@ namespace Example
             Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
-            // Configure API key authorization: apiLoginAuth
-            Configuration.Default.ApiKey.Add("X-API-LOGIN", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-LOGIN", "Bearer");
-            // Configure API key authorization: apiPasswordAuth
-            Configuration.Default.ApiKey.Add("X-API-PASS", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-PASS", "Bearer");
 
             var apiInstance = new DefaultApi(Configuration.Default);
-            var id = 789;  // long | User ID
+            var id = 789;  // long? | The ID of your mail order this will be sent through. (optional) 
 
             try
             {
-                // Gets mail order information by id
-                MailOrder result = apiInstance.GetMailById(id);
+                // displays a list of mail service orders
+                List<MailOrder> result = apiInstance.GetMailOrders(id);
                 Debug.WriteLine(result);
             }
             catch (ApiException e)
             {
-                Debug.Print("Exception when calling DefaultApi.GetMailById: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.GetMailOrders: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -119,14 +111,13 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**GetMailById**](docs/DefaultApi.md#getmailbyid) | **GET** /mail/{id} | Gets mail order information by id
 *DefaultApi* | [**GetMailOrders**](docs/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**PingServer**](docs/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**PlaceMailOrder**](docs/DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**SendAdvMailById**](docs/DefaultApi.md#sendadvmailbyid) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**SendMailById**](docs/DefaultApi.md#sendmailbyid) | **POST** /mail/{id}/send | Sends an Email
+*DefaultApi* | [**SendAdvMailById**](docs/DefaultApi.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**SendMailById**](docs/DefaultApi.md#sendmailbyid) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**ValidateMailOrder**](docs/DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**ViewMailLogById**](docs/DefaultApi.md#viewmaillogbyid) | **GET** /mail/{id}/log | displays the mail log
+*DefaultApi* | [**ViewMailLogById**](docs/DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
 
 ## Documentation for Models
@@ -148,21 +139,5 @@ Class | Method | HTTP request | Description
 - **Type**: API key
 
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-
-### apiLoginAuth
-
-- **Type**: API key
-
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-
-### apiPasswordAuth
-
-- **Type**: API key
-
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 

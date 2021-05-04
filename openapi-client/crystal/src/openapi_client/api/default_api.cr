@@ -17,75 +17,16 @@ module
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Gets mail order information by id
-    # returns information about a mail order in the system with the given id.
-    # @param id [Int64] User ID
-    # @return [MailOrder]
-    def get_mail_by_id(id : Int64)
-      data, _status_code, _headers = get_mail_by_id_with_http_info(id)
-      data
-    end
-
-    # Gets mail order information by id
-    # returns information about a mail order in the system with the given id.
-    # @param id [Int64] User ID
-    # @return [Array<(MailOrder, Integer, Hash)>] MailOrder data, response status code and response headers
-    def get_mail_by_id_with_http_info(id : Int64)
-      if @api_client.config.debugging
-        Log.debug {"Calling API: DefaultApi.get_mail_by_id ..."}
-      end
-      # verify the required parameter "id" is set
-      if @api_client.config.client_side_validation && id.nil?
-        raise ArgumentError.new("Missing the required parameter 'id' when calling DefaultApi.get_mail_by_id")
-      end
-      # resource path
-      local_var_path = "/mail/{id}".sub("{" + "id" + "}", URI.encode(id.to_s))
-
-      # query parameters
-      query_params = Hash(Symbol, String).new
-
-      # header parameters
-      header_params = Hash(String, String).new
-      # HTTP header "Accept" (if needed)
-      header_params["Accept"] = @api_client.select_header_accept(["application/json"])
-
-      # form parameters
-      form_params = Hash(Symbol, String).new
-
-      # http body (model)
-      post_body = nil
-
-      # return_type
-      return_type = "MailOrder"
-
-      # auth_names
-      auth_names = ["apiKeyAuth", "apiLoginAuth", "apiPasswordAuth"]
-
-      data, status_code, headers = @api_client.call_api(:GET,
-                                                        local_var_path,
-                                                        :"DefaultApi.get_mail_by_id",
-                                                        return_type,
-                                                        post_body,
-                                                        auth_names,
-                                                        header_params,
-                                                        query_params,
-                                                        form_params)
-      if @api_client.config.debugging
-        Log.debug {"API called: DefaultApi#get_mail_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"}
-      end
-      return MailOrder.from_json(data), status_code, headers
-    end
-
     # displays a list of mail service orders
     # @return [Array(MailOrder)]
-    def get_mail_orders()
-      data, _status_code, _headers = get_mail_orders_with_http_info()
+    def get_mail_orders(id : Int64?)
+      data, _status_code, _headers = get_mail_orders_with_http_info(id)
       data
     end
 
     # displays a list of mail service orders
     # @return [Array<(Array(MailOrder), Integer, Hash)>] Array(MailOrder) data, response status code and response headers
-    def get_mail_orders_with_http_info()
+    def get_mail_orders_with_http_info(id : Int64?)
       if @api_client.config.debugging
         Log.debug {"Calling API: DefaultApi.get_mail_orders ..."}
       end
@@ -94,6 +35,7 @@ module
 
       # query parameters
       query_params = Hash(Symbol, String).new
+      query_params[:"id"] = id
 
       # header parameters
       header_params = Hash(String, String).new
@@ -110,7 +52,7 @@ module
       return_type = "Array(MailOrder)"
 
       # auth_names
-      auth_names = ["apiKeyAuth", "apiLoginAuth", "apiPasswordAuth"]
+      auth_names = ["apiKeyAuth"]
 
       data, status_code, headers = @api_client.call_api(:GET,
                                                         local_var_path,
@@ -214,7 +156,7 @@ module
       return_type = nil
 
       # auth_names
-      auth_names = ["apiKeyAuth", "apiLoginAuth", "apiPasswordAuth"]
+      auth_names = ["apiKeyAuth"]
 
       data, status_code, headers = @api_client.call_api(:POST,
                                                         local_var_path,
@@ -233,33 +175,27 @@ module
 
     # Sends an Email with Advanced Options
     # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-    # @param id [Int64] User ID
     # @param send_mail [SendMail] 
     # @return [GenericResponse]
-    def send_adv_mail_by_id(id : Int64, send_mail : SendMail)
-      data, _status_code, _headers = send_adv_mail_by_id_with_http_info(id, send_mail)
+    def send_adv_mail_by_id(send_mail : SendMail)
+      data, _status_code, _headers = send_adv_mail_by_id_with_http_info(send_mail)
       data
     end
 
     # Sends an Email with Advanced Options
     # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-    # @param id [Int64] User ID
     # @param send_mail [SendMail] 
     # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_adv_mail_by_id_with_http_info(id : Int64, send_mail : SendMail)
+    def send_adv_mail_by_id_with_http_info(send_mail : SendMail)
       if @api_client.config.debugging
         Log.debug {"Calling API: DefaultApi.send_adv_mail_by_id ..."}
-      end
-      # verify the required parameter "id" is set
-      if @api_client.config.client_side_validation && id.nil?
-        raise ArgumentError.new("Missing the required parameter 'id' when calling DefaultApi.send_adv_mail_by_id")
       end
       # verify the required parameter "send_mail" is set
       if @api_client.config.client_side_validation && send_mail.nil?
         raise ArgumentError.new("Missing the required parameter 'send_mail' when calling DefaultApi.send_adv_mail_by_id")
       end
       # resource path
-      local_var_path = "/mail/{id}/advsend".sub("{" + "id" + "}", URI.encode(id.to_s))
+      local_var_path = "/mail/advsend"
 
       # query parameters
       query_params = Hash(Symbol, String).new
@@ -269,7 +205,7 @@ module
       # HTTP header "Accept" (if needed)
       header_params["Accept"] = @api_client.select_header_accept(["application/json"])
       # HTTP header "Content-Type"
-      header_params["Content-Type"] = @api_client.select_header_content_type(["application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain"])
+      header_params["Content-Type"] = @api_client.select_header_content_type(["application/json"])
 
       # form parameters
       form_params = Hash(Symbol, String).new
@@ -281,7 +217,7 @@ module
       return_type = "GenericResponse"
 
       # auth_names
-      auth_names = ["apiKeyAuth", "apiLoginAuth", "apiPasswordAuth"]
+      auth_names = ["apiKeyAuth"]
 
       data, status_code, headers = @api_client.call_api(:POST,
                                                         local_var_path,
@@ -300,35 +236,30 @@ module
 
     # Sends an Email
     # Sends An email through one of your mail orders.
-    # @param id [Int64] User ID
     # @return [GenericResponse]
-    def send_mail_by_id(id : Int64, subject : String?, body : String?, to : String?, to_name : String?, from : String?, from_name : String?)
-      data, _status_code, _headers = send_mail_by_id_with_http_info(id, subject, body, to, to_name, from, from_name)
+    def send_mail_by_id(subject : String?, body : String?, to : String?, from : String?, id : Int64?, to_name : String?, from_name : String?)
+      data, _status_code, _headers = send_mail_by_id_with_http_info(subject, body, to, from, id, to_name, from_name)
       data
     end
 
     # Sends an Email
     # Sends An email through one of your mail orders.
-    # @param id [Int64] User ID
     # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_mail_by_id_with_http_info(id : Int64, subject : String?, body : String?, to : String?, to_name : String?, from : String?, from_name : String?)
+    def send_mail_by_id_with_http_info(subject : String?, body : String?, to : String?, from : String?, id : Int64?, to_name : String?, from_name : String?)
       if @api_client.config.debugging
         Log.debug {"Calling API: DefaultApi.send_mail_by_id ..."}
       end
-      # verify the required parameter "id" is set
-      if @api_client.config.client_side_validation && id.nil?
-        raise ArgumentError.new("Missing the required parameter 'id' when calling DefaultApi.send_mail_by_id")
-      end
       # resource path
-      local_var_path = "/mail/{id}/send".sub("{" + "id" + "}", URI.encode(id.to_s))
+      local_var_path = "/mail/send"
 
       # query parameters
       query_params = Hash(Symbol, String).new
       query_params[:"subject"] = subject
       query_params[:"body"] = body
       query_params[:"to"] = to
-      query_params[:"toName"] = to_name
       query_params[:"from"] = from
+      query_params[:"id"] = id
+      query_params[:"toName"] = to_name
       query_params[:"fromName"] = from_name
 
       # header parameters
@@ -346,7 +277,7 @@ module
       return_type = "GenericResponse"
 
       # auth_names
-      auth_names = ["apiKeyAuth", "apiLoginAuth", "apiPasswordAuth"]
+      auth_names = ["apiKeyAuth"]
 
       data, status_code, headers = @api_client.call_api(:POST,
                                                         local_var_path,
@@ -397,7 +328,7 @@ module
       return_type = nil
 
       # auth_names
-      auth_names = ["apiKeyAuth", "apiLoginAuth", "apiPasswordAuth"]
+      auth_names = ["apiKeyAuth"]
 
       data, status_code, headers = @api_client.call_api(:GET,
                                                         local_var_path,
@@ -416,24 +347,18 @@ module
 
     # displays the mail log
     # By passing in the appropriate options, you can search for available inventory in the system 
-    # @param id [Int64] User ID
     # @return [Array(MailLog)]
-    def view_mail_log_by_id(id : Int64, search_string : String?, skip : Int32?, limit : Int32?)
+    def view_mail_log_by_id(id : Int64?, search_string : String?, skip : Int32?, limit : Int32?)
       data, _status_code, _headers = view_mail_log_by_id_with_http_info(id, search_string, skip, limit)
       data
     end
 
     # displays the mail log
     # By passing in the appropriate options, you can search for available inventory in the system 
-    # @param id [Int64] User ID
     # @return [Array<(Array(MailLog), Integer, Hash)>] Array(MailLog) data, response status code and response headers
-    def view_mail_log_by_id_with_http_info(id : Int64, search_string : String?, skip : Int32?, limit : Int32?)
+    def view_mail_log_by_id_with_http_info(id : Int64?, search_string : String?, skip : Int32?, limit : Int32?)
       if @api_client.config.debugging
         Log.debug {"Calling API: DefaultApi.view_mail_log_by_id ..."}
-      end
-      # verify the required parameter "id" is set
-      if @api_client.config.client_side_validation && id.nil?
-        raise ArgumentError.new("Missing the required parameter 'id' when calling DefaultApi.view_mail_log_by_id")
       end
       if @api_client.config.client_side_validation && !skip.nil? && skip < 0
         raise ArgumentError.new("invalid value for \"skip\" when calling DefaultApi.view_mail_log_by_id, must be greater than or equal to 0.")
@@ -448,10 +373,11 @@ module
       end
 
       # resource path
-      local_var_path = "/mail/{id}/log".sub("{" + "id" + "}", URI.encode(id.to_s))
+      local_var_path = "/mail/log"
 
       # query parameters
       query_params = Hash(Symbol, String).new
+      query_params[:"id"] = id
       query_params[:"searchString"] = search_string
       query_params[:"skip"] = skip
       query_params[:"limit"] = limit
@@ -471,7 +397,7 @@ module
       return_type = "Array(MailLog)"
 
       # auth_names
-      auth_names = ["apiKeyAuth", "apiLoginAuth", "apiPasswordAuth"]
+      auth_names = ["apiKeyAuth"]
 
       data, status_code, headers = @api_client.call_api(:GET,
                                                         local_var_path,

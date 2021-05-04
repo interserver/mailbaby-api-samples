@@ -15,85 +15,17 @@ class DefaultApi {
 
   final ApiClient apiClient;
 
-  /// Gets mail order information by id
-  ///
-  /// returns information about a mail order in the system with the given id.
-  ///
-  /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [int] id (required):
-  ///   User ID
-  Future<Response> getMailByIdWithHttpInfo(int id) async {
-    // Verify required params are set.
-    if (id == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
-    }
-
-    final path = r'/mail/{id}'
-      .replaceAll('{' + 'id' + '}', id.toString());
-
-    Object postBody;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    final contentTypes = <String>[];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
-
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
-
-    return await apiClient.invokeAPI(
-      path,
-      'GET',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      nullableContentType,
-      authNames,
-    );
-  }
-
-  /// Gets mail order information by id
-  ///
-  /// returns information about a mail order in the system with the given id.
-  ///
-  /// Parameters:
-  ///
-  /// * [int] id (required):
-  ///   User ID
-  Future<MailOrder> getMailById(int id) async {
-    final response = await getMailByIdWithHttpInfo(id);
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
-    }
-    // When a remote server returns no body with a status of 204, we shall not decode it.
-    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
-    // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'MailOrder') as MailOrder;
-        }
-    return Future<MailOrder>.value(null);
-  }
-
   /// displays a list of mail service orders
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getMailOrdersWithHttpInfo() async {
+  ///
+  /// Parameters:
+  ///
+  /// * [int] id:
+  ///   The ID of your mail order this will be sent through.
+  Future<Response> getMailOrdersWithHttpInfo({ int id }) async {
+    // Verify required params are set.
+
     final path = r'/mail';
 
     Object postBody;
@@ -102,9 +34,13 @@ class DefaultApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
+    if (id != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'id', id));
+    }
+
     final contentTypes = <String>[];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+    final authNames = <String>['apiKeyAuth'];
 
     if (
       nullableContentType != null &&
@@ -131,8 +67,13 @@ class DefaultApi {
   }
 
   /// displays a list of mail service orders
-  Future<List<MailOrder>> getMailOrders() async {
-    final response = await getMailOrdersWithHttpInfo();
+  ///
+  /// Parameters:
+  ///
+  /// * [int] id:
+  ///   The ID of your mail order this will be sent through.
+  Future<List<MailOrder>> getMailOrders({ int id }) async {
+    final response = await getMailOrdersWithHttpInfo( id: id );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, _decodeBodyBytes(response));
     }
@@ -218,7 +159,7 @@ class DefaultApi {
 
     final contentTypes = <String>['application/json'];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+    final authNames = <String>['apiKeyAuth'];
 
     if (
       nullableContentType != null &&
@@ -267,21 +208,14 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [int] id (required):
-  ///   User ID
-  ///
   /// * [SendMail] sendMail (required):
-  Future<Response> sendAdvMailByIdWithHttpInfo(int id, SendMail sendMail) async {
+  Future<Response> sendAdvMailByIdWithHttpInfo(SendMail sendMail) async {
     // Verify required params are set.
-    if (id == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
-    }
     if (sendMail == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: sendMail');
     }
 
-    final path = r'/mail/{id}/advsend'
-      .replaceAll('{' + 'id' + '}', id.toString());
+    final path = r'/mail/advsend';
 
     Object postBody = sendMail;
 
@@ -289,9 +223,9 @@ class DefaultApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    final contentTypes = <String>['application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain'];
+    final contentTypes = <String>['application/json'];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+    final authNames = <String>['apiKeyAuth'];
 
     if (
       nullableContentType != null &&
@@ -323,12 +257,9 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [int] id (required):
-  ///   User ID
-  ///
   /// * [SendMail] sendMail (required):
-  Future<GenericResponse> sendAdvMailById(int id, SendMail sendMail) async {
-    final response = await sendAdvMailByIdWithHttpInfo(id, sendMail);
+  Future<GenericResponse> sendAdvMailById(SendMail sendMail) async {
+    final response = await sendAdvMailByIdWithHttpInfo(sendMail);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, _decodeBodyBytes(response));
     }
@@ -349,28 +280,30 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [int] id (required):
-  ///   User ID
-  ///
   /// * [String] subject:
+  ///   The Subject of the email
   ///
   /// * [String] body:
+  ///   The contents of the email
   ///
   /// * [String] to:
-  ///
-  /// * [String] toName:
+  ///   The email address of who this email will be sent to.
   ///
   /// * [String] from:
+  ///   The email address of who this email will be sent from.
+  ///
+  /// * [int] id:
+  ///   The ID of your mail order this will be sent through.
+  ///
+  /// * [String] toName:
+  ///   The name or title of who this email is being sent to.
   ///
   /// * [String] fromName:
-  Future<Response> sendMailByIdWithHttpInfo(int id, { String subject, String body, String to, String toName, String from, String fromName }) async {
+  ///   The name or title of who this email is being sent from.
+  Future<Response> sendMailByIdWithHttpInfo({ String subject, String body, String to, String from, int id, String toName, String fromName }) async {
     // Verify required params are set.
-    if (id == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
-    }
 
-    final path = r'/mail/{id}/send'
-      .replaceAll('{' + 'id' + '}', id.toString());
+    final path = r'/mail/send';
 
     Object postBody;
 
@@ -387,11 +320,14 @@ class DefaultApi {
     if (to != null) {
       queryParams.addAll(_convertParametersForCollectionFormat('', 'to', to));
     }
-    if (toName != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'toName', toName));
-    }
     if (from != null) {
       queryParams.addAll(_convertParametersForCollectionFormat('', 'from', from));
+    }
+    if (id != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'id', id));
+    }
+    if (toName != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'toName', toName));
     }
     if (fromName != null) {
       queryParams.addAll(_convertParametersForCollectionFormat('', 'fromName', fromName));
@@ -399,7 +335,7 @@ class DefaultApi {
 
     final contentTypes = <String>[];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+    final authNames = <String>['apiKeyAuth'];
 
     if (
       nullableContentType != null &&
@@ -431,22 +367,28 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [int] id (required):
-  ///   User ID
-  ///
   /// * [String] subject:
+  ///   The Subject of the email
   ///
   /// * [String] body:
+  ///   The contents of the email
   ///
   /// * [String] to:
-  ///
-  /// * [String] toName:
+  ///   The email address of who this email will be sent to.
   ///
   /// * [String] from:
+  ///   The email address of who this email will be sent from.
+  ///
+  /// * [int] id:
+  ///   The ID of your mail order this will be sent through.
+  ///
+  /// * [String] toName:
+  ///   The name or title of who this email is being sent to.
   ///
   /// * [String] fromName:
-  Future<GenericResponse> sendMailById(int id, { String subject, String body, String to, String toName, String from, String fromName }) async {
-    final response = await sendMailByIdWithHttpInfo(id,  subject: subject, body: body, to: to, toName: toName, from: from, fromName: fromName );
+  ///   The name or title of who this email is being sent from.
+  Future<GenericResponse> sendMailById({ String subject, String body, String to, String from, int id, String toName, String fromName }) async {
+    final response = await sendMailByIdWithHttpInfo( subject: subject, body: body, to: to, from: from, id: id, toName: toName, fromName: fromName );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, _decodeBodyBytes(response));
     }
@@ -473,7 +415,7 @@ class DefaultApi {
 
     final contentTypes = <String>[];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+    final authNames = <String>['apiKeyAuth'];
 
     if (
       nullableContentType != null &&
@@ -515,8 +457,8 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [int] id (required):
-  ///   User ID
+  /// * [int] id:
+  ///   The ID of your mail order this will be sent through.
   ///
   /// * [String] searchString:
   ///   pass an optional search string for looking up inventory
@@ -526,14 +468,10 @@ class DefaultApi {
   ///
   /// * [int] limit:
   ///   maximum number of records to return
-  Future<Response> viewMailLogByIdWithHttpInfo(int id, { String searchString, int skip, int limit }) async {
+  Future<Response> viewMailLogByIdWithHttpInfo({ int id, String searchString, int skip, int limit }) async {
     // Verify required params are set.
-    if (id == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: id');
-    }
 
-    final path = r'/mail/{id}/log'
-      .replaceAll('{' + 'id' + '}', id.toString());
+    final path = r'/mail/log';
 
     Object postBody;
 
@@ -541,6 +479,9 @@ class DefaultApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
+    if (id != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'id', id));
+    }
     if (searchString != null) {
       queryParams.addAll(_convertParametersForCollectionFormat('', 'searchString', searchString));
     }
@@ -553,7 +494,7 @@ class DefaultApi {
 
     final contentTypes = <String>[];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+    final authNames = <String>['apiKeyAuth'];
 
     if (
       nullableContentType != null &&
@@ -585,8 +526,8 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [int] id (required):
-  ///   User ID
+  /// * [int] id:
+  ///   The ID of your mail order this will be sent through.
   ///
   /// * [String] searchString:
   ///   pass an optional search string for looking up inventory
@@ -596,8 +537,8 @@ class DefaultApi {
   ///
   /// * [int] limit:
   ///   maximum number of records to return
-  Future<List<MailLog>> viewMailLogById(int id, { String searchString, int skip, int limit }) async {
-    final response = await viewMailLogByIdWithHttpInfo(id,  searchString: searchString, skip: skip, limit: limit );
+  Future<List<MailLog>> viewMailLogById({ int id, String searchString, int skip, int limit }) async {
+    final response = await viewMailLogByIdWithHttpInfo( id: id, searchString: searchString, skip: skip, limit: limit );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, _decodeBodyBytes(response));
     }

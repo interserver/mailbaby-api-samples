@@ -42,51 +42,9 @@ export class ApiKeyAuthAuthentication implements SecurityAuthentication {
     }
 }
 
-/**
- * Applies apiKey authentication to the request context.
- */
-export class ApiLoginAuthAuthentication implements SecurityAuthentication {
-    /**
-     * Configures this api key authentication with the necessary properties
-     *
-     * @param apiKey: The api key to be used for every request
-     */
-    public constructor(private apiKey: string) {}
-
-    public getName(): string {
-        return "apiLoginAuth";
-    }
-
-    public applySecurityAuthentication(context: RequestContext) {
-        context.setHeaderParam("X-API-LOGIN", this.apiKey);
-    }
-}
-
-/**
- * Applies apiKey authentication to the request context.
- */
-export class ApiPasswordAuthAuthentication implements SecurityAuthentication {
-    /**
-     * Configures this api key authentication with the necessary properties
-     *
-     * @param apiKey: The api key to be used for every request
-     */
-    public constructor(private apiKey: string) {}
-
-    public getName(): string {
-        return "apiPasswordAuth";
-    }
-
-    public applySecurityAuthentication(context: RequestContext) {
-        context.setHeaderParam("X-API-PASS", this.apiKey);
-    }
-}
-
 
 export type AuthMethods = {
-    "apiKeyAuth"?: SecurityAuthentication,
-    "apiLoginAuth"?: SecurityAuthentication,
-    "apiPasswordAuth"?: SecurityAuthentication
+    "apiKeyAuth"?: SecurityAuthentication
 }
 
 export type ApiKeyConfiguration = string;
@@ -95,9 +53,7 @@ export type HttpBearerConfiguration = { tokenProvider: TokenProvider };
 export type OAuth2Configuration = string;
 
 export type AuthMethodsConfiguration = {
-    "apiKeyAuth"?: ApiKeyConfiguration,
-    "apiLoginAuth"?: ApiKeyConfiguration,
-    "apiPasswordAuth"?: ApiKeyConfiguration
+    "apiKeyAuth"?: ApiKeyConfiguration
 }
 
 /**
@@ -114,18 +70,6 @@ export function configureAuthMethods(config: AuthMethodsConfiguration | undefine
     if (config["apiKeyAuth"]) {
         authMethods["apiKeyAuth"] = new ApiKeyAuthAuthentication(
             config["apiKeyAuth"]
-        );
-    }
-
-    if (config["apiLoginAuth"]) {
-        authMethods["apiLoginAuth"] = new ApiLoginAuthAuthentication(
-            config["apiLoginAuth"]
-        );
-    }
-
-    if (config["apiPasswordAuth"]) {
-        authMethods["apiPasswordAuth"] = new ApiPasswordAuthAuthentication(
-            config["apiPasswordAuth"]
         );
     }
 

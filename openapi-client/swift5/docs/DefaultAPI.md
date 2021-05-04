@@ -4,34 +4,31 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMailById**](DefaultAPI.md#getmailbyid) | **GET** /mail/{id} | Gets mail order information by id
 [**getMailOrders**](DefaultAPI.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultAPI.md#pingserver) | **GET** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultAPI.md#placemailorder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultAPI.md#sendadvmailbyid) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultAPI.md#sendmailbyid) | **POST** /mail/{id}/send | Sends an Email
+[**sendAdvMailById**](DefaultAPI.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMailById**](DefaultAPI.md#sendmailbyid) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultAPI.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLogById**](DefaultAPI.md#viewmaillogbyid) | **GET** /mail/{id}/log | displays the mail log
+[**viewMailLogById**](DefaultAPI.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
 
-# **getMailById**
+# **getMailOrders**
 ```swift
-    open class func getMailById(id: Int64, completion: @escaping (_ data: MailOrder?, _ error: Error?) -> Void)
+    open class func getMailOrders(id: Int64? = nil, completion: @escaping (_ data: [MailOrder]?, _ error: Error?) -> Void)
 ```
 
-Gets mail order information by id
-
-returns information about a mail order in the system with the given id.
+displays a list of mail service orders
 
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let id = 987 // Int64 | User ID
+let id = 987 // Int64 | The ID of your mail order this will be sent through. (optional)
 
-// Gets mail order information by id
-DefaultAPI.getMailById(id: id) { (response, error) in
+// displays a list of mail service orders
+DefaultAPI.getMailOrders(id: id) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -47,51 +44,7 @@ DefaultAPI.getMailById(id: id) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Int64** | User ID | 
-
-### Return type
-
-[**MailOrder**](MailOrder.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getMailOrders**
-```swift
-    open class func getMailOrders(completion: @escaping (_ data: [MailOrder]?, _ error: Error?) -> Void)
-```
-
-displays a list of mail service orders
-
-### Example 
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
-
-
-// displays a list of mail service orders
-DefaultAPI.getMailOrders() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
+ **id** | **Int64** | The ID of your mail order this will be sent through. | [optional] 
 
 ### Return type
 
@@ -99,7 +52,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -193,7 +146,7 @@ Void (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -204,7 +157,7 @@ Void (empty response body)
 
 # **sendAdvMailById**
 ```swift
-    open class func sendAdvMailById(id: Int64, sendMail: SendMail, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
+    open class func sendAdvMailById(sendMail: SendMail, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
 ```
 
 Sends an Email with Advanced Options
@@ -216,11 +169,10 @@ Sends An email through one of your mail orders allowing additional options such 
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let id = 987 // Int64 | User ID
 let sendMail = SendMail(id: 123, from: MailContact(email: "email_example", name: "name_example"), to: [nil], subject: "subject_example", body: "body_example", replyto: [nil], cc: [nil], bcc: [nil], attachments: [MailAttachment(data: URL(string: "https://example.com")!, filename: "filename_example")]) // SendMail | 
 
 // Sends an Email with Advanced Options
-DefaultAPI.sendAdvMailById(id: id, sendMail: sendMail) { (response, error) in
+DefaultAPI.sendAdvMailById(sendMail: sendMail) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -236,7 +188,6 @@ DefaultAPI.sendAdvMailById(id: id, sendMail: sendMail) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Int64** | User ID | 
  **sendMail** | [**SendMail**](SendMail.md) |  | 
 
 ### Return type
@@ -245,18 +196,18 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendMailById**
 ```swift
-    open class func sendMailById(id: Int64, subject: String? = nil, body: String? = nil, to: String? = nil, toName: String? = nil, from: String? = nil, fromName: String? = nil, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
+    open class func sendMailById(subject: String? = nil, body: String? = nil, to: String? = nil, from: String? = nil, id: Int64? = nil, toName: String? = nil, fromName: String? = nil, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
 ```
 
 Sends an Email
@@ -268,16 +219,16 @@ Sends An email through one of your mail orders.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let id = 987 // Int64 | User ID
-let subject = "subject_example" // String |  (optional)
-let body = "body_example" // String |  (optional)
-let to = "to_example" // String |  (optional)
-let toName = "toName_example" // String |  (optional)
-let from = "from_example" // String |  (optional)
-let fromName = "fromName_example" // String |  (optional)
+let subject = "subject_example" // String | The Subject of the email (optional)
+let body = "body_example" // String | The contents of the email (optional)
+let to = "to_example" // String | The email address of who this email will be sent to. (optional)
+let from = "from_example" // String | The email address of who this email will be sent from. (optional)
+let id = 987 // Int64 | The ID of your mail order this will be sent through. (optional)
+let toName = "toName_example" // String | The name or title of who this email is being sent to. (optional)
+let fromName = "fromName_example" // String | The name or title of who this email is being sent from. (optional)
 
 // Sends an Email
-DefaultAPI.sendMailById(id: id, subject: subject, body: body, to: to, toName: toName, from: from, fromName: fromName) { (response, error) in
+DefaultAPI.sendMailById(subject: subject, body: body, to: to, from: from, id: id, toName: toName, fromName: fromName) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -293,13 +244,13 @@ DefaultAPI.sendMailById(id: id, subject: subject, body: body, to: to, toName: to
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Int64** | User ID | 
- **subject** | **String** |  | [optional] 
- **body** | **String** |  | [optional] 
- **to** | **String** |  | [optional] 
- **toName** | **String** |  | [optional] 
- **from** | **String** |  | [optional] 
- **fromName** | **String** |  | [optional] 
+ **subject** | **String** | The Subject of the email | [optional] 
+ **body** | **String** | The contents of the email | [optional] 
+ **to** | **String** | The email address of who this email will be sent to. | [optional] 
+ **from** | **String** | The email address of who this email will be sent from. | [optional] 
+ **id** | **Int64** | The ID of your mail order this will be sent through. | [optional] 
+ **toName** | **String** | The name or title of who this email is being sent to. | [optional] 
+ **fromName** | **String** | The name or title of who this email is being sent from. | [optional] 
 
 ### Return type
 
@@ -307,7 +258,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -351,7 +302,7 @@ Void (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -362,7 +313,7 @@ Void (empty response body)
 
 # **viewMailLogById**
 ```swift
-    open class func viewMailLogById(id: Int64, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil, completion: @escaping (_ data: [MailLog]?, _ error: Error?) -> Void)
+    open class func viewMailLogById(id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil, completion: @escaping (_ data: [MailLog]?, _ error: Error?) -> Void)
 ```
 
 displays the mail log
@@ -374,7 +325,7 @@ By passing in the appropriate options, you can search for available inventory in
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let id = 987 // Int64 | User ID
+let id = 987 // Int64 | The ID of your mail order this will be sent through. (optional)
 let searchString = "searchString_example" // String | pass an optional search string for looking up inventory (optional)
 let skip = 987 // Int | number of records to skip for pagination (optional)
 let limit = 987 // Int | maximum number of records to return (optional)
@@ -396,7 +347,7 @@ DefaultAPI.viewMailLogById(id: id, searchString: searchString, skip: skip, limit
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Int64** | User ID | 
+ **id** | **Int64** | The ID of your mail order this will be sent through. | [optional] 
  **searchString** | **String** | pass an optional search string for looking up inventory | [optional] 
  **skip** | **Int** | number of records to skip for pagination | [optional] 
  **limit** | **Int** | maximum number of records to return | [optional] 
@@ -407,7 +358,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

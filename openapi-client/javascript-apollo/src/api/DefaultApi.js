@@ -39,51 +39,19 @@ export default class DefaultApi extends ApiClient {
 
 
     /**
-     * Gets mail order information by id
-     * returns information about a mail order in the system with the given id.
-     * @param {Number} id User ID
-     * @return {Promise<MailOrder>}
-     */
-    async getMailById(id) {
-      let postBody = null;
-      // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling getMailById");
-      }
-
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-        'User-Agent': 'OpenAPI-Generator/1.0.0/Javascript',
-      };
-      let formParams = {
-      };
-
-      let authNames = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = MailOrder;
-
-      return this.callApi(
-        '/mail/{id}', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      );
-    }
-
-    /**
      * displays a list of mail service orders
+     * @param {Object} opts Optional parameters
+     * @param {Number} opts.id The ID of your mail order this will be sent through.
      * @return {Promise<Array.<MailOrder>>}
      */
-    async getMailOrders() {
+    async getMailOrders(opts) {
+      opts = opts || {};
       let postBody = null;
 
       let pathParams = {
       };
       let queryParams = {
+        'id': opts['id']
       };
       let headerParams = {
         'User-Agent': 'OpenAPI-Generator/1.0.0/Javascript',
@@ -91,7 +59,7 @@ export default class DefaultApi extends ApiClient {
       let formParams = {
       };
 
-      let authNames = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+      let authNames = ['apiKeyAuth'];
       let contentTypes = [];
       let accepts = ['application/json', 'application/xml', 'text/plain'];
       let returnType = [MailOrder];
@@ -153,7 +121,7 @@ export default class DefaultApi extends ApiClient {
       let formParams = {
       };
 
-      let authNames = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+      let authNames = ['apiKeyAuth'];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = null;
@@ -168,23 +136,17 @@ export default class DefaultApi extends ApiClient {
     /**
      * Sends an Email with Advanced Options
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @param {Number} id User ID
      * @param {SendMail} sendMail 
      * @return {Promise<GenericResponse>}
      */
-    async sendAdvMailById(id, sendMail) {
+    async sendAdvMailById(sendMail) {
       let postBody = sendMail;
-      // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling sendAdvMailById");
-      }
       // verify the required parameter 'sendMail' is set
       if (sendMail === undefined || sendMail === null) {
         throw new Error("Missing the required parameter 'sendMail' when calling sendAdvMailById");
       }
 
       let pathParams = {
-        'id': id
       };
       let queryParams = {
       };
@@ -194,13 +156,13 @@ export default class DefaultApi extends ApiClient {
       let formParams = {
       };
 
-      let authNames = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
-      let contentTypes = ['application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain'];
+      let authNames = ['apiKeyAuth'];
+      let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = GenericResponse;
 
       return this.callApi(
-        '/mail/{id}/advsend', 'POST',
+        '/mail/advsend', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType
       );
@@ -209,33 +171,29 @@ export default class DefaultApi extends ApiClient {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param {Number} id User ID
      * @param {Object} opts Optional parameters
-     * @param {String} opts.subject 
-     * @param {String} opts.body 
-     * @param {String} opts.to 
-     * @param {String} opts.toName 
-     * @param {String} opts.from 
-     * @param {String} opts.fromName 
+     * @param {String} opts.subject The Subject of the email
+     * @param {String} opts.body The contents of the email
+     * @param {String} opts.to The email address of who this email will be sent to.
+     * @param {String} opts.from The email address of who this email will be sent from.
+     * @param {Number} opts.id The ID of your mail order this will be sent through.
+     * @param {String} opts.toName The name or title of who this email is being sent to.
+     * @param {String} opts.fromName The name or title of who this email is being sent from.
      * @return {Promise<GenericResponse>}
      */
-    async sendMailById(id, opts) {
+    async sendMailById(opts) {
       opts = opts || {};
       let postBody = null;
-      // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling sendMailById");
-      }
 
       let pathParams = {
-        'id': id
       };
       let queryParams = {
         'subject': opts['subject'],
         'body': opts['body'],
         'to': opts['to'],
-        'toName': opts['toName'],
         'from': opts['from'],
+        'id': opts['id'],
+        'toName': opts['toName'],
         'fromName': opts['fromName']
       };
       let headerParams = {
@@ -244,13 +202,13 @@ export default class DefaultApi extends ApiClient {
       let formParams = {
       };
 
-      let authNames = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+      let authNames = ['apiKeyAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
       let returnType = GenericResponse;
 
       return this.callApi(
-        '/mail/{id}/send', 'POST',
+        '/mail/send', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType
       );
@@ -273,7 +231,7 @@ export default class DefaultApi extends ApiClient {
       let formParams = {
       };
 
-      let authNames = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+      let authNames = ['apiKeyAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
       let returnType = null;
@@ -288,25 +246,21 @@ export default class DefaultApi extends ApiClient {
     /**
      * displays the mail log
      * By passing in the appropriate options, you can search for available inventory in the system 
-     * @param {Number} id User ID
      * @param {Object} opts Optional parameters
+     * @param {Number} opts.id The ID of your mail order this will be sent through.
      * @param {String} opts.searchString pass an optional search string for looking up inventory
      * @param {Number} opts.skip number of records to skip for pagination
      * @param {Number} opts.limit maximum number of records to return
      * @return {Promise<Array.<MailLog>>}
      */
-    async viewMailLogById(id, opts) {
+    async viewMailLogById(opts) {
       opts = opts || {};
       let postBody = null;
-      // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling viewMailLogById");
-      }
 
       let pathParams = {
-        'id': id
       };
       let queryParams = {
+        'id': opts['id'],
         'searchString': opts['searchString'],
         'skip': opts['skip'],
         'limit': opts['limit']
@@ -317,13 +271,13 @@ export default class DefaultApi extends ApiClient {
       let formParams = {
       };
 
-      let authNames = ['apiKeyAuth', 'apiLoginAuth', 'apiPasswordAuth'];
+      let authNames = ['apiKeyAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
       let returnType = [MailLog];
 
       return this.callApi(
-        '/mail/{id}/log', 'GET',
+        '/mail/log', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType
       );

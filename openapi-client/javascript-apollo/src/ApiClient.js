@@ -34,9 +34,7 @@ export default class ApiClient extends RESTDataSource {
          * @type {Array.<String>}
          */
         this.authentications = {
-            'apiKeyAuth': {type: 'apiKey', 'in': 'header', name: 'X-API-KEY'},
-            'apiLoginAuth': {type: 'apiKey', 'in': 'header', name: 'X-API-LOGIN'},
-            'apiPasswordAuth': {type: 'apiKey', 'in': 'header', name: 'X-API-PASS'}
+            'apiKeyAuth': {type: 'apiKey', 'in': 'header', name: 'X-API-KEY'}
         }
     }
 

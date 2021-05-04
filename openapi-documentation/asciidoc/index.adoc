@@ -25,98 +25,12 @@ This is an API defintion for accesssing the Mail.Baby mail service.
 
 * *APIKey* KeyParamName:     _X-API-KEY_,     KeyInQuery: _false_, KeyInHeader: _true_
 
-* *APIKey* KeyParamName:     _X-API-LOGIN_,     KeyInQuery: _false_, KeyInHeader: _true_
-
-* *APIKey* KeyParamName:     _X-API-PASS_,     KeyInQuery: _false_, KeyInHeader: _true_
-
 
 == Endpoints
 
 
 [.Default]
 === Default
-
-
-[.getMailById]
-==== getMailById
-    
-`GET /mail/{id}`
-
-Gets mail order information by id
-
-===== Description 
-
-returns information about a mail order in the system with the given id.
-
-
-// markup not found, no include::{specDir}mail/\{id\}/GET/spec.adoc[opts=optional]
-
-
-
-===== Parameters
-
-====== Path Parameters
-
-[cols="2,3,1,1,1"]
-|===         
-|Name| Description| Required| Default| Pattern
-
-| id 
-| User ID  
-| X 
-| null 
-|  
-
-|===         
-
-
-
-
-
-
-===== Return Type
-
-<<MailOrder>>
-
-
-===== Content Type
-
-* application/json
-
-===== Responses
-
-.http response codes
-[cols="2,3,1"]
-|===         
-| Code | Message | Datatype 
-
-
-| 200
-| Successful operation
-|  <<MailOrder>>
-
-|===         
-
-===== Samples
-
-
-// markup not found, no include::{snippetDir}mail/\{id\}/GET/http-request.adoc[opts=optional]
-
-
-// markup not found, no include::{snippetDir}mail/\{id\}/GET/http-response.adoc[opts=optional]
-
-
-
-// file not found, no * wiremock data link :mail/{id}/GET/GET.json[]
-
-
-ifdef::internal-generation[]
-===== Implementation
-
-// markup not found, no include::{specDir}mail/\{id\}/GET/implementation.adoc[opts=optional]
-
-
-endif::internal-generation[]
 
 
 [.getMailOrders]
@@ -141,6 +55,19 @@ displays a list of mail service orders
 
 
 
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===         
+|Name| Description| Required| Default| Pattern
+
+| id 
+| The ID of your mail order this will be sent through.  
+| - 
+| null 
+|  
+
+|===         
 
 
 ===== Return Type
@@ -368,7 +295,7 @@ endif::internal-generation[]
 [.sendAdvMailById]
 ==== sendAdvMailById
     
-`POST /mail/{id}/advsend`
+`POST /mail/advsend`
 
 Sends an Email with Advanced Options
 
@@ -377,25 +304,12 @@ Sends an Email with Advanced Options
 Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 
 
-// markup not found, no include::{specDir}mail/\{id\}/advsend/POST/spec.adoc[opts=optional]
+// markup not found, no include::{specDir}mail/advsend/POST/spec.adoc[opts=optional]
 
 
 
 ===== Parameters
 
-====== Path Parameters
-
-[cols="2,3,1,1,1"]
-|===         
-|Name| Description| Required| Default| Pattern
-
-| id 
-| User ID  
-| X 
-| null 
-|  
-
-|===         
 
 ====== Body Parameter
 
@@ -456,20 +370,20 @@ Sends An email through one of your mail orders allowing additional options such 
 ===== Samples
 
 
-// markup not found, no include::{snippetDir}mail/\{id\}/advsend/POST/http-request.adoc[opts=optional]
+// markup not found, no include::{snippetDir}mail/advsend/POST/http-request.adoc[opts=optional]
 
 
-// markup not found, no include::{snippetDir}mail/\{id\}/advsend/POST/http-response.adoc[opts=optional]
+// markup not found, no include::{snippetDir}mail/advsend/POST/http-response.adoc[opts=optional]
 
 
 
-// file not found, no * wiremock data link :mail/{id}/advsend/POST/POST.json[]
+// file not found, no * wiremock data link :mail/advsend/POST/POST.json[]
 
 
 ifdef::internal-generation[]
 ===== Implementation
 
-// markup not found, no include::{specDir}mail/\{id\}/advsend/POST/implementation.adoc[opts=optional]
+// markup not found, no include::{specDir}mail/advsend/POST/implementation.adoc[opts=optional]
 
 
 endif::internal-generation[]
@@ -478,7 +392,7 @@ endif::internal-generation[]
 [.sendMailById]
 ==== sendMailById
     
-`POST /mail/{id}/send`
+`POST /mail/send`
 
 Sends an Email
 
@@ -487,25 +401,12 @@ Sends an Email
 Sends An email through one of your mail orders.
 
 
-// markup not found, no include::{specDir}mail/\{id\}/send/POST/spec.adoc[opts=optional]
+// markup not found, no include::{specDir}mail/send/POST/spec.adoc[opts=optional]
 
 
 
 ===== Parameters
 
-====== Path Parameters
-
-[cols="2,3,1,1,1"]
-|===         
-|Name| Description| Required| Default| Pattern
-
-| id 
-| User ID  
-| X 
-| null 
-|  
-
-|===         
 
 
 
@@ -517,37 +418,43 @@ Sends An email through one of your mail orders.
 |Name| Description| Required| Default| Pattern
 
 | subject 
-|   
+| The Subject of the email  
 | - 
 | null 
 |  
 
 | body 
-|   
+| The contents of the email  
 | - 
 | null 
 |  
 
 | to 
-|   
-| - 
-| null 
-|  
-
-| toName 
-|   
+| The email address of who this email will be sent to.  
 | - 
 | null 
 |  
 
 | from 
-|   
+| The email address of who this email will be sent from.  
+| - 
+| null 
+|  
+
+| id 
+| The ID of your mail order this will be sent through.  
+| - 
+| null 
+|  
+
+| toName 
+| The name or title of who this email is being sent to.  
 | - 
 | null 
 |  
 
 | fromName 
-|   
+| The name or title of who this email is being sent from.  
 | - 
 | null 
 |  
@@ -596,20 +503,20 @@ Sends An email through one of your mail orders.
 ===== Samples
 
 
-// markup not found, no include::{snippetDir}mail/\{id\}/send/POST/http-request.adoc[opts=optional]
+// markup not found, no include::{snippetDir}mail/send/POST/http-request.adoc[opts=optional]
 
 
-// markup not found, no include::{snippetDir}mail/\{id\}/send/POST/http-response.adoc[opts=optional]
+// markup not found, no include::{snippetDir}mail/send/POST/http-response.adoc[opts=optional]
 
 
 
-// file not found, no * wiremock data link :mail/{id}/send/POST/POST.json[]
+// file not found, no * wiremock data link :mail/send/POST/POST.json[]
 
 
 ifdef::internal-generation[]
 ===== Implementation
 
-// markup not found, no include::{specDir}mail/\{id\}/send/POST/implementation.adoc[opts=optional]
+// markup not found, no include::{specDir}mail/send/POST/implementation.adoc[opts=optional]
 
 
 endif::internal-generation[]
@@ -693,7 +600,7 @@ endif::internal-generation[]
 [.viewMailLogById]
 ==== viewMailLogById
     
-`GET /mail/{id}/log`
+`GET /mail/log`
 
 displays the mail log
 
@@ -702,25 +609,12 @@ displays the mail log
 By passing in the appropriate options, you can search for available inventory in the system 
 
 
-// markup not found, no include::{specDir}mail/\{id\}/log/GET/spec.adoc[opts=optional]
+// markup not found, no include::{specDir}mail/log/GET/spec.adoc[opts=optional]
 
 
 
 ===== Parameters
 
-====== Path Parameters
-
-[cols="2,3,1,1,1"]
-|===         
-|Name| Description| Required| Default| Pattern
-
-| id 
-| User ID  
-| X 
-| null 
-|  
-
-|===         
 
 
 
@@ -730,6 +624,12 @@ By passing in the appropriate options, you can search for available inventory in
 [cols="2,3,1,1,1"]
 |===         
 |Name| Description| Required| Default| Pattern
+
+| id 
+| The ID of your mail order this will be sent through.  
+| - 
+| null 
+|  
 
 | searchString 
 | pass an optional search string for looking up inventory  
@@ -783,20 +683,20 @@ array[<<MailLog>>]
 ===== Samples
 
 
-// markup not found, no include::{snippetDir}mail/\{id\}/log/GET/http-request.adoc[opts=optional]
+// markup not found, no include::{snippetDir}mail/log/GET/http-request.adoc[opts=optional]
 
 
-// markup not found, no include::{snippetDir}mail/\{id\}/log/GET/http-response.adoc[opts=optional]
+// markup not found, no include::{snippetDir}mail/log/GET/http-response.adoc[opts=optional]
 
 
 
-// file not found, no * wiremock data link :mail/{id}/log/GET/GET.json[]
+// file not found, no * wiremock data link :mail/log/GET/GET.json[]
 
 
 ifdef::internal-generation[]
 ===== Implementation
 
-// markup not found, no include::{specDir}mail/\{id\}/log/GET/implementation.adoc[opts=optional]
+// markup not found, no include::{specDir}mail/log/GET/implementation.adoc[opts=optional]
 
 
 endif::internal-generation[]

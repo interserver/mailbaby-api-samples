@@ -24,20 +24,11 @@ export class PromiseDefaultApi {
     }
 
     /**
-     * returns information about a mail order in the system with the given id.
-     * Gets mail order information by id
-     * @param id User ID
-     */
-    public getMailById(id: number, options?: Configuration): Promise<MailOrder> {
-        const result = this.api.getMailById(id, options);
-        return result.toPromise();
-    }
-
-    /**
      * displays a list of mail service orders
+     * @param id The ID of your mail order this will be sent through.
      */
-    public getMailOrders(options?: Configuration): Promise<Array<MailOrder>> {
-        const result = this.api.getMailOrders(options);
+    public getMailOrders(id?: number, options?: Configuration): Promise<Array<MailOrder>> {
+        const result = this.api.getMailOrders(id, options);
         return result.toPromise();
     }
 
@@ -62,27 +53,26 @@ export class PromiseDefaultApi {
     /**
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * Sends an Email with Advanced Options
-     * @param id User ID
      * @param sendMail 
      */
-    public sendAdvMailById(id: number, sendMail: SendMail, options?: Configuration): Promise<GenericResponse> {
-        const result = this.api.sendAdvMailById(id, sendMail, options);
+    public sendAdvMailById(sendMail: SendMail, options?: Configuration): Promise<GenericResponse> {
+        const result = this.api.sendAdvMailById(sendMail, options);
         return result.toPromise();
     }
 
     /**
      * Sends An email through one of your mail orders.
      * Sends an Email
-     * @param id User ID
-     * @param subject 
-     * @param body 
-     * @param to 
-     * @param toName 
-     * @param from 
-     * @param fromName 
+     * @param subject The Subject of the email
+     * @param body The contents of the email
+     * @param to The email address of who this email will be sent to.
+     * @param from The email address of who this email will be sent from.
+     * @param id The ID of your mail order this will be sent through.
+     * @param toName The name or title of who this email is being sent to.
+     * @param fromName The name or title of who this email is being sent from.
      */
-    public sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, options?: Configuration): Promise<GenericResponse> {
-        const result = this.api.sendMailById(id, subject, body, to, toName, from, fromName, options);
+    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options?: Configuration): Promise<GenericResponse> {
+        const result = this.api.sendMailById(subject, body, to, from, id, toName, fromName, options);
         return result.toPromise();
     }
 
@@ -97,12 +87,12 @@ export class PromiseDefaultApi {
     /**
      * By passing in the appropriate options, you can search for available inventory in the system 
      * displays the mail log
-     * @param id User ID
+     * @param id The ID of your mail order this will be sent through.
      * @param searchString pass an optional search string for looking up inventory
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      */
-    public viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, options?: Configuration): Promise<Array<MailLog>> {
+    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: Configuration): Promise<Array<MailLog>> {
         const result = this.api.viewMailLogById(id, searchString, skip, limit, options);
         return result.toPromise();
     }

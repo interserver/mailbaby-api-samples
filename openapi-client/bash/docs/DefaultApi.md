@@ -4,50 +4,14 @@ All URIs are relative to **
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMailById**](DefaultApi.md#getMailById) | **GET** /mail/{id} | Gets mail order information by id
 [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/{id}/send | Sends an Email
+[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/{id}/log | displays the mail log
+[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
-
-
-## getMailById
-
-Gets mail order information by id
-
-returns information about a mail order in the system with the given id.
-
-### Example
-
-```bash
- getMailById id=value
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **integer** | User ID | [default to null]
-
-### Return type
-
-[**MailOrder**](MailOrder.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not Applicable
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## getMailOrders
@@ -57,12 +21,15 @@ displays a list of mail service orders
 ### Example
 
 ```bash
- getMailOrders
+ getMailOrders  id=value
 ```
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **integer** | The ID of your mail order this will be sent through. | [optional] [default to null]
 
 ### Return type
 
@@ -70,7 +37,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -135,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -154,7 +121,7 @@ Sends An email through one of your mail orders allowing additional options such 
 ### Example
 
 ```bash
- sendAdvMailById id=value
+ sendAdvMailById
 ```
 
 ### Parameters
@@ -162,7 +129,6 @@ Sends An email through one of your mail orders allowing additional options such 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **integer** | User ID | [default to null]
  **sendMail** | [**SendMail**](SendMail.md) |  |
 
 ### Return type
@@ -171,11 +137,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -190,7 +156,7 @@ Sends An email through one of your mail orders.
 ### Example
 
 ```bash
- sendMailById id=value  subject=value  body=value  to=value  toName=value  from=value  fromName=value
+ sendMailById  subject=value  body=value  to=value  from=value  id=value  toName=value  fromName=value
 ```
 
 ### Parameters
@@ -198,13 +164,13 @@ Sends An email through one of your mail orders.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **integer** | User ID | [default to null]
- **subject** | **string** |  | [optional] [default to null]
- **body** | **string** |  | [optional] [default to null]
- **to** | **string** |  | [optional] [default to null]
- **toName** | **string** |  | [optional] [default to null]
- **from** | **string** |  | [optional] [default to null]
- **fromName** | **string** |  | [optional] [default to null]
+ **subject** | **string** | The Subject of the email | [optional] [default to null]
+ **body** | **string** | The contents of the email | [optional] [default to null]
+ **to** | **string** | The email address of who this email will be sent to. | [optional] [default to null]
+ **from** | **string** | The email address of who this email will be sent from. | [optional] [default to null]
+ **id** | **integer** | The ID of your mail order this will be sent through. | [optional] [default to null]
+ **toName** | **string** | The name or title of who this email is being sent to. | [optional] [default to null]
+ **fromName** | **string** | The name or title of who this email is being sent from. | [optional] [default to null]
 
 ### Return type
 
@@ -212,7 +178,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -242,7 +208,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -262,7 +228,7 @@ available inventory in the system
 ### Example
 
 ```bash
- viewMailLogById id=value  searchString=value  skip=value  limit=value
+ viewMailLogById  id=value  searchString=value  skip=value  limit=value
 ```
 
 ### Parameters
@@ -270,7 +236,7 @@ available inventory in the system
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **integer** | User ID | [default to null]
+ **id** | **integer** | The ID of your mail order this will be sent through. | [optional] [default to null]
  **searchString** | **string** | pass an optional search string for looking up inventory | [optional] [default to null]
  **skip** | **integer** | number of records to skip for pagination | [optional] [default to null]
  **limit** | **integer** | maximum number of records to return | [optional] [default to null]
@@ -281,7 +247,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

@@ -273,62 +273,11 @@ export type SendMail = {
 export const DefaultApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * returns information about a mail order in the system with the given id.
-         * @summary Gets mail order information by id
-         * @throws {RequiredError}
-         */
-        getMailById(id: number, options: RequestOptions): FetchArgs {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling getMailById.');
-            }
-            const localVarPath = `/mail/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
-
-            // authentication apiKeyAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-KEY")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-LOGIN")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-PASS")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            localVarUrlObj.search = null;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * 
          * @summary displays a list of mail service orders
          * @throws {RequiredError}
          */
-        getMailOrders(options: RequestOptions): FetchArgs {
+        getMailOrders(id?: number, options: RequestOptions): FetchArgs {
             const localVarPath = `/mail`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
@@ -343,20 +292,8 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-LOGIN")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-PASS")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = ((id:any):string);
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -411,22 +348,6 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-LOGIN")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-PASS")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
-            }
-
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -446,17 +367,12 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * @summary Sends an Email with Advanced Options
          * @throws {RequiredError}
          */
-        sendAdvMailById(id: number, sendMail: SendMail, options: RequestOptions): FetchArgs {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling sendAdvMailById.');
-            }
+        sendAdvMailById(sendMail: SendMail, options: RequestOptions): FetchArgs {
             // verify required parameter 'sendMail' is not null or undefined
             if (sendMail === null || sendMail === undefined) {
                 throw new RequiredError('sendMail','Required parameter sendMail was null or undefined when calling sendAdvMailById.');
             }
-            const localVarPath = `/mail/{id}/advsend`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarPath = `/mail/advsend`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -468,22 +384,6 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
 					? configuration.apiKey("X-API-KEY")
 					: configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-LOGIN")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-PASS")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
             }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -505,13 +405,8 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * @summary Sends an Email
          * @throws {RequiredError}
          */
-        sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, options: RequestOptions): FetchArgs {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling sendMailById.');
-            }
-            const localVarPath = `/mail/{id}/send`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options: RequestOptions): FetchArgs {
+            const localVarPath = `/mail/send`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -523,22 +418,6 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
 					? configuration.apiKey("X-API-KEY")
 					: configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-LOGIN")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-PASS")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
             }
 
             if (subject !== undefined) {
@@ -553,12 +432,16 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['to'] = ((to:any):string);
             }
 
-            if (toName !== undefined) {
-                localVarQueryParameter['toName'] = ((toName:any):string);
-            }
-
             if (from !== undefined) {
                 localVarQueryParameter['from'] = ((from:any):string);
+            }
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = ((id:any):string);
+            }
+
+            if (toName !== undefined) {
+                localVarQueryParameter['toName'] = ((toName:any):string);
             }
 
             if (fromName !== undefined) {
@@ -595,22 +478,6 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-LOGIN")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-PASS")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
-            }
-
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             localVarUrlObj.search = null;
@@ -626,13 +493,8 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * @summary displays the mail log
          * @throws {RequiredError}
          */
-        viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, options: RequestOptions): FetchArgs {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling viewMailLogById.');
-            }
-            const localVarPath = `/mail/{id}/log`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options: RequestOptions): FetchArgs {
+            const localVarPath = `/mail/log`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
@@ -646,20 +508,8 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            // authentication apiLoginAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-LOGIN")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-LOGIN"] = localVarApiKeyValue;
-            }
-
-            // authentication apiPasswordAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-PASS")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-PASS"] = localVarApiKeyValue;
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = ((id:any):string);
             }
 
             if (searchString !== undefined) {
@@ -688,21 +538,19 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
 };
 
 export type DefaultApiType = { 
-    getMailById(id: number, options?: RequestOptions): Promise<MailOrder>,
-
-    getMailOrders(options?: RequestOptions): Promise<Array<MailOrder>>,
+    getMailOrders(id?: number, options?: RequestOptions): Promise<Array<MailOrder>>,
 
     pingServer(options?: RequestOptions): Promise<Response>,
 
     placeMailOrder(mailOrder?: MailOrder, options?: RequestOptions): Promise<Response>,
 
-    sendAdvMailById(id: number, sendMail: SendMail, options?: RequestOptions): Promise<GenericResponse>,
+    sendAdvMailById(sendMail: SendMail, options?: RequestOptions): Promise<GenericResponse>,
 
-    sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, options?: RequestOptions): Promise<GenericResponse>,
+    sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options?: RequestOptions): Promise<GenericResponse>,
 
     validateMailOrder(options?: RequestOptions): Promise<Response>,
 
-    viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, options?: RequestOptions): Promise<Array<MailLog>>,
+    viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: RequestOptions): Promise<Array<MailLog>>,
 }
 
 /**
@@ -713,27 +561,12 @@ export const DefaultApi = function(configuration?: Configuration, fetch: FetchAP
     const basePath: string = (configuration && configuration.basePath) || BASE_PATH;
     return {
         /**
-         * returns information about a mail order in the system with the given id.
-         * @summary Gets mail order information by id
-         * @throws {RequiredError}
-         */
-        getMailById(id: number, options?: RequestOptions = {}): Promise<MailOrder> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).getMailById(id, options);
-            return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    return response.json();
-                } else {
-                    throw response;
-                }
-            });
-        },
-        /**
          * 
          * @summary displays a list of mail service orders
          * @throws {RequiredError}
          */
-        getMailOrders(options?: RequestOptions = {}): Promise<Array<MailOrder>> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).getMailOrders(options);
+        getMailOrders(id?: number, options?: RequestOptions = {}): Promise<Array<MailOrder>> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).getMailOrders(id, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();
@@ -777,8 +610,8 @@ export const DefaultApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary Sends an Email with Advanced Options
          * @throws {RequiredError}
          */
-        sendAdvMailById(id: number, sendMail: SendMail, options?: RequestOptions = {}): Promise<GenericResponse> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendAdvMailById(id, sendMail, options);
+        sendAdvMailById(sendMail: SendMail, options?: RequestOptions = {}): Promise<GenericResponse> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendAdvMailById(sendMail, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();
@@ -792,8 +625,8 @@ export const DefaultApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary Sends an Email
          * @throws {RequiredError}
          */
-        sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, options?: RequestOptions = {}): Promise<GenericResponse> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMailById(id, subject, body, to, toName, from, fromName, options);
+        sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options?: RequestOptions = {}): Promise<GenericResponse> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMailById(subject, body, to, from, id, toName, fromName, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();
@@ -822,7 +655,7 @@ export const DefaultApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary displays the mail log
          * @throws {RequiredError}
          */
-        viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, options?: RequestOptions = {}): Promise<Array<MailLog>> {
+        viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: RequestOptions = {}): Promise<Array<MailLog>> {
             const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).viewMailLogById(id, searchString, skip, limit, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {

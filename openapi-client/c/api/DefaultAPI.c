@@ -12,89 +12,12 @@
 }while(0)
 
 
-// Gets mail order information by id
-//
-// returns information about a mail order in the system with the given id.
-//
-mail_order_t*
-DefaultAPI_getMailById(apiClient_t *apiClient, long id )
-{
-    list_t    *localVarQueryParameters = NULL;
-    list_t    *localVarHeaderParameters = NULL;
-    list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = NULL;
-    char      *localVarBodyParameters = NULL;
-
-    // create the path
-    long sizeOfPath = strlen("/mail/{id}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/mail/{id}");
-
-
-    // Path Params
-    long sizeOfPathParams_id = sizeof(id)+3 + strlen("{ id }");
-    if(id == 0){
-        goto end;
-    }
-    char* localVarToReplace_id = malloc(sizeOfPathParams_id);
-    snprintf(localVarToReplace_id, sizeOfPathParams_id, "{%s}", "id");
-
-    char localVarBuff_id[256];
-    intToStr(localVarBuff_id, id);
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_id, localVarBuff_id);
-
-
-
-    list_addElement(localVarHeaderType,"application/json"); //produces
-    apiClient_invoke(apiClient,
-                    localVarPath,
-                    localVarQueryParameters,
-                    localVarHeaderParameters,
-                    localVarFormParameters,
-                    localVarHeaderType,
-                    localVarContentType,
-                    localVarBodyParameters,
-                    "GET");
-
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful operation");
-    }
-    //nonprimitive not container
-    cJSON *DefaultAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    mail_order_t *elementToReturn = mail_order_parseFromJSON(DefaultAPIlocalVarJSON);
-    cJSON_Delete(DefaultAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
-    }
-
-    //return type
-    if (apiClient->dataReceived) {
-        free(apiClient->dataReceived);
-        apiClient->dataReceived = NULL;
-        apiClient->dataReceivedLen = 0;
-    }
-    
-    
-    
-    list_free(localVarHeaderType);
-    
-    free(localVarPath);
-    free(localVarToReplace_id);
-    return elementToReturn;
-end:
-    free(localVarPath);
-    return NULL;
-
-}
-
 // displays a list of mail service orders
 //
 list_t*
-DefaultAPI_getMailOrders(apiClient_t *apiClient)
+DefaultAPI_getMailOrders(apiClient_t *apiClient, long id )
 {
-    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarQueryParameters = list_create();
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
     list_t *localVarHeaderType = list_create();
@@ -108,6 +31,18 @@ DefaultAPI_getMailOrders(apiClient_t *apiClient)
 
 
 
+
+    // query parameters
+    char *keyQuery_id = NULL;
+    long valueQuery_id ;
+    keyValuePair_t *keyPairQuery_id = 0;
+    if (id)
+    {
+        keyQuery_id = strdup("id");
+        valueQuery_id = (id);
+        keyPairQuery_id = keyValuePair_create(keyQuery_id, &valueQuery_id);
+        list_addElement(localVarQueryParameters,keyPairQuery_id);
+    }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarHeaderType,"application/xml"); //produces
     list_addElement(localVarHeaderType,"text/plain"); //produces
@@ -151,12 +86,20 @@ DefaultAPI_getMailOrders(apiClient_t *apiClient)
         apiClient->dataReceived = NULL;
         apiClient->dataReceivedLen = 0;
     }
-    
+    list_free(localVarQueryParameters);
     
     
     list_free(localVarHeaderType);
     
     free(localVarPath);
+    if(keyQuery_id){
+        free(keyQuery_id);
+        keyQuery_id = NULL;
+    }
+    if(keyPairQuery_id){
+        keyValuePair_free(keyPairQuery_id);
+        keyPairQuery_id = NULL;
+    }
     return elementToReturn;
 end:
     free(localVarPath);
@@ -295,7 +238,7 @@ end:
 // Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 //
 generic_response_t*
-DefaultAPI_sendAdvMailById(apiClient_t *apiClient, long id , send_mail_t * send_mail )
+DefaultAPI_sendAdvMailById(apiClient_t *apiClient, send_mail_t * send_mail )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -305,23 +248,9 @@ DefaultAPI_sendAdvMailById(apiClient_t *apiClient, long id , send_mail_t * send_
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/mail/{id}/advsend")+1;
+    long sizeOfPath = strlen("/mail/advsend")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/mail/{id}/advsend");
-
-
-    // Path Params
-    long sizeOfPathParams_id = sizeof(id)+3 + strlen("{ id }");
-    if(id == 0){
-        goto end;
-    }
-    char* localVarToReplace_id = malloc(sizeOfPathParams_id);
-    snprintf(localVarToReplace_id, sizeOfPathParams_id, "{%s}", "id");
-
-    char localVarBuff_id[256];
-    intToStr(localVarBuff_id, id);
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_id, localVarBuff_id);
+    snprintf(localVarPath, sizeOfPath, "/mail/advsend");
 
 
 
@@ -336,9 +265,6 @@ DefaultAPI_sendAdvMailById(apiClient_t *apiClient, long id , send_mail_t * send_
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
-    list_addElement(localVarContentType,"application/xml"); //consumes
-    list_addElement(localVarContentType,"application/x-www-form-urlencoded"); //consumes
-    list_addElement(localVarContentType,"text/plain"); //consumes
     apiClient_invoke(apiClient,
                     localVarPath,
                     localVarQueryParameters,
@@ -381,7 +307,6 @@ DefaultAPI_sendAdvMailById(apiClient_t *apiClient, long id , send_mail_t * send_
     list_free(localVarHeaderType);
     list_free(localVarContentType);
     free(localVarPath);
-    free(localVarToReplace_id);
     if (localVarSingleItemJSON_send_mail) {
         cJSON_Delete(localVarSingleItemJSON_send_mail);
         localVarSingleItemJSON_send_mail = NULL;
@@ -399,7 +324,7 @@ end:
 // Sends An email through one of your mail orders.
 //
 generic_response_t*
-DefaultAPI_sendMailById(apiClient_t *apiClient, long id , char * subject , char * body , char * to , char * toName , char * from , char * fromName )
+DefaultAPI_sendMailById(apiClient_t *apiClient, char * subject , char * body , char * to , char * from , long id , char * toName , char * fromName )
 {
     list_t    *localVarQueryParameters = list_create();
     list_t    *localVarHeaderParameters = NULL;
@@ -409,23 +334,9 @@ DefaultAPI_sendMailById(apiClient_t *apiClient, long id , char * subject , char 
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/mail/{id}/send")+1;
+    long sizeOfPath = strlen("/mail/send")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/mail/{id}/send");
-
-
-    // Path Params
-    long sizeOfPathParams_id = sizeof(id)+3 + strlen("{ id }");
-    if(id == 0){
-        goto end;
-    }
-    char* localVarToReplace_id = malloc(sizeOfPathParams_id);
-    snprintf(localVarToReplace_id, sizeOfPathParams_id, "{%s}", "id");
-
-    char localVarBuff_id[256];
-    intToStr(localVarBuff_id, id);
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_id, localVarBuff_id);
+    snprintf(localVarPath, sizeOfPath, "/mail/send");
 
 
 
@@ -467,18 +378,6 @@ DefaultAPI_sendMailById(apiClient_t *apiClient, long id , char * subject , char 
     }
 
     // query parameters
-    char *keyQuery_toName = NULL;
-    char * valueQuery_toName = NULL;
-    keyValuePair_t *keyPairQuery_toName = 0;
-    if (toName)
-    {
-        keyQuery_toName = strdup("toName");
-        valueQuery_toName = strdup((toName));
-        keyPairQuery_toName = keyValuePair_create(keyQuery_toName, valueQuery_toName);
-        list_addElement(localVarQueryParameters,keyPairQuery_toName);
-    }
-
-    // query parameters
     char *keyQuery_from = NULL;
     char * valueQuery_from = NULL;
     keyValuePair_t *keyPairQuery_from = 0;
@@ -488,6 +387,30 @@ DefaultAPI_sendMailById(apiClient_t *apiClient, long id , char * subject , char 
         valueQuery_from = strdup((from));
         keyPairQuery_from = keyValuePair_create(keyQuery_from, valueQuery_from);
         list_addElement(localVarQueryParameters,keyPairQuery_from);
+    }
+
+    // query parameters
+    char *keyQuery_id = NULL;
+    long valueQuery_id ;
+    keyValuePair_t *keyPairQuery_id = 0;
+    if (id)
+    {
+        keyQuery_id = strdup("id");
+        valueQuery_id = (id);
+        keyPairQuery_id = keyValuePair_create(keyQuery_id, &valueQuery_id);
+        list_addElement(localVarQueryParameters,keyPairQuery_id);
+    }
+
+    // query parameters
+    char *keyQuery_toName = NULL;
+    char * valueQuery_toName = NULL;
+    keyValuePair_t *keyPairQuery_toName = 0;
+    if (toName)
+    {
+        keyQuery_toName = strdup("toName");
+        valueQuery_toName = strdup((toName));
+        keyPairQuery_toName = keyValuePair_create(keyQuery_toName, valueQuery_toName);
+        list_addElement(localVarQueryParameters,keyPairQuery_toName);
     }
 
     // query parameters
@@ -544,7 +467,6 @@ DefaultAPI_sendMailById(apiClient_t *apiClient, long id , char * subject , char 
     list_free(localVarHeaderType);
     
     free(localVarPath);
-    free(localVarToReplace_id);
     if(keyQuery_subject){
         free(keyQuery_subject);
         keyQuery_subject = NULL;
@@ -581,18 +503,6 @@ DefaultAPI_sendMailById(apiClient_t *apiClient, long id , char * subject , char 
         keyValuePair_free(keyPairQuery_to);
         keyPairQuery_to = NULL;
     }
-    if(keyQuery_toName){
-        free(keyQuery_toName);
-        keyQuery_toName = NULL;
-    }
-    if(valueQuery_toName){
-        free(valueQuery_toName);
-        valueQuery_toName = NULL;
-    }
-    if(keyPairQuery_toName){
-        keyValuePair_free(keyPairQuery_toName);
-        keyPairQuery_toName = NULL;
-    }
     if(keyQuery_from){
         free(keyQuery_from);
         keyQuery_from = NULL;
@@ -604,6 +514,26 @@ DefaultAPI_sendMailById(apiClient_t *apiClient, long id , char * subject , char 
     if(keyPairQuery_from){
         keyValuePair_free(keyPairQuery_from);
         keyPairQuery_from = NULL;
+    }
+    if(keyQuery_id){
+        free(keyQuery_id);
+        keyQuery_id = NULL;
+    }
+    if(keyPairQuery_id){
+        keyValuePair_free(keyPairQuery_id);
+        keyPairQuery_id = NULL;
+    }
+    if(keyQuery_toName){
+        free(keyQuery_toName);
+        keyQuery_toName = NULL;
+    }
+    if(valueQuery_toName){
+        free(valueQuery_toName);
+        valueQuery_toName = NULL;
+    }
+    if(keyPairQuery_toName){
+        keyValuePair_free(keyPairQuery_toName);
+        keyPairQuery_toName = NULL;
     }
     if(keyQuery_fromName){
         free(keyQuery_fromName);
@@ -691,26 +621,24 @@ DefaultAPI_viewMailLogById(apiClient_t *apiClient, long id , char * searchString
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/mail/{id}/log")+1;
+    long sizeOfPath = strlen("/mail/log")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/mail/{id}/log");
+    snprintf(localVarPath, sizeOfPath, "/mail/log");
 
 
-    // Path Params
-    long sizeOfPathParams_id = sizeof(id)+3 + strlen("{ id }");
-    if(id == 0){
-        goto end;
+
+
+    // query parameters
+    char *keyQuery_id = NULL;
+    long valueQuery_id ;
+    keyValuePair_t *keyPairQuery_id = 0;
+    if (id)
+    {
+        keyQuery_id = strdup("id");
+        valueQuery_id = (id);
+        keyPairQuery_id = keyValuePair_create(keyQuery_id, &valueQuery_id);
+        list_addElement(localVarQueryParameters,keyPairQuery_id);
     }
-    char* localVarToReplace_id = malloc(sizeOfPathParams_id);
-    snprintf(localVarToReplace_id, sizeOfPathParams_id, "{%s}", "id");
-
-    char localVarBuff_id[256];
-    intToStr(localVarBuff_id, id);
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_id, localVarBuff_id);
-
-
-
 
     // query parameters
     char *keyQuery_searchString = NULL;
@@ -796,7 +724,14 @@ DefaultAPI_viewMailLogById(apiClient_t *apiClient, long id , char * searchString
     list_free(localVarHeaderType);
     
     free(localVarPath);
-    free(localVarToReplace_id);
+    if(keyQuery_id){
+        free(keyQuery_id);
+        keyQuery_id = NULL;
+    }
+    if(keyPairQuery_id){
+        keyValuePair_free(keyPairQuery_id);
+        keyPairQuery_id = NULL;
+    }
     if(keyQuery_searchString){
         free(keyQuery_searchString);
         keyQuery_searchString = NULL;

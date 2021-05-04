@@ -89,79 +89,21 @@ export class DefaultService {
     }
 
     /**
-     * Gets mail order information by id
-     * returns information about a mail order in the system with the given id.
-     * @param id User ID
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getMailById(id: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<MailOrder>;
-    public getMailById(id: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<MailOrder>>;
-    public getMailById(id: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<MailOrder>>;
-    public getMailById(id: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getMailById.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        let credential: string | undefined;
-        // authentication (apiKeyAuth) required
-        credential = this.configuration.lookupCredential('apiKeyAuth');
-        if (credential) {
-            headers = headers.set('X-API-KEY', credential);
-        }
-
-        // authentication (apiLoginAuth) required
-        credential = this.configuration.lookupCredential('apiLoginAuth');
-        if (credential) {
-            headers = headers.set('X-API-LOGIN', credential);
-        }
-
-        // authentication (apiPasswordAuth) required
-        credential = this.configuration.lookupCredential('apiPasswordAuth');
-        if (credential) {
-            headers = headers.set('X-API-PASS', credential);
-        }
-
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-
-        let responseType: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType = 'text';
-        }
-
-        return this.httpClient.get<MailOrder>(`${this.configuration.basePath}/mail/${encodeURIComponent(String(id))}`,
-            {
-                responseType: <any>responseType,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * displays a list of mail service orders
+     * @param id The ID of your mail order this will be sent through.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getMailOrders(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<Array<MailOrder>>;
-    public getMailOrders(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<HttpResponse<Array<MailOrder>>>;
-    public getMailOrders(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<HttpEvent<Array<MailOrder>>>;
-    public getMailOrders(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<any> {
+    public getMailOrders(id?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<Array<MailOrder>>;
+    public getMailOrders(id?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<HttpResponse<Array<MailOrder>>>;
+    public getMailOrders(id?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<HttpEvent<Array<MailOrder>>>;
+    public getMailOrders(id?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<any> {
+
+        let queryParameters = new HttpParams({encoder: this.encoder});
+        if (id !== undefined && id !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>id, 'id');
+        }
 
         let headers = this.defaultHeaders;
 
@@ -170,18 +112,6 @@ export class DefaultService {
         credential = this.configuration.lookupCredential('apiKeyAuth');
         if (credential) {
             headers = headers.set('X-API-KEY', credential);
-        }
-
-        // authentication (apiLoginAuth) required
-        credential = this.configuration.lookupCredential('apiLoginAuth');
-        if (credential) {
-            headers = headers.set('X-API-LOGIN', credential);
-        }
-
-        // authentication (apiPasswordAuth) required
-        credential = this.configuration.lookupCredential('apiPasswordAuth');
-        if (credential) {
-            headers = headers.set('X-API-PASS', credential);
         }
 
         let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
@@ -206,6 +136,7 @@ export class DefaultService {
 
         return this.httpClient.get<Array<MailOrder>>(`${this.configuration.basePath}/mail`,
             {
+                params: queryParameters,
                 responseType: <any>responseType,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -277,18 +208,6 @@ export class DefaultService {
             headers = headers.set('X-API-KEY', credential);
         }
 
-        // authentication (apiLoginAuth) required
-        credential = this.configuration.lookupCredential('apiLoginAuth');
-        if (credential) {
-            headers = headers.set('X-API-LOGIN', credential);
-        }
-
-        // authentication (apiPasswordAuth) required
-        credential = this.configuration.lookupCredential('apiPasswordAuth');
-        if (credential) {
-            headers = headers.set('X-API-PASS', credential);
-        }
-
         let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
@@ -331,18 +250,14 @@ export class DefaultService {
     /**
      * Sends an Email with Advanced Options
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @param id User ID
      * @param sendMail 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendAdvMailById(id: number, sendMail: SendMail, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<GenericResponse>;
-    public sendAdvMailById(id: number, sendMail: SendMail, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<GenericResponse>>;
-    public sendAdvMailById(id: number, sendMail: SendMail, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<GenericResponse>>;
-    public sendAdvMailById(id: number, sendMail: SendMail, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling sendAdvMailById.');
-        }
+    public sendAdvMailById(sendMail: SendMail, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<GenericResponse>;
+    public sendAdvMailById(sendMail: SendMail, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<GenericResponse>>;
+    public sendAdvMailById(sendMail: SendMail, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<GenericResponse>>;
+    public sendAdvMailById(sendMail: SendMail, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
         if (sendMail === null || sendMail === undefined) {
             throw new Error('Required parameter sendMail was null or undefined when calling sendAdvMailById.');
         }
@@ -354,18 +269,6 @@ export class DefaultService {
         credential = this.configuration.lookupCredential('apiKeyAuth');
         if (credential) {
             headers = headers.set('X-API-KEY', credential);
-        }
-
-        // authentication (apiLoginAuth) required
-        credential = this.configuration.lookupCredential('apiLoginAuth');
-        if (credential) {
-            headers = headers.set('X-API-LOGIN', credential);
-        }
-
-        // authentication (apiPasswordAuth) required
-        credential = this.configuration.lookupCredential('apiPasswordAuth');
-        if (credential) {
-            headers = headers.set('X-API-PASS', credential);
         }
 
         let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
@@ -383,10 +286,7 @@ export class DefaultService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/json',
-            'application/xml',
-            'application/x-www-form-urlencoded',
-            'text/plain'
+            'application/json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected !== undefined) {
@@ -398,7 +298,7 @@ export class DefaultService {
             responseType = 'text';
         }
 
-        return this.httpClient.post<GenericResponse>(`${this.configuration.basePath}/mail/${encodeURIComponent(String(id))}/advsend`,
+        return this.httpClient.post<GenericResponse>(`${this.configuration.basePath}/mail/advsend`,
             sendMail,
             {
                 responseType: <any>responseType,
@@ -413,23 +313,20 @@ export class DefaultService {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param id User ID
-     * @param subject 
-     * @param body 
-     * @param to 
-     * @param toName 
-     * @param from 
-     * @param fromName 
+     * @param subject The Subject of the email
+     * @param body The contents of the email
+     * @param to The email address of who this email will be sent to.
+     * @param from The email address of who this email will be sent from.
+     * @param id The ID of your mail order this will be sent through.
+     * @param toName The name or title of who this email is being sent to.
+     * @param fromName The name or title of who this email is being sent from.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<GenericResponse>;
-    public sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<GenericResponse>>;
-    public sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<GenericResponse>>;
-    public sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling sendMailById.');
-        }
+    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<GenericResponse>;
+    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<GenericResponse>>;
+    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<GenericResponse>>;
+    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: this.encoder});
         if (subject !== undefined && subject !== null) {
@@ -444,13 +341,17 @@ export class DefaultService {
           queryParameters = this.addToHttpParams(queryParameters,
             <any>to, 'to');
         }
-        if (toName !== undefined && toName !== null) {
-          queryParameters = this.addToHttpParams(queryParameters,
-            <any>toName, 'toName');
-        }
         if (from !== undefined && from !== null) {
           queryParameters = this.addToHttpParams(queryParameters,
             <any>from, 'from');
+        }
+        if (id !== undefined && id !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>id, 'id');
+        }
+        if (toName !== undefined && toName !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>toName, 'toName');
         }
         if (fromName !== undefined && fromName !== null) {
           queryParameters = this.addToHttpParams(queryParameters,
@@ -464,18 +365,6 @@ export class DefaultService {
         credential = this.configuration.lookupCredential('apiKeyAuth');
         if (credential) {
             headers = headers.set('X-API-KEY', credential);
-        }
-
-        // authentication (apiLoginAuth) required
-        credential = this.configuration.lookupCredential('apiLoginAuth');
-        if (credential) {
-            headers = headers.set('X-API-LOGIN', credential);
-        }
-
-        // authentication (apiPasswordAuth) required
-        credential = this.configuration.lookupCredential('apiPasswordAuth');
-        if (credential) {
-            headers = headers.set('X-API-PASS', credential);
         }
 
         let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
@@ -496,7 +385,7 @@ export class DefaultService {
             responseType = 'text';
         }
 
-        return this.httpClient.post<GenericResponse>(`${this.configuration.basePath}/mail/${encodeURIComponent(String(id))}/send`,
+        return this.httpClient.post<GenericResponse>(`${this.configuration.basePath}/mail/send`,
             null,
             {
                 params: queryParameters,
@@ -527,18 +416,6 @@ export class DefaultService {
         credential = this.configuration.lookupCredential('apiKeyAuth');
         if (credential) {
             headers = headers.set('X-API-KEY', credential);
-        }
-
-        // authentication (apiLoginAuth) required
-        credential = this.configuration.lookupCredential('apiLoginAuth');
-        if (credential) {
-            headers = headers.set('X-API-LOGIN', credential);
-        }
-
-        // authentication (apiPasswordAuth) required
-        credential = this.configuration.lookupCredential('apiPasswordAuth');
-        if (credential) {
-            headers = headers.set('X-API-PASS', credential);
         }
 
         let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
@@ -573,22 +450,23 @@ export class DefaultService {
     /**
      * displays the mail log
      * By passing in the appropriate options, you can search for available inventory in the system 
-     * @param id User ID
+     * @param id The ID of your mail order this will be sent through.
      * @param searchString pass an optional search string for looking up inventory
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Array<MailLog>>;
-    public viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Array<MailLog>>>;
-    public viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Array<MailLog>>>;
-    public viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling viewMailLogById.');
-        }
+    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Array<MailLog>>;
+    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Array<MailLog>>>;
+    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Array<MailLog>>>;
+    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: this.encoder});
+        if (id !== undefined && id !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>id, 'id');
+        }
         if (searchString !== undefined && searchString !== null) {
           queryParameters = this.addToHttpParams(queryParameters,
             <any>searchString, 'searchString');
@@ -611,18 +489,6 @@ export class DefaultService {
             headers = headers.set('X-API-KEY', credential);
         }
 
-        // authentication (apiLoginAuth) required
-        credential = this.configuration.lookupCredential('apiLoginAuth');
-        if (credential) {
-            headers = headers.set('X-API-LOGIN', credential);
-        }
-
-        // authentication (apiPasswordAuth) required
-        credential = this.configuration.lookupCredential('apiPasswordAuth');
-        if (credential) {
-            headers = headers.set('X-API-PASS', credential);
-        }
-
         let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
@@ -641,7 +507,7 @@ export class DefaultService {
             responseType = 'text';
         }
 
-        return this.httpClient.get<Array<MailLog>>(`${this.configuration.basePath}/mail/${encodeURIComponent(String(id))}/log`,
+        return this.httpClient.get<Array<MailLog>>(`${this.configuration.basePath}/mail/log`,
             {
                 params: queryParameters,
                 responseType: <any>responseType,

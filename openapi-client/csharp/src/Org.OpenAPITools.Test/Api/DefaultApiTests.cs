@@ -64,25 +64,14 @@ namespace Org.OpenAPITools.Test
 
         
         /// <summary>
-        /// Test GetMailById
-        /// </summary>
-        [Test]
-        public void GetMailByIdTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //long id = null;
-            //var response = instance.GetMailById(id);
-            //Assert.IsInstanceOf(typeof(MailOrder), response, "response is MailOrder");
-        }
-        
-        /// <summary>
         /// Test GetMailOrders
         /// </summary>
         [Test]
         public void GetMailOrdersTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //var response = instance.GetMailOrders();
+            //long? id = null;
+            //var response = instance.GetMailOrders(id);
             //Assert.IsInstanceOf(typeof(List<MailOrder>), response, "response is List<MailOrder>");
         }
         
@@ -116,9 +105,8 @@ namespace Org.OpenAPITools.Test
         public void SendAdvMailByIdTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //long id = null;
             //SendMail sendMail = null;
-            //var response = instance.SendAdvMailById(id, sendMail);
+            //var response = instance.SendAdvMailById(sendMail);
             //Assert.IsInstanceOf(typeof(GenericResponse), response, "response is GenericResponse");
         }
         
@@ -129,14 +117,14 @@ namespace Org.OpenAPITools.Test
         public void SendMailByIdTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //long id = null;
             //string subject = null;
             //string body = null;
             //string to = null;
-            //string toName = null;
             //string from = null;
+            //long? id = null;
+            //string toName = null;
             //string fromName = null;
-            //var response = instance.SendMailById(id, subject, body, to, toName, from, fromName);
+            //var response = instance.SendMailById(subject, body, to, from, id, toName, fromName);
             //Assert.IsInstanceOf(typeof(GenericResponse), response, "response is GenericResponse");
         }
         
@@ -158,7 +146,7 @@ namespace Org.OpenAPITools.Test
         public void ViewMailLogByIdTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //long id = null;
+            //long? id = null;
             //string searchString = null;
             //int? skip = null;
             //int? limit = null;

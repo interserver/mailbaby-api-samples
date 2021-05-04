@@ -49,79 +49,18 @@ sub new {
 
 
 #
-# get_mail_by_id
-#
-# Gets mail order information by id
-# 
-# @param int $id User ID (required)
-{
-    my $params = {
-    'id' => {
-        data_type => 'int',
-        description => 'User ID',
-        required => '1',
-    },
-    };
-    __PACKAGE__->method_documentation->{ 'get_mail_by_id' } = { 
-        summary => 'Gets mail order information by id',
-        params => $params,
-        returns => 'MailOrder',
-        };
-}
-# @return MailOrder
-#
-sub get_mail_by_id {
-    my ($self, %args) = @_;
-
-    # verify the required parameter 'id' is set
-    unless (exists $args{'id'}) {
-      croak("Missing the required parameter 'id' when calling get_mail_by_id");
-    }
-
-    # parse inputs
-    my $_resource_path = '/mail/{id}';
-
-    my $_method = 'GET';
-    my $query_params = {};
-    my $header_params = {};
-    my $form_params = {};
-
-    # 'Accept' and 'Content-Type' header
-    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
-    if ($_header_accept) {
-        $header_params->{'Accept'} = $_header_accept;
-    }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
-
-    # path params
-    if ( exists $args{'id'}) {
-        my $_base_variable = "{" . "id" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'id'});
-        $_resource_path =~ s/$_base_variable/$_base_value/g;
-    }
-
-    my $_body_data;
-    # authentication setting, if any
-    my $auth_settings = [qw(apiKeyAuth apiLoginAuth apiPasswordAuth )];
-
-    # make the API Call
-    my $response = $self->{api_client}->call_api($_resource_path, $_method,
-                                           $query_params, $form_params,
-                                           $header_params, $_body_data, $auth_settings);
-    if (!$response) {
-        return;
-    }
-    my $_response_object = $self->{api_client}->deserialize('MailOrder', $response);
-    return $_response_object;
-}
-
-#
 # get_mail_orders
 #
 # displays a list of mail service orders
 # 
+# @param int $id The ID of your mail order this will be sent through. (optional)
 {
     my $params = {
+    'id' => {
+        data_type => 'int',
+        description => 'The ID of your mail order this will be sent through.',
+        required => '0',
+    },
     };
     __PACKAGE__->method_documentation->{ 'get_mail_orders' } = { 
         summary => 'displays a list of mail service orders',
@@ -149,9 +88,14 @@ sub get_mail_orders {
     }
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
 
+    # query params
+    if ( exists $args{'id'}) {
+        $query_params->{'id'} = $self->{api_client}->to_query_value($args{'id'});
+    }
+
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw(apiKeyAuth apiLoginAuth apiPasswordAuth )];
+    my $auth_settings = [qw(apiKeyAuth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -256,7 +200,7 @@ sub place_mail_order {
     }
 
     # authentication setting, if any
-    my $auth_settings = [qw(apiKeyAuth apiLoginAuth apiPasswordAuth )];
+    my $auth_settings = [qw(apiKeyAuth )];
 
     # make the API Call
     $self->{api_client}->call_api($_resource_path, $_method,
@@ -270,15 +214,9 @@ sub place_mail_order {
 #
 # Sends an Email with Advanced Options
 # 
-# @param int $id User ID (required)
 # @param SendMail $send_mail  (required)
 {
     my $params = {
-    'id' => {
-        data_type => 'int',
-        description => 'User ID',
-        required => '1',
-    },
     'send_mail' => {
         data_type => 'SendMail',
         description => '',
@@ -296,18 +234,13 @@ sub place_mail_order {
 sub send_adv_mail_by_id {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'id' is set
-    unless (exists $args{'id'}) {
-      croak("Missing the required parameter 'id' when calling send_adv_mail_by_id");
-    }
-
     # verify the required parameter 'send_mail' is set
     unless (exists $args{'send_mail'}) {
       croak("Missing the required parameter 'send_mail' when calling send_adv_mail_by_id");
     }
 
     # parse inputs
-    my $_resource_path = '/mail/{id}/advsend';
+    my $_resource_path = '/mail/advsend';
 
     my $_method = 'POST';
     my $query_params = {};
@@ -319,14 +252,7 @@ sub send_adv_mail_by_id {
     if ($_header_accept) {
         $header_params->{'Accept'} = $_header_accept;
     }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain');
-
-    # path params
-    if ( exists $args{'id'}) {
-        my $_base_variable = "{" . "id" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'id'});
-        $_resource_path =~ s/$_base_variable/$_base_value/g;
-    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
 
     my $_body_data;
     # body params
@@ -335,7 +261,7 @@ sub send_adv_mail_by_id {
     }
 
     # authentication setting, if any
-    my $auth_settings = [qw(apiKeyAuth apiLoginAuth apiPasswordAuth )];
+    my $auth_settings = [qw(apiKeyAuth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -353,48 +279,48 @@ sub send_adv_mail_by_id {
 #
 # Sends an Email
 # 
-# @param int $id User ID (required)
-# @param string $subject  (optional)
-# @param string $body  (optional)
-# @param string $to  (optional)
-# @param string $to_name  (optional)
-# @param string $from  (optional)
-# @param string $from_name  (optional)
+# @param string $subject The Subject of the email (optional)
+# @param string $body The contents of the email (optional)
+# @param string $to The email address of who this email will be sent to. (optional)
+# @param string $from The email address of who this email will be sent from. (optional)
+# @param int $id The ID of your mail order this will be sent through. (optional)
+# @param string $to_name The name or title of who this email is being sent to. (optional)
+# @param string $from_name The name or title of who this email is being sent from. (optional)
 {
     my $params = {
-    'id' => {
-        data_type => 'int',
-        description => 'User ID',
-        required => '1',
-    },
     'subject' => {
         data_type => 'string',
-        description => '',
+        description => 'The Subject of the email',
         required => '0',
     },
     'body' => {
         data_type => 'string',
-        description => '',
+        description => 'The contents of the email',
         required => '0',
     },
     'to' => {
         data_type => 'string',
-        description => '',
-        required => '0',
-    },
-    'to_name' => {
-        data_type => 'string',
-        description => '',
+        description => 'The email address of who this email will be sent to.',
         required => '0',
     },
     'from' => {
         data_type => 'string',
-        description => '',
+        description => 'The email address of who this email will be sent from.',
+        required => '0',
+    },
+    'id' => {
+        data_type => 'int',
+        description => 'The ID of your mail order this will be sent through.',
+        required => '0',
+    },
+    'to_name' => {
+        data_type => 'string',
+        description => 'The name or title of who this email is being sent to.',
         required => '0',
     },
     'from_name' => {
         data_type => 'string',
-        description => '',
+        description => 'The name or title of who this email is being sent from.',
         required => '0',
     },
     };
@@ -409,13 +335,8 @@ sub send_adv_mail_by_id {
 sub send_mail_by_id {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'id' is set
-    unless (exists $args{'id'}) {
-      croak("Missing the required parameter 'id' when calling send_mail_by_id");
-    }
-
     # parse inputs
-    my $_resource_path = '/mail/{id}/send';
+    my $_resource_path = '/mail/send';
 
     my $_method = 'POST';
     my $query_params = {};
@@ -445,13 +366,18 @@ sub send_mail_by_id {
     }
 
     # query params
-    if ( exists $args{'to_name'}) {
-        $query_params->{'toName'} = $self->{api_client}->to_query_value($args{'to_name'});
+    if ( exists $args{'from'}) {
+        $query_params->{'from'} = $self->{api_client}->to_query_value($args{'from'});
     }
 
     # query params
-    if ( exists $args{'from'}) {
-        $query_params->{'from'} = $self->{api_client}->to_query_value($args{'from'});
+    if ( exists $args{'id'}) {
+        $query_params->{'id'} = $self->{api_client}->to_query_value($args{'id'});
+    }
+
+    # query params
+    if ( exists $args{'to_name'}) {
+        $query_params->{'toName'} = $self->{api_client}->to_query_value($args{'to_name'});
     }
 
     # query params
@@ -459,16 +385,9 @@ sub send_mail_by_id {
         $query_params->{'fromName'} = $self->{api_client}->to_query_value($args{'from_name'});
     }
 
-    # path params
-    if ( exists $args{'id'}) {
-        my $_base_variable = "{" . "id" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'id'});
-        $_resource_path =~ s/$_base_variable/$_base_value/g;
-    }
-
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw(apiKeyAuth apiLoginAuth apiPasswordAuth )];
+    my $auth_settings = [qw(apiKeyAuth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,
@@ -517,7 +436,7 @@ sub validate_mail_order {
 
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw(apiKeyAuth apiLoginAuth apiPasswordAuth )];
+    my $auth_settings = [qw(apiKeyAuth )];
 
     # make the API Call
     $self->{api_client}->call_api($_resource_path, $_method,
@@ -531,7 +450,7 @@ sub validate_mail_order {
 #
 # displays the mail log
 # 
-# @param int $id User ID (required)
+# @param int $id The ID of your mail order this will be sent through. (optional)
 # @param string $search_string pass an optional search string for looking up inventory (optional)
 # @param int $skip number of records to skip for pagination (optional)
 # @param int $limit maximum number of records to return (optional)
@@ -539,8 +458,8 @@ sub validate_mail_order {
     my $params = {
     'id' => {
         data_type => 'int',
-        description => 'User ID',
-        required => '1',
+        description => 'The ID of your mail order this will be sent through.',
+        required => '0',
     },
     'search_string' => {
         data_type => 'string',
@@ -569,13 +488,8 @@ sub validate_mail_order {
 sub view_mail_log_by_id {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'id' is set
-    unless (exists $args{'id'}) {
-      croak("Missing the required parameter 'id' when calling view_mail_log_by_id");
-    }
-
     # parse inputs
-    my $_resource_path = '/mail/{id}/log';
+    my $_resource_path = '/mail/log';
 
     my $_method = 'GET';
     my $query_params = {};
@@ -588,6 +502,11 @@ sub view_mail_log_by_id {
         $header_params->{'Accept'} = $_header_accept;
     }
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
+
+    # query params
+    if ( exists $args{'id'}) {
+        $query_params->{'id'} = $self->{api_client}->to_query_value($args{'id'});
+    }
 
     # query params
     if ( exists $args{'search_string'}) {
@@ -604,16 +523,9 @@ sub view_mail_log_by_id {
         $query_params->{'limit'} = $self->{api_client}->to_query_value($args{'limit'});
     }
 
-    # path params
-    if ( exists $args{'id'}) {
-        my $_base_variable = "{" . "id" . "}";
-        my $_base_value = $self->{api_client}->to_path_value($args{'id'});
-        $_resource_path =~ s/$_base_variable/$_base_value/g;
-    }
-
     my $_body_data;
     # authentication setting, if any
-    my $auth_settings = [qw(apiKeyAuth apiLoginAuth apiPasswordAuth )];
+    my $auth_settings = [qw(apiKeyAuth )];
 
     # make the API Call
     my $response = $self->{api_client}->call_api($_resource_path, $_method,

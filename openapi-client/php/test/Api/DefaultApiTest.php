@@ -73,18 +73,6 @@ class DefaultApiTest extends TestCase
     }
 
     /**
-     * Test case for getMailById
-     *
-     * Gets mail order information by id.
-     *
-     */
-    public function testGetMailById()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test case for getMailOrders
      *
      * displays a list of mail service orders.

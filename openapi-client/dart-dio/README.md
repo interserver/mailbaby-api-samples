@@ -42,13 +42,13 @@ import 'package:openapi/api.dart';
 
 
 final api = DefaultApi();
-final id = 789; // int | User ID
+final id = 789; // int | The ID of your mail order this will be sent through.
 
 try {
-    final response = await api.getMailById(id);
+    final response = await api.getMailOrders(id);
     print(response);
 } catch (e) {
-    print("Exception when calling DefaultApi->getMailById: $e\n");
+    print("Exception when calling DefaultApi->getMailOrders: $e\n");
 }
 
 ```
@@ -59,14 +59,13 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**getMailById**](doc/DefaultApi.md#getmailbyid) | **get** /mail/{id} | Gets mail order information by id
 *DefaultApi* | [**getMailOrders**](doc/DefaultApi.md#getmailorders) | **get** /mail | displays a list of mail service orders
 *DefaultApi* | [**pingServer**](doc/DefaultApi.md#pingserver) | **get** /ping | Checks if the server is running
 *DefaultApi* | [**placeMailOrder**](doc/DefaultApi.md#placemailorder) | **post** /mail/order | places a mail order
-*DefaultApi* | [**sendAdvMailById**](doc/DefaultApi.md#sendadvmailbyid) | **post** /mail/{id}/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMailById**](doc/DefaultApi.md#sendmailbyid) | **post** /mail/{id}/send | Sends an Email
+*DefaultApi* | [**sendAdvMailById**](doc/DefaultApi.md#sendadvmailbyid) | **post** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**sendMailById**](doc/DefaultApi.md#sendmailbyid) | **post** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](doc/DefaultApi.md#validatemailorder) | **get** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**viewMailLogById**](doc/DefaultApi.md#viewmaillogbyid) | **get** /mail/{id}/log | displays the mail log
+*DefaultApi* | [**viewMailLogById**](doc/DefaultApi.md#viewmaillogbyid) | **get** /mail/log | displays the mail log
 
 
 ## Documentation For Models
@@ -87,18 +86,6 @@ Class | Method | HTTP request | Description
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-## apiLoginAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-## apiPasswordAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 
 

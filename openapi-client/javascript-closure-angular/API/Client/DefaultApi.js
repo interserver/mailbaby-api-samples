@@ -48,49 +48,13 @@ API.Client.DefaultApi = function($http, $httpParamSerializer, $injector) {
 API.Client.DefaultApi.$inject = ['$http', '$httpParamSerializer', '$injector'];
 
 /**
- * Gets mail order information by id
- * returns information about a mail order in the system with the given id.
- * @param {!number} id User ID
- * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.MailOrder>}
- */
-API.Client.DefaultApi.prototype.getMailById = function(id, opt_extraHttpRequestParams) {
-  /** @const {string} */
-  var path = this.basePath_ + '/mail/{id}'
-      .replace('{' + 'id' + '}', String(id));
-
-  /** @type {!Object} */
-  var queryParameters = {};
-
-  /** @type {!Object} */
-  var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'id' is set
-  if (!id) {
-    throw new Error('Missing required parameter id when calling getMailById');
-  }
-  /** @type {!Object} */
-  var httpRequestParams = {
-    method: 'GET',
-    url: path,
-    json: true,
-            params: queryParameters,
-    headers: headerParams
-  };
-
-  if (opt_extraHttpRequestParams) {
-    httpRequestParams = angular.extend(httpRequestParams, opt_extraHttpRequestParams);
-  }
-
-  return (/** @type {?} */ (this.http_))(httpRequestParams);
-}
-
-/**
  * displays a list of mail service orders
  * 
+ * @param {!number=} opt_id The ID of your mail order this will be sent through.
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!Array<!API.Client.MailOrder>>}
  */
-API.Client.DefaultApi.prototype.getMailOrders = function(opt_extraHttpRequestParams) {
+API.Client.DefaultApi.prototype.getMailOrders = function(opt_id, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/mail';
 
@@ -99,6 +63,10 @@ API.Client.DefaultApi.prototype.getMailOrders = function(opt_extraHttpRequestPar
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
+  if (opt_id !== undefined) {
+    queryParameters['id'] = opt_id;
+  }
+
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'GET',
@@ -182,25 +150,19 @@ API.Client.DefaultApi.prototype.placeMailOrder = function(opt_mailOrder, opt_ext
 /**
  * Sends an Email with Advanced Options
  * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
- * @param {!number} id User ID
  * @param {!SendMail} sendMail 
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.GenericResponse>}
  */
-API.Client.DefaultApi.prototype.sendAdvMailById = function(id, sendMail, opt_extraHttpRequestParams) {
+API.Client.DefaultApi.prototype.sendAdvMailById = function(sendMail, opt_extraHttpRequestParams) {
   /** @const {string} */
-  var path = this.basePath_ + '/mail/{id}/advsend'
-      .replace('{' + 'id' + '}', String(id));
+  var path = this.basePath_ + '/mail/advsend';
 
   /** @type {!Object} */
   var queryParameters = {};
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'id' is set
-  if (!id) {
-    throw new Error('Missing required parameter id when calling sendAdvMailById');
-  }
   // verify required parameter 'sendMail' is set
   if (!sendMail) {
     throw new Error('Missing required parameter sendMail when calling sendAdvMailById');
@@ -225,30 +187,25 @@ API.Client.DefaultApi.prototype.sendAdvMailById = function(id, sendMail, opt_ext
 /**
  * Sends an Email
  * Sends An email through one of your mail orders.
- * @param {!number} id User ID
- * @param {!string=} opt_subject 
- * @param {!string=} opt_body 
- * @param {!string=} opt_to 
- * @param {!string=} opt_toName 
- * @param {!string=} opt_from 
- * @param {!string=} opt_fromName 
+ * @param {!string=} opt_subject The Subject of the email
+ * @param {!string=} opt_body The contents of the email
+ * @param {!string=} opt_to The email address of who this email will be sent to.
+ * @param {!string=} opt_from The email address of who this email will be sent from.
+ * @param {!number=} opt_id The ID of your mail order this will be sent through.
+ * @param {!string=} opt_toName The name or title of who this email is being sent to.
+ * @param {!string=} opt_fromName The name or title of who this email is being sent from.
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.GenericResponse>}
  */
-API.Client.DefaultApi.prototype.sendMailById = function(id, opt_subject, opt_body, opt_to, opt_toName, opt_from, opt_fromName, opt_extraHttpRequestParams) {
+API.Client.DefaultApi.prototype.sendMailById = function(opt_subject, opt_body, opt_to, opt_from, opt_id, opt_toName, opt_fromName, opt_extraHttpRequestParams) {
   /** @const {string} */
-  var path = this.basePath_ + '/mail/{id}/send'
-      .replace('{' + 'id' + '}', String(id));
+  var path = this.basePath_ + '/mail/send';
 
   /** @type {!Object} */
   var queryParameters = {};
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'id' is set
-  if (!id) {
-    throw new Error('Missing required parameter id when calling sendMailById');
-  }
   if (opt_subject !== undefined) {
     queryParameters['subject'] = opt_subject;
   }
@@ -261,12 +218,16 @@ API.Client.DefaultApi.prototype.sendMailById = function(id, opt_subject, opt_bod
     queryParameters['to'] = opt_to;
   }
 
-  if (opt_toName !== undefined) {
-    queryParameters['toName'] = opt_toName;
-  }
-
   if (opt_from !== undefined) {
     queryParameters['from'] = opt_from;
+  }
+
+  if (opt_id !== undefined) {
+    queryParameters['id'] = opt_id;
+  }
+
+  if (opt_toName !== undefined) {
+    queryParameters['toName'] = opt_toName;
   }
 
   if (opt_fromName !== undefined) {
@@ -323,27 +284,26 @@ API.Client.DefaultApi.prototype.validateMailOrder = function(opt_extraHttpReques
 /**
  * displays the mail log
  * By passing in the appropriate options, you can search for available inventory in the system 
- * @param {!number} id User ID
+ * @param {!number=} opt_id The ID of your mail order this will be sent through.
  * @param {!string=} opt_searchString pass an optional search string for looking up inventory
  * @param {!number=} opt_skip number of records to skip for pagination
  * @param {!number=} opt_limit maximum number of records to return
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!Array<!API.Client.MailLog>>}
  */
-API.Client.DefaultApi.prototype.viewMailLogById = function(id, opt_searchString, opt_skip, opt_limit, opt_extraHttpRequestParams) {
+API.Client.DefaultApi.prototype.viewMailLogById = function(opt_id, opt_searchString, opt_skip, opt_limit, opt_extraHttpRequestParams) {
   /** @const {string} */
-  var path = this.basePath_ + '/mail/{id}/log'
-      .replace('{' + 'id' + '}', String(id));
+  var path = this.basePath_ + '/mail/log';
 
   /** @type {!Object} */
   var queryParameters = {};
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'id' is set
-  if (!id) {
-    throw new Error('Missing required parameter id when calling viewMailLogById');
+  if (opt_id !== undefined) {
+    queryParameters['id'] = opt_id;
   }
+
   if (opt_searchString !== undefined) {
     queryParameters['searchString'] = opt_searchString;
   }

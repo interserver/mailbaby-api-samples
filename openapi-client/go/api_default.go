@@ -17,7 +17,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -28,159 +27,16 @@ var (
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiGetMailByIdRequest struct {
-	ctx _context.Context
-	ApiService *DefaultApiService
-	id int64
-}
-
-
-func (r ApiGetMailByIdRequest) Execute() (MailOrder, *_nethttp.Response, error) {
-	return r.ApiService.GetMailByIdExecute(r)
-}
-
-/*
- * GetMailById Gets mail order information by id
- * returns information about a mail order in the system with the given id.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id User ID
- * @return ApiGetMailByIdRequest
- */
-func (a *DefaultApiService) GetMailById(ctx _context.Context, id int64) ApiGetMailByIdRequest {
-	return ApiGetMailByIdRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-/*
- * Execute executes the request
- * @return MailOrder
- */
-func (a *DefaultApiService) GetMailByIdExecute(r ApiGetMailByIdRequest) (MailOrder, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MailOrder
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetMailById")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/mail/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiKeyAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-KEY"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiLoginAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-LOGIN"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiPasswordAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-PASS"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiGetMailOrdersRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
+	id *int64
 }
 
+func (r ApiGetMailOrdersRequest) Id(id int64) ApiGetMailOrdersRequest {
+	r.id = &id
+	return r
+}
 
 func (r ApiGetMailOrdersRequest) Execute() ([]MailOrder, *_nethttp.Response, error) {
 	return r.ApiService.GetMailOrdersExecute(r)
@@ -223,6 +79,9 @@ func (a *DefaultApiService) GetMailOrdersExecute(r ApiGetMailOrdersRequest) ([]M
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.id != nil {
+		localVarQueryParams.Add("id", parameterToString(*r.id, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -251,34 +110,6 @@ func (a *DefaultApiService) GetMailOrdersExecute(r ApiGetMailOrdersRequest) ([]M
 					key = apiKey.Key
 				}
 				localVarHeaderParams["X-API-KEY"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiLoginAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-LOGIN"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiPasswordAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-PASS"] = key
 			}
 		}
 	}
@@ -502,34 +333,6 @@ func (a *DefaultApiService) PlaceMailOrderExecute(r ApiPlaceMailOrderRequest) (*
 			}
 		}
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiLoginAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-LOGIN"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiPasswordAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-PASS"] = key
-			}
-		}
-	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -570,7 +373,6 @@ func (a *DefaultApiService) PlaceMailOrderExecute(r ApiPlaceMailOrderRequest) (*
 type ApiSendAdvMailByIdRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
-	id int64
 	sendMail *SendMail
 }
 
@@ -587,14 +389,12 @@ func (r ApiSendAdvMailByIdRequest) Execute() (GenericResponse, *_nethttp.Respons
  * SendAdvMailById Sends an Email with Advanced Options
  * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id User ID
  * @return ApiSendAdvMailByIdRequest
  */
-func (a *DefaultApiService) SendAdvMailById(ctx _context.Context, id int64) ApiSendAdvMailByIdRequest {
+func (a *DefaultApiService) SendAdvMailById(ctx _context.Context) ApiSendAdvMailByIdRequest {
 	return ApiSendAdvMailByIdRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
 	}
 }
 
@@ -617,8 +417,7 @@ func (a *DefaultApiService) SendAdvMailByIdExecute(r ApiSendAdvMailByIdRequest) 
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/mail/{id}/advsend"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath := localBasePath + "/mail/advsend"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -628,7 +427,7 @@ func (a *DefaultApiService) SendAdvMailByIdExecute(r ApiSendAdvMailByIdRequest) 
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -657,34 +456,6 @@ func (a *DefaultApiService) SendAdvMailByIdExecute(r ApiSendAdvMailByIdRequest) 
 					key = apiKey.Key
 				}
 				localVarHeaderParams["X-API-KEY"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiLoginAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-LOGIN"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiPasswordAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-PASS"] = key
 			}
 		}
 	}
@@ -747,12 +518,12 @@ func (a *DefaultApiService) SendAdvMailByIdExecute(r ApiSendAdvMailByIdRequest) 
 type ApiSendMailByIdRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
-	id int64
 	subject *string
 	body *string
 	to *string
-	toName *string
 	from *string
+	id *int64
+	toName *string
 	fromName *string
 }
 
@@ -768,12 +539,16 @@ func (r ApiSendMailByIdRequest) To(to string) ApiSendMailByIdRequest {
 	r.to = &to
 	return r
 }
-func (r ApiSendMailByIdRequest) ToName(toName string) ApiSendMailByIdRequest {
-	r.toName = &toName
-	return r
-}
 func (r ApiSendMailByIdRequest) From(from string) ApiSendMailByIdRequest {
 	r.from = &from
+	return r
+}
+func (r ApiSendMailByIdRequest) Id(id int64) ApiSendMailByIdRequest {
+	r.id = &id
+	return r
+}
+func (r ApiSendMailByIdRequest) ToName(toName string) ApiSendMailByIdRequest {
+	r.toName = &toName
 	return r
 }
 func (r ApiSendMailByIdRequest) FromName(fromName string) ApiSendMailByIdRequest {
@@ -789,14 +564,12 @@ func (r ApiSendMailByIdRequest) Execute() (GenericResponse, *_nethttp.Response, 
  * SendMailById Sends an Email
  * Sends An email through one of your mail orders.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id User ID
  * @return ApiSendMailByIdRequest
  */
-func (a *DefaultApiService) SendMailById(ctx _context.Context, id int64) ApiSendMailByIdRequest {
+func (a *DefaultApiService) SendMailById(ctx _context.Context) ApiSendMailByIdRequest {
 	return ApiSendMailByIdRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
 	}
 }
 
@@ -819,8 +592,7 @@ func (a *DefaultApiService) SendMailByIdExecute(r ApiSendMailByIdRequest) (Gener
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/mail/{id}/send"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath := localBasePath + "/mail/send"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -835,11 +607,14 @@ func (a *DefaultApiService) SendMailByIdExecute(r ApiSendMailByIdRequest) (Gener
 	if r.to != nil {
 		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
 	}
-	if r.toName != nil {
-		localVarQueryParams.Add("toName", parameterToString(*r.toName, ""))
-	}
 	if r.from != nil {
 		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.id != nil {
+		localVarQueryParams.Add("id", parameterToString(*r.id, ""))
+	}
+	if r.toName != nil {
+		localVarQueryParams.Add("toName", parameterToString(*r.toName, ""))
 	}
 	if r.fromName != nil {
 		localVarQueryParams.Add("fromName", parameterToString(*r.fromName, ""))
@@ -872,34 +647,6 @@ func (a *DefaultApiService) SendMailByIdExecute(r ApiSendMailByIdRequest) (Gener
 					key = apiKey.Key
 				}
 				localVarHeaderParams["X-API-KEY"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiLoginAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-LOGIN"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiPasswordAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-PASS"] = key
 			}
 		}
 	}
@@ -1035,34 +782,6 @@ func (a *DefaultApiService) ValidateMailOrderExecute(r ApiValidateMailOrderReque
 			}
 		}
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiLoginAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-LOGIN"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiPasswordAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-PASS"] = key
-			}
-		}
-	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -1103,12 +822,16 @@ func (a *DefaultApiService) ValidateMailOrderExecute(r ApiValidateMailOrderReque
 type ApiViewMailLogByIdRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
-	id int64
+	id *int64
 	searchString *string
 	skip *int32
 	limit *int32
 }
 
+func (r ApiViewMailLogByIdRequest) Id(id int64) ApiViewMailLogByIdRequest {
+	r.id = &id
+	return r
+}
 func (r ApiViewMailLogByIdRequest) SearchString(searchString string) ApiViewMailLogByIdRequest {
 	r.searchString = &searchString
 	return r
@@ -1132,14 +855,12 @@ func (r ApiViewMailLogByIdRequest) Execute() ([]MailLog, *_nethttp.Response, err
 available inventory in the system
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id User ID
  * @return ApiViewMailLogByIdRequest
  */
-func (a *DefaultApiService) ViewMailLogById(ctx _context.Context, id int64) ApiViewMailLogByIdRequest {
+func (a *DefaultApiService) ViewMailLogById(ctx _context.Context) ApiViewMailLogByIdRequest {
 	return ApiViewMailLogByIdRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
 	}
 }
 
@@ -1162,13 +883,15 @@ func (a *DefaultApiService) ViewMailLogByIdExecute(r ApiViewMailLogByIdRequest) 
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/mail/{id}/log"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath := localBasePath + "/mail/log"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.id != nil {
+		localVarQueryParams.Add("id", parameterToString(*r.id, ""))
+	}
 	if r.searchString != nil {
 		localVarQueryParams.Add("searchString", parameterToString(*r.searchString, ""))
 	}
@@ -1206,34 +929,6 @@ func (a *DefaultApiService) ViewMailLogByIdExecute(r ApiViewMailLogByIdRequest) 
 					key = apiKey.Key
 				}
 				localVarHeaderParams["X-API-KEY"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiLoginAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-LOGIN"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiPasswordAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-PASS"] = key
 			}
 		}
 	}

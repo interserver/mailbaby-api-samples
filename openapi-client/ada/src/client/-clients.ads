@@ -15,16 +15,10 @@ package .Clients is
 
    type Client_Type is new Swagger.Clients.Client_Type with null record;
 
-   --  Gets mail order information by id
-   --  returns information about a mail order in the system with the given id.
-   procedure Get_Mail_By_Id
-      (Client : in out Client_Type;
-       Id : in Swagger.Long;
-       Result : out .Models.MailOrder_Type);
-
    --  displays a list of mail service orders
    procedure Get_Mail_Orders
       (Client : in out Client_Type;
+       Id : in Swagger.Nullable_Long;
        Result : out .Models.MailOrder_Type_Vectors.Vector);
 
    --  Checks if the server is running
@@ -41,7 +35,6 @@ package .Clients is
    --  Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
    procedure Send_Adv_Mail_By_Id
       (Client : in out Client_Type;
-       Id : in Swagger.Long;
        Send_Mail_Type : in .Models.SendMail_Type;
        Result : out .Models.GenericResponse_Type);
 
@@ -49,12 +42,12 @@ package .Clients is
    --  Sends An email through one of your mail orders.
    procedure Send_Mail_By_Id
       (Client : in out Client_Type;
-       Id : in Swagger.Long;
        Subject : in Swagger.Nullable_UString;
        P_Body : in Swagger.Nullable_UString;
        To : in Swagger.Nullable_UString;
-       To_Name : in Swagger.Nullable_UString;
        From : in Swagger.Nullable_UString;
+       Id : in Swagger.Nullable_Long;
+       To_Name : in Swagger.Nullable_UString;
        From_Name : in Swagger.Nullable_UString;
        Result : out .Models.GenericResponse_Type);
 
@@ -67,7 +60,7 @@ package .Clients is
    --  available inventory in the system
    procedure View_Mail_Log_By_Id
       (Client : in out Client_Type;
-       Id : in Swagger.Long;
+       Id : in Swagger.Nullable_Long;
        Search_String : in Swagger.Nullable_UString;
        Skip : in Swagger.Nullable_Integer;
        Limit : in Swagger.Nullable_Integer;

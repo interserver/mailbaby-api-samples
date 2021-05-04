@@ -32,20 +32,6 @@ import io.swagger.jaxrs.PATCH;
 public interface DefaultApi  {
 
     /**
-     * Gets mail order information by id
-     *
-     * returns information about a mail order in the system with the given id.
-     *
-     */
-    @GET
-    @Path("/mail/{id}")
-    @Produces({ "application/json" })
-    @ApiOperation(value = "Gets mail order information by id", tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successful operation", response = MailOrder.class) })
-    public MailOrder getMailById(@PathParam("id") Long id);
-
-    /**
      * displays a list of mail service orders
      *
      */
@@ -56,7 +42,7 @@ public interface DefaultApi  {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = MailOrder.class, responseContainer = "List"),
         @ApiResponse(code = 401, message = "Unauthorized", response = ErrorResponse.class) })
-    public List<MailOrder> getMailOrders();
+    public List<MailOrder> getMailOrders(@QueryParam("id") Long id);
 
     /**
      * Checks if the server is running
@@ -95,8 +81,8 @@ public interface DefaultApi  {
      *
      */
     @POST
-    @Path("/mail/{id}/advsend")
-    @Consumes({ "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" })
+    @Path("/mail/advsend")
+    @Consumes({ "application/json" })
     @Produces({ "application/json" })
     @ApiOperation(value = "Sends an Email with Advanced Options", tags={  })
     @ApiResponses(value = { 
@@ -104,7 +90,7 @@ public interface DefaultApi  {
         @ApiResponse(code = 400, message = "bad input parameter"),
         @ApiResponse(code = 401, message = "Unauthorized", response = ErrorResponse.class),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = ErrorResponse.class) })
-    public GenericResponse sendAdvMailById(@PathParam("id") Long id, SendMail sendMail);
+    public GenericResponse sendAdvMailById(SendMail sendMail);
 
     /**
      * Sends an Email
@@ -113,7 +99,7 @@ public interface DefaultApi  {
      *
      */
     @POST
-    @Path("/mail/{id}/send")
+    @Path("/mail/send")
     @Produces({ "application/json" })
     @ApiOperation(value = "Sends an Email", tags={  })
     @ApiResponses(value = { 
@@ -121,7 +107,7 @@ public interface DefaultApi  {
         @ApiResponse(code = 400, message = "bad input parameter"),
         @ApiResponse(code = 401, message = "Unauthorized", response = ErrorResponse.class),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = ErrorResponse.class) })
-    public GenericResponse sendMailById(@PathParam("id") Long id, @QueryParam("subject") String subject, @QueryParam("body") String body, @QueryParam("to") String to, @QueryParam("toName") String toName, @QueryParam("from") String from, @QueryParam("fromName") String fromName);
+    public GenericResponse sendMailById(@QueryParam("subject") String subject, @QueryParam("body") String body, @QueryParam("to") String to, @QueryParam("from") String from, @QueryParam("id") Long id, @QueryParam("toName") String toName, @QueryParam("fromName") String fromName);
 
     /**
      * validatess order details before placing an order
@@ -143,12 +129,12 @@ public interface DefaultApi  {
      *
      */
     @GET
-    @Path("/mail/{id}/log")
+    @Path("/mail/log")
     @Produces({ "application/json" })
     @ApiOperation(value = "displays the mail log", tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "search results matching criteria", response = MailLog.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "bad input parameter") })
-    public List<MailLog> viewMailLogById(@PathParam("id") Long id, @QueryParam("searchString") String searchString, @QueryParam("skip") Integer skip, @QueryParam("limit") Integer limit);
+    public List<MailLog> viewMailLogById(@QueryParam("id") Long id, @QueryParam("searchString") String searchString, @QueryParam("skip") Integer skip, @QueryParam("limit") Integer limit);
 }
 

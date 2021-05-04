@@ -45,8 +45,6 @@ void OAIDefaultApi::initializeServerConfigs(){
     QUrl("https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0"),
     "SwaggerHub API Auto Mocking",
     QMap<QString, OAIServerVariable>()));
-    _serverConfigs.insert("getMailById", defaultConf);
-    _serverIndices.insert("getMailById", 0);
     _serverConfigs.insert("getMailOrders", defaultConf);
     _serverIndices.insert("getMailOrders", 0);
     _serverConfigs.insert("pingServer", defaultConf);
@@ -229,92 +227,29 @@ QString OAIDefaultApi::getParamStyleDelimiter(QString style, QString name, bool 
     }
 }
 
-void OAIDefaultApi::getMailById(const qint64 &id) {
-    QString fullPath = QString(_serverConfigs["getMailById"][_serverIndices.value("getMailById")].URL()+"/mail/{id}");
-    
-    if(_apiKeys.contains("apiKeyAuth")){
-        addHeaders("apiKeyAuth",_apiKeys.find("apiKeyAuth").value());
-    }
-    
-    if(_apiKeys.contains("apiLoginAuth")){
-        addHeaders("apiLoginAuth",_apiKeys.find("apiLoginAuth").value());
-    }
-    
-    if(_apiKeys.contains("apiPasswordAuth")){
-        addHeaders("apiPasswordAuth",_apiKeys.find("apiPasswordAuth").value());
-    }
-    
-    
-    {
-        QString idPathParam("{");
-        idPathParam.append("id").append("}");
-        QString pathPrefix, pathSuffix, pathDelimiter;
-        QString pathStyle = "simple";
-        if(pathStyle == "")
-            pathStyle = "simple";
-        pathPrefix = getParamStylePrefix(pathStyle);
-        pathSuffix = getParamStyleSuffix(pathStyle);
-        pathDelimiter = getParamStyleDelimiter(pathStyle, "id", false);
-        QString paramString = (pathStyle == "matrix") ? pathPrefix+"id"+pathSuffix : pathPrefix;
-        fullPath.replace(idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(id)));
-    }
-    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
-    worker->setTimeOut(_timeOut);
-    worker->setWorkingDirectory(_workingDirectory);
-    OAIHttpRequestInput input(fullPath, "GET");
-
-
-    foreach (QString key, this->defaultHeaders.keys()) { input.headers.insert(key, this->defaultHeaders.value(key)); }
-
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::getMailByIdCallback);
-    connect(this, &OAIDefaultApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, [this](){
-        if(findChildren<OAIHttpRequestWorker*>().count() == 0){
-            emit allPendingRequestsCompleted();
-        }
-    });
-
-    worker->execute(&input);
-}
-
-void OAIDefaultApi::getMailByIdCallback(OAIHttpRequestWorker *worker) {
-    QString msg;
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    } else {
-        msg = "Error: " + worker->error_str;
-        error_str = QString("%1, %2").arg(worker->error_str).arg(QString(worker->response));
-    }
-    OAIMailOrder output(QString(worker->response));
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit getMailByIdSignal(output);
-        emit getMailByIdSignalFull(worker, output);
-    } else {
-        emit getMailByIdSignalE(output, error_type, error_str);
-        emit getMailByIdSignalEFull(worker, error_type, error_str);
-    }
-}
-
-void OAIDefaultApi::getMailOrders() {
+void OAIDefaultApi::getMailOrders(const ::OpenAPI::OptionalParam<qint64> &id) {
     QString fullPath = QString(_serverConfigs["getMailOrders"][_serverIndices.value("getMailOrders")].URL()+"/mail");
     
     if(_apiKeys.contains("apiKeyAuth")){
         addHeaders("apiKeyAuth",_apiKeys.find("apiKeyAuth").value());
     }
     
-    if(_apiKeys.contains("apiLoginAuth")){
-        addHeaders("apiLoginAuth",_apiKeys.find("apiLoginAuth").value());
+    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    if(id.hasValue())
+    {
+        queryStyle = "form";
+        if(queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "id", true);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("id")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(id.value())));
     }
-    
-    if(_apiKeys.contains("apiPasswordAuth")){
-        addHeaders("apiPasswordAuth",_apiKeys.find("apiPasswordAuth").value());
-    }
-    
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
@@ -417,14 +352,6 @@ void OAIDefaultApi::placeMailOrder(const ::OpenAPI::OptionalParam<OAIMailOrder> 
         addHeaders("apiKeyAuth",_apiKeys.find("apiKeyAuth").value());
     }
     
-    if(_apiKeys.contains("apiLoginAuth")){
-        addHeaders("apiLoginAuth",_apiKeys.find("apiLoginAuth").value());
-    }
-    
-    if(_apiKeys.contains("apiPasswordAuth")){
-        addHeaders("apiPasswordAuth",_apiKeys.find("apiPasswordAuth").value());
-    }
-    
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
@@ -470,35 +397,13 @@ void OAIDefaultApi::placeMailOrderCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIDefaultApi::sendAdvMailById(const qint64 &id, const OAISendMail &oai_send_mail) {
-    QString fullPath = QString(_serverConfigs["sendAdvMailById"][_serverIndices.value("sendAdvMailById")].URL()+"/mail/{id}/advsend");
+void OAIDefaultApi::sendAdvMailById(const OAISendMail &oai_send_mail) {
+    QString fullPath = QString(_serverConfigs["sendAdvMailById"][_serverIndices.value("sendAdvMailById")].URL()+"/mail/advsend");
     
     if(_apiKeys.contains("apiKeyAuth")){
         addHeaders("apiKeyAuth",_apiKeys.find("apiKeyAuth").value());
     }
     
-    if(_apiKeys.contains("apiLoginAuth")){
-        addHeaders("apiLoginAuth",_apiKeys.find("apiLoginAuth").value());
-    }
-    
-    if(_apiKeys.contains("apiPasswordAuth")){
-        addHeaders("apiPasswordAuth",_apiKeys.find("apiPasswordAuth").value());
-    }
-    
-    
-    {
-        QString idPathParam("{");
-        idPathParam.append("id").append("}");
-        QString pathPrefix, pathSuffix, pathDelimiter;
-        QString pathStyle = "simple";
-        if(pathStyle == "")
-            pathStyle = "simple";
-        pathPrefix = getParamStylePrefix(pathStyle);
-        pathSuffix = getParamStyleSuffix(pathStyle);
-        pathDelimiter = getParamStyleDelimiter(pathStyle, "id", false);
-        QString paramString = (pathStyle == "matrix") ? pathPrefix+"id"+pathSuffix : pathPrefix;
-        fullPath.replace(idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(id)));
-    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
@@ -545,35 +450,13 @@ void OAIDefaultApi::sendAdvMailByIdCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIDefaultApi::sendMailById(const qint64 &id, const ::OpenAPI::OptionalParam<QString> &subject, const ::OpenAPI::OptionalParam<QString> &body, const ::OpenAPI::OptionalParam<QString> &to, const ::OpenAPI::OptionalParam<QString> &to_name, const ::OpenAPI::OptionalParam<QString> &from, const ::OpenAPI::OptionalParam<QString> &from_name) {
-    QString fullPath = QString(_serverConfigs["sendMailById"][_serverIndices.value("sendMailById")].URL()+"/mail/{id}/send");
+void OAIDefaultApi::sendMailById(const ::OpenAPI::OptionalParam<QString> &subject, const ::OpenAPI::OptionalParam<QString> &body, const ::OpenAPI::OptionalParam<QString> &to, const ::OpenAPI::OptionalParam<QString> &from, const ::OpenAPI::OptionalParam<qint64> &id, const ::OpenAPI::OptionalParam<QString> &to_name, const ::OpenAPI::OptionalParam<QString> &from_name) {
+    QString fullPath = QString(_serverConfigs["sendMailById"][_serverIndices.value("sendMailById")].URL()+"/mail/send");
     
     if(_apiKeys.contains("apiKeyAuth")){
         addHeaders("apiKeyAuth",_apiKeys.find("apiKeyAuth").value());
     }
     
-    if(_apiKeys.contains("apiLoginAuth")){
-        addHeaders("apiLoginAuth",_apiKeys.find("apiLoginAuth").value());
-    }
-    
-    if(_apiKeys.contains("apiPasswordAuth")){
-        addHeaders("apiPasswordAuth",_apiKeys.find("apiPasswordAuth").value());
-    }
-    
-    
-    {
-        QString idPathParam("{");
-        idPathParam.append("id").append("}");
-        QString pathPrefix, pathSuffix, pathDelimiter;
-        QString pathStyle = "simple";
-        if(pathStyle == "")
-            pathStyle = "simple";
-        pathPrefix = getParamStylePrefix(pathStyle);
-        pathSuffix = getParamStyleSuffix(pathStyle);
-        pathDelimiter = getParamStyleDelimiter(pathStyle, "id", false);
-        QString paramString = (pathStyle == "matrix") ? pathPrefix+"id"+pathSuffix : pathPrefix;
-        fullPath.replace(idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(id)));
-    }
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
     if(subject.hasValue())
     {
@@ -620,21 +503,6 @@ void OAIDefaultApi::sendMailById(const qint64 &id, const ::OpenAPI::OptionalPara
 
         fullPath.append(QUrl::toPercentEncoding("to")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(to.value())));
     }
-    if(to_name.hasValue())
-    {
-        queryStyle = "form";
-        if(queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "toName", true);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("toName")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(to_name.value())));
-    }
     if(from.hasValue())
     {
         queryStyle = "form";
@@ -649,6 +517,36 @@ void OAIDefaultApi::sendMailById(const qint64 &id, const ::OpenAPI::OptionalPara
             fullPath.append("?");
 
         fullPath.append(QUrl::toPercentEncoding("from")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(from.value())));
+    }
+    if(id.hasValue())
+    {
+        queryStyle = "form";
+        if(queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "id", true);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("id")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(id.value())));
+    }
+    if(to_name.hasValue())
+    {
+        queryStyle = "form";
+        if(queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "toName", true);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("toName")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(to_name.value())));
     }
     if(from_name.hasValue())
     {
@@ -714,14 +612,6 @@ void OAIDefaultApi::validateMailOrder() {
         addHeaders("apiKeyAuth",_apiKeys.find("apiKeyAuth").value());
     }
     
-    if(_apiKeys.contains("apiLoginAuth")){
-        addHeaders("apiLoginAuth",_apiKeys.find("apiLoginAuth").value());
-    }
-    
-    if(_apiKeys.contains("apiPasswordAuth")){
-        addHeaders("apiPasswordAuth",_apiKeys.find("apiPasswordAuth").value());
-    }
-    
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
@@ -763,36 +653,29 @@ void OAIDefaultApi::validateMailOrderCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIDefaultApi::viewMailLogById(const qint64 &id, const ::OpenAPI::OptionalParam<QString> &search_string, const ::OpenAPI::OptionalParam<qint32> &skip, const ::OpenAPI::OptionalParam<qint32> &limit) {
-    QString fullPath = QString(_serverConfigs["viewMailLogById"][_serverIndices.value("viewMailLogById")].URL()+"/mail/{id}/log");
+void OAIDefaultApi::viewMailLogById(const ::OpenAPI::OptionalParam<qint64> &id, const ::OpenAPI::OptionalParam<QString> &search_string, const ::OpenAPI::OptionalParam<qint32> &skip, const ::OpenAPI::OptionalParam<qint32> &limit) {
+    QString fullPath = QString(_serverConfigs["viewMailLogById"][_serverIndices.value("viewMailLogById")].URL()+"/mail/log");
     
     if(_apiKeys.contains("apiKeyAuth")){
         addHeaders("apiKeyAuth",_apiKeys.find("apiKeyAuth").value());
     }
     
-    if(_apiKeys.contains("apiLoginAuth")){
-        addHeaders("apiLoginAuth",_apiKeys.find("apiLoginAuth").value());
-    }
-    
-    if(_apiKeys.contains("apiPasswordAuth")){
-        addHeaders("apiPasswordAuth",_apiKeys.find("apiPasswordAuth").value());
-    }
-    
-    
-    {
-        QString idPathParam("{");
-        idPathParam.append("id").append("}");
-        QString pathPrefix, pathSuffix, pathDelimiter;
-        QString pathStyle = "simple";
-        if(pathStyle == "")
-            pathStyle = "simple";
-        pathPrefix = getParamStylePrefix(pathStyle);
-        pathSuffix = getParamStyleSuffix(pathStyle);
-        pathDelimiter = getParamStyleDelimiter(pathStyle, "id", false);
-        QString paramString = (pathStyle == "matrix") ? pathPrefix+"id"+pathSuffix : pathPrefix;
-        fullPath.replace(idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(id)));
-    }
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    if(id.hasValue())
+    {
+        queryStyle = "form";
+        if(queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "id", true);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("id")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(id.value())));
+    }
     if(search_string.hasValue())
     {
         queryStyle = "form";

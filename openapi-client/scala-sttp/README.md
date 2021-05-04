@@ -66,14 +66,13 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | **getMailById** | **GET** /mail/${id} | Gets mail order information by id
 *DefaultApi* | **getMailOrders** | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | **pingServer** | **GET** /ping | Checks if the server is running
 *DefaultApi* | **placeMailOrder** | **POST** /mail/order | places a mail order
-*DefaultApi* | **sendAdvMailById** | **POST** /mail/${id}/advsend | Sends an Email with Advanced Options
-*DefaultApi* | **sendMailById** | **POST** /mail/${id}/send | Sends an Email
+*DefaultApi* | **sendAdvMailById** | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | **sendMailById** | **POST** /mail/send | Sends an Email
 *DefaultApi* | **validateMailOrder** | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | **viewMailLogById** | **GET** /mail/${id}/log | displays the mail log
+*DefaultApi* | **viewMailLogById** | **GET** /mail/log | displays the mail log
 
 
 ## Documentation for Models
@@ -94,18 +93,6 @@ Authentication schemes defined for the API:
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-### apiLoginAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-### apiPasswordAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 
 

@@ -32,8 +32,8 @@ import {
     SendMailToJSON,
 } from '../models';
 
-export interface GetMailByIdRequest {
-    id: number;
+export interface GetMailOrdersRequest {
+    id?: number;
 }
 
 export interface PlaceMailOrderRequest {
@@ -41,22 +41,21 @@ export interface PlaceMailOrderRequest {
 }
 
 export interface SendAdvMailByIdRequest {
-    id: number;
     sendMail: SendMail;
 }
 
 export interface SendMailByIdRequest {
-    id: number;
     subject?: string;
     body?: string;
     to?: string;
-    toName?: string;
     from?: string;
+    id?: number;
+    toName?: string;
     fromName?: string;
 }
 
 export interface ViewMailLogByIdRequest {
-    id: number;
+    id?: number;
     searchString?: string;
     skip?: number;
     limit?: number;
@@ -68,67 +67,19 @@ export interface ViewMailLogByIdRequest {
 export class DefaultApi extends runtime.BaseAPI {
 
     /**
-     * returns information about a mail order in the system with the given id.
-     * Gets mail order information by id
-     */
-    async getMailByIdRaw(requestParameters: GetMailByIdRequest): Promise<runtime.ApiResponse<MailOrder>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getMailById.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-LOGIN"] = this.configuration.apiKey("X-API-LOGIN"); // apiLoginAuth authentication
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-PASS"] = this.configuration.apiKey("X-API-PASS"); // apiPasswordAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/mail/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        });
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => MailOrderFromJSON(jsonValue));
-    }
-
-    /**
-     * returns information about a mail order in the system with the given id.
-     * Gets mail order information by id
-     */
-    async getMailById(requestParameters: GetMailByIdRequest): Promise<MailOrder> {
-        const response = await this.getMailByIdRaw(requestParameters);
-        return await response.value();
-    }
-
-    /**
      * displays a list of mail service orders
      */
-    async getMailOrdersRaw(): Promise<runtime.ApiResponse<Array<MailOrder>>> {
+    async getMailOrdersRaw(requestParameters: GetMailOrdersRequest): Promise<runtime.ApiResponse<Array<MailOrder>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.id !== undefined) {
+            queryParameters['id'] = requestParameters.id;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-LOGIN"] = this.configuration.apiKey("X-API-LOGIN"); // apiLoginAuth authentication
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-PASS"] = this.configuration.apiKey("X-API-PASS"); // apiPasswordAuth authentication
         }
 
         const response = await this.request({
@@ -144,8 +95,8 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * displays a list of mail service orders
      */
-    async getMailOrders(): Promise<Array<MailOrder>> {
-        const response = await this.getMailOrdersRaw();
+    async getMailOrders(requestParameters: GetMailOrdersRequest): Promise<Array<MailOrder>> {
+        const response = await this.getMailOrdersRaw(requestParameters);
         return await response.value();
     }
 
@@ -189,14 +140,6 @@ export class DefaultApi extends runtime.BaseAPI {
             headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-LOGIN"] = this.configuration.apiKey("X-API-LOGIN"); // apiLoginAuth authentication
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-PASS"] = this.configuration.apiKey("X-API-PASS"); // apiPasswordAuth authentication
-        }
-
         const response = await this.request({
             path: `/mail/order`,
             method: 'POST',
@@ -221,10 +164,6 @@ export class DefaultApi extends runtime.BaseAPI {
      * Sends an Email with Advanced Options
      */
     async sendAdvMailByIdRaw(requestParameters: SendAdvMailByIdRequest): Promise<runtime.ApiResponse<GenericResponse>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling sendAdvMailById.');
-        }
-
         if (requestParameters.sendMail === null || requestParameters.sendMail === undefined) {
             throw new runtime.RequiredError('sendMail','Required parameter requestParameters.sendMail was null or undefined when calling sendAdvMailById.');
         }
@@ -239,16 +178,8 @@ export class DefaultApi extends runtime.BaseAPI {
             headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-LOGIN"] = this.configuration.apiKey("X-API-LOGIN"); // apiLoginAuth authentication
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-PASS"] = this.configuration.apiKey("X-API-PASS"); // apiPasswordAuth authentication
-        }
-
         const response = await this.request({
-            path: `/mail/{id}/advsend`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/mail/advsend`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -272,10 +203,6 @@ export class DefaultApi extends runtime.BaseAPI {
      * Sends an Email
      */
     async sendMailByIdRaw(requestParameters: SendMailByIdRequest): Promise<runtime.ApiResponse<GenericResponse>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling sendMailById.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.subject !== undefined) {
@@ -290,12 +217,16 @@ export class DefaultApi extends runtime.BaseAPI {
             queryParameters['to'] = requestParameters.to;
         }
 
-        if (requestParameters.toName !== undefined) {
-            queryParameters['toName'] = requestParameters.toName;
-        }
-
         if (requestParameters.from !== undefined) {
             queryParameters['from'] = requestParameters.from;
+        }
+
+        if (requestParameters.id !== undefined) {
+            queryParameters['id'] = requestParameters.id;
+        }
+
+        if (requestParameters.toName !== undefined) {
+            queryParameters['toName'] = requestParameters.toName;
         }
 
         if (requestParameters.fromName !== undefined) {
@@ -308,16 +239,8 @@ export class DefaultApi extends runtime.BaseAPI {
             headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-LOGIN"] = this.configuration.apiKey("X-API-LOGIN"); // apiLoginAuth authentication
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-PASS"] = this.configuration.apiKey("X-API-PASS"); // apiPasswordAuth authentication
-        }
-
         const response = await this.request({
-            path: `/mail/{id}/send`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/mail/send`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -347,14 +270,6 @@ export class DefaultApi extends runtime.BaseAPI {
             headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-LOGIN"] = this.configuration.apiKey("X-API-LOGIN"); // apiLoginAuth authentication
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-PASS"] = this.configuration.apiKey("X-API-PASS"); // apiPasswordAuth authentication
-        }
-
         const response = await this.request({
             path: `/mail/order`,
             method: 'GET',
@@ -377,11 +292,11 @@ export class DefaultApi extends runtime.BaseAPI {
      * displays the mail log
      */
     async viewMailLogByIdRaw(requestParameters: ViewMailLogByIdRequest): Promise<runtime.ApiResponse<Array<MailLog>>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling viewMailLogById.');
-        }
-
         const queryParameters: any = {};
+
+        if (requestParameters.id !== undefined) {
+            queryParameters['id'] = requestParameters.id;
+        }
 
         if (requestParameters.searchString !== undefined) {
             queryParameters['searchString'] = requestParameters.searchString;
@@ -401,16 +316,8 @@ export class DefaultApi extends runtime.BaseAPI {
             headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-LOGIN"] = this.configuration.apiKey("X-API-LOGIN"); // apiLoginAuth authentication
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-PASS"] = this.configuration.apiKey("X-API-PASS"); // apiPasswordAuth authentication
-        }
-
         const response = await this.request({
-            path: `/mail/{id}/log`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/mail/log`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

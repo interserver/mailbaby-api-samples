@@ -42,17 +42,13 @@ template constructResult[T](response: Response): untyped =
     (none(T.typedesc), response)
 
 
-proc getMailById*(httpClient: HttpClient, id: int64): (Option[MailOrder], Response) =
-  ## Gets mail order information by id
-
-  let response = httpClient.get(basepath & fmt"/mail/{id}")
-  constructResult[MailOrder](response)
-
-
-proc getMailOrders*(httpClient: HttpClient): (Option[seq[MailOrder]], Response) =
+proc getMailOrders*(httpClient: HttpClient, id: int64): (Option[seq[MailOrder]], Response) =
   ## displays a list of mail service orders
+  let query_for_api_call = encodeQuery([
+    ("id", $id), # The ID of your mail order this will be sent through.
+  ])
 
-  let response = httpClient.get(basepath & "/mail")
+  let response = httpClient.get(basepath & "/mail" & "?" & query_for_api_call)
   constructResult[seq[MailOrder]](response)
 
 
@@ -67,26 +63,27 @@ proc placeMailOrder*(httpClient: HttpClient, MailOrder: MailOrder): Response {.d
   httpClient.post(basepath & "/mail/order", $(%MailOrder))
 
 
-proc sendAdvMailById*(httpClient: HttpClient, id: int64, SendMail: SendMail): (Option[GenericResponse], Response) =
+proc sendAdvMailById*(httpClient: HttpClient, SendMail: SendMail): (Option[GenericResponse], Response) =
   ## Sends an Email with Advanced Options
   httpClient.headers["Content-Type"] = "application/json"
 
-  let response = httpClient.post(basepath & fmt"/mail/{id}/advsend", $(%SendMail))
+  let response = httpClient.post(basepath & "/mail/advsend", $(%SendMail))
   constructResult[GenericResponse](response)
 
 
-proc sendMailById*(httpClient: HttpClient, id: int64, subject: string, body: string, to: string, toName: string, `from`: string, fromName: string): (Option[GenericResponse], Response) =
+proc sendMailById*(httpClient: HttpClient, subject: string, body: string, to: string, `from`: string, id: int64, toName: string, fromName: string): (Option[GenericResponse], Response) =
   ## Sends an Email
   let query_for_api_call = encodeQuery([
-    ("subject", $subject), # 
-    ("body", $body), # 
-    ("to", $to), # 
-    ("toName", $toName), # 
-    ("from", $`from`), # 
-    ("fromName", $fromName), # 
+    ("subject", $subject), # The Subject of the email
+    ("body", $body), # The contents of the email
+    ("to", $to), # The email address of who this email will be sent to.
+    ("from", $`from`), # The email address of who this email will be sent from.
+    ("id", $id), # The ID of your mail order this will be sent through.
+    ("toName", $toName), # The name or title of who this email is being sent to.
+    ("fromName", $fromName), # The name or title of who this email is being sent from.
   ])
 
-  let response = httpClient.post(basepath & fmt"/mail/{id}/send" & "?" & query_for_api_call)
+  let response = httpClient.post(basepath & "/mail/send" & "?" & query_for_api_call)
   constructResult[GenericResponse](response)
 
 
@@ -98,11 +95,12 @@ proc validateMailOrder*(httpClient: HttpClient): Response {.deprecated.} =
 proc viewMailLogById*(httpClient: HttpClient, id: int64, searchString: string, skip: int, limit: int): (Option[seq[MailLog]], Response) =
   ## displays the mail log
   let query_for_api_call = encodeQuery([
+    ("id", $id), # The ID of your mail order this will be sent through.
     ("searchString", $searchString), # pass an optional search string for looking up inventory
     ("skip", $skip), # number of records to skip for pagination
     ("limit", $limit), # maximum number of records to return
   ])
 
-  let response = httpClient.get(basepath & fmt"/mail/{id}/log" & "?" & query_for_api_call)
+  let response = httpClient.get(basepath & "/mail/log" & "?" & query_for_api_call)
   constructResult[seq[MailLog]](response)
 

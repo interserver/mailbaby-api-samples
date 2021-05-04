@@ -9,73 +9,17 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMailById**](DefaultApi.md#getMailById) | **Get** /mail/:id | Gets mail order information by id
 [**getMailOrders**](DefaultApi.md#getMailOrders) | **Get** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingServer) | **Get** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultApi.md#placeMailOrder) | **Post** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **Post** /mail/:id/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultApi.md#sendMailById) | **Post** /mail/:id/send | Sends an Email
+[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **Post** /mail/advsend | Sends an Email with Advanced Options
+[**sendMailById**](DefaultApi.md#sendMailById) | **Post** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **Get** /mail/order | validatess order details before placing an order
-[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **Get** /mail/:id/log | displays the mail log
+[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **Get** /mail/log | displays the mail log
 
-
-# **getMailById**
-> MailOrder getMailById(id)
-
-Gets mail order information by id
-
-returns information about a mail order in the system with the given id.
-
-### Example 
-```dart
-import 'package:openapi/api.dart';
-// TODO Configure API key authorization: apiKeyAuth
-//openapi.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//openapi.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-// TODO Configure API key authorization: apiLoginAuth
-//openapi.api.Configuration.apiKey{'X-API-LOGIN'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//openapi.api.Configuration.apiKeyPrefix{'X-API-LOGIN'} = "Bearer";
-// TODO Configure API key authorization: apiPasswordAuth
-//openapi.api.Configuration.apiKey{'X-API-PASS'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//openapi.api.Configuration.apiKeyPrefix{'X-API-PASS'} = "Bearer";
-
-var api_instance = new DefaultApi();
-var id = 789; // int | User ID
-
-try { 
-    var result = api_instance.getMailById(id);
-    print(result);
-} catch (e) {
-    print("Exception when calling DefaultApi->getMailById: $e\n");
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| User ID | [default to null]
-
-### Return type
-
-[**MailOrder**](MailOrder.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getMailOrders**
-> List<MailOrder> getMailOrders()
+> List<MailOrder> getMailOrders(id)
 
 displays a list of mail service orders
 
@@ -86,19 +30,12 @@ import 'package:openapi/api.dart';
 //openapi.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //openapi.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-// TODO Configure API key authorization: apiLoginAuth
-//openapi.api.Configuration.apiKey{'X-API-LOGIN'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//openapi.api.Configuration.apiKeyPrefix{'X-API-LOGIN'} = "Bearer";
-// TODO Configure API key authorization: apiPasswordAuth
-//openapi.api.Configuration.apiKey{'X-API-PASS'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//openapi.api.Configuration.apiKeyPrefix{'X-API-PASS'} = "Bearer";
 
 var api_instance = new DefaultApi();
+var id = 789; // int | The ID of your mail order this will be sent through.
 
 try { 
-    var result = api_instance.getMailOrders();
+    var result = api_instance.getMailOrders(id);
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->getMailOrders: $e\n");
@@ -106,7 +43,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| The ID of your mail order this will be sent through. | [optional] [default to null]
 
 ### Return type
 
@@ -114,7 +54,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -173,14 +113,6 @@ import 'package:openapi/api.dart';
 //openapi.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //openapi.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-// TODO Configure API key authorization: apiLoginAuth
-//openapi.api.Configuration.apiKey{'X-API-LOGIN'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//openapi.api.Configuration.apiKeyPrefix{'X-API-LOGIN'} = "Bearer";
-// TODO Configure API key authorization: apiPasswordAuth
-//openapi.api.Configuration.apiKey{'X-API-PASS'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//openapi.api.Configuration.apiKeyPrefix{'X-API-PASS'} = "Bearer";
 
 var api_instance = new DefaultApi();
 var mailOrder = new MailOrder(); // MailOrder | Inventory item to add
@@ -204,7 +136,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -214,7 +146,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendAdvMailById**
-> GenericResponse sendAdvMailById(id, sendMail)
+> GenericResponse sendAdvMailById(sendMail)
 
 Sends an Email with Advanced Options
 
@@ -227,21 +159,12 @@ import 'package:openapi/api.dart';
 //openapi.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //openapi.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-// TODO Configure API key authorization: apiLoginAuth
-//openapi.api.Configuration.apiKey{'X-API-LOGIN'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//openapi.api.Configuration.apiKeyPrefix{'X-API-LOGIN'} = "Bearer";
-// TODO Configure API key authorization: apiPasswordAuth
-//openapi.api.Configuration.apiKey{'X-API-PASS'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//openapi.api.Configuration.apiKeyPrefix{'X-API-PASS'} = "Bearer";
 
 var api_instance = new DefaultApi();
-var id = 789; // int | User ID
 var sendMail = new SendMail(); // SendMail | 
 
 try { 
-    var result = api_instance.sendAdvMailById(id, sendMail);
+    var result = api_instance.sendAdvMailById(sendMail);
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->sendAdvMailById: $e\n");
@@ -252,7 +175,6 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| User ID | [default to null]
  **sendMail** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type
@@ -261,17 +183,17 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendMailById**
-> GenericResponse sendMailById(id, subject, body, to, toName, from, fromName)
+> GenericResponse sendMailById(subject, body, to, from, id, toName, fromName)
 
 Sends an Email
 
@@ -284,26 +206,18 @@ import 'package:openapi/api.dart';
 //openapi.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //openapi.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-// TODO Configure API key authorization: apiLoginAuth
-//openapi.api.Configuration.apiKey{'X-API-LOGIN'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//openapi.api.Configuration.apiKeyPrefix{'X-API-LOGIN'} = "Bearer";
-// TODO Configure API key authorization: apiPasswordAuth
-//openapi.api.Configuration.apiKey{'X-API-PASS'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//openapi.api.Configuration.apiKeyPrefix{'X-API-PASS'} = "Bearer";
 
 var api_instance = new DefaultApi();
-var id = 789; // int | User ID
-var subject = subject_example; // String | 
-var body = body_example; // String | 
-var to = to_example; // String | 
-var toName = toName_example; // String | 
-var from = from_example; // String | 
-var fromName = fromName_example; // String | 
+var subject = subject_example; // String | The Subject of the email
+var body = body_example; // String | The contents of the email
+var to = to_example; // String | The email address of who this email will be sent to.
+var from = from_example; // String | The email address of who this email will be sent from.
+var id = 789; // int | The ID of your mail order this will be sent through.
+var toName = toName_example; // String | The name or title of who this email is being sent to.
+var fromName = fromName_example; // String | The name or title of who this email is being sent from.
 
 try { 
-    var result = api_instance.sendMailById(id, subject, body, to, toName, from, fromName);
+    var result = api_instance.sendMailById(subject, body, to, from, id, toName, fromName);
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->sendMailById: $e\n");
@@ -314,13 +228,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| User ID | [default to null]
- **subject** | **String**|  | [optional] [default to null]
- **body** | **String**|  | [optional] [default to null]
- **to** | **String**|  | [optional] [default to null]
- **toName** | **String**|  | [optional] [default to null]
- **from** | **String**|  | [optional] [default to null]
- **fromName** | **String**|  | [optional] [default to null]
+ **subject** | **String**| The Subject of the email | [optional] [default to null]
+ **body** | **String**| The contents of the email | [optional] [default to null]
+ **to** | **String**| The email address of who this email will be sent to. | [optional] [default to null]
+ **from** | **String**| The email address of who this email will be sent from. | [optional] [default to null]
+ **id** | **int**| The ID of your mail order this will be sent through. | [optional] [default to null]
+ **toName** | **String**| The name or title of who this email is being sent to. | [optional] [default to null]
+ **fromName** | **String**| The name or title of who this email is being sent from. | [optional] [default to null]
 
 ### Return type
 
@@ -328,7 +242,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -349,14 +263,6 @@ import 'package:openapi/api.dart';
 //openapi.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //openapi.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-// TODO Configure API key authorization: apiLoginAuth
-//openapi.api.Configuration.apiKey{'X-API-LOGIN'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//openapi.api.Configuration.apiKeyPrefix{'X-API-LOGIN'} = "Bearer";
-// TODO Configure API key authorization: apiPasswordAuth
-//openapi.api.Configuration.apiKey{'X-API-PASS'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//openapi.api.Configuration.apiKeyPrefix{'X-API-PASS'} = "Bearer";
 
 var api_instance = new DefaultApi();
 
@@ -376,7 +282,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 
@@ -399,17 +305,9 @@ import 'package:openapi/api.dart';
 //openapi.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //openapi.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-// TODO Configure API key authorization: apiLoginAuth
-//openapi.api.Configuration.apiKey{'X-API-LOGIN'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//openapi.api.Configuration.apiKeyPrefix{'X-API-LOGIN'} = "Bearer";
-// TODO Configure API key authorization: apiPasswordAuth
-//openapi.api.Configuration.apiKey{'X-API-PASS'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//openapi.api.Configuration.apiKeyPrefix{'X-API-PASS'} = "Bearer";
 
 var api_instance = new DefaultApi();
-var id = 789; // int | User ID
+var id = 789; // int | The ID of your mail order this will be sent through.
 var searchString = searchString_example; // String | pass an optional search string for looking up inventory
 var skip = 56; // int | number of records to skip for pagination
 var limit = 56; // int | maximum number of records to return
@@ -426,7 +324,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| User ID | [default to null]
+ **id** | **int**| The ID of your mail order this will be sent through. | [optional] [default to null]
  **searchString** | **String**| pass an optional search string for looking up inventory | [optional] [default to null]
  **skip** | **int**| number of records to skip for pagination | [optional] [default to null]
  **limit** | **int**| maximum number of records to return | [optional] [default to null]
@@ -437,7 +335,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [apiLoginAuth](../README.md#apiLoginAuth), [apiPasswordAuth](../README.md#apiPasswordAuth)
+[apiKeyAuth](../README.md#apiKeyAuth)
 
 ### HTTP request headers
 

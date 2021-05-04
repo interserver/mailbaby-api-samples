@@ -33,9 +33,7 @@ let defaultBasePath = 'https://api.mailbaby.net';
 // ===============================================
 
 export enum DefaultApiApiKeys {
-    apiPasswordAuth,
     apiKeyAuth,
-    apiLoginAuth,
 }
 
 export class DefaultApi {
@@ -45,9 +43,7 @@ export class DefaultApi {
 
     protected authentications = {
         'default': <Authentication>new VoidAuth(),
-        'apiPasswordAuth': new ApiKeyAuth('header', 'X-API-PASS'),
         'apiKeyAuth': new ApiKeyAuth('header', 'X-API-KEY'),
-        'apiLoginAuth': new ApiKeyAuth('header', 'X-API-LOGIN'),
     }
 
     protected interceptors: Interceptor[] = [];
@@ -98,88 +94,11 @@ export class DefaultApi {
     }
 
     /**
-     * returns information about a mail order in the system with the given id.
-     * @summary Gets mail order information by id
-     * @param id User ID
-     */
-    public async getMailById (id: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: MailOrder;  }> {
-        const localVarPath = this.basePath + '/mail/{id}'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['application/json'];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling getMailById.');
-        }
-
-        (<any>Object).assign(localVarHeaderParams, options.headers);
-
-        let localVarUseFormData = false;
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.apiKeyAuth.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.apiKeyAuth.applyToRequest(localVarRequestOptions));
-        }
-        if (this.authentications.apiLoginAuth.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.apiLoginAuth.applyToRequest(localVarRequestOptions));
-        }
-        if (this.authentications.apiPasswordAuth.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.apiPasswordAuth.applyToRequest(localVarRequestOptions));
-        }
-        authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
-
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(localVarRequestOptions));
-        }
-
-        return interceptorPromise.then(() => {
-            if (Object.keys(localVarFormParams).length) {
-                if (localVarUseFormData) {
-                    (<any>localVarRequestOptions).formData = localVarFormParams;
-                } else {
-                    localVarRequestOptions.form = localVarFormParams;
-                }
-            }
-            return new Promise<{ response: http.IncomingMessage; body: MailOrder;  }>((resolve, reject) => {
-                localVarRequest(localVarRequestOptions, (error, response, body) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        body = ObjectSerializer.deserialize(body, "MailOrder");
-                        if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
-                        } else {
-                            reject(new HttpError(response, body, response.statusCode));
-                        }
-                    }
-                });
-            });
-        });
-    }
-    /**
      * 
      * @summary displays a list of mail service orders
+     * @param id The ID of your mail order this will be sent through.
      */
-    public async getMailOrders (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<MailOrder>;  }> {
+    public async getMailOrders (id?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<MailOrder>;  }> {
         const localVarPath = this.basePath + '/mail';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -192,6 +111,10 @@ export class DefaultApi {
         }
         let localVarFormParams: any = {};
 
+        if (id !== undefined) {
+            localVarQueryParameters['id'] = ObjectSerializer.serialize(id, "number");
+        }
+
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
@@ -208,12 +131,6 @@ export class DefaultApi {
         let authenticationPromise = Promise.resolve();
         if (this.authentications.apiKeyAuth.apiKey) {
             authenticationPromise = authenticationPromise.then(() => this.authentications.apiKeyAuth.applyToRequest(localVarRequestOptions));
-        }
-        if (this.authentications.apiLoginAuth.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.apiLoginAuth.applyToRequest(localVarRequestOptions));
-        }
-        if (this.authentications.apiPasswordAuth.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.apiPasswordAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -336,12 +253,6 @@ export class DefaultApi {
         if (this.authentications.apiKeyAuth.apiKey) {
             authenticationPromise = authenticationPromise.then(() => this.authentications.apiKeyAuth.applyToRequest(localVarRequestOptions));
         }
-        if (this.authentications.apiLoginAuth.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.apiLoginAuth.applyToRequest(localVarRequestOptions));
-        }
-        if (this.authentications.apiPasswordAuth.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.apiPasswordAuth.applyToRequest(localVarRequestOptions));
-        }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
         let interceptorPromise = authenticationPromise;
@@ -375,12 +286,10 @@ export class DefaultApi {
     /**
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * @summary Sends an Email with Advanced Options
-     * @param id User ID
      * @param sendMail 
      */
-    public async sendAdvMailById (id: number, sendMail: SendMail, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
-        const localVarPath = this.basePath + '/mail/{id}/advsend'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+    public async sendAdvMailById (sendMail: SendMail, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
+        const localVarPath = this.basePath + '/mail/advsend';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -391,11 +300,6 @@ export class DefaultApi {
             localVarHeaderParams.Accept = produces.join(',');
         }
         let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling sendAdvMailById.');
-        }
 
         // verify required parameter 'sendMail' is not null or undefined
         if (sendMail === null || sendMail === undefined) {
@@ -419,12 +323,6 @@ export class DefaultApi {
         let authenticationPromise = Promise.resolve();
         if (this.authentications.apiKeyAuth.apiKey) {
             authenticationPromise = authenticationPromise.then(() => this.authentications.apiKeyAuth.applyToRequest(localVarRequestOptions));
-        }
-        if (this.authentications.apiLoginAuth.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.apiLoginAuth.applyToRequest(localVarRequestOptions));
-        }
-        if (this.authentications.apiPasswordAuth.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.apiPasswordAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -460,17 +358,16 @@ export class DefaultApi {
     /**
      * Sends An email through one of your mail orders.
      * @summary Sends an Email
-     * @param id User ID
-     * @param subject 
-     * @param body 
-     * @param to 
-     * @param toName 
-     * @param from 
-     * @param fromName 
+     * @param subject The Subject of the email
+     * @param body The contents of the email
+     * @param to The email address of who this email will be sent to.
+     * @param from The email address of who this email will be sent from.
+     * @param id The ID of your mail order this will be sent through.
+     * @param toName The name or title of who this email is being sent to.
+     * @param fromName The name or title of who this email is being sent from.
      */
-    public async sendMailById (id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
-        const localVarPath = this.basePath + '/mail/{id}/send'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+    public async sendMailById (subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
+        const localVarPath = this.basePath + '/mail/send';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -481,11 +378,6 @@ export class DefaultApi {
             localVarHeaderParams.Accept = produces.join(',');
         }
         let localVarFormParams: any = {};
-
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling sendMailById.');
-        }
 
         if (subject !== undefined) {
             localVarQueryParameters['subject'] = ObjectSerializer.serialize(subject, "string");
@@ -499,12 +391,16 @@ export class DefaultApi {
             localVarQueryParameters['to'] = ObjectSerializer.serialize(to, "string");
         }
 
-        if (toName !== undefined) {
-            localVarQueryParameters['toName'] = ObjectSerializer.serialize(toName, "string");
-        }
-
         if (from !== undefined) {
             localVarQueryParameters['from'] = ObjectSerializer.serialize(from, "string");
+        }
+
+        if (id !== undefined) {
+            localVarQueryParameters['id'] = ObjectSerializer.serialize(id, "number");
+        }
+
+        if (toName !== undefined) {
+            localVarQueryParameters['toName'] = ObjectSerializer.serialize(toName, "string");
         }
 
         if (fromName !== undefined) {
@@ -527,12 +423,6 @@ export class DefaultApi {
         let authenticationPromise = Promise.resolve();
         if (this.authentications.apiKeyAuth.apiKey) {
             authenticationPromise = authenticationPromise.then(() => this.authentications.apiKeyAuth.applyToRequest(localVarRequestOptions));
-        }
-        if (this.authentications.apiLoginAuth.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.apiLoginAuth.applyToRequest(localVarRequestOptions));
-        }
-        if (this.authentications.apiPasswordAuth.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.apiPasswordAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
@@ -599,12 +489,6 @@ export class DefaultApi {
         if (this.authentications.apiKeyAuth.apiKey) {
             authenticationPromise = authenticationPromise.then(() => this.authentications.apiKeyAuth.applyToRequest(localVarRequestOptions));
         }
-        if (this.authentications.apiLoginAuth.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.apiLoginAuth.applyToRequest(localVarRequestOptions));
-        }
-        if (this.authentications.apiPasswordAuth.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.apiPasswordAuth.applyToRequest(localVarRequestOptions));
-        }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 
         let interceptorPromise = authenticationPromise;
@@ -638,14 +522,13 @@ export class DefaultApi {
     /**
      * By passing in the appropriate options, you can search for available inventory in the system 
      * @summary displays the mail log
-     * @param id User ID
+     * @param id The ID of your mail order this will be sent through.
      * @param searchString pass an optional search string for looking up inventory
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      */
-    public async viewMailLogById (id: number, searchString?: string, skip?: number, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<MailLog>;  }> {
-        const localVarPath = this.basePath + '/mail/{id}/log'
-            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+    public async viewMailLogById (id?: number, searchString?: string, skip?: number, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<MailLog>;  }> {
+        const localVarPath = this.basePath + '/mail/log';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -657,9 +540,8 @@ export class DefaultApi {
         }
         let localVarFormParams: any = {};
 
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling viewMailLogById.');
+        if (id !== undefined) {
+            localVarQueryParameters['id'] = ObjectSerializer.serialize(id, "number");
         }
 
         if (searchString !== undefined) {
@@ -690,12 +572,6 @@ export class DefaultApi {
         let authenticationPromise = Promise.resolve();
         if (this.authentications.apiKeyAuth.apiKey) {
             authenticationPromise = authenticationPromise.then(() => this.authentications.apiKeyAuth.applyToRequest(localVarRequestOptions));
-        }
-        if (this.authentications.apiLoginAuth.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.apiLoginAuth.applyToRequest(localVarRequestOptions));
-        }
-        if (this.authentications.apiPasswordAuth.apiKey) {
-            authenticationPromise = authenticationPromise.then(() => this.authentications.apiPasswordAuth.applyToRequest(localVarRequestOptions));
         }
         authenticationPromise = authenticationPromise.then(() => this.authentications.default.applyToRequest(localVarRequestOptions));
 

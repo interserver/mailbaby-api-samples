@@ -9,99 +9,14 @@
 <#
 .SYNOPSIS
 
-Gets mail order information by id
+displays a list of mail service orders
 
 .DESCRIPTION
 
 No description available.
 
 .PARAMETER Id
-User ID
-
-.PARAMETER WithHttpInfo
-
-A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
-
-.OUTPUTS
-
-MailOrder
-#>
-function Get-MailById {
-    [CmdletBinding()]
-    Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int64]
-        ${Id},
-        [Switch]
-        $WithHttpInfo
-    )
-
-    Process {
-        'Calling method: Get-MailById' | Write-Debug
-        $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        $LocalVarAccepts = @()
-        $LocalVarContentTypes = @()
-        $LocalVarQueryParameters = @{}
-        $LocalVarHeaderParameters = @{}
-        $LocalVarFormParameters = @{}
-        $LocalVarPathParameters = @{}
-        $LocalVarCookieParameters = @{}
-        $LocalVarBodyParameter = $null
-
-        $Configuration = Get-Configuration
-        # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('application/json')
-
-        $LocalVarUri = '/mail/{id}'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling getMailById."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', $Id)
-
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
-            $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]
-            Write-Verbose ("Using API key 'apiKeyAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiLoginAuth"]) {
-            $LocalVarHeaderParameters['apiLoginAuth'] = $Configuration["ApiKey"]["apiLoginAuth"]
-            Write-Verbose ("Using API key 'apiLoginAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiPasswordAuth"]) {
-            $LocalVarHeaderParameters['apiPasswordAuth'] = $Configuration["ApiKey"]["apiPasswordAuth"]
-            Write-Verbose ("Using API key 'apiPasswordAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        $LocalVarResult = Invoke-ApiClient -Method 'GET' `
-                                -Uri $LocalVarUri `
-                                -Accepts $LocalVarAccepts `
-                                -ContentTypes $LocalVarContentTypes `
-                                -Body $LocalVarBodyParameter `
-                                -HeaderParameters $LocalVarHeaderParameters `
-                                -QueryParameters $LocalVarQueryParameters `
-                                -FormParameters $LocalVarFormParameters `
-                                -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "MailOrder" `
-                                -IsBodyNullable $false
-
-        if ($WithHttpInfo.IsPresent) {
-            return $LocalVarResult
-        } else {
-            return $LocalVarResult["Response"]
-        }
-    }
-}
-
-<#
-.SYNOPSIS
-
-displays a list of mail service orders
-
-.DESCRIPTION
-
-No description available.
+The ID of your mail order this will be sent through.
 
 .PARAMETER ReturnType
 
@@ -118,6 +33,9 @@ MailOrder[]
 function Get-MailOrders {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [System.Nullable[Int64]]
+        ${Id},
         [String]
         [ValidateSet("application/json", "application/xml", "text/plain")]
         $ReturnType,
@@ -149,19 +67,13 @@ function Get-MailOrders {
 
         $LocalVarUri = '/mail'
 
+        if ($Id) {
+            $LocalVarQueryParameters['id'] = $Id
+        }
+
         if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
             $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]
             Write-Verbose ("Using API key 'apiKeyAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiLoginAuth"]) {
-            $LocalVarHeaderParameters['apiLoginAuth'] = $Configuration["ApiKey"]["apiLoginAuth"]
-            Write-Verbose ("Using API key 'apiLoginAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiPasswordAuth"]) {
-            $LocalVarHeaderParameters['apiPasswordAuth'] = $Configuration["ApiKey"]["apiPasswordAuth"]
-            Write-Verbose ("Using API key 'apiPasswordAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
         $LocalVarResult = Invoke-ApiClient -Method 'GET' `
@@ -303,16 +215,6 @@ function Invoke-PlaceMailOrder {
             Write-Verbose ("Using API key 'apiKeyAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiLoginAuth"]) {
-            $LocalVarHeaderParameters['apiLoginAuth'] = $Configuration["ApiKey"]["apiLoginAuth"]
-            Write-Verbose ("Using API key 'apiLoginAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiPasswordAuth"]) {
-            $LocalVarHeaderParameters['apiPasswordAuth'] = $Configuration["ApiKey"]["apiPasswordAuth"]
-            Write-Verbose ("Using API key 'apiPasswordAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
         $LocalVarResult = Invoke-ApiClient -Method 'POST' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
@@ -342,9 +244,6 @@ Sends an Email with Advanced Options
 
 No description available.
 
-.PARAMETER Id
-User ID
-
 .PARAMETER SendMail
 No description available.
 
@@ -360,9 +259,6 @@ function Send-AdvMailById {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int64]
-        ${Id},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
         ${SendMail},
         [Switch]
@@ -387,13 +283,9 @@ function Send-AdvMailById {
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain')
+        $LocalVarContentTypes = @('application/json')
 
-        $LocalVarUri = '/mail/{id}/advsend'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling sendAdvMailById."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', $Id)
+        $LocalVarUri = '/mail/advsend'
 
         if (!$SendMail) {
             throw "Error! The required parameter `SendMail` missing when calling sendAdvMailById."
@@ -404,16 +296,6 @@ function Send-AdvMailById {
         if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
             $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]
             Write-Verbose ("Using API key 'apiKeyAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiLoginAuth"]) {
-            $LocalVarHeaderParameters['apiLoginAuth'] = $Configuration["ApiKey"]["apiLoginAuth"]
-            Write-Verbose ("Using API key 'apiLoginAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiPasswordAuth"]) {
-            $LocalVarHeaderParameters['apiPasswordAuth'] = $Configuration["ApiKey"]["apiPasswordAuth"]
-            Write-Verbose ("Using API key 'apiPasswordAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
         $LocalVarResult = Invoke-ApiClient -Method 'POST' `
@@ -445,26 +327,26 @@ Sends an Email
 
 No description available.
 
-.PARAMETER Id
-User ID
-
 .PARAMETER Subject
-No description available.
+The Subject of the email
 
 .PARAMETER Body
-No description available.
+The contents of the email
 
 .PARAMETER To
-No description available.
-
-.PARAMETER ToName
-No description available.
+The email address of who this email will be sent to.
 
 .PARAMETER From
-No description available.
+The email address of who this email will be sent from.
+
+.PARAMETER Id
+The ID of your mail order this will be sent through.
+
+.PARAMETER ToName
+The name or title of who this email is being sent to.
 
 .PARAMETER FromName
-No description available.
+The name or title of who this email is being sent from.
 
 .PARAMETER WithHttpInfo
 
@@ -478,23 +360,23 @@ function Send-MailById {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int64]
-        ${Id},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${Subject},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${Body},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${To},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${ToName},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${From},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [System.Nullable[Int64]]
+        ${Id},
+        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${ToName},
         [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${FromName},
@@ -519,11 +401,7 @@ function Send-MailById {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/mail/{id}/send'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling sendMailById."
-        }
-        $LocalVarUri = $LocalVarUri.replace('{id}', $Id)
+        $LocalVarUri = '/mail/send'
 
         if ($Subject) {
             $LocalVarQueryParameters['subject'] = $Subject
@@ -537,12 +415,16 @@ function Send-MailById {
             $LocalVarQueryParameters['to'] = $To
         }
 
-        if ($ToName) {
-            $LocalVarQueryParameters['toName'] = $ToName
-        }
-
         if ($From) {
             $LocalVarQueryParameters['from'] = $From
+        }
+
+        if ($Id) {
+            $LocalVarQueryParameters['id'] = $Id
+        }
+
+        if ($ToName) {
+            $LocalVarQueryParameters['toName'] = $ToName
         }
 
         if ($FromName) {
@@ -552,16 +434,6 @@ function Send-MailById {
         if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
             $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]
             Write-Verbose ("Using API key 'apiKeyAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiLoginAuth"]) {
-            $LocalVarHeaderParameters['apiLoginAuth'] = $Configuration["ApiKey"]["apiLoginAuth"]
-            Write-Verbose ("Using API key 'apiLoginAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiPasswordAuth"]) {
-            $LocalVarHeaderParameters['apiPasswordAuth'] = $Configuration["ApiKey"]["apiPasswordAuth"]
-            Write-Verbose ("Using API key 'apiPasswordAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
         $LocalVarResult = Invoke-ApiClient -Method 'POST' `
@@ -632,16 +504,6 @@ function Confirm-MailOrder {
             Write-Verbose ("Using API key 'apiKeyAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiLoginAuth"]) {
-            $LocalVarHeaderParameters['apiLoginAuth'] = $Configuration["ApiKey"]["apiLoginAuth"]
-            Write-Verbose ("Using API key 'apiLoginAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiPasswordAuth"]) {
-            $LocalVarHeaderParameters['apiPasswordAuth'] = $Configuration["ApiKey"]["apiPasswordAuth"]
-            Write-Verbose ("Using API key 'apiPasswordAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
         $LocalVarResult = Invoke-ApiClient -Method 'GET' `
                                 -Uri $LocalVarUri `
                                 -Accepts $LocalVarAccepts `
@@ -672,7 +534,7 @@ displays the mail log
 No description available.
 
 .PARAMETER Id
-User ID
+The ID of your mail order this will be sent through.
 
 .PARAMETER SearchString
 pass an optional search string for looking up inventory
@@ -695,7 +557,7 @@ function Invoke-ViewMailLogById {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [Int64]
+        [System.Nullable[Int64]]
         ${Id},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
@@ -727,11 +589,11 @@ function Invoke-ViewMailLogById {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
-        $LocalVarUri = '/mail/{id}/log'
-        if (!$Id) {
-            throw "Error! The required parameter `Id` missing when calling viewMailLogById."
+        $LocalVarUri = '/mail/log'
+
+        if ($Id) {
+            $LocalVarQueryParameters['id'] = $Id
         }
-        $LocalVarUri = $LocalVarUri.replace('{id}', $Id)
 
         if ($SearchString) {
             $LocalVarQueryParameters['searchString'] = $SearchString
@@ -748,16 +610,6 @@ function Invoke-ViewMailLogById {
         if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
             $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]
             Write-Verbose ("Using API key 'apiKeyAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiLoginAuth"]) {
-            $LocalVarHeaderParameters['apiLoginAuth'] = $Configuration["ApiKey"]["apiLoginAuth"]
-            Write-Verbose ("Using API key 'apiLoginAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
-        }
-
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiPasswordAuth"]) {
-            $LocalVarHeaderParameters['apiPasswordAuth'] = $Configuration["ApiKey"]["apiPasswordAuth"]
-            Write-Verbose ("Using API key 'apiPasswordAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
         $LocalVarResult = Invoke-ApiClient -Method 'GET' `

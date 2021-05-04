@@ -23,21 +23,10 @@ describe "DefaultApi" do
     end
   end
 
-  # unit tests for get_mail_by_id
-  # Gets mail order information by id
-  # returns information about a mail order in the system with the given id.
-  # @param id User ID
-  # @param [Hash] opts the optional parameters
-  # @return [MailOrder]
-  describe "get_mail_by_id test" do
-    it "should work" do
-      # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
-    end
-  end
-
   # unit tests for get_mail_orders
   # displays a list of mail service orders
   # @param [Hash] opts the optional parameters
+  # @option opts [Int64] :id The ID of your mail order this will be sent through.
   # @return [Array(MailOrder)]
   describe "get_mail_orders test" do
     it "should work" do
@@ -70,7 +59,6 @@ describe "DefaultApi" do
   # unit tests for send_adv_mail_by_id
   # Sends an Email with Advanced Options
   # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-  # @param id User ID
   # @param send_mail 
   # @param [Hash] opts the optional parameters
   # @return [GenericResponse]
@@ -83,14 +71,14 @@ describe "DefaultApi" do
   # unit tests for send_mail_by_id
   # Sends an Email
   # Sends An email through one of your mail orders.
-  # @param id User ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :subject 
-  # @option opts [String] :body 
-  # @option opts [String] :to 
-  # @option opts [String] :to_name 
-  # @option opts [String] :from 
-  # @option opts [String] :from_name 
+  # @option opts [String] :subject The Subject of the email
+  # @option opts [String] :body The contents of the email
+  # @option opts [String] :to The email address of who this email will be sent to.
+  # @option opts [String] :from The email address of who this email will be sent from.
+  # @option opts [Int64] :id The ID of your mail order this will be sent through.
+  # @option opts [String] :to_name The name or title of who this email is being sent to.
+  # @option opts [String] :from_name The name or title of who this email is being sent from.
   # @return [GenericResponse]
   describe "send_mail_by_id test" do
     it "should work" do
@@ -111,8 +99,8 @@ describe "DefaultApi" do
   # unit tests for view_mail_log_by_id
   # displays the mail log
   # By passing in the appropriate options, you can search for available inventory in the system 
-  # @param id User ID
   # @param [Hash] opts the optional parameters
+  # @option opts [Int64] :id The ID of your mail order this will be sent through.
   # @option opts [String] :search_string pass an optional search string for looking up inventory
   # @option opts [Int32] :skip number of records to skip for pagination
   # @option opts [Int32] :limit maximum number of records to return

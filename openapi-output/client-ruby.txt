@@ -21,6 +21,6 @@ expected chomping or indentation indicators, but found =(61)
 Exception in thread "main" java.lang.RuntimeException: Unable to deserialize config file: openapi-config/ruby.yaml
 	at org.openapitools.codegen.config.CodegenConfigurator.readDynamicSettings(CodegenConfigurator.java:155)
 	at org.openapitools.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:86)
-	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:271)
+	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:272)
 	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
 	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)

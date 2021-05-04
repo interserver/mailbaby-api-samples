@@ -57,17 +57,17 @@ proc pingServer*(httpClient: HttpClient): Response =
   httpClient.get(basepath & "/ping")
 
 
-proc placeMailOrder*(httpClient: HttpClient, MailOrder: MailOrder): Response {.deprecated.} =
+proc placeMailOrder*(httpClient: HttpClient, mailOrder: MailOrder): Response {.deprecated.} =
   ## places a mail order
   httpClient.headers["Content-Type"] = "application/json"
-  httpClient.post(basepath & "/mail/order", $(%MailOrder))
+  httpClient.post(basepath & "/mail/order", $(%mailOrder))
 
 
-proc sendAdvMailById*(httpClient: HttpClient, SendMail: SendMail): (Option[GenericResponse], Response) =
+proc sendAdvMailById*(httpClient: HttpClient, sendMail: SendMail): (Option[GenericResponse], Response) =
   ## Sends an Email with Advanced Options
   httpClient.headers["Content-Type"] = "application/json"
 
-  let response = httpClient.post(basepath & "/mail/advsend", $(%SendMail))
+  let response = httpClient.post(basepath & "/mail/advsend", $(%sendMail))
   constructResult[GenericResponse](response)
 
 

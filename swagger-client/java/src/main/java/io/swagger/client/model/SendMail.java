@@ -29,7 +29,7 @@ import java.util.List;
  * Details for an Email
  */
 @Schema(description = "Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-04T15:25:58.142253-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-04T15:55:08.502134-04:00[America/New_York]")
 public class SendMail {
   @SerializedName("id")
   private Long id = null;

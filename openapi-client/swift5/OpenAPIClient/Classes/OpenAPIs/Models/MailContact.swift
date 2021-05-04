@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import AnyCodable
 
 /** An Email Contact */
-public struct MailContact: Codable {
+public struct MailContact: Codable, Hashable {
 
     /** The email address */
     public var email: String
@@ -19,5 +20,19 @@ public struct MailContact: Codable {
         self.email = email
         self.name = name
     }
+    public enum CodingKeys: String, CodingKey, CaseIterable {
+        case email
+        case name
+    }
+
+    // Encodable protocol methods
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(email, forKey: .email)
+        try container.encodeIfPresent(name, forKey: .name)
+    }
+
+
 
 }

@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import AnyCodable
 
 /** Details for an Email */
-public struct SendMail: Codable {
+public struct SendMail: Codable, Hashable {
 
     /** The ID of the Mail order within our system to use as the Mail Account. */
     public var id: Int64
@@ -39,5 +40,33 @@ public struct SendMail: Codable {
         self.bcc = bcc
         self.attachments = attachments
     }
+    public enum CodingKeys: String, CodingKey, CaseIterable {
+        case id
+        case from
+        case to
+        case subject
+        case body
+        case replyto
+        case cc
+        case bcc
+        case attachments
+    }
+
+    // Encodable protocol methods
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(from, forKey: .from)
+        try container.encode(to, forKey: .to)
+        try container.encode(subject, forKey: .subject)
+        try container.encode(body, forKey: .body)
+        try container.encodeIfPresent(replyto, forKey: .replyto)
+        try container.encodeIfPresent(cc, forKey: .cc)
+        try container.encodeIfPresent(bcc, forKey: .bcc)
+        try container.encodeIfPresent(attachments, forKey: .attachments)
+    }
+
+
 
 }

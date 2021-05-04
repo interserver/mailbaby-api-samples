@@ -9,6 +9,6 @@ Exception in thread "main" java.lang.NullPointerException: null value in entry: 
 	at org.openapitools.codegen.config.GeneratorSettings$Builder.build(GeneratorSettings.java:901)
 	at org.openapitools.codegen.config.DynamicSettings.getGeneratorSettings(DynamicSettings.java:74)
 	at org.openapitools.codegen.config.CodegenConfigurator.fromFile(CodegenConfigurator.java:90)
-	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:271)
+	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:272)
 	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
 	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)

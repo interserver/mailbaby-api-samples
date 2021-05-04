@@ -132,13 +132,13 @@ class DefaultApiSimulation extends Simulation {
         .feed(sendMailByIdQUERYFeeder)
         .exec(http("sendMailById")
         .httpRequest("POST","/mail/send")
-        .queryParam("toName","${toName}")
-        .queryParam("body","${body}")
         .queryParam("id","${id}")
-        .queryParam("subject","${subject}")
-        .queryParam("from","${from}")
         .queryParam("fromName","${fromName}")
+        .queryParam("body","${body}")
+        .queryParam("subject","${subject}")
+        .queryParam("toName","${toName}")
         .queryParam("to","${to}")
+        .queryParam("from","${from}")
 )
 
     // Run scnsendMailById with warm up and reach a constant rate for entire duration
@@ -166,10 +166,10 @@ class DefaultApiSimulation extends Simulation {
         .feed(viewMailLogByIdQUERYFeeder)
         .exec(http("viewMailLogById")
         .httpRequest("GET","/mail/log")
-        .queryParam("skip","${skip}")
-        .queryParam("limit","${limit}")
         .queryParam("id","${id}")
         .queryParam("searchString","${searchString}")
+        .queryParam("limit","${limit}")
+        .queryParam("skip","${skip}")
 )
 
     // Run scnviewMailLogById with warm up and reach a constant rate for entire duration

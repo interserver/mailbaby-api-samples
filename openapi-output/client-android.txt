@@ -8,6 +8,6 @@ Exception in thread "main" java.lang.ClassCastException: class java.lang.Boolean
 	at org.openapitools.codegen.languages.AndroidClientCodegen.processOpts(AndroidClientCodegen.java:458)
 	at org.openapitools.codegen.DefaultGenerator.configureGeneratorProperties(DefaultGenerator.java:250)
 	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:864)
-	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:440)
+	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:441)
 	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
 	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)

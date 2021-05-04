@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import AnyCodable
 
 /** A File attachment for an email */
-public struct MailAttachment: Codable {
+public struct MailAttachment: Codable, Hashable {
 
     /** Contents of the attached file */
     public var data: URL
@@ -19,5 +20,19 @@ public struct MailAttachment: Codable {
         self.data = data
         self.filename = filename
     }
+    public enum CodingKeys: String, CodingKey, CaseIterable {
+        case data
+        case filename
+    }
+
+    // Encodable protocol methods
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+        try container.encodeIfPresent(filename, forKey: .filename)
+    }
+
+
 
 }

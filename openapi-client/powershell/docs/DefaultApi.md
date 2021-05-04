@@ -47,8 +47,8 @@ Name | Type | Description  | Notes
  **Id** | **Int64**| The ID of your mail order this will be sent through. | [optional] 
 
 ### Return type
-# cmdlet returns PSCustomObject, the return object contains the properties of below type
-[**MailOrder[]**](MailOrder.md)
+
+[**MailOrder[]**](MailOrder.md) (PSCustomObject)
 
 ### Authorization
 
@@ -83,7 +83,7 @@ try {
 This endpoint does not need any parameter.
 
 ### Return type
-# cmdlet returns PSCustomObject, the return object contains the properties of below type
+
 void (empty response body)
 
 ### Authorization
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
  **MailOrder** | [**MailOrder**](MailOrder.md)| Inventory item to add | [optional] 
 
 ### Return type
-# cmdlet returns PSCustomObject, the return object contains the properties of below type
+
 void (empty response body)
 
 ### Authorization
@@ -183,8 +183,8 @@ Name | Type | Description  | Notes
  **SendMail** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type
-# cmdlet returns PSCustomObject, the return object contains the properties of below type
-[**GenericResponse**](GenericResponse.md)
+
+[**GenericResponse**](GenericResponse.md) (PSCustomObject)
 
 ### Authorization
 
@@ -251,8 +251,8 @@ Name | Type | Description  | Notes
  **FromName** | **String**| The name or title of who this email is being sent from. | [optional] 
 
 ### Return type
-# cmdlet returns PSCustomObject, the return object contains the properties of below type
-[**GenericResponse**](GenericResponse.md)
+
+[**GenericResponse**](GenericResponse.md) (PSCustomObject)
 
 ### Authorization
 
@@ -294,7 +294,7 @@ try {
 This endpoint does not need any parameter.
 
 ### Return type
-# cmdlet returns PSCustomObject, the return object contains the properties of below type
+
 void (empty response body)
 
 ### Authorization
@@ -353,8 +353,8 @@ Name | Type | Description  | Notes
  **Limit** | **Int32**| maximum number of records to return | [optional] 
 
 ### Return type
-# cmdlet returns PSCustomObject, the return object contains the properties of below type
-[**MailLog[]**](MailLog.md)
+
+[**MailLog[]**](MailLog.md) (PSCustomObject)
 
 ### Authorization
 

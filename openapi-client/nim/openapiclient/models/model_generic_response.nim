@@ -14,4 +14,4 @@ import tables
 type GenericResponse* = object
   ## 
   status*: string
-  status_text*: string
+  statusText*: string

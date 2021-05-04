@@ -7,12 +7,12 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
+import 'package:built_collection/built_collection.dart';
+import 'package:openapi/src/model/error_response.dart';
 import 'package:openapi/src/model/generic_response.dart';
 import 'package:openapi/src/model/mail_log.dart';
-import 'package:openapi/src/model/error_response.dart';
-import 'package:openapi/src/model/send_mail.dart';
 import 'package:openapi/src/model/mail_order.dart';
-import 'package:built_collection/built_collection.dart';
+import 'package:openapi/src/model/send_mail.dart';
 
 class DefaultApi {
 

@@ -6,14 +6,27 @@
 //
 
 import Foundation
+import AnyCodable
 
 /** Mail Order Details */
-public struct MailLog: Codable {
+public struct MailLog: Codable, Hashable {
 
     public var id: Int64?
 
     public init(id: Int64? = nil) {
         self.id = id
     }
+    public enum CodingKeys: String, CodingKey, CaseIterable {
+        case id
+    }
+
+    // Encodable protocol methods
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(id, forKey: .id)
+    }
+
+
 
 }

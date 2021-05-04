@@ -75,13 +75,13 @@ class DefaultApi {
   Future<List<MailOrder>> getMailOrders({ int id }) async {
     final response = await getMailOrdersWithHttpInfo( id: id );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return (apiClient.deserialize(_decodeBodyBytes(response), 'List<MailOrder>') as List)
+      return (await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'List<MailOrder>') as List)
         .cast<MailOrder>()
         .toList(growable: false);
     }
@@ -132,7 +132,7 @@ class DefaultApi {
   Future<void> pingServer() async {
     final response = await pingServerWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -196,7 +196,7 @@ class DefaultApi {
   Future<void> placeMailOrder({ MailOrder mailOrder }) async {
     final response = await placeMailOrderWithHttpInfo( mailOrder: mailOrder );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -261,13 +261,13 @@ class DefaultApi {
   Future<GenericResponse> sendAdvMailById(SendMail sendMail) async {
     final response = await sendAdvMailByIdWithHttpInfo(sendMail);
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'GenericResponse') as GenericResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericResponse',) as GenericResponse;
         }
     return Future<GenericResponse>.value(null);
   }
@@ -390,13 +390,13 @@ class DefaultApi {
   Future<GenericResponse> sendMailById({ String subject, String body, String to, String from, int id, String toName, String fromName }) async {
     final response = await sendMailByIdWithHttpInfo( subject: subject, body: body, to: to, from: from, id: id, toName: toName, fromName: fromName );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return apiClient.deserialize(_decodeBodyBytes(response), 'GenericResponse') as GenericResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericResponse',) as GenericResponse;
         }
     return Future<GenericResponse>.value(null);
   }
@@ -445,7 +445,7 @@ class DefaultApi {
   Future<void> validateMailOrder() async {
     final response = await validateMailOrderWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 
@@ -540,13 +540,13 @@ class DefaultApi {
   Future<List<MailLog>> viewMailLogById({ int id, String searchString, int skip, int limit }) async {
     final response = await viewMailLogByIdWithHttpInfo( id: id, searchString: searchString, skip: skip, limit: limit );
     if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, _decodeBodyBytes(response));
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return (apiClient.deserialize(_decodeBodyBytes(response), 'List<MailLog>') as List)
+      return (await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'List<MailLog>') as List)
         .cast<MailLog>()
         .toList(growable: false);
     }

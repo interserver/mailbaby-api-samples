@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import AnyCodable
 
-public struct GenericResponse: Codable {
+public struct GenericResponse: Codable, Hashable {
 
     public var status: String?
     public var statusText: String?
@@ -16,10 +17,19 @@ public struct GenericResponse: Codable {
         self.status = status
         self.statusText = statusText
     }
-
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case status
         case statusText = "status_text"
     }
+
+    // Encodable protocol methods
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(status, forKey: .status)
+        try container.encodeIfPresent(statusText, forKey: .statusText)
+    }
+
+
 
 }

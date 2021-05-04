@@ -131,15 +131,15 @@ public:
 	FString ComputePath() const final;
     
 	/* The Subject of the email */
-	TOptional<FString> Subject;
+	FString Subject;
 	/* The contents of the email */
-	TOptional<FString> Body;
-	/* The email address of who this email will be sent to. */
-	TOptional<FString> To;
+	FString Body;
 	/* The email address of who this email will be sent from. */
-	TOptional<FString> From;
+	FString From;
+	/* The email address of who this email will be sent to. */
+	FString To;
 	/* The ID of your mail order this will be sent through. */
-	TOptional<int64> Id;
+	TOptional<int32> Id;
 	/* The name or title of who this email is being sent to. */
 	TOptional<FString> ToName;
 	/* The name or title of who this email is being sent from. */

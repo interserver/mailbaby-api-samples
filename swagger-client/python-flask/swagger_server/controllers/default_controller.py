@@ -64,24 +64,24 @@ def send_adv_mail_by_id(body):  # noqa: E501
     return 'do some magic!'
 
 
-def send_mail_by_id(subject=None, body=None, to=None, _from=None, id=None, to_name=None, from_name=None):  # noqa: E501
+def send_mail_by_id(subject, body, _from, to, id, to_name, from_name):  # noqa: E501
     """Sends an Email
 
     Sends An email through one of your mail orders. # noqa: E501
 
-    :param subject: The Subject of the email
+    :param subject: 
     :type subject: str
-    :param body: The contents of the email
+    :param body: 
     :type body: str
-    :param to: The email address of who this email will be sent to.
-    :type to: str
-    :param _from: The email address of who this email will be sent from.
+    :param _from: 
     :type _from: str
-    :param id: The ID of your mail order this will be sent through.
+    :param to: 
+    :type to: str
+    :param id: 
     :type id: int
-    :param to_name: The name or title of who this email is being sent to.
+    :param to_name: 
     :type to_name: str
-    :param from_name: The name or title of who this email is being sent from.
+    :param from_name: 
     :type from_name: str
 
     :rtype: GenericResponse

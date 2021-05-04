@@ -1137,10 +1137,10 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  string $subject The Subject of the email (optional)
-     * @param  string $body The contents of the email (optional)
-     * @param  string $to The email address of who this email will be sent to. (optional)
-     * @param  string $from The email address of who this email will be sent from. (optional)
+     * @param  string $subject The Subject of the email (required)
+     * @param  string $body The contents of the email (required)
+     * @param  string $from The email address of who this email will be sent from. (required)
+     * @param  string $to The email address of who this email will be sent to. (required)
      * @param  int $id The ID of your mail order this will be sent through. (optional)
      * @param  string $toName The name or title of who this email is being sent to. (optional)
      * @param  string $fromName The name or title of who this email is being sent from. (optional)
@@ -1149,9 +1149,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse
      */
-    public function sendMailById($subject = null, $body = null, $to = null, $from = null, $id = null, $toName = null, $fromName = null)
+    public function sendMailById($subject, $body, $from, $to, $id = null, $toName = null, $fromName = null)
     {
-        list($response) = $this->sendMailByIdWithHttpInfo($subject, $body, $to, $from, $id, $toName, $fromName);
+        list($response) = $this->sendMailByIdWithHttpInfo($subject, $body, $from, $to, $id, $toName, $fromName);
         return $response;
     }
 
@@ -1160,10 +1160,10 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  string $subject The Subject of the email (optional)
-     * @param  string $body The contents of the email (optional)
-     * @param  string $to The email address of who this email will be sent to. (optional)
-     * @param  string $from The email address of who this email will be sent from. (optional)
+     * @param  string $subject The Subject of the email (required)
+     * @param  string $body The contents of the email (required)
+     * @param  string $from The email address of who this email will be sent from. (required)
+     * @param  string $to The email address of who this email will be sent to. (required)
      * @param  int $id The ID of your mail order this will be sent through. (optional)
      * @param  string $toName The name or title of who this email is being sent to. (optional)
      * @param  string $fromName The name or title of who this email is being sent from. (optional)
@@ -1172,9 +1172,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sendMailByIdWithHttpInfo($subject = null, $body = null, $to = null, $from = null, $id = null, $toName = null, $fromName = null)
+    public function sendMailByIdWithHttpInfo($subject, $body, $from, $to, $id = null, $toName = null, $fromName = null)
     {
-        $request = $this->sendMailByIdRequest($subject, $body, $to, $from, $id, $toName, $fromName);
+        $request = $this->sendMailByIdRequest($subject, $body, $from, $to, $id, $toName, $fromName);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1292,10 +1292,10 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  string $subject The Subject of the email (optional)
-     * @param  string $body The contents of the email (optional)
-     * @param  string $to The email address of who this email will be sent to. (optional)
-     * @param  string $from The email address of who this email will be sent from. (optional)
+     * @param  string $subject The Subject of the email (required)
+     * @param  string $body The contents of the email (required)
+     * @param  string $from The email address of who this email will be sent from. (required)
+     * @param  string $to The email address of who this email will be sent to. (required)
      * @param  int $id The ID of your mail order this will be sent through. (optional)
      * @param  string $toName The name or title of who this email is being sent to. (optional)
      * @param  string $fromName The name or title of who this email is being sent from. (optional)
@@ -1303,9 +1303,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailByIdAsync($subject = null, $body = null, $to = null, $from = null, $id = null, $toName = null, $fromName = null)
+    public function sendMailByIdAsync($subject, $body, $from, $to, $id = null, $toName = null, $fromName = null)
     {
-        return $this->sendMailByIdAsyncWithHttpInfo($subject, $body, $to, $from, $id, $toName, $fromName)
+        return $this->sendMailByIdAsyncWithHttpInfo($subject, $body, $from, $to, $id, $toName, $fromName)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1318,10 +1318,10 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  string $subject The Subject of the email (optional)
-     * @param  string $body The contents of the email (optional)
-     * @param  string $to The email address of who this email will be sent to. (optional)
-     * @param  string $from The email address of who this email will be sent from. (optional)
+     * @param  string $subject The Subject of the email (required)
+     * @param  string $body The contents of the email (required)
+     * @param  string $from The email address of who this email will be sent from. (required)
+     * @param  string $to The email address of who this email will be sent to. (required)
      * @param  int $id The ID of your mail order this will be sent through. (optional)
      * @param  string $toName The name or title of who this email is being sent to. (optional)
      * @param  string $fromName The name or title of who this email is being sent from. (optional)
@@ -1329,10 +1329,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailByIdAsyncWithHttpInfo($subject = null, $body = null, $to = null, $from = null, $id = null, $toName = null, $fromName = null)
+    public function sendMailByIdAsyncWithHttpInfo($subject, $body, $from, $to, $id = null, $toName = null, $fromName = null)
     {
         $returnType = '\Interserver\Mailbaby\Model\GenericResponse';
-        $request = $this->sendMailByIdRequest($subject, $body, $to, $from, $id, $toName, $fromName);
+        $request = $this->sendMailByIdRequest($subject, $body, $from, $to, $id, $toName, $fromName);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1370,10 +1370,10 @@ class DefaultApi
     /**
      * Create request for operation 'sendMailById'
      *
-     * @param  string $subject The Subject of the email (optional)
-     * @param  string $body The contents of the email (optional)
-     * @param  string $to The email address of who this email will be sent to. (optional)
-     * @param  string $from The email address of who this email will be sent from. (optional)
+     * @param  string $subject The Subject of the email (required)
+     * @param  string $body The contents of the email (required)
+     * @param  string $from The email address of who this email will be sent from. (required)
+     * @param  string $to The email address of who this email will be sent to. (required)
      * @param  int $id The ID of your mail order this will be sent through. (optional)
      * @param  string $toName The name or title of who this email is being sent to. (optional)
      * @param  string $fromName The name or title of who this email is being sent from. (optional)
@@ -1381,8 +1381,32 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function sendMailByIdRequest($subject = null, $body = null, $to = null, $from = null, $id = null, $toName = null, $fromName = null)
+    public function sendMailByIdRequest($subject, $body, $from, $to, $id = null, $toName = null, $fromName = null)
     {
+        // verify the required parameter 'subject' is set
+        if ($subject === null || (is_array($subject) && count($subject) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $subject when calling sendMailById'
+            );
+        }
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling sendMailById'
+            );
+        }
+        // verify the required parameter 'from' is set
+        if ($from === null || (is_array($from) && count($from) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $from when calling sendMailById'
+            );
+        }
+        // verify the required parameter 'to' is set
+        if ($to === null || (is_array($to) && count($to) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $to when calling sendMailById'
+            );
+        }
 
         $resourcePath = '/mail/send';
         $formParams = [];
@@ -1391,86 +1415,37 @@ class DefaultApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
+
+
+
+        // form params
         if ($subject !== null) {
-            if('form' === 'form' && is_array($subject)) {
-                foreach($subject as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['subject'] = $subject;
-            }
+            $formParams['subject'] = ObjectSerializer::toFormValue($subject);
         }
-        // query params
+        // form params
         if ($body !== null) {
-            if('form' === 'form' && is_array($body)) {
-                foreach($body as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['body'] = $body;
-            }
+            $formParams['body'] = ObjectSerializer::toFormValue($body);
         }
-        // query params
-        if ($to !== null) {
-            if('form' === 'form' && is_array($to)) {
-                foreach($to as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['to'] = $to;
-            }
-        }
-        // query params
+        // form params
         if ($from !== null) {
-            if('form' === 'form' && is_array($from)) {
-                foreach($from as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['from'] = $from;
-            }
+            $formParams['from'] = ObjectSerializer::toFormValue($from);
         }
-        // query params
+        // form params
+        if ($to !== null) {
+            $formParams['to'] = ObjectSerializer::toFormValue($to);
+        }
+        // form params
         if ($id !== null) {
-            if('form' === 'form' && is_array($id)) {
-                foreach($id as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['id'] = $id;
-            }
+            $formParams['id'] = ObjectSerializer::toFormValue($id);
         }
-        // query params
+        // form params
         if ($toName !== null) {
-            if('form' === 'form' && is_array($toName)) {
-                foreach($toName as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['toName'] = $toName;
-            }
+            $formParams['toName'] = ObjectSerializer::toFormValue($toName);
         }
-        // query params
+        // form params
         if ($fromName !== null) {
-            if('form' === 'form' && is_array($fromName)) {
-                foreach($fromName as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            }
-            else {
-                $queryParams['fromName'] = $fromName;
-            }
+            $formParams['fromName'] = ObjectSerializer::toFormValue($fromName);
         }
-
-
-
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -1479,7 +1454,7 @@ class DefaultApi
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 ['application/json'],
-                []
+                ['application/x-www-form-urlencoded']
             );
         }
 

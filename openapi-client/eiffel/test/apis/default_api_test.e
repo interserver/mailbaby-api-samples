@@ -75,15 +75,19 @@ feature -- Test routines
             l_response: GENERIC_RESPONSE
             l_subject: STRING_32
             l_body: STRING_32
-            l_to: STRING_32
             l_var_from: STRING_32
-            l_id: INTEGER_64
+            l_to: STRING_32
+            l_id: INTEGER_32
             l_to_name: STRING_32
             l_from_name: STRING_32
         do
             -- TODO: Initialize required params.
+            -- l_subject
+            -- l_body
+            -- l_var_from
+            -- l_to
                       
-            -- l_response := api.send_mail_by_id(l_subject, l_body, l_to, l_var_from, l_id, l_to_name, l_from_name)
+            -- l_response := api.send_mail_by_id(l_subject, l_body, l_var_from, l_to, l_id, l_to_name, l_from_name)
             assert ("not_implemented", False)
         end
     

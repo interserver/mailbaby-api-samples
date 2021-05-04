@@ -52,10 +52,10 @@ export interface ISendAdvMailByIdParams {
  * sendMailById - parameters interface
  */
 export interface ISendMailByIdParams {
-  subject?: string;
-  body?: string;
-  to?: string;
-  from?: string;
+  subject: string;
+  body: string;
+  from: string;
+  to: string;
   id?: number;
   toName?: string;
   fromName?: string;
@@ -216,14 +216,18 @@ export class DefaultApi extends Api {
    * Sends An email through one of your mail orders.
    * @param params.subject The Subject of the email
    * @param params.body The contents of the email
-   * @param params.to The email address of who this email will be sent to.
    * @param params.from The email address of who this email will be sent from.
+   * @param params.to The email address of who this email will be sent to.
    * @param params.id The ID of your mail order this will be sent through.
    * @param params.toName The name or title of who this email is being sent to.
    * @param params.fromName The name or title of who this email is being sent from.
    */
   async sendMailById(params: ISendMailByIdParams): Promise<GenericResponse> {
     // Verify required parameters are set
+    this.ensureParamIsSet('sendMailById', params, 'subject');
+    this.ensureParamIsSet('sendMailById', params, 'body');
+    this.ensureParamIsSet('sendMailById', params, 'from');
+    this.ensureParamIsSet('sendMailById', params, 'to');
 
     // Create URL to call
     const url = `${this.basePath}/mail/send`;
@@ -231,16 +235,17 @@ export class DefaultApi extends Api {
     const response = await this.httpClient.createRequest(url)
       // Set HTTP method
       .asPost()
-      // Set query parameters
-      .withParams({ 
+      // Encode form parameters
+      .withHeader('content-type', 'application/x-www-form-urlencoded')
+      .withContent(this.queryString({ 
         'subject': params['subject'],
         'body': params['body'],
-        'to': params['to'],
         'from': params['from'],
+        'to': params['to'],
         'id': params['id'],
         'toName': params['toName'],
         'fromName': params['fromName'],
-      })
+      }))
 
       // Authentication 'apiKeyAuth' required
       .withHeader('X-API-KEY', this.authStorage.getapiKeyAuth())

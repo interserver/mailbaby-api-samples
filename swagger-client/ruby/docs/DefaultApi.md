@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 
 
 # **send_mail_by_id**
-> GenericResponse send_mail_by_id(opts)
+> GenericResponse send_mail_by_id(subjectbodyfromtoidto_namefrom_name)
 
 Sends an Email
 
@@ -228,19 +228,18 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::DefaultApi.new
-opts = { 
-  subject: 'subject_example', # String | The Subject of the email
-  body: 'body_example', # String | The contents of the email
-  to: 'to_example', # String | The email address of who this email will be sent to.
-  from: 'from_example', # String | The email address of who this email will be sent from.
-  id: 789, # Integer | The ID of your mail order this will be sent through.
-  to_name: 'to_name_example', # String | The name or title of who this email is being sent to.
-  from_name: 'from_name_example' # String | The name or title of who this email is being sent from.
-}
+subject = 'subject_example' # String | 
+body = 'body_example' # String | 
+from = 'from_example' # String | 
+to = 'to_example' # String | 
+id = 56 # Integer | 
+to_name = 'to_name_example' # String | 
+from_name = 'from_name_example' # String | 
+
 
 begin
   #Sends an Email
-  result = api_instance.send_mail_by_id(opts)
+  result = api_instance.send_mail_by_id(subjectbodyfromtoidto_namefrom_name)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling DefaultApi->send_mail_by_id: #{e}"
@@ -251,13 +250,13 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **String**| The Subject of the email | [optional] 
- **body** | **String**| The contents of the email | [optional] 
- **to** | **String**| The email address of who this email will be sent to. | [optional] 
- **from** | **String**| The email address of who this email will be sent from. | [optional] 
- **id** | **Integer**| The ID of your mail order this will be sent through. | [optional] 
- **to_name** | **String**| The name or title of who this email is being sent to. | [optional] 
- **from_name** | **String**| The name or title of who this email is being sent from. | [optional] 
+ **subject** | **String**|  | 
+ **body** | **String**|  | 
+ **from** | **String**|  | 
+ **to** | **String**|  | 
+ **id** | **Integer**|  | 
+ **to_name** | **String**|  | 
+ **from_name** | **String**|  | 
 
 ### Return type
 
@@ -269,7 +268,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 

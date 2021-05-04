@@ -131,64 +131,12 @@ paths:
       summary: Sends an Email
       description: Sends An email through one of your mail orders.
       operationId: send_mail_by_id
-      parameters:
-      - name: subject
-        in: query
-        description: The Subject of the email
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: body
-        in: query
-        description: The contents of the email
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: to
-        in: query
-        description: The email address of who this email will be sent to.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: from
-        in: query
-        description: The email address of who this email will be sent from.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: id
-        in: query
-        description: The ID of your mail order this will be sent through.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-          format: int64
-      - name: toName
-        in: query
-        description: The name or title of who this email is being sent to.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: fromName
-        in: query
-        description: The name or title of who this email is being sent from.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/body'
+        required: true
       responses:
         "200":
           description: search results matching criteria
@@ -452,6 +400,42 @@ components:
           items:
             $ref: '#/components/schemas/MailAttachment'
       description: Details for an Email
+    body:
+      required:
+      - body
+      - from
+      - subject
+      - to
+      type: object
+      properties:
+        subject:
+          type: string
+          description: The Subject of the email
+          example: test subject
+        body:
+          type: string
+          description: The contents of the email
+          example: test body
+        from:
+          type: string
+          description: The email address of who this email will be sent from.
+          example: me@domain.com
+        to:
+          type: string
+          description: The email address of who this email will be sent to.
+          example: my@domain.com
+        id:
+          type: integer
+          description: The ID of your mail order this will be sent through.
+          example: 5000
+        toName:
+          type: string
+          description: The name or title of who this email is being sent to.
+          example: John Doe
+        fromName:
+          type: string
+          description: The name or title of who this email is being sent from.
+          example: Jane Doe
   responses:
     NotFound:
       description: The specified resource was not found

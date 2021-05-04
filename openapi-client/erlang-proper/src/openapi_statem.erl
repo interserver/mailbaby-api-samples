@@ -101,11 +101,11 @@ send_adv_mail_by_id_args(_S) ->
 %% send_mail_by_id
 %%==============================================================================
 
-send_mail_by_id() ->
-  openapi_api:send_mail_by_id().
+send_mail_by_id(Subject, Body, From, To) ->
+  openapi_api:send_mail_by_id(Subject, Body, From, To).
 
 send_mail_by_id_args(_S) ->
-  [].
+  [binary(), binary(), binary(), binary()].
 
 %%==============================================================================
 %% validate_mail_order

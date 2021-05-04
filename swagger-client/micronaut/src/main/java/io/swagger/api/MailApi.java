@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-04T15:55:35.820536-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-04T18:07:36.967070-04:00[America/New_York]")
 @Controller
 public interface MailApi {
 
@@ -78,14 +78,14 @@ public interface MailApi {
     @ApiResponse(responseCode = "400", description = "bad input parameter")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "404", description = "The specified resource was not found")
-    @Post(value = "/mail/send", produces = { "application/json" })
-    default Single<HttpResponse<GenericResponse>> sendMailById(@Nullable @Parameter(description = "The Subject of the email") @Valid @QueryValue(value = "subject") String subject
-,@Nullable @Parameter(description = "The contents of the email") @Valid @QueryValue(value = "body") String body
-,@Nullable @Parameter(description = "The email address of who this email will be sent to.") @Valid @QueryValue(value = "to") String to
-,@Nullable @Parameter(description = "The email address of who this email will be sent from.") @Valid @QueryValue(value = "from") String from
-,@Nullable @Parameter(description = "The ID of your mail order this will be sent through.") @Valid @QueryValue(value = "id") Long id
-,@Nullable @Parameter(description = "The name or title of who this email is being sent to.") @Valid @QueryValue(value = "toName") String toName
-,@Nullable @Parameter(description = "The name or title of who this email is being sent from.") @Valid @QueryValue(value = "fromName") String fromName
+    @Post(value = "/mail/send", produces = { "application/json" }, consumes = {"application/x-www-form-urlencoded"})
+    default Single<HttpResponse<GenericResponse>> sendMailById(@Parameter(description = "") @QueryValue(value = "subject")  String subject
+,@Parameter(description = "") @QueryValue(value = "body")  String body
+,@Parameter(description = "") @QueryValue(value = "from")  String from
+,@Parameter(description = "") @QueryValue(value = "to")  String to
+,@Parameter(description = "") @QueryValue(value = "id")  Integer id
+,@Parameter(description = "") @QueryValue(value = "toName")  String toName
+,@Parameter(description = "") @QueryValue(value = "fromName")  String fromName
 ) {
         return Single.fromCallable(() -> {
             throw new UnsupportedOperationException();

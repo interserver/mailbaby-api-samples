@@ -129,7 +129,7 @@ Name | Type | Description  | Required | Notes
 
 ## send_mail_by_id
 
-> crate::models::GenericResponse send_mail_by_id(subject, body, to, from, id, to_name, from_name)
+> crate::models::GenericResponse send_mail_by_id(subject, body, from, to, id, to_name, from_name)
 Sends an Email
 
 Sends An email through one of your mail orders.
@@ -139,11 +139,11 @@ Sends An email through one of your mail orders.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**subject** | Option<**String**> | The Subject of the email |  |
-**body** | Option<**String**> | The contents of the email |  |
-**to** | Option<**String**> | The email address of who this email will be sent to. |  |
-**from** | Option<**String**> | The email address of who this email will be sent from. |  |
-**id** | Option<**i64**> | The ID of your mail order this will be sent through. |  |
+**subject** | **String** | The Subject of the email | [required] |
+**body** | **String** | The contents of the email | [required] |
+**from** | **String** | The email address of who this email will be sent from. | [required] |
+**to** | **String** | The email address of who this email will be sent to. | [required] |
+**id** | Option<**i32**> | The ID of your mail order this will be sent through. |  |
 **to_name** | Option<**String**> | The name or title of who this email is being sent to. |  |
 **from_name** | Option<**String**> | The name or title of who this email is being sent from. |  |
 
@@ -157,7 +157,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

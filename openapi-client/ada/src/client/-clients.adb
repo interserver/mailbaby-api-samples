@@ -81,28 +81,30 @@ package body .Clients is
    --  Sends An email through one of your mail orders.
    procedure Send_Mail_By_Id
       (Client : in out Client_Type;
-       Subject : in Swagger.Nullable_UString;
-       P_Body : in Swagger.Nullable_UString;
-       To : in Swagger.Nullable_UString;
-       From : in Swagger.Nullable_UString;
-       Id : in Swagger.Nullable_Long;
+       Subject : in Swagger.UString;
+       P_Body : in Swagger.UString;
+       From : in Swagger.UString;
+       To : in Swagger.UString;
+       Id : in Swagger.Nullable_Integer;
        To_Name : in Swagger.Nullable_UString;
        From_Name : in Swagger.Nullable_UString;
        Result : out .Models.GenericResponse_Type) is
       URI   : Swagger.Clients.URI_Type;
+      Req   : Swagger.Clients.Request_Type;
       Reply : Swagger.Value_Type;
    begin
       Client.Set_Accept ((1 => Swagger.Clients.APPLICATION_JSON));
+      Client.Initialize (Req, (1 => Swagger.Clients.APPLICATION_FORM));
+      .Models.Serialize (Req.Stream, "subject", Subject);
+      .Models.Serialize (Req.Stream, "body", P_Body);
+      .Models.Serialize (Req.Stream, "from", From);
+      .Models.Serialize (Req.Stream, "to", To);
+      .Models.Serialize (Req.Stream, "id", Id);
+      .Models.Serialize (Req.Stream, "toName", To_Name);
+      .Models.Serialize (Req.Stream, "fromName", From_Name);
 
-      URI.Add_Param ("subject", Subject);
-      URI.Add_Param ("body", P_Body);
-      URI.Add_Param ("to", To);
-      URI.Add_Param ("from", From);
-      URI.Add_Param ("id", Id);
-      URI.Add_Param ("toName", To_Name);
-      URI.Add_Param ("fromName", From_Name);
       URI.Set_Path ("/mail/send");
-      Client.Call (Swagger.Clients.POST, URI, Reply);
+      Client.Call (Swagger.Clients.POST, URI, Req, Reply);
       .Models.Deserialize (Reply, "", Result);
    end Send_Mail_By_Id;
 

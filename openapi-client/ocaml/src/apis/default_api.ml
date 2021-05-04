@@ -39,19 +39,21 @@ let send_adv_mail_by_id ~send_mail_t =
     Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body
 
-let send_mail_by_id ?subject ?body ?_to ?from ?id ?to_name ?from_name () =
+let send_mail_by_id ~subject ~body ~from ~_to ?id ?to_name ?from_name () =
     let open Lwt in
     let uri = Request.build_uri "/mail/send" in
     let headers = Request.default_headers in
     let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
-    let uri = Request.maybe_add_query_param uri "subject" (fun x -> x) subject in
-    let uri = Request.maybe_add_query_param uri "body" (fun x -> x) body in
-    let uri = Request.maybe_add_query_param uri "to" (fun x -> x) _to in
-    let uri = Request.maybe_add_query_param uri "from" (fun x -> x) from in
-    let uri = Request.maybe_add_query_param uri "id" Int64.to_string id in
-    let uri = Request.maybe_add_query_param uri "toName" (fun x -> x) to_name in
-    let uri = Request.maybe_add_query_param uri "fromName" (fun x -> x) from_name in
-    Cohttp_lwt_unix.Client.call `POST uri ~headers >>= fun (resp, body) ->
+    let body = Request.init_form_encoded_body () in
+    let body = Request.add_form_encoded_body_param body "subject" (fun x -> x) subject in
+    let body = Request.add_form_encoded_body_param body "body" (fun x -> x) body in
+    let body = Request.add_form_encoded_body_param body "from" (fun x -> x) from in
+    let body = Request.add_form_encoded_body_param body "_to" (fun x -> x) _to in
+    let body = Request.maybe_add_form_encoded_body_param body "id" Int32.to_string id in
+    let body = Request.maybe_add_form_encoded_body_param body "to_name" (fun x -> x) to_name in
+    let body = Request.maybe_add_form_encoded_body_param body "from_name" (fun x -> x) from_name in
+    let body = Request.finalize_form_encoded_body body in
+    Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body
 
 let validate_mail_order () =

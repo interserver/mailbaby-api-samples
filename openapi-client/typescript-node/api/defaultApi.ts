@@ -360,13 +360,13 @@ export class DefaultApi {
      * @summary Sends an Email
      * @param subject The Subject of the email
      * @param body The contents of the email
-     * @param to The email address of who this email will be sent to.
      * @param from The email address of who this email will be sent from.
+     * @param to The email address of who this email will be sent to.
      * @param id The ID of your mail order this will be sent through.
      * @param toName The name or title of who this email is being sent to.
      * @param fromName The name or title of who this email is being sent from.
      */
-    public async sendMailById (subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
+    public async sendMailById (subject: string, body: string, from: string, to: string, id?: number, toName?: string, fromName?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
         const localVarPath = this.basePath + '/mail/send';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -379,37 +379,57 @@ export class DefaultApi {
         }
         let localVarFormParams: any = {};
 
-        if (subject !== undefined) {
-            localVarQueryParameters['subject'] = ObjectSerializer.serialize(subject, "string");
+        // verify required parameter 'subject' is not null or undefined
+        if (subject === null || subject === undefined) {
+            throw new Error('Required parameter subject was null or undefined when calling sendMailById.');
         }
 
-        if (body !== undefined) {
-            localVarQueryParameters['body'] = ObjectSerializer.serialize(body, "string");
+        // verify required parameter 'body' is not null or undefined
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling sendMailById.');
         }
 
-        if (to !== undefined) {
-            localVarQueryParameters['to'] = ObjectSerializer.serialize(to, "string");
+        // verify required parameter 'from' is not null or undefined
+        if (from === null || from === undefined) {
+            throw new Error('Required parameter from was null or undefined when calling sendMailById.');
         }
 
-        if (from !== undefined) {
-            localVarQueryParameters['from'] = ObjectSerializer.serialize(from, "string");
-        }
-
-        if (id !== undefined) {
-            localVarQueryParameters['id'] = ObjectSerializer.serialize(id, "number");
-        }
-
-        if (toName !== undefined) {
-            localVarQueryParameters['toName'] = ObjectSerializer.serialize(toName, "string");
-        }
-
-        if (fromName !== undefined) {
-            localVarQueryParameters['fromName'] = ObjectSerializer.serialize(fromName, "string");
+        // verify required parameter 'to' is not null or undefined
+        if (to === null || to === undefined) {
+            throw new Error('Required parameter to was null or undefined when calling sendMailById.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
+
+        if (subject !== undefined) {
+            localVarFormParams['subject'] = ObjectSerializer.serialize(subject, "string");
+        }
+
+        if (body !== undefined) {
+            localVarFormParams['body'] = ObjectSerializer.serialize(body, "string");
+        }
+
+        if (from !== undefined) {
+            localVarFormParams['from'] = ObjectSerializer.serialize(from, "string");
+        }
+
+        if (to !== undefined) {
+            localVarFormParams['to'] = ObjectSerializer.serialize(to, "string");
+        }
+
+        if (id !== undefined) {
+            localVarFormParams['id'] = ObjectSerializer.serialize(id, "number");
+        }
+
+        if (toName !== undefined) {
+            localVarFormParams['toName'] = ObjectSerializer.serialize(toName, "string");
+        }
+
+        if (fromName !== undefined) {
+            localVarFormParams['fromName'] = ObjectSerializer.serialize(fromName, "string");
+        }
 
         let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',

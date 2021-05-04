@@ -112,23 +112,24 @@
 (defn-spec send-mail-by-id-with-http-info any?
   "Sends an Email
   Sends An email through one of your mail orders."
-  ([] (send-mail-by-id-with-http-info nil))
-  ([{:keys [subject body to from id toName fromName]} (s/map-of keyword? any?)]
+  ([subject string?, body string?, from string?, to string?, ] (send-mail-by-id-with-http-info subject body from to nil))
+  ([subject string?, body string?, from string?, to string?, {:keys [id toName fromName]} (s/map-of keyword? any?)]
+   (check-required-params subject body from to)
    (call-api "/mail/send" :post
              {:path-params   {}
               :header-params {}
-              :query-params  {"subject" subject "body" body "to" to "from" from "id" id "toName" toName "fromName" fromName }
-              :form-params   {}
-              :content-types []
+              :query-params  {}
+              :form-params   {"subject" subject "body" body "from" from "to" to "id" id "toName" toName "fromName" fromName }
+              :content-types ["application/x-www-form-urlencoded"]
               :accepts       ["application/json"]
               :auth-names    ["apiKeyAuth"]})))
 
 (defn-spec send-mail-by-id generic-response-spec
   "Sends an Email
   Sends An email through one of your mail orders."
-  ([] (send-mail-by-id nil))
-  ([optional-params any?]
-   (let [res (:data (send-mail-by-id-with-http-info optional-params))]
+  ([subject string?, body string?, from string?, to string?, ] (send-mail-by-id subject body from to nil))
+  ([subject string?, body string?, from string?, to string?, optional-params any?]
+   (let [res (:data (send-mail-by-id-with-http-info subject body from to optional-params))]
      (if (:decode-models *api-context*)
         (st/decode generic-response-spec res st/string-transformer)
         res))))

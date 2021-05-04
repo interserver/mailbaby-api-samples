@@ -49,25 +49,25 @@ export interface DefaultApiSendMailByIdRequest {
      * @type string
      * @memberof DefaultApisendMailById
      */
-    subject?: string
+    subject: string
     /**
      * The contents of the email
      * @type string
      * @memberof DefaultApisendMailById
      */
-    body?: string
-    /**
-     * The email address of who this email will be sent to.
-     * @type string
-     * @memberof DefaultApisendMailById
-     */
-    to?: string
+    body: string
     /**
      * The email address of who this email will be sent from.
      * @type string
      * @memberof DefaultApisendMailById
      */
-    from?: string
+    from: string
+    /**
+     * The email address of who this email will be sent to.
+     * @type string
+     * @memberof DefaultApisendMailById
+     */
+    to: string
     /**
      * The ID of your mail order this will be sent through.
      * @type number
@@ -165,7 +165,7 @@ export class ObjectDefaultApi {
      * @param param the request object
      */
     public sendMailById(param: DefaultApiSendMailByIdRequest, options?: Configuration): Promise<GenericResponse> {
-        return this.api.sendMailById(param.subject, param.body, param.to, param.from, param.id, param.toName, param.fromName,  options).toPromise();
+        return this.api.sendMailById(param.subject, param.body, param.from, param.to, param.id, param.toName, param.fromName,  options).toPromise();
     }
 
     /**

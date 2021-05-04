@@ -137,10 +137,10 @@ bool sendAdvMailByIdAsync(char * accessToken,
 /*! \brief Sends an Email. *Synchronous*
  *
  * Sends An email through one of your mail orders.
- * \param subject The Subject of the email
- * \param body The contents of the email
- * \param to The email address of who this email will be sent to.
- * \param from The email address of who this email will be sent from.
+ * \param subject The Subject of the email *Required*
+ * \param body The contents of the email *Required*
+ * \param from The email address of who this email will be sent from. *Required*
+ * \param to The email address of who this email will be sent to. *Required*
  * \param id The ID of your mail order this will be sent through.
  * \param toName The name or title of who this email is being sent to.
  * \param fromName The name or title of who this email is being sent from.
@@ -149,17 +149,17 @@ bool sendAdvMailByIdAsync(char * accessToken,
  * \param userData The user data to be passed to the callback function.
  */
 bool sendMailByIdSync(char * accessToken,
-	std::string subject, std::string body, std::string to, std::string from, long long id, std::string toName, std::string fromName, 
+	std::string subject, std::string body, std::string from, std::string to, int id, std::string toName, std::string fromName, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 
 /*! \brief Sends an Email. *Asynchronous*
  *
  * Sends An email through one of your mail orders.
- * \param subject The Subject of the email
- * \param body The contents of the email
- * \param to The email address of who this email will be sent to.
- * \param from The email address of who this email will be sent from.
+ * \param subject The Subject of the email *Required*
+ * \param body The contents of the email *Required*
+ * \param from The email address of who this email will be sent from. *Required*
+ * \param to The email address of who this email will be sent to. *Required*
  * \param id The ID of your mail order this will be sent through.
  * \param toName The name or title of who this email is being sent to.
  * \param fromName The name or title of who this email is being sent from.
@@ -168,7 +168,7 @@ bool sendMailByIdSync(char * accessToken,
  * \param userData The user data to be passed to the callback function.
  */
 bool sendMailByIdAsync(char * accessToken,
-	std::string subject, std::string body, std::string to, std::string from, long long id, std::string toName, std::string fromName, 
+	std::string subject, std::string body, std::string from, std::string to, int id, std::string toName, std::string fromName, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 

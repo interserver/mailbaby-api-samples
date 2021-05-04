@@ -38,6 +38,8 @@ class ApiClient {
           return value is bool ? value : '$value'.toLowerCase() == 'true';
         case 'double':
           return value is double ? value : double.parse('$value');
+        case 'Body':
+          return new Body.fromJson(value);
         case 'ErrorResponse':
           return new ErrorResponse.fromJson(value);
         case 'GenericResponse':

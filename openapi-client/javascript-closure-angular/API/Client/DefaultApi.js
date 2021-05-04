@@ -187,17 +187,17 @@ API.Client.DefaultApi.prototype.sendAdvMailById = function(sendMail, opt_extraHt
 /**
  * Sends an Email
  * Sends An email through one of your mail orders.
- * @param {!string=} opt_subject The Subject of the email
- * @param {!string=} opt_body The contents of the email
- * @param {!string=} opt_to The email address of who this email will be sent to.
- * @param {!string=} opt_from The email address of who this email will be sent from.
+ * @param {!string} subject The Subject of the email
+ * @param {!string} body The contents of the email
+ * @param {!string} from The email address of who this email will be sent from.
+ * @param {!string} to The email address of who this email will be sent to.
  * @param {!number=} opt_id The ID of your mail order this will be sent through.
  * @param {!string=} opt_toName The name or title of who this email is being sent to.
  * @param {!string=} opt_fromName The name or title of who this email is being sent from.
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.GenericResponse>}
  */
-API.Client.DefaultApi.prototype.sendMailById = function(opt_subject, opt_body, opt_to, opt_from, opt_id, opt_toName, opt_fromName, opt_extraHttpRequestParams) {
+API.Client.DefaultApi.prototype.sendMailById = function(subject, body, from, to, opt_id, opt_toName, opt_fromName, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/mail/send';
 
@@ -206,40 +206,48 @@ API.Client.DefaultApi.prototype.sendMailById = function(opt_subject, opt_body, o
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  if (opt_subject !== undefined) {
-    queryParameters['subject'] = opt_subject;
-  }
+  /** @type {!Object} */
+  var formParams = {};
 
-  if (opt_body !== undefined) {
-    queryParameters['body'] = opt_body;
+  // verify required parameter 'subject' is set
+  if (!subject) {
+    throw new Error('Missing required parameter subject when calling sendMailById');
   }
+  // verify required parameter 'body' is set
+  if (!body) {
+    throw new Error('Missing required parameter body when calling sendMailById');
+  }
+  // verify required parameter 'from' is set
+  if (!from) {
+    throw new Error('Missing required parameter from when calling sendMailById');
+  }
+  // verify required parameter 'to' is set
+  if (!to) {
+    throw new Error('Missing required parameter to when calling sendMailById');
+  }
+  headerParams['Content-Type'] = 'application/x-www-form-urlencoded';
 
-  if (opt_to !== undefined) {
-    queryParameters['to'] = opt_to;
-  }
+  formParams['subject'] = subject;
 
-  if (opt_from !== undefined) {
-    queryParameters['from'] = opt_from;
-  }
+  formParams['body'] = body;
 
-  if (opt_id !== undefined) {
-    queryParameters['id'] = opt_id;
-  }
+  formParams['from'] = from;
 
-  if (opt_toName !== undefined) {
-    queryParameters['toName'] = opt_toName;
-  }
+  formParams['to'] = to;
 
-  if (opt_fromName !== undefined) {
-    queryParameters['fromName'] = opt_fromName;
-  }
+  formParams['id'] = opt_id;
+
+  formParams['toName'] = opt_toName;
+
+  formParams['fromName'] = opt_fromName;
 
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'POST',
     url: path,
-    json: true,
-            params: queryParameters,
+    json: false,
+        data: this.httpParamSerializer(formParams),
+    params: queryParameters,
     headers: headerParams
   };
 

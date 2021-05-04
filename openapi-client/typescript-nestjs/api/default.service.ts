@@ -211,46 +211,35 @@ export class DefaultService {
      * Sends An email through one of your mail orders.
      * @param subject The Subject of the email
      * @param body The contents of the email
-     * @param to The email address of who this email will be sent to.
      * @param from The email address of who this email will be sent from.
+     * @param to The email address of who this email will be sent to.
      * @param id The ID of your mail order this will be sent through.
      * @param toName The name or title of who this email is being sent to.
      * @param fromName The name or title of who this email is being sent from.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, ): Observable<AxiosResponse<GenericResponse>>;
-    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, ): Observable<any> {
+    public sendMailById(subject: string, body: string, from: string, to: string, id?: number, toName?: string, fromName?: string, ): Observable<AxiosResponse<GenericResponse>>;
+    public sendMailById(subject: string, body: string, from: string, to: string, id?: number, toName?: string, fromName?: string, ): Observable<any> {
 
-
-
-
-
-
-
-
-        let queryParameters = {};   
-        if (subject !== undefined && subject !== null) {
-            queryParameters['subject'] = <any>subject;
+        if (subject === null || subject === undefined) {
+            throw new Error('Required parameter subject was null or undefined when calling sendMailById.');
         }
-        if (body !== undefined && body !== null) {
-            queryParameters['body'] = <any>body;
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling sendMailById.');
         }
-        if (to !== undefined && to !== null) {
-            queryParameters['to'] = <any>to;
+
+        if (from === null || from === undefined) {
+            throw new Error('Required parameter from was null or undefined when calling sendMailById.');
         }
-        if (from !== undefined && from !== null) {
-            queryParameters['from'] = <any>from;
+
+        if (to === null || to === undefined) {
+            throw new Error('Required parameter to was null or undefined when calling sendMailById.');
         }
-        if (id !== undefined && id !== null) {
-            queryParameters['id'] = <any>id;
-        }
-        if (toName !== undefined && toName !== null) {
-            queryParameters['toName'] = <any>toName;
-        }
-        if (fromName !== undefined && fromName !== null) {
-            queryParameters['fromName'] = <any>fromName;
-        }
+
+
+
 
         let headers = this.defaultHeaders;
 
@@ -270,11 +259,51 @@ export class DefaultService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
+            'application/x-www-form-urlencoded'
         ];
+
+        const canConsumeForm = this.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): void; };
+        let useForm = false;
+        let convertFormParamsToString = false;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            // formParams = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        }
+
+        if (subject !== undefined) {
+            formParams.append('subject', <any>subject);
+        }
+
+        if (body !== undefined) {
+            formParams.append('body', <any>body);
+        }
+
+        if (from !== undefined) {
+            formParams.append('from', <any>from);
+        }
+
+        if (to !== undefined) {
+            formParams.append('to', <any>to);
+        }
+
+        if (id !== undefined) {
+            formParams.append('id', <any>id);
+        }
+
+        if (toName !== undefined) {
+            formParams.append('toName', <any>toName);
+        }
+
+        if (fromName !== undefined) {
+            formParams.append('fromName', <any>fromName);
+        }
+
         return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/send`,
-            null,
+            convertFormParamsToString ? formParams.toString() : formParams,
             {
-                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers
             }

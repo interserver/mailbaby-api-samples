@@ -85,16 +85,9 @@ exports.sendAdvMailById = function(body) {
  * Sends an Email
  * Sends An email through one of your mail orders.
  *
- * subject String The Subject of the email (optional)
- * body String The contents of the email (optional)
- * to String The email address of who this email will be sent to. (optional)
- * from String The email address of who this email will be sent from. (optional)
- * id Long The ID of your mail order this will be sent through. (optional)
- * toName String The name or title of who this email is being sent to. (optional)
- * fromName String The name or title of who this email is being sent from. (optional)
  * returns GenericResponse
  **/
-exports.sendMailById = function(subject,body,to,from,id,toName,fromName) {
+exports.sendMailById = function() {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {

@@ -34,10 +34,10 @@ export interface SendAdvMailByIdRequest {
 }
 
 export interface SendMailByIdRequest {
-    subject?: string;
-    body?: string;
-    to?: string;
-    from?: string;
+    subject: string;
+    body: string;
+    from: string;
+    to: string;
     id?: number;
     toName?: string;
     fromName?: string;
@@ -137,29 +137,32 @@ export class DefaultApi extends BaseAPI {
      * Sends An email through one of your mail orders.
      * Sends an Email
      */
-    sendMailById({ subject, body, to, from, id, toName, fromName }: SendMailByIdRequest): Observable<GenericResponse>
-    sendMailById({ subject, body, to, from, id, toName, fromName }: SendMailByIdRequest, opts?: OperationOpts): Observable<RawAjaxResponse<GenericResponse>>
-    sendMailById({ subject, body, to, from, id, toName, fromName }: SendMailByIdRequest, opts?: OperationOpts): Observable<GenericResponse | RawAjaxResponse<GenericResponse>> {
+    sendMailById({ subject, body, from, to, id, toName, fromName }: SendMailByIdRequest): Observable<GenericResponse>
+    sendMailById({ subject, body, from, to, id, toName, fromName }: SendMailByIdRequest, opts?: OperationOpts): Observable<RawAjaxResponse<GenericResponse>>
+    sendMailById({ subject, body, from, to, id, toName, fromName }: SendMailByIdRequest, opts?: OperationOpts): Observable<GenericResponse | RawAjaxResponse<GenericResponse>> {
+        throwIfNullOrUndefined(subject, 'subject', 'sendMailById');
+        throwIfNullOrUndefined(body, 'body', 'sendMailById');
+        throwIfNullOrUndefined(from, 'from', 'sendMailById');
+        throwIfNullOrUndefined(to, 'to', 'sendMailById');
 
         const headers: HttpHeaders = {
             ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication
         };
 
-        const query: HttpQuery = {};
-
-        if (subject != null) { query['subject'] = subject; }
-        if (body != null) { query['body'] = body; }
-        if (to != null) { query['to'] = to; }
-        if (from != null) { query['from'] = from; }
-        if (id != null) { query['id'] = id; }
-        if (toName != null) { query['toName'] = toName; }
-        if (fromName != null) { query['fromName'] = fromName; }
+        const formData = new FormData();
+        if (subject !== undefined) { formData.append('subject', subject as any); }
+        if (body !== undefined) { formData.append('body', body as any); }
+        if (from !== undefined) { formData.append('from', from as any); }
+        if (to !== undefined) { formData.append('to', to as any); }
+        if (id !== undefined) { formData.append('id', id as any); }
+        if (toName !== undefined) { formData.append('toName', toName as any); }
+        if (fromName !== undefined) { formData.append('fromName', fromName as any); }
 
         return this.request<GenericResponse>({
             url: '/mail/send',
             method: 'POST',
             headers,
-            query,
+            body: formData,
         }, opts?.responseOpts);
     };
 

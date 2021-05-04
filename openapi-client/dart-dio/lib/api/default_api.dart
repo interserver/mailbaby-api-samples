@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
 
 import 'package:built_collection/built_collection.dart';
+import 'package:openapi/api_util.dart';
 import 'package:openapi/model/error_response.dart';
 import 'package:openapi/model/generic_response.dart';
 import 'package:openapi/model/mail_log.dart';
@@ -254,11 +255,11 @@ class DefaultApi {
   /// Sends an Email
   ///
   /// Sends An email through one of your mail orders.
-  Future<Response<GenericResponse>> sendMailById({ 
+  Future<Response<GenericResponse>> sendMailById(
     String subject,
     String body,
-    String to,
     String from,
+    String to, { 
     int id,
     String toName,
     String fromName,
@@ -275,15 +276,6 @@ class DefaultApi {
       headers: <String, dynamic>{
         ...?headers,
       },
-      queryParameters: <String, dynamic>{
-        if (subject != null) r'subject': subject,
-        if (body != null) r'body': body,
-        if (to != null) r'to': to,
-        if (from != null) r'from': from,
-        if (id != null) r'id': id,
-        if (toName != null) r'toName': toName,
-        if (fromName != null) r'fromName': fromName,
-      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
           {
@@ -297,7 +289,7 @@ class DefaultApi {
       },
       validateStatus: validateStatus,
       contentType: [
-        'application/json',
+        'application/x-www-form-urlencoded',
       ].first,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
@@ -305,6 +297,16 @@ class DefaultApi {
     );
 
     dynamic _bodyData;
+
+    _bodyData = <String, dynamic>{
+      r'subject': encodeFormParameter(_serializers, subject, const FullType(String)),
+      r'body': encodeFormParameter(_serializers, body, const FullType(String)),
+      r'from': encodeFormParameter(_serializers, from, const FullType(String)),
+      r'to': encodeFormParameter(_serializers, to, const FullType(String)),
+      if (id != null) r'id': encodeFormParameter(_serializers, id, const FullType(int)),
+      if (toName != null) r'toName': encodeFormParameter(_serializers, toName, const FullType(String)),
+      if (fromName != null) r'fromName': encodeFormParameter(_serializers, fromName, const FullType(String)),
+    };
 
     final _response = await _dio.request<dynamic>(
       _request.path,

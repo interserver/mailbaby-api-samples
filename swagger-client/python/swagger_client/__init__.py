@@ -20,6 +20,7 @@ from swagger_client.api.default_api import DefaultApi
 from swagger_client.api_client import ApiClient
 from swagger_client.configuration import Configuration
 # import models into sdk package
+from swagger_client.models.body import Body
 from swagger_client.models.error_response import ErrorResponse
 from swagger_client.models.generic_response import GenericResponse
 from swagger_client.models.mail_attachment import MailAttachment

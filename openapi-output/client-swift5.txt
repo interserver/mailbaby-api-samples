@@ -15,6 +15,7 @@
 [main] INFO  o.o.codegen.DefaultGenerator - Model MailOrders not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
 [main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
 [main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] INFO  o.o.codegen.DefaultGenerator - Model body not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
 [main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift5/OpenAPIClient/Classes/OpenAPIs/Models/GenericResponse.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift5/docs/GenericResponse.md

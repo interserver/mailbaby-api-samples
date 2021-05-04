@@ -124,24 +124,26 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net/") : ApiCli
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param subject The Subject of the email (optional)
-     * @param body The contents of the email (optional)
-     * @param to The email address of who this email will be sent to. (optional)
-     * @param from The email address of who this email will be sent from. (optional)
-     * @param id The ID of your mail order this will be sent through. (optional)
-     * @param toName The name or title of who this email is being sent to. (optional)
-     * @param fromName The name or title of who this email is being sent from. (optional)
+     * @param subject  
+     * @param body  
+     * @param from  
+     * @param to  
+     * @param id  
+     * @param toName  
+     * @param fromName  
      * @return GenericResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun sendMailById(subject: kotlin.String? = null, body: kotlin.String? = null, to: kotlin.String? = null, from: kotlin.String? = null, id: kotlin.Long? = null, toName: kotlin.String? = null, fromName: kotlin.String? = null): GenericResponse {
-        val localVariableQuery: MultiValueMap = mapOf("subject" to listOf("$subject"), "body" to listOf("$body"), "to" to listOf("$to"), "from" to listOf("$from"), "id" to listOf("$id"), "toName" to listOf("$toName"), "fromName" to listOf("$fromName"))
+    fun sendMailById(subject: kotlin.String, body: kotlin.String, from: kotlin.String, to: kotlin.String, id: kotlin.Int, toName: kotlin.String, fromName: kotlin.String): GenericResponse {
+        val localVariableBody: kotlin.Any? = mapOf("subject" to "$subject", "body" to "$body", "from" to "$from", "to" to "$to", "id" to "$id", "toName" to "$toName", "fromName" to "$fromName")
+        
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String, kotlin.String> = mapOf("Content-Type" to "multipart/form-data")
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
-                "/mail/send", query = localVariableQuery
+                "/mail/send", headers = localVariableHeaders
         )
         val response = request<GenericResponse>(
-                localVariableConfig
+                localVariableConfig, localVariableBody
         )
 
         return when (response.responseType) {

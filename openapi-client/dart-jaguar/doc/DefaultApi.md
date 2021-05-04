@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendMailById**
-> GenericResponse sendMailById(subject, body, to, from, id, toName, fromName)
+> GenericResponse sendMailById(subject, body, from, to, id, toName, fromName)
 
 Sends an Email
 
@@ -210,14 +210,14 @@ import 'package:openapi/api.dart';
 var api_instance = new DefaultApi();
 var subject = subject_example; // String | The Subject of the email
 var body = body_example; // String | The contents of the email
-var to = to_example; // String | The email address of who this email will be sent to.
 var from = from_example; // String | The email address of who this email will be sent from.
-var id = 789; // int | The ID of your mail order this will be sent through.
+var to = to_example; // String | The email address of who this email will be sent to.
+var id = 56; // int | The ID of your mail order this will be sent through.
 var toName = toName_example; // String | The name or title of who this email is being sent to.
 var fromName = fromName_example; // String | The name or title of who this email is being sent from.
 
 try { 
-    var result = api_instance.sendMailById(subject, body, to, from, id, toName, fromName);
+    var result = api_instance.sendMailById(subject, body, from, to, id, toName, fromName);
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->sendMailById: $e\n");
@@ -228,10 +228,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **String**| The Subject of the email | [optional] [default to null]
- **body** | **String**| The contents of the email | [optional] [default to null]
- **to** | **String**| The email address of who this email will be sent to. | [optional] [default to null]
- **from** | **String**| The email address of who this email will be sent from. | [optional] [default to null]
+ **subject** | **String**| The Subject of the email | [default to null]
+ **body** | **String**| The contents of the email | [default to null]
+ **from** | **String**| The email address of who this email will be sent from. | [default to null]
+ **to** | **String**| The email address of who this email will be sent to. | [default to null]
  **id** | **int**| The ID of your mail order this will be sent through. | [optional] [default to null]
  **toName** | **String**| The name or title of who this email is being sent to. | [optional] [default to null]
  **fromName** | **String**| The name or title of who this email is being sent from. | [optional] [default to null]
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

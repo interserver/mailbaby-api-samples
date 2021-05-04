@@ -520,9 +520,9 @@ type ApiSendMailByIdRequest struct {
 	ApiService *DefaultApiService
 	subject *string
 	body *string
-	to *string
 	from *string
-	id *int64
+	to *string
+	id *int32
 	toName *string
 	fromName *string
 }
@@ -535,15 +535,15 @@ func (r ApiSendMailByIdRequest) Body(body string) ApiSendMailByIdRequest {
 	r.body = &body
 	return r
 }
-func (r ApiSendMailByIdRequest) To(to string) ApiSendMailByIdRequest {
-	r.to = &to
-	return r
-}
 func (r ApiSendMailByIdRequest) From(from string) ApiSendMailByIdRequest {
 	r.from = &from
 	return r
 }
-func (r ApiSendMailByIdRequest) Id(id int64) ApiSendMailByIdRequest {
+func (r ApiSendMailByIdRequest) To(to string) ApiSendMailByIdRequest {
+	r.to = &to
+	return r
+}
+func (r ApiSendMailByIdRequest) Id(id int32) ApiSendMailByIdRequest {
 	r.id = &id
 	return r
 }
@@ -597,30 +597,21 @@ func (a *DefaultApiService) SendMailByIdExecute(r ApiSendMailByIdRequest) (Gener
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.subject == nil {
+		return localVarReturnValue, nil, reportError("subject is required and must be specified")
+	}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+	if r.from == nil {
+		return localVarReturnValue, nil, reportError("from is required and must be specified")
+	}
+	if r.to == nil {
+		return localVarReturnValue, nil, reportError("to is required and must be specified")
+	}
 
-	if r.subject != nil {
-		localVarQueryParams.Add("subject", parameterToString(*r.subject, ""))
-	}
-	if r.body != nil {
-		localVarQueryParams.Add("body", parameterToString(*r.body, ""))
-	}
-	if r.to != nil {
-		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
-	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.id != nil {
-		localVarQueryParams.Add("id", parameterToString(*r.id, ""))
-	}
-	if r.toName != nil {
-		localVarQueryParams.Add("toName", parameterToString(*r.toName, ""))
-	}
-	if r.fromName != nil {
-		localVarQueryParams.Add("fromName", parameterToString(*r.fromName, ""))
-	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/x-www-form-urlencoded"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -635,6 +626,19 @@ func (a *DefaultApiService) SendMailByIdExecute(r ApiSendMailByIdRequest) (Gener
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarFormParams.Add("subject", parameterToString(*r.subject, ""))
+	localVarFormParams.Add("body", parameterToString(*r.body, ""))
+	localVarFormParams.Add("from", parameterToString(*r.from, ""))
+	localVarFormParams.Add("to", parameterToString(*r.to, ""))
+	if r.id != nil {
+		localVarFormParams.Add("id", parameterToString(*r.id, ""))
+	}
+	if r.toName != nil {
+		localVarFormParams.Add("toName", parameterToString(*r.toName, ""))
+	}
+	if r.fromName != nil {
+		localVarFormParams.Add("fromName", parameterToString(*r.fromName, ""))
 	}
 	if r.ctx != nil {
 		// API Key Authentication

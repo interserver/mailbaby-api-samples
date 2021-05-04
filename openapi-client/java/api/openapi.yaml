@@ -131,64 +131,12 @@ paths:
     post:
       description: Sends An email through one of your mail orders.
       operationId: sendMailById
-      parameters:
-      - description: The Subject of the email
-        explode: true
-        in: query
-        name: subject
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: The contents of the email
-        explode: true
-        in: query
-        name: body
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: The email address of who this email will be sent to.
-        explode: true
-        in: query
-        name: to
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: The email address of who this email will be sent from.
-        explode: true
-        in: query
-        name: from
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: The ID of your mail order this will be sent through.
-        explode: true
-        in: query
-        name: id
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: The name or title of who this email is being sent to.
-        explode: true
-        in: query
-        name: toName
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: The name or title of who this email is being sent from.
-        explode: true
-        in: query
-        name: fromName
-        required: false
-        schema:
-          type: string
-        style: form
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/body'
+        required: true
       responses:
         "200":
           content:
@@ -211,6 +159,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
           description: The specified resource was not found
       summary: Sends an Email
+      x-contentType: application/x-www-form-urlencoded
       x-accepts: application/json
   /mail/advsend:
     post:
@@ -534,6 +483,42 @@ components:
       - body
       - from
       - id
+      - subject
+      - to
+      type: object
+    body:
+      properties:
+        subject:
+          description: The Subject of the email
+          example: test subject
+          type: string
+        body:
+          description: The contents of the email
+          example: test body
+          type: string
+        from:
+          description: The email address of who this email will be sent from.
+          example: me@domain.com
+          type: string
+        to:
+          description: The email address of who this email will be sent to.
+          example: my@domain.com
+          type: string
+        id:
+          description: The ID of your mail order this will be sent through.
+          example: 5000
+          type: integer
+        toName:
+          description: The name or title of who this email is being sent to.
+          example: John Doe
+          type: string
+        fromName:
+          description: The name or title of who this email is being sent from.
+          example: Jane Doe
+          type: string
+      required:
+      - body
+      - from
       - subject
       - to
       type: object

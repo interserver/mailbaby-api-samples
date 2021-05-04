@@ -61,15 +61,15 @@ object Paths {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param subject The Subject of the email (optional)
-     * @param body The contents of the email (optional)
-     * @param to The email address of who this email will be sent to. (optional)
-     * @param from The email address of who this email will be sent from. (optional)
-     * @param id The ID of your mail order this will be sent through. (optional)
-     * @param toName The name or title of who this email is being sent to. (optional)
-     * @param fromName The name or title of who this email is being sent from. (optional)
+     * @param subject  
+     * @param body  
+     * @param from  
+     * @param to  
+     * @param id  
+     * @param toName  
+     * @param fromName  
      */
-    @Location("/mail/send") class sendMailById(val subject: kotlin.String, val body: kotlin.String, val to: kotlin.String, val from: kotlin.String, val id: kotlin.Long, val toName: kotlin.String, val fromName: kotlin.String)
+    @Location("/mail/send") class sendMailById(val subject: kotlin.String, val body: kotlin.String, val from: kotlin.String, val to: kotlin.String, val id: kotlin.Int, val toName: kotlin.String, val fromName: kotlin.String)
 
     /**
      * validatess order details before placing an order

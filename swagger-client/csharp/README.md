@@ -111,6 +111,7 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [Model.Body](docs/Body.md)
  - [Model.ErrorResponse](docs/ErrorResponse.md)
  - [Model.GenericResponse](docs/GenericResponse.md)
  - [Model.MailAttachment](docs/MailAttachment.md)

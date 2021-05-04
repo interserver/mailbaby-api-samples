@@ -55,16 +55,16 @@ class MailApiControllerTest {
     }
 
     @Test
-    void sendMailByIdTest() {
+    void sendMailByIdWithFormTest() {
         String subject = "subject_example";
         String body = "body_example";
-        String to = "to_example";
         String from = "from_example";
-        Long id = 789L;
+        String to = "to_example";
+        Integer id = 56;
         String toName = "toName_example";
         String fromName = "fromName_example";
         try {
-            api.sendMailById(subject, body, to, from, id, toName, fromName).blockingGet();
+            api.sendMailById(subject, body, from, to, id, toName, fromName).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

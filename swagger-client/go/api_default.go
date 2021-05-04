@@ -430,28 +430,16 @@ func (a *DefaultApiService) SendAdvMailById(ctx context.Context, body SendMail) 
 DefaultApiService Sends an Email
 Sends An email through one of your mail orders.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *DefaultApiSendMailByIdOpts - Optional Parameters:
-     * @param "Subject" (optional.String) -  The Subject of the email
-     * @param "Body" (optional.String) -  The contents of the email
-     * @param "To" (optional.String) -  The email address of who this email will be sent to.
-     * @param "From" (optional.String) -  The email address of who this email will be sent from.
-     * @param "Id" (optional.Int64) -  The ID of your mail order this will be sent through.
-     * @param "ToName" (optional.String) -  The name or title of who this email is being sent to.
-     * @param "FromName" (optional.String) -  The name or title of who this email is being sent from.
+ * @param subject
+ * @param body
+ * @param from
+ * @param to
+ * @param id
+ * @param toName
+ * @param fromName
 @return GenericResponse
 */
-
-type DefaultApiSendMailByIdOpts struct {
-    Subject optional.String
-    Body optional.String
-    To optional.String
-    From optional.String
-    Id optional.Int64
-    ToName optional.String
-    FromName optional.String
-}
-
-func (a *DefaultApiService) SendMailById(ctx context.Context, localVarOptionals *DefaultApiSendMailByIdOpts) (GenericResponse, *http.Response, error) {
+func (a *DefaultApiService) SendMailById(ctx context.Context, subject string, body string, from string, to string, id int32, toName string, fromName string) (GenericResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -467,29 +455,8 @@ func (a *DefaultApiService) SendMailById(ctx context.Context, localVarOptionals 
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.Subject.IsSet() {
-		localVarQueryParams.Add("subject", parameterToString(localVarOptionals.Subject.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		localVarQueryParams.Add("body", parameterToString(localVarOptionals.Body.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.To.IsSet() {
-		localVarQueryParams.Add("to", parameterToString(localVarOptionals.To.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.From.IsSet() {
-		localVarQueryParams.Add("from", parameterToString(localVarOptionals.From.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.Id.IsSet() {
-		localVarQueryParams.Add("id", parameterToString(localVarOptionals.Id.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.ToName.IsSet() {
-		localVarQueryParams.Add("toName", parameterToString(localVarOptionals.ToName.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.FromName.IsSet() {
-		localVarQueryParams.Add("fromName", parameterToString(localVarOptionals.FromName.Value(), ""))
-	}
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{}
+	localVarHttpContentTypes := []string{"application/x-www-form-urlencoded"}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
@@ -505,6 +472,13 @@ func (a *DefaultApiService) SendMailById(ctx context.Context, localVarOptionals 
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
+	localVarFormParams.Add("subject", parameterToString(subject, ""))
+	localVarFormParams.Add("body", parameterToString(body, ""))
+	localVarFormParams.Add("from", parameterToString(from, ""))
+	localVarFormParams.Add("to", parameterToString(to, ""))
+	localVarFormParams.Add("id", parameterToString(id, ""))
+	localVarFormParams.Add("toName", parameterToString(toName, ""))
+	localVarFormParams.Add("fromName", parameterToString(fromName, ""))
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {

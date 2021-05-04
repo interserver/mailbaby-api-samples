@@ -202,9 +202,9 @@ Name | Type | Description  | Notes
 > GenericResponse Send-MailById<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Subject] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Body] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-To] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <System.Nullable[Int64]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-To] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-ToName] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-FromName] <String><br>
 
@@ -221,17 +221,17 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
-$Subject = "Subject_example" # String | The Subject of the email (optional)
-$Body = "Body_example" # String | The contents of the email (optional)
-$To = "To_example" # String | The email address of who this email will be sent to. (optional)
-$From = "From_example" # String | The email address of who this email will be sent from. (optional)
-$Id = 987 # Int64 | The ID of your mail order this will be sent through. (optional)
+$Subject = "Subject_example" # String | The Subject of the email
+$Body = "Body_example" # String | The contents of the email
+$From = "From_example" # String | The email address of who this email will be sent from.
+$To = "To_example" # String | The email address of who this email will be sent to.
+$Id = 987 # Int32 | The ID of your mail order this will be sent through. (optional)
 $ToName = "ToName_example" # String | The name or title of who this email is being sent to. (optional)
 $FromName = "FromName_example" # String | The name or title of who this email is being sent from. (optional)
 
 # Sends an Email
 try {
-     $Result = Send-MailById -Subject $Subject -Body $Body -To $To -From $From -Id $Id -ToName $ToName -FromName $FromName
+     $Result = Send-MailById -Subject $Subject -Body $Body -From $From -To $To -Id $Id -ToName $ToName -FromName $FromName
 } catch {
     Write-Host ("Exception occured when calling Send-MailById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -242,11 +242,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **Subject** | **String**| The Subject of the email | [optional] 
- **Body** | **String**| The contents of the email | [optional] 
- **To** | **String**| The email address of who this email will be sent to. | [optional] 
- **From** | **String**| The email address of who this email will be sent from. | [optional] 
- **Id** | **Int64**| The ID of your mail order this will be sent through. | [optional] 
+ **Subject** | **String**| The Subject of the email | 
+ **Body** | **String**| The contents of the email | 
+ **From** | **String**| The email address of who this email will be sent from. | 
+ **To** | **String**| The email address of who this email will be sent to. | 
+ **Id** | **Int32**| The ID of your mail order this will be sent through. | [optional] 
  **ToName** | **String**| The name or title of who this email is being sent to. | [optional] 
  **FromName** | **String**| The name or title of who this email is being sent from. | [optional] 
 
@@ -260,7 +260,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

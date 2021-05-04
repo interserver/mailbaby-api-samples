@@ -68,7 +68,6 @@ class DefaultApiSimulation extends Simulation {
 
     // Set up CSV feeders
     val getMailOrdersQUERYFeeder = csv(userDataDirectory + File.separator + "getMailOrders-queryParams.csv").random
-    val sendMailByIdQUERYFeeder = csv(userDataDirectory + File.separator + "sendMailById-queryParams.csv").random
     val viewMailLogByIdQUERYFeeder = csv(userDataDirectory + File.separator + "viewMailLogById-queryParams.csv").random
 
     // Setup all scenarios
@@ -129,16 +128,8 @@ class DefaultApiSimulation extends Simulation {
 
     
     val scnsendMailById = scenario("sendMailByIdSimulation")
-        .feed(sendMailByIdQUERYFeeder)
         .exec(http("sendMailById")
         .httpRequest("POST","/mail/send")
-        .queryParam("id","${id}")
-        .queryParam("fromName","${fromName}")
-        .queryParam("body","${body}")
-        .queryParam("subject","${subject}")
-        .queryParam("toName","${toName}")
-        .queryParam("to","${to}")
-        .queryParam("from","${from}")
 )
 
     // Run scnsendMailById with warm up and reach a constant rate for entire duration

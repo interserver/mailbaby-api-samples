@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMailById"></a>
 # **sendMailById**
-> GenericResponse sendMailById(subject, body, to, from, id, toName, fromName)
+> GenericResponse sendMailById(subject, body, from, to, id, toName, fromName)
 
 Sends an Email
 
@@ -205,15 +205,15 @@ Sends An email through one of your mail orders.
 //import io.swagger.client.models.*;
 
 val apiInstance = DefaultApi()
-val subject : kotlin.String = subject_example // kotlin.String | The Subject of the email
-val body : kotlin.String = body_example // kotlin.String | The contents of the email
-val to : kotlin.String = to_example // kotlin.String | The email address of who this email will be sent to.
-val from : kotlin.String = from_example // kotlin.String | The email address of who this email will be sent from.
-val id : kotlin.Long = 789 // kotlin.Long | The ID of your mail order this will be sent through.
-val toName : kotlin.String = toName_example // kotlin.String | The name or title of who this email is being sent to.
-val fromName : kotlin.String = fromName_example // kotlin.String | The name or title of who this email is being sent from.
+val subject : kotlin.String = subject_example // kotlin.String | 
+val body : kotlin.String = body_example // kotlin.String | 
+val from : kotlin.String = from_example // kotlin.String | 
+val to : kotlin.String = to_example // kotlin.String | 
+val id : kotlin.Int = 56 // kotlin.Int | 
+val toName : kotlin.String = toName_example // kotlin.String | 
+val fromName : kotlin.String = fromName_example // kotlin.String | 
 try {
-    val result : GenericResponse = apiInstance.sendMailById(subject, body, to, from, id, toName, fromName)
+    val result : GenericResponse = apiInstance.sendMailById(subject, body, from, to, id, toName, fromName)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#sendMailById")
@@ -228,13 +228,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **kotlin.String**| The Subject of the email | [optional]
- **body** | **kotlin.String**| The contents of the email | [optional]
- **to** | **kotlin.String**| The email address of who this email will be sent to. | [optional]
- **from** | **kotlin.String**| The email address of who this email will be sent from. | [optional]
- **id** | **kotlin.Long**| The ID of your mail order this will be sent through. | [optional]
- **toName** | **kotlin.String**| The name or title of who this email is being sent to. | [optional]
- **fromName** | **kotlin.String**| The name or title of who this email is being sent from. | [optional]
+ **subject** | **kotlin.String**|  |
+ **body** | **kotlin.String**|  |
+ **from** | **kotlin.String**|  |
+ **to** | **kotlin.String**|  |
+ **id** | **kotlin.Int**|  |
+ **toName** | **kotlin.String**|  |
+ **fromName** | **kotlin.String**|  |
 
 ### Return type
 
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 <a name="validateMailOrder"></a>

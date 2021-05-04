@@ -118,22 +118,22 @@ class DefaultApi(baseUrl: String) {
    * 
    * @param subject The Subject of the email
    * @param body The contents of the email
-   * @param to The email address of who this email will be sent to.
    * @param from The email address of who this email will be sent from.
+   * @param to The email address of who this email will be sent to.
    * @param id The ID of your mail order this will be sent through.
    * @param toName The name or title of who this email is being sent to.
    * @param fromName The name or title of who this email is being sent from.
    */
-  def sendMailById(subject: Option[String] = None, body: Option[String] = None, to: Option[String] = None, from: Option[String] = None, id: Option[Long] = None, toName: Option[String] = None, fromName: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[GenericResponse] =
-    ApiRequest[GenericResponse](ApiMethods.POST, baseUrl, "/mail/send", "application/json")
+  def sendMailById(subject: String, body: String, from: String, to: String, id: Option[Int] = None, toName: Option[String] = None, fromName: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[GenericResponse] =
+    ApiRequest[GenericResponse](ApiMethods.POST, baseUrl, "/mail/send", "application/x-www-form-urlencoded")
       .withApiKey(apiKey, "X-API-KEY", HEADER)
-      .withQueryParam("subject", subject)
-      .withQueryParam("body", body)
-      .withQueryParam("to", to)
-      .withQueryParam("from", from)
-      .withQueryParam("id", id)
-      .withQueryParam("toName", toName)
-      .withQueryParam("fromName", fromName)
+      .withFormParam("subject", subject)
+      .withFormParam("body", body)
+      .withFormParam("from", from)
+      .withFormParam("to", to)
+      .withFormParam("id", id)
+      .withFormParam("toName", toName)
+      .withFormParam("fromName", fromName)
       .withSuccessResponse[GenericResponse](200)
       .withErrorResponse[Unit](400)
       .withErrorResponse[ErrorResponse](401)

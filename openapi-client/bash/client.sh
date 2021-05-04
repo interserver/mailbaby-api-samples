@@ -98,10 +98,10 @@ declare -A operation_parameters_minimum_occurrences
 operation_parameters_minimum_occurrences["getMailOrders:::id"]=0
 operation_parameters_minimum_occurrences["placeMailOrder:::MailOrder"]=0
 operation_parameters_minimum_occurrences["sendAdvMailById:::SendMail"]=1
-operation_parameters_minimum_occurrences["sendMailById:::subject"]=0
-operation_parameters_minimum_occurrences["sendMailById:::body"]=0
-operation_parameters_minimum_occurrences["sendMailById:::to"]=0
-operation_parameters_minimum_occurrences["sendMailById:::from"]=0
+operation_parameters_minimum_occurrences["sendMailById:::subject"]=1
+operation_parameters_minimum_occurrences["sendMailById:::body"]=1
+operation_parameters_minimum_occurrences["sendMailById:::from"]=1
+operation_parameters_minimum_occurrences["sendMailById:::to"]=1
 operation_parameters_minimum_occurrences["sendMailById:::id"]=0
 operation_parameters_minimum_occurrences["sendMailById:::toName"]=0
 operation_parameters_minimum_occurrences["sendMailById:::fromName"]=0
@@ -122,8 +122,8 @@ operation_parameters_maximum_occurrences["placeMailOrder:::MailOrder"]=0
 operation_parameters_maximum_occurrences["sendAdvMailById:::SendMail"]=0
 operation_parameters_maximum_occurrences["sendMailById:::subject"]=0
 operation_parameters_maximum_occurrences["sendMailById:::body"]=0
-operation_parameters_maximum_occurrences["sendMailById:::to"]=0
 operation_parameters_maximum_occurrences["sendMailById:::from"]=0
+operation_parameters_maximum_occurrences["sendMailById:::to"]=0
 operation_parameters_maximum_occurrences["sendMailById:::id"]=0
 operation_parameters_maximum_occurrences["sendMailById:::toName"]=0
 operation_parameters_maximum_occurrences["sendMailById:::fromName"]=0
@@ -141,8 +141,8 @@ operation_parameters_collection_type["placeMailOrder:::MailOrder"]=""
 operation_parameters_collection_type["sendAdvMailById:::SendMail"]=""
 operation_parameters_collection_type["sendMailById:::subject"]=""
 operation_parameters_collection_type["sendMailById:::body"]=""
-operation_parameters_collection_type["sendMailById:::to"]=""
 operation_parameters_collection_type["sendMailById:::from"]=""
+operation_parameters_collection_type["sendMailById:::to"]=""
 operation_parameters_collection_type["sendMailById:::id"]=""
 operation_parameters_collection_type["sendMailById:::toName"]=""
 operation_parameters_collection_type["sendMailById:::fromName"]=""
@@ -689,20 +689,6 @@ print_sendMailById_help() {
     echo -e "Sends An email through one of your mail orders." | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}subject${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - The Subject of the email${YELLOW} Specify as: subject=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - The contents of the email${YELLOW} Specify as: body=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}to${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - The email address of who this email will be sent to.${YELLOW} Specify as: to=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}from${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - The email address of who this email will be sent from.${YELLOW} Specify as: from=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}id${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - The ID of your mail order this will be sent through.${YELLOW} Specify as: id=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}toName${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - The name or title of who this email is being sent to.${YELLOW} Specify as: toName=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}fromName${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - The name or title of who this email is being sent from.${YELLOW} Specify as: fromName=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -999,7 +985,7 @@ call_sendMailById() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(subject body to from id toName fromName  )
+    local query_parameter_names=(  )
     local path
 
     if ! path=$(build_request_path "/mail/send" path_parameter_names query_parameter_names); then

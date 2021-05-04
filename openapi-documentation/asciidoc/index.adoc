@@ -409,57 +409,57 @@ Sends An email through one of your mail orders.
 
 
 
-
-
-====== Query Parameters
+====== Form Parameters
 
 [cols="2,3,1,1,1"]
 |===         
 |Name| Description| Required| Default| Pattern
 
 | subject 
-| The Subject of the email  
-| - 
+| The Subject of the email <<string>> 
+| X 
 | null 
 |  
 
 | body 
-| The contents of the email  
-| - 
-| null 
-|  
-
-| to 
-| The email address of who this email will be sent to.  
-| - 
+| The contents of the email <<string>> 
+| X 
 | null 
 |  
 
 | from 
-| The email address of who this email will be sent from.  
-| - 
+| The email address of who this email will be sent from. <<string>> 
+| X 
+| null 
+|  
+
+| to 
+| The email address of who this email will be sent to. <<string>> 
+| X 
 | null 
 |  
 
 | id 
-| The ID of your mail order this will be sent through.  
+| The ID of your mail order this will be sent through. <<integer>> 
 | - 
 | null 
 |  
 
 | toName 
-| The name or title of who this email is being sent to.  
+| The name or title of who this email is being sent to. <<string>> 
 | - 
 | null 
 |  
 
 | fromName 
-| The name or title of who this email is being sent from.  
+| The name or title of who this email is being sent from. <<string>> 
 | - 
 | null 
 |  
 
 |===         
+
+
 
 
 ===== Return Type

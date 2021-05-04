@@ -100,6 +100,7 @@ public interface DefaultApi  {
      */
     @POST
     @Path("/mail/send")
+    @Consumes({ "application/x-www-form-urlencoded" })
     @Produces({ "application/json" })
     @ApiOperation(value = "Sends an Email", tags={  })
     @ApiResponses(value = { 
@@ -107,7 +108,7 @@ public interface DefaultApi  {
         @ApiResponse(code = 400, message = "bad input parameter"),
         @ApiResponse(code = 401, message = "Unauthorized", response = ErrorResponse.class),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = ErrorResponse.class) })
-    public GenericResponse sendMailById(@QueryParam("subject") String subject, @QueryParam("body") String body, @QueryParam("to") String to, @QueryParam("from") String from, @QueryParam("id") Long id, @QueryParam("toName") String toName, @QueryParam("fromName") String fromName);
+    public GenericResponse sendMailById(@Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body, @Multipart(value = "from")  String from, @Multipart(value = "to")  String to, @Multipart(value = "id", required = false)  Integer id, @Multipart(value = "toName", required = false)  String toName, @Multipart(value = "fromName", required = false)  String fromName);
 
     /**
      * validatess order details before placing an order

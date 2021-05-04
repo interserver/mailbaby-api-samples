@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 | **404** | The specified resource was not found |  -  |
 
 # **SendMailById**
-> GenericResponse SendMailById(subject=var.subject, body=var.body, to=var.to, from=var.from, id=var.id, to.name=var.to.name, from.name=var.from.name)
+> GenericResponse SendMailById(subject, body, from, to, id=var.id, to.name=var.to.name, from.name=var.from.name)
 
 Sends an Email
 
@@ -202,8 +202,8 @@ library(openapi)
 
 var.subject <- 'subject_example' # character | The Subject of the email
 var.body <- 'body_example' # character | The contents of the email
-var.to <- 'to_example' # character | The email address of who this email will be sent to.
 var.from <- 'from_example' # character | The email address of who this email will be sent from.
+var.to <- 'to_example' # character | The email address of who this email will be sent to.
 var.id <- 56 # integer | The ID of your mail order this will be sent through.
 var.to.name <- 'to.name_example' # character | The name or title of who this email is being sent to.
 var.from.name <- 'from.name_example' # character | The name or title of who this email is being sent from.
@@ -212,7 +212,7 @@ var.from.name <- 'from.name_example' # character | The name or title of who this
 api.instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
 api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$SendMailById(subject=var.subject, body=var.body, to=var.to, from=var.from, id=var.id, to.name=var.to.name, from.name=var.from.name)
+result <- api.instance$SendMailById(var.subject, var.body, var.from, var.to, id=var.id, to.name=var.to.name, from.name=var.from.name)
 dput(result)
 ```
 
@@ -220,10 +220,10 @@ dput(result)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **character**| The Subject of the email | [optional] 
- **body** | **character**| The contents of the email | [optional] 
- **to** | **character**| The email address of who this email will be sent to. | [optional] 
- **from** | **character**| The email address of who this email will be sent from. | [optional] 
+ **subject** | **character**| The Subject of the email | 
+ **body** | **character**| The contents of the email | 
+ **from** | **character**| The email address of who this email will be sent from. | 
+ **to** | **character**| The email address of who this email will be sent to. | 
  **id** | **integer**| The ID of your mail order this will be sent through. | [optional] 
  **to.name** | **character**| The name or title of who this email is being sent to. | [optional] 
  **from.name** | **character**| The name or title of who this email is being sent from. | [optional] 
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 ### HTTP response details

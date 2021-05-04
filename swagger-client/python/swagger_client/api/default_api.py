@@ -396,57 +396,57 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def send_mail_by_id(self, **kwargs):  # noqa: E501
+    def send_mail_by_id(self, subject, body, _from, to, id, to_name, from_name, **kwargs):  # noqa: E501
         """Sends an Email  # noqa: E501
 
         Sends An email through one of your mail orders.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_mail_by_id(async_req=True)
+        >>> thread = api.send_mail_by_id(subject, body, _from, to, id, to_name, from_name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str subject: The Subject of the email
-        :param str body: The contents of the email
-        :param str to: The email address of who this email will be sent to.
-        :param str _from: The email address of who this email will be sent from.
-        :param int id: The ID of your mail order this will be sent through.
-        :param str to_name: The name or title of who this email is being sent to.
-        :param str from_name: The name or title of who this email is being sent from.
+        :param str subject: (required)
+        :param str body: (required)
+        :param str _from: (required)
+        :param str to: (required)
+        :param int id: (required)
+        :param str to_name: (required)
+        :param str from_name: (required)
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.send_mail_by_id_with_http_info(**kwargs)  # noqa: E501
+            return self.send_mail_by_id_with_http_info(subject, body, _from, to, id, to_name, from_name, **kwargs)  # noqa: E501
         else:
-            (data) = self.send_mail_by_id_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.send_mail_by_id_with_http_info(subject, body, _from, to, id, to_name, from_name, **kwargs)  # noqa: E501
             return data
 
-    def send_mail_by_id_with_http_info(self, **kwargs):  # noqa: E501
+    def send_mail_by_id_with_http_info(self, subject, body, _from, to, id, to_name, from_name, **kwargs):  # noqa: E501
         """Sends an Email  # noqa: E501
 
         Sends An email through one of your mail orders.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_mail_by_id_with_http_info(async_req=True)
+        >>> thread = api.send_mail_by_id_with_http_info(subject, body, _from, to, id, to_name, from_name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str subject: The Subject of the email
-        :param str body: The contents of the email
-        :param str to: The email address of who this email will be sent to.
-        :param str _from: The email address of who this email will be sent from.
-        :param int id: The ID of your mail order this will be sent through.
-        :param str to_name: The name or title of who this email is being sent to.
-        :param str from_name: The name or title of who this email is being sent from.
+        :param str subject: (required)
+        :param str body: (required)
+        :param str _from: (required)
+        :param str to: (required)
+        :param int id: (required)
+        :param str to_name: (required)
+        :param str from_name: (required)
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['subject', 'body', 'to', '_from', 'id', 'to_name', 'from_name']  # noqa: E501
+        all_params = ['subject', 'body', '_from', 'to', 'id', 'to_name', 'from_name']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -461,36 +461,68 @@ class DefaultApi(object):
                 )
             params[key] = val
         del params['kwargs']
+        # verify the required parameter 'subject' is set
+        if ('subject' not in params or
+                params['subject'] is None):
+            raise ValueError("Missing the required parameter `subject` when calling `send_mail_by_id`")  # noqa: E501
+        # verify the required parameter 'body' is set
+        if ('body' not in params or
+                params['body'] is None):
+            raise ValueError("Missing the required parameter `body` when calling `send_mail_by_id`")  # noqa: E501
+        # verify the required parameter '_from' is set
+        if ('_from' not in params or
+                params['_from'] is None):
+            raise ValueError("Missing the required parameter `_from` when calling `send_mail_by_id`")  # noqa: E501
+        # verify the required parameter 'to' is set
+        if ('to' not in params or
+                params['to'] is None):
+            raise ValueError("Missing the required parameter `to` when calling `send_mail_by_id`")  # noqa: E501
+        # verify the required parameter 'id' is set
+        if ('id' not in params or
+                params['id'] is None):
+            raise ValueError("Missing the required parameter `id` when calling `send_mail_by_id`")  # noqa: E501
+        # verify the required parameter 'to_name' is set
+        if ('to_name' not in params or
+                params['to_name'] is None):
+            raise ValueError("Missing the required parameter `to_name` when calling `send_mail_by_id`")  # noqa: E501
+        # verify the required parameter 'from_name' is set
+        if ('from_name' not in params or
+                params['from_name'] is None):
+            raise ValueError("Missing the required parameter `from_name` when calling `send_mail_by_id`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'subject' in params:
-            query_params.append(('subject', params['subject']))  # noqa: E501
-        if 'body' in params:
-            query_params.append(('body', params['body']))  # noqa: E501
-        if 'to' in params:
-            query_params.append(('to', params['to']))  # noqa: E501
-        if '_from' in params:
-            query_params.append(('from', params['_from']))  # noqa: E501
-        if 'id' in params:
-            query_params.append(('id', params['id']))  # noqa: E501
-        if 'to_name' in params:
-            query_params.append(('toName', params['to_name']))  # noqa: E501
-        if 'from_name' in params:
-            query_params.append(('fromName', params['from_name']))  # noqa: E501
 
         header_params = {}
 
         form_params = []
         local_var_files = {}
+        if 'subject' in params:
+            form_params.append(('subject', params['subject']))  # noqa: E501
+        if 'body' in params:
+            form_params.append(('body', params['body']))  # noqa: E501
+        if '_from' in params:
+            form_params.append(('from', params['_from']))  # noqa: E501
+        if 'to' in params:
+            form_params.append(('to', params['to']))  # noqa: E501
+        if 'id' in params:
+            form_params.append(('id', params['id']))  # noqa: E501
+        if 'to_name' in params:
+            form_params.append(('toName', params['to_name']))  # noqa: E501
+        if 'from_name' in params:
+            form_params.append(('fromName', params['from_name']))  # noqa: E501
 
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['apiKeyAuth']  # noqa: E501

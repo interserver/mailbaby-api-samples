@@ -140,16 +140,16 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$subject = "subject_example"; // string | The Subject of the email
-$body = "body_example"; // string | The contents of the email
-$to = "to_example"; // string | The email address of who this email will be sent to.
-$from = "from_example"; // string | The email address of who this email will be sent from.
-$id = 789; // int | The ID of your mail order this will be sent through.
-$toName = "toName_example"; // string | The name or title of who this email is being sent to.
-$fromName = "fromName_example"; // string | The name or title of who this email is being sent from.
+$subject = "subject_example"; // string | 
+$body = "body_example"; // string | 
+$from = "from_example"; // string | 
+$to = "to_example"; // string | 
+$id = 56; // int | 
+$toName = "toName_example"; // string | 
+$fromName = "fromName_example"; // string | 
 
 try {
-    $result = $apiInstance->sendMailById($subject, $body, $to, $from, $id, $toName, $fromName);
+    $result = $apiInstance->sendMailById($subject, $body, $from, $to, $id, $toName, $fromName);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->sendMailById: ', $e->getMessage(), PHP_EOL;
@@ -214,6 +214,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [Body](docs/Model/Body.md)
  - [ErrorResponse](docs/Model/ErrorResponse.md)
  - [GenericResponse](docs/Model/GenericResponse.md)
  - [MailAttachment](docs/Model/MailAttachment.md)

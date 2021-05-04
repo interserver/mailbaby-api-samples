@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMailById"></a>
 # **sendMailById**
-> GenericResponse sendMailById(subject, body, to, from, id, toName, fromName)
+> GenericResponse sendMailById(subject, body, from, to, id, toName, fromName)
 
 Sends an Email
 
@@ -238,15 +238,15 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 //apiKeyAuth.setApiKeyPrefix("Token");
 
 DefaultApi apiInstance = new DefaultApi();
-String subject = "subject_example"; // String | The Subject of the email
-String body = "body_example"; // String | The contents of the email
-String to = "to_example"; // String | The email address of who this email will be sent to.
-String from = "from_example"; // String | The email address of who this email will be sent from.
-Long id = 789L; // Long | The ID of your mail order this will be sent through.
-String toName = "toName_example"; // String | The name or title of who this email is being sent to.
-String fromName = "fromName_example"; // String | The name or title of who this email is being sent from.
+String subject = "subject_example"; // String | 
+String body = "body_example"; // String | 
+String from = "from_example"; // String | 
+String to = "to_example"; // String | 
+Integer id = 56; // Integer | 
+String toName = "toName_example"; // String | 
+String fromName = "fromName_example"; // String | 
 try {
-    GenericResponse result = apiInstance.sendMailById(subject, body, to, from, id, toName, fromName);
+    GenericResponse result = apiInstance.sendMailById(subject, body, from, to, id, toName, fromName);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling DefaultApi#sendMailById");
@@ -258,13 +258,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **String**| The Subject of the email | [optional]
- **body** | **String**| The contents of the email | [optional]
- **to** | **String**| The email address of who this email will be sent to. | [optional]
- **from** | **String**| The email address of who this email will be sent from. | [optional]
- **id** | **Long**| The ID of your mail order this will be sent through. | [optional]
- **toName** | **String**| The name or title of who this email is being sent to. | [optional]
- **fromName** | **String**| The name or title of who this email is being sent from. | [optional]
+ **subject** | **String**|  |
+ **body** | **String**|  |
+ **from** | **String**|  |
+ **to** | **String**|  |
+ **id** | **Integer**|  |
+ **toName** | **String**|  |
+ **fromName** | **String**|  |
 
 ### Return type
 
@@ -276,7 +276,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 <a name="validateMailOrder"></a>

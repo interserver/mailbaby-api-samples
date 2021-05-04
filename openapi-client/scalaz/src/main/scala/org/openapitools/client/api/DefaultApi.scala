@@ -113,7 +113,7 @@ object DefaultApi {
     } yield resp
   }
   
-  def sendMailById(host: String, subject: String, body: String, to: String, from: String, id: Long, toName: String, fromName: String)(implicit subjectQuery: QueryParam[String], bodyQuery: QueryParam[String], toQuery: QueryParam[String], fromQuery: QueryParam[String], idQuery: QueryParam[Long], toNameQuery: QueryParam[String], fromNameQuery: QueryParam[String]): Task[GenericResponse] = {
+  def sendMailById(host: String, subject: String, body: String, from: String, to: String, id: Integer, toName: String, fromName: String): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/send"
@@ -123,7 +123,7 @@ object DefaultApi {
     val headers = Headers(
       )
     val queryParams = Query(
-      ("subject", Some(subjectQuery.toParamString(subject))), ("body", Some(bodyQuery.toParamString(body))), ("to", Some(toQuery.toParamString(to))), ("from", Some(fromQuery.toParamString(from))), ("id", Some(idQuery.toParamString(id))), ("toName", Some(toNameQuery.toParamString(toName))), ("fromName", Some(fromNameQuery.toParamString(fromName))))
+      )
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
@@ -261,7 +261,7 @@ class HttpServiceDefaultApi(service: HttpService) {
     } yield resp
   }
   
-  def sendMailById(subject: String, body: String, to: String, from: String, id: Long, toName: String, fromName: String)(implicit subjectQuery: QueryParam[String], bodyQuery: QueryParam[String], toQuery: QueryParam[String], fromQuery: QueryParam[String], idQuery: QueryParam[Long], toNameQuery: QueryParam[String], fromNameQuery: QueryParam[String]): Task[GenericResponse] = {
+  def sendMailById(subject: String, body: String, from: String, to: String, id: Integer, toName: String, fromName: String): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/send"
@@ -271,7 +271,7 @@ class HttpServiceDefaultApi(service: HttpService) {
     val headers = Headers(
       )
     val queryParams = Query(
-      ("subject", Some(subjectQuery.toParamString(subject))), ("body", Some(bodyQuery.toParamString(body))), ("to", Some(toQuery.toParamString(to))), ("from", Some(fromQuery.toParamString(from))), ("id", Some(idQuery.toParamString(id))), ("toName", Some(toNameQuery.toParamString(toName))), ("fromName", Some(fromNameQuery.toParamString(fromName))))
+      )
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))

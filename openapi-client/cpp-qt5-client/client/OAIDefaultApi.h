@@ -79,15 +79,15 @@ public:
     void sendAdvMailById(const OAISendMail &oai_send_mail);
 
     /**
-    * @param[in]  subject QString [optional]
-    * @param[in]  body QString [optional]
-    * @param[in]  to QString [optional]
-    * @param[in]  from QString [optional]
-    * @param[in]  id qint64 [optional]
+    * @param[in]  subject QString [required]
+    * @param[in]  body QString [required]
+    * @param[in]  from QString [required]
+    * @param[in]  to QString [required]
+    * @param[in]  id qint32 [optional]
     * @param[in]  to_name QString [optional]
     * @param[in]  from_name QString [optional]
     */
-    void sendMailById(const ::OpenAPI::OptionalParam<QString> &subject = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &body = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &to = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<QString> &to_name = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from_name = ::OpenAPI::OptionalParam<QString>());
+    void sendMailById(const QString &subject, const QString &body, const QString &from, const QString &to, const ::OpenAPI::OptionalParam<qint32> &id = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<QString> &to_name = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from_name = ::OpenAPI::OptionalParam<QString>());
 
 
     Q_DECL_DEPRECATED void validateMailOrder();

@@ -74,17 +74,18 @@ class TestDefaultController(BaseTestCase):
 
         Sends an Email
         """
-        query_string = [('subject', 'subject_example'),
-                        ('body', 'body_example'),
-                        ('to', 'to_example'),
-                        ('_from', '_from_example'),
-                        ('id', 789),
-                        ('to_name', 'to_name_example'),
-                        ('from_name', 'from_name_example')]
+        data = dict(subject='subject_example',
+                    body='body_example',
+                    _from='_from_example',
+                    to='to_example',
+                    id=56,
+                    to_name='to_name_example',
+                    from_name='from_name_example')
         response = self.client.open(
             '//mail/send',
             method='POST',
-            query_string=query_string)
+            data=data,
+            content_type='application/x-www-form-urlencoded')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

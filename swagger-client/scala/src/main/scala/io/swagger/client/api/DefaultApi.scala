@@ -189,17 +189,17 @@ class DefaultApi(
    * Sends an Email
    * Sends An email through one of your mail orders.
    *
-   * @param subject The Subject of the email (optional)
-   * @param body The contents of the email (optional)
-   * @param to The email address of who this email will be sent to. (optional)
-   * @param from The email address of who this email will be sent from. (optional)
-   * @param id The ID of your mail order this will be sent through. (optional)
-   * @param toName The name or title of who this email is being sent to. (optional)
-   * @param fromName The name or title of who this email is being sent from. (optional)
+   * @param subject  
+   * @param body  
+   * @param from  
+   * @param to  
+   * @param id  
+   * @param toName  
+   * @param fromName  
    * @return GenericResponse
    */
-  def sendMailById(subject: Option[String] = None, body: Option[String] = None, to: Option[String] = None, from: Option[String] = None, id: Option[Long] = None, toName: Option[String] = None, fromName: Option[String] = None): Option[GenericResponse] = {
-    val await = Try(Await.result(sendMailByIdAsync(subject, body, to, from, id, toName, fromName), Duration.Inf))
+  def sendMailById(subject: String, body: String, from: String, to: String, id: Integer, toName: String, fromName: String): Option[GenericResponse] = {
+    val await = Try(Await.result(sendMailByIdAsync(subject, body, from, to, id, toName, fromName), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -210,17 +210,17 @@ class DefaultApi(
    * Sends an Email asynchronously
    * Sends An email through one of your mail orders.
    *
-   * @param subject The Subject of the email (optional)
-   * @param body The contents of the email (optional)
-   * @param to The email address of who this email will be sent to. (optional)
-   * @param from The email address of who this email will be sent from. (optional)
-   * @param id The ID of your mail order this will be sent through. (optional)
-   * @param toName The name or title of who this email is being sent to. (optional)
-   * @param fromName The name or title of who this email is being sent from. (optional)
+   * @param subject  
+   * @param body  
+   * @param from  
+   * @param to  
+   * @param id  
+   * @param toName  
+   * @param fromName  
    * @return Future(GenericResponse)
    */
-  def sendMailByIdAsync(subject: Option[String] = None, body: Option[String] = None, to: Option[String] = None, from: Option[String] = None, id: Option[Long] = None, toName: Option[String] = None, fromName: Option[String] = None): Future[GenericResponse] = {
-      helper.sendMailById(subject, body, to, from, id, toName, fromName)
+  def sendMailByIdAsync(subject: String, body: String, from: String, to: String, id: Integer, toName: String, fromName: String): Future[GenericResponse] = {
+      helper.sendMailById(subject, body, from, to, id, toName, fromName)
   }
 
   /**
@@ -350,14 +350,13 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
-  def sendMailById(subject: Option[String] = None,
-    body: Option[String] = None,
-    to: Option[String] = None,
-    from: Option[String] = None,
-    id: Option[Long] = None,
-    toName: Option[String] = None,
-    fromName: Option[String] = None
-    )(implicit reader: ClientResponseReader[GenericResponse]): Future[GenericResponse] = {
+  def sendMailById(subject: String,
+    body: String,
+    from: String,
+    to: String,
+    id: Integer,
+    toName: String,
+    fromName: String)(implicit reader: ClientResponseReader[GenericResponse]): Future[GenericResponse] = {
     // create path and map variables
     val path = (addFmt("/mail/send"))
 
@@ -365,34 +364,18 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
-    subject match {
-      case Some(param) => queryParams += "subject" -> param.toString
-      case _ => queryParams
-    }
-    body match {
-      case Some(param) => queryParams += "body" -> param.toString
-      case _ => queryParams
-    }
-    to match {
-      case Some(param) => queryParams += "to" -> param.toString
-      case _ => queryParams
-    }
-    from match {
-      case Some(param) => queryParams += "from" -> param.toString
-      case _ => queryParams
-    }
-    id match {
-      case Some(param) => queryParams += "id" -> param.toString
-      case _ => queryParams
-    }
-    toName match {
-      case Some(param) => queryParams += "toName" -> param.toString
-      case _ => queryParams
-    }
-    fromName match {
-      case Some(param) => queryParams += "fromName" -> param.toString
-      case _ => queryParams
-    }
+    if (subject == null) throw new Exception("Missing required parameter 'subject' when calling DefaultApi->sendMailById")
+
+    if (body == null) throw new Exception("Missing required parameter 'body' when calling DefaultApi->sendMailById")
+
+    if (from == null) throw new Exception("Missing required parameter 'from' when calling DefaultApi->sendMailById")
+
+    if (to == null) throw new Exception("Missing required parameter 'to' when calling DefaultApi->sendMailById")
+
+    if (toName == null) throw new Exception("Missing required parameter 'toName' when calling DefaultApi->sendMailById")
+
+    if (fromName == null) throw new Exception("Missing required parameter 'fromName' when calling DefaultApi->sendMailById")
+
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>

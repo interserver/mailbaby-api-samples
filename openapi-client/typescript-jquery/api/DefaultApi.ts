@@ -310,13 +310,13 @@ export class DefaultApi {
      * @summary Sends an Email
      * @param subject The Subject of the email
      * @param body The contents of the email
-     * @param to The email address of who this email will be sent to.
      * @param from The email address of who this email will be sent from.
+     * @param to The email address of who this email will be sent to.
      * @param id The ID of your mail order this will be sent through.
      * @param toName The name or title of who this email is being sent to.
      * @param fromName The name or title of who this email is being sent from.
      */
-    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public sendMailById(subject: string, body: string, from: string, to: string, id?: number, toName?: string, fromName?: string, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: models.GenericResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
@@ -324,31 +324,55 @@ export class DefaultApi {
 
         let queryParameters: any = {};
         let headerParams: any = {};
-        if (subject !== null && subject !== undefined) {
-            queryParameters['subject'] = <string><any>subject;
-        }
-        if (body !== null && body !== undefined) {
-            queryParameters['body'] = <string><any>body;
-        }
-        if (to !== null && to !== undefined) {
-            queryParameters['to'] = <string><any>to;
-        }
-        if (from !== null && from !== undefined) {
-            queryParameters['from'] = <string><any>from;
-        }
-        if (id !== null && id !== undefined) {
-            queryParameters['id'] = <string><any>id;
-        }
-        if (toName !== null && toName !== undefined) {
-            queryParameters['toName'] = <string><any>toName;
-        }
-        if (fromName !== null && fromName !== undefined) {
-            queryParameters['fromName'] = <string><any>fromName;
+        let formParams = new FormData();
+        let reqHasFile = false;
+
+        // verify required parameter 'subject' is not null or undefined
+        if (subject === null || subject === undefined) {
+            throw new Error('Required parameter subject was null or undefined when calling sendMailById.');
         }
 
+        // verify required parameter 'body' is not null or undefined
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling sendMailById.');
+        }
+
+        // verify required parameter 'from' is not null or undefined
+        if (from === null || from === undefined) {
+            throw new Error('Required parameter from was null or undefined when calling sendMailById.');
+        }
+
+        // verify required parameter 'to' is not null or undefined
+        if (to === null || to === undefined) {
+            throw new Error('Required parameter to was null or undefined when calling sendMailById.');
+        }
+
+
         localVarPath = localVarPath + "?" + $.param(queryParameters);
+        if (subject !== null && subject !== undefined) {
+            formParams.append('subject', <any>subject);
+        }
+        if (body !== null && body !== undefined) {
+            formParams.append('body', <any>body);
+        }
+        if (from !== null && from !== undefined) {
+            formParams.append('from', <any>from);
+        }
+        if (to !== null && to !== undefined) {
+            formParams.append('to', <any>to);
+        }
+        if (id !== null && id !== undefined) {
+            formParams.append('id', <any>id);
+        }
+        if (toName !== null && toName !== undefined) {
+            formParams.append('toName', <any>toName);
+        }
+        if (fromName !== null && fromName !== undefined) {
+            formParams.append('fromName', <any>fromName);
+        }
         // to determine the Content-Type header
         let consumes: string[] = [
+            'application/x-www-form-urlencoded'
         ];
 
         // to determine the Accept header
@@ -361,6 +385,10 @@ export class DefaultApi {
             headerParams['X-API-KEY'] = this.configuration.apiKey;
         }
 
+        if (!reqHasFile) {
+            headerParams['Content-Type'] = 'application/x-www-form-urlencoded';
+        }
+
 
         let requestOptions: JQueryAjaxSettings = {
             url: localVarPath,
@@ -371,6 +399,10 @@ export class DefaultApi {
 
         if (headerParams['Content-Type']) {
             requestOptions.contentType = headerParams['Content-Type'];
+        }
+        requestOptions.data = formParams;
+        if (reqHasFile) {
+            requestOptions.contentType = false;
         }
 
         if (extraJQueryAjaxSettings) {

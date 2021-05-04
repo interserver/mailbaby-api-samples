@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMailById"></a>
 # **sendMailById**
-> GenericResponse sendMailById(opts)
+> GenericResponse sendMailById(subjectbodyfromtoidtoNamefromName)
 
 Sends an Email
 
@@ -218,16 +218,15 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyApi.DefaultApi();
-let opts = { 
-  'subject': "subject_example", // String | The Subject of the email
-  'body': "body_example", // String | The contents of the email
-  'to': "to_example", // String | The email address of who this email will be sent to.
-  'from': "from_example", // String | The email address of who this email will be sent from.
-  'id': 789, // Number | The ID of your mail order this will be sent through.
-  'toName': "toName_example", // String | The name or title of who this email is being sent to.
-  'fromName': "fromName_example" // String | The name or title of who this email is being sent from.
-};
-apiInstance.sendMailById(opts, (error, data, response) => {
+let subject = "subject_example"; // String | 
+let body = "body_example"; // String | 
+let from = "from_example"; // String | 
+let to = "to_example"; // String | 
+let id = 56; // Number | 
+let toName = "toName_example"; // String | 
+let fromName = "fromName_example"; // String | 
+
+apiInstance.sendMailById(subjectbodyfromtoidtoNamefromName, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -240,13 +239,13 @@ apiInstance.sendMailById(opts, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **String**| The Subject of the email | [optional] 
- **body** | **String**| The contents of the email | [optional] 
- **to** | **String**| The email address of who this email will be sent to. | [optional] 
- **from** | **String**| The email address of who this email will be sent from. | [optional] 
- **id** | **Number**| The ID of your mail order this will be sent through. | [optional] 
- **toName** | **String**| The name or title of who this email is being sent to. | [optional] 
- **fromName** | **String**| The name or title of who this email is being sent from. | [optional] 
+ **subject** | **String**|  | 
+ **body** | **String**|  | 
+ **from** | **String**|  | 
+ **to** | **String**|  | 
+ **id** | **Number**|  | 
+ **toName** | **String**|  | 
+ **fromName** | **String**|  | 
 
 ### Return type
 
@@ -258,7 +257,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 <a name="validateMailOrder"></a>

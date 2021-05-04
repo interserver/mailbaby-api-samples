@@ -268,7 +268,7 @@ Name | Type | Description  | Notes
 
 ## SendMailById
 
-> GenericResponse SendMailById(ctx).Subject(subject).Body(body).To(to).From(from).Id(id).ToName(toName).FromName(fromName).Execute()
+> GenericResponse SendMailById(ctx).Subject(subject).Body(body).From(from).To(to).Id(id).ToName(toName).FromName(fromName).Execute()
 
 Sends an Email
 
@@ -287,17 +287,17 @@ import (
 )
 
 func main() {
-    subject := "subject_example" // string | The Subject of the email (optional)
-    body := "body_example" // string | The contents of the email (optional)
-    to := "to_example" // string | The email address of who this email will be sent to. (optional)
-    from := "from_example" // string | The email address of who this email will be sent from. (optional)
-    id := int64(789) // int64 | The ID of your mail order this will be sent through. (optional)
+    subject := "subject_example" // string | The Subject of the email
+    body := "body_example" // string | The contents of the email
+    from := "from_example" // string | The email address of who this email will be sent from.
+    to := "to_example" // string | The email address of who this email will be sent to.
+    id := int32(56) // int32 | The ID of your mail order this will be sent through. (optional)
     toName := "toName_example" // string | The name or title of who this email is being sent to. (optional)
     fromName := "fromName_example" // string | The name or title of who this email is being sent from. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.SendMailById(context.Background()).Subject(subject).Body(body).To(to).From(from).Id(id).ToName(toName).FromName(fromName).Execute()
+    resp, r, err := api_client.DefaultApi.SendMailById(context.Background()).Subject(subject).Body(body).From(from).To(to).Id(id).ToName(toName).FromName(fromName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SendMailById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -320,9 +320,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **string** | The Subject of the email | 
  **body** | **string** | The contents of the email | 
- **to** | **string** | The email address of who this email will be sent to. | 
  **from** | **string** | The email address of who this email will be sent from. | 
- **id** | **int64** | The ID of your mail order this will be sent through. | 
+ **to** | **string** | The email address of who this email will be sent to. | 
+ **id** | **int32** | The ID of your mail order this will be sent through. | 
  **toName** | **string** | The name or title of who this email is being sent to. | 
  **fromName** | **string** | The name or title of who this email is being sent from. | 
 
@@ -336,7 +336,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

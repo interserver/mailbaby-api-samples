@@ -450,124 +450,46 @@ void OAIDefaultApi::sendAdvMailByIdCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIDefaultApi::sendMailById(const ::OpenAPI::OptionalParam<QString> &subject, const ::OpenAPI::OptionalParam<QString> &body, const ::OpenAPI::OptionalParam<QString> &to, const ::OpenAPI::OptionalParam<QString> &from, const ::OpenAPI::OptionalParam<qint64> &id, const ::OpenAPI::OptionalParam<QString> &to_name, const ::OpenAPI::OptionalParam<QString> &from_name) {
+void OAIDefaultApi::sendMailById(const QString &subject, const QString &body, const QString &from, const QString &to, const ::OpenAPI::OptionalParam<qint32> &id, const ::OpenAPI::OptionalParam<QString> &to_name, const ::OpenAPI::OptionalParam<QString> &from_name) {
     QString fullPath = QString(_serverConfigs["sendMailById"][_serverIndices.value("sendMailById")].URL()+"/mail/send");
     
     if(_apiKeys.contains("apiKeyAuth")){
         addHeaders("apiKeyAuth",_apiKeys.find("apiKeyAuth").value());
     }
     
-    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
-    if(subject.hasValue())
-    {
-        queryStyle = "form";
-        if(queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "subject", true);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("subject")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(subject.value())));
-    }
-    if(body.hasValue())
-    {
-        queryStyle = "form";
-        if(queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "body", true);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("body")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(body.value())));
-    }
-    if(to.hasValue())
-    {
-        queryStyle = "form";
-        if(queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "to", true);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("to")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(to.value())));
-    }
-    if(from.hasValue())
-    {
-        queryStyle = "form";
-        if(queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "from", true);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("from")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(from.value())));
-    }
-    if(id.hasValue())
-    {
-        queryStyle = "form";
-        if(queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "id", true);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("id")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(id.value())));
-    }
-    if(to_name.hasValue())
-    {
-        queryStyle = "form";
-        if(queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "toName", true);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("toName")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(to_name.value())));
-    }
-    if(from_name.hasValue())
-    {
-        queryStyle = "form";
-        if(queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "fromName", true);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("fromName")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(from_name.value())));
-    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
     OAIHttpRequestInput input(fullPath, "POST");
 
+    
+    {
+        input.add_var("subject", ::OpenAPI::toStringValue(subject));
+    }
+    
+    {
+        input.add_var("body", ::OpenAPI::toStringValue(body));
+    }
+    
+    {
+        input.add_var("from", ::OpenAPI::toStringValue(from));
+    }
+    
+    {
+        input.add_var("to", ::OpenAPI::toStringValue(to));
+    }
+    if(id.hasValue())
+    {
+        input.add_var("id", ::OpenAPI::toStringValue(id.value()));
+    }
+    if(to_name.hasValue())
+    {
+        input.add_var("toName", ::OpenAPI::toStringValue(to_name.value()));
+    }
+    if(from_name.hasValue())
+    {
+        input.add_var("fromName", ::OpenAPI::toStringValue(from_name.value()));
+    }
 
     foreach (QString key, this->defaultHeaders.keys()) { input.headers.insert(key, this->defaultHeaders.value(key)); }
 

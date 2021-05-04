@@ -338,14 +338,7 @@ case $state in
       sendMailById)
         local -a _op_arguments
         _op_arguments=(
-                    "subject=:[QUERY] The Subject of the email"
-"body=:[QUERY] The contents of the email"
-"to=:[QUERY] The email address of who this email will be sent to."
-"from=:[QUERY] The email address of who this email will be sent from."
-"id=:[QUERY] The ID of your mail order this will be sent through."
-"toName=:[QUERY] The name or title of who this email is being sent to."
-"fromName=:[QUERY] The name or title of who this email is being sent from."
-          )
+                              )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       validateMailOrder)

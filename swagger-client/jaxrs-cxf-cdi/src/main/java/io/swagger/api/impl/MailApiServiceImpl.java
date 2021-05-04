@@ -21,7 +21,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-04T15:55:19.569687-04:00[America/New_York]")public class MailApiServiceImpl implements MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-04T18:07:20.302239-04:00[America/New_York]")public class MailApiServiceImpl implements MailApiService {
       @Override
       public Response getMailOrders(Long id, SecurityContext securityContext) {
       // do some magic!
@@ -38,7 +38,7 @@ import javax.ws.rs.core.SecurityContext;
       return Response.ok().entity("magic!").build();
   }
       @Override
-      public Response sendMailById(String subject, String body, String to, String from, Long id, String toName, String fromName, SecurityContext securityContext) {
+      public Response sendMailById(String subject, String body, String from, String to, Integer id, String toName, String fromName, SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }

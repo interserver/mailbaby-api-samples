@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **sendMailById**
-> \Interserver\Mailbaby\Model\GenericResponse sendMailById($subject, $body, $to, $from, $id, $toName, $fromName)
+> \Interserver\Mailbaby\Model\GenericResponse sendMailById($subject, $body, $from, $to, $id, $toName, $fromName)
 
 Sends an Email
 
@@ -235,16 +235,16 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$subject = "subject_example"; // string | The Subject of the email
-$body = "body_example"; // string | The contents of the email
-$to = "to_example"; // string | The email address of who this email will be sent to.
-$from = "from_example"; // string | The email address of who this email will be sent from.
-$id = 789; // int | The ID of your mail order this will be sent through.
-$toName = "toName_example"; // string | The name or title of who this email is being sent to.
-$fromName = "fromName_example"; // string | The name or title of who this email is being sent from.
+$subject = "subject_example"; // string | 
+$body = "body_example"; // string | 
+$from = "from_example"; // string | 
+$to = "to_example"; // string | 
+$id = 56; // int | 
+$toName = "toName_example"; // string | 
+$fromName = "fromName_example"; // string | 
 
 try {
-    $result = $apiInstance->sendMailById($subject, $body, $to, $from, $id, $toName, $fromName);
+    $result = $apiInstance->sendMailById($subject, $body, $from, $to, $id, $toName, $fromName);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->sendMailById: ', $e->getMessage(), PHP_EOL;
@@ -256,13 +256,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **string**| The Subject of the email | [optional]
- **body** | **string**| The contents of the email | [optional]
- **to** | **string**| The email address of who this email will be sent to. | [optional]
- **from** | **string**| The email address of who this email will be sent from. | [optional]
- **id** | **int**| The ID of your mail order this will be sent through. | [optional]
- **toName** | **string**| The name or title of who this email is being sent to. | [optional]
- **fromName** | **string**| The name or title of who this email is being sent from. | [optional]
+ **subject** | **string**|  |
+ **body** | **string**|  |
+ **from** | **string**|  |
+ **to** | **string**|  |
+ **id** | **int**|  |
+ **toName** | **string**|  |
+ **fromName** | **string**|  |
 
 ### Return type
 
@@ -274,7 +274,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

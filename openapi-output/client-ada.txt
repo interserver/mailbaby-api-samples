@@ -10,6 +10,7 @@
 [main] WARN  o.o.c.languages.AbstractAdaCodegen - Identifier 'body' is a reserved word, renamed to P_body
 [main] WARN  o.o.c.languages.AbstractAdaCodegen - Identifier 'body' is a reserved word, renamed to P_body
 [main] WARN  o.o.c.languages.AbstractAdaCodegen - Identifier 'body' is a reserved word, renamed to P_body
+[main] INFO  o.o.codegen.DefaultGenerator - Model body not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)

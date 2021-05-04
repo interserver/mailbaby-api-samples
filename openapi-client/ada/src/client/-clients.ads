@@ -42,11 +42,11 @@ package .Clients is
    --  Sends An email through one of your mail orders.
    procedure Send_Mail_By_Id
       (Client : in out Client_Type;
-       Subject : in Swagger.Nullable_UString;
-       P_Body : in Swagger.Nullable_UString;
-       To : in Swagger.Nullable_UString;
-       From : in Swagger.Nullable_UString;
-       Id : in Swagger.Nullable_Long;
+       Subject : in Swagger.UString;
+       P_Body : in Swagger.UString;
+       From : in Swagger.UString;
+       To : in Swagger.UString;
+       Id : in Swagger.Nullable_Integer;
        To_Name : in Swagger.Nullable_UString;
        From_Name : in Swagger.Nullable_UString;
        Result : out .Models.GenericResponse_Type);

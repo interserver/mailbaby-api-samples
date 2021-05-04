@@ -129,7 +129,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SendMailById**
-> GenericResponse SendMailById(ctx, optional)
+> GenericResponse SendMailById(ctx, subject, body, from, to, id, toName, fromName)
 Sends an Email
 
 Sends An email through one of your mail orders.
@@ -139,19 +139,13 @@ Sends An email through one of your mail orders.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***DefaultApiSendMailByIdOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a DefaultApiSendMailByIdOpts struct
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subject** | **optional.String**| The Subject of the email | 
- **body** | **optional.String**| The contents of the email | 
- **to** | **optional.String**| The email address of who this email will be sent to. | 
- **from** | **optional.String**| The email address of who this email will be sent from. | 
- **id** | **optional.Int64**| The ID of your mail order this will be sent through. | 
- **toName** | **optional.String**| The name or title of who this email is being sent to. | 
- **fromName** | **optional.String**| The name or title of who this email is being sent from. | 
+  **subject** | **string**|  | 
+  **body** | **string**|  | 
+  **from** | **string**|  | 
+  **to** | **string**|  | 
+  **id** | **int32**|  | 
+  **toName** | **string**|  | 
+  **fromName** | **string**|  | 
 
 ### Return type
 
@@ -163,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

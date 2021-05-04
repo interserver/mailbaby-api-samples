@@ -161,38 +161,20 @@ DefaultApi <- R6::R6Class(
       }
 
     }
-    send_mail_by_id = function(subject, body, to, from, id, to_name, from_name, ...){
+    send_mail_by_id = function(subject, body, from, to, id, to_name, from_name, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()
 
-      if (!missing(`subject`)) {
-        queryParams['subject'] <- subject
-      }
-
-      if (!missing(`body`)) {
-        queryParams['body'] <- body
-      }
-
-      if (!missing(`to`)) {
-        queryParams['to'] <- to
-      }
-
-      if (!missing(`from`)) {
-        queryParams['from'] <- from
-      }
-
-      if (!missing(`id`)) {
-        queryParams['id'] <- id
-      }
-
-      if (!missing(`to_name`)) {
-        queryParams['toName'] <- to_name
-      }
-
-      if (!missing(`from_name`)) {
-        queryParams['fromName'] <- from_name
-      }
+      body <- list(
+          "subject" = subject,
+          "body" = body,
+          "from" = from,
+          "to" = to,
+          "id" = id,
+          "toName" = to_name,
+          "fromName" = from_name
+      )
 
       urlPath <- "/mail/send"
       resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),

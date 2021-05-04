@@ -8,6 +8,7 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
+import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/error_response.dart';
 import 'package:openapi/src/model/generic_response.dart';
 import 'package:openapi/src/model/mail_log.dart';
@@ -311,10 +312,10 @@ class DefaultApi {
   ///
   /// Sends An email through one of your mail orders.
   Future<Response<GenericResponse>> sendMailById({ 
-    String? subject,
-    String? body,
-    String? to,
-    String? from,
+    required String subject,
+    required String body,
+    required String from,
+    required String to,
     int? id,
     String? toName,
     String? fromName,
@@ -343,23 +344,42 @@ class DefaultApi {
         ...?extra,
       },
       contentType: [
-        'application/json',
+        'application/x-www-form-urlencoded',
       ].first,
       validateStatus: validateStatus,
     );
 
     final _queryParameters = <String, dynamic>{
-      if (subject != null) r'subject': subject,
-      if (body != null) r'body': body,
-      if (to != null) r'to': to,
-      if (from != null) r'from': from,
-      if (id != null) r'id': id,
-      if (toName != null) r'toName': toName,
-      if (fromName != null) r'fromName': fromName,
     };
+
+    dynamic _bodyData;
+
+    try {
+      _bodyData = <String, dynamic>{
+        r'subject': encodeFormParameter(_serializers, subject, const FullType(String)),
+        r'body': encodeFormParameter(_serializers, body, const FullType(String)),
+        r'from': encodeFormParameter(_serializers, from, const FullType(String)),
+        r'to': encodeFormParameter(_serializers, to, const FullType(String)),
+        if (id != null) r'id': encodeFormParameter(_serializers, id, const FullType(int)),
+        if (toName != null) r'toName': encodeFormParameter(_serializers, toName, const FullType(String)),
+        if (fromName != null) r'fromName': encodeFormParameter(_serializers, fromName, const FullType(String)),
+      };
+
+    } catch(error) {
+      throw DioError(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+          queryParameters: _queryParameters,
+        ),
+        type: DioErrorType.other,
+        error: error,
+      );
+    }
 
     final _response = await _dio.request<Object>(
       _path,
+      data: _bodyData,
       options: _options,
       queryParameters: _queryParameters,
       cancelToken: cancelToken,

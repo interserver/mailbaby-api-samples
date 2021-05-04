@@ -45,10 +45,10 @@ export interface SendAdvMailByIdRequest {
 }
 
 export interface SendMailByIdRequest {
-    subject?: string;
-    body?: string;
-    to?: string;
-    from?: string;
+    subject: string;
+    body: string;
+    from: string;
+    to: string;
     id?: number;
     toName?: string;
     fromName?: string;
@@ -254,44 +254,24 @@ export function sendAdvMailById<T>(requestParameters: SendAdvMailByIdRequest, re
  * Sends an Email
  */
 function sendMailByIdRaw<T>(requestParameters: SendMailByIdRequest, requestConfig: runtime.TypedQueryConfig<T, GenericResponse> = {}): QueryConfig<T> {
+    if (requestParameters.subject === null || requestParameters.subject === undefined) {
+        throw new runtime.RequiredError('subject','Required parameter requestParameters.subject was null or undefined when calling sendMailById.');
+    }
+
+    if (requestParameters.body === null || requestParameters.body === undefined) {
+        throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling sendMailById.');
+    }
+
+    if (requestParameters.from === null || requestParameters.from === undefined) {
+        throw new runtime.RequiredError('from','Required parameter requestParameters.from was null or undefined when calling sendMailById.');
+    }
+
+    if (requestParameters.to === null || requestParameters.to === undefined) {
+        throw new runtime.RequiredError('to','Required parameter requestParameters.to was null or undefined when calling sendMailById.');
+    }
+
     let queryParameters = null;
 
-    queryParameters = {};
-
-
-    if (requestParameters.subject !== undefined) {
-        queryParameters['subject'] = requestParameters.subject;
-    }
-
-
-    if (requestParameters.body !== undefined) {
-        queryParameters['body'] = requestParameters.body;
-    }
-
-
-    if (requestParameters.to !== undefined) {
-        queryParameters['to'] = requestParameters.to;
-    }
-
-
-    if (requestParameters.from !== undefined) {
-        queryParameters['from'] = requestParameters.from;
-    }
-
-
-    if (requestParameters.id !== undefined) {
-        queryParameters['id'] = requestParameters.id;
-    }
-
-
-    if (requestParameters.toName !== undefined) {
-        queryParameters['toName'] = requestParameters.toName;
-    }
-
-
-    if (requestParameters.fromName !== undefined) {
-        queryParameters['fromName'] = requestParameters.fromName;
-    }
 
     const headerParameters : runtime.HttpHeaders = {};
 
@@ -299,6 +279,35 @@ function sendMailByIdRaw<T>(requestParameters: SendMailByIdRequest, requestConfi
     const { meta = {} } = requestConfig;
 
     meta.authType = ['api_key', 'header'];
+    const formData = new FormData();
+    if (requestParameters.subject !== undefined) {
+        formData.append('subject', requestParameters.subject as any);
+    }
+
+    if (requestParameters.body !== undefined) {
+        formData.append('body', requestParameters.body as any);
+    }
+
+    if (requestParameters.from !== undefined) {
+        formData.append('from', requestParameters.from as any);
+    }
+
+    if (requestParameters.to !== undefined) {
+        formData.append('to', requestParameters.to as any);
+    }
+
+    if (requestParameters.id !== undefined) {
+        formData.append('id', requestParameters.id as any);
+    }
+
+    if (requestParameters.toName !== undefined) {
+        formData.append('toName', requestParameters.toName as any);
+    }
+
+    if (requestParameters.fromName !== undefined) {
+        formData.append('fromName', requestParameters.fromName as any);
+    }
+
     const config: QueryConfig<T> = {
         url: `${runtime.Configuration.basePath}/mail/send`,
         meta,
@@ -311,7 +320,7 @@ function sendMailByIdRaw<T>(requestParameters: SendMailByIdRequest, requestConfi
             method: 'POST',
             headers: headerParameters,
         },
-        body: queryParameters,
+        body: formData,
     };
 
     const { transform: requestTransform } = requestConfig;

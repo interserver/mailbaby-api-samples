@@ -2,7 +2,7 @@
 
 Mail Baby API
 - API version: 1.0.0
-  - Build date: 2021-05-04T15:55:08.502134-04:00[America/New_York]
+  - Build date: 2021-05-04T18:07:09.232470-04:00[America/New_York]
 
 This is an API defintion for accesssing the Mail.Baby mail service.
 
@@ -202,15 +202,15 @@ public class DefaultApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
-        String subject = "subject_example"; // String | The Subject of the email
-        String body = "body_example"; // String | The contents of the email
-        String to = "to_example"; // String | The email address of who this email will be sent to.
-        String from = "from_example"; // String | The email address of who this email will be sent from.
-        Long id = 789L; // Long | The ID of your mail order this will be sent through.
-        String toName = "toName_example"; // String | The name or title of who this email is being sent to.
-        String fromName = "fromName_example"; // String | The name or title of who this email is being sent from.
+        String subject = "subject_example"; // String | 
+        String body = "body_example"; // String | 
+        String from = "from_example"; // String | 
+        String to = "to_example"; // String | 
+        Integer id = 56; // Integer | 
+        String toName = "toName_example"; // String | 
+        String fromName = "fromName_example"; // String | 
         try {
-            GenericResponse result = apiInstance.sendMailById(subject, body, to, from, id, toName, fromName);
+            GenericResponse result = apiInstance.sendMailById(subject, body, from, to, id, toName, fromName);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#sendMailById");
@@ -297,6 +297,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [Body](docs/Body.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [GenericResponse](docs/GenericResponse.md)
  - [MailAttachment](docs/MailAttachment.md)

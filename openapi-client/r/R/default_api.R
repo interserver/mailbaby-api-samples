@@ -141,8 +141,8 @@
 #' \itemize{
 #' \item \emph{ @param } subject character
 #' \item \emph{ @param } body character
-#' \item \emph{ @param } to character
 #' \item \emph{ @param } from character
+#' \item \emph{ @param } to character
 #' \item \emph{ @param } id integer
 #' \item \emph{ @param } to.name character
 #' \item \emph{ @param } from.name character
@@ -290,8 +290,8 @@
 #' library(openapi)
 #' var.subject <- 'subject_example' # character | The Subject of the email
 #' var.body <- 'body_example' # character | The contents of the email
-#' var.to <- 'to_example' # character | The email address of who this email will be sent to.
 #' var.from <- 'from_example' # character | The email address of who this email will be sent from.
+#' var.to <- 'to_example' # character | The email address of who this email will be sent to.
 #' var.id <- 56 # integer | The ID of your mail order this will be sent through.
 #' var.to.name <- 'to.name_example' # character | The name or title of who this email is being sent to.
 #' var.from.name <- 'from.name_example' # character | The name or title of who this email is being sent from.
@@ -302,7 +302,7 @@
 #' #Configure API key authorization: apiKeyAuth
 #' api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
 #'
-#' result <- api.instance$SendMailById(subject=var.subject, body=var.body, to=var.to, from=var.from, id=var.id, to.name=var.to.name, from.name=var.from.name)
+#' result <- api.instance$SendMailById(var.subject, var.body, var.from, var.to, id=var.id, to.name=var.to.name, from.name=var.from.name)
 #'
 #'
 #' ####################  ValidateMailOrder  ####################
@@ -547,8 +547,8 @@ DefaultApi <- R6::R6Class(
         ApiResponse$new("API server error", resp)
       }
     },
-    SendMailById = function(subject=NULL, body=NULL, to=NULL, from=NULL, id=NULL, to.name=NULL, from.name=NULL, ...){
-      apiResponse <- self$SendMailByIdWithHttpInfo(subject, body, to, from, id, to.name, from.name, ...)
+    SendMailById = function(subject, body, from, to, id=NULL, to.name=NULL, from.name=NULL, ...){
+      apiResponse <- self$SendMailByIdWithHttpInfo(subject, body, from, to, id, to.name, from.name, ...)
       resp <- apiResponse$response
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
         apiResponse$content
@@ -561,26 +561,37 @@ DefaultApi <- R6::R6Class(
       }
     },
 
-    SendMailByIdWithHttpInfo = function(subject=NULL, body=NULL, to=NULL, from=NULL, id=NULL, to.name=NULL, from.name=NULL, ...){
+    SendMailByIdWithHttpInfo = function(subject, body, from, to, id=NULL, to.name=NULL, from.name=NULL, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- c()
 
-      queryParams['subject'] <- subject
+      if (missing(`subject`)) {
+        stop("Missing required parameter `subject`.")
+      }
 
-      queryParams['body'] <- body
+      if (missing(`body`)) {
+        stop("Missing required parameter `body`.")
+      }
 
-      queryParams['to'] <- to
+      if (missing(`from`)) {
+        stop("Missing required parameter `from`.")
+      }
 
-      queryParams['from'] <- from
+      if (missing(`to`)) {
+        stop("Missing required parameter `to`.")
+      }
 
-      queryParams['id'] <- id
+      body <- list(
+        "subject" = subject,
+        "body" = body,
+        "from" = from,
+        "to" = to,
+        "id" = id,
+        "toName" = to.name,
+        "fromName" = from.name
+      )
 
-      queryParams['toName'] <- to.name
-
-      queryParams['fromName'] <- from.name
-
-      body <- NULL
       urlPath <- "/mail/send"
       # API key authentication
       if ("X-API-KEY" %in% names(self$apiClient$apiKeys) && nchar(self$apiClient$apiKeys["X-API-KEY"]) > 0) {

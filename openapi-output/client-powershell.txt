@@ -17,6 +17,7 @@
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
+[main] INFO  o.o.codegen.DefaultGenerator - Model body not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Model/ErrorResponse.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Model/ErrorResponse.Tests.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/docs/ErrorResponse.md

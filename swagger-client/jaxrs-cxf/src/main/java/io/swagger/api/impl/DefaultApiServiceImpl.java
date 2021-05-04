@@ -77,7 +77,7 @@ public class DefaultApiServiceImpl implements DefaultApi {
      * Sends An email through one of your mail orders.
      *
      */
-    public GenericResponse sendMailById(String subject, String body, String to, String from, Long id, String toName, String fromName) {
+    public GenericResponse sendMailById(String subject, String body, String from, String to, Integer id, String toName, String fromName) {
         // TODO: Implement...
         
         return null;

@@ -119,17 +119,17 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
-subject = 'subject_example' # str | The Subject of the email (optional)
-body = 'body_example' # str | The contents of the email (optional)
-to = 'to_example' # str | The email address of who this email will be sent to. (optional)
-_from = '_from_example' # str | The email address of who this email will be sent from. (optional)
-id = 789 # int | The ID of your mail order this will be sent through. (optional)
-to_name = 'to_name_example' # str | The name or title of who this email is being sent to. (optional)
-from_name = 'from_name_example' # str | The name or title of who this email is being sent from. (optional)
+subject = 'subject_example' # str | 
+body = 'body_example' # str | 
+_from = '_from_example' # str | 
+to = 'to_example' # str | 
+id = 56 # int | 
+to_name = 'to_name_example' # str | 
+from_name = 'from_name_example' # str | 
 
 try:
     # Sends an Email
-    api_response = api_instance.send_mail_by_id(subject=subject, body=body, to=to, _from=_from, id=id, to_name=to_name, from_name=from_name)
+    api_response = api_instance.send_mail_by_id(subject, body, _from, to, id, to_name, from_name)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->send_mail_by_id: %s\n" % e)
@@ -186,6 +186,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [Body](docs/Body.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [GenericResponse](docs/GenericResponse.md)
  - [MailAttachment](docs/MailAttachment.md)

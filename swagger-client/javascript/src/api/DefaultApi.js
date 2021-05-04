@@ -197,32 +197,30 @@ export default class DefaultApi {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param {Object} opts Optional parameters
      * @param {module:api/DefaultApi~sendMailByIdCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    sendMailById(opts, callback) {
-      opts = opts || {};
+    sendMailById(subject, body, from, to, id, toName, fromName, callback) {
       let postBody = null;
 
       let pathParams = {
       };
       let queryParams = {
-        'subject': opts['subject'],
-        'body': opts['body'],
-        'to': opts['to'],
-        'from': opts['from'],
-        'id': opts['id'],
-        'toName': opts['toName'],
-        'fromName': opts['fromName']
       };
       let headerParams = {
       };
       let formParams = {
+        'subject': subject,
+        'body': body,
+        'from': from,
+        'to': to,
+        'id': id,
+        'toName': toName,
+        'fromName': fromName
       };
 
       let authNames = ['apiKeyAuth'];
-      let contentTypes = [];
+      let contentTypes = ['application/x-www-form-urlencoded'];
       let accepts = ['application/json'];
       let returnType = GenericResponse;
 

@@ -37,7 +37,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-04T15:55:19.569687-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-04T18:07:20.302239-04:00[America/New_York]")
 public class MailApi  {
 
   @Context SecurityContext securityContext;
@@ -96,7 +96,7 @@ public class MailApi  {
 
     @POST
     @Path("/send")
-    
+    @Consumes({ "application/x-www-form-urlencoded" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
@@ -105,22 +105,8 @@ public class MailApi  {
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendMailById( 
-@Parameter(description = "The Subject of the email")  @QueryParam("subject") String subject
-,  
-@Parameter(description = "The contents of the email")  @QueryParam("body") String body
-,  
-@Parameter(description = "The email address of who this email will be sent to.")  @QueryParam("to") String to
-,  
-@Parameter(description = "The email address of who this email will be sent from.")  @QueryParam("from") String from
-,  
-@Parameter(description = "The ID of your mail order this will be sent through.")  @QueryParam("id") Long id
-,  
-@Parameter(description = "The name or title of who this email is being sent to.")  @QueryParam("toName") String toName
-,  
-@Parameter(description = "The name or title of who this email is being sent from.")  @QueryParam("fromName") String fromName
-) {
-        return delegate.sendMailById(subject, body, to, from, id, toName, fromName, securityContext);
+    public Response sendMailById(@Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body, @Multipart(value = "from")  String from, @Multipart(value = "to")  String to, @Multipart(value = "id")  Integer id, @Multipart(value = "toName")  String toName, @Multipart(value = "fromName")  String fromName) {
+        return delegate.sendMailById(subject, body, from, to, id, toName, fromName, securityContext);
     }
 
     @GET

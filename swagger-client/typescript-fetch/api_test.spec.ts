@@ -39,12 +39,12 @@ describe("DefaultApi", () => {
   test("sendMailById", () => {
     const subject: string = "subject_example"
     const body: string = "body_example"
-    const to: string = "to_example"
     const from: string = "from_example"
-    const id: number = 789
+    const to: string = "to_example"
+    const id: number = 56
     const toName: string = "toName_example"
     const fromName: string = "fromName_example"
-    return expect(instance.sendMailById(subject, body, to, from, id, toName, fromName, {})).resolves.toBe(null)
+    return expect(instance.sendMailById(subject, body, from, to, id, toName, fromName, {})).resolves.toBe(null)
   })
   test("validateMailOrder", () => {
     return expect(instance.validateMailOrder({})).resolves.toBe(null)

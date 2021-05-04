@@ -31,7 +31,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-04T15:55:30.532008-04:00[America/New_York]")public interface MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-04T18:07:31.669174-04:00[America/New_York]")public interface MailApi  {
    
     @GET
     
@@ -75,7 +75,7 @@ import javax.validation.constraints.*;
 
     @POST
     @Path("/send")
-    
+    @Consumes({ "application/x-www-form-urlencoded" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
@@ -85,7 +85,7 @@ import javax.validation.constraints.*;
                 @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
                 @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
          })
-    Response sendMailById( @QueryParam("subject") String subject, @QueryParam("body") String body, @QueryParam("to") String to, @QueryParam("from") String from, @QueryParam("id") Long id, @QueryParam("toName") String toName, @QueryParam("fromName") String fromName,@Context SecurityContext securityContext);
+    Response sendMailById(@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Parameter(description = "", required=true)@FormParam("from")  String from,@Parameter(description = "", required=true)@FormParam("to")  String to,@Parameter(description = "", required=true)@FormParam("id")  Integer id,@Parameter(description = "", required=true)@FormParam("toName")  String toName,@Parameter(description = "", required=true)@FormParam("fromName")  String fromName,@Context SecurityContext securityContext);
 
     @GET
     @Path("/order")

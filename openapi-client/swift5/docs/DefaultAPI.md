@@ -207,7 +207,7 @@ Name | Type | Description  | Notes
 
 # **sendMailById**
 ```swift
-    open class func sendMailById(subject: String? = nil, body: String? = nil, to: String? = nil, from: String? = nil, id: Int64? = nil, toName: String? = nil, fromName: String? = nil, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
+    open class func sendMailById(subject: String, body: String, from: String, to: String, id: Int? = nil, toName: String? = nil, fromName: String? = nil, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
 ```
 
 Sends an Email
@@ -219,16 +219,16 @@ Sends An email through one of your mail orders.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let subject = "subject_example" // String | The Subject of the email (optional)
-let body = "body_example" // String | The contents of the email (optional)
-let to = "to_example" // String | The email address of who this email will be sent to. (optional)
-let from = "from_example" // String | The email address of who this email will be sent from. (optional)
-let id = 987 // Int64 | The ID of your mail order this will be sent through. (optional)
+let subject = "subject_example" // String | The Subject of the email
+let body = "body_example" // String | The contents of the email
+let from = "from_example" // String | The email address of who this email will be sent from.
+let to = "to_example" // String | The email address of who this email will be sent to.
+let id = 987 // Int | The ID of your mail order this will be sent through. (optional)
 let toName = "toName_example" // String | The name or title of who this email is being sent to. (optional)
 let fromName = "fromName_example" // String | The name or title of who this email is being sent from. (optional)
 
 // Sends an Email
-DefaultAPI.sendMailById(subject: subject, body: body, to: to, from: from, id: id, toName: toName, fromName: fromName) { (response, error) in
+DefaultAPI.sendMailById(subject: subject, body: body, from: from, to: to, id: id, toName: toName, fromName: fromName) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -244,11 +244,11 @@ DefaultAPI.sendMailById(subject: subject, body: body, to: to, from: from, id: id
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **String** | The Subject of the email | [optional] 
- **body** | **String** | The contents of the email | [optional] 
- **to** | **String** | The email address of who this email will be sent to. | [optional] 
- **from** | **String** | The email address of who this email will be sent from. | [optional] 
- **id** | **Int64** | The ID of your mail order this will be sent through. | [optional] 
+ **subject** | **String** | The Subject of the email | 
+ **body** | **String** | The contents of the email | 
+ **from** | **String** | The email address of who this email will be sent from. | 
+ **to** | **String** | The email address of who this email will be sent to. | 
+ **id** | **Int** | The ID of your mail order this will be sent through. | [optional] 
  **toName** | **String** | The name or title of who this email is being sent to. | [optional] 
  **fromName** | **String** | The name or title of who this email is being sent from. | [optional] 
 
@@ -262,7 +262,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

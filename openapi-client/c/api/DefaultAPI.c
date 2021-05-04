@@ -324,13 +324,13 @@ end:
 // Sends An email through one of your mail orders.
 //
 generic_response_t*
-DefaultAPI_sendMailById(apiClient_t *apiClient, char * subject , char * body , char * to , char * from , long id , char * toName , char * fromName )
+DefaultAPI_sendMailById(apiClient_t *apiClient, char * subject , char * body , char * from , char * to , int id , char * toName , char * fromName )
 {
-    list_t    *localVarQueryParameters = list_create();
+    list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
-    list_t    *localVarFormParameters = NULL;
+    list_t    *localVarFormParameters = list_create();
     list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = NULL;
+    list_t *localVarContentType = list_create();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -341,90 +341,91 @@ DefaultAPI_sendMailById(apiClient_t *apiClient, char * subject , char * body , c
 
 
 
-    // query parameters
-    char *keyQuery_subject = NULL;
-    char * valueQuery_subject = NULL;
-    keyValuePair_t *keyPairQuery_subject = 0;
-    if (subject)
+    // form parameters
+    char *keyForm_subject = NULL;
+    char * valueForm_subject = 0;
+    keyValuePair_t *keyPairForm_subject = 0;
+    if (subject != NULL)
     {
-        keyQuery_subject = strdup("subject");
-        valueQuery_subject = strdup((subject));
-        keyPairQuery_subject = keyValuePair_create(keyQuery_subject, valueQuery_subject);
-        list_addElement(localVarQueryParameters,keyPairQuery_subject);
+        keyForm_subject = strdup("subject");
+        valueForm_subject = strdup((subject));
+        keyPairForm_subject = keyValuePair_create(keyForm_subject,valueForm_subject);
+        list_addElement(localVarFormParameters,keyPairForm_subject);
     }
 
-    // query parameters
-    char *keyQuery_body = NULL;
-    char * valueQuery_body = NULL;
-    keyValuePair_t *keyPairQuery_body = 0;
-    if (body)
+    // form parameters
+    char *keyForm_body = NULL;
+    char * valueForm_body = 0;
+    keyValuePair_t *keyPairForm_body = 0;
+    if (body != NULL)
     {
-        keyQuery_body = strdup("body");
-        valueQuery_body = strdup((body));
-        keyPairQuery_body = keyValuePair_create(keyQuery_body, valueQuery_body);
-        list_addElement(localVarQueryParameters,keyPairQuery_body);
+        keyForm_body = strdup("body");
+        valueForm_body = strdup((body));
+        keyPairForm_body = keyValuePair_create(keyForm_body,valueForm_body);
+        list_addElement(localVarFormParameters,keyPairForm_body);
     }
 
-    // query parameters
-    char *keyQuery_to = NULL;
-    char * valueQuery_to = NULL;
-    keyValuePair_t *keyPairQuery_to = 0;
-    if (to)
+    // form parameters
+    char *keyForm_from = NULL;
+    char * valueForm_from = 0;
+    keyValuePair_t *keyPairForm_from = 0;
+    if (from != NULL)
     {
-        keyQuery_to = strdup("to");
-        valueQuery_to = strdup((to));
-        keyPairQuery_to = keyValuePair_create(keyQuery_to, valueQuery_to);
-        list_addElement(localVarQueryParameters,keyPairQuery_to);
+        keyForm_from = strdup("from");
+        valueForm_from = strdup((from));
+        keyPairForm_from = keyValuePair_create(keyForm_from,valueForm_from);
+        list_addElement(localVarFormParameters,keyPairForm_from);
     }
 
-    // query parameters
-    char *keyQuery_from = NULL;
-    char * valueQuery_from = NULL;
-    keyValuePair_t *keyPairQuery_from = 0;
-    if (from)
+    // form parameters
+    char *keyForm_to = NULL;
+    char * valueForm_to = 0;
+    keyValuePair_t *keyPairForm_to = 0;
+    if (to != NULL)
     {
-        keyQuery_from = strdup("from");
-        valueQuery_from = strdup((from));
-        keyPairQuery_from = keyValuePair_create(keyQuery_from, valueQuery_from);
-        list_addElement(localVarQueryParameters,keyPairQuery_from);
+        keyForm_to = strdup("to");
+        valueForm_to = strdup((to));
+        keyPairForm_to = keyValuePair_create(keyForm_to,valueForm_to);
+        list_addElement(localVarFormParameters,keyPairForm_to);
     }
 
-    // query parameters
-    char *keyQuery_id = NULL;
-    long valueQuery_id ;
-    keyValuePair_t *keyPairQuery_id = 0;
-    if (id)
+    // form parameters
+    char *keyForm_id = NULL;
+    int valueForm_id = 0;
+    keyValuePair_t *keyPairForm_id = 0;
+    if (id != NULL)
     {
-        keyQuery_id = strdup("id");
-        valueQuery_id = (id);
-        keyPairQuery_id = keyValuePair_create(keyQuery_id, &valueQuery_id);
-        list_addElement(localVarQueryParameters,keyPairQuery_id);
+        keyForm_id = strdup("id");
+        valueForm_id = (id);
+        keyPairForm_id = keyValuePair_create(keyForm_id,&valueForm_id);
+        list_addElement(localVarFormParameters,keyPairForm_id);
     }
 
-    // query parameters
-    char *keyQuery_toName = NULL;
-    char * valueQuery_toName = NULL;
-    keyValuePair_t *keyPairQuery_toName = 0;
-    if (toName)
+    // form parameters
+    char *keyForm_toName = NULL;
+    char * valueForm_toName = 0;
+    keyValuePair_t *keyPairForm_toName = 0;
+    if (toName != NULL)
     {
-        keyQuery_toName = strdup("toName");
-        valueQuery_toName = strdup((toName));
-        keyPairQuery_toName = keyValuePair_create(keyQuery_toName, valueQuery_toName);
-        list_addElement(localVarQueryParameters,keyPairQuery_toName);
+        keyForm_toName = strdup("toName");
+        valueForm_toName = strdup((toName));
+        keyPairForm_toName = keyValuePair_create(keyForm_toName,valueForm_toName);
+        list_addElement(localVarFormParameters,keyPairForm_toName);
     }
 
-    // query parameters
-    char *keyQuery_fromName = NULL;
-    char * valueQuery_fromName = NULL;
-    keyValuePair_t *keyPairQuery_fromName = 0;
-    if (fromName)
+    // form parameters
+    char *keyForm_fromName = NULL;
+    char * valueForm_fromName = 0;
+    keyValuePair_t *keyPairForm_fromName = 0;
+    if (fromName != NULL)
     {
-        keyQuery_fromName = strdup("fromName");
-        valueQuery_fromName = strdup((fromName));
-        keyPairQuery_fromName = keyValuePair_create(keyQuery_fromName, valueQuery_fromName);
-        list_addElement(localVarQueryParameters,keyPairQuery_fromName);
+        keyForm_fromName = strdup("fromName");
+        valueForm_fromName = strdup((fromName));
+        keyPairForm_fromName = keyValuePair_create(keyForm_fromName,valueForm_fromName);
+        list_addElement(localVarFormParameters,keyPairForm_fromName);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/x-www-form-urlencoded"); //consumes
     apiClient_invoke(apiClient,
                     localVarPath,
                     localVarQueryParameters,
@@ -461,92 +462,71 @@ DefaultAPI_sendMailById(apiClient_t *apiClient, char * subject , char * body , c
         apiClient->dataReceived = NULL;
         apiClient->dataReceivedLen = 0;
     }
-    list_free(localVarQueryParameters);
     
     
+    list_free(localVarFormParameters);
     list_free(localVarHeaderType);
-    
+    list_free(localVarContentType);
     free(localVarPath);
-    if(keyQuery_subject){
-        free(keyQuery_subject);
-        keyQuery_subject = NULL;
+    if (keyForm_subject) {
+        free(keyForm_subject);
+        keyForm_subject = NULL;
     }
-    if(valueQuery_subject){
-        free(valueQuery_subject);
-        valueQuery_subject = NULL;
+    if (valueForm_subject) {
+        free(valueForm_subject);
+        valueForm_subject = NULL;
     }
-    if(keyPairQuery_subject){
-        keyValuePair_free(keyPairQuery_subject);
-        keyPairQuery_subject = NULL;
+    free(keyPairForm_subject);
+    if (keyForm_body) {
+        free(keyForm_body);
+        keyForm_body = NULL;
     }
-    if(keyQuery_body){
-        free(keyQuery_body);
-        keyQuery_body = NULL;
+    if (valueForm_body) {
+        free(valueForm_body);
+        valueForm_body = NULL;
     }
-    if(valueQuery_body){
-        free(valueQuery_body);
-        valueQuery_body = NULL;
+    free(keyPairForm_body);
+    if (keyForm_from) {
+        free(keyForm_from);
+        keyForm_from = NULL;
     }
-    if(keyPairQuery_body){
-        keyValuePair_free(keyPairQuery_body);
-        keyPairQuery_body = NULL;
+    if (valueForm_from) {
+        free(valueForm_from);
+        valueForm_from = NULL;
     }
-    if(keyQuery_to){
-        free(keyQuery_to);
-        keyQuery_to = NULL;
+    free(keyPairForm_from);
+    if (keyForm_to) {
+        free(keyForm_to);
+        keyForm_to = NULL;
     }
-    if(valueQuery_to){
-        free(valueQuery_to);
-        valueQuery_to = NULL;
+    if (valueForm_to) {
+        free(valueForm_to);
+        valueForm_to = NULL;
     }
-    if(keyPairQuery_to){
-        keyValuePair_free(keyPairQuery_to);
-        keyPairQuery_to = NULL;
+    free(keyPairForm_to);
+    if (keyForm_id) {
+        free(keyForm_id);
+        keyForm_id = NULL;
     }
-    if(keyQuery_from){
-        free(keyQuery_from);
-        keyQuery_from = NULL;
+    free(keyPairForm_id);
+    if (keyForm_toName) {
+        free(keyForm_toName);
+        keyForm_toName = NULL;
     }
-    if(valueQuery_from){
-        free(valueQuery_from);
-        valueQuery_from = NULL;
+    if (valueForm_toName) {
+        free(valueForm_toName);
+        valueForm_toName = NULL;
     }
-    if(keyPairQuery_from){
-        keyValuePair_free(keyPairQuery_from);
-        keyPairQuery_from = NULL;
+    free(keyPairForm_toName);
+    if (keyForm_fromName) {
+        free(keyForm_fromName);
+        keyForm_fromName = NULL;
     }
-    if(keyQuery_id){
-        free(keyQuery_id);
-        keyQuery_id = NULL;
+    if (valueForm_fromName) {
+        free(valueForm_fromName);
+        valueForm_fromName = NULL;
     }
-    if(keyPairQuery_id){
-        keyValuePair_free(keyPairQuery_id);
-        keyPairQuery_id = NULL;
-    }
-    if(keyQuery_toName){
-        free(keyQuery_toName);
-        keyQuery_toName = NULL;
-    }
-    if(valueQuery_toName){
-        free(valueQuery_toName);
-        valueQuery_toName = NULL;
-    }
-    if(keyPairQuery_toName){
-        keyValuePair_free(keyPairQuery_toName);
-        keyPairQuery_toName = NULL;
-    }
-    if(keyQuery_fromName){
-        free(keyQuery_fromName);
-        keyQuery_fromName = NULL;
-    }
-    if(valueQuery_fromName){
-        free(valueQuery_fromName);
-        valueQuery_fromName = NULL;
-    }
-    if(keyPairQuery_fromName){
-        keyValuePair_free(keyPairQuery_fromName);
-        keyPairQuery_fromName = NULL;
-    }
+    free(keyPairForm_fromName);
     return elementToReturn;
 end:
     free(localVarPath);

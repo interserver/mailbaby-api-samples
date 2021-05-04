@@ -534,19 +534,19 @@ public class DefaultApi {
     }
     /**
      * Build call for sendMailById
-     * @param subject The Subject of the email (optional)
-     * @param body The contents of the email (optional)
-     * @param to The email address of who this email will be sent to. (optional)
-     * @param from The email address of who this email will be sent from. (optional)
-     * @param id The ID of your mail order this will be sent through. (optional)
-     * @param toName The name or title of who this email is being sent to. (optional)
-     * @param fromName The name or title of who this email is being sent from. (optional)
+     * @param subject  (required)
+     * @param body  (required)
+     * @param from  (required)
+     * @param to  (required)
+     * @param id  (required)
+     * @param toName  (required)
+     * @param fromName  (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call sendMailByIdCall(String subject, String body, String to, String from, Long id, String toName, String fromName, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call sendMailByIdCall(String subject, String body, String from, String to, Integer id, String toName, String fromName, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -554,24 +554,24 @@ public class DefaultApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (subject != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("subject", subject));
-        if (body != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("body", body));
-        if (to != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("to", to));
-        if (from != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("from", from));
-        if (id != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("id", id));
-        if (toName != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("toName", toName));
-        if (fromName != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("fromName", fromName));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (subject != null)
+        localVarFormParams.put("subject", subject);
+        if (body != null)
+        localVarFormParams.put("body", body);
+        if (from != null)
+        localVarFormParams.put("from", from);
+        if (to != null)
+        localVarFormParams.put("to", to);
+        if (id != null)
+        localVarFormParams.put("id", id);
+        if (toName != null)
+        localVarFormParams.put("toName", toName);
+        if (fromName != null)
+        localVarFormParams.put("fromName", fromName);
 
         final String[] localVarAccepts = {
             "application/json"
@@ -580,7 +580,7 @@ public class DefaultApi {
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+            "application/x-www-form-urlencoded"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -602,9 +602,37 @@ public class DefaultApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call sendMailByIdValidateBeforeCall(String subject, String body, String to, String from, Long id, String toName, String fromName, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call sendMailByIdValidateBeforeCall(String subject, String body, String from, String to, Integer id, String toName, String fromName, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'subject' is set
+        if (subject == null) {
+            throw new ApiException("Missing the required parameter 'subject' when calling sendMailById(Async)");
+        }
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling sendMailById(Async)");
+        }
+        // verify the required parameter 'from' is set
+        if (from == null) {
+            throw new ApiException("Missing the required parameter 'from' when calling sendMailById(Async)");
+        }
+        // verify the required parameter 'to' is set
+        if (to == null) {
+            throw new ApiException("Missing the required parameter 'to' when calling sendMailById(Async)");
+        }
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling sendMailById(Async)");
+        }
+        // verify the required parameter 'toName' is set
+        if (toName == null) {
+            throw new ApiException("Missing the required parameter 'toName' when calling sendMailById(Async)");
+        }
+        // verify the required parameter 'fromName' is set
+        if (fromName == null) {
+            throw new ApiException("Missing the required parameter 'fromName' when calling sendMailById(Async)");
+        }
         
-        com.squareup.okhttp.Call call = sendMailByIdCall(subject, body, to, from, id, toName, fromName, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = sendMailByIdCall(subject, body, from, to, id, toName, fromName, progressListener, progressRequestListener);
         return call;
 
         
@@ -616,36 +644,36 @@ public class DefaultApi {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param subject The Subject of the email (optional)
-     * @param body The contents of the email (optional)
-     * @param to The email address of who this email will be sent to. (optional)
-     * @param from The email address of who this email will be sent from. (optional)
-     * @param id The ID of your mail order this will be sent through. (optional)
-     * @param toName The name or title of who this email is being sent to. (optional)
-     * @param fromName The name or title of who this email is being sent from. (optional)
+     * @param subject  (required)
+     * @param body  (required)
+     * @param from  (required)
+     * @param to  (required)
+     * @param id  (required)
+     * @param toName  (required)
+     * @param fromName  (required)
      * @return GenericResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GenericResponse sendMailById(String subject, String body, String to, String from, Long id, String toName, String fromName) throws ApiException {
-        ApiResponse<GenericResponse> resp = sendMailByIdWithHttpInfo(subject, body, to, from, id, toName, fromName);
+    public GenericResponse sendMailById(String subject, String body, String from, String to, Integer id, String toName, String fromName) throws ApiException {
+        ApiResponse<GenericResponse> resp = sendMailByIdWithHttpInfo(subject, body, from, to, id, toName, fromName);
         return resp.getData();
     }
 
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param subject The Subject of the email (optional)
-     * @param body The contents of the email (optional)
-     * @param to The email address of who this email will be sent to. (optional)
-     * @param from The email address of who this email will be sent from. (optional)
-     * @param id The ID of your mail order this will be sent through. (optional)
-     * @param toName The name or title of who this email is being sent to. (optional)
-     * @param fromName The name or title of who this email is being sent from. (optional)
+     * @param subject  (required)
+     * @param body  (required)
+     * @param from  (required)
+     * @param to  (required)
+     * @param id  (required)
+     * @param toName  (required)
+     * @param fromName  (required)
      * @return ApiResponse&lt;GenericResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GenericResponse> sendMailByIdWithHttpInfo(String subject, String body, String to, String from, Long id, String toName, String fromName) throws ApiException {
-        com.squareup.okhttp.Call call = sendMailByIdValidateBeforeCall(subject, body, to, from, id, toName, fromName, null, null);
+    public ApiResponse<GenericResponse> sendMailByIdWithHttpInfo(String subject, String body, String from, String to, Integer id, String toName, String fromName) throws ApiException {
+        com.squareup.okhttp.Call call = sendMailByIdValidateBeforeCall(subject, body, from, to, id, toName, fromName, null, null);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -653,18 +681,18 @@ public class DefaultApi {
     /**
      * Sends an Email (asynchronously)
      * Sends An email through one of your mail orders.
-     * @param subject The Subject of the email (optional)
-     * @param body The contents of the email (optional)
-     * @param to The email address of who this email will be sent to. (optional)
-     * @param from The email address of who this email will be sent from. (optional)
-     * @param id The ID of your mail order this will be sent through. (optional)
-     * @param toName The name or title of who this email is being sent to. (optional)
-     * @param fromName The name or title of who this email is being sent from. (optional)
+     * @param subject  (required)
+     * @param body  (required)
+     * @param from  (required)
+     * @param to  (required)
+     * @param id  (required)
+     * @param toName  (required)
+     * @param fromName  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call sendMailByIdAsync(String subject, String body, String to, String from, Long id, String toName, String fromName, final ApiCallback<GenericResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call sendMailByIdAsync(String subject, String body, String from, String to, Integer id, String toName, String fromName, final ApiCallback<GenericResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -685,7 +713,7 @@ public class DefaultApi {
             };
         }
 
-        com.squareup.okhttp.Call call = sendMailByIdValidateBeforeCall(subject, body, to, from, id, toName, fromName, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = sendMailByIdValidateBeforeCall(subject, body, from, to, id, toName, fromName, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

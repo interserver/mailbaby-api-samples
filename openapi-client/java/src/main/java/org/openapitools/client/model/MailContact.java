@@ -28,7 +28,7 @@ import java.io.IOException;
  * An Email Contact
  */
 @ApiModel(description = "An Email Contact")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-04T15:53:09.534488-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-04T18:05:06.250409-04:00[America/New_York]")
 public class MailContact {
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)

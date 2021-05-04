@@ -4,7 +4,7 @@
         , ping_server/0
         , place_mail_order/1
         , send_adv_mail_by_id/1
-        , send_mail_by_id/0
+        , send_mail_by_id/4
         , validate_mail_order/0
         , view_mail_log_by_id/0
         ]).
@@ -62,17 +62,16 @@ send_adv_mail_by_id(OpenapiSendMail) ->
 
 %% @doc Sends an Email
 %% Sends An email through one of your mail orders.
--spec send_mail_by_id() ->
+-spec send_mail_by_id(binary(), binary(), binary(), binary()) ->
   openapi_utils:response().
-send_mail_by_id() ->
+send_mail_by_id(Subject, Body, From, To) ->
   Method      = post,
   Host        = application:get_env(openapi, host, "http://localhost:8080"),
   Path        = ["/mail/send"],
-  Body        = [],
-  ContentType = "text/plain",
-  QueryString = [<<"subject=">>, Subject, <<"&">>, <<"body=">>, Body, <<"&">>, <<"to=">>, To, <<"&">>, <<"from=">>, From, <<"&">>, <<"id=">>, Id, <<"&">>, <<"toName=">>, ToName, <<"&">>, <<"fromName=">>, FromName, <<"&">>],
+  Body        = {form, [{<<"subject">>, Subject, {<<"body">>, Body, {<<"from">>, From, {<<"to">>, To]++openapi_utils:optional_params([, 'id', 'toName', 'fromName'], _OptionalParams)},
+  ContentType = hd(["application/x-www-form-urlencoded"]),
 
-  openapi_utils:request(Method, [Host, ?BASE_URL, Path, <<"?">>, QueryString], jsx:encode(Body), ContentType).
+  openapi_utils:request(Method, [Host, ?BASE_URL, Path], jsx:encode(Body), ContentType).
 
 %% @doc validatess order details before placing an order
 %% 

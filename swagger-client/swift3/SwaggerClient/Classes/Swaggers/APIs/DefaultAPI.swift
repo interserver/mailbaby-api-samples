@@ -161,17 +161,17 @@ open class DefaultAPI: APIBase {
 
     /**
      Sends an Email
-     - parameter subject: (query) The Subject of the email (optional)
-     - parameter body: (query) The contents of the email (optional)
-     - parameter to: (query) The email address of who this email will be sent to. (optional)
-     - parameter from: (query) The email address of who this email will be sent from. (optional)
-     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
-     - parameter toName: (query) The name or title of who this email is being sent to. (optional)
-     - parameter fromName: (query) The name or title of who this email is being sent from. (optional)
+     - parameter subject: (form)  
+     - parameter body: (form)  
+     - parameter from: (form)  
+     - parameter to: (form)  
+     - parameter id: (form)  
+     - parameter toName: (form)  
+     - parameter fromName: (form)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendMailById(subject: String? = nil, body: String? = nil, to: String? = nil, from: String? = nil, id: Int64? = nil, toName: String? = nil, fromName: String? = nil, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
-        sendMailByIdWithRequestBuilder(subject: subject, body: body, to: to, from: from, id: id, toName: toName, fromName: fromName).execute { (response, error) -> Void in
+    open class func sendMailById(subject: String, body: String, from: String, to: String, id: Int32, toName: String, fromName: String, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
+        sendMailByIdWithRequestBuilder(subject: subject, body: body, from: from, to: to, id: id, toName: toName, fromName: fromName).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -188,29 +188,32 @@ open class DefaultAPI: APIBase {
   "status_text" : "The command completed successfully.",
   "status" : "ok"
 }}]
-     - parameter subject: (query) The Subject of the email (optional)
-     - parameter body: (query) The contents of the email (optional)
-     - parameter to: (query) The email address of who this email will be sent to. (optional)
-     - parameter from: (query) The email address of who this email will be sent from. (optional)
-     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
-     - parameter toName: (query) The name or title of who this email is being sent to. (optional)
-     - parameter fromName: (query) The name or title of who this email is being sent from. (optional)
+     - parameter subject: (form)  
+     - parameter body: (form)  
+     - parameter from: (form)  
+     - parameter to: (form)  
+     - parameter id: (form)  
+     - parameter toName: (form)  
+     - parameter fromName: (form)  
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendMailByIdWithRequestBuilder(subject: String? = nil, body: String? = nil, to: String? = nil, from: String? = nil, id: Int64? = nil, toName: String? = nil, fromName: String? = nil) -> RequestBuilder<GenericResponse> {
+    open class func sendMailByIdWithRequestBuilder(subject: String, body: String, from: String, to: String, id: Int32, toName: String, fromName: String) -> RequestBuilder<GenericResponse> {
         let path = "/mail/send"
         let URLString = SwaggerClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+        let formParams: [String:Any?] = [
                         "subject": subject,
                         "body": body,
-                        "to": to,
                         "from": from,
-                        "id": id?.encodeToJSON(),
+                        "to": to,
+                        "id": id.encodeToJSON(),
                         "toName": toName,
                         "fromName": fromName
-        ])
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<GenericResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 

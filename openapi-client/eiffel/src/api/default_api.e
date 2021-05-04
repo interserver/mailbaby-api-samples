@@ -153,17 +153,17 @@ feature -- API Access
 			end
 		end	
 
-	send_mail_by_id (subject: STRING_32; body: STRING_32; to: STRING_32; var_from: STRING_32; id: INTEGER_64; to_name: STRING_32; from_name: STRING_32): detachable GENERIC_RESPONSE
+	send_mail_by_id (subject: STRING_32; body: STRING_32; var_from: STRING_32; to: STRING_32; id: INTEGER_32; to_name: STRING_32; from_name: STRING_32): detachable GENERIC_RESPONSE
 			-- Sends an Email
 			-- Sends An email through one of your mail orders.
 			-- 
-			-- argument: subject The Subject of the email (optional, default to null)
+			-- argument: subject The Subject of the email (required)
 			-- 
-			-- argument: body The contents of the email (optional, default to null)
+			-- argument: body The contents of the email (required)
 			-- 
-			-- argument: to The email address of who this email will be sent to. (optional, default to null)
+			-- argument: var_from The email address of who this email will be sent from. (required)
 			-- 
-			-- argument: var_from The email address of who this email will be sent from. (optional, default to null)
+			-- argument: to The email address of who this email will be sent to. (required)
 			-- 
 			-- argument: id The ID of your mail order this will be sent through. (optional, default to null)
 			-- 
@@ -183,19 +183,33 @@ feature -- API Access
 			create l_request
 			
 			l_path := "/mail/send"
-			l_request.fill_query_params(api_client.parameter_to_tuple("", "subject", subject));
-			l_request.fill_query_params(api_client.parameter_to_tuple("", "body", body));
-			l_request.fill_query_params(api_client.parameter_to_tuple("", "to", to));
-			l_request.fill_query_params(api_client.parameter_to_tuple("", "from", var_from));
-			l_request.fill_query_params(api_client.parameter_to_tuple("", "id", id));
-			l_request.fill_query_params(api_client.parameter_to_tuple("", "toName", to_name));
-			l_request.fill_query_params(api_client.parameter_to_tuple("", "fromName", from_name));
 
+			if attached subject as l_subject then
+				l_request.add_form(l_subject,"subject");
+			end
+			if attached body as l_body then
+				l_request.add_form(l_body,"body");
+			end
+			if attached var_from as l_var_from then
+				l_request.add_form(l_var_from,"from");
+			end
+			if attached to as l_to then
+				l_request.add_form(l_to,"to");
+			end
+			if attached id as l_id then
+				l_request.add_form(l_id,"id");
+			end
+			if attached to_name as l_to_name then
+				l_request.add_form(l_to_name,"toName");
+			end
+			if attached from_name as l_from_name then
+				l_request.add_form(l_from_name,"fromName");
+			end
 
 			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"application/json">>)  as l_accept then
 				l_request.add_header(l_accept,"Accept");
 			end
-			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<>>),"Content-Type")
+			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/x-www-form-urlencoded">>),"Content-Type")
 			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth">>)
 			l_response := api_client.call_api (l_path, "Post", l_request, Void, agent deserializer)
 			if l_response.has_error then

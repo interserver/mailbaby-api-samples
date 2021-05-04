@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendMailById**
-> GenericResponse sendMailById(subject, body, to, from, id, toName, fromName)
+> GenericResponse sendMailById(subject, body, from, to, id, toName, fromName)
 
 Sends an Email
 
@@ -207,16 +207,16 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
 
 var api_instance = new DefaultApi();
-var subject = subject_example; // String | The Subject of the email
-var body = body_example; // String | The contents of the email
-var to = to_example; // String | The email address of who this email will be sent to.
-var from = from_example; // String | The email address of who this email will be sent from.
-var id = 789; // int | The ID of your mail order this will be sent through.
-var toName = toName_example; // String | The name or title of who this email is being sent to.
-var fromName = fromName_example; // String | The name or title of who this email is being sent from.
+var subject = subject_example; // String | 
+var body = body_example; // String | 
+var from = from_example; // String | 
+var to = to_example; // String | 
+var id = 56; // int | 
+var toName = toName_example; // String | 
+var fromName = fromName_example; // String | 
 
 try {
-    var result = api_instance.sendMailById(subject, body, to, from, id, toName, fromName);
+    var result = api_instance.sendMailById(subject, body, from, to, id, toName, fromName);
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->sendMailById: $e\n");
@@ -227,13 +227,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **String**| The Subject of the email | [optional] 
- **body** | **String**| The contents of the email | [optional] 
- **to** | **String**| The email address of who this email will be sent to. | [optional] 
- **from** | **String**| The email address of who this email will be sent from. | [optional] 
- **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
- **toName** | **String**| The name or title of who this email is being sent to. | [optional] 
- **fromName** | **String**| The name or title of who this email is being sent from. | [optional] 
+ **subject** | **String**|  | 
+ **body** | **String**|  | 
+ **from** | **String**|  | 
+ **to** | **String**|  | 
+ **id** | **int**|  | 
+ **toName** | **String**|  | 
+ **fromName** | **String**|  | 
 
 ### Return type
 
@@ -245,7 +245,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

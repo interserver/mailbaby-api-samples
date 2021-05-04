@@ -689,7 +689,7 @@ static bool sendMailByIdProcessor(MemoryStruct_s p_chunk, long code, char* error
 }
 
 static bool sendMailByIdHelper(char * accessToken,
-	std::string subject, std::string body, std::string to, std::string from, long long id, std::string toName, std::string fromName, 
+	std::string subject, std::string body, std::string from, std::string to, int id, std::string toName, std::string fromName, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -701,60 +701,11 @@ static bool sendMailByIdHelper(char * accessToken,
 	string accessHeader = "Authorization: Bearer ";
 	accessHeader.append(accessToken);
 	headerList = curl_slist_append(headerList, accessHeader.c_str());
-	headerList = curl_slist_append(headerList, "Content-Type: application/json");
+	headerList = curl_slist_append(headerList, "Content-Type: application/x-www-form-urlencoded");
 
 	map <string, string> queryParams;
 	string itemAtq;
 	
-
-	itemAtq = stringify(&subject, "std::string");
-	queryParams.insert(pair<string, string>("subject", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("subject");
-	}
-
-
-	itemAtq = stringify(&body, "std::string");
-	queryParams.insert(pair<string, string>("body", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("body");
-	}
-
-
-	itemAtq = stringify(&to, "std::string");
-	queryParams.insert(pair<string, string>("to", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("to");
-	}
-
-
-	itemAtq = stringify(&from, "std::string");
-	queryParams.insert(pair<string, string>("from", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("from");
-	}
-
-
-	itemAtq = stringify(&id, "long long");
-	queryParams.insert(pair<string, string>("id", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("id");
-	}
-
-
-	itemAtq = stringify(&toName, "std::string");
-	queryParams.insert(pair<string, string>("toName", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("toName");
-	}
-
-
-	itemAtq = stringify(&fromName, "std::string");
-	queryParams.insert(pair<string, string>("fromName", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("fromName");
-	}
-
 	string mBody = "";
 	JsonNode* node;
 	JsonArray* json_array;
@@ -809,22 +760,22 @@ static bool sendMailByIdHelper(char * accessToken,
 
 
 bool DefaultManager::sendMailByIdAsync(char * accessToken,
-	std::string subject, std::string body, std::string to, std::string from, long long id, std::string toName, std::string fromName, 
+	std::string subject, std::string body, std::string from, std::string to, int id, std::string toName, std::string fromName, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
 	return sendMailByIdHelper(accessToken,
-	subject, body, to, from, id, toName, fromName, 
+	subject, body, from, to, id, toName, fromName, 
 	handler, userData, true);
 }
 
 bool DefaultManager::sendMailByIdSync(char * accessToken,
-	std::string subject, std::string body, std::string to, std::string from, long long id, std::string toName, std::string fromName, 
+	std::string subject, std::string body, std::string from, std::string to, int id, std::string toName, std::string fromName, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
 	return sendMailByIdHelper(accessToken,
-	subject, body, to, from, id, toName, fromName, 
+	subject, body, from, to, id, toName, fromName, 
 	handler, userData, false);
 }
 

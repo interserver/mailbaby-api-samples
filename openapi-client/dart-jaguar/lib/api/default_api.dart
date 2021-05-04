@@ -81,37 +81,37 @@ class DefaultApi extends ApiClient with _$DefaultApiClient {
     /// Sends An email through one of your mail orders.
     @PostReq(path: "/mail/send", metadata: {"auth": [ {"type": "apiKey", "name": "apiKeyAuth", "keyName": "X-API-KEY", "where": "header" }]})
     Future<GenericResponse> sendMailById(
-        
-            @QueryParam("subject") String subject, 
-        
-            @QueryParam("body") String body, 
-        
-            @QueryParam("to") String to, 
-        
-            @QueryParam("from") String from, 
-        
-            @QueryParam("id") int id, 
-        
-            @QueryParam("toName") String toName, 
-        
-            @QueryParam("fromName") String fromName
+            
+            @AsFormField() String subject, 
+            
+            @AsFormField() String body, 
+            
+            @AsFormField() String from, 
+            
+            @AsFormField() String to, 
+            
+            @AsFormField() int id, 
+            
+            @AsFormField() String toName, 
+            
+            @AsFormField() String fromName
         ) {
         return super.sendMailById(
+
         
         subject, 
         
         body, 
         
-        to, 
-        
         from, 
+        
+        to, 
         
         id, 
         
         toName, 
         
         fromName
-
         ).timeout(timeout);
     }
 

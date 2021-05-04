@@ -106,12 +106,12 @@ public class DefaultApiTest {
     public void sendMailByIdTest() throws ApiException {
         String subject = null;
         String body = null;
-        String to = null;
         String from = null;
-        Long id = null;
+        String to = null;
+        Integer id = null;
         String toName = null;
         String fromName = null;
-        GenericResponse response = api.sendMailById(subject, body, to, from, id, toName, fromName);
+        GenericResponse response = api.sendMailById(subject, body, from, to, id, toName, fromName);
 
         // TODO: test validations
     }

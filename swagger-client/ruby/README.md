@@ -130,19 +130,18 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::DefaultApi.new
-opts = { 
-  subject: 'subject_example', # String | The Subject of the email
-  body: 'body_example', # String | The contents of the email
-  to: 'to_example', # String | The email address of who this email will be sent to.
-  from: 'from_example', # String | The email address of who this email will be sent from.
-  id: 789, # Integer | The ID of your mail order this will be sent through.
-  to_name: 'to_name_example', # String | The name or title of who this email is being sent to.
-  from_name: 'from_name_example' # String | The name or title of who this email is being sent from.
-}
+subject = 'subject_example' # String | 
+body = 'body_example' # String | 
+from = 'from_example' # String | 
+to = 'to_example' # String | 
+id = 56 # Integer | 
+to_name = 'to_name_example' # String | 
+from_name = 'from_name_example' # String | 
+
 
 begin
   #Sends an Email
-  result = api_instance.send_mail_by_id(opts)
+  result = api_instance.send_mail_by_id(subject, body, from, to, id, to_name, from_name)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling DefaultApi->send_mail_by_id: #{e}"
@@ -204,6 +203,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [SwaggerClient::Body](docs/Body.md)
  - [SwaggerClient::ErrorResponse](docs/ErrorResponse.md)
  - [SwaggerClient::GenericResponse](docs/GenericResponse.md)
  - [SwaggerClient::MailAttachment](docs/MailAttachment.md)

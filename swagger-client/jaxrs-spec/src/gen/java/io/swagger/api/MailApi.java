@@ -26,7 +26,7 @@ import javax.validation.Valid;
 
 @Path("/mail")
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-05-04T15:55:22.020674-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-05-04T18:07:23.394930-04:00[America/New_York]")
 public class MailApi {
 
     @GET
@@ -75,6 +75,7 @@ public class MailApi {
     }
     @POST
     @Path("/send")
+    @Consumes({ "application/x-www-form-urlencoded" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
@@ -84,28 +85,7 @@ public class MailApi {
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
     })
-    public Response sendMailById(  @QueryParam("subject") 
-
- @Parameter(description = "The Subject of the email")  String subject
-,  @QueryParam("body") 
-
- @Parameter(description = "The contents of the email")  String body
-,  @QueryParam("to") 
-
- @Parameter(description = "The email address of who this email will be sent to.")  String to
-,  @QueryParam("from") 
-
- @Parameter(description = "The email address of who this email will be sent from.")  String from
-,  @QueryParam("id") 
-
- @Parameter(description = "The ID of your mail order this will be sent through.")  Long id
-,  @QueryParam("toName") 
-
- @Parameter(description = "The name or title of who this email is being sent to.")  String toName
-,  @QueryParam("fromName") 
-
- @Parameter(description = "The name or title of who this email is being sent from.")  String fromName
-) {
+    public Response sendMailById(@FormParam(value = "subject")  String subject,@FormParam(value = "body")  String body,@FormParam(value = "from")  String from,@FormParam(value = "to")  String to,@FormParam(value = "id")  Integer id,@FormParam(value = "toName")  String toName,@FormParam(value = "fromName")  String fromName) {
         return Response.ok().entity("magic!").build();
     }
     @GET

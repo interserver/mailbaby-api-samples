@@ -108,6 +108,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [MailBabyApi.Body](docs/Body.md)
  - [MailBabyApi.ErrorResponse](docs/ErrorResponse.md)
  - [MailBabyApi.GenericResponse](docs/GenericResponse.md)
  - [MailBabyApi.MailAttachment](docs/MailAttachment.md)

@@ -132,18 +132,18 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var subject = subject_example;  // string | The Subject of the email (optional) 
-            var body = body_example;  // string | The contents of the email (optional) 
-            var to = to_example;  // string | The email address of who this email will be sent to. (optional) 
-            var from = from_example;  // string | The email address of who this email will be sent from. (optional) 
-            var id = 789;  // long? | The ID of your mail order this will be sent through. (optional) 
-            var toName = toName_example;  // string | The name or title of who this email is being sent to. (optional) 
-            var fromName = fromName_example;  // string | The name or title of who this email is being sent from. (optional) 
+            var subject = subject_example;  // string | 
+            var body = body_example;  // string | 
+            var from = from_example;  // string | 
+            var to = to_example;  // string | 
+            var id = 56;  // int? | 
+            var toName = toName_example;  // string | 
+            var fromName = fromName_example;  // string | 
 
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.SendMailById(subject, body, to, from, id, toName, fromName);
+                GenericResponse result = apiInstance.SendMailById(subject, body, from, to, id, toName, fromName);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -216,6 +216,7 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [IO.Swagger.Model.Body](docs/Body.md)
  - [IO.Swagger.Model.ErrorResponse](docs/ErrorResponse.md)
  - [IO.Swagger.Model.GenericResponse](docs/GenericResponse.md)
  - [IO.Swagger.Model.MailAttachment](docs/MailAttachment.md)

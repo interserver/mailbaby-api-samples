@@ -333,11 +333,11 @@ The Subject of the email
 .PARAMETER Body
 The contents of the email
 
-.PARAMETER To
-The email address of who this email will be sent to.
-
 .PARAMETER From
 The email address of who this email will be sent from.
+
+.PARAMETER To
+The email address of who this email will be sent to.
 
 .PARAMETER Id
 The ID of your mail order this will be sent through.
@@ -367,12 +367,12 @@ function Send-MailById {
         ${Body},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
-        ${To},
+        ${From},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
-        ${From},
+        ${To},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [System.Nullable[Int64]]
+        [System.Nullable[Int32]]
         ${Id},
         [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
@@ -401,34 +401,41 @@ function Send-MailById {
         # HTTP header 'Accept' (if needed)
         $LocalVarAccepts = @('application/json')
 
+        # HTTP header 'Content-Type'
+        $LocalVarContentTypes = @('application/x-www-form-urlencoded')
+
         $LocalVarUri = '/mail/send'
 
-        if ($Subject) {
-            $LocalVarQueryParameters['subject'] = $Subject
+        if (!$Subject) {
+            throw "Error! The required parameter `Subject` missing when calling sendMailById."
         }
+        $LocalVarFormParameters['subject'] = $Subject
 
-        if ($Body) {
-            $LocalVarQueryParameters['body'] = $Body
+        if (!$Body) {
+            throw "Error! The required parameter `Body` missing when calling sendMailById."
         }
+        $LocalVarFormParameters['body'] = $Body
 
-        if ($To) {
-            $LocalVarQueryParameters['to'] = $To
+        if (!$From) {
+            throw "Error! The required parameter `From` missing when calling sendMailById."
         }
+        $LocalVarFormParameters['from'] = $From
 
-        if ($From) {
-            $LocalVarQueryParameters['from'] = $From
+        if (!$To) {
+            throw "Error! The required parameter `To` missing when calling sendMailById."
         }
+        $LocalVarFormParameters['to'] = $To
 
         if ($Id) {
-            $LocalVarQueryParameters['id'] = $Id
+            $LocalVarFormParameters['id'] = $Id
         }
 
         if ($ToName) {
-            $LocalVarQueryParameters['toName'] = $ToName
+            $LocalVarFormParameters['toName'] = $ToName
         }
 
         if ($FromName) {
-            $LocalVarQueryParameters['fromName'] = $FromName
+            $LocalVarFormParameters['fromName'] = $FromName
         }
 
         if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {

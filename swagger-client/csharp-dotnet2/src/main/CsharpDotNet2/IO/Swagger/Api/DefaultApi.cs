@@ -37,15 +37,15 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
-        /// <param name="subject">The Subject of the email</param>
-        /// <param name="body">The contents of the email</param>
-        /// <param name="to">The email address of who this email will be sent to.</param>
-        /// <param name="from">The email address of who this email will be sent from.</param>
-        /// <param name="id">The ID of your mail order this will be sent through.</param>
-        /// <param name="toName">The name or title of who this email is being sent to.</param>
-        /// <param name="fromName">The name or title of who this email is being sent from.</param>
+        /// <param name="subject"></param>
+        /// <param name="body"></param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <param name="id"></param>
+        /// <param name="toName"></param>
+        /// <param name="fromName"></param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendMailById (string subject, string body, string to, string from, long? id, string toName, string fromName);
+        GenericResponse SendMailById (string subject, string body, string from, string to, int? id, string toName, string fromName);
         /// <summary>
         /// validatess order details before placing an order 
         /// </summary>
@@ -250,16 +250,30 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
-        /// <param name="subject">The Subject of the email</param>
-        /// <param name="body">The contents of the email</param>
-        /// <param name="to">The email address of who this email will be sent to.</param>
-        /// <param name="from">The email address of who this email will be sent from.</param>
-        /// <param name="id">The ID of your mail order this will be sent through.</param>
-        /// <param name="toName">The name or title of who this email is being sent to.</param>
-        /// <param name="fromName">The name or title of who this email is being sent from.</param>
+        /// <param name="subject"></param>
+        /// <param name="body"></param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <param name="id"></param>
+        /// <param name="toName"></param>
+        /// <param name="fromName"></param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendMailById (string subject, string body, string to, string from, long? id, string toName, string fromName)
+        public GenericResponse SendMailById (string subject, string body, string from, string to, int? id, string toName, string fromName)
         {
+            // verify the required parameter 'subject' is set
+            if (subject == null) throw new ApiException(400, "Missing required parameter 'subject' when calling SendMailById");
+            // verify the required parameter 'body' is set
+            if (body == null) throw new ApiException(400, "Missing required parameter 'body' when calling SendMailById");
+            // verify the required parameter 'from' is set
+            if (from == null) throw new ApiException(400, "Missing required parameter 'from' when calling SendMailById");
+            // verify the required parameter 'to' is set
+            if (to == null) throw new ApiException(400, "Missing required parameter 'to' when calling SendMailById");
+            // verify the required parameter 'id' is set
+            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling SendMailById");
+            // verify the required parameter 'toName' is set
+            if (toName == null) throw new ApiException(400, "Missing required parameter 'toName' when calling SendMailById");
+            // verify the required parameter 'fromName' is set
+            if (fromName == null) throw new ApiException(400, "Missing required parameter 'fromName' when calling SendMailById");
     
             var path = "/mail/send";
             path = path.Replace("{format}", "json");
@@ -270,14 +284,14 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
     
-             if (subject != null) queryParams.Add("subject", ApiClient.ParameterToString(subject)); // query parameter
- if (body != null) queryParams.Add("body", ApiClient.ParameterToString(body)); // query parameter
- if (to != null) queryParams.Add("to", ApiClient.ParameterToString(to)); // query parameter
- if (from != null) queryParams.Add("from", ApiClient.ParameterToString(from)); // query parameter
- if (id != null) queryParams.Add("id", ApiClient.ParameterToString(id)); // query parameter
- if (toName != null) queryParams.Add("toName", ApiClient.ParameterToString(toName)); // query parameter
- if (fromName != null) queryParams.Add("fromName", ApiClient.ParameterToString(fromName)); // query parameter
-                        
+                                    if (subject != null) formParams.Add("subject", ApiClient.ParameterToString(subject)); // form parameter
+if (body != null) formParams.Add("body", ApiClient.ParameterToString(body)); // form parameter
+if (from != null) formParams.Add("from", ApiClient.ParameterToString(from)); // form parameter
+if (to != null) formParams.Add("to", ApiClient.ParameterToString(to)); // form parameter
+if (id != null) formParams.Add("id", ApiClient.ParameterToString(id)); // form parameter
+if (toName != null) formParams.Add("toName", ApiClient.ParameterToString(toName)); // form parameter
+if (fromName != null) formParams.Add("fromName", ApiClient.ParameterToString(fromName)); // form parameter
+
             // authentication setting, if any
             String[] authSettings = new String[] { "apiKeyAuth" };
     

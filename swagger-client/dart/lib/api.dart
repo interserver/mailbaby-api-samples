@@ -14,6 +14,7 @@ part 'auth/oauth.dart';
 part 'auth/http_basic_auth.dart';
 
 part 'api/default_api.dart';
+part 'model/body.dart';
 part 'model/error_response.dart';
 part 'model/generic_response.dart';
 part 'model/mail_attachment.dart';

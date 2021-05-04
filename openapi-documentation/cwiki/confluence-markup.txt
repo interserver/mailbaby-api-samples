@@ -309,9 +309,6 @@ h4. Parameters
 
 
 
-h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
-        |subject |The Subject of the email | String | (x) |null |  |  ||body |The contents of the email | String | (x) |null |  |  ||to |The email address of who this email will be sent to. | String | (x) |null |  |  ||from |The email address of who this email will be sent from. | String | (x) |null |  |  ||id |The ID of your mail order this will be sent through. | Long | (x) |null |  |  ||toName |The name or title of who this email is being sent to. | String | (x) |null |  |  ||fromName |The name or title of who this email is being sent from. | String | (x) |null |  |  |
 ----
 h4. Responses
 

@@ -64,16 +64,12 @@ export default function() {
         sleep(SLEEP_DURATION);
     });
     group("/mail/send", () => {
-        let toName = "TODO_EDIT_THE_TONAME";
-        let subject = "TODO_EDIT_THE_SUBJECT";
-        let fromName = "TODO_EDIT_THE_FROMNAME";
-        let from = "TODO_EDIT_THE_FROM";
-        let to = "TODO_EDIT_THE_TO";
-        let id = "TODO_EDIT_THE_ID";
-        let body = "TODO_EDIT_THE_BODY";
-        let url = BASE_URL + `/mail/send?subject=${subject}&body=${body}&to=${to}&from=${from}&id=${id}&toName=${toName}&fromName=${fromName}`;
+        let url = BASE_URL + `/mail/send`;
         // Request No. 1
-        let request = http.post(url);
+        // TODO: edit the parameters of the request body.
+        let body = {"subject": "string", "body": "string", "from": "string", "to": "string", "id": "integer", "toName": "string", "fromName": "string"};
+        let params = {headers: {"Content-Type": "application/x-www-form-urlencoded", "Accept": "application/json"}};
+        let request = http.post(url, body, params);
         check(request, {
             "search results matching criteria": (r) => r.status === 200
         });

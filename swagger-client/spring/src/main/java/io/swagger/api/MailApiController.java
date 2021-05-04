@@ -37,7 +37,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-04T15:55:38.451652-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-04T18:07:39.687755-04:00[America/New_York]")
 @RestController
 public class MailApiController implements MailApi {
 
@@ -86,7 +86,7 @@ public class MailApiController implements MailApi {
         return new ResponseEntity<GenericResponse>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<GenericResponse> sendMailById(@Parameter(in = ParameterIn.QUERY, description = "The Subject of the email" ,schema=@Schema()) @Valid @RequestParam(value = "subject", required = false) String subject,@Parameter(in = ParameterIn.QUERY, description = "The contents of the email" ,schema=@Schema()) @Valid @RequestParam(value = "body", required = false) String body,@Parameter(in = ParameterIn.QUERY, description = "The email address of who this email will be sent to." ,schema=@Schema()) @Valid @RequestParam(value = "to", required = false) String to,@Parameter(in = ParameterIn.QUERY, description = "The email address of who this email will be sent from." ,schema=@Schema()) @Valid @RequestParam(value = "from", required = false) String from,@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through." ,schema=@Schema()) @Valid @RequestParam(value = "id", required = false) Long id,@Parameter(in = ParameterIn.QUERY, description = "The name or title of who this email is being sent to." ,schema=@Schema()) @Valid @RequestParam(value = "toName", required = false) String toName,@Parameter(in = ParameterIn.QUERY, description = "The name or title of who this email is being sent from." ,schema=@Schema()) @Valid @RequestParam(value = "fromName", required = false) String fromName) {
+    public ResponseEntity<GenericResponse> sendMailById(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="subject", required=true)  String subject,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="body", required=true)  String body,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="from", required=true)  String from,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="to", required=true)  String to,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="id", required=true)  Integer id,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="toName", required=true)  String toName,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="fromName", required=true)  String fromName) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {

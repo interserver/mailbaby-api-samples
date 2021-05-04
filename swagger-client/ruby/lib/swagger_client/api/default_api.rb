@@ -227,55 +227,85 @@ module SwaggerClient
     end
     # Sends an Email
     # Sends An email through one of your mail orders.
+    # @param subject 
+    # @param body 
+    # @param from 
+    # @param to 
+    # @param id 
+    # @param to_name 
+    # @param from_name 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :subject The Subject of the email
-    # @option opts [String] :body The contents of the email
-    # @option opts [String] :to The email address of who this email will be sent to.
-    # @option opts [String] :from The email address of who this email will be sent from.
-    # @option opts [Integer] :id The ID of your mail order this will be sent through.
-    # @option opts [String] :to_name The name or title of who this email is being sent to.
-    # @option opts [String] :from_name The name or title of who this email is being sent from.
     # @return [GenericResponse]
-    def send_mail_by_id(opts = {})
-      data, _status_code, _headers = send_mail_by_id_with_http_info(opts)
+    def send_mail_by_id(subject, body, from, to, id, to_name, from_name, opts = {})
+      data, _status_code, _headers = send_mail_by_id_with_http_info(subject, body, from, to, id, to_name, from_name, opts)
       data
     end
 
     # Sends an Email
     # Sends An email through one of your mail orders.
+    # @param subject 
+    # @param body 
+    # @param from 
+    # @param to 
+    # @param id 
+    # @param to_name 
+    # @param from_name 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :subject The Subject of the email
-    # @option opts [String] :body The contents of the email
-    # @option opts [String] :to The email address of who this email will be sent to.
-    # @option opts [String] :from The email address of who this email will be sent from.
-    # @option opts [Integer] :id The ID of your mail order this will be sent through.
-    # @option opts [String] :to_name The name or title of who this email is being sent to.
-    # @option opts [String] :from_name The name or title of who this email is being sent from.
     # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_mail_by_id_with_http_info(opts = {})
+    def send_mail_by_id_with_http_info(subject, body, from, to, id, to_name, from_name, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.send_mail_by_id ...'
+      end
+      # verify the required parameter 'subject' is set
+      if @api_client.config.client_side_validation && subject.nil?
+        fail ArgumentError, "Missing the required parameter 'subject' when calling DefaultApi.send_mail_by_id"
+      end
+      # verify the required parameter 'body' is set
+      if @api_client.config.client_side_validation && body.nil?
+        fail ArgumentError, "Missing the required parameter 'body' when calling DefaultApi.send_mail_by_id"
+      end
+      # verify the required parameter 'from' is set
+      if @api_client.config.client_side_validation && from.nil?
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.send_mail_by_id"
+      end
+      # verify the required parameter 'to' is set
+      if @api_client.config.client_side_validation && to.nil?
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.send_mail_by_id"
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling DefaultApi.send_mail_by_id"
+      end
+      # verify the required parameter 'to_name' is set
+      if @api_client.config.client_side_validation && to_name.nil?
+        fail ArgumentError, "Missing the required parameter 'to_name' when calling DefaultApi.send_mail_by_id"
+      end
+      # verify the required parameter 'from_name' is set
+      if @api_client.config.client_side_validation && from_name.nil?
+        fail ArgumentError, "Missing the required parameter 'from_name' when calling DefaultApi.send_mail_by_id"
       end
       # resource path
       local_var_path = '/mail/send'
 
       # query parameters
       query_params = opts[:query_params] || {}
-      query_params[:'subject'] = opts[:'subject'] if !opts[:'subject'].nil?
-      query_params[:'body'] = opts[:'body'] if !opts[:'body'].nil?
-      query_params[:'to'] = opts[:'to'] if !opts[:'to'].nil?
-      query_params[:'from'] = opts[:'from'] if !opts[:'from'].nil?
-      query_params[:'id'] = opts[:'id'] if !opts[:'id'].nil?
-      query_params[:'toName'] = opts[:'to_name'] if !opts[:'to_name'].nil?
-      query_params[:'fromName'] = opts[:'from_name'] if !opts[:'from_name'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/x-www-form-urlencoded'])
 
       # form parameters
       form_params = opts[:form_params] || {}
+      form_params['subject'] = subject
+      form_params['body'] = body
+      form_params['from'] = from
+      form_params['to'] = to
+      form_params['id'] = id
+      form_params['toName'] = to_name
+      form_params['fromName'] = from_name
 
       # http body (model)
       post_body = opts[:body] 

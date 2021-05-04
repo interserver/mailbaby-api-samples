@@ -10,6 +10,7 @@
 [main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
 [main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
 [main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
+[main] INFO  o.o.codegen.DefaultGenerator - Model body not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_error_response.nim
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_generic_response.nim
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_mail_attachment.nim

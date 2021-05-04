@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **send_mail_by_id**
-> GenericResponse send_mail_by_id(subject => $subject, body => $body, to => $to, from => $from, id => $id, to_name => $to_name, from_name => $from_name)
+> GenericResponse send_mail_by_id(subject => $subject, body => $body, from => $from, to => $to, id => $id, to_name => $to_name, from_name => $from_name)
 
 Sends an Email
 
@@ -228,14 +228,14 @@ my $api_instance = OpenAPIClient::DefaultApi->new(
 
 my $subject = "subject_example"; # string | The Subject of the email
 my $body = "body_example"; # string | The contents of the email
-my $to = "to_example"; # string | The email address of who this email will be sent to.
 my $from = "from_example"; # string | The email address of who this email will be sent from.
-my $id = 789; # int | The ID of your mail order this will be sent through.
+my $to = "to_example"; # string | The email address of who this email will be sent to.
+my $id = 56; # int | The ID of your mail order this will be sent through.
 my $to_name = "to_name_example"; # string | The name or title of who this email is being sent to.
 my $from_name = "from_name_example"; # string | The name or title of who this email is being sent from.
 
 eval { 
-    my $result = $api_instance->send_mail_by_id(subject => $subject, body => $body, to => $to, from => $from, id => $id, to_name => $to_name, from_name => $from_name);
+    my $result = $api_instance->send_mail_by_id(subject => $subject, body => $body, from => $from, to => $to, id => $id, to_name => $to_name, from_name => $from_name);
     print Dumper($result);
 };
 if ($@) {
@@ -247,10 +247,10 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **string**| The Subject of the email | [optional] 
- **body** | **string**| The contents of the email | [optional] 
- **to** | **string**| The email address of who this email will be sent to. | [optional] 
- **from** | **string**| The email address of who this email will be sent from. | [optional] 
+ **subject** | **string**| The Subject of the email | 
+ **body** | **string**| The contents of the email | 
+ **from** | **string**| The email address of who this email will be sent from. | 
+ **to** | **string**| The email address of who this email will be sent to. | 
  **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
  **to_name** | **string**| The name or title of who this email is being sent to. | [optional] 
  **from_name** | **string**| The name or title of who this email is being sent from. | [optional] 
@@ -265,7 +265,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

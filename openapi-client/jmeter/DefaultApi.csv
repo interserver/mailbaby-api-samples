@@ -1,2 +1,2 @@
-testCase,httpStatusCode,id,mailOrder,sendMail,subject,body,to,from,id,toName,fromName,id,searchString,skip,limit
+testCase,httpStatusCode,id,mailOrder,sendMail,subject,body,from,to,id,toName,fromName,id,searchString,skip,limit
 Success,200,0,0,0,0,0,0,0,0,0,0,0,0,0,0

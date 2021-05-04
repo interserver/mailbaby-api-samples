@@ -421,28 +421,33 @@ font-style: italic;
     <div class="method-notes">Sends An email through one of your mail orders.</div>
 
 
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/x-www-form-urlencoded</code></li>
+    </ul>
 
 
 
-    <h3 class="field-label">Query parameters</h3>
+
+    <h3 class="field-label">Form parameters</h3>
     <div class="field-items">
-      <div class="param">subject (optional)</div>
+      <div class="param">subject (required)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The Subject of the email default: null </div><div class="param">body (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The Subject of the email default: null </div><div class="param">body (required)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The contents of the email default: null </div><div class="param">to (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The contents of the email default: null </div><div class="param">from (required)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The email address of who this email will be sent to. default: null </div><div class="param">from (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The email address of who this email will be sent from. default: null </div><div class="param">to (required)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The email address of who this email will be sent from. default: null </div><div class="param">id (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The email address of who this email will be sent to. default: null </div><div class="param">id (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The ID of your mail order this will be sent through. default: null format: int64</div><div class="param">toName (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The ID of your mail order this will be sent through. default: null </div><div class="param">toName (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The name or title of who this email is being sent to. default: null </div><div class="param">fromName (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The name or title of who this email is being sent to. default: null </div><div class="param">fromName (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The name or title of who this email is being sent from. default: null </div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The name or title of who this email is being sent from. default: null </div>
     </div>  <!-- field-items -->
-
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">

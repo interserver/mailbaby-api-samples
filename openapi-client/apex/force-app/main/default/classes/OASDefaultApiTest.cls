@@ -141,9 +141,9 @@ private class OASDefaultApiTest {
         Map<String, Object> params = new Map<String, Object>{
             'subject' => 'null',
             'body' => 'null',
-            'to' => 'null',
             'r_from' => 'null',
-            'id' => 2147483648L,
+            'to' => 'null',
+            'id' => '',
             'toName' => 'null',
             'fromName' => 'null'
         };

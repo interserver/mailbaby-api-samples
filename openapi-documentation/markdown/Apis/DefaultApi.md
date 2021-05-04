@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMailById"></a>
 # **sendMailById**
-> GenericResponse sendMailById(subject, body, to, from, id, toName, fromName)
+> GenericResponse sendMailById(subject, body, from, to, id, toName, fromName)
 
 Sends an Email
 
@@ -126,11 +126,11 @@ Sends an Email
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **String**| The Subject of the email | [optional] [default to null]
- **body** | **String**| The contents of the email | [optional] [default to null]
- **to** | **String**| The email address of who this email will be sent to. | [optional] [default to null]
- **from** | **String**| The email address of who this email will be sent from. | [optional] [default to null]
- **id** | **Long**| The ID of your mail order this will be sent through. | [optional] [default to null]
+ **subject** | **String**| The Subject of the email | [default to null]
+ **body** | **String**| The contents of the email | [default to null]
+ **from** | **String**| The email address of who this email will be sent from. | [default to null]
+ **to** | **String**| The email address of who this email will be sent to. | [default to null]
+ **id** | **Integer**| The ID of your mail order this will be sent through. | [optional] [default to null]
  **toName** | **String**| The name or title of who this email is being sent to. | [optional] [default to null]
  **fromName** | **String**| The name or title of who this email is being sent from. | [optional] [default to null]
 
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/x-www-form-urlencoded
 - **Accept**: application/json
 
 <a name="validateMailOrder"></a>

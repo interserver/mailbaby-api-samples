@@ -147,50 +147,6 @@ namespace IO.Swagger.Controllers
             return new ObjectResult(example);
         }
 
-        /// <summary>
-        /// Sends an Email
-        /// </summary>
-        /// <remarks>Sends An email through one of your mail orders.</remarks>
-        /// <param name="subject">The Subject of the email</param>
-        /// <param name="body">The contents of the email</param>
-        /// <param name="to">The email address of who this email will be sent to.</param>
-        /// <param name="from">The email address of who this email will be sent from.</param>
-        /// <param name="id">The ID of your mail order this will be sent through.</param>
-        /// <param name="toName">The name or title of who this email is being sent to.</param>
-        /// <param name="fromName">The name or title of who this email is being sent from.</param>
-        /// <response code="200">search results matching criteria</response>
-        /// <response code="400">bad input parameter</response>
-        /// <response code="401">Unauthorized</response>
-        /// <response code="404">The specified resource was not found</response>
-        [HttpPost]
-        [Route("//mail/send")]
-        [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
-        [ValidateModelState]
-        [SwaggerOperation("SendMailById")]
-        [SwaggerResponse(statusCode: 200, type: typeof(GenericResponse), description: "search results matching criteria")]
-        [SwaggerResponse(statusCode: 401, type: typeof(ErrorResponse), description: "Unauthorized")]
-        [SwaggerResponse(statusCode: 404, type: typeof(ErrorResponse), description: "The specified resource was not found")]
-        public virtual IActionResult SendMailById([FromQuery]string subject, [FromQuery]string body, [FromQuery]string to, [FromQuery]string from, [FromQuery]long? id, [FromQuery]string toName, [FromQuery]string fromName)
-        { 
-            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(200, default(GenericResponse));
-
-            //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(400);
-
-            //TODO: Uncomment the next line to return response 401 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(401, default(ErrorResponse));
-
-            //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(404, default(ErrorResponse));
-            string exampleJson = null;
-            exampleJson = "{\n  \"status_text\" : \"The command completed successfully.\",\n  \"status\" : \"ok\"\n}";
-            
-                        var example = exampleJson != null
-                        ? JsonConvert.DeserializeObject<GenericResponse>(exampleJson)
-                        : default(GenericResponse);            //TODO: Change the data returned
-            return new ObjectResult(example);
-        }
 
         /// <summary>
         /// validatess order details before placing an order

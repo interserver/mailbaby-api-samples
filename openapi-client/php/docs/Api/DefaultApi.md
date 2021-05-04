@@ -249,7 +249,7 @@ Name | Type | Description  | Notes
 ## `sendMailById()`
 
 ```php
-sendMailById($subject, $body, $to, $from, $id, $toName, $fromName): \Interserver\Mailbaby\Model\GenericResponse
+sendMailById($subject, $body, $from, $to, $id, $toName, $fromName): \Interserver\Mailbaby\Model\GenericResponse
 ```
 
 Sends an Email
@@ -277,14 +277,14 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
 );
 $subject = 'subject_example'; // string | The Subject of the email
 $body = 'body_example'; // string | The contents of the email
-$to = 'to_example'; // string | The email address of who this email will be sent to.
 $from = 'from_example'; // string | The email address of who this email will be sent from.
+$to = 'to_example'; // string | The email address of who this email will be sent to.
 $id = 56; // int | The ID of your mail order this will be sent through.
 $toName = 'toName_example'; // string | The name or title of who this email is being sent to.
 $fromName = 'fromName_example'; // string | The name or title of who this email is being sent from.
 
 try {
-    $result = $apiInstance->sendMailById($subject, $body, $to, $from, $id, $toName, $fromName);
+    $result = $apiInstance->sendMailById($subject, $body, $from, $to, $id, $toName, $fromName);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->sendMailById: ', $e->getMessage(), PHP_EOL;
@@ -295,10 +295,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **string**| The Subject of the email | [optional]
- **body** | **string**| The contents of the email | [optional]
- **to** | **string**| The email address of who this email will be sent to. | [optional]
- **from** | **string**| The email address of who this email will be sent from. | [optional]
+ **subject** | **string**| The Subject of the email |
+ **body** | **string**| The contents of the email |
+ **from** | **string**| The email address of who this email will be sent from. |
+ **to** | **string**| The email address of who this email will be sent to. |
  **id** | **int**| The ID of your mail order this will be sent through. | [optional]
  **toName** | **string**| The name or title of who this email is being sent to. | [optional]
  **fromName** | **string**| The name or title of who this email is being sent from. | [optional]
@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/x-www-form-urlencoded`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

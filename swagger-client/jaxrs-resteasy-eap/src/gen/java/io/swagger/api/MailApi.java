@@ -31,7 +31,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-04T14:31:54.403364-04:00[America/New_York]")public interface MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-04T14:38:19.752395-04:00[America/New_York]")public interface MailApi  {
    
     @GET
     

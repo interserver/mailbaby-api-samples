@@ -14,6 +14,6 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-04T14:31:51.474131-04:00[America/New_York]")public interface PingApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-04T14:38:16.718179-04:00[America/New_York]")public interface PingApiService {
     public Response pingServer(SecurityContext securityContext);
 }

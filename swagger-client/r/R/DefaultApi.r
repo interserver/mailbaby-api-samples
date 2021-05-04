@@ -17,9 +17,6 @@
 #' @section Methods:
 #' \describe{
 #'
-#' get_mail_by_id Gets mail order information by id
-#'
-#'
 #' get_mail_orders displays a list of mail service orders
 #'
 #'
@@ -56,38 +53,14 @@ DefaultApi <- R6::R6Class(
         self$apiClient <- ApiClient$new()
       }
     },
-    get_mail_by_id = function(id, ...){
+    get_mail_orders = function(id, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()
 
-      urlPath <- "/mail/{id}"
       if (!missing(`id`)) {
-        urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
+        queryParams['id'] <- id
       }
-
-      resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
-                                 method = "GET",
-                                 queryParams = queryParams,
-                                 headerParams = headerParams,
-                                 body = body,
-                                 ...)
-      
-      if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-        returnObject <- MailOrder$new()
-        result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
-        Response$new(returnObject, resp)
-      } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
-        Response$new("API client error", resp)
-      } else if (httr::status_code(resp) >= 500 && httr::status_code(resp) <= 599) {
-        Response$new("API server error", resp)
-      }
-
-    }
-    get_mail_orders = function(...){
-      args <- list(...)
-      queryParams <- list()
-      headerParams <- character()
 
       urlPath <- "/mail"
       resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
@@ -158,14 +131,10 @@ DefaultApi <- R6::R6Class(
       }
 
     }
-    send_adv_mail_by_id = function(body, id, id, ...){
+    send_adv_mail_by_id = function(body, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()
-
-      body <- list(
-          "id" = id
-      )
 
       if (!missing(`body`)) {
         body <- `body`$toJSONString()
@@ -173,11 +142,7 @@ DefaultApi <- R6::R6Class(
         body <- NULL
       }
 
-      urlPath <- "/mail/{id}/advsend"
-      if (!missing(`id`)) {
-        urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
-      }
-
+      urlPath <- "/mail/advsend"
       resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
                                  method = "POST",
                                  queryParams = queryParams,
@@ -196,7 +161,7 @@ DefaultApi <- R6::R6Class(
       }
 
     }
-    send_mail_by_id = function(id, subject, body, to, to_name, from, from_name, ...){
+    send_mail_by_id = function(subject, body, to, from, id, to_name, from_name, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()
@@ -213,23 +178,23 @@ DefaultApi <- R6::R6Class(
         queryParams['to'] <- to
       }
 
-      if (!missing(`to_name`)) {
-        queryParams['toName'] <- to_name
-      }
-
       if (!missing(`from`)) {
         queryParams['from'] <- from
+      }
+
+      if (!missing(`id`)) {
+        queryParams['id'] <- id
+      }
+
+      if (!missing(`to_name`)) {
+        queryParams['toName'] <- to_name
       }
 
       if (!missing(`from_name`)) {
         queryParams['fromName'] <- from_name
       }
 
-      urlPath <- "/mail/{id}/send"
-      if (!missing(`id`)) {
-        urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
-      }
-
+      urlPath <- "/mail/send"
       resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
                                  method = "POST",
                                  queryParams = queryParams,
@@ -275,6 +240,10 @@ DefaultApi <- R6::R6Class(
       queryParams <- list()
       headerParams <- character()
 
+      if (!missing(`id`)) {
+        queryParams['id'] <- id
+      }
+
       if (!missing(`search_string`)) {
         queryParams['searchString'] <- search_string
       }
@@ -287,11 +256,7 @@ DefaultApi <- R6::R6Class(
         queryParams['limit'] <- limit
       }
 
-      urlPath <- "/mail/{id}/log"
-      if (!missing(`id`)) {
-        urlPath <- gsub(paste0("\\{", "id", "\\}"), `id`, urlPath)
-      }
-
+      urlPath <- "/mail/log"
       resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),
                                  method = "GET",
                                  queryParams = queryParams,

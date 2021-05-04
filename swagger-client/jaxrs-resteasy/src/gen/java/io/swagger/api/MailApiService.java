@@ -18,20 +18,14 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-03T14:06:27.254869-04:00[America/New_York]")public interface MailApiService {
-      Response getMailById(Long id,SecurityContext securityContext)
-      throws NotFoundException;
-      Response getMailOrders(SecurityContext securityContext)
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-04T14:31:56.840492-04:00[America/New_York]")public interface MailApiService {
+      Response getMailOrders(Long id,SecurityContext securityContext)
       throws NotFoundException;
       Response placeMailOrder(MailOrder body,SecurityContext securityContext)
       throws NotFoundException;
-      Response sendAdvMailById(SendMail body,Long id,SecurityContext securityContext)
+      Response sendAdvMailById(SendMail body,SecurityContext securityContext)
       throws NotFoundException;
-      Response sendAdvMailById(Long id2,Long id,SecurityContext securityContext)
-      throws NotFoundException;
-      Response sendAdvMailById(SendMail body,Long id,SecurityContext securityContext)
-      throws NotFoundException;
-      Response sendMailById(Long id,String subject,String body,String to,String toName,String from,String fromName,SecurityContext securityContext)
+      Response sendMailById(String subject,String body,String to,String from,Long id,String toName,String fromName,SecurityContext securityContext)
       throws NotFoundException;
       Response validateMailOrder(SecurityContext securityContext)
       throws NotFoundException;

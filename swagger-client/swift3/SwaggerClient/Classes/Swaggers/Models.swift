@@ -477,24 +477,6 @@ class Decoders {
                 return .failure(.typeMismatch(expected: "SendMail", actual: "\(source)"))
             }
         }
-        // Decoder for [SendMailForm]
-        Decoders.addDecoder(clazz: [SendMailForm].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[SendMailForm]> in
-            return Decoders.decode(clazz: [SendMailForm].self, source: source)
-        }
-
-        // Decoder for SendMailForm
-        Decoders.addDecoder(clazz: SendMailForm.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<SendMailForm> in
-            if let sourceDictionary = source as? [AnyHashable: Any] {
-                let _result = instance == nil ? SendMailForm() : instance as! SendMailForm
-                switch Decoders.decodeOptional(clazz: Int64.self, source: sourceDictionary["id"] as AnyObject?) {
-                case let .success(value): _result.id = value
-                case let .failure(error): break
-                }
-                return .success(_result)
-            } else {
-                return .failure(.typeMismatch(expected: "SendMailForm", actual: "\(source)"))
-            }
-        }
     }()
 
     static fileprivate func initialize() {

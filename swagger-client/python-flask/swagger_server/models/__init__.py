@@ -11,4 +11,3 @@ from swagger_server.models.mail_log import MailLog
 from swagger_server.models.mail_order import MailOrder
 from swagger_server.models.mail_orders import MailOrders
 from swagger_server.models.send_mail import SendMail
-from swagger_server.models.send_mail_form import SendMailForm

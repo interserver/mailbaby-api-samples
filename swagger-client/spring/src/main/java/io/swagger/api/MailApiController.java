@@ -37,7 +37,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-03T14:06:32.812224-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-04T14:32:01.903387-04:00[America/New_York]")
 @RestController
 public class MailApiController implements MailApi {
 
@@ -53,21 +53,7 @@ public class MailApiController implements MailApi {
         this.request = request;
     }
 
-    public ResponseEntity<MailOrder> getMailById(@Parameter(in = ParameterIn.PATH, description = "User ID", required=true, schema=@Schema()) @PathVariable("id") Long id) {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<MailOrder>(objectMapper.readValue("{\n  \"password\" : \"guest123\",\n  \"comment\" : \"main mail account\",\n  \"id\" : 1234,\n  \"status\" : \"active\",\n  \"username\" : \"mb1234\"\n}", MailOrder.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<MailOrder>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
-        return new ResponseEntity<MailOrder>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    public ResponseEntity<MailOrders> getMailOrders() {
+    public ResponseEntity<MailOrders> getMailOrders(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through." ,schema=@Schema()) @Valid @RequestParam(value = "id", required = false) Long id) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
@@ -86,7 +72,7 @@ public class MailApiController implements MailApi {
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<GenericResponse> sendAdvMailById(@Parameter(in = ParameterIn.PATH, description = "User ID", required=true, schema=@Schema()) @PathVariable("id") Long id,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody SendMail body) {
+    public ResponseEntity<GenericResponse> sendAdvMailById(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody SendMail body) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
@@ -100,7 +86,7 @@ public class MailApiController implements MailApi {
         return new ResponseEntity<GenericResponse>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<GenericResponse> sendMailById(@Parameter(in = ParameterIn.PATH, description = "User ID", required=true, schema=@Schema()) @PathVariable("id") Long id,@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "subject", required = false) String subject,@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "body", required = false) String body,@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "to", required = false) String to,@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "toName", required = false) String toName,@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "from", required = false) String from,@Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "fromName", required = false) String fromName) {
+    public ResponseEntity<GenericResponse> sendMailById(@Parameter(in = ParameterIn.QUERY, description = "The Subject of the email" ,schema=@Schema()) @Valid @RequestParam(value = "subject", required = false) String subject,@Parameter(in = ParameterIn.QUERY, description = "The contents of the email" ,schema=@Schema()) @Valid @RequestParam(value = "body", required = false) String body,@Parameter(in = ParameterIn.QUERY, description = "The email address of who this email will be sent to." ,schema=@Schema()) @Valid @RequestParam(value = "to", required = false) String to,@Parameter(in = ParameterIn.QUERY, description = "The email address of who this email will be sent from." ,schema=@Schema()) @Valid @RequestParam(value = "from", required = false) String from,@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through." ,schema=@Schema()) @Valid @RequestParam(value = "id", required = false) Long id,@Parameter(in = ParameterIn.QUERY, description = "The name or title of who this email is being sent to." ,schema=@Schema()) @Valid @RequestParam(value = "toName", required = false) String toName,@Parameter(in = ParameterIn.QUERY, description = "The name or title of who this email is being sent from." ,schema=@Schema()) @Valid @RequestParam(value = "fromName", required = false) String fromName) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
@@ -119,7 +105,7 @@ public class MailApiController implements MailApi {
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<MailLog>> viewMailLogById(@Parameter(in = ParameterIn.PATH, description = "User ID", required=true, schema=@Schema()) @PathVariable("id") Long id,@Parameter(in = ParameterIn.QUERY, description = "pass an optional search string for looking up inventory" ,schema=@Schema()) @Valid @RequestParam(value = "searchString", required = false) String searchString,@Min(0)@Parameter(in = ParameterIn.QUERY, description = "number of records to skip for pagination" ,schema=@Schema(allowableValues={  }
+    public ResponseEntity<List<MailLog>> viewMailLogById(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through." ,schema=@Schema()) @Valid @RequestParam(value = "id", required = false) Long id,@Parameter(in = ParameterIn.QUERY, description = "pass an optional search string for looking up inventory" ,schema=@Schema()) @Valid @RequestParam(value = "searchString", required = false) String searchString,@Min(0)@Parameter(in = ParameterIn.QUERY, description = "number of records to skip for pagination" ,schema=@Schema(allowableValues={  }
 )) @Valid @RequestParam(value = "skip", required = false) Integer skip,@Min(0) @Max(50) @Parameter(in = ParameterIn.QUERY, description = "maximum number of records to return" ,schema=@Schema(allowableValues={  }, maximum="50"
 )) @Valid @RequestParam(value = "limit", required = false) Integer limit) {
         String accept = request.getHeader("Accept");

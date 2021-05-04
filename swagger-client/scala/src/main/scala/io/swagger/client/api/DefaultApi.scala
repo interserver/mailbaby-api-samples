@@ -84,39 +84,14 @@ class DefaultApi(
   val helper = new DefaultApiAsyncHelper(client, config)
 
   /**
-   * Gets mail order information by id
-   * returns information about a mail order in the system with the given id.
-   *
-   * @param id User ID 
-   * @return MailOrder
-   */
-  def getMailById(id: Long): Option[MailOrder] = {
-    val await = Try(Await.result(getMailByIdAsync(id), Duration.Inf))
-    await match {
-      case Success(i) => Some(await.get)
-      case Failure(t) => None
-    }
-  }
-
-  /**
-   * Gets mail order information by id asynchronously
-   * returns information about a mail order in the system with the given id.
-   *
-   * @param id User ID 
-   * @return Future(MailOrder)
-   */
-  def getMailByIdAsync(id: Long): Future[MailOrder] = {
-      helper.getMailById(id)
-  }
-
-  /**
    * displays a list of mail service orders
    * 
    *
+   * @param id The ID of your mail order this will be sent through. (optional)
    * @return MailOrders
    */
-  def getMailOrders(): Option[MailOrders] = {
-    val await = Try(Await.result(getMailOrdersAsync(), Duration.Inf))
+  def getMailOrders(id: Option[Long] = None): Option[MailOrders] = {
+    val await = Try(Await.result(getMailOrdersAsync(id), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -127,10 +102,11 @@ class DefaultApi(
    * displays a list of mail service orders asynchronously
    * 
    *
+   * @param id The ID of your mail order this will be sent through. (optional)
    * @return Future(MailOrders)
    */
-  def getMailOrdersAsync(): Future[MailOrders] = {
-      helper.getMailOrders()
+  def getMailOrdersAsync(id: Option[Long] = None): Future[MailOrders] = {
+      helper.getMailOrders(id)
   }
 
   /**
@@ -188,12 +164,10 @@ class DefaultApi(
    * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
    *
    * @param body  
-   * @param id  
-   * @param id User ID 
    * @return GenericResponse
    */
-  def sendAdvMailById(body: SendMail, id: Long, id: Long): Option[GenericResponse] = {
-    val await = Try(Await.result(sendAdvMailByIdAsync(body, id, id), Duration.Inf))
+  def sendAdvMailById(body: SendMail): Option[GenericResponse] = {
+    val await = Try(Await.result(sendAdvMailByIdAsync(body), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -205,29 +179,27 @@ class DefaultApi(
    * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
    *
    * @param body  
-   * @param id  
-   * @param id User ID 
    * @return Future(GenericResponse)
    */
-  def sendAdvMailByIdAsync(body: SendMail, id: Long, id: Long): Future[GenericResponse] = {
-      helper.sendAdvMailById(body, id, id)
+  def sendAdvMailByIdAsync(body: SendMail): Future[GenericResponse] = {
+      helper.sendAdvMailById(body)
   }
 
   /**
    * Sends an Email
    * Sends An email through one of your mail orders.
    *
-   * @param id User ID 
-   * @param subject  (optional)
-   * @param body  (optional)
-   * @param to  (optional)
-   * @param toName  (optional)
-   * @param from  (optional)
-   * @param fromName  (optional)
+   * @param subject The Subject of the email (optional)
+   * @param body The contents of the email (optional)
+   * @param to The email address of who this email will be sent to. (optional)
+   * @param from The email address of who this email will be sent from. (optional)
+   * @param id The ID of your mail order this will be sent through. (optional)
+   * @param toName The name or title of who this email is being sent to. (optional)
+   * @param fromName The name or title of who this email is being sent from. (optional)
    * @return GenericResponse
    */
-  def sendMailById(id: Long, subject: Option[String] = None, body: Option[String] = None, to: Option[String] = None, toName: Option[String] = None, from: Option[String] = None, fromName: Option[String] = None): Option[GenericResponse] = {
-    val await = Try(Await.result(sendMailByIdAsync(id, subject, body, to, toName, from, fromName), Duration.Inf))
+  def sendMailById(subject: Option[String] = None, body: Option[String] = None, to: Option[String] = None, from: Option[String] = None, id: Option[Long] = None, toName: Option[String] = None, fromName: Option[String] = None): Option[GenericResponse] = {
+    val await = Try(Await.result(sendMailByIdAsync(subject, body, to, from, id, toName, fromName), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -238,17 +210,17 @@ class DefaultApi(
    * Sends an Email asynchronously
    * Sends An email through one of your mail orders.
    *
-   * @param id User ID 
-   * @param subject  (optional)
-   * @param body  (optional)
-   * @param to  (optional)
-   * @param toName  (optional)
-   * @param from  (optional)
-   * @param fromName  (optional)
+   * @param subject The Subject of the email (optional)
+   * @param body The contents of the email (optional)
+   * @param to The email address of who this email will be sent to. (optional)
+   * @param from The email address of who this email will be sent from. (optional)
+   * @param id The ID of your mail order this will be sent through. (optional)
+   * @param toName The name or title of who this email is being sent to. (optional)
+   * @param fromName The name or title of who this email is being sent from. (optional)
    * @return Future(GenericResponse)
    */
-  def sendMailByIdAsync(id: Long, subject: Option[String] = None, body: Option[String] = None, to: Option[String] = None, toName: Option[String] = None, from: Option[String] = None, fromName: Option[String] = None): Future[GenericResponse] = {
-      helper.sendMailById(id, subject, body, to, toName, from, fromName)
+  def sendMailByIdAsync(subject: Option[String] = None, body: Option[String] = None, to: Option[String] = None, from: Option[String] = None, id: Option[Long] = None, toName: Option[String] = None, fromName: Option[String] = None): Future[GenericResponse] = {
+      helper.sendMailById(subject, body, to, from, id, toName, fromName)
   }
 
   /**
@@ -279,13 +251,13 @@ class DefaultApi(
    * displays the mail log
    * By passing in the appropriate options, you can search for available inventory in the system 
    *
-   * @param id User ID 
+   * @param id The ID of your mail order this will be sent through. (optional)
    * @param searchString pass an optional search string for looking up inventory (optional)
    * @param skip number of records to skip for pagination (optional)
    * @param limit maximum number of records to return (optional)
    * @return List[MailLog]
    */
-  def viewMailLogById(id: Long, searchString: Option[String] = None, skip: Option[Integer] = None, limit: Option[Integer] = None): Option[List[MailLog]] = {
+  def viewMailLogById(id: Option[Long] = None, searchString: Option[String] = None, skip: Option[Integer] = None, limit: Option[Integer] = None): Option[List[MailLog]] = {
     val await = Try(Await.result(viewMailLogByIdAsync(id, searchString, skip, limit), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -297,13 +269,13 @@ class DefaultApi(
    * displays the mail log asynchronously
    * By passing in the appropriate options, you can search for available inventory in the system 
    *
-   * @param id User ID 
+   * @param id The ID of your mail order this will be sent through. (optional)
    * @param searchString pass an optional search string for looking up inventory (optional)
    * @param skip number of records to skip for pagination (optional)
    * @param limit maximum number of records to return (optional)
    * @return Future(List[MailLog])
    */
-  def viewMailLogByIdAsync(id: Long, searchString: Option[String] = None, skip: Option[Integer] = None, limit: Option[Integer] = None): Future[List[MailLog]] = {
+  def viewMailLogByIdAsync(id: Option[Long] = None, searchString: Option[String] = None, skip: Option[Integer] = None, limit: Option[Integer] = None): Future[List[MailLog]] = {
       helper.viewMailLogById(id, searchString, skip, limit)
   }
 
@@ -311,23 +283,8 @@ class DefaultApi(
 
 class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def getMailById(id: Long)(implicit reader: ClientResponseReader[MailOrder]): Future[MailOrder] = {
-    // create path and map variables
-    val path = (addFmt("/mail/{id}")
-      replaceAll("\\{" + "id" + "\\}", id.toString))
-
-    // query params
-    val queryParams = new mutable.HashMap[String, String]
-    val headerParams = new mutable.HashMap[String, String]
-
-
-    val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
-    resFuture flatMap { resp =>
-      process(reader.read(resp))
-    }
-  }
-
-  def getMailOrders()(implicit reader: ClientResponseReader[MailOrders]): Future[MailOrders] = {
+  def getMailOrders(id: Option[Long] = None
+    )(implicit reader: ClientResponseReader[MailOrders]): Future[MailOrders] = {
     // create path and map variables
     val path = (addFmt("/mail"))
 
@@ -335,6 +292,10 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
+    id match {
+      case Some(param) => queryParams += "id" -> param.toString
+      case _ => queryParams
+    }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>
@@ -373,12 +334,9 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
-  def sendAdvMailById(body: SendMail,
-    id: Long,
-    id: Long)(implicit reader: ClientResponseReader[GenericResponse], writer: RequestWriter[SendMail]): Future[GenericResponse] = {
+  def sendAdvMailById(body: SendMail)(implicit reader: ClientResponseReader[GenericResponse], writer: RequestWriter[SendMail]): Future[GenericResponse] = {
     // create path and map variables
-    val path = (addFmt("/mail/{id}/advsend")
-      replaceAll("\\{" + "id" + "\\}", id.toString))
+    val path = (addFmt("/mail/advsend"))
 
     // query params
     val queryParams = new mutable.HashMap[String, String]
@@ -392,17 +350,16 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
-  def sendMailById(id: Long,
-    subject: Option[String] = None,
+  def sendMailById(subject: Option[String] = None,
     body: Option[String] = None,
     to: Option[String] = None,
-    toName: Option[String] = None,
     from: Option[String] = None,
+    id: Option[Long] = None,
+    toName: Option[String] = None,
     fromName: Option[String] = None
     )(implicit reader: ClientResponseReader[GenericResponse]): Future[GenericResponse] = {
     // create path and map variables
-    val path = (addFmt("/mail/{id}/send")
-      replaceAll("\\{" + "id" + "\\}", id.toString))
+    val path = (addFmt("/mail/send"))
 
     // query params
     val queryParams = new mutable.HashMap[String, String]
@@ -420,12 +377,16 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
       case Some(param) => queryParams += "to" -> param.toString
       case _ => queryParams
     }
-    toName match {
-      case Some(param) => queryParams += "toName" -> param.toString
-      case _ => queryParams
-    }
     from match {
       case Some(param) => queryParams += "from" -> param.toString
+      case _ => queryParams
+    }
+    id match {
+      case Some(param) => queryParams += "id" -> param.toString
+      case _ => queryParams
+    }
+    toName match {
+      case Some(param) => queryParams += "toName" -> param.toString
       case _ => queryParams
     }
     fromName match {
@@ -454,19 +415,22 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
-  def viewMailLogById(id: Long,
+  def viewMailLogById(id: Option[Long] = None,
     searchString: Option[String] = None,
     skip: Option[Integer] = None,
     limit: Option[Integer] = None
     )(implicit reader: ClientResponseReader[List[MailLog]]): Future[List[MailLog]] = {
     // create path and map variables
-    val path = (addFmt("/mail/{id}/log")
-      replaceAll("\\{" + "id" + "\\}", id.toString))
+    val path = (addFmt("/mail/log"))
 
     // query params
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
+    id match {
+      case Some(param) => queryParams += "id" -> param.toString
+      case _ => queryParams
+    }
     searchString match {
       case Some(param) => queryParams += "searchString" -> param.toString
       case _ => queryParams

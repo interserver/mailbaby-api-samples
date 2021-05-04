@@ -21,12 +21,9 @@ describe("DefaultApi", () => {
     instance = new api.DefaultApi(config)
   });
 
-  test("getMailById", () => {
-    const id: number = 789
-    return expect(instance.getMailById(id, {})).resolves.toBe(null)
-  })
   test("getMailOrders", () => {
-    return expect(instance.getMailOrders({})).resolves.toBe(null)
+    const id: number = 789
+    return expect(instance.getMailOrders(id, {})).resolves.toBe(null)
   })
   test("pingServer", () => {
     return expect(instance.pingServer({})).resolves.toBe(null)
@@ -37,18 +34,17 @@ describe("DefaultApi", () => {
   })
   test("sendAdvMailById", () => {
     const body: api.SendMail = undefined
-    const id: number = 789
-    return expect(instance.sendAdvMailById(body, id, {})).resolves.toBe(null)
+    return expect(instance.sendAdvMailById(body, {})).resolves.toBe(null)
   })
   test("sendMailById", () => {
-    const id: number = 789
     const subject: string = "subject_example"
     const body: string = "body_example"
     const to: string = "to_example"
-    const toName: string = "toName_example"
     const from: string = "from_example"
+    const id: number = 789
+    const toName: string = "toName_example"
     const fromName: string = "fromName_example"
-    return expect(instance.sendMailById(id, subject, body, to, toName, from, fromName, {})).resolves.toBe(null)
+    return expect(instance.sendMailById(subject, body, to, from, id, toName, fromName, {})).resolves.toBe(null)
   })
   test("validateMailOrder", () => {
     return expect(instance.validateMailOrder({})).resolves.toBe(null)

@@ -3,18 +3,8 @@
 var utils = require('../utils/writer.js');
 var Default = require('../service/DefaultService');
 
-module.exports.getMailById = function getMailById (req, res, next, id) {
-  Default.getMailById(id)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.getMailOrders = function getMailOrders (req, res, next) {
-  Default.getMailOrders()
+module.exports.getMailOrders = function getMailOrders (req, res, next, id) {
+  Default.getMailOrders(id)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -43,8 +33,8 @@ module.exports.placeMailOrder = function placeMailOrder (req, res, next, body) {
     });
 };
 
-module.exports.sendAdvMailById = function sendAdvMailById (req, res, next, body, id) {
-  Default.sendAdvMailById(body, id)
+module.exports.sendAdvMailById = function sendAdvMailById (req, res, next, body) {
+  Default.sendAdvMailById(body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -53,28 +43,8 @@ module.exports.sendAdvMailById = function sendAdvMailById (req, res, next, body,
     });
 };
 
-module.exports.sendAdvMailById = function sendAdvMailById (req, res, next, body, id) {
-  Default.sendAdvMailById(body, id)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.sendAdvMailById = function sendAdvMailById (req, res, next, body, id) {
-  Default.sendAdvMailById(body, id)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.sendMailById = function sendMailById (req, res, next, id, subject, body, to, toName, from, fromName) {
-  Default.sendMailById(id, subject, body, to, toName, from, fromName)
+module.exports.sendMailById = function sendMailById (req, res, next, subject, body, to, from, id, toName, fromName) {
+  Default.sendMailById(subject, body, to, from, id, toName, fromName)
     .then(function (response) {
       utils.writeJson(res, response);
     })

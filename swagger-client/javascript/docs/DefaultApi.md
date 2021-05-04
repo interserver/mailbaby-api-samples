@@ -4,68 +4,17 @@ All URIs are relative to *https://api.mailbaby.net/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMailById**](DefaultApi.md#getMailById) | **GET** /mail/{id} | Gets mail order information by id
 [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/{id}/send | Sends an Email
+[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/{id}/log | displays the mail log
-
-<a name="getMailById"></a>
-# **getMailById**
-> MailOrder getMailById(id)
-
-Gets mail order information by id
-
-returns information about a mail order in the system with the given id.
-
-### Example
-```javascript
-import MailBabyApi from 'mail_baby_api';
-let defaultClient = MailBabyApi.ApiClient.instance;
-
-// Configure API key authorization: apiKeyAuth
-let apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
-apiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyAuth.apiKeyPrefix = 'Token';
-
-let apiInstance = new MailBabyApi.DefaultApi();
-let id = 789; // Number | User ID
-
-apiInstance.getMailById(id, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Number**| User ID | 
-
-### Return type
-
-[**MailOrder**](MailOrder.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
+[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
 <a name="getMailOrders"></a>
 # **getMailOrders**
-> MailOrders getMailOrders()
+> MailOrders getMailOrders(opts)
 
 displays a list of mail service orders
 
@@ -81,7 +30,10 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyApi.DefaultApi();
-apiInstance.getMailOrders((error, data, response) => {
+let opts = { 
+  'id': 789 // Number | The ID of your mail order this will be sent through.
+};
+apiInstance.getMailOrders(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -91,7 +43,10 @@ apiInstance.getMailOrders((error, data, response) => {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Number**| The ID of your mail order this will be sent through. | [optional] 
 
 ### Return type
 
@@ -195,7 +150,7 @@ null (empty response body)
 
 <a name="sendAdvMailById"></a>
 # **sendAdvMailById**
-> GenericResponse sendAdvMailById(bodyid)
+> GenericResponse sendAdvMailById(body)
 
 Sends an Email with Advanced Options
 
@@ -214,9 +169,8 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 
 let apiInstance = new MailBabyApi.DefaultApi();
 let body = new MailBabyApi.SendMail(); // SendMail | 
-let id = 789; // Number | User ID
 
-apiInstance.sendAdvMailById(bodyid, (error, data, response) => {
+apiInstance.sendAdvMailById(body, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -230,7 +184,6 @@ apiInstance.sendAdvMailById(bodyid, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**SendMail**](SendMail.md)|  | 
- **id** | **Number**| User ID | 
 
 ### Return type
 
@@ -242,12 +195,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 <a name="sendMailById"></a>
 # **sendMailById**
-> GenericResponse sendMailById(id, opts)
+> GenericResponse sendMailById(opts)
 
 Sends an Email
 
@@ -265,16 +218,16 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyApi.DefaultApi();
-let id = 789; // Number | User ID
 let opts = { 
-  'subject': "subject_example", // String | 
-  'body': "body_example", // String | 
-  'to': "to_example", // String | 
-  'toName': "toName_example", // String | 
-  'from': "from_example", // String | 
-  'fromName': "fromName_example" // String | 
+  'subject': "subject_example", // String | The Subject of the email
+  'body': "body_example", // String | The contents of the email
+  'to': "to_example", // String | The email address of who this email will be sent to.
+  'from': "from_example", // String | The email address of who this email will be sent from.
+  'id': 789, // Number | The ID of your mail order this will be sent through.
+  'toName': "toName_example", // String | The name or title of who this email is being sent to.
+  'fromName': "fromName_example" // String | The name or title of who this email is being sent from.
 };
-apiInstance.sendMailById(id, opts, (error, data, response) => {
+apiInstance.sendMailById(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -287,13 +240,13 @@ apiInstance.sendMailById(id, opts, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Number**| User ID | 
- **subject** | **String**|  | [optional] 
- **body** | **String**|  | [optional] 
- **to** | **String**|  | [optional] 
- **toName** | **String**|  | [optional] 
- **from** | **String**|  | [optional] 
- **fromName** | **String**|  | [optional] 
+ **subject** | **String**| The Subject of the email | [optional] 
+ **body** | **String**| The contents of the email | [optional] 
+ **to** | **String**| The email address of who this email will be sent to. | [optional] 
+ **from** | **String**| The email address of who this email will be sent from. | [optional] 
+ **id** | **Number**| The ID of your mail order this will be sent through. | [optional] 
+ **toName** | **String**| The name or title of who this email is being sent to. | [optional] 
+ **fromName** | **String**| The name or title of who this email is being sent from. | [optional] 
 
 ### Return type
 
@@ -353,7 +306,7 @@ null (empty response body)
 
 <a name="viewMailLogById"></a>
 # **viewMailLogById**
-> [MailLog] viewMailLogById(id, opts)
+> [MailLog] viewMailLogById(opts)
 
 displays the mail log
 
@@ -371,13 +324,13 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyApi.DefaultApi();
-let id = 789; // Number | User ID
 let opts = { 
+  'id': 789, // Number | The ID of your mail order this will be sent through.
   'searchString': "searchString_example", // String | pass an optional search string for looking up inventory
   'skip': 56, // Number | number of records to skip for pagination
   'limit': 56 // Number | maximum number of records to return
 };
-apiInstance.viewMailLogById(id, opts, (error, data, response) => {
+apiInstance.viewMailLogById(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -390,7 +343,7 @@ apiInstance.viewMailLogById(id, opts, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Number**| User ID | 
+ **id** | **Number**| The ID of your mail order this will be sent through. | [optional] 
  **searchString** | **String**| pass an optional search string for looking up inventory | [optional] 
  **skip** | **Number**| number of records to skip for pagination | [optional] 
  **limit** | **Number**| maximum number of records to return | [optional] 

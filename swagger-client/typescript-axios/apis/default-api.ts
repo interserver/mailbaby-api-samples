@@ -29,60 +29,13 @@ import { SendMail } from '../models';
 export const DefaultApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * returns information about a mail order in the system with the given id.
-         * @summary Gets mail order information by id
-         * @param {number} id User ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getMailById: async (id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling getMailById.');
-            }
-            const localVarPath = `/mail/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication apiKeyAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-KEY")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * 
          * @summary displays a list of mail service orders
+         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailOrders: async (options: any = {}): Promise<RequestArgs> => {
+        getMailOrders: async (id?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/mail`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -100,6 +53,10 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                     ? await configuration.apiKey("X-API-KEY")
                     : await configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
+            }
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -203,21 +160,15 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
          * @summary Sends an Email with Advanced Options
          * @param {SendMail} body 
-         * @param {number} id User ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendAdvMailById: async (body: SendMail, id: number, options: any = {}): Promise<RequestArgs> => {
+        sendAdvMailById: async (body: SendMail, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling sendAdvMailById.');
             }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling sendAdvMailById.');
-            }
-            const localVarPath = `/mail/{id}/advsend`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarPath = `/mail/advsend`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -227,7 +178,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-            const localVarFormParams = new URLSearchParams();
 
             // authentication apiKeyAuth required
             if (configuration && configuration.apiKey) {
@@ -237,11 +187,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-
-            if (id !== undefined) { 
-                localVarFormParams.set('id', id as any);
-            }
-            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -254,135 +199,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams.toString();
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-         * @summary Sends an Email with Advanced Options
-         * @param {number} id2 
-         * @param {number} id User ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        sendAdvMailById: async (id2: number, id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id2' is not null or undefined
-            if (id2 === null || id2 === undefined) {
-                throw new RequiredError('id2','Required parameter id2 was null or undefined when calling sendAdvMailById.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling sendAdvMailById.');
-            }
-            const localVarPath = `/mail/{id}/advsend`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new URLSearchParams();
-
-            // authentication apiKeyAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-KEY")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-
-            if (id !== undefined) { 
-                localVarFormParams.set('id', id as any);
-            }
-            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams.toString();
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-         * @summary Sends an Email with Advanced Options
-         * @param {SendMail} body 
-         * @param {number} id User ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        sendAdvMailById: async (body: SendMail, id: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling sendAdvMailById.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling sendAdvMailById.');
-            }
-            const localVarPath = `/mail/{id}/advsend`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new URLSearchParams();
-
-            // authentication apiKeyAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-KEY")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-
-            if (id !== undefined) { 
-                localVarFormParams.set('id', id as any);
-            }
-            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams.toString();
             const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
@@ -394,23 +210,18 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
-         * @param {number} id User ID
-         * @param {string} [subject] 
-         * @param {string} [body] 
-         * @param {string} [to] 
-         * @param {string} [toName] 
-         * @param {string} [from] 
-         * @param {string} [fromName] 
+         * @param {string} [subject] The Subject of the email
+         * @param {string} [body] The contents of the email
+         * @param {string} [to] The email address of who this email will be sent to.
+         * @param {string} [from] The email address of who this email will be sent from.
+         * @param {number} [id] The ID of your mail order this will be sent through.
+         * @param {string} [toName] The name or title of who this email is being sent to.
+         * @param {string} [fromName] The name or title of who this email is being sent from.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById: async (id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling sendMailById.');
-            }
-            const localVarPath = `/mail/{id}/send`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        sendMailById: async (subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/mail/send`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -441,12 +252,16 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['to'] = to;
             }
 
-            if (toName !== undefined) {
-                localVarQueryParameter['toName'] = toName;
-            }
-
             if (from !== undefined) {
                 localVarQueryParameter['from'] = from;
+            }
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+            if (toName !== undefined) {
+                localVarQueryParameter['toName'] = toName;
             }
 
             if (fromName !== undefined) {
@@ -514,20 +329,15 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * By passing in the appropriate options, you can search for available inventory in the system 
          * @summary displays the mail log
-         * @param {number} id User ID
+         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {string} [searchString] pass an optional search string for looking up inventory
          * @param {number} [skip] number of records to skip for pagination
          * @param {number} [limit] maximum number of records to return
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLogById: async (id: number, searchString?: string, skip?: number, limit?: number, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling viewMailLogById.');
-            }
-            const localVarPath = `/mail/{id}/log`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        viewMailLogById: async (id?: number, searchString?: string, skip?: number, limit?: number, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/mail/log`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -544,6 +354,10 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                     ? await configuration.apiKey("X-API-KEY")
                     : await configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
+            }
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
             }
 
             if (searchString !== undefined) {
@@ -584,27 +398,14 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 export const DefaultApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * returns information about a mail order in the system with the given id.
-         * @summary Gets mail order information by id
-         * @param {number} id User ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getMailById(id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MailOrder>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getMailById(id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
          * 
          * @summary displays a list of mail service orders
+         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMailOrders(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MailOrders>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getMailOrders(options);
+        async getMailOrders(id?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MailOrders>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getMailOrders(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -641,42 +442,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
          * @summary Sends an Email with Advanced Options
          * @param {SendMail} body 
-         * @param {number} id User ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendAdvMailById(body: SendMail, id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).sendAdvMailById(body, id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-         * @summary Sends an Email with Advanced Options
-         * @param {number} id2 
-         * @param {number} id User ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async sendAdvMailById(id2: number, id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).sendAdvMailById(id2, id, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-         * @summary Sends an Email with Advanced Options
-         * @param {SendMail} body 
-         * @param {number} id User ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async sendAdvMailById(body: SendMail, id: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).sendAdvMailById(body, id, options);
+        async sendAdvMailById(body: SendMail, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).sendAdvMailById(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -685,18 +455,18 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
-         * @param {number} id User ID
-         * @param {string} [subject] 
-         * @param {string} [body] 
-         * @param {string} [to] 
-         * @param {string} [toName] 
-         * @param {string} [from] 
-         * @param {string} [fromName] 
+         * @param {string} [subject] The Subject of the email
+         * @param {string} [body] The contents of the email
+         * @param {string} [to] The email address of who this email will be sent to.
+         * @param {string} [from] The email address of who this email will be sent from.
+         * @param {number} [id] The ID of your mail order this will be sent through.
+         * @param {string} [toName] The name or title of who this email is being sent to.
+         * @param {string} [fromName] The name or title of who this email is being sent from.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).sendMailById(id, subject, body, to, toName, from, fromName, options);
+        async sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).sendMailById(subject, body, to, from, id, toName, fromName, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -718,14 +488,14 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * By passing in the appropriate options, you can search for available inventory in the system 
          * @summary displays the mail log
-         * @param {number} id User ID
+         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {string} [searchString] pass an optional search string for looking up inventory
          * @param {number} [skip] number of records to skip for pagination
          * @param {number} [limit] maximum number of records to return
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MailLog>>> {
+        async viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MailLog>>> {
             const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).viewMailLogById(id, searchString, skip, limit, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -742,23 +512,14 @@ export const DefaultApiFp = function(configuration?: Configuration) {
 export const DefaultApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
-         * returns information about a mail order in the system with the given id.
-         * @summary Gets mail order information by id
-         * @param {number} id User ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getMailById(id: number, options?: any): AxiosPromise<MailOrder> {
-            return DefaultApiFp(configuration).getMailById(id, options).then((request) => request(axios, basePath));
-        },
-        /**
          * 
          * @summary displays a list of mail service orders
+         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailOrders(options?: any): AxiosPromise<MailOrders> {
-            return DefaultApiFp(configuration).getMailOrders(options).then((request) => request(axios, basePath));
+        getMailOrders(id?: number, options?: any): AxiosPromise<MailOrders> {
+            return DefaultApiFp(configuration).getMailOrders(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -783,50 +544,27 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
          * @summary Sends an Email with Advanced Options
          * @param {SendMail} body 
-         * @param {number} id User ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendAdvMailById(body: SendMail, id: number, options?: any): AxiosPromise<GenericResponse> {
-            return DefaultApiFp(configuration).sendAdvMailById(body, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-         * @summary Sends an Email with Advanced Options
-         * @param {number} id2 
-         * @param {number} id User ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        sendAdvMailById(id2: number, id: number, options?: any): AxiosPromise<GenericResponse> {
-            return DefaultApiFp(configuration).sendAdvMailById(id2, id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-         * @summary Sends an Email with Advanced Options
-         * @param {SendMail} body 
-         * @param {number} id User ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        sendAdvMailById(body: SendMail, id: number, options?: any): AxiosPromise<GenericResponse> {
-            return DefaultApiFp(configuration).sendAdvMailById(body, id, options).then((request) => request(axios, basePath));
+        sendAdvMailById(body: SendMail, options?: any): AxiosPromise<GenericResponse> {
+            return DefaultApiFp(configuration).sendAdvMailById(body, options).then((request) => request(axios, basePath));
         },
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
-         * @param {number} id User ID
-         * @param {string} [subject] 
-         * @param {string} [body] 
-         * @param {string} [to] 
-         * @param {string} [toName] 
-         * @param {string} [from] 
-         * @param {string} [fromName] 
+         * @param {string} [subject] The Subject of the email
+         * @param {string} [body] The contents of the email
+         * @param {string} [to] The email address of who this email will be sent to.
+         * @param {string} [from] The email address of who this email will be sent from.
+         * @param {number} [id] The ID of your mail order this will be sent through.
+         * @param {string} [toName] The name or title of who this email is being sent to.
+         * @param {string} [fromName] The name or title of who this email is being sent from.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, options?: any): AxiosPromise<GenericResponse> {
-            return DefaultApiFp(configuration).sendMailById(id, subject, body, to, toName, from, fromName, options).then((request) => request(axios, basePath));
+        sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options?: any): AxiosPromise<GenericResponse> {
+            return DefaultApiFp(configuration).sendMailById(subject, body, to, from, id, toName, fromName, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -840,14 +578,14 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          * By passing in the appropriate options, you can search for available inventory in the system 
          * @summary displays the mail log
-         * @param {number} id User ID
+         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {string} [searchString] pass an optional search string for looking up inventory
          * @param {number} [skip] number of records to skip for pagination
          * @param {number} [limit] maximum number of records to return
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, options?: any): AxiosPromise<Array<MailLog>> {
+        viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: any): AxiosPromise<Array<MailLog>> {
             return DefaultApiFp(configuration).viewMailLogById(id, searchString, skip, limit, options).then((request) => request(axios, basePath));
         },
     };
@@ -861,25 +599,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
  */
 export class DefaultApi extends BaseAPI {
     /**
-     * returns information about a mail order in the system with the given id.
-     * @summary Gets mail order information by id
-     * @param {number} id User ID
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public getMailById(id: number, options?: any) {
-        return DefaultApiFp(this.configuration).getMailById(id, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
      * 
      * @summary displays a list of mail service orders
+     * @param {number} [id] The ID of your mail order this will be sent through.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public getMailOrders(options?: any) {
-        return DefaultApiFp(this.configuration).getMailOrders(options).then((request) => request(this.axios, this.basePath));
+    public getMailOrders(id?: number, options?: any) {
+        return DefaultApiFp(this.configuration).getMailOrders(id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
@@ -906,56 +634,29 @@ export class DefaultApi extends BaseAPI {
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * @summary Sends an Email with Advanced Options
      * @param {SendMail} body 
-     * @param {number} id User ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public sendAdvMailById(body: SendMail, id: number, options?: any) {
-        return DefaultApiFp(this.configuration).sendAdvMailById(body, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @summary Sends an Email with Advanced Options
-     * @param {number} id2 
-     * @param {number} id User ID
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public sendAdvMailById(id2: number, id: number, options?: any) {
-        return DefaultApiFp(this.configuration).sendAdvMailById(id2, id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @summary Sends an Email with Advanced Options
-     * @param {SendMail} body 
-     * @param {number} id User ID
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public sendAdvMailById(body: SendMail, id: number, options?: any) {
-        return DefaultApiFp(this.configuration).sendAdvMailById(body, id, options).then((request) => request(this.axios, this.basePath));
+    public sendAdvMailById(body: SendMail, options?: any) {
+        return DefaultApiFp(this.configuration).sendAdvMailById(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Sends An email through one of your mail orders.
      * @summary Sends an Email
-     * @param {number} id User ID
-     * @param {string} [subject] 
-     * @param {string} [body] 
-     * @param {string} [to] 
-     * @param {string} [toName] 
-     * @param {string} [from] 
-     * @param {string} [fromName] 
+     * @param {string} [subject] The Subject of the email
+     * @param {string} [body] The contents of the email
+     * @param {string} [to] The email address of who this email will be sent to.
+     * @param {string} [from] The email address of who this email will be sent from.
+     * @param {number} [id] The ID of your mail order this will be sent through.
+     * @param {string} [toName] The name or title of who this email is being sent to.
+     * @param {string} [fromName] The name or title of who this email is being sent from.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, options?: any) {
-        return DefaultApiFp(this.configuration).sendMailById(id, subject, body, to, toName, from, fromName, options).then((request) => request(this.axios, this.basePath));
+    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options?: any) {
+        return DefaultApiFp(this.configuration).sendMailById(subject, body, to, from, id, toName, fromName, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
@@ -970,7 +671,7 @@ export class DefaultApi extends BaseAPI {
     /**
      * By passing in the appropriate options, you can search for available inventory in the system 
      * @summary displays the mail log
-     * @param {number} id User ID
+     * @param {number} [id] The ID of your mail order this will be sent through.
      * @param {string} [searchString] pass an optional search string for looking up inventory
      * @param {number} [skip] number of records to skip for pagination
      * @param {number} [limit] maximum number of records to return
@@ -978,7 +679,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, options?: any) {
+    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: any) {
         return DefaultApiFp(this.configuration).viewMailLogById(id, searchString, skip, limit, options).then((request) => request(this.axios, this.basePath));
     }
 }

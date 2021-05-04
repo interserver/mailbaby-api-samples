@@ -33,20 +33,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public interface DefaultApi  {
 
     /**
-     * Gets mail order information by id
-     *
-     * returns information about a mail order in the system with the given id.
-     *
-     */
-    @GET
-    @Path("/mail/{id}")
-    @Produces({ "application/json" })
-    @Operation(summary = "Gets mail order information by id", tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(schema = @Schema(implementation = MailOrder.class))) })
-    public MailOrder getMailById(@PathParam("id") Long id);
-
-    /**
      * displays a list of mail service orders
      *
      */
@@ -57,7 +43,7 @@ public interface DefaultApi  {
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = MailOrders.class))),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    public MailOrders getMailOrders();
+    public MailOrders getMailOrders(@QueryParam("id")Long id);
 
     /**
      * Checks if the server is running
@@ -96,8 +82,8 @@ public interface DefaultApi  {
      *
      */
     @POST
-    @Path("/mail/{id}/advsend")
-    @Consumes({ "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" })
+    @Path("/mail/advsend")
+    @Consumes({ "application/json" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email with Advanced Options", tags={  })
     @ApiResponses(value = { 
@@ -105,43 +91,7 @@ public interface DefaultApi  {
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    public GenericResponse sendAdvMailById(SendMail body, @PathParam("id") Long id);
-
-    /**
-     * Sends an Email with Advanced Options
-     *
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     *
-     */
-    @POST
-    @Path("/mail/{id}/advsend")
-    @Consumes({ "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" })
-    @Produces({ "application/json" })
-    @Operation(summary = "Sends an Email with Advanced Options", tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
-        @ApiResponse(responseCode = "400", description = "bad input parameter"),
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    public GenericResponse sendAdvMailById(@Multipart(value = "id")  Long id2, @PathParam("id") Long id);
-
-    /**
-     * Sends an Email with Advanced Options
-     *
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     *
-     */
-    @POST
-    @Path("/mail/{id}/advsend")
-    @Consumes({ "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" })
-    @Produces({ "application/json" })
-    @Operation(summary = "Sends an Email with Advanced Options", tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
-        @ApiResponse(responseCode = "400", description = "bad input parameter"),
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    public GenericResponse sendAdvMailById(SendMail body, @PathParam("id") Long id);
+    public GenericResponse sendAdvMailById(SendMail body);
 
     /**
      * Sends an Email
@@ -150,7 +100,7 @@ public interface DefaultApi  {
      *
      */
     @POST
-    @Path("/mail/{id}/send")
+    @Path("/mail/send")
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", tags={  })
     @ApiResponses(value = { 
@@ -158,7 +108,7 @@ public interface DefaultApi  {
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    public GenericResponse sendMailById(@PathParam("id") Long id, @QueryParam("subject")String subject, @QueryParam("body")String body, @QueryParam("to")String to, @QueryParam("toName")String toName, @QueryParam("from")String from, @QueryParam("fromName")String fromName);
+    public GenericResponse sendMailById(@QueryParam("subject")String subject, @QueryParam("body")String body, @QueryParam("to")String to, @QueryParam("from")String from, @QueryParam("id")Long id, @QueryParam("toName")String toName, @QueryParam("fromName")String fromName);
 
     /**
      * validatess order details before placing an order
@@ -180,11 +130,11 @@ public interface DefaultApi  {
      *
      */
     @GET
-    @Path("/mail/{id}/log")
+    @Path("/mail/log")
     @Produces({ "application/json" })
     @Operation(summary = "displays the mail log", tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
-    public List<MailLog> viewMailLogById(@PathParam("id") Long id, @QueryParam("searchString")String searchString, @QueryParam("skip")Integer skip, @QueryParam("limit")Integer limit);
+    public List<MailLog> viewMailLogById(@QueryParam("id")Long id, @QueryParam("searchString")String searchString, @QueryParam("skip")Integer skip, @QueryParam("limit")Integer limit);
 }

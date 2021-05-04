@@ -71,16 +71,6 @@ class DefaultApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for getMailById
-     *
-     * Gets mail order information by id.
-     *
-     */
-    public function testGetMailById()
-    {
-    }
-
-    /**
      * Test case for getMailOrders
      *
      * displays a list of mail service orders.

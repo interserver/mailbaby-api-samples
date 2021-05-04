@@ -28,22 +28,10 @@ import org.apache.cxf.jaxrs.ext.multipart.*;
  */
 public class DefaultApiServiceImpl implements DefaultApi {
     /**
-     * Gets mail order information by id
-     *
-     * returns information about a mail order in the system with the given id.
-     *
-     */
-    public MailOrder getMailById(Long id) {
-        // TODO: Implement...
-        
-        return null;
-    }
-    
-    /**
      * displays a list of mail service orders
      *
      */
-    public MailOrders getMailOrders() {
+    public MailOrders getMailOrders(Long id) {
         // TODO: Implement...
         
         return null;
@@ -77,31 +65,7 @@ public class DefaultApiServiceImpl implements DefaultApi {
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      *
      */
-    public GenericResponse sendAdvMailById(SendMail body, Long id) {
-        // TODO: Implement...
-        
-        return null;
-    }
-    
-    /**
-     * Sends an Email with Advanced Options
-     *
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     *
-     */
-    public GenericResponse sendAdvMailById(Long id2, Long id) {
-        // TODO: Implement...
-        
-        return null;
-    }
-    
-    /**
-     * Sends an Email with Advanced Options
-     *
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     *
-     */
-    public GenericResponse sendAdvMailById(SendMail body, Long id) {
+    public GenericResponse sendAdvMailById(SendMail body) {
         // TODO: Implement...
         
         return null;
@@ -113,7 +77,7 @@ public class DefaultApiServiceImpl implements DefaultApi {
      * Sends An email through one of your mail orders.
      *
      */
-    public GenericResponse sendMailById(Long id, String subject, String body, String to, String toName, String from, String fromName) {
+    public GenericResponse sendMailById(String subject, String body, String to, String from, Long id, String toName, String fromName) {
         // TODO: Implement...
         
         return null;

@@ -63,29 +63,13 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::DefaultApi.new
-id = 789 # Integer | User ID
-
-
-begin
-  #Gets mail order information by id
-  result = api_instance.get_mail_by_id(id)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling DefaultApi->get_mail_by_id: #{e}"
-end
-# Setup authorization
-SwaggerClient.configure do |config|
-  # Configure API key authorization: apiKeyAuth
-  config.api_key['X-API-KEY'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-KEY'] = 'Bearer'
-end
-
-api_instance = SwaggerClient::DefaultApi.new
+opts = { 
+  id: 789 # Integer | The ID of your mail order this will be sent through.
+}
 
 begin
   #displays a list of mail service orders
-  result = api_instance.get_mail_orders
+  result = api_instance.get_mail_orders(opts)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling DefaultApi->get_mail_orders: #{e}"
@@ -128,13 +112,11 @@ end
 
 api_instance = SwaggerClient::DefaultApi.new
 body = SwaggerClient::SendMail.new # SendMail | 
-id = 789 # Integer | 
-id = 789 # Integer | User ID
 
 
 begin
   #Sends an Email with Advanced Options
-  result = api_instance.send_adv_mail_by_id(body, id, id)
+  result = api_instance.send_adv_mail_by_id(body)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling DefaultApi->send_adv_mail_by_id: #{e}"
@@ -148,19 +130,19 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::DefaultApi.new
-id = 789 # Integer | User ID
 opts = { 
-  subject: 'subject_example', # String | 
-  body: 'body_example', # String | 
-  to: 'to_example', # String | 
-  to_name: 'to_name_example', # String | 
-  from: 'from_example', # String | 
-  from_name: 'from_name_example' # String | 
+  subject: 'subject_example', # String | The Subject of the email
+  body: 'body_example', # String | The contents of the email
+  to: 'to_example', # String | The email address of who this email will be sent to.
+  from: 'from_example', # String | The email address of who this email will be sent from.
+  id: 789, # Integer | The ID of your mail order this will be sent through.
+  to_name: 'to_name_example', # String | The name or title of who this email is being sent to.
+  from_name: 'from_name_example' # String | The name or title of who this email is being sent from.
 }
 
 begin
   #Sends an Email
-  result = api_instance.send_mail_by_id(id, opts)
+  result = api_instance.send_mail_by_id(opts)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling DefaultApi->send_mail_by_id: #{e}"
@@ -190,8 +172,8 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::DefaultApi.new
-id = 789 # Integer | User ID
 opts = { 
+  id: 789, # Integer | The ID of your mail order this will be sent through.
   search_string: 'search_string_example', # String | pass an optional search string for looking up inventory
   skip: 56, # Integer | number of records to skip for pagination
   limit: 56 # Integer | maximum number of records to return
@@ -199,7 +181,7 @@ opts = {
 
 begin
   #displays the mail log
-  result = api_instance.view_mail_log_by_id(id, opts)
+  result = api_instance.view_mail_log_by_id(opts)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling DefaultApi->view_mail_log_by_id: #{e}"
@@ -212,14 +194,13 @@ All URIs are relative to *https://api.mailbaby.net/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*SwaggerClient::DefaultApi* | [**get_mail_by_id**](docs/DefaultApi.md#get_mail_by_id) | **GET** /mail/{id} | Gets mail order information by id
 *SwaggerClient::DefaultApi* | [**get_mail_orders**](docs/DefaultApi.md#get_mail_orders) | **GET** /mail | displays a list of mail service orders
 *SwaggerClient::DefaultApi* | [**ping_server**](docs/DefaultApi.md#ping_server) | **GET** /ping | Checks if the server is running
 *SwaggerClient::DefaultApi* | [**place_mail_order**](docs/DefaultApi.md#place_mail_order) | **POST** /mail/order | places a mail order
-*SwaggerClient::DefaultApi* | [**send_adv_mail_by_id**](docs/DefaultApi.md#send_adv_mail_by_id) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-*SwaggerClient::DefaultApi* | [**send_mail_by_id**](docs/DefaultApi.md#send_mail_by_id) | **POST** /mail/{id}/send | Sends an Email
+*SwaggerClient::DefaultApi* | [**send_adv_mail_by_id**](docs/DefaultApi.md#send_adv_mail_by_id) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*SwaggerClient::DefaultApi* | [**send_mail_by_id**](docs/DefaultApi.md#send_mail_by_id) | **POST** /mail/send | Sends an Email
 *SwaggerClient::DefaultApi* | [**validate_mail_order**](docs/DefaultApi.md#validate_mail_order) | **GET** /mail/order | validatess order details before placing an order
-*SwaggerClient::DefaultApi* | [**view_mail_log_by_id**](docs/DefaultApi.md#view_mail_log_by_id) | **GET** /mail/{id}/log | displays the mail log
+*SwaggerClient::DefaultApi* | [**view_mail_log_by_id**](docs/DefaultApi.md#view_mail_log_by_id) | **GET** /mail/log | displays the mail log
 
 ## Documentation for Models
 
@@ -231,7 +212,6 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::MailOrder](docs/MailOrder.md)
  - [SwaggerClient::MailOrders](docs/MailOrders.md)
  - [SwaggerClient::SendMail](docs/SendMail.md)
- - [SwaggerClient::SendMailForm](docs/SendMailForm.md)
 
 ## Documentation for Authorization
 
@@ -240,17 +220,5 @@ Class | Method | HTTP request | Description
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-### apiLoginAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-### apiPasswordAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 

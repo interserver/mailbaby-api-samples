@@ -12,16 +12,11 @@ namespace IO.Swagger.Api
     public interface IDefaultApi
     {
         /// <summary>
-        /// Gets mail order information by id returns information about a mail order in the system with the given id.
-        /// </summary>
-        /// <param name="id">User ID</param>
-        /// <returns>MailOrder</returns>
-        MailOrder GetMailById (long? id);
-        /// <summary>
         /// displays a list of mail service orders 
         /// </summary>
+        /// <param name="id">The ID of your mail order this will be sent through.</param>
         /// <returns>MailOrders</returns>
-        MailOrders GetMailOrders ();
+        MailOrders GetMailOrders (long? id);
         /// <summary>
         /// Checks if the server is running 
         /// </summary>
@@ -37,35 +32,20 @@ namespace IO.Swagger.Api
         /// Sends an Email with Advanced Options Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </summary>
         /// <param name="body"></param>
-        /// <param name="id">User ID</param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendAdvMailById (SendMail body, long? id);
-        /// <summary>
-        /// Sends an Email with Advanced Options Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-        /// </summary>
-        /// <param name="id2"></param>
-        /// <param name="id">User ID</param>
-        /// <returns>GenericResponse</returns>
-        GenericResponse SendAdvMailById (long? id2, long? id);
-        /// <summary>
-        /// Sends an Email with Advanced Options Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-        /// </summary>
-        /// <param name="body"></param>
-        /// <param name="id">User ID</param>
-        /// <returns>GenericResponse</returns>
-        GenericResponse SendAdvMailById (SendMail body, long? id);
+        GenericResponse SendAdvMailById (SendMail body);
         /// <summary>
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
-        /// <param name="id">User ID</param>
-        /// <param name="subject"></param>
-        /// <param name="body"></param>
-        /// <param name="to"></param>
-        /// <param name="toName"></param>
-        /// <param name="from"></param>
-        /// <param name="fromName"></param>
+        /// <param name="subject">The Subject of the email</param>
+        /// <param name="body">The contents of the email</param>
+        /// <param name="to">The email address of who this email will be sent to.</param>
+        /// <param name="from">The email address of who this email will be sent from.</param>
+        /// <param name="id">The ID of your mail order this will be sent through.</param>
+        /// <param name="toName">The name or title of who this email is being sent to.</param>
+        /// <param name="fromName">The name or title of who this email is being sent from.</param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendMailById (long? id, string subject, string body, string to, string toName, string from, string fromName);
+        GenericResponse SendMailById (string subject, string body, string to, string from, long? id, string toName, string fromName);
         /// <summary>
         /// validatess order details before placing an order 
         /// </summary>
@@ -74,7 +54,7 @@ namespace IO.Swagger.Api
         /// <summary>
         /// displays the mail log By passing in the appropriate options, you can search for available inventory in the system 
         /// </summary>
-        /// <param name="id">User ID</param>
+        /// <param name="id">The ID of your mail order this will be sent through.</param>
         /// <param name="searchString">pass an optional search string for looking up inventory</param>
         /// <param name="skip">number of records to skip for pagination</param>
         /// <param name="limit">maximum number of records to return</param>
@@ -136,45 +116,11 @@ namespace IO.Swagger.Api
         public ApiClient ApiClient {get; set;}
     
         /// <summary>
-        /// Gets mail order information by id returns information about a mail order in the system with the given id.
-        /// </summary>
-        /// <param name="id">User ID</param>
-        /// <returns>MailOrder</returns>
-        public MailOrder GetMailById (long? id)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling GetMailById");
-    
-            var path = "/mail/{id}";
-            path = path.Replace("{format}", "json");
-            path = path.Replace("{" + "id" + "}", ApiClient.ParameterToString(id));
-    
-            var queryParams = new Dictionary<String, String>();
-            var headerParams = new Dictionary<String, String>();
-            var formParams = new Dictionary<String, String>();
-            var fileParams = new Dictionary<String, FileParameter>();
-            String postBody = null;
-    
-                                    
-            // authentication setting, if any
-            String[] authSettings = new String[] { "apiKeyAuth" };
-    
-            // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
-    
-            if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling GetMailById: " + response.Content, response.Content);
-            else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling GetMailById: " + response.ErrorMessage, response.ErrorMessage);
-    
-            return (MailOrder) ApiClient.Deserialize(response.Content, typeof(MailOrder), response.Headers);
-        }
-    
-        /// <summary>
         /// displays a list of mail service orders 
         /// </summary>
+        /// <param name="id">The ID of your mail order this will be sent through.</param>
         /// <returns>MailOrders</returns>
-        public MailOrders GetMailOrders ()
+        public MailOrders GetMailOrders (long? id)
         {
     
             var path = "/mail";
@@ -186,7 +132,8 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
     
-                                    
+             if (id != null) queryParams.Add("id", ApiClient.ParameterToString(id)); // query parameter
+                        
             // authentication setting, if any
             String[] authSettings = new String[] { "apiKeyAuth" };
     
@@ -269,97 +216,15 @@ namespace IO.Swagger.Api
         /// Sends an Email with Advanced Options Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </summary>
         /// <param name="body"></param>
-        /// <param name="id">User ID</param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendAdvMailById (SendMail body, long? id)
+        public GenericResponse SendAdvMailById (SendMail body)
         {
             // verify the required parameter 'body' is set
             if (body == null) throw new ApiException(400, "Missing required parameter 'body' when calling SendAdvMailById");
-            // verify the required parameter 'id' is set
-            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling SendAdvMailById");
     
-            var path = "/mail/{id}/advsend";
+            var path = "/mail/advsend";
             path = path.Replace("{format}", "json");
-            path = path.Replace("{" + "id" + "}", ApiClient.ParameterToString(id));
-    
-            var queryParams = new Dictionary<String, String>();
-            var headerParams = new Dictionary<String, String>();
-            var formParams = new Dictionary<String, String>();
-            var fileParams = new Dictionary<String, FileParameter>();
-            String postBody = null;
-    
-                                    postBody = ApiClient.Serialize(body); // http body (model) parameter
-
-            // authentication setting, if any
-            String[] authSettings = new String[] { "apiKeyAuth" };
-    
-            // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
-    
-            if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling SendAdvMailById: " + response.Content, response.Content);
-            else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling SendAdvMailById: " + response.ErrorMessage, response.ErrorMessage);
-    
-            return (GenericResponse) ApiClient.Deserialize(response.Content, typeof(GenericResponse), response.Headers);
-        }
-    
-        /// <summary>
-        /// Sends an Email with Advanced Options Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-        /// </summary>
-        /// <param name="id2"></param>
-        /// <param name="id">User ID</param>
-        /// <returns>GenericResponse</returns>
-        public GenericResponse SendAdvMailById (long? id2, long? id)
-        {
-            // verify the required parameter 'id2' is set
-            if (id2 == null) throw new ApiException(400, "Missing required parameter 'id2' when calling SendAdvMailById");
-            // verify the required parameter 'id' is set
-            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling SendAdvMailById");
-    
-            var path = "/mail/{id}/advsend";
-            path = path.Replace("{format}", "json");
-            path = path.Replace("{" + "id" + "}", ApiClient.ParameterToString(id));
-    
-            var queryParams = new Dictionary<String, String>();
-            var headerParams = new Dictionary<String, String>();
-            var formParams = new Dictionary<String, String>();
-            var fileParams = new Dictionary<String, FileParameter>();
-            String postBody = null;
-    
-                                    if (id != null) formParams.Add("id", ApiClient.ParameterToString(id)); // form parameter
-
-            // authentication setting, if any
-            String[] authSettings = new String[] { "apiKeyAuth" };
-    
-            // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
-    
-            if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling SendAdvMailById: " + response.Content, response.Content);
-            else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling SendAdvMailById: " + response.ErrorMessage, response.ErrorMessage);
-    
-            return (GenericResponse) ApiClient.Deserialize(response.Content, typeof(GenericResponse), response.Headers);
-        }
-    
-        /// <summary>
-        /// Sends an Email with Advanced Options Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-        /// </summary>
-        /// <param name="body"></param>
-        /// <param name="id">User ID</param>
-        /// <returns>GenericResponse</returns>
-        public GenericResponse SendAdvMailById (SendMail body, long? id)
-        {
-            // verify the required parameter 'body' is set
-            if (body == null) throw new ApiException(400, "Missing required parameter 'body' when calling SendAdvMailById");
-            // verify the required parameter 'id' is set
-            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling SendAdvMailById");
-    
-            var path = "/mail/{id}/advsend";
-            path = path.Replace("{format}", "json");
-            path = path.Replace("{" + "id" + "}", ApiClient.ParameterToString(id));
-    
+                
             var queryParams = new Dictionary<String, String>();
             var headerParams = new Dictionary<String, String>();
             var formParams = new Dictionary<String, String>();
@@ -385,23 +250,20 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
-        /// <param name="id">User ID</param>
-        /// <param name="subject"></param>
-        /// <param name="body"></param>
-        /// <param name="to"></param>
-        /// <param name="toName"></param>
-        /// <param name="from"></param>
-        /// <param name="fromName"></param>
+        /// <param name="subject">The Subject of the email</param>
+        /// <param name="body">The contents of the email</param>
+        /// <param name="to">The email address of who this email will be sent to.</param>
+        /// <param name="from">The email address of who this email will be sent from.</param>
+        /// <param name="id">The ID of your mail order this will be sent through.</param>
+        /// <param name="toName">The name or title of who this email is being sent to.</param>
+        /// <param name="fromName">The name or title of who this email is being sent from.</param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendMailById (long? id, string subject, string body, string to, string toName, string from, string fromName)
+        public GenericResponse SendMailById (string subject, string body, string to, string from, long? id, string toName, string fromName)
         {
-            // verify the required parameter 'id' is set
-            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling SendMailById");
     
-            var path = "/mail/{id}/send";
+            var path = "/mail/send";
             path = path.Replace("{format}", "json");
-            path = path.Replace("{" + "id" + "}", ApiClient.ParameterToString(id));
-    
+                
             var queryParams = new Dictionary<String, String>();
             var headerParams = new Dictionary<String, String>();
             var formParams = new Dictionary<String, String>();
@@ -411,8 +273,9 @@ namespace IO.Swagger.Api
              if (subject != null) queryParams.Add("subject", ApiClient.ParameterToString(subject)); // query parameter
  if (body != null) queryParams.Add("body", ApiClient.ParameterToString(body)); // query parameter
  if (to != null) queryParams.Add("to", ApiClient.ParameterToString(to)); // query parameter
- if (toName != null) queryParams.Add("toName", ApiClient.ParameterToString(toName)); // query parameter
  if (from != null) queryParams.Add("from", ApiClient.ParameterToString(from)); // query parameter
+ if (id != null) queryParams.Add("id", ApiClient.ParameterToString(id)); // query parameter
+ if (toName != null) queryParams.Add("toName", ApiClient.ParameterToString(toName)); // query parameter
  if (fromName != null) queryParams.Add("fromName", ApiClient.ParameterToString(fromName)); // query parameter
                         
             // authentication setting, if any
@@ -463,27 +326,25 @@ namespace IO.Swagger.Api
         /// <summary>
         /// displays the mail log By passing in the appropriate options, you can search for available inventory in the system 
         /// </summary>
-        /// <param name="id">User ID</param>
+        /// <param name="id">The ID of your mail order this will be sent through.</param>
         /// <param name="searchString">pass an optional search string for looking up inventory</param>
         /// <param name="skip">number of records to skip for pagination</param>
         /// <param name="limit">maximum number of records to return</param>
         /// <returns>List&lt;MailLog&gt;</returns>
         public List<MailLog> ViewMailLogById (long? id, string searchString, int? skip, int? limit)
         {
-            // verify the required parameter 'id' is set
-            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling ViewMailLogById");
     
-            var path = "/mail/{id}/log";
+            var path = "/mail/log";
             path = path.Replace("{format}", "json");
-            path = path.Replace("{" + "id" + "}", ApiClient.ParameterToString(id));
-    
+                
             var queryParams = new Dictionary<String, String>();
             var headerParams = new Dictionary<String, String>();
             var formParams = new Dictionary<String, String>();
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
     
-             if (searchString != null) queryParams.Add("searchString", ApiClient.ParameterToString(searchString)); // query parameter
+             if (id != null) queryParams.Add("id", ApiClient.ParameterToString(id)); // query parameter
+ if (searchString != null) queryParams.Add("searchString", ApiClient.ParameterToString(searchString)); // query parameter
  if (skip != null) queryParams.Add("skip", ApiClient.ParameterToString(skip)); // query parameter
  if (limit != null) queryParams.Add("limit", ApiClient.ParameterToString(limit)); // query parameter
                         

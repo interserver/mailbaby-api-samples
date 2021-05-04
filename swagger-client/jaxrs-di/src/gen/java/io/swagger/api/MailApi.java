@@ -37,7 +37,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-03T14:06:21.695369-04:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-04T14:31:51.474131-04:00[America/New_York]")public class MailApi  {
 
    private MailApiService delegate;
 
@@ -50,19 +50,6 @@ import javax.validation.constraints.*;
    }
 
     @GET
-    @Path("/{id}")
-    
-    @Produces({ "application/json" })
-    @Operation(summary = "Gets mail order information by id", description = "returns information about a mail order in the system with the given id.", security = {
-        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(schema = @Schema(implementation = MailOrder.class))) })
-    public Response getMailById(@Parameter(in = ParameterIn.PATH, description = "User ID",required=true) @PathParam("id") Long id
-,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return delegate.getMailById(id,securityContext);
-    }
-    @GET
     
     
     @Produces({ "application/json", "application/xml", "text/plain" })
@@ -72,9 +59,10 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = MailOrders.class))),
         
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response getMailOrders(@Context SecurityContext securityContext)
+    public Response getMailOrders(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through.") @QueryParam("id") Long id
+,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.getMailOrders(securityContext);
+        return delegate.getMailOrders(id,securityContext);
     }
     @POST
     @Path("/order")
@@ -97,8 +85,8 @@ import javax.validation.constraints.*;
         return delegate.placeMailOrder(body,securityContext);
     }
     @POST
-    @Path("/{id}/advsend")
-    @Consumes({ "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" })
+    @Path("/advsend")
+    @Consumes({ "application/json" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
@@ -112,54 +100,12 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
     public Response sendAdvMailById(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) SendMail body
 
-,@Parameter(in = ParameterIn.PATH, description = "User ID",required=true) @PathParam("id") Long id
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.sendAdvMailById(body,id,securityContext);
+        return delegate.sendAdvMailById(body,securityContext);
     }
     @POST
-    @Path("/{id}/advsend")
-    @Consumes({ "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" })
-    @Produces({ "application/json" })
-    @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
-        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
-        
-        @ApiResponse(responseCode = "400", description = "bad input parameter"),
-        
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-        
-        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendAdvMailById(@Parameter(description = "", required=true)  @FormParam("id")  Long id2
-,@Parameter(in = ParameterIn.PATH, description = "User ID",required=true) @PathParam("id") Long id
-,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return delegate.sendAdvMailById(id2,id,securityContext);
-    }
-    @POST
-    @Path("/{id}/advsend")
-    @Consumes({ "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" })
-    @Produces({ "application/json" })
-    @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
-        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
-        
-        @ApiResponse(responseCode = "400", description = "bad input parameter"),
-        
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-        
-        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendAdvMailById(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) SendMail body
-
-,@Parameter(in = ParameterIn.PATH, description = "User ID",required=true) @PathParam("id") Long id
-,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return delegate.sendAdvMailById(body,id,securityContext);
-    }
-    @POST
-    @Path("/{id}/send")
+    @Path("/send")
     
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
@@ -172,16 +118,16 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
         
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendMailById(@Parameter(in = ParameterIn.PATH, description = "User ID",required=true) @PathParam("id") Long id
-,@Parameter(in = ParameterIn.QUERY, description = "") @QueryParam("subject") String subject
-,@Parameter(in = ParameterIn.QUERY, description = "") @QueryParam("body") String body
-,@Parameter(in = ParameterIn.QUERY, description = "") @QueryParam("to") String to
-,@Parameter(in = ParameterIn.QUERY, description = "") @QueryParam("toName") String toName
-,@Parameter(in = ParameterIn.QUERY, description = "") @QueryParam("from") String from
-,@Parameter(in = ParameterIn.QUERY, description = "") @QueryParam("fromName") String fromName
+    public Response sendMailById(@Parameter(in = ParameterIn.QUERY, description = "The Subject of the email") @QueryParam("subject") String subject
+,@Parameter(in = ParameterIn.QUERY, description = "The contents of the email") @QueryParam("body") String body
+,@Parameter(in = ParameterIn.QUERY, description = "The email address of who this email will be sent to.") @QueryParam("to") String to
+,@Parameter(in = ParameterIn.QUERY, description = "The email address of who this email will be sent from.") @QueryParam("from") String from
+,@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through.") @QueryParam("id") Long id
+,@Parameter(in = ParameterIn.QUERY, description = "The name or title of who this email is being sent to.") @QueryParam("toName") String toName
+,@Parameter(in = ParameterIn.QUERY, description = "The name or title of who this email is being sent from.") @QueryParam("fromName") String fromName
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.sendMailById(id,subject,body,to,toName,from,fromName,securityContext);
+        return delegate.sendMailById(subject,body,to,from,id,toName,fromName,securityContext);
     }
     @GET
     @Path("/order")
@@ -198,7 +144,7 @@ import javax.validation.constraints.*;
         return delegate.validateMailOrder(securityContext);
     }
     @GET
-    @Path("/{id}/log")
+    @Path("/log")
     
     @Produces({ "application/json" })
     @Operation(summary = "displays the mail log", description = "By passing in the appropriate options, you can search for available inventory in the system ", security = {
@@ -207,7 +153,7 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
         
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
-    public Response viewMailLogById(@Parameter(in = ParameterIn.PATH, description = "User ID",required=true) @PathParam("id") Long id
+    public Response viewMailLogById(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through.") @QueryParam("id") Long id
 ,@Parameter(in = ParameterIn.QUERY, description = "pass an optional search string for looking up inventory") @QueryParam("searchString") String searchString
 ,@Parameter(in = ParameterIn.QUERY, description = "number of records to skip for pagination", schema=@Schema(allowableValues={  })
 ) @QueryParam("skip") Integer skip

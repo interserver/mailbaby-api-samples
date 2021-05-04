@@ -4,85 +4,17 @@ All URIs are relative to *https://api.mailbaby.net/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetMailById**](DefaultApi.md#getmailbyid) | **GET** /mail/{id} | Gets mail order information by id
 [**GetMailOrders**](DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 [**PingServer**](DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
 [**PlaceMailOrder**](DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
-[**SendAdvMailById**](DefaultApi.md#sendadvmailbyid) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-[**SendMailById**](DefaultApi.md#sendmailbyid) | **POST** /mail/{id}/send | Sends an Email
+[**SendAdvMailById**](DefaultApi.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**SendMailById**](DefaultApi.md#sendmailbyid) | **POST** /mail/send | Sends an Email
 [**ValidateMailOrder**](DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-[**ViewMailLogById**](DefaultApi.md#viewmaillogbyid) | **GET** /mail/{id}/log | displays the mail log
-
-<a name="getmailbyid"></a>
-# **GetMailById**
-> MailOrder GetMailById (long? id)
-
-Gets mail order information by id
-
-returns information about a mail order in the system with the given id.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
-
-namespace Example
-{
-    public class GetMailByIdExample
-    {
-        public void main()
-        {
-
-            // Configure API key authorization: apiKeyAuth
-            Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
-
-            var apiInstance = new DefaultApi();
-            var id = 789;  // long? | User ID
-
-            try
-            {
-                // Gets mail order information by id
-                MailOrder result = apiInstance.GetMailById(id);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.GetMailById: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **long?**| User ID | 
-
-### Return type
-
-[**MailOrder**](MailOrder.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[**ViewMailLogById**](DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
 <a name="getmailorders"></a>
 # **GetMailOrders**
-> MailOrders GetMailOrders ()
+> MailOrders GetMailOrders (long? id)
 
 displays a list of mail service orders
 
@@ -107,11 +39,12 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi();
+            var id = 789;  // long? | The ID of your mail order this will be sent through. (optional) 
 
             try
             {
                 // displays a list of mail service orders
-                MailOrders result = apiInstance.GetMailOrders();
+                MailOrders result = apiInstance.GetMailOrders(id);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -124,7 +57,10 @@ namespace Example
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **long?**| The ID of your mail order this will be sent through. | [optional] 
 
 ### Return type
 
@@ -264,7 +200,7 @@ void (empty response body)
 
 <a name="sendadvmailbyid"></a>
 # **SendAdvMailById**
-> GenericResponse SendAdvMailById (SendMail body, long? id)
+> GenericResponse SendAdvMailById (SendMail body)
 
 Sends an Email with Advanced Options
 
@@ -292,12 +228,11 @@ namespace Example
 
             var apiInstance = new DefaultApi();
             var body = new SendMail(); // SendMail | 
-            var id = 789;  // long? | User ID
 
             try
             {
                 // Sends an Email with Advanced Options
-                GenericResponse result = apiInstance.SendAdvMailById(body, id);
+                GenericResponse result = apiInstance.SendAdvMailById(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -314,7 +249,6 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**SendMail**](SendMail.md)|  | 
- **id** | **long?**| User ID | 
 
 ### Return type
 
@@ -326,14 +260,14 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="sendmailbyid"></a>
 # **SendMailById**
-> GenericResponse SendMailById (long? id, string subject, string body, string to, string toName, string from, string fromName)
+> GenericResponse SendMailById (string subject, string body, string to, string from, long? id, string toName, string fromName)
 
 Sends an Email
 
@@ -360,18 +294,18 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var id = 789;  // long? | User ID
-            var subject = subject_example;  // string |  (optional) 
-            var body = body_example;  // string |  (optional) 
-            var to = to_example;  // string |  (optional) 
-            var toName = toName_example;  // string |  (optional) 
-            var from = from_example;  // string |  (optional) 
-            var fromName = fromName_example;  // string |  (optional) 
+            var subject = subject_example;  // string | The Subject of the email (optional) 
+            var body = body_example;  // string | The contents of the email (optional) 
+            var to = to_example;  // string | The email address of who this email will be sent to. (optional) 
+            var from = from_example;  // string | The email address of who this email will be sent from. (optional) 
+            var id = 789;  // long? | The ID of your mail order this will be sent through. (optional) 
+            var toName = toName_example;  // string | The name or title of who this email is being sent to. (optional) 
+            var fromName = fromName_example;  // string | The name or title of who this email is being sent from. (optional) 
 
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.SendMailById(id, subject, body, to, toName, from, fromName);
+                GenericResponse result = apiInstance.SendMailById(subject, body, to, from, id, toName, fromName);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -387,13 +321,13 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **long?**| User ID | 
- **subject** | **string**|  | [optional] 
- **body** | **string**|  | [optional] 
- **to** | **string**|  | [optional] 
- **toName** | **string**|  | [optional] 
- **from** | **string**|  | [optional] 
- **fromName** | **string**|  | [optional] 
+ **subject** | **string**| The Subject of the email | [optional] 
+ **body** | **string**| The contents of the email | [optional] 
+ **to** | **string**| The email address of who this email will be sent to. | [optional] 
+ **from** | **string**| The email address of who this email will be sent from. | [optional] 
+ **id** | **long?**| The ID of your mail order this will be sent through. | [optional] 
+ **toName** | **string**| The name or title of who this email is being sent to. | [optional] 
+ **fromName** | **string**| The name or title of who this email is being sent from. | [optional] 
 
 ### Return type
 
@@ -499,7 +433,7 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var id = 789;  // long? | User ID
+            var id = 789;  // long? | The ID of your mail order this will be sent through. (optional) 
             var searchString = searchString_example;  // string | pass an optional search string for looking up inventory (optional) 
             var skip = 56;  // int? | number of records to skip for pagination (optional) 
             var limit = 56;  // int? | maximum number of records to return (optional) 
@@ -523,7 +457,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **long?**| User ID | 
+ **id** | **long?**| The ID of your mail order this will be sent through. | [optional] 
  **searchString** | **string**| pass an optional search string for looking up inventory | [optional] 
  **skip** | **int?**| number of records to skip for pagination | [optional] 
  **limit** | **int?**| maximum number of records to return | [optional] 

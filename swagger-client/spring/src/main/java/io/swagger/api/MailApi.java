@@ -37,19 +37,9 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-03T14:06:32.812224-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-04T14:32:01.903387-04:00[America/New_York]")
 @Validated
 public interface MailApi {
-
-    @Operation(summary = "Gets mail order information by id", description = "returns information about a mail order in the system with the given id.", security = {
-        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(schema = @Schema(implementation = MailOrder.class))) })
-    @RequestMapping(value = "/mail/{id}",
-        produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    ResponseEntity<MailOrder> getMailById(@Parameter(in = ParameterIn.PATH, description = "User ID", required=true, schema=@Schema()) @PathVariable("id") Long id);
-
 
     @Operation(summary = "displays a list of mail service orders", description = "", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
@@ -60,7 +50,7 @@ public interface MailApi {
     @RequestMapping(value = "/mail",
         produces = { "application/json", "application/xml", "text/plain" }, 
         method = RequestMethod.GET)
-    ResponseEntity<MailOrders> getMailOrders();
+    ResponseEntity<MailOrders> getMailOrders(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through." ,schema=@Schema()) @Valid @RequestParam(value = "id", required = false) Long id);
 
 
     @Operation(summary = "places a mail order", description = "Adds an item to the system", security = {
@@ -90,11 +80,11 @@ public interface MailApi {
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
         
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    @RequestMapping(value = "/mail/{id}/advsend",
+    @RequestMapping(value = "/mail/advsend",
         produces = { "application/json" }, 
-        consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" }, 
+        consumes = { "application/json" }, 
         method = RequestMethod.POST)
-    ResponseEntity<GenericResponse> sendAdvMailById(@Parameter(in = ParameterIn.PATH, description = "User ID", required=true, schema=@Schema()) @PathVariable("id") Long id, @Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody SendMail body);
+    ResponseEntity<GenericResponse> sendAdvMailById(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody SendMail body);
 
 
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
@@ -107,10 +97,10 @@ public interface MailApi {
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
         
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    @RequestMapping(value = "/mail/{id}/send",
+    @RequestMapping(value = "/mail/send",
         produces = { "application/json" }, 
         method = RequestMethod.POST)
-    ResponseEntity<GenericResponse> sendMailById(@Parameter(in = ParameterIn.PATH, description = "User ID", required=true, schema=@Schema()) @PathVariable("id") Long id, @Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "subject", required = false) String subject, @Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "body", required = false) String body, @Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "to", required = false) String to, @Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "toName", required = false) String toName, @Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "from", required = false) String from, @Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema()) @Valid @RequestParam(value = "fromName", required = false) String fromName);
+    ResponseEntity<GenericResponse> sendMailById(@Parameter(in = ParameterIn.QUERY, description = "The Subject of the email" ,schema=@Schema()) @Valid @RequestParam(value = "subject", required = false) String subject, @Parameter(in = ParameterIn.QUERY, description = "The contents of the email" ,schema=@Schema()) @Valid @RequestParam(value = "body", required = false) String body, @Parameter(in = ParameterIn.QUERY, description = "The email address of who this email will be sent to." ,schema=@Schema()) @Valid @RequestParam(value = "to", required = false) String to, @Parameter(in = ParameterIn.QUERY, description = "The email address of who this email will be sent from." ,schema=@Schema()) @Valid @RequestParam(value = "from", required = false) String from, @Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through." ,schema=@Schema()) @Valid @RequestParam(value = "id", required = false) Long id, @Parameter(in = ParameterIn.QUERY, description = "The name or title of who this email is being sent to." ,schema=@Schema()) @Valid @RequestParam(value = "toName", required = false) String toName, @Parameter(in = ParameterIn.QUERY, description = "The name or title of who this email is being sent from." ,schema=@Schema()) @Valid @RequestParam(value = "fromName", required = false) String fromName);
 
 
     @Operation(summary = "validatess order details before placing an order", description = "", security = {
@@ -131,10 +121,10 @@ public interface MailApi {
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
         
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
-    @RequestMapping(value = "/mail/{id}/log",
+    @RequestMapping(value = "/mail/log",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<MailLog>> viewMailLogById(@Parameter(in = ParameterIn.PATH, description = "User ID", required=true, schema=@Schema()) @PathVariable("id") Long id, @Parameter(in = ParameterIn.QUERY, description = "pass an optional search string for looking up inventory" ,schema=@Schema()) @Valid @RequestParam(value = "searchString", required = false) String searchString, @Min(0)@Parameter(in = ParameterIn.QUERY, description = "number of records to skip for pagination" ,schema=@Schema(allowableValues={  }
+    ResponseEntity<List<MailLog>> viewMailLogById(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through." ,schema=@Schema()) @Valid @RequestParam(value = "id", required = false) Long id, @Parameter(in = ParameterIn.QUERY, description = "pass an optional search string for looking up inventory" ,schema=@Schema()) @Valid @RequestParam(value = "searchString", required = false) String searchString, @Min(0)@Parameter(in = ParameterIn.QUERY, description = "number of records to skip for pagination" ,schema=@Schema(allowableValues={  }
 )) @Valid @RequestParam(value = "skip", required = false) Integer skip, @Min(0) @Max(50) @Parameter(in = ParameterIn.QUERY, description = "maximum number of records to return" ,schema=@Schema(allowableValues={  }, maximum="50"
 )) @Valid @RequestParam(value = "limit", required = false) Integer limit);
 

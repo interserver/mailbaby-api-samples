@@ -7,61 +7,10 @@ class DefaultApi {
 
   DefaultApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
-  /// Gets mail order information by id
-  ///
-  /// returns information about a mail order in the system with the given id.
-  Future<MailOrder> getMailById(int id) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(id == null) {
-     throw new ApiException(400, "Missing required param: id");
-    }
-
-    // create path and map variables
-    String path = "/mail/{id}".replaceAll("{format}","json").replaceAll("{" + "id" + "}", id.toString());
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = [];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["apiKeyAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return
-          apiClient.deserialize(response.body, 'MailOrder') as MailOrder ;
-    } else {
-      return null;
-    }
-  }
   /// displays a list of mail service orders
   ///
   /// 
-  Future<MailOrders> getMailOrders() async {
+  Future<MailOrders> getMailOrders({ int id }) async {
     Object postBody = null;
 
     // verify required params are set
@@ -73,6 +22,9 @@ class DefaultApi {
     List<QueryParam> queryParams = [];
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
+    if(id != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "id", id));
+    }
     
     List<String> contentTypes = [];
 
@@ -206,26 +158,23 @@ class DefaultApi {
   /// Sends an Email with Advanced Options
   ///
   /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-  Future<GenericResponse> sendAdvMailById(SendMail body, int id) async {
+  Future<GenericResponse> sendAdvMailById(SendMail body) async {
     Object postBody = body;
 
     // verify required params are set
     if(body == null) {
      throw new ApiException(400, "Missing required param: body");
     }
-    if(id == null) {
-     throw new ApiException(400, "Missing required param: id");
-    }
 
     // create path and map variables
-    String path = "/mail/{id}/advsend".replaceAll("{format}","json").replaceAll("{" + "id" + "}", id.toString());
+    String path = "/mail/advsend".replaceAll("{format}","json");
 
     // query params
     List<QueryParam> queryParams = [];
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
     
-    List<String> contentTypes = ["application/json","application/xml","application/x-www-form-urlencoded","text/plain"];
+    List<String> contentTypes = ["application/json"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
     List<String> authNames = ["apiKeyAuth"];
@@ -233,17 +182,11 @@ class DefaultApi {
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
       MultipartRequest mp = new MultipartRequest(null, null);
-      if (id != null) {
-        hasFields = true;
-        mp.fields['id'] = parameterToString(id);
-      }
       if(hasFields)
         postBody = mp;
     }
     else {
-      if (id != null)
-        formParams['id'] = parameterToString(id);
-    }
+          }
 
     var response = await apiClient.invokeAPI(path,
                                              'POST',
@@ -266,16 +209,13 @@ class DefaultApi {
   /// Sends an Email
   ///
   /// Sends An email through one of your mail orders.
-  Future<GenericResponse> sendMailById(int id, { String subject, String body, String to, String toName, String from, String fromName }) async {
+  Future<GenericResponse> sendMailById({ String subject, String body, String to, String from, int id, String toName, String fromName }) async {
     Object postBody = null;
 
     // verify required params are set
-    if(id == null) {
-     throw new ApiException(400, "Missing required param: id");
-    }
 
     // create path and map variables
-    String path = "/mail/{id}/send".replaceAll("{format}","json").replaceAll("{" + "id" + "}", id.toString());
+    String path = "/mail/send".replaceAll("{format}","json");
 
     // query params
     List<QueryParam> queryParams = [];
@@ -290,11 +230,14 @@ class DefaultApi {
     if(to != null) {
       queryParams.addAll(_convertParametersForCollectionFormat("", "to", to));
     }
-    if(toName != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("", "toName", toName));
-    }
     if(from != null) {
       queryParams.addAll(_convertParametersForCollectionFormat("", "from", from));
+    }
+    if(id != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "id", id));
+    }
+    if(toName != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "toName", toName));
     }
     if(fromName != null) {
       queryParams.addAll(_convertParametersForCollectionFormat("", "fromName", fromName));
@@ -384,21 +327,21 @@ class DefaultApi {
   /// displays the mail log
   ///
   /// By passing in the appropriate options, you can search for available inventory in the system 
-  Future<List<MailLog>> viewMailLogById(int id, { String searchString, int skip, int limit }) async {
+  Future<List<MailLog>> viewMailLogById({ int id, String searchString, int skip, int limit }) async {
     Object postBody = null;
 
     // verify required params are set
-    if(id == null) {
-     throw new ApiException(400, "Missing required param: id");
-    }
 
     // create path and map variables
-    String path = "/mail/{id}/log".replaceAll("{format}","json").replaceAll("{" + "id" + "}", id.toString());
+    String path = "/mail/log".replaceAll("{format}","json");
 
     // query params
     List<QueryParam> queryParams = [];
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
+    if(id != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "id", id));
+    }
     if(searchString != null) {
       queryParams.addAll(_convertParametersForCollectionFormat("", "searchString", searchString));
     }

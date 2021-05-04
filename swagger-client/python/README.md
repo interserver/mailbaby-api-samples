@@ -60,27 +60,11 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
-id = 789 # int | User ID
-
-try:
-    # Gets mail order information by id
-    api_response = api_instance.get_mail_by_id(id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->get_mail_by_id: %s\n" % e)
-
-# Configure API key authorization: apiKeyAuth
-configuration = swagger_client.Configuration()
-configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
+id = 789 # int | The ID of your mail order this will be sent through. (optional)
 
 try:
     # displays a list of mail service orders
-    api_response = api_instance.get_mail_orders()
+    api_response = api_instance.get_mail_orders(id=id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_mail_orders: %s\n" % e)
@@ -119,11 +103,10 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
 body = swagger_client.SendMail() # SendMail | 
-id = 789 # int | User ID
 
 try:
     # Sends an Email with Advanced Options
-    api_response = api_instance.send_adv_mail_by_id(body, id)
+    api_response = api_instance.send_adv_mail_by_id(body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->send_adv_mail_by_id: %s\n" % e)
@@ -136,17 +119,17 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
-id = 789 # int | User ID
-subject = 'subject_example' # str |  (optional)
-body = 'body_example' # str |  (optional)
-to = 'to_example' # str |  (optional)
-to_name = 'to_name_example' # str |  (optional)
-_from = '_from_example' # str |  (optional)
-from_name = 'from_name_example' # str |  (optional)
+subject = 'subject_example' # str | The Subject of the email (optional)
+body = 'body_example' # str | The contents of the email (optional)
+to = 'to_example' # str | The email address of who this email will be sent to. (optional)
+_from = '_from_example' # str | The email address of who this email will be sent from. (optional)
+id = 789 # int | The ID of your mail order this will be sent through. (optional)
+to_name = 'to_name_example' # str | The name or title of who this email is being sent to. (optional)
+from_name = 'from_name_example' # str | The name or title of who this email is being sent from. (optional)
 
 try:
     # Sends an Email
-    api_response = api_instance.send_mail_by_id(id, subject=subject, body=body, to=to, to_name=to_name, _from=_from, from_name=from_name)
+    api_response = api_instance.send_mail_by_id(subject=subject, body=body, to=to, _from=_from, id=id, to_name=to_name, from_name=from_name)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->send_mail_by_id: %s\n" % e)
@@ -174,14 +157,14 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
-id = 789 # int | User ID
+id = 789 # int | The ID of your mail order this will be sent through. (optional)
 search_string = 'search_string_example' # str | pass an optional search string for looking up inventory (optional)
 skip = 56 # int | number of records to skip for pagination (optional)
 limit = 56 # int | maximum number of records to return (optional)
 
 try:
     # displays the mail log
-    api_response = api_instance.view_mail_log_by_id(id, search_string=search_string, skip=skip, limit=limit)
+    api_response = api_instance.view_mail_log_by_id(id=id, search_string=search_string, skip=skip, limit=limit)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->view_mail_log_by_id: %s\n" % e)
@@ -193,14 +176,13 @@ All URIs are relative to *https://api.mailbaby.net/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**get_mail_by_id**](docs/DefaultApi.md#get_mail_by_id) | **GET** /mail/{id} | Gets mail order information by id
 *DefaultApi* | [**get_mail_orders**](docs/DefaultApi.md#get_mail_orders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**ping_server**](docs/DefaultApi.md#ping_server) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**place_mail_order**](docs/DefaultApi.md#place_mail_order) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**send_adv_mail_by_id**](docs/DefaultApi.md#send_adv_mail_by_id) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**send_mail_by_id**](docs/DefaultApi.md#send_mail_by_id) | **POST** /mail/{id}/send | Sends an Email
+*DefaultApi* | [**send_adv_mail_by_id**](docs/DefaultApi.md#send_adv_mail_by_id) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**send_mail_by_id**](docs/DefaultApi.md#send_mail_by_id) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validate_mail_order**](docs/DefaultApi.md#validate_mail_order) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**view_mail_log_by_id**](docs/DefaultApi.md#view_mail_log_by_id) | **GET** /mail/{id}/log | displays the mail log
+*DefaultApi* | [**view_mail_log_by_id**](docs/DefaultApi.md#view_mail_log_by_id) | **GET** /mail/log | displays the mail log
 
 ## Documentation For Models
 
@@ -212,7 +194,6 @@ Class | Method | HTTP request | Description
  - [MailOrder](docs/MailOrder.md)
  - [MailOrders](docs/MailOrders.md)
  - [SendMail](docs/SendMail.md)
- - [SendMailForm](docs/SendMailForm.md)
 
 ## Documentation For Authorization
 
@@ -221,18 +202,6 @@ Class | Method | HTTP request | Description
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-## apiLoginAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-## apiPasswordAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 
 

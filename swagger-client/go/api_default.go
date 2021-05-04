@@ -16,7 +16,6 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-	"fmt"
 	"github.com/antihax/optional"
 )
 
@@ -27,109 +26,18 @@ var (
 
 type DefaultApiService service
 /*
-DefaultApiService Gets mail order information by id
-returns information about a mail order in the system with the given id.
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id User ID
-@return MailOrder
-*/
-func (a *DefaultApiService) GetMailById(ctx context.Context, id int64) (MailOrder, *http.Response, error) {
-	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
-		localVarReturnValue MailOrder
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/mail/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
-	if localVarHttpContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHttpContentType
-	}
-
-	// to determine the Accept header
-	localVarHttpHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
-	if localVarHttpHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-API-KEY"] = key
-			
-		}
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHttpResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHttpResponse == nil {
-		return localVarReturnValue, localVarHttpResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHttpResponse, err
-	}
-
-	if localVarHttpResponse.StatusCode < 300 {
-		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
-	}
-
-	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
-			body: localVarBody,
-			error: localVarHttpResponse.Status,
-		}
-		if localVarHttpResponse.StatusCode == 200 {
-			var v MailOrder
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
-				return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHttpResponse, nil
-}
-/*
 DefaultApiService displays a list of mail service orders
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *DefaultApiGetMailOrdersOpts - Optional Parameters:
+     * @param "Id" (optional.Int64) -  The ID of your mail order this will be sent through.
 @return []MailOrder
 */
-func (a *DefaultApiService) GetMailOrders(ctx context.Context) ([]MailOrder, *http.Response, error) {
+
+type DefaultApiGetMailOrdersOpts struct {
+    Id optional.Int64
+}
+
+func (a *DefaultApiService) GetMailOrders(ctx context.Context, localVarOptionals *DefaultApiGetMailOrdersOpts) ([]MailOrder, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -145,6 +53,9 @@ func (a *DefaultApiService) GetMailOrders(ctx context.Context) ([]MailOrder, *ht
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Id.IsSet() {
+		localVarQueryParams.Add("id", parameterToString(localVarOptionals.Id.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -401,10 +312,9 @@ DefaultApiService Sends an Email with Advanced Options
 Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param body
- * @param id User ID
 @return GenericResponse
 */
-func (a *DefaultApiService) SendAdvMailById(ctx context.Context, body SendMail, id int64) (GenericResponse, *http.Response, error) {
+func (a *DefaultApiService) SendAdvMailById(ctx context.Context, body SendMail) (GenericResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -414,15 +324,14 @@ func (a *DefaultApiService) SendAdvMailById(ctx context.Context, body SendMail, 
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/mail/{id}/advsend"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
+	localVarPath := a.client.cfg.BasePath + "/mail/advsend"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{"application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain"}
+	localVarHttpContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
@@ -521,14 +430,14 @@ func (a *DefaultApiService) SendAdvMailById(ctx context.Context, body SendMail, 
 DefaultApiService Sends an Email
 Sends An email through one of your mail orders.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id User ID
  * @param optional nil or *DefaultApiSendMailByIdOpts - Optional Parameters:
-     * @param "Subject" (optional.String) - 
-     * @param "Body" (optional.String) - 
-     * @param "To" (optional.String) - 
-     * @param "ToName" (optional.String) - 
-     * @param "From" (optional.String) - 
-     * @param "FromName" (optional.String) - 
+     * @param "Subject" (optional.String) -  The Subject of the email
+     * @param "Body" (optional.String) -  The contents of the email
+     * @param "To" (optional.String) -  The email address of who this email will be sent to.
+     * @param "From" (optional.String) -  The email address of who this email will be sent from.
+     * @param "Id" (optional.Int64) -  The ID of your mail order this will be sent through.
+     * @param "ToName" (optional.String) -  The name or title of who this email is being sent to.
+     * @param "FromName" (optional.String) -  The name or title of who this email is being sent from.
 @return GenericResponse
 */
 
@@ -536,12 +445,13 @@ type DefaultApiSendMailByIdOpts struct {
     Subject optional.String
     Body optional.String
     To optional.String
-    ToName optional.String
     From optional.String
+    Id optional.Int64
+    ToName optional.String
     FromName optional.String
 }
 
-func (a *DefaultApiService) SendMailById(ctx context.Context, id int64, localVarOptionals *DefaultApiSendMailByIdOpts) (GenericResponse, *http.Response, error) {
+func (a *DefaultApiService) SendMailById(ctx context.Context, localVarOptionals *DefaultApiSendMailByIdOpts) (GenericResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -551,8 +461,7 @@ func (a *DefaultApiService) SendMailById(ctx context.Context, id int64, localVar
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/mail/{id}/send"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
+	localVarPath := a.client.cfg.BasePath + "/mail/send"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -567,11 +476,14 @@ func (a *DefaultApiService) SendMailById(ctx context.Context, id int64, localVar
 	if localVarOptionals != nil && localVarOptionals.To.IsSet() {
 		localVarQueryParams.Add("to", parameterToString(localVarOptionals.To.Value(), ""))
 	}
-	if localVarOptionals != nil && localVarOptionals.ToName.IsSet() {
-		localVarQueryParams.Add("toName", parameterToString(localVarOptionals.ToName.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.From.IsSet() {
 		localVarQueryParams.Add("from", parameterToString(localVarOptionals.From.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Id.IsSet() {
+		localVarQueryParams.Add("id", parameterToString(localVarOptionals.Id.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.ToName.IsSet() {
+		localVarQueryParams.Add("toName", parameterToString(localVarOptionals.ToName.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.FromName.IsSet() {
 		localVarQueryParams.Add("fromName", parameterToString(localVarOptionals.FromName.Value(), ""))
@@ -762,8 +674,8 @@ func (a *DefaultApiService) ValidateMailOrder(ctx context.Context) (*http.Respon
 DefaultApiService displays the mail log
 By passing in the appropriate options, you can search for available inventory in the system 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id User ID
  * @param optional nil or *DefaultApiViewMailLogByIdOpts - Optional Parameters:
+     * @param "Id" (optional.Int64) -  The ID of your mail order this will be sent through.
      * @param "SearchString" (optional.String) -  pass an optional search string for looking up inventory
      * @param "Skip" (optional.Int32) -  number of records to skip for pagination
      * @param "Limit" (optional.Int32) -  maximum number of records to return
@@ -771,12 +683,13 @@ By passing in the appropriate options, you can search for available inventory in
 */
 
 type DefaultApiViewMailLogByIdOpts struct {
+    Id optional.Int64
     SearchString optional.String
     Skip optional.Int32
     Limit optional.Int32
 }
 
-func (a *DefaultApiService) ViewMailLogById(ctx context.Context, id int64, localVarOptionals *DefaultApiViewMailLogByIdOpts) ([]MailLog, *http.Response, error) {
+func (a *DefaultApiService) ViewMailLogById(ctx context.Context, localVarOptionals *DefaultApiViewMailLogByIdOpts) ([]MailLog, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -786,13 +699,15 @@ func (a *DefaultApiService) ViewMailLogById(ctx context.Context, id int64, local
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/mail/{id}/log"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
+	localVarPath := a.client.cfg.BasePath + "/mail/log"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Id.IsSet() {
+		localVarQueryParams.Add("id", parameterToString(localVarOptionals.Id.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.SearchString.IsSet() {
 		localVarQueryParams.Add("searchString", parameterToString(localVarOptionals.SearchString.Value(), ""))
 	}

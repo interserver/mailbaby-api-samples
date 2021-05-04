@@ -189,8 +189,6 @@
   <h2>Access</h2>
     <ol>
       <li>APIKey KeyParamName:X-API-KEY KeyInQuery:false KeyInHeader:true</li>
-      <li>APIKey KeyParamName:X-API-LOGIN KeyInQuery:false KeyInHeader:true</li>
-      <li>APIKey KeyParamName:X-API-PASS KeyInQuery:false KeyInHeader:true</li>
     </ol>
 
   <h2><a name="__Methods">Methods</a></h2>
@@ -200,66 +198,16 @@
   <div class="method-summary"></div>
   <h4><a href="#Default">Default</a></h4>
   <ul>
-  <li><a href="#getMailById"><code><span class="http-method">get</span> /mail/{id}</code></a></li>
   <li><a href="#getMailOrders"><code><span class="http-method">get</span> /mail</code></a></li>
   <li><a href="#pingServer"><code><span class="http-method">get</span> /ping</code></a></li>
   <li><a href="#placeMailOrder"><code><span class="http-method">post</span> /mail/order</code></a></li>
-  <li><a href="#sendAdvMailById"><code><span class="http-method">post</span> /mail/{id}/advsend</code></a></li>
-  <li><a href="#sendMailById"><code><span class="http-method">post</span> /mail/{id}/send</code></a></li>
+  <li><a href="#sendAdvMailById"><code><span class="http-method">post</span> /mail/advsend</code></a></li>
+  <li><a href="#sendMailById"><code><span class="http-method">post</span> /mail/send</code></a></li>
   <li><a href="#validateMailOrder"><code><span class="http-method">get</span> /mail/order</code></a></li>
-  <li><a href="#viewMailLogById"><code><span class="http-method">get</span> /mail/{id}/log</code></a></li>
+  <li><a href="#viewMailLogById"><code><span class="http-method">get</span> /mail/log</code></a></li>
   </ul>
 
   <h1><a name="Default">Default</a></h1>
-  <div class="method"><a name="getMailById"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/{id}</code></pre></div>
-    <div class="method-summary">Gets mail order information by id (<span class="nickname">getMailById</span>)</div>
-    <div class="method-notes">returns information about a mail order in the system with the given id.</div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; User ID format: int64</div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#MailOrder">MailOrder</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "password" : "guest123",
-  "comment" : "main mail account",
-  "id" : 1234,
-  "status" : "active",
-  "username" : "mb1234"
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Successful operation
-        <a href="#MailOrder">MailOrder</a>
-  </div> <!-- method -->
-  <hr/>
   <div class="method"><a name="getMailOrders"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
@@ -271,6 +219,11 @@
 
 
 
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The ID of your mail order this will be sent through. format: int64</div>    </div>  <!-- field-items -->
 
 
     <h3 class="field-label">Return type</h3>
@@ -395,23 +348,15 @@
   <div class="method"><a name="sendAdvMailById"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/{id}/advsend</code></pre></div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/advsend</code></pre></div>
     <div class="method-summary">Sends an Email with Advanced Options (<span class="nickname">sendAdvMailById</span>)</div>
     <div class="method-notes">Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.</div>
 
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; User ID format: int64</div>    </div>  <!-- field-items -->
 
     <h3 class="field-label">Consumes</h3>
     This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
-      <li><code>application/xml</code></li>
-      <li><code>application/x-www-form-urlencoded</code></li>
-      <li><code>text/plain</code></li>
     </ul>
 
     <h3 class="field-label">Request body</h3>
@@ -423,11 +368,6 @@
 
 
 
-    <h3 class="field-label">Form parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  format: int64</div>    </div>  <!-- field-items -->
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
@@ -469,15 +409,10 @@
   <div class="method"><a name="sendMailById"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/{id}/send</code></pre></div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/send</code></pre></div>
     <div class="method-summary">Sends an Email (<span class="nickname">sendMailById</span>)</div>
     <div class="method-notes">Sends An email through one of your mail orders.</div>
 
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; User ID format: int64</div>    </div>  <!-- field-items -->
 
 
 
@@ -486,17 +421,19 @@
     <div class="field-items">
       <div class="param">subject (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">body (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The Subject of the email </div>      <div class="param">body (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">to (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The contents of the email </div>      <div class="param">to (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">toName (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The email address of who this email will be sent to. </div>      <div class="param">from (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">from (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The email address of who this email will be sent from. </div>      <div class="param">id (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">fromName (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The ID of your mail order this will be sent through. format: int64</div>      <div class="param">toName (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The name or title of who this email is being sent to. </div>      <div class="param">fromName (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The name or title of who this email is being sent from. </div>    </div>  <!-- field-items -->
 
 
     <h3 class="field-label">Return type</h3>
@@ -572,23 +509,20 @@
   <div class="method"><a name="viewMailLogById"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/{id}/log</code></pre></div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/log</code></pre></div>
     <div class="method-summary">displays the mail log (<span class="nickname">viewMailLogById</span>)</div>
     <div class="method-notes">By passing in the appropriate options, you can search for
 available inventory in the system</div>
 
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; User ID format: int64</div>    </div>  <!-- field-items -->
 
 
 
 
     <h3 class="field-label">Query parameters</h3>
     <div class="field-items">
-      <div class="param">searchString (optional)</div>
+      <div class="param">id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The ID of your mail order this will be sent through. format: int64</div>      <div class="param">searchString (optional)</div>
       
             <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass an optional search string for looking up inventory </div>      <div class="param">skip (optional)</div>
       
@@ -643,7 +577,6 @@ available inventory in the system</div>
     <li><a href="#MailOrder"><code>MailOrder</code></a></li>
     <li><a href="#MailOrders"><code>MailOrders</code></a></li>
     <li><a href="#SendMail"><code>SendMail</code></a></li>
-    <li><a href="#SendMailForm"><code>SendMailForm</code></a></li>
   </ol>
 
   <div class="model">
@@ -728,13 +661,6 @@ available inventory in the system</div>
 <div class="param">cc (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailContact">array[MailContact]</a></span> Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. </div>
 <div class="param">bcc (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailContact">array[MailContact]</a></span> Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. </div>
 <div class="param">attachments (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailAttachment">array[MailAttachment]</a></span> Optional file attachments to include in the email </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="SendMailForm"><code>SendMailForm</code></a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>Details for an Email</div>
-    <div class="field-items">
-      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
     </div>  <!-- field-items -->
   </div>
   </body>

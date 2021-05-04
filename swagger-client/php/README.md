@@ -69,29 +69,10 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 789; // int | User ID
+$id = 789; // int | The ID of your mail order this will be sent through.
 
 try {
-    $result = $apiInstance->getMailById($id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->getMailById: ', $e->getMessage(), PHP_EOL;
-}
-
-// Configure API key authorization: apiKeyAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-$apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-
-try {
-    $result = $apiInstance->getMailOrders();
+    $result = $apiInstance->getMailOrders($id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->getMailOrders: ', $e->getMessage(), PHP_EOL;
@@ -140,10 +121,9 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     $config
 );
 $body = new \Interserver\Mailbaby\Model\SendMail(); // \Interserver\Mailbaby\Model\SendMail | 
-$id = 789; // int | User ID
 
 try {
-    $result = $apiInstance->sendAdvMailById($body, $id);
+    $result = $apiInstance->sendAdvMailById($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->sendAdvMailById: ', $e->getMessage(), PHP_EOL;
@@ -160,16 +140,16 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 789; // int | User ID
-$subject = "subject_example"; // string | 
-$body = "body_example"; // string | 
-$to = "to_example"; // string | 
-$toName = "toName_example"; // string | 
-$from = "from_example"; // string | 
-$fromName = "fromName_example"; // string | 
+$subject = "subject_example"; // string | The Subject of the email
+$body = "body_example"; // string | The contents of the email
+$to = "to_example"; // string | The email address of who this email will be sent to.
+$from = "from_example"; // string | The email address of who this email will be sent from.
+$id = 789; // int | The ID of your mail order this will be sent through.
+$toName = "toName_example"; // string | The name or title of who this email is being sent to.
+$fromName = "fromName_example"; // string | The name or title of who this email is being sent from.
 
 try {
-    $result = $apiInstance->sendMailById($id, $subject, $body, $to, $toName, $from, $fromName);
+    $result = $apiInstance->sendMailById($subject, $body, $to, $from, $id, $toName, $fromName);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->sendMailById: ', $e->getMessage(), PHP_EOL;
@@ -204,7 +184,7 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 789; // int | User ID
+$id = 789; // int | The ID of your mail order this will be sent through.
 $searchString = "searchString_example"; // string | pass an optional search string for looking up inventory
 $skip = 56; // int | number of records to skip for pagination
 $limit = 56; // int | maximum number of records to return
@@ -224,14 +204,13 @@ All URIs are relative to *https://api.mailbaby.net/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**getMailById**](docs/Api/DefaultApi.md#getmailbyid) | **GET** /mail/{id} | Gets mail order information by id
 *DefaultApi* | [**getMailOrders**](docs/Api/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**pingServer**](docs/Api/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**placeMailOrder**](docs/Api/DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**sendAdvMailById**](docs/Api/DefaultApi.md#sendadvmailbyid) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMailById**](docs/Api/DefaultApi.md#sendmailbyid) | **POST** /mail/{id}/send | Sends an Email
+*DefaultApi* | [**sendAdvMailById**](docs/Api/DefaultApi.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**sendMailById**](docs/Api/DefaultApi.md#sendmailbyid) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](docs/Api/DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**viewMailLogById**](docs/Api/DefaultApi.md#viewmaillogbyid) | **GET** /mail/{id}/log | displays the mail log
+*DefaultApi* | [**viewMailLogById**](docs/Api/DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
 ## Documentation For Models
 
@@ -243,7 +222,6 @@ Class | Method | HTTP request | Description
  - [MailOrder](docs/Model/MailOrder.md)
  - [MailOrders](docs/Model/MailOrders.md)
  - [SendMail](docs/Model/SendMail.md)
- - [SendMailForm](docs/Model/SendMailForm.md)
 
 ## Documentation For Authorization
 
@@ -252,18 +230,6 @@ Class | Method | HTTP request | Description
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-## apiLoginAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-## apiPasswordAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 
 

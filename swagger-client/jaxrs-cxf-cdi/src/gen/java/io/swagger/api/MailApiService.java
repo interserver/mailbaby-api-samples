@@ -20,14 +20,11 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-03T14:06:12.495958-04:00[America/New_York]")public interface MailApiService {
-      public Response getMailById(Long id, SecurityContext securityContext);
-      public Response getMailOrders(SecurityContext securityContext);
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-04T14:31:43.316751-04:00[America/New_York]")public interface MailApiService {
+      public Response getMailOrders(Long id, SecurityContext securityContext);
       public Response placeMailOrder(MailOrder body, SecurityContext securityContext);
-      public Response sendAdvMailById(SendMail body, Long id, SecurityContext securityContext);
-      public Response sendAdvMailById(Long id2, Long id, SecurityContext securityContext);
-      public Response sendAdvMailById(SendMail body, Long id, SecurityContext securityContext);
-      public Response sendMailById(Long id, String subject, String body, String to, String toName, String from, String fromName, SecurityContext securityContext);
+      public Response sendAdvMailById(SendMail body, SecurityContext securityContext);
+      public Response sendMailById(String subject, String body, String to, String from, Long id, String toName, String fromName, SecurityContext securityContext);
       public Response validateMailOrder(SecurityContext securityContext);
       public Response viewMailLogById(Long id, String searchString, Integer skip, Integer limit, SecurityContext securityContext);
 }

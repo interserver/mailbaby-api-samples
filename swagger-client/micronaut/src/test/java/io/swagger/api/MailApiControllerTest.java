@@ -25,19 +25,10 @@ class MailApiControllerTest {
     private MailApi api;
 
     @Test
-    void getMailByIdTest() {
+    void getMailOrdersTest() {
         Long id = 789L;
         try {
-            api.getMailById(id).blockingGet();
-        } catch (UnsupportedOperationException e) {
-            assumeTrue(false, "API is not yet implemented");
-        }
-    }
-
-    @Test
-    void getMailOrdersTest() {
-        try {
-            api.getMailOrders().blockingGet();
+            api.getMailOrders(id).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }
@@ -56,31 +47,8 @@ class MailApiControllerTest {
     @Test
     void sendAdvMailByIdTest() {
         SendMail body = new SendMail();
-        Long id = 789L;
         try {
-            api.sendAdvMailById(body, id).blockingGet();
-        } catch (UnsupportedOperationException e) {
-            assumeTrue(false, "API is not yet implemented");
-        }
-    }
-
-    @Test
-    void sendAdvMailByIdWithFormTest() {
-        Long id2 = 789L;
-        Long id = 789L;
-        try {
-            api.sendAdvMailById(id2, id).blockingGet();
-        } catch (UnsupportedOperationException e) {
-            assumeTrue(false, "API is not yet implemented");
-        }
-    }
-
-    @Test
-    void sendAdvMailByIdTest() {
-        SendMail body = new SendMail();
-        Long id = 789L;
-        try {
-            api.sendAdvMailById(body, id).blockingGet();
+            api.sendAdvMailById(body).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }
@@ -88,15 +56,15 @@ class MailApiControllerTest {
 
     @Test
     void sendMailByIdTest() {
-        Long id = 789L;
         String subject = "subject_example";
         String body = "body_example";
         String to = "to_example";
-        String toName = "toName_example";
         String from = "from_example";
+        Long id = 789L;
+        String toName = "toName_example";
         String fromName = "fromName_example";
         try {
-            api.sendMailById(id, subject, body, to, toName, from, fromName).blockingGet();
+            api.sendMailById(subject, body, to, from, id, toName, fromName).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

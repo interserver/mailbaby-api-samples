@@ -22,7 +22,7 @@ import javax.validation.Valid;
 /**
  * GenericResponse
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-03T14:06:18.338436-04:00[America/New_York]")public class GenericResponse   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-04T14:31:48.601175-04:00[America/New_York]")public class GenericResponse   {
   @JsonProperty("status")
   private String status = null;
 

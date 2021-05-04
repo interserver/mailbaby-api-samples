@@ -16,64 +16,9 @@ module SwaggerClient
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Gets mail order information by id
-    # returns information about a mail order in the system with the given id.
-    # @param id User ID
-    # @param [Hash] opts the optional parameters
-    # @return [MailOrder]
-    def get_mail_by_id(id, opts = {})
-      data, _status_code, _headers = get_mail_by_id_with_http_info(id, opts)
-      data
-    end
-
-    # Gets mail order information by id
-    # returns information about a mail order in the system with the given id.
-    # @param id User ID
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(MailOrder, Integer, Hash)>] MailOrder data, response status code and response headers
-    def get_mail_by_id_with_http_info(id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: DefaultApi.get_mail_by_id ...'
-      end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling DefaultApi.get_mail_by_id"
-      end
-      # resource path
-      local_var_path = '/mail/{id}'.sub('{' + 'id' + '}', id.to_s)
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:body] 
-
-      return_type = opts[:return_type] || 'MailOrder' 
-
-      auth_names = opts[:auth_names] || ['apiKeyAuth']
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type)
-
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: DefaultApi#get_mail_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
     # displays a list of mail service orders
     # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :id The ID of your mail order this will be sent through.
     # @return [MailOrders]
     def get_mail_orders(opts = {})
       data, _status_code, _headers = get_mail_orders_with_http_info(opts)
@@ -82,6 +27,7 @@ module SwaggerClient
 
     # displays a list of mail service orders
     # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :id The ID of your mail order this will be sent through.
     # @return [Array<(MailOrders, Integer, Hash)>] MailOrders data, response status code and response headers
     def get_mail_orders_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -92,6 +38,7 @@ module SwaggerClient
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'id'] = opts[:'id'] if !opts[:'id'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -223,21 +170,19 @@ module SwaggerClient
     # Sends an Email with Advanced Options
     # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
     # @param body 
-    # @param id User ID
     # @param [Hash] opts the optional parameters
     # @return [GenericResponse]
-    def send_adv_mail_by_id(body, id, opts = {})
-      data, _status_code, _headers = send_adv_mail_by_id_with_http_info(body, id, opts)
+    def send_adv_mail_by_id(body, opts = {})
+      data, _status_code, _headers = send_adv_mail_by_id_with_http_info(body, opts)
       data
     end
 
     # Sends an Email with Advanced Options
     # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
     # @param body 
-    # @param id User ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_adv_mail_by_id_with_http_info(body, id, opts = {})
+    def send_adv_mail_by_id_with_http_info(body, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.send_adv_mail_by_id ...'
       end
@@ -245,12 +190,8 @@ module SwaggerClient
       if @api_client.config.client_side_validation && body.nil?
         fail ArgumentError, "Missing the required parameter 'body' when calling DefaultApi.send_adv_mail_by_id"
       end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling DefaultApi.send_adv_mail_by_id"
-      end
       # resource path
-      local_var_path = '/mail/{id}/advsend'.sub('{' + 'id' + '}', id.to_s)
+      local_var_path = '/mail/advsend'
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -260,141 +201,10 @@ module SwaggerClient
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
 
       # form parameters
       form_params = opts[:form_params] || {}
-      form_params['id'] = id
-
-      # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(body) 
-
-      return_type = opts[:return_type] || 'GenericResponse' 
-
-      auth_names = opts[:auth_names] || ['apiKeyAuth']
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type)
-
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: DefaultApi#send_adv_mail_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-    # Sends an Email with Advanced Options
-    # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-    # @param id2 
-    # @param id User ID
-    # @param [Hash] opts the optional parameters
-    # @return [GenericResponse]
-    def send_adv_mail_by_id(id2, id, opts = {})
-      data, _status_code, _headers = send_adv_mail_by_id_with_http_info(id2, id, opts)
-      data
-    end
-
-    # Sends an Email with Advanced Options
-    # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-    # @param id2 
-    # @param id User ID
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_adv_mail_by_id_with_http_info(id2, id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: DefaultApi.send_adv_mail_by_id ...'
-      end
-      # verify the required parameter 'id2' is set
-      if @api_client.config.client_side_validation && id2.nil?
-        fail ArgumentError, "Missing the required parameter 'id2' when calling DefaultApi.send_adv_mail_by_id"
-      end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling DefaultApi.send_adv_mail_by_id"
-      end
-      # resource path
-      local_var_path = '/mail/{id}/advsend'.sub('{' + 'id' + '}', id.to_s)
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-      form_params['id'] = id
-
-      # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(body) 
-
-      return_type = opts[:return_type] || 'GenericResponse' 
-
-      auth_names = opts[:auth_names] || ['apiKeyAuth']
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type)
-
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: DefaultApi#send_adv_mail_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-    # Sends an Email with Advanced Options
-    # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-    # @param body 
-    # @param id User ID
-    # @param [Hash] opts the optional parameters
-    # @return [GenericResponse]
-    def send_adv_mail_by_id(body, id, opts = {})
-      data, _status_code, _headers = send_adv_mail_by_id_with_http_info(body, id, opts)
-      data
-    end
-
-    # Sends an Email with Advanced Options
-    # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-    # @param body 
-    # @param id User ID
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_adv_mail_by_id_with_http_info(body, id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: DefaultApi.send_adv_mail_by_id ...'
-      end
-      # verify the required parameter 'body' is set
-      if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling DefaultApi.send_adv_mail_by_id"
-      end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling DefaultApi.send_adv_mail_by_id"
-      end
-      # resource path
-      local_var_path = '/mail/{id}/advsend'.sub('{' + 'id' + '}', id.to_s)
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-      form_params['id'] = id
 
       # http body (model)
       post_body = opts[:body] || @api_client.object_to_http_body(body) 
@@ -417,49 +227,46 @@ module SwaggerClient
     end
     # Sends an Email
     # Sends An email through one of your mail orders.
-    # @param id User ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :subject 
-    # @option opts [String] :body 
-    # @option opts [String] :to 
-    # @option opts [String] :to_name 
-    # @option opts [String] :from 
-    # @option opts [String] :from_name 
+    # @option opts [String] :subject The Subject of the email
+    # @option opts [String] :body The contents of the email
+    # @option opts [String] :to The email address of who this email will be sent to.
+    # @option opts [String] :from The email address of who this email will be sent from.
+    # @option opts [Integer] :id The ID of your mail order this will be sent through.
+    # @option opts [String] :to_name The name or title of who this email is being sent to.
+    # @option opts [String] :from_name The name or title of who this email is being sent from.
     # @return [GenericResponse]
-    def send_mail_by_id(id, opts = {})
-      data, _status_code, _headers = send_mail_by_id_with_http_info(id, opts)
+    def send_mail_by_id(opts = {})
+      data, _status_code, _headers = send_mail_by_id_with_http_info(opts)
       data
     end
 
     # Sends an Email
     # Sends An email through one of your mail orders.
-    # @param id User ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :subject 
-    # @option opts [String] :body 
-    # @option opts [String] :to 
-    # @option opts [String] :to_name 
-    # @option opts [String] :from 
-    # @option opts [String] :from_name 
+    # @option opts [String] :subject The Subject of the email
+    # @option opts [String] :body The contents of the email
+    # @option opts [String] :to The email address of who this email will be sent to.
+    # @option opts [String] :from The email address of who this email will be sent from.
+    # @option opts [Integer] :id The ID of your mail order this will be sent through.
+    # @option opts [String] :to_name The name or title of who this email is being sent to.
+    # @option opts [String] :from_name The name or title of who this email is being sent from.
     # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_mail_by_id_with_http_info(id, opts = {})
+    def send_mail_by_id_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.send_mail_by_id ...'
       end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling DefaultApi.send_mail_by_id"
-      end
       # resource path
-      local_var_path = '/mail/{id}/send'.sub('{' + 'id' + '}', id.to_s)
+      local_var_path = '/mail/send'
 
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'subject'] = opts[:'subject'] if !opts[:'subject'].nil?
       query_params[:'body'] = opts[:'body'] if !opts[:'body'].nil?
       query_params[:'to'] = opts[:'to'] if !opts[:'to'].nil?
-      query_params[:'toName'] = opts[:'to_name'] if !opts[:'to_name'].nil?
       query_params[:'from'] = opts[:'from'] if !opts[:'from'].nil?
+      query_params[:'id'] = opts[:'id'] if !opts[:'id'].nil?
+      query_params[:'toName'] = opts[:'to_name'] if !opts[:'to_name'].nil?
       query_params[:'fromName'] = opts[:'from_name'] if !opts[:'from_name'].nil?
 
       # header parameters
@@ -539,38 +346,35 @@ module SwaggerClient
     end
     # displays the mail log
     # By passing in the appropriate options, you can search for available inventory in the system 
-    # @param id User ID
     # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :id The ID of your mail order this will be sent through.
     # @option opts [String] :search_string pass an optional search string for looking up inventory
     # @option opts [Integer] :skip number of records to skip for pagination
     # @option opts [Integer] :limit maximum number of records to return
     # @return [Array<MailLog>]
-    def view_mail_log_by_id(id, opts = {})
-      data, _status_code, _headers = view_mail_log_by_id_with_http_info(id, opts)
+    def view_mail_log_by_id(opts = {})
+      data, _status_code, _headers = view_mail_log_by_id_with_http_info(opts)
       data
     end
 
     # displays the mail log
     # By passing in the appropriate options, you can search for available inventory in the system 
-    # @param id User ID
     # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :id The ID of your mail order this will be sent through.
     # @option opts [String] :search_string pass an optional search string for looking up inventory
     # @option opts [Integer] :skip number of records to skip for pagination
     # @option opts [Integer] :limit maximum number of records to return
     # @return [Array<(Array<MailLog>, Integer, Hash)>] Array<MailLog> data, response status code and response headers
-    def view_mail_log_by_id_with_http_info(id, opts = {})
+    def view_mail_log_by_id_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.view_mail_log_by_id ...'
       end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling DefaultApi.view_mail_log_by_id"
-      end
       # resource path
-      local_var_path = '/mail/{id}/log'.sub('{' + 'id' + '}', id.to_s)
+      local_var_path = '/mail/log'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'id'] = opts[:'id'] if !opts[:'id'].nil?
       query_params[:'searchString'] = opts[:'search_string'] if !opts[:'search_string'].nil?
       query_params[:'skip'] = opts[:'skip'] if !opts[:'skip'].nil?
       query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?

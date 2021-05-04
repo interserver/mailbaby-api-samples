@@ -272,68 +272,19 @@ export interface SendMail {
     attachments?: Array<MailAttachment>;
 }
 /**
- * Details for an Email
- * @export
- * @interface SendMailForm
- */
-export interface SendMailForm {
-    /**
-     * 
-     * @type {number}
-     * @memberof SendMailForm
-     */
-    id?: number;
-}
-/**
  * DefaultApi - fetch parameter creator
  * @export
  */
 export const DefaultApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * returns information about a mail order in the system with the given id.
-         * @summary Gets mail order information by id
-         * @param {number} id User ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getMailById(id: number, options: any = {}): FetchArgs {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling getMailById.');
-            }
-            const localVarPath = `/mail/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication apiKeyAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-KEY")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * 
          * @summary displays a list of mail service orders
+         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailOrders(options: any = {}): FetchArgs {
+        getMailOrders(id?: number, options: any = {}): FetchArgs {
             const localVarPath = `/mail`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -346,6 +297,10 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
 					? configuration.apiKey("X-API-KEY")
 					: configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
+            }
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -421,31 +376,19 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
          * @summary Sends an Email with Advanced Options
          * @param {SendMail} body 
-         * @param {number} id 
-         * @param {number} id User ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendAdvMailById(body: SendMail, id: number, id: number, options: any = {}): FetchArgs {
+        sendAdvMailById(body: SendMail, options: any = {}): FetchArgs {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling sendAdvMailById.');
             }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling sendAdvMailById.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling sendAdvMailById.');
-            }
-            const localVarPath = `/mail/{id}/advsend`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarPath = `/mail/advsend`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-            const localVarFormParams = new url.URLSearchParams();
 
             // authentication apiKeyAuth required
             if (configuration && configuration.apiKey) {
@@ -455,20 +398,13 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            if (id !== undefined) {
-                localVarFormParams.set('id', id as any);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
-
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            localVarRequestOptions.body = localVarFormParams.toString();
-            const needsSerialization = (<any>"string" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            const needsSerialization = (<any>"SendMail" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
 
             return {
@@ -479,23 +415,18 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
-         * @param {number} id User ID
-         * @param {string} [subject] 
-         * @param {string} [body] 
-         * @param {string} [to] 
-         * @param {string} [toName] 
-         * @param {string} [from] 
-         * @param {string} [fromName] 
+         * @param {string} [subject] The Subject of the email
+         * @param {string} [body] The contents of the email
+         * @param {string} [to] The email address of who this email will be sent to.
+         * @param {string} [from] The email address of who this email will be sent from.
+         * @param {number} [id] The ID of your mail order this will be sent through.
+         * @param {string} [toName] The name or title of who this email is being sent to.
+         * @param {string} [fromName] The name or title of who this email is being sent from.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, options: any = {}): FetchArgs {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling sendMailById.');
-            }
-            const localVarPath = `/mail/{id}/send`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options: any = {}): FetchArgs {
+            const localVarPath = `/mail/send`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {} as any;
@@ -521,12 +452,16 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['to'] = to;
             }
 
-            if (toName !== undefined) {
-                localVarQueryParameter['toName'] = toName;
-            }
-
             if (from !== undefined) {
                 localVarQueryParameter['from'] = from;
+            }
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
+            }
+
+            if (toName !== undefined) {
+                localVarQueryParameter['toName'] = toName;
             }
 
             if (fromName !== undefined) {
@@ -577,20 +512,15 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
         /**
          * By passing in the appropriate options, you can search for available inventory in the system 
          * @summary displays the mail log
-         * @param {number} id User ID
+         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {string} [searchString] pass an optional search string for looking up inventory
          * @param {number} [skip] number of records to skip for pagination
          * @param {number} [limit] maximum number of records to return
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, options: any = {}): FetchArgs {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling viewMailLogById.');
-            }
-            const localVarPath = `/mail/{id}/log`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options: any = {}): FetchArgs {
+            const localVarPath = `/mail/log`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -602,6 +532,10 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
 					? configuration.apiKey("X-API-KEY")
 					: configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
+            }
+
+            if (id !== undefined) {
+                localVarQueryParameter['id'] = id;
             }
 
             if (searchString !== undefined) {
@@ -636,32 +570,14 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
 export const DefaultApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * returns information about a mail order in the system with the given id.
-         * @summary Gets mail order information by id
-         * @param {number} id User ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getMailById(id: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<MailOrder> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).getMailById(id, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
          * 
          * @summary displays a list of mail service orders
+         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailOrders(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<MailOrders> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).getMailOrders(options);
+        getMailOrders(id?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<MailOrders> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).getMailOrders(id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -713,13 +629,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
          * @summary Sends an Email with Advanced Options
          * @param {SendMail} body 
-         * @param {number} id 
-         * @param {number} id User ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendAdvMailById(body: SendMail, id: number, id: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendAdvMailById(body, id, id, options);
+        sendAdvMailById(body: SendMail, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendAdvMailById(body, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -733,18 +647,18 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
-         * @param {number} id User ID
-         * @param {string} [subject] 
-         * @param {string} [body] 
-         * @param {string} [to] 
-         * @param {string} [toName] 
-         * @param {string} [from] 
-         * @param {string} [fromName] 
+         * @param {string} [subject] The Subject of the email
+         * @param {string} [body] The contents of the email
+         * @param {string} [to] The email address of who this email will be sent to.
+         * @param {string} [from] The email address of who this email will be sent from.
+         * @param {number} [id] The ID of your mail order this will be sent through.
+         * @param {string} [toName] The name or title of who this email is being sent to.
+         * @param {string} [fromName] The name or title of who this email is being sent from.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMailById(id, subject, body, to, toName, from, fromName, options);
+        sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMailById(subject, body, to, from, id, toName, fromName, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -776,14 +690,14 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * By passing in the appropriate options, you can search for available inventory in the system 
          * @summary displays the mail log
-         * @param {number} id User ID
+         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {string} [searchString] pass an optional search string for looking up inventory
          * @param {number} [skip] number of records to skip for pagination
          * @param {number} [limit] maximum number of records to return
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<MailLog>> {
+        viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<MailLog>> {
             const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).viewMailLogById(id, searchString, skip, limit, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -805,23 +719,14 @@ export const DefaultApiFp = function(configuration?: Configuration) {
 export const DefaultApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
     return {
         /**
-         * returns information about a mail order in the system with the given id.
-         * @summary Gets mail order information by id
-         * @param {number} id User ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getMailById(id: number, options?: any) {
-            return DefaultApiFp(configuration).getMailById(id, options)(fetch, basePath);
-        },
-        /**
          * 
          * @summary displays a list of mail service orders
+         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailOrders(options?: any) {
-            return DefaultApiFp(configuration).getMailOrders(options)(fetch, basePath);
+        getMailOrders(id?: number, options?: any) {
+            return DefaultApiFp(configuration).getMailOrders(id, options)(fetch, basePath);
         },
         /**
          * 
@@ -846,29 +751,27 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
          * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
          * @summary Sends an Email with Advanced Options
          * @param {SendMail} body 
-         * @param {number} id 
-         * @param {number} id User ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendAdvMailById(body: SendMail, id: number, id: number, options?: any) {
-            return DefaultApiFp(configuration).sendAdvMailById(body, id, id, options)(fetch, basePath);
+        sendAdvMailById(body: SendMail, options?: any) {
+            return DefaultApiFp(configuration).sendAdvMailById(body, options)(fetch, basePath);
         },
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
-         * @param {number} id User ID
-         * @param {string} [subject] 
-         * @param {string} [body] 
-         * @param {string} [to] 
-         * @param {string} [toName] 
-         * @param {string} [from] 
-         * @param {string} [fromName] 
+         * @param {string} [subject] The Subject of the email
+         * @param {string} [body] The contents of the email
+         * @param {string} [to] The email address of who this email will be sent to.
+         * @param {string} [from] The email address of who this email will be sent from.
+         * @param {number} [id] The ID of your mail order this will be sent through.
+         * @param {string} [toName] The name or title of who this email is being sent to.
+         * @param {string} [fromName] The name or title of who this email is being sent from.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, options?: any) {
-            return DefaultApiFp(configuration).sendMailById(id, subject, body, to, toName, from, fromName, options)(fetch, basePath);
+        sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options?: any) {
+            return DefaultApiFp(configuration).sendMailById(subject, body, to, from, id, toName, fromName, options)(fetch, basePath);
         },
         /**
          * 
@@ -882,14 +785,14 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
         /**
          * By passing in the appropriate options, you can search for available inventory in the system 
          * @summary displays the mail log
-         * @param {number} id User ID
+         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {string} [searchString] pass an optional search string for looking up inventory
          * @param {number} [skip] number of records to skip for pagination
          * @param {number} [limit] maximum number of records to return
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, options?: any) {
+        viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: any) {
             return DefaultApiFp(configuration).viewMailLogById(id, searchString, skip, limit, options)(fetch, basePath);
         },
     };
@@ -903,26 +806,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
  */
 export class DefaultApi extends BaseAPI {
     /**
-     * returns information about a mail order in the system with the given id.
-     * @summary Gets mail order information by id
-     * @param {number} id User ID
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public getMailById(id: number, options?: any) {
-        return DefaultApiFp(this.configuration).getMailById(id, options)(this.fetch, this.basePath);
-    }
-
-    /**
      * 
      * @summary displays a list of mail service orders
+     * @param {number} [id] The ID of your mail order this will be sent through.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public getMailOrders(options?: any) {
-        return DefaultApiFp(this.configuration).getMailOrders(options)(this.fetch, this.basePath);
+    public getMailOrders(id?: number, options?: any) {
+        return DefaultApiFp(this.configuration).getMailOrders(id, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -952,32 +844,30 @@ export class DefaultApi extends BaseAPI {
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * @summary Sends an Email with Advanced Options
      * @param {SendMail} body 
-     * @param {number} id 
-     * @param {number} id User ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public sendAdvMailById(body: SendMail, id: number, id: number, options?: any) {
-        return DefaultApiFp(this.configuration).sendAdvMailById(body, id, id, options)(this.fetch, this.basePath);
+    public sendAdvMailById(body: SendMail, options?: any) {
+        return DefaultApiFp(this.configuration).sendAdvMailById(body, options)(this.fetch, this.basePath);
     }
 
     /**
      * Sends An email through one of your mail orders.
      * @summary Sends an Email
-     * @param {number} id User ID
-     * @param {string} [subject] 
-     * @param {string} [body] 
-     * @param {string} [to] 
-     * @param {string} [toName] 
-     * @param {string} [from] 
-     * @param {string} [fromName] 
+     * @param {string} [subject] The Subject of the email
+     * @param {string} [body] The contents of the email
+     * @param {string} [to] The email address of who this email will be sent to.
+     * @param {string} [from] The email address of who this email will be sent from.
+     * @param {number} [id] The ID of your mail order this will be sent through.
+     * @param {string} [toName] The name or title of who this email is being sent to.
+     * @param {string} [fromName] The name or title of who this email is being sent from.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public sendMailById(id: number, subject?: string, body?: string, to?: string, toName?: string, from?: string, fromName?: string, options?: any) {
-        return DefaultApiFp(this.configuration).sendMailById(id, subject, body, to, toName, from, fromName, options)(this.fetch, this.basePath);
+    public sendMailById(subject?: string, body?: string, to?: string, from?: string, id?: number, toName?: string, fromName?: string, options?: any) {
+        return DefaultApiFp(this.configuration).sendMailById(subject, body, to, from, id, toName, fromName, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -994,7 +884,7 @@ export class DefaultApi extends BaseAPI {
     /**
      * By passing in the appropriate options, you can search for available inventory in the system 
      * @summary displays the mail log
-     * @param {number} id User ID
+     * @param {number} [id] The ID of your mail order this will be sent through.
      * @param {string} [searchString] pass an optional search string for looking up inventory
      * @param {number} [skip] number of records to skip for pagination
      * @param {number} [limit] maximum number of records to return
@@ -1002,7 +892,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public viewMailLogById(id: number, searchString?: string, skip?: number, limit?: number, options?: any) {
+    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: any) {
         return DefaultApiFp(this.configuration).viewMailLogById(id, searchString, skip, limit, options)(this.fetch, this.basePath);
     }
 

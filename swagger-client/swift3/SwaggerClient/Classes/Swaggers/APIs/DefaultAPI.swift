@@ -11,55 +11,12 @@ import Alamofire
 
 open class DefaultAPI: APIBase {
     /**
-     Gets mail order information by id
-     - parameter id: (path) User ID 
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getMailById(id: Int64, completion: @escaping ((_ data: MailOrder?, _ error: ErrorResponse?) -> Void)) {
-        getMailByIdWithRequestBuilder(id: id).execute { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Gets mail order information by id
-     - GET /mail/{id}
-     - returns information about a mail order in the system with the given id.
-     - API Key:
-       - type: apiKey X-API-KEY 
-       - name: apiKeyAuth
-     - examples: [{contentType=application/json, example={
-  "password" : "guest123",
-  "comment" : "main mail account",
-  "id" : 1234,
-  "status" : "active",
-  "username" : "mb1234"
-}}]
-     - parameter id: (path) User ID 
-     - returns: RequestBuilder<MailOrder> 
-     */
-    open class func getMailByIdWithRequestBuilder(id: Int64) -> RequestBuilder<MailOrder> {
-        var path = "/mail/{id}"
-        let idPreEscape = "\(id)"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let URLString = SwaggerClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
-
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<MailOrder>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
-    /**
      displays a list of mail service orders
+     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getMailOrders(completion: @escaping ((_ data: MailOrders?, _ error: ErrorResponse?) -> Void)) {
-        getMailOrdersWithRequestBuilder().execute { (response, error) -> Void in
+    open class func getMailOrders(id: Int64? = nil, completion: @escaping ((_ data: MailOrders?, _ error: ErrorResponse?) -> Void)) {
+        getMailOrdersWithRequestBuilder(id: id).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -84,14 +41,17 @@ open class DefaultAPI: APIBase {
   "status" : "active",
   "username" : "mb1234"
 } ]}]
+     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
      - returns: RequestBuilder<MailOrders> 
      */
-    open class func getMailOrdersWithRequestBuilder() -> RequestBuilder<MailOrders> {
+    open class func getMailOrdersWithRequestBuilder(id: Int64? = nil) -> RequestBuilder<MailOrders> {
         let path = "/mail"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-
-        let url = URLComponents(string: URLString)
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+                        "id": id?.encodeToJSON()
+        ])
 
         let requestBuilder: RequestBuilder<MailOrders>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -164,11 +124,10 @@ open class DefaultAPI: APIBase {
     /**
      Sends an Email with Advanced Options
      - parameter body: (body)  
-     - parameter id: (path) User ID 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendAdvMailById(body: SendMail, id: Int64, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
-        sendAdvMailByIdWithRequestBuilder(body: body, id: id).execute { (response, error) -> Void in
+    open class func sendAdvMailById(body: SendMail, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
+        sendAdvMailByIdWithRequestBuilder(body: body).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -176,7 +135,7 @@ open class DefaultAPI: APIBase {
 
     /**
      Sends an Email with Advanced Options
-     - POST /mail/{id}/advsend
+     - POST /mail/advsend
      - Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      - API Key:
        - type: apiKey X-API-KEY 
@@ -186,100 +145,10 @@ open class DefaultAPI: APIBase {
   "status" : "ok"
 }}]
      - parameter body: (body)  
-     - parameter id: (path) User ID 
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendAdvMailByIdWithRequestBuilder(body: SendMail, id: Int64) -> RequestBuilder<GenericResponse> {
-        var path = "/mail/{id}/advsend"
-        let idPreEscape = "\(id)"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let URLString = SwaggerClientAPI.basePath + path
-        let parameters = body.encodeToJSON()
-
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<GenericResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
-    }
-
-    /**
-     Sends an Email with Advanced Options
-     - parameter id2: (form)  
-     - parameter id: (path) User ID 
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func sendAdvMailById(id2: Int64, id: Int64, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
-        sendAdvMailByIdWithRequestBuilder(id2: id2, id: id).execute { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Sends an Email with Advanced Options
-     - POST /mail/{id}/advsend
-     - Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     - API Key:
-       - type: apiKey X-API-KEY 
-       - name: apiKeyAuth
-     - examples: [{contentType=application/json, example={
-  "status_text" : "The command completed successfully.",
-  "status" : "ok"
-}}]
-     - parameter id2: (form)  
-     - parameter id: (path) User ID 
-     - returns: RequestBuilder<GenericResponse> 
-     */
-    open class func sendAdvMailByIdWithRequestBuilder(id2: Int64, id: Int64) -> RequestBuilder<GenericResponse> {
-        var path = "/mail/{id}/advsend"
-        let idPreEscape = "\(id)"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let URLString = SwaggerClientAPI.basePath + path
-        let parameters = body.encodeToJSON()
-
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<GenericResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
-    }
-
-    /**
-     Sends an Email with Advanced Options
-     - parameter body: (body)  
-     - parameter id: (path) User ID 
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func sendAdvMailById(body: SendMail, id: Int64, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
-        sendAdvMailByIdWithRequestBuilder(body: body, id: id).execute { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Sends an Email with Advanced Options
-     - POST /mail/{id}/advsend
-     - Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     - API Key:
-       - type: apiKey X-API-KEY 
-       - name: apiKeyAuth
-     - examples: [{contentType=application/json, example={
-  "status_text" : "The command completed successfully.",
-  "status" : "ok"
-}}]
-     - parameter body: (body)  
-     - parameter id: (path) User ID 
-     - returns: RequestBuilder<GenericResponse> 
-     */
-    open class func sendAdvMailByIdWithRequestBuilder(body: SendMail, id: Int64) -> RequestBuilder<GenericResponse> {
-        var path = "/mail/{id}/advsend"
-        let idPreEscape = "\(id)"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+    open class func sendAdvMailByIdWithRequestBuilder(body: SendMail) -> RequestBuilder<GenericResponse> {
+        let path = "/mail/advsend"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = body.encodeToJSON()
 
@@ -292,17 +161,17 @@ open class DefaultAPI: APIBase {
 
     /**
      Sends an Email
-     - parameter id: (path) User ID 
-     - parameter subject: (query)  (optional)
-     - parameter body: (query)  (optional)
-     - parameter to: (query)  (optional)
-     - parameter toName: (query)  (optional)
-     - parameter from: (query)  (optional)
-     - parameter fromName: (query)  (optional)
+     - parameter subject: (query) The Subject of the email (optional)
+     - parameter body: (query) The contents of the email (optional)
+     - parameter to: (query) The email address of who this email will be sent to. (optional)
+     - parameter from: (query) The email address of who this email will be sent from. (optional)
+     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
+     - parameter toName: (query) The name or title of who this email is being sent to. (optional)
+     - parameter fromName: (query) The name or title of who this email is being sent from. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendMailById(id: Int64, subject: String? = nil, body: String? = nil, to: String? = nil, toName: String? = nil, from: String? = nil, fromName: String? = nil, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
-        sendMailByIdWithRequestBuilder(id: id, subject: subject, body: body, to: to, toName: toName, from: from, fromName: fromName).execute { (response, error) -> Void in
+    open class func sendMailById(subject: String? = nil, body: String? = nil, to: String? = nil, from: String? = nil, id: Int64? = nil, toName: String? = nil, fromName: String? = nil, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
+        sendMailByIdWithRequestBuilder(subject: subject, body: body, to: to, from: from, id: id, toName: toName, fromName: fromName).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -310,7 +179,7 @@ open class DefaultAPI: APIBase {
 
     /**
      Sends an Email
-     - POST /mail/{id}/send
+     - POST /mail/send
      - Sends An email through one of your mail orders.
      - API Key:
        - type: apiKey X-API-KEY 
@@ -319,20 +188,17 @@ open class DefaultAPI: APIBase {
   "status_text" : "The command completed successfully.",
   "status" : "ok"
 }}]
-     - parameter id: (path) User ID 
-     - parameter subject: (query)  (optional)
-     - parameter body: (query)  (optional)
-     - parameter to: (query)  (optional)
-     - parameter toName: (query)  (optional)
-     - parameter from: (query)  (optional)
-     - parameter fromName: (query)  (optional)
+     - parameter subject: (query) The Subject of the email (optional)
+     - parameter body: (query) The contents of the email (optional)
+     - parameter to: (query) The email address of who this email will be sent to. (optional)
+     - parameter from: (query) The email address of who this email will be sent from. (optional)
+     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
+     - parameter toName: (query) The name or title of who this email is being sent to. (optional)
+     - parameter fromName: (query) The name or title of who this email is being sent from. (optional)
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendMailByIdWithRequestBuilder(id: Int64, subject: String? = nil, body: String? = nil, to: String? = nil, toName: String? = nil, from: String? = nil, fromName: String? = nil) -> RequestBuilder<GenericResponse> {
-        var path = "/mail/{id}/send"
-        let idPreEscape = "\(id)"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+    open class func sendMailByIdWithRequestBuilder(subject: String? = nil, body: String? = nil, to: String? = nil, from: String? = nil, id: Int64? = nil, toName: String? = nil, fromName: String? = nil) -> RequestBuilder<GenericResponse> {
+        let path = "/mail/send"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         var url = URLComponents(string: URLString)
@@ -340,8 +206,9 @@ open class DefaultAPI: APIBase {
                         "subject": subject,
                         "body": body,
                         "to": to,
-                        "toName": toName,
                         "from": from,
+                        "id": id?.encodeToJSON(),
+                        "toName": toName,
                         "fromName": fromName
         ])
 
@@ -383,13 +250,13 @@ open class DefaultAPI: APIBase {
 
     /**
      displays the mail log
-     - parameter id: (path) User ID 
+     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
      - parameter searchString: (query) pass an optional search string for looking up inventory (optional)
      - parameter skip: (query) number of records to skip for pagination (optional)
      - parameter limit: (query) maximum number of records to return (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func viewMailLogById(id: Int64, searchString: String? = nil, skip: Int32? = nil, limit: Int32? = nil, completion: @escaping ((_ data: [MailLog]?, _ error: ErrorResponse?) -> Void)) {
+    open class func viewMailLogById(id: Int64? = nil, searchString: String? = nil, skip: Int32? = nil, limit: Int32? = nil, completion: @escaping ((_ data: [MailLog]?, _ error: ErrorResponse?) -> Void)) {
         viewMailLogByIdWithRequestBuilder(id: id, searchString: searchString, skip: skip, limit: limit).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -398,7 +265,7 @@ open class DefaultAPI: APIBase {
 
     /**
      displays the mail log
-     - GET /mail/{id}/log
+     - GET /mail/log
      - By passing in the appropriate options, you can search for available inventory in the system 
      - API Key:
        - type: apiKey X-API-KEY 
@@ -408,21 +275,19 @@ open class DefaultAPI: APIBase {
 }, {
   "id" : 0
 } ]}]
-     - parameter id: (path) User ID 
+     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
      - parameter searchString: (query) pass an optional search string for looking up inventory (optional)
      - parameter skip: (query) number of records to skip for pagination (optional)
      - parameter limit: (query) maximum number of records to return (optional)
      - returns: RequestBuilder<[MailLog]> 
      */
-    open class func viewMailLogByIdWithRequestBuilder(id: Int64, searchString: String? = nil, skip: Int32? = nil, limit: Int32? = nil) -> RequestBuilder<[MailLog]> {
-        var path = "/mail/{id}/log"
-        let idPreEscape = "\(id)"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+    open class func viewMailLogByIdWithRequestBuilder(id: Int64? = nil, searchString: String? = nil, skip: Int32? = nil, limit: Int32? = nil) -> RequestBuilder<[MailLog]> {
+        let path = "/mail/log"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+                        "id": id?.encodeToJSON(),
                         "searchString": searchString,
                         "skip": skip?.encodeToJSON(),
                         "limit": limit?.encodeToJSON()

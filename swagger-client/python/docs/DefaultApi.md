@@ -4,71 +4,16 @@ All URIs are relative to *https://api.mailbaby.net/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_mail_by_id**](DefaultApi.md#get_mail_by_id) | **GET** /mail/{id} | Gets mail order information by id
 [**get_mail_orders**](DefaultApi.md#get_mail_orders) | **GET** /mail | displays a list of mail service orders
 [**ping_server**](DefaultApi.md#ping_server) | **GET** /ping | Checks if the server is running
 [**place_mail_order**](DefaultApi.md#place_mail_order) | **POST** /mail/order | places a mail order
-[**send_adv_mail_by_id**](DefaultApi.md#send_adv_mail_by_id) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-[**send_mail_by_id**](DefaultApi.md#send_mail_by_id) | **POST** /mail/{id}/send | Sends an Email
+[**send_adv_mail_by_id**](DefaultApi.md#send_adv_mail_by_id) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**send_mail_by_id**](DefaultApi.md#send_mail_by_id) | **POST** /mail/send | Sends an Email
 [**validate_mail_order**](DefaultApi.md#validate_mail_order) | **GET** /mail/order | validatess order details before placing an order
-[**view_mail_log_by_id**](DefaultApi.md#view_mail_log_by_id) | **GET** /mail/{id}/log | displays the mail log
-
-# **get_mail_by_id**
-> MailOrder get_mail_by_id(id)
-
-Gets mail order information by id
-
-returns information about a mail order in the system with the given id.
-
-### Example
-```python
-from __future__ import print_function
-import time
-import swagger_client
-from swagger_client.rest import ApiException
-from pprint import pprint
-
-# Configure API key authorization: apiKeyAuth
-configuration = swagger_client.Configuration()
-configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
-
-# create an instance of the API class
-api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
-id = 789 # int | User ID
-
-try:
-    # Gets mail order information by id
-    api_response = api_instance.get_mail_by_id(id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DefaultApi->get_mail_by_id: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| User ID | 
-
-### Return type
-
-[**MailOrder**](MailOrder.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[**view_mail_log_by_id**](DefaultApi.md#view_mail_log_by_id) | **GET** /mail/log | displays the mail log
 
 # **get_mail_orders**
-> MailOrders get_mail_orders()
+> MailOrders get_mail_orders(id=id)
 
 displays a list of mail service orders
 
@@ -88,17 +33,21 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
+id = 789 # int | The ID of your mail order this will be sent through. (optional)
 
 try:
     # displays a list of mail service orders
-    api_response = api_instance.get_mail_orders()
+    api_response = api_instance.get_mail_orders(id=id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_mail_orders: %s\n" % e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
 
 ### Return type
 
@@ -210,7 +159,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **send_adv_mail_by_id**
-> GenericResponse send_adv_mail_by_id(body, id)
+> GenericResponse send_adv_mail_by_id(body)
 
 Sends an Email with Advanced Options
 
@@ -233,11 +182,10 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
 body = swagger_client.SendMail() # SendMail | 
-id = 789 # int | User ID
 
 try:
     # Sends an Email with Advanced Options
-    api_response = api_instance.send_adv_mail_by_id(body, id)
+    api_response = api_instance.send_adv_mail_by_id(body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->send_adv_mail_by_id: %s\n" % e)
@@ -248,7 +196,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**SendMail**](SendMail.md)|  | 
- **id** | **int**| User ID | 
 
 ### Return type
 
@@ -260,13 +207,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **send_mail_by_id**
-> GenericResponse send_mail_by_id(id, subject=subject, body=body, to=to, to_name=to_name, _from=_from, from_name=from_name)
+> GenericResponse send_mail_by_id(subject=subject, body=body, to=to, _from=_from, id=id, to_name=to_name, from_name=from_name)
 
 Sends an Email
 
@@ -288,17 +235,17 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
-id = 789 # int | User ID
-subject = 'subject_example' # str |  (optional)
-body = 'body_example' # str |  (optional)
-to = 'to_example' # str |  (optional)
-to_name = 'to_name_example' # str |  (optional)
-_from = '_from_example' # str |  (optional)
-from_name = 'from_name_example' # str |  (optional)
+subject = 'subject_example' # str | The Subject of the email (optional)
+body = 'body_example' # str | The contents of the email (optional)
+to = 'to_example' # str | The email address of who this email will be sent to. (optional)
+_from = '_from_example' # str | The email address of who this email will be sent from. (optional)
+id = 789 # int | The ID of your mail order this will be sent through. (optional)
+to_name = 'to_name_example' # str | The name or title of who this email is being sent to. (optional)
+from_name = 'from_name_example' # str | The name or title of who this email is being sent from. (optional)
 
 try:
     # Sends an Email
-    api_response = api_instance.send_mail_by_id(id, subject=subject, body=body, to=to, to_name=to_name, _from=_from, from_name=from_name)
+    api_response = api_instance.send_mail_by_id(subject=subject, body=body, to=to, _from=_from, id=id, to_name=to_name, from_name=from_name)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->send_mail_by_id: %s\n" % e)
@@ -308,13 +255,13 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| User ID | 
- **subject** | **str**|  | [optional] 
- **body** | **str**|  | [optional] 
- **to** | **str**|  | [optional] 
- **to_name** | **str**|  | [optional] 
- **_from** | **str**|  | [optional] 
- **from_name** | **str**|  | [optional] 
+ **subject** | **str**| The Subject of the email | [optional] 
+ **body** | **str**| The contents of the email | [optional] 
+ **to** | **str**| The email address of who this email will be sent to. | [optional] 
+ **_from** | **str**| The email address of who this email will be sent from. | [optional] 
+ **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
+ **to_name** | **str**| The name or title of who this email is being sent to. | [optional] 
+ **from_name** | **str**| The name or title of who this email is being sent from. | [optional] 
 
 ### Return type
 
@@ -379,7 +326,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **view_mail_log_by_id**
-> list[MailLog] view_mail_log_by_id(id, search_string=search_string, skip=skip, limit=limit)
+> list[MailLog] view_mail_log_by_id(id=id, search_string=search_string, skip=skip, limit=limit)
 
 displays the mail log
 
@@ -401,14 +348,14 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
-id = 789 # int | User ID
+id = 789 # int | The ID of your mail order this will be sent through. (optional)
 search_string = 'search_string_example' # str | pass an optional search string for looking up inventory (optional)
 skip = 56 # int | number of records to skip for pagination (optional)
 limit = 56 # int | maximum number of records to return (optional)
 
 try:
     # displays the mail log
-    api_response = api_instance.view_mail_log_by_id(id, search_string=search_string, skip=skip, limit=limit)
+    api_response = api_instance.view_mail_log_by_id(id=id, search_string=search_string, skip=skip, limit=limit)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->view_mail_log_by_id: %s\n" % e)
@@ -418,7 +365,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| User ID | 
+ **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
  **search_string** | **str**| pass an optional search string for looking up inventory | [optional] 
  **skip** | **int**| number of records to skip for pagination | [optional] 
  **limit** | **int**| maximum number of records to return | [optional] 

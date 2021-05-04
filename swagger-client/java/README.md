@@ -2,7 +2,7 @@
 
 Mail Baby API
 - API version: 1.0.0
-  - Build date: 2021-05-03T14:06:00.771650-04:00[America/New_York]
+  - Build date: 2021-05-04T14:31:32.480225-04:00[America/New_York]
 
 This is an API defintion for accesssing the Mail.Baby mail service.
 
@@ -92,38 +92,9 @@ public class DefaultApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
-        Long id = 789L; // Long | User ID
+        Long id = 789L; // Long | The ID of your mail order this will be sent through.
         try {
-            MailOrder result = apiInstance.getMailById(id);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#getMailById");
-            e.printStackTrace();
-        }
-    }
-}
-import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-        // Configure API key authorization: apiKeyAuth
-        ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
-        apiKeyAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiKeyAuth.setApiKeyPrefix("Token");
-
-        DefaultApi apiInstance = new DefaultApi();
-        try {
-            MailOrders result = apiInstance.getMailOrders();
+            MailOrders result = apiInstance.getMailOrders(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#getMailOrders");
@@ -202,10 +173,8 @@ public class DefaultApiExample {
 
         DefaultApi apiInstance = new DefaultApi();
         SendMail body = new SendMail(); // SendMail | 
-        Long id = 789L; // Long | 
-        Long id = 789L; // Long | User ID
         try {
-            GenericResponse result = apiInstance.sendAdvMailById(body, id, id);
+            GenericResponse result = apiInstance.sendAdvMailById(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#sendAdvMailById");
@@ -233,15 +202,15 @@ public class DefaultApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
-        Long id = 789L; // Long | User ID
-        String subject = "subject_example"; // String | 
-        String body = "body_example"; // String | 
-        String to = "to_example"; // String | 
-        String toName = "toName_example"; // String | 
-        String from = "from_example"; // String | 
-        String fromName = "fromName_example"; // String | 
+        String subject = "subject_example"; // String | The Subject of the email
+        String body = "body_example"; // String | The contents of the email
+        String to = "to_example"; // String | The email address of who this email will be sent to.
+        String from = "from_example"; // String | The email address of who this email will be sent from.
+        Long id = 789L; // Long | The ID of your mail order this will be sent through.
+        String toName = "toName_example"; // String | The name or title of who this email is being sent to.
+        String fromName = "fromName_example"; // String | The name or title of who this email is being sent from.
         try {
-            GenericResponse result = apiInstance.sendMailById(id, subject, body, to, toName, from, fromName);
+            GenericResponse result = apiInstance.sendMailById(subject, body, to, from, id, toName, fromName);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#sendMailById");
@@ -297,7 +266,7 @@ public class DefaultApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
-        Long id = 789L; // Long | User ID
+        Long id = 789L; // Long | The ID of your mail order this will be sent through.
         String searchString = "searchString_example"; // String | pass an optional search string for looking up inventory
         Integer skip = 56; // Integer | number of records to skip for pagination
         Integer limit = 56; // Integer | maximum number of records to return
@@ -318,14 +287,13 @@ All URIs are relative to *https://api.mailbaby.net/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**getMailById**](docs/DefaultApi.md#getMailById) | **GET** /mail/{id} | Gets mail order information by id
 *DefaultApi* | [**getMailOrders**](docs/DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**pingServer**](docs/DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**placeMailOrder**](docs/DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**sendAdvMailById**](docs/DefaultApi.md#sendAdvMailById) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMailById**](docs/DefaultApi.md#sendMailById) | **POST** /mail/{id}/send | Sends an Email
+*DefaultApi* | [**sendAdvMailById**](docs/DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**sendMailById**](docs/DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](docs/DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**viewMailLogById**](docs/DefaultApi.md#viewMailLogById) | **GET** /mail/{id}/log | displays the mail log
+*DefaultApi* | [**viewMailLogById**](docs/DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
 ## Documentation for Models
 
@@ -337,7 +305,6 @@ Class | Method | HTTP request | Description
  - [MailOrder](docs/MailOrder.md)
  - [MailOrders](docs/MailOrders.md)
  - [SendMail](docs/SendMail.md)
- - [SendMailForm](docs/SendMailForm.md)
 
 ## Documentation for Authorization
 
@@ -346,18 +313,6 @@ Authentication schemes defined for the API:
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-### apiLoginAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-### apiPasswordAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 
 

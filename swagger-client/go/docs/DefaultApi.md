@@ -4,49 +4,30 @@ All URIs are relative to *https://api.mailbaby.net/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetMailById**](DefaultApi.md#GetMailById) | **Get** /mail/{id} | Gets mail order information by id
 [**GetMailOrders**](DefaultApi.md#GetMailOrders) | **Get** /mail | displays a list of mail service orders
 [**PingServer**](DefaultApi.md#PingServer) | **Get** /ping | Checks if the server is running
 [**PlaceMailOrder**](DefaultApi.md#PlaceMailOrder) | **Post** /mail/order | places a mail order
-[**SendAdvMailById**](DefaultApi.md#SendAdvMailById) | **Post** /mail/{id}/advsend | Sends an Email with Advanced Options
-[**SendMailById**](DefaultApi.md#SendMailById) | **Post** /mail/{id}/send | Sends an Email
+[**SendAdvMailById**](DefaultApi.md#SendAdvMailById) | **Post** /mail/advsend | Sends an Email with Advanced Options
+[**SendMailById**](DefaultApi.md#SendMailById) | **Post** /mail/send | Sends an Email
 [**ValidateMailOrder**](DefaultApi.md#ValidateMailOrder) | **Get** /mail/order | validatess order details before placing an order
-[**ViewMailLogById**](DefaultApi.md#ViewMailLogById) | **Get** /mail/{id}/log | displays the mail log
+[**ViewMailLogById**](DefaultApi.md#ViewMailLogById) | **Get** /mail/log | displays the mail log
 
-# **GetMailById**
-> MailOrder GetMailById(ctx, id)
-Gets mail order information by id
-
-returns information about a mail order in the system with the given id.
+# **GetMailOrders**
+> []MailOrder GetMailOrders(ctx, optional)
+displays a list of mail service orders
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **id** | **int64**| User ID | 
+ **optional** | ***DefaultApiGetMailOrdersOpts** | optional parameters | nil if no parameters
 
-### Return type
-
-[**MailOrder**](MailOrder.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **GetMailOrders**
-> []MailOrder GetMailOrders(ctx, )
-displays a list of mail service orders
-
-### Required Parameters
-This endpoint does not need any parameter.
+### Optional Parameters
+Optional parameters are passed through a pointer to a DefaultApiGetMailOrdersOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **optional.Int64**| The ID of your mail order this will be sent through. | 
 
 ### Return type
 
@@ -120,7 +101,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SendAdvMailById**
-> GenericResponse SendAdvMailById(ctx, body, id, id)
+> GenericResponse SendAdvMailById(ctx, body)
 Sends an Email with Advanced Options
 
 Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
@@ -131,8 +112,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **body** | [**SendMail**](SendMail.md)|  | 
-  **id** | **int64**|  | 
-  **id** | **int64**| User ID | 
 
 ### Return type
 
@@ -144,13 +123,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SendMailById**
-> GenericResponse SendMailById(ctx, id, optional)
+> GenericResponse SendMailById(ctx, optional)
 Sends an Email
 
 Sends An email through one of your mail orders.
@@ -160,20 +139,19 @@ Sends An email through one of your mail orders.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **id** | **int64**| User ID | 
  **optional** | ***DefaultApiSendMailByIdOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
 Optional parameters are passed through a pointer to a DefaultApiSendMailByIdOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **subject** | **optional.String**|  | 
- **body** | **optional.String**|  | 
- **to** | **optional.String**|  | 
- **toName** | **optional.String**|  | 
- **from** | **optional.String**|  | 
- **fromName** | **optional.String**|  | 
+ **subject** | **optional.String**| The Subject of the email | 
+ **body** | **optional.String**| The contents of the email | 
+ **to** | **optional.String**| The email address of who this email will be sent to. | 
+ **from** | **optional.String**| The email address of who this email will be sent from. | 
+ **id** | **optional.Int64**| The ID of your mail order this will be sent through. | 
+ **toName** | **optional.String**| The name or title of who this email is being sent to. | 
+ **fromName** | **optional.String**| The name or title of who this email is being sent from. | 
 
 ### Return type
 
@@ -213,7 +191,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ViewMailLogById**
-> []MailLog ViewMailLogById(ctx, id, optional)
+> []MailLog ViewMailLogById(ctx, optional)
 displays the mail log
 
 By passing in the appropriate options, you can search for available inventory in the system 
@@ -223,14 +201,13 @@ By passing in the appropriate options, you can search for available inventory in
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **id** | **int64**| User ID | 
  **optional** | ***DefaultApiViewMailLogByIdOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
 Optional parameters are passed through a pointer to a DefaultApiViewMailLogByIdOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
+ **id** | **optional.Int64**| The ID of your mail order this will be sent through. | 
  **searchString** | **optional.String**| pass an optional search string for looking up inventory | 
  **skip** | **optional.Int32**| number of records to skip for pagination | 
  **limit** | **optional.Int32**| maximum number of records to return | 

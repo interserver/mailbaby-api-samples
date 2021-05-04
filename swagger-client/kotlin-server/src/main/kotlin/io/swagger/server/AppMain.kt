@@ -65,24 +65,6 @@ fun Application.main() {
                 }
             }
         }
-        // "Implement API key auth (apiLoginAuth) for parameter name 'X-API-LOGIN'."
-        apiKeyAuth("apiLoginAuth") {
-            validate { apikeyCredential: ApiKeyCredential ->
-                when {
-                    apikeyCredential.value == "keyboardcat" -> ApiPrincipal(apikeyCredential)
-                    else -> null
-                }
-            }
-        }
-        // "Implement API key auth (apiPasswordAuth) for parameter name 'X-API-PASS'."
-        apiKeyAuth("apiPasswordAuth") {
-            validate { apikeyCredential: ApiKeyCredential ->
-                when {
-                    apikeyCredential.value == "keyboardcat" -> ApiPrincipal(apikeyCredential)
-                    else -> null
-                }
-            }
-        }
     }
     install(Routing) {
         DefaultApi()

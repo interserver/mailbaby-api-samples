@@ -9,64 +9,16 @@ All URIs are relative to *https://api.mailbaby.net/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMailById**](DefaultApi.md#getMailById) | **GET** /mail/{id} | Gets mail order information by id
 [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/{id}/send | Sends an Email
+[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/{id}/log | displays the mail log
-
-# **getMailById**
-> MailOrder getMailById(id)
-
-Gets mail order information by id
-
-returns information about a mail order in the system with the given id.
-
-### Example
-```dart
-import 'package:swagger/api.dart';
-// TODO Configure API key authorization: apiKeyAuth
-//swagger.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
-
-var api_instance = new DefaultApi();
-var id = 789; // int | User ID
-
-try {
-    var result = api_instance.getMailById(id);
-    print(result);
-} catch (e) {
-    print("Exception when calling DefaultApi->getMailById: $e\n");
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| User ID | 
-
-### Return type
-
-[**MailOrder**](MailOrder.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
 # **getMailOrders**
-> MailOrders getMailOrders()
+> MailOrders getMailOrders(id)
 
 displays a list of mail service orders
 
@@ -79,9 +31,10 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
 
 var api_instance = new DefaultApi();
+var id = 789; // int | The ID of your mail order this will be sent through.
 
 try {
-    var result = api_instance.getMailOrders();
+    var result = api_instance.getMailOrders(id);
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->getMailOrders: $e\n");
@@ -89,7 +42,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
 
 ### Return type
 
@@ -189,7 +145,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendAdvMailById**
-> GenericResponse sendAdvMailById(body, id, id)
+> GenericResponse sendAdvMailById(body)
 
 Sends an Email with Advanced Options
 
@@ -205,11 +161,9 @@ import 'package:swagger/api.dart';
 
 var api_instance = new DefaultApi();
 var body = new SendMail(); // SendMail | 
-var id = 789; // int | 
-var id = 789; // int | User ID
 
 try {
-    var result = api_instance.sendAdvMailById(body, id, id);
+    var result = api_instance.sendAdvMailById(body);
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->sendAdvMailById: $e\n");
@@ -221,8 +175,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**SendMail**](SendMail.md)|  | 
- **id** | **int**|  | 
- **id** | **int**| User ID | 
 
 ### Return type
 
@@ -234,13 +186,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendMailById**
-> GenericResponse sendMailById(id, subject, body, to, toName, from, fromName)
+> GenericResponse sendMailById(subject, body, to, from, id, toName, fromName)
 
 Sends an Email
 
@@ -255,16 +207,16 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
 
 var api_instance = new DefaultApi();
-var id = 789; // int | User ID
-var subject = subject_example; // String | 
-var body = body_example; // String | 
-var to = to_example; // String | 
-var toName = toName_example; // String | 
-var from = from_example; // String | 
-var fromName = fromName_example; // String | 
+var subject = subject_example; // String | The Subject of the email
+var body = body_example; // String | The contents of the email
+var to = to_example; // String | The email address of who this email will be sent to.
+var from = from_example; // String | The email address of who this email will be sent from.
+var id = 789; // int | The ID of your mail order this will be sent through.
+var toName = toName_example; // String | The name or title of who this email is being sent to.
+var fromName = fromName_example; // String | The name or title of who this email is being sent from.
 
 try {
-    var result = api_instance.sendMailById(id, subject, body, to, toName, from, fromName);
+    var result = api_instance.sendMailById(subject, body, to, from, id, toName, fromName);
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->sendMailById: $e\n");
@@ -275,13 +227,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| User ID | 
- **subject** | **String**|  | [optional] 
- **body** | **String**|  | [optional] 
- **to** | **String**|  | [optional] 
- **toName** | **String**|  | [optional] 
- **from** | **String**|  | [optional] 
- **fromName** | **String**|  | [optional] 
+ **subject** | **String**| The Subject of the email | [optional] 
+ **body** | **String**| The contents of the email | [optional] 
+ **to** | **String**| The email address of who this email will be sent to. | [optional] 
+ **from** | **String**| The email address of who this email will be sent from. | [optional] 
+ **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
+ **toName** | **String**| The name or title of who this email is being sent to. | [optional] 
+ **fromName** | **String**| The name or title of who this email is being sent from. | [optional] 
 
 ### Return type
 
@@ -354,7 +306,7 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
 
 var api_instance = new DefaultApi();
-var id = 789; // int | User ID
+var id = 789; // int | The ID of your mail order this will be sent through.
 var searchString = searchString_example; // String | pass an optional search string for looking up inventory
 var skip = 56; // int | number of records to skip for pagination
 var limit = 56; // int | maximum number of records to return
@@ -371,7 +323,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| User ID | 
+ **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
  **searchString** | **String**| pass an optional search string for looking up inventory | [optional] 
  **skip** | **int**| number of records to skip for pagination | [optional] 
  **limit** | **int**| maximum number of records to return | [optional] 

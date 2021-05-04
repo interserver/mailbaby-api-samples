@@ -63,24 +63,14 @@ namespace IO.Swagger.Test
         }
 
         /// <summary>
-        /// Test GetMailById
-        /// </summary>
-        [Test]
-        public void GetMailByIdTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //long? id = null;
-            //var response = instance.GetMailById(id);
-            //Assert.IsInstanceOf<MailOrder> (response, "response is MailOrder");
-        }
-        /// <summary>
         /// Test GetMailOrders
         /// </summary>
         [Test]
         public void GetMailOrdersTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //var response = instance.GetMailOrders();
+            //long? id = null;
+            //var response = instance.GetMailOrders(id);
             //Assert.IsInstanceOf<MailOrders> (response, "response is MailOrders");
         }
         /// <summary>
@@ -112,8 +102,7 @@ namespace IO.Swagger.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //SendMail body = null;
-            //long? id = null;
-            //var response = instance.SendAdvMailById(body, id);
+            //var response = instance.SendAdvMailById(body);
             //Assert.IsInstanceOf<GenericResponse> (response, "response is GenericResponse");
         }
         /// <summary>
@@ -123,14 +112,14 @@ namespace IO.Swagger.Test
         public void SendMailByIdTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //long? id = null;
             //string subject = null;
             //string body = null;
             //string to = null;
-            //string toName = null;
             //string from = null;
+            //long? id = null;
+            //string toName = null;
             //string fromName = null;
-            //var response = instance.SendMailById(id, subject, body, to, toName, from, fromName);
+            //var response = instance.SendMailById(subject, body, to, from, id, toName, fromName);
             //Assert.IsInstanceOf<GenericResponse> (response, "response is GenericResponse");
         }
         /// <summary>

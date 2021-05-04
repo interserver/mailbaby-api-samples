@@ -44,26 +44,6 @@ import io.swagger.server.models.SendMail
 fun Route.DefaultApi() {
     val gson = Gson()
     val empty = mutableMapOf<String, Any?>()
-    get<Paths.getMailById> {  _: Paths.getMailById ->
-        val principal = call.authentication.principal<ApiPrincipal>()
-        if (principal == null) {
-            call.respond(HttpStatusCode.Unauthorized)
-        } else {
-            val exampleContentType = "application/json"
-            val exampleContentString = """{
-  "password" : "guest123",
-  "comment" : "main mail account",
-  "id" : 1234,
-  "status" : "active",
-  "username" : "mb1234"
-}"""
-            
-            when(exampleContentType) {
-                "application/json" -> call.respond(gson.fromJson(exampleContentString, empty::class.java))
-                "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
-                else -> call.respondText(exampleContentString)
-            }        }
-    }
     get<Paths.getMailOrders> {  _: Paths.getMailOrders ->
         val principal = call.authentication.principal<ApiPrincipal>()
         if (principal == null) {

@@ -236,20 +236,6 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
                     'key': 'X-API-KEY',
                     'value': self.get_api_key_with_prefix('X-API-KEY')
                 },
-            'apiLoginAuth':
-                {
-                    'type': 'api_key',
-                    'in': 'header',
-                    'key': 'X-API-LOGIN',
-                    'value': self.get_api_key_with_prefix('X-API-LOGIN')
-                },
-            'apiPasswordAuth':
-                {
-                    'type': 'api_key',
-                    'in': 'header',
-                    'key': 'X-API-PASS',
-                    'value': self.get_api_key_with_prefix('X-API-PASS')
-                },
         }
 
     def to_debug_report(self):

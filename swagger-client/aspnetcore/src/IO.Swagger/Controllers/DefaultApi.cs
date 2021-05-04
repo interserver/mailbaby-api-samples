@@ -28,33 +28,9 @@ namespace IO.Swagger.Controllers
     public class DefaultApiController : ControllerBase
     { 
         /// <summary>
-        /// Gets mail order information by id
-        /// </summary>
-        /// <remarks>returns information about a mail order in the system with the given id.</remarks>
-        /// <param name="id">User ID</param>
-        /// <response code="200">Successful operation</response>
-        [HttpGet]
-        [Route("//mail/{id}")]
-        [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
-        [ValidateModelState]
-        [SwaggerOperation("GetMailById")]
-        [SwaggerResponse(statusCode: 200, type: typeof(MailOrder), description: "Successful operation")]
-        public virtual IActionResult GetMailById([FromRoute][Required]long? id)
-        { 
-            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(200, default(MailOrder));
-            string exampleJson = null;
-            exampleJson = "{\n  \"password\" : \"guest123\",\n  \"comment\" : \"main mail account\",\n  \"id\" : 1234,\n  \"status\" : \"active\",\n  \"username\" : \"mb1234\"\n}";
-            
-                        var example = exampleJson != null
-                        ? JsonConvert.DeserializeObject<MailOrder>(exampleJson)
-                        : default(MailOrder);            //TODO: Change the data returned
-            return new ObjectResult(example);
-        }
-
-        /// <summary>
         /// displays a list of mail service orders
         /// </summary>
+        /// <param name="id">The ID of your mail order this will be sent through.</param>
         /// <response code="200">OK</response>
         /// <response code="401">Unauthorized</response>
         [HttpGet]
@@ -64,7 +40,7 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("GetMailOrders")]
         [SwaggerResponse(statusCode: 200, type: typeof(MailOrders), description: "OK")]
         [SwaggerResponse(statusCode: 401, type: typeof(ErrorResponse), description: "Unauthorized")]
-        public virtual IActionResult GetMailOrders()
+        public virtual IActionResult GetMailOrders([FromQuery]long? id)
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default(MailOrders));
@@ -137,59 +113,19 @@ namespace IO.Swagger.Controllers
         /// </summary>
         /// <remarks>Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.</remarks>
         /// <param name="body"></param>
-        /// <param name="id">User ID</param>
         /// <response code="200">search results matching criteria</response>
         /// <response code="400">bad input parameter</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="404">The specified resource was not found</response>
         [HttpPost]
-        [Route("//mail/{id}/advsend")]
+        [Route("//mail/advsend")]
         [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
         [ValidateModelState]
         [SwaggerOperation("SendAdvMailById")]
         [SwaggerResponse(statusCode: 200, type: typeof(GenericResponse), description: "search results matching criteria")]
         [SwaggerResponse(statusCode: 401, type: typeof(ErrorResponse), description: "Unauthorized")]
         [SwaggerResponse(statusCode: 404, type: typeof(ErrorResponse), description: "The specified resource was not found")]
-        public virtual IActionResult SendAdvMailById([FromBody]SendMail body, [FromRoute][Required]long? id)
-        { 
-            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(200, default(GenericResponse));
-
-            //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(400);
-
-            //TODO: Uncomment the next line to return response 401 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(401, default(ErrorResponse));
-
-            //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(404, default(ErrorResponse));
-            string exampleJson = null;
-            exampleJson = "{\n  \"status_text\" : \"The command completed successfully.\",\n  \"status\" : \"ok\"\n}";
-            
-                        var example = exampleJson != null
-                        ? JsonConvert.DeserializeObject<GenericResponse>(exampleJson)
-                        : default(GenericResponse);            //TODO: Change the data returned
-            return new ObjectResult(example);
-        }
-        /// <summary>
-        /// Sends an Email with Advanced Options
-        /// </summary>
-        /// <remarks>Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.</remarks>
-        /// <param name="body"></param>
-        /// <param name="id">User ID</param>
-        /// <response code="200">search results matching criteria</response>
-        /// <response code="400">bad input parameter</response>
-        /// <response code="401">Unauthorized</response>
-        /// <response code="404">The specified resource was not found</response>
-        [HttpPost]
-        [Route("//mail/{id}/advsend")]
-        [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
-        [ValidateModelState]
-        [SwaggerOperation("SendAdvMailById")]
-        [SwaggerResponse(statusCode: 200, type: typeof(GenericResponse), description: "search results matching criteria")]
-        [SwaggerResponse(statusCode: 401, type: typeof(ErrorResponse), description: "Unauthorized")]
-        [SwaggerResponse(statusCode: 404, type: typeof(ErrorResponse), description: "The specified resource was not found")]
-        public virtual IActionResult SendAdvMailById([FromBody]SendMail body, [FromRoute][Required]long? id)
+        public virtual IActionResult SendAdvMailById([FromBody]SendMail body)
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default(GenericResponse));
@@ -215,26 +151,26 @@ namespace IO.Swagger.Controllers
         /// Sends an Email
         /// </summary>
         /// <remarks>Sends An email through one of your mail orders.</remarks>
-        /// <param name="id">User ID</param>
-        /// <param name="subject"></param>
-        /// <param name="body"></param>
-        /// <param name="to"></param>
-        /// <param name="toName"></param>
-        /// <param name="from"></param>
-        /// <param name="fromName"></param>
+        /// <param name="subject">The Subject of the email</param>
+        /// <param name="body">The contents of the email</param>
+        /// <param name="to">The email address of who this email will be sent to.</param>
+        /// <param name="from">The email address of who this email will be sent from.</param>
+        /// <param name="id">The ID of your mail order this will be sent through.</param>
+        /// <param name="toName">The name or title of who this email is being sent to.</param>
+        /// <param name="fromName">The name or title of who this email is being sent from.</param>
         /// <response code="200">search results matching criteria</response>
         /// <response code="400">bad input parameter</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="404">The specified resource was not found</response>
         [HttpPost]
-        [Route("//mail/{id}/send")]
+        [Route("//mail/send")]
         [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
         [ValidateModelState]
         [SwaggerOperation("SendMailById")]
         [SwaggerResponse(statusCode: 200, type: typeof(GenericResponse), description: "search results matching criteria")]
         [SwaggerResponse(statusCode: 401, type: typeof(ErrorResponse), description: "Unauthorized")]
         [SwaggerResponse(statusCode: 404, type: typeof(ErrorResponse), description: "The specified resource was not found")]
-        public virtual IActionResult SendMailById([FromRoute][Required]long? id, [FromQuery]string subject, [FromQuery]string body, [FromQuery]string to, [FromQuery]string toName, [FromQuery]string from, [FromQuery]string fromName)
+        public virtual IActionResult SendMailById([FromQuery]string subject, [FromQuery]string body, [FromQuery]string to, [FromQuery]string from, [FromQuery]long? id, [FromQuery]string toName, [FromQuery]string fromName)
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default(GenericResponse));
@@ -282,19 +218,19 @@ namespace IO.Swagger.Controllers
         /// displays the mail log
         /// </summary>
         /// <remarks>By passing in the appropriate options, you can search for available inventory in the system </remarks>
-        /// <param name="id">User ID</param>
+        /// <param name="id">The ID of your mail order this will be sent through.</param>
         /// <param name="searchString">pass an optional search string for looking up inventory</param>
         /// <param name="skip">number of records to skip for pagination</param>
         /// <param name="limit">maximum number of records to return</param>
         /// <response code="200">search results matching criteria</response>
         /// <response code="400">bad input parameter</response>
         [HttpGet]
-        [Route("//mail/{id}/log")]
+        [Route("//mail/log")]
         [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
         [ValidateModelState]
         [SwaggerOperation("ViewMailLogById")]
         [SwaggerResponse(statusCode: 200, type: typeof(List<MailLog>), description: "search results matching criteria")]
-        public virtual IActionResult ViewMailLogById([FromRoute][Required]long? id, [FromQuery]string searchString, [FromQuery]int? skip, [FromQuery][Range(0, 50)]int? limit)
+        public virtual IActionResult ViewMailLogById([FromQuery]long? id, [FromQuery]string searchString, [FromQuery]int? skip, [FromQuery][Range(0, 50)]int? limit)
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default(List<MailLog>));

@@ -24,7 +24,6 @@ require 'swagger_client/models/mail_log'
 require 'swagger_client/models/mail_order'
 require 'swagger_client/models/mail_orders'
 require 'swagger_client/models/send_mail'
-require 'swagger_client/models/send_mail_form'
 
 # APIs
 require 'swagger_client/api/default_api'

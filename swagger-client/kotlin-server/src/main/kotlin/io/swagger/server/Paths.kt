@@ -32,17 +32,11 @@ inline fun <reified T : Any> Route.delete(noinline body: suspend PipelineContext
 
 object Paths {
     /**
-     * Gets mail order information by id
-     * returns information about a mail order in the system with the given id.
-     * @param id User ID 
-     */
-    @Location("/mail/{id}") class getMailById(val id: kotlin.Long)
-
-    /**
      * displays a list of mail service orders
      * 
+     * @param id The ID of your mail order this will be sent through. (optional)
      */
-    @Location("/mail") class getMailOrders()
+    @Location("/mail") class getMailOrders(val id: kotlin.Long)
 
     /**
      * Checks if the server is running
@@ -61,22 +55,21 @@ object Paths {
      * Sends an Email with Advanced Options
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * @param body  
-     * @param id User ID 
      */
-    @Location("/mail/{id}/advsend") class sendAdvMailById(val body: SendMail, val id: kotlin.Long)
+    @Location("/mail/advsend") class sendAdvMailById(val body: SendMail)
 
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param id User ID 
-     * @param subject  (optional)
-     * @param body  (optional)
-     * @param to  (optional)
-     * @param toName  (optional)
-     * @param from  (optional)
-     * @param fromName  (optional)
+     * @param subject The Subject of the email (optional)
+     * @param body The contents of the email (optional)
+     * @param to The email address of who this email will be sent to. (optional)
+     * @param from The email address of who this email will be sent from. (optional)
+     * @param id The ID of your mail order this will be sent through. (optional)
+     * @param toName The name or title of who this email is being sent to. (optional)
+     * @param fromName The name or title of who this email is being sent from. (optional)
      */
-    @Location("/mail/{id}/send") class sendMailById(val id: kotlin.Long, val subject: kotlin.String, val body: kotlin.String, val to: kotlin.String, val toName: kotlin.String, val from: kotlin.String, val fromName: kotlin.String)
+    @Location("/mail/send") class sendMailById(val subject: kotlin.String, val body: kotlin.String, val to: kotlin.String, val from: kotlin.String, val id: kotlin.Long, val toName: kotlin.String, val fromName: kotlin.String)
 
     /**
      * validatess order details before placing an order
@@ -89,11 +82,11 @@ object Paths {
      * By passing in the appropriate options, you can search for
 available inventory in the system
 
-     * @param id User ID 
+     * @param id The ID of your mail order this will be sent through. (optional)
      * @param searchString pass an optional search string for looking up inventory (optional)
      * @param skip number of records to skip for pagination (optional)
      * @param limit maximum number of records to return (optional)
      */
-    @Location("/mail/{id}/log") class viewMailLogById(val id: kotlin.Long, val searchString: kotlin.String, val skip: kotlin.Int, val limit: kotlin.Int)
+    @Location("/mail/log") class viewMailLogById(val id: kotlin.Long, val searchString: kotlin.String, val skip: kotlin.Int, val limit: kotlin.Int)
 
 }

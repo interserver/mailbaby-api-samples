@@ -35,23 +35,10 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-03T14:06:27.254869-04:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-04T14:31:56.840492-04:00[America/New_York]")public class MailApi  {
 
     @Inject MailApiService service;
 
-    @GET
-    @Path("/{id}")
-    
-    @Produces({ "application/json" })
-    @Operation(summary = "Gets mail order information by id", description = "returns information about a mail order in the system with the given id.", security = {
-        @SecurityRequirement(name = "apiKeyAuth")
-    }, tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(schema = @Schema(implementation = MailOrder.class))) })
-    public Response getMailById( @PathParam("id") Long id,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return service.getMailById(id,securityContext);
-    }
     @GET
     
     
@@ -63,9 +50,9 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = MailOrders.class))),
         
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response getMailOrders(@Context SecurityContext securityContext)
+    public Response getMailOrders(  @QueryParam("id") Long id,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return service.getMailOrders(securityContext);
+        return service.getMailOrders(id,securityContext);
     }
     @POST
     @Path("/order")
@@ -87,8 +74,8 @@ import javax.validation.constraints.*;
         return service.placeMailOrder(body,securityContext);
     }
     @POST
-    @Path("/{id}/advsend")
-    @Consumes({ "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" })
+    @Path("/advsend")
+    @Consumes({ "application/json" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
         @SecurityRequirement(name = "apiKeyAuth")
@@ -101,50 +88,12 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
         
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendAdvMailById(@Parameter(description = "" ,required=true) SendMail body, @PathParam("id") Long id,@Context SecurityContext securityContext)
+    public Response sendAdvMailById(@Parameter(description = "" ,required=true) SendMail body,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return service.sendAdvMailById(body,id,securityContext);
+        return service.sendAdvMailById(body,securityContext);
     }
     @POST
-    @Path("/{id}/advsend")
-    @Consumes({ "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" })
-    @Produces({ "application/json" })
-    @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
-        @SecurityRequirement(name = "apiKeyAuth")
-    }, tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
-        
-        @ApiResponse(responseCode = "400", description = "bad input parameter"),
-        
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-        
-        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendAdvMailById(@Parameter(description = "", required=true)@FormParam("id")  Long id2, @PathParam("id") Long id,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return service.sendAdvMailById(id2,id,securityContext);
-    }
-    @POST
-    @Path("/{id}/advsend")
-    @Consumes({ "application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain" })
-    @Produces({ "application/json" })
-    @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
-        @SecurityRequirement(name = "apiKeyAuth")
-    }, tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(schema = @Schema(implementation = GenericResponse.class))),
-        
-        @ApiResponse(responseCode = "400", description = "bad input parameter"),
-        
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-        
-        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendAdvMailById(@Parameter(description = "" ,required=true) SendMail body, @PathParam("id") Long id,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return service.sendAdvMailById(body,id,securityContext);
-    }
-    @POST
-    @Path("/{id}/send")
+    @Path("/send")
     
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
@@ -158,9 +107,9 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
         
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendMailById( @PathParam("id") Long id,  @QueryParam("subject") String subject,  @QueryParam("body") String body,  @QueryParam("to") String to,  @QueryParam("toName") String toName,  @QueryParam("from") String from,  @QueryParam("fromName") String fromName,@Context SecurityContext securityContext)
+    public Response sendMailById(  @QueryParam("subject") String subject,  @QueryParam("body") String body,  @QueryParam("to") String to,  @QueryParam("from") String from,  @QueryParam("id") Long id,  @QueryParam("toName") String toName,  @QueryParam("fromName") String fromName,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return service.sendMailById(id,subject,body,to,toName,from,fromName,securityContext);
+        return service.sendMailById(subject,body,to,from,id,toName,fromName,securityContext);
     }
     @GET
     @Path("/order")
@@ -178,7 +127,7 @@ import javax.validation.constraints.*;
         return service.validateMailOrder(securityContext);
     }
     @GET
-    @Path("/{id}/log")
+    @Path("/log")
     
     @Produces({ "application/json" })
     @Operation(summary = "displays the mail log", description = "By passing in the appropriate options, you can search for available inventory in the system ", security = {
@@ -188,7 +137,7 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
         
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
-    public Response viewMailLogById( @PathParam("id") Long id,  @QueryParam("searchString") String searchString, @Min(0)  @QueryParam("skip") Integer skip, @Min(0) @Max(50)  @QueryParam("limit") Integer limit,@Context SecurityContext securityContext)
+    public Response viewMailLogById(  @QueryParam("id") Long id,  @QueryParam("searchString") String searchString, @Min(0)  @QueryParam("skip") Integer skip, @Min(0) @Max(50)  @QueryParam("limit") Integer limit,@Context SecurityContext securityContext)
     throws NotFoundException {
         return service.viewMailLogById(id,searchString,skip,limit,securityContext);
     }

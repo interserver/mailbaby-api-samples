@@ -69,12 +69,6 @@ namespace IO.Swagger
             services.AddAuthentication(ApiKeyAuthenticationHandler.SchemeName)
                 .AddScheme<AuthenticationSchemeOptions, ApiKeyAuthenticationHandler>(ApiKeyAuthenticationHandler.SchemeName, null);
 
-            services.AddAuthentication(ApiKeyAuthenticationHandler.SchemeName)
-                .AddScheme<AuthenticationSchemeOptions, ApiKeyAuthenticationHandler>(ApiKeyAuthenticationHandler.SchemeName, null);
-
-            services.AddAuthentication(ApiKeyAuthenticationHandler.SchemeName)
-                .AddScheme<AuthenticationSchemeOptions, ApiKeyAuthenticationHandler>(ApiKeyAuthenticationHandler.SchemeName, null);
-
 
             services
                 .AddSwaggerGen(c =>

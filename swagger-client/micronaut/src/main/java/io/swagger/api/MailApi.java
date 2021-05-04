@@ -28,27 +28,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-03T14:06:30.073116-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-04T14:31:59.399395-04:00[America/New_York]")
 @Controller
 public interface MailApi {
-
-
-    @Operation(summary = "Gets mail order information by id", operationId = "getMailById", description = "returns information about a mail order in the system with the given id." )
-    @ApiResponse(responseCode = "200", description = "Successful operation")
-    @Get(value = "/mail/{id}", produces = { "application/json" })
-    default Single<HttpResponse<MailOrder>> getMailById(@Parameter(description = "User ID") @PathVariable("id") Long id
-) {
-        return Single.fromCallable(() -> {
-            throw new UnsupportedOperationException();
-        });
-    }
 
 
     @Operation(summary = "displays a list of mail service orders", operationId = "getMailOrders", description = "" )
     @ApiResponse(responseCode = "200", description = "OK")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @Get(value = "/mail", produces = { "application/json", "application/xml", "text/plain" })
-    default Single<HttpResponse<MailOrders>> getMailOrders() {
+    default Single<HttpResponse<MailOrders>> getMailOrders(@Nullable @Parameter(description = "The ID of your mail order this will be sent through.") @Valid @QueryValue(value = "id") Long id
+) {
         return Single.fromCallable(() -> {
             throw new UnsupportedOperationException();
         });
@@ -74,39 +64,8 @@ public interface MailApi {
     @ApiResponse(responseCode = "400", description = "bad input parameter")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "404", description = "The specified resource was not found")
-    @Post(value = "/mail/{id}/advsend", produces = { "application/json" }, consumes = {"application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain"})
+    @Post(value = "/mail/advsend", produces = { "application/json" }, consumes = {"application/json"})
     default Single<HttpResponse<GenericResponse>> sendAdvMailById(@Parameter(description = "") @Valid @Body SendMail body
-,@Parameter(description = "User ID") @PathVariable("id") Long id
-) {
-        return Single.fromCallable(() -> {
-            throw new UnsupportedOperationException();
-        });
-    }
-
-
-    @Operation(summary = "Sends an Email with Advanced Options", operationId = "sendAdvMailById", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc." )
-    @ApiResponse(responseCode = "200", description = "search results matching criteria")
-    @ApiResponse(responseCode = "400", description = "bad input parameter")
-    @ApiResponse(responseCode = "401", description = "Unauthorized")
-    @ApiResponse(responseCode = "404", description = "The specified resource was not found")
-    @Post(value = "/mail/{id}/advsend", produces = { "application/json" }, consumes = {"application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain"})
-    default Single<HttpResponse<GenericResponse>> sendAdvMailById(@Parameter(description = "") @QueryValue(value = "id")  Long id2
-,@Parameter(description = "User ID") @PathVariable("id") Long id
-) {
-        return Single.fromCallable(() -> {
-            throw new UnsupportedOperationException();
-        });
-    }
-
-
-    @Operation(summary = "Sends an Email with Advanced Options", operationId = "sendAdvMailById", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc." )
-    @ApiResponse(responseCode = "200", description = "search results matching criteria")
-    @ApiResponse(responseCode = "400", description = "bad input parameter")
-    @ApiResponse(responseCode = "401", description = "Unauthorized")
-    @ApiResponse(responseCode = "404", description = "The specified resource was not found")
-    @Post(value = "/mail/{id}/advsend", produces = { "application/json" }, consumes = {"application/json", "application/xml", "application/x-www-form-urlencoded", "text/plain"})
-    default Single<HttpResponse<GenericResponse>> sendAdvMailById(@Parameter(description = "") @Valid @Body SendMail body
-,@Parameter(description = "User ID") @PathVariable("id") Long id
 ) {
         return Single.fromCallable(() -> {
             throw new UnsupportedOperationException();
@@ -119,14 +78,14 @@ public interface MailApi {
     @ApiResponse(responseCode = "400", description = "bad input parameter")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "404", description = "The specified resource was not found")
-    @Post(value = "/mail/{id}/send", produces = { "application/json" })
-    default Single<HttpResponse<GenericResponse>> sendMailById(@Parameter(description = "User ID") @PathVariable("id") Long id
-,@Nullable @Parameter(description = "") @Valid @QueryValue(value = "subject") String subject
-,@Nullable @Parameter(description = "") @Valid @QueryValue(value = "body") String body
-,@Nullable @Parameter(description = "") @Valid @QueryValue(value = "to") String to
-,@Nullable @Parameter(description = "") @Valid @QueryValue(value = "toName") String toName
-,@Nullable @Parameter(description = "") @Valid @QueryValue(value = "from") String from
-,@Nullable @Parameter(description = "") @Valid @QueryValue(value = "fromName") String fromName
+    @Post(value = "/mail/send", produces = { "application/json" })
+    default Single<HttpResponse<GenericResponse>> sendMailById(@Nullable @Parameter(description = "The Subject of the email") @Valid @QueryValue(value = "subject") String subject
+,@Nullable @Parameter(description = "The contents of the email") @Valid @QueryValue(value = "body") String body
+,@Nullable @Parameter(description = "The email address of who this email will be sent to.") @Valid @QueryValue(value = "to") String to
+,@Nullable @Parameter(description = "The email address of who this email will be sent from.") @Valid @QueryValue(value = "from") String from
+,@Nullable @Parameter(description = "The ID of your mail order this will be sent through.") @Valid @QueryValue(value = "id") Long id
+,@Nullable @Parameter(description = "The name or title of who this email is being sent to.") @Valid @QueryValue(value = "toName") String toName
+,@Nullable @Parameter(description = "The name or title of who this email is being sent from.") @Valid @QueryValue(value = "fromName") String fromName
 ) {
         return Single.fromCallable(() -> {
             throw new UnsupportedOperationException();
@@ -148,8 +107,8 @@ public interface MailApi {
     @Operation(summary = "displays the mail log", operationId = "viewMailLogById", description = "By passing in the appropriate options, you can search for available inventory in the system " )
     @ApiResponse(responseCode = "200", description = "search results matching criteria")
     @ApiResponse(responseCode = "400", description = "bad input parameter")
-    @Get(value = "/mail/{id}/log", produces = { "application/json" })
-    default Single<HttpResponse<List<MailLog>>> viewMailLogById(@Parameter(description = "User ID") @PathVariable("id") Long id
+    @Get(value = "/mail/log", produces = { "application/json" })
+    default Single<HttpResponse<List<MailLog>>> viewMailLogById(@Nullable @Parameter(description = "The ID of your mail order this will be sent through.") @Valid @QueryValue(value = "id") Long id
 ,@Nullable @Parameter(description = "pass an optional search string for looking up inventory") @Valid @QueryValue(value = "searchString") String searchString
 ,@Nullable @Min(0)@Parameter(description = "number of records to skip for pagination") @Valid @QueryValue(value = "skip") Integer skip
 ,@Nullable @Min(0) @Max(50) @Parameter(description = "maximum number of records to return") @Valid @QueryValue(value = "limit") Integer limit

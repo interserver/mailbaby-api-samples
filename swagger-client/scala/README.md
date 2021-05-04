@@ -66,14 +66,13 @@ All URIs are relative to *https://api.mailbaby.net/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**getMailById**](DefaultApi.md#getMailById) | **GET** /mail/{id} | Gets mail order information by id
 *DefaultApi* | [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/{id}/send | Sends an Email
+*DefaultApi* | [**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/{id}/log | displays the mail log
+*DefaultApi* | [**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
 ## Documentation for Models
 
@@ -85,7 +84,6 @@ Class | Method | HTTP request | Description
  - [MailOrder](MailOrder.md)
  - [MailOrders](MailOrders.md)
  - [SendMail](SendMail.md)
- - [SendMailForm](SendMailForm.md)
 
 ## Documentation for Authorization
 
@@ -94,18 +92,6 @@ Authentication schemes defined for the API:
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-### apiLoginAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-### apiPasswordAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 
 

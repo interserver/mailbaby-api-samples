@@ -28,13 +28,6 @@ class TestDefaultApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_get_mail_by_id(self):
-        """Test case for get_mail_by_id
-
-        Gets mail order information by id  # noqa: E501
-        """
-        pass
-
     def test_get_mail_orders(self):
         """Test case for get_mail_orders
 

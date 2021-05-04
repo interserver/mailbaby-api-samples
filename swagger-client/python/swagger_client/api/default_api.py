@@ -32,101 +32,6 @@ class DefaultApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def get_mail_by_id(self, id, **kwargs):  # noqa: E501
-        """Gets mail order information by id  # noqa: E501
-
-        returns information about a mail order in the system with the given id.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_mail_by_id(id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param int id: User ID (required)
-        :return: MailOrder
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_mail_by_id_with_http_info(id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.get_mail_by_id_with_http_info(id, **kwargs)  # noqa: E501
-            return data
-
-    def get_mail_by_id_with_http_info(self, id, **kwargs):  # noqa: E501
-        """Gets mail order information by id  # noqa: E501
-
-        returns information about a mail order in the system with the given id.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_mail_by_id_with_http_info(id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param int id: User ID (required)
-        :return: MailOrder
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        params = locals()
-        for key, val in six.iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_mail_by_id" % key
-                )
-            params[key] = val
-        del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `get_mail_by_id`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['apiKeyAuth']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mail/{id}', 'GET',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='MailOrder',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
     def get_mail_orders(self, **kwargs):  # noqa: E501
         """displays a list of mail service orders  # noqa: E501
 
@@ -136,6 +41,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
+        :param int id: The ID of your mail order this will be sent through.
         :return: MailOrders
                  If the method is called asynchronously,
                  returns the request thread.
@@ -156,12 +62,13 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
+        :param int id: The ID of your mail order this will be sent through.
         :return: MailOrders
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = []  # noqa: E501
+        all_params = ['id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -182,6 +89,8 @@ class DefaultApi(object):
         path_params = {}
 
         query_params = []
+        if 'id' in params:
+            query_params.append(('id', params['id']))  # noqa: E501
 
         header_params = {}
 
@@ -388,47 +297,45 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def send_adv_mail_by_id(self, body, id, **kwargs):  # noqa: E501
+    def send_adv_mail_by_id(self, body, **kwargs):  # noqa: E501
         """Sends an Email with Advanced Options  # noqa: E501
 
         Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_adv_mail_by_id(body, id, async_req=True)
+        >>> thread = api.send_adv_mail_by_id(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param SendMail body: (required)
-        :param int id: User ID (required)
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.send_adv_mail_by_id_with_http_info(body, id, **kwargs)  # noqa: E501
+            return self.send_adv_mail_by_id_with_http_info(body, **kwargs)  # noqa: E501
         else:
-            (data) = self.send_adv_mail_by_id_with_http_info(body, id, **kwargs)  # noqa: E501
+            (data) = self.send_adv_mail_by_id_with_http_info(body, **kwargs)  # noqa: E501
             return data
 
-    def send_adv_mail_by_id_with_http_info(self, body, id, **kwargs):  # noqa: E501
+    def send_adv_mail_by_id_with_http_info(self, body, **kwargs):  # noqa: E501
         """Sends an Email with Advanced Options  # noqa: E501
 
         Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_adv_mail_by_id_with_http_info(body, id, async_req=True)
+        >>> thread = api.send_adv_mail_by_id_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param SendMail body: (required)
-        :param int id: User ID (required)
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['body', 'id']  # noqa: E501
+        all_params = ['body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -447,16 +354,10 @@ class DefaultApi(object):
         if ('body' not in params or
                 params['body'] is None):
             raise ValueError("Missing the required parameter `body` when calling `send_adv_mail_by_id`")  # noqa: E501
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `send_adv_mail_by_id`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
 
         query_params = []
 
@@ -464,8 +365,6 @@ class DefaultApi(object):
 
         form_params = []
         local_var_files = {}
-        if 'id' in params:
-            form_params.append(('id', params['id']))  # noqa: E501
 
         body_params = None
         if 'body' in params:
@@ -476,13 +375,13 @@ class DefaultApi(object):
 
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain'])  # noqa: E501
+            ['application/json'])  # noqa: E501
 
         # Authentication setting
         auth_settings = ['apiKeyAuth']  # noqa: E501
 
         return self.api_client.call_api(
-            '/mail/{id}/advsend', 'POST',
+            '/mail/advsend', 'POST',
             path_params,
             query_params,
             header_params,
@@ -497,275 +396,57 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def send_adv_mail_by_id(self, id2, id, **kwargs):  # noqa: E501
-        """Sends an Email with Advanced Options  # noqa: E501
-
-        Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_adv_mail_by_id(id2, id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param int id2: (required)
-        :param int id: User ID (required)
-        :return: GenericResponse
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.send_adv_mail_by_id_with_http_info(id2, id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.send_adv_mail_by_id_with_http_info(id2, id, **kwargs)  # noqa: E501
-            return data
-
-    def send_adv_mail_by_id_with_http_info(self, id2, id, **kwargs):  # noqa: E501
-        """Sends an Email with Advanced Options  # noqa: E501
-
-        Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_adv_mail_by_id_with_http_info(id2, id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param int id2: (required)
-        :param int id: User ID (required)
-        :return: GenericResponse
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['id2', 'id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        params = locals()
-        for key, val in six.iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method send_adv_mail_by_id" % key
-                )
-            params[key] = val
-        del params['kwargs']
-        # verify the required parameter 'id2' is set
-        if ('id2' not in params or
-                params['id2'] is None):
-            raise ValueError("Missing the required parameter `id2` when calling `send_adv_mail_by_id`")  # noqa: E501
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `send_adv_mail_by_id`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-        if 'id' in params:
-            form_params.append(('id', params['id']))  # noqa: E501
-
-        body_params = None
-        if 'body' in params:
-            body_params = params['body']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['apiKeyAuth']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mail/{id}/advsend', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GenericResponse',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def send_adv_mail_by_id(self, body, id, **kwargs):  # noqa: E501
-        """Sends an Email with Advanced Options  # noqa: E501
-
-        Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_adv_mail_by_id(body, id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param SendMail body: (required)
-        :param int id: User ID (required)
-        :return: GenericResponse
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.send_adv_mail_by_id_with_http_info(body, id, **kwargs)  # noqa: E501
-        else:
-            (data) = self.send_adv_mail_by_id_with_http_info(body, id, **kwargs)  # noqa: E501
-            return data
-
-    def send_adv_mail_by_id_with_http_info(self, body, id, **kwargs):  # noqa: E501
-        """Sends an Email with Advanced Options  # noqa: E501
-
-        Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_adv_mail_by_id_with_http_info(body, id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param SendMail body: (required)
-        :param int id: User ID (required)
-        :return: GenericResponse
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['body', 'id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        params = locals()
-        for key, val in six.iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method send_adv_mail_by_id" % key
-                )
-            params[key] = val
-        del params['kwargs']
-        # verify the required parameter 'body' is set
-        if ('body' not in params or
-                params['body'] is None):
-            raise ValueError("Missing the required parameter `body` when calling `send_adv_mail_by_id`")  # noqa: E501
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `send_adv_mail_by_id`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-        if 'id' in params:
-            form_params.append(('id', params['id']))  # noqa: E501
-
-        body_params = None
-        if 'body' in params:
-            body_params = params['body']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['apiKeyAuth']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/mail/{id}/advsend', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='GenericResponse',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def send_mail_by_id(self, id, **kwargs):  # noqa: E501
+    def send_mail_by_id(self, **kwargs):  # noqa: E501
         """Sends an Email  # noqa: E501
 
         Sends An email through one of your mail orders.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_mail_by_id(id, async_req=True)
+        >>> thread = api.send_mail_by_id(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param int id: User ID (required)
-        :param str subject:
-        :param str body:
-        :param str to:
-        :param str to_name:
-        :param str _from:
-        :param str from_name:
+        :param str subject: The Subject of the email
+        :param str body: The contents of the email
+        :param str to: The email address of who this email will be sent to.
+        :param str _from: The email address of who this email will be sent from.
+        :param int id: The ID of your mail order this will be sent through.
+        :param str to_name: The name or title of who this email is being sent to.
+        :param str from_name: The name or title of who this email is being sent from.
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.send_mail_by_id_with_http_info(id, **kwargs)  # noqa: E501
+            return self.send_mail_by_id_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.send_mail_by_id_with_http_info(id, **kwargs)  # noqa: E501
+            (data) = self.send_mail_by_id_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def send_mail_by_id_with_http_info(self, id, **kwargs):  # noqa: E501
+    def send_mail_by_id_with_http_info(self, **kwargs):  # noqa: E501
         """Sends an Email  # noqa: E501
 
         Sends An email through one of your mail orders.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_mail_by_id_with_http_info(id, async_req=True)
+        >>> thread = api.send_mail_by_id_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param int id: User ID (required)
-        :param str subject:
-        :param str body:
-        :param str to:
-        :param str to_name:
-        :param str _from:
-        :param str from_name:
+        :param str subject: The Subject of the email
+        :param str body: The contents of the email
+        :param str to: The email address of who this email will be sent to.
+        :param str _from: The email address of who this email will be sent from.
+        :param int id: The ID of your mail order this will be sent through.
+        :param str to_name: The name or title of who this email is being sent to.
+        :param str from_name: The name or title of who this email is being sent from.
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id', 'subject', 'body', 'to', 'to_name', '_from', 'from_name']  # noqa: E501
+        all_params = ['subject', 'body', 'to', '_from', 'id', 'to_name', 'from_name']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -780,16 +461,10 @@ class DefaultApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `send_mail_by_id`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
 
         query_params = []
         if 'subject' in params:
@@ -798,10 +473,12 @@ class DefaultApi(object):
             query_params.append(('body', params['body']))  # noqa: E501
         if 'to' in params:
             query_params.append(('to', params['to']))  # noqa: E501
-        if 'to_name' in params:
-            query_params.append(('toName', params['to_name']))  # noqa: E501
         if '_from' in params:
             query_params.append(('from', params['_from']))  # noqa: E501
+        if 'id' in params:
+            query_params.append(('id', params['id']))  # noqa: E501
+        if 'to_name' in params:
+            query_params.append(('toName', params['to_name']))  # noqa: E501
         if 'from_name' in params:
             query_params.append(('fromName', params['from_name']))  # noqa: E501
 
@@ -819,7 +496,7 @@ class DefaultApi(object):
         auth_settings = ['apiKeyAuth']  # noqa: E501
 
         return self.api_client.call_api(
-            '/mail/{id}/send', 'POST',
+            '/mail/send', 'POST',
             path_params,
             query_params,
             header_params,
@@ -919,17 +596,17 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def view_mail_log_by_id(self, id, **kwargs):  # noqa: E501
+    def view_mail_log_by_id(self, **kwargs):  # noqa: E501
         """displays the mail log  # noqa: E501
 
         By passing in the appropriate options, you can search for available inventory in the system   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.view_mail_log_by_id(id, async_req=True)
+        >>> thread = api.view_mail_log_by_id(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param int id: User ID (required)
+        :param int id: The ID of your mail order this will be sent through.
         :param str search_string: pass an optional search string for looking up inventory
         :param int skip: number of records to skip for pagination
         :param int limit: maximum number of records to return
@@ -939,22 +616,22 @@ class DefaultApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.view_mail_log_by_id_with_http_info(id, **kwargs)  # noqa: E501
+            return self.view_mail_log_by_id_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.view_mail_log_by_id_with_http_info(id, **kwargs)  # noqa: E501
+            (data) = self.view_mail_log_by_id_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def view_mail_log_by_id_with_http_info(self, id, **kwargs):  # noqa: E501
+    def view_mail_log_by_id_with_http_info(self, **kwargs):  # noqa: E501
         """displays the mail log  # noqa: E501
 
         By passing in the appropriate options, you can search for available inventory in the system   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.view_mail_log_by_id_with_http_info(id, async_req=True)
+        >>> thread = api.view_mail_log_by_id_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param int id: User ID (required)
+        :param int id: The ID of your mail order this will be sent through.
         :param str search_string: pass an optional search string for looking up inventory
         :param int skip: number of records to skip for pagination
         :param int limit: maximum number of records to return
@@ -978,18 +655,14 @@ class DefaultApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `view_mail_log_by_id`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
 
         query_params = []
+        if 'id' in params:
+            query_params.append(('id', params['id']))  # noqa: E501
         if 'search_string' in params:
             query_params.append(('searchString', params['search_string']))  # noqa: E501
         if 'skip' in params:
@@ -1011,7 +684,7 @@ class DefaultApi(object):
         auth_settings = ['apiKeyAuth']  # noqa: E501
 
         return self.api_client.call_api(
-            '/mail/{id}/log', 'GET',
+            '/mail/log', 'GET',
             path_params,
             query_params,
             header_params,

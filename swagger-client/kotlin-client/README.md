@@ -35,14 +35,13 @@ All URIs are relative to *https://api.mailbaby.net/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**getMailById**](docs/DefaultApi.md#getmailbyid) | **GET** /mail/{id} | Gets mail order information by id
 *DefaultApi* | [**getMailOrders**](docs/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**pingServer**](docs/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**placeMailOrder**](docs/DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**sendAdvMailById**](docs/DefaultApi.md#sendadvmailbyid) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMailById**](docs/DefaultApi.md#sendmailbyid) | **POST** /mail/{id}/send | Sends an Email
+*DefaultApi* | [**sendAdvMailById**](docs/DefaultApi.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**sendMailById**](docs/DefaultApi.md#sendmailbyid) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](docs/DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**viewMailLogById**](docs/DefaultApi.md#viewmaillogbyid) | **GET** /mail/{id}/log | displays the mail log
+*DefaultApi* | [**viewMailLogById**](docs/DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
@@ -55,20 +54,11 @@ Class | Method | HTTP request | Description
  - [io.swagger.client.models.MailOrder](docs/MailOrder.md)
  - [io.swagger.client.models.MailOrders](docs/MailOrders.md)
  - [io.swagger.client.models.SendMail](docs/SendMail.md)
- - [io.swagger.client.models.SendMailForm](docs/SendMailForm.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
 <a name="apiKeyAuth"></a>
 ### apiKeyAuth
-
-
-<a name="apiLoginAuth"></a>
-### apiLoginAuth
-
-
-<a name="apiPasswordAuth"></a>
-### apiPasswordAuth
 
 

@@ -38,44 +38,6 @@ export default class DefaultApi {
     }
 
     /**
-     * Callback function to receive the result of the getMailById operation.
-     * @callback module:api/DefaultApi~getMailByIdCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/MailOrder} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Gets mail order information by id
-     * returns information about a mail order in the system with the given id.
-     * @param {module:api/DefaultApi~getMailByIdCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/MailOrder}
-     */
-    getMailById(id, callback) {
-      let postBody = null;
-
-      let pathParams = {
-        'id': id
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['apiKeyAuth'];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = MailOrder;
-
-      return this.apiClient.callApi(
-        '/mail/{id}', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-    /**
      * Callback function to receive the result of the getMailOrders operation.
      * @callback module:api/DefaultApi~getMailOrdersCallback
      * @param {String} error Error message, if any.
@@ -85,15 +47,18 @@ export default class DefaultApi {
 
     /**
      * displays a list of mail service orders
+     * @param {Object} opts Optional parameters
      * @param {module:api/DefaultApi~getMailOrdersCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/MailOrders}
      */
-    getMailOrders(callback) {
+    getMailOrders(opts, callback) {
+      opts = opts || {};
       let postBody = null;
 
       let pathParams = {
       };
       let queryParams = {
+        'id': opts['id']
       };
       let headerParams = {
       };
@@ -198,27 +163,25 @@ export default class DefaultApi {
      * @param {module:api/DefaultApi~sendAdvMailByIdCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    sendAdvMailById(body, id, id, callback) {
+    sendAdvMailById(body, callback) {
       let postBody = body;
 
       let pathParams = {
-        'id': id
       };
       let queryParams = {
       };
       let headerParams = {
       };
       let formParams = {
-        'id': id
       };
 
       let authNames = ['apiKeyAuth'];
-      let contentTypes = ['application/json', 'application/xml', 'application/x-www-form-urlencoded', 'text/plain'];
+      let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = GenericResponse;
 
       return this.apiClient.callApi(
-        '/mail/{id}/advsend', 'POST',
+        '/mail/advsend', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -238,19 +201,19 @@ export default class DefaultApi {
      * @param {module:api/DefaultApi~sendMailByIdCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    sendMailById(id, opts, callback) {
+    sendMailById(opts, callback) {
       opts = opts || {};
       let postBody = null;
 
       let pathParams = {
-        'id': id
       };
       let queryParams = {
         'subject': opts['subject'],
         'body': opts['body'],
         'to': opts['to'],
-        'toName': opts['toName'],
         'from': opts['from'],
+        'id': opts['id'],
+        'toName': opts['toName'],
         'fromName': opts['fromName']
       };
       let headerParams = {
@@ -264,7 +227,7 @@ export default class DefaultApi {
       let returnType = GenericResponse;
 
       return this.apiClient.callApi(
-        '/mail/{id}/send', 'POST',
+        '/mail/send', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -319,14 +282,14 @@ export default class DefaultApi {
      * @param {module:api/DefaultApi~viewMailLogByIdCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Array.<module:model/MailLog>}
      */
-    viewMailLogById(id, opts, callback) {
+    viewMailLogById(opts, callback) {
       opts = opts || {};
       let postBody = null;
 
       let pathParams = {
-        'id': id
       };
       let queryParams = {
+        'id': opts['id'],
         'searchString': opts['searchString'],
         'skip': opts['skip'],
         'limit': opts['limit']
@@ -342,7 +305,7 @@ export default class DefaultApi {
       let returnType = [MailLog];
 
       return this.apiClient.callApi(
-        '/mail/{id}/log', 'GET',
+        '/mail/log', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

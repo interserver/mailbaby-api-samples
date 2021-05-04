@@ -56,13 +56,6 @@ var routes = Routes{
 	},
 
 	Route{
-		"GetMailById",
-		strings.ToUpper("Get"),
-		"//mail/{id}",
-		GetMailById,
-	},
-
-	Route{
 		"GetMailOrders",
 		strings.ToUpper("Get"),
 		"//mail",
@@ -86,14 +79,14 @@ var routes = Routes{
 	Route{
 		"SendAdvMailById",
 		strings.ToUpper("Post"),
-		"//mail/{id}/advsend",
+		"//mail/advsend",
 		SendAdvMailById,
 	},
 
 	Route{
 		"SendMailById",
 		strings.ToUpper("Post"),
-		"//mail/{id}/send",
+		"//mail/send",
 		SendMailById,
 	},
 
@@ -107,7 +100,7 @@ var routes = Routes{
 	Route{
 		"ViewMailLogById",
 		strings.ToUpper("Get"),
-		"//mail/{id}/log",
+		"//mail/log",
 		ViewMailLogById,
 	},
 }

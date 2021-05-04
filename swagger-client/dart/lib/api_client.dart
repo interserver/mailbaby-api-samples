@@ -21,8 +21,6 @@ class ApiClient {
   ApiClient({this.basePath: "https://api.mailbaby.net/"}) {
     // Setup authentications (key: authentication name, value: authentication).
     _authentications['apiKeyAuth'] = new ApiKeyAuth("header", "X-API-KEY");
-    _authentications['apiLoginAuth'] = new ApiKeyAuth("header", "X-API-LOGIN");
-    _authentications['apiPasswordAuth'] = new ApiKeyAuth("header", "X-API-PASS");
   }
 
   void addDefaultHeader(String key, String value) {
@@ -56,8 +54,6 @@ class ApiClient {
           return new MailOrders.fromJson(value);
         case 'SendMail':
           return new SendMail.fromJson(value);
-        case 'SendMailForm':
-          return new SendMailForm.fromJson(value);
         default:
           {
             Match match;

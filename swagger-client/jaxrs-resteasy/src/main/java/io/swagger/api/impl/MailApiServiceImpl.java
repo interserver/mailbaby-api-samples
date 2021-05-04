@@ -20,13 +20,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-03T14:06:27.254869-04:00[America/New_York]")public class MailApiServiceImpl implements MailApiService {
-      public Response getMailById(Long id,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
-      public Response getMailOrders(SecurityContext securityContext)
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-04T14:31:56.840492-04:00[America/New_York]")public class MailApiServiceImpl implements MailApiService {
+      public Response getMailOrders(Long id,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
@@ -36,22 +31,12 @@ import javax.ws.rs.core.SecurityContext;
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response sendAdvMailById(SendMail body,Long id,SecurityContext securityContext)
+      public Response sendAdvMailById(SendMail body,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response sendAdvMailById(Long id2,Long id,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
-      public Response sendAdvMailById(SendMail body,Long id,SecurityContext securityContext)
-      throws NotFoundException {
-      // do some magic!
-      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-  }
-      public Response sendMailById(Long id,String subject,String body,String to,String toName,String from,String fromName,SecurityContext securityContext)
+      public Response sendMailById(String subject,String body,String to,String from,Long id,String toName,String fromName,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

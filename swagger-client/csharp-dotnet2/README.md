@@ -56,32 +56,12 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var id = 789;  // long? | User ID
-
-            try
-            {
-                // Gets mail order information by id
-                MailOrder result = apiInstance.GetMailById(id);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.GetMailById: " + e.Message );
-            }
-        }
-    }
-}
-            // Configure API key authorization: apiKeyAuth
-            Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
-
-            var apiInstance = new DefaultApi();
+            var id = 789;  // long? | The ID of your mail order this will be sent through. (optional) 
 
             try
             {
                 // displays a list of mail service orders
-                MailOrders result = apiInstance.GetMailOrders();
+                MailOrders result = apiInstance.GetMailOrders(id);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -132,12 +112,11 @@ namespace Example
 
             var apiInstance = new DefaultApi();
             var body = new SendMail(); // SendMail | 
-            var id = 789;  // long? | User ID
 
             try
             {
                 // Sends an Email with Advanced Options
-                GenericResponse result = apiInstance.SendAdvMailById(body, id);
+                GenericResponse result = apiInstance.SendAdvMailById(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -153,18 +132,18 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var id = 789;  // long? | User ID
-            var subject = subject_example;  // string |  (optional) 
-            var body = body_example;  // string |  (optional) 
-            var to = to_example;  // string |  (optional) 
-            var toName = toName_example;  // string |  (optional) 
-            var from = from_example;  // string |  (optional) 
-            var fromName = fromName_example;  // string |  (optional) 
+            var subject = subject_example;  // string | The Subject of the email (optional) 
+            var body = body_example;  // string | The contents of the email (optional) 
+            var to = to_example;  // string | The email address of who this email will be sent to. (optional) 
+            var from = from_example;  // string | The email address of who this email will be sent from. (optional) 
+            var id = 789;  // long? | The ID of your mail order this will be sent through. (optional) 
+            var toName = toName_example;  // string | The name or title of who this email is being sent to. (optional) 
+            var fromName = fromName_example;  // string | The name or title of who this email is being sent from. (optional) 
 
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.SendMailById(id, subject, body, to, toName, from, fromName);
+                GenericResponse result = apiInstance.SendMailById(subject, body, to, from, id, toName, fromName);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -199,7 +178,7 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var id = 789;  // long? | User ID
+            var id = 789;  // long? | The ID of your mail order this will be sent through. (optional) 
             var searchString = searchString_example;  // string | pass an optional search string for looking up inventory (optional) 
             var skip = 56;  // int? | number of records to skip for pagination (optional) 
             var limit = 56;  // int? | maximum number of records to return (optional) 
@@ -226,14 +205,13 @@ All URIs are relative to *https://api.mailbaby.net/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**GetMailById**](docs/DefaultApi.md#getmailbyid) | **GET** /mail/{id} | Gets mail order information by id
 *DefaultApi* | [**GetMailOrders**](docs/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**PingServer**](docs/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**PlaceMailOrder**](docs/DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**SendAdvMailById**](docs/DefaultApi.md#sendadvmailbyid) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**SendMailById**](docs/DefaultApi.md#sendmailbyid) | **POST** /mail/{id}/send | Sends an Email
+*DefaultApi* | [**SendAdvMailById**](docs/DefaultApi.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**SendMailById**](docs/DefaultApi.md#sendmailbyid) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**ValidateMailOrder**](docs/DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**ViewMailLogById**](docs/DefaultApi.md#viewmaillogbyid) | **GET** /mail/{id}/log | displays the mail log
+*DefaultApi* | [**ViewMailLogById**](docs/DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
@@ -246,7 +224,6 @@ Class | Method | HTTP request | Description
  - [IO.Swagger.Model.MailOrder](docs/MailOrder.md)
  - [IO.Swagger.Model.MailOrders](docs/MailOrders.md)
  - [IO.Swagger.Model.SendMail](docs/SendMail.md)
- - [IO.Swagger.Model.SendMailForm](docs/SendMailForm.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization
@@ -256,19 +233,5 @@ Class | Method | HTTP request | Description
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-<a name="apiLoginAuth"></a>
-### apiLoginAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-<a name="apiPasswordAuth"></a>
-### apiPasswordAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 

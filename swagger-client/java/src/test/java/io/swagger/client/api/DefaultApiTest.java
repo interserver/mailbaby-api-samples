@@ -36,21 +36,6 @@ public class DefaultApiTest {
     private final DefaultApi api = new DefaultApi();
 
     /**
-     * Gets mail order information by id
-     *
-     * returns information about a mail order in the system with the given id.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void getMailByIdTest() throws ApiException {
-        Long id = null;
-        MailOrder response = api.getMailById(id);
-
-        // TODO: test validations
-    }
-    /**
      * displays a list of mail service orders
      *
      * 
@@ -60,7 +45,8 @@ public class DefaultApiTest {
      */
     @Test
     public void getMailOrdersTest() throws ApiException {
-        MailOrders response = api.getMailOrders();
+        Long id = null;
+        MailOrders response = api.getMailOrders(id);
 
         // TODO: test validations
     }
@@ -104,8 +90,7 @@ public class DefaultApiTest {
     @Test
     public void sendAdvMailByIdTest() throws ApiException {
         SendMail body = null;
-        Long id = null;
-        GenericResponse response = api.sendAdvMailById(body, id);
+        GenericResponse response = api.sendAdvMailById(body);
 
         // TODO: test validations
     }
@@ -119,14 +104,14 @@ public class DefaultApiTest {
      */
     @Test
     public void sendMailByIdTest() throws ApiException {
-        Long id = null;
         String subject = null;
         String body = null;
         String to = null;
-        String toName = null;
         String from = null;
+        Long id = null;
+        String toName = null;
         String fromName = null;
-        GenericResponse response = api.sendMailById(id, subject, body, to, toName, from, fromName);
+        GenericResponse response = api.sendMailById(subject, body, to, from, id, toName, fromName);
 
         // TODO: test validations
     }

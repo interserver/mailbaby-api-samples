@@ -19,29 +19,14 @@ class DefaultApi(
   import defaultMarshaller._
 
   lazy val route: Route =
-    path() { (id) => 
-      get {
-        parameters() { () =>
-          
-            formFields() { () =>
-              
-                
-                  defaultService.getMailById(id = id)
-               
-             
-            }
-         
-        }
-      }
-    } ~
     path() { () => 
       get {
-        parameters() { () =>
+        parameters("id".as[Long].?) { (id) =>
           
             formFields() { () =>
               
                 
-                  defaultService.getMailOrders()
+                  defaultService.getMailOrders(id = id)
                
              
             }
@@ -79,14 +64,14 @@ class DefaultApi(
         }
       }
     } ~
-    path() { (id) => 
+    path() { () => 
       post {
         parameters() { () =>
           
-            formFields("id".as[Long]) { (id) =>
+            formFields() { () =>
               
-                entity(as[String]){ body =>
-                  defaultService.sendAdvMailById(body = body, id = id, id = id)
+                entity(as[SendMail]){ body =>
+                  defaultService.sendAdvMailById(body = body)
                 }
              
             }
@@ -94,14 +79,14 @@ class DefaultApi(
         }
       }
     } ~
-    path() { (id) => 
+    path() { () => 
       post {
-        parameters("subject".as[String].?, "body".as[String].?, "to".as[String].?, "toName".as[String].?, "from".as[String].?, "fromName".as[String].?) { (subject, body, to, toName, from, fromName) =>
+        parameters("subject".as[String].?, "body".as[String].?, "to".as[String].?, "from".as[String].?, "id".as[Long].?, "toName".as[String].?, "fromName".as[String].?) { (subject, body, to, from, id, toName, fromName) =>
           
             formFields() { () =>
               
                 
-                  defaultService.sendMailById(id = id, subject = subject, body = body, to = to, toName = toName, from = from, fromName = fromName)
+                  defaultService.sendMailById(subject = subject, body = body, to = to, from = from, id = id, toName = toName, fromName = fromName)
                
              
             }
@@ -124,9 +109,9 @@ class DefaultApi(
         }
       }
     } ~
-    path() { (id) => 
+    path() { () => 
       get {
-        parameters("searchString".as[String].?, "skip".as[Int].?, "limit".as[Int].?) { (searchString, skip, limit) =>
+        parameters("id".as[Long].?, "searchString".as[String].?, "skip".as[Int].?, "limit".as[Int].?) { (id, searchString, skip, limit) =>
           
             formFields() { () =>
               
@@ -143,14 +128,6 @@ class DefaultApi(
 
 trait DefaultApiService {
 
-  def getMailById200(responseMailOrder: MailOrder)(implicit toEntityMarshallerMailOrder: ToEntityMarshaller[MailOrder]): Route =
-    complete((200, responseMailOrder))
-  /**
-   * Code: 200, Message: Successful operation, DataType: MailOrder
-   */
-  def getMailById(id: Long)
-      (implicit toEntityMarshallerMailOrder: ToEntityMarshaller[MailOrder]): Route
-
   def getMailOrders200(responseMailOrders: MailOrders)(implicit toEntityMarshallerMailOrders: ToEntityMarshaller[MailOrders]): Route =
     complete((200, responseMailOrders))
   def getMailOrders401(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
@@ -159,7 +136,7 @@ trait DefaultApiService {
    * Code: 200, Message: OK, DataType: MailOrders
    * Code: 401, Message: Unauthorized, DataType: ErrorResponse
    */
-  def getMailOrders()
+  def getMailOrders(id: Option[Long])
       (implicit toEntityMarshallerMailOrders: ToEntityMarshaller[MailOrders], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
 
   def pingServer200: Route =
@@ -204,7 +181,7 @@ trait DefaultApiService {
    * Code: 401, Message: Unauthorized, DataType: ErrorResponse
    * Code: 404, Message: The specified resource was not found, DataType: ErrorResponse
    */
-  def sendAdvMailById(body: SendMail, id: Long, id: Long)
+  def sendAdvMailById(body: SendMail)
       (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
 
   def sendMailById200(responseGenericResponse: GenericResponse)(implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]): Route =
@@ -221,7 +198,7 @@ trait DefaultApiService {
    * Code: 401, Message: Unauthorized, DataType: ErrorResponse
    * Code: 404, Message: The specified resource was not found, DataType: ErrorResponse
    */
-  def sendMailById(id: Long, subject: Option[String], body: Option[String], to: Option[String], toName: Option[String], from: Option[String], fromName: Option[String])
+  def sendMailById(subject: Option[String], body: Option[String], to: Option[String], from: Option[String], id: Option[Long], toName: Option[String], fromName: Option[String])
       (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
 
   def validateMailOrder200: Route =
@@ -243,7 +220,7 @@ trait DefaultApiService {
    * Code: 200, Message: search results matching criteria, DataType: List[MailLog]
    * Code: 400, Message: bad input parameter
    */
-  def viewMailLogById(id: Long, searchString: Option[String], skip: Option[Int], limit: Option[Int])
+  def viewMailLogById(id: Option[Long], searchString: Option[String], skip: Option[Int], limit: Option[Int])
       (implicit toEntityMarshallerMailLogarray: ToEntityMarshaller[List[MailLog]]): Route
 
 }
@@ -253,8 +230,6 @@ trait DefaultApiMarshaller {
 
   implicit def fromRequestUnmarshallerSendMail: FromRequestUnmarshaller[SendMail]
 
-
-  implicit def toEntityMarshallerMailOrder: ToEntityMarshaller[MailOrder]
 
   implicit def toEntityMarshallerMailOrders: ToEntityMarshaller[MailOrders]
 

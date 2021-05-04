@@ -4,65 +4,17 @@ All URIs are relative to *https://api.mailbaby.net/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMailById**](DefaultApi.md#getMailById) | **GET** /mail/{id} | Gets mail order information by id
 [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/{id}/send | Sends an Email
+[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/{id}/log | displays the mail log
-
-<a name="getMailById"></a>
-# **getMailById**
-> MailOrder getMailById(id)
-
-Gets mail order information by id
-
-returns information about a mail order in the system with the given id.
-
-### Example
-```kotlin
-// Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*;
-
-val apiInstance = DefaultApi()
-val id : kotlin.Long = 789 // kotlin.Long | User ID
-try {
-    val result : MailOrder = apiInstance.getMailById(id)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DefaultApi#getMailById")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DefaultApi#getMailById")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Long**| User ID |
-
-### Return type
-
-[**MailOrder**](MailOrder.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
+[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
 <a name="getMailOrders"></a>
 # **getMailOrders**
-> MailOrders getMailOrders()
+> MailOrders getMailOrders(id)
 
 displays a list of mail service orders
 
@@ -73,8 +25,9 @@ displays a list of mail service orders
 //import io.swagger.client.models.*;
 
 val apiInstance = DefaultApi()
+val id : kotlin.Long = 789 // kotlin.Long | The ID of your mail order this will be sent through.
 try {
-    val result : MailOrders = apiInstance.getMailOrders()
+    val result : MailOrders = apiInstance.getMailOrders(id)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#getMailOrders")
@@ -86,7 +39,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **kotlin.Long**| The ID of your mail order this will be sent through. | [optional]
 
 ### Return type
 
@@ -189,7 +145,7 @@ null (empty response body)
 
 <a name="sendAdvMailById"></a>
 # **sendAdvMailById**
-> GenericResponse sendAdvMailById(body, id)
+> GenericResponse sendAdvMailById(body)
 
 Sends an Email with Advanced Options
 
@@ -203,9 +159,8 @@ Sends An email through one of your mail orders allowing additional options such 
 
 val apiInstance = DefaultApi()
 val body : SendMail =  // SendMail | 
-val id : kotlin.Long = 789 // kotlin.Long | User ID
 try {
-    val result : GenericResponse = apiInstance.sendAdvMailById(body, id)
+    val result : GenericResponse = apiInstance.sendAdvMailById(body)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#sendAdvMailById")
@@ -221,7 +176,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**SendMail**](SendMail.md)|  |
- **id** | **kotlin.Long**| User ID |
 
 ### Return type
 
@@ -233,110 +187,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
- - **Accept**: application/json
-
-<a name="sendAdvMailById"></a>
-# **sendAdvMailById**
-> GenericResponse sendAdvMailById(id2, id)
-
-Sends an Email with Advanced Options
-
-Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-
-### Example
-```kotlin
-// Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*;
-
-val apiInstance = DefaultApi()
-val id2 : kotlin.Long = 789 // kotlin.Long | 
-val id : kotlin.Long = 789 // kotlin.Long | User ID
-try {
-    val result : GenericResponse = apiInstance.sendAdvMailById(id2, id)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DefaultApi#sendAdvMailById")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DefaultApi#sendAdvMailById")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id2** | **kotlin.Long**|  |
- **id** | **kotlin.Long**| User ID |
-
-### Return type
-
-[**GenericResponse**](GenericResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
- - **Accept**: application/json
-
-<a name="sendAdvMailById"></a>
-# **sendAdvMailById**
-> GenericResponse sendAdvMailById(body, id)
-
-Sends an Email with Advanced Options
-
-Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-
-### Example
-```kotlin
-// Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*;
-
-val apiInstance = DefaultApi()
-val body : SendMail =  // SendMail | 
-val id : kotlin.Long = 789 // kotlin.Long | User ID
-try {
-    val result : GenericResponse = apiInstance.sendAdvMailById(body, id)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DefaultApi#sendAdvMailById")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DefaultApi#sendAdvMailById")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**SendMail**](SendMail.md)|  |
- **id** | **kotlin.Long**| User ID |
-
-### Return type
-
-[**GenericResponse**](GenericResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded, text/plain
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 <a name="sendMailById"></a>
 # **sendMailById**
-> GenericResponse sendMailById(id, subject, body, to, toName, from, fromName)
+> GenericResponse sendMailById(subject, body, to, from, id, toName, fromName)
 
 Sends an Email
 
@@ -349,15 +205,15 @@ Sends An email through one of your mail orders.
 //import io.swagger.client.models.*;
 
 val apiInstance = DefaultApi()
-val id : kotlin.Long = 789 // kotlin.Long | User ID
-val subject : kotlin.String = subject_example // kotlin.String | 
-val body : kotlin.String = body_example // kotlin.String | 
-val to : kotlin.String = to_example // kotlin.String | 
-val toName : kotlin.String = toName_example // kotlin.String | 
-val from : kotlin.String = from_example // kotlin.String | 
-val fromName : kotlin.String = fromName_example // kotlin.String | 
+val subject : kotlin.String = subject_example // kotlin.String | The Subject of the email
+val body : kotlin.String = body_example // kotlin.String | The contents of the email
+val to : kotlin.String = to_example // kotlin.String | The email address of who this email will be sent to.
+val from : kotlin.String = from_example // kotlin.String | The email address of who this email will be sent from.
+val id : kotlin.Long = 789 // kotlin.Long | The ID of your mail order this will be sent through.
+val toName : kotlin.String = toName_example // kotlin.String | The name or title of who this email is being sent to.
+val fromName : kotlin.String = fromName_example // kotlin.String | The name or title of who this email is being sent from.
 try {
-    val result : GenericResponse = apiInstance.sendMailById(id, subject, body, to, toName, from, fromName)
+    val result : GenericResponse = apiInstance.sendMailById(subject, body, to, from, id, toName, fromName)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#sendMailById")
@@ -372,13 +228,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Long**| User ID |
- **subject** | **kotlin.String**|  | [optional]
- **body** | **kotlin.String**|  | [optional]
- **to** | **kotlin.String**|  | [optional]
- **toName** | **kotlin.String**|  | [optional]
- **from** | **kotlin.String**|  | [optional]
- **fromName** | **kotlin.String**|  | [optional]
+ **subject** | **kotlin.String**| The Subject of the email | [optional]
+ **body** | **kotlin.String**| The contents of the email | [optional]
+ **to** | **kotlin.String**| The email address of who this email will be sent to. | [optional]
+ **from** | **kotlin.String**| The email address of who this email will be sent from. | [optional]
+ **id** | **kotlin.Long**| The ID of your mail order this will be sent through. | [optional]
+ **toName** | **kotlin.String**| The name or title of who this email is being sent to. | [optional]
+ **fromName** | **kotlin.String**| The name or title of who this email is being sent from. | [optional]
 
 ### Return type
 
@@ -448,7 +304,7 @@ By passing in the appropriate options, you can search for available inventory in
 //import io.swagger.client.models.*;
 
 val apiInstance = DefaultApi()
-val id : kotlin.Long = 789 // kotlin.Long | User ID
+val id : kotlin.Long = 789 // kotlin.Long | The ID of your mail order this will be sent through.
 val searchString : kotlin.String = searchString_example // kotlin.String | pass an optional search string for looking up inventory
 val skip : kotlin.Int = 56 // kotlin.Int | number of records to skip for pagination
 val limit : kotlin.Int = 56 // kotlin.Int | maximum number of records to return
@@ -468,7 +324,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Long**| User ID |
+ **id** | **kotlin.Long**| The ID of your mail order this will be sent through. | [optional]
  **searchString** | **kotlin.String**| pass an optional search string for looking up inventory | [optional]
  **skip** | **kotlin.Int**| number of records to skip for pagination | [optional] [enum: ]
  **limit** | **kotlin.Int**| maximum number of records to return | [optional] [enum: ]

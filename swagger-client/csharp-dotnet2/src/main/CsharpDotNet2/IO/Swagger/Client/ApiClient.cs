@@ -261,14 +261,6 @@ namespace IO.Swagger.Client
                         headerParams["X-API-KEY"] = GetApiKeyWithPrefix("X-API-KEY");
                         
                         break;
-                    case "apiLoginAuth":
-                        headerParams["X-API-LOGIN"] = GetApiKeyWithPrefix("X-API-LOGIN");
-                        
-                        break;
-                    case "apiPasswordAuth":
-                        headerParams["X-API-PASS"] = GetApiKeyWithPrefix("X-API-PASS");
-                        
-                        break;
                     default:
                         //TODO show warning about security definition not found
                         break;

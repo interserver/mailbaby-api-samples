@@ -17,25 +17,16 @@ from swagger_server.test import BaseTestCase
 class TestDefaultController(BaseTestCase):
     """DefaultController integration test stubs"""
 
-    def test_get_mail_by_id(self):
-        """Test case for get_mail_by_id
-
-        Gets mail order information by id
-        """
-        response = self.client.open(
-            '//mail/{id}'.format(id=789),
-            method='GET')
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
-
     def test_get_mail_orders(self):
         """Test case for get_mail_orders
 
         displays a list of mail service orders
         """
+        query_string = [('id', 789)]
         response = self.client.open(
             '//mail',
-            method='GET')
+            method='GET',
+            query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -69,13 +60,11 @@ class TestDefaultController(BaseTestCase):
 
         Sends an Email with Advanced Options
         """
-        body = 'body_example'
-        data = dict(id=789)
+        body = SendMail()
         response = self.client.open(
-            '//mail/{id}/advsend'.format(id=789),
+            '//mail/advsend',
             method='POST',
             data=json.dumps(body),
-            data=data,
             content_type='application/json')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -88,11 +77,12 @@ class TestDefaultController(BaseTestCase):
         query_string = [('subject', 'subject_example'),
                         ('body', 'body_example'),
                         ('to', 'to_example'),
-                        ('to_name', 'to_name_example'),
                         ('_from', '_from_example'),
+                        ('id', 789),
+                        ('to_name', 'to_name_example'),
                         ('from_name', 'from_name_example')]
         response = self.client.open(
-            '//mail/{id}/send'.format(id=789),
+            '//mail/send',
             method='POST',
             query_string=query_string)
         self.assert200(response,
@@ -114,11 +104,12 @@ class TestDefaultController(BaseTestCase):
 
         displays the mail log
         """
-        query_string = [('search_string', 'search_string_example'),
+        query_string = [('id', 789),
+                        ('search_string', 'search_string_example'),
                         ('skip', 1),
                         ('limit', 50)]
         response = self.client.open(
-            '//mail/{id}/log'.format(id=789),
+            '//mail/log',
             method='GET',
             query_string=query_string)
         self.assert200(response,

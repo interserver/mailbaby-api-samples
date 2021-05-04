@@ -79,8 +79,9 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
 
 var api = new MailBabyApi.DefaultApi()
-var id = 789; // {Number} User ID
-
+var opts = { 
+  'id': 789 // {Number} The ID of your mail order this will be sent through.
+};
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -88,7 +89,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getMailById(id, callback);
+api.getMailOrders(opts, callback);
 ```
 
 ## Documentation for API Endpoints
@@ -97,14 +98,13 @@ All URIs are relative to *https://api.mailbaby.net/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*MailBabyApi.DefaultApi* | [**getMailById**](docs/DefaultApi.md#getMailById) | **GET** /mail/{id} | Gets mail order information by id
 *MailBabyApi.DefaultApi* | [**getMailOrders**](docs/DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 *MailBabyApi.DefaultApi* | [**pingServer**](docs/DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 *MailBabyApi.DefaultApi* | [**placeMailOrder**](docs/DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-*MailBabyApi.DefaultApi* | [**sendAdvMailById**](docs/DefaultApi.md#sendAdvMailById) | **POST** /mail/{id}/advsend | Sends an Email with Advanced Options
-*MailBabyApi.DefaultApi* | [**sendMailById**](docs/DefaultApi.md#sendMailById) | **POST** /mail/{id}/send | Sends an Email
+*MailBabyApi.DefaultApi* | [**sendAdvMailById**](docs/DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*MailBabyApi.DefaultApi* | [**sendMailById**](docs/DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
 *MailBabyApi.DefaultApi* | [**validateMailOrder**](docs/DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-*MailBabyApi.DefaultApi* | [**viewMailLogById**](docs/DefaultApi.md#viewMailLogById) | **GET** /mail/{id}/log | displays the mail log
+*MailBabyApi.DefaultApi* | [**viewMailLogById**](docs/DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
 ## Documentation for Models
 
@@ -116,7 +116,6 @@ Class | Method | HTTP request | Description
  - [MailBabyApi.MailOrder](docs/MailOrder.md)
  - [MailBabyApi.MailOrders](docs/MailOrders.md)
  - [MailBabyApi.SendMail](docs/SendMail.md)
- - [MailBabyApi.SendMailForm](docs/SendMailForm.md)
 
 ## Documentation for Authorization
 
@@ -125,17 +124,5 @@ Class | Method | HTTP request | Description
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY
-- **Location**: HTTP header
-
-### apiLoginAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-LOGIN
-- **Location**: HTTP header
-
-### apiPasswordAuth
-
-- **Type**: API key
-- **API key parameter name**: X-API-PASS
 - **Location**: HTTP header
 

@@ -2,37 +2,12 @@
 
 
 /**
- * Gets mail order information by id
- * returns information about a mail order in the system with the given id.
- *
- * id Long User ID
- * returns MailOrder
- **/
-exports.getMailById = function(id) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "password" : "guest123",
-  "comment" : "main mail account",
-  "id" : 1234,
-  "status" : "active",
-  "username" : "mb1234"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
  * displays a list of mail service orders
  *
+ * id Long The ID of your mail order this will be sent through. (optional)
  * returns MailOrders
  **/
-exports.getMailOrders = function() {
+exports.getMailOrders = function(id) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
@@ -88,58 +63,9 @@ exports.placeMailOrder = function(body) {
  * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
  *
  * body SendMail 
- * id Long User ID
  * returns GenericResponse
  **/
-exports.sendAdvMailById = function(body,id) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "status_text" : "The command completed successfully.",
-  "status" : "ok"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * Sends an Email with Advanced Options
- * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
- *
- * body SendMail 
- * id Long User ID
- * returns GenericResponse
- **/
-exports.sendAdvMailById = function(body,id) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "status_text" : "The command completed successfully.",
-  "status" : "ok"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * Sends an Email with Advanced Options
- * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
- *
- * body SendMail 
- * id Long User ID
- * returns GenericResponse
- **/
-exports.sendAdvMailById = function(body,id) {
+exports.sendAdvMailById = function(body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -159,16 +85,16 @@ exports.sendAdvMailById = function(body,id) {
  * Sends an Email
  * Sends An email through one of your mail orders.
  *
- * id Long User ID
- * subject String  (optional)
- * body String  (optional)
- * to String  (optional)
- * toName String  (optional)
- * from String  (optional)
- * fromName String  (optional)
+ * subject String The Subject of the email (optional)
+ * body String The contents of the email (optional)
+ * to String The email address of who this email will be sent to. (optional)
+ * from String The email address of who this email will be sent from. (optional)
+ * id Long The ID of your mail order this will be sent through. (optional)
+ * toName String The name or title of who this email is being sent to. (optional)
+ * fromName String The name or title of who this email is being sent from. (optional)
  * returns GenericResponse
  **/
-exports.sendMailById = function(id,subject,body,to,toName,from,fromName) {
+exports.sendMailById = function(subject,body,to,from,id,toName,fromName) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -200,7 +126,7 @@ exports.validateMailOrder = function() {
  * displays the mail log
  * By passing in the appropriate options, you can search for available inventory in the system 
  *
- * id Long User ID
+ * id Long The ID of your mail order this will be sent through. (optional)
  * searchString String pass an optional search string for looking up inventory (optional)
  * skip Integer number of records to skip for pagination (optional)
  * limit Integer maximum number of records to return (optional)

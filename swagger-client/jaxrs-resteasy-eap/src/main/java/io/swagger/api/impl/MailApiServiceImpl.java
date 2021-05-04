@@ -17,12 +17,8 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-03T14:06:24.548909-04:00[America/New_York]")public class MailApiServiceImpl implements MailApi {
-      public Response getMailById(Long id,SecurityContext securityContext) {
-      // do some magic!
-      return Response.ok().build();
-  }
-      public Response getMailOrders(SecurityContext securityContext) {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-04T14:31:54.403364-04:00[America/New_York]")public class MailApiServiceImpl implements MailApi {
+      public Response getMailOrders(Long id,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }
@@ -30,19 +26,11 @@ import javax.ws.rs.core.SecurityContext;
       // do some magic!
       return Response.ok().build();
   }
-      public Response sendAdvMailById(SendMail body,Long id,SecurityContext securityContext) {
+      public Response sendAdvMailById(SendMail body,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }
-      public Response sendAdvMailById(Long id2,Long id,SecurityContext securityContext) {
-      // do some magic!
-      return Response.ok().build();
-  }
-      public Response sendAdvMailById(SendMail body,Long id,SecurityContext securityContext) {
-      // do some magic!
-      return Response.ok().build();
-  }
-      public Response sendMailById(Long id,String subject,String body,String to,String toName,String from,String fromName,SecurityContext securityContext) {
+      public Response sendMailById(String subject,String body,String to,String from,Long id,String toName,String fromName,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }

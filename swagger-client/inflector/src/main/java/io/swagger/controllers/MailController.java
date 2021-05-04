@@ -17,7 +17,7 @@ import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
 import io.swagger.model.SendMail;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-03T14:06:09.514622-04:00[America/New_York]")public class MailController  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-04T14:31:40.465431-04:00[America/New_York]")public class MailController  {
   /** 
    * Uncomment and implement as you see fit.  These operations will map
    * Directly to operation calls from the routing logic.  Because the inflector
@@ -25,14 +25,8 @@ import io.swagger.model.SendMail;
    **/
 
   /*
-    public ResponseContext getMailById(RequestContext request , Long id 
+    public ResponseContext getMailOrders(RequestContext request , Long id 
 ) {
-        return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
-    }
-  */
-
-  /*
-    public ResponseContext getMailOrders(RequestContext request ) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */
@@ -46,35 +40,18 @@ import io.swagger.model.SendMail;
 
   /*
     public ResponseContext sendAdvMailById(RequestContext request , SendMail body 
-, Long id 
 ) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */
 
   /*
-    public ResponseContext sendAdvMailById(RequestContext request ,  Long id2
-, Long id 
-) {
-        return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
-    }
-  */
-
-  /*
-    public ResponseContext sendAdvMailById(RequestContext request , SendMail body 
-, Long id 
-) {
-        return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
-    }
-  */
-
-  /*
-    public ResponseContext sendMailById(RequestContext request , Long id 
-, String subject 
+    public ResponseContext sendMailById(RequestContext request , String subject 
 , String body 
 , String to 
-, String toName 
 , String from 
+, Long id 
+, String toName 
 , String fromName 
 ) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );

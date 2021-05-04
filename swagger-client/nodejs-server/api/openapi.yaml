@@ -41,7 +41,16 @@ paths:
     get:
       summary: displays a list of mail service orders
       operationId: getMailOrders
-      parameters: []
+      parameters:
+      - name: id
+        in: query
+        description: The ID of your mail order this will be sent through.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          format: int64
       responses:
         "200":
           description: OK
@@ -117,47 +126,15 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       deprecated: true
       x-swagger-router-controller: Default
-  /mail/{id}:
-    get:
-      summary: Gets mail order information by id
-      description: returns information about a mail order in the system with the given
-        id.
-      operationId: getMailById
-      parameters:
-      - name: id
-        in: path
-        description: User ID
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "200":
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MailOrder'
-      x-swagger-router-controller: Default
-  /mail/{id}/send:
+  /mail/send:
     post:
       summary: Sends an Email
       description: Sends An email through one of your mail orders.
       operationId: sendMailById
       parameters:
-      - name: id
-        in: path
-        description: User ID
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
       - name: subject
         in: query
+        description: The Subject of the email
         required: false
         style: form
         explode: true
@@ -165,6 +142,7 @@ paths:
           type: string
       - name: body
         in: query
+        description: The contents of the email
         required: false
         style: form
         explode: true
@@ -172,13 +150,7 @@ paths:
           type: string
       - name: to
         in: query
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: toName
-        in: query
+        description: The email address of who this email will be sent to.
         required: false
         style: form
         explode: true
@@ -186,6 +158,24 @@ paths:
           type: string
       - name: from
         in: query
+        description: The email address of who this email will be sent from.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: id
+        in: query
+        description: The ID of your mail order this will be sent through.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          format: int64
+      - name: toName
+        in: query
+        description: The name or title of who this email is being sent to.
         required: false
         style: form
         explode: true
@@ -193,6 +183,7 @@ paths:
           type: string
       - name: fromName
         in: query
+        description: The name or title of who this email is being sent from.
         required: false
         style: form
         explode: true
@@ -220,36 +211,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       x-swagger-router-controller: Default
-  /mail/{id}/advsend:
+  /mail/advsend:
     post:
       summary: Sends an Email with Advanced Options
       description: "Sends An email through one of your mail orders allowing additional\
         \ options such as file attachments, cc, bcc, etc."
       operationId: sendAdvMailById
-      parameters:
-      - name: id
-        in: path
-        description: User ID
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/SendMail'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/SendMail'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SendMailForm'
-          text/plain:
-            schema:
-              type: string
         required: true
       responses:
         "200":
@@ -273,7 +245,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       x-swagger-router-controller: Default
-  /mail/{id}/log:
+  /mail/log:
     get:
       summary: displays the mail log
       description: "By passing in the appropriate options, you can search for\navailable\
@@ -281,11 +253,11 @@ paths:
       operationId: viewMailLogById
       parameters:
       - name: id
-        in: path
-        description: User ID
-        required: true
-        style: simple
-        explode: false
+        in: query
+        description: The ID of your mail order this will be sent through.
+        required: false
+        style: form
+        explode: true
         schema:
           type: integer
           format: int64
@@ -480,13 +452,6 @@ components:
           items:
             $ref: '#/components/schemas/MailAttachment'
       description: Details for an Email
-    SendMailForm:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-      description: Details for an Email
   responses:
     NotFound:
       description: The specified resource was not found
@@ -530,14 +495,6 @@ components:
   requestBodies: {}
   headers: {}
   securitySchemes:
-    apiLoginAuth:
-      type: apiKey
-      name: X-API-LOGIN
-      in: header
-    apiPasswordAuth:
-      type: apiKey
-      name: X-API-PASS
-      in: header
     apiKeyAuth:
       type: apiKey
       name: X-API-KEY

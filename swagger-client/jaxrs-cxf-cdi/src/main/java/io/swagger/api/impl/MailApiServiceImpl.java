@@ -21,7 +21,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-04T18:07:20.302239-04:00[America/New_York]")public class MailApiServiceImpl implements MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-04T21:12:25.870449-04:00[America/New_York]")public class MailApiServiceImpl implements MailApiService {
       @Override
       public Response getMailOrders(Long id, SecurityContext securityContext) {
       // do some magic!

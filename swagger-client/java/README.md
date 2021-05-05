@@ -2,7 +2,7 @@
 
 Mail Baby API
 - API version: 1.0.0
-  - Build date: 2021-05-04T18:07:09.232470-04:00[America/New_York]
+  - Build date: 2021-05-04T21:12:14.619799-04:00[America/New_York]
 
 This is an API defintion for accesssing the Mail.Baby mail service.
 
@@ -283,7 +283,7 @@ public class DefaultApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net/*
+All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

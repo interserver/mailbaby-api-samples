@@ -8,7 +8,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-04T18:07:31.669174-04:00[America/New_York]")public class ErrorResponse   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-04T21:12:37.362769-04:00[America/New_York]")public class ErrorResponse   {
   private String code = null;
   private String message = null;
 

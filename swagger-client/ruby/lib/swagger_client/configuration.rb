@@ -127,7 +127,7 @@ module SwaggerClient
     def initialize
       @scheme = 'https'
       @host = 'api.mailbaby.net'
-      @base_path = 'https://api.mailbaby.net/'
+      @base_path = 'https://api.mailbaby.net'
       @api_key = {}
       @api_key_prefix = {}
       @timeout = 0

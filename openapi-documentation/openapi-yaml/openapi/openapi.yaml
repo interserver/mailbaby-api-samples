@@ -17,9 +17,9 @@ externalDocs:
   url: https://interserver.net/tips/
 servers:
 - description: Live API Endpoint
-  url: https://api.mailbaby.net/
+  url: https://api.mailbaby.net
 - description: Temporary API Endpoint
-  url: http://mynew.interserver.net:8787/
+  url: http://mynew.interserver.net:8787
 - description: SwaggerHub API Auto Mocking
   url: https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0
 security:

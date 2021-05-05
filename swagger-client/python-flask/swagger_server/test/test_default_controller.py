@@ -24,7 +24,7 @@ class TestDefaultController(BaseTestCase):
         """
         query_string = [('id', 789)]
         response = self.client.open(
-            '//mail',
+            '/mail',
             method='GET',
             query_string=query_string)
         self.assert200(response,
@@ -36,7 +36,7 @@ class TestDefaultController(BaseTestCase):
         Checks if the server is running
         """
         response = self.client.open(
-            '//ping',
+            '/ping',
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -48,7 +48,7 @@ class TestDefaultController(BaseTestCase):
         """
         body = MailOrder()
         response = self.client.open(
-            '//mail/order',
+            '/mail/order',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -62,7 +62,7 @@ class TestDefaultController(BaseTestCase):
         """
         body = SendMail()
         response = self.client.open(
-            '//mail/advsend',
+            '/mail/advsend',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -82,7 +82,7 @@ class TestDefaultController(BaseTestCase):
                     to_name='to_name_example',
                     from_name='from_name_example')
         response = self.client.open(
-            '//mail/send',
+            '/mail/send',
             method='POST',
             data=data,
             content_type='application/x-www-form-urlencoded')
@@ -95,7 +95,7 @@ class TestDefaultController(BaseTestCase):
         validatess order details before placing an order
         """
         response = self.client.open(
-            '//mail/order',
+            '/mail/order',
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -110,7 +110,7 @@ class TestDefaultController(BaseTestCase):
                         ('skip', 1),
                         ('limit', 50)]
         response = self.client.open(
-            '//mail/log',
+            '/mail/log',
             method='GET',
             query_string=query_string)
         self.assert200(response,

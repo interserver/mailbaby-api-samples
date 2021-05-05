@@ -17,7 +17,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-04T18:07:31.669174-04:00[America/New_York]")public class MailApiServiceImpl implements MailApi {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-04T21:12:37.362769-04:00[America/New_York]")public class MailApiServiceImpl implements MailApi {
       public Response getMailOrders(Long id,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();

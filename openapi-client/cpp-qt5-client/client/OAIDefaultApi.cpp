@@ -34,11 +34,11 @@ void OAIDefaultApi::initializeServerConfigs(){
     //varying endpoint server
     QList<OAIServerConfiguration> serverConf = QList<OAIServerConfiguration>();
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://api.mailbaby.net/"),
+    QUrl("https://api.mailbaby.net"),
     "Live API Endpoint",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("http://mynew.interserver.net:8787/"),
+    QUrl("http://mynew.interserver.net:8787"),
     "Temporary API Endpoint",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(

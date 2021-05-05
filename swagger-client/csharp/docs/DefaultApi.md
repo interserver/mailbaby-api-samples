@@ -1,6 +1,6 @@
 # IO.Swagger.Api.DefaultApi
 
-All URIs are relative to *https://api.mailbaby.net/*
+All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

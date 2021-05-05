@@ -20,10 +20,10 @@
     "url" : "https://interserver.net/tips/"
   },
   "servers" : [ {
-    "url" : "https://api.mailbaby.net/",
+    "url" : "https://api.mailbaby.net",
     "description" : "Live API Endpoint"
   }, {
-    "url" : "http://mynew.interserver.net:8787/",
+    "url" : "http://mynew.interserver.net:8787",
     "description" : "Temporary API Endpoint"
   }, {
     "url" : "https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0",

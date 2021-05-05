@@ -200,7 +200,7 @@ try {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net/*
+All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

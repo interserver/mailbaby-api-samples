@@ -49,7 +49,7 @@ import scala.util.{Failure, Success, Try}
 import org.json4s._
 
 class DefaultApi(
-  val defBasePath: String = "https://api.mailbaby.net/",
+  val defBasePath: String = "https://api.mailbaby.net",
   defApiInvoker: ApiInvoker = ApiInvoker
 ) {
   private lazy val dateTimeFormatter = {

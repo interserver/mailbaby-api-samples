@@ -34,7 +34,7 @@ namespace IO.Swagger.Controllers
         /// <response code="200">OK</response>
         /// <response code="401">Unauthorized</response>
         [HttpGet]
-        [Route("//mail")]
+        [Route("/mail")]
         [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
         [ValidateModelState]
         [SwaggerOperation("GetMailOrders")]
@@ -62,7 +62,7 @@ namespace IO.Swagger.Controllers
         /// <response code="200">Server is up and running</response>
         /// <response code="0">Something is wrong</response>
         [HttpGet]
-        [Route("//ping")]
+        [Route("/ping")]
         [ValidateModelState]
         [SwaggerOperation("PingServer")]
         public virtual IActionResult PingServer()
@@ -86,7 +86,7 @@ namespace IO.Swagger.Controllers
         /// <response code="409">an existing item already exists</response>
         /// <response code="401">Unauthorized</response>
         [HttpPost]
-        [Route("//mail/order")]
+        [Route("/mail/order")]
         [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
         [ValidateModelState]
         [SwaggerOperation("PlaceMailOrder")]
@@ -118,7 +118,7 @@ namespace IO.Swagger.Controllers
         /// <response code="401">Unauthorized</response>
         /// <response code="404">The specified resource was not found</response>
         [HttpPost]
-        [Route("//mail/advsend")]
+        [Route("/mail/advsend")]
         [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
         [ValidateModelState]
         [SwaggerOperation("SendAdvMailById")]
@@ -154,7 +154,7 @@ namespace IO.Swagger.Controllers
         /// <response code="200">list of mail orders</response>
         /// <response code="401">Unauthorized</response>
         [HttpGet]
-        [Route("//mail/order")]
+        [Route("/mail/order")]
         [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
         [ValidateModelState]
         [SwaggerOperation("ValidateMailOrder")]
@@ -181,7 +181,7 @@ namespace IO.Swagger.Controllers
         /// <response code="200">search results matching criteria</response>
         /// <response code="400">bad input parameter</response>
         [HttpGet]
-        [Route("//mail/log")]
+        [Route("/mail/log")]
         [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
         [ValidateModelState]
         [SwaggerOperation("ViewMailLogById")]

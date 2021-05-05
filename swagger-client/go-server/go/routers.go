@@ -51,56 +51,56 @@ var routes = Routes{
 	Route{
 		"Index",
 		"GET",
-		"//",
+		"/",
 		Index,
 	},
 
 	Route{
 		"GetMailOrders",
 		strings.ToUpper("Get"),
-		"//mail",
+		"/mail",
 		GetMailOrders,
 	},
 
 	Route{
 		"PingServer",
 		strings.ToUpper("Get"),
-		"//ping",
+		"/ping",
 		PingServer,
 	},
 
 	Route{
 		"PlaceMailOrder",
 		strings.ToUpper("Post"),
-		"//mail/order",
+		"/mail/order",
 		PlaceMailOrder,
 	},
 
 	Route{
 		"SendAdvMailById",
 		strings.ToUpper("Post"),
-		"//mail/advsend",
+		"/mail/advsend",
 		SendAdvMailById,
 	},
 
 	Route{
 		"SendMailById",
 		strings.ToUpper("Post"),
-		"//mail/send",
+		"/mail/send",
 		SendMailById,
 	},
 
 	Route{
 		"ValidateMailOrder",
 		strings.ToUpper("Get"),
-		"//mail/order",
+		"/mail/order",
 		ValidateMailOrder,
 	},
 
 	Route{
 		"ViewMailLogById",
 		strings.ToUpper("Get"),
-		"//mail/log",
+		"/mail/log",
 		ViewMailLogById,
 	},
 }

@@ -430,13 +430,10 @@ func (a *DefaultApiService) SendAdvMail(ctx context.Context, body SendMailAdv) (
 DefaultApiService Sends an Email
 Sends An email through one of your mail orders.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param to
- * @param from
- * @param subject
  * @param body
 @return GenericResponse
 */
-func (a *DefaultApiService) SendMail(ctx context.Context, to string, from string, subject string, body string) (GenericResponse, *http.Response, error) {
+func (a *DefaultApiService) SendMail(ctx context.Context, body SendMail) (GenericResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -453,7 +450,7 @@ func (a *DefaultApiService) SendMail(ctx context.Context, to string, from string
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{"application/x-www-form-urlencoded", "application/json"}
+	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)

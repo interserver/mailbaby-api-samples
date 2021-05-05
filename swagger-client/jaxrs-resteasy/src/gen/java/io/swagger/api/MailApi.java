@@ -39,7 +39,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T07:55:15.192733-04:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T08:03:55.468297-04:00[America/New_York]")public class MailApi  {
 
     @Inject MailApiService service;
 
@@ -117,26 +117,7 @@ import javax.validation.constraints.*;
     }
     @POST
     @Path("/send")
-    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
-    @Produces({ "application/json" })
-    @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
-        @SecurityRequirement(name = "apiKeyAuth")
-    }, tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
-        
-        @ApiResponse(responseCode = "400", description = "bad input parameter"),
-        
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
-        
-        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendMail(@Parameter(description = "", required=true)@FormParam("to")  String to,@Parameter(description = "", required=true)@FormParam("from")  String from,@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return service.sendMail(to,from,subject,body,securityContext);
-    }
-    @POST
-    @Path("/send")
-    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
+    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
         @SecurityRequirement(name = "apiKeyAuth")
@@ -152,6 +133,25 @@ import javax.validation.constraints.*;
     public Response sendMail(@Parameter(description = "" ,required=true) SendMail body,@Context SecurityContext securityContext)
     throws NotFoundException {
         return service.sendMail(body,securityContext);
+    }
+    @POST
+    @Path("/send")
+    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "bad input parameter"),
+        
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
+    public Response sendMail(@Parameter(description = "", required=true)@FormParam("to")  String to,@Parameter(description = "", required=true)@FormParam("from")  String from,@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.sendMail(to,from,subject,body,securityContext);
     }
     @GET
     @Path("/order")

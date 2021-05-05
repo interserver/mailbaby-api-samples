@@ -269,7 +269,7 @@ FString OpenAPIDefaultApi::SendMailRequest::ComputePath() const
 
 void OpenAPIDefaultApi::SendMailRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-	static const TArray<FString> Consumes = { TEXT("application/x-www-form-urlencoded"), TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/json"), TEXT("application/x-www-form-urlencoded") };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
 
 	HttpRequest->SetVerb(TEXT("POST"));
@@ -277,31 +277,23 @@ void OpenAPIDefaultApi::SendMailRequest::SetupHttpRequest(const FHttpRequestRef&
 	// Default to Json Body request
 	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json")))
 	{
-		UE_LOG(LogOpenAPI, Error, TEXT("Form parameter (to) was ignored, cannot be used in JsonBody"));
-		UE_LOG(LogOpenAPI, Error, TEXT("Form parameter (from) was ignored, cannot be used in JsonBody"));
-		UE_LOG(LogOpenAPI, Error, TEXT("Form parameter (subject) was ignored, cannot be used in JsonBody"));
-		UE_LOG(LogOpenAPI, Error, TEXT("Form parameter (body) was ignored, cannot be used in JsonBody"));
+		// Body parameters
+		FString JsonBody;
+		JsonWriter Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+		WriteJsonValue(Writer, OpenAPISendMail);
+		Writer->Close();
+
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
-		HttpMultipartFormData FormData;
-		FormData.AddStringPart(TEXT("to"), *ToUrlString(To));
-		FormData.AddStringPart(TEXT("from"), *ToUrlString(From));
-		FormData.AddStringPart(TEXT("subject"), *ToUrlString(Subject));
-		FormData.AddStringPart(TEXT("body"), *ToUrlString(Body));
-
-		FormData.SetupHttpRequest(HttpRequest);
+		UE_LOG(LogOpenAPI, Error, TEXT("Body parameter (OpenAPISendMail) was ignored, not supported in multipart form"));
 	}
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
-		TArray<FString> FormParams;
-		FormParams.Add(FString(TEXT("to=")) + ToUrlString(To));
-		FormParams.Add(FString(TEXT("from=")) + ToUrlString(From));
-		FormParams.Add(FString(TEXT("subject=")) + ToUrlString(Subject));
-		FormParams.Add(FString(TEXT("body=")) + ToUrlString(Body));
-		
-		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/x-www-form-urlencoded; charset=utf-8"));
-		HttpRequest->SetContentAsString(FString::Join(FormParams, TEXT("&")));
+		UE_LOG(LogOpenAPI, Error, TEXT("Body parameter (OpenAPISendMail) was ignored, not supported in urlencoded requests"));
 	}
 	else
 	{

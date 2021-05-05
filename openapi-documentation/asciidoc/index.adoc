@@ -408,38 +408,20 @@ Sends An email through one of your mail orders.
 ===== Parameters
 
 
-
-====== Form Parameters
+====== Body Parameter
 
 [cols="2,3,1,1,1"]
 |===         
 |Name| Description| Required| Default| Pattern
 
-| to 
-| The Contact whom is the primary recipient of this email. <<string>> 
+| SendMail 
+|  <<SendMail>> 
 | X 
-| null 
 |  
-
-| from 
-| The contact whom is the this email is from. <<string>> 
-| X 
-| null 
-|  
-
-| subject 
-| The subject or title of the email <<string>> 
-| X 
-| null 
-|  
-
-| body 
-| The main email contents. <<string>> 
-| X 
-| null 
 |  
 
 |===         
+
 
 
 

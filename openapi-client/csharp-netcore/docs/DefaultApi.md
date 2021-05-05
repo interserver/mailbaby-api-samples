@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 
 <a name="sendmail"></a>
 # **SendMail**
-> GenericResponse SendMail (string to, string from, string subject, string body)
+> GenericResponse SendMail (SendMail sendMail)
 
 Sends an Email
 
@@ -340,15 +340,12 @@ namespace Example
             // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi(config);
-            var to = to_example;  // string | The Contact whom is the primary recipient of this email.
-            var from = from_example;  // string | The contact whom is the this email is from.
-            var subject = subject_example;  // string | The subject or title of the email
-            var body = body_example;  // string | The main email contents.
+            var sendMail = new SendMail(); // SendMail | 
 
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.SendMail(to, from, subject, body);
+                GenericResponse result = apiInstance.SendMail(sendMail);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -366,10 +363,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **string**| The Contact whom is the primary recipient of this email. | 
- **from** | **string**| The contact whom is the this email is from. | 
- **subject** | **string**| The subject or title of the email | 
- **body** | **string**| The main email contents. | 
+ **sendMail** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type
 
@@ -381,7 +375,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 

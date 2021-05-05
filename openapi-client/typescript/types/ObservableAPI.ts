@@ -125,13 +125,10 @@ export class ObservableDefaultApi {
     /**
      * Sends An email through one of your mail orders.
      * Sends an Email
-     * @param to The Contact whom is the primary recipient of this email.
-     * @param from The contact whom is the this email is from.
-     * @param subject The subject or title of the email
-     * @param body The main email contents.
+     * @param sendMail 
      */
-    public sendMail(to: string, from: string, subject: string, body: string, options?: Configuration): Observable<GenericResponse> {
-        const requestContextPromise = this.requestFactory.sendMail(to, from, subject, body, options);
+    public sendMail(sendMail: SendMail, options?: Configuration): Observable<GenericResponse> {
+        const requestContextPromise = this.requestFactory.sendMail(sendMail, options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);

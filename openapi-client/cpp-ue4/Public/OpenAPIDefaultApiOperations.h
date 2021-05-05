@@ -19,6 +19,7 @@
 #include "OpenAPIGenericResponse.h"
 #include "OpenAPIMailLog.h"
 #include "OpenAPIMailOrder.h"
+#include "OpenAPISendMail.h"
 #include "OpenAPISendMailAdv.h"
 
 namespace OpenAPI 
@@ -130,14 +131,7 @@ public:
 	void SetupHttpRequest(const FHttpRequestRef& HttpRequest) const final;
 	FString ComputePath() const final;
     
-	/* The Contact whom is the primary recipient of this email. */
-	FString To;
-	/* The contact whom is the this email is from. */
-	FString From;
-	/* The subject or title of the email */
-	FString Subject;
-	/* The main email contents. */
-	FString Body;
+	OpenAPISendMail OpenAPISendMail;
 };
 
 class OPENAPI_API OpenAPIDefaultApi::SendMailResponse : public Response

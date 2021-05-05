@@ -450,7 +450,7 @@ void OAIDefaultApi::sendAdvMailCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIDefaultApi::sendMail(const QString &to, const QString &from, const QString &subject, const QString &body) {
+void OAIDefaultApi::sendMail(const OAISendMail &oai_send_mail) {
     QString fullPath = QString(_serverConfigs["sendMail"][_serverIndices.value("sendMail")].URL()+"/mail/send");
     
     if(_apiKeys.contains("apiKeyAuth")){
@@ -462,23 +462,11 @@ void OAIDefaultApi::sendMail(const QString &to, const QString &from, const QStri
     worker->setWorkingDirectory(_workingDirectory);
     OAIHttpRequestInput input(fullPath, "POST");
 
-    
     {
-        input.add_var("to", ::OpenAPI::toStringValue(to));
-    }
-    
-    {
-        input.add_var("from", ::OpenAPI::toStringValue(from));
-    }
-    
-    {
-        input.add_var("subject", ::OpenAPI::toStringValue(subject));
-    }
-    
-    {
-        input.add_var("body", ::OpenAPI::toStringValue(body));
-    }
 
+        QByteArray output = oai_send_mail.asJson().toUtf8();
+        input.request_body.append(output);
+    }
     foreach (QString key, this->defaultHeaders.keys()) { input.headers.insert(key, this->defaultHeaders.value(key)); }
 
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::sendMailCallback);

@@ -151,11 +151,8 @@ public class DefaultApiTest {
      */
     @Test
     public void sendMailTest() {
-        String to = null;
-        String from = null;
-        String subject = null;
-        String body = null;
-        //GenericResponse response = api.sendMail(to, from, subject, body);
+        SendMail body = null;
+        //GenericResponse response = api.sendMail(body);
         //assertNotNull(response);
         // TODO: test validations
         

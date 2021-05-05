@@ -457,29 +457,16 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * @summary Sends an Email
          * @throws {RequiredError}
          */
-        sendMail(to: string, from: string, subject: string, body: string, options: RequestOptions): FetchArgs {
-            // verify required parameter 'to' is not null or undefined
-            if (to === null || to === undefined) {
-                throw new RequiredError('to','Required parameter to was null or undefined when calling sendMail.');
-            }
-            // verify required parameter 'from' is not null or undefined
-            if (from === null || from === undefined) {
-                throw new RequiredError('from','Required parameter from was null or undefined when calling sendMail.');
-            }
-            // verify required parameter 'subject' is not null or undefined
-            if (subject === null || subject === undefined) {
-                throw new RequiredError('subject','Required parameter subject was null or undefined when calling sendMail.');
-            }
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling sendMail.');
+        sendMail(sendMail: SendMail, options: RequestOptions): FetchArgs {
+            // verify required parameter 'sendMail' is not null or undefined
+            if (sendMail === null || sendMail === undefined) {
+                throw new RequiredError('sendMail','Required parameter sendMail was null or undefined when calling sendMail.');
             }
             const localVarPath = `/mail/send`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            const localVarFormParams = new FormData();
 
             // authentication apiKeyAuth required
             if (configuration && configuration.apiKey) {
@@ -489,27 +476,14 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            if (to !== undefined) {
-                localVarFormParams.set('to', ((to:any):string));
-            }
-
-            if (from !== undefined) {
-                localVarFormParams.set('from', ((from:any):string));
-            }
-
-            if (subject !== undefined) {
-                localVarFormParams.set('subject', ((subject:any):string));
-            }
-
-            if (body !== undefined) {
-                localVarFormParams.set('body', ((body:any):string));
-            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             localVarUrlObj.search = null;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            localVarRequestOptions.body = localVarFormParams;
+            const needsSerialization = (typeof sendMail !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(sendMail != null ? sendMail : {}) : (((sendMail:any):string) || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -604,7 +578,7 @@ export type DefaultApiType = {
 
     sendAdvMail(sendMailAdv: SendMailAdv, options?: RequestOptions): Promise<GenericResponse>,
 
-    sendMail(to: string, from: string, subject: string, body: string, options?: RequestOptions): Promise<GenericResponse>,
+    sendMail(sendMail: SendMail, options?: RequestOptions): Promise<GenericResponse>,
 
     validateMailOrder(options?: RequestOptions): Promise<Response>,
 
@@ -683,8 +657,8 @@ export const DefaultApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary Sends an Email
          * @throws {RequiredError}
          */
-        sendMail(to: string, from: string, subject: string, body: string, options?: RequestOptions = {}): Promise<GenericResponse> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMail(to, from, subject, body, options);
+        sendMail(sendMail: SendMail, options?: RequestOptions = {}): Promise<GenericResponse> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMail(sendMail, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();

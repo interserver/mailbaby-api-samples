@@ -24,6 +24,7 @@ import { ErrorResponse } from '../model/errorResponse';
 import { GenericResponse } from '../model/genericResponse';
 import { MailLog } from '../model/mailLog';
 import { MailOrder } from '../model/mailOrder';
+import { SendMail } from '../model/sendMail';
 import { SendMailAdv } from '../model/sendMailAdv';
 
 import { COLLECTION_FORMATS }  from '../variables';
@@ -149,29 +150,14 @@ export class DefaultService {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param to The Contact whom is the primary recipient of this email.
-     * @param from The contact whom is the this email is from.
-     * @param subject The subject or title of the email
-     * @param body The main email contents.
+     * @param sendMail 
      
      */
-    public sendMail(to: string, from: string, subject: string, body: string, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
-    public sendMail(to: string, from: string, subject: string, body: string, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
-    public sendMail(to: string, from: string, subject: string, body: string, observe: any = 'body', headers: Headers = {}): Observable<any> {
-        if (to === null || to === undefined){
-            throw new Error('Required parameter to was null or undefined when calling sendMail.');
-        }
-
-        if (from === null || from === undefined){
-            throw new Error('Required parameter from was null or undefined when calling sendMail.');
-        }
-
-        if (subject === null || subject === undefined){
-            throw new Error('Required parameter subject was null or undefined when calling sendMail.');
-        }
-
-        if (body === null || body === undefined){
-            throw new Error('Required parameter body was null or undefined when calling sendMail.');
+    public sendMail(sendMail: SendMail, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
+    public sendMail(sendMail: SendMail, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
+    public sendMail(sendMail: SendMail, observe: any = 'body', headers: Headers = {}): Observable<any> {
+        if (sendMail === null || sendMail === undefined){
+            throw new Error('Required parameter sendMail was null or undefined when calling sendMail.');
         }
 
         // authentication (apiKeyAuth) required
@@ -179,23 +165,9 @@ export class DefaultService {
             headers['X-API-KEY'] = this.APIConfiguration.apiKeys['X-API-KEY'];
         }
         headers['Accept'] = 'application/json';
+        headers['Content-Type'] = 'application/json';
 
-        let formData: FormData = new FormData();
-        headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-        if (to !== undefined) {
-            formData.append('to', <any>to);
-        }
-        if (from !== undefined) {
-            formData.append('from', <any>from);
-        }
-        if (subject !== undefined) {
-            formData.append('subject', <any>subject);
-        }
-        if (body !== undefined) {
-            formData.append('body', <any>body);
-        }
-
-        const response: Observable<HttpResponse<GenericResponse>> = this.httpClient.post(`${this.basePath}/mail/send`, formData, headers);
+        const response: Observable<HttpResponse<GenericResponse>> = this.httpClient.post(`${this.basePath}/mail/send`, sendMail , headers);
         if (observe === 'body') {
                return response.pipe(
                    map((httpResponse: HttpResponse) => <GenericResponse>(httpResponse.response))

@@ -140,13 +140,10 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$to = "to_example"; // string | 
-$from = "from_example"; // string | 
-$subject = "subject_example"; // string | 
-$body = "body_example"; // string | 
+$body = new \Interserver\Mailbaby\Model\SendMail(); // \Interserver\Mailbaby\Model\SendMail | 
 
 try {
-    $result = $apiInstance->sendMail($to, $from, $subject, $body);
+    $result = $apiInstance->sendMail($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->sendMail: ', $e->getMessage(), PHP_EOL;

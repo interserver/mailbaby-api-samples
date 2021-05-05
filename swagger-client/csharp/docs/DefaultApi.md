@@ -259,7 +259,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 <a name="sendmail"></a>
 # **SendMail**
-> GenericResponse SendMail (string to, string from, string subject, string body)
+> GenericResponse SendMail (SendMail body)
 
 Sends an Email
 
@@ -285,15 +285,12 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var to = to_example;  // string | 
-            var from = from_example;  // string | 
-            var subject = subject_example;  // string | 
-            var body = body_example;  // string | 
+            var body = new SendMail(); // SendMail | 
 
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.SendMail(to, from, subject, body);
+                GenericResponse result = apiInstance.SendMail(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -309,10 +306,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **string**|  | 
- **from** | **string**|  | 
- **subject** | **string**|  | 
- **body** | **string**|  | 
+ **body** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type
 
@@ -324,7 +318,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

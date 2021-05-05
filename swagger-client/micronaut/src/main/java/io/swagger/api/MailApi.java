@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T07:55:18.252877-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T08:03:58.309379-04:00[America/New_York]")
 @Controller
 public interface MailApi {
 
@@ -104,11 +104,8 @@ public interface MailApi {
     @ApiResponse(responseCode = "400", description = "bad input parameter")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "404", description = "The specified resource was not found")
-    @Post(value = "/mail/send", produces = { "application/json" }, consumes = {"application/x-www-form-urlencoded", "application/json"})
-    default Single<HttpResponse<GenericResponse>> sendMail(@Parameter(description = "") @QueryValue(value = "to")  String to
-,@Parameter(description = "") @QueryValue(value = "from")  String from
-,@Parameter(description = "") @QueryValue(value = "subject")  String subject
-,@Parameter(description = "") @QueryValue(value = "body")  String body
+    @Post(value = "/mail/send", produces = { "application/json" }, consumes = {"application/json", "application/x-www-form-urlencoded"})
+    default Single<HttpResponse<GenericResponse>> sendMail(@Parameter(description = "") @Valid @Body SendMail body
 ) {
         return Single.fromCallable(() -> {
             throw new UnsupportedOperationException();
@@ -121,8 +118,11 @@ public interface MailApi {
     @ApiResponse(responseCode = "400", description = "bad input parameter")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "404", description = "The specified resource was not found")
-    @Post(value = "/mail/send", produces = { "application/json" }, consumes = {"application/x-www-form-urlencoded", "application/json"})
-    default Single<HttpResponse<GenericResponse>> sendMail(@Parameter(description = "") @Valid @Body SendMail body
+    @Post(value = "/mail/send", produces = { "application/json" }, consumes = {"application/json", "application/x-www-form-urlencoded"})
+    default Single<HttpResponse<GenericResponse>> sendMail(@Parameter(description = "") @QueryValue(value = "to")  String to
+,@Parameter(description = "") @QueryValue(value = "from")  String from
+,@Parameter(description = "") @QueryValue(value = "subject")  String subject
+,@Parameter(description = "") @QueryValue(value = "body")  String body
 ) {
         return Single.fromCallable(() -> {
             throw new UnsupportedOperationException();

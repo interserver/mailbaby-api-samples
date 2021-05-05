@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **send_mail**
-> GenericResponse send_mail(to, _from, subject, body)
+> GenericResponse send_mail(body)
 
 Sends an Email
 
@@ -235,14 +235,11 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
-to = 'to_example' # str | 
-_from = '_from_example' # str | 
-subject = 'subject_example' # str | 
-body = 'body_example' # str | 
+body = swagger_client.SendMail() # SendMail | 
 
 try:
     # Sends an Email
-    api_response = api_instance.send_mail(to, _from, subject, body)
+    api_response = api_instance.send_mail(body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->send_mail: %s\n" % e)
@@ -252,10 +249,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **str**|  | 
- **_from** | **str**|  | 
- **subject** | **str**|  | 
- **body** | **str**|  | 
+ **body** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type
 
@@ -267,7 +261,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

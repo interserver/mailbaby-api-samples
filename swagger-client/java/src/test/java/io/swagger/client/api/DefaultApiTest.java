@@ -108,11 +108,8 @@ public class DefaultApiTest {
      */
     @Test
     public void sendMailTest() throws ApiException {
-        String to = null;
-        String from = null;
-        String subject = null;
-        String body = null;
-        GenericResponse response = api.sendMail(to, from, subject, body);
+        SendMail body = null;
+        GenericResponse response = api.sendMail(body);
 
         // TODO: test validations
     }

@@ -51,18 +51,18 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
+        /// <param name="body"></param>
+        /// <returns>GenericResponse</returns>
+        GenericResponse SendMail (SendMail body);
+        /// <summary>
+        /// Sends an Email Sends An email through one of your mail orders.
+        /// </summary>
         /// <param name="to"></param>
         /// <param name="from"></param>
         /// <param name="subject"></param>
         /// <param name="body"></param>
         /// <returns>GenericResponse</returns>
         GenericResponse SendMail (string to, string from, string subject, string body);
-        /// <summary>
-        /// Sends an Email Sends An email through one of your mail orders.
-        /// </summary>
-        /// <param name="body"></param>
-        /// <returns>GenericResponse</returns>
-        GenericResponse SendMail (SendMail body);
         /// <summary>
         /// validatess order details before placing an order 
         /// </summary>
@@ -334,6 +334,41 @@ if (attachments != null) formParams.Add("attachments", ApiClient.ParameterToStri
         /// <summary>
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
+        /// <param name="body"></param>
+        /// <returns>GenericResponse</returns>
+        public GenericResponse SendMail (SendMail body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null) throw new ApiException(400, "Missing required parameter 'body' when calling SendMail");
+    
+            var path = "/mail/send";
+            path = path.Replace("{format}", "json");
+                
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+            var formParams = new Dictionary<String, String>();
+            var fileParams = new Dictionary<String, FileParameter>();
+            String postBody = null;
+    
+                                    postBody = ApiClient.Serialize(body); // http body (model) parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { "apiKeyAuth" };
+    
+            // make the HTTP request
+            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
+    
+            if (((int)response.StatusCode) >= 400)
+                throw new ApiException ((int)response.StatusCode, "Error calling SendMail: " + response.Content, response.Content);
+            else if (((int)response.StatusCode) == 0)
+                throw new ApiException ((int)response.StatusCode, "Error calling SendMail: " + response.ErrorMessage, response.ErrorMessage);
+    
+            return (GenericResponse) ApiClient.Deserialize(response.Content, typeof(GenericResponse), response.Headers);
+        }
+    
+        /// <summary>
+        /// Sends an Email Sends An email through one of your mail orders.
+        /// </summary>
         /// <param name="to"></param>
         /// <param name="from"></param>
         /// <param name="subject"></param>
@@ -363,41 +398,6 @@ if (attachments != null) formParams.Add("attachments", ApiClient.ParameterToStri
 if (from != null) formParams.Add("from", ApiClient.ParameterToString(from)); // form parameter
 if (subject != null) formParams.Add("subject", ApiClient.ParameterToString(subject)); // form parameter
 if (body != null) formParams.Add("body", ApiClient.ParameterToString(body)); // form parameter
-
-            // authentication setting, if any
-            String[] authSettings = new String[] { "apiKeyAuth" };
-    
-            // make the HTTP request
-            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
-    
-            if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling SendMail: " + response.Content, response.Content);
-            else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling SendMail: " + response.ErrorMessage, response.ErrorMessage);
-    
-            return (GenericResponse) ApiClient.Deserialize(response.Content, typeof(GenericResponse), response.Headers);
-        }
-    
-        /// <summary>
-        /// Sends an Email Sends An email through one of your mail orders.
-        /// </summary>
-        /// <param name="body"></param>
-        /// <returns>GenericResponse</returns>
-        public GenericResponse SendMail (SendMail body)
-        {
-            // verify the required parameter 'body' is set
-            if (body == null) throw new ApiException(400, "Missing required parameter 'body' when calling SendMail");
-    
-            var path = "/mail/send";
-            path = path.Replace("{format}", "json");
-                
-            var queryParams = new Dictionary<String, String>();
-            var headerParams = new Dictionary<String, String>();
-            var formParams = new Dictionary<String, String>();
-            var fileParams = new Dictionary<String, FileParameter>();
-            String postBody = null;
-    
-                                    postBody = ApiClient.Serialize(body); // http body (model) parameter
 
             // authentication setting, if any
             String[] authSettings = new String[] { "apiKeyAuth" };

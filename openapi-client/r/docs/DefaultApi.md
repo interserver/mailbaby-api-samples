@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 | **404** | The specified resource was not found |  -  |
 
 # **SendMail**
-> GenericResponse SendMail(to, from, subject, body)
+> GenericResponse SendMail(send.mail)
 
 Sends an Email
 
@@ -200,16 +200,13 @@ Sends An email through one of your mail orders.
 ```R
 library(openapi)
 
-var.to <- 'to_example' # character | The Contact whom is the primary recipient of this email.
-var.from <- 'from_example' # character | The contact whom is the this email is from.
-var.subject <- 'subject_example' # character | The subject or title of the email
-var.body <- 'body_example' # character | The main email contents.
+var.send.mail <- SendMail$new("to_example", "from_example", "subject_example", "body_example") # SendMail | 
 
 #Sends an Email
 api.instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
 api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$SendMail(var.to, var.from, var.subject, var.body)
+result <- api.instance$SendMail(var.send.mail)
 dput(result)
 ```
 
@@ -217,10 +214,7 @@ dput(result)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **character**| The Contact whom is the primary recipient of this email. | 
- **from** | **character**| The contact whom is the this email is from. | 
- **subject** | **character**| The subject or title of the email | 
- **body** | **character**| The main email contents. | 
+ **send.mail** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type
 
@@ -232,7 +226,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 ### HTTP response details

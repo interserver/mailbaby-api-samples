@@ -280,6 +280,59 @@ Name | Type | Description  | Notes
 
 
 # **send_mail**
+> GenericResponse send_mail(body)
+
+Sends an Email
+
+Sends An email through one of your mail orders.
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiKeyAuth
+  config.api_key['X-API-KEY'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['X-API-KEY'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::DefaultApi.new
+body = SwaggerClient::SendMail.new # SendMail | 
+
+
+begin
+  #Sends an Email
+  result = api_instance.send_mail(body)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling DefaultApi->send_mail: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**SendMail**](SendMail.md)|  | 
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+
+
+# **send_mail**
 > GenericResponse send_mail(tofromsubjectbody)
 
 Sends an Email
@@ -333,60 +386,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, application/json
- - **Accept**: application/json
-
-
-
-# **send_mail**
-> GenericResponse send_mail(body)
-
-Sends an Email
-
-Sends An email through one of your mail orders.
-
-### Example
-```ruby
-# load the gem
-require 'swagger_client'
-# setup authorization
-SwaggerClient.configure do |config|
-  # Configure API key authorization: apiKeyAuth
-  config.api_key['X-API-KEY'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['X-API-KEY'] = 'Bearer'
-end
-
-api_instance = SwaggerClient::DefaultApi.new
-body = SwaggerClient::SendMail.new # SendMail | 
-
-
-begin
-  #Sends an Email
-  result = api_instance.send_mail(body)
-  p result
-rescue SwaggerClient::ApiError => e
-  puts "Exception when calling DefaultApi->send_mail: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**SendMail**](SendMail.md)|  | 
-
-### Return type
-
-[**GenericResponse**](GenericResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded, application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 

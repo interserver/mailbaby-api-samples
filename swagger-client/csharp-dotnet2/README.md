@@ -132,15 +132,12 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var to = to_example;  // string | 
-            var from = from_example;  // string | 
-            var subject = subject_example;  // string | 
-            var body = body_example;  // string | 
+            var body = new SendMail(); // SendMail | 
 
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.SendMail(to, from, subject, body);
+                GenericResponse result = apiInstance.SendMail(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)

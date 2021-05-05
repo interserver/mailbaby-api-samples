@@ -173,7 +173,7 @@ DefaultApi <- R6::R6Class(
       }
 
     }
-    send_mail = function(to, from, subject, body, body, ...){
+    send_mail = function(body, to, from, subject, body, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()

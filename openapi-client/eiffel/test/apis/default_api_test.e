@@ -73,18 +73,12 @@ feature -- Test routines
             -- Sends An email through one of your mail orders. 
         local
             l_response: GENERIC_RESPONSE
-            l_to: STRING_32
-            l_var_from: STRING_32
-            l_subject: STRING_32
-            l_body: STRING_32
+            l_send_mail: SEND_MAIL
         do
             -- TODO: Initialize required params.
-            -- l_to
-            -- l_var_from
-            -- l_subject
-            -- l_body
+            -- l_send_mail
                       
-            -- l_response := api.send_mail(l_to, l_var_from, l_subject, l_body)
+            -- l_response := api.send_mail(l_send_mail)
             assert ("not_implemented", False)
         end
     

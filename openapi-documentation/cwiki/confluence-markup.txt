@@ -300,6 +300,9 @@ h3. sendMail
 ----
 h4. Parameters
 
+h5. Body Parameter
+        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        |SendMail | | SendMail | (/) | |  |  |
 
 
 ----

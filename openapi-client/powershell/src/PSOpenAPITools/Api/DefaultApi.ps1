@@ -327,17 +327,8 @@ Sends an Email
 
 No description available.
 
-.PARAMETER To
-The Contact whom is the primary recipient of this email.
-
-.PARAMETER From
-The contact whom is the this email is from.
-
-.PARAMETER Subject
-The subject or title of the email
-
-.PARAMETER Body
-The main email contents.
+.PARAMETER SendMail
+No description available.
 
 .PARAMETER WithHttpInfo
 
@@ -351,17 +342,8 @@ function Send-Mail {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${To},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${From},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Subject},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Body},
+        [PSCustomObject]
+        ${SendMail},
         [Switch]
         $WithHttpInfo
     )
@@ -384,29 +366,15 @@ function Send-Mail {
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/x-www-form-urlencoded', 'application/json')
+        $LocalVarContentTypes = @('application/json', 'application/x-www-form-urlencoded')
 
         $LocalVarUri = '/mail/send'
 
-        if (!$To) {
-            throw "Error! The required parameter `To` missing when calling sendMail."
+        if (!$SendMail) {
+            throw "Error! The required parameter `SendMail` missing when calling sendMail."
         }
-        $LocalVarFormParameters['to'] = $To
 
-        if (!$From) {
-            throw "Error! The required parameter `From` missing when calling sendMail."
-        }
-        $LocalVarFormParameters['from'] = $From
-
-        if (!$Subject) {
-            throw "Error! The required parameter `Subject` missing when calling sendMail."
-        }
-        $LocalVarFormParameters['subject'] = $Subject
-
-        if (!$Body) {
-            throw "Error! The required parameter `Body` missing when calling sendMail."
-        }
-        $LocalVarFormParameters['body'] = $Body
+        $LocalVarBodyParameter = $SendMail | ConvertTo-Json -Depth 100
 
         if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
             $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]

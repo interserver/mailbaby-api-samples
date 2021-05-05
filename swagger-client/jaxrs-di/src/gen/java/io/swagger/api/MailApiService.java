@@ -24,13 +24,13 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-05T07:55:09.146471-04:00[America/New_York]")public interface MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-05T08:03:49.418617-04:00[America/New_York]")public interface MailApiService {
     public Response getMailOrders( Long id,SecurityContext securityContext);
     public Response placeMailOrder(MailOrder body,SecurityContext securityContext);
     public Response sendAdvMail(SendMailAdv body,SecurityContext securityContext);
     public Response sendAdvMail(String subject,String body,List<SendMailAdvFrom> from,List<MailContact> to,Long id,List<MailContact> replyto,List<MailContact> cc,List<MailContact> bcc,List<MailAttachment> attachments,SecurityContext securityContext);
-    public Response sendMail(String to,String from,String subject,String body,SecurityContext securityContext);
     public Response sendMail(SendMail body,SecurityContext securityContext);
+    public Response sendMail(String to,String from,String subject,String body,SecurityContext securityContext);
     public Response validateMailOrder(SecurityContext securityContext);
     public Response viewMailLogById( Long id, String searchString, @Min(0) Integer skip, @Min(0) @Max(50) Integer limit,SecurityContext securityContext);
 }

@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **send_mail**
-> send_mail (to: STRING_32 ; var_from: STRING_32 ; subject: STRING_32 ; body: STRING_32 ): detachable GENERIC_RESPONSE
+> send_mail (send_mail: SEND_MAIL ): detachable GENERIC_RESPONSE
 	
 
 Sends an Email
@@ -139,10 +139,7 @@ Sends An email through one of your mail orders.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **STRING_32**| The Contact whom is the primary recipient of this email. | [default to null]
- **var_from** | **STRING_32**| The contact whom is the this email is from. | [default to null]
- **subject** | **STRING_32**| The subject or title of the email | [default to null]
- **body** | **STRING_32**| The main email contents. | [default to null]
+ **send_mail** | [**SEND_MAIL**](SEND_MAIL.md)|  | 
 
 ### Return type
 
@@ -154,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

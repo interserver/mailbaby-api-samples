@@ -9,6 +9,7 @@
 #include "GenericResponse.h"
 #include "MailLog.h"
 #include "MailOrder.h"
+#include "SendMail.h"
 #include "SendMailAdv.h"
 #include "Error.h"
 
@@ -137,32 +138,26 @@ bool sendAdvMailAsync(char * accessToken,
 /*! \brief Sends an Email. *Synchronous*
  *
  * Sends An email through one of your mail orders.
- * \param to The Contact whom is the primary recipient of this email. *Required*
- * \param from The contact whom is the this email is from. *Required*
- * \param subject The subject or title of the email *Required*
- * \param body The main email contents. *Required*
+ * \param sendMail  *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool sendMailSync(char * accessToken,
-	std::string to, std::string from, std::string subject, std::string body, 
+	SendMail sendMail, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 
 /*! \brief Sends an Email. *Asynchronous*
  *
  * Sends An email through one of your mail orders.
- * \param to The Contact whom is the primary recipient of this email. *Required*
- * \param from The contact whom is the this email is from. *Required*
- * \param subject The subject or title of the email *Required*
- * \param body The main email contents. *Required*
+ * \param sendMail  *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool sendMailAsync(char * accessToken,
-	std::string to, std::string from, std::string subject, std::string body, 
+	SendMail sendMail, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 

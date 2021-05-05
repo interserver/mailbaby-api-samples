@@ -5,6 +5,7 @@ import org.openapitools.model.ErrorResponse
 import org.openapitools.model.GenericResponse
 import org.openapitools.model.MailLog
 import org.openapitools.model.MailOrder
+import org.openapitools.model.SendMail
 import org.openapitools.model.SendMailAdv
 
 class DefaultApi {
@@ -103,7 +104,7 @@ class DefaultApi {
 
     }
 
-    def sendMail ( String to, String from, String subject, String body, Closure onSuccess, Closure onFailure)  {
+    def sendMail ( SendMail sendMail, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/send"
 
         // params
@@ -113,31 +114,15 @@ class DefaultApi {
         def contentType
 
         // verify required params are set
-        if (to == null) {
-            throw new RuntimeException("missing required params to")
-        }
-        // verify required params are set
-        if (from == null) {
-            throw new RuntimeException("missing required params from")
-        }
-        // verify required params are set
-        if (subject == null) {
-            throw new RuntimeException("missing required params subject")
-        }
-        // verify required params are set
-        if (body == null) {
-            throw new RuntimeException("missing required params body")
+        if (sendMail == null) {
+            throw new RuntimeException("missing required params sendMail")
         }
 
 
 
+        contentType = 'application/json';
+        bodyParams = sendMail
 
-        contentType = 'application/x-www-form-urlencoded';
-        bodyParams = [:]
-        bodyParams.put("to", to)
-        bodyParams.put("from", from)
-        bodyParams.put("subject", subject)
-        bodyParams.put("body", body)
 
         apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "POST", "",

@@ -27,6 +27,9 @@ import {
     MailOrder,
     MailOrderFromJSON,
     MailOrderToJSON,
+    SendMail,
+    SendMailFromJSON,
+    SendMailToJSON,
     SendMailAdv,
     SendMailAdvFromJSON,
     SendMailAdvToJSON,
@@ -45,10 +48,7 @@ export interface SendAdvMailRequest {
 }
 
 export interface SendMailRequest {
-    to: string;
-    from: string;
-    subject: string;
-    body: string;
+    sendMail: SendMail;
 }
 
 export interface ViewMailLogByIdRequest {
@@ -251,20 +251,8 @@ export function sendAdvMail<T>(requestParameters: SendAdvMailRequest, requestCon
  * Sends an Email
  */
 function sendMailRaw<T>(requestParameters: SendMailRequest, requestConfig: runtime.TypedQueryConfig<T, GenericResponse> = {}): QueryConfig<T> {
-    if (requestParameters.to === null || requestParameters.to === undefined) {
-        throw new runtime.RequiredError('to','Required parameter requestParameters.to was null or undefined when calling sendMail.');
-    }
-
-    if (requestParameters.from === null || requestParameters.from === undefined) {
-        throw new runtime.RequiredError('from','Required parameter requestParameters.from was null or undefined when calling sendMail.');
-    }
-
-    if (requestParameters.subject === null || requestParameters.subject === undefined) {
-        throw new runtime.RequiredError('subject','Required parameter requestParameters.subject was null or undefined when calling sendMail.');
-    }
-
-    if (requestParameters.body === null || requestParameters.body === undefined) {
-        throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling sendMail.');
+    if (requestParameters.sendMail === null || requestParameters.sendMail === undefined) {
+        throw new runtime.RequiredError('sendMail','Required parameter requestParameters.sendMail was null or undefined when calling sendMail.');
     }
 
     let queryParameters = null;
@@ -272,27 +260,12 @@ function sendMailRaw<T>(requestParameters: SendMailRequest, requestConfig: runti
 
     const headerParameters : runtime.HttpHeaders = {};
 
+    headerParameters['Content-Type'] = 'application/json';
+
 
     const { meta = {} } = requestConfig;
 
     meta.authType = ['api_key', 'header'];
-    const formData = new FormData();
-    if (requestParameters.to !== undefined) {
-        formData.append('to', requestParameters.to as any);
-    }
-
-    if (requestParameters.from !== undefined) {
-        formData.append('from', requestParameters.from as any);
-    }
-
-    if (requestParameters.subject !== undefined) {
-        formData.append('subject', requestParameters.subject as any);
-    }
-
-    if (requestParameters.body !== undefined) {
-        formData.append('body', requestParameters.body as any);
-    }
-
     const config: QueryConfig<T> = {
         url: `${runtime.Configuration.basePath}/mail/send`,
         meta,
@@ -305,7 +278,7 @@ function sendMailRaw<T>(requestParameters: SendMailRequest, requestConfig: runti
             method: 'POST',
             headers: headerParameters,
         },
-        body: formData,
+        body: queryParameters || SendMailToJSON(requestParameters.sendMail),
     };
 
     const { transform: requestTransform } = requestConfig;

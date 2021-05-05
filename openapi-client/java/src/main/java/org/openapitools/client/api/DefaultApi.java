@@ -798,7 +798,7 @@ public class DefaultApi {
         return localVarCall;
     }
     /**
-     * Build call for viewMailLogById
+     * Build call for viewMailLog
      * @param id The ID of your mail order this will be sent through. (optional)
      * @param searchString pass an optional search string for looking up inventory (optional)
      * @param skip number of records to skip for pagination (optional)
@@ -813,7 +813,7 @@ public class DefaultApi {
         <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call viewMailLogByIdCall(Long id, String searchString, Integer skip, Integer limit, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call viewMailLogCall(Long id, String searchString, Integer skip, Integer limit, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -860,10 +860,10 @@ public class DefaultApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call viewMailLogByIdValidateBeforeCall(Long id, String searchString, Integer skip, Integer limit, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call viewMailLogValidateBeforeCall(Long id, String searchString, Integer skip, Integer limit, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = viewMailLogByIdCall(id, searchString, skip, limit, _callback);
+        okhttp3.Call localVarCall = viewMailLogCall(id, searchString, skip, limit, _callback);
         return localVarCall;
 
     }
@@ -884,8 +884,8 @@ public class DefaultApi {
         <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
      </table>
      */
-    public List<MailLog> viewMailLogById(Long id, String searchString, Integer skip, Integer limit) throws ApiException {
-        ApiResponse<List<MailLog>> localVarResp = viewMailLogByIdWithHttpInfo(id, searchString, skip, limit);
+    public List<MailLog> viewMailLog(Long id, String searchString, Integer skip, Integer limit) throws ApiException {
+        ApiResponse<List<MailLog>> localVarResp = viewMailLogWithHttpInfo(id, searchString, skip, limit);
         return localVarResp.getData();
     }
 
@@ -905,8 +905,8 @@ public class DefaultApi {
         <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<MailLog>> viewMailLogByIdWithHttpInfo(Long id, String searchString, Integer skip, Integer limit) throws ApiException {
-        okhttp3.Call localVarCall = viewMailLogByIdValidateBeforeCall(id, searchString, skip, limit, null);
+    public ApiResponse<List<MailLog>> viewMailLogWithHttpInfo(Long id, String searchString, Integer skip, Integer limit) throws ApiException {
+        okhttp3.Call localVarCall = viewMailLogValidateBeforeCall(id, searchString, skip, limit, null);
         Type localVarReturnType = new TypeToken<List<MailLog>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -928,9 +928,9 @@ public class DefaultApi {
         <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call viewMailLogByIdAsync(Long id, String searchString, Integer skip, Integer limit, final ApiCallback<List<MailLog>> _callback) throws ApiException {
+    public okhttp3.Call viewMailLogAsync(Long id, String searchString, Integer skip, Integer limit, final ApiCallback<List<MailLog>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = viewMailLogByIdValidateBeforeCall(id, searchString, skip, limit, _callback);
+        okhttp3.Call localVarCall = viewMailLogValidateBeforeCall(id, searchString, skip, limit, _callback);
         Type localVarReturnType = new TypeToken<List<MailLog>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

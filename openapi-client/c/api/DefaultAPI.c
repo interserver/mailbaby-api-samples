@@ -534,7 +534,7 @@ end:
 // By passing in the appropriate options, you can search for available inventory in the system 
 //
 list_t*
-DefaultAPI_viewMailLogById(apiClient_t *apiClient, long id , char * searchString , int skip , int limit )
+DefaultAPI_viewMailLog(apiClient_t *apiClient, long id , char * searchString , int skip , int limit )
 {
     list_t    *localVarQueryParameters = list_create();
     list_t    *localVarHeaderParameters = NULL;

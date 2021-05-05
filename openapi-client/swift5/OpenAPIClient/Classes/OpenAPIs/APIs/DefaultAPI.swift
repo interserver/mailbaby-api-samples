@@ -305,8 +305,8 @@ open class DefaultAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func viewMailLogById(id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [MailLog]?, _ error: Error?) -> Void)) {
-        viewMailLogByIdWithRequestBuilder(id: id, searchString: searchString, skip: skip, limit: limit).execute(apiResponseQueue) { result -> Void in
+    open class func viewMailLog(id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [MailLog]?, _ error: Error?) -> Void)) {
+        viewMailLogWithRequestBuilder(id: id, searchString: searchString, skip: skip, limit: limit).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -329,7 +329,7 @@ open class DefaultAPI {
      - parameter limit: (query) maximum number of records to return (optional)
      - returns: RequestBuilder<[MailLog]> 
      */
-    open class func viewMailLogByIdWithRequestBuilder(id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil) -> RequestBuilder<[MailLog]> {
+    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil) -> RequestBuilder<[MailLog]> {
         let path = "/mail/log"
         let URLString = OpenAPIClientAPI.basePath + path
         let parameters: [String: Any]? = nil

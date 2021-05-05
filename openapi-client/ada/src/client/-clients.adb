@@ -117,7 +117,7 @@ package body .Clients is
    --  displays the mail log
    --  By passing in the appropriate options, you can search for
    --  available inventory in the system
-   procedure View_Mail_Log_By_Id
+   procedure View_Mail_Log
       (Client : in out Client_Type;
        Id : in Swagger.Nullable_Long;
        Search_String : in Swagger.Nullable_UString;
@@ -136,5 +136,5 @@ package body .Clients is
       URI.Set_Path ("/mail/log");
       Client.Call (Swagger.Clients.GET, URI, Reply);
       .Models.Deserialize (Reply, "", Result);
-   end View_Mail_Log_By_Id;
+   end View_Mail_Log;
 end .Clients;

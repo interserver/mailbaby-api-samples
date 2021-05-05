@@ -22,7 +22,7 @@ namespace OpenAPI
 {
 
 OpenAPIDefaultApi::OpenAPIDefaultApi() 
-: Url(TEXT("https://api.mailbaby.net"))
+: Url(TEXT("http://mystage.interserver.net:8787"))
 {
 }
 
@@ -320,7 +320,7 @@ void OpenAPIDefaultApi::OnValidateMailOrderResponse(FHttpRequestPtr HttpRequest,
 	}
 }
 
-bool OpenAPIDefaultApi::ViewMailLogById(const ViewMailLogByIdRequest& Request, const FViewMailLogByIdDelegate& Delegate /*= FViewMailLogByIdDelegate()*/) const
+bool OpenAPIDefaultApi::ViewMailLog(const ViewMailLogRequest& Request, const FViewMailLogDelegate& Delegate /*= FViewMailLogDelegate()*/) const
 {
 	if (!IsValid())
 		return false;
@@ -335,20 +335,20 @@ bool OpenAPIDefaultApi::ViewMailLogById(const ViewMailLogByIdRequest& Request, c
 
 	Request.SetupHttpRequest(HttpRequest);
 	
-	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnViewMailLogByIdResponse, Delegate, Request.GetAutoRetryCount());
+	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnViewMailLogResponse, Delegate, Request.GetAutoRetryCount());
 	return HttpRequest->ProcessRequest();
 }
 
-void OpenAPIDefaultApi::OnViewMailLogByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FViewMailLogByIdDelegate Delegate, int AutoRetryCount) const
+void OpenAPIDefaultApi::OnViewMailLogResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FViewMailLogDelegate Delegate, int AutoRetryCount) const
 {
-	ViewMailLogByIdResponse Response;
+	ViewMailLogResponse Response;
 	Response.SetHttpRequest(HttpRequest);
 
 	HandleResponse(HttpResponse, bSucceeded, Response);
 
 	if(!Response.IsSuccessful() && AutoRetryCount > 0)
 	{
-		HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnViewMailLogByIdResponse, Delegate, AutoRetryCount - 1);
+		HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnViewMailLogResponse, Delegate, AutoRetryCount - 1);
 		Response.AsyncRetry();
 	}
 	else

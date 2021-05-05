@@ -20,11 +20,11 @@
     "url" : "https://interserver.net/tips/"
   },
   "servers" : [ {
+    "url" : "http://mystage.interserver.net:8787",
+    "description" : "Temporary API Endpoint"
+  }, {
     "url" : "https://api.mailbaby.net",
     "description" : "Live API Endpoint"
-  }, {
-    "url" : "http://mynew.interserver.net:8787",
-    "description" : "Temporary API Endpoint"
   }, {
     "url" : "https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0",
     "description" : "SwaggerHub API Auto Mocking"
@@ -226,7 +226,7 @@
       "get" : {
         "summary" : "displays the mail log",
         "description" : "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
-        "operationId" : "viewMailLogById",
+        "operationId" : "viewMailLog",
         "parameters" : [ {
           "name" : "id",
           "in" : "query",

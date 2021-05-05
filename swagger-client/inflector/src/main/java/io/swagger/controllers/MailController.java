@@ -21,7 +21,7 @@ import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailAdvFrom;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-05T08:21:41.585793-04:00[America/New_York]")public class MailController  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-05T09:58:32.143960-04:00[America/New_York]")public class MailController  {
   /** 
    * Uncomment and implement as you see fit.  These operations will map
    * Directly to operation calls from the routing logic.  Because the inflector
@@ -88,7 +88,7 @@ import io.swagger.model.SendMailAdvFrom;
   */
 
   /*
-    public ResponseContext viewMailLogById(RequestContext request , Long id 
+    public ResponseContext viewMailLog(RequestContext request , Long id 
 , String searchString 
 , Integer skip 
 , Integer limit 

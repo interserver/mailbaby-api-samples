@@ -799,7 +799,7 @@ func (a *DefaultApiService) ValidateMailOrderExecute(r ApiValidateMailOrderReque
 	return localVarHTTPResponse, nil
 }
 
-type ApiViewMailLogByIdRequest struct {
+type ApiViewMailLogRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	id *int64
@@ -808,37 +808,37 @@ type ApiViewMailLogByIdRequest struct {
 	limit *int32
 }
 
-func (r ApiViewMailLogByIdRequest) Id(id int64) ApiViewMailLogByIdRequest {
+func (r ApiViewMailLogRequest) Id(id int64) ApiViewMailLogRequest {
 	r.id = &id
 	return r
 }
-func (r ApiViewMailLogByIdRequest) SearchString(searchString string) ApiViewMailLogByIdRequest {
+func (r ApiViewMailLogRequest) SearchString(searchString string) ApiViewMailLogRequest {
 	r.searchString = &searchString
 	return r
 }
-func (r ApiViewMailLogByIdRequest) Skip(skip int32) ApiViewMailLogByIdRequest {
+func (r ApiViewMailLogRequest) Skip(skip int32) ApiViewMailLogRequest {
 	r.skip = &skip
 	return r
 }
-func (r ApiViewMailLogByIdRequest) Limit(limit int32) ApiViewMailLogByIdRequest {
+func (r ApiViewMailLogRequest) Limit(limit int32) ApiViewMailLogRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiViewMailLogByIdRequest) Execute() ([]MailLog, *_nethttp.Response, error) {
-	return r.ApiService.ViewMailLogByIdExecute(r)
+func (r ApiViewMailLogRequest) Execute() ([]MailLog, *_nethttp.Response, error) {
+	return r.ApiService.ViewMailLogExecute(r)
 }
 
 /*
- * ViewMailLogById displays the mail log
+ * ViewMailLog displays the mail log
  * By passing in the appropriate options, you can search for
 available inventory in the system
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiViewMailLogByIdRequest
+ * @return ApiViewMailLogRequest
  */
-func (a *DefaultApiService) ViewMailLogById(ctx _context.Context) ApiViewMailLogByIdRequest {
-	return ApiViewMailLogByIdRequest{
+func (a *DefaultApiService) ViewMailLog(ctx _context.Context) ApiViewMailLogRequest {
+	return ApiViewMailLogRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -848,7 +848,7 @@ func (a *DefaultApiService) ViewMailLogById(ctx _context.Context) ApiViewMailLog
  * Execute executes the request
  * @return []MailLog
  */
-func (a *DefaultApiService) ViewMailLogByIdExecute(r ApiViewMailLogByIdRequest) ([]MailLog, *_nethttp.Response, error) {
+func (a *DefaultApiService) ViewMailLogExecute(r ApiViewMailLogRequest) ([]MailLog, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -858,7 +858,7 @@ func (a *DefaultApiService) ViewMailLogByIdExecute(r ApiViewMailLogByIdRequest) 
 		localVarReturnValue  []MailLog
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ViewMailLogById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ViewMailLog")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}

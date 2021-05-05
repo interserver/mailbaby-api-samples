@@ -382,7 +382,7 @@ bool OpenAPIDefaultApi::ValidateMailOrderResponse::FromJson(const TSharedPtr<FJs
 	return true;
 }
 
-FString OpenAPIDefaultApi::ViewMailLogByIdRequest::ComputePath() const
+FString OpenAPIDefaultApi::ViewMailLogRequest::ComputePath() const
 {
 	FString Path(TEXT("/mail/log"));
 	TArray<FString> QueryParams;
@@ -408,7 +408,7 @@ FString OpenAPIDefaultApi::ViewMailLogByIdRequest::ComputePath() const
 	return Path;
 }
 
-void OpenAPIDefaultApi::ViewMailLogByIdRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+void OpenAPIDefaultApi::ViewMailLogRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
@@ -431,7 +431,7 @@ void OpenAPIDefaultApi::ViewMailLogByIdRequest::SetupHttpRequest(const FHttpRequ
 	}
 }
 
-void OpenAPIDefaultApi::ViewMailLogByIdResponse::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+void OpenAPIDefaultApi::ViewMailLogResponse::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
 	Response::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
@@ -445,7 +445,7 @@ void OpenAPIDefaultApi::ViewMailLogByIdResponse::SetHttpResponseCode(EHttpRespon
 	}
 }
 
-bool OpenAPIDefaultApi::ViewMailLogByIdResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool OpenAPIDefaultApi::ViewMailLogResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	return TryGetJsonValue(JsonValue, Content);
 }

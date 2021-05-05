@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T08:22:00.985048-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T09:58:52.536994-04:00[America/New_York]")
 @Controller
 public interface MailApi {
 
@@ -141,11 +141,11 @@ public interface MailApi {
     }
 
 
-    @Operation(summary = "displays the mail log", operationId = "viewMailLogById", description = "By passing in the appropriate options, you can search for available inventory in the system " )
+    @Operation(summary = "displays the mail log", operationId = "viewMailLog", description = "By passing in the appropriate options, you can search for available inventory in the system " )
     @ApiResponse(responseCode = "200", description = "search results matching criteria")
     @ApiResponse(responseCode = "400", description = "bad input parameter")
     @Get(value = "/mail/log", produces = { "application/json" })
-    default Single<HttpResponse<List<MailLog>>> viewMailLogById(@Nullable @Parameter(description = "The ID of your mail order this will be sent through.") @Valid @QueryValue(value = "id") Long id
+    default Single<HttpResponse<List<MailLog>>> viewMailLog(@Nullable @Parameter(description = "The ID of your mail order this will be sent through.") @Valid @QueryValue(value = "id") Long id
 ,@Nullable @Parameter(description = "pass an optional search string for looking up inventory") @Valid @QueryValue(value = "searchString") String searchString
 ,@Nullable @Min(0)@Parameter(description = "number of records to skip for pagination") @Valid @QueryValue(value = "skip") Integer skip
 ,@Nullable @Min(0) @Max(50) @Parameter(description = "maximum number of records to return") @Valid @QueryValue(value = "limit") Integer limit

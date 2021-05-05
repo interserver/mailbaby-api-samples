@@ -55,9 +55,9 @@ Describe -tag 'PSOpenAPITools' -name 'DefaultApi' {
         }
     }
 
-    Context 'Invoke-ViewMailLogById' {
-        It 'Test Invoke-ViewMailLogById' {
-            #$TestResult = Invoke-ViewMailLogById -Id "TEST_VALUE" -SearchString "TEST_VALUE" -Skip "TEST_VALUE" -Limit "TEST_VALUE"
+    Context 'Invoke-ViewMailLog' {
+        It 'Test Invoke-ViewMailLog' {
+            #$TestResult = Invoke-ViewMailLog -Id "TEST_VALUE" -SearchString "TEST_VALUE" -Skip "TEST_VALUE" -Limit "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }

@@ -53,7 +53,7 @@ library(openapi)
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -63,7 +63,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**SendAdvMail**](docs/DefaultApi.md#SendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *DefaultApi* | [**SendMail**](docs/DefaultApi.md#SendMail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**ValidateMailOrder**](docs/DefaultApi.md#ValidateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**ViewMailLogById**](docs/DefaultApi.md#ViewMailLogById) | **GET** /mail/log | displays the mail log
+*DefaultApi* | [**ViewMailLog**](docs/DefaultApi.md#ViewMailLog) | **GET** /mail/log | displays the mail log
 
 
 ## Documentation for Models

@@ -10,7 +10,7 @@
 part of openapi.api;
 
 class ApiClient {
-  ApiClient({this.basePath = 'https://api.mailbaby.net'}) {
+  ApiClient({this.basePath = 'http://mystage.interserver.net:8787'}) {
     // Setup authentications (key: authentication name, value: authentication).
     _authentications[r'apiKeyAuth'] = ApiKeyAuth('header', 'X-API-KEY');
   }

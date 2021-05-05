@@ -547,8 +547,8 @@ module SwaggerClient
     # @option opts [Integer] :skip number of records to skip for pagination
     # @option opts [Integer] :limit maximum number of records to return
     # @return [Array<MailLog>]
-    def view_mail_log_by_id(opts = {})
-      data, _status_code, _headers = view_mail_log_by_id_with_http_info(opts)
+    def view_mail_log(opts = {})
+      data, _status_code, _headers = view_mail_log_with_http_info(opts)
       data
     end
 
@@ -560,9 +560,9 @@ module SwaggerClient
     # @option opts [Integer] :skip number of records to skip for pagination
     # @option opts [Integer] :limit maximum number of records to return
     # @return [Array<(Array<MailLog>, Integer, Hash)>] Array<MailLog> data, response status code and response headers
-    def view_mail_log_by_id_with_http_info(opts = {})
+    def view_mail_log_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: DefaultApi.view_mail_log_by_id ...'
+        @api_client.config.logger.debug 'Calling API: DefaultApi.view_mail_log ...'
       end
       # resource path
       local_var_path = '/mail/log'
@@ -597,7 +597,7 @@ module SwaggerClient
         :return_type => return_type)
 
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: DefaultApi#view_mail_log_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: DefaultApi#view_mail_log\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

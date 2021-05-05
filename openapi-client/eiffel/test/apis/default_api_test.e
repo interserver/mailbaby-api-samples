@@ -100,7 +100,7 @@ feature -- Test routines
             assert ("not_implemented", False)
         end
     
-    test_view_mail_log_by_id
+    test_view_mail_log
             -- displays the mail log
             -- 
             -- By passing in the appropriate options, you can search for available inventory in the system  
@@ -113,7 +113,7 @@ feature -- Test routines
         do
             -- TODO: Initialize required params.
                       
-            -- l_response := api.view_mail_log_by_id(l_id, l_search_string, l_skip, l_limit)
+            -- l_response := api.view_mail_log(l_id, l_search_string, l_skip, l_limit)
             assert ("not_implemented", False)
         end
 

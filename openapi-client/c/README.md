@@ -61,7 +61,7 @@ Note: You don't need to specify includes for models and include folder seperatel
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Category | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -71,7 +71,7 @@ Category | Method | HTTP request | Description
 *DefaultAPI* | [**DefaultAPI_sendAdvMail**](docs/DefaultAPI.md#DefaultAPI_sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *DefaultAPI* | [**DefaultAPI_sendMail**](docs/DefaultAPI.md#DefaultAPI_sendMail) | **POST** /mail/send | Sends an Email
 *DefaultAPI* | [**DefaultAPI_validateMailOrder**](docs/DefaultAPI.md#DefaultAPI_validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultAPI* | [**DefaultAPI_viewMailLogById**](docs/DefaultAPI.md#DefaultAPI_viewMailLogById) | **GET** /mail/log | displays the mail log
+*DefaultAPI* | [**DefaultAPI_viewMailLog**](docs/DefaultAPI.md#DefaultAPI_viewMailLog) | **GET** /mail/log | displays the mail log
 
 
 ## Documentation for Models

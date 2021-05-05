@@ -177,5 +177,5 @@ public interface DefaultApi  {
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
-    public List<MailLog> viewMailLogById(@QueryParam("id")Long id, @QueryParam("searchString")String searchString, @QueryParam("skip")Integer skip, @QueryParam("limit")Integer limit);
+    public List<MailLog> viewMailLog(@QueryParam("id")Long id, @QueryParam("searchString")String searchString, @QueryParam("skip")Integer skip, @QueryParam("limit")Integer limit);
 }

@@ -176,10 +176,10 @@ public:
  *
  * By passing in the appropriate options, you can search for available inventory in the system 
 */
-class OPENAPI_API OpenAPIDefaultApi::ViewMailLogByIdRequest : public Request
+class OPENAPI_API OpenAPIDefaultApi::ViewMailLogRequest : public Request
 {
 public:
-    virtual ~ViewMailLogByIdRequest() {}
+    virtual ~ViewMailLogRequest() {}
 	void SetupHttpRequest(const FHttpRequestRef& HttpRequest) const final;
 	FString ComputePath() const final;
     
@@ -193,10 +193,10 @@ public:
 	TOptional<int32> Limit;
 };
 
-class OPENAPI_API OpenAPIDefaultApi::ViewMailLogByIdResponse : public Response
+class OPENAPI_API OpenAPIDefaultApi::ViewMailLogResponse : public Response
 {
 public:
-    virtual ~ViewMailLogByIdResponse() {}
+    virtual ~ViewMailLogResponse() {}
 	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) final;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) final;
     

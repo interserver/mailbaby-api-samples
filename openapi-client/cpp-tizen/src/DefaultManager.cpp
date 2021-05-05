@@ -905,7 +905,7 @@ bool DefaultManager::validateMailOrderSync(char * accessToken,
 	handler, userData, false);
 }
 
-static bool viewMailLogByIdProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
+static bool viewMailLogProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
 	void(* handler)(std::list<MailLog>, Error, void* )
@@ -952,7 +952,7 @@ static bool viewMailLogByIdProcessor(MemoryStruct_s p_chunk, long code, char* er
 			}
 }
 
-static bool viewMailLogByIdHelper(char * accessToken,
+static bool viewMailLogHelper(char * accessToken,
 	long long id, std::string searchString, int skip, int limit, 
 	void(* handler)(std::list<MailLog>, Error, void* )
 	, void* userData, bool isAsync)
@@ -1021,7 +1021,7 @@ static bool viewMailLogByIdHelper(char * accessToken,
 	if(!isAsync){
 		NetClient::easycurl(DefaultManager::getBasePath(), url, myhttpmethod, queryParams,
 			mBody, headerList, p_chunk, &code, errormsg);
-		bool retval = viewMailLogByIdProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
+		bool retval = viewMailLogProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
 		curl_slist_free_all(headerList);
 		if (p_chunk) {
@@ -1039,7 +1039,7 @@ static bool viewMailLogByIdHelper(char * accessToken,
 		RequestInfo *requestInfo = NULL;
 
 		requestInfo = new(nothrow) RequestInfo (DefaultManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg, userData, reinterpret_cast<void(*)()>(handler), viewMailLogByIdProcessor);;
+			mBody, headerList, p_chunk, &code, errormsg, userData, reinterpret_cast<void(*)()>(handler), viewMailLogProcessor);;
 		if(requestInfo == NULL)
 			return false;
 
@@ -1051,22 +1051,22 @@ static bool viewMailLogByIdHelper(char * accessToken,
 
 
 
-bool DefaultManager::viewMailLogByIdAsync(char * accessToken,
+bool DefaultManager::viewMailLogAsync(char * accessToken,
 	long long id, std::string searchString, int skip, int limit, 
 	void(* handler)(std::list<MailLog>, Error, void* )
 	, void* userData)
 {
-	return viewMailLogByIdHelper(accessToken,
+	return viewMailLogHelper(accessToken,
 	id, searchString, skip, limit, 
 	handler, userData, true);
 }
 
-bool DefaultManager::viewMailLogByIdSync(char * accessToken,
+bool DefaultManager::viewMailLogSync(char * accessToken,
 	long long id, std::string searchString, int skip, int limit, 
 	void(* handler)(std::list<MailLog>, Error, void* )
 	, void* userData)
 {
-	return viewMailLogByIdHelper(accessToken,
+	return viewMailLogHelper(accessToken,
 	id, searchString, skip, limit, 
 	handler, userData, false);
 }

@@ -62,7 +62,7 @@ libraryDependencies += "org.openapitools" % "openapi-client" % "1.0.0"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -72,7 +72,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | **sendAdvMail** | **POST** /mail/advsend | Sends an Email with Advanced Options
 *DefaultApi* | **sendMail** | **POST** /mail/send | Sends an Email
 *DefaultApi* | **validateMailOrder** | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | **viewMailLogById** | **GET** /mail/log | displays the mail log
+*DefaultApi* | **viewMailLog** | **GET** /mail/log | displays the mail log
 
 
 ## Documentation for Models

@@ -11,7 +11,7 @@ import 'package:openapi/src/auth/oauth.dart';
 import 'package:openapi/src/api/default_api.dart';
 
 class Openapi {
-  static const String basePath = r'https://api.mailbaby.net';
+  static const String basePath = r'http://mystage.interserver.net:8787';
 
   final Dio dio;
   final Serializers serializers;

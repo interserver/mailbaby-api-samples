@@ -91,8 +91,8 @@ export class PromiseDefaultApi {
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      */
-    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: Configuration): Promise<Array<MailLog>> {
-        const result = this.api.viewMailLogById(id, searchString, skip, limit, options);
+    public viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options?: Configuration): Promise<Array<MailLog>> {
+        const result = this.api.viewMailLog(id, searchString, skip, limit, options);
         return result.toPromise();
     }
 

@@ -61,7 +61,7 @@ let validate_mail_order () =
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.handle_unit_response resp
 
-let view_mail_log_by_id ?id ?search_string ?skip ?limit () =
+let view_mail_log ?id ?search_string ?skip ?limit () =
     let open Lwt in
     let uri = Request.build_uri "/mail/log" in
     let headers = Request.default_headers in

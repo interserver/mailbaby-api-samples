@@ -65,9 +65,9 @@ export interface IValidateMailOrderParams {
 }
 
 /**
- * viewMailLogById - parameters interface
+ * viewMailLog - parameters interface
  */
-export interface IViewMailLogByIdParams {
+export interface IViewMailLogParams {
   id?: number;
   searchString?: string;
   skip?: number;
@@ -285,7 +285,7 @@ export class DefaultApi extends Api {
    * @param params.skip number of records to skip for pagination
    * @param params.limit maximum number of records to return
    */
-  async viewMailLogById(params: IViewMailLogByIdParams): Promise<Array<MailLog>> {
+  async viewMailLog(params: IViewMailLogParams): Promise<Array<MailLog>> {
     // Verify required parameters are set
 
     // Create URL to call

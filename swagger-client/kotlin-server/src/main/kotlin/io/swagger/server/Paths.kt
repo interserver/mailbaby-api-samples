@@ -84,6 +84,6 @@ available inventory in the system
      * @param skip number of records to skip for pagination (optional)
      * @param limit maximum number of records to return (optional)
      */
-    @Location("/mail/log") class viewMailLogById(val id: kotlin.Long, val searchString: kotlin.String, val skip: kotlin.Int, val limit: kotlin.Int)
+    @Location("/mail/log") class viewMailLog(val id: kotlin.Long, val searchString: kotlin.String, val skip: kotlin.Int, val limit: kotlin.Int)
 
 }

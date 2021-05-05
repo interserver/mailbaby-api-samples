@@ -36,7 +36,7 @@ Doxygen is the de facto standard tool for generating/extracting documentation fr
 Check out [Doxygen](https://www.doxygen.org/) for additional information about the Doxygen project.
 
 ## I Don't want to run Doxygen. What are the API files for accessing the REST endpoints?
-All URIs are relative to https://api.mailbaby.nethttps://api.mailbaby.net
+All URIs are relative to http://mystage.interserver.nethttp://mystage.interserver.net:8787
 
 
 ### DefaultManager
@@ -54,8 +54,8 @@ Method | HTTP request | Description
 *sendMailASync* | *POST* /mail/send | Sends an Email.
 *validateMailOrderSync* | *GET* /mail/order | validatess order details before placing an order.
 *validateMailOrderASync* | *GET* /mail/order | validatess order details before placing an order.
-*viewMailLogByIdSync* | *GET* /mail/log | displays the mail log.
-*viewMailLogByIdASync* | *GET* /mail/log | displays the mail log.
+*viewMailLogSync* | *GET* /mail/log | displays the mail log.
+*viewMailLogASync* | *GET* /mail/log | displays the mail log.
 
 
 ## What are the Model files for the data structures/objects?

@@ -19,9 +19,9 @@ h3. getMailOrders
     *Description:* *No Description*
 
 	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
-    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/mail{noformat} |
-    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Base Path | {noformat:nopanel=true}http://mystage.interserver.net:8787{noformat} |
     || Produces | {noformat:nopanel=true}application/jsonapplication/xmltext/plain{noformat} |
 ----
 h4. Parameters
@@ -96,9 +96,9 @@ h3. pingServer
     *Description:* *No Description*
 
 	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
-    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/ping{noformat} |
-    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Base Path | {noformat:nopanel=true}http://mystage.interserver.net:8787{noformat} |
     
 ----
 h4. Parameters
@@ -137,9 +137,9 @@ h3. placeMailOrder
     *Description:* Adds an item to the system
 
 	|| HttpMethod | {status:colour=Yellow|title=post|subtle=false} |
-    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/mail/order{noformat} |
-    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Base Path | {noformat:nopanel=true}http://mystage.interserver.net:8787{noformat} |
     || Produces | {noformat:nopanel=true}application/json{noformat} |
 ----
 h4. Parameters
@@ -208,9 +208,9 @@ h3. sendAdvMail
     *Description:* Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 
 	|| HttpMethod | {status:colour=Yellow|title=post|subtle=false} |
-    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/mail/advsend{noformat} |
-    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Base Path | {noformat:nopanel=true}http://mystage.interserver.net:8787{noformat} |
     || Produces | {noformat:nopanel=true}application/json{noformat} |
 ----
 h4. Parameters
@@ -293,9 +293,9 @@ h3. sendMail
     *Description:* Sends An email through one of your mail orders.
 
 	|| HttpMethod | {status:colour=Yellow|title=post|subtle=false} |
-    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/mail/send{noformat} |
-    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Base Path | {noformat:nopanel=true}http://mystage.interserver.net:8787{noformat} |
     || Produces | {noformat:nopanel=true}application/json{noformat} |
 ----
 h4. Parameters
@@ -375,9 +375,9 @@ h3. validateMailOrder
     *Description:* *No Description*
 
 	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
-    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/mail/order{noformat} |
-    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Base Path | {noformat:nopanel=true}http://mystage.interserver.net:8787{noformat} |
     || Produces | {noformat:nopanel=true}application/json{noformat} |
 ----
 h4. Parameters
@@ -417,16 +417,16 @@ h4. Responses
 
 
 
-h3. viewMailLogById
-{panel:title=viewMailLogById|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+h3. viewMailLog
+{panel:title=viewMailLog|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
     *Summary:* displays the mail log
     *Description:* By passing in the appropriate options, you can search for
 available inventory in the system
 
 	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
-    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/mail/log{noformat} |
-    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Base Path | {noformat:nopanel=true}http://mystage.interserver.net:8787{noformat} |
     || Produces | {noformat:nopanel=true}application/json{noformat} |
 ----
 h4. Parameters

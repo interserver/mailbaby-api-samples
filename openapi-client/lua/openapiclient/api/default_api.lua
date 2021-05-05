@@ -38,7 +38,7 @@ local function new_default_api(authority, basePath, schemes)
 	return setmetatable({
 		host = host;
 		port = port;
-		basePath = basePath or "https://api.mailbaby.net";
+		basePath = basePath or "http://mystage.interserver.net:8787";
 		schemes = schemes_map;
 		default_scheme = default_scheme;
 		http_username = nil;
@@ -332,7 +332,7 @@ function default_api:validate_mail_order()
 	end
 end
 
-function default_api:view_mail_log_by_id(id, search_string, skip, limit)
+function default_api:view_mail_log(id, search_string, skip, limit)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;

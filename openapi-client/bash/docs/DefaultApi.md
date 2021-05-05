@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
+[**viewMailLog**](DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 
 
 
@@ -215,7 +215,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## viewMailLogById
+## viewMailLog
 
 displays the mail log
 
@@ -225,7 +225,7 @@ available inventory in the system
 ### Example
 
 ```bash
- viewMailLogById  id=value  searchString=value  skip=value  limit=value
+ viewMailLog  id=value  searchString=value  skip=value  limit=value
 ```
 
 ### Parameters

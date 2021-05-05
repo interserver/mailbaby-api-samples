@@ -1,37 +1,37 @@
-08:21:49.668 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
+09:58:40.372 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by com.github.jknack.handlebars.context.MemberValueResolver (file:/home/sites/mailbaby-mail-api/swagger-codegen-cli.jar) to method java.util.Collections$EmptyMap.isEmpty()
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-08:21:50.162 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/ErrorResponse.java
-08:21:50.234 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/GenericResponse.java
-08:21:50.296 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/MailAttachment.java
-08:21:50.358 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/MailContact.java
-08:21:50.403 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/MailLog.java
-08:21:50.506 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/MailOrder.java
-08:21:50.537 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/MailOrders.java
-08:21:50.597 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/SendMail.java
-08:21:50.669 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/SendMailAdv.java
-08:21:50.694 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/SendMailAdvFrom.java
-08:21:50.859 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/main/java/io/swagger/api/impl/MailApiServiceImpl.java
-08:21:51.007 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/MailApi.java
-08:21:51.081 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/MailApiService.java
-08:21:51.084 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/main/java/io/swagger/api/factories/MailApiServiceFactory.java
-08:21:51.087 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/main/java/io/swagger/api/impl/PingApiServiceImpl.java
-08:21:51.099 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/PingApi.java
-08:21:51.102 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/PingApiService.java
-08:21:51.104 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/main/java/io/swagger/api/factories/PingApiServiceFactory.java
-08:21:51.113 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/pom.xml
-08:21:51.115 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/README.md
-08:21:51.117 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/ApiException.java
-08:21:51.120 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/ApiOriginFilter.java
-08:21:51.124 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/ApiResponseMessage.java
-08:21:51.126 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/NotFoundException.java
-08:21:51.128 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/JacksonJsonProvider.java
-08:21:51.130 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/RFC3339DateFormat.java
-08:21:51.133 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/main/java/io/swagger/api/Bootstrap.java
-08:21:51.137 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/main/webapp/WEB-INF/web.xml
-08:21:51.142 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/StringUtil.java
-08:21:51.148 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/.swagger-codegen-ignore
-08:21:51.148 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/.swagger-codegen/VERSION
+09:58:40.910 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/ErrorResponse.java
+09:58:41.002 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/GenericResponse.java
+09:58:41.099 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/MailAttachment.java
+09:58:41.160 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/MailContact.java
+09:58:41.207 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/MailLog.java
+09:58:41.326 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/MailOrder.java
+09:58:41.369 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/MailOrders.java
+09:58:41.444 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/SendMail.java
+09:58:41.493 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/SendMailAdv.java
+09:58:41.517 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/model/SendMailAdvFrom.java
+09:58:41.663 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/main/java/io/swagger/api/impl/MailApiServiceImpl.java
+09:58:41.815 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/MailApi.java
+09:58:41.887 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/MailApiService.java
+09:58:41.890 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/main/java/io/swagger/api/factories/MailApiServiceFactory.java
+09:58:41.893 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/main/java/io/swagger/api/impl/PingApiServiceImpl.java
+09:58:41.903 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/PingApi.java
+09:58:41.906 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/PingApiService.java
+09:58:41.908 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/main/java/io/swagger/api/factories/PingApiServiceFactory.java
+09:58:41.915 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/pom.xml
+09:58:41.918 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/README.md
+09:58:41.920 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/ApiException.java
+09:58:41.922 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/ApiOriginFilter.java
+09:58:41.926 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/ApiResponseMessage.java
+09:58:41.927 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/NotFoundException.java
+09:58:41.929 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/JacksonJsonProvider.java
+09:58:41.931 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/RFC3339DateFormat.java
+09:58:41.934 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/main/java/io/swagger/api/Bootstrap.java
+09:58:41.937 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/main/webapp/WEB-INF/web.xml
+09:58:41.941 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/src/gen/java/io/swagger/api/StringUtil.java
+09:58:41.946 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/.swagger-codegen-ignore
+09:58:41.946 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/jaxrs-jersey/.swagger-codegen/VERSION

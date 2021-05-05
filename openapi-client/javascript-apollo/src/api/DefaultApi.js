@@ -261,7 +261,7 @@ export default class DefaultApi extends ApiClient {
      * @param {Number} opts.limit maximum number of records to return
      * @return {Promise<Array.<MailLog>>}
      */
-    async viewMailLogById(opts) {
+    async viewMailLog(opts) {
       opts = opts || {};
       let postBody = null;
 

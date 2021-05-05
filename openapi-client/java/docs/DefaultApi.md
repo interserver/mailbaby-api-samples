@@ -1,6 +1,6 @@
 # DefaultApi
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
+[**viewMailLog**](DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 
 
 <a name="getMailOrders"></a>
@@ -32,7 +32,7 @@ import org.openapitools.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.mailbaby.net");
+    defaultClient.setBasePath("http://mystage.interserver.net:8787");
     
     // Configure API key authorization: apiKeyAuth
     ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
@@ -99,7 +99,7 @@ import org.openapitools.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.mailbaby.net");
+    defaultClient.setBasePath("http://mystage.interserver.net:8787");
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     try {
@@ -158,7 +158,7 @@ import org.openapitools.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.mailbaby.net");
+    defaultClient.setBasePath("http://mystage.interserver.net:8787");
     
     // Configure API key authorization: apiKeyAuth
     ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
@@ -229,7 +229,7 @@ import org.openapitools.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.mailbaby.net");
+    defaultClient.setBasePath("http://mystage.interserver.net:8787");
     
     // Configure API key authorization: apiKeyAuth
     ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
@@ -301,7 +301,7 @@ import org.openapitools.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.mailbaby.net");
+    defaultClient.setBasePath("http://mystage.interserver.net:8787");
     
     // Configure API key authorization: apiKeyAuth
     ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
@@ -377,7 +377,7 @@ import org.openapitools.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.mailbaby.net");
+    defaultClient.setBasePath("http://mystage.interserver.net:8787");
     
     // Configure API key authorization: apiKeyAuth
     ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
@@ -421,9 +421,9 @@ null (empty response body)
 **200** | list of mail orders |  -  |
 **401** | Unauthorized |  -  |
 
-<a name="viewMailLogById"></a>
-# **viewMailLogById**
-> List&lt;MailLog&gt; viewMailLogById(id, searchString, skip, limit)
+<a name="viewMailLog"></a>
+# **viewMailLog**
+> List&lt;MailLog&gt; viewMailLog(id, searchString, skip, limit)
 
 displays the mail log
 
@@ -442,7 +442,7 @@ import org.openapitools.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.mailbaby.net");
+    defaultClient.setBasePath("http://mystage.interserver.net:8787");
     
     // Configure API key authorization: apiKeyAuth
     ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
@@ -456,10 +456,10 @@ public class Example {
     Integer skip = 56; // Integer | number of records to skip for pagination
     Integer limit = 56; // Integer | maximum number of records to return
     try {
-      List<MailLog> result = apiInstance.viewMailLogById(id, searchString, skip, limit);
+      List<MailLog> result = apiInstance.viewMailLog(id, searchString, skip, limit);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#viewMailLogById");
+      System.err.println("Exception when calling DefaultApi#viewMailLog");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

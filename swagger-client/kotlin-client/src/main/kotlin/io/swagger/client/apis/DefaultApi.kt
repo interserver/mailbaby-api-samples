@@ -24,7 +24,7 @@ import io.swagger.client.models.SendMailAdvFrom
 
 import io.swagger.client.infrastructure.*
 
-class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClient(basePath) {
+class DefaultApi(basePath: kotlin.String = "http://mystage.interserver.net:8787") : ApiClient(basePath) {
 
     /**
      * displays a list of mail service orders
@@ -251,7 +251,7 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
      * @return kotlin.Array<MailLog>
      */
     @Suppress("UNCHECKED_CAST")
-    fun viewMailLogById(id: kotlin.Long? = null, searchString: kotlin.String? = null, skip: kotlin.Int? = null, limit: kotlin.Int? = null): kotlin.Array<MailLog> {
+    fun viewMailLog(id: kotlin.Long? = null, searchString: kotlin.String? = null, skip: kotlin.Int? = null, limit: kotlin.Int? = null): kotlin.Array<MailLog> {
         val localVariableQuery: MultiValueMap = mapOf("id" to listOf("$id"), "searchString" to listOf("$searchString"), "skip" to listOf("$skip"), "limit" to listOf("$limit"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,

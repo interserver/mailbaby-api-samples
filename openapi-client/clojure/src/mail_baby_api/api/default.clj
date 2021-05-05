@@ -156,11 +156,11 @@
        res)))
 
 
-(defn-spec view-mail-log-by-id-with-http-info any?
+(defn-spec view-mail-log-with-http-info any?
   "displays the mail log
   By passing in the appropriate options, you can search for
 available inventory in the system"
-  ([] (view-mail-log-by-id-with-http-info nil))
+  ([] (view-mail-log-with-http-info nil))
   ([{:keys [id searchString skip limit]} (s/map-of keyword? any?)]
    (call-api "/mail/log" :get
              {:path-params   {}
@@ -171,13 +171,13 @@ available inventory in the system"
               :accepts       ["application/json"]
               :auth-names    ["apiKeyAuth"]})))
 
-(defn-spec view-mail-log-by-id (s/coll-of mail-log-spec)
+(defn-spec view-mail-log (s/coll-of mail-log-spec)
   "displays the mail log
   By passing in the appropriate options, you can search for
 available inventory in the system"
-  ([] (view-mail-log-by-id nil))
+  ([] (view-mail-log nil))
   ([optional-params any?]
-   (let [res (:data (view-mail-log-by-id-with-http-info optional-params))]
+   (let [res (:data (view-mail-log-with-http-info optional-params))]
      (if (:decode-models *api-context*)
         (st/decode (s/coll-of mail-log-spec) res st/string-transformer)
         res))))

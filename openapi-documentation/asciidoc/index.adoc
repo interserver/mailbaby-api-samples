@@ -579,8 +579,8 @@ ifdef::internal-generation[]
 endif::internal-generation[]
 
 
-[.viewMailLogById]
-==== viewMailLogById
+[.viewMailLog]
+==== viewMailLog
     
 `GET /mail/log`
 

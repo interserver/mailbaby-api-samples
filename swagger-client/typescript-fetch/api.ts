@@ -16,7 +16,7 @@ import * as url from "url";
 import * as isomorphicFetch from "isomorphic-fetch";
 import { Configuration } from "./configuration";
 
-const BASE_PATH = "https://api.mailbaby.net".replace(/\/+$/, "");
+const BASE_PATH = "http://mystage.interserver.net:8787".replace(/\/+$/, "");
 
 /**
  *
@@ -678,7 +678,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options: any = {}): FetchArgs {
+        viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options: any = {}): FetchArgs {
             const localVarPath = `/mail/log`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -863,8 +863,8 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<MailLog>> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).viewMailLogById(id, searchString, skip, limit, options);
+        viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<MailLog>> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).viewMailLog(id, searchString, skip, limit, options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -965,8 +965,8 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: any) {
-            return DefaultApiFp(configuration).viewMailLogById(id, searchString, skip, limit, options)(fetch, basePath);
+        viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options?: any) {
+            return DefaultApiFp(configuration).viewMailLog(id, searchString, skip, limit, options)(fetch, basePath);
         },
     };
 };
@@ -1072,8 +1072,8 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: any) {
-        return DefaultApiFp(this.configuration).viewMailLogById(id, searchString, skip, limit, options)(this.fetch, this.basePath);
+    public viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options?: any) {
+        return DefaultApiFp(this.configuration).viewMailLog(id, searchString, skip, limit, options)(this.fetch, this.basePath);
     }
 
 }

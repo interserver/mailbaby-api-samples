@@ -234,7 +234,7 @@ feature -- API Access
 			end
 		end	
 
-	view_mail_log_by_id (id: INTEGER_64; search_string: STRING_32; skip: INTEGER_32; limit: INTEGER_32): detachable LIST [MAIL_LOG]
+	view_mail_log (id: INTEGER_64; search_string: STRING_32; skip: INTEGER_32; limit: INTEGER_32): detachable LIST [MAIL_LOG]
 			-- displays the mail log
 			-- By passing in the appropriate options, you can search for available inventory in the system 
 			-- 

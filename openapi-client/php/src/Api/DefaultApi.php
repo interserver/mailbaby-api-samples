@@ -1696,7 +1696,7 @@ class DefaultApi
     }
 
     /**
-     * Operation viewMailLogById
+     * Operation viewMailLog
      *
      * displays the mail log
      *
@@ -1709,14 +1709,14 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\MailLog[]
      */
-    public function viewMailLogById($id = null, $searchString = null, $skip = null, $limit = null)
+    public function viewMailLog($id = null, $searchString = null, $skip = null, $limit = null)
     {
-        list($response) = $this->viewMailLogByIdWithHttpInfo($id, $searchString, $skip, $limit);
+        list($response) = $this->viewMailLogWithHttpInfo($id, $searchString, $skip, $limit);
         return $response;
     }
 
     /**
-     * Operation viewMailLogByIdWithHttpInfo
+     * Operation viewMailLogWithHttpInfo
      *
      * displays the mail log
      *
@@ -1729,9 +1729,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\MailLog[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function viewMailLogByIdWithHttpInfo($id = null, $searchString = null, $skip = null, $limit = null)
+    public function viewMailLogWithHttpInfo($id = null, $searchString = null, $skip = null, $limit = null)
     {
-        $request = $this->viewMailLogByIdRequest($id, $searchString, $skip, $limit);
+        $request = $this->viewMailLogRequest($id, $searchString, $skip, $limit);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1805,7 +1805,7 @@ class DefaultApi
     }
 
     /**
-     * Operation viewMailLogByIdAsync
+     * Operation viewMailLogAsync
      *
      * displays the mail log
      *
@@ -1817,9 +1817,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function viewMailLogByIdAsync($id = null, $searchString = null, $skip = null, $limit = null)
+    public function viewMailLogAsync($id = null, $searchString = null, $skip = null, $limit = null)
     {
-        return $this->viewMailLogByIdAsyncWithHttpInfo($id, $searchString, $skip, $limit)
+        return $this->viewMailLogAsyncWithHttpInfo($id, $searchString, $skip, $limit)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1828,7 +1828,7 @@ class DefaultApi
     }
 
     /**
-     * Operation viewMailLogByIdAsyncWithHttpInfo
+     * Operation viewMailLogAsyncWithHttpInfo
      *
      * displays the mail log
      *
@@ -1840,10 +1840,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function viewMailLogByIdAsyncWithHttpInfo($id = null, $searchString = null, $skip = null, $limit = null)
+    public function viewMailLogAsyncWithHttpInfo($id = null, $searchString = null, $skip = null, $limit = null)
     {
         $returnType = '\Interserver\Mailbaby\Model\MailLog[]';
-        $request = $this->viewMailLogByIdRequest($id, $searchString, $skip, $limit);
+        $request = $this->viewMailLogRequest($id, $searchString, $skip, $limit);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1879,7 +1879,7 @@ class DefaultApi
     }
 
     /**
-     * Create request for operation 'viewMailLogById'
+     * Create request for operation 'viewMailLog'
      *
      * @param  int $id The ID of your mail order this will be sent through. (optional)
      * @param  string $searchString pass an optional search string for looking up inventory (optional)
@@ -1889,17 +1889,17 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function viewMailLogByIdRequest($id = null, $searchString = null, $skip = null, $limit = null)
+    public function viewMailLogRequest($id = null, $searchString = null, $skip = null, $limit = null)
     {
         if ($skip !== null && $skip < 0) {
-            throw new \InvalidArgumentException('invalid value for "$skip" when calling DefaultApi.viewMailLogById, must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for "$skip" when calling DefaultApi.viewMailLog, must be bigger than or equal to 0.');
         }
 
         if ($limit !== null && $limit > 50) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling DefaultApi.viewMailLogById, must be smaller than or equal to 50.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling DefaultApi.viewMailLog, must be smaller than or equal to 50.');
         }
         if ($limit !== null && $limit < 0) {
-            throw new \InvalidArgumentException('invalid value for "$limit" when calling DefaultApi.viewMailLogById, must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling DefaultApi.viewMailLog, must be bigger than or equal to 0.');
         }
 
 

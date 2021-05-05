@@ -115,7 +115,7 @@ namespace Org.OpenAPITools.Client
         public Configuration()
         {
             UserAgent = "OpenAPI-Generator/1.0.0/csharp";
-            BasePath = "https://api.mailbaby.net";
+            BasePath = "http://mystage.interserver.net:8787";
             DefaultHeader = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
             ApiKeyPrefix = new ConcurrentDictionary<string, string>();
@@ -131,7 +131,7 @@ namespace Org.OpenAPITools.Client
             IDictionary<string, string> defaultHeader,
             IDictionary<string, string> apiKey,
             IDictionary<string, string> apiKeyPrefix,
-            string basePath = "https://api.mailbaby.net") : this()
+            string basePath = "http://mystage.interserver.net:8787") : this()
         {
             if (string.IsNullOrWhiteSpace(basePath))
                 throw new ArgumentException("The provided basePath is invalid.", "basePath");

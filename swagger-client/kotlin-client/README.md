@@ -31,7 +31,7 @@ This runs all tests and packages the library.
 <a name="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -41,7 +41,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**sendAdvMail**](docs/DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *DefaultApi* | [**sendMail**](docs/DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](docs/DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**viewMailLogById**](docs/DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
+*DefaultApi* | [**viewMailLog**](docs/DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models

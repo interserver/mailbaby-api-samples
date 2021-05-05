@@ -39,7 +39,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T08:21:58.494733-04:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T09:58:49.631605-04:00[America/New_York]")public class MailApi  {
 
     @Inject MailApiService service;
 
@@ -179,8 +179,8 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
         
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
-    public Response viewMailLogById(  @QueryParam("id") Long id,  @QueryParam("searchString") String searchString, @Min(0)  @QueryParam("skip") Integer skip, @Min(0) @Max(50)  @QueryParam("limit") Integer limit,@Context SecurityContext securityContext)
+    public Response viewMailLog(  @QueryParam("id") Long id,  @QueryParam("searchString") String searchString, @Min(0)  @QueryParam("skip") Integer skip, @Min(0) @Max(50)  @QueryParam("limit") Integer limit,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return service.viewMailLogById(id,searchString,skip,limit,securityContext);
+        return service.viewMailLog(id,searchString,skip,limit,securityContext);
     }
 }

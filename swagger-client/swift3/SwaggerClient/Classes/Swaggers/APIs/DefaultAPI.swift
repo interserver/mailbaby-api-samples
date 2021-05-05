@@ -334,8 +334,8 @@ open class DefaultAPI: APIBase {
      - parameter limit: (query) maximum number of records to return (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func viewMailLogById(id: Int64? = nil, searchString: String? = nil, skip: Int32? = nil, limit: Int32? = nil, completion: @escaping ((_ data: [MailLog]?, _ error: ErrorResponse?) -> Void)) {
-        viewMailLogByIdWithRequestBuilder(id: id, searchString: searchString, skip: skip, limit: limit).execute { (response, error) -> Void in
+    open class func viewMailLog(id: Int64? = nil, searchString: String? = nil, skip: Int32? = nil, limit: Int32? = nil, completion: @escaping ((_ data: [MailLog]?, _ error: ErrorResponse?) -> Void)) {
+        viewMailLogWithRequestBuilder(id: id, searchString: searchString, skip: skip, limit: limit).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -359,7 +359,7 @@ open class DefaultAPI: APIBase {
      - parameter limit: (query) maximum number of records to return (optional)
      - returns: RequestBuilder<[MailLog]> 
      */
-    open class func viewMailLogByIdWithRequestBuilder(id: Int64? = nil, searchString: String? = nil, skip: Int32? = nil, limit: Int32? = nil) -> RequestBuilder<[MailLog]> {
+    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, searchString: String? = nil, skip: Int32? = nil, limit: Int32? = nil) -> RequestBuilder<[MailLog]> {
         let path = "/mail/log"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil

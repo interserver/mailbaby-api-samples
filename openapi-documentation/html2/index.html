@@ -1088,8 +1088,8 @@ ul.nav-tabs {
                     <li data-group="Default" data-name="validateMailOrder" class="">
                       <a href="#api-Default-validateMailOrder">validateMailOrder</a>
                     </li>
-                    <li data-group="Default" data-name="viewMailLogById" class="">
-                      <a href="#api-Default-viewMailLogById">viewMailLogById</a>
+                    <li data-group="Default" data-name="viewMailLog" class="">
+                      <a href="#api-Default-viewMailLog">viewMailLog</a>
                     </li>
           </ul>
         </nav>
@@ -1150,7 +1150,7 @@ ul.nav-tabs {
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
  -H "Accept: application/json,application/xml,text/plain"\
- "https://api.mailbaby.net/mail?id="</code></pre>
+ "http://mystage.interserver.net:8787/mail?id="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getMailOrders-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -1615,7 +1615,7 @@ The ID of your mail order this will be sent through.
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Default-pingServer-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET\
- "https://api.mailbaby.net/ping"</code></pre>
+ "http://mystage.interserver.net:8787/ping"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-pingServer-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -1886,7 +1886,7 @@ pub fn main() {
 -H "X-API-KEY: [[apiKey]]"\
  -H "Accept: application/json"\
  -H "Content-Type: application/json"\
- "https://api.mailbaby.net/mail/order"</code></pre>
+ "http://mystage.interserver.net:8787/mail/order"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-placeMailOrder-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -2342,7 +2342,7 @@ $(document).ready(function() {
 -H "X-API-KEY: [[apiKey]]"\
  -H "Accept: application/json"\
  -H "Content-Type: application/json,application/x-www-form-urlencoded"\
- "https://api.mailbaby.net/mail/advsend"</code></pre>
+ "http://mystage.interserver.net:8787/mail/advsend"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-sendAdvMail-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -2898,7 +2898,7 @@ $(document).ready(function() {
 -H "X-API-KEY: [[apiKey]]"\
  -H "Accept: application/json"\
  -H "Content-Type: application/x-www-form-urlencoded,application/json"\
- "https://api.mailbaby.net/mail/send"</code></pre>
+ "http://mystage.interserver.net:8787/mail/send"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-sendMail-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -3531,7 +3531,7 @@ The main email contents.
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
  -H "Accept: application/json"\
- "https://api.mailbaby.net/mail/order"</code></pre>
+ "http://mystage.interserver.net:8787/mail/order"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-validateMailOrder-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -3848,10 +3848,10 @@ pub fn main() {
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-viewMailLogById">
-                      <article id="api-Default-viewMailLogById-0" data-group="User" data-name="viewMailLogById" data-version="0">
+                    <div id="api-Default-viewMailLog">
+                      <article id="api-Default-viewMailLog-0" data-group="User" data-name="viewMailLog" data-version="0">
                         <div class="pull-left">
-                          <h1>viewMailLogById</h1>
+                          <h1>viewMailLog</h1>
                           <p>displays the mail log</p>
                         </div>
                         <div class="pull-right"></div>
@@ -3867,28 +3867,28 @@ available inventory in the system
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-viewMailLogById-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-viewMailLogById-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-viewMailLogById-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-python">Python</a></li>
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-rust">Rust</a></li>
+                          <li class="active"><a href="#examples-Default-viewMailLog-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-viewMailLog-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-viewMailLog-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-viewMailLog-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-viewMailLog-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-viewMailLog-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-viewMailLog-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-viewMailLog-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-viewMailLog-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-viewMailLog-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-viewMailLog-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-viewMailLog-0-rust">Rust</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-viewMailLogById-0-curl">
+                          <div class="tab-pane active" id="examples-Default-viewMailLog-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
  -H "Accept: application/json"\
- "https://api.mailbaby.net/mail/log?id=&searchString=&skip=&limit="</code></pre>
+ "http://mystage.interserver.net:8787/mail/log?id=&searchString=&skip=&limit="</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-viewMailLogById-0-java">
+                          <div class="tab-pane" id="examples-Default-viewMailLog-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
 import MailBabyApi.auth.*;
 import MailBabyApi.model.*;
@@ -3915,10 +3915,10 @@ public class DefaultApiExample {
         Integer limit = 56; // Integer | maximum number of records to return
         
         try {
-            array[MailLog] result = apiInstance.viewMailLogById(id, searchString, skip, limit);
+            array[MailLog] result = apiInstance.viewMailLog(id, searchString, skip, limit);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#viewMailLogById");
+            System.err.println("Exception when calling DefaultApi#viewMailLog");
             e.printStackTrace();
         }
     }
@@ -3926,7 +3926,7 @@ public class DefaultApiExample {
 </code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-viewMailLogById-0-android">
+                          <div class="tab-pane" id="examples-Default-viewMailLog-0-android">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -3938,20 +3938,20 @@ public class DefaultApiExample {
         Integer limit = 56; // Integer | maximum number of records to return
         
         try {
-            array[MailLog] result = apiInstance.viewMailLogById(id, searchString, skip, limit);
+            array[MailLog] result = apiInstance.viewMailLog(id, searchString, skip, limit);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#viewMailLogById");
+            System.err.println("Exception when calling DefaultApi#viewMailLog");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-viewMailLogById-0-groovy">
+  <div class="tab-pane" id="examples-Default-viewMailLog-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-viewMailLogById-0-objc">
+                            <div class="tab-pane" id="examples-Default-viewMailLog-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 
 // Configure API key authorization: (authentication scheme: apiKeyAuth)
@@ -3968,7 +3968,7 @@ Integer *skip = 56; // number of records to skip for pagination (optional) (defa
 Integer *limit = 56; // maximum number of records to return (optional) (default to null)
 
 // displays the mail log
-[apiInstance viewMailLogByIdWith:id
+[apiInstance viewMailLogWith:id
     searchString:searchString
     skip:skip
     limit:limit
@@ -3983,7 +3983,7 @@ Integer *limit = 56; // maximum number of records to return (optional) (default 
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-viewMailLogById-0-javascript">
+                            <div class="tab-pane" id="examples-Default-viewMailLog-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var MailBabyApi = require('mail_baby_api');
 var defaultClient = MailBabyApi.ApiClient.instance;
 
@@ -4009,14 +4009,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.viewMailLogById(opts, callback);
+api.viewMailLog(opts, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-viewMailLogById-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-viewMailLog-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-viewMailLogById-0-csharp">
+                            <div class="tab-pane" id="examples-Default-viewMailLog-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using MailBabyApi.Api;
@@ -4025,7 +4025,7 @@ using MailBabyApi.Model;
 
 namespace Example
 {
-    public class viewMailLogByIdExample
+    public class viewMailLogExample
     {
         public void main()
         {
@@ -4043,10 +4043,10 @@ namespace Example
 
             try {
                 // displays the mail log
-                array[MailLog] result = apiInstance.viewMailLogById(id, searchString, skip, limit);
+                array[MailLog] result = apiInstance.viewMailLog(id, searchString, skip, limit);
                 Debug.WriteLine(result);
             } catch (Exception e) {
-                Debug.Print("Exception when calling DefaultApi.viewMailLogById: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.viewMailLog: " + e.Message );
             }
         }
     }
@@ -4054,7 +4054,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-viewMailLogById-0-php">
+                            <div class="tab-pane" id="examples-Default-viewMailLog-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -4071,15 +4071,15 @@ $skip = 56; // Integer | number of records to skip for pagination
 $limit = 56; // Integer | maximum number of records to return
 
 try {
-    $result = $api_instance->viewMailLogById($id, $searchString, $skip, $limit);
+    $result = $api_instance->viewMailLog($id, $searchString, $skip, $limit);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->viewMailLogById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-viewMailLogById-0-perl">
+                            <div class="tab-pane" id="examples-Default-viewMailLog-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use MailBabyApi::Configuration;
 use MailBabyApi::DefaultApi;
@@ -4097,15 +4097,15 @@ my $skip = 56; # Integer | number of records to skip for pagination
 my $limit = 56; # Integer | maximum number of records to return
 
 eval { 
-    my $result = $api_instance->viewMailLogById(id => $id, searchString => $searchString, skip => $skip, limit => $limit);
+    my $result = $api_instance->viewMailLog(id => $id, searchString => $searchString, skip => $skip, limit => $limit);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->viewMailLogById: $@\n";
+    warn "Exception when calling DefaultApi->viewMailLog: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-viewMailLogById-0-python">
+                            <div class="tab-pane" id="examples-Default-viewMailLog-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import MailBabyApi
@@ -4126,13 +4126,13 @@ limit = 56 # Integer | maximum number of records to return (optional) (default t
 
 try: 
     # displays the mail log
-    api_response = api_instance.view_mail_log_by_id(id=id, searchString=searchString, skip=skip, limit=limit)
+    api_response = api_instance.view_mail_log(id=id, searchString=searchString, skip=skip, limit=limit)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->viewMailLogById: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->viewMailLog: %s\n" % e)</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-viewMailLogById-0-rust">
+                            <div class="tab-pane" id="examples-Default-viewMailLog-0-rust">
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
@@ -4142,7 +4142,7 @@ pub fn main() {
     let limit = 56; // Integer
 
     let mut context = DefaultApi::Context::default();
-    let result = client.viewMailLogById(id, searchString, skip, limit, &context).wait();
+    let result = client.viewMailLog(id, searchString, skip, limit, &context).wait();
 
     println!("{:?}", result);
 }
@@ -4171,7 +4171,7 @@ pub fn main() {
 <td>
 
 
-    <div id="d2e199_viewMailLogById_id">
+    <div id="d2e199_viewMailLog_id">
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
@@ -4194,7 +4194,7 @@ The ID of your mail order this will be sent through.
 <td>
 
 
-    <div id="d2e199_viewMailLogById_searchString">
+    <div id="d2e199_viewMailLog_searchString">
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
@@ -4214,7 +4214,7 @@ pass an optional search string for looking up inventory
 <td>
 
 
-    <div id="d2e199_viewMailLogById_skip">
+    <div id="d2e199_viewMailLog_skip">
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
@@ -4237,7 +4237,7 @@ number of records to skip for pagination
 <td>
 
 
-    <div id="d2e199_viewMailLogById_limit">
+    <div id="d2e199_viewMailLog_limit">
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
@@ -4259,23 +4259,23 @@ maximum number of records to return
                             </table>
 
                           <h2>Responses</h2>
-                            <h3 id="examples-Default-viewMailLogById-title-200"></h3>
-                            <p id="examples-Default-viewMailLogById-description-200" class="marked"></p>
+                            <h3 id="examples-Default-viewMailLog-title-200"></h3>
+                            <p id="examples-Default-viewMailLog-description-200" class="marked"></p>
                             <script>
                               var responseDefault200_description = `search results matching criteria`;
                               var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
                               if (responseDefault200_description_break == -1) {
-                                $("#examples-Default-viewMailLogById-title-200").text("Status: 200 - " + responseDefault200_description);
+                                $("#examples-Default-viewMailLog-title-200").text("Status: 200 - " + responseDefault200_description);
                               } else {
-                                $("#examples-Default-viewMailLogById-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
-                                $("#examples-Default-viewMailLogById-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                                $("#examples-Default-viewMailLog-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-viewMailLog-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-Default-viewMailLogById-200" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Default-viewMailLog-200" class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-Default-viewMailLogById-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-Default-viewMailLog-200-schema">Schema</a>
                                 </li>
 
 
@@ -4284,9 +4284,9 @@ maximum number of records to return
                             </ul>
 
 
-                            <div class="tab-content" id="responses-Default-viewMailLogById-200-wrapper" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-Default-viewMailLogById-200-schema">
-                                  <div id="responses-Default-viewMailLogById-schema-200" class="exampleStyle">
+                            <div class="tab-content" id="responses-Default-viewMailLog-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-viewMailLog-200-schema">
+                                  <div id="responses-Default-viewMailLog-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -4318,37 +4318,37 @@ maximum number of records to return
                                         }
 
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-Default-viewMailLogById-200-schema-data').val(JSON.stringify(schema));
-                                        var result = $('#responses-Default-viewMailLogById-schema-200');
+                                        $('#responses-Default-viewMailLog-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-viewMailLog-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-Default-viewMailLogById-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-Default-viewMailLog-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
-                            <h3 id="examples-Default-viewMailLogById-title-400"></h3>
-                            <p id="examples-Default-viewMailLogById-description-400" class="marked"></p>
+                            <h3 id="examples-Default-viewMailLog-title-400"></h3>
+                            <p id="examples-Default-viewMailLog-description-400" class="marked"></p>
                             <script>
                               var responseDefault400_description = `bad input parameter`;
                               var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
                               if (responseDefault400_description_break == -1) {
-                                $("#examples-Default-viewMailLogById-title-400").text("Status: 400 - " + responseDefault400_description);
+                                $("#examples-Default-viewMailLog-title-400").text("Status: 400 - " + responseDefault400_description);
                               } else {
-                                $("#examples-Default-viewMailLogById-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
-                                $("#examples-Default-viewMailLogById-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                                $("#examples-Default-viewMailLog-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-viewMailLog-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-Default-viewMailLogById-400" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Default-viewMailLog-400" class="nav nav-tabs nav-tabs-examples" >
 
 
                             </ul>
 
 
-                            <div class="tab-content" id="responses-Default-viewMailLogById-400-wrapper" style='margin-bottom: 10px;'>
+                            <div class="tab-content" id="responses-Default-viewMailLog-400-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>

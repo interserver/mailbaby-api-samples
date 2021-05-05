@@ -193,7 +193,7 @@ private class OASDefaultApiTest {
      * By passing in the appropriate options, you can search for\navailable inventory in the system\n
      */
     @isTest
-    private static void viewMailLogByIdTest() {
+    private static void viewMailLogTest() {
         HttpResponse res = new HttpResponse();
         res.setStatusCode(200);
         res.setStatus('OK');
@@ -221,7 +221,7 @@ private class OASDefaultApiTest {
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
         expectedResponse = new List<OASMailLog>{OASMailLog.getExample()};
-        response = (List<OASMailLog>) api.viewMailLogById(params);
+        response = (List<OASMailLog>) api.viewMailLog(params);
         System.assertEquals(expectedResponse, response);
     }
 }

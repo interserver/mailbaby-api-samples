@@ -198,7 +198,7 @@
 #' }
 #' }
 #'
-#' \strong{ ViewMailLogById } \emph{ displays the mail log }
+#' \strong{ ViewMailLog } \emph{ displays the mail log }
 #' By passing in the appropriate options, you can search for available inventory in the system 
 #'
 #' \itemize{
@@ -312,7 +312,7 @@
 #' result <- api.instance$ValidateMailOrder()
 #'
 #'
-#' ####################  ViewMailLogById  ####################
+#' ####################  ViewMailLog  ####################
 #'
 #' library(openapi)
 #' var.id <- 56 # integer | The ID of your mail order this will be sent through.
@@ -326,7 +326,7 @@
 #' #Configure API key authorization: apiKeyAuth
 #' api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
 #'
-#' result <- api.instance$ViewMailLogById(id=var.id, search.string=var.search.string, skip=var.skip, limit=var.limit)
+#' result <- api.instance$ViewMailLog(id=var.id, search.string=var.search.string, skip=var.skip, limit=var.limit)
 #'
 #'
 #' }
@@ -655,8 +655,8 @@ DefaultApi <- R6::R6Class(
         ApiResponse$new("API server error", resp)
       }
     },
-    ViewMailLogById = function(id=NULL, search.string=NULL, skip=NULL, limit=NULL, ...){
-      apiResponse <- self$ViewMailLogByIdWithHttpInfo(id, search.string, skip, limit, ...)
+    ViewMailLog = function(id=NULL, search.string=NULL, skip=NULL, limit=NULL, ...){
+      apiResponse <- self$ViewMailLogWithHttpInfo(id, search.string, skip, limit, ...)
       resp <- apiResponse$response
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
         apiResponse$content
@@ -669,7 +669,7 @@ DefaultApi <- R6::R6Class(
       }
     },
 
-    ViewMailLogByIdWithHttpInfo = function(id=NULL, search.string=NULL, skip=NULL, limit=NULL, ...){
+    ViewMailLogWithHttpInfo = function(id=NULL, search.string=NULL, skip=NULL, limit=NULL, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- c()

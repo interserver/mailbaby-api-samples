@@ -46,12 +46,12 @@ describe("DefaultApi", () => {
   test("validateMailOrder", () => {
     return expect(instance.validateMailOrder({})).resolves.toBe(null)
   })
-  test("viewMailLogById", () => {
+  test("viewMailLog", () => {
     const id: number = 789
     const searchString: string = "searchString_example"
     const skip: number = 56
     const limit: number = 56
-    return expect(instance.viewMailLogById(id, searchString, skip, limit, {})).resolves.toBe(null)
+    return expect(instance.viewMailLog(id, searchString, skip, limit, {})).resolves.toBe(null)
   })
 })
 

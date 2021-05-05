@@ -8,7 +8,7 @@ import org.openapitools.model.MailOrder
 import org.openapitools.model.SendMailAdv
 
 class DefaultApi {
-    String basePath = "https://api.mailbaby.net"
+    String basePath = "http://mystage.interserver.net:8787"
     String versionPath = ""
     ApiUtils apiUtils = new ApiUtils();
 
@@ -165,7 +165,7 @@ class DefaultApi {
 
     }
 
-    def viewMailLogById ( Long id, String searchString, Integer skip, Integer limit, Closure onSuccess, Closure onFailure)  {
+    def viewMailLog ( Long id, String searchString, Integer skip, Integer limit, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/log"
 
         // params

@@ -59,8 +59,8 @@ void main() {
     //
     // By passing in the appropriate options, you can search for available inventory in the system 
     //
-    //Future<List<MailLog>> viewMailLogById({ int id, String searchString, int skip, int limit }) async
-    test('test viewMailLogById', () async {
+    //Future<List<MailLog>> viewMailLog({ int id, String searchString, int skip, int limit }) async
+    test('test viewMailLog', () async {
       // TODO
     });
 

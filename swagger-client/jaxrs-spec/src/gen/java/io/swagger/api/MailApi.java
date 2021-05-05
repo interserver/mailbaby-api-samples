@@ -30,7 +30,7 @@ import javax.validation.Valid;
 
 @Path("/mail")
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-05-05T08:21:47.119990-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-05-05T09:58:37.667080-04:00[America/New_York]")
 public class MailApi {
 
     @GET
@@ -143,7 +143,7 @@ public class MailApi {
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
         @ApiResponse(responseCode = "400", description = "bad input parameter")
     })
-    public Response viewMailLogById(  @QueryParam("id") 
+    public Response viewMailLog(  @QueryParam("id") 
 
  @Parameter(description = "The ID of your mail order this will be sent through.")  Long id
 ,  @QueryParam("searchString") 

@@ -125,7 +125,7 @@ api.getMailOrders(opts, callback);
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -135,7 +135,7 @@ Class | Method | HTTP request | Description
 *MailBabyApi.DefaultApi* | [**sendAdvMail**](docs/DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *MailBabyApi.DefaultApi* | [**sendMail**](docs/DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 *MailBabyApi.DefaultApi* | [**validateMailOrder**](docs/DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-*MailBabyApi.DefaultApi* | [**viewMailLogById**](docs/DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
+*MailBabyApi.DefaultApi* | [**viewMailLog**](docs/DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 
 
 ## Documentation for Models

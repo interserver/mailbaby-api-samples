@@ -113,8 +113,8 @@ class TestDefaultController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
-    def test_view_mail_log_by_id(self):
-        """Test case for view_mail_log_by_id
+    def test_view_mail_log(self):
+        """Test case for view_mail_log
 
         displays the mail log
         """

@@ -182,7 +182,7 @@ public class OASDefaultApi {
      * @return List<OASMailLog>
      * @throws OAS.ApiException if fails to make API call
      */
-    public List<OASMailLog> viewMailLogById(Map<String, Object> params) {
+    public List<OASMailLog> viewMailLog(Map<String, Object> params) {
         List<OAS.Param> query = new List<OAS.Param>();
 
         // cast query params to verify their expected type

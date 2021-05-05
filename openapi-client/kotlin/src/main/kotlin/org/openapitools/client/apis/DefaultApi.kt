@@ -33,7 +33,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
-            System.getProperties().getProperty("org.openapitools.client.baseUrl", "https://api.mailbaby.net")
+            System.getProperties().getProperty("org.openapitools.client.baseUrl", "http://mystage.interserver.net:8787")
         }
     }
 
@@ -389,8 +389,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun viewMailLogById(id: kotlin.Long?, searchString: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?) : kotlin.collections.List<MailLog> {
-        val localVariableConfig = viewMailLogByIdRequestConfig(id = id, searchString = searchString, skip = skip, limit = limit)
+    fun viewMailLog(id: kotlin.Long?, searchString: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?) : kotlin.collections.List<MailLog> {
+        val localVariableConfig = viewMailLogRequestConfig(id = id, searchString = searchString, skip = skip, limit = limit)
 
         val localVarResponse = request<kotlin.collections.List<MailLog>>(
             localVariableConfig
@@ -412,7 +412,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     }
 
     /**
-    * To obtain the request config of the operation viewMailLogById
+    * To obtain the request config of the operation viewMailLog
     *
     * @param id The ID of your mail order this will be sent through. (optional)
     * @param searchString pass an optional search string for looking up inventory (optional)
@@ -420,7 +420,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     * @param limit maximum number of records to return (optional)
     * @return RequestConfig
     */
-    fun viewMailLogByIdRequestConfig(id: kotlin.Long?, searchString: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?) : RequestConfig {
+    fun viewMailLogRequestConfig(id: kotlin.Long?, searchString: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?) : RequestConfig {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {

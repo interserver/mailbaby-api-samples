@@ -396,7 +396,7 @@ if (body != null)
   /// displays the mail log
   ///
   /// By passing in the appropriate options, you can search for available inventory in the system 
-  Future<List<MailLog>> viewMailLogById({ int id, String searchString, int skip, int limit }) async {
+  Future<List<MailLog>> viewMailLog({ int id, String searchString, int skip, int limit }) async {
     Object postBody = null;
 
     // verify required params are set

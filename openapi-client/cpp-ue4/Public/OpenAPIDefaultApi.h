@@ -40,8 +40,8 @@ public:
 	class SendMailResponse;
 	class ValidateMailOrderRequest;
 	class ValidateMailOrderResponse;
-	class ViewMailLogByIdRequest;
-	class ViewMailLogByIdResponse;
+	class ViewMailLogRequest;
+	class ViewMailLogResponse;
 	
     DECLARE_DELEGATE_OneParam(FGetMailOrdersDelegate, const GetMailOrdersResponse&);
     DECLARE_DELEGATE_OneParam(FPingServerDelegate, const PingServerResponse&);
@@ -49,7 +49,7 @@ public:
     DECLARE_DELEGATE_OneParam(FSendAdvMailDelegate, const SendAdvMailResponse&);
     DECLARE_DELEGATE_OneParam(FSendMailDelegate, const SendMailResponse&);
     DECLARE_DELEGATE_OneParam(FValidateMailOrderDelegate, const ValidateMailOrderResponse&);
-    DECLARE_DELEGATE_OneParam(FViewMailLogByIdDelegate, const ViewMailLogByIdResponse&);
+    DECLARE_DELEGATE_OneParam(FViewMailLogDelegate, const ViewMailLogResponse&);
     
     bool GetMailOrders(const GetMailOrdersRequest& Request, const FGetMailOrdersDelegate& Delegate = FGetMailOrdersDelegate()) const;
     bool PingServer(const PingServerRequest& Request, const FPingServerDelegate& Delegate = FPingServerDelegate()) const;
@@ -57,7 +57,7 @@ public:
     bool SendAdvMail(const SendAdvMailRequest& Request, const FSendAdvMailDelegate& Delegate = FSendAdvMailDelegate()) const;
     bool SendMail(const SendMailRequest& Request, const FSendMailDelegate& Delegate = FSendMailDelegate()) const;
     bool ValidateMailOrder(const ValidateMailOrderRequest& Request, const FValidateMailOrderDelegate& Delegate = FValidateMailOrderDelegate()) const;
-    bool ViewMailLogById(const ViewMailLogByIdRequest& Request, const FViewMailLogByIdDelegate& Delegate = FViewMailLogByIdDelegate()) const;
+    bool ViewMailLog(const ViewMailLogRequest& Request, const FViewMailLogDelegate& Delegate = FViewMailLogDelegate()) const;
     
 
 private:
@@ -67,7 +67,7 @@ private:
     void OnSendAdvMailResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FSendAdvMailDelegate Delegate, int AutoRetryCount) const;
     void OnSendMailResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FSendMailDelegate Delegate, int AutoRetryCount) const;
     void OnValidateMailOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FValidateMailOrderDelegate Delegate, int AutoRetryCount) const;
-    void OnViewMailLogByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FViewMailLogByIdDelegate Delegate, int AutoRetryCount) const;
+    void OnViewMailLogResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FViewMailLogDelegate Delegate, int AutoRetryCount) const;
     
 	bool IsValid() const;
 	void HandleResponse(FHttpResponsePtr HttpResponse, bool bSucceeded, Response& InOutResponse) const;

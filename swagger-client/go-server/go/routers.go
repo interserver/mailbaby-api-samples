@@ -98,9 +98,9 @@ var routes = Routes{
 	},
 
 	Route{
-		"ViewMailLogById",
+		"ViewMailLog",
 		strings.ToUpper("Get"),
 		"/mail/log",
-		ViewMailLogById,
+		ViewMailLog,
 	},
 }

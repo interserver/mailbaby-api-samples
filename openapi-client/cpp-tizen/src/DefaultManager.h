@@ -203,7 +203,7 @@ bool validateMailOrderAsync(char * accessToken,
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
-bool viewMailLogByIdSync(char * accessToken,
+bool viewMailLogSync(char * accessToken,
 	long long id, std::string searchString, int skip, int limit, 
 	void(* handler)(std::list<MailLog>, Error, void* )
 	, void* userData);
@@ -219,7 +219,7 @@ bool viewMailLogByIdSync(char * accessToken,
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
-bool viewMailLogByIdAsync(char * accessToken,
+bool viewMailLogAsync(char * accessToken,
 	long long id, std::string searchString, int skip, int limit, 
 	void(* handler)(std::list<MailLog>, Error, void* )
 	, void* userData);
@@ -228,7 +228,7 @@ bool viewMailLogByIdAsync(char * accessToken,
 
 	static std::string getBasePath()
 	{
-		return "https://api.mailbaby.net";
+		return "http://mystage.interserver.net:8787";
 	}
 };
 /** @}*/

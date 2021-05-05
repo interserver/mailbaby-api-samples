@@ -36,7 +36,7 @@ feature {NONE} -- Initialization
 
 feature -- Access
 
-	default_base_path: STRING = "https://api.mailbaby.net"
+	default_base_path: STRING = "http://mystage.interserver.net:8787"
 			-- default base path.
 
 	base_path: STRING

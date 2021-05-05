@@ -32,7 +32,7 @@ import { COLLECTION_FORMATS }  from '../variables';
 
 @injectable()
 export class DefaultService {
-    private basePath: string = 'https://api.mailbaby.net';
+    private basePath: string = 'http://mystage.interserver.net:8787';
 
     constructor(@inject('IApiHttpClient') private httpClient: IHttpClient,
         @inject('IAPIConfiguration') private APIConfiguration: IAPIConfiguration ) {
@@ -238,9 +238,9 @@ export class DefaultService {
      * @param limit maximum number of records to return
      
      */
-    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, observe?: 'body', headers?: Headers): Observable<Array<MailLog>>;
-    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, observe?: 'response', headers?: Headers): Observable<HttpResponse<Array<MailLog>>>;
-    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, observe: any = 'body', headers: Headers = {}): Observable<any> {
+    public viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, observe?: 'body', headers?: Headers): Observable<Array<MailLog>>;
+    public viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, observe?: 'response', headers?: Headers): Observable<HttpResponse<Array<MailLog>>>;
+    public viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, observe: any = 'body', headers: Headers = {}): Observable<any> {
         let queryParameters: string[] = [];
         if (id !== undefined) {
             queryParameters.push('id='+encodeURIComponent(String(id)));

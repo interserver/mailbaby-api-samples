@@ -120,7 +120,7 @@ class DefaultApi(
             formFields() { () =>
               
                 
-                  defaultService.viewMailLogById(id = id, searchString = searchString, skip = skip, limit = limit)
+                  defaultService.viewMailLog(id = id, searchString = searchString, skip = skip, limit = limit)
                
              
             }
@@ -216,15 +216,15 @@ trait DefaultApiService {
   def validateMailOrder()
       (implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
 
-  def viewMailLogById200(responseMailLogarray: List[MailLog])(implicit toEntityMarshallerMailLogarray: ToEntityMarshaller[List[MailLog]]): Route =
+  def viewMailLog200(responseMailLogarray: List[MailLog])(implicit toEntityMarshallerMailLogarray: ToEntityMarshaller[List[MailLog]]): Route =
     complete((200, responseMailLogarray))
-  def viewMailLogById400: Route =
+  def viewMailLog400: Route =
     complete((400, "bad input parameter"))
   /**
    * Code: 200, Message: search results matching criteria, DataType: List[MailLog]
    * Code: 400, Message: bad input parameter
    */
-  def viewMailLogById(id: Option[Long], searchString: Option[String], skip: Option[Int], limit: Option[Int])
+  def viewMailLog(id: Option[Long], searchString: Option[String], skip: Option[Int], limit: Option[Int])
       (implicit toEntityMarshallerMailLogarray: ToEntityMarshaller[List[MailLog]]): Route
 
 }

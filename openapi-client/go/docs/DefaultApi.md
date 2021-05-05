@@ -1,6 +1,6 @@
 # \DefaultApi
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**SendAdvMail**](DefaultApi.md#SendAdvMail) | **Post** /mail/advsend | Sends an Email with Advanced Options
 [**SendMail**](DefaultApi.md#SendMail) | **Post** /mail/send | Sends an Email
 [**ValidateMailOrder**](DefaultApi.md#ValidateMailOrder) | **Get** /mail/order | validatess order details before placing an order
-[**ViewMailLogById**](DefaultApi.md#ViewMailLogById) | **Get** /mail/log | displays the mail log
+[**ViewMailLog**](DefaultApi.md#ViewMailLog) | **Get** /mail/log | displays the mail log
 
 
 
@@ -395,9 +395,9 @@ Other parameters are passed through a pointer to a apiValidateMailOrderRequest s
 [[Back to README]](../README.md)
 
 
-## ViewMailLogById
+## ViewMailLog
 
-> []MailLog ViewMailLogById(ctx).Id(id).SearchString(searchString).Skip(skip).Limit(limit).Execute()
+> []MailLog ViewMailLog(ctx).Id(id).SearchString(searchString).Skip(skip).Limit(limit).Execute()
 
 displays the mail log
 
@@ -423,13 +423,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.ViewMailLogById(context.Background()).Id(id).SearchString(searchString).Skip(skip).Limit(limit).Execute()
+    resp, r, err := api_client.DefaultApi.ViewMailLog(context.Background()).Id(id).SearchString(searchString).Skip(skip).Limit(limit).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ViewMailLogById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ViewMailLog``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ViewMailLogById`: []MailLog
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ViewMailLogById`: %v\n", resp)
+    // response from `ViewMailLog`: []MailLog
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ViewMailLog`: %v\n", resp)
 }
 ```
 
@@ -439,7 +439,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiViewMailLogByIdRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiViewMailLogRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

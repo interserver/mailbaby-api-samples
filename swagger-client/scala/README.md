@@ -62,7 +62,7 @@ libraryDependencies += "io.swagger" % "swagger-scala-client" % "1.0.0"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -72,7 +72,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *DefaultApi* | [**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
+*DefaultApi* | [**viewMailLog**](DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 
 ## Documentation for Models
 

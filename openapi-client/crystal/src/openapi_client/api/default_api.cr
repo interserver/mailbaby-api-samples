@@ -371,28 +371,28 @@ module
     # displays the mail log
     # By passing in the appropriate options, you can search for available inventory in the system 
     # @return [Array(MailLog)]
-    def view_mail_log_by_id(id : Int64?, search_string : String?, skip : Int32?, limit : Int32?)
-      data, _status_code, _headers = view_mail_log_by_id_with_http_info(id, search_string, skip, limit)
+    def view_mail_log(id : Int64?, search_string : String?, skip : Int32?, limit : Int32?)
+      data, _status_code, _headers = view_mail_log_with_http_info(id, search_string, skip, limit)
       data
     end
 
     # displays the mail log
     # By passing in the appropriate options, you can search for available inventory in the system 
     # @return [Array<(Array(MailLog), Integer, Hash)>] Array(MailLog) data, response status code and response headers
-    def view_mail_log_by_id_with_http_info(id : Int64?, search_string : String?, skip : Int32?, limit : Int32?)
+    def view_mail_log_with_http_info(id : Int64?, search_string : String?, skip : Int32?, limit : Int32?)
       if @api_client.config.debugging
-        Log.debug {"Calling API: DefaultApi.view_mail_log_by_id ..."}
+        Log.debug {"Calling API: DefaultApi.view_mail_log ..."}
       end
       if @api_client.config.client_side_validation && !skip.nil? && skip < 0
-        raise ArgumentError.new("invalid value for \"skip\" when calling DefaultApi.view_mail_log_by_id, must be greater than or equal to 0.")
+        raise ArgumentError.new("invalid value for \"skip\" when calling DefaultApi.view_mail_log, must be greater than or equal to 0.")
       end
 
       if @api_client.config.client_side_validation && !limit.nil? && limit > 50
-        raise ArgumentError.new("invalid value for \"limit\" when calling DefaultApi.view_mail_log_by_id, must be smaller than or equal to 50.")
+        raise ArgumentError.new("invalid value for \"limit\" when calling DefaultApi.view_mail_log, must be smaller than or equal to 50.")
       end
 
       if @api_client.config.client_side_validation && !limit.nil? && limit < 0
-        raise ArgumentError.new("invalid value for \"limit\" when calling DefaultApi.view_mail_log_by_id, must be greater than or equal to 0.")
+        raise ArgumentError.new("invalid value for \"limit\" when calling DefaultApi.view_mail_log, must be greater than or equal to 0.")
       end
 
       # resource path
@@ -424,7 +424,7 @@ module
 
       data, status_code, headers = @api_client.call_api(:GET,
                                                         local_var_path,
-                                                        :"DefaultApi.view_mail_log_by_id",
+                                                        :"DefaultApi.view_mail_log",
                                                         return_type,
                                                         post_body,
                                                         auth_names,
@@ -432,7 +432,7 @@ module
                                                         query_params,
                                                         form_params)
       if @api_client.config.debugging
-        Log.debug {"API called: DefaultApi#view_mail_log_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"}
+        Log.debug {"API called: DefaultApi#view_mail_log\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"}
       end
       return Array(MailLog).from_json(data), status_code, headers
     end

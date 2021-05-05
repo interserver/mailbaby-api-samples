@@ -18,7 +18,7 @@ import "./swagger"
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -28,7 +28,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**SendAdvMail**](docs/DefaultApi.md#sendadvmail) | **Post** /mail/advsend | Sends an Email with Advanced Options
 *DefaultApi* | [**SendMail**](docs/DefaultApi.md#sendmail) | **Post** /mail/send | Sends an Email
 *DefaultApi* | [**ValidateMailOrder**](docs/DefaultApi.md#validatemailorder) | **Get** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**ViewMailLogById**](docs/DefaultApi.md#viewmaillogbyid) | **Get** /mail/log | displays the mail log
+*DefaultApi* | [**ViewMailLog**](docs/DefaultApi.md#viewmaillog) | **Get** /mail/log | displays the mail log
 
 ## Documentation For Models
 

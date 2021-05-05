@@ -908,13 +908,13 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def view_mail_log_by_id(self, **kwargs):  # noqa: E501
+    def view_mail_log(self, **kwargs):  # noqa: E501
         """displays the mail log  # noqa: E501
 
         By passing in the appropriate options, you can search for available inventory in the system   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.view_mail_log_by_id(async_req=True)
+        >>> thread = api.view_mail_log(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -928,18 +928,18 @@ class DefaultApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.view_mail_log_by_id_with_http_info(**kwargs)  # noqa: E501
+            return self.view_mail_log_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.view_mail_log_by_id_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.view_mail_log_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def view_mail_log_by_id_with_http_info(self, **kwargs):  # noqa: E501
+    def view_mail_log_with_http_info(self, **kwargs):  # noqa: E501
         """displays the mail log  # noqa: E501
 
         By passing in the appropriate options, you can search for available inventory in the system   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.view_mail_log_by_id_with_http_info(async_req=True)
+        >>> thread = api.view_mail_log_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -963,7 +963,7 @@ class DefaultApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method view_mail_log_by_id" % key
+                    " to method view_mail_log" % key
                 )
             params[key] = val
         del params['kwargs']

@@ -83,8 +83,8 @@ module.exports.validateMailOrder = function validateMailOrder (req, res, next) {
     });
 };
 
-module.exports.viewMailLogById = function viewMailLogById (req, res, next, id, searchString, skip, limit) {
-  Default.viewMailLogById(id, searchString, skip, limit)
+module.exports.viewMailLog = function viewMailLog (req, res, next, id, searchString, skip, limit) {
+  Default.viewMailLog(id, searchString, skip, limit)
     .then(function (response) {
       utils.writeJson(res, response);
     })

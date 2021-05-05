@@ -1,6 +1,6 @@
 # swagger_client.DefaultApi
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**send_adv_mail**](DefaultApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**send_mail**](DefaultApi.md#send_mail) | **POST** /mail/send | Sends an Email
 [**validate_mail_order**](DefaultApi.md#validate_mail_order) | **GET** /mail/order | validatess order details before placing an order
-[**view_mail_log_by_id**](DefaultApi.md#view_mail_log_by_id) | **GET** /mail/log | displays the mail log
+[**view_mail_log**](DefaultApi.md#view_mail_log) | **GET** /mail/log | displays the mail log
 
 # **get_mail_orders**
 > MailOrders get_mail_orders(id=id)
@@ -319,8 +319,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **view_mail_log_by_id**
-> list[MailLog] view_mail_log_by_id(id=id, search_string=search_string, skip=skip, limit=limit)
+# **view_mail_log**
+> list[MailLog] view_mail_log(id=id, search_string=search_string, skip=skip, limit=limit)
 
 displays the mail log
 
@@ -349,10 +349,10 @@ limit = 56 # int | maximum number of records to return (optional)
 
 try:
     # displays the mail log
-    api_response = api_instance.view_mail_log_by_id(id=id, search_string=search_string, skip=skip, limit=limit)
+    api_response = api_instance.view_mail_log(id=id, search_string=search_string, skip=skip, limit=limit)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->view_mail_log_by_id: %s\n" % e)
+    print("Exception when calling DefaultApi->view_mail_log: %s\n" % e)
 ```
 
 ### Parameters

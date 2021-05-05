@@ -131,12 +131,12 @@ class DefaultApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for viewMailLogById
+     * Test case for viewMailLog
      *
      * displays the mail log.
      *
      */
-    public function testViewMailLogById()
+    public function testViewMailLog()
     {
     }
 }

@@ -74,7 +74,7 @@ _()
     operations["sendAdvMail"]=1
     operations["sendMail"]=1
     operations["validateMailOrder"]=1
-    operations["viewMailLogById"]=1
+    operations["viewMailLog"]=1
 
     # An associative array of operations to their parameters
     # Only include path, query and header parameters
@@ -85,7 +85,7 @@ _()
     operation_parameters["sendAdvMail"]=""
     operation_parameters["sendMail"]=""
     operation_parameters["validateMailOrder"]=""
-    operation_parameters["viewMailLogById"]="id= searchString= skip= limit= "
+    operation_parameters["viewMailLog"]="id= searchString= skip= limit= "
 
     # An associative array of possible values for enum parameters
     declare -A operation_parameters_enum_values

@@ -31,7 +31,7 @@ API.Client.DefaultApi = function($http, $httpParamSerializer, $injector) {
   /** @private {!string} */
   this.basePath_ = $injector.has('DefaultApiBasePath') ?
                    /** @type {!string} */ ($injector.get('DefaultApiBasePath')) :
-                   'https://api.mailbaby.net';
+                   'http://mystage.interserver.net:8787';
 
   /** @private {!Object<string, string>} */
   this.defaultHeaders_ = $injector.has('DefaultApiDefaultHeaders') ?
@@ -290,7 +290,7 @@ API.Client.DefaultApi.prototype.validateMailOrder = function(opt_extraHttpReques
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!Array<!API.Client.MailLog>>}
  */
-API.Client.DefaultApi.prototype.viewMailLogById = function(opt_id, opt_searchString, opt_skip, opt_limit, opt_extraHttpRequestParams) {
+API.Client.DefaultApi.prototype.viewMailLog = function(opt_id, opt_searchString, opt_skip, opt_limit, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/mail/log';
 

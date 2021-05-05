@@ -1,6 +1,6 @@
 # SwaggerClient::DefaultApi
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 [**send_mail**](DefaultApi.md#send_mail) | **POST** /mail/send | Sends an Email
 [**send_mail**](DefaultApi.md#send_mail) | **POST** /mail/send | Sends an Email
 [**validate_mail_order**](DefaultApi.md#validate_mail_order) | **GET** /mail/order | validatess order details before placing an order
-[**view_mail_log_by_id**](DefaultApi.md#view_mail_log_by_id) | **GET** /mail/log | displays the mail log
+[**view_mail_log**](DefaultApi.md#view_mail_log) | **GET** /mail/log | displays the mail log
 
 # **get_mail_orders**
 > MailOrders get_mail_orders(opts)
@@ -436,8 +436,8 @@ nil (empty response body)
 
 
 
-# **view_mail_log_by_id**
-> Array&lt;MailLog&gt; view_mail_log_by_id(opts)
+# **view_mail_log**
+> Array&lt;MailLog&gt; view_mail_log(opts)
 
 displays the mail log
 
@@ -465,10 +465,10 @@ opts = {
 
 begin
   #displays the mail log
-  result = api_instance.view_mail_log_by_id(opts)
+  result = api_instance.view_mail_log(opts)
   p result
 rescue SwaggerClient::ApiError => e
-  puts "Exception when calling DefaultApi->view_mail_log_by_id: #{e}"
+  puts "Exception when calling DefaultApi->view_mail_log: #{e}"
 end
 ```
 

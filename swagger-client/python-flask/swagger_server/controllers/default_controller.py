@@ -154,7 +154,7 @@ def validate_mail_order():  # noqa: E501
     return 'do some magic!'
 
 
-def view_mail_log_by_id(id=None, search_string=None, skip=None, limit=None):  # noqa: E501
+def view_mail_log(id=None, search_string=None, skip=None, limit=None):  # noqa: E501
     """displays the mail log
 
     By passing in the appropriate options, you can search for available inventory in the system  # noqa: E501

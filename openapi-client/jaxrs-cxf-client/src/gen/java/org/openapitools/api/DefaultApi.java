@@ -136,6 +136,6 @@ public interface DefaultApi  {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "search results matching criteria", response = MailLog.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "bad input parameter") })
-    public List<MailLog> viewMailLogById(@QueryParam("id") Long id, @QueryParam("searchString") String searchString, @QueryParam("skip") Integer skip, @QueryParam("limit") Integer limit);
+    public List<MailLog> viewMailLog(@QueryParam("id") Long id, @QueryParam("searchString") String searchString, @QueryParam("skip") Integer skip, @QueryParam("limit") Integer limit);
 }
 

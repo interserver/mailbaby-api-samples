@@ -433,7 +433,7 @@ sub validate_mail_order {
 }
 
 #
-# view_mail_log_by_id
+# view_mail_log
 #
 # displays the mail log
 # 
@@ -464,7 +464,7 @@ sub validate_mail_order {
         required => '0',
     },
     };
-    __PACKAGE__->method_documentation->{ 'view_mail_log_by_id' } = { 
+    __PACKAGE__->method_documentation->{ 'view_mail_log' } = { 
         summary => 'displays the mail log',
         params => $params,
         returns => 'ARRAY[MailLog]',
@@ -472,7 +472,7 @@ sub validate_mail_order {
 }
 # @return ARRAY[MailLog]
 #
-sub view_mail_log_by_id {
+sub view_mail_log {
     my ($self, %args) = @_;
 
     # parse inputs

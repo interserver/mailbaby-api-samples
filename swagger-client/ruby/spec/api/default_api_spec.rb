@@ -133,7 +133,7 @@ describe 'DefaultApi' do
     end
   end
 
-  # unit tests for view_mail_log_by_id
+  # unit tests for view_mail_log
   # displays the mail log
   # By passing in the appropriate options, you can search for available inventory in the system 
   # @param [Hash] opts the optional parameters
@@ -142,7 +142,7 @@ describe 'DefaultApi' do
   # @option opts [Integer] :skip number of records to skip for pagination
   # @option opts [Integer] :limit maximum number of records to return
   # @return [Array<MailLog>]
-  describe 'view_mail_log_by_id test' do
+  describe 'view_mail_log test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

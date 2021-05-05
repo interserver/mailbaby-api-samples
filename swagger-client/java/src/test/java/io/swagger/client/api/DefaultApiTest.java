@@ -139,12 +139,12 @@ public class DefaultApiTest {
      *          if the Api call fails
      */
     @Test
-    public void viewMailLogByIdTest() throws ApiException {
+    public void viewMailLogTest() throws ApiException {
         Long id = null;
         String searchString = null;
         Integer skip = null;
         Integer limit = null;
-        List<MailLog> response = api.viewMailLogById(id, searchString, skip, limit);
+        List<MailLog> response = api.viewMailLog(id, searchString, skip, limit);
 
         // TODO: test validations
     }

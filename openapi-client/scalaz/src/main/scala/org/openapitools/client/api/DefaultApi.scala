@@ -153,7 +153,7 @@ object DefaultApi {
     } yield resp
   }
   
-  def viewMailLogById(host: String, id: Long, searchString: String, skip: Integer, limit: Integer)(implicit idQuery: QueryParam[Long], searchStringQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer]): Task[List[MailLog]] = {
+  def viewMailLog(host: String, id: Long, searchString: String, skip: Integer, limit: Integer)(implicit idQuery: QueryParam[Long], searchStringQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer]): Task[List[MailLog]] = {
     implicit val returnTypeDecoder: EntityDecoder[List[MailLog]] = jsonOf[List[MailLog]]
 
     val path = "/mail/log"
@@ -301,7 +301,7 @@ class HttpServiceDefaultApi(service: HttpService) {
     } yield resp
   }
   
-  def viewMailLogById(id: Long, searchString: String, skip: Integer, limit: Integer)(implicit idQuery: QueryParam[Long], searchStringQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer]): Task[List[MailLog]] = {
+  def viewMailLog(id: Long, searchString: String, skip: Integer, limit: Integer)(implicit idQuery: QueryParam[Long], searchStringQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer]): Task[List[MailLog]] = {
     implicit val returnTypeDecoder: EntityDecoder[List[MailLog]] = jsonOf[List[MailLog]]
 
     val path = "/mail/log"

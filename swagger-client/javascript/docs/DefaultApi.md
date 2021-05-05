@@ -1,6 +1,6 @@
 # MailBabyApi.DefaultApi
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
+[**viewMailLog**](DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 
 <a name="getMailOrders"></a>
 # **getMailOrders**
@@ -297,9 +297,9 @@ null (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="viewMailLogById"></a>
-# **viewMailLogById**
-> [MailLog] viewMailLogById(opts)
+<a name="viewMailLog"></a>
+# **viewMailLog**
+> [MailLog] viewMailLog(opts)
 
 displays the mail log
 
@@ -323,7 +323,7 @@ let opts = {
   'skip': 56, // Number | number of records to skip for pagination
   'limit': 56 // Number | maximum number of records to return
 };
-apiInstance.viewMailLogById(opts, (error, data, response) => {
+apiInstance.viewMailLog(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {

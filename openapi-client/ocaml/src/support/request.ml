@@ -1,5 +1,5 @@
 let api_key = ""
-let base_url = "https://api.mailbaby.net"
+let base_url = "http://mystage.interserver.net:8787"
 let default_headers = Cohttp.Header.init_with "Content-Type" "application/json"
 
 let option_fold f default o =

@@ -172,7 +172,7 @@ exports.validateMailOrder = function() {
  * limit Integer maximum number of records to return (optional)
  * returns List
  **/
-exports.viewMailLogById = function(id,searchString,skip,limit) {
+exports.viewMailLog = function(id,searchString,skip,limit) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {

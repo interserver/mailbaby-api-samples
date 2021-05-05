@@ -1,6 +1,6 @@
 # DefaultApi
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
+[**viewMailLog**](DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 
 <a name="getMailOrders"></a>
 # **getMailOrders**
@@ -447,9 +447,9 @@ null (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="viewMailLogById"></a>
-# **viewMailLogById**
-> List&lt;MailLog&gt; viewMailLogById(id, searchString, skip, limit)
+<a name="viewMailLog"></a>
+# **viewMailLog**
+> List&lt;MailLog&gt; viewMailLog(id, searchString, skip, limit)
 
 displays the mail log
 
@@ -478,10 +478,10 @@ String searchString = "searchString_example"; // String | pass an optional searc
 Integer skip = 56; // Integer | number of records to skip for pagination
 Integer limit = 56; // Integer | maximum number of records to return
 try {
-    List<MailLog> result = apiInstance.viewMailLogById(id, searchString, skip, limit);
+    List<MailLog> result = apiInstance.viewMailLog(id, searchString, skip, limit);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling DefaultApi#viewMailLogById");
+    System.err.println("Exception when calling DefaultApi#viewMailLog");
     e.printStackTrace();
 }
 ```

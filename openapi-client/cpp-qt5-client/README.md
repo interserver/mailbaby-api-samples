@@ -113,7 +113,7 @@ void Example::exampleFunction1(){
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -123,7 +123,7 @@ Class | Method | HTTP request | Description
 *OAIDefaultApi* | [**sendAdvMail**](OAIDefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *OAIDefaultApi* | [**sendMail**](OAIDefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 *OAIDefaultApi* | [**validateMailOrder**](OAIDefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-*OAIDefaultApi* | [**viewMailLogById**](OAIDefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
+*OAIDefaultApi* | [**viewMailLog**](OAIDefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 
 
 ## Documentation for Models

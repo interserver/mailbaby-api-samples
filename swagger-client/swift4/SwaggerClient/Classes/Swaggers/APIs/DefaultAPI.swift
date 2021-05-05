@@ -331,8 +331,8 @@ open class DefaultAPI {
      - parameter _id: (query) The ID of your mail order this will be sent through. (optional)     - parameter searchString: (query) pass an optional search string for looking up inventory (optional)     - parameter skip: (query) number of records to skip for pagination (optional)     - parameter limit: (query) maximum number of records to return (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func viewMailLogById(_id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: [MailLog]?,_ error: Error?) -> Void)) {
-        viewMailLogByIdWithRequestBuilder(_id: _id, searchString: searchString, skip: skip, limit: limit).execute { (response, error) -> Void in
+    open class func viewMailLog(_id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil, completion: @escaping ((_ data: [MailLog]?,_ error: Error?) -> Void)) {
+        viewMailLogWithRequestBuilder(_id: _id, searchString: searchString, skip: skip, limit: limit).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -354,7 +354,7 @@ open class DefaultAPI {
 
      - returns: RequestBuilder<[MailLog]> 
      */
-    open class func viewMailLogByIdWithRequestBuilder(_id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil) -> RequestBuilder<[MailLog]> {
+    open class func viewMailLogWithRequestBuilder(_id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil) -> RequestBuilder<[MailLog]> {
         let path = "/mail/log"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil

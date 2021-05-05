@@ -22,7 +22,7 @@ Run `pod install`
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -32,7 +32,7 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**sendAdvMail**](docs/DefaultAPI.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *DefaultAPI* | [**sendMail**](docs/DefaultAPI.md#sendmail) | **POST** /mail/send | Sends an Email
 *DefaultAPI* | [**validateMailOrder**](docs/DefaultAPI.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultAPI* | [**viewMailLogById**](docs/DefaultAPI.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
+*DefaultAPI* | [**viewMailLog**](docs/DefaultAPI.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 
 ## Documentation For Models

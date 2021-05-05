@@ -76,7 +76,7 @@ namespace IO.Swagger.Api
         /// <param name="skip">number of records to skip for pagination</param>
         /// <param name="limit">maximum number of records to return</param>
         /// <returns>List&lt;MailLog&gt;</returns>
-        List<MailLog> ViewMailLogById (long? id, string searchString, int? skip, int? limit);
+        List<MailLog> ViewMailLog (long? id, string searchString, int? skip, int? limit);
     }
   
     /// <summary>
@@ -452,7 +452,7 @@ if (body != null) formParams.Add("body", ApiClient.ParameterToString(body)); // 
         /// <param name="skip">number of records to skip for pagination</param>
         /// <param name="limit">maximum number of records to return</param>
         /// <returns>List&lt;MailLog&gt;</returns>
-        public List<MailLog> ViewMailLogById (long? id, string searchString, int? skip, int? limit)
+        public List<MailLog> ViewMailLog (long? id, string searchString, int? skip, int? limit)
         {
     
             var path = "/mail/log";
@@ -476,9 +476,9 @@ if (body != null) formParams.Add("body", ApiClient.ParameterToString(body)); // 
             IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.GET, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
     
             if (((int)response.StatusCode) >= 400)
-                throw new ApiException ((int)response.StatusCode, "Error calling ViewMailLogById: " + response.Content, response.Content);
+                throw new ApiException ((int)response.StatusCode, "Error calling ViewMailLog: " + response.Content, response.Content);
             else if (((int)response.StatusCode) == 0)
-                throw new ApiException ((int)response.StatusCode, "Error calling ViewMailLogById: " + response.ErrorMessage, response.ErrorMessage);
+                throw new ApiException ((int)response.StatusCode, "Error calling ViewMailLog: " + response.ErrorMessage, response.ErrorMessage);
     
             return (List<MailLog>) ApiClient.Deserialize(response.Content, typeof(List<MailLog>), response.Headers);
         }

@@ -102,10 +102,10 @@ operation_parameters_minimum_occurrences["sendMail:::to"]=1
 operation_parameters_minimum_occurrences["sendMail:::from"]=1
 operation_parameters_minimum_occurrences["sendMail:::subject"]=1
 operation_parameters_minimum_occurrences["sendMail:::body"]=1
-operation_parameters_minimum_occurrences["viewMailLogById:::id"]=0
-operation_parameters_minimum_occurrences["viewMailLogById:::searchString"]=0
-operation_parameters_minimum_occurrences["viewMailLogById:::skip"]=0
-operation_parameters_minimum_occurrences["viewMailLogById:::limit"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::id"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::searchString"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::skip"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::limit"]=0
 
 ##
 # This array stores the maximum number of allowed occurrences for parameter
@@ -121,10 +121,10 @@ operation_parameters_maximum_occurrences["sendMail:::to"]=0
 operation_parameters_maximum_occurrences["sendMail:::from"]=0
 operation_parameters_maximum_occurrences["sendMail:::subject"]=0
 operation_parameters_maximum_occurrences["sendMail:::body"]=0
-operation_parameters_maximum_occurrences["viewMailLogById:::id"]=0
-operation_parameters_maximum_occurrences["viewMailLogById:::searchString"]=0
-operation_parameters_maximum_occurrences["viewMailLogById:::skip"]=0
-operation_parameters_maximum_occurrences["viewMailLogById:::limit"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::id"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::searchString"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::skip"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::limit"]=0
 
 ##
 # The type of collection for specifying multiple values for parameter:
@@ -137,10 +137,10 @@ operation_parameters_collection_type["sendMail:::to"]=""
 operation_parameters_collection_type["sendMail:::from"]=""
 operation_parameters_collection_type["sendMail:::subject"]=""
 operation_parameters_collection_type["sendMail:::body"]=""
-operation_parameters_collection_type["viewMailLogById:::id"]=""
-operation_parameters_collection_type["viewMailLogById:::searchString"]=""
-operation_parameters_collection_type["viewMailLogById:::skip"]=""
-operation_parameters_collection_type["viewMailLogById:::limit"]=""
+operation_parameters_collection_type["viewMailLog:::id"]=""
+operation_parameters_collection_type["viewMailLog:::searchString"]=""
+operation_parameters_collection_type["viewMailLog:::skip"]=""
+operation_parameters_collection_type["viewMailLog:::limit"]=""
 
 
 ##
@@ -529,7 +529,7 @@ read -r -d '' ops <<EOF
   ${CYAN}sendAdvMail${OFF};Sends an Email with Advanced Options (AUTH)
   ${CYAN}sendMail${OFF};Sends an Email (AUTH)
   ${CYAN}validateMailOrder${OFF};validatess order details before placing an order (AUTH)
-  ${CYAN}viewMailLogById${OFF};displays the mail log (AUTH)
+  ${CYAN}viewMailLog${OFF};displays the mail log (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
@@ -538,7 +538,7 @@ echo "  $ops" | column -t -s ';'
     echo -e "  -V,--version\\t\\t\\t\\tPrint API version"
     echo -e "  --about\\t\\t\\t\\tPrint the information about service"
     echo -e "  --host ${CYAN}<url>${OFF}\\t\\t\\t\\tSpecify the host URL "
-echo -e "              \\t\\t\\t\\t(e.g. 'https://api.mailbaby.net')"
+echo -e "              \\t\\t\\t\\t(e.g. 'https://mystage.interserver.net')"
 
     echo -e "  --force\\t\\t\\t\\tForce command invocation in spite of missing"
     echo -e "         \\t\\t\\t\\trequired parameters or wrong content type"
@@ -709,12 +709,12 @@ print_validateMailOrder_help() {
 }
 ##############################################################################
 #
-# Print help for viewMailLogById operation
+# Print help for viewMailLog operation
 #
 ##############################################################################
-print_viewMailLogById_help() {
+print_viewMailLog_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}viewMailLogById - displays the mail log${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}viewMailLog - displays the mail log${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "By passing in the appropriate options, you can search for
 available inventory in the system" | paste -sd' ' | fold -sw 80
@@ -1037,10 +1037,10 @@ call_validateMailOrder() {
 
 ##############################################################################
 #
-# Call viewMailLogById operation
+# Call viewMailLog operation
 #
 ##############################################################################
-call_viewMailLogById() {
+call_viewMailLog() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
@@ -1186,8 +1186,8 @@ case $key in
     validateMailOrder)
     operation="validateMailOrder"
     ;;
-    viewMailLogById)
-    operation="viewMailLogById"
+    viewMailLog)
+    operation="viewMailLog"
     ;;
     *==*)
     # Parse body arguments and convert them into top level
@@ -1291,8 +1291,8 @@ case $operation in
     validateMailOrder)
     call_validateMailOrder
     ;;
-    viewMailLogById)
-    call_viewMailLogById
+    viewMailLog)
+    call_viewMailLog
     ;;
     *)
     ERROR_MSG="ERROR: Unknown operation: $operation"

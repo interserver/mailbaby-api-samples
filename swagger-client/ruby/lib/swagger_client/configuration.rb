@@ -125,9 +125,9 @@ module SwaggerClient
     attr_accessor :force_ending_format
 
     def initialize
-      @scheme = 'https'
-      @host = 'api.mailbaby.net'
-      @base_path = 'https://api.mailbaby.net'
+      @scheme = 'http'
+      @host = 'mystage.interserver.net'
+      @base_path = 'http://mystage.interserver.net:8787'
       @api_key = {}
       @api_key_prefix = {}
       @timeout = 0

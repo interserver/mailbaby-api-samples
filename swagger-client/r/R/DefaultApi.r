@@ -35,7 +35,7 @@
 #' validate_mail_order validatess order details before placing an order
 #'
 #'
-#' view_mail_log_by_id displays the mail log
+#' view_mail_log displays the mail log
 #'
 #' }
 #'
@@ -232,7 +232,7 @@ DefaultApi <- R6::R6Class(
       }
 
     }
-    view_mail_log_by_id = function(id, search_string, skip, limit, ...){
+    view_mail_log = function(id, search_string, skip, limit, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()

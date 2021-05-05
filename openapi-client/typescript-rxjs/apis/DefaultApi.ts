@@ -40,7 +40,7 @@ export interface SendMailRequest {
     body: string;
 }
 
-export interface ViewMailLogByIdRequest {
+export interface ViewMailLogRequest {
     id?: number;
     searchString?: string;
     skip?: number;
@@ -181,9 +181,9 @@ export class DefaultApi extends BaseAPI {
      * By passing in the appropriate options, you can search for available inventory in the system 
      * displays the mail log
      */
-    viewMailLogById({ id, searchString, skip, limit }: ViewMailLogByIdRequest): Observable<Array<MailLog>>
-    viewMailLogById({ id, searchString, skip, limit }: ViewMailLogByIdRequest, opts?: OperationOpts): Observable<RawAjaxResponse<Array<MailLog>>>
-    viewMailLogById({ id, searchString, skip, limit }: ViewMailLogByIdRequest, opts?: OperationOpts): Observable<Array<MailLog> | RawAjaxResponse<Array<MailLog>>> {
+    viewMailLog({ id, searchString, skip, limit }: ViewMailLogRequest): Observable<Array<MailLog>>
+    viewMailLog({ id, searchString, skip, limit }: ViewMailLogRequest, opts?: OperationOpts): Observable<RawAjaxResponse<Array<MailLog>>>
+    viewMailLog({ id, searchString, skip, limit }: ViewMailLogRequest, opts?: OperationOpts): Observable<Array<MailLog> | RawAjaxResponse<Array<MailLog>>> {
 
         const headers: HttpHeaders = {
             ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication

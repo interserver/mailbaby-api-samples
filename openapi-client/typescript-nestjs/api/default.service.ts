@@ -25,7 +25,7 @@ import { Configuration } from '../configuration';
 @Injectable()
 export class DefaultService {
 
-    protected basePath = 'https://api.mailbaby.net';
+    protected basePath = 'http://mystage.interserver.net:8787';
     public defaultHeaders = new Map()
     public configuration = new Configuration();
 
@@ -338,8 +338,8 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, ): Observable<AxiosResponse<Array<MailLog>>>;
-    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, ): Observable<any> {
+    public viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, ): Observable<AxiosResponse<Array<MailLog>>>;
+    public viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, ): Observable<any> {
 
 
 

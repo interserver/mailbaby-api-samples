@@ -935,8 +935,8 @@
                     <li data-group="Default" data-name="validateMailOrder" class="">
                       <a href="#api-Default-validateMailOrder">validateMailOrder</a>
                     </li>
-                    <li data-group="Default" data-name="viewMailLogById" class="">
-                      <a href="#api-Default-viewMailLogById">viewMailLogById</a>
+                    <li data-group="Default" data-name="viewMailLog" class="">
+                      <a href="#api-Default-viewMailLog">viewMailLog</a>
                     </li>
           </ul>
         </nav>
@@ -994,7 +994,7 @@
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json,application/xml,text/plain"\
-"https://api.mailbaby.net/mail?id="</code></pre>
+"http://mystage.interserver.net:8787/mail?id="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getMailOrders-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -1396,7 +1396,7 @@ except ApiException as e:
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Default-pingServer-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
-"https://api.mailbaby.net/ping"</code></pre>
+"http://mystage.interserver.net:8787/ping"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-pingServer-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -1615,7 +1615,7 @@ except ApiException as e:
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
 -H "Content-Type: application/json"\
-"https://api.mailbaby.net/mail/order"</code></pre>
+"http://mystage.interserver.net:8787/mail/order"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-placeMailOrder-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -1982,7 +1982,7 @@ except ApiException as e:
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
 -H "Content-Type: application/json,application/x-www-form-urlencoded"\
-"https://api.mailbaby.net/mail/advsend"</code></pre>
+"http://mystage.interserver.net:8787/mail/advsend"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-sendAdvMail-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -2623,7 +2623,7 @@ except ApiException as e:
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
 -H "Content-Type: application/x-www-form-urlencoded,application/json"\
-"https://api.mailbaby.net/mail/send"</code></pre>
+"http://mystage.interserver.net:8787/mail/send"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-sendMail-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -3192,7 +3192,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
-"https://api.mailbaby.net/mail/order"</code></pre>
+"http://mystage.interserver.net:8787/mail/order"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-validateMailOrder-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -3454,10 +3454,10 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-viewMailLogById">
-                      <article id="api-Default-viewMailLogById-0" data-group="User" data-name="viewMailLogById" data-version="0">
+                    <div id="api-Default-viewMailLog">
+                      <article id="api-Default-viewMailLog-0" data-group="User" data-name="viewMailLog" data-version="0">
                         <div class="pull-left">
-                          <h1>viewMailLogById</h1>
+                          <h1>viewMailLog</h1>
                           <p>displays the mail log</p>
                         </div>
                         <div class="pull-right"></div>
@@ -3473,27 +3473,27 @@ available inventory in the system
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-viewMailLogById-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-viewMailLogById-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-viewMailLogById-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-viewMailLogById-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-viewMailLog-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-viewMailLog-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-viewMailLog-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-viewMailLog-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-viewMailLog-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-viewMailLog-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-viewMailLog-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-viewMailLog-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-viewMailLog-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-viewMailLog-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-viewMailLog-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-viewMailLogById-0-curl">
+                          <div class="tab-pane active" id="examples-Default-viewMailLog-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
-"https://api.mailbaby.net/mail/log?id=&searchString=&skip=&limit="</code></pre>
+"http://mystage.interserver.net:8787/mail/log?id=&searchString=&skip=&limit="</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-viewMailLogById-0-java">
+                          <div class="tab-pane" id="examples-Default-viewMailLog-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
 import MailBabyApi.auth.*;
 import MailBabyApi.model.*;
@@ -3519,17 +3519,17 @@ public class DefaultApiExample {
         Integer skip = 56; // Integer | number of records to skip for pagination
         Integer limit = 56; // Integer | maximum number of records to return
         try {
-            array[MailLog] result = apiInstance.viewMailLogById(id, searchString, skip, limit);
+            array[MailLog] result = apiInstance.viewMailLog(id, searchString, skip, limit);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#viewMailLogById");
+            System.err.println("Exception when calling DefaultApi#viewMailLog");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-viewMailLogById-0-android">
+                          <div class="tab-pane" id="examples-Default-viewMailLog-0-android">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -3541,20 +3541,20 @@ public class DefaultApiExample {
         Integer skip = 56; // Integer | number of records to skip for pagination
         Integer limit = 56; // Integer | maximum number of records to return
         try {
-            array[MailLog] result = apiInstance.viewMailLogById(id, searchString, skip, limit);
+            array[MailLog] result = apiInstance.viewMailLog(id, searchString, skip, limit);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#viewMailLogById");
+            System.err.println("Exception when calling DefaultApi#viewMailLog");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-viewMailLogById-0-groovy">
+  <div class="tab-pane" id="examples-Default-viewMailLog-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-viewMailLogById-0-objc">
+                            <div class="tab-pane" id="examples-Default-viewMailLog-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 // Configure API key authorization: (authentication scheme: apiKeyAuth)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
@@ -3568,7 +3568,7 @@ Integer *limit = 56; // maximum number of records to return (optional)
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // displays the mail log
-[apiInstance viewMailLogByIdWith:id
+[apiInstance viewMailLogWith:id
     searchString:searchString
     skip:skip
     limit:limit
@@ -3583,7 +3583,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-viewMailLogById-0-javascript">
+                            <div class="tab-pane" id="examples-Default-viewMailLog-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var MailBabyApi = require('mail_baby_api');
 var defaultClient = MailBabyApi.ApiClient.instance;
 
@@ -3607,14 +3607,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.viewMailLogById(opts, callback);
+api.viewMailLog(opts, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-viewMailLogById-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-viewMailLog-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-viewMailLogById-0-csharp">
+                            <div class="tab-pane" id="examples-Default-viewMailLog-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using MailBabyApi.Api;
@@ -3623,7 +3623,7 @@ using MailBabyApi.Model;
 
 namespace Example
 {
-    public class viewMailLogByIdExample
+    public class viewMailLogExample
     {
         public void main()
         {
@@ -3642,12 +3642,12 @@ namespace Example
             try
             {
                 // displays the mail log
-                array[MailLog] result = apiInstance.viewMailLogById(id, searchString, skip, limit);
+                array[MailLog] result = apiInstance.viewMailLog(id, searchString, skip, limit);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.viewMailLogById: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.viewMailLog: " + e.Message );
             }
         }
     }
@@ -3655,7 +3655,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-viewMailLogById-0-php">
+                            <div class="tab-pane" id="examples-Default-viewMailLog-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -3671,15 +3671,15 @@ $skip = 56; // Integer | number of records to skip for pagination
 $limit = 56; // Integer | maximum number of records to return
 
 try {
-    $result = $api_instance->viewMailLogById($id, $searchString, $skip, $limit);
+    $result = $api_instance->viewMailLog($id, $searchString, $skip, $limit);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->viewMailLogById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-viewMailLogById-0-perl">
+                            <div class="tab-pane" id="examples-Default-viewMailLog-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use MailBabyApi::Configuration;
 use MailBabyApi::DefaultApi;
@@ -3696,15 +3696,15 @@ my $skip = 56; # Integer | number of records to skip for pagination
 my $limit = 56; # Integer | maximum number of records to return
 
 eval { 
-    my $result = $api_instance->viewMailLogById(id => $id, searchString => $searchString, skip => $skip, limit => $limit);
+    my $result = $api_instance->viewMailLog(id => $id, searchString => $searchString, skip => $skip, limit => $limit);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->viewMailLogById: $@\n";
+    warn "Exception when calling DefaultApi->viewMailLog: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-viewMailLogById-0-python">
+                            <div class="tab-pane" id="examples-Default-viewMailLog-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import MailBabyApi
@@ -3725,10 +3725,10 @@ limit = 56 # Integer | maximum number of records to return (optional)
 
 try: 
     # displays the mail log
-    api_response = api_instance.view_mail_log_by_id(id=id, searchString=searchString, skip=skip, limit=limit)
+    api_response = api_instance.view_mail_log(id=id, searchString=searchString, skip=skip, limit=limit)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->viewMailLogById: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->viewMailLog: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -3748,7 +3748,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_viewMailLogById_id">
+                                    <div id="d2e199_viewMailLog_id">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -3770,7 +3770,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_viewMailLogById_searchString">
+                                    <div id="d2e199_viewMailLog_searchString">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -3789,7 +3789,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_viewMailLogById_skip">
+                                    <div id="d2e199_viewMailLog_skip">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -3811,7 +3811,7 @@ except ApiException as e:
                                 <td>
                                 
                                 
-                                    <div id="d2e199_viewMailLogById_limit">
+                                    <div id="d2e199_viewMailLog_limit">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -3836,14 +3836,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-viewMailLogById-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-viewMailLog-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-viewMailLogById-200-schema">
-                                  <div id='responses-viewMailLogById-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-viewMailLog-200-schema">
+                                  <div id='responses-viewMailLog-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -3873,14 +3873,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-viewMailLogById-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-viewMailLogById-200-schema-200');
+                                        $('#responses-viewMailLog-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-viewMailLog-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-viewMailLogById-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-viewMailLog-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 

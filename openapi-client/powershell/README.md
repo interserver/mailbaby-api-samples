@@ -48,7 +48,7 @@ For troubleshooting, please run `$DebugPreference = 'Continue'` to turn on debug
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -58,7 +58,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**Send-AdvMail**](docs/DefaultApi.md#Send-AdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *DefaultApi* | [**Send-Mail**](docs/DefaultApi.md#Send-Mail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**Confirm-MailOrder**](docs/DefaultApi.md#Confirm-MailOrder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**Invoke-ViewMailLogById**](docs/DefaultApi.md#Invoke-ViewMailLogById) | **GET** /mail/log | displays the mail log
+*DefaultApi* | [**Invoke-ViewMailLog**](docs/DefaultApi.md#Invoke-ViewMailLog) | **GET** /mail/log | displays the mail log
 
 
 ## Documentation for Models

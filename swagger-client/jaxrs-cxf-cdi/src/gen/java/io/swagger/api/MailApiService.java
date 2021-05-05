@@ -24,7 +24,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-05T08:21:44.201982-04:00[America/New_York]")public interface MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-05T09:58:34.876781-04:00[America/New_York]")public interface MailApiService {
       public Response getMailOrders(Long id, SecurityContext securityContext);
       public Response placeMailOrder(MailOrder body, SecurityContext securityContext);
       public Response sendAdvMail(SendMailAdv body, SecurityContext securityContext);
@@ -32,5 +32,5 @@ import javax.ws.rs.core.SecurityContext;
       public Response sendMail(String to, String from, String subject, String body, SecurityContext securityContext);
       public Response sendMail(SendMail body, SecurityContext securityContext);
       public Response validateMailOrder(SecurityContext securityContext);
-      public Response viewMailLogById(Long id, String searchString, Integer skip, Integer limit, SecurityContext securityContext);
+      public Response viewMailLog(Long id, String searchString, Integer skip, Integer limit, SecurityContext securityContext);
 }

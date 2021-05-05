@@ -1,6 +1,6 @@
 # Interserver\Mailbaby\DefaultApi
 
-All URIs are relative to https://api.mailbaby.net.
+All URIs are relative to http://mystage.interserver.net:8787.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**sendAdvMail()**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail()**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder()**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLogById()**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
+[**viewMailLog()**](DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 
 
 ## `getMailOrders()`
@@ -370,10 +370,10 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `viewMailLogById()`
+## `viewMailLog()`
 
 ```php
-viewMailLogById($id, $searchString, $skip, $limit): \Interserver\Mailbaby\Model\MailLog[]
+viewMailLog($id, $searchString, $skip, $limit): \Interserver\Mailbaby\Model\MailLog[]
 ```
 
 displays the mail log
@@ -405,10 +405,10 @@ $skip = 56; // int | number of records to skip for pagination
 $limit = 56; // int | maximum number of records to return
 
 try {
-    $result = $apiInstance->viewMailLogById($id, $searchString, $skip, $limit);
+    $result = $apiInstance->viewMailLog($id, $searchString, $skip, $limit);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->viewMailLogById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

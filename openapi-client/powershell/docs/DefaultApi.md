@@ -1,6 +1,6 @@
 # PSOpenAPITools.PSOpenAPITools/Api.DefaultApi
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**Send-AdvMail**](DefaultApi.md#Send-AdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**Send-Mail**](DefaultApi.md#Send-Mail) | **POST** /mail/send | Sends an Email
 [**Confirm-MailOrder**](DefaultApi.md#Confirm-MailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**Invoke-ViewMailLogById**](DefaultApi.md#Invoke-ViewMailLogById) | **GET** /mail/log | displays the mail log
+[**Invoke-ViewMailLog**](DefaultApi.md#Invoke-ViewMailLog) | **GET** /mail/log | displays the mail log
 
 
 <a name="Get-MailOrders"></a>
@@ -299,9 +299,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-ViewMailLogById"></a>
-# **Invoke-ViewMailLogById**
-> MailLog[] Invoke-ViewMailLogById<br>
+<a name="Invoke-ViewMailLog"></a>
+# **Invoke-ViewMailLog**
+> MailLog[] Invoke-ViewMailLog<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <System.Nullable[Int64]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-SearchString] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Skip] <System.Nullable[Int32]><br>
@@ -327,9 +327,9 @@ $Limit = 987 # Int32 | maximum number of records to return (optional)
 
 # displays the mail log
 try {
-     $Result = Invoke-ViewMailLogById -Id $Id -SearchString $SearchString -Skip $Skip -Limit $Limit
+     $Result = Invoke-ViewMailLog -Id $Id -SearchString $SearchString -Skip $Skip -Limit $Limit
 } catch {
-    Write-Host ("Exception occured when calling Invoke-ViewMailLogById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Invoke-ViewMailLog: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```

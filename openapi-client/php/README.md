@@ -74,7 +74,7 @@ try {
 
 ## API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -84,7 +84,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**sendAdvMail**](docs/Api/DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *DefaultApi* | [**sendMail**](docs/Api/DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](docs/Api/DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**viewMailLogById**](docs/Api/DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
+*DefaultApi* | [**viewMailLog**](docs/Api/DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 ## Models
 

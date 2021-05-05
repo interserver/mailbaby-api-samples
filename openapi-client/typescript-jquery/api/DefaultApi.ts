@@ -20,7 +20,7 @@ import { Configuration } from '../configuration';
 
 
 export class DefaultApi {
-    protected basePath = 'https://api.mailbaby.net';
+    protected basePath = 'http://mystage.interserver.net:8787';
     public defaultHeaders: Array<string> = [];
     public defaultExtraJQueryAjaxSettings?: JQueryAjaxSettings = undefined;
     public configuration: Configuration = new Configuration();
@@ -485,7 +485,7 @@ export class DefaultApi {
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      */
-    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: Array<models.MailLog>;  },
     { response: JQueryXHR; errorThrown: string }
     > {

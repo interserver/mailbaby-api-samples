@@ -1,6 +1,6 @@
 # IO.Swagger.Api.DefaultApi
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**SendAdvMail**](DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**SendMail**](DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
 [**ValidateMailOrder**](DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-[**ViewMailLogById**](DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
+[**ViewMailLog**](DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 <a name="getmailorders"></a>
 # **GetMailOrders**
@@ -386,9 +386,9 @@ void (empty response body)
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-<a name="viewmaillogbyid"></a>
-# **ViewMailLogById**
-> List<MailLog> ViewMailLogById (long? id = null, string searchString = null, int? skip = null, int? limit = null)
+<a name="viewmaillog"></a>
+# **ViewMailLog**
+> List<MailLog> ViewMailLog (long? id = null, string searchString = null, int? skip = null, int? limit = null)
 
 displays the mail log
 
@@ -404,7 +404,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class ViewMailLogByIdExample
+    public class ViewMailLogExample
     {
         public void main()
         {
@@ -422,12 +422,12 @@ namespace Example
             try
             {
                 // displays the mail log
-                List&lt;MailLog&gt; result = apiInstance.ViewMailLogById(id, searchString, skip, limit);
+                List&lt;MailLog&gt; result = apiInstance.ViewMailLog(id, searchString, skip, limit);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.ViewMailLogById: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.ViewMailLog: " + e.Message );
             }
         }
     }

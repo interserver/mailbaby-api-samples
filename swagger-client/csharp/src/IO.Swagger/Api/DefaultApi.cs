@@ -221,7 +221,7 @@ namespace IO.Swagger.Api
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>List&lt;MailLog&gt;</returns>
-        List<MailLog> ViewMailLogById (long? id = null, string searchString = null, int? skip = null, int? limit = null);
+        List<MailLog> ViewMailLog (long? id = null, string searchString = null, int? skip = null, int? limit = null);
 
         /// <summary>
         /// displays the mail log
@@ -235,7 +235,7 @@ namespace IO.Swagger.Api
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>ApiResponse of List&lt;MailLog&gt;</returns>
-        ApiResponse<List<MailLog>> ViewMailLogByIdWithHttpInfo (long? id = null, string searchString = null, int? skip = null, int? limit = null);
+        ApiResponse<List<MailLog>> ViewMailLogWithHttpInfo (long? id = null, string searchString = null, int? skip = null, int? limit = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -436,7 +436,7 @@ namespace IO.Swagger.Api
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>Task of List&lt;MailLog&gt;</returns>
-        System.Threading.Tasks.Task<List<MailLog>> ViewMailLogByIdAsync (long? id = null, string searchString = null, int? skip = null, int? limit = null);
+        System.Threading.Tasks.Task<List<MailLog>> ViewMailLogAsync (long? id = null, string searchString = null, int? skip = null, int? limit = null);
 
         /// <summary>
         /// displays the mail log
@@ -450,7 +450,7 @@ namespace IO.Swagger.Api
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;MailLog&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<MailLog>>> ViewMailLogByIdAsyncWithHttpInfo (long? id = null, string searchString = null, int? skip = null, int? limit = null);
+        System.Threading.Tasks.Task<ApiResponse<List<MailLog>>> ViewMailLogAsyncWithHttpInfo (long? id = null, string searchString = null, int? skip = null, int? limit = null);
         #endregion Asynchronous Operations
     }
 
@@ -1841,9 +1841,9 @@ namespace IO.Swagger.Api
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>List&lt;MailLog&gt;</returns>
-        public List<MailLog> ViewMailLogById (long? id = null, string searchString = null, int? skip = null, int? limit = null)
+        public List<MailLog> ViewMailLog (long? id = null, string searchString = null, int? skip = null, int? limit = null)
         {
-             ApiResponse<List<MailLog>> localVarResponse = ViewMailLogByIdWithHttpInfo(id, searchString, skip, limit);
+             ApiResponse<List<MailLog>> localVarResponse = ViewMailLogWithHttpInfo(id, searchString, skip, limit);
              return localVarResponse.Data;
         }
 
@@ -1856,7 +1856,7 @@ namespace IO.Swagger.Api
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>ApiResponse of List&lt;MailLog&gt;</returns>
-        public ApiResponse< List<MailLog> > ViewMailLogByIdWithHttpInfo (long? id = null, string searchString = null, int? skip = null, int? limit = null)
+        public ApiResponse< List<MailLog> > ViewMailLogWithHttpInfo (long? id = null, string searchString = null, int? skip = null, int? limit = null)
         {
 
             var localVarPath = "/mail/log";
@@ -1899,7 +1899,7 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ViewMailLogById", localVarResponse);
+                Exception exception = ExceptionFactory("ViewMailLog", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1917,9 +1917,9 @@ namespace IO.Swagger.Api
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>Task of List&lt;MailLog&gt;</returns>
-        public async System.Threading.Tasks.Task<List<MailLog>> ViewMailLogByIdAsync (long? id = null, string searchString = null, int? skip = null, int? limit = null)
+        public async System.Threading.Tasks.Task<List<MailLog>> ViewMailLogAsync (long? id = null, string searchString = null, int? skip = null, int? limit = null)
         {
-             ApiResponse<List<MailLog>> localVarResponse = await ViewMailLogByIdAsyncWithHttpInfo(id, searchString, skip, limit);
+             ApiResponse<List<MailLog>> localVarResponse = await ViewMailLogAsyncWithHttpInfo(id, searchString, skip, limit);
              return localVarResponse.Data;
 
         }
@@ -1933,7 +1933,7 @@ namespace IO.Swagger.Api
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;MailLog&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<MailLog>>> ViewMailLogByIdAsyncWithHttpInfo (long? id = null, string searchString = null, int? skip = null, int? limit = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<MailLog>>> ViewMailLogAsyncWithHttpInfo (long? id = null, string searchString = null, int? skip = null, int? limit = null)
         {
 
             var localVarPath = "/mail/log";
@@ -1976,7 +1976,7 @@ namespace IO.Swagger.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("ViewMailLogById", localVarResponse);
+                Exception exception = ExceptionFactory("ViewMailLog", localVarResponse);
                 if (exception != null) throw exception;
             }
 

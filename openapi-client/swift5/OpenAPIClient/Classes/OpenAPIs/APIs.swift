@@ -7,7 +7,7 @@
 import Foundation
 
 open class OpenAPIClientAPI {
-    public static var basePath = "https://api.mailbaby.net"
+    public static var basePath = "http://mystage.interserver.net:8787"
     public static var credential: URLCredential?
     public static var customHeaders: [String: String] = [:]
     public static var requestBuilderFactory: RequestBuilderFactory = URLSessionRequestBuilderFactory()

@@ -16,10 +16,10 @@ externalDocs:
     https://www.interserver.net/blog/
   url: https://interserver.net/tips/
 servers:
+- description: Temporary API Endpoint
+  url: http://mystage.interserver.net:8787
 - description: Live API Endpoint
   url: https://api.mailbaby.net
-- description: Temporary API Endpoint
-  url: http://mynew.interserver.net:8787
 - description: SwaggerHub API Auto Mocking
   url: https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0
 security:
@@ -158,7 +158,7 @@ paths:
       description: |
         By passing in the appropriate options, you can search for
         available inventory in the system
-      operationId: viewMailLogById
+      operationId: viewMailLog
       parameters:
       - description: The ID of your mail order this will be sent through.
         explode: true

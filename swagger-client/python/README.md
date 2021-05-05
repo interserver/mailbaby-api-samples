@@ -161,15 +161,15 @@ limit = 56 # int | maximum number of records to return (optional)
 
 try:
     # displays the mail log
-    api_response = api_instance.view_mail_log_by_id(id=id, search_string=search_string, skip=skip, limit=limit)
+    api_response = api_instance.view_mail_log(id=id, search_string=search_string, skip=skip, limit=limit)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->view_mail_log_by_id: %s\n" % e)
+    print("Exception when calling DefaultApi->view_mail_log: %s\n" % e)
 ```
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -179,7 +179,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**send_adv_mail**](docs/DefaultApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *DefaultApi* | [**send_mail**](docs/DefaultApi.md#send_mail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validate_mail_order**](docs/DefaultApi.md#validate_mail_order) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**view_mail_log_by_id**](docs/DefaultApi.md#view_mail_log_by_id) | **GET** /mail/log | displays the mail log
+*DefaultApi* | [**view_mail_log**](docs/DefaultApi.md#view_mail_log) | **GET** /mail/log | displays the mail log
 
 ## Documentation For Models
 

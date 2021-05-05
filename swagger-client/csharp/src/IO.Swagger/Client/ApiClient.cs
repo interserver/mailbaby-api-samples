@@ -52,12 +52,12 @@ namespace IO.Swagger.Client
         public ApiClient()
         {
             Configuration = IO.Swagger.Client.Configuration.Default;
-            RestClient = new RestClient("https://api.mailbaby.net");
+            RestClient = new RestClient("http://mystage.interserver.net:8787");
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
-        /// with default base path (https://api.mailbaby.net).
+        /// with default base path (http://mystage.interserver.net:8787).
         /// </summary>
         /// <param name="config">An instance of Configuration.</param>
         public ApiClient(Configuration config)
@@ -72,7 +72,7 @@ namespace IO.Swagger.Client
         /// with default configuration.
         /// </summary>
         /// <param name="basePath">The base path.</param>
-        public ApiClient(String basePath = "https://api.mailbaby.net")
+        public ApiClient(String basePath = "http://mystage.interserver.net:8787")
         {
            if (String.IsNullOrEmpty(basePath))
                 throw new ArgumentException("basePath cannot be empty");

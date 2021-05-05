@@ -1135,7 +1135,7 @@ public class DefaultApi {
         return call;
     }
     /**
-     * Build call for viewMailLogById
+     * Build call for viewMailLog
      * @param id The ID of your mail order this will be sent through. (optional)
      * @param searchString pass an optional search string for looking up inventory (optional)
      * @param skip number of records to skip for pagination (optional)
@@ -1145,7 +1145,7 @@ public class DefaultApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call viewMailLogByIdCall(Long id, String searchString, Integer skip, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call viewMailLogCall(Long id, String searchString, Integer skip, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -1195,9 +1195,9 @@ public class DefaultApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call viewMailLogByIdValidateBeforeCall(Long id, String searchString, Integer skip, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call viewMailLogValidateBeforeCall(Long id, String searchString, Integer skip, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        com.squareup.okhttp.Call call = viewMailLogByIdCall(id, searchString, skip, limit, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = viewMailLogCall(id, searchString, skip, limit, progressListener, progressRequestListener);
         return call;
 
         
@@ -1216,8 +1216,8 @@ public class DefaultApi {
      * @return List&lt;MailLog&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<MailLog> viewMailLogById(Long id, String searchString, Integer skip, Integer limit) throws ApiException {
-        ApiResponse<List<MailLog>> resp = viewMailLogByIdWithHttpInfo(id, searchString, skip, limit);
+    public List<MailLog> viewMailLog(Long id, String searchString, Integer skip, Integer limit) throws ApiException {
+        ApiResponse<List<MailLog>> resp = viewMailLogWithHttpInfo(id, searchString, skip, limit);
         return resp.getData();
     }
 
@@ -1231,8 +1231,8 @@ public class DefaultApi {
      * @return ApiResponse&lt;List&lt;MailLog&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<MailLog>> viewMailLogByIdWithHttpInfo(Long id, String searchString, Integer skip, Integer limit) throws ApiException {
-        com.squareup.okhttp.Call call = viewMailLogByIdValidateBeforeCall(id, searchString, skip, limit, null, null);
+    public ApiResponse<List<MailLog>> viewMailLogWithHttpInfo(Long id, String searchString, Integer skip, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = viewMailLogValidateBeforeCall(id, searchString, skip, limit, null, null);
         Type localVarReturnType = new TypeToken<List<MailLog>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1248,7 +1248,7 @@ public class DefaultApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call viewMailLogByIdAsync(Long id, String searchString, Integer skip, Integer limit, final ApiCallback<List<MailLog>> callback) throws ApiException {
+    public com.squareup.okhttp.Call viewMailLogAsync(Long id, String searchString, Integer skip, Integer limit, final ApiCallback<List<MailLog>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1269,7 +1269,7 @@ public class DefaultApi {
             };
         }
 
-        com.squareup.okhttp.Call call = viewMailLogByIdValidateBeforeCall(id, searchString, skip, limit, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = viewMailLogValidateBeforeCall(id, searchString, skip, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<MailLog>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

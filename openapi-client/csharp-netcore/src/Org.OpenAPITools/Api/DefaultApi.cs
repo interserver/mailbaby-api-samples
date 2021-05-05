@@ -158,7 +158,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>List&lt;MailLog&gt;</returns>
-        List<MailLog> ViewMailLogById(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?));
+        List<MailLog> ViewMailLog(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?));
 
         /// <summary>
         /// displays the mail log
@@ -172,7 +172,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>ApiResponse of List&lt;MailLog&gt;</returns>
-        ApiResponse<List<MailLog>> ViewMailLogByIdWithHttpInfo(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?));
+        ApiResponse<List<MailLog>> ViewMailLogWithHttpInfo(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?));
         #endregion Synchronous Operations
     }
 
@@ -335,7 +335,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;MailLog&gt;</returns>
-        System.Threading.Tasks.Task<List<MailLog>> ViewMailLogByIdAsync(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<MailLog>> ViewMailLogAsync(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// displays the mail log
@@ -350,7 +350,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;MailLog&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<MailLog>>> ViewMailLogByIdWithHttpInfoAsync(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<MailLog>>> ViewMailLogWithHttpInfoAsync(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -1230,9 +1230,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>List&lt;MailLog&gt;</returns>
-        public List<MailLog> ViewMailLogById(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?))
+        public List<MailLog> ViewMailLog(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?))
         {
-            Org.OpenAPITools.Client.ApiResponse<List<MailLog>> localVarResponse = ViewMailLogByIdWithHttpInfo(id, searchString, skip, limit);
+            Org.OpenAPITools.Client.ApiResponse<List<MailLog>> localVarResponse = ViewMailLogWithHttpInfo(id, searchString, skip, limit);
             return localVarResponse.Data;
         }
 
@@ -1245,7 +1245,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="skip">number of records to skip for pagination (optional)</param>
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <returns>ApiResponse of List&lt;MailLog&gt;</returns>
-        public Org.OpenAPITools.Client.ApiResponse<List<MailLog>> ViewMailLogByIdWithHttpInfo(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?))
+        public Org.OpenAPITools.Client.ApiResponse<List<MailLog>> ViewMailLogWithHttpInfo(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?))
         {
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -1291,7 +1291,7 @@ namespace Org.OpenAPITools.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("ViewMailLogById", localVarResponse);
+                Exception _exception = this.ExceptionFactory("ViewMailLog", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1308,9 +1308,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;MailLog&gt;</returns>
-        public async System.Threading.Tasks.Task<List<MailLog>> ViewMailLogByIdAsync(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<MailLog>> ViewMailLogAsync(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<List<MailLog>> localVarResponse = await ViewMailLogByIdWithHttpInfoAsync(id, searchString, skip, limit, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<List<MailLog>> localVarResponse = await ViewMailLogWithHttpInfoAsync(id, searchString, skip, limit, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1324,7 +1324,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="limit">maximum number of records to return (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;MailLog&gt;)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<List<MailLog>>> ViewMailLogByIdWithHttpInfoAsync(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<List<MailLog>>> ViewMailLogWithHttpInfoAsync(long? id = default(long?), string searchString = default(string), int? skip = default(int?), int? limit = default(int?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -1373,7 +1373,7 @@ namespace Org.OpenAPITools.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("ViewMailLogById", localVarResponse);
+                Exception _exception = this.ExceptionFactory("ViewMailLog", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -2,7 +2,7 @@
 
 Mail Baby API
 - API version: 1.0.0
-  - Build date: 2021-05-05T08:21:33.263161-04:00[America/New_York]
+  - Build date: 2021-05-05T09:58:23.619273-04:00[America/New_York]
 
 This is an API defintion for accesssing the Mail.Baby mail service.
 
@@ -278,10 +278,10 @@ public class DefaultApiExample {
         Integer skip = 56; // Integer | number of records to skip for pagination
         Integer limit = 56; // Integer | maximum number of records to return
         try {
-            List<MailLog> result = apiInstance.viewMailLogById(id, searchString, skip, limit);
+            List<MailLog> result = apiInstance.viewMailLog(id, searchString, skip, limit);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#viewMailLogById");
+            System.err.println("Exception when calling DefaultApi#viewMailLog");
             e.printStackTrace();
         }
     }
@@ -290,7 +290,7 @@ public class DefaultApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -300,7 +300,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**sendAdvMail**](docs/DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *DefaultApi* | [**sendMail**](docs/DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](docs/DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**viewMailLogById**](docs/DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
+*DefaultApi* | [**viewMailLog**](docs/DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 
 ## Documentation for Models
 

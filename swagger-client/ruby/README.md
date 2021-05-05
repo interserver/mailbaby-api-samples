@@ -187,16 +187,16 @@ opts = {
 
 begin
   #displays the mail log
-  result = api_instance.view_mail_log_by_id(opts)
+  result = api_instance.view_mail_log(opts)
   p result
 rescue SwaggerClient::ApiError => e
-  puts "Exception when calling DefaultApi->view_mail_log_by_id: #{e}"
+  puts "Exception when calling DefaultApi->view_mail_log: #{e}"
 end
 ```
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -206,7 +206,7 @@ Class | Method | HTTP request | Description
 *SwaggerClient::DefaultApi* | [**send_adv_mail**](docs/DefaultApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *SwaggerClient::DefaultApi* | [**send_mail**](docs/DefaultApi.md#send_mail) | **POST** /mail/send | Sends an Email
 *SwaggerClient::DefaultApi* | [**validate_mail_order**](docs/DefaultApi.md#validate_mail_order) | **GET** /mail/order | validatess order details before placing an order
-*SwaggerClient::DefaultApi* | [**view_mail_log_by_id**](docs/DefaultApi.md#view_mail_log_by_id) | **GET** /mail/log | displays the mail log
+*SwaggerClient::DefaultApi* | [**view_mail_log**](docs/DefaultApi.md#view_mail_log) | **GET** /mail/log | displays the mail log
 
 ## Documentation for Models
 

@@ -73,12 +73,12 @@ isa_ok($api, 'OpenAPIClient::DefaultApi');
 #my $validate_mail_order_result = $api->validate_mail_order();
 
 #
-# view_mail_log_by_id test
+# view_mail_log test
 #
 # uncomment below and update the test
-#my $view_mail_log_by_id_id = undef; # replace NULL with a proper value
-#my $view_mail_log_by_id_search_string = undef; # replace NULL with a proper value
-#my $view_mail_log_by_id_skip = undef; # replace NULL with a proper value
-#my $view_mail_log_by_id_limit = undef; # replace NULL with a proper value
-#my $view_mail_log_by_id_result = $api->view_mail_log_by_id(id => $view_mail_log_by_id_id, search_string => $view_mail_log_by_id_search_string, skip => $view_mail_log_by_id_skip, limit => $view_mail_log_by_id_limit);
+#my $view_mail_log_id = undef; # replace NULL with a proper value
+#my $view_mail_log_search_string = undef; # replace NULL with a proper value
+#my $view_mail_log_skip = undef; # replace NULL with a proper value
+#my $view_mail_log_limit = undef; # replace NULL with a proper value
+#my $view_mail_log_result = $api->view_mail_log(id => $view_mail_log_id, search_string => $view_mail_log_search_string, skip => $view_mail_log_skip, limit => $view_mail_log_limit);
 

@@ -41,7 +41,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-05T08:22:03.700205-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-05T09:58:55.302487-04:00[America/New_York]")
 @Validated
 public interface MailApi {
 
@@ -129,7 +129,7 @@ public interface MailApi {
     @RequestMapping(value = "/mail/log",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<MailLog>> viewMailLogById(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through." ,schema=@Schema()) @Valid @RequestParam(value = "id", required = false) Long id, @Parameter(in = ParameterIn.QUERY, description = "pass an optional search string for looking up inventory" ,schema=@Schema()) @Valid @RequestParam(value = "searchString", required = false) String searchString, @Min(0)@Parameter(in = ParameterIn.QUERY, description = "number of records to skip for pagination" ,schema=@Schema(allowableValues={  }
+    ResponseEntity<List<MailLog>> viewMailLog(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through." ,schema=@Schema()) @Valid @RequestParam(value = "id", required = false) Long id, @Parameter(in = ParameterIn.QUERY, description = "pass an optional search string for looking up inventory" ,schema=@Schema()) @Valid @RequestParam(value = "searchString", required = false) String searchString, @Min(0)@Parameter(in = ParameterIn.QUERY, description = "number of records to skip for pagination" ,schema=@Schema(allowableValues={  }
 )) @Valid @RequestParam(value = "skip", required = false) Integer skip, @Min(0) @Max(50) @Parameter(in = ParameterIn.QUERY, description = "maximum number of records to return" ,schema=@Schema(allowableValues={  }, maximum="50"
 )) @Valid @RequestParam(value = "limit", required = false) Integer limit);
 

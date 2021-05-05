@@ -291,8 +291,8 @@ export default class DefaultApi {
     }
 
     /**
-     * Callback function to receive the result of the viewMailLogById operation.
-     * @callback module:api/DefaultApi~viewMailLogByIdCallback
+     * Callback function to receive the result of the viewMailLog operation.
+     * @callback module:api/DefaultApi~viewMailLogCallback
      * @param {String} error Error message, if any.
      * @param {Array.<module:model/MailLog>} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -306,10 +306,10 @@ export default class DefaultApi {
      * @param {String} opts.searchString pass an optional search string for looking up inventory
      * @param {Number} opts.skip number of records to skip for pagination
      * @param {Number} opts.limit maximum number of records to return
-     * @param {module:api/DefaultApi~viewMailLogByIdCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/DefaultApi~viewMailLogCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Array.<module:model/MailLog>}
      */
-    viewMailLogById(opts, callback) {
+    viewMailLog(opts, callback) {
       opts = opts || {};
       let postBody = null;
 

@@ -41,7 +41,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-05T08:21:44.201982-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-05T09:58:34.876781-04:00[America/New_York]")
 public class MailApi  {
 
   @Context SecurityContext securityContext;
@@ -167,7 +167,7 @@ public class MailApi  {
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
-    public Response viewMailLogById( 
+    public Response viewMailLog( 
 @Parameter(description = "The ID of your mail order this will be sent through.")  @QueryParam("id") Long id
 ,  
 @Parameter(description = "pass an optional search string for looking up inventory")  @QueryParam("searchString") String searchString
@@ -178,6 +178,6 @@ public class MailApi  {
 @Parameter(description = "maximum number of records to return", schema=@Schema(allowableValues={  }, maximum="50")
 )  @QueryParam("limit") Integer limit
 ) {
-        return delegate.viewMailLogById(id, searchString, skip, limit, securityContext);
+        return delegate.viewMailLog(id, searchString, skip, limit, securityContext);
     }
 }

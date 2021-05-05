@@ -640,7 +640,7 @@ func (a *DefaultApiService) ValidateMailOrder(ctx context.Context) (*http.Respon
 DefaultApiService displays the mail log
 By passing in the appropriate options, you can search for available inventory in the system 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *DefaultApiViewMailLogByIdOpts - Optional Parameters:
+ * @param optional nil or *DefaultApiViewMailLogOpts - Optional Parameters:
      * @param "Id" (optional.Int64) -  The ID of your mail order this will be sent through.
      * @param "SearchString" (optional.String) -  pass an optional search string for looking up inventory
      * @param "Skip" (optional.Int32) -  number of records to skip for pagination
@@ -648,14 +648,14 @@ By passing in the appropriate options, you can search for available inventory in
 @return []MailLog
 */
 
-type DefaultApiViewMailLogByIdOpts struct {
+type DefaultApiViewMailLogOpts struct {
     Id optional.Int64
     SearchString optional.String
     Skip optional.Int32
     Limit optional.Int32
 }
 
-func (a *DefaultApiService) ViewMailLogById(ctx context.Context, localVarOptionals *DefaultApiViewMailLogByIdOpts) ([]MailLog, *http.Response, error) {
+func (a *DefaultApiService) ViewMailLog(ctx context.Context, localVarOptionals *DefaultApiViewMailLogOpts) ([]MailLog, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}

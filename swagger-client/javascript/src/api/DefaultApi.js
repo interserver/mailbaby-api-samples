@@ -276,8 +276,8 @@ export default class DefaultApi {
       );
     }
     /**
-     * Callback function to receive the result of the viewMailLogById operation.
-     * @callback module:api/DefaultApi~viewMailLogByIdCallback
+     * Callback function to receive the result of the viewMailLog operation.
+     * @callback module:api/DefaultApi~viewMailLogCallback
      * @param {String} error Error message, if any.
      * @param {Array.<module:model/MailLog>} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -287,10 +287,10 @@ export default class DefaultApi {
      * displays the mail log
      * By passing in the appropriate options, you can search for available inventory in the system 
      * @param {Object} opts Optional parameters
-     * @param {module:api/DefaultApi~viewMailLogByIdCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/DefaultApi~viewMailLogCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Array.<module:model/MailLog>}
      */
-    viewMailLogById(opts, callback) {
+    viewMailLog(opts, callback) {
       opts = opts || {};
       let postBody = null;
 

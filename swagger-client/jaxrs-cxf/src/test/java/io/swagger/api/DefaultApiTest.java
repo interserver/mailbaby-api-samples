@@ -72,7 +72,7 @@ public class DefaultApiTest {
         List providers = new ArrayList();
         providers.add(provider);
         
-        api = JAXRSClientFactory.create("https://api.mailbaby.net", DefaultApi.class, providers);
+        api = JAXRSClientFactory.create("http://mystage.interserver.net:8787", DefaultApi.class, providers);
         org.apache.cxf.jaxrs.client.Client client = WebClient.client(api);
         
         ClientConfiguration config = WebClient.getConfig(client); 
@@ -184,12 +184,12 @@ public class DefaultApiTest {
      *          if the Api call fails
      */
     @Test
-    public void viewMailLogByIdTest() {
+    public void viewMailLogTest() {
         Long id = null;
         String searchString = null;
         Integer skip = null;
         Integer limit = null;
-        //List<MailLog> response = api.viewMailLogById(id, searchString, skip, limit);
+        //List<MailLog> response = api.viewMailLog(id, searchString, skip, limit);
         //assertNotNull(response);
         // TODO: test validations
         

@@ -5,7 +5,7 @@
 import 'package:swagger/api.dart';
 ```
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 [**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
+[**viewMailLog**](DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 
 # **getMailOrders**
 > MailOrders getMailOrders(id)
@@ -304,8 +304,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **viewMailLogById**
-> List<MailLog> viewMailLogById(id, searchString, skip, limit)
+# **viewMailLog**
+> List<MailLog> viewMailLog(id, searchString, skip, limit)
 
 displays the mail log
 
@@ -326,10 +326,10 @@ var skip = 56; // int | number of records to skip for pagination
 var limit = 56; // int | maximum number of records to return
 
 try {
-    var result = api_instance.viewMailLogById(id, searchString, skip, limit);
+    var result = api_instance.viewMailLog(id, searchString, skip, limit);
     print(result);
 } catch (e) {
-    print("Exception when calling DefaultApi->viewMailLogById: $e\n");
+    print("Exception when calling DefaultApi->viewMailLog: $e\n");
 }
 ```
 

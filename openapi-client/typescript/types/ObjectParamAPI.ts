@@ -75,29 +75,29 @@ export interface DefaultApiSendMailRequest {
 export interface DefaultApiValidateMailOrderRequest {
 }
 
-export interface DefaultApiViewMailLogByIdRequest {
+export interface DefaultApiViewMailLogRequest {
     /**
      * The ID of your mail order this will be sent through.
      * @type number
-     * @memberof DefaultApiviewMailLogById
+     * @memberof DefaultApiviewMailLog
      */
     id?: number
     /**
      * pass an optional search string for looking up inventory
      * @type string
-     * @memberof DefaultApiviewMailLogById
+     * @memberof DefaultApiviewMailLog
      */
     searchString?: string
     /**
      * number of records to skip for pagination
      * @type number
-     * @memberof DefaultApiviewMailLogById
+     * @memberof DefaultApiviewMailLog
      */
     skip?: number
     /**
      * maximum number of records to return
      * @type number
-     * @memberof DefaultApiviewMailLogById
+     * @memberof DefaultApiviewMailLog
      */
     limit?: number
 }
@@ -165,8 +165,8 @@ export class ObjectDefaultApi {
      * displays the mail log
      * @param param the request object
      */
-    public viewMailLogById(param: DefaultApiViewMailLogByIdRequest, options?: Configuration): Promise<Array<MailLog>> {
-        return this.api.viewMailLogById(param.id, param.searchString, param.skip, param.limit,  options).toPromise();
+    public viewMailLog(param: DefaultApiViewMailLogRequest, options?: Configuration): Promise<Array<MailLog>> {
+        return this.api.viewMailLog(param.id, param.searchString, param.skip, param.limit,  options).toPromise();
     }
 
 }

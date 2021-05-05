@@ -10,7 +10,7 @@ defmodule MailBabyAPI.Connection do
   use Tesla
 
   # Add any middleware here (authentication)
-  plug Tesla.Middleware.BaseUrl, "https://api.mailbaby.net"
+  plug Tesla.Middleware.BaseUrl, "http://mystage.interserver.net:8787"
   plug Tesla.Middleware.Headers, [{"user-agent", "Elixir"}]
   plug Tesla.Middleware.EncodeJson, engine: Poison
 

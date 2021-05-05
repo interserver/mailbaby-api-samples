@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
  * MailOrders
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T08:22:00.985048-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T09:58:52.536994-04:00[America/New_York]")
 public class MailOrders extends ArrayList<MailOrder>  {
 
   @Override

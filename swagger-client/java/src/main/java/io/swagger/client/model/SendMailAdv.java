@@ -30,7 +30,7 @@ import java.util.List;
  * Details for an Email
  */
 @Schema(description = "Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-05T08:21:33.263161-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-05T09:58:23.619273-04:00[America/New_York]")
 public class SendMailAdv {
   @SerializedName("subject")
   private String subject = null;

@@ -6,7 +6,7 @@
          send_adv_mail/2, send_adv_mail/3,
          send_mail/5, send_mail/6,
          validate_mail_order/1, validate_mail_order/2,
-         view_mail_log_by_id/1, view_mail_log_by_id/2]).
+         view_mail_log/1, view_mail_log/2]).
 
 -define(BASE_URL, "").
 
@@ -138,12 +138,12 @@ validate_mail_order(Ctx, Optional) ->
 
 %% @doc displays the mail log
 %% By passing in the appropriate options, you can search for available inventory in the system 
--spec view_mail_log_by_id(ctx:ctx()) -> {ok, [openapi_mail_log:openapi_mail_log()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-view_mail_log_by_id(Ctx) ->
-    view_mail_log_by_id(Ctx, #{}).
+-spec view_mail_log(ctx:ctx()) -> {ok, [openapi_mail_log:openapi_mail_log()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+view_mail_log(Ctx) ->
+    view_mail_log(Ctx, #{}).
 
--spec view_mail_log_by_id(ctx:ctx(), maps:map()) -> {ok, [openapi_mail_log:openapi_mail_log()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-view_mail_log_by_id(Ctx, Optional) ->
+-spec view_mail_log(ctx:ctx(), maps:map()) -> {ok, [openapi_mail_log:openapi_mail_log()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+view_mail_log(Ctx, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 

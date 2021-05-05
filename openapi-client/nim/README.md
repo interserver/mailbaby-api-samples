@@ -21,7 +21,7 @@ import openapiclient
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Module | Proc | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -31,7 +31,7 @@ api_default | placeMailOrder | **POST** /mail/order | places a mail order
 api_default | sendAdvMail | **POST** /mail/advsend | Sends an Email with Advanced Options
 api_default | sendMail | **POST** /mail/send | Sends an Email
 api_default | validateMailOrder | **GET** /mail/order | validatess order details before placing an order
-api_default | viewMailLogById | **GET** /mail/log | displays the mail log
+api_default | viewMailLog | **GET** /mail/log | displays the mail log
 
 
 To generate documentation with Nim DocGen, use:

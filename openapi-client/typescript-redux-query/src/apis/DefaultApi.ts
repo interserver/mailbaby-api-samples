@@ -51,7 +51,7 @@ export interface SendMailRequest {
     body: string;
 }
 
-export interface ViewMailLogByIdRequest {
+export interface ViewMailLogRequest {
     id?: number;
     searchString?: string;
     skip?: number;
@@ -370,7 +370,7 @@ export function validateMailOrder<T>( requestConfig?: runtime.TypedQueryConfig<T
  * By passing in the appropriate options, you can search for available inventory in the system 
  * displays the mail log
  */
-function viewMailLogByIdRaw<T>(requestParameters: ViewMailLogByIdRequest, requestConfig: runtime.TypedQueryConfig<T, Array<MailLog>> = {}): QueryConfig<T> {
+function viewMailLogRaw<T>(requestParameters: ViewMailLogRequest, requestConfig: runtime.TypedQueryConfig<T, Array<MailLog>> = {}): QueryConfig<T> {
     let queryParameters = null;
 
     queryParameters = {};
@@ -428,7 +428,7 @@ function viewMailLogByIdRaw<T>(requestParameters: ViewMailLogByIdRequest, reques
 * By passing in the appropriate options, you can search for available inventory in the system 
 * displays the mail log
 */
-export function viewMailLogById<T>(requestParameters: ViewMailLogByIdRequest, requestConfig?: runtime.TypedQueryConfig<T, Array<MailLog>>): QueryConfig<T> {
-    return viewMailLogByIdRaw(requestParameters, requestConfig);
+export function viewMailLog<T>(requestParameters: ViewMailLogRequest, requestConfig?: runtime.TypedQueryConfig<T, Array<MailLog>>): QueryConfig<T> {
+    return viewMailLogRaw(requestParameters, requestConfig);
 }
 

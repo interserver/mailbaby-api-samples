@@ -6,7 +6,7 @@
         , send_adv_mail/1
         , send_mail/4
         , validate_mail_order/0
-        , view_mail_log_by_id/0
+        , view_mail_log/0
         ]).
 
 -define(BASE_URL, "").
@@ -86,9 +86,9 @@ validate_mail_order() ->
 
 %% @doc displays the mail log
 %% By passing in the appropriate options, you can search for available inventory in the system 
--spec view_mail_log_by_id() ->
+-spec view_mail_log() ->
   openapi_utils:response().
-view_mail_log_by_id() ->
+view_mail_log() ->
   Method      = get,
   Host        = application:get_env(openapi, host, "http://localhost:8080"),
   Path        = ["/mail/log"],

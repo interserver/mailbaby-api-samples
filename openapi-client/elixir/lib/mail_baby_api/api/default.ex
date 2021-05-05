@@ -208,8 +208,8 @@ defmodule MailBabyAPI.Api.Default do
   {:ok, [%MailLog{}, ...]} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec view_mail_log_by_id(Tesla.Env.client, keyword()) :: {:ok, list(MailBabyAPI.Model.MailLog.t)} | {:ok, nil} | {:error, Tesla.Env.t}
-  def view_mail_log_by_id(connection, opts \\ []) do
+  @spec view_mail_log(Tesla.Env.client, keyword()) :: {:ok, list(MailBabyAPI.Model.MailLog.t)} | {:ok, nil} | {:error, Tesla.Env.t}
+  def view_mail_log(connection, opts \\ []) do
     optional_params = %{
       :"id" => :query,
       :"searchString" => :query,

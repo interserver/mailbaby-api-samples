@@ -222,9 +222,9 @@ namespace IO.Swagger.Controllers
         [Route("/mail/log")]
         [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
         [ValidateModelState]
-        [SwaggerOperation("ViewMailLogById")]
+        [SwaggerOperation("ViewMailLog")]
         [SwaggerResponse(statusCode: 200, type: typeof(List<MailLog>), description: "search results matching criteria")]
-        public virtual IActionResult ViewMailLogById([FromQuery]long? id, [FromQuery]string searchString, [FromQuery]int? skip, [FromQuery][Range(0, 50)]int? limit)
+        public virtual IActionResult ViewMailLog([FromQuery]long? id, [FromQuery]string searchString, [FromQuery]int? skip, [FromQuery][Range(0, 50)]int? limit)
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default(List<MailLog>));

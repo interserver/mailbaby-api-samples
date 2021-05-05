@@ -95,7 +95,7 @@ public:
     * @param[in]  skip qint32 [optional]
     * @param[in]  limit qint32 [optional]
     */
-    void viewMailLogById(const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<QString> &search_string = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<qint32> &skip = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &limit = ::OpenAPI::OptionalParam<qint32>());
+    void viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<QString> &search_string = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<qint32> &skip = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &limit = ::OpenAPI::OptionalParam<qint32>());
 
 
 private:
@@ -118,7 +118,7 @@ private:
     void sendAdvMailCallback(OAIHttpRequestWorker *worker);
     void sendMailCallback(OAIHttpRequestWorker *worker);
     void validateMailOrderCallback(OAIHttpRequestWorker *worker);
-    void viewMailLogByIdCallback(OAIHttpRequestWorker *worker);
+    void viewMailLogCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
@@ -128,7 +128,7 @@ signals:
     void sendAdvMailSignal(OAIGenericResponse summary);
     void sendMailSignal(OAIGenericResponse summary);
     void validateMailOrderSignal();
-    void viewMailLogByIdSignal(QList<OAIMailLog> summary);
+    void viewMailLogSignal(QList<OAIMailLog> summary);
 
     void getMailOrdersSignalFull(OAIHttpRequestWorker *worker, QList<OAIMailOrder> summary);
     void pingServerSignalFull(OAIHttpRequestWorker *worker);
@@ -136,7 +136,7 @@ signals:
     void sendAdvMailSignalFull(OAIHttpRequestWorker *worker, OAIGenericResponse summary);
     void sendMailSignalFull(OAIHttpRequestWorker *worker, OAIGenericResponse summary);
     void validateMailOrderSignalFull(OAIHttpRequestWorker *worker);
-    void viewMailLogByIdSignalFull(OAIHttpRequestWorker *worker, QList<OAIMailLog> summary);
+    void viewMailLogSignalFull(OAIHttpRequestWorker *worker, QList<OAIMailLog> summary);
 
     void getMailOrdersSignalE(QList<OAIMailOrder> summary, QNetworkReply::NetworkError error_type, QString error_str);
     void pingServerSignalE(QNetworkReply::NetworkError error_type, QString error_str);
@@ -144,7 +144,7 @@ signals:
     void sendAdvMailSignalE(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void sendMailSignalE(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void validateMailOrderSignalE(QNetworkReply::NetworkError error_type, QString error_str);
-    void viewMailLogByIdSignalE(QList<OAIMailLog> summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void viewMailLogSignalE(QList<OAIMailLog> summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void getMailOrdersSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void pingServerSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
@@ -152,7 +152,7 @@ signals:
     void sendAdvMailSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void sendMailSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void validateMailOrderSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void viewMailLogByIdSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void viewMailLogSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

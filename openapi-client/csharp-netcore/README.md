@@ -73,7 +73,7 @@ namespace Example
         {
 
             Configuration config = new Configuration();
-            config.BasePath = "https://api.mailbaby.net";
+            config.BasePath = "http://mystage.interserver.net:8787";
             // Configure API key authorization: apiKeyAuth
             config.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -103,7 +103,7 @@ namespace Example
 <a name="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -113,7 +113,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**SendAdvMail**](docs/DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *DefaultApi* | [**SendMail**](docs/DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**ValidateMailOrder**](docs/DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**ViewMailLogById**](docs/DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
+*DefaultApi* | [**ViewMailLog**](docs/DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 
 <a name="documentation-for-models"></a>

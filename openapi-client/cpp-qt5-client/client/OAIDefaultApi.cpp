@@ -34,12 +34,12 @@ void OAIDefaultApi::initializeServerConfigs(){
     //varying endpoint server
     QList<OAIServerConfiguration> serverConf = QList<OAIServerConfiguration>();
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://api.mailbaby.net"),
-    "Live API Endpoint",
+    QUrl("http://mystage.interserver.net:8787"),
+    "Temporary API Endpoint",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("http://mynew.interserver.net:8787"),
-    "Temporary API Endpoint",
+    QUrl("https://api.mailbaby.net"),
+    "Live API Endpoint",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
     QUrl("https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0"),
@@ -57,8 +57,8 @@ void OAIDefaultApi::initializeServerConfigs(){
     _serverIndices.insert("sendMail", 0);
     _serverConfigs.insert("validateMailOrder", defaultConf);
     _serverIndices.insert("validateMailOrder", 0);
-    _serverConfigs.insert("viewMailLogById", defaultConf);
-    _serverIndices.insert("viewMailLogById", 0);
+    _serverConfigs.insert("viewMailLog", defaultConf);
+    _serverIndices.insert("viewMailLog", 0);
 }
 
 /**
@@ -563,8 +563,8 @@ void OAIDefaultApi::validateMailOrderCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIDefaultApi::viewMailLogById(const ::OpenAPI::OptionalParam<qint64> &id, const ::OpenAPI::OptionalParam<QString> &search_string, const ::OpenAPI::OptionalParam<qint32> &skip, const ::OpenAPI::OptionalParam<qint32> &limit) {
-    QString fullPath = QString(_serverConfigs["viewMailLogById"][_serverIndices.value("viewMailLogById")].URL()+"/mail/log");
+void OAIDefaultApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, const ::OpenAPI::OptionalParam<QString> &search_string, const ::OpenAPI::OptionalParam<qint32> &skip, const ::OpenAPI::OptionalParam<qint32> &limit) {
+    QString fullPath = QString(_serverConfigs["viewMailLog"][_serverIndices.value("viewMailLog")].URL()+"/mail/log");
     
     if(_apiKeys.contains("apiKeyAuth")){
         addHeaders("apiKeyAuth",_apiKeys.find("apiKeyAuth").value());
@@ -639,7 +639,7 @@ void OAIDefaultApi::viewMailLogById(const ::OpenAPI::OptionalParam<qint64> &id, 
 
     foreach (QString key, this->defaultHeaders.keys()) { input.headers.insert(key, this->defaultHeaders.value(key)); }
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::viewMailLogByIdCallback);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::viewMailLogCallback);
     connect(this, &OAIDefaultApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, [this](){
         if(findChildren<OAIHttpRequestWorker*>().count() == 0){
@@ -650,7 +650,7 @@ void OAIDefaultApi::viewMailLogById(const ::OpenAPI::OptionalParam<qint64> &id, 
     worker->execute(&input);
 }
 
-void OAIDefaultApi::viewMailLogByIdCallback(OAIHttpRequestWorker *worker) {
+void OAIDefaultApi::viewMailLogCallback(OAIHttpRequestWorker *worker) {
     QString msg;
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
@@ -674,11 +674,11 @@ void OAIDefaultApi::viewMailLogByIdCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit viewMailLogByIdSignal(output);
-        emit viewMailLogByIdSignalFull(worker, output);
+        emit viewMailLogSignal(output);
+        emit viewMailLogSignalFull(worker, output);
     } else {
-        emit viewMailLogByIdSignalE(output, error_type, error_str);
-        emit viewMailLogByIdSignalEFull(worker, error_type, error_str);
+        emit viewMailLogSignalE(output, error_type, error_str);
+        emit viewMailLogSignalEFull(worker, error_type, error_str);
     }
 }
 

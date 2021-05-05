@@ -9,7 +9,7 @@
      hackney,
      ctx
     ]},
-  {env, [{host, "api.mailbaby.net"}]},
+  {env, [{host, "mystage.interserver.net"}]},
   {modules, []},
 
   {maintainers, []},

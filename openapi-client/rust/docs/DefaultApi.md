@@ -1,6 +1,6 @@
 # \DefaultApi
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**send_adv_mail**](DefaultApi.md#send_adv_mail) | **post** /mail/advsend | Sends an Email with Advanced Options
 [**send_mail**](DefaultApi.md#send_mail) | **post** /mail/send | Sends an Email
 [**validate_mail_order**](DefaultApi.md#validate_mail_order) | **get** /mail/order | validatess order details before placing an order
-[**view_mail_log_by_id**](DefaultApi.md#view_mail_log_by_id) | **get** /mail/log | displays the mail log
+[**view_mail_log**](DefaultApi.md#view_mail_log) | **get** /mail/log | displays the mail log
 
 
 
@@ -185,9 +185,9 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## view_mail_log_by_id
+## view_mail_log
 
-> Vec<crate::models::MailLog> view_mail_log_by_id(id, search_string, skip, limit)
+> Vec<crate::models::MailLog> view_mail_log(id, search_string, skip, limit)
 displays the mail log
 
 By passing in the appropriate options, you can search for available inventory in the system 

@@ -2,7 +2,7 @@
 
 Mail Baby API
 - API version: 1.0.0
-  - Build date: 2021-05-05T08:19:33.946144-04:00[America/New_York]
+  - Build date: 2021-05-05T09:56:25.091029-04:00[America/New_York]
 
 This is an API defintion for accesssing the Mail.Baby mail service.
 
@@ -84,7 +84,7 @@ import org.openapitools.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.mailbaby.net");
+    defaultClient.setBasePath("http://mystage.interserver.net:8787");
     
     // Configure API key authorization: apiKeyAuth
     ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
@@ -111,7 +111,7 @@ public class Example {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -121,7 +121,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**sendAdvMail**](docs/DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *DefaultApi* | [**sendMail**](docs/DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](docs/DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**viewMailLogById**](docs/DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
+*DefaultApi* | [**viewMailLog**](docs/DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 
 
 ## Documentation for Models

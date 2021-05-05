@@ -127,7 +127,7 @@ public class DefaultApiServiceImpl implements DefaultApi {
      * By passing in the appropriate options, you can search for available inventory in the system 
      *
      */
-    public List<MailLog> viewMailLogById(Long id, String searchString, Integer skip, Integer limit) {
+    public List<MailLog> viewMailLog(Long id, String searchString, Integer skip, Integer limit) {
         // TODO: Implement...
         
         return null;

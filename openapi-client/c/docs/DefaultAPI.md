@@ -1,6 +1,6 @@
 # DefaultAPI
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**DefaultAPI_sendAdvMail**](DefaultAPI.md#DefaultAPI_sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**DefaultAPI_sendMail**](DefaultAPI.md#DefaultAPI_sendMail) | **POST** /mail/send | Sends an Email
 [**DefaultAPI_validateMailOrder**](DefaultAPI.md#DefaultAPI_validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**DefaultAPI_viewMailLogById**](DefaultAPI.md#DefaultAPI_viewMailLogById) | **GET** /mail/log | displays the mail log
+[**DefaultAPI_viewMailLog**](DefaultAPI.md#DefaultAPI_viewMailLog) | **GET** /mail/log | displays the mail log
 
 
 # **DefaultAPI_getMailOrders**
@@ -191,13 +191,13 @@ void
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **DefaultAPI_viewMailLogById**
+# **DefaultAPI_viewMailLog**
 ```c
 // displays the mail log
 //
 // By passing in the appropriate options, you can search for available inventory in the system 
 //
-list_t* DefaultAPI_viewMailLogById(apiClient_t *apiClient, long id, char * searchString, int skip, int limit);
+list_t* DefaultAPI_viewMailLog(apiClient_t *apiClient, long id, char * searchString, int skip, int limit);
 ```
 
 ### Parameters

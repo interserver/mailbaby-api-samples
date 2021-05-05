@@ -1,6 +1,6 @@
 # Org.OpenAPITools.Api.DefaultApi
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**SendAdvMail**](DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**SendMail**](DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
 [**ValidateMailOrder**](DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-[**ViewMailLogById**](DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
+[**ViewMailLog**](DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 
 
@@ -35,7 +35,7 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://api.mailbaby.net";
+            Configuration.Default.BasePath = "http://mystage.interserver.net:8787";
             // Configure API key authorization: apiKeyAuth
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -115,7 +115,7 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://api.mailbaby.net";
+            Configuration.Default.BasePath = "http://mystage.interserver.net:8787";
             var apiInstance = new DefaultApi(Configuration.Default);
 
             try
@@ -187,7 +187,7 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://api.mailbaby.net";
+            Configuration.Default.BasePath = "http://mystage.interserver.net:8787";
             // Configure API key authorization: apiKeyAuth
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -270,7 +270,7 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://api.mailbaby.net";
+            Configuration.Default.BasePath = "http://mystage.interserver.net:8787";
             // Configure API key authorization: apiKeyAuth
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -354,7 +354,7 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://api.mailbaby.net";
+            Configuration.Default.BasePath = "http://mystage.interserver.net:8787";
             // Configure API key authorization: apiKeyAuth
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -442,7 +442,7 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://api.mailbaby.net";
+            Configuration.Default.BasePath = "http://mystage.interserver.net:8787";
             // Configure API key authorization: apiKeyAuth
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -496,9 +496,9 @@ void (empty response body)
 [[Back to README]](../README.md)
 
 
-## ViewMailLogById
+## ViewMailLog
 
-> List&lt;MailLog&gt; ViewMailLogById (long? id = null, string searchString = null, int? skip = null, int? limit = null)
+> List&lt;MailLog&gt; ViewMailLog (long? id = null, string searchString = null, int? skip = null, int? limit = null)
 
 displays the mail log
 
@@ -515,11 +515,11 @@ using Org.OpenAPITools.Model;
 
 namespace Example
 {
-    public class ViewMailLogByIdExample
+    public class ViewMailLogExample
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://api.mailbaby.net";
+            Configuration.Default.BasePath = "http://mystage.interserver.net:8787";
             // Configure API key authorization: apiKeyAuth
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -534,12 +534,12 @@ namespace Example
             try
             {
                 // displays the mail log
-                List<MailLog> result = apiInstance.ViewMailLogById(id, searchString, skip, limit);
+                List<MailLog> result = apiInstance.ViewMailLog(id, searchString, skip, limit);
                 Debug.WriteLine(result);
             }
             catch (ApiException e)
             {
-                Debug.Print("Exception when calling DefaultApi.ViewMailLogById: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.ViewMailLog: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }

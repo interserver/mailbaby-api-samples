@@ -118,12 +118,12 @@ validate_mail_order_args(_S) ->
   [].
 
 %%==============================================================================
-%% view_mail_log_by_id
+%% view_mail_log
 %%==============================================================================
 
-view_mail_log_by_id() ->
-  openapi_api:view_mail_log_by_id().
+view_mail_log() ->
+  openapi_api:view_mail_log().
 
-view_mail_log_by_id_args(_S) ->
+view_mail_log_args(_S) ->
   [].
 

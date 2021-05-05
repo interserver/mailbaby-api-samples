@@ -1,6 +1,6 @@
 # DefaultAPI
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**sendAdvMail**](DefaultAPI.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](DefaultAPI.md#sendmail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultAPI.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLogById**](DefaultAPI.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
+[**viewMailLog**](DefaultAPI.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 
 # **getMailOrders**
@@ -305,9 +305,9 @@ Void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **viewMailLogById**
+# **viewMailLog**
 ```swift
-    open class func viewMailLogById(id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil, completion: @escaping (_ data: [MailLog]?, _ error: Error?) -> Void)
+    open class func viewMailLog(id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil, completion: @escaping (_ data: [MailLog]?, _ error: Error?) -> Void)
 ```
 
 displays the mail log
@@ -325,7 +325,7 @@ let skip = 987 // Int | number of records to skip for pagination (optional)
 let limit = 987 // Int | maximum number of records to return (optional)
 
 // displays the mail log
-DefaultAPI.viewMailLogById(id: id, searchString: searchString, skip: skip, limit: limit) { (response, error) in
+DefaultAPI.viewMailLog(id: id, searchString: searchString, skip: skip, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return

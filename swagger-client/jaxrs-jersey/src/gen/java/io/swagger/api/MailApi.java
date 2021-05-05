@@ -45,7 +45,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-05T08:21:49.681198-04:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-05T09:58:40.386125-04:00[America/New_York]")public class MailApi  {
    private final MailApiService delegate;
 
    public MailApi(@Context ServletConfig servletContext) {
@@ -170,7 +170,7 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
         
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
-    public Response viewMailLogById(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through.") @QueryParam("id") Long id
+    public Response viewMailLog(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through.") @QueryParam("id") Long id
 ,@Parameter(in = ParameterIn.QUERY, description = "pass an optional search string for looking up inventory") @QueryParam("searchString") String searchString
 ,@Parameter(in = ParameterIn.QUERY, description = "number of records to skip for pagination", schema=@Schema(allowableValues={  })
 ) @QueryParam("skip") Integer skip
@@ -178,6 +178,6 @@ import javax.validation.constraints.*;
 ) @QueryParam("limit") Integer limit
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.viewMailLogById(id,searchString,skip,limit,securityContext);
+        return delegate.viewMailLog(id,searchString,skip,limit,securityContext);
     }
 }

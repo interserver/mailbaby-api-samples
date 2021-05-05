@@ -1,6 +1,6 @@
 # DefaultApi
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**SendAdvMail**](DefaultApi.md#SendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**SendMail**](DefaultApi.md#SendMail) | **POST** /mail/send | Sends an Email
 [**ValidateMailOrder**](DefaultApi.md#ValidateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**ViewMailLogById**](DefaultApi.md#ViewMailLogById) | **GET** /mail/log | displays the mail log
+[**ViewMailLog**](DefaultApi.md#ViewMailLog) | **GET** /mail/log | displays the mail log
 
 
 # **GetMailOrders**
@@ -282,8 +282,8 @@ void (empty response body)
 | **200** | list of mail orders |  -  |
 | **401** | Unauthorized |  -  |
 
-# **ViewMailLogById**
-> array[MailLog] ViewMailLogById(id=var.id, search.string=var.search.string, skip=var.skip, limit=var.limit)
+# **ViewMailLog**
+> array[MailLog] ViewMailLog(id=var.id, search.string=var.search.string, skip=var.skip, limit=var.limit)
 
 displays the mail log
 
@@ -302,7 +302,7 @@ var.limit <- 56 # integer | maximum number of records to return
 api.instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
 api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$ViewMailLogById(id=var.id, search.string=var.search.string, skip=var.skip, limit=var.limit)
+result <- api.instance$ViewMailLog(id=var.id, search.string=var.search.string, skip=var.skip, limit=var.limit)
 dput(result)
 ```
 

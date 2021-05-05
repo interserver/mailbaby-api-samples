@@ -17,7 +17,7 @@ import * as url from "url";
 import * as portableFetch from "portable-fetch";
 import { Configuration } from "./configuration";
 
-const BASE_PATH: string = "https://api.mailbaby.net".replace(/\/+$/, "");
+const BASE_PATH: string = "http://mystage.interserver.net:8787".replace(/\/+$/, "");
 
 /**
  *
@@ -551,7 +551,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * @summary displays the mail log
          * @throws {RequiredError}
          */
-        viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options: RequestOptions): FetchArgs {
+        viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options: RequestOptions): FetchArgs {
             const localVarPath = `/mail/log`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
@@ -608,7 +608,7 @@ export type DefaultApiType = {
 
     validateMailOrder(options?: RequestOptions): Promise<Response>,
 
-    viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: RequestOptions): Promise<Array<MailLog>>,
+    viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options?: RequestOptions): Promise<Array<MailLog>>,
 }
 
 /**
@@ -713,8 +713,8 @@ export const DefaultApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary displays the mail log
          * @throws {RequiredError}
          */
-        viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: RequestOptions = {}): Promise<Array<MailLog>> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).viewMailLogById(id, searchString, skip, limit, options);
+        viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options?: RequestOptions = {}): Promise<Array<MailLog>> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).viewMailLog(id, searchString, skip, limit, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();

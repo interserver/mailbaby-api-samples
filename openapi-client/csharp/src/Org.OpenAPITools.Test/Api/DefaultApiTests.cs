@@ -137,17 +137,17 @@ namespace Org.OpenAPITools.Test
         }
         
         /// <summary>
-        /// Test ViewMailLogById
+        /// Test ViewMailLog
         /// </summary>
         [Test]
-        public void ViewMailLogByIdTest()
+        public void ViewMailLogTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //long? id = null;
             //string searchString = null;
             //int? skip = null;
             //int? limit = null;
-            //var response = instance.ViewMailLogById(id, searchString, skip, limit);
+            //var response = instance.ViewMailLog(id, searchString, skip, limit);
             //Assert.IsInstanceOf(typeof(List<MailLog>), response, "response is List<MailLog>");
         }
         

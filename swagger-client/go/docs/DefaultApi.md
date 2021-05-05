@@ -1,6 +1,6 @@
 # {{classname}}
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**SendAdvMail**](DefaultApi.md#SendAdvMail) | **Post** /mail/advsend | Sends an Email with Advanced Options
 [**SendMail**](DefaultApi.md#SendMail) | **Post** /mail/send | Sends an Email
 [**ValidateMailOrder**](DefaultApi.md#ValidateMailOrder) | **Get** /mail/order | validatess order details before placing an order
-[**ViewMailLogById**](DefaultApi.md#ViewMailLogById) | **Get** /mail/log | displays the mail log
+[**ViewMailLog**](DefaultApi.md#ViewMailLog) | **Get** /mail/log | displays the mail log
 
 # **GetMailOrders**
 > []MailOrder GetMailOrders(ctx, optional)
@@ -191,8 +191,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ViewMailLogById**
-> []MailLog ViewMailLogById(ctx, optional)
+# **ViewMailLog**
+> []MailLog ViewMailLog(ctx, optional)
 displays the mail log
 
 By passing in the appropriate options, you can search for available inventory in the system 
@@ -202,10 +202,10 @@ By passing in the appropriate options, you can search for available inventory in
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***DefaultApiViewMailLogByIdOpts** | optional parameters | nil if no parameters
+ **optional** | ***DefaultApiViewMailLogOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a pointer to a DefaultApiViewMailLogByIdOpts struct
+Optional parameters are passed through a pointer to a DefaultApiViewMailLogOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **optional.Int64**| The ID of your mail order this will be sent through. | 

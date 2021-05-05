@@ -22,7 +22,7 @@ import sttp.model.Method
 
 object DefaultApi {
 
-def apply(baseUrl: String = "https://api.mailbaby.net") = new DefaultApi(baseUrl)
+def apply(baseUrl: String = "http://mystage.interserver.net:8787") = new DefaultApi(baseUrl)
 }
 
 class DefaultApi(baseUrl: String) {
@@ -165,7 +165,7 @@ class DefaultApi(baseUrl: String) {
    * @param skip number of records to skip for pagination
    * @param limit maximum number of records to return
    */
-  def viewMailLogById(apiKey: String)(id: Option[Long] = None, searchString: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None
+  def viewMailLog(apiKey: String)(id: Option[Long] = None, searchString: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None
 ): Request[Either[ResponseError[Exception], Seq[MailLog]], Nothing] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/mail/log?id=${ id }&searchString=${ searchString }&skip=${ skip }&limit=${ limit }")

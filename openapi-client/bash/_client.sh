@@ -302,7 +302,7 @@ case $state in
             "sendAdvMail[Sends an Email with Advanced Options]" \
             "sendMail[Sends an Email]" \
             "validateMailOrder[validatess order details before placing an order]" \
-            "viewMailLogById[displays the mail log]" \
+            "viewMailLog[displays the mail log]" \
 
     _arguments "(--help)--help[Print information about operation]"
 
@@ -347,7 +347,7 @@ case $state in
                               )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      viewMailLogById)
+      viewMailLog)
         local -a _op_arguments
         _op_arguments=(
                     "id=:[QUERY] The ID of your mail order this will be sent through."

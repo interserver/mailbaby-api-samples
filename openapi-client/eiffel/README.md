@@ -18,7 +18,7 @@ Add the library into your Eiffel configuration file.
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -28,7 +28,7 @@ Class | Method | HTTP request | Description
 *DEFAULT_API* | [**send_adv_mail**](docs/DEFAULT_API.md#send_adv_mail) | **Post** /mail/advsend | Sends an Email with Advanced Options
 *DEFAULT_API* | [**send_mail**](docs/DEFAULT_API.md#send_mail) | **Post** /mail/send | Sends an Email
 *DEFAULT_API* | [**validate_mail_order**](docs/DEFAULT_API.md#validate_mail_order) | **Get** /mail/order | validatess order details before placing an order
-*DEFAULT_API* | [**view_mail_log_by_id**](docs/DEFAULT_API.md#view_mail_log_by_id) | **Get** /mail/log | displays the mail log
+*DEFAULT_API* | [**view_mail_log**](docs/DEFAULT_API.md#view_mail_log) | **Get** /mail/log | displays the mail log
 
 
 ## Documentation For Models

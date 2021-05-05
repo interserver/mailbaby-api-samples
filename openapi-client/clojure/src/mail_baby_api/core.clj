@@ -12,7 +12,7 @@
 
 (def default-api-context
   "Default API context."
-  {:base-url        "https://api.mailbaby.net"
+  {:base-url        "http://mystage.interserver.net:8787"
    :date-format     "yyyy-MM-dd"
    :datetime-format "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
    :decode-models   false

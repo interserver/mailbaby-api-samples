@@ -70,8 +70,8 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
-    def test_view_mail_log_by_id(self):
-        """Test case for view_mail_log_by_id
+    def test_view_mail_log(self):
+        """Test case for view_mail_log
 
         displays the mail log  # noqa: E501
         """

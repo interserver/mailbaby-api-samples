@@ -109,13 +109,13 @@ class MailApiControllerTest {
     }
 
     @Test
-    void viewMailLogByIdTest() {
+    void viewMailLogTest() {
         Long id = 789L;
         String searchString = "searchString_example";
         Integer skip = 56;
         Integer limit = 56;
         try {
-            api.viewMailLogById(id, searchString, skip, limit).blockingGet();
+            api.viewMailLog(id, searchString, skip, limit).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

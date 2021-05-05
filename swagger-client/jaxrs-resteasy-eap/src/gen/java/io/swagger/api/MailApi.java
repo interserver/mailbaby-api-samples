@@ -35,7 +35,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T08:21:55.537213-04:00[America/New_York]")public interface MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T09:58:46.802162-04:00[America/New_York]")public interface MailApi  {
    
     @GET
     
@@ -141,6 +141,6 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = MailLog.class)))),
                 @ApiResponse(responseCode = "400", description = "bad input parameter")
          })
-    Response viewMailLogById( @QueryParam("id") Long id, @QueryParam("searchString") String searchString, @Min(0) @QueryParam("skip") Integer skip, @Min(0) @Max(50) @QueryParam("limit") Integer limit,@Context SecurityContext securityContext);
+    Response viewMailLog( @QueryParam("id") Long id, @QueryParam("searchString") String searchString, @Min(0) @QueryParam("skip") Integer skip, @Min(0) @Max(50) @QueryParam("limit") Integer limit,@Context SecurityContext securityContext);
 
 }

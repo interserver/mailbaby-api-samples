@@ -295,7 +295,7 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      */
-    public async viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: Configuration): Promise<RequestContext> {
+    public async viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options?: Configuration): Promise<RequestContext> {
         let config = options || this.configuration;
 
 
@@ -580,10 +580,10 @@ export class DefaultApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to viewMailLogById
+     * @params response Response returned by the server for a request to viewMailLog
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async viewMailLogById(response: ResponseContext): Promise<Array<MailLog> > {
+     public async viewMailLog(response: ResponseContext): Promise<Array<MailLog> > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Array<MailLog> = ObjectSerializer.deserialize(

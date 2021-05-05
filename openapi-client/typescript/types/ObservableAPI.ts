@@ -179,8 +179,8 @@ export class ObservableDefaultApi {
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      */
-    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: Configuration): Observable<Array<MailLog>> {
-        const requestContextPromise = this.requestFactory.viewMailLogById(id, searchString, skip, limit, options);
+    public viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options?: Configuration): Observable<Array<MailLog>> {
+        const requestContextPromise = this.requestFactory.viewMailLog(id, searchString, skip, limit, options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -194,7 +194,7 @@ export class ObservableDefaultApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.viewMailLogById(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.viewMailLog(rsp)));
             }));
     }
  

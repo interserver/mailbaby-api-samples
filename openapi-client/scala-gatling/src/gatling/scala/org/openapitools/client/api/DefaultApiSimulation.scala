@@ -42,7 +42,7 @@ class DefaultApiSimulation extends Simulation {
 
 // Setup http protocol configuration
     val httpConf = http
-        .baseURL("https://api.mailbaby.net")
+        .baseURL("http://mystage.interserver.net:8787")
         .doNotTrackHeader("1")
         .acceptLanguageHeader("en-US,en;q=0.5")
         .acceptEncodingHeader("gzip, deflate")
@@ -62,13 +62,13 @@ class DefaultApiSimulation extends Simulation {
     val sendAdvMailPerSecond = config.getDouble("performance.operationsPerSecond.sendAdvMail") * rateMultiplier * instanceMultiplier
     val sendMailPerSecond = config.getDouble("performance.operationsPerSecond.sendMail") * rateMultiplier * instanceMultiplier
     val validateMailOrderPerSecond = config.getDouble("performance.operationsPerSecond.validateMailOrder") * rateMultiplier * instanceMultiplier
-    val viewMailLogByIdPerSecond = config.getDouble("performance.operationsPerSecond.viewMailLogById") * rateMultiplier * instanceMultiplier
+    val viewMailLogPerSecond = config.getDouble("performance.operationsPerSecond.viewMailLog") * rateMultiplier * instanceMultiplier
 
     val scenarioBuilders: mutable.MutableList[PopulationBuilder] = new mutable.MutableList[PopulationBuilder]()
 
     // Set up CSV feeders
     val getMailOrdersQUERYFeeder = csv(userDataDirectory + File.separator + "getMailOrders-queryParams.csv").random
-    val viewMailLogByIdQUERYFeeder = csv(userDataDirectory + File.separator + "viewMailLogById-queryParams.csv").random
+    val viewMailLogQUERYFeeder = csv(userDataDirectory + File.separator + "viewMailLog-queryParams.csv").random
 
     // Setup all scenarios
 
@@ -153,9 +153,9 @@ class DefaultApiSimulation extends Simulation {
     )
 
     
-    val scnviewMailLogById = scenario("viewMailLogByIdSimulation")
-        .feed(viewMailLogByIdQUERYFeeder)
-        .exec(http("viewMailLogById")
+    val scnviewMailLog = scenario("viewMailLogSimulation")
+        .feed(viewMailLogQUERYFeeder)
+        .exec(http("viewMailLog")
         .httpRequest("GET","/mail/log")
         .queryParam("id","${id}")
         .queryParam("searchString","${searchString}")
@@ -163,11 +163,11 @@ class DefaultApiSimulation extends Simulation {
         .queryParam("skip","${skip}")
 )
 
-    // Run scnviewMailLogById with warm up and reach a constant rate for entire duration
-    scenarioBuilders += scnviewMailLogById.inject(
-        rampUsersPerSec(1) to(viewMailLogByIdPerSecond) during(rampUpSeconds),
-        constantUsersPerSec(viewMailLogByIdPerSecond) during(durationSeconds),
-        rampUsersPerSec(viewMailLogByIdPerSecond) to(1) during(rampDownSeconds)
+    // Run scnviewMailLog with warm up and reach a constant rate for entire duration
+    scenarioBuilders += scnviewMailLog.inject(
+        rampUsersPerSec(1) to(viewMailLogPerSecond) during(rampUpSeconds),
+        constantUsersPerSec(viewMailLogPerSecond) during(durationSeconds),
+        rampUsersPerSec(viewMailLogPerSecond) to(1) during(rampDownSeconds)
     )
 
     setUp(

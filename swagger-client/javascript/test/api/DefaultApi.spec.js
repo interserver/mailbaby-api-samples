@@ -107,10 +107,10 @@
         done();
       });
     });
-    describe('viewMailLogById', function() {
-      it('should call viewMailLogById successfully', function(done) {
-        //uncomment below and update the code to test viewMailLogById
-        //instance.viewMailLogById(function(error) {
+    describe('viewMailLog', function() {
+      it('should call viewMailLog successfully', function(done) {
+        //uncomment below and update the code to test viewMailLog
+        //instance.viewMailLog(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

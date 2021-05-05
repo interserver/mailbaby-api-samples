@@ -57,8 +57,8 @@ describe("default_api", function()
     end)
   end)
 
-  -- unit tests for view_mail_log_by_id
-  describe("view_mail_log_by_id test", function()
+  -- unit tests for view_mail_log
+  describe("view_mail_log test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

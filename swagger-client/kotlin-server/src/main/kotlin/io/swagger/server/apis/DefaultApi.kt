@@ -127,7 +127,7 @@ fun Route.DefaultApi() {
             call.respond(HttpStatusCode.NotImplemented)
         }
     }
-    get<Paths.viewMailLogById> {  _: Paths.viewMailLogById ->
+    get<Paths.viewMailLog> {  _: Paths.viewMailLog ->
         val principal = call.authentication.principal<ApiPrincipal>()
         if (principal == null) {
             call.respond(HttpStatusCode.Unauthorized)

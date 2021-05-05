@@ -25,7 +25,7 @@ import java.io.IOException;
  * Mail Order Details
  */
 @Schema(description = "Mail Order Details")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-05T08:21:33.263161-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-05T09:58:23.619273-04:00[America/New_York]")
 public class MailLog {
   @SerializedName("id")
   private Long id = null;

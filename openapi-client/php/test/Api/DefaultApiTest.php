@@ -145,12 +145,12 @@ class DefaultApiTest extends TestCase
     }
 
     /**
-     * Test case for viewMailLogById
+     * Test case for viewMailLog
      *
      * displays the mail log.
      *
      */
-    public function testViewMailLogById()
+    public function testViewMailLog()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -38,8 +38,8 @@ export class ServerConfiguration<T extends { [key: string]: string }> {
     }
 }
 
-const server1 = new ServerConfiguration<{  }>("https://api.mailbaby.net", {  }, "Live API Endpoint")
-const server2 = new ServerConfiguration<{  }>("http://mynew.interserver.net:8787", {  }, "Temporary API Endpoint")
+const server1 = new ServerConfiguration<{  }>("http://mystage.interserver.net:8787", {  }, "Temporary API Endpoint")
+const server2 = new ServerConfiguration<{  }>("https://api.mailbaby.net", {  }, "Live API Endpoint")
 const server3 = new ServerConfiguration<{  }>("https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0", {  }, "SwaggerHub API Auto Mocking")
 
 export const servers = [server1, server2, server3];

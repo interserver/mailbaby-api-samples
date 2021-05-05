@@ -468,7 +468,7 @@ class DefaultApi {
   ///
   /// * [int] limit:
   ///   maximum number of records to return
-  Future<Response> viewMailLogByIdWithHttpInfo({ int id, String searchString, int skip, int limit }) async {
+  Future<Response> viewMailLogWithHttpInfo({ int id, String searchString, int skip, int limit }) async {
     // Verify required params are set.
 
     final path = r'/mail/log';
@@ -537,8 +537,8 @@ class DefaultApi {
   ///
   /// * [int] limit:
   ///   maximum number of records to return
-  Future<List<MailLog>> viewMailLogById({ int id, String searchString, int skip, int limit }) async {
-    final response = await viewMailLogByIdWithHttpInfo( id: id, searchString: searchString, skip: skip, limit: limit );
+  Future<List<MailLog>> viewMailLog({ int id, String searchString, int skip, int limit }) async {
+    final response = await viewMailLogWithHttpInfo( id: id, searchString: searchString, skip: skip, limit: limit );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

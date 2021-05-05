@@ -24,7 +24,7 @@ function Get-Configuration {
     $Configuration = $Script:Configuration
 
     if ([string]::IsNullOrEmpty($Configuration["BaseUrl"])) {
-        $Configuration["BaseUrl"] = "https://api.mailbaby.net";
+        $Configuration["BaseUrl"] = "http://mystage.interserver.net:8787";
     }
 
     if (!$Configuration.containsKey("Username")) {
@@ -313,12 +313,12 @@ System.Collections.Hashtable[]
 function Get-HostSetting {
     return ,@(
           @{
-            "Url" = "https://api.mailbaby.net";
-            "Description" = "Live API Endpoint";
+            "Url" = "http://mystage.interserver.net:8787";
+            "Description" = "Temporary API Endpoint";
           },
           @{
-            "Url" = "http://mynew.interserver.net:8787";
-            "Description" = "Temporary API Endpoint";
+            "Url" = "https://api.mailbaby.net";
+            "Description" = "Live API Endpoint";
           },
           @{
             "Url" = "https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0";

@@ -22,7 +22,7 @@ import org.openapitools.client.core.ApiKeyLocations._
 
 object DefaultApi {
 
-  def apply(baseUrl: String = "https://api.mailbaby.net") = new DefaultApi(baseUrl)
+  def apply(baseUrl: String = "http://mystage.interserver.net:8787") = new DefaultApi(baseUrl)
 }
 
 class DefaultApi(baseUrl: String) {
@@ -164,7 +164,7 @@ class DefaultApi(baseUrl: String) {
    * @param skip number of records to skip for pagination
    * @param limit maximum number of records to return
    */
-  def viewMailLogById(id: Option[Long] = None, searchString: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[MailLog]] =
+  def viewMailLog(id: Option[Long] = None, searchString: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[MailLog]] =
     ApiRequest[Seq[MailLog]](ApiMethods.GET, baseUrl, "/mail/log", "application/json")
       .withApiKey(apiKey, "X-API-KEY", HEADER)
       .withQueryParam("id", id)

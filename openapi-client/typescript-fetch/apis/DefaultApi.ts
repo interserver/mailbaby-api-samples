@@ -51,7 +51,7 @@ export interface SendMailRequest {
     body: string;
 }
 
-export interface ViewMailLogByIdRequest {
+export interface ViewMailLogRequest {
     id?: number;
     searchString?: string;
     skip?: number;
@@ -308,7 +308,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * By passing in the appropriate options, you can search for available inventory in the system 
      * displays the mail log
      */
-    async viewMailLogByIdRaw(requestParameters: ViewMailLogByIdRequest): Promise<runtime.ApiResponse<Array<MailLog>>> {
+    async viewMailLogRaw(requestParameters: ViewMailLogRequest): Promise<runtime.ApiResponse<Array<MailLog>>> {
         const queryParameters: any = {};
 
         if (requestParameters.id !== undefined) {
@@ -347,8 +347,8 @@ export class DefaultApi extends runtime.BaseAPI {
      * By passing in the appropriate options, you can search for available inventory in the system 
      * displays the mail log
      */
-    async viewMailLogById(requestParameters: ViewMailLogByIdRequest): Promise<Array<MailLog>> {
-        const response = await this.viewMailLogByIdRaw(requestParameters);
+    async viewMailLog(requestParameters: ViewMailLogRequest): Promise<Array<MailLog>> {
+        const response = await this.viewMailLogRaw(requestParameters);
         return await response.value();
     }
 

@@ -53,7 +53,7 @@ import scala.util.{Failure, Success, Try}
 import org.json4s._
 
 class DefaultApi(
-  val defBasePath: String = "https://api.mailbaby.net",
+  val defBasePath: String = "http://mystage.interserver.net:8787",
   defApiInvoker: ApiInvoker = ApiInvoker
 ) {
   private lazy val dateTimeFormatter = {
@@ -275,8 +275,8 @@ class DefaultApi(
    * @param limit maximum number of records to return (optional)
    * @return List[MailLog]
    */
-  def viewMailLogById(id: Option[Long] = None, searchString: Option[String] = None, skip: Option[Integer] = None, limit: Option[Integer] = None): Option[List[MailLog]] = {
-    val await = Try(Await.result(viewMailLogByIdAsync(id, searchString, skip, limit), Duration.Inf))
+  def viewMailLog(id: Option[Long] = None, searchString: Option[String] = None, skip: Option[Integer] = None, limit: Option[Integer] = None): Option[List[MailLog]] = {
+    val await = Try(Await.result(viewMailLogAsync(id, searchString, skip, limit), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -293,8 +293,8 @@ class DefaultApi(
    * @param limit maximum number of records to return (optional)
    * @return Future(List[MailLog])
    */
-  def viewMailLogByIdAsync(id: Option[Long] = None, searchString: Option[String] = None, skip: Option[Integer] = None, limit: Option[Integer] = None): Future[List[MailLog]] = {
-      helper.viewMailLogById(id, searchString, skip, limit)
+  def viewMailLogAsync(id: Option[Long] = None, searchString: Option[String] = None, skip: Option[Integer] = None, limit: Option[Integer] = None): Future[List[MailLog]] = {
+      helper.viewMailLog(id, searchString, skip, limit)
   }
 
 }
@@ -430,7 +430,7 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
-  def viewMailLogById(id: Option[Long] = None,
+  def viewMailLog(id: Option[Long] = None,
     searchString: Option[String] = None,
     skip: Option[Integer] = None,
     limit: Option[Integer] = None

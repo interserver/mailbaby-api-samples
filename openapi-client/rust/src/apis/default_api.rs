@@ -69,10 +69,10 @@ pub enum ValidateMailOrderError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `view_mail_log_by_id`
+/// struct for typed errors of method `view_mail_log`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum ViewMailLogByIdError {
+pub enum ViewMailLogError {
     Status400(),
     UnknownValue(serde_json::Value),
 }
@@ -289,7 +289,7 @@ pub async fn validate_mail_order(configuration: &configuration::Configuration, )
 }
 
 /// By passing in the appropriate options, you can search for available inventory in the system 
-pub async fn view_mail_log_by_id(configuration: &configuration::Configuration, id: Option<i64>, search_string: Option<&str>, skip: Option<i32>, limit: Option<i32>) -> Result<Vec<crate::models::MailLog>, Error<ViewMailLogByIdError>> {
+pub async fn view_mail_log(configuration: &configuration::Configuration, id: Option<i64>, search_string: Option<&str>, skip: Option<i32>, limit: Option<i32>) -> Result<Vec<crate::models::MailLog>, Error<ViewMailLogError>> {
 
     let local_var_client = &configuration.client;
 
@@ -329,7 +329,7 @@ pub async fn view_mail_log_by_id(configuration: &configuration::Configuration, i
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<ViewMailLogByIdError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<ViewMailLogError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

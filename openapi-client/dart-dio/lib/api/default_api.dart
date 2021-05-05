@@ -379,7 +379,7 @@ class DefaultApi {
   /// displays the mail log
   ///
   /// By passing in the appropriate options, you can search for available inventory in the system 
-  Future<Response<BuiltList<MailLog>>> viewMailLogById({ 
+  Future<Response<BuiltList<MailLog>>> viewMailLog({ 
     int id,
     String searchString,
     int skip,

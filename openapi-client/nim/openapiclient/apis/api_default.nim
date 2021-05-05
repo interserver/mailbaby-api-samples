@@ -24,7 +24,7 @@ import ../models/model_mail_log
 import ../models/model_mail_order
 import ../models/model_send_mail_adv
 
-const basepath = "https://api.mailbaby.net"
+const basepath = "http://mystage.interserver.net:8787"
 
 template constructResult[T](response: Response): untyped =
   if response.code in {Http200, Http201, Http202, Http204, Http206}:
@@ -90,7 +90,7 @@ proc validateMailOrder*(httpClient: HttpClient): Response {.deprecated.} =
   httpClient.get(basepath & "/mail/order")
 
 
-proc viewMailLogById*(httpClient: HttpClient, id: int64, searchString: string, skip: int, limit: int): (Option[seq[MailLog]], Response) =
+proc viewMailLog*(httpClient: HttpClient, id: int64, searchString: string, skip: int, limit: int): (Option[seq[MailLog]], Response) =
   ## displays the mail log
   let query_for_api_call = encodeQuery([
     ("id", $id), # The ID of your mail order this will be sent through.

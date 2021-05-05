@@ -599,7 +599,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLogById: async (id?: number, searchString?: string, skip?: number, limit?: number, options: any = {}): Promise<RequestArgs> => {
+        viewMailLog: async (id?: number, searchString?: string, skip?: number, limit?: number, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/mail/log`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -791,8 +791,8 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MailLog>>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).viewMailLogById(id, searchString, skip, limit, options);
+        async viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MailLog>>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).viewMailLog(id, searchString, skip, limit, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -906,8 +906,8 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: any): AxiosPromise<Array<MailLog>> {
-            return DefaultApiFp(configuration).viewMailLogById(id, searchString, skip, limit, options).then((request) => request(axios, basePath));
+        viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options?: any): AxiosPromise<Array<MailLog>> {
+            return DefaultApiFp(configuration).viewMailLog(id, searchString, skip, limit, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1029,7 +1029,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public viewMailLogById(id?: number, searchString?: string, skip?: number, limit?: number, options?: any) {
-        return DefaultApiFp(this.configuration).viewMailLogById(id, searchString, skip, limit, options).then((request) => request(this.axios, this.basePath));
+    public viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options?: any) {
+        return DefaultApiFp(this.configuration).viewMailLog(id, searchString, skip, limit, options).then((request) => request(this.axios, this.basePath));
     }
 }

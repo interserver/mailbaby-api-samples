@@ -1,6 +1,6 @@
 # DEFAULT_API
 
-All URIs are relative to *https://api.mailbaby.net*
+All URIs are relative to *http://mystage.interserver.net:8787*
 
 Feature | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,7 +10,7 @@ Feature | HTTP request | Description
 [**send_adv_mail**](DEFAULT_API.md#send_adv_mail) | **Post** /mail/advsend | Sends an Email with Advanced Options
 [**send_mail**](DEFAULT_API.md#send_mail) | **Post** /mail/send | Sends an Email
 [**validate_mail_order**](DEFAULT_API.md#validate_mail_order) | **Get** /mail/order | validatess order details before placing an order
-[**view_mail_log_by_id**](DEFAULT_API.md#view_mail_log_by_id) | **Get** /mail/log | displays the mail log
+[**view_mail_log**](DEFAULT_API.md#view_mail_log) | **Get** /mail/log | displays the mail log
 
 
 # **mail_orders**
@@ -184,8 +184,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **view_mail_log_by_id**
-> view_mail_log_by_id (id:  detachable INTEGER_64 ; search_string:  detachable STRING_32 ; skip:  detachable INTEGER_32 ; limit:  detachable INTEGER_32 ): detachable LIST [MAIL_LOG]
+# **view_mail_log**
+> view_mail_log (id:  detachable INTEGER_64 ; search_string:  detachable STRING_32 ; skip:  detachable INTEGER_32 ; limit:  detachable INTEGER_32 ): detachable LIST [MAIL_LOG]
 	
 
 displays the mail log

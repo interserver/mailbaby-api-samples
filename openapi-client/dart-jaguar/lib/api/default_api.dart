@@ -118,7 +118,7 @@ class DefaultApi extends ApiClient with _$DefaultApiClient {
     ///
     /// By passing in the appropriate options, you can search for available inventory in the system 
     @GetReq(path: "/mail/log", metadata: {"auth": [ {"type": "apiKey", "name": "apiKeyAuth", "keyName": "X-API-KEY", "where": "header" }]})
-    Future<List<MailLog>> viewMailLogById(
+    Future<List<MailLog>> viewMailLog(
         
             @QueryParam("id") int id, 
         
@@ -128,7 +128,7 @@ class DefaultApi extends ApiClient with _$DefaultApiClient {
         
             @QueryParam("limit") int limit
         ) {
-        return super.viewMailLogById(
+        return super.viewMailLog(
         
         id, 
         

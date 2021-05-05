@@ -5,13 +5,13 @@
 README.md
 composer.json
 docs/Api/DefaultApi.md
-docs/Model/Body1.md
 docs/Model/ErrorResponse.md
 docs/Model/GenericResponse.md
 docs/Model/MailAttachment.md
 docs/Model/MailContact.md
 docs/Model/MailLog.md
 docs/Model/MailOrder.md
+docs/Model/SendMail.md
 docs/Model/SendMailAdv.md
 docs/Model/SendMailAdvFrom.md
 git_push.sh
@@ -20,7 +20,6 @@ src/Api/DefaultApi.php
 src/ApiException.php
 src/Configuration.php
 src/HeaderSelector.php
-src/Model/Body1.php
 src/Model/ErrorResponse.php
 src/Model/GenericResponse.php
 src/Model/MailAttachment.php
@@ -28,11 +27,11 @@ src/Model/MailContact.php
 src/Model/MailLog.php
 src/Model/MailOrder.php
 src/Model/ModelInterface.php
+src/Model/SendMail.php
 src/Model/SendMailAdv.php
 src/Model/SendMailAdvFrom.php
 src/ObjectSerializer.php
 test/Api/DefaultApiTest.php
-test/Model/Body1Test.php
 test/Model/ErrorResponseTest.php
 test/Model/GenericResponseTest.php
 test/Model/MailAttachmentTest.php
@@ -41,3 +40,4 @@ test/Model/MailLogTest.php
 test/Model/MailOrderTest.php
 test/Model/SendMailAdvFromTest.php
 test/Model/SendMailAdvTest.php
+test/Model/SendMailTest.php

@@ -229,7 +229,7 @@ var to = to_example; // String |
 var from = from_example; // String | 
 var subject = subject_example; // String | 
 var body = body_example; // String | 
-var body = new Body1(); // Body1 | 
+var body = new SendMail(); // SendMail | 
 
 try {
     var result = api_instance.sendMail(to, from, subject, body, body);
@@ -247,7 +247,7 @@ Name | Type | Description  | Notes
  **from** | **String**|  | 
  **subject** | **String**|  | 
  **body** | **String**|  | 
- **body** | [**Body1**](Body1.md)|  | 
+ **body** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type
 

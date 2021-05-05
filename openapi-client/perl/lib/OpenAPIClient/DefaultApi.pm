@@ -279,31 +279,31 @@ sub send_adv_mail {
 #
 # Sends an Email
 # 
-# @param string $to The Contact whom is the primary recipient of this email. (optional)
-# @param string $from The contact whom is the this email is from. (optional)
-# @param string $subject The subject or title of the email (optional)
-# @param string $body The main email contents. (optional)
+# @param string $to The Contact whom is the primary recipient of this email. (required)
+# @param string $from The contact whom is the this email is from. (required)
+# @param string $subject The subject or title of the email (required)
+# @param string $body The main email contents. (required)
 {
     my $params = {
     'to' => {
         data_type => 'string',
         description => 'The Contact whom is the primary recipient of this email.',
-        required => '0',
+        required => '1',
     },
     'from' => {
         data_type => 'string',
         description => 'The contact whom is the this email is from.',
-        required => '0',
+        required => '1',
     },
     'subject' => {
         data_type => 'string',
         description => 'The subject or title of the email',
-        required => '0',
+        required => '1',
     },
     'body' => {
         data_type => 'string',
         description => 'The main email contents.',
-        required => '0',
+        required => '1',
     },
     };
     __PACKAGE__->method_documentation->{ 'send_mail' } = { 
@@ -316,6 +316,26 @@ sub send_adv_mail {
 #
 sub send_mail {
     my ($self, %args) = @_;
+
+    # verify the required parameter 'to' is set
+    unless (exists $args{'to'}) {
+      croak("Missing the required parameter 'to' when calling send_mail");
+    }
+
+    # verify the required parameter 'from' is set
+    unless (exists $args{'from'}) {
+      croak("Missing the required parameter 'from' when calling send_mail");
+    }
+
+    # verify the required parameter 'subject' is set
+    unless (exists $args{'subject'}) {
+      croak("Missing the required parameter 'subject' when calling send_mail");
+    }
+
+    # verify the required parameter 'body' is set
+    unless (exists $args{'body'}) {
+      croak("Missing the required parameter 'body' when calling send_mail");
+    }
 
     # parse inputs
     my $_resource_path = '/mail/send';

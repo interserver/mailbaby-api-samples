@@ -2,13 +2,13 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
-import { Body1 } from '../models/Body1';
 import { ErrorResponse } from '../models/ErrorResponse';
 import { GenericResponse } from '../models/GenericResponse';
 import { MailAttachment } from '../models/MailAttachment';
 import { MailContact } from '../models/MailContact';
 import { MailLog } from '../models/MailLog';
 import { MailOrder } from '../models/MailOrder';
+import { SendMail } from '../models/SendMail';
 import { SendMailAdv } from '../models/SendMailAdv';
 import { SendMailAdvFrom } from '../models/SendMailAdvFrom';
 import { ObservableDefaultApi } from './ObservableAPI';
@@ -70,7 +70,7 @@ export class PromiseDefaultApi {
      * @param subject The subject or title of the email
      * @param body The main email contents.
      */
-    public sendMail(to?: string, from?: string, subject?: string, body?: string, options?: Configuration): Promise<GenericResponse> {
+    public sendMail(to: string, from: string, subject: string, body: string, options?: Configuration): Promise<GenericResponse> {
         const result = this.api.sendMail(to, from, subject, body, options);
         return result.toPromise();
     }

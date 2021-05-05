@@ -474,18 +474,6 @@ h4. Responses
 {anchor:models}
 h2. Models
 
-        {anchor:Body1ModelAnchor}
-        h3. Body1
-
-        Details for an Email
-        
-        
-        ||Field Name||Required||Type||Description||Enum||
-         |to |(x) |{noformat:nopanel=true}String{noformat} |The Contact whom is the primary recipient of this email. |  |
-         |from |(x) |{noformat:nopanel=true}String{noformat} |The contact whom is the this email is from. |  |
-         |subject |(x) |{noformat:nopanel=true}String{noformat} |The subject or title of the email |  |
-         |body |(x) |{noformat:nopanel=true}String{noformat} |The main email contents. |  |
-         
         {anchor:ErrorResponseModelAnchor}
         h3. ErrorResponse
 
@@ -547,6 +535,18 @@ h2. Models
          |username |(/) |{noformat:nopanel=true}String{noformat} | |  |
          |password |(x) |{noformat:nopanel=true}String{noformat} | |  |
          |comment |(x) |{noformat:nopanel=true}String{noformat} | |  |
+         
+        {anchor:SendMailModelAnchor}
+        h3. SendMail
+
+        Details for an Email
+        
+        
+        ||Field Name||Required||Type||Description||Enum||
+         |to |(/) |{noformat:nopanel=true}String{noformat} |The Contact whom is the primary recipient of this email. |  |
+         |from |(/) |{noformat:nopanel=true}String{noformat} |The contact whom is the this email is from. |  |
+         |subject |(/) |{noformat:nopanel=true}String{noformat} |The subject or title of the email |  |
+         |body |(/) |{noformat:nopanel=true}String{noformat} |The main email contents. |  |
          
         {anchor:SendMailAdvModelAnchor}
         h3. SendMailAdv

@@ -1,5 +1,4 @@
 .openapi-generator-ignore
-API/Client/Body1.js
 API/Client/DefaultApi.js
 API/Client/ErrorResponse.js
 API/Client/GenericResponse.js
@@ -7,5 +6,6 @@ API/Client/MailAttachment.js
 API/Client/MailContact.js
 API/Client/MailLog.js
 API/Client/MailOrder.js
+API/Client/SendMail.js
 API/Client/SendMailAdv.js
 API/Client/SendMailAdvFrom.js

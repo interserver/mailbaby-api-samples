@@ -1832,7 +1832,7 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  \Interserver\Mailbaby\Model\Body1 $body body (required)
+     * @param  \Interserver\Mailbaby\Model\SendMail $body body (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1849,7 +1849,7 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  \Interserver\Mailbaby\Model\Body1 $body (required)
+     * @param  \Interserver\Mailbaby\Model\SendMail $body (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1940,7 +1940,7 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  \Interserver\Mailbaby\Model\Body1 $body (required)
+     * @param  \Interserver\Mailbaby\Model\SendMail $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1960,7 +1960,7 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  \Interserver\Mailbaby\Model\Body1 $body (required)
+     * @param  \Interserver\Mailbaby\Model\SendMail $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2010,7 +2010,7 @@ class DefaultApi
     /**
      * Create request for operation 'sendMail'
      *
-     * @param  \Interserver\Mailbaby\Model\Body1 $body (required)
+     * @param  \Interserver\Mailbaby\Model\SendMail $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

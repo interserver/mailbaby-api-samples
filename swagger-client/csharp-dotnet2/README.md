@@ -213,8 +213,6 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [IO.Swagger.Model.Body](docs/Body.md)
- - [IO.Swagger.Model.Body1](docs/Body1.md)
  - [IO.Swagger.Model.ErrorResponse](docs/ErrorResponse.md)
  - [IO.Swagger.Model.GenericResponse](docs/GenericResponse.md)
  - [IO.Swagger.Model.MailAttachment](docs/MailAttachment.md)
@@ -222,6 +220,7 @@ Class | Method | HTTP request | Description
  - [IO.Swagger.Model.MailLog](docs/MailLog.md)
  - [IO.Swagger.Model.MailOrder](docs/MailOrder.md)
  - [IO.Swagger.Model.MailOrders](docs/MailOrders.md)
+ - [IO.Swagger.Model.SendMail](docs/SendMail.md)
  - [IO.Swagger.Model.SendMailAdv](docs/SendMailAdv.md)
  - [IO.Swagger.Model.SendMailAdvFrom](docs/SendMailAdvFrom.md)
 

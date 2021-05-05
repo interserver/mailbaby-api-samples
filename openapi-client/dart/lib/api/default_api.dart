@@ -280,19 +280,31 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [String] to:
+  /// * [String] to (required):
   ///   The Contact whom is the primary recipient of this email.
   ///
-  /// * [String] from:
+  /// * [String] from (required):
   ///   The contact whom is the this email is from.
   ///
-  /// * [String] subject:
+  /// * [String] subject (required):
   ///   The subject or title of the email
   ///
-  /// * [String] body:
+  /// * [String] body (required):
   ///   The main email contents.
-  Future<Response> sendMailWithHttpInfo({ String to, String from, String subject, String body }) async {
+  Future<Response> sendMailWithHttpInfo(String to, String from, String subject, String body) async {
     // Verify required params are set.
+    if (to == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: to');
+    }
+    if (from == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: from');
+    }
+    if (subject == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: subject');
+    }
+    if (body == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: body');
+    }
 
     final path = r'/mail/send';
 
@@ -364,19 +376,19 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [String] to:
+  /// * [String] to (required):
   ///   The Contact whom is the primary recipient of this email.
   ///
-  /// * [String] from:
+  /// * [String] from (required):
   ///   The contact whom is the this email is from.
   ///
-  /// * [String] subject:
+  /// * [String] subject (required):
   ///   The subject or title of the email
   ///
-  /// * [String] body:
+  /// * [String] body (required):
   ///   The main email contents.
-  Future<GenericResponse> sendMail({ String to, String from, String subject, String body }) async {
-    final response = await sendMailWithHttpInfo( to: to, from: from, subject: subject, body: body );
+  Future<GenericResponse> sendMail(String to, String from, String subject, String body) async {
+    final response = await sendMailWithHttpInfo(to, from, subject, body);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * An Email Contact
  **/
 @Schema(description = "An Email Contact")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-05T07:19:42.293294-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-05T07:38:05.858382-04:00[America/New_York]")
 public class SendMailAdvFrom   {
   @JsonProperty("email")
   private String email = null;

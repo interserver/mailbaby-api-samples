@@ -1,12 +1,12 @@
 import localVarRequest from 'request';
 
-export * from './body1';
 export * from './errorResponse';
 export * from './genericResponse';
 export * from './mailAttachment';
 export * from './mailContact';
 export * from './mailLog';
 export * from './mailOrder';
+export * from './sendMail';
 export * from './sendMailAdv';
 export * from './sendMailAdvFrom';
 
@@ -23,13 +23,13 @@ export interface RequestDetailedFile {
 export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 
-import { Body1 } from './body1';
 import { ErrorResponse } from './errorResponse';
 import { GenericResponse } from './genericResponse';
 import { MailAttachment } from './mailAttachment';
 import { MailContact } from './mailContact';
 import { MailLog } from './mailLog';
 import { MailOrder } from './mailOrder';
+import { SendMail } from './sendMail';
 import { SendMailAdv } from './sendMailAdv';
 import { SendMailAdvFrom } from './sendMailAdvFrom';
 
@@ -49,13 +49,13 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
-    "Body1": Body1,
     "ErrorResponse": ErrorResponse,
     "GenericResponse": GenericResponse,
     "MailAttachment": MailAttachment,
     "MailContact": MailContact,
     "MailLog": MailLog,
     "MailOrder": MailOrder,
+    "SendMail": SendMail,
     "SendMailAdv": SendMailAdv,
     "SendMailAdvFrom": SendMailAdvFrom,
 }

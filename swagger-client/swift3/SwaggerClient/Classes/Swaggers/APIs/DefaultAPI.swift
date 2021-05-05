@@ -262,7 +262,7 @@ open class DefaultAPI: APIBase {
      - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendMail(body: Body1, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
+    open class func sendMail(body: SendMail, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
         sendMailWithRequestBuilder(body: body).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -283,7 +283,7 @@ open class DefaultAPI: APIBase {
      - parameter body: (body)  
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendMailWithRequestBuilder(body: Body1) -> RequestBuilder<GenericResponse> {
+    open class func sendMailWithRequestBuilder(body: SendMail) -> RequestBuilder<GenericResponse> {
         let path = "/mail/send"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = body.encodeToJSON()

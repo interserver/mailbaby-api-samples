@@ -6,13 +6,13 @@ HttpResponse.ts
 IAPIConfiguration.ts
 IHttpClient.ts
 api/default.service.ts
-model/body1.ts
 model/errorResponse.ts
 model/genericResponse.ts
 model/mailAttachment.ts
 model/mailContact.ts
 model/mailLog.ts
 model/mailOrder.ts
+model/sendMail.ts
 model/sendMailAdv.ts
 model/sendMailAdvFrom.ts
 variables.ts

@@ -70,13 +70,13 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [Body1](doc/Body1.md)
  - [ErrorResponse](doc/ErrorResponse.md)
  - [GenericResponse](doc/GenericResponse.md)
  - [MailAttachment](doc/MailAttachment.md)
  - [MailContact](doc/MailContact.md)
  - [MailLog](doc/MailLog.md)
  - [MailOrder](doc/MailOrder.md)
+ - [SendMail](doc/SendMail.md)
  - [SendMailAdv](doc/SendMailAdv.md)
  - [SendMailAdvFrom](doc/SendMailAdvFrom.md)
 

@@ -178,7 +178,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendMail (Body1 body);
+        GenericResponse SendMail (SendMail body);
 
         /// <summary>
         /// Sends an Email
@@ -189,7 +189,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        ApiResponse<GenericResponse> SendMailWithHttpInfo (Body1 body);
+        ApiResponse<GenericResponse> SendMailWithHttpInfo (SendMail body);
         /// <summary>
         /// validatess order details before placing an order
         /// </summary>
@@ -393,7 +393,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>Task of GenericResponse</returns>
-        System.Threading.Tasks.Task<GenericResponse> SendMailAsync (Body1 body);
+        System.Threading.Tasks.Task<GenericResponse> SendMailAsync (SendMail body);
 
         /// <summary>
         /// Sends an Email
@@ -404,7 +404,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailAsyncWithHttpInfo (Body1 body);
+        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailAsyncWithHttpInfo (SendMail body);
         /// <summary>
         /// validatess order details before placing an order
         /// </summary>
@@ -1552,7 +1552,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendMail (Body1 body)
+        public GenericResponse SendMail (SendMail body)
         {
              ApiResponse<GenericResponse> localVarResponse = SendMailWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1564,7 +1564,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        public ApiResponse< GenericResponse > SendMailWithHttpInfo (Body1 body)
+        public ApiResponse< GenericResponse > SendMailWithHttpInfo (SendMail body)
         {
             // verify the required parameter 'body' is set
             if (body == null)
@@ -1631,7 +1631,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>Task of GenericResponse</returns>
-        public async System.Threading.Tasks.Task<GenericResponse> SendMailAsync (Body1 body)
+        public async System.Threading.Tasks.Task<GenericResponse> SendMailAsync (SendMail body)
         {
              ApiResponse<GenericResponse> localVarResponse = await SendMailAsyncWithHttpInfo(body);
              return localVarResponse.Data;
@@ -1644,7 +1644,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailAsyncWithHttpInfo (Body1 body)
+        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailAsyncWithHttpInfo (SendMail body)
         {
             // verify the required parameter 'body' is set
             if (body == null)

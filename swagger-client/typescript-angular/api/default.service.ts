@@ -17,7 +17,6 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { Body1 } from '../model/body1';
 import { ErrorResponse } from '../model/errorResponse';
 import { GenericResponse } from '../model/genericResponse';
 import { MailAttachment } from '../model/mailAttachment';
@@ -25,6 +24,7 @@ import { MailContact } from '../model/mailContact';
 import { MailLog } from '../model/mailLog';
 import { MailOrder } from '../model/mailOrder';
 import { MailOrders } from '../model/mailOrders';
+import { SendMail } from '../model/sendMail';
 import { SendMailAdv } from '../model/sendMailAdv';
 import { SendMailAdvFrom } from '../model/sendMailAdvFrom';
 
@@ -487,10 +487,10 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendMail(body: Body1, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
-    public sendMail(body: Body1, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
-    public sendMail(body: Body1, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
-    public sendMail(body: Body1, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public sendMail(body: SendMail, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
+    public sendMail(body: SendMail, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
+    public sendMail(body: SendMail, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
+    public sendMail(body: SendMail, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling sendMail.');

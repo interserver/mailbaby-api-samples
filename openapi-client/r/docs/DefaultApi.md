@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 | **404** | The specified resource was not found |  -  |
 
 # **SendMail**
-> GenericResponse SendMail(to=var.to, from=var.from, subject=var.subject, body=var.body)
+> GenericResponse SendMail(to, from, subject, body)
 
 Sends an Email
 
@@ -209,7 +209,7 @@ var.body <- 'body_example' # character | The main email contents.
 api.instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
 api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$SendMail(to=var.to, from=var.from, subject=var.subject, body=var.body)
+result <- api.instance$SendMail(var.to, var.from, var.subject, var.body)
 dput(result)
 ```
 
@@ -217,10 +217,10 @@ dput(result)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **character**| The Contact whom is the primary recipient of this email. | [optional] 
- **from** | **character**| The contact whom is the this email is from. | [optional] 
- **subject** | **character**| The subject or title of the email | [optional] 
- **body** | **character**| The main email contents. | [optional] 
+ **to** | **character**| The Contact whom is the primary recipient of this email. | 
+ **from** | **character**| The contact whom is the this email is from. | 
+ **subject** | **character**| The subject or title of the email | 
+ **body** | **character**| The main email contents. | 
 
 ### Return type
 

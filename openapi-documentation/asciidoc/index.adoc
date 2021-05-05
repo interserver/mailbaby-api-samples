@@ -417,25 +417,25 @@ Sends An email through one of your mail orders.
 
 | to 
 | The Contact whom is the primary recipient of this email. <<string>> 
-| - 
+| X 
 | null 
 |  
 
 | from 
 | The contact whom is the this email is from. <<string>> 
-| - 
+| X 
 | null 
 |  
 
 | subject 
 | The subject or title of the email <<string>> 
-| - 
+| X 
 | null 
 |  
 
 | body 
 | The main email contents. <<string>> 
-| - 
+| X 
 | null 
 |  
 
@@ -688,43 +688,6 @@ endif::internal-generation[]
 == Models
 
 
-[#Body1]
-=== _Body1_ 
-
-Details for an Email
-
-[.fields-Body1]
-[cols="2,1,2,4,1"]
-|===         
-| Field Name| Required| Type| Description| Format
-
-| to 
-|  
-| String  
-| The Contact whom is the primary recipient of this email.
-|  
-
-| from 
-|  
-| String  
-| The contact whom is the this email is from.
-|  
-
-| subject 
-|  
-| String  
-| The subject or title of the email
-|  
-
-| body 
-|  
-| String  
-| The main email contents.
-|  
-
-|===
-
-
 [#ErrorResponse]
 === _ErrorResponse_ 
 
@@ -882,6 +845,43 @@ Mail Order Details
 |  
 | String  
 | 
+|  
+
+|===
+
+
+[#SendMail]
+=== _SendMail_ 
+
+Details for an Email
+
+[.fields-SendMail]
+[cols="2,1,2,4,1"]
+|===         
+| Field Name| Required| Type| Description| Format
+
+| to 
+| X 
+| String  
+| The Contact whom is the primary recipient of this email.
+|  
+
+| from 
+| X 
+| String  
+| The contact whom is the this email is from.
+|  
+
+| subject 
+| X 
+| String  
+| The subject or title of the email
+|  
+
+| body 
+| X 
+| String  
+| The main email contents.
 |  
 
 |===

@@ -16,7 +16,6 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { Body1 } from '../models';
 import { ErrorResponse } from '../models';
 import { GenericResponse } from '../models';
 import { MailAttachment } from '../models';
@@ -24,6 +23,7 @@ import { MailContact } from '../models';
 import { MailLog } from '../models';
 import { MailOrder } from '../models';
 import { MailOrders } from '../models';
+import { SendMail } from '../models';
 import { SendMailAdv } from '../models';
 import { SendMailAdvFrom } from '../models';
 /**
@@ -480,11 +480,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
-         * @param {Body1} body 
+         * @param {SendMail} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail: async (body: Body1, options: any = {}): Promise<RequestArgs> => {
+        sendMail: async (body: SendMail, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling sendMail.');
@@ -757,11 +757,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
-         * @param {Body1} body 
+         * @param {SendMail} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendMail(body: Body1, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+        async sendMail(body: SendMail, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
             const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).sendMail(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -880,11 +880,11 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
-         * @param {Body1} body 
+         * @param {SendMail} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail(body: Body1, options?: any): AxiosPromise<GenericResponse> {
+        sendMail(body: SendMail, options?: any): AxiosPromise<GenericResponse> {
             return DefaultApiFp(configuration).sendMail(body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1000,12 +1000,12 @@ export class DefaultApi extends BaseAPI {
     /**
      * Sends An email through one of your mail orders.
      * @summary Sends an Email
-     * @param {Body1} body 
+     * @param {SendMail} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public sendMail(body: Body1, options?: any) {
+    public sendMail(body: SendMail, options?: any) {
         return DefaultApiFp(this.configuration).sendMail(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**

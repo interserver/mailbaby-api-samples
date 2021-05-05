@@ -3,7 +3,6 @@ package io.swagger.api;
 import io.swagger.api.*;
 import io.swagger.model.*;
 
-import io.swagger.model.Body1;
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -11,6 +10,7 @@ import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
+import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailAdvFrom;
 
@@ -22,7 +22,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T07:19:59.518996-04:00[America/New_York]")public interface MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T07:38:22.866054-04:00[America/New_York]")public interface MailApiService {
       Response getMailOrders(Long id,SecurityContext securityContext)
       throws NotFoundException;
       Response placeMailOrder(MailOrder body,SecurityContext securityContext)
@@ -33,7 +33,7 @@ import javax.ws.rs.core.SecurityContext;
       throws NotFoundException;
       Response sendMail(String to,String from,String subject,String body,SecurityContext securityContext)
       throws NotFoundException;
-      Response sendMail(Body1 body,SecurityContext securityContext)
+      Response sendMail(SendMail body,SecurityContext securityContext)
       throws NotFoundException;
       Response validateMailOrder(SecurityContext securityContext)
       throws NotFoundException;

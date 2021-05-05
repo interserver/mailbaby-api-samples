@@ -15,13 +15,13 @@ find_package(Qt5Core REQUIRED)
 find_package(Qt5Network REQUIRED)
 
 add_library(${PROJECT_NAME}
-    OAIBody_1.cpp
     OAIErrorResponse.cpp
     OAIGenericResponse.cpp
     OAIMailAttachment.cpp
     OAIMailContact.cpp
     OAIMailLog.cpp
     OAIMailOrder.cpp
+    OAISendMail.cpp
     OAISendMailAdv.cpp
     OAISendMailAdv_from.cpp
     OAIDefaultApi.cpp

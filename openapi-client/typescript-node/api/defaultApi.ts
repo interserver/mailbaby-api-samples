@@ -363,7 +363,7 @@ export class DefaultApi {
      * @param subject The subject or title of the email
      * @param body The main email contents.
      */
-    public async sendMail (to?: string, from?: string, subject?: string, body?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
+    public async sendMail (to: string, from: string, subject: string, body: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
         const localVarPath = this.basePath + '/mail/send';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -375,6 +375,26 @@ export class DefaultApi {
             localVarHeaderParams.Accept = produces.join(',');
         }
         let localVarFormParams: any = {};
+
+        // verify required parameter 'to' is not null or undefined
+        if (to === null || to === undefined) {
+            throw new Error('Required parameter to was null or undefined when calling sendMail.');
+        }
+
+        // verify required parameter 'from' is not null or undefined
+        if (from === null || from === undefined) {
+            throw new Error('Required parameter from was null or undefined when calling sendMail.');
+        }
+
+        // verify required parameter 'subject' is not null or undefined
+        if (subject === null || subject === undefined) {
+            throw new Error('Required parameter subject was null or undefined when calling sendMail.');
+        }
+
+        // verify required parameter 'body' is not null or undefined
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling sendMail.');
+        }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
 

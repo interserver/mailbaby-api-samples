@@ -236,18 +236,42 @@ module
 
     # Sends an Email
     # Sends An email through one of your mail orders.
+    # @param to [String] The Contact whom is the primary recipient of this email.
+    # @param from [String] The contact whom is the this email is from.
+    # @param subject [String] The subject or title of the email
+    # @param body [String] The main email contents.
     # @return [GenericResponse]
-    def send_mail(to : String?, from : String?, subject : String?, body : String?)
+    def send_mail(to : String, from : String, subject : String, body : String)
       data, _status_code, _headers = send_mail_with_http_info(to, from, subject, body)
       data
     end
 
     # Sends an Email
     # Sends An email through one of your mail orders.
+    # @param to [String] The Contact whom is the primary recipient of this email.
+    # @param from [String] The contact whom is the this email is from.
+    # @param subject [String] The subject or title of the email
+    # @param body [String] The main email contents.
     # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_mail_with_http_info(to : String?, from : String?, subject : String?, body : String?)
+    def send_mail_with_http_info(to : String, from : String, subject : String, body : String)
       if @api_client.config.debugging
         Log.debug {"Calling API: DefaultApi.send_mail ..."}
+      end
+      # verify the required parameter "to" is set
+      if @api_client.config.client_side_validation && to.nil?
+        raise ArgumentError.new("Missing the required parameter 'to' when calling DefaultApi.send_mail")
+      end
+      # verify the required parameter "from" is set
+      if @api_client.config.client_side_validation && from.nil?
+        raise ArgumentError.new("Missing the required parameter 'from' when calling DefaultApi.send_mail")
+      end
+      # verify the required parameter "subject" is set
+      if @api_client.config.client_side_validation && subject.nil?
+        raise ArgumentError.new("Missing the required parameter 'subject' when calling DefaultApi.send_mail")
+      end
+      # verify the required parameter "body" is set
+      if @api_client.config.client_side_validation && body.nil?
+        raise ArgumentError.new("Missing the required parameter 'body' when calling DefaultApi.send_mail")
       end
       # resource path
       local_var_path = "/mail/send"

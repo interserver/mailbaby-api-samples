@@ -285,44 +285,20 @@ void OpenAPIDefaultApi::SendMailRequest::SetupHttpRequest(const FHttpRequestRef&
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
 		HttpMultipartFormData FormData;
-		if(To.IsSet())
-		{
-			FormData.AddStringPart(TEXT("to"), *ToUrlString(To.GetValue()));
-		}
-		if(From.IsSet())
-		{
-			FormData.AddStringPart(TEXT("from"), *ToUrlString(From.GetValue()));
-		}
-		if(Subject.IsSet())
-		{
-			FormData.AddStringPart(TEXT("subject"), *ToUrlString(Subject.GetValue()));
-		}
-		if(Body.IsSet())
-		{
-			FormData.AddStringPart(TEXT("body"), *ToUrlString(Body.GetValue()));
-		}
+		FormData.AddStringPart(TEXT("to"), *ToUrlString(To));
+		FormData.AddStringPart(TEXT("from"), *ToUrlString(From));
+		FormData.AddStringPart(TEXT("subject"), *ToUrlString(Subject));
+		FormData.AddStringPart(TEXT("body"), *ToUrlString(Body));
 
 		FormData.SetupHttpRequest(HttpRequest);
 	}
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
 		TArray<FString> FormParams;
-		if(To.IsSet())
-		{
-			FormParams.Add(FString(TEXT("to=")) + ToUrlString(To.GetValue()));
-		}
-		if(From.IsSet())
-		{
-			FormParams.Add(FString(TEXT("from=")) + ToUrlString(From.GetValue()));
-		}
-		if(Subject.IsSet())
-		{
-			FormParams.Add(FString(TEXT("subject=")) + ToUrlString(Subject.GetValue()));
-		}
-		if(Body.IsSet())
-		{
-			FormParams.Add(FString(TEXT("body=")) + ToUrlString(Body.GetValue()));
-		}
+		FormParams.Add(FString(TEXT("to=")) + ToUrlString(To));
+		FormParams.Add(FString(TEXT("from=")) + ToUrlString(From));
+		FormParams.Add(FString(TEXT("subject=")) + ToUrlString(Subject));
+		FormParams.Add(FString(TEXT("body=")) + ToUrlString(Body));
 		
 		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/x-www-form-urlencoded; charset=utf-8"));
 		HttpRequest->SetContentAsString(FString::Join(FormParams, TEXT("&")));

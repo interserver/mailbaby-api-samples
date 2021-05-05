@@ -5,12 +5,12 @@ project/build.properties
 src/main/scala/org/openapitools/client/api/DefaultApi.scala
 src/main/scala/org/openapitools/client/core/DateSerializers.scala
 src/main/scala/org/openapitools/client/core/JsonSupport.scala
-src/main/scala/org/openapitools/client/model/Body1.scala
 src/main/scala/org/openapitools/client/model/ErrorResponse.scala
 src/main/scala/org/openapitools/client/model/GenericResponse.scala
 src/main/scala/org/openapitools/client/model/MailAttachment.scala
 src/main/scala/org/openapitools/client/model/MailContact.scala
 src/main/scala/org/openapitools/client/model/MailLog.scala
 src/main/scala/org/openapitools/client/model/MailOrder.scala
+src/main/scala/org/openapitools/client/model/SendMail.scala
 src/main/scala/org/openapitools/client/model/SendMailAdv.scala
 src/main/scala/org/openapitools/client/model/SendMailAdvFrom.scala

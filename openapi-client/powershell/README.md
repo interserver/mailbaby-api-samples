@@ -63,13 +63,13 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [PSOpenAPITools/Model.Body1](docs/Body1.md)
  - [PSOpenAPITools/Model.ErrorResponse](docs/ErrorResponse.md)
  - [PSOpenAPITools/Model.GenericResponse](docs/GenericResponse.md)
  - [PSOpenAPITools/Model.MailAttachment](docs/MailAttachment.md)
  - [PSOpenAPITools/Model.MailContact](docs/MailContact.md)
  - [PSOpenAPITools/Model.MailLog](docs/MailLog.md)
  - [PSOpenAPITools/Model.MailOrder](docs/MailOrder.md)
+ - [PSOpenAPITools/Model.SendMail](docs/SendMail.md)
  - [PSOpenAPITools/Model.SendMailAdv](docs/SendMailAdv.md)
  - [PSOpenAPITools/Model.SendMailAdvFrom](docs/SendMailAdvFrom.md)
 

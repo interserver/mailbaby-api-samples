@@ -117,12 +117,24 @@
           "content" : {
             "application/x-www-form-urlencoded" : {
               "schema" : {
-                "$ref" : "#/components/schemas/body"
+                "$ref" : "#/components/schemas/SendMail"
+              },
+              "example" : {
+                "to" : "johndoe@company.com",
+                "from" : "johndoe@company.com",
+                "subject" : "a test email",
+                "body" : "this is a test email."
               }
             },
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/body_1"
+                "$ref" : "#/components/schemas/SendMail"
+              },
+              "example" : {
+                "to" : "johndoe@company.com",
+                "from" : "johndoe@company.com",
+                "subject" : "a test email",
+                "body" : "this is a test email."
               }
             }
           },
@@ -474,6 +486,29 @@
         },
         "description" : "A File attachment for an email"
       },
+      "SendMail" : {
+        "required" : [ "body", "from", "subject", "to" ],
+        "type" : "object",
+        "properties" : {
+          "to" : {
+            "type" : "string",
+            "description" : "The Contact whom is the primary recipient of this email."
+          },
+          "from" : {
+            "type" : "string",
+            "description" : "The contact whom is the this email is from."
+          },
+          "subject" : {
+            "type" : "string",
+            "description" : "The subject or title of the email"
+          },
+          "body" : {
+            "type" : "string",
+            "description" : "The main email contents."
+          }
+        },
+        "description" : "Details for an Email"
+      },
       "SendMailAdv" : {
         "title" : "Email details",
         "required" : [ "body", "from", "id", "subject", "to" ],
@@ -536,58 +571,6 @@
             "items" : {
               "$ref" : "#/components/schemas/MailAttachment"
             }
-          }
-        },
-        "description" : "Details for an Email"
-      },
-      "body" : {
-        "type" : "object",
-        "properties" : {
-          "to" : {
-            "type" : "string",
-            "description" : "The Contact whom is the primary recipient of this email.",
-            "example" : "johndoe@company.com"
-          },
-          "from" : {
-            "type" : "string",
-            "description" : "The contact whom is the this email is from.",
-            "example" : "johndoe@company.com"
-          },
-          "subject" : {
-            "type" : "string",
-            "description" : "The subject or title of the email",
-            "example" : "Your Package has been Delivered!"
-          },
-          "body" : {
-            "type" : "string",
-            "description" : "The main email contents.",
-            "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n"
-          }
-        },
-        "description" : "Details for an Email"
-      },
-      "body_1" : {
-        "type" : "object",
-        "properties" : {
-          "to" : {
-            "type" : "string",
-            "description" : "The Contact whom is the primary recipient of this email.",
-            "example" : "johndoe@company.com"
-          },
-          "from" : {
-            "type" : "string",
-            "description" : "The contact whom is the this email is from.",
-            "example" : "johndoe@company.com"
-          },
-          "subject" : {
-            "type" : "string",
-            "description" : "The subject or title of the email",
-            "example" : "Your Package has been Delivered!"
-          },
-          "body" : {
-            "type" : "string",
-            "description" : "The main email contents.",
-            "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n"
           }
         },
         "description" : "Details for an Email"

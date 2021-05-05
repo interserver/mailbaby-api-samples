@@ -292,10 +292,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **string**| The Contact whom is the primary recipient of this email. | [optional]
- **from** | **string**| The contact whom is the this email is from. | [optional]
- **subject** | **string**| The subject or title of the email | [optional]
- **body** | **string**| The main email contents. | [optional]
+ **to** | **string**| The Contact whom is the primary recipient of this email. |
+ **from** | **string**| The contact whom is the this email is from. |
+ **subject** | **string**| The subject or title of the email |
+ **body** | **string**| The main email contents. |
 
 ### Return type
 

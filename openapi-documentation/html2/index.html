@@ -846,32 +846,6 @@ ul.nav-tabs {
   <script>
     // Script section to load models into a JS Var
     var defs = {}
-    defs["body_1"] = {
-  "type" : "object",
-  "properties" : {
-    "to" : {
-      "type" : "string",
-      "description" : "The Contact whom is the primary recipient of this email.",
-      "example" : "johndoe@company.com"
-    },
-    "from" : {
-      "type" : "string",
-      "description" : "The contact whom is the this email is from.",
-      "example" : "johndoe@company.com"
-    },
-    "subject" : {
-      "type" : "string",
-      "description" : "The subject or title of the email",
-      "example" : "Your Package has been Delivered!"
-    },
-    "body" : {
-      "type" : "string",
-      "description" : "The main email contents.",
-      "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n"
-    }
-  },
-  "description" : "Details for an Email"
-};
     defs["ErrorResponse"] = {
   "required" : [ "code", "message" ],
   "type" : "object",
@@ -966,6 +940,29 @@ ul.nav-tabs {
       "example" : "main mail account"
     }
   }
+};
+    defs["SendMail"] = {
+  "required" : [ "body", "from", "subject", "to" ],
+  "type" : "object",
+  "properties" : {
+    "to" : {
+      "type" : "string",
+      "description" : "The Contact whom is the primary recipient of this email."
+    },
+    "from" : {
+      "type" : "string",
+      "description" : "The contact whom is the this email is from."
+    },
+    "subject" : {
+      "type" : "string",
+      "description" : "The subject or title of the email"
+    },
+    "body" : {
+      "type" : "string",
+      "description" : "The main email contents."
+    }
+  },
+  "description" : "Details for an Email"
 };
     defs["SendMailAdv"] = {
   "title" : "Email details",
@@ -2973,10 +2970,10 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
-String *to = to_example; // The Contact whom is the primary recipient of this email. (optional) (default to null)
-String *from = from_example; // The contact whom is the this email is from. (optional) (default to null)
-String *subject = subject_example; // The subject or title of the email (optional) (default to null)
-String *body = body_example; // The main email contents. (optional) (default to null)
+String *to = to_example; // The Contact whom is the primary recipient of this email. (default to null)
+String *from = from_example; // The contact whom is the this email is from. (default to null)
+String *subject = subject_example; // The subject or title of the email (default to null)
+String *body = body_example; // The main email contents. (default to null)
 
 // Sends an Email
 [apiInstance sendMailWith:to
@@ -3006,12 +3003,10 @@ apiKeyAuth.apiKey = "YOUR API KEY";
 
 // Create an instance of the API class
 var api = new MailBabyApi.DefaultApi()
-var opts = {
-  'to': to_example, // {String} The Contact whom is the primary recipient of this email.
-  'from': from_example, // {String} The contact whom is the this email is from.
-  'subject': subject_example, // {String} The subject or title of the email
-  'body': body_example // {String} The main email contents.
-};
+var to = to_example; // {String} The Contact whom is the primary recipient of this email.
+var from = from_example; // {String} The contact whom is the this email is from.
+var subject = subject_example; // {String} The subject or title of the email
+var body = body_example; // {String} The main email contents.
 
 var callback = function(error, data, response) {
   if (error) {
@@ -3020,7 +3015,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.sendMail(opts, callback);
+api.sendMail(to, from, subject, body, callback);
 </code></pre>
                             </div>
 
@@ -3047,10 +3042,10 @@ namespace Example
             
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
-            var to = to_example;  // String | The Contact whom is the primary recipient of this email. (optional)  (default to null)
-            var from = from_example;  // String | The contact whom is the this email is from. (optional)  (default to null)
-            var subject = subject_example;  // String | The subject or title of the email (optional)  (default to null)
-            var body = body_example;  // String | The main email contents. (optional)  (default to null)
+            var to = to_example;  // String | The Contact whom is the primary recipient of this email. (default to null)
+            var from = from_example;  // String | The contact whom is the this email is from. (default to null)
+            var subject = subject_example;  // String | The subject or title of the email (default to null)
+            var body = body_example;  // String | The main email contents. (default to null)
 
             try {
                 // Sends an Email
@@ -3130,14 +3125,14 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
-to = to_example # String | The Contact whom is the primary recipient of this email. (optional) (default to null)
-from = from_example # String | The contact whom is the this email is from. (optional) (default to null)
-subject = subject_example # String | The subject or title of the email (optional) (default to null)
-body = body_example # String | The main email contents. (optional) (default to null)
+to = to_example # String | The Contact whom is the primary recipient of this email. (default to null)
+from = from_example # String | The contact whom is the this email is from. (default to null)
+subject = subject_example # String | The subject or title of the email (default to null)
+body = body_example # String | The main email contents. (default to null)
 
 try: 
     # Sends an Email
-    api_response = api_instance.send_mail(to=to, from=from, subject=subject, body=body)
+    api_response = api_instance.send_mail(to, from, subject, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->sendMail: %s\n" % e)</code></pre>
@@ -3177,7 +3172,7 @@ pub fn main() {
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                  <tr><td style="width:150px;">to</td>
+                                  <tr><td style="width:150px;">to*</td>
 <td>
 
 
@@ -3192,12 +3187,15 @@ pub fn main() {
 The Contact whom is the primary recipient of this email.
                     </div>
             </div>
+                <div class="inner required">
+                    Required
+                </div>
         </div>
     </div>
 </td>
 </tr>
 
-                                  <tr><td style="width:150px;">from</td>
+                                  <tr><td style="width:150px;">from*</td>
 <td>
 
 
@@ -3212,12 +3210,15 @@ The Contact whom is the primary recipient of this email.
 The contact whom is the this email is from.
                     </div>
             </div>
+                <div class="inner required">
+                    Required
+                </div>
         </div>
     </div>
 </td>
 </tr>
 
-                                  <tr><td style="width:150px;">subject</td>
+                                  <tr><td style="width:150px;">subject*</td>
 <td>
 
 
@@ -3232,12 +3233,15 @@ The contact whom is the this email is from.
 The subject or title of the email
                     </div>
             </div>
+                <div class="inner required">
+                    Required
+                </div>
         </div>
     </div>
 </td>
 </tr>
 
-                                  <tr><td style="width:150px;">body</td>
+                                  <tr><td style="width:150px;">body*</td>
 <td>
 
 
@@ -3252,6 +3256,9 @@ The subject or title of the email
 The main email contents.
                     </div>
             </div>
+                <div class="inner required">
+                    Required
+                </div>
         </div>
     </div>
 </td>

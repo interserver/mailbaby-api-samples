@@ -313,10 +313,10 @@ class DefaultApi {
   ///
   /// Sends An email through one of your mail orders.
   Future<Response<GenericResponse>> sendMail({ 
-    String? to,
-    String? from,
-    String? subject,
-    String? body,
+    required String to,
+    required String from,
+    required String subject,
+    required String body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -355,10 +355,10 @@ class DefaultApi {
 
     try {
       _bodyData = <String, dynamic>{
-        if (to != null) r'to': encodeFormParameter(_serializers, to, const FullType(String)),
-        if (from != null) r'from': encodeFormParameter(_serializers, from, const FullType(String)),
-        if (subject != null) r'subject': encodeFormParameter(_serializers, subject, const FullType(String)),
-        if (body != null) r'body': encodeFormParameter(_serializers, body, const FullType(String)),
+        r'to': encodeFormParameter(_serializers, to, const FullType(String)),
+        r'from': encodeFormParameter(_serializers, from, const FullType(String)),
+        r'subject': encodeFormParameter(_serializers, subject, const FullType(String)),
+        r'body': encodeFormParameter(_serializers, body, const FullType(String)),
       };
 
     } catch(error) {

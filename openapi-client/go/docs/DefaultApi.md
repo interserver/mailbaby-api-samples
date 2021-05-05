@@ -287,10 +287,10 @@ import (
 )
 
 func main() {
-    to := "to_example" // string | The Contact whom is the primary recipient of this email. (optional)
-    from := "from_example" // string | The contact whom is the this email is from. (optional)
-    subject := "subject_example" // string | The subject or title of the email (optional)
-    body := "body_example" // string | The main email contents. (optional)
+    to := "to_example" // string | The Contact whom is the primary recipient of this email.
+    from := "from_example" // string | The contact whom is the this email is from.
+    subject := "subject_example" // string | The subject or title of the email
+    body := "body_example" // string | The main email contents.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

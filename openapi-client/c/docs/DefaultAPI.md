@@ -143,10 +143,10 @@ generic_response_t* DefaultAPI_sendMail(apiClient_t *apiClient, char * to, char 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration | 
-**to** | **char \*** | The Contact whom is the primary recipient of this email. | [optional] 
-**from** | **char \*** | The contact whom is the this email is from. | [optional] 
-**subject** | **char \*** | The subject or title of the email | [optional] 
-**body** | **char \*** | The main email contents. | [optional] 
+**to** | **char \*** | The Contact whom is the primary recipient of this email. | 
+**from** | **char \*** | The contact whom is the this email is from. | 
+**subject** | **char \*** | The subject or title of the email | 
+**body** | **char \*** | The main email contents. | 
 
 ### Return type
 

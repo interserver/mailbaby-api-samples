@@ -5,7 +5,6 @@
  */
 package io.swagger.api;
 
-import io.swagger.model.Body1;
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -13,6 +12,7 @@ import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
+import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailAdvFrom;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T07:20:02.221861-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T07:38:26.139337-04:00[America/New_York]")
 @Controller
 public interface MailApi {
 
@@ -122,7 +122,7 @@ public interface MailApi {
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "404", description = "The specified resource was not found")
     @Post(value = "/mail/send", produces = { "application/json" }, consumes = {"application/x-www-form-urlencoded", "application/json"})
-    default Single<HttpResponse<GenericResponse>> sendMail(@Parameter(description = "") @Valid @Body Body1 body
+    default Single<HttpResponse<GenericResponse>> sendMail(@Parameter(description = "") @Valid @Body SendMail body
 ) {
         return Single.fromCallable(() -> {
             throw new UnsupportedOperationException();

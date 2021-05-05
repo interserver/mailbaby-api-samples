@@ -62,7 +62,7 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <param name="body"></param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendMail (Body1 body);
+        GenericResponse SendMail (SendMail body);
         /// <summary>
         /// validatess order details before placing an order 
         /// </summary>
@@ -383,7 +383,7 @@ if (body != null) formParams.Add("body", ApiClient.ParameterToString(body)); // 
         /// </summary>
         /// <param name="body"></param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendMail (Body1 body)
+        public GenericResponse SendMail (SendMail body)
         {
             // verify the required parameter 'body' is set
             if (body == null) throw new ApiException(400, "Missing required parameter 'body' when calling SendMail");

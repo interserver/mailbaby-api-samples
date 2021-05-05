@@ -37,13 +37,13 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [Body1](docs/Body1.md)
  - [GenericResponse](docs/GenericResponse.md)
  - [MailAttachment](docs/MailAttachment.md)
  - [MailContact](docs/MailContact.md)
  - [MailLog](docs/MailLog.md)
  - [MailOrder](docs/MailOrder.md)
  - [ModelErrorResponse](docs/ModelErrorResponse.md)
+ - [SendMail](docs/SendMail.md)
  - [SendMailAdv](docs/SendMailAdv.md)
  - [SendMailAdvFrom](docs/SendMailAdvFrom.md)
 

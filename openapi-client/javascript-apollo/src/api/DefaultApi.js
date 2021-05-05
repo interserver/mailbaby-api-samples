@@ -171,16 +171,30 @@ export default class DefaultApi extends ApiClient {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.to The Contact whom is the primary recipient of this email.
-     * @param {String} opts.from The contact whom is the this email is from.
-     * @param {String} opts.subject The subject or title of the email
-     * @param {String} opts.body The main email contents.
+     * @param {String} to The Contact whom is the primary recipient of this email.
+     * @param {String} from The contact whom is the this email is from.
+     * @param {String} subject The subject or title of the email
+     * @param {String} body The main email contents.
      * @return {Promise<GenericResponse>}
      */
-    async sendMail(opts) {
-      opts = opts || {};
+    async sendMail(to, from, subject, body) {
       let postBody = null;
+      // verify the required parameter 'to' is set
+      if (to === undefined || to === null) {
+        throw new Error("Missing the required parameter 'to' when calling sendMail");
+      }
+      // verify the required parameter 'from' is set
+      if (from === undefined || from === null) {
+        throw new Error("Missing the required parameter 'from' when calling sendMail");
+      }
+      // verify the required parameter 'subject' is set
+      if (subject === undefined || subject === null) {
+        throw new Error("Missing the required parameter 'subject' when calling sendMail");
+      }
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling sendMail");
+      }
 
       let pathParams = {
       };
@@ -190,10 +204,10 @@ export default class DefaultApi extends ApiClient {
         'User-Agent': 'OpenAPI-Generator/1.0.0/Javascript',
       };
       let formParams = {
-        'to': opts['to'],
-        'from': opts['from'],
-        'subject': opts['subject'],
-        'body': opts['body']
+        'to': to,
+        'from': from,
+        'subject': subject,
+        'body': body
       };
 
       let authNames = ['apiKeyAuth'];

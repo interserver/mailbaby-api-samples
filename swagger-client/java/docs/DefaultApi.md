@@ -370,7 +370,7 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 //apiKeyAuth.setApiKeyPrefix("Token");
 
 DefaultApi apiInstance = new DefaultApi();
-Body1 body = new Body1(); // Body1 | 
+SendMail body = new SendMail(); // SendMail | 
 try {
     GenericResponse result = apiInstance.sendMail(body);
     System.out.println(result);
@@ -384,7 +384,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Body1**](Body1.md)|  |
+ **body** | [**SendMail**](SendMail.md)|  |
 
 ### Return type
 

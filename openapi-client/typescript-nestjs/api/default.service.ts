@@ -217,12 +217,24 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendMail(to?: string, from?: string, subject?: string, body?: string, ): Observable<AxiosResponse<GenericResponse>>;
-    public sendMail(to?: string, from?: string, subject?: string, body?: string, ): Observable<any> {
+    public sendMail(to: string, from: string, subject: string, body: string, ): Observable<AxiosResponse<GenericResponse>>;
+    public sendMail(to: string, from: string, subject: string, body: string, ): Observable<any> {
 
+        if (to === null || to === undefined) {
+            throw new Error('Required parameter to was null or undefined when calling sendMail.');
+        }
 
+        if (from === null || from === undefined) {
+            throw new Error('Required parameter from was null or undefined when calling sendMail.');
+        }
 
+        if (subject === null || subject === undefined) {
+            throw new Error('Required parameter subject was null or undefined when calling sendMail.');
+        }
 
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling sendMail.');
+        }
 
         let headers = this.defaultHeaders;
 

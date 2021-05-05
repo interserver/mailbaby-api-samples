@@ -184,11 +184,31 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
      * @param subject The subject or title of the email
      * @param body The main email contents.
      */
-    public async sendMail(to?: string, from?: string, subject?: string, body?: string, options?: Configuration): Promise<RequestContext> {
+    public async sendMail(to: string, from: string, subject: string, body: string, options?: Configuration): Promise<RequestContext> {
         let config = options || this.configuration;
 
+        // verify required parameter 'to' is not null or undefined
+        if (to === null || to === undefined) {
+            throw new RequiredError('Required parameter to was null or undefined when calling sendMail.');
+        }
 
 
+        // verify required parameter 'from' is not null or undefined
+        if (from === null || from === undefined) {
+            throw new RequiredError('Required parameter from was null or undefined when calling sendMail.');
+        }
+
+
+        // verify required parameter 'subject' is not null or undefined
+        if (subject === null || subject === undefined) {
+            throw new RequiredError('Required parameter subject was null or undefined when calling sendMail.');
+        }
+
+
+        // verify required parameter 'body' is not null or undefined
+        if (body === null || body === undefined) {
+            throw new RequiredError('Required parameter body was null or undefined when calling sendMail.');
+        }
 
 
         // Path Params

@@ -1,5 +1,3 @@
-pub mod body_1;
-pub use self::body_1::Body1;
 pub mod error_response;
 pub use self::error_response::ErrorResponse;
 pub mod generic_response;
@@ -12,6 +10,8 @@ pub mod mail_log;
 pub use self::mail_log::MailLog;
 pub mod mail_order;
 pub use self::mail_order::MailOrder;
+pub mod send_mail;
+pub use self::send_mail::SendMail;
 pub mod send_mail_adv;
 pub use self::send_mail_adv::SendMailAdv;
 pub mod send_mail_adv_from;

@@ -34,10 +34,10 @@ export interface SendAdvMailRequest {
 }
 
 export interface SendMailRequest {
-    to?: string;
-    from?: string;
-    subject?: string;
-    body?: string;
+    to: string;
+    from: string;
+    subject: string;
+    body: string;
 }
 
 export interface ViewMailLogByIdRequest {
@@ -137,6 +137,10 @@ export class DefaultApi extends BaseAPI {
     sendMail({ to, from, subject, body }: SendMailRequest): Observable<GenericResponse>
     sendMail({ to, from, subject, body }: SendMailRequest, opts?: OperationOpts): Observable<RawAjaxResponse<GenericResponse>>
     sendMail({ to, from, subject, body }: SendMailRequest, opts?: OperationOpts): Observable<GenericResponse | RawAjaxResponse<GenericResponse>> {
+        throwIfNullOrUndefined(to, 'to', 'sendMail');
+        throwIfNullOrUndefined(from, 'from', 'sendMail');
+        throwIfNullOrUndefined(subject, 'subject', 'sendMail');
+        throwIfNullOrUndefined(body, 'body', 'sendMail');
 
         const headers: HttpHeaders = {
             ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication

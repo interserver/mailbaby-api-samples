@@ -1137,16 +1137,16 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  string $to The Contact whom is the primary recipient of this email. (optional)
-     * @param  string $from The contact whom is the this email is from. (optional)
-     * @param  string $subject The subject or title of the email (optional)
-     * @param  string $body The main email contents. (optional)
+     * @param  string $to The Contact whom is the primary recipient of this email. (required)
+     * @param  string $from The contact whom is the this email is from. (required)
+     * @param  string $subject The subject or title of the email (required)
+     * @param  string $body The main email contents. (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse
      */
-    public function sendMail($to = null, $from = null, $subject = null, $body = null)
+    public function sendMail($to, $from, $subject, $body)
     {
         list($response) = $this->sendMailWithHttpInfo($to, $from, $subject, $body);
         return $response;
@@ -1157,16 +1157,16 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  string $to The Contact whom is the primary recipient of this email. (optional)
-     * @param  string $from The contact whom is the this email is from. (optional)
-     * @param  string $subject The subject or title of the email (optional)
-     * @param  string $body The main email contents. (optional)
+     * @param  string $to The Contact whom is the primary recipient of this email. (required)
+     * @param  string $from The contact whom is the this email is from. (required)
+     * @param  string $subject The subject or title of the email (required)
+     * @param  string $body The main email contents. (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sendMailWithHttpInfo($to = null, $from = null, $subject = null, $body = null)
+    public function sendMailWithHttpInfo($to, $from, $subject, $body)
     {
         $request = $this->sendMailRequest($to, $from, $subject, $body);
 
@@ -1286,15 +1286,15 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  string $to The Contact whom is the primary recipient of this email. (optional)
-     * @param  string $from The contact whom is the this email is from. (optional)
-     * @param  string $subject The subject or title of the email (optional)
-     * @param  string $body The main email contents. (optional)
+     * @param  string $to The Contact whom is the primary recipient of this email. (required)
+     * @param  string $from The contact whom is the this email is from. (required)
+     * @param  string $subject The subject or title of the email (required)
+     * @param  string $body The main email contents. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailAsync($to = null, $from = null, $subject = null, $body = null)
+    public function sendMailAsync($to, $from, $subject, $body)
     {
         return $this->sendMailAsyncWithHttpInfo($to, $from, $subject, $body)
             ->then(
@@ -1309,15 +1309,15 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  string $to The Contact whom is the primary recipient of this email. (optional)
-     * @param  string $from The contact whom is the this email is from. (optional)
-     * @param  string $subject The subject or title of the email (optional)
-     * @param  string $body The main email contents. (optional)
+     * @param  string $to The Contact whom is the primary recipient of this email. (required)
+     * @param  string $from The contact whom is the this email is from. (required)
+     * @param  string $subject The subject or title of the email (required)
+     * @param  string $body The main email contents. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailAsyncWithHttpInfo($to = null, $from = null, $subject = null, $body = null)
+    public function sendMailAsyncWithHttpInfo($to, $from, $subject, $body)
     {
         $returnType = '\Interserver\Mailbaby\Model\GenericResponse';
         $request = $this->sendMailRequest($to, $from, $subject, $body);
@@ -1358,16 +1358,40 @@ class DefaultApi
     /**
      * Create request for operation 'sendMail'
      *
-     * @param  string $to The Contact whom is the primary recipient of this email. (optional)
-     * @param  string $from The contact whom is the this email is from. (optional)
-     * @param  string $subject The subject or title of the email (optional)
-     * @param  string $body The main email contents. (optional)
+     * @param  string $to The Contact whom is the primary recipient of this email. (required)
+     * @param  string $from The contact whom is the this email is from. (required)
+     * @param  string $subject The subject or title of the email (required)
+     * @param  string $body The main email contents. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function sendMailRequest($to = null, $from = null, $subject = null, $body = null)
+    public function sendMailRequest($to, $from, $subject, $body)
     {
+        // verify the required parameter 'to' is set
+        if ($to === null || (is_array($to) && count($to) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $to when calling sendMail'
+            );
+        }
+        // verify the required parameter 'from' is set
+        if ($from === null || (is_array($from) && count($from) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $from when calling sendMail'
+            );
+        }
+        // verify the required parameter 'subject' is set
+        if ($subject === null || (is_array($subject) && count($subject) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $subject when calling sendMail'
+            );
+        }
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling sendMail'
+            );
+        }
 
         $resourcePath = '/mail/send';
         $formParams = [];

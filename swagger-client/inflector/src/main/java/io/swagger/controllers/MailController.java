@@ -10,7 +10,6 @@ import java.util.List;
 
 import io.swagger.model.*;
 
-import io.swagger.model.Body1;
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -18,10 +17,11 @@ import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
+import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailAdvFrom;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-05T07:19:42.293294-04:00[America/New_York]")public class MailController  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-05T07:38:05.858382-04:00[America/New_York]")public class MailController  {
   /** 
    * Uncomment and implement as you see fit.  These operations will map
    * Directly to operation calls from the routing logic.  Because the inflector
@@ -75,7 +75,7 @@ import io.swagger.model.SendMailAdvFrom;
   */
 
   /*
-    public ResponseContext sendMail(RequestContext request , Body1 body 
+    public ResponseContext sendMail(RequestContext request , SendMail body 
 ) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }

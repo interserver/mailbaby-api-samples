@@ -139,10 +139,10 @@ Sends An email through one of your mail orders.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**to** | Option<**String**> | The Contact whom is the primary recipient of this email. |  |
-**from** | Option<**String**> | The contact whom is the this email is from. |  |
-**subject** | Option<**String**> | The subject or title of the email |  |
-**body** | Option<**String**> | The main email contents. |  |
+**to** | **String** | The Contact whom is the primary recipient of this email. | [required] |
+**from** | **String** | The contact whom is the this email is from. | [required] |
+**subject** | **String** | The subject or title of the email | [required] |
+**body** | **String** | The main email contents. | [required] |
 
 ### Return type
 

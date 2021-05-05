@@ -5,7 +5,6 @@ Org.OpenAPITools.sln
 README.md
 build.bat
 build.sh
-docs/Body1.md
 docs/DefaultApi.md
 docs/ErrorResponse.md
 docs/GenericResponse.md
@@ -13,12 +12,12 @@ docs/MailAttachment.md
 docs/MailContact.md
 docs/MailLog.md
 docs/MailOrder.md
+docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendMailAdvFrom.md
 git_push.sh
 mono_nunit_test.sh
 src/Org.OpenAPITools.Test/Api/DefaultApiTests.cs
-src/Org.OpenAPITools.Test/Model/Body1Tests.cs
 src/Org.OpenAPITools.Test/Model/ErrorResponseTests.cs
 src/Org.OpenAPITools.Test/Model/GenericResponseTests.cs
 src/Org.OpenAPITools.Test/Model/MailAttachmentTests.cs
@@ -27,6 +26,7 @@ src/Org.OpenAPITools.Test/Model/MailLogTests.cs
 src/Org.OpenAPITools.Test/Model/MailOrderTests.cs
 src/Org.OpenAPITools.Test/Model/SendMailAdvFromTests.cs
 src/Org.OpenAPITools.Test/Model/SendMailAdvTests.cs
+src/Org.OpenAPITools.Test/Model/SendMailTests.cs
 src/Org.OpenAPITools.Test/Org.OpenAPITools.Test.csproj
 src/Org.OpenAPITools.Test/packages.config
 src/Org.OpenAPITools/Api/DefaultApi.cs
@@ -39,13 +39,13 @@ src/Org.OpenAPITools/Client/GlobalConfiguration.cs
 src/Org.OpenAPITools/Client/IApiAccessor.cs
 src/Org.OpenAPITools/Client/IReadableConfiguration.cs
 src/Org.OpenAPITools/Client/OpenAPIDateConverter.cs
-src/Org.OpenAPITools/Model/Body1.cs
 src/Org.OpenAPITools/Model/ErrorResponse.cs
 src/Org.OpenAPITools/Model/GenericResponse.cs
 src/Org.OpenAPITools/Model/MailAttachment.cs
 src/Org.OpenAPITools/Model/MailContact.cs
 src/Org.OpenAPITools/Model/MailLog.cs
 src/Org.OpenAPITools/Model/MailOrder.cs
+src/Org.OpenAPITools/Model/SendMail.cs
 src/Org.OpenAPITools/Model/SendMailAdv.cs
 src/Org.OpenAPITools/Model/SendMailAdvFrom.cs
 src/Org.OpenAPITools/Org.OpenAPITools.csproj

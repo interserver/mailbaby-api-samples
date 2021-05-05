@@ -52,10 +52,10 @@ export interface ISendAdvMailParams {
  * sendMail - parameters interface
  */
 export interface ISendMailParams {
-  to?: string;
-  from?: string;
-  subject?: string;
-  body?: string;
+  to: string;
+  from: string;
+  subject: string;
+  body: string;
 }
 
 /**
@@ -218,6 +218,10 @@ export class DefaultApi extends Api {
    */
   async sendMail(params: ISendMailParams): Promise<GenericResponse> {
     // Verify required parameters are set
+    this.ensureParamIsSet('sendMail', params, 'to');
+    this.ensureParamIsSet('sendMail', params, 'from');
+    this.ensureParamIsSet('sendMail', params, 'subject');
+    this.ensureParamIsSet('sendMail', params, 'body');
 
     // Create URL to call
     const url = `${this.basePath}/mail/send`;

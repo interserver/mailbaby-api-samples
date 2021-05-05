@@ -11,13 +11,13 @@ OpenAPIClient/Classes/OpenAPIs/Extensions.swift
 OpenAPIClient/Classes/OpenAPIs/JSONDataEncoding.swift
 OpenAPIClient/Classes/OpenAPIs/JSONEncodingHelper.swift
 OpenAPIClient/Classes/OpenAPIs/Models.swift
-OpenAPIClient/Classes/OpenAPIs/Models/Body1.swift
 OpenAPIClient/Classes/OpenAPIs/Models/GenericResponse.swift
 OpenAPIClient/Classes/OpenAPIs/Models/MailAttachment.swift
 OpenAPIClient/Classes/OpenAPIs/Models/MailContact.swift
 OpenAPIClient/Classes/OpenAPIs/Models/MailLog.swift
 OpenAPIClient/Classes/OpenAPIs/Models/MailOrder.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ModelErrorResponse.swift
+OpenAPIClient/Classes/OpenAPIs/Models/SendMail.swift
 OpenAPIClient/Classes/OpenAPIs/Models/SendMailAdv.swift
 OpenAPIClient/Classes/OpenAPIs/Models/SendMailAdvFrom.swift
 OpenAPIClient/Classes/OpenAPIs/OpenISO8601DateFormatter.swift
@@ -25,7 +25,6 @@ OpenAPIClient/Classes/OpenAPIs/SynchronizedDictionary.swift
 OpenAPIClient/Classes/OpenAPIs/URLSessionImplementations.swift
 Package.swift
 README.md
-docs/Body1.md
 docs/DefaultAPI.md
 docs/GenericResponse.md
 docs/MailAttachment.md
@@ -33,6 +32,7 @@ docs/MailContact.md
 docs/MailLog.md
 docs/MailOrder.md
 docs/ModelErrorResponse.md
+docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendMailAdvFrom.md
 git_push.sh

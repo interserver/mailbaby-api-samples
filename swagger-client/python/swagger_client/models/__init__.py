@@ -14,8 +14,6 @@
 from __future__ import absolute_import
 
 # import models into model package
-from swagger_client.models.body import Body
-from swagger_client.models.body1 import Body1
 from swagger_client.models.error_response import ErrorResponse
 from swagger_client.models.generic_response import GenericResponse
 from swagger_client.models.mail_attachment import MailAttachment
@@ -23,5 +21,6 @@ from swagger_client.models.mail_contact import MailContact
 from swagger_client.models.mail_log import MailLog
 from swagger_client.models.mail_order import MailOrder
 from swagger_client.models.mail_orders import MailOrders
+from swagger_client.models.send_mail import SendMail
 from swagger_client.models.send_mail_adv import SendMailAdv
 from swagger_client.models.send_mail_adv_from import SendMailAdvFrom

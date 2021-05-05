@@ -2,7 +2,6 @@
 .travis.yml
 README.md
 api_client.ecf
-docs/BODY_1.md
 docs/DEFAULT_API.md
 docs/ERROR_RESPONSE.md
 docs/GENERIC_RESPONSE.md
@@ -10,17 +9,18 @@ docs/MAIL_ATTACHMENT.md
 docs/MAIL_CONTACT.md
 docs/MAIL_LOG.md
 docs/MAIL_ORDER.md
+docs/SEND_MAIL.md
 docs/SEND_MAIL_ADV.md
 docs/SEND_MAIL_ADV_FROM.md
 src/api/default_api.e
 src/api_client.e
-src/domain/body_1.e
 src/domain/error_response.e
 src/domain/generic_response.e
 src/domain/mail_attachment.e
 src/domain/mail_contact.e
 src/domain/mail_log.e
 src/domain/mail_order.e
+src/domain/send_mail.e
 src/domain/send_mail_adv.e
 src/domain/send_mail_adv_from.e
 src/framework/api_client_request.e

@@ -19,13 +19,11 @@
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
-[main] INFO  o.o.codegen.DefaultGenerator - Model body not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Model/Body1.ps1
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Model/Body1.Tests.ps1
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/docs/Body1.md
+[main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
+[main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Model/ErrorResponse.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Model/ErrorResponse.Tests.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/docs/ErrorResponse.md
@@ -44,6 +42,9 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Model/MailOrder.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Model/MailOrder.Tests.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/docs/MailOrder.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Model/SendMail.ps1
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Model/SendMail.Tests.ps1
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/docs/SendMail.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Model/SendMailAdv.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Model/SendMailAdv.Tests.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/docs/SendMailAdv.md

@@ -214,7 +214,7 @@ pub async fn send_adv_mail(configuration: &configuration::Configuration, send_ma
 }
 
 /// Sends An email through one of your mail orders.
-pub async fn send_mail(configuration: &configuration::Configuration, to: Option<&str>, from: Option<&str>, subject: Option<&str>, body: Option<&str>) -> Result<crate::models::GenericResponse, Error<SendMailError>> {
+pub async fn send_mail(configuration: &configuration::Configuration, to: &str, from: &str, subject: &str, body: &str) -> Result<crate::models::GenericResponse, Error<SendMailError>> {
 
     let local_var_client = &configuration.client;
 
@@ -233,18 +233,10 @@ pub async fn send_mail(configuration: &configuration::Configuration, to: Option<
         local_var_req_builder = local_var_req_builder.header("X-API-KEY", local_var_value);
     };
     let mut local_var_form_params = std::collections::HashMap::new();
-    if let Some(local_var_param_value) = to {
-        local_var_form_params.insert("to", local_var_param_value.to_string());
-    }
-    if let Some(local_var_param_value) = from {
-        local_var_form_params.insert("from", local_var_param_value.to_string());
-    }
-    if let Some(local_var_param_value) = subject {
-        local_var_form_params.insert("subject", local_var_param_value.to_string());
-    }
-    if let Some(local_var_param_value) = body {
-        local_var_form_params.insert("body", local_var_param_value.to_string());
-    }
+    local_var_form_params.insert("to", to.to_string());
+    local_var_form_params.insert("from", from.to_string());
+    local_var_form_params.insert("subject", subject.to_string());
+    local_var_form_params.insert("body", body.to_string());
     local_var_req_builder = local_var_req_builder.form(&local_var_form_params);
 
     let local_var_req = local_var_req_builder.build()?;

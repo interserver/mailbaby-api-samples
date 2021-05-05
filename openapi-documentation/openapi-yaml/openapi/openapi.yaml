@@ -83,11 +83,21 @@ paths:
       requestBody:
         content:
           application/x-www-form-urlencoded:
+            example:
+              to: johndoe@company.com
+              from: johndoe@company.com
+              subject: a test email
+              body: this is a test email.
             schema:
-              $ref: '#/components/schemas/body'
+              $ref: '#/components/schemas/SendMail'
           application/json:
+            example:
+              to: johndoe@company.com
+              from: johndoe@company.com
+              subject: a test email
+              body: this is a test email.
             schema:
-              $ref: '#/components/schemas/body_1'
+              $ref: '#/components/schemas/SendMail'
         required: true
       responses:
         "200":
@@ -387,6 +397,27 @@ components:
       required:
       - data
       type: object
+    SendMail:
+      description: Details for an Email
+      properties:
+        to:
+          description: The Contact whom is the primary recipient of this email.
+          type: string
+        from:
+          description: The contact whom is the this email is from.
+          type: string
+        subject:
+          description: The subject or title of the email
+          type: string
+        body:
+          description: The main email contents.
+          type: string
+      required:
+      - body
+      - from
+      - subject
+      - to
+      type: object
     SendMailAdv:
       description: Details for an Email
       example:
@@ -482,48 +513,6 @@ components:
       - subject
       - to
       title: Email details
-      type: object
-    body:
-      description: Details for an Email
-      properties:
-        to:
-          description: The Contact whom is the primary recipient of this email.
-          example: johndoe@company.com
-          type: string
-        from:
-          description: The contact whom is the this email is from.
-          example: johndoe@company.com
-          type: string
-        subject:
-          description: The subject or title of the email
-          example: Your Package has been Delivered!
-          type: string
-        body:
-          description: The main email contents.
-          example: |
-            The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-          type: string
-      type: object
-    body_1:
-      description: Details for an Email
-      properties:
-        to:
-          description: The Contact whom is the primary recipient of this email.
-          example: johndoe@company.com
-          type: string
-        from:
-          description: The contact whom is the this email is from.
-          example: johndoe@company.com
-          type: string
-        subject:
-          description: The subject or title of the email
-          example: Your Package has been Delivered!
-          type: string
-        body:
-          description: The main email contents.
-          example: |
-            The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-          type: string
       type: object
     SendMailAdv_from:
       description: An Email Contact

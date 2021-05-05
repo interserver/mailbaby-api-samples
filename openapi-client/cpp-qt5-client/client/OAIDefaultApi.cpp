@@ -450,7 +450,7 @@ void OAIDefaultApi::sendAdvMailCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIDefaultApi::sendMail(const ::OpenAPI::OptionalParam<QString> &to, const ::OpenAPI::OptionalParam<QString> &from, const ::OpenAPI::OptionalParam<QString> &subject, const ::OpenAPI::OptionalParam<QString> &body) {
+void OAIDefaultApi::sendMail(const QString &to, const QString &from, const QString &subject, const QString &body) {
     QString fullPath = QString(_serverConfigs["sendMail"][_serverIndices.value("sendMail")].URL()+"/mail/send");
     
     if(_apiKeys.contains("apiKeyAuth")){
@@ -462,21 +462,21 @@ void OAIDefaultApi::sendMail(const ::OpenAPI::OptionalParam<QString> &to, const 
     worker->setWorkingDirectory(_workingDirectory);
     OAIHttpRequestInput input(fullPath, "POST");
 
-    if(to.hasValue())
+    
     {
-        input.add_var("to", ::OpenAPI::toStringValue(to.value()));
+        input.add_var("to", ::OpenAPI::toStringValue(to));
     }
-    if(from.hasValue())
+    
     {
-        input.add_var("from", ::OpenAPI::toStringValue(from.value()));
+        input.add_var("from", ::OpenAPI::toStringValue(from));
     }
-    if(subject.hasValue())
+    
     {
-        input.add_var("subject", ::OpenAPI::toStringValue(subject.value()));
+        input.add_var("subject", ::OpenAPI::toStringValue(subject));
     }
-    if(body.hasValue())
+    
     {
-        input.add_var("body", ::OpenAPI::toStringValue(body.value()));
+        input.add_var("body", ::OpenAPI::toStringValue(body));
     }
 
     foreach (QString key, this->defaultHeaders.keys()) { input.headers.insert(key, this->defaultHeaders.value(key)); }

@@ -157,13 +157,13 @@ feature -- API Access
 			-- Sends an Email
 			-- Sends An email through one of your mail orders.
 			-- 
-			-- argument: to The Contact whom is the primary recipient of this email. (optional, default to null)
+			-- argument: to The Contact whom is the primary recipient of this email. (required)
 			-- 
-			-- argument: var_from The contact whom is the this email is from. (optional, default to null)
+			-- argument: var_from The contact whom is the this email is from. (required)
 			-- 
-			-- argument: subject The subject or title of the email (optional, default to null)
+			-- argument: subject The subject or title of the email (required)
 			-- 
-			-- argument: body The main email contents. (optional, default to null)
+			-- argument: body The main email contents. (required)
 			-- 
 			-- 
 			-- Result GENERIC_RESPONSE

@@ -1,7 +1,6 @@
 import connexion
 import six
 
-from swagger_server.models.body1 import Body1  # noqa: E501
 from swagger_server.models.error_response import ErrorResponse  # noqa: E501
 from swagger_server.models.generic_response import GenericResponse  # noqa: E501
 from swagger_server.models.mail_attachment import MailAttachment  # noqa: E501
@@ -9,6 +8,7 @@ from swagger_server.models.mail_contact import MailContact  # noqa: E501
 from swagger_server.models.mail_log import MailLog  # noqa: E501
 from swagger_server.models.mail_order import MailOrder  # noqa: E501
 from swagger_server.models.mail_orders import MailOrders  # noqa: E501
+from swagger_server.models.send_mail import SendMail  # noqa: E501
 from swagger_server.models.send_mail_adv import SendMailAdv  # noqa: E501
 from swagger_server.models.send_mail_adv_from import SendMailAdvFrom  # noqa: E501
 from swagger_server import util
@@ -139,7 +139,7 @@ def send_mail(body):  # noqa: E501
     :rtype: GenericResponse
     """
     if connexion.request.is_json:
-        body = Body1.from_dict(connexion.request.get_json())  # noqa: E501
+        body = SendMail.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 

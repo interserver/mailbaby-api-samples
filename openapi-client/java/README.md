@@ -2,7 +2,7 @@
 
 Mail Baby API
 - API version: 1.0.0
-  - Build date: 2021-05-05T07:17:33.463793-04:00[America/New_York]
+  - Build date: 2021-05-05T07:35:58.018481-04:00[America/New_York]
 
 This is an API defintion for accesssing the Mail.Baby mail service.
 
@@ -126,13 +126,13 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [Body1](docs/Body1.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [GenericResponse](docs/GenericResponse.md)
  - [MailAttachment](docs/MailAttachment.md)
  - [MailContact](docs/MailContact.md)
  - [MailLog](docs/MailLog.md)
  - [MailOrder](docs/MailOrder.md)
+ - [SendMail](docs/SendMail.md)
  - [SendMailAdv](docs/SendMailAdv.md)
  - [SendMailAdvFrom](docs/SendMailAdvFrom.md)
 

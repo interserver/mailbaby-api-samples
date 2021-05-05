@@ -333,7 +333,7 @@ Name | Type | Description  | Notes
 
 ## SendMail
 
-> GenericResponse SendMail (string to = null, string from = null, string subject = null, string body = null)
+> GenericResponse SendMail (string to, string from, string subject, string body)
 
 Sends an Email
 
@@ -361,10 +361,10 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi(Configuration.Default);
-            var to = to_example;  // string | The Contact whom is the primary recipient of this email. (optional) 
-            var from = from_example;  // string | The contact whom is the this email is from. (optional) 
-            var subject = subject_example;  // string | The subject or title of the email (optional) 
-            var body = body_example;  // string | The main email contents. (optional) 
+            var to = to_example;  // string | The Contact whom is the primary recipient of this email.
+            var from = from_example;  // string | The contact whom is the this email is from.
+            var subject = subject_example;  // string | The subject or title of the email
+            var body = body_example;  // string | The main email contents.
 
             try
             {
@@ -388,10 +388,10 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **string**| The Contact whom is the primary recipient of this email. | [optional] 
- **from** | **string**| The contact whom is the this email is from. | [optional] 
- **subject** | **string**| The subject or title of the email | [optional] 
- **body** | **string**| The main email contents. | [optional] 
+ **to** | **string**| The Contact whom is the primary recipient of this email. | 
+ **from** | **string**| The contact whom is the this email is from. | 
+ **subject** | **string**| The subject or title of the email | 
+ **body** | **string**| The main email contents. | 
 
 ### Return type
 

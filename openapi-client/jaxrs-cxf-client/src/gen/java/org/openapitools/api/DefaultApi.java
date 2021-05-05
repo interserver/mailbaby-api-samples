@@ -108,7 +108,7 @@ public interface DefaultApi  {
         @ApiResponse(code = 400, message = "bad input parameter"),
         @ApiResponse(code = 401, message = "Unauthorized", response = ErrorResponse.class),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = ErrorResponse.class) })
-    public GenericResponse sendMail(@Multipart(value = "to", required = false)  String to, @Multipart(value = "from", required = false)  String from, @Multipart(value = "subject", required = false)  String subject, @Multipart(value = "body", required = false)  String body);
+    public GenericResponse sendMail(@Multipart(value = "to")  String to, @Multipart(value = "from")  String from, @Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body);
 
     /**
      * validatess order details before placing an order

@@ -5,13 +5,13 @@ dune-project
 openapi.opam
 src/apis/default_api.ml
 src/apis/default_api.mli
-src/models/body_1.ml
 src/models/error_response.ml
 src/models/generic_response.ml
 src/models/mail_attachment.ml
 src/models/mail_contact.ml
 src/models/mail_log.ml
 src/models/mail_order.ml
+src/models/send_mail.ml
 src/models/send_mail_adv.ml
 src/models/send_mail_adv_from.ml
 src/support/enums.ml

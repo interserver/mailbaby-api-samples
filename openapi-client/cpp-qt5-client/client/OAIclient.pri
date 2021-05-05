@@ -2,13 +2,13 @@ QT += network
 
 HEADERS += \
 # Models
-    $${PWD}/OAIBody_1.h \
     $${PWD}/OAIErrorResponse.h \
     $${PWD}/OAIGenericResponse.h \
     $${PWD}/OAIMailAttachment.h \
     $${PWD}/OAIMailContact.h \
     $${PWD}/OAIMailLog.h \
     $${PWD}/OAIMailOrder.h \
+    $${PWD}/OAISendMail.h \
     $${PWD}/OAISendMailAdv.h \
     $${PWD}/OAISendMailAdv_from.h \
 # APIs
@@ -24,13 +24,13 @@ HEADERS += \
 
 SOURCES += \
 # Models
-    $${PWD}/OAIBody_1.cpp \
     $${PWD}/OAIErrorResponse.cpp \
     $${PWD}/OAIGenericResponse.cpp \
     $${PWD}/OAIMailAttachment.cpp \
     $${PWD}/OAIMailContact.cpp \
     $${PWD}/OAIMailLog.cpp \
     $${PWD}/OAIMailOrder.cpp \
+    $${PWD}/OAISendMail.cpp \
     $${PWD}/OAISendMailAdv.cpp \
     $${PWD}/OAISendMailAdv_from.cpp \
 # APIs

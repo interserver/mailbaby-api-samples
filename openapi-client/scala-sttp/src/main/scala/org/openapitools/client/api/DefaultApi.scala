@@ -120,7 +120,7 @@ class DefaultApi(baseUrl: String) {
    * @param subject The subject or title of the email
    * @param body The main email contents.
    */
-  def sendMail(apiKey: String)(to: Option[String] = None, from: Option[String] = None, subject: Option[String] = None, body: Option[String] = None
+  def sendMail(apiKey: String)(to: String, from: String, subject: String, body: String
 ): Request[Either[ResponseError[Exception], GenericResponse], Nothing] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/send")

@@ -388,21 +388,25 @@ function Send-Mail {
 
         $LocalVarUri = '/mail/send'
 
-        if ($To) {
-            $LocalVarFormParameters['to'] = $To
+        if (!$To) {
+            throw "Error! The required parameter `To` missing when calling sendMail."
         }
+        $LocalVarFormParameters['to'] = $To
 
-        if ($From) {
-            $LocalVarFormParameters['from'] = $From
+        if (!$From) {
+            throw "Error! The required parameter `From` missing when calling sendMail."
         }
+        $LocalVarFormParameters['from'] = $From
 
-        if ($Subject) {
-            $LocalVarFormParameters['subject'] = $Subject
+        if (!$Subject) {
+            throw "Error! The required parameter `Subject` missing when calling sendMail."
         }
+        $LocalVarFormParameters['subject'] = $Subject
 
-        if ($Body) {
-            $LocalVarFormParameters['body'] = $Body
+        if (!$Body) {
+            throw "Error! The required parameter `Body` missing when calling sendMail."
         }
+        $LocalVarFormParameters['body'] = $Body
 
         if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
             $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]

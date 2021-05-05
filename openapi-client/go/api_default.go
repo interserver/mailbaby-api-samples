@@ -582,6 +582,18 @@ func (a *DefaultApiService) SendMailExecute(r ApiSendMailRequest) (GenericRespon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.to == nil {
+		return localVarReturnValue, nil, reportError("to is required and must be specified")
+	}
+	if r.from == nil {
+		return localVarReturnValue, nil, reportError("from is required and must be specified")
+	}
+	if r.subject == nil {
+		return localVarReturnValue, nil, reportError("subject is required and must be specified")
+	}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/x-www-form-urlencoded", "application/json"}
@@ -600,18 +612,10 @@ func (a *DefaultApiService) SendMailExecute(r ApiSendMailRequest) (GenericRespon
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.to != nil {
-		localVarFormParams.Add("to", parameterToString(*r.to, ""))
-	}
-	if r.from != nil {
-		localVarFormParams.Add("from", parameterToString(*r.from, ""))
-	}
-	if r.subject != nil {
-		localVarFormParams.Add("subject", parameterToString(*r.subject, ""))
-	}
-	if r.body != nil {
-		localVarFormParams.Add("body", parameterToString(*r.body, ""))
-	}
+	localVarFormParams.Add("to", parameterToString(*r.to, ""))
+	localVarFormParams.Add("from", parameterToString(*r.from, ""))
+	localVarFormParams.Add("subject", parameterToString(*r.subject, ""))
+	localVarFormParams.Add("body", parameterToString(*r.body, ""))
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

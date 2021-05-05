@@ -98,10 +98,10 @@ declare -A operation_parameters_minimum_occurrences
 operation_parameters_minimum_occurrences["getMailOrders:::id"]=0
 operation_parameters_minimum_occurrences["placeMailOrder:::MailOrder"]=0
 operation_parameters_minimum_occurrences["sendAdvMail:::SendMailAdv"]=1
-operation_parameters_minimum_occurrences["sendMail:::to"]=0
-operation_parameters_minimum_occurrences["sendMail:::from"]=0
-operation_parameters_minimum_occurrences["sendMail:::subject"]=0
-operation_parameters_minimum_occurrences["sendMail:::body"]=0
+operation_parameters_minimum_occurrences["sendMail:::to"]=1
+operation_parameters_minimum_occurrences["sendMail:::from"]=1
+operation_parameters_minimum_occurrences["sendMail:::subject"]=1
+operation_parameters_minimum_occurrences["sendMail:::body"]=1
 operation_parameters_minimum_occurrences["viewMailLogById:::id"]=0
 operation_parameters_minimum_occurrences["viewMailLogById:::searchString"]=0
 operation_parameters_minimum_occurrences["viewMailLogById:::skip"]=0

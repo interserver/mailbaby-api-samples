@@ -14,13 +14,13 @@ export { Api } from './Api';
 export { AuthStorage } from './AuthStorage';
 export { DefaultApi } from './DefaultApi';
 export {
-  Body1,
   ErrorResponse,
   GenericResponse,
   MailAttachment,
   MailContact,
   MailLog,
   MailOrder,
+  SendMail,
   SendMailAdv,
   SendMailAdvFrom,
 } from './models';

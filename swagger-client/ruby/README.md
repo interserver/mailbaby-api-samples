@@ -143,7 +143,7 @@ to = 'to_example' # String |
 from = 'from_example' # String | 
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
-body = SwaggerClient::Body1.new # Body1 | 
+body = SwaggerClient::SendMail.new # SendMail | 
 
 
 begin
@@ -210,8 +210,6 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [SwaggerClient::Body](docs/Body.md)
- - [SwaggerClient::Body1](docs/Body1.md)
  - [SwaggerClient::ErrorResponse](docs/ErrorResponse.md)
  - [SwaggerClient::GenericResponse](docs/GenericResponse.md)
  - [SwaggerClient::MailAttachment](docs/MailAttachment.md)
@@ -219,6 +217,7 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::MailLog](docs/MailLog.md)
  - [SwaggerClient::MailOrder](docs/MailOrder.md)
  - [SwaggerClient::MailOrders](docs/MailOrders.md)
+ - [SwaggerClient::SendMail](docs/SendMail.md)
  - [SwaggerClient::SendMailAdv](docs/SendMailAdv.md)
  - [SwaggerClient::SendMailAdvFrom](docs/SendMailAdvFrom.md)
 

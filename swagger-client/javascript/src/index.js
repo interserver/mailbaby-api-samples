@@ -12,8 +12,6 @@
  */
 
 import ApiClient from './ApiClient';
-import Body from './model/Body';
-import Body1 from './model/Body1';
 import ErrorResponse from './model/ErrorResponse';
 import GenericResponse from './model/GenericResponse';
 import MailAttachment from './model/MailAttachment';
@@ -21,6 +19,7 @@ import MailContact from './model/MailContact';
 import MailLog from './model/MailLog';
 import MailOrder from './model/MailOrder';
 import MailOrders from './model/MailOrders';
+import SendMail from './model/SendMail';
 import SendMailAdv from './model/SendMailAdv';
 import SendMailAdvFrom from './model/SendMailAdvFrom';
 import DefaultApi from './api/DefaultApi';
@@ -64,18 +63,6 @@ export {
     ApiClient,
 
     /**
-     * The Body model constructor.
-     * @property {module:model/Body}
-     */
-    Body,
-
-    /**
-     * The Body1 model constructor.
-     * @property {module:model/Body1}
-     */
-    Body1,
-
-    /**
      * The ErrorResponse model constructor.
      * @property {module:model/ErrorResponse}
      */
@@ -116,6 +103,12 @@ export {
      * @property {module:model/MailOrders}
      */
     MailOrders,
+
+    /**
+     * The SendMail model constructor.
+     * @property {module:model/SendMail}
+     */
+    SendMail,
 
     /**
      * The SendMailAdv model constructor.

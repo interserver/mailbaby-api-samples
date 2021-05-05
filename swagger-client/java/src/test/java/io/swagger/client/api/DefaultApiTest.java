@@ -13,7 +13,6 @@
 package io.swagger.client.api;
 
 import io.swagger.client.ApiException;
-import io.swagger.client.model.Body1;
 import io.swagger.client.model.ErrorResponse;
 import io.swagger.client.model.GenericResponse;
 import io.swagger.client.model.MailAttachment;
@@ -21,6 +20,7 @@ import io.swagger.client.model.MailContact;
 import io.swagger.client.model.MailLog;
 import io.swagger.client.model.MailOrder;
 import io.swagger.client.model.MailOrders;
+import io.swagger.client.model.SendMail;
 import io.swagger.client.model.SendMailAdv;
 import io.swagger.client.model.SendMailAdvFrom;
 import org.junit.Test;

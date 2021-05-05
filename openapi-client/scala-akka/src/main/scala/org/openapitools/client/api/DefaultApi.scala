@@ -121,7 +121,7 @@ class DefaultApi(baseUrl: String) {
    * @param subject The subject or title of the email
    * @param body The main email contents.
    */
-  def sendMail(to: Option[String] = None, from: Option[String] = None, subject: Option[String] = None, body: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[GenericResponse] =
+  def sendMail(to: String, from: String, subject: String, body: String)(implicit apiKey: ApiKeyValue): ApiRequest[GenericResponse] =
     ApiRequest[GenericResponse](ApiMethods.POST, baseUrl, "/mail/send", "application/x-www-form-urlencoded")
       .withApiKey(apiKey, "X-API-KEY", HEADER)
       .withFormParam("to", to)

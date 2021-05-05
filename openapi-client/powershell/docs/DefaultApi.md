@@ -218,10 +218,10 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
-$To = "To_example" # String | The Contact whom is the primary recipient of this email. (optional)
-$From = "From_example" # String | The contact whom is the this email is from. (optional)
-$Subject = "Subject_example" # String | The subject or title of the email (optional)
-$Body = "Body_example" # String | The main email contents. (optional)
+$To = "To_example" # String | The Contact whom is the primary recipient of this email.
+$From = "From_example" # String | The contact whom is the this email is from.
+$Subject = "Subject_example" # String | The subject or title of the email
+$Body = "Body_example" # String | The main email contents.
 
 # Sends an Email
 try {
@@ -236,10 +236,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **To** | **String**| The Contact whom is the primary recipient of this email. | [optional] 
- **From** | **String**| The contact whom is the this email is from. | [optional] 
- **Subject** | **String**| The subject or title of the email | [optional] 
- **Body** | **String**| The main email contents. | [optional] 
+ **To** | **String**| The Contact whom is the primary recipient of this email. | 
+ **From** | **String**| The contact whom is the this email is from. | 
+ **Subject** | **String**| The subject or title of the email | 
+ **Body** | **String**| The main email contents. | 
 
 ### Return type
 

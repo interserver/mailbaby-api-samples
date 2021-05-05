@@ -44,6 +44,37 @@ package .Models is
 
 
 
+   type SendMail_Type is
+     record
+       To : Swagger.UString;
+       From : Swagger.UString;
+       Subject : Swagger.UString;
+       P_Body : Swagger.UString;
+     end record;
+
+   package SendMail_Type_Vectors is
+      new Ada.Containers.Vectors (Index_Type   => Positive,
+                                  Element_Type => SendMail_Type);
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in SendMail_Type);
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in SendMail_Type_Vectors.Vector);
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : out SendMail_Type);
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : out SendMail_Type_Vectors.Vector);
+
+
+
+
    type MailContact_Type is
      record
        Email : Swagger.UString;
@@ -187,37 +218,6 @@ package .Models is
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
                           Value : out MailLog_Type_Vectors.Vector);
-
-
-
-
-   type Body1_Type is
-     record
-       To : Swagger.Nullable_UString;
-       From : Swagger.Nullable_UString;
-       Subject : Swagger.Nullable_UString;
-       P_Body : Swagger.Nullable_UString;
-     end record;
-
-   package Body1_Type_Vectors is
-      new Ada.Containers.Vectors (Index_Type   => Positive,
-                                  Element_Type => Body1_Type);
-
-   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
-                        Name  : in String;
-                        Value : in Body1_Type);
-
-   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
-                        Name  : in String;
-                        Value : in Body1_Type_Vectors.Vector);
-
-   procedure Deserialize (From  : in Swagger.Value_Type;
-                          Name  : in String;
-                          Value : out Body1_Type);
-
-   procedure Deserialize (From  : in Swagger.Value_Type;
-                          Name  : in String;
-                          Value : out Body1_Type_Vectors.Vector);
 
 
 

@@ -45,10 +45,10 @@ export interface SendAdvMailRequest {
 }
 
 export interface SendMailRequest {
-    to?: string;
-    from?: string;
-    subject?: string;
-    body?: string;
+    to: string;
+    from: string;
+    subject: string;
+    body: string;
 }
 
 export interface ViewMailLogByIdRequest {
@@ -251,6 +251,22 @@ export function sendAdvMail<T>(requestParameters: SendAdvMailRequest, requestCon
  * Sends an Email
  */
 function sendMailRaw<T>(requestParameters: SendMailRequest, requestConfig: runtime.TypedQueryConfig<T, GenericResponse> = {}): QueryConfig<T> {
+    if (requestParameters.to === null || requestParameters.to === undefined) {
+        throw new runtime.RequiredError('to','Required parameter requestParameters.to was null or undefined when calling sendMail.');
+    }
+
+    if (requestParameters.from === null || requestParameters.from === undefined) {
+        throw new runtime.RequiredError('from','Required parameter requestParameters.from was null or undefined when calling sendMail.');
+    }
+
+    if (requestParameters.subject === null || requestParameters.subject === undefined) {
+        throw new runtime.RequiredError('subject','Required parameter requestParameters.subject was null or undefined when calling sendMail.');
+    }
+
+    if (requestParameters.body === null || requestParameters.body === undefined) {
+        throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling sendMail.');
+    }
+
     let queryParameters = null;
 
 

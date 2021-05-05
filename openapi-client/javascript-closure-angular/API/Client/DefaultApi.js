@@ -187,14 +187,14 @@ API.Client.DefaultApi.prototype.sendAdvMail = function(sendMailAdv, opt_extraHtt
 /**
  * Sends an Email
  * Sends An email through one of your mail orders.
- * @param {!string=} opt_to The Contact whom is the primary recipient of this email.
- * @param {!string=} opt_from The contact whom is the this email is from.
- * @param {!string=} opt_subject The subject or title of the email
- * @param {!string=} opt_body The main email contents.
+ * @param {!string} to The Contact whom is the primary recipient of this email.
+ * @param {!string} from The contact whom is the this email is from.
+ * @param {!string} subject The subject or title of the email
+ * @param {!string} body The main email contents.
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.GenericResponse>}
  */
-API.Client.DefaultApi.prototype.sendMail = function(opt_to, opt_from, opt_subject, opt_body, opt_extraHttpRequestParams) {
+API.Client.DefaultApi.prototype.sendMail = function(to, from, subject, body, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/mail/send';
 
@@ -206,15 +206,31 @@ API.Client.DefaultApi.prototype.sendMail = function(opt_to, opt_from, opt_subjec
   /** @type {!Object} */
   var formParams = {};
 
+  // verify required parameter 'to' is set
+  if (!to) {
+    throw new Error('Missing required parameter to when calling sendMail');
+  }
+  // verify required parameter 'from' is set
+  if (!from) {
+    throw new Error('Missing required parameter from when calling sendMail');
+  }
+  // verify required parameter 'subject' is set
+  if (!subject) {
+    throw new Error('Missing required parameter subject when calling sendMail');
+  }
+  // verify required parameter 'body' is set
+  if (!body) {
+    throw new Error('Missing required parameter body when calling sendMail');
+  }
   headerParams['Content-Type'] = 'application/x-www-form-urlencoded';
 
-  formParams['to'] = opt_to;
+  formParams['to'] = to;
 
-  formParams['from'] = opt_from;
+  formParams['from'] = from;
 
-  formParams['subject'] = opt_subject;
+  formParams['subject'] = subject;
 
-  formParams['body'] = opt_body;
+  formParams['body'] = body;
 
   /** @type {!Object} */
   var httpRequestParams = {

@@ -445,10 +445,15 @@
 
     <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">body <a href="#body_1">body_1</a> (required)</div>
+      <div class="param">body <a href="#SendMail">SendMail</a> (required)</div>
       
             <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
-                </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">example: <code>{
+  &quot;to&quot; : &quot;johndoe@company.com&quot;,
+  &quot;from&quot; : &quot;johndoe@company.com&quot;,
+  &quot;subject&quot; : &quot;a test email&quot;,
+  &quot;body&quot; : &quot;this is a test email.&quot;
+}</code></span></div>    </div>  <!-- field-items -->
 
 
 
@@ -604,10 +609,9 @@ available inventory in the system</div>
     <li><a href="#MailLog"><code>MailLog</code></a></li>
     <li><a href="#MailOrder"><code>MailOrder</code></a></li>
     <li><a href="#MailOrders"><code>MailOrders</code></a></li>
+    <li><a href="#SendMail"><code>SendMail</code></a></li>
     <li><a href="#SendMailAdv"><code>SendMailAdv</code> - Email details</a></li>
     <li><a href="#SendMailAdv_from"><code>SendMailAdv_from</code></a></li>
-    <li><a href="#body"><code>body</code></a></li>
-    <li><a href="#body_1"><code>body_1</code></a></li>
   </ol>
 
   <div class="model">
@@ -677,6 +681,16 @@ available inventory in the system</div>
           </div>  <!-- field-items -->
   </div>
   <div class="model">
+    <h3><a name="SendMail"><code>SendMail</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Details for an Email</div>
+    <div class="field-items">
+      <div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The Contact whom is the primary recipient of this email. </div>
+<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The contact whom is the this email is from. </div>
+<div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The subject or title of the email </div>
+<div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The main email contents. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
     <h3><a name="SendMailAdv"><code>SendMailAdv</code> - Email details</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Details for an Email</div>
     <div class="field-items">
@@ -703,36 +717,6 @@ available inventory in the system</div>
           <div class="param-desc"><span class="param-type">example: johndoe@company.com</span></div>
 <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional contact name </div>
           <div class="param-desc"><span class="param-type">example: John Doe</span></div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="body"><code>body</code></a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>Details for an Email</div>
-    <div class="field-items">
-      <div class="param">to (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The Contact whom is the primary recipient of this email. </div>
-          <div class="param-desc"><span class="param-type">example: johndoe@company.com</span></div>
-<div class="param">from (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The contact whom is the this email is from. </div>
-          <div class="param-desc"><span class="param-type">example: johndoe@company.com</span></div>
-<div class="param">subject (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The subject or title of the email </div>
-          <div class="param-desc"><span class="param-type">example: Your Package has been Delivered!</span></div>
-<div class="param">body (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The main email contents. </div>
-          <div class="param-desc"><span class="param-type">example: The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-</span></div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="body_1"><code>body_1</code></a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>Details for an Email</div>
-    <div class="field-items">
-      <div class="param">to (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The Contact whom is the primary recipient of this email. </div>
-          <div class="param-desc"><span class="param-type">example: johndoe@company.com</span></div>
-<div class="param">from (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The contact whom is the this email is from. </div>
-          <div class="param-desc"><span class="param-type">example: johndoe@company.com</span></div>
-<div class="param">subject (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The subject or title of the email </div>
-          <div class="param-desc"><span class="param-type">example: Your Package has been Delivered!</span></div>
-<div class="param">body (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The main email contents. </div>
-          <div class="param-desc"><span class="param-type">example: The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-</span></div>
     </div>  <!-- field-items -->
   </div>
   </body>

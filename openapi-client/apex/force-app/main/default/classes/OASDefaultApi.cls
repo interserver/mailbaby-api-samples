@@ -120,14 +120,18 @@ public class OASDefaultApi {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param to The Contact whom is the primary recipient of this email. (optional)
-     * @param r_from The contact whom is the this email is from. (optional)
-     * @param subject The subject or title of the email (optional)
-     * @param body The main email contents. (optional)
+     * @param to The Contact whom is the primary recipient of this email. (required)
+     * @param r_from The contact whom is the this email is from. (required)
+     * @param subject The subject or title of the email (required)
+     * @param body The main email contents. (required)
      * @return OASGenericResponse
      * @throws OAS.ApiException if fails to make API call
      */
     public OASGenericResponse sendMail(Map<String, Object> params) {
+        client.assertNotNull(params.get('to'), 'to');
+        client.assertNotNull(params.get('r_from'), 'r_from');
+        client.assertNotNull(params.get('subject'), 'subject');
+        client.assertNotNull(params.get('body'), 'body');
         List<OAS.Param> query = new List<OAS.Param>();
         List<OAS.Param> form = new List<OAS.Param>();
 

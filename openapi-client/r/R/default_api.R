@@ -296,7 +296,7 @@
 #' #Configure API key authorization: apiKeyAuth
 #' api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
 #'
-#' result <- api.instance$SendMail(to=var.to, from=var.from, subject=var.subject, body=var.body)
+#' result <- api.instance$SendMail(var.to, var.from, var.subject, var.body)
 #'
 #'
 #' ####################  ValidateMailOrder  ####################
@@ -541,7 +541,7 @@ DefaultApi <- R6::R6Class(
         ApiResponse$new("API server error", resp)
       }
     },
-    SendMail = function(to=NULL, from=NULL, subject=NULL, body=NULL, ...){
+    SendMail = function(to, from, subject, body, ...){
       apiResponse <- self$SendMailWithHttpInfo(to, from, subject, body, ...)
       resp <- apiResponse$response
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
@@ -555,10 +555,26 @@ DefaultApi <- R6::R6Class(
       }
     },
 
-    SendMailWithHttpInfo = function(to=NULL, from=NULL, subject=NULL, body=NULL, ...){
+    SendMailWithHttpInfo = function(to, from, subject, body, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- c()
+
+      if (missing(`to`)) {
+        stop("Missing required parameter `to`.")
+      }
+
+      if (missing(`from`)) {
+        stop("Missing required parameter `from`.")
+      }
+
+      if (missing(`subject`)) {
+        stop("Missing required parameter `subject`.")
+      }
+
+      if (missing(`body`)) {
+        stop("Missing required parameter `body`.")
+      }
 
       body <- list(
         "to" = to,

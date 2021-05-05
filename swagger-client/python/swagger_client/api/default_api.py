@@ -726,7 +726,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param Body1 body: (required)
+        :param SendMail body: (required)
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -748,7 +748,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param Body1 body: (required)
+        :param SendMail body: (required)
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.

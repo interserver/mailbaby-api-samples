@@ -12,26 +12,26 @@ import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:openapi/src/date_serializer.dart';
 import 'package:openapi/src/model/date.dart';
 
-import 'package:openapi/src/model/body1.dart';
 import 'package:openapi/src/model/error_response.dart';
 import 'package:openapi/src/model/generic_response.dart';
 import 'package:openapi/src/model/mail_attachment.dart';
 import 'package:openapi/src/model/mail_contact.dart';
 import 'package:openapi/src/model/mail_log.dart';
 import 'package:openapi/src/model/mail_order.dart';
+import 'package:openapi/src/model/send_mail.dart';
 import 'package:openapi/src/model/send_mail_adv.dart';
 import 'package:openapi/src/model/send_mail_adv_from.dart';
 
 part 'serializers.g.dart';
 
 @SerializersFor([
-  Body1,
   ErrorResponse,
   GenericResponse,
   MailAttachment,
   MailContact,
   MailLog,
   MailOrder,
+  SendMail,
   SendMailAdv,
   SendMailAdvFrom,
 ])

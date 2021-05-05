@@ -4,15 +4,14 @@ swaggerUrl: ./src/main/resources/openapi3.yaml
 modelMappings:
   # to enable explicit mappings, use this syntax:
   DefinitionFromSwaggerSpecification: fully.qualified.path.to.Model
-  Body : io.swagger.model.Body
-Body1 : io.swagger.model.Body1
-ErrorResponse : io.swagger.model.ErrorResponse
+  ErrorResponse : io.swagger.model.ErrorResponse
 GenericResponse : io.swagger.model.GenericResponse
 MailAttachment : io.swagger.model.MailAttachment
 MailContact : io.swagger.model.MailContact
 MailLog : io.swagger.model.MailLog
 MailOrder : io.swagger.model.MailOrder
 MailOrders : io.swagger.model.MailOrders
+SendMail : io.swagger.model.SendMail
 SendMailAdv : io.swagger.model.SendMailAdv
 SendMailAdvFrom : io.swagger.model.SendMailAdvFrom
 

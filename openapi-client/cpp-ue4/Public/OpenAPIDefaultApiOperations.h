@@ -131,13 +131,13 @@ public:
 	FString ComputePath() const final;
     
 	/* The Contact whom is the primary recipient of this email. */
-	TOptional<FString> To;
+	FString To;
 	/* The contact whom is the this email is from. */
-	TOptional<FString> From;
+	FString From;
 	/* The subject or title of the email */
-	TOptional<FString> Subject;
+	FString Subject;
 	/* The main email contents. */
-	TOptional<FString> Body;
+	FString Body;
 };
 
 class OPENAPI_API OpenAPIDefaultApi::SendMailResponse : public Response

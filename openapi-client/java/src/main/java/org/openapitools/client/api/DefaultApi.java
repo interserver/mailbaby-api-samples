@@ -522,10 +522,10 @@ public class DefaultApi {
     }
     /**
      * Build call for sendMail
-     * @param to The Contact whom is the primary recipient of this email. (optional)
-     * @param from The contact whom is the this email is from. (optional)
-     * @param subject The subject or title of the email (optional)
-     * @param body The main email contents. (optional)
+     * @param to The Contact whom is the primary recipient of this email. (required)
+     * @param from The contact whom is the this email is from. (required)
+     * @param subject The subject or title of the email (required)
+     * @param body The main email contents. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -587,6 +587,26 @@ public class DefaultApi {
     @SuppressWarnings("rawtypes")
     private okhttp3.Call sendMailValidateBeforeCall(String to, String from, String subject, String body, final ApiCallback _callback) throws ApiException {
         
+        // verify the required parameter 'to' is set
+        if (to == null) {
+            throw new ApiException("Missing the required parameter 'to' when calling sendMail(Async)");
+        }
+        
+        // verify the required parameter 'from' is set
+        if (from == null) {
+            throw new ApiException("Missing the required parameter 'from' when calling sendMail(Async)");
+        }
+        
+        // verify the required parameter 'subject' is set
+        if (subject == null) {
+            throw new ApiException("Missing the required parameter 'subject' when calling sendMail(Async)");
+        }
+        
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling sendMail(Async)");
+        }
+        
 
         okhttp3.Call localVarCall = sendMailCall(to, from, subject, body, _callback);
         return localVarCall;
@@ -596,10 +616,10 @@ public class DefaultApi {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param to The Contact whom is the primary recipient of this email. (optional)
-     * @param from The contact whom is the this email is from. (optional)
-     * @param subject The subject or title of the email (optional)
-     * @param body The main email contents. (optional)
+     * @param to The Contact whom is the primary recipient of this email. (required)
+     * @param from The contact whom is the this email is from. (required)
+     * @param subject The subject or title of the email (required)
+     * @param body The main email contents. (required)
      * @return GenericResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -619,10 +639,10 @@ public class DefaultApi {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param to The Contact whom is the primary recipient of this email. (optional)
-     * @param from The contact whom is the this email is from. (optional)
-     * @param subject The subject or title of the email (optional)
-     * @param body The main email contents. (optional)
+     * @param to The Contact whom is the primary recipient of this email. (required)
+     * @param from The contact whom is the this email is from. (required)
+     * @param subject The subject or title of the email (required)
+     * @param body The main email contents. (required)
      * @return ApiResponse&lt;GenericResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -643,10 +663,10 @@ public class DefaultApi {
     /**
      * Sends an Email (asynchronously)
      * Sends An email through one of your mail orders.
-     * @param to The Contact whom is the primary recipient of this email. (optional)
-     * @param from The contact whom is the this email is from. (optional)
-     * @param subject The subject or title of the email (optional)
-     * @param body The main email contents. (optional)
+     * @param to The Contact whom is the primary recipient of this email. (required)
+     * @param from The contact whom is the this email is from. (required)
+     * @param subject The subject or title of the email (required)
+     * @param body The main email contents. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object

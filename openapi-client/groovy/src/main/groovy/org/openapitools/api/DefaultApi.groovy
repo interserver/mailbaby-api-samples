@@ -112,6 +112,22 @@ class DefaultApi {
         def bodyParams
         def contentType
 
+        // verify required params are set
+        if (to == null) {
+            throw new RuntimeException("missing required params to")
+        }
+        // verify required params are set
+        if (from == null) {
+            throw new RuntimeException("missing required params from")
+        }
+        // verify required params are set
+        if (subject == null) {
+            throw new RuntimeException("missing required params subject")
+        }
+        // verify required params are set
+        if (body == null) {
+            throw new RuntimeException("missing required params body")
+        }
 
 
 

@@ -71,38 +71,6 @@ export class RequiredError extends Error {
 }
 
 /**
- * Details for an Email
- * @export
- */
-export type Body1 = {
-    /**
-     * The Contact whom is the primary recipient of this email.
-     * @type {string}
-     * @memberof Body1
-     */
-    to?: string;
-    /**
-     * The contact whom is the this email is from.
-     * @type {string}
-     * @memberof Body1
-     */
-    from?: string;
-    /**
-     * The subject or title of the email
-     * @type {string}
-     * @memberof Body1
-     */
-    subject?: string;
-    /**
-     * The main email contents.
-     * @type {string}
-     * @memberof Body1
-     */
-    body?: string;
-}
-
-
-/**
  * 
  * @export
  */
@@ -231,6 +199,38 @@ export type MailOrder = {
      * @memberof MailOrder
      */
     comment?: string;
+}
+
+
+/**
+ * Details for an Email
+ * @export
+ */
+export type SendMail = {
+    /**
+     * The Contact whom is the primary recipient of this email.
+     * @type {string}
+     * @memberof SendMail
+     */
+    to: string;
+    /**
+     * The contact whom is the this email is from.
+     * @type {string}
+     * @memberof SendMail
+     */
+    from: string;
+    /**
+     * The subject or title of the email
+     * @type {string}
+     * @memberof SendMail
+     */
+    subject: string;
+    /**
+     * The main email contents.
+     * @type {string}
+     * @memberof SendMail
+     */
+    body: string;
 }
 
 
@@ -457,7 +457,23 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * @summary Sends an Email
          * @throws {RequiredError}
          */
-        sendMail(to?: string, from?: string, subject?: string, body?: string, options: RequestOptions): FetchArgs {
+        sendMail(to: string, from: string, subject: string, body: string, options: RequestOptions): FetchArgs {
+            // verify required parameter 'to' is not null or undefined
+            if (to === null || to === undefined) {
+                throw new RequiredError('to','Required parameter to was null or undefined when calling sendMail.');
+            }
+            // verify required parameter 'from' is not null or undefined
+            if (from === null || from === undefined) {
+                throw new RequiredError('from','Required parameter from was null or undefined when calling sendMail.');
+            }
+            // verify required parameter 'subject' is not null or undefined
+            if (subject === null || subject === undefined) {
+                throw new RequiredError('subject','Required parameter subject was null or undefined when calling sendMail.');
+            }
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling sendMail.');
+            }
             const localVarPath = `/mail/send`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
@@ -588,7 +604,7 @@ export type DefaultApiType = {
 
     sendAdvMail(sendMailAdv: SendMailAdv, options?: RequestOptions): Promise<GenericResponse>,
 
-    sendMail(to?: string, from?: string, subject?: string, body?: string, options?: RequestOptions): Promise<GenericResponse>,
+    sendMail(to: string, from: string, subject: string, body: string, options?: RequestOptions): Promise<GenericResponse>,
 
     validateMailOrder(options?: RequestOptions): Promise<Response>,
 
@@ -667,7 +683,7 @@ export const DefaultApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary Sends an Email
          * @throws {RequiredError}
          */
-        sendMail(to?: string, from?: string, subject?: string, body?: string, options?: RequestOptions = {}): Promise<GenericResponse> {
+        sendMail(to: string, from: string, subject: string, body: string, options?: RequestOptions = {}): Promise<GenericResponse> {
             const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMail(to, from, subject, body, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {

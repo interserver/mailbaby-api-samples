@@ -12,7 +12,6 @@
  */
 
 import ApiClient from "../ApiClient";
-import Body1 from '../model/Body1';
 import ErrorResponse from '../model/ErrorResponse';
 import GenericResponse from '../model/GenericResponse';
 import MailAttachment from '../model/MailAttachment';
@@ -20,6 +19,7 @@ import MailContact from '../model/MailContact';
 import MailLog from '../model/MailLog';
 import MailOrder from '../model/MailOrder';
 import MailOrders from '../model/MailOrders';
+import SendMail from '../model/SendMail';
 import SendMailAdv from '../model/SendMailAdv';
 import SendMailAdvFrom from '../model/SendMailAdvFrom';
 

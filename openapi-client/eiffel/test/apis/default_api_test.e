@@ -79,6 +79,10 @@ feature -- Test routines
             l_body: STRING_32
         do
             -- TODO: Initialize required params.
+            -- l_to
+            -- l_var_from
+            -- l_subject
+            -- l_body
                       
             -- l_response := api.send_mail(l_to, l_var_from, l_subject, l_body)
             assert ("not_implemented", False)

@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 
 ## sendMail
 
-> GenericResponse sendMail(opts)
+> GenericResponse sendMail(to, from, subject, body)
 
 Sends an Email
 
@@ -228,13 +228,11 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyApi.DefaultApi();
-let opts = {
-  'to': "to_example", // String | The Contact whom is the primary recipient of this email.
-  'from': "from_example", // String | The contact whom is the this email is from.
-  'subject': "subject_example", // String | The subject or title of the email
-  'body': "body_example" // String | The main email contents.
-};
-apiInstance.sendMail(opts, (error, data, response) => {
+let to = "to_example"; // String | The Contact whom is the primary recipient of this email.
+let from = "from_example"; // String | The contact whom is the this email is from.
+let subject = "subject_example"; // String | The subject or title of the email
+let body = "body_example"; // String | The main email contents.
+apiInstance.sendMail(to, from, subject, body, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -248,10 +246,10 @@ apiInstance.sendMail(opts, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **String**| The Contact whom is the primary recipient of this email. | [optional] 
- **from** | **String**| The contact whom is the this email is from. | [optional] 
- **subject** | **String**| The subject or title of the email | [optional] 
- **body** | **String**| The main email contents. | [optional] 
+ **to** | **String**| The Contact whom is the primary recipient of this email. | 
+ **from** | **String**| The contact whom is the this email is from. | 
+ **subject** | **String**| The subject or title of the email | 
+ **body** | **String**| The main email contents. | 
 
 ### Return type
 

@@ -82,10 +82,10 @@ package body .Clients is
    --  Sends An email through one of your mail orders.
    procedure Send_Mail
       (Client : in out Client_Type;
-       To : in Swagger.Nullable_UString;
-       From : in Swagger.Nullable_UString;
-       Subject : in Swagger.Nullable_UString;
-       P_Body : in Swagger.Nullable_UString;
+       To : in Swagger.UString;
+       From : in Swagger.UString;
+       Subject : in Swagger.UString;
+       P_Body : in Swagger.UString;
        Result : out .Models.GenericResponse_Type) is
       URI   : Swagger.Clients.URI_Type;
       Req   : Swagger.Clients.Request_Type;

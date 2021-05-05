@@ -155,9 +155,25 @@ export class DefaultService {
      * @param body The main email contents.
      
      */
-    public sendMail(to?: string, from?: string, subject?: string, body?: string, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
-    public sendMail(to?: string, from?: string, subject?: string, body?: string, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
-    public sendMail(to?: string, from?: string, subject?: string, body?: string, observe: any = 'body', headers: Headers = {}): Observable<any> {
+    public sendMail(to: string, from: string, subject: string, body: string, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
+    public sendMail(to: string, from: string, subject: string, body: string, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
+    public sendMail(to: string, from: string, subject: string, body: string, observe: any = 'body', headers: Headers = {}): Observable<any> {
+        if (to === null || to === undefined){
+            throw new Error('Required parameter to was null or undefined when calling sendMail.');
+        }
+
+        if (from === null || from === undefined){
+            throw new Error('Required parameter from was null or undefined when calling sendMail.');
+        }
+
+        if (subject === null || subject === undefined){
+            throw new Error('Required parameter subject was null or undefined when calling sendMail.');
+        }
+
+        if (body === null || body === undefined){
+            throw new Error('Required parameter body was null or undefined when calling sendMail.');
+        }
+
         // authentication (apiKeyAuth) required
         if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-KEY']) {
             headers['X-API-KEY'] = this.APIConfiguration.apiKeys['X-API-KEY'];

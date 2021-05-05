@@ -1,5 +1,3 @@
-export * from './body';
-export * from './body1';
 export * from './error-response';
 export * from './generic-response';
 export * from './mail-attachment';
@@ -7,5 +5,6 @@ export * from './mail-contact';
 export * from './mail-log';
 export * from './mail-order';
 export * from './mail-orders';
+export * from './send-mail';
 export * from './send-mail-adv';
 export * from './send-mail-adv-from';

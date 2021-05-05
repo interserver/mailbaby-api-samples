@@ -3,10 +3,6 @@ README.md
 config/project-scratch-def.json
 force-app/main/default/classes/OAS.cls
 force-app/main/default/classes/OAS.cls-meta.xml
-force-app/main/default/classes/OASBody1.cls
-force-app/main/default/classes/OASBody1.cls-meta.xml
-force-app/main/default/classes/OASBody1Test.cls
-force-app/main/default/classes/OASBody1Test.cls-meta.xml
 force-app/main/default/classes/OASClient.cls
 force-app/main/default/classes/OASClient.cls-meta.xml
 force-app/main/default/classes/OASDefaultApi.cls
@@ -39,6 +35,8 @@ force-app/main/default/classes/OASMailOrderTest.cls
 force-app/main/default/classes/OASMailOrderTest.cls-meta.xml
 force-app/main/default/classes/OASResponseMock.cls
 force-app/main/default/classes/OASResponseMock.cls-meta.xml
+force-app/main/default/classes/OASSendMail.cls
+force-app/main/default/classes/OASSendMail.cls-meta.xml
 force-app/main/default/classes/OASSendMailAdv.cls
 force-app/main/default/classes/OASSendMailAdv.cls-meta.xml
 force-app/main/default/classes/OASSendMailAdvFrom.cls
@@ -47,6 +45,8 @@ force-app/main/default/classes/OASSendMailAdvFromTest.cls
 force-app/main/default/classes/OASSendMailAdvFromTest.cls-meta.xml
 force-app/main/default/classes/OASSendMailAdvTest.cls
 force-app/main/default/classes/OASSendMailAdvTest.cls-meta.xml
+force-app/main/default/classes/OASSendMailTest.cls
+force-app/main/default/classes/OASSendMailTest.cls-meta.xml
 force-app/main/default/classes/OASTest.cls
 force-app/main/default/classes/OASTest.cls-meta.xml
 force-app/main/default/namedCredentials/Mail_Baby_API.namedCredential-meta.xml

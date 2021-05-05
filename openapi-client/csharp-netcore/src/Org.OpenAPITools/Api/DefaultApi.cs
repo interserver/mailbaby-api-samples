@@ -110,12 +110,12 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="to">The Contact whom is the primary recipient of this email. (optional)</param>
-        /// <param name="from">The contact whom is the this email is from. (optional)</param>
-        /// <param name="subject">The subject or title of the email (optional)</param>
-        /// <param name="body">The main email contents. (optional)</param>
+        /// <param name="to">The Contact whom is the primary recipient of this email.</param>
+        /// <param name="from">The contact whom is the this email is from.</param>
+        /// <param name="subject">The subject or title of the email</param>
+        /// <param name="body">The main email contents.</param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendMail(string to = default(string), string from = default(string), string subject = default(string), string body = default(string));
+        GenericResponse SendMail(string to, string from, string subject, string body);
 
         /// <summary>
         /// Sends an Email
@@ -124,12 +124,12 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="to">The Contact whom is the primary recipient of this email. (optional)</param>
-        /// <param name="from">The contact whom is the this email is from. (optional)</param>
-        /// <param name="subject">The subject or title of the email (optional)</param>
-        /// <param name="body">The main email contents. (optional)</param>
+        /// <param name="to">The Contact whom is the primary recipient of this email.</param>
+        /// <param name="from">The contact whom is the this email is from.</param>
+        /// <param name="subject">The subject or title of the email</param>
+        /// <param name="body">The main email contents.</param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        ApiResponse<GenericResponse> SendMailWithHttpInfo(string to = default(string), string from = default(string), string subject = default(string), string body = default(string));
+        ApiResponse<GenericResponse> SendMailWithHttpInfo(string to, string from, string subject, string body);
         /// <summary>
         /// validatess order details before placing an order
         /// </summary>
@@ -279,13 +279,13 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="to">The Contact whom is the primary recipient of this email. (optional)</param>
-        /// <param name="from">The contact whom is the this email is from. (optional)</param>
-        /// <param name="subject">The subject or title of the email (optional)</param>
-        /// <param name="body">The main email contents. (optional)</param>
+        /// <param name="to">The Contact whom is the primary recipient of this email.</param>
+        /// <param name="from">The contact whom is the this email is from.</param>
+        /// <param name="subject">The subject or title of the email</param>
+        /// <param name="body">The main email contents.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GenericResponse</returns>
-        System.Threading.Tasks.Task<GenericResponse> SendMailAsync(string to = default(string), string from = default(string), string subject = default(string), string body = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GenericResponse> SendMailAsync(string to, string from, string subject, string body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Sends an Email
@@ -294,13 +294,13 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="to">The Contact whom is the primary recipient of this email. (optional)</param>
-        /// <param name="from">The contact whom is the this email is from. (optional)</param>
-        /// <param name="subject">The subject or title of the email (optional)</param>
-        /// <param name="body">The main email contents. (optional)</param>
+        /// <param name="to">The Contact whom is the primary recipient of this email.</param>
+        /// <param name="from">The contact whom is the this email is from.</param>
+        /// <param name="subject">The subject or title of the email</param>
+        /// <param name="body">The main email contents.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailWithHttpInfoAsync(string to = default(string), string from = default(string), string subject = default(string), string body = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailWithHttpInfoAsync(string to, string from, string subject, string body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// validatess order details before placing an order
         /// </summary>
@@ -945,12 +945,12 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="to">The Contact whom is the primary recipient of this email. (optional)</param>
-        /// <param name="from">The contact whom is the this email is from. (optional)</param>
-        /// <param name="subject">The subject or title of the email (optional)</param>
-        /// <param name="body">The main email contents. (optional)</param>
+        /// <param name="to">The Contact whom is the primary recipient of this email.</param>
+        /// <param name="from">The contact whom is the this email is from.</param>
+        /// <param name="subject">The subject or title of the email</param>
+        /// <param name="body">The main email contents.</param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendMail(string to = default(string), string from = default(string), string subject = default(string), string body = default(string))
+        public GenericResponse SendMail(string to, string from, string subject, string body)
         {
             Org.OpenAPITools.Client.ApiResponse<GenericResponse> localVarResponse = SendMailWithHttpInfo(to, from, subject, body);
             return localVarResponse.Data;
@@ -960,13 +960,29 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="to">The Contact whom is the primary recipient of this email. (optional)</param>
-        /// <param name="from">The contact whom is the this email is from. (optional)</param>
-        /// <param name="subject">The subject or title of the email (optional)</param>
-        /// <param name="body">The main email contents. (optional)</param>
+        /// <param name="to">The Contact whom is the primary recipient of this email.</param>
+        /// <param name="from">The contact whom is the this email is from.</param>
+        /// <param name="subject">The subject or title of the email</param>
+        /// <param name="body">The main email contents.</param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        public Org.OpenAPITools.Client.ApiResponse<GenericResponse> SendMailWithHttpInfo(string to = default(string), string from = default(string), string subject = default(string), string body = default(string))
+        public Org.OpenAPITools.Client.ApiResponse<GenericResponse> SendMailWithHttpInfo(string to, string from, string subject, string body)
         {
+            // verify the required parameter 'to' is set
+            if (to == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'to' when calling DefaultApi->SendMail");
+
+            // verify the required parameter 'from' is set
+            if (from == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'from' when calling DefaultApi->SendMail");
+
+            // verify the required parameter 'subject' is set
+            if (subject == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'subject' when calling DefaultApi->SendMail");
+
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling DefaultApi->SendMail");
+
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
             String[] _contentTypes = new String[] {
@@ -985,22 +1001,10 @@ namespace Org.OpenAPITools.Api
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            if (to != null)
-            {
-                localVarRequestOptions.FormParameters.Add("to", Org.OpenAPITools.Client.ClientUtils.ParameterToString(to)); // form parameter
-            }
-            if (from != null)
-            {
-                localVarRequestOptions.FormParameters.Add("from", Org.OpenAPITools.Client.ClientUtils.ParameterToString(from)); // form parameter
-            }
-            if (subject != null)
-            {
-                localVarRequestOptions.FormParameters.Add("subject", Org.OpenAPITools.Client.ClientUtils.ParameterToString(subject)); // form parameter
-            }
-            if (body != null)
-            {
-                localVarRequestOptions.FormParameters.Add("body", Org.OpenAPITools.Client.ClientUtils.ParameterToString(body)); // form parameter
-            }
+            localVarRequestOptions.FormParameters.Add("to", Org.OpenAPITools.Client.ClientUtils.ParameterToString(to)); // form parameter
+            localVarRequestOptions.FormParameters.Add("from", Org.OpenAPITools.Client.ClientUtils.ParameterToString(from)); // form parameter
+            localVarRequestOptions.FormParameters.Add("subject", Org.OpenAPITools.Client.ClientUtils.ParameterToString(subject)); // form parameter
+            localVarRequestOptions.FormParameters.Add("body", Org.OpenAPITools.Client.ClientUtils.ParameterToString(body)); // form parameter
 
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
@@ -1024,13 +1028,13 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="to">The Contact whom is the primary recipient of this email. (optional)</param>
-        /// <param name="from">The contact whom is the this email is from. (optional)</param>
-        /// <param name="subject">The subject or title of the email (optional)</param>
-        /// <param name="body">The main email contents. (optional)</param>
+        /// <param name="to">The Contact whom is the primary recipient of this email.</param>
+        /// <param name="from">The contact whom is the this email is from.</param>
+        /// <param name="subject">The subject or title of the email</param>
+        /// <param name="body">The main email contents.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GenericResponse</returns>
-        public async System.Threading.Tasks.Task<GenericResponse> SendMailAsync(string to = default(string), string from = default(string), string subject = default(string), string body = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GenericResponse> SendMailAsync(string to, string from, string subject, string body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Org.OpenAPITools.Client.ApiResponse<GenericResponse> localVarResponse = await SendMailWithHttpInfoAsync(to, from, subject, body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1040,14 +1044,30 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="to">The Contact whom is the primary recipient of this email. (optional)</param>
-        /// <param name="from">The contact whom is the this email is from. (optional)</param>
-        /// <param name="subject">The subject or title of the email (optional)</param>
-        /// <param name="body">The main email contents. (optional)</param>
+        /// <param name="to">The Contact whom is the primary recipient of this email.</param>
+        /// <param name="from">The contact whom is the this email is from.</param>
+        /// <param name="subject">The subject or title of the email</param>
+        /// <param name="body">The main email contents.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<GenericResponse>> SendMailWithHttpInfoAsync(string to = default(string), string from = default(string), string subject = default(string), string body = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<GenericResponse>> SendMailWithHttpInfoAsync(string to, string from, string subject, string body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            // verify the required parameter 'to' is set
+            if (to == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'to' when calling DefaultApi->SendMail");
+
+            // verify the required parameter 'from' is set
+            if (from == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'from' when calling DefaultApi->SendMail");
+
+            // verify the required parameter 'subject' is set
+            if (subject == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'subject' when calling DefaultApi->SendMail");
+
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling DefaultApi->SendMail");
+
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -1068,22 +1088,10 @@ namespace Org.OpenAPITools.Api
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            if (to != null)
-            {
-                localVarRequestOptions.FormParameters.Add("to", Org.OpenAPITools.Client.ClientUtils.ParameterToString(to)); // form parameter
-            }
-            if (from != null)
-            {
-                localVarRequestOptions.FormParameters.Add("from", Org.OpenAPITools.Client.ClientUtils.ParameterToString(from)); // form parameter
-            }
-            if (subject != null)
-            {
-                localVarRequestOptions.FormParameters.Add("subject", Org.OpenAPITools.Client.ClientUtils.ParameterToString(subject)); // form parameter
-            }
-            if (body != null)
-            {
-                localVarRequestOptions.FormParameters.Add("body", Org.OpenAPITools.Client.ClientUtils.ParameterToString(body)); // form parameter
-            }
+            localVarRequestOptions.FormParameters.Add("to", Org.OpenAPITools.Client.ClientUtils.ParameterToString(to)); // form parameter
+            localVarRequestOptions.FormParameters.Add("from", Org.OpenAPITools.Client.ClientUtils.ParameterToString(from)); // form parameter
+            localVarRequestOptions.FormParameters.Add("subject", Org.OpenAPITools.Client.ClientUtils.ParameterToString(subject)); // form parameter
+            localVarRequestOptions.FormParameters.Add("body", Org.OpenAPITools.Client.ClientUtils.ParameterToString(body)); // form parameter
 
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))

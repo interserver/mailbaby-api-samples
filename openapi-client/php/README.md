@@ -88,13 +88,13 @@ Class | Method | HTTP request | Description
 
 ## Models
 
-- [Body1](docs/Model/Body1.md)
 - [ErrorResponse](docs/Model/ErrorResponse.md)
 - [GenericResponse](docs/Model/GenericResponse.md)
 - [MailAttachment](docs/Model/MailAttachment.md)
 - [MailContact](docs/Model/MailContact.md)
 - [MailLog](docs/Model/MailLog.md)
 - [MailOrder](docs/Model/MailOrder.md)
+- [SendMail](docs/Model/SendMail.md)
 - [SendMailAdv](docs/Model/SendMailAdv.md)
 - [SendMailAdvFrom](docs/Model/SendMailAdvFrom.md)
 

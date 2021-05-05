@@ -11,7 +11,6 @@
  */
 package io.swagger.client.apis
 
-import io.swagger.client.models.Body1
 import io.swagger.client.models.ErrorResponse
 import io.swagger.client.models.GenericResponse
 import io.swagger.client.models.MailAttachment
@@ -19,6 +18,7 @@ import io.swagger.client.models.MailContact
 import io.swagger.client.models.MailLog
 import io.swagger.client.models.MailOrder
 import io.swagger.client.models.MailOrders
+import io.swagger.client.models.SendMail
 import io.swagger.client.models.SendMailAdv
 import io.swagger.client.models.SendMailAdvFrom
 
@@ -198,7 +198,7 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
      * @return GenericResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun sendMail(body: Body1): GenericResponse {
+    fun sendMail(body: SendMail): GenericResponse {
         val localVariableBody: kotlin.Any? = body
         
         val localVariableHeaders: kotlin.collections.Map<kotlin.String, kotlin.String> = mapOf("Content-Type" to "multipart/form-data")

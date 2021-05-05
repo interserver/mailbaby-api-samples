@@ -4,6 +4,7 @@ api.ts
 api/apis.ts
 api/defaultApi.ts
 git_push.sh
+model/body1.ts
 model/errorResponse.ts
 model/genericResponse.ts
 model/mailAttachment.ts
@@ -11,6 +12,5 @@ model/mailContact.ts
 model/mailLog.ts
 model/mailOrder.ts
 model/models.ts
-model/sendMail.ts
 model/sendMailAdv.ts
 model/sendMailAdvFrom.ts

@@ -2,6 +2,13 @@
 
 title Mail Baby API Schemas Diagram
 
+entity Body1 { 
+    to: String
+    from: String
+    subject: String
+    body: String
+}
+
 entity ErrorResponse { 
     * code: String
     * message: String
@@ -32,13 +39,6 @@ entity MailOrder {
     * username: String
     password: String
     comment: String
-}
-
-entity SendMail { 
-    to: String
-    from: String
-    subject: String
-    body: String
 }
 
 entity SendMailAdv { 

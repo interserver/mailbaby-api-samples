@@ -1,5 +1,6 @@
 package io.swagger.api;
 
+import io.swagger.model.Body1;
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -7,7 +8,6 @@ import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
-import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailAdvFrom;
 
@@ -151,7 +151,7 @@ public interface DefaultApi  {
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public GenericResponse sendMail(@Valid SendMail body);
+    public GenericResponse sendMail(@Valid Body1 body);
 
     /**
      * validatess order details before placing an order

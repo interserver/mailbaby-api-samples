@@ -2,13 +2,13 @@
 apis/DefaultApi.ts
 apis/index.ts
 index.ts
+models/Body1.ts
 models/ErrorResponse.ts
 models/GenericResponse.ts
 models/MailAttachment.ts
 models/MailContact.ts
 models/MailLog.ts
 models/MailOrder.ts
-models/SendMail.ts
 models/SendMailAdv.ts
 models/SendMailAdvFrom.ts
 models/index.ts

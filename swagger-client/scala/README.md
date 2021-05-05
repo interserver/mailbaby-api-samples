@@ -76,6 +76,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [Body](Body.md)
+ - [Body1](Body1.md)
  - [ErrorResponse](ErrorResponse.md)
  - [GenericResponse](GenericResponse.md)
  - [MailAttachment](MailAttachment.md)
@@ -83,7 +85,6 @@ Class | Method | HTTP request | Description
  - [MailLog](MailLog.md)
  - [MailOrder](MailOrder.md)
  - [MailOrders](MailOrders.md)
- - [SendMail](SendMail.md)
  - [SendMailAdv](SendMailAdv.md)
  - [SendMailAdvFrom](SendMailAdvFrom.md)
 

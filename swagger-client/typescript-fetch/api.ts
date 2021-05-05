@@ -78,6 +78,68 @@ export class RequiredError extends Error {
 }
 
 /**
+ * Details for an Email
+ * @export
+ * @interface Body
+ */
+export interface Body {
+    /**
+     * The Contact whom is the primary recipient of this email.
+     * @type {string}
+     * @memberof Body
+     */
+    to?: string;
+    /**
+     * The contact whom is the this email is from.
+     * @type {string}
+     * @memberof Body
+     */
+    from?: string;
+    /**
+     * The subject or title of the email
+     * @type {string}
+     * @memberof Body
+     */
+    subject?: string;
+    /**
+     * The main email contents.
+     * @type {string}
+     * @memberof Body
+     */
+    body?: string;
+}
+/**
+ * Details for an Email
+ * @export
+ * @interface Body1
+ */
+export interface Body1 {
+    /**
+     * The Contact whom is the primary recipient of this email.
+     * @type {string}
+     * @memberof Body1
+     */
+    to?: string;
+    /**
+     * The contact whom is the this email is from.
+     * @type {string}
+     * @memberof Body1
+     */
+    from?: string;
+    /**
+     * The subject or title of the email
+     * @type {string}
+     * @memberof Body1
+     */
+    subject?: string;
+    /**
+     * The main email contents.
+     * @type {string}
+     * @memberof Body1
+     */
+    body?: string;
+}
+/**
  * 
  * @export
  * @interface ErrorResponse
@@ -208,37 +270,6 @@ export interface MailOrder {
  * @export
  */
 export type MailOrders = Array<MailOrder>
-/**
- * Details for an Email
- * @export
- * @interface SendMail
- */
-export interface SendMail {
-    /**
-     * The Contact whom is the primary recipient of this email.
-     * @type {string}
-     * @memberof SendMail
-     */
-    to?: string;
-    /**
-     * The contact whom is the this email is from.
-     * @type {string}
-     * @memberof SendMail
-     */
-    from?: string;
-    /**
-     * The subject or title of the email
-     * @type {string}
-     * @memberof SendMail
-     */
-    subject?: string;
-    /**
-     * The main email contents.
-     * @type {string}
-     * @memberof SendMail
-     */
-    body?: string;
-}
 /**
  * Details for an Email
  * @export
@@ -564,11 +595,11 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
-         * @param {SendMail} body 
+         * @param {Body1} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail(to: string, from: string, subject: string, body: string, body: SendMail, options: any = {}): FetchArgs {
+        sendMail(to: string, from: string, subject: string, body: string, body: Body1, options: any = {}): FetchArgs {
             // verify required parameter 'to' is not null or undefined
             if (to === null || to === undefined) {
                 throw new RequiredError('to','Required parameter to was null or undefined when calling sendMail.');
@@ -629,7 +660,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             localVarRequestOptions.body = localVarFormParams.toString();
-            const needsSerialization = (<any>"SendMail" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            const needsSerialization = (<any>"Body1" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
 
             return {
@@ -819,11 +850,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
-         * @param {SendMail} body 
+         * @param {Body1} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail(to: string, from: string, subject: string, body: string, body: SendMail, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
+        sendMail(to: string, from: string, subject: string, body: string, body: Body1, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
             const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMail(to, from, subject, body, body, options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -939,11 +970,11 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
-         * @param {SendMail} body 
+         * @param {Body1} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail(to: string, from: string, subject: string, body: string, body: SendMail, options?: any) {
+        sendMail(to: string, from: string, subject: string, body: string, body: Body1, options?: any) {
             return DefaultApiFp(configuration).sendMail(to, from, subject, body, body, options)(fetch, basePath);
         },
         /**
@@ -1041,12 +1072,12 @@ export class DefaultApi extends BaseAPI {
      * @param {string} from 
      * @param {string} subject 
      * @param {string} body 
-     * @param {SendMail} body 
+     * @param {Body1} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public sendMail(to: string, from: string, subject: string, body: string, body: SendMail, options?: any) {
+    public sendMail(to: string, from: string, subject: string, body: string, body: Body1, options?: any) {
         return DefaultApiFp(this.configuration).sendMail(to, from, subject, body, body, options)(this.fetch, this.basePath);
     }
 

@@ -38,13 +38,13 @@ set(SRCS
     src/binary.c
     external/cJSON.c
     model/object.c
+    model/body_1.c
     model/error_response.c
     model/generic_response.c
     model/mail_attachment.c
     model/mail_contact.c
     model/mail_log.c
     model/mail_order.c
-    model/send_mail.c
     model/send_mail_adv.c
     model/send_mail_adv_from.c
     api/DefaultAPI.c
@@ -58,13 +58,13 @@ set(HDRS
     include/keyValuePair.h
     external/cJSON.h
     model/object.h
+    model/body_1.h
     model/error_response.h
     model/generic_response.h
     model/mail_attachment.h
     model/mail_contact.h
     model/mail_log.h
     model/mail_order.h
-    model/send_mail.h
     model/send_mail_adv.h
     model/send_mail_adv_from.h
     api/DefaultAPI.h

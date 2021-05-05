@@ -4,13 +4,13 @@ api/api.ts
 configuration.ts
 git_push.sh
 index.ts
+model/Body1.ts
 model/ErrorResponse.ts
 model/GenericResponse.ts
 model/MailAttachment.ts
 model/MailContact.ts
 model/MailLog.ts
 model/MailOrder.ts
-model/SendMail.ts
 model/SendMailAdv.ts
 model/SendMailAdvFrom.ts
 model/models.ts

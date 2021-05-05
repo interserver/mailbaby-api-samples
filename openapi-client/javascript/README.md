@@ -140,13 +140,13 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [MailBabyApi.Body1](docs/Body1.md)
  - [MailBabyApi.ErrorResponse](docs/ErrorResponse.md)
  - [MailBabyApi.GenericResponse](docs/GenericResponse.md)
  - [MailBabyApi.MailAttachment](docs/MailAttachment.md)
  - [MailBabyApi.MailContact](docs/MailContact.md)
  - [MailBabyApi.MailLog](docs/MailLog.md)
  - [MailBabyApi.MailOrder](docs/MailOrder.md)
- - [MailBabyApi.SendMail](docs/SendMail.md)
  - [MailBabyApi.SendMailAdv](docs/SendMailAdv.md)
  - [MailBabyApi.SendMailAdvFrom](docs/SendMailAdvFrom.md)
 

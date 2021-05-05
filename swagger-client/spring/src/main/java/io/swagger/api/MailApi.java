@@ -5,6 +5,7 @@
  */
 package io.swagger.api;
 
+import io.swagger.model.Body1;
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -12,7 +13,6 @@ import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
-import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailAdvFrom;
 import io.swagger.v3.oas.annotations.Operation;
@@ -41,7 +41,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-05T06:54:35.819672-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-05T07:07:30.525565-04:00[America/New_York]")
 @Validated
 public interface MailApi {
 

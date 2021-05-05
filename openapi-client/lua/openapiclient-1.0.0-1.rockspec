@@ -24,13 +24,13 @@ build = {
 	type = "builtin",
 	modules = {
 		["openapiclient.api.default_api"] = "openapiclient/api/default_api.lua";
+		["openapiclient.model.body_1"] = "openapiclient/model/body_1.lua";
 		["openapiclient.model.error_response"] = "openapiclient/model/error_response.lua";
 		["openapiclient.model.generic_response"] = "openapiclient/model/generic_response.lua";
 		["openapiclient.model.mail_attachment"] = "openapiclient/model/mail_attachment.lua";
 		["openapiclient.model.mail_contact"] = "openapiclient/model/mail_contact.lua";
 		["openapiclient.model.mail_log"] = "openapiclient/model/mail_log.lua";
 		["openapiclient.model.mail_order"] = "openapiclient/model/mail_order.lua";
-		["openapiclient.model.send_mail"] = "openapiclient/model/send_mail.lua";
 		["openapiclient.model.send_mail_adv"] = "openapiclient/model/send_mail_adv.lua";
 		["openapiclient.model.send_mail_adv_from"] = "openapiclient/model/send_mail_adv_from.lua";
 	}

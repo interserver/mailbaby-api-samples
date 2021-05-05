@@ -688,6 +688,43 @@ endif::internal-generation[]
 == Models
 
 
+[#Body1]
+=== _Body1_ 
+
+Details for an Email
+
+[.fields-Body1]
+[cols="2,1,2,4,1"]
+|===         
+| Field Name| Required| Type| Description| Format
+
+| to 
+|  
+| String  
+| The Contact whom is the primary recipient of this email.
+|  
+
+| from 
+|  
+| String  
+| The contact whom is the this email is from.
+|  
+
+| subject 
+|  
+| String  
+| The subject or title of the email
+|  
+
+| body 
+|  
+| String  
+| The main email contents.
+|  
+
+|===
+
+
 [#ErrorResponse]
 === _ErrorResponse_ 
 
@@ -845,43 +882,6 @@ Mail Order Details
 |  
 | String  
 | 
-|  
-
-|===
-
-
-[#SendMail]
-=== _SendMail_ Email details
-
-Details for an Email
-
-[.fields-SendMail]
-[cols="2,1,2,4,1"]
-|===         
-| Field Name| Required| Type| Description| Format
-
-| to 
-|  
-| String  
-| The Contact whom is the primary recipient of this email.
-|  
-
-| from 
-|  
-| String  
-| The contact whom is the this email is from.
-|  
-
-| subject 
-|  
-| String  
-| The subject or title of the email
-|  
-
-| body 
-|  
-| String  
-| The main email contents.
 |  
 
 |===

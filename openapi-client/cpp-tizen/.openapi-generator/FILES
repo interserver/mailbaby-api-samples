@@ -2,6 +2,8 @@
 doc/Doxyfile
 doc/README.md
 doc/generateDocumentation.sh
+src/Body1.cpp
+src/Body1.h
 src/DefaultManager.cpp
 src/DefaultManager.h
 src/Error.cpp
@@ -24,8 +26,6 @@ src/NetClient.cpp
 src/NetClient.h
 src/Object.h
 src/RequestInfo.h
-src/SendMail.cpp
-src/SendMail.h
 src/SendMailAdv.cpp
 src/SendMailAdv.h
 src/SendMailAdvFrom.cpp

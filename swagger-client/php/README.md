@@ -211,6 +211,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [Body](docs/Model/Body.md)
+ - [Body1](docs/Model/Body1.md)
  - [ErrorResponse](docs/Model/ErrorResponse.md)
  - [GenericResponse](docs/Model/GenericResponse.md)
  - [MailAttachment](docs/Model/MailAttachment.md)
@@ -218,7 +220,6 @@ Class | Method | HTTP request | Description
  - [MailLog](docs/Model/MailLog.md)
  - [MailOrder](docs/Model/MailOrder.md)
  - [MailOrders](docs/Model/MailOrders.md)
- - [SendMail](docs/Model/SendMail.md)
  - [SendMailAdv](docs/Model/SendMailAdv.md)
  - [SendMailAdvFrom](docs/Model/SendMailAdvFrom.md)
 

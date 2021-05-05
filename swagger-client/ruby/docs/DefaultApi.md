@@ -358,7 +358,7 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::DefaultApi.new
-body = SwaggerClient::SendMail.new # SendMail | 
+body = SwaggerClient::Body1.new # Body1 | 
 
 
 begin
@@ -374,7 +374,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SendMail**](SendMail.md)|  | 
+ **body** | [**Body1**](Body1.md)|  | 
 
 ### Return type
 

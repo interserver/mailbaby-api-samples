@@ -22,6 +22,37 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
 
 /**
+ * Details for an Email
+ * @export
+ * @interface Body1
+ */
+export interface Body1 {
+    /**
+     * The Contact whom is the primary recipient of this email.
+     * @type {string}
+     * @memberof Body1
+     */
+    to?: string;
+    /**
+     * The contact whom is the this email is from.
+     * @type {string}
+     * @memberof Body1
+     */
+    from?: string;
+    /**
+     * The subject or title of the email
+     * @type {string}
+     * @memberof Body1
+     */
+    subject?: string;
+    /**
+     * The main email contents.
+     * @type {string}
+     * @memberof Body1
+     */
+    body?: string;
+}
+/**
  * 
  * @export
  * @interface ErrorResponse
@@ -146,37 +177,6 @@ export interface MailOrder {
      * @memberof MailOrder
      */
     comment?: string;
-}
-/**
- * Details for an Email
- * @export
- * @interface SendMail
- */
-export interface SendMail {
-    /**
-     * The Contact whom is the primary recipient of this email.
-     * @type {string}
-     * @memberof SendMail
-     */
-    to?: string;
-    /**
-     * The contact whom is the this email is from.
-     * @type {string}
-     * @memberof SendMail
-     */
-    from?: string;
-    /**
-     * The subject or title of the email
-     * @type {string}
-     * @memberof SendMail
-     */
-    subject?: string;
-    /**
-     * The main email contents.
-     * @type {string}
-     * @memberof SendMail
-     */
-    body?: string;
 }
 /**
  * Details for an Email

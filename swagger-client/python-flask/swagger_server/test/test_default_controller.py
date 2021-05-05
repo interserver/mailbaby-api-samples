@@ -5,6 +5,7 @@ from __future__ import absolute_import
 from flask import json
 from six import BytesIO
 
+from swagger_server.models.body1 import Body1  # noqa: E501
 from swagger_server.models.error_response import ErrorResponse  # noqa: E501
 from swagger_server.models.generic_response import GenericResponse  # noqa: E501
 from swagger_server.models.mail_attachment import MailAttachment  # noqa: E501
@@ -12,7 +13,6 @@ from swagger_server.models.mail_contact import MailContact  # noqa: E501
 from swagger_server.models.mail_log import MailLog  # noqa: E501
 from swagger_server.models.mail_order import MailOrder  # noqa: E501
 from swagger_server.models.mail_orders import MailOrders  # noqa: E501
-from swagger_server.models.send_mail import SendMail  # noqa: E501
 from swagger_server.models.send_mail_adv import SendMailAdv  # noqa: E501
 from swagger_server.models.send_mail_adv_from import SendMailAdvFrom  # noqa: E501
 from swagger_server.test import BaseTestCase
@@ -88,7 +88,7 @@ class TestDefaultController(BaseTestCase):
 
         Sends an Email
         """
-        body = SendMail()
+        body = Body1()
         data = dict(to='to_example',
                     _from='_from_example',
                     subject='subject_example',

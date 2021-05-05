@@ -365,7 +365,7 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Interserver\Mailbaby\Model\SendMail(); // \Interserver\Mailbaby\Model\SendMail | 
+$body = new \Interserver\Mailbaby\Model\Body1(); // \Interserver\Mailbaby\Model\Body1 | 
 
 try {
     $result = $apiInstance->sendMail($body);
@@ -380,7 +380,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Interserver\Mailbaby\Model\SendMail**](../Model/SendMail.md)|  |
+ **body** | [**\Interserver\Mailbaby\Model\Body1**](../Model/Body1.md)|  |
 
 ### Return type
 

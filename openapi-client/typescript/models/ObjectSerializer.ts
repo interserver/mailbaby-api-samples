@@ -1,20 +1,20 @@
+export * from './Body1';
 export * from './ErrorResponse';
 export * from './GenericResponse';
 export * from './MailAttachment';
 export * from './MailContact';
 export * from './MailLog';
 export * from './MailOrder';
-export * from './SendMail';
 export * from './SendMailAdv';
 export * from './SendMailAdvFrom';
 
+import { Body1 } from './Body1';
 import { ErrorResponse } from './ErrorResponse';
 import { GenericResponse } from './GenericResponse';
 import { MailAttachment } from './MailAttachment';
 import { MailContact } from './MailContact';
 import { MailLog } from './MailLog';
 import { MailOrder } from './MailOrder';
-import { SendMail } from './SendMail';
 import { SendMailAdv } from './SendMailAdv';
 import { SendMailAdvFrom } from './SendMailAdvFrom';
 
@@ -40,13 +40,13 @@ let enumsMap: Set<string> = new Set<string>([
 ]);
 
 let typeMap: {[index: string]: any} = {
+    "Body1": Body1,
     "ErrorResponse": ErrorResponse,
     "GenericResponse": GenericResponse,
     "MailAttachment": MailAttachment,
     "MailContact": MailContact,
     "MailLog": MailLog,
     "MailOrder": MailOrder,
-    "SendMail": SendMail,
     "SendMailAdv": SendMailAdv,
     "SendMailAdvFrom": SendMailAdvFrom,
 }

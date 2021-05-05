@@ -33,13 +33,13 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [BODY_1](docs/BODY_1.md)
  - [ERROR_RESPONSE](docs/ERROR_RESPONSE.md)
  - [GENERIC_RESPONSE](docs/GENERIC_RESPONSE.md)
  - [MAIL_ATTACHMENT](docs/MAIL_ATTACHMENT.md)
  - [MAIL_CONTACT](docs/MAIL_CONTACT.md)
  - [MAIL_LOG](docs/MAIL_LOG.md)
  - [MAIL_ORDER](docs/MAIL_ORDER.md)
- - [SEND_MAIL](docs/SEND_MAIL.md)
  - [SEND_MAIL_ADV](docs/SEND_MAIL_ADV.md)
  - [SEND_MAIL_ADV_FROM](docs/SEND_MAIL_ADV_FROM.md)
 

@@ -19,13 +19,13 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [Body1](./Models/Body1.md)
  - [ErrorResponse](./Models/ErrorResponse.md)
  - [GenericResponse](./Models/GenericResponse.md)
  - [MailAttachment](./Models/MailAttachment.md)
  - [MailContact](./Models/MailContact.md)
  - [MailLog](./Models/MailLog.md)
  - [MailOrder](./Models/MailOrder.md)
- - [SendMail](./Models/SendMail.md)
  - [SendMailAdv](./Models/SendMailAdv.md)
  - [SendMailAdvFrom](./Models/SendMailAdvFrom.md)
 

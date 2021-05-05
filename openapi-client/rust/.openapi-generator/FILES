@@ -3,6 +3,7 @@
 .travis.yml
 Cargo.toml
 README.md
+docs/Body1.md
 docs/DefaultApi.md
 docs/ErrorResponse.md
 docs/GenericResponse.md
@@ -10,7 +11,6 @@ docs/MailAttachment.md
 docs/MailContact.md
 docs/MailLog.md
 docs/MailOrder.md
-docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendMailAdvFrom.md
 git_push.sh
@@ -18,6 +18,7 @@ src/apis/configuration.rs
 src/apis/default_api.rs
 src/apis/mod.rs
 src/lib.rs
+src/models/body_1.rs
 src/models/error_response.rs
 src/models/generic_response.rs
 src/models/mail_attachment.rs
@@ -25,6 +26,5 @@ src/models/mail_contact.rs
 src/models/mail_log.rs
 src/models/mail_order.rs
 src/models/mod.rs
-src/models/send_mail.rs
 src/models/send_mail_adv.rs
 src/models/send_mail_adv_from.rs

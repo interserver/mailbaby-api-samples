@@ -11,6 +11,29 @@
  */
 
 
+/**
+ * Details for an Email
+ */
+export interface Body1 {
+  /**
+   * The Contact whom is the primary recipient of this email.
+   */
+  to?: string;
+  /**
+   * The contact whom is the this email is from.
+   */
+  from?: string;
+  /**
+   * The subject or title of the email
+   */
+  subject?: string;
+  /**
+   * The main email contents.
+   */
+  body?: string;
+}
+
+
 export interface ErrorResponse {
   code: string;
   message: string;
@@ -67,29 +90,6 @@ export interface MailOrder {
   username: string;
   password?: string;
   comment?: string;
-}
-
-
-/**
- * Details for an Email
- */
-export interface SendMail {
-  /**
-   * The Contact whom is the primary recipient of this email.
-   */
-  to?: string;
-  /**
-   * The contact whom is the this email is from.
-   */
-  from?: string;
-  /**
-   * The subject or title of the email
-   */
-  subject?: string;
-  /**
-   * The main email contents.
-   */
-  body?: string;
 }
 
 

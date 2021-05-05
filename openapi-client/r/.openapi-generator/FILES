@@ -6,6 +6,7 @@ DESCRIPTION
 NAMESPACE
 R/api_client.R
 R/api_response.R
+R/body1.R
 R/default_api.R
 R/error_response.R
 R/generic_response.R
@@ -13,10 +14,10 @@ R/mail_attachment.R
 R/mail_contact.R
 R/mail_log.R
 R/mail_order.R
-R/send_mail.R
 R/send_mail_adv.R
 R/send_mail_adv_from.R
 README.md
+docs/Body1.md
 docs/DefaultApi.md
 docs/ErrorResponse.md
 docs/GenericResponse.md
@@ -24,11 +25,11 @@ docs/MailAttachment.md
 docs/MailContact.md
 docs/MailLog.md
 docs/MailOrder.md
-docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendMailAdvFrom.md
 git_push.sh
 tests/testthat.R
+tests/testthat/test_body1.R
 tests/testthat/test_default_api.R
 tests/testthat/test_error_response.R
 tests/testthat/test_generic_response.R
@@ -36,6 +37,5 @@ tests/testthat/test_mail_attachment.R
 tests/testthat/test_mail_contact.R
 tests/testthat/test_mail_log.R
 tests/testthat/test_mail_order.R
-tests/testthat/test_send_mail.R
 tests/testthat/test_send_mail_adv.R
 tests/testthat/test_send_mail_adv_from.R

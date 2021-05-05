@@ -3,6 +3,7 @@
             [clojure.spec.alpha :as s]
             [spec-tools.core :as st]
             [orchestra.core :refer [defn-spec]]
+            [mail-baby-api.specs.body-1 :refer :all]
             [mail-baby-api.specs.mail-order :refer :all]
             [mail-baby-api.specs.mail-attachment :refer :all]
             [mail-baby-api.specs.error-response :refer :all]
@@ -11,7 +12,6 @@
             [mail-baby-api.specs.send-mail-adv :refer :all]
             [mail-baby-api.specs.mail-log :refer :all]
             [mail-baby-api.specs.mail-contact :refer :all]
-            [mail-baby-api.specs.send-mail :refer :all]
             )
   (:import (java.io File)))
 

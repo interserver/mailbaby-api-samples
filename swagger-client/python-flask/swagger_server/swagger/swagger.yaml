@@ -93,10 +93,10 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/SendMail'
+              $ref: '#/components/schemas/body'
           application/json:
             schema:
-              $ref: '#/components/schemas/SendMail'
+              $ref: '#/components/schemas/body_1'
         required: true
       responses:
         "200":
@@ -350,28 +350,6 @@ components:
           description: Contents of the attached file
           format: binary
       description: A File attachment for an email
-    SendMail:
-      title: Email details
-      type: object
-      properties:
-        to:
-          type: string
-          description: The Contact whom is the primary recipient of this email.
-          example: johndoe@company.com
-        from:
-          type: string
-          description: The contact whom is the this email is from.
-          example: johndoe@company.com
-        subject:
-          type: string
-          description: The subject or title of the email
-          example: Your Package has been Delivered!
-        body:
-          type: string
-          description: The main email contents.
-          example: "The package you ordered on 2021-01-23 has been delivered. If the\
-            \ package is broken into many pieces, please blaim someone else.\n"
-      description: Details for an Email
     SendMailAdv:
       title: Email details
       required:
@@ -432,6 +410,48 @@ components:
           description: Optional file attachments to include in the email
           items:
             $ref: '#/components/schemas/MailAttachment'
+      description: Details for an Email
+    body:
+      type: object
+      properties:
+        to:
+          type: string
+          description: The Contact whom is the primary recipient of this email.
+          example: johndoe@company.com
+        from:
+          type: string
+          description: The contact whom is the this email is from.
+          example: johndoe@company.com
+        subject:
+          type: string
+          description: The subject or title of the email
+          example: Your Package has been Delivered!
+        body:
+          type: string
+          description: The main email contents.
+          example: "The package you ordered on 2021-01-23 has been delivered. If the\
+            \ package is broken into many pieces, please blaim someone else.\n"
+      description: Details for an Email
+    body_1:
+      type: object
+      properties:
+        to:
+          type: string
+          description: The Contact whom is the primary recipient of this email.
+          example: johndoe@company.com
+        from:
+          type: string
+          description: The contact whom is the this email is from.
+          example: johndoe@company.com
+        subject:
+          type: string
+          description: The subject or title of the email
+          example: Your Package has been Delivered!
+        body:
+          type: string
+          description: The main email contents.
+          example: "The package you ordered on 2021-01-23 has been delivered. If the\
+            \ package is broken into many pieces, please blaim someone else.\n"
       description: Details for an Email
     SendMailAdv_from:
       required:

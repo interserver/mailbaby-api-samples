@@ -4,6 +4,7 @@ README.md
 _client.sh
 client.sh
 client.sh.bash-completion
+docs/Body1.md
 docs/DefaultApi.md
 docs/ErrorResponse.md
 docs/GenericResponse.md
@@ -11,6 +12,5 @@ docs/MailAttachment.md
 docs/MailContact.md
 docs/MailLog.md
 docs/MailOrder.md
-docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendMailAdvFrom.md

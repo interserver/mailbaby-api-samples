@@ -128,13 +128,13 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [OAIBody_1](OAIBody_1.md)
  - [OAIErrorResponse](OAIErrorResponse.md)
  - [OAIGenericResponse](OAIGenericResponse.md)
  - [OAIMailAttachment](OAIMailAttachment.md)
  - [OAIMailContact](OAIMailContact.md)
  - [OAIMailLog](OAIMailLog.md)
  - [OAIMailOrder](OAIMailOrder.md)
- - [OAISendMail](OAISendMail.md)
  - [OAISendMailAdv](OAISendMailAdv.md)
  - [OAISendMailAdv_from](OAISendMailAdv_from.md)
 

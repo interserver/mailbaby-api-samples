@@ -237,13 +237,13 @@ use OpenAPIClient::DefaultApi;
 
 To load the models:
 ```perl
+use OpenAPIClient::Object::Body1;
 use OpenAPIClient::Object::ErrorResponse;
 use OpenAPIClient::Object::GenericResponse;
 use OpenAPIClient::Object::MailAttachment;
 use OpenAPIClient::Object::MailContact;
 use OpenAPIClient::Object::MailLog;
 use OpenAPIClient::Object::MailOrder;
-use OpenAPIClient::Object::SendMail;
 use OpenAPIClient::Object::SendMailAdv;
 use OpenAPIClient::Object::SendMailAdvFrom;
 
@@ -260,13 +260,13 @@ use warnings;
 use OpenAPIClient::DefaultApi;
 
 # load the models
+use OpenAPIClient::Object::Body1;
 use OpenAPIClient::Object::ErrorResponse;
 use OpenAPIClient::Object::GenericResponse;
 use OpenAPIClient::Object::MailAttachment;
 use OpenAPIClient::Object::MailContact;
 use OpenAPIClient::Object::MailLog;
 use OpenAPIClient::Object::MailOrder;
-use OpenAPIClient::Object::SendMail;
 use OpenAPIClient::Object::SendMailAdv;
 use OpenAPIClient::Object::SendMailAdvFrom;
 
@@ -309,13 +309,13 @@ Class | Method | HTTP request | Description
 
 
 # DOCUMENTATION FOR MODELS
+ - [OpenAPIClient::Object::Body1](docs/Body1.md)
  - [OpenAPIClient::Object::ErrorResponse](docs/ErrorResponse.md)
  - [OpenAPIClient::Object::GenericResponse](docs/GenericResponse.md)
  - [OpenAPIClient::Object::MailAttachment](docs/MailAttachment.md)
  - [OpenAPIClient::Object::MailContact](docs/MailContact.md)
  - [OpenAPIClient::Object::MailLog](docs/MailLog.md)
  - [OpenAPIClient::Object::MailOrder](docs/MailOrder.md)
- - [OpenAPIClient::Object::SendMail](docs/SendMail.md)
  - [OpenAPIClient::Object::SendMailAdv](docs/SendMailAdv.md)
  - [OpenAPIClient::Object::SendMailAdvFrom](docs/SendMailAdvFrom.md)
 

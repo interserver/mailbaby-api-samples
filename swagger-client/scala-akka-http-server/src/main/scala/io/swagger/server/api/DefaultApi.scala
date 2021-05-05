@@ -5,6 +5,7 @@ import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.unmarshalling.FromRequestUnmarshaller
 import akka.http.scaladsl.marshalling.ToEntityMarshaller
 import io.swagger.server.AkkaHttpHelper._
+import io.swagger.server.model.Body_1
 import io.swagger.server.model.ErrorResponse
 import io.swagger.server.model.GenericResponse
 import io.swagger.server.model.MailAttachment
@@ -12,7 +13,6 @@ import io.swagger.server.model.MailContact
 import io.swagger.server.model.MailLog
 import io.swagger.server.model.MailOrder
 import io.swagger.server.model.MailOrders
-import io.swagger.server.model.SendMail
 import io.swagger.server.model.SendMailAdv
 import io.swagger.server.model.SendMailAdv_from
 
@@ -89,7 +89,7 @@ class DefaultApi(
           
             formFields("to".as[String], "from".as[String], "subject".as[String], "body".as[String]) { (to, from, subject, body) =>
               
-                entity(as[SendMail]){ body =>
+                entity(as[Body_1]){ body =>
                   defaultService.sendMail(to = to, from = from, subject = subject, body = body, body = body)
                 }
              
@@ -234,7 +234,7 @@ trait DefaultApiMarshaller {
 
   implicit def fromRequestUnmarshallerSendMailAdv: FromRequestUnmarshaller[SendMailAdv]
 
-  implicit def fromRequestUnmarshallerSendMail: FromRequestUnmarshaller[SendMail]
+  implicit def fromRequestUnmarshallerBody_1: FromRequestUnmarshaller[Body_1]
 
 
   implicit def toEntityMarshallerMailOrders: ToEntityMarshaller[MailOrders]

@@ -28,13 +28,13 @@ part 'auth/http_bearer_auth.dart';
 
 part 'api/default_api.dart';
 
+part 'model/body1.dart';
 part 'model/error_response.dart';
 part 'model/generic_response.dart';
 part 'model/mail_attachment.dart';
 part 'model/mail_contact.dart';
 part 'model/mail_log.dart';
 part 'model/mail_order.dart';
-part 'model/send_mail.dart';
 part 'model/send_mail_adv.dart';
 part 'model/send_mail_adv_from.dart';
 

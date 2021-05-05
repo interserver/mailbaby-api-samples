@@ -2,13 +2,13 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
+import { Body1 } from '../models/Body1';
 import { ErrorResponse } from '../models/ErrorResponse';
 import { GenericResponse } from '../models/GenericResponse';
 import { MailAttachment } from '../models/MailAttachment';
 import { MailContact } from '../models/MailContact';
 import { MailLog } from '../models/MailLog';
 import { MailOrder } from '../models/MailOrder';
-import { SendMail } from '../models/SendMail';
 import { SendMailAdv } from '../models/SendMailAdv';
 import { SendMailAdvFrom } from '../models/SendMailAdvFrom';
 import { ObservableDefaultApi } from './ObservableAPI';

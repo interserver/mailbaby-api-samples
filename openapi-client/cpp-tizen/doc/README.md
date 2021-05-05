@@ -61,13 +61,13 @@ Method | HTTP request | Description
 ## What are the Model files for the data structures/objects?
 Class | Description
 ------------- | -------------
+ *Body_1* | Details for an Email
  *ErrorResponse* | 
  *GenericResponse* | 
  *MailAttachment* | A File attachment for an email
  *MailContact* | An Email Contact
  *MailLog* | Mail Order Details
  *MailOrder* | 
- *SendMail* | Details for an Email
  *SendMailAdv* | Details for an Email
  *SendMailAdv_from* | An Email Contact
 

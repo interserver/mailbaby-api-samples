@@ -123,12 +123,12 @@
           "content" : {
             "application/x-www-form-urlencoded" : {
               "schema" : {
-                "$ref" : "#/components/schemas/SendMail"
+                "$ref" : "#/components/schemas/body"
               }
             },
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/SendMail"
+                "$ref" : "#/components/schemas/body_1"
               }
             }
           },
@@ -524,33 +524,6 @@
         "required" : [ "data" ],
         "type" : "object"
       },
-      "SendMail" : {
-        "description" : "Details for an Email",
-        "properties" : {
-          "to" : {
-            "description" : "The Contact whom is the primary recipient of this email.",
-            "example" : "johndoe@company.com",
-            "type" : "string"
-          },
-          "from" : {
-            "description" : "The contact whom is the this email is from.",
-            "example" : "johndoe@company.com",
-            "type" : "string"
-          },
-          "subject" : {
-            "description" : "The subject or title of the email",
-            "example" : "Your Package has been Delivered!",
-            "type" : "string"
-          },
-          "body" : {
-            "description" : "The main email contents.",
-            "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n",
-            "type" : "string"
-          }
-        },
-        "title" : "Email details",
-        "type" : "object"
-      },
       "SendMailAdv" : {
         "description" : "Details for an Email",
         "properties" : {
@@ -615,6 +588,58 @@
         },
         "required" : [ "body", "from", "id", "subject", "to" ],
         "title" : "Email details",
+        "type" : "object"
+      },
+      "body" : {
+        "description" : "Details for an Email",
+        "properties" : {
+          "to" : {
+            "description" : "The Contact whom is the primary recipient of this email.",
+            "example" : "johndoe@company.com",
+            "type" : "string"
+          },
+          "from" : {
+            "description" : "The contact whom is the this email is from.",
+            "example" : "johndoe@company.com",
+            "type" : "string"
+          },
+          "subject" : {
+            "description" : "The subject or title of the email",
+            "example" : "Your Package has been Delivered!",
+            "type" : "string"
+          },
+          "body" : {
+            "description" : "The main email contents.",
+            "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "body_1" : {
+        "description" : "Details for an Email",
+        "properties" : {
+          "to" : {
+            "description" : "The Contact whom is the primary recipient of this email.",
+            "example" : "johndoe@company.com",
+            "type" : "string"
+          },
+          "from" : {
+            "description" : "The contact whom is the this email is from.",
+            "example" : "johndoe@company.com",
+            "type" : "string"
+          },
+          "subject" : {
+            "description" : "The subject or title of the email",
+            "example" : "Your Package has been Delivered!",
+            "type" : "string"
+          },
+          "body" : {
+            "description" : "The main email contents.",
+            "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n",
+            "type" : "string"
+          }
+        },
         "type" : "object"
       },
       "SendMailAdv_from" : {

@@ -10,26 +10,26 @@ import 'package:jaguar_mimetype/jaguar_mimetype.dart';
 
 import 'package:openapi/api/default_api.dart';
 
+import 'package:openapi/model/body1.dart';
 import 'package:openapi/model/error_response.dart';
 import 'package:openapi/model/generic_response.dart';
 import 'package:openapi/model/mail_attachment.dart';
 import 'package:openapi/model/mail_contact.dart';
 import 'package:openapi/model/mail_log.dart';
 import 'package:openapi/model/mail_order.dart';
-import 'package:openapi/model/send_mail.dart';
 import 'package:openapi/model/send_mail_adv.dart';
 import 'package:openapi/model/send_mail_adv_from.dart';
 
 
 
 final _jsonJaguarRepo = JsonRepo()
+..add(Body1Serializer())
 ..add(ErrorResponseSerializer())
 ..add(GenericResponseSerializer())
 ..add(MailAttachmentSerializer())
 ..add(MailContactSerializer())
 ..add(MailLogSerializer())
 ..add(MailOrderSerializer())
-..add(SendMailSerializer())
 ..add(SendMailAdvSerializer())
 ..add(SendMailAdvFromSerializer())
 ;

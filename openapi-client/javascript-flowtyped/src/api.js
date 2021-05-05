@@ -71,6 +71,38 @@ export class RequiredError extends Error {
 }
 
 /**
+ * Details for an Email
+ * @export
+ */
+export type Body1 = {
+    /**
+     * The Contact whom is the primary recipient of this email.
+     * @type {string}
+     * @memberof Body1
+     */
+    to?: string;
+    /**
+     * The contact whom is the this email is from.
+     * @type {string}
+     * @memberof Body1
+     */
+    from?: string;
+    /**
+     * The subject or title of the email
+     * @type {string}
+     * @memberof Body1
+     */
+    subject?: string;
+    /**
+     * The main email contents.
+     * @type {string}
+     * @memberof Body1
+     */
+    body?: string;
+}
+
+
+/**
  * 
  * @export
  */
@@ -199,38 +231,6 @@ export type MailOrder = {
      * @memberof MailOrder
      */
     comment?: string;
-}
-
-
-/**
- * Details for an Email
- * @export
- */
-export type SendMail = {
-    /**
-     * The Contact whom is the primary recipient of this email.
-     * @type {string}
-     * @memberof SendMail
-     */
-    to?: string;
-    /**
-     * The contact whom is the this email is from.
-     * @type {string}
-     * @memberof SendMail
-     */
-    from?: string;
-    /**
-     * The subject or title of the email
-     * @type {string}
-     * @memberof SendMail
-     */
-    subject?: string;
-    /**
-     * The main email contents.
-     * @type {string}
-     * @memberof SendMail
-     */
-    body?: string;
 }
 
 

@@ -76,13 +76,13 @@ Category | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [body_1_t](docs/body_1.md)
  - [error_response_t](docs/error_response.md)
  - [generic_response_t](docs/generic_response.md)
  - [mail_attachment_t](docs/mail_attachment.md)
  - [mail_contact_t](docs/mail_contact.md)
  - [mail_log_t](docs/mail_log.md)
  - [mail_order_t](docs/mail_order.md)
- - [send_mail_t](docs/send_mail.md)
  - [send_mail_adv_t](docs/send_mail_adv.md)
  - [send_mail_adv_from_t](docs/send_mail_adv_from.md)
 

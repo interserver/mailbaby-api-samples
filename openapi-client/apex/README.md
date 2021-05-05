@@ -76,13 +76,13 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [OASBody1](OASBody1.md)
  - [OASErrorResponse](OASErrorResponse.md)
  - [OASGenericResponse](OASGenericResponse.md)
  - [OASMailAttachment](OASMailAttachment.md)
  - [OASMailContact](OASMailContact.md)
  - [OASMailLog](OASMailLog.md)
  - [OASMailOrder](OASMailOrder.md)
- - [OASSendMail](OASSendMail.md)
  - [OASSendMailAdv](OASSendMailAdv.md)
  - [OASSendMailAdvFrom](OASSendMailAdvFrom.md)
 

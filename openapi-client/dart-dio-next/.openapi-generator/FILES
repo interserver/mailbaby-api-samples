@@ -2,6 +2,7 @@
 .openapi-generator-ignore
 README.md
 analysis_options.yaml
+doc/Body1.md
 doc/DefaultApi.md
 doc/ErrorResponse.md
 doc/GenericResponse.md
@@ -9,7 +10,6 @@ doc/MailAttachment.md
 doc/MailContact.md
 doc/MailLog.md
 doc/MailOrder.md
-doc/SendMail.md
 doc/SendMailAdv.md
 doc/SendMailAdvFrom.md
 lib/openapi.dart
@@ -21,6 +21,7 @@ lib/src/auth/auth.dart
 lib/src/auth/basic_auth.dart
 lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
+lib/src/model/body1.dart
 lib/src/model/date.dart
 lib/src/model/error_response.dart
 lib/src/model/generic_response.dart
@@ -28,11 +29,11 @@ lib/src/model/mail_attachment.dart
 lib/src/model/mail_contact.dart
 lib/src/model/mail_log.dart
 lib/src/model/mail_order.dart
-lib/src/model/send_mail.dart
 lib/src/model/send_mail_adv.dart
 lib/src/model/send_mail_adv_from.dart
 lib/src/serializers.dart
 pubspec.yaml
+test/body1_test.dart
 test/default_api_test.dart
 test/error_response_test.dart
 test/generic_response_test.dart
@@ -42,4 +43,3 @@ test/mail_log_test.dart
 test/mail_order_test.dart
 test/send_mail_adv_from_test.dart
 test/send_mail_adv_test.dart
-test/send_mail_test.dart

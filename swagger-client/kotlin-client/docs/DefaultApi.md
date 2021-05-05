@@ -321,7 +321,7 @@ Sends An email through one of your mail orders.
 //import io.swagger.client.models.*;
 
 val apiInstance = DefaultApi()
-val body : SendMail =  // SendMail | 
+val body : Body1 =  // Body1 | 
 try {
     val result : GenericResponse = apiInstance.sendMail(body)
     println(result)
@@ -338,7 +338,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SendMail**](SendMail.md)|  |
+ **body** | [**Body1**](Body1.md)|  |
 
 ### Return type
 

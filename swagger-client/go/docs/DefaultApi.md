@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
   **from** | **string**|  | 
   **subject** | **string**|  | 
   **body** | **string**|  | 
-  **body** | [**SendMail**](SendMail.md)|  | 
+  **body** | [**Body1**](Body1.md)|  | 
 
 ### Return type
 

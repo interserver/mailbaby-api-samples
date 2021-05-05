@@ -24,7 +24,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-05T08:15:36.684157-04:00[America/New_York]")public interface MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-05T08:21:52.550556-04:00[America/New_York]")public interface MailApiService {
     public Response getMailOrders( Long id,SecurityContext securityContext);
     public Response placeMailOrder(MailOrder body,SecurityContext securityContext);
     public Response sendAdvMail(SendMailAdv body,SecurityContext securityContext);

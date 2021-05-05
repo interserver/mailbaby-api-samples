@@ -31,7 +31,7 @@ public class SendMail   {
   }
 
   
-  @ApiModelProperty(required = true, value = "The Contact whom is the primary recipient of this email.")
+  @ApiModelProperty(example = "johndoe@company.com", required = true, value = "The Contact whom is the primary recipient of this email.")
   @JsonProperty("to")
   @NotNull
 
@@ -51,7 +51,7 @@ public class SendMail   {
   }
 
   
-  @ApiModelProperty(required = true, value = "The contact whom is the this email is from.")
+  @ApiModelProperty(example = "janedoe@company.com", required = true, value = "The contact whom is the this email is from.")
   @JsonProperty("from")
   @NotNull
 
@@ -71,7 +71,7 @@ public class SendMail   {
   }
 
   
-  @ApiModelProperty(required = true, value = "The subject or title of the email")
+  @ApiModelProperty(example = "Attention Client", required = true, value = "The subject or title of the email")
   @JsonProperty("subject")
   @NotNull
 
@@ -91,7 +91,7 @@ public class SendMail   {
   }
 
   
-  @ApiModelProperty(required = true, value = "The main email contents.")
+  @ApiModelProperty(example = "This is an email to inform you that something noteworthy happened.", required = true, value = "The main email contents.")
   @JsonProperty("body")
   @NotNull
 

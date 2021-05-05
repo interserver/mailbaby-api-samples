@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * Details for an Email
  **/
 @Schema(description = "Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-05T07:38:05.858382-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-05T07:54:57.412488-04:00[America/New_York]")
 public class SendMail   {
   @JsonProperty("to")
   private String to = null;
@@ -28,7 +28,7 @@ public class SendMail   {
   }
 
   
-  @Schema(required = true, description = "The Contact whom is the primary recipient of this email.")
+  @Schema(example = "johndoe@company.com", required = true, description = "The Contact whom is the primary recipient of this email.")
   @JsonProperty("to")
   public String getTo() {
     return to;
@@ -46,7 +46,7 @@ public class SendMail   {
   }
 
   
-  @Schema(required = true, description = "The contact whom is the this email is from.")
+  @Schema(example = "janedoe@company.com", required = true, description = "The contact whom is the this email is from.")
   @JsonProperty("from")
   public String getFrom() {
     return from;
@@ -64,7 +64,7 @@ public class SendMail   {
   }
 
   
-  @Schema(required = true, description = "The subject or title of the email")
+  @Schema(example = "Attention Client", required = true, description = "The subject or title of the email")
   @JsonProperty("subject")
   public String getSubject() {
     return subject;
@@ -82,7 +82,7 @@ public class SendMail   {
   }
 
   
-  @Schema(required = true, description = "The main email contents.")
+  @Schema(example = "This is an email to inform you that something noteworthy happened.", required = true, description = "The main email contents.")
   @JsonProperty("body")
   public String getBody() {
     return body;

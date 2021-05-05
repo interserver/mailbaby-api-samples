@@ -115,23 +115,11 @@
         "requestBody" : {
           "content" : {
             "application/x-www-form-urlencoded" : {
-              "example" : {
-                "to" : "johndoe@company.com",
-                "from" : "johndoe@company.com",
-                "subject" : "a test email",
-                "body" : "this is a test email."
-              },
               "schema" : {
                 "$ref" : "#/components/schemas/SendMail"
               }
             },
             "application/json" : {
-              "example" : {
-                "to" : "johndoe@company.com",
-                "from" : "johndoe@company.com",
-                "subject" : "a test email",
-                "body" : "this is a test email."
-              },
               "schema" : {
                 "$ref" : "#/components/schemas/SendMail"
               }
@@ -534,18 +522,22 @@
         "properties" : {
           "to" : {
             "description" : "The Contact whom is the primary recipient of this email.",
+            "example" : "johndoe@company.com",
             "type" : "string"
           },
           "from" : {
             "description" : "The contact whom is the this email is from.",
+            "example" : "janedoe@company.com",
             "type" : "string"
           },
           "subject" : {
             "description" : "The subject or title of the email",
+            "example" : "Attention Client",
             "type" : "string"
           },
           "body" : {
             "description" : "The main email contents.",
+            "example" : "This is an email to inform you that something noteworthy happened.",
             "type" : "string"
           }
         },

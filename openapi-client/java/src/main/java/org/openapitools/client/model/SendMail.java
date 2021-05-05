@@ -28,7 +28,7 @@ import java.io.IOException;
  * Details for an Email
  */
 @ApiModel(description = "Details for an Email")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-05T07:35:58.018481-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-05T07:52:49.206955-04:00[America/New_York]")
 public class SendMail {
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
@@ -57,7 +57,7 @@ public class SendMail {
    * The Contact whom is the primary recipient of this email.
    * @return to
   **/
-  @ApiModelProperty(required = true, value = "The Contact whom is the primary recipient of this email.")
+  @ApiModelProperty(example = "johndoe@company.com", required = true, value = "The Contact whom is the primary recipient of this email.")
 
   public String getTo() {
     return to;
@@ -79,7 +79,7 @@ public class SendMail {
    * The contact whom is the this email is from.
    * @return from
   **/
-  @ApiModelProperty(required = true, value = "The contact whom is the this email is from.")
+  @ApiModelProperty(example = "janedoe@company.com", required = true, value = "The contact whom is the this email is from.")
 
   public String getFrom() {
     return from;
@@ -101,7 +101,7 @@ public class SendMail {
    * The subject or title of the email
    * @return subject
   **/
-  @ApiModelProperty(required = true, value = "The subject or title of the email")
+  @ApiModelProperty(example = "Attention Client", required = true, value = "The subject or title of the email")
 
   public String getSubject() {
     return subject;
@@ -123,7 +123,7 @@ public class SendMail {
    * The main email contents.
    * @return body
   **/
-  @ApiModelProperty(required = true, value = "The main email contents.")
+  @ApiModelProperty(example = "This is an email to inform you that something noteworthy happened.", required = true, value = "The main email contents.")
 
   public String getBody() {
     return body;

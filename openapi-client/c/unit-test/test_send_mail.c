@@ -22,17 +22,17 @@ send_mail_t* instantiate_send_mail(int include_optional) {
   send_mail_t* send_mail = NULL;
   if (include_optional) {
     send_mail = send_mail_create(
-      "0",
-      "0",
-      "0",
-      "0"
+      "johndoe@company.com",
+      "janedoe@company.com",
+      "Attention Client",
+      "This is an email to inform you that something noteworthy happened."
     );
   } else {
     send_mail = send_mail_create(
-      "0",
-      "0",
-      "0",
-      "0"
+      "johndoe@company.com",
+      "janedoe@company.com",
+      "Attention Client",
+      "This is an email to inform you that something noteworthy happened."
     );
   }
 

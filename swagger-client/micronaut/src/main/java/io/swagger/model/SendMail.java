@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "Details for an Email")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T07:38:26.139337-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T07:55:18.252877-04:00[America/New_York]")
 public class SendMail   {
   @JsonProperty("to")
   private String to = null;
@@ -36,7 +36,7 @@ public class SendMail   {
    * The Contact whom is the primary recipient of this email.
    * @return to
   **/
-  @Schema(required = true, description = "The Contact whom is the primary recipient of this email.")
+  @Schema(example = "johndoe@company.com", required = true, description = "The Contact whom is the primary recipient of this email.")
   @NotNull
 
   public String getTo() {
@@ -56,7 +56,7 @@ public class SendMail   {
    * The contact whom is the this email is from.
    * @return from
   **/
-  @Schema(required = true, description = "The contact whom is the this email is from.")
+  @Schema(example = "janedoe@company.com", required = true, description = "The contact whom is the this email is from.")
   @NotNull
 
   public String getFrom() {
@@ -76,7 +76,7 @@ public class SendMail   {
    * The subject or title of the email
    * @return subject
   **/
-  @Schema(required = true, description = "The subject or title of the email")
+  @Schema(example = "Attention Client", required = true, description = "The subject or title of the email")
   @NotNull
 
   public String getSubject() {
@@ -96,7 +96,7 @@ public class SendMail   {
    * The main email contents.
    * @return body
   **/
-  @Schema(required = true, description = "The main email contents.")
+  @Schema(example = "This is an email to inform you that something noteworthy happened.", required = true, description = "The main email contents.")
   @NotNull
 
   public String getBody() {

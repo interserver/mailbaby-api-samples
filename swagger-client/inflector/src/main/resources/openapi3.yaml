@@ -88,19 +88,9 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/SendMail'
-            example:
-              to: johndoe@company.com
-              from: johndoe@company.com
-              subject: a test email
-              body: this is a test email.
           application/json:
             schema:
               $ref: '#/components/schemas/SendMail'
-            example:
-              to: johndoe@company.com
-              from: johndoe@company.com
-              subject: a test email
-              body: this is a test email.
         required: true
       responses:
         "200":
@@ -368,15 +358,19 @@ components:
         to:
           type: string
           description: The Contact whom is the primary recipient of this email.
+          example: johndoe@company.com
         from:
           type: string
           description: The contact whom is the this email is from.
+          example: janedoe@company.com
         subject:
           type: string
           description: The subject or title of the email
+          example: Attention Client
         body:
           type: string
           description: The main email contents.
+          example: This is an email to inform you that something noteworthy happened.
       description: Details for an Email
     SendMailAdv:
       title: Email details

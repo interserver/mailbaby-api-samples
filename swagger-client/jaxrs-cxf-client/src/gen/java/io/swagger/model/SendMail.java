@@ -20,25 +20,25 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 @Schema(description="Details for an Email")
 public class SendMail   {
   
-  @Schema(required = true, description = "The Contact whom is the primary recipient of this email.")
+  @Schema(example = "johndoe@company.com", required = true, description = "The Contact whom is the primary recipient of this email.")
  /**
    * The Contact whom is the primary recipient of this email.  
   **/
   private String to = null;
   
-  @Schema(required = true, description = "The contact whom is the this email is from.")
+  @Schema(example = "janedoe@company.com", required = true, description = "The contact whom is the this email is from.")
  /**
    * The contact whom is the this email is from.  
   **/
   private String from = null;
   
-  @Schema(required = true, description = "The subject or title of the email")
+  @Schema(example = "Attention Client", required = true, description = "The subject or title of the email")
  /**
    * The subject or title of the email  
   **/
   private String subject = null;
   
-  @Schema(required = true, description = "The main email contents.")
+  @Schema(example = "This is an email to inform you that something noteworthy happened.", required = true, description = "The main email contents.")
  /**
    * The main email contents.  
   **/

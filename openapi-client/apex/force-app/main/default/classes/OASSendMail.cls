@@ -48,10 +48,10 @@ public class OASSendMail implements OAS.MappedProperties {
 
     public static OASSendMail getExample() {
         OASSendMail sendMail = new OASSendMail();
-          sendMail.to = '';
-          sendMail.r_from = '';
-          sendMail.subject = '';
-          sendMail.body = '';
+          sendMail.to = 'johndoe@company.com';
+          sendMail.r_from = 'janedoe@company.com';
+          sendMail.subject = 'Attention Client';
+          sendMail.body = 'This is an email to inform you that something noteworthy happened.';
         return sendMail;
     }
 

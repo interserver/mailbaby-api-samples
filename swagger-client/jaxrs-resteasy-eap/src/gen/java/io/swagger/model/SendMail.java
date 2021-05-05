@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T07:38:20.161538-04:00[America/New_York]")public class SendMail   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T07:55:12.379496-04:00[America/New_York]")public class SendMail   {
   private String to = null;
   private String from = null;
   private String subject = null;
@@ -19,7 +19,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
    * The Contact whom is the primary recipient of this email.
    **/
   
-  @Schema(required = true, description = "The Contact whom is the primary recipient of this email.")
+  @Schema(example = "johndoe@company.com", required = true, description = "The Contact whom is the primary recipient of this email.")
   @JsonProperty("to")
   @NotNull
   public String getTo() {
@@ -33,7 +33,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
    * The contact whom is the this email is from.
    **/
   
-  @Schema(required = true, description = "The contact whom is the this email is from.")
+  @Schema(example = "janedoe@company.com", required = true, description = "The contact whom is the this email is from.")
   @JsonProperty("from")
   @NotNull
   public String getFrom() {
@@ -47,7 +47,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
    * The subject or title of the email
    **/
   
-  @Schema(required = true, description = "The subject or title of the email")
+  @Schema(example = "Attention Client", required = true, description = "The subject or title of the email")
   @JsonProperty("subject")
   @NotNull
   public String getSubject() {
@@ -61,7 +61,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
    * The main email contents.
    **/
   
-  @Schema(required = true, description = "The main email contents.")
+  @Schema(example = "This is an email to inform you that something noteworthy happened.", required = true, description = "The main email contents.")
   @JsonProperty("body")
   @NotNull
   public String getBody() {

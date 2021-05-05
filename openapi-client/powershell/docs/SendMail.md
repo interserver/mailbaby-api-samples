@@ -12,10 +12,10 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$SendMail = Initialize-PSOpenAPIToolsSendMail  -To null `
- -VarFrom null `
- -Subject null `
- -Body null
+$SendMail = Initialize-PSOpenAPIToolsSendMail  -To johndoe@company.com `
+ -VarFrom janedoe@company.com `
+ -Subject Attention Client `
+ -Body This is an email to inform you that something noteworthy happened.
 ```
 
 - Convert the resource to JSON

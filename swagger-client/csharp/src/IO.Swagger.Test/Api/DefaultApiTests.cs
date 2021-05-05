@@ -112,11 +112,8 @@ namespace IO.Swagger.Test
         public void SendMailTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string to = null;
-            //string from = null;
-            //string subject = null;
-            //string body = null;
-            //var response = instance.SendMail(to, from, subject, body);
+            //Body body = null;
+            //var response = instance.SendMail(body);
             //Assert.IsInstanceOf<GenericResponse> (response, "response is GenericResponse");
         }
         /// <summary>

@@ -2,7 +2,7 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
-import { Body1 } from '../models/Body1';
+import { Body } from '../models/Body';
 import { ErrorResponse } from '../models/ErrorResponse';
 import { GenericResponse } from '../models/GenericResponse';
 import { MailAttachment } from '../models/MailAttachment';
@@ -65,13 +65,10 @@ export class PromiseDefaultApi {
     /**
      * Sends An email through one of your mail orders.
      * Sends an Email
-     * @param to The Contact whom is the primary recipient of this email.
-     * @param from The contact whom is the this email is from.
-     * @param subject The subject or title of the email
-     * @param body The main email contents.
+     * @param body 
      */
-    public sendMail(to?: string, from?: string, subject?: string, body?: string, options?: Configuration): Promise<GenericResponse> {
-        const result = this.api.sendMail(to, from, subject, body, options);
+    public sendMail(body: Body, options?: Configuration): Promise<GenericResponse> {
+        const result = this.api.sendMail(body, options);
         return result.toPromise();
     }
 

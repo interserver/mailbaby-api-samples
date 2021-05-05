@@ -1,5 +1,5 @@
 .openapi-generator-ignore
-API/Client/Body1.js
+API/Client/Body.js
 API/Client/DefaultApi.js
 API/Client/ErrorResponse.js
 API/Client/GenericResponse.js

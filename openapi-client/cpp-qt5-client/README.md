@@ -128,7 +128,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [OAIBody_1](OAIBody_1.md)
+ - [OAIBody](OAIBody.md)
  - [OAIErrorResponse](OAIErrorResponse.md)
  - [OAIGenericResponse](OAIGenericResponse.md)
  - [OAIMailAttachment](OAIMailAttachment.md)

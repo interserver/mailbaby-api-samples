@@ -11,6 +11,7 @@
 */
 package org.openapitools.client.apis
 
+import org.openapitools.client.models.Body
 import org.openapitools.client.models.ErrorResponse
 import org.openapitools.client.models.GenericResponse
 import org.openapitools.client.models.MailLog
@@ -263,10 +264,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * Sends an Email
     * Sends An email through one of your mail orders.
-    * @param to The Contact whom is the primary recipient of this email. (optional)
-    * @param from The contact whom is the this email is from. (optional)
-    * @param subject The subject or title of the email (optional)
-    * @param body The main email contents. (optional)
+    * @param body  
     * @return GenericResponse
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -274,8 +272,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun sendMail(to: kotlin.String?, from: kotlin.String?, subject: kotlin.String?, body: kotlin.String?) : GenericResponse {
-        val localVariableConfig = sendMailRequestConfig(to = to, from = from, subject = subject, body = body)
+    fun sendMail(body: Body) : GenericResponse {
+        val localVariableConfig = sendMailRequestConfig(body = body)
 
         val localVarResponse = request<GenericResponse>(
             localVariableConfig
@@ -299,16 +297,13 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * To obtain the request config of the operation sendMail
     *
-    * @param to The Contact whom is the primary recipient of this email. (optional)
-    * @param from The contact whom is the this email is from. (optional)
-    * @param subject The subject or title of the email (optional)
-    * @param body The main email contents. (optional)
+    * @param body  
     * @return RequestConfig
     */
-    fun sendMailRequestConfig(to: kotlin.String?, from: kotlin.String?, subject: kotlin.String?, body: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = mapOf("to" to to, "from" to from, "subject" to subject, "body" to body)
+    fun sendMailRequestConfig(body: Body) : RequestConfig {
+        val localVariableBody: kotlin.Any? = body
         val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,

@@ -268,7 +268,7 @@ Name | Type | Description  | Notes
 
 ## SendMail
 
-> GenericResponse SendMail(ctx).To(to).From(from).Subject(subject).Body(body).Execute()
+> GenericResponse SendMail(ctx).Body(body).Execute()
 
 Sends an Email
 
@@ -287,14 +287,11 @@ import (
 )
 
 func main() {
-    to := "to_example" // string | The Contact whom is the primary recipient of this email. (optional)
-    from := "from_example" // string | The contact whom is the this email is from. (optional)
-    subject := "subject_example" // string | The subject or title of the email (optional)
-    body := "body_example" // string | The main email contents. (optional)
+    body := *openapiclient.NewBody() // Body | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.SendMail(context.Background()).To(to).From(from).Subject(subject).Body(body).Execute()
+    resp, r, err := api_client.DefaultApi.SendMail(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SendMail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -315,10 +312,7 @@ Other parameters are passed through a pointer to a apiSendMailRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **string** | The Contact whom is the primary recipient of this email. | 
- **from** | **string** | The contact whom is the this email is from. | 
- **subject** | **string** | The subject or title of the email | 
- **body** | **string** | The main email contents. | 
+ **body** | [**Body**](Body.md) |  | 
 
 ### Return type
 
@@ -330,7 +324,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/x-www-form-urlencoded, application/json
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

@@ -285,6 +285,61 @@ Name | Type | Description  | Notes
 
 <a name="sendMail"></a>
 # **sendMail**
+> GenericResponse sendMail(body)
+
+Sends an Email
+
+Sends An email through one of your mail orders.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiClient;
+//import io.swagger.client.ApiException;
+//import io.swagger.client.Configuration;
+//import io.swagger.client.auth.*;
+//import io.swagger.client.api.DefaultApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: apiKeyAuth
+ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
+apiKeyAuth.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKeyAuth.setApiKeyPrefix("Token");
+
+DefaultApi apiInstance = new DefaultApi();
+Body body = new Body(); // Body | 
+try {
+    GenericResponse result = apiInstance.sendMail(body);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling DefaultApi#sendMail");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**Body**](Body.md)|  |
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="sendMail"></a>
+# **sendMail**
 > GenericResponse sendMail(to, from, subject, body)
 
 Sends an Email
@@ -341,62 +396,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, application/json
- - **Accept**: application/json
-
-<a name="sendMail"></a>
-# **sendMail**
-> GenericResponse sendMail(body)
-
-Sends an Email
-
-Sends An email through one of your mail orders.
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.DefaultApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure API key authorization: apiKeyAuth
-ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
-apiKeyAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyAuth.setApiKeyPrefix("Token");
-
-DefaultApi apiInstance = new DefaultApi();
-Body1 body = new Body1(); // Body1 | 
-try {
-    GenericResponse result = apiInstance.sendMail(body);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling DefaultApi#sendMail");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**Body1**](Body1.md)|  |
-
-### Return type
-
-[**GenericResponse**](GenericResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-www-form-urlencoded, application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 <a name="validateMailOrder"></a>

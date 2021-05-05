@@ -3,7 +3,7 @@ README.md
 build.gradle
 src/main/groovy/org/openapitools/api/ApiUtils.groovy
 src/main/groovy/org/openapitools/api/DefaultApi.groovy
-src/main/groovy/org/openapitools/model/Body1.groovy
+src/main/groovy/org/openapitools/model/Body.groovy
 src/main/groovy/org/openapitools/model/ErrorResponse.groovy
 src/main/groovy/org/openapitools/model/GenericResponse.groovy
 src/main/groovy/org/openapitools/model/MailAttachment.groovy

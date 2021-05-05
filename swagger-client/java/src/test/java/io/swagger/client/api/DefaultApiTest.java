@@ -13,7 +13,7 @@
 package io.swagger.client.api;
 
 import io.swagger.client.ApiException;
-import io.swagger.client.model.Body1;
+import io.swagger.client.model.Body;
 import io.swagger.client.model.ErrorResponse;
 import io.swagger.client.model.GenericResponse;
 import io.swagger.client.model.MailAttachment;
@@ -108,11 +108,8 @@ public class DefaultApiTest {
      */
     @Test
     public void sendMailTest() throws ApiException {
-        String to = null;
-        String from = null;
-        String subject = null;
-        String body = null;
-        GenericResponse response = api.sendMail(to, from, subject, body);
+        Body body = null;
+        GenericResponse response = api.sendMail(body);
 
         // TODO: test validations
     }

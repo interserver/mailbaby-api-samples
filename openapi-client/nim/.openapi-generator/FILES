@@ -3,7 +3,7 @@ README.md
 config.nim
 openapiclient.nim
 openapiclient/apis/api_default.nim
-openapiclient/models/model_body_1.nim
+openapiclient/models/model_body.nim
 openapiclient/models/model_error_response.nim
 openapiclient/models/model_generic_response.nim
 openapiclient/models/model_mail_attachment.nim

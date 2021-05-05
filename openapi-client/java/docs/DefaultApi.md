@@ -282,7 +282,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMail"></a>
 # **sendMail**
-> GenericResponse sendMail(to, from, subject, body)
+> GenericResponse sendMail(body)
 
 Sends an Email
 
@@ -310,12 +310,9 @@ public class Example {
     //apiKeyAuth.setApiKeyPrefix("Token");
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
-    String to = "to_example"; // String | The Contact whom is the primary recipient of this email.
-    String from = "from_example"; // String | The contact whom is the this email is from.
-    String subject = "subject_example"; // String | The subject or title of the email
-    String body = "body_example"; // String | The main email contents.
+    Body body = new Body(); // Body | 
     try {
-      GenericResponse result = apiInstance.sendMail(to, from, subject, body);
+      GenericResponse result = apiInstance.sendMail(body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#sendMail");
@@ -332,10 +329,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **String**| The Contact whom is the primary recipient of this email. | [optional]
- **from** | **String**| The contact whom is the this email is from. | [optional]
- **subject** | **String**| The subject or title of the email | [optional]
- **body** | **String**| The main email contents. | [optional]
+ **body** | [**Body**](Body.md)|  |
 
 ### Return type
 
@@ -347,7 +341,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 ### HTTP response details

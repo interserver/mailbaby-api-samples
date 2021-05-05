@@ -2,7 +2,7 @@ QT += network
 
 HEADERS += \
 # Models
-    $${PWD}/OAIBody_1.h \
+    $${PWD}/OAIBody.h \
     $${PWD}/OAIErrorResponse.h \
     $${PWD}/OAIGenericResponse.h \
     $${PWD}/OAIMailAttachment.h \
@@ -24,7 +24,7 @@ HEADERS += \
 
 SOURCES += \
 # Models
-    $${PWD}/OAIBody_1.cpp \
+    $${PWD}/OAIBody.cpp \
     $${PWD}/OAIErrorResponse.cpp \
     $${PWD}/OAIGenericResponse.cpp \
     $${PWD}/OAIMailAttachment.cpp \

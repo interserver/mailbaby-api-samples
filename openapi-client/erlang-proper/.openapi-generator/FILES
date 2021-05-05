@@ -1,7 +1,7 @@
 .openapi-generator-ignore
 README.md
 rebar.config
-src/model/openapi_body_1.erl
+src/model/openapi_body.erl
 src/model/openapi_error_response.erl
 src/model/openapi_generic_response.erl
 src/model/openapi_mail_attachment.erl

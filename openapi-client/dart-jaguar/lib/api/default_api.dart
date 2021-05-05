@@ -9,6 +9,7 @@ import 'package:openapi/model/mail_log.dart';
 import 'package:openapi/model/send_mail_adv.dart';
 import 'package:openapi/model/error_response.dart';
 import 'package:openapi/model/mail_order.dart';
+import 'package:openapi/model/body.dart';
 
 part 'default_api.jretro.dart';
 
@@ -82,22 +83,10 @@ class DefaultApi extends ApiClient with _$DefaultApiClient {
     @PostReq(path: "/mail/send", metadata: {"auth": [ {"type": "apiKey", "name": "apiKeyAuth", "keyName": "X-API-KEY", "where": "header" }]})
     Future<GenericResponse> sendMail(
             
-            @AsFormField() String to, 
-            
-            @AsFormField() String from, 
-            
-            @AsFormField() String subject, 
-            
-            @AsFormField() String body
+             @AsJson() Body body
         ) {
         return super.sendMail(
 
-        
-        to, 
-        
-        from, 
-        
-        subject, 
         
         body
         ).timeout(timeout);

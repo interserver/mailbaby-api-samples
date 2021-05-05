@@ -24,31 +24,31 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * Details for an Email
  * @export
- * @interface Body1
+ * @interface Body
  */
-export interface Body1 {
+export interface Body {
     /**
      * The Contact whom is the primary recipient of this email.
      * @type {string}
-     * @memberof Body1
+     * @memberof Body
      */
     to?: string;
     /**
      * The contact whom is the this email is from.
      * @type {string}
-     * @memberof Body1
+     * @memberof Body
      */
     from?: string;
     /**
      * The subject or title of the email
      * @type {string}
-     * @memberof Body1
+     * @memberof Body
      */
     subject?: string;
     /**
      * The main email contents.
      * @type {string}
-     * @memberof Body1
+     * @memberof Body
      */
     body?: string;
 }
@@ -412,14 +412,13 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
-         * @param {string} [to] The Contact whom is the primary recipient of this email.
-         * @param {string} [from] The contact whom is the this email is from.
-         * @param {string} [subject] The subject or title of the email
-         * @param {string} [body] The main email contents.
+         * @param {Body} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail: async (to?: string, from?: string, subject?: string, body?: string, options: any = {}): Promise<RequestArgs> => {
+        sendMail: async (body: Body, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('sendMail', 'body', body)
             const localVarPath = `/mail/send`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -431,35 +430,18 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-            const localVarFormParams = new URLSearchParams();
 
             // authentication apiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
 
 
-            if (to !== undefined) { 
-                localVarFormParams.set('to', to as any);
-            }
     
-            if (from !== undefined) { 
-                localVarFormParams.set('from', from as any);
-            }
-    
-            if (subject !== undefined) { 
-                localVarFormParams.set('subject', subject as any);
-            }
-    
-            if (body !== undefined) { 
-                localVarFormParams.set('body', body as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
-    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams.toString();
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -608,15 +590,12 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
-         * @param {string} [to] The Contact whom is the primary recipient of this email.
-         * @param {string} [from] The contact whom is the this email is from.
-         * @param {string} [subject] The subject or title of the email
-         * @param {string} [body] The main email contents.
+         * @param {Body} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendMail(to?: string, from?: string, subject?: string, body?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendMail(to, from, subject, body, options);
+        async sendMail(body: Body, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.sendMail(body, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -695,15 +674,12 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
-         * @param {string} [to] The Contact whom is the primary recipient of this email.
-         * @param {string} [from] The contact whom is the this email is from.
-         * @param {string} [subject] The subject or title of the email
-         * @param {string} [body] The main email contents.
+         * @param {Body} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail(to?: string, from?: string, subject?: string, body?: string, options?: any): AxiosPromise<GenericResponse> {
-            return localVarFp.sendMail(to, from, subject, body, options).then((request) => request(axios, basePath));
+        sendMail(body: Body, options?: any): AxiosPromise<GenericResponse> {
+            return localVarFp.sendMail(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -787,16 +763,13 @@ export class DefaultApi extends BaseAPI {
     /**
      * Sends An email through one of your mail orders.
      * @summary Sends an Email
-     * @param {string} [to] The Contact whom is the primary recipient of this email.
-     * @param {string} [from] The contact whom is the this email is from.
-     * @param {string} [subject] The subject or title of the email
-     * @param {string} [body] The main email contents.
+     * @param {Body} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public sendMail(to?: string, from?: string, subject?: string, body?: string, options?: any) {
-        return DefaultApiFp(this.configuration).sendMail(to, from, subject, body, options).then((request) => request(this.axios, this.basePath));
+    public sendMail(body: Body, options?: any) {
+        return DefaultApiFp(this.configuration).sendMail(body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

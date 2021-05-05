@@ -76,7 +76,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [OASBody1](OASBody1.md)
+ - [OASBody](OASBody.md)
  - [OASErrorResponse](OASErrorResponse.md)
  - [OASGenericResponse](OASGenericResponse.md)
  - [OASMailAttachment](OASMailAttachment.md)

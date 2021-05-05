@@ -25,7 +25,7 @@ import java.io.IOException;
  * GenericResponse
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-05T07:06:58.846118-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-05T07:12:33.264226-04:00[America/New_York]")
 public class GenericResponse {
   @SerializedName("status")
   private String status = null;

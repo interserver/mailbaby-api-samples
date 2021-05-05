@@ -5,7 +5,7 @@ dune-project
 openapi.opam
 src/apis/default_api.ml
 src/apis/default_api.mli
-src/models/body_1.ml
+src/models/body.ml
 src/models/error_response.ml
 src/models/generic_response.ml
 src/models/mail_attachment.ml

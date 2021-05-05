@@ -1,6 +1,7 @@
 package org.openapitools.api;
 
 import org.openapitools.api.ApiUtils
+import org.openapitools.model.Body
 import org.openapitools.model.ErrorResponse
 import org.openapitools.model.GenericResponse
 import org.openapitools.model.MailLog
@@ -103,7 +104,7 @@ class DefaultApi {
 
     }
 
-    def sendMail ( String to, String from, String subject, String body, Closure onSuccess, Closure onFailure)  {
+    def sendMail ( Body body, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/send"
 
         // params
@@ -112,16 +113,16 @@ class DefaultApi {
         def bodyParams
         def contentType
 
+        // verify required params are set
+        if (body == null) {
+            throw new RuntimeException("missing required params body")
+        }
 
 
 
+        contentType = 'application/json';
+        bodyParams = body
 
-        contentType = 'application/x-www-form-urlencoded';
-        bodyParams = [:]
-        bodyParams.put("to", to)
-        bodyParams.put("from", from)
-        bodyParams.put("subject", subject)
-        bodyParams.put("body", body)
 
         apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "POST", "",

@@ -17,6 +17,7 @@
 #include "OAIHttpRequest.h"
 #include "OAIServerConfiguration.h"
 
+#include "OAIBody.h"
 #include "OAIErrorResponse.h"
 #include "OAIGenericResponse.h"
 #include "OAIMailLog.h"
@@ -79,12 +80,9 @@ public:
     void sendAdvMail(const OAISendMailAdv &oai_send_mail_adv);
 
     /**
-    * @param[in]  to QString [optional]
-    * @param[in]  from QString [optional]
-    * @param[in]  subject QString [optional]
-    * @param[in]  body QString [optional]
+    * @param[in]  oai_body OAIBody [required]
     */
-    void sendMail(const ::OpenAPI::OptionalParam<QString> &to = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &subject = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &body = ::OpenAPI::OptionalParam<QString>());
+    void sendMail(const OAIBody &oai_body);
 
 
     Q_DECL_DEPRECATED void validateMailOrder();

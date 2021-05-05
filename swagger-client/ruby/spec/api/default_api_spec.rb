@@ -99,9 +99,6 @@ describe 'DefaultApi' do
   # unit tests for send_mail
   # Sends an Email
   # Sends An email through one of your mail orders.
-  # @param to 
-  # @param from 
-  # @param subject 
   # @param body 
   # @param [Hash] opts the optional parameters
   # @return [GenericResponse]
@@ -114,6 +111,9 @@ describe 'DefaultApi' do
   # unit tests for send_mail
   # Sends an Email
   # Sends An email through one of your mail orders.
+  # @param to 
+  # @param from 
+  # @param subject 
   # @param body 
   # @param [Hash] opts the optional parameters
   # @return [GenericResponse]

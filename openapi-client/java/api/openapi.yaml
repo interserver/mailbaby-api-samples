@@ -66,14 +66,8 @@ paths:
           links:
             sendMailByIdLink:
               description: The `id` value returned in the response can be used as
-                the `id` parameter in `GET /mail/{id}/send`.
-              operationId: sendMailById
-              parameters:
-                id: $response.body#/0/id
-            getMailByIdLink:
-              description: The `id` value returned in the response can be used as
-                the `id` parameter in `GET /mail/{id}`.
-              operationId: getMailById
+                the `id` parameter in `GET /mail/advsend`.
+              operationId: sendMail
               parameters:
                 id: $response.body#/0/id
         "401":
@@ -90,10 +84,10 @@ paths:
       operationId: sendMail
       requestBody:
         content:
-          application/x-www-form-urlencoded:
+          application/json:
             schema:
               $ref: '#/components/schemas/body'
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/body_1'
         required: true
@@ -119,7 +113,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
           description: The specified resource was not found
       summary: Sends an Email
-      x-contentType: application/x-www-form-urlencoded
+      x-contentType: application/json
       x-accepts: application/json
   /mail/advsend:
     post:

@@ -3,7 +3,7 @@
 .travis.yml
 README.md
 bin/autodoc
-docs/Body1.md
+docs/Body.md
 docs/DefaultApi.md
 docs/ErrorResponse.md
 docs/GenericResponse.md
@@ -18,7 +18,7 @@ lib/OpenAPIClient/ApiClient.pm
 lib/OpenAPIClient/ApiFactory.pm
 lib/OpenAPIClient/Configuration.pm
 lib/OpenAPIClient/DefaultApi.pm
-lib/OpenAPIClient/Object/Body1.pm
+lib/OpenAPIClient/Object/Body.pm
 lib/OpenAPIClient/Object/ErrorResponse.pm
 lib/OpenAPIClient/Object/GenericResponse.pm
 lib/OpenAPIClient/Object/MailAttachment.pm
@@ -29,7 +29,7 @@ lib/OpenAPIClient/Object/SendMailAdv.pm
 lib/OpenAPIClient/Object/SendMailAdvFrom.pm
 lib/OpenAPIClient/Role.pm
 lib/OpenAPIClient/Role/AutoDoc.pm
-t/Body1Test.t
+t/BodyTest.t
 t/DefaultApiTest.t
 t/ErrorResponseTest.t
 t/GenericResponseTest.t

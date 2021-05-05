@@ -164,10 +164,7 @@ Sends An email through one of your mail orders.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **string** | The Contact whom is the primary recipient of this email. | [optional] [default to null]
- **from** | **string** | The contact whom is the this email is from. | [optional] [default to null]
- **subject** | **string** | The subject or title of the email | [optional] [default to null]
- **body** | **string** | The main email contents. | [optional] [default to null]
+ **body** | [**Body**](Body.md) |  |
 
 ### Return type
 
@@ -179,7 +176,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/x-www-form-urlencoded, application/json
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

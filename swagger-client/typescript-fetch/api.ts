@@ -591,15 +591,19 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
+         * @param {Body} body 
          * @param {string} to 
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
-         * @param {Body1} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail(to: string, from: string, subject: string, body: string, body: Body1, options: any = {}): FetchArgs {
+        sendMail(body: Body, to: string, from: string, subject: string, body: string, options: any = {}): FetchArgs {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling sendMail.');
+            }
             // verify required parameter 'to' is not null or undefined
             if (to === null || to === undefined) {
                 throw new RequiredError('to','Required parameter to was null or undefined when calling sendMail.');
@@ -611,10 +615,6 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
             // verify required parameter 'subject' is not null or undefined
             if (subject === null || subject === undefined) {
                 throw new RequiredError('subject','Required parameter subject was null or undefined when calling sendMail.');
-            }
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling sendMail.');
             }
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
@@ -653,14 +653,14 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
 
             localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
 
-            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             localVarRequestOptions.body = localVarFormParams.toString();
-            const needsSerialization = (<any>"Body1" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            const needsSerialization = (<any>"Body" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
 
             return {
@@ -846,16 +846,16 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
+         * @param {Body} body 
          * @param {string} to 
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
-         * @param {Body1} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail(to: string, from: string, subject: string, body: string, body: Body1, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMail(to, from, subject, body, body, options);
+        sendMail(body: Body, to: string, from: string, subject: string, body: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMail(body, to, from, subject, body, options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -966,16 +966,16 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
+         * @param {Body} body 
          * @param {string} to 
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
-         * @param {Body1} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail(to: string, from: string, subject: string, body: string, body: Body1, options?: any) {
-            return DefaultApiFp(configuration).sendMail(to, from, subject, body, body, options)(fetch, basePath);
+        sendMail(body: Body, to: string, from: string, subject: string, body: string, options?: any) {
+            return DefaultApiFp(configuration).sendMail(body, to, from, subject, body, options)(fetch, basePath);
         },
         /**
          * 
@@ -1068,17 +1068,17 @@ export class DefaultApi extends BaseAPI {
     /**
      * Sends An email through one of your mail orders.
      * @summary Sends an Email
+     * @param {Body} body 
      * @param {string} to 
      * @param {string} from 
      * @param {string} subject 
      * @param {string} body 
-     * @param {Body1} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public sendMail(to: string, from: string, subject: string, body: string, body: Body1, options?: any) {
-        return DefaultApiFp(this.configuration).sendMail(to, from, subject, body, body, options)(this.fetch, this.basePath);
+    public sendMail(body: Body, to: string, from: string, subject: string, body: string, options?: any) {
+        return DefaultApiFp(this.configuration).sendMail(body, to, from, subject, body, options)(this.fetch, this.basePath);
     }
 
     /**

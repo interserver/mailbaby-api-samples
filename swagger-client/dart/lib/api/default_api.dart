@@ -263,19 +263,10 @@ if (attachments != null)
   /// Sends an Email
   ///
   /// Sends An email through one of your mail orders.
-  Future<GenericResponse> sendMail(String to, String from, String subject, String body) async {
+  Future<GenericResponse> sendMail(Body body) async {
     Object postBody = body;
 
     // verify required params are set
-    if(to == null) {
-     throw new ApiException(400, "Missing required param: to");
-    }
-    if(from == null) {
-     throw new ApiException(400, "Missing required param: from");
-    }
-    if(subject == null) {
-     throw new ApiException(400, "Missing required param: subject");
-    }
     if(body == null) {
      throw new ApiException(400, "Missing required param: body");
     }
@@ -288,7 +279,7 @@ if (attachments != null)
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
     
-    List<String> contentTypes = ["application/x-www-form-urlencoded","application/json"];
+    List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
     List<String> authNames = ["apiKeyAuth"];

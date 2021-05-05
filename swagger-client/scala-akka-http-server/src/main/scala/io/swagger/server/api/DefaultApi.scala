@@ -5,7 +5,7 @@ import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.unmarshalling.FromRequestUnmarshaller
 import akka.http.scaladsl.marshalling.ToEntityMarshaller
 import io.swagger.server.AkkaHttpHelper._
-import io.swagger.server.model.Body_1
+import io.swagger.server.model.Body
 import io.swagger.server.model.ErrorResponse
 import io.swagger.server.model.GenericResponse
 import io.swagger.server.model.MailAttachment
@@ -89,8 +89,8 @@ class DefaultApi(
           
             formFields("to".as[String], "from".as[String], "subject".as[String], "body".as[String]) { (to, from, subject, body) =>
               
-                entity(as[Body_1]){ body =>
-                  defaultService.sendMail(to = to, from = from, subject = subject, body = body, body = body)
+                entity(as[Body]){ body =>
+                  defaultService.sendMail(body = body, to = to, from = from, subject = subject, body = body)
                 }
              
             }
@@ -202,7 +202,7 @@ trait DefaultApiService {
    * Code: 401, Message: Unauthorized, DataType: ErrorResponse
    * Code: 404, Message: The specified resource was not found, DataType: ErrorResponse
    */
-  def sendMail(to: String, from: String, subject: String, body: String, body: String)
+  def sendMail(body: String, to: String, from: String, subject: String, body: String)
       (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
 
   def validateMailOrder200: Route =
@@ -234,7 +234,7 @@ trait DefaultApiMarshaller {
 
   implicit def fromRequestUnmarshallerSendMailAdv: FromRequestUnmarshaller[SendMailAdv]
 
-  implicit def fromRequestUnmarshallerBody_1: FromRequestUnmarshaller[Body_1]
+  implicit def fromRequestUnmarshallerBody: FromRequestUnmarshaller[Body]
 
 
   implicit def toEntityMarshallerMailOrders: ToEntityMarshaller[MailOrders]

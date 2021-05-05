@@ -14,6 +14,7 @@
 import { HttpService, Inject, Injectable, Optional } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
+import { Body } from '../model/body';
 import { ErrorResponse } from '../model/errorResponse';
 import { GenericResponse } from '../model/genericResponse';
 import { MailLog } from '../model/mailLog';
@@ -210,19 +211,16 @@ export class DefaultService {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param to The Contact whom is the primary recipient of this email.
-     * @param from The contact whom is the this email is from.
-     * @param subject The subject or title of the email
-     * @param body The main email contents.
+     * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendMail(to?: string, from?: string, subject?: string, body?: string, ): Observable<AxiosResponse<GenericResponse>>;
-    public sendMail(to?: string, from?: string, subject?: string, body?: string, ): Observable<any> {
+    public sendMail(body: Body, ): Observable<AxiosResponse<GenericResponse>>;
+    public sendMail(body: Body, ): Observable<any> {
 
-
-
-
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling sendMail.');
+        }
 
         let headers = this.defaultHeaders;
 
@@ -242,39 +240,15 @@ export class DefaultService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/x-www-form-urlencoded',
-            'application/json'
+            'application/json',
+            'application/x-www-form-urlencoded'
         ];
-
-        const canConsumeForm = this.canConsumeForm(consumes);
-
-        let formParams: { append(param: string, value: any): void; };
-        let useForm = false;
-        let convertFormParamsToString = false;
-        if (useForm) {
-            formParams = new FormData();
-        } else {
-            // formParams = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers['Content-Type'] = httpContentTypeSelected;
         }
-
-        if (to !== undefined) {
-            formParams.append('to', <any>to);
-        }
-
-        if (from !== undefined) {
-            formParams.append('from', <any>from);
-        }
-
-        if (subject !== undefined) {
-            formParams.append('subject', <any>subject);
-        }
-
-        if (body !== undefined) {
-            formParams.append('body', <any>body);
-        }
-
         return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/send`,
-            convertFormParamsToString ? formParams.toString() : formParams,
+            body,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers

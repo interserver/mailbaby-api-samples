@@ -1305,18 +1305,11 @@ except ApiException as e:
   },
   "links" : {
     "sendMailByIdLink" : {
-      "operationId" : "sendMailById",
+      "operationId" : "sendMail",
       "parameters" : {
         "id" : "$response.body#/0/id"
       },
-      "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}/send`."
-    },
-    "getMailByIdLink" : {
-      "operationId" : "getMailById",
-      "parameters" : {
-        "id" : "$response.body#/0/id"
-      },
-      "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}`."
+      "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/advsend`."
     }
   }
 };
@@ -2654,7 +2647,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
--H "Content-Type: application/x-www-form-urlencoded,application/json"\
+-H "Content-Type: application/json,application/x-www-form-urlencoded"\
 "https://api.mailbaby.net/mail/send"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-sendMail-0-java">
@@ -2678,12 +2671,9 @@ public class DefaultApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
-        String to = to_example; // String | 
-        String from = from_example; // String | 
-        String subject = subject_example; // String | 
-        String body = body_example; // String | 
+        Body body = ; // Body | 
         try {
-            GenericResponse result = apiInstance.sendMail(to, from, subject, body);
+            GenericResponse result = apiInstance.sendMail(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#sendMail");
@@ -2700,12 +2690,9 @@ public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        String to = to_example; // String | 
-        String from = from_example; // String | 
-        String subject = subject_example; // String | 
-        String body = body_example; // String | 
+        Body body = ; // Body | 
         try {
-            GenericResponse result = apiInstance.sendMail(to, from, subject, body);
+            GenericResponse result = apiInstance.sendMail(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#sendMail");
@@ -2724,18 +2711,12 @@ public class DefaultApiExample {
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-String *to = to_example; // 
-String *from = from_example; // 
-String *subject = subject_example; // 
-String *body = body_example; // 
+Body *body = ; // 
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Sends an Email
-[apiInstance sendMailWith:to
-    from:from
-    subject:subject
-    body:body
+[apiInstance sendMailWith:body
               completionHandler: ^(GenericResponse output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -2758,10 +2739,7 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
 
 var api = new MailBabyApi.DefaultApi()
-var to = to_example; // {{String}} 
-var from = from_example; // {{String}} 
-var subject = subject_example; // {{String}} 
-var body = body_example; // {{String}} 
+var body = ; // {{Body}} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -2770,7 +2748,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.sendMail(tofromsubjectbody, callback);
+api.sendMail(body, callback);
 </code></pre>
                             </div>
 
@@ -2797,15 +2775,12 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var to = to_example;  // String | 
-            var from = from_example;  // String | 
-            var subject = subject_example;  // String | 
-            var body = body_example;  // String | 
+            var body = new Body(); // Body | 
 
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.sendMail(to, from, subject, body);
+                GenericResponse result = apiInstance.sendMail(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2828,13 +2803,10 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 // Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$to = to_example; // String | 
-$from = from_example; // String | 
-$subject = subject_example; // String | 
-$body = body_example; // String | 
+$body = ; // Body | 
 
 try {
-    $result = $api_instance->sendMail($to, $from, $subject, $body);
+    $result = $api_instance->sendMail($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->sendMail: ', $e->getMessage(), PHP_EOL;
@@ -2853,13 +2825,10 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 my $api_instance = MailBabyApi::DefaultApi->new();
-my $to = to_example; # String | 
-my $from = from_example; # String | 
-my $subject = subject_example; # String | 
-my $body = body_example; # String | 
+my $body = MailBabyApi::Object::Body->new(); # Body | 
 
 eval { 
-    my $result = $api_instance->sendMail(to => $to, from => $from, subject => $subject, body => $body);
+    my $result = $api_instance->sendMail(body => $body);
     print Dumper($result);
 };
 if ($@) {
@@ -2881,14 +2850,11 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
-to = to_example # String | 
-from = from_example # String | 
-subject = subject_example # String | 
-body = body_example # String | 
+body =  # Body | 
 
 try: 
     # Sends an Email
-    api_response = api_instance.send_mail(to, from, subject, body)
+    api_response = api_instance.send_mail(body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->sendMail: %s\n" % e)</code></pre>
@@ -2913,12 +2879,12 @@ except ApiException as e:
                                 $(document).ready(function() {
                                   var schemaWrapper = {
   "content" : {
-    "application/x-www-form-urlencoded" : {
+    "application/json" : {
       "schema" : {
         "$ref" : "#/components/schemas/body"
       }
     },
-    "application/json" : {
+    "application/x-www-form-urlencoded" : {
       "schema" : {
         "$ref" : "#/components/schemas/body_1"
       }
@@ -2926,7 +2892,7 @@ except ApiException as e:
   },
   "required" : true
 };
-                                  var schema = schemaWrapper.content["application/x-www-form-urlencoded"].schema;
+                                  var schema = schemaWrapper.content["application/json"].schema;
                                   if (schema.$ref != null) {
                                     schema = defsParser.$refs.get(schema.$ref);
                                   } else {

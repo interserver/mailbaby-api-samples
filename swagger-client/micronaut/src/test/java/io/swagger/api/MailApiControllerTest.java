@@ -1,6 +1,6 @@
 package io.swagger.api;
 
-import io.swagger.model.Body1;
+import io.swagger.model.Body;
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -77,6 +77,16 @@ class MailApiControllerTest {
     }
 
     @Test
+    void sendMailTest() {
+        Body body = new Body();
+        try {
+            api.sendMail(body).blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
     void sendMailWithFormTest() {
         String to = "to_example";
         String from = "from_example";
@@ -84,16 +94,6 @@ class MailApiControllerTest {
         String body = "body_example";
         try {
             api.sendMail(to, from, subject, body).blockingGet();
-        } catch (UnsupportedOperationException e) {
-            assumeTrue(false, "API is not yet implemented");
-        }
-    }
-
-    @Test
-    void sendMailTest() {
-        Body1 body = new Body1();
-        try {
-            api.sendMail(body).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

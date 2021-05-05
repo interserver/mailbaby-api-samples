@@ -87,18 +87,11 @@
             },
             "links" : {
               "sendMailByIdLink" : {
-                "operationId" : "sendMailById",
+                "operationId" : "sendMail",
                 "parameters" : {
                   "id" : "$response.body#/0/id"
                 },
-                "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}/send`."
-              },
-              "getMailByIdLink" : {
-                "operationId" : "getMailById",
-                "parameters" : {
-                  "id" : "$response.body#/0/id"
-                },
-                "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}`."
+                "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/advsend`."
               }
             }
           },
@@ -122,12 +115,12 @@
         "operationId" : "sendMail",
         "requestBody" : {
           "content" : {
-            "application/x-www-form-urlencoded" : {
+            "application/json" : {
               "schema" : {
                 "$ref" : "#/components/schemas/body"
               }
             },
-            "application/json" : {
+            "application/x-www-form-urlencoded" : {
               "schema" : {
                 "$ref" : "#/components/schemas/body_1"
               }

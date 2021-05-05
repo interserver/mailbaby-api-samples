@@ -6,6 +6,7 @@ import {ObjectSerializer} from '../models/ObjectSerializer';
 import {ApiException} from './exception';
 import {isCodeInRange} from '../util';
 
+import { Body } from '../models/Body';
 import { ErrorResponse } from '../models/ErrorResponse';
 import { GenericResponse } from '../models/GenericResponse';
 import { MailLog } from '../models/MailLog';
@@ -179,16 +180,15 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Sends An email through one of your mail orders.
      * Sends an Email
-     * @param to The Contact whom is the primary recipient of this email.
-     * @param from The contact whom is the this email is from.
-     * @param subject The subject or title of the email
-     * @param body The main email contents.
+     * @param body 
      */
-    public async sendMail(to?: string, from?: string, subject?: string, body?: string, options?: Configuration): Promise<RequestContext> {
+    public async sendMail(body: Body, options?: Configuration): Promise<RequestContext> {
         let config = options || this.configuration;
 
-
-
+        // verify required parameter 'body' is not null or undefined
+        if (body === null || body === undefined) {
+            throw new RequiredError('Required parameter body was null or undefined when calling sendMail.');
+        }
 
 
         // Path Params
@@ -203,27 +203,20 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         // Header Params
 
         // Form Params
-        let localVarFormParams = new FormData();
 
-        if (to !== undefined) {
-             // TODO: replace .append with .set
-             localVarFormParams.append('to', to as any);
-        }
-        if (from !== undefined) {
-             // TODO: replace .append with .set
-             localVarFormParams.append('from', from as any);
-        }
-        if (subject !== undefined) {
-             // TODO: replace .append with .set
-             localVarFormParams.append('subject', subject as any);
-        }
-        if (body !== undefined) {
-             // TODO: replace .append with .set
-             localVarFormParams.append('body', body as any);
-        }
-        requestContext.setBody(localVarFormParams);
 
         // Body Params
+        const contentType = ObjectSerializer.getPreferredMediaType([
+            "application/json",
+        
+            "application/x-www-form-urlencoded"
+        ]);
+        requestContext.setHeaderParam("Content-Type", contentType);
+        const serializedBody = ObjectSerializer.stringify(
+            ObjectSerializer.serialize(body, "Body", ""),
+            contentType
+        );
+        requestContext.setBody(serializedBody);
 
         let authMethod = null;
         // Apply auth methods

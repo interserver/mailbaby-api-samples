@@ -2,7 +2,7 @@
 README.md
 rebar.config
 src/openapi.app.src
-src/openapi_body_1.erl
+src/openapi_body.erl
 src/openapi_default_api.erl
 src/openapi_error_response.erl
 src/openapi_generic_response.erl

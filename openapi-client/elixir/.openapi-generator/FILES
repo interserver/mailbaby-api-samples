@@ -5,7 +5,7 @@ config/config.exs
 lib/mail_baby_api/api/default.ex
 lib/mail_baby_api/connection.ex
 lib/mail_baby_api/deserializer.ex
-lib/mail_baby_api/model/body_1.ex
+lib/mail_baby_api/model/body.ex
 lib/mail_baby_api/model/error_response.ex
 lib/mail_baby_api/model/generic_response.ex
 lib/mail_baby_api/model/mail_attachment.ex

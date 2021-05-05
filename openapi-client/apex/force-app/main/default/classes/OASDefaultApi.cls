@@ -120,30 +120,23 @@ public class OASDefaultApi {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param to The Contact whom is the primary recipient of this email. (optional)
-     * @param r_from The contact whom is the this email is from. (optional)
-     * @param subject The subject or title of the email (optional)
-     * @param body The main email contents. (optional)
+     * @param oaSBody  (required)
      * @return OASGenericResponse
      * @throws OAS.ApiException if fails to make API call
      */
     public OASGenericResponse sendMail(Map<String, Object> params) {
+        client.assertNotNull(params.get('oaSBody'), 'oaSBody');
         List<OAS.Param> query = new List<OAS.Param>();
         List<OAS.Param> form = new List<OAS.Param>();
 
-        // cast form params to verify their expected type
-        form.addAll(client.makeParam('to', (String) params.get('to')));
-        form.addAll(client.makeParam('from', (String) params.get('r_from')));
-        form.addAll(client.makeParam('subject', (String) params.get('subject')));
-        form.addAll(client.makeParam('body', (String) params.get('body')));
-
         return (OASGenericResponse) client.invoke(
-            'POST', '/mail/send', '',
+            'POST', '/mail/send',
+            (OASBody) params.get('oaSBody'),
             query, form,
             new Map<String, Object>(),
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
-            new List<String>{ 'application/x-www-form-urlencoded', 'application/json' },
+            new List<String>{ 'application/json', 'application/x-www-form-urlencoded' },
             new List<String> { 'apiKeyAuth' },
             OASGenericResponse.class
         );

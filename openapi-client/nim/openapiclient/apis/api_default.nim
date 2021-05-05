@@ -18,6 +18,7 @@ import tables
 import typetraits
 import uri
 
+import ../models/model_body
 import ../models/model_error_response
 import ../models/model_generic_response
 import ../models/model_mail_log
@@ -71,17 +72,11 @@ proc sendAdvMail*(httpClient: HttpClient, sendMailAdv: SendMailAdv): (Option[Gen
   constructResult[GenericResponse](response)
 
 
-proc sendMail*(httpClient: HttpClient, to: string, `from`: string, subject: string, body: string): (Option[GenericResponse], Response) =
+proc sendMail*(httpClient: HttpClient, body: Body): (Option[GenericResponse], Response) =
   ## Sends an Email
-  httpClient.headers["Content-Type"] = "application/x-www-form-urlencoded"
-  let query_for_api_call = encodeQuery([
-    ("to", $to), # The Contact whom is the primary recipient of this email.
-    ("from", $`from`), # The contact whom is the this email is from.
-    ("subject", $subject), # The subject or title of the email
-    ("body", $body), # The main email contents.
-  ])
+  httpClient.headers["Content-Type"] = "application/json"
 
-  let response = httpClient.post(basepath & "/mail/send", $query_for_api_call)
+  let response = httpClient.post(basepath & "/mail/send", $(%body))
   constructResult[GenericResponse](response)
 
 

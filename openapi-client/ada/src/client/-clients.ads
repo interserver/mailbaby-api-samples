@@ -42,10 +42,7 @@ package .Clients is
    --  Sends An email through one of your mail orders.
    procedure Send_Mail
       (Client : in out Client_Type;
-       To : in Swagger.Nullable_UString;
-       From : in Swagger.Nullable_UString;
-       Subject : in Swagger.Nullable_UString;
-       P_Body : in Swagger.Nullable_UString;
+       Model_Body : in .Models.Model_Body;
        Result : out .Models.GenericResponse_Type);
 
    --  validatess order details before placing an order

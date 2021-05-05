@@ -37,7 +37,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [Body1](docs/Body1.md)
+ - [Body](docs/Body.md)
  - [GenericResponse](docs/GenericResponse.md)
  - [MailAttachment](docs/MailAttachment.md)
  - [MailContact](docs/MailContact.md)

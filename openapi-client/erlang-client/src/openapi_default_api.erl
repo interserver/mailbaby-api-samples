@@ -4,7 +4,7 @@
          ping_server/1, ping_server/2,
          place_mail_order/2, place_mail_order/3,
          send_adv_mail/2, send_adv_mail/3,
-         send_mail/1, send_mail/2,
+         send_mail/2, send_mail/3,
          validate_mail_order/1, validate_mail_order/2,
          view_mail_log_by_id/1, view_mail_log_by_id/2]).
 
@@ -96,12 +96,12 @@ send_adv_mail(Ctx, OpenapiSendMailAdv, Optional) ->
 
 %% @doc Sends an Email
 %% Sends An email through one of your mail orders.
--spec send_mail(ctx:ctx()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-send_mail(Ctx) ->
-    send_mail(Ctx, #{}).
+-spec send_mail(ctx:ctx(), openapi_body:openapi_body()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+send_mail(Ctx, OpenapiBody) ->
+    send_mail(Ctx, OpenapiBody, #{}).
 
--spec send_mail(ctx:ctx(), maps:map()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-send_mail(Ctx, Optional) ->
+-spec send_mail(ctx:ctx(), openapi_body:openapi_body(), maps:map()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+send_mail(Ctx, OpenapiBody, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
@@ -109,8 +109,8 @@ send_mail(Ctx, Optional) ->
     Path = ["/mail/send"],
     QS = [],
     Headers = [],
-    Body1 = {form, []++openapi_utils:optional_params(['to', 'from', 'subject', 'body'], _OptionalParams)},
-    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/x-www-form-urlencoded">>, <<"application/json">>]),
+    Body1 = OpenapiBody,
+    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>, <<"application/x-www-form-urlencoded">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 
     openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).

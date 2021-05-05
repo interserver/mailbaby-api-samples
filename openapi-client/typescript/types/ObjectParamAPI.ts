@@ -2,7 +2,7 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
-import { Body1 } from '../models/Body1';
+import { Body } from '../models/Body';
 import { ErrorResponse } from '../models/ErrorResponse';
 import { GenericResponse } from '../models/GenericResponse';
 import { MailAttachment } from '../models/MailAttachment';
@@ -47,29 +47,11 @@ export interface DefaultApiSendAdvMailRequest {
 
 export interface DefaultApiSendMailRequest {
     /**
-     * The Contact whom is the primary recipient of this email.
-     * @type string
+     * 
+     * @type Body
      * @memberof DefaultApisendMail
      */
-    to?: string
-    /**
-     * The contact whom is the this email is from.
-     * @type string
-     * @memberof DefaultApisendMail
-     */
-    from?: string
-    /**
-     * The subject or title of the email
-     * @type string
-     * @memberof DefaultApisendMail
-     */
-    subject?: string
-    /**
-     * The main email contents.
-     * @type string
-     * @memberof DefaultApisendMail
-     */
-    body?: string
+    body: Body
 }
 
 export interface DefaultApiValidateMailOrderRequest {
@@ -149,7 +131,7 @@ export class ObjectDefaultApi {
      * @param param the request object
      */
     public sendMail(param: DefaultApiSendMailRequest, options?: Configuration): Promise<GenericResponse> {
-        return this.api.sendMail(param.to, param.from, param.subject, param.body,  options).toPromise();
+        return this.api.sendMail(param.body,  options).toPromise();
     }
 
     /**

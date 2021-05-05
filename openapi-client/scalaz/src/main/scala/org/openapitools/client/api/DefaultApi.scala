@@ -21,6 +21,7 @@ import scalaz.concurrent.Task
 
 import HelperCodecs._
 
+import org.openapitools.client.api.Body
 import org.openapitools.client.api.ErrorResponse
 import org.openapitools.client.api.GenericResponse
 import org.openapitools.client.api.MailLog
@@ -113,7 +114,7 @@ object DefaultApi {
     } yield resp
   }
   
-  def sendMail(host: String, to: String, from: String, subject: String, body: String): Task[GenericResponse] = {
+  def sendMail(host: String, body: Body): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/send"
@@ -128,7 +129,7 @@ object DefaultApi {
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
       uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(body)
       resp          <- client.expect[GenericResponse](req)
 
     } yield resp
@@ -261,7 +262,7 @@ class HttpServiceDefaultApi(service: HttpService) {
     } yield resp
   }
   
-  def sendMail(to: String, from: String, subject: String, body: String): Task[GenericResponse] = {
+  def sendMail(body: Body): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/send"
@@ -276,7 +277,7 @@ class HttpServiceDefaultApi(service: HttpService) {
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))
       uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(body)
       resp          <- client.expect[GenericResponse](req)
 
     } yield resp

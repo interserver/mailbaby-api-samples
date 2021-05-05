@@ -14,7 +14,7 @@ export { Api } from './Api';
 export { AuthStorage } from './AuthStorage';
 export { DefaultApi } from './DefaultApi';
 export {
-  Body1,
+  Body,
   ErrorResponse,
   GenericResponse,
   MailAttachment,

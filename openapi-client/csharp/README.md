@@ -122,7 +122,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [Model.Body1](docs/Body1.md)
+ - [Model.Body](docs/Body.md)
  - [Model.ErrorResponse](docs/ErrorResponse.md)
  - [Model.GenericResponse](docs/GenericResponse.md)
  - [Model.MailAttachment](docs/MailAttachment.md)

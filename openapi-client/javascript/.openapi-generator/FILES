@@ -3,7 +3,7 @@
 .openapi-generator-ignore
 .travis.yml
 README.md
-docs/Body1.md
+docs/Body.md
 docs/DefaultApi.md
 docs/ErrorResponse.md
 docs/GenericResponse.md
@@ -19,7 +19,7 @@ package.json
 src/ApiClient.js
 src/api/DefaultApi.js
 src/index.js
-src/model/Body1.js
+src/model/Body.js
 src/model/ErrorResponse.js
 src/model/GenericResponse.js
 src/model/MailAttachment.js
@@ -29,7 +29,7 @@ src/model/MailOrder.js
 src/model/SendMailAdv.js
 src/model/SendMailAdvFrom.js
 test/api/DefaultApi.spec.js
-test/model/Body1.spec.js
+test/model/Body.spec.js
 test/model/ErrorResponse.spec.js
 test/model/GenericResponse.spec.js
 test/model/MailAttachment.spec.js

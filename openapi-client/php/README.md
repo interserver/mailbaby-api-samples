@@ -88,7 +88,7 @@ Class | Method | HTTP request | Description
 
 ## Models
 
-- [Body1](docs/Model/Body1.md)
+- [Body](docs/Model/Body.md)
 - [ErrorResponse](docs/Model/ErrorResponse.md)
 - [GenericResponse](docs/Model/GenericResponse.md)
 - [MailAttachment](docs/Model/MailAttachment.md)

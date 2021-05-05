@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **send_mail**
-> GenericResponse send_mail(to => $to, from => $from, subject => $subject, body => $body)
+> GenericResponse send_mail(body => $body)
 
 Sends an Email
 
@@ -226,13 +226,10 @@ my $api_instance = OpenAPIClient::DefaultApi->new(
     #api_key_prefix => {'X-API-KEY' => 'Bearer'},
 );
 
-my $to = "to_example"; # string | The Contact whom is the primary recipient of this email.
-my $from = "from_example"; # string | The contact whom is the this email is from.
-my $subject = "subject_example"; # string | The subject or title of the email
-my $body = "body_example"; # string | The main email contents.
+my $body = OpenAPIClient::Object::Body->new(); # Body | 
 
 eval { 
-    my $result = $api_instance->send_mail(to => $to, from => $from, subject => $subject, body => $body);
+    my $result = $api_instance->send_mail(body => $body);
     print Dumper($result);
 };
 if ($@) {
@@ -244,10 +241,7 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **string**| The Contact whom is the primary recipient of this email. | [optional] 
- **from** | **string**| The contact whom is the this email is from. | [optional] 
- **subject** | **string**| The subject or title of the email | [optional] 
- **body** | **string**| The main email contents. | [optional] 
+ **body** | [**Body**](Body.md)|  | 
 
 ### Return type
 
@@ -259,7 +253,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

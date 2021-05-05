@@ -59,18 +59,11 @@ h4. Responses
   },
   "links" : {
     "sendMailByIdLink" : {
-      "operationId" : "sendMailById",
+      "operationId" : "sendMail",
       "parameters" : {
         "id" : "$response.body#/0/id"
       },
-      "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}/send`."
-    },
-    "getMailByIdLink" : {
-      "operationId" : "getMailById",
-      "parameters" : {
-        "id" : "$response.body#/0/id"
-      },
-      "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/{id}`."
+      "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/advsend`."
     }
   }
 }{code} |
@@ -307,6 +300,9 @@ h3. sendMail
 ----
 h4. Parameters
 
+h5. Body Parameter
+        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        |Body | | Body | (/) | |  |  |
 
 
 ----
@@ -481,8 +477,8 @@ h4. Responses
 {anchor:models}
 h2. Models
 
-        {anchor:Body1ModelAnchor}
-        h3. Body1
+        {anchor:BodyModelAnchor}
+        h3. Body
 
         Details for an Email
         

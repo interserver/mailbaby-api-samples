@@ -61,7 +61,7 @@ Method | HTTP request | Description
 ## What are the Model files for the data structures/objects?
 Class | Description
 ------------- | -------------
- *Body_1* | Details for an Email
+ *Body* | Details for an Email
  *ErrorResponse* | 
  *GenericResponse* | 
  *MailAttachment* | A File attachment for an email

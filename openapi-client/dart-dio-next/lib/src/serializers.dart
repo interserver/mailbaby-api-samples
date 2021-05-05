@@ -12,7 +12,7 @@ import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:openapi/src/date_serializer.dart';
 import 'package:openapi/src/model/date.dart';
 
-import 'package:openapi/src/model/body1.dart';
+import 'package:openapi/src/model/body.dart';
 import 'package:openapi/src/model/error_response.dart';
 import 'package:openapi/src/model/generic_response.dart';
 import 'package:openapi/src/model/mail_attachment.dart';
@@ -25,7 +25,7 @@ import 'package:openapi/src/model/send_mail_adv_from.dart';
 part 'serializers.g.dart';
 
 @SerializersFor([
-  Body1,
+  Body,
   ErrorResponse,
   GenericResponse,
   MailAttachment,

@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendMail**
-> GenericResponse sendMail(to, from, subject, body, body)
+> GenericResponse sendMail(body, to, from, subject, body)
 
 Sends an Email
 
@@ -225,14 +225,14 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
 
 var api_instance = new DefaultApi();
+var body = new Body(); // Body | 
 var to = to_example; // String | 
 var from = from_example; // String | 
 var subject = subject_example; // String | 
 var body = body_example; // String | 
-var body = new Body1(); // Body1 | 
 
 try {
-    var result = api_instance.sendMail(to, from, subject, body, body);
+    var result = api_instance.sendMail(body, to, from, subject, body);
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->sendMail: $e\n");
@@ -243,11 +243,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**Body**](Body.md)|  | 
  **to** | **String**|  | 
  **from** | **String**|  | 
  **subject** | **String**|  | 
  **body** | **String**|  | 
- **body** | [**Body1**](Body1.md)|  | 
 
 ### Return type
 
@@ -259,7 +259,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

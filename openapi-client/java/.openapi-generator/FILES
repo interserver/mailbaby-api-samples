@@ -5,7 +5,7 @@ README.md
 api/openapi.yaml
 build.gradle
 build.sbt
-docs/Body1.md
+docs/Body.md
 docs/DefaultApi.md
 docs/ErrorResponse.md
 docs/GenericResponse.md
@@ -42,7 +42,7 @@ src/main/java/org/openapitools/client/auth/ApiKeyAuth.java
 src/main/java/org/openapitools/client/auth/Authentication.java
 src/main/java/org/openapitools/client/auth/HttpBasicAuth.java
 src/main/java/org/openapitools/client/auth/HttpBearerAuth.java
-src/main/java/org/openapitools/client/model/Body1.java
+src/main/java/org/openapitools/client/model/Body.java
 src/main/java/org/openapitools/client/model/ErrorResponse.java
 src/main/java/org/openapitools/client/model/GenericResponse.java
 src/main/java/org/openapitools/client/model/MailAttachment.java
@@ -52,7 +52,7 @@ src/main/java/org/openapitools/client/model/MailOrder.java
 src/main/java/org/openapitools/client/model/SendMailAdv.java
 src/main/java/org/openapitools/client/model/SendMailAdvFrom.java
 src/test/java/org/openapitools/client/api/DefaultApiTest.java
-src/test/java/org/openapitools/client/model/Body1Test.java
+src/test/java/org/openapitools/client/model/BodyTest.java
 src/test/java/org/openapitools/client/model/ErrorResponseTest.java
 src/test/java/org/openapitools/client/model/GenericResponseTest.java
 src/test/java/org/openapitools/client/model/MailAttachmentTest.java

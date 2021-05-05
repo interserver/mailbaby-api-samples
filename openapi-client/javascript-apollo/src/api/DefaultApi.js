@@ -14,6 +14,7 @@
 
 
 import ApiClient from "../ApiClient";
+import Body from '../model/Body';
 import ErrorResponse from '../model/ErrorResponse';
 import GenericResponse from '../model/GenericResponse';
 import MailLog from '../model/MailLog';
@@ -171,16 +172,15 @@ export default class DefaultApi extends ApiClient {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.to The Contact whom is the primary recipient of this email.
-     * @param {String} opts.from The contact whom is the this email is from.
-     * @param {String} opts.subject The subject or title of the email
-     * @param {String} opts.body The main email contents.
+     * @param {Body} body 
      * @return {Promise<GenericResponse>}
      */
-    async sendMail(opts) {
-      opts = opts || {};
-      let postBody = null;
+    async sendMail(body) {
+      let postBody = body;
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling sendMail");
+      }
 
       let pathParams = {
       };
@@ -190,14 +190,10 @@ export default class DefaultApi extends ApiClient {
         'User-Agent': 'OpenAPI-Generator/1.0.0/Javascript',
       };
       let formParams = {
-        'to': opts['to'],
-        'from': opts['from'],
-        'subject': opts['subject'],
-        'body': opts['body']
       };
 
       let authNames = ['apiKeyAuth'];
-      let contentTypes = ['application/x-www-form-urlencoded', 'application/json'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
       let accepts = ['application/json'];
       let returnType = GenericResponse;
 

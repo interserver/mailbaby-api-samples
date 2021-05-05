@@ -1,8 +1,8 @@
 .openapi-generator-ignore
 README.md
 client/CMakeLists.txt
-client/OAIBody_1.cpp
-client/OAIBody_1.h
+client/OAIBody.cpp
+client/OAIBody.h
 client/OAIDefaultApi.cpp
 client/OAIDefaultApi.h
 client/OAIEnum.h

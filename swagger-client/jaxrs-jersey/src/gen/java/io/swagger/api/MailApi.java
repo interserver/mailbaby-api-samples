@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
-import io.swagger.model.Body1;
+import io.swagger.model.Body;
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -45,7 +45,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-05T07:07:16.112685-04:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-05T07:12:49.991121-04:00[America/New_York]")public class MailApi  {
    private final MailApiService delegate;
 
    public MailApi(@Context ServletConfig servletContext) {
@@ -126,7 +126,7 @@ import javax.validation.constraints.*;
     }
     @POST
     @Path("/send")
-    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
+    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
@@ -138,13 +138,11 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendMail(@Parameter(description = "", required=true)  @FormParam("to")  String to
-,@Parameter(description = "", required=true)  @FormParam("from")  String from
-,@Parameter(description = "", required=true)  @FormParam("subject")  String subject
-,@Parameter(description = "", required=true)  @FormParam("body")  String body
+    public Response sendMail(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) Body body
+
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.sendMail(to,from,subject,body,securityContext);
+        return delegate.sendMail(body,securityContext);
     }
     @GET
     @Path("/order")

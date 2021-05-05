@@ -6,7 +6,7 @@ export(ApiClient)
 export(ApiResponse)
 
 # Models
-export(Body1)
+export(Body)
 export(ErrorResponse)
 export(GenericResponse)
 export(MailAttachment)

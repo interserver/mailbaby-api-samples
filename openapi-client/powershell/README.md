@@ -63,7 +63,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [PSOpenAPITools/Model.Body1](docs/Body1.md)
+ - [PSOpenAPITools/Model.Body](docs/Body.md)
  - [PSOpenAPITools/Model.ErrorResponse](docs/ErrorResponse.md)
  - [PSOpenAPITools/Model.GenericResponse](docs/GenericResponse.md)
  - [PSOpenAPITools/Model.MailAttachment](docs/MailAttachment.md)

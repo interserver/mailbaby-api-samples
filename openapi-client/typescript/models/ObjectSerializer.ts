@@ -1,4 +1,4 @@
-export * from './Body1';
+export * from './Body';
 export * from './ErrorResponse';
 export * from './GenericResponse';
 export * from './MailAttachment';
@@ -8,7 +8,7 @@ export * from './MailOrder';
 export * from './SendMailAdv';
 export * from './SendMailAdvFrom';
 
-import { Body1 } from './Body1';
+import { Body } from './Body';
 import { ErrorResponse } from './ErrorResponse';
 import { GenericResponse } from './GenericResponse';
 import { MailAttachment } from './MailAttachment';
@@ -40,7 +40,7 @@ let enumsMap: Set<string> = new Set<string>([
 ]);
 
 let typeMap: {[index: string]: any} = {
-    "Body1": Body1,
+    "Body": Body,
     "ErrorResponse": ErrorResponse,
     "GenericResponse": GenericResponse,
     "MailAttachment": MailAttachment,

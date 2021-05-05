@@ -19,6 +19,7 @@ local basexx = require "basexx"
 local openapiclient_error_response = require "openapiclient.model.error_response"
 local openapiclient_generic_response = require "openapiclient.model.generic_response"
 local openapiclient_mail_log = require "openapiclient.model.mail_log"
+local openapiclient_body = require "openapiclient.model.body"
 local openapiclient_mail_order = require "openapiclient.model.mail_order"
 local openapiclient_send_mail_adv = require "openapiclient.model.send_mail_adv"
 
@@ -233,7 +234,7 @@ function default_api:send_adv_mail(send_mail_adv)
 	end
 end
 
-function default_api:send_mail(to, from, subject, body)
+function default_api:send_mail(body)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -245,19 +246,15 @@ function default_api:send_mail(to, from, subject, body)
 	-- set HTTP verb
 	req.headers:upsert(":method", "POST")
 	-- TODO: create a function to select proper accept
-	--local var_content_type = { "application/x-www-form-urlencoded", "application/json" }
-	req.headers:upsert("accept", "application/x-www-form-urlencoded")
+	--local var_content_type = { "application/json", "application/x-www-form-urlencoded" }
+	req.headers:upsert("accept", "application/json")
 
 	-- TODO: create a function to select proper content-type
 	--local var_accept = { "application/json" }
 	req.headers:upsert("content-type", "application/json")
 
-	req:set_body(http_util.dict_to_query({
-		["to"] = to;
-		["from"] = from;
-		["subject"] = subject;
-		["body"] = body;
-	}))
+	req:set_body(dkjson.encode(body))
+
 	-- api key in headers 'X-API-KEY'
 	if self.api_key['X-API-KEY'] then
 		req.headers:upsert("apiKeyAuth", self.api_key['X-API-KEY'])

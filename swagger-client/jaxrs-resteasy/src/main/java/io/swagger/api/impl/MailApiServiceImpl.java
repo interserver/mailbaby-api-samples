@@ -3,7 +3,7 @@ package io.swagger.api.impl;
 import io.swagger.api.*;
 import io.swagger.model.*;
 
-import io.swagger.model.Body1;
+import io.swagger.model.Body;
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -24,7 +24,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T07:07:24.961597-04:00[America/New_York]")public class MailApiServiceImpl implements MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T07:12:58.919840-04:00[America/New_York]")public class MailApiServiceImpl implements MailApiService {
       public Response getMailOrders(Long id,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
@@ -45,12 +45,12 @@ import javax.ws.rs.core.SecurityContext;
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response sendMail(String to,String from,String subject,String body,SecurityContext securityContext)
+      public Response sendMail(Body body,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response sendMail(Body1 body,SecurityContext securityContext)
+      public Response sendMail(String to,String from,String subject,String body,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

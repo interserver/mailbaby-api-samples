@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMail"></a>
 # **sendMail**
-> GenericResponse sendMail(tofromsubjectbody)
+> GenericResponse sendMail(body)
 
 Sends an Email
 
@@ -218,12 +218,9 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyApi.DefaultApi();
-let to = "to_example"; // String | 
-let from = "from_example"; // String | 
-let subject = "subject_example"; // String | 
-let body = "body_example"; // String | 
+let body = new MailBabyApi.Body(); // Body | 
 
-apiInstance.sendMail(tofromsubjectbody, (error, data, response) => {
+apiInstance.sendMail(body, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -236,10 +233,7 @@ apiInstance.sendMail(tofromsubjectbody, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **String**|  | 
- **from** | **String**|  | 
- **subject** | **String**|  | 
- **body** | **String**|  | 
+ **body** | [**Body**](Body.md)|  | 
 
 ### Return type
 
@@ -251,7 +245,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded, application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 <a name="validateMailOrder"></a>

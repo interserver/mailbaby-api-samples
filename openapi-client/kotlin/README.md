@@ -47,7 +47,7 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [org.openapitools.client.models.Body1](docs/Body1.md)
+ - [org.openapitools.client.models.Body](docs/Body.md)
  - [org.openapitools.client.models.ErrorResponse](docs/ErrorResponse.md)
  - [org.openapitools.client.models.GenericResponse](docs/GenericResponse.md)
  - [org.openapitools.client.models.MailAttachment](docs/MailAttachment.md)

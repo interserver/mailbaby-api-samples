@@ -38,7 +38,7 @@ set(SRCS
     src/binary.c
     external/cJSON.c
     model/object.c
-    model/body_1.c
+    model/body.c
     model/error_response.c
     model/generic_response.c
     model/mail_attachment.c
@@ -58,7 +58,7 @@ set(HDRS
     include/keyValuePair.h
     external/cJSON.h
     model/object.h
-    model/body_1.h
+    model/body.h
     model/error_response.h
     model/generic_response.h
     model/mail_attachment.h

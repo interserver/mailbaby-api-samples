@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**place_mail_order**](DefaultApi.md#place_mail_order) | **POST** /mail/order | places a mail order
 [**send_adv_mail_by_id**](DefaultApi.md#send_adv_mail_by_id) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**send_mail_by_id**](DefaultApi.md#send_mail_by_id) | **POST** /mail/send | Sends an Email
+[**send_mail_by_id**](DefaultApi.md#send_mail_by_id) | **POST** /mail/send | Sends an Email
 [**validate_mail_order**](DefaultApi.md#validate_mail_order) | **GET** /mail/order | validatess order details before placing an order
 [**view_mail_log_by_id**](DefaultApi.md#view_mail_log_by_id) | **GET** /mail/log | displays the mail log
 
@@ -209,7 +210,7 @@ Name | Type | Description  | Notes
 
 
 # **send_mail_by_id**
-> GenericResponse send_mail_by_id(subjectbodyfromtoidto_namefrom_name)
+> GenericResponse send_mail_by_id(body)
 
 Sends an Email
 
@@ -228,18 +229,12 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::DefaultApi.new
-subject = 'subject_example' # String | 
-body = 'body_example' # String | 
-from = 'from_example' # String | 
-to = 'to_example' # String | 
-id = 56 # Integer | 
-to_name = 'to_name_example' # String | 
-from_name = 'from_name_example' # String | 
+body = SwaggerClient::SendMail.new # SendMail | 
 
 
 begin
   #Sends an Email
-  result = api_instance.send_mail_by_id(subjectbodyfromtoidto_namefrom_name)
+  result = api_instance.send_mail_by_id(body)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling DefaultApi->send_mail_by_id: #{e}"
@@ -250,13 +245,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **String**|  | 
- **body** | **String**|  | 
- **from** | **String**|  | 
- **to** | **String**|  | 
- **id** | **Integer**|  | 
- **to_name** | **String**|  | 
- **from_name** | **String**|  | 
+ **body** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type
 
@@ -268,7 +257,60 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+
+
+# **send_mail_by_id**
+> GenericResponse send_mail_by_id(payload)
+
+Sends an Email
+
+Sends An email through one of your mail orders.
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiKeyAuth
+  config.api_key['X-API-KEY'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['X-API-KEY'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::DefaultApi.new
+payload = SwaggerClient::SendMail.new # SendMail | 
+
+
+begin
+  #Sends an Email
+  result = api_instance.send_mail_by_id(payload)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling DefaultApi->send_mail_by_id: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**SendMail**](.md)|  | 
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 

@@ -57,11 +57,11 @@ class SendMail implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'int',
+        'subject' => 'string',
+'body' => 'string',
 'from' => '\Interserver\Mailbaby\Model\MailContact',
 'to' => '\Interserver\Mailbaby\Model\MailContact[]',
-'subject' => 'string',
-'body' => 'string',
+'id' => 'int',
 'replyto' => '\Interserver\Mailbaby\Model\MailContact[]',
 'cc' => '\Interserver\Mailbaby\Model\MailContact[]',
 'bcc' => '\Interserver\Mailbaby\Model\MailContact[]',
@@ -73,11 +73,11 @@ class SendMail implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'id' => 'int64',
+        'subject' => null,
+'body' => null,
 'from' => null,
 'to' => null,
-'subject' => null,
-'body' => null,
+'id' => 'int64',
 'replyto' => null,
 'cc' => null,
 'bcc' => null,
@@ -110,11 +110,11 @@ class SendMail implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
+        'subject' => 'subject',
+'body' => 'body',
 'from' => 'from',
 'to' => 'to',
-'subject' => 'subject',
-'body' => 'body',
+'id' => 'id',
 'replyto' => 'replyto',
 'cc' => 'cc',
 'bcc' => 'bcc',
@@ -126,11 +126,11 @@ class SendMail implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
+        'subject' => 'setSubject',
+'body' => 'setBody',
 'from' => 'setFrom',
 'to' => 'setTo',
-'subject' => 'setSubject',
-'body' => 'setBody',
+'id' => 'setId',
 'replyto' => 'setReplyto',
 'cc' => 'setCc',
 'bcc' => 'setBcc',
@@ -142,11 +142,11 @@ class SendMail implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
+        'subject' => 'getSubject',
+'body' => 'getBody',
 'from' => 'getFrom',
 'to' => 'getTo',
-'subject' => 'getSubject',
-'body' => 'getBody',
+'id' => 'getId',
 'replyto' => 'getReplyto',
 'cc' => 'getCc',
 'bcc' => 'getBcc',
@@ -210,11 +210,11 @@ class SendMail implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['from'] = isset($data['from']) ? $data['from'] : null;
-        $this->container['to'] = isset($data['to']) ? $data['to'] : null;
         $this->container['subject'] = isset($data['subject']) ? $data['subject'] : null;
         $this->container['body'] = isset($data['body']) ? $data['body'] : null;
+        $this->container['from'] = isset($data['from']) ? $data['from'] : null;
+        $this->container['to'] = isset($data['to']) ? $data['to'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['replyto'] = isset($data['replyto']) ? $data['replyto'] : null;
         $this->container['cc'] = isset($data['cc']) ? $data['cc'] : null;
         $this->container['bcc'] = isset($data['bcc']) ? $data['bcc'] : null;
@@ -230,8 +230,11 @@ class SendMail implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['subject'] === null) {
+            $invalidProperties[] = "'subject' can't be null";
+        }
+        if ($this->container['body'] === null) {
+            $invalidProperties[] = "'body' can't be null";
         }
         if ($this->container['from'] === null) {
             $invalidProperties[] = "'from' can't be null";
@@ -239,11 +242,8 @@ class SendMail implements ModelInterface, ArrayAccess
         if ($this->container['to'] === null) {
             $invalidProperties[] = "'to' can't be null";
         }
-        if ($this->container['subject'] === null) {
-            $invalidProperties[] = "'subject' can't be null";
-        }
-        if ($this->container['body'] === null) {
-            $invalidProperties[] = "'body' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
         return $invalidProperties;
     }
@@ -261,25 +261,49 @@ class SendMail implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets id
+     * Gets subject
      *
-     * @return int
+     * @return string
      */
-    public function getId()
+    public function getSubject()
     {
-        return $this->container['id'];
+        return $this->container['subject'];
     }
 
     /**
-     * Sets id
+     * Sets subject
      *
-     * @param int $id The ID of the Mail order within our system to use as the Mail Account.
+     * @param string $subject The subject or title of the email
      *
      * @return $this
      */
-    public function setId($id)
+    public function setSubject($subject)
     {
-        $this->container['id'] = $id;
+        $this->container['subject'] = $subject;
+
+        return $this;
+    }
+
+    /**
+     * Gets body
+     *
+     * @return string
+     */
+    public function getBody()
+    {
+        return $this->container['body'];
+    }
+
+    /**
+     * Sets body
+     *
+     * @param string $body The main email contents.
+     *
+     * @return $this
+     */
+    public function setBody($body)
+    {
+        $this->container['body'] = $body;
 
         return $this;
     }
@@ -333,49 +357,25 @@ class SendMail implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets subject
+     * Gets id
      *
-     * @return string
+     * @return int
      */
-    public function getSubject()
+    public function getId()
     {
-        return $this->container['subject'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets subject
+     * Sets id
      *
-     * @param string $subject The subject or title of the email
+     * @param int $id The ID of the Mail order within our system to use as the Mail Account.
      *
      * @return $this
      */
-    public function setSubject($subject)
+    public function setId($id)
     {
-        $this->container['subject'] = $subject;
-
-        return $this;
-    }
-
-    /**
-     * Gets body
-     *
-     * @return string
-     */
-    public function getBody()
-    {
-        return $this->container['body'];
-    }
-
-    /**
-     * Sets body
-     *
-     * @param string $body The main email contents.
-     *
-     * @return $this
-     */
-    public function setBody($body)
-    {
-        $this->container['body'] = $body;
+        $this->container['id'] = $id;
 
         return $this;
     }

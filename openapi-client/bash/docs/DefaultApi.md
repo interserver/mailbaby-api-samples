@@ -164,13 +164,7 @@ Sends An email through one of your mail orders.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **string** | The Subject of the email | [default to null]
- **body** | **string** | The contents of the email | [default to null]
- **from** | **string** | The email address of who this email will be sent from. | [default to null]
- **to** | **string** | The email address of who this email will be sent to. | [default to null]
- **id** | **integer** | The ID of your mail order this will be sent through. | [optional] [default to null]
- **toName** | **string** | The name or title of who this email is being sent to. | [optional] [default to null]
- **fromName** | **string** | The name or title of who this email is being sent from. | [optional] [default to null]
+ **sendMail** | [**SendMail**](SendMail.md) |  |
 
 ### Return type
 
@@ -182,7 +176,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/x-www-form-urlencoded
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

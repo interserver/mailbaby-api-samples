@@ -193,18 +193,12 @@ open class DefaultAPI {
     /**
      Sends an Email
      
-     - parameter subject: (form) The Subject of the email 
-     - parameter body: (form) The contents of the email 
-     - parameter from: (form) The email address of who this email will be sent from. 
-     - parameter to: (form) The email address of who this email will be sent to. 
-     - parameter id: (form) The ID of your mail order this will be sent through. (optional)
-     - parameter toName: (form) The name or title of who this email is being sent to. (optional)
-     - parameter fromName: (form) The name or title of who this email is being sent from. (optional)
+     - parameter sendMail: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendMailById(subject: String, body: String, from: String, to: String, id: Int? = nil, toName: String? = nil, fromName: String? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) {
-        sendMailByIdWithRequestBuilder(subject: subject, body: body, from: from, to: to, id: id, toName: toName, fromName: fromName).execute(apiResponseQueue) { result -> Void in
+    open class func sendMailById(sendMail: SendMail, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) {
+        sendMailByIdWithRequestBuilder(sendMail: sendMail).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -221,35 +215,18 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - parameter subject: (form) The Subject of the email 
-     - parameter body: (form) The contents of the email 
-     - parameter from: (form) The email address of who this email will be sent from. 
-     - parameter to: (form) The email address of who this email will be sent to. 
-     - parameter id: (form) The ID of your mail order this will be sent through. (optional)
-     - parameter toName: (form) The name or title of who this email is being sent to. (optional)
-     - parameter fromName: (form) The name or title of who this email is being sent from. (optional)
+     - parameter sendMail: (body)  
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendMailByIdWithRequestBuilder(subject: String, body: String, from: String, to: String, id: Int? = nil, toName: String? = nil, fromName: String? = nil) -> RequestBuilder<GenericResponse> {
+    open class func sendMailByIdWithRequestBuilder(sendMail: SendMail) -> RequestBuilder<GenericResponse> {
         let path = "/mail/send"
         let URLString = OpenAPIClientAPI.basePath + path
-        let formParams: [String: Any?] = [
-            "subject": subject.encodeToJSON(),
-            "body": body.encodeToJSON(),
-            "from": from.encodeToJSON(),
-            "to": to.encodeToJSON(),
-            "id": id?.encodeToJSON(),
-            "toName": toName?.encodeToJSON(),
-            "fromName": fromName?.encodeToJSON(),
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: sendMail)
 
         let urlComponents = URLComponents(string: URLString)
 
         let nillableHeaders: [String: Any?] = [
-            "Content-Type": "application/x-www-form-urlencoded",
+            :
         ]
 
         let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)

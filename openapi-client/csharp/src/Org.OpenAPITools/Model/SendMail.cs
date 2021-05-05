@@ -38,25 +38,35 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SendMail" /> class.
         /// </summary>
-        /// <param name="id">The ID of the Mail order within our system to use as the Mail Account. (required).</param>
-        /// <param name="from">from (required).</param>
-        /// <param name="to">The Contact whom is the primary recipient of this email. (required).</param>
         /// <param name="subject">The subject or title of the email (required).</param>
         /// <param name="body">The main email contents. (required).</param>
+        /// <param name="from">from (required).</param>
+        /// <param name="to">The Contact whom is the primary recipient of this email. (required).</param>
+        /// <param name="id">The ID of the Mail order within our system to use as the Mail Account. (required).</param>
         /// <param name="replyto">Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address..</param>
         /// <param name="cc">Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well..</param>
         /// <param name="bcc">Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list..</param>
         /// <param name="attachments">Optional file attachments to include in the email.</param>
-        public SendMail(long id = default(long), MailContact from = default(MailContact), List<MailContact> to = default(List<MailContact>), string subject = default(string), string body = default(string), List<MailContact> replyto = default(List<MailContact>), List<MailContact> cc = default(List<MailContact>), List<MailContact> bcc = default(List<MailContact>), List<MailAttachment> attachments = default(List<MailAttachment>))
+        public SendMail(string subject = default(string), string body = default(string), MailContact from = default(MailContact), List<MailContact> to = default(List<MailContact>), long id = default(long), List<MailContact> replyto = default(List<MailContact>), List<MailContact> cc = default(List<MailContact>), List<MailContact> bcc = default(List<MailContact>), List<MailAttachment> attachments = default(List<MailAttachment>))
         {
-            // to ensure "id" is required (not null)
-            if (id == null)
+            // to ensure "subject" is required (not null)
+            if (subject == null)
             {
-                throw new InvalidDataException("id is a required property for SendMail and cannot be null");
+                throw new InvalidDataException("subject is a required property for SendMail and cannot be null");
             }
             else
             {
-                this.Id = id;
+                this.Subject = subject;
+            }
+
+            // to ensure "body" is required (not null)
+            if (body == null)
+            {
+                throw new InvalidDataException("body is a required property for SendMail and cannot be null");
+            }
+            else
+            {
+                this.Body = body;
             }
 
             // to ensure "from" is required (not null)
@@ -79,24 +89,14 @@ namespace Org.OpenAPITools.Model
                 this.To = to;
             }
 
-            // to ensure "subject" is required (not null)
-            if (subject == null)
+            // to ensure "id" is required (not null)
+            if (id == null)
             {
-                throw new InvalidDataException("subject is a required property for SendMail and cannot be null");
+                throw new InvalidDataException("id is a required property for SendMail and cannot be null");
             }
             else
             {
-                this.Subject = subject;
-            }
-
-            // to ensure "body" is required (not null)
-            if (body == null)
-            {
-                throw new InvalidDataException("body is a required property for SendMail and cannot be null");
-            }
-            else
-            {
-                this.Body = body;
+                this.Id = id;
             }
 
             this.Replyto = replyto;
@@ -106,11 +106,18 @@ namespace Org.OpenAPITools.Model
         }
 
         /// <summary>
-        /// The ID of the Mail order within our system to use as the Mail Account.
+        /// The subject or title of the email
         /// </summary>
-        /// <value>The ID of the Mail order within our system to use as the Mail Account.</value>
-        [DataMember(Name="id", EmitDefaultValue=true)]
-        public long Id { get; set; }
+        /// <value>The subject or title of the email</value>
+        [DataMember(Name="subject", EmitDefaultValue=true)]
+        public string Subject { get; set; }
+
+        /// <summary>
+        /// The main email contents.
+        /// </summary>
+        /// <value>The main email contents.</value>
+        [DataMember(Name="body", EmitDefaultValue=true)]
+        public string Body { get; set; }
 
         /// <summary>
         /// Gets or Sets From
@@ -126,18 +133,11 @@ namespace Org.OpenAPITools.Model
         public List<MailContact> To { get; set; }
 
         /// <summary>
-        /// The subject or title of the email
+        /// The ID of the Mail order within our system to use as the Mail Account.
         /// </summary>
-        /// <value>The subject or title of the email</value>
-        [DataMember(Name="subject", EmitDefaultValue=true)]
-        public string Subject { get; set; }
-
-        /// <summary>
-        /// The main email contents.
-        /// </summary>
-        /// <value>The main email contents.</value>
-        [DataMember(Name="body", EmitDefaultValue=true)]
-        public string Body { get; set; }
+        /// <value>The ID of the Mail order within our system to use as the Mail Account.</value>
+        [DataMember(Name="id", EmitDefaultValue=true)]
+        public long Id { get; set; }
 
         /// <summary>
         /// Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
@@ -175,11 +175,11 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class SendMail {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  From: ").Append(From).Append("\n");
-            sb.Append("  To: ").Append(To).Append("\n");
             sb.Append("  Subject: ").Append(Subject).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
+            sb.Append("  From: ").Append(From).Append("\n");
+            sb.Append("  To: ").Append(To).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Replyto: ").Append(Replyto).Append("\n");
             sb.Append("  Cc: ").Append(Cc).Append("\n");
             sb.Append("  Bcc: ").Append(Bcc).Append("\n");
@@ -219,9 +219,14 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                    this.Subject == input.Subject ||
+                    (this.Subject != null &&
+                    this.Subject.Equals(input.Subject))
+                ) && 
+                (
+                    this.Body == input.Body ||
+                    (this.Body != null &&
+                    this.Body.Equals(input.Body))
                 ) && 
                 (
                     this.From == input.From ||
@@ -235,14 +240,9 @@ namespace Org.OpenAPITools.Model
                     this.To.SequenceEqual(input.To)
                 ) && 
                 (
-                    this.Subject == input.Subject ||
-                    (this.Subject != null &&
-                    this.Subject.Equals(input.Subject))
-                ) && 
-                (
-                    this.Body == input.Body ||
-                    (this.Body != null &&
-                    this.Body.Equals(input.Body))
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 ) && 
                 (
                     this.Replyto == input.Replyto ||
@@ -279,16 +279,16 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.From != null)
-                    hashCode = hashCode * 59 + this.From.GetHashCode();
-                if (this.To != null)
-                    hashCode = hashCode * 59 + this.To.GetHashCode();
                 if (this.Subject != null)
                     hashCode = hashCode * 59 + this.Subject.GetHashCode();
                 if (this.Body != null)
                     hashCode = hashCode * 59 + this.Body.GetHashCode();
+                if (this.From != null)
+                    hashCode = hashCode * 59 + this.From.GetHashCode();
+                if (this.To != null)
+                    hashCode = hashCode * 59 + this.To.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.Replyto != null)
                     hashCode = hashCode * 59 + this.Replyto.GetHashCode();
                 if (this.Cc != null)

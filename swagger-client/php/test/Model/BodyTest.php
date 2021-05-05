@@ -76,51 +76,9 @@ class BodyTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "subject"
+     * Test attribute "payload"
      */
-    public function testPropertySubject()
-    {
-    }
-
-    /**
-     * Test attribute "body"
-     */
-    public function testPropertyBody()
-    {
-    }
-
-    /**
-     * Test attribute "from"
-     */
-    public function testPropertyFrom()
-    {
-    }
-
-    /**
-     * Test attribute "to"
-     */
-    public function testPropertyTo()
-    {
-    }
-
-    /**
-     * Test attribute "id"
-     */
-    public function testPropertyId()
-    {
-    }
-
-    /**
-     * Test attribute "toName"
-     */
-    public function testPropertyToName()
-    {
-    }
-
-    /**
-     * Test attribute "fromName"
-     */
-    public function testPropertyFromName()
+    public function testPropertyPayload()
     {
     }
 }

@@ -209,30 +209,12 @@ class DefaultApi {
   /// Sends an Email
   ///
   /// Sends An email through one of your mail orders.
-  Future<GenericResponse> sendMailById(String subject, String body, String from, String to, int id, String toName, String fromName) async {
-    Object postBody = null;
+  Future<GenericResponse> sendMailById(SendMail body) async {
+    Object postBody = body;
 
     // verify required params are set
-    if(subject == null) {
-     throw new ApiException(400, "Missing required param: subject");
-    }
     if(body == null) {
      throw new ApiException(400, "Missing required param: body");
-    }
-    if(from == null) {
-     throw new ApiException(400, "Missing required param: from");
-    }
-    if(to == null) {
-     throw new ApiException(400, "Missing required param: to");
-    }
-    if(id == null) {
-     throw new ApiException(400, "Missing required param: id");
-    }
-    if(toName == null) {
-     throw new ApiException(400, "Missing required param: toName");
-    }
-    if(fromName == null) {
-     throw new ApiException(400, "Missing required param: fromName");
     }
 
     // create path and map variables
@@ -243,7 +225,7 @@ class DefaultApi {
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
     
-    List<String> contentTypes = ["application/x-www-form-urlencoded"];
+    List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
     List<String> authNames = ["apiKeyAuth"];
@@ -251,52 +233,16 @@ class DefaultApi {
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
       MultipartRequest mp = new MultipartRequest(null, null);
-      if (subject != null) {
+      if (payload != null) {
         hasFields = true;
-        mp.fields['subject'] = parameterToString(subject);
-      }
-      if (body != null) {
-        hasFields = true;
-        mp.fields['body'] = parameterToString(body);
-      }
-      if (from != null) {
-        hasFields = true;
-        mp.fields['from'] = parameterToString(from);
-      }
-      if (to != null) {
-        hasFields = true;
-        mp.fields['to'] = parameterToString(to);
-      }
-      if (id != null) {
-        hasFields = true;
-        mp.fields['id'] = parameterToString(id);
-      }
-      if (toName != null) {
-        hasFields = true;
-        mp.fields['toName'] = parameterToString(toName);
-      }
-      if (fromName != null) {
-        hasFields = true;
-        mp.fields['fromName'] = parameterToString(fromName);
+        mp.fields['payload'] = parameterToString(payload);
       }
       if(hasFields)
         postBody = mp;
     }
     else {
-      if (subject != null)
-        formParams['subject'] = parameterToString(subject);
-if (body != null)
-        formParams['body'] = parameterToString(body);
-if (from != null)
-        formParams['from'] = parameterToString(from);
-if (to != null)
-        formParams['to'] = parameterToString(to);
-if (id != null)
-        formParams['id'] = parameterToString(id);
-if (toName != null)
-        formParams['toName'] = parameterToString(toName);
-if (fromName != null)
-        formParams['fromName'] = parameterToString(fromName);
+      if (payload != null)
+        formParams['payload'] = parameterToString(payload);
     }
 
     var response = await apiClient.invokeAPI(path,

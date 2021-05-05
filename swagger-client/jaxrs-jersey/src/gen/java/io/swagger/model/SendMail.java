@@ -27,9 +27,12 @@ import javax.validation.Valid;
  * Details for an Email
  */
 @Schema(description = "Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-04T21:12:31.497974-04:00[America/New_York]")public class SendMail   {
-  @JsonProperty("id")
-  private Long id = null;
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-05T04:03:17.152773-04:00[America/New_York]")public class SendMail   {
+  @JsonProperty("subject")
+  private String subject = null;
+
+  @JsonProperty("body")
+  private String body = null;
 
   @JsonProperty("from")
   private MailContact from = null;
@@ -37,11 +40,8 @@ import javax.validation.Valid;
   @JsonProperty("to")
   private List<MailContact> to = new ArrayList<MailContact>();
 
-  @JsonProperty("subject")
-  private String subject = null;
-
-  @JsonProperty("body")
-  private String body = null;
+  @JsonProperty("id")
+  private Long id = null;
 
   @JsonProperty("replyto")
   private List<MailContact> replyto = null;
@@ -55,24 +55,44 @@ import javax.validation.Valid;
   @JsonProperty("attachments")
   private List<MailAttachment> attachments = null;
 
-  public SendMail id(Long id) {
-    this.id = id;
+  public SendMail subject(String subject) {
+    this.subject = subject;
     return this;
   }
 
   /**
-   * The ID of the Mail order within our system to use as the Mail Account.
-   * @return id
+   * The subject or title of the email
+   * @return subject
    **/
-  @JsonProperty("id")
-  @Schema(required = true, description = "The ID of the Mail order within our system to use as the Mail Account.")
+  @JsonProperty("subject")
+  @Schema(example = "Your Package has been Delivered!", required = true, description = "The subject or title of the email")
   @NotNull
-  public Long getId() {
-    return id;
+  public String getSubject() {
+    return subject;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setSubject(String subject) {
+    this.subject = subject;
+  }
+
+  public SendMail body(String body) {
+    this.body = body;
+    return this;
+  }
+
+  /**
+   * The main email contents.
+   * @return body
+   **/
+  @JsonProperty("body")
+  @Schema(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else. ", required = true, description = "The main email contents.")
+  @NotNull
+  public String getBody() {
+    return body;
+  }
+
+  public void setBody(String body) {
+    this.body = body;
   }
 
   public SendMail from(MailContact from) {
@@ -122,44 +142,24 @@ import javax.validation.Valid;
     this.to = to;
   }
 
-  public SendMail subject(String subject) {
-    this.subject = subject;
+  public SendMail id(Long id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * The subject or title of the email
-   * @return subject
+   * The ID of the Mail order within our system to use as the Mail Account.
+   * @return id
    **/
-  @JsonProperty("subject")
-  @Schema(example = "Your Package has been Delivered!", required = true, description = "The subject or title of the email")
+  @JsonProperty("id")
+  @Schema(example = "5000", required = true, description = "The ID of the Mail order within our system to use as the Mail Account.")
   @NotNull
-  public String getSubject() {
-    return subject;
+  public Long getId() {
+    return id;
   }
 
-  public void setSubject(String subject) {
-    this.subject = subject;
-  }
-
-  public SendMail body(String body) {
-    this.body = body;
-    return this;
-  }
-
-  /**
-   * The main email contents.
-   * @return body
-   **/
-  @JsonProperty("body")
-  @Schema(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else. ", required = true, description = "The main email contents.")
-  @NotNull
-  public String getBody() {
-    return body;
-  }
-
-  public void setBody(String body) {
-    this.body = body;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public SendMail replyto(List<MailContact> replyto) {
@@ -284,11 +284,11 @@ import javax.validation.Valid;
       return false;
     }
     SendMail sendMail = (SendMail) o;
-    return Objects.equals(this.id, sendMail.id) &&
+    return Objects.equals(this.subject, sendMail.subject) &&
+        Objects.equals(this.body, sendMail.body) &&
         Objects.equals(this.from, sendMail.from) &&
         Objects.equals(this.to, sendMail.to) &&
-        Objects.equals(this.subject, sendMail.subject) &&
-        Objects.equals(this.body, sendMail.body) &&
+        Objects.equals(this.id, sendMail.id) &&
         Objects.equals(this.replyto, sendMail.replyto) &&
         Objects.equals(this.cc, sendMail.cc) &&
         Objects.equals(this.bcc, sendMail.bcc) &&
@@ -297,7 +297,7 @@ import javax.validation.Valid;
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, from, to, subject, body, replyto, cc, bcc, attachments);
+    return Objects.hash(subject, body, from, to, id, replyto, cc, bcc, attachments);
   }
 
 
@@ -306,11 +306,11 @@ import javax.validation.Valid;
     StringBuilder sb = new StringBuilder();
     sb.append("class SendMail {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    from: ").append(toIndentedString(from)).append("\n");
-    sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    from: ").append(toIndentedString(from)).append("\n");
+    sb.append("    to: ").append(toIndentedString(to)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    replyto: ").append(toIndentedString(replyto)).append("\n");
     sb.append("    cc: ").append(toIndentedString(cc)).append("\n");
     sb.append("    bcc: ").append(toIndentedString(bcc)).append("\n");

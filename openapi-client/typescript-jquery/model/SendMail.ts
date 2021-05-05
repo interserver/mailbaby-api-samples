@@ -17,9 +17,14 @@ import * as models from './models';
  */
 export interface SendMail {
     /**
-     * The ID of the Mail order within our system to use as the Mail Account.
+     * The subject or title of the email
      */
-    id: number;
+    subject: string;
+
+    /**
+     * The main email contents.
+     */
+    body: string;
 
     from: models.MailContact;
 
@@ -29,14 +34,9 @@ export interface SendMail {
     to: Array<models.MailContact>;
 
     /**
-     * The subject or title of the email
+     * The ID of the Mail order within our system to use as the Mail Account.
      */
-    subject: string;
-
-    /**
-     * The main email contents.
-     */
-    body: string;
+    id: number;
 
     /**
      * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.

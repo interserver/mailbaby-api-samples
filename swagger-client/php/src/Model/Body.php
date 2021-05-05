@@ -56,13 +56,7 @@ class Body implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'subject' => 'string',
-'body' => 'string',
-'from' => 'string',
-'to' => 'string',
-'id' => 'int',
-'toName' => 'string',
-'fromName' => 'string'    ];
+        'payload' => '\Interserver\Mailbaby\Model\SendMail'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -70,13 +64,7 @@ class Body implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'subject' => null,
-'body' => null,
-'from' => null,
-'to' => null,
-'id' => null,
-'toName' => null,
-'fromName' => null    ];
+        'payload' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -105,13 +93,7 @@ class Body implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'subject' => 'subject',
-'body' => 'body',
-'from' => 'from',
-'to' => 'to',
-'id' => 'id',
-'toName' => 'toName',
-'fromName' => 'fromName'    ];
+        'payload' => 'payload'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -119,13 +101,7 @@ class Body implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'subject' => 'setSubject',
-'body' => 'setBody',
-'from' => 'setFrom',
-'to' => 'setTo',
-'id' => 'setId',
-'toName' => 'setToName',
-'fromName' => 'setFromName'    ];
+        'payload' => 'setPayload'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -133,13 +109,7 @@ class Body implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'subject' => 'getSubject',
-'body' => 'getBody',
-'from' => 'getFrom',
-'to' => 'getTo',
-'id' => 'getId',
-'toName' => 'getToName',
-'fromName' => 'getFromName'    ];
+        'payload' => 'getPayload'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -199,13 +169,7 @@ class Body implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['subject'] = isset($data['subject']) ? $data['subject'] : null;
-        $this->container['body'] = isset($data['body']) ? $data['body'] : null;
-        $this->container['from'] = isset($data['from']) ? $data['from'] : null;
-        $this->container['to'] = isset($data['to']) ? $data['to'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['toName'] = isset($data['toName']) ? $data['toName'] : null;
-        $this->container['fromName'] = isset($data['fromName']) ? $data['fromName'] : null;
+        $this->container['payload'] = isset($data['payload']) ? $data['payload'] : null;
     }
 
     /**
@@ -217,18 +181,6 @@ class Body implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['subject'] === null) {
-            $invalidProperties[] = "'subject' can't be null";
-        }
-        if ($this->container['body'] === null) {
-            $invalidProperties[] = "'body' can't be null";
-        }
-        if ($this->container['from'] === null) {
-            $invalidProperties[] = "'from' can't be null";
-        }
-        if ($this->container['to'] === null) {
-            $invalidProperties[] = "'to' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -245,169 +197,25 @@ class Body implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets subject
+     * Gets payload
      *
-     * @return string
+     * @return \Interserver\Mailbaby\Model\SendMail
      */
-    public function getSubject()
+    public function getPayload()
     {
-        return $this->container['subject'];
+        return $this->container['payload'];
     }
 
     /**
-     * Sets subject
+     * Sets payload
      *
-     * @param string $subject The Subject of the email
+     * @param \Interserver\Mailbaby\Model\SendMail $payload payload
      *
      * @return $this
      */
-    public function setSubject($subject)
+    public function setPayload($payload)
     {
-        $this->container['subject'] = $subject;
-
-        return $this;
-    }
-
-    /**
-     * Gets body
-     *
-     * @return string
-     */
-    public function getBody()
-    {
-        return $this->container['body'];
-    }
-
-    /**
-     * Sets body
-     *
-     * @param string $body The contents of the email
-     *
-     * @return $this
-     */
-    public function setBody($body)
-    {
-        $this->container['body'] = $body;
-
-        return $this;
-    }
-
-    /**
-     * Gets from
-     *
-     * @return string
-     */
-    public function getFrom()
-    {
-        return $this->container['from'];
-    }
-
-    /**
-     * Sets from
-     *
-     * @param string $from The email address of who this email will be sent from.
-     *
-     * @return $this
-     */
-    public function setFrom($from)
-    {
-        $this->container['from'] = $from;
-
-        return $this;
-    }
-
-    /**
-     * Gets to
-     *
-     * @return string
-     */
-    public function getTo()
-    {
-        return $this->container['to'];
-    }
-
-    /**
-     * Sets to
-     *
-     * @param string $to The email address of who this email will be sent to.
-     *
-     * @return $this
-     */
-    public function setTo($to)
-    {
-        $this->container['to'] = $to;
-
-        return $this;
-    }
-
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id The ID of your mail order this will be sent through.
-     *
-     * @return $this
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets toName
-     *
-     * @return string
-     */
-    public function getToName()
-    {
-        return $this->container['toName'];
-    }
-
-    /**
-     * Sets toName
-     *
-     * @param string $toName The name or title of who this email is being sent to.
-     *
-     * @return $this
-     */
-    public function setToName($toName)
-    {
-        $this->container['toName'] = $toName;
-
-        return $this;
-    }
-
-    /**
-     * Gets fromName
-     *
-     * @return string
-     */
-    public function getFromName()
-    {
-        return $this->container['fromName'];
-    }
-
-    /**
-     * Sets fromName
-     *
-     * @param string $fromName The name or title of who this email is being sent from.
-     *
-     * @return $this
-     */
-    public function setFromName($fromName)
-    {
-        $this->container['fromName'] = $fromName;
+        $this->container['payload'] = $payload;
 
         return $this;
     }

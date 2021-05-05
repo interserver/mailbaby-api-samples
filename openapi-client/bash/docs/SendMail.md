@@ -3,11 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **integer** |  | [default to null]
-**from** | [**MailContact**](MailContact.md) |  | [default to null]
-**to** | [**array[MailContact]**](MailContact.md) |  | [default to null]
 **subject** | **string** |  | [default to null]
 **body** | **string** |  | [default to null]
+**from** | [**MailContact**](MailContact.md) |  | [default to null]
+**to** | [**array[MailContact]**](MailContact.md) |  | [default to null]
+**id** | **integer** |  | [default to null]
 **replyto** | [**array[MailContact]**](MailContact.md) |  | [optional] [default to null]
 **cc** | [**array[MailContact]**](MailContact.md) |  | [optional] [default to null]
 **bcc** | [**array[MailContact]**](MailContact.md) |  | [optional] [default to null]

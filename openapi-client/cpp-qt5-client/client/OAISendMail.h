@@ -42,10 +42,15 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
-    qint64 getId() const;
-    void setId(const qint64 &id);
-    bool is_id_Set() const;
-    bool is_id_Valid() const;
+    QString getSubject() const;
+    void setSubject(const QString &subject);
+    bool is_subject_Set() const;
+    bool is_subject_Valid() const;
+
+    QString getBody() const;
+    void setBody(const QString &body);
+    bool is_body_Set() const;
+    bool is_body_Valid() const;
 
     OAIMailContact getFrom() const;
     void setFrom(const OAIMailContact &from);
@@ -57,15 +62,10 @@ public:
     bool is_to_Set() const;
     bool is_to_Valid() const;
 
-    QString getSubject() const;
-    void setSubject(const QString &subject);
-    bool is_subject_Set() const;
-    bool is_subject_Valid() const;
-
-    QString getBody() const;
-    void setBody(const QString &body);
-    bool is_body_Set() const;
-    bool is_body_Valid() const;
+    qint64 getId() const;
+    void setId(const qint64 &id);
+    bool is_id_Set() const;
+    bool is_id_Valid() const;
 
     QList<OAIMailContact> getReplyto() const;
     void setReplyto(const QList<OAIMailContact> &replyto);
@@ -93,9 +93,13 @@ public:
 private:
     void initializeModel();
 
-    qint64 id;
-    bool m_id_isSet;
-    bool m_id_isValid;
+    QString subject;
+    bool m_subject_isSet;
+    bool m_subject_isValid;
+
+    QString body;
+    bool m_body_isSet;
+    bool m_body_isValid;
 
     OAIMailContact from;
     bool m_from_isSet;
@@ -105,13 +109,9 @@ private:
     bool m_to_isSet;
     bool m_to_isValid;
 
-    QString subject;
-    bool m_subject_isSet;
-    bool m_subject_isValid;
-
-    QString body;
-    bool m_body_isSet;
-    bool m_body_isValid;
+    qint64 id;
+    bool m_id_isSet;
+    bool m_id_isValid;
 
     QList<OAIMailContact> replyto;
     bool m_replyto_isSet;

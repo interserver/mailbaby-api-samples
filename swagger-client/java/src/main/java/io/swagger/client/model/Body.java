@@ -19,159 +19,34 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.client.model.SendMail;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 /**
  * Body
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-04T21:12:14.619799-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-05T04:03:00.389294-04:00[America/New_York]")
 public class Body {
-  @SerializedName("subject")
-  private String subject = null;
+  @SerializedName("payload")
+  private SendMail payload = null;
 
-  @SerializedName("body")
-  private String body = null;
-
-  @SerializedName("from")
-  private String from = null;
-
-  @SerializedName("to")
-  private String to = null;
-
-  @SerializedName("id")
-  private Integer id = null;
-
-  @SerializedName("toName")
-  private String toName = null;
-
-  @SerializedName("fromName")
-  private String fromName = null;
-
-  public Body subject(String subject) {
-    this.subject = subject;
+  public Body payload(SendMail payload) {
+    this.payload = payload;
     return this;
   }
 
    /**
-   * The Subject of the email
-   * @return subject
+   * Get payload
+   * @return payload
   **/
-  @Schema(example = "test subject", required = true, description = "The Subject of the email")
-  public String getSubject() {
-    return subject;
+  @Schema(description = "")
+  public SendMail getPayload() {
+    return payload;
   }
 
-  public void setSubject(String subject) {
-    this.subject = subject;
-  }
-
-  public Body body(String body) {
-    this.body = body;
-    return this;
-  }
-
-   /**
-   * The contents of the email
-   * @return body
-  **/
-  @Schema(example = "test body", required = true, description = "The contents of the email")
-  public String getBody() {
-    return body;
-  }
-
-  public void setBody(String body) {
-    this.body = body;
-  }
-
-  public Body from(String from) {
-    this.from = from;
-    return this;
-  }
-
-   /**
-   * The email address of who this email will be sent from.
-   * @return from
-  **/
-  @Schema(example = "me@domain.com", required = true, description = "The email address of who this email will be sent from.")
-  public String getFrom() {
-    return from;
-  }
-
-  public void setFrom(String from) {
-    this.from = from;
-  }
-
-  public Body to(String to) {
-    this.to = to;
-    return this;
-  }
-
-   /**
-   * The email address of who this email will be sent to.
-   * @return to
-  **/
-  @Schema(example = "my@domain.com", required = true, description = "The email address of who this email will be sent to.")
-  public String getTo() {
-    return to;
-  }
-
-  public void setTo(String to) {
-    this.to = to;
-  }
-
-  public Body id(Integer id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * The ID of your mail order this will be sent through.
-   * @return id
-  **/
-  @Schema(example = "5000", description = "The ID of your mail order this will be sent through.")
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public Body toName(String toName) {
-    this.toName = toName;
-    return this;
-  }
-
-   /**
-   * The name or title of who this email is being sent to.
-   * @return toName
-  **/
-  @Schema(example = "John Doe", description = "The name or title of who this email is being sent to.")
-  public String getToName() {
-    return toName;
-  }
-
-  public void setToName(String toName) {
-    this.toName = toName;
-  }
-
-  public Body fromName(String fromName) {
-    this.fromName = fromName;
-    return this;
-  }
-
-   /**
-   * The name or title of who this email is being sent from.
-   * @return fromName
-  **/
-  @Schema(example = "Jane Doe", description = "The name or title of who this email is being sent from.")
-  public String getFromName() {
-    return fromName;
-  }
-
-  public void setFromName(String fromName) {
-    this.fromName = fromName;
+  public void setPayload(SendMail payload) {
+    this.payload = payload;
   }
 
 
@@ -184,18 +59,12 @@ public class Body {
       return false;
     }
     Body body = (Body) o;
-    return Objects.equals(this.subject, body.subject) &&
-        Objects.equals(this.body, body.body) &&
-        Objects.equals(this.from, body.from) &&
-        Objects.equals(this.to, body.to) &&
-        Objects.equals(this.id, body.id) &&
-        Objects.equals(this.toName, body.toName) &&
-        Objects.equals(this.fromName, body.fromName);
+    return Objects.equals(this.payload, body.payload);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subject, body, from, to, id, toName, fromName);
+    return Objects.hash(payload);
   }
 
 
@@ -204,13 +73,7 @@ public class Body {
     StringBuilder sb = new StringBuilder();
     sb.append("class Body {\n");
     
-    sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
-    sb.append("    body: ").append(toIndentedString(body)).append("\n");
-    sb.append("    from: ").append(toIndentedString(from)).append("\n");
-    sb.append("    to: ").append(toIndentedString(to)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    toName: ").append(toIndentedString(toName)).append("\n");
-    sb.append("    fromName: ").append(toIndentedString(fromName)).append("\n");
+    sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
     sb.append("}");
     return sb.toString();
   }

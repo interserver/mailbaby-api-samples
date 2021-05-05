@@ -21,11 +21,11 @@ typedef struct send_mail_t send_mail_t;
 
 
 typedef struct send_mail_t {
-    long id; //numeric
-    struct mail_contact_t *from; //model
-    list_t *to; //nonprimitive container
     char *subject; // string
     char *body; // string
+    struct mail_contact_t *from; //model
+    list_t *to; //nonprimitive container
+    long id; //numeric
     list_t *replyto; //nonprimitive container
     list_t *cc; //nonprimitive container
     list_t *bcc; //nonprimitive container
@@ -34,11 +34,11 @@ typedef struct send_mail_t {
 } send_mail_t;
 
 send_mail_t *send_mail_create(
-    long id,
-    mail_contact_t *from,
-    list_t *to,
     char *subject,
     char *body,
+    mail_contact_t *from,
+    list_t *to,
+    long id,
     list_t *replyto,
     list_t *cc,
     list_t *bcc,

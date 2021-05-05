@@ -1,5 +1,6 @@
 package io.swagger.model;
 
+import io.swagger.model.SendMail;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -11,155 +12,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Body   {
 
-  private @Valid String subject = null;
-
-  private @Valid String body = null;
-
-  private @Valid String from = null;
-
-  private @Valid String to = null;
-
-  private @Valid Integer id = null;
-
-  private @Valid String toName = null;
-
-  private @Valid String fromName = null;
+  private @Valid SendMail payload = null;
 
   /**
-   * The Subject of the email
    **/
-  public Body subject(String subject) {
-    this.subject = subject;
+  public Body payload(SendMail payload) {
+    this.payload = payload;
     return this;
   }
 
   
-  @ApiModelProperty(example = "test subject", required = true, value = "The Subject of the email")
-  @JsonProperty("subject")
-  @NotNull
+  @ApiModelProperty(value = "")
+  @JsonProperty("payload")
 
-  public String getSubject() {
-    return subject;
+  public SendMail getPayload() {
+    return payload;
   }
-  public void setSubject(String subject) {
-    this.subject = subject;
-  }
-
-  /**
-   * The contents of the email
-   **/
-  public Body body(String body) {
-    this.body = body;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "test body", required = true, value = "The contents of the email")
-  @JsonProperty("body")
-  @NotNull
-
-  public String getBody() {
-    return body;
-  }
-  public void setBody(String body) {
-    this.body = body;
-  }
-
-  /**
-   * The email address of who this email will be sent from.
-   **/
-  public Body from(String from) {
-    this.from = from;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "me@domain.com", required = true, value = "The email address of who this email will be sent from.")
-  @JsonProperty("from")
-  @NotNull
-
-  public String getFrom() {
-    return from;
-  }
-  public void setFrom(String from) {
-    this.from = from;
-  }
-
-  /**
-   * The email address of who this email will be sent to.
-   **/
-  public Body to(String to) {
-    this.to = to;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "my@domain.com", required = true, value = "The email address of who this email will be sent to.")
-  @JsonProperty("to")
-  @NotNull
-
-  public String getTo() {
-    return to;
-  }
-  public void setTo(String to) {
-    this.to = to;
-  }
-
-  /**
-   * The ID of your mail order this will be sent through.
-   **/
-  public Body id(Integer id) {
-    this.id = id;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "5000", value = "The ID of your mail order this will be sent through.")
-  @JsonProperty("id")
-
-  public Integer getId() {
-    return id;
-  }
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  /**
-   * The name or title of who this email is being sent to.
-   **/
-  public Body toName(String toName) {
-    this.toName = toName;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "John Doe", value = "The name or title of who this email is being sent to.")
-  @JsonProperty("toName")
-
-  public String getToName() {
-    return toName;
-  }
-  public void setToName(String toName) {
-    this.toName = toName;
-  }
-
-  /**
-   * The name or title of who this email is being sent from.
-   **/
-  public Body fromName(String fromName) {
-    this.fromName = fromName;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "Jane Doe", value = "The name or title of who this email is being sent from.")
-  @JsonProperty("fromName")
-
-  public String getFromName() {
-    return fromName;
-  }
-  public void setFromName(String fromName) {
-    this.fromName = fromName;
+  public void setPayload(SendMail payload) {
+    this.payload = payload;
   }
 
 
@@ -172,18 +42,12 @@ public class Body   {
       return false;
     }
     Body body = (Body) o;
-    return Objects.equals(subject, body.subject) &&
-        Objects.equals(body, body.body) &&
-        Objects.equals(from, body.from) &&
-        Objects.equals(to, body.to) &&
-        Objects.equals(id, body.id) &&
-        Objects.equals(toName, body.toName) &&
-        Objects.equals(fromName, body.fromName);
+    return Objects.equals(payload, body.payload);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subject, body, from, to, id, toName, fromName);
+    return Objects.hash(payload);
   }
 
   @Override
@@ -191,13 +55,7 @@ public class Body   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Body {\n");
     
-    sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
-    sb.append("    body: ").append(toIndentedString(body)).append("\n");
-    sb.append("    from: ").append(toIndentedString(from)).append("\n");
-    sb.append("    to: ").append(toIndentedString(to)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    toName: ").append(toIndentedString(toName)).append("\n");
-    sb.append("    fromName: ").append(toIndentedString(fromName)).append("\n");
+    sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
     sb.append("}");
     return sb.toString();
   }

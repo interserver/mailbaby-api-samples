@@ -130,18 +130,13 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::DefaultApi.new
-subject = 'subject_example' # String | 
-body = 'body_example' # String | 
-from = 'from_example' # String | 
-to = 'to_example' # String | 
-id = 56 # Integer | 
-to_name = 'to_name_example' # String | 
-from_name = 'from_name_example' # String | 
+body = SwaggerClient::SendMail.new # SendMail | 
+payload = SwaggerClient::SendMail.new # SendMail | 
 
 
 begin
   #Sends an Email
-  result = api_instance.send_mail_by_id(subject, body, from, to, id, to_name, from_name)
+  result = api_instance.send_mail_by_id(body, payload)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling DefaultApi->send_mail_by_id: #{e}"

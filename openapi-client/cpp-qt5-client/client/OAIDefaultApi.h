@@ -79,15 +79,9 @@ public:
     void sendAdvMailById(const OAISendMail &oai_send_mail);
 
     /**
-    * @param[in]  subject QString [required]
-    * @param[in]  body QString [required]
-    * @param[in]  from QString [required]
-    * @param[in]  to QString [required]
-    * @param[in]  id qint32 [optional]
-    * @param[in]  to_name QString [optional]
-    * @param[in]  from_name QString [optional]
+    * @param[in]  oai_send_mail OAISendMail [required]
     */
-    void sendMailById(const QString &subject, const QString &body, const QString &from, const QString &to, const ::OpenAPI::OptionalParam<qint32> &id = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<QString> &to_name = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from_name = ::OpenAPI::OptionalParam<QString>());
+    void sendMailById(const OAISendMail &oai_send_mail);
 
 
     Q_DECL_DEPRECATED void validateMailOrder();

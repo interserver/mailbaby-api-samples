@@ -690,43 +690,10 @@
     // Script section to load models into a JS Var
     var defs = {}
             defs["body"] = {
-  "required" : [ "body", "from", "subject", "to" ],
   "type" : "object",
   "properties" : {
-    "subject" : {
-      "type" : "string",
-      "description" : "The Subject of the email",
-      "example" : "test subject"
-    },
-    "body" : {
-      "type" : "string",
-      "description" : "The contents of the email",
-      "example" : "test body"
-    },
-    "from" : {
-      "type" : "string",
-      "description" : "The email address of who this email will be sent from.",
-      "example" : "me@domain.com"
-    },
-    "to" : {
-      "type" : "string",
-      "description" : "The email address of who this email will be sent to.",
-      "example" : "my@domain.com"
-    },
-    "id" : {
-      "type" : "integer",
-      "description" : "The ID of your mail order this will be sent through.",
-      "example" : 5000
-    },
-    "toName" : {
-      "type" : "string",
-      "description" : "The name or title of who this email is being sent to.",
-      "example" : "John Doe"
-    },
-    "fromName" : {
-      "type" : "string",
-      "description" : "The name or title of who this email is being sent from.",
-      "example" : "Jane Doe"
+    "payload" : {
+      "$ref" : "#/components/schemas/SendMail"
     }
   }
 };
@@ -832,13 +799,19 @@
   }
 };
             defs["SendMail"] = {
+  "title" : "Email details",
   "required" : [ "body", "from", "id", "subject", "to" ],
   "type" : "object",
   "properties" : {
-    "id" : {
-      "type" : "integer",
-      "description" : "The ID of the Mail order within our system to use as the Mail Account.",
-      "format" : "int64"
+    "subject" : {
+      "type" : "string",
+      "description" : "The subject or title of the email",
+      "example" : "Your Package has been Delivered!"
+    },
+    "body" : {
+      "type" : "string",
+      "description" : "The main email contents.",
+      "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n"
     },
     "from" : {
       "$ref" : "#/components/schemas/MailContact"
@@ -850,15 +823,11 @@
         "$ref" : "#/components/schemas/MailContact"
       }
     },
-    "subject" : {
-      "type" : "string",
-      "description" : "The subject or title of the email",
-      "example" : "Your Package has been Delivered!"
-    },
-    "body" : {
-      "type" : "string",
-      "description" : "The main email contents.",
-      "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n"
+    "id" : {
+      "type" : "integer",
+      "description" : "The ID of the Mail order within our system to use as the Mail Account.",
+      "format" : "int64",
+      "example" : 5000
     },
     "replyto" : {
       "type" : "array",
@@ -2434,7 +2403,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
--H "Content-Type: application/x-www-form-urlencoded"\
+-H "Content-Type: application/json,application/x-www-form-urlencoded"\
 "https://api.mailbaby.net/mail/send"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-sendMailById-0-java">
@@ -2458,15 +2427,9 @@ public class DefaultApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
-        String subject = subject_example; // String | 
-        String body = body_example; // String | 
-        String from = from_example; // String | 
-        String to = to_example; // String | 
-        Integer id = 56; // Integer | 
-        String toName = toName_example; // String | 
-        String fromName = fromName_example; // String | 
+        SendMail body = ; // SendMail | 
         try {
-            GenericResponse result = apiInstance.sendMailById(subject, body, from, to, id, toName, fromName);
+            GenericResponse result = apiInstance.sendMailById(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#sendMailById");
@@ -2483,15 +2446,9 @@ public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        String subject = subject_example; // String | 
-        String body = body_example; // String | 
-        String from = from_example; // String | 
-        String to = to_example; // String | 
-        Integer id = 56; // Integer | 
-        String toName = toName_example; // String | 
-        String fromName = fromName_example; // String | 
+        SendMail body = ; // SendMail | 
         try {
-            GenericResponse result = apiInstance.sendMailById(subject, body, from, to, id, toName, fromName);
+            GenericResponse result = apiInstance.sendMailById(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#sendMailById");
@@ -2510,24 +2467,12 @@ public class DefaultApiExample {
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-String *subject = subject_example; // 
-String *body = body_example; // 
-String *from = from_example; // 
-String *to = to_example; // 
-Integer *id = 56; // 
-String *toName = toName_example; // 
-String *fromName = fromName_example; // 
+SendMail *body = ; // 
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Sends an Email
-[apiInstance sendMailByIdWith:subject
-    body:body
-    from:from
-    to:to
-    id:id
-    toName:toName
-    fromName:fromName
+[apiInstance sendMailByIdWith:body
               completionHandler: ^(GenericResponse output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -2550,13 +2495,7 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
 
 var api = new MailBabyApi.DefaultApi()
-var subject = subject_example; // {{String}} 
-var body = body_example; // {{String}} 
-var from = from_example; // {{String}} 
-var to = to_example; // {{String}} 
-var id = 56; // {{Integer}} 
-var toName = toName_example; // {{String}} 
-var fromName = fromName_example; // {{String}} 
+var body = ; // {{SendMail}} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -2565,7 +2504,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.sendMailById(subjectbodyfromtoidtoNamefromName, callback);
+api.sendMailById(body, callback);
 </code></pre>
                             </div>
 
@@ -2592,18 +2531,12 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var subject = subject_example;  // String | 
-            var body = body_example;  // String | 
-            var from = from_example;  // String | 
-            var to = to_example;  // String | 
-            var id = 56;  // Integer | 
-            var toName = toName_example;  // String | 
-            var fromName = fromName_example;  // String | 
+            var body = new SendMail(); // SendMail | 
 
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.sendMailById(subject, body, from, to, id, toName, fromName);
+                GenericResponse result = apiInstance.sendMailById(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2626,16 +2559,10 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 // Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$subject = subject_example; // String | 
-$body = body_example; // String | 
-$from = from_example; // String | 
-$to = to_example; // String | 
-$id = 56; // Integer | 
-$toName = toName_example; // String | 
-$fromName = fromName_example; // String | 
+$body = ; // SendMail | 
 
 try {
-    $result = $api_instance->sendMailById($subject, $body, $from, $to, $id, $toName, $fromName);
+    $result = $api_instance->sendMailById($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->sendMailById: ', $e->getMessage(), PHP_EOL;
@@ -2654,16 +2581,10 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 my $api_instance = MailBabyApi::DefaultApi->new();
-my $subject = subject_example; # String | 
-my $body = body_example; # String | 
-my $from = from_example; # String | 
-my $to = to_example; # String | 
-my $id = 56; # Integer | 
-my $toName = toName_example; # String | 
-my $fromName = fromName_example; # String | 
+my $body = MailBabyApi::Object::SendMail->new(); # SendMail | 
 
 eval { 
-    my $result = $api_instance->sendMailById(subject => $subject, body => $body, from => $from, to => $to, id => $id, toName => $toName, fromName => $fromName);
+    my $result = $api_instance->sendMailById(body => $body);
     print Dumper($result);
 };
 if ($@) {
@@ -2685,17 +2606,11 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
-subject = subject_example # String | 
-body = body_example # String | 
-from = from_example # String | 
-to = to_example # String | 
-id = 56 # Integer | 
-toName = toName_example # String | 
-fromName = fromName_example # String | 
+body =  # SendMail | 
 
 try: 
     # Sends an Email
-    api_response = api_instance.send_mail_by_id(subject, body, from, to, id, toName, fromName)
+    api_response = api_instance.send_mail_by_id(body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->sendMailById: %s\n" % e)</code></pre>
@@ -2706,6 +2621,60 @@ except ApiException as e:
 
 
 
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/SendMail"
+      }
+    },
+    "application/x-www-form-urlencoded" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/body"
+      },
+      "encoding" : {
+        "payload" : {
+          "contentType" : "application/json",
+          "style" : "form"
+        }
+      }
+    }
+  },
+  "required" : true
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_sendMailById_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_sendMailById_body"></div>
+                                </td>
+                                </tr>
+                            </table>
 
                             <div class="methodsubtabletitle">Form parameters</div>
                             <table id="methodsubtable">
@@ -2713,129 +2682,15 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                  <tr><td style="width:150px;">subject*</td>
+                                  <tr><td style="width:150px;">payload*</td>
                                   <td>
                                   
                                   
-                                      <div id="d2e199_sendMailById_subject">
+                                      <div id="d2e199_sendMailById_payload">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">body*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_sendMailById_body">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">from*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_sendMailById_from">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">to*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_sendMailById_to">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">id*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_sendMailById_id">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      Integer
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">toName*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_sendMailById_toName">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">fromName*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_sendMailById_fromName">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
+                                                      SendMail
                                                   </span>
                                   
                                               </div>

@@ -34,8 +34,11 @@ OAISendMail::~OAISendMail() {}
 
 void OAISendMail::initializeModel() {
 
-    m_id_isSet = false;
-    m_id_isValid = false;
+    m_subject_isSet = false;
+    m_subject_isValid = false;
+
+    m_body_isSet = false;
+    m_body_isValid = false;
 
     m_from_isSet = false;
     m_from_isValid = false;
@@ -43,11 +46,8 @@ void OAISendMail::initializeModel() {
     m_to_isSet = false;
     m_to_isValid = false;
 
-    m_subject_isSet = false;
-    m_subject_isValid = false;
-
-    m_body_isSet = false;
-    m_body_isValid = false;
+    m_id_isSet = false;
+    m_id_isValid = false;
 
     m_replyto_isSet = false;
     m_replyto_isValid = false;
@@ -71,8 +71,11 @@ void OAISendMail::fromJson(QString jsonString) {
 
 void OAISendMail::fromJsonObject(QJsonObject json) {
 
-    m_id_isValid = ::OpenAPI::fromJsonValue(id, json[QString("id")]);
-    m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
+    m_subject_isValid = ::OpenAPI::fromJsonValue(subject, json[QString("subject")]);
+    m_subject_isSet = !json[QString("subject")].isNull() && m_subject_isValid;
+
+    m_body_isValid = ::OpenAPI::fromJsonValue(body, json[QString("body")]);
+    m_body_isSet = !json[QString("body")].isNull() && m_body_isValid;
 
     m_from_isValid = ::OpenAPI::fromJsonValue(from, json[QString("from")]);
     m_from_isSet = !json[QString("from")].isNull() && m_from_isValid;
@@ -80,11 +83,8 @@ void OAISendMail::fromJsonObject(QJsonObject json) {
     m_to_isValid = ::OpenAPI::fromJsonValue(to, json[QString("to")]);
     m_to_isSet = !json[QString("to")].isNull() && m_to_isValid;
 
-    m_subject_isValid = ::OpenAPI::fromJsonValue(subject, json[QString("subject")]);
-    m_subject_isSet = !json[QString("subject")].isNull() && m_subject_isValid;
-
-    m_body_isValid = ::OpenAPI::fromJsonValue(body, json[QString("body")]);
-    m_body_isSet = !json[QString("body")].isNull() && m_body_isValid;
+    m_id_isValid = ::OpenAPI::fromJsonValue(id, json[QString("id")]);
+    m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
 
     m_replyto_isValid = ::OpenAPI::fromJsonValue(replyto, json[QString("replyto")]);
     m_replyto_isSet = !json[QString("replyto")].isNull() && m_replyto_isValid;
@@ -108,8 +108,11 @@ QString OAISendMail::asJson() const {
 
 QJsonObject OAISendMail::asJsonObject() const {
     QJsonObject obj;
-    if (m_id_isSet) {
-        obj.insert(QString("id"), ::OpenAPI::toJsonValue(id));
+    if (m_subject_isSet) {
+        obj.insert(QString("subject"), ::OpenAPI::toJsonValue(subject));
+    }
+    if (m_body_isSet) {
+        obj.insert(QString("body"), ::OpenAPI::toJsonValue(body));
     }
     if (from.isSet()) {
         obj.insert(QString("from"), ::OpenAPI::toJsonValue(from));
@@ -117,11 +120,8 @@ QJsonObject OAISendMail::asJsonObject() const {
     if (to.size() > 0) {
         obj.insert(QString("to"), ::OpenAPI::toJsonValue(to));
     }
-    if (m_subject_isSet) {
-        obj.insert(QString("subject"), ::OpenAPI::toJsonValue(subject));
-    }
-    if (m_body_isSet) {
-        obj.insert(QString("body"), ::OpenAPI::toJsonValue(body));
+    if (m_id_isSet) {
+        obj.insert(QString("id"), ::OpenAPI::toJsonValue(id));
     }
     if (replyto.size() > 0) {
         obj.insert(QString("replyto"), ::OpenAPI::toJsonValue(replyto));
@@ -138,20 +138,36 @@ QJsonObject OAISendMail::asJsonObject() const {
     return obj;
 }
 
-qint64 OAISendMail::getId() const {
-    return id;
+QString OAISendMail::getSubject() const {
+    return subject;
 }
-void OAISendMail::setId(const qint64 &id) {
-    this->id = id;
-    this->m_id_isSet = true;
-}
-
-bool OAISendMail::is_id_Set() const{
-    return m_id_isSet;
+void OAISendMail::setSubject(const QString &subject) {
+    this->subject = subject;
+    this->m_subject_isSet = true;
 }
 
-bool OAISendMail::is_id_Valid() const{
-    return m_id_isValid;
+bool OAISendMail::is_subject_Set() const{
+    return m_subject_isSet;
+}
+
+bool OAISendMail::is_subject_Valid() const{
+    return m_subject_isValid;
+}
+
+QString OAISendMail::getBody() const {
+    return body;
+}
+void OAISendMail::setBody(const QString &body) {
+    this->body = body;
+    this->m_body_isSet = true;
+}
+
+bool OAISendMail::is_body_Set() const{
+    return m_body_isSet;
+}
+
+bool OAISendMail::is_body_Valid() const{
+    return m_body_isValid;
 }
 
 OAIMailContact OAISendMail::getFrom() const {
@@ -186,36 +202,20 @@ bool OAISendMail::is_to_Valid() const{
     return m_to_isValid;
 }
 
-QString OAISendMail::getSubject() const {
-    return subject;
+qint64 OAISendMail::getId() const {
+    return id;
 }
-void OAISendMail::setSubject(const QString &subject) {
-    this->subject = subject;
-    this->m_subject_isSet = true;
-}
-
-bool OAISendMail::is_subject_Set() const{
-    return m_subject_isSet;
+void OAISendMail::setId(const qint64 &id) {
+    this->id = id;
+    this->m_id_isSet = true;
 }
 
-bool OAISendMail::is_subject_Valid() const{
-    return m_subject_isValid;
+bool OAISendMail::is_id_Set() const{
+    return m_id_isSet;
 }
 
-QString OAISendMail::getBody() const {
-    return body;
-}
-void OAISendMail::setBody(const QString &body) {
-    this->body = body;
-    this->m_body_isSet = true;
-}
-
-bool OAISendMail::is_body_Set() const{
-    return m_body_isSet;
-}
-
-bool OAISendMail::is_body_Valid() const{
-    return m_body_isValid;
+bool OAISendMail::is_id_Valid() const{
+    return m_id_isValid;
 }
 
 QList<OAIMailContact> OAISendMail::getReplyto() const {
@@ -285,7 +285,12 @@ bool OAISendMail::is_attachments_Valid() const{
 bool OAISendMail::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (m_id_isSet) {
+        if (m_subject_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_body_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -300,12 +305,7 @@ bool OAISendMail::isSet() const {
             break;
         }
 
-        if (m_subject_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_body_isSet) {
+        if (m_id_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -335,7 +335,7 @@ bool OAISendMail::isSet() const {
 
 bool OAISendMail::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_id_isValid && m_from_isValid && m_to_isValid && m_subject_isValid && m_body_isValid && true;
+    return m_subject_isValid && m_body_isValid && m_from_isValid && m_to_isValid && m_id_isValid && true;
 }
 
 } // namespace OpenAPI

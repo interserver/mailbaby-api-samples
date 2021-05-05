@@ -31,11 +31,17 @@ import {
  */
 export interface SendMail {
     /**
-     * The ID of the Mail order within our system to use as the Mail Account.
-     * @type {number}
+     * The subject or title of the email
+     * @type {string}
      * @memberof SendMail
      */
-    id: number;
+    subject: string;
+    /**
+     * The main email contents.
+     * @type {string}
+     * @memberof SendMail
+     */
+    body: string;
     /**
      * 
      * @type {MailContact}
@@ -49,17 +55,11 @@ export interface SendMail {
      */
     to: Array<MailContact>;
     /**
-     * The subject or title of the email
-     * @type {string}
+     * The ID of the Mail order within our system to use as the Mail Account.
+     * @type {number}
      * @memberof SendMail
      */
-    subject: string;
-    /**
-     * The main email contents.
-     * @type {string}
-     * @memberof SendMail
-     */
-    body: string;
+    id: number;
     /**
      * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
      * @type {Array<MailContact>}
@@ -96,11 +96,11 @@ export function SendMailFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
-        'id': json['id'],
-        'from': MailContactFromJSON(json['from']),
-        'to': ((json['to'] as Array<any>).map(MailContactFromJSON)),
         'subject': json['subject'],
         'body': json['body'],
+        'from': MailContactFromJSON(json['from']),
+        'to': ((json['to'] as Array<any>).map(MailContactFromJSON)),
+        'id': json['id'],
         'replyto': !exists(json, 'replyto') ? undefined : ((json['replyto'] as Array<any>).map(MailContactFromJSON)),
         'cc': !exists(json, 'cc') ? undefined : ((json['cc'] as Array<any>).map(MailContactFromJSON)),
         'bcc': !exists(json, 'bcc') ? undefined : ((json['bcc'] as Array<any>).map(MailContactFromJSON)),
@@ -117,11 +117,11 @@ export function SendMailToJSON(value?: SendMail | null): any {
     }
     return {
         
-        'id': value.id,
-        'from': MailContactToJSON(value.from),
-        'to': ((value.to as Array<any>).map(MailContactToJSON)),
         'subject': value.subject,
         'body': value.body,
+        'from': MailContactToJSON(value.from),
+        'to': ((value.to as Array<any>).map(MailContactToJSON)),
+        'id': value.id,
         'replyto': value.replyto === undefined ? undefined : ((value.replyto as Array<any>).map(MailContactToJSON)),
         'cc': value.cc === undefined ? undefined : ((value.cc as Array<any>).map(MailContactToJSON)),
         'bcc': value.bcc === undefined ? undefined : ((value.bcc as Array<any>).map(MailContactToJSON)),

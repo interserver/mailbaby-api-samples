@@ -233,7 +233,7 @@ function default_api:send_adv_mail_by_id(send_mail)
 	end
 end
 
-function default_api:send_mail_by_id(subject, body, from, to, id, to_name, from_name)
+function default_api:send_mail_by_id(send_mail)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -245,22 +245,15 @@ function default_api:send_mail_by_id(subject, body, from, to, id, to_name, from_
 	-- set HTTP verb
 	req.headers:upsert(":method", "POST")
 	-- TODO: create a function to select proper accept
-	--local var_content_type = { "application/x-www-form-urlencoded" }
-	req.headers:upsert("accept", "application/x-www-form-urlencoded")
+	--local var_content_type = { "application/json", "application/x-www-form-urlencoded" }
+	req.headers:upsert("accept", "application/json")
 
 	-- TODO: create a function to select proper content-type
 	--local var_accept = { "application/json" }
 	req.headers:upsert("content-type", "application/json")
 
-	req:set_body(http_util.dict_to_query({
-		["subject"] = subject;
-		["body"] = body;
-		["from"] = from;
-		["to"] = to;
-		["id"] = id;
-		["toName"] = to_name;
-		["fromName"] = from_name;
-	}))
+	req:set_body(dkjson.encode(send_mail))
+
 	-- api key in headers 'X-API-KEY'
 	if self.api_key['X-API-KEY'] then
 		req.headers:upsert("apiKeyAuth", self.api_key['X-API-KEY'])

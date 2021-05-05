@@ -55,13 +55,7 @@ test_that("SendMailById", {
   # base path: https://api.mailbaby.net
   # Sends an Email
   # Sends An email through one of your mail orders.
-  # @param subject character The Subject of the email
-  # @param body character The contents of the email
-  # @param from character The email address of who this email will be sent from.
-  # @param to character The email address of who this email will be sent to.
-  # @param id integer The ID of your mail order this will be sent through. (optional)
-  # @param to.name character The name or title of who this email is being sent to. (optional)
-  # @param from.name character The name or title of who this email is being sent from. (optional)
+  # @param send.mail SendMail 
   # @return [GenericResponse]
 
   # uncomment below to test the operation

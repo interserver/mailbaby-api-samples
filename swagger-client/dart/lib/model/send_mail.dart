@@ -1,16 +1,16 @@
 part of swagger.api;
 
 class SendMail {
-  /* The ID of the Mail order within our system to use as the Mail Account. */
-  int id = null;
+  /* The subject or title of the email */
+  String subject = null;
+/* The main email contents. */
+  String body = null;
 
   MailContact from = null;
 /* The Contact whom is the primary recipient of this email. */
   List<MailContact> to = [];
-/* The subject or title of the email */
-  String subject = null;
-/* The main email contents. */
-  String body = null;
+/* The ID of the Mail order within our system to use as the Mail Account. */
+  int id = null;
 /* Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. */
   List<MailContact> replyto = [];
 /* Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */
@@ -24,16 +24,16 @@ class SendMail {
 
   @override
   String toString() {
-    return 'SendMail[id=$id, from=$from, to=$to, subject=$subject, body=$body, replyto=$replyto, cc=$cc, bcc=$bcc, attachments=$attachments, ]';
+    return 'SendMail[subject=$subject, body=$body, from=$from, to=$to, id=$id, replyto=$replyto, cc=$cc, bcc=$bcc, attachments=$attachments, ]';
   }
 
   SendMail.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    id = json['id'];
-    from = new MailContact.fromJson(json['from']);
-    to = MailContact.listFromJson(json['to']);
     subject = json['subject'];
     body = json['body'];
+    from = new MailContact.fromJson(json['from']);
+    to = MailContact.listFromJson(json['to']);
+    id = json['id'];
     replyto = MailContact.listFromJson(json['replyto']);
     cc = MailContact.listFromJson(json['cc']);
     bcc = MailContact.listFromJson(json['bcc']);
@@ -42,11 +42,11 @@ class SendMail {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'from': from,
-      'to': to,
       'subject': subject,
       'body': body,
+      'from': from,
+      'to': to,
+      'id': id,
       'replyto': replyto,
       'cc': cc,
       'bcc': bcc,

@@ -408,56 +408,20 @@ Sends An email through one of your mail orders.
 ===== Parameters
 
 
-
-====== Form Parameters
+====== Body Parameter
 
 [cols="2,3,1,1,1"]
 |===         
 |Name| Description| Required| Default| Pattern
 
-| subject 
-| The Subject of the email <<string>> 
+| SendMail 
+|  <<SendMail>> 
 | X 
-| null 
 |  
-
-| body 
-| The contents of the email <<string>> 
-| X 
-| null 
-|  
-
-| from 
-| The email address of who this email will be sent from. <<string>> 
-| X 
-| null 
-|  
-
-| to 
-| The email address of who this email will be sent to. <<string>> 
-| X 
-| null 
-|  
-
-| id 
-| The ID of your mail order this will be sent through. <<integer>> 
-| - 
-| null 
-|  
-
-| toName 
-| The name or title of who this email is being sent to. <<string>> 
-| - 
-| null 
-|  
-
-| fromName 
-| The name or title of who this email is being sent from. <<string>> 
-| - 
-| null 
 |  
 
 |===         
+
 
 
 
@@ -869,7 +833,7 @@ Mail Order Details
 
 
 [#SendMail]
-=== _SendMail_ 
+=== _SendMail_ Email details
 
 Details for an Email
 
@@ -878,11 +842,17 @@ Details for an Email
 |===         
 | Field Name| Required| Type| Description| Format
 
-| id 
+| subject 
 | X 
-| Long  
-| The ID of the Mail order within our system to use as the Mail Account.
-| int64 
+| String  
+| The subject or title of the email
+|  
+
+| body 
+| X 
+| String  
+| The main email contents.
+|  
 
 | from 
 | X 
@@ -896,17 +866,11 @@ Details for an Email
 | The Contact whom is the primary recipient of this email.
 |  
 
-| subject 
+| id 
 | X 
-| String  
-| The subject or title of the email
-|  
-
-| body 
-| X 
-| String  
-| The main email contents.
-|  
+| Long  
+| The ID of the Mail order within our system to use as the Mail Account.
+| int64 
 
 | replyto 
 |  

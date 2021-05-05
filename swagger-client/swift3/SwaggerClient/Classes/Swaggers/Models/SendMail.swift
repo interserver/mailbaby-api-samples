@@ -10,15 +10,15 @@ import Foundation
 
 /** Details for an Email */
 open class SendMail: JSONEncodable {
-    /** The ID of the Mail order within our system to use as the Mail Account. */
-    public var id: Int64?
-    public var from: MailContact?
-    /** The Contact whom is the primary recipient of this email. */
-    public var to: [MailContact]?
     /** The subject or title of the email */
     public var subject: String?
     /** The main email contents. */
     public var body: String?
+    public var from: MailContact?
+    /** The Contact whom is the primary recipient of this email. */
+    public var to: [MailContact]?
+    /** The ID of the Mail order within our system to use as the Mail Account. */
+    public var id: Int64?
     /** Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. */
     public var replyto: [MailContact]?
     /** Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */
@@ -33,11 +33,11 @@ open class SendMail: JSONEncodable {
     // MARK: JSONEncodable
     open func encodeToJSON() -> Any {
         var nillableDictionary = [String:Any?]()
-        nillableDictionary["id"] = self.id?.encodeToJSON()
-        nillableDictionary["from"] = self.from?.encodeToJSON()
-        nillableDictionary["to"] = self.to?.encodeToJSON()
         nillableDictionary["subject"] = self.subject
         nillableDictionary["body"] = self.body
+        nillableDictionary["from"] = self.from?.encodeToJSON()
+        nillableDictionary["to"] = self.to?.encodeToJSON()
+        nillableDictionary["id"] = self.id?.encodeToJSON()
         nillableDictionary["replyto"] = self.replyto?.encodeToJSON()
         nillableDictionary["cc"] = self.cc?.encodeToJSON()
         nillableDictionary["bcc"] = self.bcc?.encodeToJSON()

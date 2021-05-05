@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 
 <a name="sendmailbyid"></a>
 # **SendMailById**
-> GenericResponse SendMailById (string subject, string body, string from, string to, int? id = null, string toName = null, string fromName = null)
+> GenericResponse SendMailById (SendMail sendMail)
 
 Sends an Email
 
@@ -340,18 +340,12 @@ namespace Example
             // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi(config);
-            var subject = subject_example;  // string | The Subject of the email
-            var body = body_example;  // string | The contents of the email
-            var from = from_example;  // string | The email address of who this email will be sent from.
-            var to = to_example;  // string | The email address of who this email will be sent to.
-            var id = 56;  // int? | The ID of your mail order this will be sent through. (optional) 
-            var toName = toName_example;  // string | The name or title of who this email is being sent to. (optional) 
-            var fromName = fromName_example;  // string | The name or title of who this email is being sent from. (optional) 
+            var sendMail = new SendMail(); // SendMail | 
 
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.SendMailById(subject, body, from, to, id, toName, fromName);
+                GenericResponse result = apiInstance.SendMailById(sendMail);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -369,13 +363,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **string**| The Subject of the email | 
- **body** | **string**| The contents of the email | 
- **from** | **string**| The email address of who this email will be sent from. | 
- **to** | **string**| The email address of who this email will be sent to. | 
- **id** | **int?**| The ID of your mail order this will be sent through. | [optional] 
- **toName** | **string**| The name or title of who this email is being sent to. | [optional] 
- **fromName** | **string**| The name or title of who this email is being sent from. | [optional] 
+ **sendMail** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type
 
@@ -387,7 +375,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 

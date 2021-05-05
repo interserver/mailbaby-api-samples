@@ -214,7 +214,7 @@ pub async fn send_adv_mail_by_id(configuration: &configuration::Configuration, s
 }
 
 /// Sends An email through one of your mail orders.
-pub async fn send_mail_by_id(configuration: &configuration::Configuration, subject: &str, body: &str, from: &str, to: &str, id: Option<i32>, to_name: Option<&str>, from_name: Option<&str>) -> Result<crate::models::GenericResponse, Error<SendMailByIdError>> {
+pub async fn send_mail_by_id(configuration: &configuration::Configuration, send_mail: crate::models::SendMail) -> Result<crate::models::GenericResponse, Error<SendMailByIdError>> {
 
     let local_var_client = &configuration.client;
 
@@ -232,21 +232,7 @@ pub async fn send_mail_by_id(configuration: &configuration::Configuration, subje
         };
         local_var_req_builder = local_var_req_builder.header("X-API-KEY", local_var_value);
     };
-    let mut local_var_form_params = std::collections::HashMap::new();
-    local_var_form_params.insert("subject", subject.to_string());
-    local_var_form_params.insert("body", body.to_string());
-    local_var_form_params.insert("from", from.to_string());
-    local_var_form_params.insert("to", to.to_string());
-    if let Some(local_var_param_value) = id {
-        local_var_form_params.insert("id", local_var_param_value.to_string());
-    }
-    if let Some(local_var_param_value) = to_name {
-        local_var_form_params.insert("toName", local_var_param_value.to_string());
-    }
-    if let Some(local_var_param_value) = from_name {
-        local_var_form_params.insert("fromName", local_var_param_value.to_string());
-    }
-    local_var_req_builder = local_var_req_builder.form(&local_var_form_params);
+    local_var_req_builder = local_var_req_builder.json(&send_mail);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

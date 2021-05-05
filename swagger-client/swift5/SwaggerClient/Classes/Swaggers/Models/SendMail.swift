@@ -12,15 +12,15 @@ import Foundation
 
 public struct SendMail: Codable {
 
-    /** The ID of the Mail order within our system to use as the Mail Account. */
-    public var _id: Int64
-    public var from: MailContact
-    /** The Contact whom is the primary recipient of this email. */
-    public var to: [MailContact]
     /** The subject or title of the email */
     public var subject: String
     /** The main email contents. */
     public var body: String
+    public var from: MailContact
+    /** The Contact whom is the primary recipient of this email. */
+    public var to: [MailContact]
+    /** The ID of the Mail order within our system to use as the Mail Account. */
+    public var _id: Int64
     /** Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. */
     public var replyto: [MailContact]?
     /** Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */
@@ -30,12 +30,12 @@ public struct SendMail: Codable {
     /** Optional file attachments to include in the email */
     public var attachments: [MailAttachment]?
 
-    public init(_id: Int64, from: MailContact, to: [MailContact], subject: String, body: String, replyto: [MailContact]? = nil, cc: [MailContact]? = nil, bcc: [MailContact]? = nil, attachments: [MailAttachment]? = nil) {
-        self._id = _id
-        self.from = from
-        self.to = to
+    public init(subject: String, body: String, from: MailContact, to: [MailContact], _id: Int64, replyto: [MailContact]? = nil, cc: [MailContact]? = nil, bcc: [MailContact]? = nil, attachments: [MailAttachment]? = nil) {
         self.subject = subject
         self.body = body
+        self.from = from
+        self.to = to
+        self._id = _id
         self.replyto = replyto
         self.cc = cc
         self.bcc = bcc
@@ -43,11 +43,11 @@ public struct SendMail: Codable {
     }
 
     public enum CodingKeys: String, CodingKey { 
-        case _id = "id"
-        case from
-        case to
         case subject
         case body
+        case from
+        case to
+        case _id = "id"
         case replyto
         case cc
         case bcc

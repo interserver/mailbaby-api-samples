@@ -120,40 +120,23 @@ public class OASDefaultApi {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param subject The Subject of the email (required)
-     * @param body The contents of the email (required)
-     * @param r_from The email address of who this email will be sent from. (required)
-     * @param to The email address of who this email will be sent to. (required)
-     * @param id The ID of your mail order this will be sent through. (optional)
-     * @param toName The name or title of who this email is being sent to. (optional)
-     * @param fromName The name or title of who this email is being sent from. (optional)
+     * @param oaSSendMail  (required)
      * @return OASGenericResponse
      * @throws OAS.ApiException if fails to make API call
      */
     public OASGenericResponse sendMailById(Map<String, Object> params) {
-        client.assertNotNull(params.get('subject'), 'subject');
-        client.assertNotNull(params.get('body'), 'body');
-        client.assertNotNull(params.get('r_from'), 'r_from');
-        client.assertNotNull(params.get('to'), 'to');
+        client.assertNotNull(params.get('oaSSendMail'), 'oaSSendMail');
         List<OAS.Param> query = new List<OAS.Param>();
         List<OAS.Param> form = new List<OAS.Param>();
 
-        // cast form params to verify their expected type
-        form.addAll(client.makeParam('subject', (String) params.get('subject')));
-        form.addAll(client.makeParam('body', (String) params.get('body')));
-        form.addAll(client.makeParam('from', (String) params.get('r_from')));
-        form.addAll(client.makeParam('to', (String) params.get('to')));
-        form.addAll(client.makeParam('id', (Integer) params.get('id')));
-        form.addAll(client.makeParam('toName', (String) params.get('toName')));
-        form.addAll(client.makeParam('fromName', (String) params.get('fromName')));
-
         return (OASGenericResponse) client.invoke(
-            'POST', '/mail/send', '',
+            'POST', '/mail/send',
+            (OASSendMail) params.get('oaSSendMail'),
             query, form,
             new Map<String, Object>(),
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
-            new List<String>{ 'application/x-www-form-urlencoded' },
+            new List<String>{ 'application/json', 'application/x-www-form-urlencoded' },
             new List<String> { 'apiKeyAuth' },
             OASGenericResponse.class
         );

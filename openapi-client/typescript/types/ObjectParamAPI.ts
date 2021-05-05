@@ -45,47 +45,11 @@ export interface DefaultApiSendAdvMailByIdRequest {
 
 export interface DefaultApiSendMailByIdRequest {
     /**
-     * The Subject of the email
-     * @type string
+     * 
+     * @type SendMail
      * @memberof DefaultApisendMailById
      */
-    subject: string
-    /**
-     * The contents of the email
-     * @type string
-     * @memberof DefaultApisendMailById
-     */
-    body: string
-    /**
-     * The email address of who this email will be sent from.
-     * @type string
-     * @memberof DefaultApisendMailById
-     */
-    from: string
-    /**
-     * The email address of who this email will be sent to.
-     * @type string
-     * @memberof DefaultApisendMailById
-     */
-    to: string
-    /**
-     * The ID of your mail order this will be sent through.
-     * @type number
-     * @memberof DefaultApisendMailById
-     */
-    id?: number
-    /**
-     * The name or title of who this email is being sent to.
-     * @type string
-     * @memberof DefaultApisendMailById
-     */
-    toName?: string
-    /**
-     * The name or title of who this email is being sent from.
-     * @type string
-     * @memberof DefaultApisendMailById
-     */
-    fromName?: string
+    sendMail: SendMail
 }
 
 export interface DefaultApiValidateMailOrderRequest {
@@ -165,7 +129,7 @@ export class ObjectDefaultApi {
      * @param param the request object
      */
     public sendMailById(param: DefaultApiSendMailByIdRequest, options?: Configuration): Promise<GenericResponse> {
-        return this.api.sendMailById(param.subject, param.body, param.from, param.to, param.id, param.toName, param.fromName,  options).toPromise();
+        return this.api.sendMailById(param.sendMail,  options).toPromise();
     }
 
     /**

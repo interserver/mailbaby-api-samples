@@ -103,7 +103,7 @@ class DefaultApi {
 
     }
 
-    def sendMailById ( String subject, String body, String from, String to, Integer id, String toName, String fromName, Closure onSuccess, Closure onFailure)  {
+    def sendMailById ( SendMail sendMail, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/send"
 
         // params
@@ -113,34 +113,15 @@ class DefaultApi {
         def contentType
 
         // verify required params are set
-        if (subject == null) {
-            throw new RuntimeException("missing required params subject")
-        }
-        // verify required params are set
-        if (body == null) {
-            throw new RuntimeException("missing required params body")
-        }
-        // verify required params are set
-        if (from == null) {
-            throw new RuntimeException("missing required params from")
-        }
-        // verify required params are set
-        if (to == null) {
-            throw new RuntimeException("missing required params to")
+        if (sendMail == null) {
+            throw new RuntimeException("missing required params sendMail")
         }
 
 
 
+        contentType = 'application/json';
+        bodyParams = sendMail
 
-        contentType = 'application/x-www-form-urlencoded';
-        bodyParams = [:]
-        bodyParams.put("subject", subject)
-        bodyParams.put("body", body)
-        bodyParams.put("from", from)
-        bodyParams.put("to", to)
-        bodyParams.put("id", id)
-        bodyParams.put("toName", toName)
-        bodyParams.put("fromName", fromName)
 
         apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "POST", "",

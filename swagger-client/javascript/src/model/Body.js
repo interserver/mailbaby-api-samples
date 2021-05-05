@@ -12,6 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
+import SendMail from './SendMail';
 
 /**
 * The Body model module.
@@ -23,19 +24,11 @@ export default class Body {
     * Constructs a new <code>Body</code>.
     * @alias module:model/Body
     * @class
-    * @param subject {String} The Subject of the email
-    * @param body {String} The contents of the email
-    * @param from {String} The email address of who this email will be sent from.
-    * @param to {String} The email address of who this email will be sent to.
     */
 
-    constructor(subject, body, from, to) {
+    constructor() {
         
         
-        this['subject'] = subject;
-        this['body'] = body;
-        this['from'] = from;
-        this['to'] = to;
         
     }
 
@@ -51,66 +44,17 @@ export default class Body {
             obj = obj || new Body();
                         
             
-            if (data.hasOwnProperty('subject')) {
-                obj['subject'] = ApiClient.convertToType(data['subject'], 'String');
-            }
-            if (data.hasOwnProperty('body')) {
-                obj['body'] = ApiClient.convertToType(data['body'], 'String');
-            }
-            if (data.hasOwnProperty('from')) {
-                obj['from'] = ApiClient.convertToType(data['from'], 'String');
-            }
-            if (data.hasOwnProperty('to')) {
-                obj['to'] = ApiClient.convertToType(data['to'], 'String');
-            }
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'Number');
-            }
-            if (data.hasOwnProperty('toName')) {
-                obj['toName'] = ApiClient.convertToType(data['toName'], 'String');
-            }
-            if (data.hasOwnProperty('fromName')) {
-                obj['fromName'] = ApiClient.convertToType(data['fromName'], 'String');
+            if (data.hasOwnProperty('payload')) {
+                obj['payload'] = SendMail.constructFromObject(data['payload']);
             }
         }
         return obj;
     }
 
     /**
-    * The Subject of the email
-    * @member {String} subject
+    * @member {module:model/SendMail} payload
     */
-    'subject' = undefined;
-    /**
-    * The contents of the email
-    * @member {String} body
-    */
-    'body' = undefined;
-    /**
-    * The email address of who this email will be sent from.
-    * @member {String} from
-    */
-    'from' = undefined;
-    /**
-    * The email address of who this email will be sent to.
-    * @member {String} to
-    */
-    'to' = undefined;
-    /**
-    * The ID of your mail order this will be sent through.
-    * @member {Number} id
-    */
-    'id' = undefined;
-    /**
-    * The name or title of who this email is being sent to.
-    * @member {String} toName
-    */
-    'toName' = undefined;
-    /**
-    * The name or title of who this email is being sent from.
-    * @member {String} fromName
-    */
-    'fromName' = undefined;
+    'payload' = undefined;
 
 
 

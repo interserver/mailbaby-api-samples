@@ -22,10 +22,15 @@ import MailContact from './MailContact';
  */
 class SendMail {
     /**
-     * @member {Number} id
-     * @type {Number}
+     * @member {String} subject
+     * @type {String}
      */
-    id;
+    subject;
+    /**
+     * @member {String} body
+     * @type {String}
+     */
+    body;
     /**
      * @member {MailContact} from
      * @type {MailContact}
@@ -41,15 +46,10 @@ class SendMail {
      */
     to;
     /**
-     * @member {String} subject
-     * @type {String}
+     * @member {Number} id
+     * @type {Number}
      */
-    subject;
-    /**
-     * @member {String} body
-     * @type {String}
-     */
-    body;
+    id;
     /**
      * @member {Array.<CodegenProperty{openApiType='MailContact', baseName='replyto', complexType='MailContact', getter='getReplyto', setter='setReplyto', description='null', dataType='MailContact', datatypeWithEnum='MailContact', dataFormat='null', name='replyto', min='null', max='null', defaultValue='null', defaultValueWithParam=' = MailContact.constructFromObject(data['replyto']);', baseType='MailContact', containerType='null', title='null', unescapedDescription='null', maxLength=null, minLength=null, pattern='null', example='null', jsonSchema='{
   "$ref" : "#/components/schemas/MailContact"
@@ -93,17 +93,17 @@ class SendMail {
      * Constructs a new <code>SendMail</code>.
      * Details for an Email
      * @alias module:model/SendMail
-     * @param id {Number} The ID of the Mail order within our system to use as the Mail Account.
+     * @param subject {String} The subject or title of the email
+     * @param body {String} The main email contents.
      * @param from {MailContact} 
      * @param to {Array.<CodegenProperty{openApiType='MailContact', baseName='to', complexType='MailContact', getter='getTo', setter='setTo', description='null', dataType='MailContact', datatypeWithEnum='MailContact', dataFormat='null', name='to', min='null', max='null', defaultValue='null', defaultValueWithParam=' = MailContact.constructFromObject(data['to']);', baseType='MailContact', containerType='null', title='null', unescapedDescription='null', maxLength=null, minLength=null, pattern='null', example='null', jsonSchema='{
   "$ref" : "#/components/schemas/MailContact"
 }', minimum='null', maximum='null', exclusiveMinimum=false, exclusiveMaximum=false, required=false, deprecated=false, hasMoreNonReadOnly=false, isPrimitiveType=false, isModel=true, isContainer=false, isString=false, isNumeric=false, isInteger=false, isLong=false, isNumber=false, isFloat=false, isDouble=false, isDecimal=false, isByteArray=false, isBinary=false, isFile=false, isBoolean=false, isDate=false, isDateTime=false, isUuid=false, isUri=false, isEmail=false, isFreeFormObject=false, isArray=false, isMap=false, isEnum=false, isReadOnly=false, isWriteOnly=false, isNullable=false, isSelfReference=false, isCircularReference=false, isDiscriminator=false, _enum=null, allowableValues=null, items=null, additionalProperties=null, vars=[], requiredVars=[], mostInnerItems=null, vendorExtensions={}, hasValidation=false, isInherited=false, discriminatorValue='null', nameInCamelCase='To', nameInSnakeCase='TO', enumName='null', maxItems=null, minItems=null, maxProperties=null, minProperties=null, uniqueItems=false, multipleOf=null, isXmlAttribute=false, xmlPrefix='null', xmlName='null', xmlNamespace='null', isXmlWrapped=false, isNull=false, getAdditionalPropertiesIsAnyType=false, getHasVars=false, getHasRequired=false}>} The Contact whom is the primary recipient of this email.
-     * @param subject {String} The subject or title of the email
-     * @param body {String} The main email contents.
+     * @param id {Number} The ID of the Mail order within our system to use as the Mail Account.
      */
-    constructor(id, from, to, subject, body) { 
+    constructor(subject, body, from, to, id) { 
         
-        SendMail.initialize(this, id, from, to, subject, body);
+        SendMail.initialize(this, subject, body, from, to, id);
     }
 
     /**
@@ -111,12 +111,12 @@ class SendMail {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, from, to, subject, body) { 
-        obj['id'] = id;
-        obj['from'] = from;
-        obj['to'] = to;
+    static initialize(obj, subject, body, from, to, id) { 
         obj['subject'] = subject;
         obj['body'] = body;
+        obj['from'] = from;
+        obj['to'] = to;
+        obj['id'] = id;
     }
 
     /**
@@ -130,8 +130,11 @@ class SendMail {
         if (data) {
             obj = obj || new SendMail();
 
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'Number');
+            if (data.hasOwnProperty('subject')) {
+                obj['subject'] = ApiClient.convertToType(data['subject'], 'String');
+            }
+            if (data.hasOwnProperty('body')) {
+                obj['body'] = ApiClient.convertToType(data['body'], 'String');
             }
             if (data.hasOwnProperty('from')) {
                 obj['from'] = MailContact.constructFromObject(data['from']);
@@ -139,11 +142,8 @@ class SendMail {
             if (data.hasOwnProperty('to')) {
                 obj['to'] = ApiClient.convertToType(data['to'], [MailContact]);
             }
-            if (data.hasOwnProperty('subject')) {
-                obj['subject'] = ApiClient.convertToType(data['subject'], 'String');
-            }
-            if (data.hasOwnProperty('body')) {
-                obj['body'] = ApiClient.convertToType(data['body'], 'String');
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'Number');
             }
             if (data.hasOwnProperty('replyto')) {
                 obj['replyto'] = ApiClient.convertToType(data['replyto'], [MailContact]);

@@ -82,36 +82,12 @@ class DefaultApi extends ApiClient with _$DefaultApiClient {
     @PostReq(path: "/mail/send", metadata: {"auth": [ {"type": "apiKey", "name": "apiKeyAuth", "keyName": "X-API-KEY", "where": "header" }]})
     Future<GenericResponse> sendMailById(
             
-            @AsFormField() String subject, 
-            
-            @AsFormField() String body, 
-            
-            @AsFormField() String from, 
-            
-            @AsFormField() String to, 
-            
-            @AsFormField() int id, 
-            
-            @AsFormField() String toName, 
-            
-            @AsFormField() String fromName
+             @AsJson() SendMail sendMail
         ) {
         return super.sendMailById(
 
         
-        subject, 
-        
-        body, 
-        
-        from, 
-        
-        to, 
-        
-        id, 
-        
-        toName, 
-        
-        fromName
+        sendMail
         ).timeout(timeout);
     }
 

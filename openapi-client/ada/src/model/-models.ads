@@ -190,14 +190,17 @@ package .Models is
 
 
 
-
+   --  ------------------------------
+   --  Email details
+   --  Details for an Email
+   --  ------------------------------
    type SendMail_Type is
      record
-       Id : Swagger.Long;
-       From : .Models.MailContact_Type;
-       To : .Models.MailContact_Type_Vectors.Vector;
        Subject : Swagger.UString;
        P_Body : Swagger.UString;
+       From : .Models.MailContact_Type;
+       To : .Models.MailContact_Type_Vectors.Vector;
+       Id : Swagger.Long;
        Replyto : .Models.MailContact_Type_Vectors.Vector;
        Cc : .Models.MailContact_Type_Vectors.Vector;
        Bcc : .Models.MailContact_Type_Vectors.Vector;

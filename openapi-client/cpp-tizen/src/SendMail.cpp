@@ -23,11 +23,11 @@ SendMail::~SendMail()
 void
 SendMail::__init()
 {
-	//id = long(0);
-	//from = new MailContact();
-	//new std::list()std::list> to;
 	//subject = std::string();
 	//body = std::string();
+	//from = new MailContact();
+	//new std::list()std::list> to;
+	//id = long(0);
 	//new std::list()std::list> replyto;
 	//new std::list()std::list> cc;
 	//new std::list()std::list> bcc;
@@ -37,10 +37,15 @@ SendMail::__init()
 void
 SendMail::__cleanup()
 {
-	//if(id != NULL) {
+	//if(subject != NULL) {
 	//
-	//delete id;
-	//id = NULL;
+	//delete subject;
+	//subject = NULL;
+	//}
+	//if(body != NULL) {
+	//
+	//delete body;
+	//body = NULL;
 	//}
 	//if(from != NULL) {
 	//
@@ -52,15 +57,10 @@ SendMail::__cleanup()
 	//delete to;
 	//to = NULL;
 	//}
-	//if(subject != NULL) {
+	//if(id != NULL) {
 	//
-	//delete subject;
-	//subject = NULL;
-	//}
-	//if(body != NULL) {
-	//
-	//delete body;
-	//body = NULL;
+	//delete id;
+	//id = NULL;
 	//}
 	//if(replyto != NULL) {
 	//replyto.RemoveAll(true);
@@ -90,13 +90,24 @@ SendMail::fromJson(char* jsonStr)
 {
 	JsonObject *pJsonObject = json_node_get_object(json_from_string(jsonStr,NULL));
 	JsonNode *node;
-	const gchar *idKey = "id";
-	node = json_object_get_member(pJsonObject, idKey);
+	const gchar *subjectKey = "subject";
+	node = json_object_get_member(pJsonObject, subjectKey);
 	if (node !=NULL) {
 	
 
-		if (isprimitive("long long")) {
-			jsonToValue(&id, node, "long long", "");
+		if (isprimitive("std::string")) {
+			jsonToValue(&subject, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *bodyKey = "body";
+	node = json_object_get_member(pJsonObject, bodyKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&body, node, "std::string", "");
 		} else {
 			
 		}
@@ -139,24 +150,13 @@ SendMail::fromJson(char* jsonStr)
 		}
 		
 	}
-	const gchar *subjectKey = "subject";
-	node = json_object_get_member(pJsonObject, subjectKey);
+	const gchar *idKey = "id";
+	node = json_object_get_member(pJsonObject, idKey);
 	if (node !=NULL) {
 	
 
-		if (isprimitive("std::string")) {
-			jsonToValue(&subject, node, "std::string", "");
-		} else {
-			
-		}
-	}
-	const gchar *bodyKey = "body";
-	node = json_object_get_member(pJsonObject, bodyKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("std::string")) {
-			jsonToValue(&body, node, "std::string", "");
+		if (isprimitive("long long")) {
+			jsonToValue(&id, node, "long long", "");
 		} else {
 			
 		}
@@ -269,15 +269,24 @@ SendMail::toJson()
 {
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;
-	if (isprimitive("long long")) {
-		long long obj = getId();
-		node = converttoJson(&obj, "long long", "");
+	if (isprimitive("std::string")) {
+		std::string obj = getSubject();
+		node = converttoJson(&obj, "std::string", "");
 	}
 	else {
 		
 	}
-	const gchar *idKey = "id";
-	json_object_set_member(pJsonObject, idKey, node);
+	const gchar *subjectKey = "subject";
+	json_object_set_member(pJsonObject, subjectKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getBody();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *bodyKey = "body";
+	json_object_set_member(pJsonObject, bodyKey, node);
 	if (isprimitive("MailContact")) {
 		MailContact obj = getFrom();
 		node = converttoJson(&obj, "MailContact", "");
@@ -317,24 +326,15 @@ SendMail::toJson()
 	
 	const gchar *toKey = "to";
 	json_object_set_member(pJsonObject, toKey, node);
-	if (isprimitive("std::string")) {
-		std::string obj = getSubject();
-		node = converttoJson(&obj, "std::string", "");
+	if (isprimitive("long long")) {
+		long long obj = getId();
+		node = converttoJson(&obj, "long long", "");
 	}
 	else {
 		
 	}
-	const gchar *subjectKey = "subject";
-	json_object_set_member(pJsonObject, subjectKey, node);
-	if (isprimitive("std::string")) {
-		std::string obj = getBody();
-		node = converttoJson(&obj, "std::string", "");
-	}
-	else {
-		
-	}
-	const gchar *bodyKey = "body";
-	json_object_set_member(pJsonObject, bodyKey, node);
+	const gchar *idKey = "id";
+	json_object_set_member(pJsonObject, idKey, node);
 	if (isprimitive("MailContact")) {
 		list<MailContact> new_list = static_cast<list <MailContact> > (getReplyto());
 		node = converttoJson(&new_list, "MailContact", "array");
@@ -443,16 +443,28 @@ SendMail::toJson()
 	return ret;
 }
 
-long long
-SendMail::getId()
+std::string
+SendMail::getSubject()
 {
-	return id;
+	return subject;
 }
 
 void
-SendMail::setId(long long  id)
+SendMail::setSubject(std::string  subject)
 {
-	this->id = id;
+	this->subject = subject;
+}
+
+std::string
+SendMail::getBody()
+{
+	return body;
+}
+
+void
+SendMail::setBody(std::string  body)
+{
+	this->body = body;
 }
 
 MailContact
@@ -479,28 +491,16 @@ SendMail::setTo(std::list <MailContact> to)
 	this->to = to;
 }
 
-std::string
-SendMail::getSubject()
+long long
+SendMail::getId()
 {
-	return subject;
+	return id;
 }
 
 void
-SendMail::setSubject(std::string  subject)
+SendMail::setId(long long  id)
 {
-	this->subject = subject;
-}
-
-std::string
-SendMail::getBody()
-{
-	return body;
-}
-
-void
-SendMail::setBody(std::string  body)
-{
-	this->body = body;
+	this->id = id;
 }
 
 std::list<MailContact>

@@ -140,14 +140,8 @@ public class DefaultApiTest {
      */
     @Test
     public void sendMailByIdTest() {
-        String subject = null;
-        String body = null;
-        String from = null;
-        String to = null;
-        Integer id = null;
-        String toName = null;
-        String fromName = null;
-        //GenericResponse response = api.sendMailById(subject, body, from, to, id, toName, fromName);
+        SendMail sendMail = null;
+        //GenericResponse response = api.sendMailById(sendMail);
         //assertNotNull(response);
         // TODO: test validations
         

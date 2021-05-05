@@ -116,24 +116,12 @@ class DefaultApi(baseUrl: String) {
    * Available security schemes:
    *   apiKeyAuth (apiKey)
    * 
-   * @param subject The Subject of the email
-   * @param body The contents of the email
-   * @param from The email address of who this email will be sent from.
-   * @param to The email address of who this email will be sent to.
-   * @param id The ID of your mail order this will be sent through.
-   * @param toName The name or title of who this email is being sent to.
-   * @param fromName The name or title of who this email is being sent from.
+   * @param sendMail 
    */
-  def sendMailById(subject: String, body: String, from: String, to: String, id: Option[Int] = None, toName: Option[String] = None, fromName: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[GenericResponse] =
-    ApiRequest[GenericResponse](ApiMethods.POST, baseUrl, "/mail/send", "application/x-www-form-urlencoded")
+  def sendMailById(sendMail: SendMail)(implicit apiKey: ApiKeyValue): ApiRequest[GenericResponse] =
+    ApiRequest[GenericResponse](ApiMethods.POST, baseUrl, "/mail/send", "application/json")
       .withApiKey(apiKey, "X-API-KEY", HEADER)
-      .withFormParam("subject", subject)
-      .withFormParam("body", body)
-      .withFormParam("from", from)
-      .withFormParam("to", to)
-      .withFormParam("id", id)
-      .withFormParam("toName", toName)
-      .withFormParam("fromName", fromName)
+      .withBody(sendMail)
       .withSuccessResponse[GenericResponse](200)
       .withErrorResponse[Unit](400)
       .withErrorResponse[ErrorResponse](401)

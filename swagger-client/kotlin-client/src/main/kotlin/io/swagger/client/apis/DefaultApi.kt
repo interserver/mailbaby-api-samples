@@ -124,18 +124,39 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param subject  
      * @param body  
-     * @param from  
-     * @param to  
-     * @param id  
-     * @param toName  
-     * @param fromName  
      * @return GenericResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun sendMailById(subject: kotlin.String, body: kotlin.String, from: kotlin.String, to: kotlin.String, id: kotlin.Int, toName: kotlin.String, fromName: kotlin.String): GenericResponse {
-        val localVariableBody: kotlin.Any? = mapOf("subject" to "$subject", "body" to "$body", "from" to "$from", "to" to "$to", "id" to "$id", "toName" to "$toName", "fromName" to "$fromName")
+    fun sendMailById(body: SendMail): GenericResponse {
+        val localVariableBody: kotlin.Any? = body
+        
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String, kotlin.String> = mapOf("Content-Type" to "multipart/form-data")
+        val localVariableConfig = RequestConfig(
+                RequestMethod.POST,
+                "/mail/send", headers = localVariableHeaders
+        )
+        val response = request<GenericResponse>(
+                localVariableConfig, localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as GenericResponse
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+        }
+    }
+    /**
+     * Sends an Email
+     * Sends An email through one of your mail orders.
+     * @param payload  
+     * @return GenericResponse
+     */
+    @Suppress("UNCHECKED_CAST")
+    fun sendMailById(payload: SendMail): GenericResponse {
+        val localVariableBody: kotlin.Any? = mapOf("payload" to "$payload")
         
         val localVariableHeaders: kotlin.collections.Map<kotlin.String, kotlin.String> = mapOf("Content-Type" to "multipart/form-data")
         val localVariableConfig = RequestConfig(

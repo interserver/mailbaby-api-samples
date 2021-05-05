@@ -7,15 +7,15 @@
  *)
 
 type t = {
-    (* The ID of the Mail order within our system to use as the Mail Account. *)
-    id: int64;
-    from: Mail_contact.t;
-    (* The Contact whom is the primary recipient of this email. *)
-    _to: Mail_contact.t list;
     (* The subject or title of the email *)
     subject: string;
     (* The main email contents. *)
     body: string;
+    from: Mail_contact.t;
+    (* The Contact whom is the primary recipient of this email. *)
+    _to: Mail_contact.t list;
+    (* The ID of the Mail order within our system to use as the Mail Account. *)
+    id: int64;
     (* Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. *)
     replyto: Mail_contact.t list;
     (* Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. *)
@@ -27,12 +27,12 @@ type t = {
 } [@@deriving yojson { strict = false }, show ];;
 
 (** Details for an Email *)
-let create (id : int64) (from : Mail_contact.t) (_to : Mail_contact.t list) (subject : string) (body : string) : t = {
-    id = id;
-    from = from;
-    _to = _to;
+let create (subject : string) (body : string) (from : Mail_contact.t) (_to : Mail_contact.t list) (id : int64) : t = {
     subject = subject;
     body = body;
+    from = from;
+    _to = _to;
+    id = id;
     replyto = [];
     cc = [];
     bcc = [];

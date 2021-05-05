@@ -689,7 +689,7 @@ static bool sendMailByIdProcessor(MemoryStruct_s p_chunk, long code, char* error
 }
 
 static bool sendMailByIdHelper(char * accessToken,
-	std::string subject, std::string body, std::string from, std::string to, int id, std::string toName, std::string fromName, 
+	SendMail sendMail, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -701,6 +701,7 @@ static bool sendMailByIdHelper(char * accessToken,
 	string accessHeader = "Authorization: Bearer ";
 	accessHeader.append(accessToken);
 	headerList = curl_slist_append(headerList, accessHeader.c_str());
+	headerList = curl_slist_append(headerList, "Content-Type: application/json");
 	headerList = curl_slist_append(headerList, "Content-Type: application/x-www-form-urlencoded");
 
 	map <string, string> queryParams;
@@ -709,6 +710,19 @@ static bool sendMailByIdHelper(char * accessToken,
 	string mBody = "";
 	JsonNode* node;
 	JsonArray* json_array;
+
+	if (isprimitive("SendMail")) {
+		node = converttoJson(&sendMail, "SendMail", "");
+	}
+	
+	char *jsonStr =  sendMail.toJson();
+	node = json_from_string(jsonStr, NULL);
+	g_free(static_cast<gpointer>(jsonStr));
+	
+
+	char *jsonStr1 =  json_to_string(node, false);
+	mBody.append(jsonStr1);
+	g_free(static_cast<gpointer>(jsonStr1));
 
 	string url("/mail/send");
 	int pos;
@@ -760,22 +774,22 @@ static bool sendMailByIdHelper(char * accessToken,
 
 
 bool DefaultManager::sendMailByIdAsync(char * accessToken,
-	std::string subject, std::string body, std::string from, std::string to, int id, std::string toName, std::string fromName, 
+	SendMail sendMail, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
 	return sendMailByIdHelper(accessToken,
-	subject, body, from, to, id, toName, fromName, 
+	sendMail, 
 	handler, userData, true);
 }
 
 bool DefaultManager::sendMailByIdSync(char * accessToken,
-	std::string subject, std::string body, std::string from, std::string to, int id, std::string toName, std::string fromName, 
+	SendMail sendMail, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
 	return sendMailByIdHelper(accessToken,
-	subject, body, from, to, id, toName, fromName, 
+	sendMail, 
 	handler, userData, false);
 }
 

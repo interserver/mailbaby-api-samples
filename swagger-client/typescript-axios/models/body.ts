@@ -18,45 +18,9 @@
  */
 export interface Body {
     /**
-     * The Subject of the email
-     * @type {string}
+     * 
+     * @type {SendMail}
      * @memberof Body
      */
-    subject: any;
-    /**
-     * The contents of the email
-     * @type {string}
-     * @memberof Body
-     */
-    body: any;
-    /**
-     * The email address of who this email will be sent from.
-     * @type {string}
-     * @memberof Body
-     */
-    from: any;
-    /**
-     * The email address of who this email will be sent to.
-     * @type {string}
-     * @memberof Body
-     */
-    to: any;
-    /**
-     * The ID of your mail order this will be sent through.
-     * @type {number}
-     * @memberof Body
-     */
-    id?: any;
-    /**
-     * The name or title of who this email is being sent to.
-     * @type {string}
-     * @memberof Body
-     */
-    toName?: any;
-    /**
-     * The name or title of who this email is being sent from.
-     * @type {string}
-     * @memberof Body
-     */
-    fromName?: any;
+    payload?: any;
 }

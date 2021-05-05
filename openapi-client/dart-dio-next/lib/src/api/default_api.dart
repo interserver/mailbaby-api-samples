@@ -8,7 +8,6 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/error_response.dart';
 import 'package:openapi/src/model/generic_response.dart';
 import 'package:openapi/src/model/mail_log.dart';
@@ -312,13 +311,7 @@ class DefaultApi {
   ///
   /// Sends An email through one of your mail orders.
   Future<Response<GenericResponse>> sendMailById({ 
-    required String subject,
-    required String body,
-    required String from,
-    required String to,
-    int? id,
-    String? toName,
-    String? fromName,
+    required SendMail sendMail,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -344,6 +337,7 @@ class DefaultApi {
         ...?extra,
       },
       contentType: [
+        'application/json',
         'application/x-www-form-urlencoded',
       ].first,
       validateStatus: validateStatus,
@@ -355,15 +349,8 @@ class DefaultApi {
     dynamic _bodyData;
 
     try {
-      _bodyData = <String, dynamic>{
-        r'subject': encodeFormParameter(_serializers, subject, const FullType(String)),
-        r'body': encodeFormParameter(_serializers, body, const FullType(String)),
-        r'from': encodeFormParameter(_serializers, from, const FullType(String)),
-        r'to': encodeFormParameter(_serializers, to, const FullType(String)),
-        if (id != null) r'id': encodeFormParameter(_serializers, id, const FullType(int)),
-        if (toName != null) r'toName': encodeFormParameter(_serializers, toName, const FullType(String)),
-        if (fromName != null) r'fromName': encodeFormParameter(_serializers, fromName, const FullType(String)),
-      };
+      const _type = FullType(SendMail);
+      _bodyData = _serializers.serialize(sendMail, specifiedType: _type);
 
     } catch(error) {
       throw DioError(

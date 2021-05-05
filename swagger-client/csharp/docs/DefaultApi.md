@@ -259,7 +259,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 <a name="sendmailbyid"></a>
 # **SendMailById**
-> GenericResponse SendMailById (string subject, string body, string from, string to, int? id, string toName, string fromName)
+> GenericResponse SendMailById (SendMail body)
 
 Sends an Email
 
@@ -285,18 +285,12 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var subject = subject_example;  // string | 
-            var body = body_example;  // string | 
-            var from = from_example;  // string | 
-            var to = to_example;  // string | 
-            var id = 56;  // int? | 
-            var toName = toName_example;  // string | 
-            var fromName = fromName_example;  // string | 
+            var body = new SendMail(); // SendMail | 
 
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.SendMailById(subject, body, from, to, id, toName, fromName);
+                GenericResponse result = apiInstance.SendMailById(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -312,13 +306,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **string**|  | 
- **body** | **string**|  | 
- **from** | **string**|  | 
- **to** | **string**|  | 
- **id** | **int?**|  | 
- **toName** | **string**|  | 
- **fromName** | **string**|  | 
+ **body** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type
 
@@ -330,7 +318,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

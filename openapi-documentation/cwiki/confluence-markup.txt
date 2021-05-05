@@ -307,6 +307,9 @@ h3. sendMailById
 ----
 h4. Parameters
 
+h5. Body Parameter
+        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        |SendMail | | SendMail | (/) | |  |  |
 
 
 ----
@@ -550,11 +553,11 @@ h2. Models
         
         
         ||Field Name||Required||Type||Description||Enum||
-         |id |(/) |{noformat:nopanel=true}Long{noformat} |The ID of the Mail order within our system to use as the Mail Account. |  |
-         |from |(/) |{noformat:nopanel=true}MailContact{noformat} | |  |
-         |to |(/) |{noformat:nopanel=true}array[MailContact]{noformat} |The Contact whom is the primary recipient of this email. |  |
          |subject |(/) |{noformat:nopanel=true}String{noformat} |The subject or title of the email |  |
          |body |(/) |{noformat:nopanel=true}String{noformat} |The main email contents. |  |
+         |from |(/) |{noformat:nopanel=true}MailContact{noformat} | |  |
+         |to |(/) |{noformat:nopanel=true}array[MailContact]{noformat} |The Contact whom is the primary recipient of this email. |  |
+         |id |(/) |{noformat:nopanel=true}Long{noformat} |The ID of the Mail order within our system to use as the Mail Account. |  |
          |replyto |(x) |{noformat:nopanel=true}array[MailContact]{noformat} |Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. |  |
          |cc |(x) |{noformat:nopanel=true}array[MailContact]{noformat} |Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. |  |
          |bcc |(x) |{noformat:nopanel=true}array[MailContact]{noformat} |Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. |  |

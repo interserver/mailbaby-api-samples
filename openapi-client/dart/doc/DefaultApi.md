@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendMailById**
-> GenericResponse sendMailById(subject, body, from, to, id, toName, fromName)
+> GenericResponse sendMailById(sendMail)
 
 Sends an Email
 
@@ -208,16 +208,10 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
 final api_instance = DefaultApi();
-final subject = subject_example; // String | The Subject of the email
-final body = body_example; // String | The contents of the email
-final from = from_example; // String | The email address of who this email will be sent from.
-final to = to_example; // String | The email address of who this email will be sent to.
-final id = 56; // int | The ID of your mail order this will be sent through.
-final toName = toName_example; // String | The name or title of who this email is being sent to.
-final fromName = fromName_example; // String | The name or title of who this email is being sent from.
+final sendMail = SendMail(); // SendMail | 
 
 try { 
-    final result = api_instance.sendMailById(subject, body, from, to, id, toName, fromName);
+    final result = api_instance.sendMailById(sendMail);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->sendMailById: $e\n');
@@ -228,13 +222,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **String**| The Subject of the email | 
- **body** | **String**| The contents of the email | 
- **from** | **String**| The email address of who this email will be sent from. | 
- **to** | **String**| The email address of who this email will be sent to. | 
- **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
- **toName** | **String**| The name or title of who this email is being sent to. | [optional] 
- **fromName** | **String**| The name or title of who this email is being sent from. | [optional] 
+ **sendMail** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type
 
@@ -246,7 +234,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

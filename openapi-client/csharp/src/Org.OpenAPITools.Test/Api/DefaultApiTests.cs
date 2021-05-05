@@ -117,14 +117,8 @@ namespace Org.OpenAPITools.Test
         public void SendMailByIdTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string subject = null;
-            //string body = null;
-            //string from = null;
-            //string to = null;
-            //int? id = null;
-            //string toName = null;
-            //string fromName = null;
-            //var response = instance.SendMailById(subject, body, from, to, id, toName, fromName);
+            //SendMail sendMail = null;
+            //var response = instance.SendMailById(sendMail);
             //Assert.IsInstanceOf(typeof(GenericResponse), response, "response is GenericResponse");
         }
         

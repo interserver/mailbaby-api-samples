@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** | The ID of the Mail order within our system to use as the Mail Account. | 
-**From** | [**MailContact**](MailContact.md) |  | 
-**To** | [**[]MailContact**](MailContact.md) | The Contact whom is the primary recipient of this email. | 
 **Subject** | **string** | The subject or title of the email | 
 **Body** | **string** | The main email contents. | 
+**From** | [**MailContact**](MailContact.md) |  | 
+**To** | [**[]MailContact**](MailContact.md) | The Contact whom is the primary recipient of this email. | 
+**Id** | **int64** | The ID of the Mail order within our system to use as the Mail Account. | 
 **Replyto** | Pointer to [**[]MailContact**](MailContact.md) | Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. | [optional] 
 **Cc** | Pointer to [**[]MailContact**](MailContact.md) | Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. | [optional] 
 **Bcc** | Pointer to [**[]MailContact**](MailContact.md) | Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewSendMail
 
-`func NewSendMail(id int64, from MailContact, to []MailContact, subject string, body string, ) *SendMail`
+`func NewSendMail(subject string, body string, from MailContact, to []MailContact, id int64, ) *SendMail`
 
 NewSendMail instantiates a new SendMail object
 This constructor will assign default values to properties that have it defined,
@@ -33,24 +33,44 @@ NewSendMailWithDefaults instantiates a new SendMail object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetSubject
 
-`func (o *SendMail) GetId() int64`
+`func (o *SendMail) GetSubject() string`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetSubject returns the Subject field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetSubjectOk
 
-`func (o *SendMail) GetIdOk() (*int64, bool)`
+`func (o *SendMail) GetSubjectOk() (*string, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetSubjectOk returns a tuple with the Subject field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetSubject
 
-`func (o *SendMail) SetId(v int64)`
+`func (o *SendMail) SetSubject(v string)`
 
-SetId sets Id field to given value.
+SetSubject sets Subject field to given value.
+
+
+### GetBody
+
+`func (o *SendMail) GetBody() string`
+
+GetBody returns the Body field if non-nil, zero value otherwise.
+
+### GetBodyOk
+
+`func (o *SendMail) GetBodyOk() (*string, bool)`
+
+GetBodyOk returns a tuple with the Body field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBody
+
+`func (o *SendMail) SetBody(v string)`
+
+SetBody sets Body field to given value.
 
 
 ### GetFrom
@@ -93,44 +113,24 @@ and a boolean to check if the value has been set.
 SetTo sets To field to given value.
 
 
-### GetSubject
+### GetId
 
-`func (o *SendMail) GetSubject() string`
+`func (o *SendMail) GetId() int64`
 
-GetSubject returns the Subject field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetSubjectOk
+### GetIdOk
 
-`func (o *SendMail) GetSubjectOk() (*string, bool)`
+`func (o *SendMail) GetIdOk() (*int64, bool)`
 
-GetSubjectOk returns a tuple with the Subject field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSubject
+### SetId
 
-`func (o *SendMail) SetSubject(v string)`
+`func (o *SendMail) SetId(v int64)`
 
-SetSubject sets Subject field to given value.
-
-
-### GetBody
-
-`func (o *SendMail) GetBody() string`
-
-GetBody returns the Body field if non-nil, zero value otherwise.
-
-### GetBodyOk
-
-`func (o *SendMail) GetBodyOk() (*string, bool)`
-
-GetBodyOk returns a tuple with the Body field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBody
-
-`func (o *SendMail) SetBody(v string)`
-
-SetBody sets Body field to given value.
+SetId sets Id field to given value.
 
 
 ### GetReplyto

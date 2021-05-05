@@ -19,15 +19,6 @@ import { MailContact } from './mailContact';
 */
 export class SendMail {
     /**
-    * The ID of the Mail order within our system to use as the Mail Account.
-    */
-    'id': number;
-    'from': MailContact;
-    /**
-    * The Contact whom is the primary recipient of this email.
-    */
-    'to': Array<MailContact>;
-    /**
     * The subject or title of the email
     */
     'subject': string;
@@ -35,6 +26,15 @@ export class SendMail {
     * The main email contents.
     */
     'body': string;
+    'from': MailContact;
+    /**
+    * The Contact whom is the primary recipient of this email.
+    */
+    'to': Array<MailContact>;
+    /**
+    * The ID of the Mail order within our system to use as the Mail Account.
+    */
+    'id': number;
     /**
     * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
     */
@@ -56,9 +56,14 @@ export class SendMail {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "id",
-            "baseName": "id",
-            "type": "number"
+            "name": "subject",
+            "baseName": "subject",
+            "type": "string"
+        },
+        {
+            "name": "body",
+            "baseName": "body",
+            "type": "string"
         },
         {
             "name": "from",
@@ -71,14 +76,9 @@ export class SendMail {
             "type": "Array<MailContact>"
         },
         {
-            "name": "subject",
-            "baseName": "subject",
-            "type": "string"
-        },
-        {
-            "name": "body",
-            "baseName": "body",
-            "type": "string"
+            "name": "id",
+            "baseName": "id",
+            "type": "number"
         },
         {
             "name": "replyto",

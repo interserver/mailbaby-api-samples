@@ -18,11 +18,17 @@
  */
 export interface SendMail {
     /**
-     * The ID of the Mail order within our system to use as the Mail Account.
-     * @type {number}
+     * The subject or title of the email
+     * @type {string}
      * @memberof SendMail
      */
-    id: any;
+    subject: any;
+    /**
+     * The main email contents.
+     * @type {string}
+     * @memberof SendMail
+     */
+    body: any;
     /**
      * 
      * @type {MailContact}
@@ -36,17 +42,11 @@ export interface SendMail {
      */
     to: any;
     /**
-     * The subject or title of the email
-     * @type {string}
+     * The ID of the Mail order within our system to use as the Mail Account.
+     * @type {number}
      * @memberof SendMail
      */
-    subject: any;
-    /**
-     * The main email contents.
-     * @type {string}
-     * @memberof SendMail
-     */
-    body: any;
+    id: any;
     /**
      * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
      * @type {Array&lt;MailContact&gt;}

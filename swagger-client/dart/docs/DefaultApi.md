@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendMailById**
-> GenericResponse sendMailById(subject, body, from, to, id, toName, fromName)
+> GenericResponse sendMailById(body, payload)
 
 Sends an Email
 
@@ -207,16 +207,11 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
 
 var api_instance = new DefaultApi();
-var subject = subject_example; // String | 
-var body = body_example; // String | 
-var from = from_example; // String | 
-var to = to_example; // String | 
-var id = 56; // int | 
-var toName = toName_example; // String | 
-var fromName = fromName_example; // String | 
+var body = new SendMail(); // SendMail | 
+var payload = ; // SendMail | 
 
 try {
-    var result = api_instance.sendMailById(subject, body, from, to, id, toName, fromName);
+    var result = api_instance.sendMailById(body, payload);
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->sendMailById: $e\n");
@@ -227,13 +222,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **String**|  | 
- **body** | **String**|  | 
- **from** | **String**|  | 
- **to** | **String**|  | 
- **id** | **int**|  | 
- **toName** | **String**|  | 
- **fromName** | **String**|  | 
+ **body** | [**SendMail**](SendMail.md)|  | 
+ **payload** | [**SendMail**](.md)|  | 
 
 ### Return type
 
@@ -245,7 +235,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

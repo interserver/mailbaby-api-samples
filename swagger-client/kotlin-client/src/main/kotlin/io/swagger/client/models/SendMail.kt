@@ -16,11 +16,11 @@ import io.swagger.client.models.MailContact
 
 /**
  * Details for an Email
- * @param id The ID of the Mail order within our system to use as the Mail Account.
- * @param from 
- * @param to The Contact whom is the primary recipient of this email.
  * @param subject The subject or title of the email
  * @param body The main email contents.
+ * @param from 
+ * @param to The Contact whom is the primary recipient of this email.
+ * @param id The ID of the Mail order within our system to use as the Mail Account.
  * @param replyto Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
  * @param cc Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
  * @param bcc Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
@@ -28,15 +28,15 @@ import io.swagger.client.models.MailContact
  */
 data class SendMail (
 
-    /* The ID of the Mail order within our system to use as the Mail Account. */
-    val id: kotlin.Long,
-    val from: MailContact,
-    /* The Contact whom is the primary recipient of this email. */
-    val to: kotlin.Array<MailContact>,
     /* The subject or title of the email */
     val subject: kotlin.String,
     /* The main email contents. */
     val body: kotlin.String,
+    val from: MailContact,
+    /* The Contact whom is the primary recipient of this email. */
+    val to: kotlin.Array<MailContact>,
+    /* The ID of the Mail order within our system to use as the Mail Account. */
+    val id: kotlin.Long,
     /* Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. */
     val replyto: kotlin.Array<MailContact>? = null,
     /* Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */

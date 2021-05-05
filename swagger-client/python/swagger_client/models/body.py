@@ -28,214 +28,40 @@ class Body(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'subject': 'str',
-        'body': 'str',
-        '_from': 'str',
-        'to': 'str',
-        'id': 'int',
-        'to_name': 'str',
-        'from_name': 'str'
+        'payload': 'SendMail'
     }
 
     attribute_map = {
-        'subject': 'subject',
-        'body': 'body',
-        '_from': 'from',
-        'to': 'to',
-        'id': 'id',
-        'to_name': 'toName',
-        'from_name': 'fromName'
+        'payload': 'payload'
     }
 
-    def __init__(self, subject=None, body=None, _from=None, to=None, id=None, to_name=None, from_name=None):  # noqa: E501
+    def __init__(self, payload=None):  # noqa: E501
         """Body - a model defined in Swagger"""  # noqa: E501
-        self._subject = None
-        self._body = None
-        self.__from = None
-        self._to = None
-        self._id = None
-        self._to_name = None
-        self._from_name = None
+        self._payload = None
         self.discriminator = None
-        self.subject = subject
-        self.body = body
-        self._from = _from
-        self.to = to
-        if id is not None:
-            self.id = id
-        if to_name is not None:
-            self.to_name = to_name
-        if from_name is not None:
-            self.from_name = from_name
+        if payload is not None:
+            self.payload = payload
 
     @property
-    def subject(self):
-        """Gets the subject of this Body.  # noqa: E501
+    def payload(self):
+        """Gets the payload of this Body.  # noqa: E501
 
-        The Subject of the email  # noqa: E501
 
-        :return: The subject of this Body.  # noqa: E501
-        :rtype: str
+        :return: The payload of this Body.  # noqa: E501
+        :rtype: SendMail
         """
-        return self._subject
+        return self._payload
 
-    @subject.setter
-    def subject(self, subject):
-        """Sets the subject of this Body.
+    @payload.setter
+    def payload(self, payload):
+        """Sets the payload of this Body.
 
-        The Subject of the email  # noqa: E501
 
-        :param subject: The subject of this Body.  # noqa: E501
-        :type: str
-        """
-        if subject is None:
-            raise ValueError("Invalid value for `subject`, must not be `None`")  # noqa: E501
-
-        self._subject = subject
-
-    @property
-    def body(self):
-        """Gets the body of this Body.  # noqa: E501
-
-        The contents of the email  # noqa: E501
-
-        :return: The body of this Body.  # noqa: E501
-        :rtype: str
-        """
-        return self._body
-
-    @body.setter
-    def body(self, body):
-        """Sets the body of this Body.
-
-        The contents of the email  # noqa: E501
-
-        :param body: The body of this Body.  # noqa: E501
-        :type: str
-        """
-        if body is None:
-            raise ValueError("Invalid value for `body`, must not be `None`")  # noqa: E501
-
-        self._body = body
-
-    @property
-    def _from(self):
-        """Gets the _from of this Body.  # noqa: E501
-
-        The email address of who this email will be sent from.  # noqa: E501
-
-        :return: The _from of this Body.  # noqa: E501
-        :rtype: str
-        """
-        return self.__from
-
-    @_from.setter
-    def _from(self, _from):
-        """Sets the _from of this Body.
-
-        The email address of who this email will be sent from.  # noqa: E501
-
-        :param _from: The _from of this Body.  # noqa: E501
-        :type: str
-        """
-        if _from is None:
-            raise ValueError("Invalid value for `_from`, must not be `None`")  # noqa: E501
-
-        self.__from = _from
-
-    @property
-    def to(self):
-        """Gets the to of this Body.  # noqa: E501
-
-        The email address of who this email will be sent to.  # noqa: E501
-
-        :return: The to of this Body.  # noqa: E501
-        :rtype: str
-        """
-        return self._to
-
-    @to.setter
-    def to(self, to):
-        """Sets the to of this Body.
-
-        The email address of who this email will be sent to.  # noqa: E501
-
-        :param to: The to of this Body.  # noqa: E501
-        :type: str
-        """
-        if to is None:
-            raise ValueError("Invalid value for `to`, must not be `None`")  # noqa: E501
-
-        self._to = to
-
-    @property
-    def id(self):
-        """Gets the id of this Body.  # noqa: E501
-
-        The ID of your mail order this will be sent through.  # noqa: E501
-
-        :return: The id of this Body.  # noqa: E501
-        :rtype: int
-        """
-        return self._id
-
-    @id.setter
-    def id(self, id):
-        """Sets the id of this Body.
-
-        The ID of your mail order this will be sent through.  # noqa: E501
-
-        :param id: The id of this Body.  # noqa: E501
-        :type: int
+        :param payload: The payload of this Body.  # noqa: E501
+        :type: SendMail
         """
 
-        self._id = id
-
-    @property
-    def to_name(self):
-        """Gets the to_name of this Body.  # noqa: E501
-
-        The name or title of who this email is being sent to.  # noqa: E501
-
-        :return: The to_name of this Body.  # noqa: E501
-        :rtype: str
-        """
-        return self._to_name
-
-    @to_name.setter
-    def to_name(self, to_name):
-        """Sets the to_name of this Body.
-
-        The name or title of who this email is being sent to.  # noqa: E501
-
-        :param to_name: The to_name of this Body.  # noqa: E501
-        :type: str
-        """
-
-        self._to_name = to_name
-
-    @property
-    def from_name(self):
-        """Gets the from_name of this Body.  # noqa: E501
-
-        The name or title of who this email is being sent from.  # noqa: E501
-
-        :return: The from_name of this Body.  # noqa: E501
-        :rtype: str
-        """
-        return self._from_name
-
-    @from_name.setter
-    def from_name(self, from_name):
-        """Sets the from_name of this Body.
-
-        The name or title of who this email is being sent from.  # noqa: E501
-
-        :param from_name: The from_name of this Body.  # noqa: E501
-        :type: str
-        """
-
-        self._from_name = from_name
+        self._payload = payload
 
     def to_dict(self):
         """Returns the model properties as a dict"""

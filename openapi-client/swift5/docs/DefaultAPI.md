@@ -169,7 +169,7 @@ Sends An email through one of your mail orders allowing additional options such 
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let sendMail = SendMail(id: 123, from: MailContact(email: "email_example", name: "name_example"), to: [nil], subject: "subject_example", body: "body_example", replyto: [nil], cc: [nil], bcc: [nil], attachments: [MailAttachment(data: URL(string: "https://example.com")!, filename: "filename_example")]) // SendMail | 
+let sendMail = SendMail(subject: "subject_example", body: "body_example", from: MailContact(email: "email_example", name: "name_example"), to: [nil], id: 123, replyto: [nil], cc: [nil], bcc: [nil], attachments: [MailAttachment(data: URL(string: "https://example.com")!, filename: "filename_example")]) // SendMail | 
 
 // Sends an Email with Advanced Options
 DefaultAPI.sendAdvMailById(sendMail: sendMail) { (response, error) in
@@ -207,7 +207,7 @@ Name | Type | Description  | Notes
 
 # **sendMailById**
 ```swift
-    open class func sendMailById(subject: String, body: String, from: String, to: String, id: Int? = nil, toName: String? = nil, fromName: String? = nil, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
+    open class func sendMailById(sendMail: SendMail, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
 ```
 
 Sends an Email
@@ -219,16 +219,10 @@ Sends An email through one of your mail orders.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let subject = "subject_example" // String | The Subject of the email
-let body = "body_example" // String | The contents of the email
-let from = "from_example" // String | The email address of who this email will be sent from.
-let to = "to_example" // String | The email address of who this email will be sent to.
-let id = 987 // Int | The ID of your mail order this will be sent through. (optional)
-let toName = "toName_example" // String | The name or title of who this email is being sent to. (optional)
-let fromName = "fromName_example" // String | The name or title of who this email is being sent from. (optional)
+let sendMail = SendMail(subject: "subject_example", body: "body_example", from: MailContact(email: "email_example", name: "name_example"), to: [nil], id: 123, replyto: [nil], cc: [nil], bcc: [nil], attachments: [MailAttachment(data: URL(string: "https://example.com")!, filename: "filename_example")]) // SendMail | 
 
 // Sends an Email
-DefaultAPI.sendMailById(subject: subject, body: body, from: from, to: to, id: id, toName: toName, fromName: fromName) { (response, error) in
+DefaultAPI.sendMailById(sendMail: sendMail) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -244,13 +238,7 @@ DefaultAPI.sendMailById(subject: subject, body: body, from: from, to: to, id: id
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **String** | The Subject of the email | 
- **body** | **String** | The contents of the email | 
- **from** | **String** | The email address of who this email will be sent from. | 
- **to** | **String** | The email address of who this email will be sent to. | 
- **id** | **Int** | The ID of your mail order this will be sent through. | [optional] 
- **toName** | **String** | The name or title of who this email is being sent to. | [optional] 
- **fromName** | **String** | The name or title of who this email is being sent from. | [optional] 
+ **sendMail** | [**SendMail**](SendMail.md) |  | 
 
 ### Return type
 
@@ -262,7 +250,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

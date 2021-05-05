@@ -12,30 +12,30 @@ part of openapi.api;
 class SendMail {
   /// Returns a new [SendMail] instance.
   SendMail({
-    @required this.id,
-    @required this.from,
-    this.to = const [],
     @required this.subject,
     @required this.body,
+    @required this.from,
+    this.to = const [],
+    @required this.id,
     this.replyto = const [],
     this.cc = const [],
     this.bcc = const [],
     this.attachments = const [],
   });
 
-  /// The ID of the Mail order within our system to use as the Mail Account.
-  int id;
+  /// The subject or title of the email
+  String subject;
+
+  /// The main email contents.
+  String body;
 
   MailContact from;
 
   /// The Contact whom is the primary recipient of this email.
   List<MailContact> to;
 
-  /// The subject or title of the email
-  String subject;
-
-  /// The main email contents.
-  String body;
+  /// The ID of the Mail order within our system to use as the Mail Account.
+  int id;
 
   /// Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
   List<MailContact> replyto;
@@ -51,11 +51,11 @@ class SendMail {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is SendMail &&
-     other.id == id &&
-     other.from == from &&
-     other.to == to &&
      other.subject == subject &&
      other.body == body &&
+     other.from == from &&
+     other.to == to &&
+     other.id == id &&
      other.replyto == replyto &&
      other.cc == cc &&
      other.bcc == bcc &&
@@ -63,26 +63,26 @@ class SendMail {
 
   @override
   int get hashCode =>
-    (id == null ? 0 : id.hashCode) +
-    (from == null ? 0 : from.hashCode) +
-    (to == null ? 0 : to.hashCode) +
     (subject == null ? 0 : subject.hashCode) +
     (body == null ? 0 : body.hashCode) +
+    (from == null ? 0 : from.hashCode) +
+    (to == null ? 0 : to.hashCode) +
+    (id == null ? 0 : id.hashCode) +
     (replyto == null ? 0 : replyto.hashCode) +
     (cc == null ? 0 : cc.hashCode) +
     (bcc == null ? 0 : bcc.hashCode) +
     (attachments == null ? 0 : attachments.hashCode);
 
   @override
-  String toString() => 'SendMail[id=$id, from=$from, to=$to, subject=$subject, body=$body, replyto=$replyto, cc=$cc, bcc=$bcc, attachments=$attachments]';
+  String toString() => 'SendMail[subject=$subject, body=$body, from=$from, to=$to, id=$id, replyto=$replyto, cc=$cc, bcc=$bcc, attachments=$attachments]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'id'] = id;
-      json[r'from'] = from;
-      json[r'to'] = to;
       json[r'subject'] = subject;
       json[r'body'] = body;
+      json[r'from'] = from;
+      json[r'to'] = to;
+      json[r'id'] = id;
     if (replyto != null) {
       json[r'replyto'] = replyto;
     }
@@ -103,11 +103,11 @@ class SendMail {
   static SendMail fromJson(Map<String, dynamic> json) => json == null
     ? null
     : SendMail(
-        id: json[r'id'],
-        from: MailContact.fromJson(json[r'from']),
-        to: MailContact.listFromJson(json[r'to']),
         subject: json[r'subject'],
         body: json[r'body'],
+        from: MailContact.fromJson(json[r'from']),
+        to: MailContact.listFromJson(json[r'to']),
+        id: json[r'id'],
         replyto: MailContact.listFromJson(json[r'replyto']),
         cc: MailContact.listFromJson(json[r'cc']),
         bcc: MailContact.listFromJson(json[r'bcc']),

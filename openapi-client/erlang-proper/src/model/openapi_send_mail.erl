@@ -9,11 +9,11 @@
 -export_type([openapi_send_mail/0]).
 
 -type openapi_send_mail() ::
-  [ {'id', integer() }
+  [ {'subject', binary() }
+  | {'body', binary() }
   | {'from', openapi_mail_contact:openapi_mail_contact() }
   | {'to', list(openapi_mail_contact:openapi_mail_contact()) }
-  | {'subject', binary() }
-  | {'body', binary() }
+  | {'id', integer() }
   | {'replyto', list(openapi_mail_contact:openapi_mail_contact()) }
   | {'cc', list(openapi_mail_contact:openapi_mail_contact()) }
   | {'bcc', list(openapi_mail_contact:openapi_mail_contact()) }
@@ -25,11 +25,11 @@ openapi_send_mail() ->
     openapi_send_mail([]).
 
 openapi_send_mail(Fields) ->
-  Default = [ {'id', integer() }
+  Default = [ {'subject', binary() }
+            , {'body', binary() }
             , {'from', openapi_mail_contact:openapi_mail_contact() }
             , {'to', list(openapi_mail_contact:openapi_mail_contact()) }
-            , {'subject', binary() }
-            , {'body', binary() }
+            , {'id', integer() }
             , {'replyto', list(openapi_mail_contact:openapi_mail_contact()) }
             , {'cc', list(openapi_mail_contact:openapi_mail_contact()) }
             , {'bcc', list(openapi_mail_contact:openapi_mail_contact()) }

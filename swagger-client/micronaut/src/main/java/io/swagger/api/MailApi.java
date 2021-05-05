@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-04T21:12:42.659044-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T04:03:27.695066-04:00[America/New_York]")
 @Controller
 public interface MailApi {
 
@@ -78,14 +78,22 @@ public interface MailApi {
     @ApiResponse(responseCode = "400", description = "bad input parameter")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "404", description = "The specified resource was not found")
-    @Post(value = "/mail/send", produces = { "application/json" }, consumes = {"application/x-www-form-urlencoded"})
-    default Single<HttpResponse<GenericResponse>> sendMailById(@Parameter(description = "") @QueryValue(value = "subject")  String subject
-,@Parameter(description = "") @QueryValue(value = "body")  String body
-,@Parameter(description = "") @QueryValue(value = "from")  String from
-,@Parameter(description = "") @QueryValue(value = "to")  String to
-,@Parameter(description = "") @QueryValue(value = "id")  Integer id
-,@Parameter(description = "") @QueryValue(value = "toName")  String toName
-,@Parameter(description = "") @QueryValue(value = "fromName")  String fromName
+    @Post(value = "/mail/send", produces = { "application/json" }, consumes = {"application/json", "application/x-www-form-urlencoded"})
+    default Single<HttpResponse<GenericResponse>> sendMailById(@Parameter(description = "") @Valid @Body SendMail body
+) {
+        return Single.fromCallable(() -> {
+            throw new UnsupportedOperationException();
+        });
+    }
+
+
+    @Operation(summary = "Sends an Email", operationId = "sendMailById", description = "Sends An email through one of your mail orders." )
+    @ApiResponse(responseCode = "200", description = "search results matching criteria")
+    @ApiResponse(responseCode = "400", description = "bad input parameter")
+    @ApiResponse(responseCode = "401", description = "Unauthorized")
+    @ApiResponse(responseCode = "404", description = "The specified resource was not found")
+    @Post(value = "/mail/send", produces = { "application/json" }, consumes = {"application/json", "application/x-www-form-urlencoded"})
+    default Single<HttpResponse<GenericResponse>> sendMailById(@Parameter(description = "") @QueryValue(value = "payload")  SendMail payload
 ) {
         return Single.fromCallable(() -> {
             throw new UnsupportedOperationException();

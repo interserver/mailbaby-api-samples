@@ -112,27 +112,26 @@
 (defn-spec send-mail-by-id-with-http-info any?
   "Sends an Email
   Sends An email through one of your mail orders."
-  ([subject string?, body string?, from string?, to string?, ] (send-mail-by-id-with-http-info subject body from to nil))
-  ([subject string?, body string?, from string?, to string?, {:keys [id toName fromName]} (s/map-of keyword? any?)]
-   (check-required-params subject body from to)
-   (call-api "/mail/send" :post
-             {:path-params   {}
-              :header-params {}
-              :query-params  {}
-              :form-params   {"subject" subject "body" body "from" from "to" to "id" id "toName" toName "fromName" fromName }
-              :content-types ["application/x-www-form-urlencoded"]
-              :accepts       ["application/json"]
-              :auth-names    ["apiKeyAuth"]})))
+  [send-mail send-mail]
+  (check-required-params send-mail)
+  (call-api "/mail/send" :post
+            {:path-params   {}
+             :header-params {}
+             :query-params  {}
+             :form-params   {}
+             :body-param    send-mail
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
+             :accepts       ["application/json"]
+             :auth-names    ["apiKeyAuth"]}))
 
 (defn-spec send-mail-by-id generic-response-spec
   "Sends an Email
   Sends An email through one of your mail orders."
-  ([subject string?, body string?, from string?, to string?, ] (send-mail-by-id subject body from to nil))
-  ([subject string?, body string?, from string?, to string?, optional-params any?]
-   (let [res (:data (send-mail-by-id-with-http-info subject body from to optional-params))]
-     (if (:decode-models *api-context*)
-        (st/decode generic-response-spec res st/string-transformer)
-        res))))
+  [send-mail send-mail]
+  (let [res (:data (send-mail-by-id-with-http-info send-mail))]
+    (if (:decode-models *api-context*)
+       (st/decode generic-response-spec res st/string-transformer)
+       res)))
 
 
 (defn-spec validate-mail-order-with-http-info any?

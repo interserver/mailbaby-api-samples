@@ -32,104 +32,17 @@ namespace IO.Swagger.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Body" /> class.
         /// </summary>
-        /// <param name="subject">The Subject of the email (required).</param>
-        /// <param name="body">The contents of the email (required).</param>
-        /// <param name="from">The email address of who this email will be sent from. (required).</param>
-        /// <param name="to">The email address of who this email will be sent to. (required).</param>
-        /// <param name="id">The ID of your mail order this will be sent through..</param>
-        /// <param name="toName">The name or title of who this email is being sent to..</param>
-        /// <param name="fromName">The name or title of who this email is being sent from..</param>
-        public Body(string subject = default(string), string body = default(string), string from = default(string), string to = default(string), int? id = default(int?), string toName = default(string), string fromName = default(string))
+        /// <param name="payload">payload.</param>
+        public Body(SendMail payload = default(SendMail))
         {
-            // to ensure "subject" is required (not null)
-            if (subject == null)
-            {
-                throw new InvalidDataException("subject is a required property for Body and cannot be null");
-            }
-            else
-            {
-                this.Subject = subject;
-            }
-            // to ensure "body" is required (not null)
-            if (body == null)
-            {
-                throw new InvalidDataException("body is a required property for Body and cannot be null");
-            }
-            else
-            {
-                this._Body = body;
-            }
-            // to ensure "from" is required (not null)
-            if (from == null)
-            {
-                throw new InvalidDataException("from is a required property for Body and cannot be null");
-            }
-            else
-            {
-                this.From = from;
-            }
-            // to ensure "to" is required (not null)
-            if (to == null)
-            {
-                throw new InvalidDataException("to is a required property for Body and cannot be null");
-            }
-            else
-            {
-                this.To = to;
-            }
-            this.Id = id;
-            this.ToName = toName;
-            this.FromName = fromName;
+            this.Payload = payload;
         }
         
         /// <summary>
-        /// The Subject of the email
+        /// Gets or Sets Payload
         /// </summary>
-        /// <value>The Subject of the email</value>
-        [DataMember(Name="subject", EmitDefaultValue=false)]
-        public string Subject { get; set; }
-
-        /// <summary>
-        /// The contents of the email
-        /// </summary>
-        /// <value>The contents of the email</value>
-        [DataMember(Name="body", EmitDefaultValue=false)]
-        public string _Body { get; set; }
-
-        /// <summary>
-        /// The email address of who this email will be sent from.
-        /// </summary>
-        /// <value>The email address of who this email will be sent from.</value>
-        [DataMember(Name="from", EmitDefaultValue=false)]
-        public string From { get; set; }
-
-        /// <summary>
-        /// The email address of who this email will be sent to.
-        /// </summary>
-        /// <value>The email address of who this email will be sent to.</value>
-        [DataMember(Name="to", EmitDefaultValue=false)]
-        public string To { get; set; }
-
-        /// <summary>
-        /// The ID of your mail order this will be sent through.
-        /// </summary>
-        /// <value>The ID of your mail order this will be sent through.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public int? Id { get; set; }
-
-        /// <summary>
-        /// The name or title of who this email is being sent to.
-        /// </summary>
-        /// <value>The name or title of who this email is being sent to.</value>
-        [DataMember(Name="toName", EmitDefaultValue=false)]
-        public string ToName { get; set; }
-
-        /// <summary>
-        /// The name or title of who this email is being sent from.
-        /// </summary>
-        /// <value>The name or title of who this email is being sent from.</value>
-        [DataMember(Name="fromName", EmitDefaultValue=false)]
-        public string FromName { get; set; }
+        [DataMember(Name="payload", EmitDefaultValue=false)]
+        public SendMail Payload { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -139,13 +52,7 @@ namespace IO.Swagger.Model
         {
             var sb = new StringBuilder();
             sb.Append("class Body {\n");
-            sb.Append("  Subject: ").Append(Subject).Append("\n");
-            sb.Append("  _Body: ").Append(_Body).Append("\n");
-            sb.Append("  From: ").Append(From).Append("\n");
-            sb.Append("  To: ").Append(To).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  ToName: ").Append(ToName).Append("\n");
-            sb.Append("  FromName: ").Append(FromName).Append("\n");
+            sb.Append("  Payload: ").Append(Payload).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -181,39 +88,9 @@ namespace IO.Swagger.Model
 
             return 
                 (
-                    this.Subject == input.Subject ||
-                    (this.Subject != null &&
-                    this.Subject.Equals(input.Subject))
-                ) && 
-                (
-                    this._Body == input._Body ||
-                    (this._Body != null &&
-                    this._Body.Equals(input._Body))
-                ) && 
-                (
-                    this.From == input.From ||
-                    (this.From != null &&
-                    this.From.Equals(input.From))
-                ) && 
-                (
-                    this.To == input.To ||
-                    (this.To != null &&
-                    this.To.Equals(input.To))
-                ) && 
-                (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.ToName == input.ToName ||
-                    (this.ToName != null &&
-                    this.ToName.Equals(input.ToName))
-                ) && 
-                (
-                    this.FromName == input.FromName ||
-                    (this.FromName != null &&
-                    this.FromName.Equals(input.FromName))
+                    this.Payload == input.Payload ||
+                    (this.Payload != null &&
+                    this.Payload.Equals(input.Payload))
                 );
         }
 
@@ -226,20 +103,8 @@ namespace IO.Swagger.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Subject != null)
-                    hashCode = hashCode * 59 + this.Subject.GetHashCode();
-                if (this._Body != null)
-                    hashCode = hashCode * 59 + this._Body.GetHashCode();
-                if (this.From != null)
-                    hashCode = hashCode * 59 + this.From.GetHashCode();
-                if (this.To != null)
-                    hashCode = hashCode * 59 + this.To.GetHashCode();
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.ToName != null)
-                    hashCode = hashCode * 59 + this.ToName.GetHashCode();
-                if (this.FromName != null)
-                    hashCode = hashCode * 59 + this.FromName.GetHashCode();
+                if (this.Payload != null)
+                    hashCode = hashCode * 59 + this.Payload.GetHashCode();
                 return hashCode;
             }
         }

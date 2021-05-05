@@ -210,44 +210,14 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
-         * @param {string} subject 
-         * @param {string} body 
-         * @param {string} from 
-         * @param {string} to 
-         * @param {number} id 
-         * @param {string} toName 
-         * @param {string} fromName 
+         * @param {SendMail} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById: async (subject: string, body: string, from: string, to: string, id: number, toName: string, fromName: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'subject' is not null or undefined
-            if (subject === null || subject === undefined) {
-                throw new RequiredError('subject','Required parameter subject was null or undefined when calling sendMailById.');
-            }
+        sendMailById: async (body: SendMail, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling sendMailById.');
-            }
-            // verify required parameter 'from' is not null or undefined
-            if (from === null || from === undefined) {
-                throw new RequiredError('from','Required parameter from was null or undefined when calling sendMailById.');
-            }
-            // verify required parameter 'to' is not null or undefined
-            if (to === null || to === undefined) {
-                throw new RequiredError('to','Required parameter to was null or undefined when calling sendMailById.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling sendMailById.');
-            }
-            // verify required parameter 'toName' is not null or undefined
-            if (toName === null || toName === undefined) {
-                throw new RequiredError('toName','Required parameter toName was null or undefined when calling sendMailById.');
-            }
-            // verify required parameter 'fromName' is not null or undefined
-            if (fromName === null || fromName === undefined) {
-                throw new RequiredError('fromName','Required parameter fromName was null or undefined when calling sendMailById.');
             }
             const localVarPath = `/mail/send`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -270,34 +240,12 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             }
 
 
-            if (subject !== undefined) { 
-                localVarFormParams.set('subject', subject as any);
-            }
-
-            if (body !== undefined) { 
-                localVarFormParams.set('body', body as any);
-            }
-
-            if (from !== undefined) { 
-                localVarFormParams.set('from', from as any);
-            }
-
-            if (to !== undefined) { 
-                localVarFormParams.set('to', to as any);
-            }
-
-            if (id !== undefined) { 
-                localVarFormParams.set('id', id as any);
-            }
-
-            if (toName !== undefined) { 
-                localVarFormParams.set('toName', toName as any);
-            }
-
-            if (fromName !== undefined) { 
-                localVarFormParams.set('fromName', fromName as any);
+            if (payload !== undefined) { 
+                localVarFormParams.set('payload', payload as any);
             }
             localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -309,6 +257,66 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams.toString();
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Sends An email through one of your mail orders.
+         * @summary Sends an Email
+         * @param {SendMail} payload 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sendMailById: async (payload: SendMail, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'payload' is not null or undefined
+            if (payload === null || payload === undefined) {
+                throw new RequiredError('payload','Required parameter payload was null or undefined when calling sendMailById.');
+            }
+            const localVarPath = `/mail/send`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new URLSearchParams();
+
+            // authentication apiKeyAuth required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? await configuration.apiKey("X-API-KEY")
+                    : await configuration.apiKey;
+                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
+            }
+
+
+            if (payload !== undefined) { 
+                localVarFormParams.set('payload', payload as any);
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams.toString();
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -486,18 +494,26 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
-         * @param {string} subject 
-         * @param {string} body 
-         * @param {string} from 
-         * @param {string} to 
-         * @param {number} id 
-         * @param {string} toName 
-         * @param {string} fromName 
+         * @param {SendMail} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendMailById(subject: string, body: string, from: string, to: string, id: number, toName: string, fromName: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).sendMailById(subject, body, from, to, id, toName, fromName, options);
+        async sendMailById(body: SendMail, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).sendMailById(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Sends An email through one of your mail orders.
+         * @summary Sends an Email
+         * @param {SendMail} payload 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async sendMailById(payload: SendMail, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).sendMailById(payload, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -584,18 +600,22 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
-         * @param {string} subject 
-         * @param {string} body 
-         * @param {string} from 
-         * @param {string} to 
-         * @param {number} id 
-         * @param {string} toName 
-         * @param {string} fromName 
+         * @param {SendMail} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById(subject: string, body: string, from: string, to: string, id: number, toName: string, fromName: string, options?: any): AxiosPromise<GenericResponse> {
-            return DefaultApiFp(configuration).sendMailById(subject, body, from, to, id, toName, fromName, options).then((request) => request(axios, basePath));
+        sendMailById(body: SendMail, options?: any): AxiosPromise<GenericResponse> {
+            return DefaultApiFp(configuration).sendMailById(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Sends An email through one of your mail orders.
+         * @summary Sends an Email
+         * @param {SendMail} payload 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sendMailById(payload: SendMail, options?: any): AxiosPromise<GenericResponse> {
+            return DefaultApiFp(configuration).sendMailById(payload, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -675,19 +695,25 @@ export class DefaultApi extends BaseAPI {
     /**
      * Sends An email through one of your mail orders.
      * @summary Sends an Email
-     * @param {string} subject 
-     * @param {string} body 
-     * @param {string} from 
-     * @param {string} to 
-     * @param {number} id 
-     * @param {string} toName 
-     * @param {string} fromName 
+     * @param {SendMail} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public sendMailById(subject: string, body: string, from: string, to: string, id: number, toName: string, fromName: string, options?: any) {
-        return DefaultApiFp(this.configuration).sendMailById(subject, body, from, to, id, toName, fromName, options).then((request) => request(this.axios, this.basePath));
+    public sendMailById(body: SendMail, options?: any) {
+        return DefaultApiFp(this.configuration).sendMailById(body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Sends An email through one of your mail orders.
+     * @summary Sends an Email
+     * @param {SendMail} payload 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public sendMailById(payload: SendMail, options?: any) {
+        return DefaultApiFp(this.configuration).sendMailById(payload, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

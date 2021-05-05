@@ -25,15 +25,15 @@ class SendMail {
      * Constructs a new <code>SendMail</code>.
      * Details for an Email
      * @alias module:model/SendMail
-     * @param id {Number} The ID of the Mail order within our system to use as the Mail Account.
-     * @param from {module:model/MailContact} 
-     * @param to {Array.<module:model/MailContact>} The Contact whom is the primary recipient of this email.
      * @param subject {String} The subject or title of the email
      * @param body {String} The main email contents.
+     * @param from {module:model/MailContact} 
+     * @param to {Array.<module:model/MailContact>} The Contact whom is the primary recipient of this email.
+     * @param id {Number} The ID of the Mail order within our system to use as the Mail Account.
      */
-    constructor(id, from, to, subject, body) { 
+    constructor(subject, body, from, to, id) { 
         
-        SendMail.initialize(this, id, from, to, subject, body);
+        SendMail.initialize(this, subject, body, from, to, id);
     }
 
     /**
@@ -41,12 +41,12 @@ class SendMail {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, from, to, subject, body) { 
-        obj['id'] = id;
-        obj['from'] = from;
-        obj['to'] = to;
+    static initialize(obj, subject, body, from, to, id) { 
         obj['subject'] = subject;
         obj['body'] = body;
+        obj['from'] = from;
+        obj['to'] = to;
+        obj['id'] = id;
     }
 
     /**
@@ -60,8 +60,11 @@ class SendMail {
         if (data) {
             obj = obj || new SendMail();
 
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'Number');
+            if (data.hasOwnProperty('subject')) {
+                obj['subject'] = ApiClient.convertToType(data['subject'], 'String');
+            }
+            if (data.hasOwnProperty('body')) {
+                obj['body'] = ApiClient.convertToType(data['body'], 'String');
             }
             if (data.hasOwnProperty('from')) {
                 obj['from'] = MailContact.constructFromObject(data['from']);
@@ -69,11 +72,8 @@ class SendMail {
             if (data.hasOwnProperty('to')) {
                 obj['to'] = ApiClient.convertToType(data['to'], [MailContact]);
             }
-            if (data.hasOwnProperty('subject')) {
-                obj['subject'] = ApiClient.convertToType(data['subject'], 'String');
-            }
-            if (data.hasOwnProperty('body')) {
-                obj['body'] = ApiClient.convertToType(data['body'], 'String');
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'Number');
             }
             if (data.hasOwnProperty('replyto')) {
                 obj['replyto'] = ApiClient.convertToType(data['replyto'], [MailContact]);
@@ -95,10 +95,16 @@ class SendMail {
 }
 
 /**
- * The ID of the Mail order within our system to use as the Mail Account.
- * @member {Number} id
+ * The subject or title of the email
+ * @member {String} subject
  */
-SendMail.prototype['id'] = undefined;
+SendMail.prototype['subject'] = undefined;
+
+/**
+ * The main email contents.
+ * @member {String} body
+ */
+SendMail.prototype['body'] = undefined;
 
 /**
  * @member {module:model/MailContact} from
@@ -112,16 +118,10 @@ SendMail.prototype['from'] = undefined;
 SendMail.prototype['to'] = undefined;
 
 /**
- * The subject or title of the email
- * @member {String} subject
+ * The ID of the Mail order within our system to use as the Mail Account.
+ * @member {Number} id
  */
-SendMail.prototype['subject'] = undefined;
-
-/**
- * The main email contents.
- * @member {String} body
- */
-SendMail.prototype['body'] = undefined;
+SendMail.prototype['id'] = undefined;
 
 /**
  * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.

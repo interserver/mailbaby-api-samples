@@ -15,10 +15,16 @@
  */
 public class OASSendMail implements OAS.MappedProperties {
     /**
-     * The ID of the Mail order within our system to use as the Mail Account.
-     * @return id
+     * The subject or title of the email
+     * @return subject
      */
-    public Long id { get; set; }
+    public String subject { get; set; }
+
+    /**
+     * The main email contents.
+     * @return body
+     */
+    public String body { get; set; }
 
     /**
      * Get r_from
@@ -33,16 +39,10 @@ public class OASSendMail implements OAS.MappedProperties {
     public List<OASMailContact> to { get; set; }
 
     /**
-     * The subject or title of the email
-     * @return subject
+     * The ID of the Mail order within our system to use as the Mail Account.
+     * @return id
      */
-    public String subject { get; set; }
-
-    /**
-     * The main email contents.
-     * @return body
-     */
-    public String body { get; set; }
+    public Long id { get; set; }
 
     /**
      * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
@@ -86,11 +86,11 @@ public class OASSendMail implements OAS.MappedProperties {
 
     public static OASSendMail getExample() {
         OASSendMail sendMail = new OASSendMail();
-          sendMail.id = 123456789L;
-          sendMail.r_from = OASMailContact.getExample();
-          sendMail.to = new List<OASMailContact>{OASMailContact.getExample()};
           sendMail.subject = 'Your Package has been Delivered!';
           sendMail.body = 'The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n';
+          sendMail.r_from = OASMailContact.getExample();
+          sendMail.to = new List<OASMailContact>{OASMailContact.getExample()};
+          sendMail.id = 5000L;
           sendMail.replyto = new List<OASMailContact>{OASMailContact.getExample()};
           sendMail.cc = new List<OASMailContact>{OASMailContact.getExample()};
           sendMail.bcc = new List<OASMailContact>{OASMailContact.getExample()};
@@ -101,11 +101,11 @@ public class OASSendMail implements OAS.MappedProperties {
     public Boolean equals(Object obj) {
         if (obj instanceof OASSendMail) {           
             OASSendMail sendMail = (OASSendMail) obj;
-            return this.id == sendMail.id
+            return this.subject == sendMail.subject
+                && this.body == sendMail.body
                 && this.r_from == sendMail.r_from
                 && this.to == sendMail.to
-                && this.subject == sendMail.subject
-                && this.body == sendMail.body
+                && this.id == sendMail.id
                 && this.replyto == sendMail.replyto
                 && this.cc == sendMail.cc
                 && this.bcc == sendMail.bcc
@@ -116,11 +116,11 @@ public class OASSendMail implements OAS.MappedProperties {
 
     public Integer hashCode() {
         Integer hashCode = 43;
-        hashCode = (17 * hashCode) + (id == null ? 0 : System.hashCode(id));
-        hashCode = (17 * hashCode) + (r_from == null ? 0 : System.hashCode(r_from));
-        hashCode = (17 * hashCode) + (to == null ? 0 : System.hashCode(to));
         hashCode = (17 * hashCode) + (subject == null ? 0 : System.hashCode(subject));
         hashCode = (17 * hashCode) + (body == null ? 0 : System.hashCode(body));
+        hashCode = (17 * hashCode) + (r_from == null ? 0 : System.hashCode(r_from));
+        hashCode = (17 * hashCode) + (to == null ? 0 : System.hashCode(to));
+        hashCode = (17 * hashCode) + (id == null ? 0 : System.hashCode(id));
         hashCode = (17 * hashCode) + (replyto == null ? 0 : System.hashCode(replyto));
         hashCode = (17 * hashCode) + (cc == null ? 0 : System.hashCode(cc));
         hashCode = (17 * hashCode) + (bcc == null ? 0 : System.hashCode(bcc));

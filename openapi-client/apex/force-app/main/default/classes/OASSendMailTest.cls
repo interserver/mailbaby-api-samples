@@ -84,9 +84,9 @@ private class OASSendMailTest {
         System.assertEquals(new List<OASMailContact>(), sendMail.cc);
         System.assertEquals(new List<OASMailContact>(), sendMail.bcc);
         System.assertEquals(new List<OASMailAttachment>(), sendMail.attachments);
-        System.assertEquals(null, sendMail.id);
-        System.assertEquals(null, sendMail.r_from);
         System.assertEquals(null, sendMail.subject);
         System.assertEquals(null, sendMail.body);
+        System.assertEquals(null, sendMail.r_from);
+        System.assertEquals(null, sendMail.id);
     }
 }

@@ -17,12 +17,15 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "Details for an Email")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-04T21:12:45.159448-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-05T04:03:30.407525-04:00[America/New_York]")
 
 
 public class SendMail   {
-  @JsonProperty("id")
-  private Long id = null;
+  @JsonProperty("subject")
+  private String subject = null;
+
+  @JsonProperty("body")
+  private String body = null;
 
   @JsonProperty("from")
   private MailContact from = null;
@@ -31,11 +34,8 @@ public class SendMail   {
   @Valid
   private List<MailContact> to = new ArrayList<MailContact>();
 
-  @JsonProperty("subject")
-  private String subject = null;
-
-  @JsonProperty("body")
-  private String body = null;
+  @JsonProperty("id")
+  private Long id = null;
 
   @JsonProperty("replyto")
   @Valid
@@ -53,24 +53,44 @@ public class SendMail   {
   @Valid
   private List<MailAttachment> attachments = null;
 
-  public SendMail id(Long id) {
-    this.id = id;
+  public SendMail subject(String subject) {
+    this.subject = subject;
     return this;
   }
 
   /**
-   * The ID of the Mail order within our system to use as the Mail Account.
-   * @return id
+   * The subject or title of the email
+   * @return subject
    **/
-  @Schema(required = true, description = "The ID of the Mail order within our system to use as the Mail Account.")
+  @Schema(example = "Your Package has been Delivered!", required = true, description = "The subject or title of the email")
       @NotNull
 
-    public Long getId() {
-    return id;
+    public String getSubject() {
+    return subject;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setSubject(String subject) {
+    this.subject = subject;
+  }
+
+  public SendMail body(String body) {
+    this.body = body;
+    return this;
+  }
+
+  /**
+   * The main email contents.
+   * @return body
+   **/
+  @Schema(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else. ", required = true, description = "The main email contents.")
+      @NotNull
+
+    public String getBody() {
+    return body;
+  }
+
+  public void setBody(String body) {
+    this.body = body;
   }
 
   public SendMail from(MailContact from) {
@@ -119,44 +139,24 @@ public class SendMail   {
     this.to = to;
   }
 
-  public SendMail subject(String subject) {
-    this.subject = subject;
+  public SendMail id(Long id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * The subject or title of the email
-   * @return subject
+   * The ID of the Mail order within our system to use as the Mail Account.
+   * @return id
    **/
-  @Schema(example = "Your Package has been Delivered!", required = true, description = "The subject or title of the email")
+  @Schema(example = "5000", required = true, description = "The ID of the Mail order within our system to use as the Mail Account.")
       @NotNull
 
-    public String getSubject() {
-    return subject;
+    public Long getId() {
+    return id;
   }
 
-  public void setSubject(String subject) {
-    this.subject = subject;
-  }
-
-  public SendMail body(String body) {
-    this.body = body;
-    return this;
-  }
-
-  /**
-   * The main email contents.
-   * @return body
-   **/
-  @Schema(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else. ", required = true, description = "The main email contents.")
-      @NotNull
-
-    public String getBody() {
-    return body;
-  }
-
-  public void setBody(String body) {
-    this.body = body;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public SendMail replyto(List<MailContact> replyto) {
@@ -277,11 +277,11 @@ public class SendMail   {
       return false;
     }
     SendMail sendMail = (SendMail) o;
-    return Objects.equals(this.id, sendMail.id) &&
+    return Objects.equals(this.subject, sendMail.subject) &&
+        Objects.equals(this.body, sendMail.body) &&
         Objects.equals(this.from, sendMail.from) &&
         Objects.equals(this.to, sendMail.to) &&
-        Objects.equals(this.subject, sendMail.subject) &&
-        Objects.equals(this.body, sendMail.body) &&
+        Objects.equals(this.id, sendMail.id) &&
         Objects.equals(this.replyto, sendMail.replyto) &&
         Objects.equals(this.cc, sendMail.cc) &&
         Objects.equals(this.bcc, sendMail.bcc) &&
@@ -290,7 +290,7 @@ public class SendMail   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, from, to, subject, body, replyto, cc, bcc, attachments);
+    return Objects.hash(subject, body, from, to, id, replyto, cc, bcc, attachments);
   }
 
   @Override
@@ -298,11 +298,11 @@ public class SendMail   {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendMail {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    from: ").append(toIndentedString(from)).append("\n");
-    sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    from: ").append(toIndentedString(from)).append("\n");
+    sb.append("    to: ").append(toIndentedString(to)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    replyto: ").append(toIndentedString(replyto)).append("\n");
     sb.append("    cc: ").append(toIndentedString(cc)).append("\n");
     sb.append("    bcc: ").append(toIndentedString(bcc)).append("\n");

@@ -81,27 +81,16 @@ package body .Clients is
    --  Sends An email through one of your mail orders.
    procedure Send_Mail_By_Id
       (Client : in out Client_Type;
-       Subject : in Swagger.UString;
-       P_Body : in Swagger.UString;
-       From : in Swagger.UString;
-       To : in Swagger.UString;
-       Id : in Swagger.Nullable_Integer;
-       To_Name : in Swagger.Nullable_UString;
-       From_Name : in Swagger.Nullable_UString;
+       Send_Mail_Type : in .Models.SendMail_Type;
        Result : out .Models.GenericResponse_Type) is
       URI   : Swagger.Clients.URI_Type;
       Req   : Swagger.Clients.Request_Type;
       Reply : Swagger.Value_Type;
    begin
       Client.Set_Accept ((1 => Swagger.Clients.APPLICATION_JSON));
-      Client.Initialize (Req, (1 => Swagger.Clients.APPLICATION_FORM));
-      .Models.Serialize (Req.Stream, "subject", Subject);
-      .Models.Serialize (Req.Stream, "body", P_Body);
-      .Models.Serialize (Req.Stream, "from", From);
-      .Models.Serialize (Req.Stream, "to", To);
-      .Models.Serialize (Req.Stream, "id", Id);
-      .Models.Serialize (Req.Stream, "toName", To_Name);
-      .Models.Serialize (Req.Stream, "fromName", From_Name);
+      Client.Initialize (Req, (Swagger.Clients.APPLICATION_JSON,
+                               Swagger.Clients.APPLICATION_X_WWW_FORM_URLENCODED));
+      .Models.Serialize (Req.Stream, "", Send_Mail_Type);
 
       URI.Set_Path ("/mail/send");
       Client.Call (Swagger.Clients.POST, URI, Req, Reply);

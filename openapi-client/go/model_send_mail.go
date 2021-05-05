@@ -17,15 +17,15 @@ import (
 
 // SendMail Details for an Email
 type SendMail struct {
-	// The ID of the Mail order within our system to use as the Mail Account.
-	Id int64 `json:"id"`
-	From MailContact `json:"from"`
-	// The Contact whom is the primary recipient of this email.
-	To []MailContact `json:"to"`
 	// The subject or title of the email
 	Subject string `json:"subject"`
 	// The main email contents.
 	Body string `json:"body"`
+	From MailContact `json:"from"`
+	// The Contact whom is the primary recipient of this email.
+	To []MailContact `json:"to"`
+	// The ID of the Mail order within our system to use as the Mail Account.
+	Id int64 `json:"id"`
 	// Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
 	Replyto *[]MailContact `json:"replyto,omitempty"`
 	// Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
@@ -40,13 +40,13 @@ type SendMail struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSendMail(id int64, from MailContact, to []MailContact, subject string, body string) *SendMail {
+func NewSendMail(subject string, body string, from MailContact, to []MailContact, id int64) *SendMail {
 	this := SendMail{}
-	this.Id = id
-	this.From = from
-	this.To = to
 	this.Subject = subject
 	this.Body = body
+	this.From = from
+	this.To = to
+	this.Id = id
 	return &this
 }
 
@@ -58,28 +58,52 @@ func NewSendMailWithDefaults() *SendMail {
 	return &this
 }
 
-// GetId returns the Id field value
-func (o *SendMail) GetId() int64 {
+// GetSubject returns the Subject field value
+func (o *SendMail) GetSubject() string {
 	if o == nil {
-		var ret int64
+		var ret string
 		return ret
 	}
 
-	return o.Id
+	return o.Subject
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetSubjectOk returns a tuple with the Subject field value
 // and a boolean to check if the value has been set.
-func (o *SendMail) GetIdOk() (*int64, bool) {
+func (o *SendMail) GetSubjectOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Id, true
+	return &o.Subject, true
 }
 
-// SetId sets field value
-func (o *SendMail) SetId(v int64) {
-	o.Id = v
+// SetSubject sets field value
+func (o *SendMail) SetSubject(v string) {
+	o.Subject = v
+}
+
+// GetBody returns the Body field value
+func (o *SendMail) GetBody() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Body
+}
+
+// GetBodyOk returns a tuple with the Body field value
+// and a boolean to check if the value has been set.
+func (o *SendMail) GetBodyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Body, true
+}
+
+// SetBody sets field value
+func (o *SendMail) SetBody(v string) {
+	o.Body = v
 }
 
 // GetFrom returns the From field value
@@ -130,52 +154,28 @@ func (o *SendMail) SetTo(v []MailContact) {
 	o.To = v
 }
 
-// GetSubject returns the Subject field value
-func (o *SendMail) GetSubject() string {
+// GetId returns the Id field value
+func (o *SendMail) GetId() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
-	return o.Subject
+	return o.Id
 }
 
-// GetSubjectOk returns a tuple with the Subject field value
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *SendMail) GetSubjectOk() (*string, bool) {
+func (o *SendMail) GetIdOk() (*int64, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Subject, true
+	return &o.Id, true
 }
 
-// SetSubject sets field value
-func (o *SendMail) SetSubject(v string) {
-	o.Subject = v
-}
-
-// GetBody returns the Body field value
-func (o *SendMail) GetBody() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Body
-}
-
-// GetBodyOk returns a tuple with the Body field value
-// and a boolean to check if the value has been set.
-func (o *SendMail) GetBodyOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Body, true
-}
-
-// SetBody sets field value
-func (o *SendMail) SetBody(v string) {
-	o.Body = v
+// SetId sets field value
+func (o *SendMail) SetId(v int64) {
+	o.Id = v
 }
 
 // GetReplyto returns the Replyto field value if set, zero value otherwise.
@@ -309,7 +309,10 @@ func (o *SendMail) SetAttachments(v []MailAttachment) {
 func (o SendMail) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["id"] = o.Id
+		toSerialize["subject"] = o.Subject
+	}
+	if true {
+		toSerialize["body"] = o.Body
 	}
 	if true {
 		toSerialize["from"] = o.From
@@ -318,10 +321,7 @@ func (o SendMail) MarshalJSON() ([]byte, error) {
 		toSerialize["to"] = o.To
 	}
 	if true {
-		toSerialize["subject"] = o.Subject
-	}
-	if true {
-		toSerialize["body"] = o.Body
+		toSerialize["id"] = o.Id
 	}
 	if o.Replyto != nil {
 		toSerialize["replyto"] = o.Replyto

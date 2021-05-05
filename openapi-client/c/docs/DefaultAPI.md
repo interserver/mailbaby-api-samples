@@ -136,20 +136,14 @@ Name | Type | Description  | Notes
 //
 // Sends An email through one of your mail orders.
 //
-generic_response_t* DefaultAPI_sendMailById(apiClient_t *apiClient, char * subject, char * body, char * from, char * to, int id, char * toName, char * fromName);
+generic_response_t* DefaultAPI_sendMailById(apiClient_t *apiClient, send_mail_t * send_mail);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration | 
-**subject** | **char \*** | The Subject of the email | 
-**body** | **char \*** | The contents of the email | 
-**from** | **char \*** | The email address of who this email will be sent from. | 
-**to** | **char \*** | The email address of who this email will be sent to. | 
-**id** | **int** | The ID of your mail order this will be sent through. | [optional] 
-**toName** | **char \*** | The name or title of who this email is being sent to. | [optional] 
-**fromName** | **char \*** | The name or title of who this email is being sent from. | [optional] 
+**send_mail** | **[send_mail_t](send_mail.md) \*** |  | 
 
 ### Return type
 
@@ -162,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

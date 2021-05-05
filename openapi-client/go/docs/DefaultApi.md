@@ -220,8 +220,8 @@ import (
 )
 
 func main() {
-    sendMail := *openapiclient.NewSendMail(int64(123), *openapiclient.NewMailContact("johndoe@company.com"), []openapiclient.MailContact{*openapiclient.NewMailContact("johndoe@company.com")}, "Your Package has been Delivered!", "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-") // SendMail | 
+    sendMail := *openapiclient.NewSendMail("Your Package has been Delivered!", "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
+", *openapiclient.NewMailContact("johndoe@company.com"), []openapiclient.MailContact{*openapiclient.NewMailContact("johndoe@company.com")}, int64(5000)) // SendMail | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -268,7 +268,7 @@ Name | Type | Description  | Notes
 
 ## SendMailById
 
-> GenericResponse SendMailById(ctx).Subject(subject).Body(body).From(from).To(to).Id(id).ToName(toName).FromName(fromName).Execute()
+> GenericResponse SendMailById(ctx).SendMail(sendMail).Execute()
 
 Sends an Email
 
@@ -287,17 +287,12 @@ import (
 )
 
 func main() {
-    subject := "subject_example" // string | The Subject of the email
-    body := "body_example" // string | The contents of the email
-    from := "from_example" // string | The email address of who this email will be sent from.
-    to := "to_example" // string | The email address of who this email will be sent to.
-    id := int32(56) // int32 | The ID of your mail order this will be sent through. (optional)
-    toName := "toName_example" // string | The name or title of who this email is being sent to. (optional)
-    fromName := "fromName_example" // string | The name or title of who this email is being sent from. (optional)
+    sendMail := *openapiclient.NewSendMail("Your Package has been Delivered!", "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
+", *openapiclient.NewMailContact("johndoe@company.com"), []openapiclient.MailContact{*openapiclient.NewMailContact("johndoe@company.com")}, int64(5000)) // SendMail | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.SendMailById(context.Background()).Subject(subject).Body(body).From(from).To(to).Id(id).ToName(toName).FromName(fromName).Execute()
+    resp, r, err := api_client.DefaultApi.SendMailById(context.Background()).SendMail(sendMail).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SendMailById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -318,13 +313,7 @@ Other parameters are passed through a pointer to a apiSendMailByIdRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **string** | The Subject of the email | 
- **body** | **string** | The contents of the email | 
- **from** | **string** | The email address of who this email will be sent from. | 
- **to** | **string** | The email address of who this email will be sent to. | 
- **id** | **int32** | The ID of your mail order this will be sent through. | 
- **toName** | **string** | The name or title of who this email is being sent to. | 
- **fromName** | **string** | The name or title of who this email is being sent from. | 
+ **sendMail** | [**SendMail**](SendMail.md) |  | 
 
 ### Return type
 
@@ -336,7 +325,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/x-www-form-urlencoded
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

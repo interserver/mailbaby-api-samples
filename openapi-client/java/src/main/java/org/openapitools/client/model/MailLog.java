@@ -28,7 +28,7 @@ import java.io.IOException;
  * Mail Order Details
  */
 @ApiModel(description = "Mail Order Details")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-04T21:10:15.803872-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-05T04:01:00.029955-04:00[America/New_York]")
 public class MailLog {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

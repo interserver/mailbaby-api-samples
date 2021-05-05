@@ -51,19 +51,6 @@ export class DefaultService {
         this.encoder = this.configuration.encoder || new CustomHttpParameterCodec();
     }
 
-    /**
-     * @param consumes string[] mime-types
-     * @return true: consumes contains 'multipart/form-data', false: otherwise
-     */
-    private canConsumeForm(consumes: string[]): boolean {
-        const form = 'multipart/form-data';
-        for (const consume of consumes) {
-            if (form === consume) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     private addToHttpParams(httpParams: HttpParams, value: any, key?: string): HttpParams {
         if (typeof value === "object" && value instanceof Date === false) {
@@ -326,31 +313,16 @@ export class DefaultService {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param subject The Subject of the email
-     * @param body The contents of the email
-     * @param from The email address of who this email will be sent from.
-     * @param to The email address of who this email will be sent to.
-     * @param id The ID of your mail order this will be sent through.
-     * @param toName The name or title of who this email is being sent to.
-     * @param fromName The name or title of who this email is being sent from.
+     * @param sendMail 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendMailById(subject: string, body: string, from: string, to: string, id?: number, toName?: string, fromName?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<GenericResponse>;
-    public sendMailById(subject: string, body: string, from: string, to: string, id?: number, toName?: string, fromName?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<GenericResponse>>;
-    public sendMailById(subject: string, body: string, from: string, to: string, id?: number, toName?: string, fromName?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<GenericResponse>>;
-    public sendMailById(subject: string, body: string, from: string, to: string, id?: number, toName?: string, fromName?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (subject === null || subject === undefined) {
-            throw new Error('Required parameter subject was null or undefined when calling sendMailById.');
-        }
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling sendMailById.');
-        }
-        if (from === null || from === undefined) {
-            throw new Error('Required parameter from was null or undefined when calling sendMailById.');
-        }
-        if (to === null || to === undefined) {
-            throw new Error('Required parameter to was null or undefined when calling sendMailById.');
+    public sendMailById(sendMail: SendMail, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<GenericResponse>;
+    public sendMailById(sendMail: SendMail, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<GenericResponse>>;
+    public sendMailById(sendMail: SendMail, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<GenericResponse>>;
+    public sendMailById(sendMail: SendMail, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (sendMail === null || sendMail === undefined) {
+            throw new Error('Required parameter sendMail was null or undefined when calling sendMailById.');
         }
 
         let headers = this.defaultHeaders;
@@ -374,42 +346,15 @@ export class DefaultService {
             headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
+
         // to determine the Content-Type header
         const consumes: string[] = [
+            'application/json',
             'application/x-www-form-urlencoded'
         ];
-
-        const canConsumeForm = this.canConsumeForm(consumes);
-
-        let formParams: { append(param: string, value: any): any; };
-        let useForm = false;
-        let convertFormParamsToString = false;
-        if (useForm) {
-            formParams = new FormData();
-        } else {
-            formParams = new HttpParams({encoder: this.encoder});
-        }
-
-        if (subject !== undefined) {
-            formParams = formParams.append('subject', <any>subject) as any || formParams;
-        }
-        if (body !== undefined) {
-            formParams = formParams.append('body', <any>body) as any || formParams;
-        }
-        if (from !== undefined) {
-            formParams = formParams.append('from', <any>from) as any || formParams;
-        }
-        if (to !== undefined) {
-            formParams = formParams.append('to', <any>to) as any || formParams;
-        }
-        if (id !== undefined) {
-            formParams = formParams.append('id', <any>id) as any || formParams;
-        }
-        if (toName !== undefined) {
-            formParams = formParams.append('toName', <any>toName) as any || formParams;
-        }
-        if (fromName !== undefined) {
-            formParams = formParams.append('fromName', <any>fromName) as any || formParams;
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
         let responseType_: 'text' | 'json' = 'json';
@@ -418,7 +363,7 @@ export class DefaultService {
         }
 
         return this.httpClient.post<GenericResponse>(`${this.configuration.basePath}/mail/send`,
-            convertFormParamsToString ? formParams.toString() : formParams,
+            sendMail,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,

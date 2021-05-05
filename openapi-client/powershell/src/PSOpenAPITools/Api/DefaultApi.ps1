@@ -327,26 +327,8 @@ Sends an Email
 
 No description available.
 
-.PARAMETER Subject
-The Subject of the email
-
-.PARAMETER Body
-The contents of the email
-
-.PARAMETER From
-The email address of who this email will be sent from.
-
-.PARAMETER To
-The email address of who this email will be sent to.
-
-.PARAMETER Id
-The ID of your mail order this will be sent through.
-
-.PARAMETER ToName
-The name or title of who this email is being sent to.
-
-.PARAMETER FromName
-The name or title of who this email is being sent from.
+.PARAMETER SendMail
+No description available.
 
 .PARAMETER WithHttpInfo
 
@@ -360,26 +342,8 @@ function Send-MailById {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Subject},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${Body},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${From},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${To},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [System.Nullable[Int32]]
-        ${Id},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${ToName},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [String]
-        ${FromName},
+        [PSCustomObject]
+        ${SendMail},
         [Switch]
         $WithHttpInfo
     )
@@ -402,41 +366,15 @@ function Send-MailById {
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/x-www-form-urlencoded')
+        $LocalVarContentTypes = @('application/json', 'application/x-www-form-urlencoded')
 
         $LocalVarUri = '/mail/send'
 
-        if (!$Subject) {
-            throw "Error! The required parameter `Subject` missing when calling sendMailById."
-        }
-        $LocalVarFormParameters['subject'] = $Subject
-
-        if (!$Body) {
-            throw "Error! The required parameter `Body` missing when calling sendMailById."
-        }
-        $LocalVarFormParameters['body'] = $Body
-
-        if (!$From) {
-            throw "Error! The required parameter `From` missing when calling sendMailById."
-        }
-        $LocalVarFormParameters['from'] = $From
-
-        if (!$To) {
-            throw "Error! The required parameter `To` missing when calling sendMailById."
-        }
-        $LocalVarFormParameters['to'] = $To
-
-        if ($Id) {
-            $LocalVarFormParameters['id'] = $Id
+        if (!$SendMail) {
+            throw "Error! The required parameter `SendMail` missing when calling sendMailById."
         }
 
-        if ($ToName) {
-            $LocalVarFormParameters['toName'] = $ToName
-        }
-
-        if ($FromName) {
-            $LocalVarFormParameters['fromName'] = $FromName
-        }
+        $LocalVarBodyParameter = $SendMail | ConvertTo-Json -Depth 100
 
         if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
             $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]

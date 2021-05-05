@@ -112,15 +112,9 @@ namespace IO.Swagger.Api
         /// Sends An email through one of your mail orders.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="subject"></param>
         /// <param name="body"></param>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <param name="id"></param>
-        /// <param name="toName"></param>
-        /// <param name="fromName"></param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendMailById (string subject, string body, string from, string to, int? id, string toName, string fromName);
+        GenericResponse SendMailById (SendMail body);
 
         /// <summary>
         /// Sends an Email
@@ -129,15 +123,30 @@ namespace IO.Swagger.Api
         /// Sends An email through one of your mail orders.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="subject"></param>
         /// <param name="body"></param>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <param name="id"></param>
-        /// <param name="toName"></param>
-        /// <param name="fromName"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        ApiResponse<GenericResponse> SendMailByIdWithHttpInfo (string subject, string body, string from, string to, int? id, string toName, string fromName);
+        ApiResponse<GenericResponse> SendMailByIdWithHttpInfo (SendMail body);
+        /// <summary>
+        /// Sends an Email
+        /// </summary>
+        /// <remarks>
+        /// Sends An email through one of your mail orders.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <returns>GenericResponse</returns>
+        GenericResponse SendMailById (SendMail payload);
+
+        /// <summary>
+        /// Sends an Email
+        /// </summary>
+        /// <remarks>
+        /// Sends An email through one of your mail orders.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <returns>ApiResponse of GenericResponse</returns>
+        ApiResponse<GenericResponse> SendMailByIdWithHttpInfo (SendMail payload);
         /// <summary>
         /// validatess order details before placing an order
         /// </summary>
@@ -275,15 +284,9 @@ namespace IO.Swagger.Api
         /// Sends An email through one of your mail orders.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="subject"></param>
         /// <param name="body"></param>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <param name="id"></param>
-        /// <param name="toName"></param>
-        /// <param name="fromName"></param>
         /// <returns>Task of GenericResponse</returns>
-        System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (string subject, string body, string from, string to, int? id, string toName, string fromName);
+        System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (SendMail body);
 
         /// <summary>
         /// Sends an Email
@@ -292,15 +295,30 @@ namespace IO.Swagger.Api
         /// Sends An email through one of your mail orders.
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="subject"></param>
         /// <param name="body"></param>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <param name="id"></param>
-        /// <param name="toName"></param>
-        /// <param name="fromName"></param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdAsyncWithHttpInfo (string subject, string body, string from, string to, int? id, string toName, string fromName);
+        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdAsyncWithHttpInfo (SendMail body);
+        /// <summary>
+        /// Sends an Email
+        /// </summary>
+        /// <remarks>
+        /// Sends An email through one of your mail orders.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <returns>Task of GenericResponse</returns>
+        System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (SendMail payload);
+
+        /// <summary>
+        /// Sends an Email
+        /// </summary>
+        /// <remarks>
+        /// Sends An email through one of your mail orders.
+        /// </remarks>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <returns>Task of ApiResponse (GenericResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdAsyncWithHttpInfo (SendMail payload);
         /// <summary>
         /// validatess order details before placing an order
         /// </summary>
@@ -1022,17 +1040,11 @@ namespace IO.Swagger.Api
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="subject"></param>
         /// <param name="body"></param>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <param name="id"></param>
-        /// <param name="toName"></param>
-        /// <param name="fromName"></param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendMailById (string subject, string body, string from, string to, int? id, string toName, string fromName)
+        public GenericResponse SendMailById (SendMail body)
         {
-             ApiResponse<GenericResponse> localVarResponse = SendMailByIdWithHttpInfo(subject, body, from, to, id, toName, fromName);
+             ApiResponse<GenericResponse> localVarResponse = SendMailByIdWithHttpInfo(body);
              return localVarResponse.Data;
         }
 
@@ -1040,37 +1052,13 @@ namespace IO.Swagger.Api
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="subject"></param>
         /// <param name="body"></param>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <param name="id"></param>
-        /// <param name="toName"></param>
-        /// <param name="fromName"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        public ApiResponse< GenericResponse > SendMailByIdWithHttpInfo (string subject, string body, string from, string to, int? id, string toName, string fromName)
+        public ApiResponse< GenericResponse > SendMailByIdWithHttpInfo (SendMail body)
         {
-            // verify the required parameter 'subject' is set
-            if (subject == null)
-                throw new ApiException(400, "Missing required parameter 'subject' when calling DefaultApi->SendMailById");
             // verify the required parameter 'body' is set
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->SendMailById");
-            // verify the required parameter 'from' is set
-            if (from == null)
-                throw new ApiException(400, "Missing required parameter 'from' when calling DefaultApi->SendMailById");
-            // verify the required parameter 'to' is set
-            if (to == null)
-                throw new ApiException(400, "Missing required parameter 'to' when calling DefaultApi->SendMailById");
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->SendMailById");
-            // verify the required parameter 'toName' is set
-            if (toName == null)
-                throw new ApiException(400, "Missing required parameter 'toName' when calling DefaultApi->SendMailById");
-            // verify the required parameter 'fromName' is set
-            if (fromName == null)
-                throw new ApiException(400, "Missing required parameter 'fromName' when calling DefaultApi->SendMailById");
 
             var localVarPath = "/mail/send";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1082,6 +1070,7 @@ namespace IO.Swagger.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
                 "application/x-www-form-urlencoded"
             };
             String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
@@ -1094,13 +1083,14 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (subject != null) localVarFormParams.Add("subject", this.Configuration.ApiClient.ParameterToString(subject)); // form parameter
-            if (body != null) localVarFormParams.Add("body", this.Configuration.ApiClient.ParameterToString(body)); // form parameter
-            if (from != null) localVarFormParams.Add("from", this.Configuration.ApiClient.ParameterToString(from)); // form parameter
-            if (to != null) localVarFormParams.Add("to", this.Configuration.ApiClient.ParameterToString(to)); // form parameter
-            if (id != null) localVarFormParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // form parameter
-            if (toName != null) localVarFormParams.Add("toName", this.Configuration.ApiClient.ParameterToString(toName)); // form parameter
-            if (fromName != null) localVarFormParams.Add("fromName", this.Configuration.ApiClient.ParameterToString(fromName)); // form parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
@@ -1129,17 +1119,11 @@ namespace IO.Swagger.Api
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="subject"></param>
         /// <param name="body"></param>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <param name="id"></param>
-        /// <param name="toName"></param>
-        /// <param name="fromName"></param>
         /// <returns>Task of GenericResponse</returns>
-        public async System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (string subject, string body, string from, string to, int? id, string toName, string fromName)
+        public async System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (SendMail body)
         {
-             ApiResponse<GenericResponse> localVarResponse = await SendMailByIdAsyncWithHttpInfo(subject, body, from, to, id, toName, fromName);
+             ApiResponse<GenericResponse> localVarResponse = await SendMailByIdAsyncWithHttpInfo(body);
              return localVarResponse.Data;
 
         }
@@ -1148,37 +1132,13 @@ namespace IO.Swagger.Api
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="subject"></param>
         /// <param name="body"></param>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <param name="id"></param>
-        /// <param name="toName"></param>
-        /// <param name="fromName"></param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdAsyncWithHttpInfo (string subject, string body, string from, string to, int? id, string toName, string fromName)
+        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdAsyncWithHttpInfo (SendMail body)
         {
-            // verify the required parameter 'subject' is set
-            if (subject == null)
-                throw new ApiException(400, "Missing required parameter 'subject' when calling DefaultApi->SendMailById");
             // verify the required parameter 'body' is set
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling DefaultApi->SendMailById");
-            // verify the required parameter 'from' is set
-            if (from == null)
-                throw new ApiException(400, "Missing required parameter 'from' when calling DefaultApi->SendMailById");
-            // verify the required parameter 'to' is set
-            if (to == null)
-                throw new ApiException(400, "Missing required parameter 'to' when calling DefaultApi->SendMailById");
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DefaultApi->SendMailById");
-            // verify the required parameter 'toName' is set
-            if (toName == null)
-                throw new ApiException(400, "Missing required parameter 'toName' when calling DefaultApi->SendMailById");
-            // verify the required parameter 'fromName' is set
-            if (fromName == null)
-                throw new ApiException(400, "Missing required parameter 'fromName' when calling DefaultApi->SendMailById");
 
             var localVarPath = "/mail/send";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1190,6 +1150,7 @@ namespace IO.Swagger.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
                 "application/x-www-form-urlencoded"
             };
             String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
@@ -1202,13 +1163,159 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (subject != null) localVarFormParams.Add("subject", this.Configuration.ApiClient.ParameterToString(subject)); // form parameter
-            if (body != null) localVarFormParams.Add("body", this.Configuration.ApiClient.ParameterToString(body)); // form parameter
-            if (from != null) localVarFormParams.Add("from", this.Configuration.ApiClient.ParameterToString(from)); // form parameter
-            if (to != null) localVarFormParams.Add("to", this.Configuration.ApiClient.ParameterToString(to)); // form parameter
-            if (id != null) localVarFormParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // form parameter
-            if (toName != null) localVarFormParams.Add("toName", this.Configuration.ApiClient.ParameterToString(toName)); // form parameter
-            if (fromName != null) localVarFormParams.Add("fromName", this.Configuration.ApiClient.ParameterToString(fromName)); // form parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+            // authentication (apiKeyAuth) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
+            {
+                localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("SendMailById", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<GenericResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                (GenericResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(GenericResponse)));
+        }
+
+        /// <summary>
+        /// Sends an Email Sends An email through one of your mail orders.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <returns>GenericResponse</returns>
+        public GenericResponse SendMailById (SendMail payload)
+        {
+             ApiResponse<GenericResponse> localVarResponse = SendMailByIdWithHttpInfo(payload);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Sends an Email Sends An email through one of your mail orders.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <returns>ApiResponse of GenericResponse</returns>
+        public ApiResponse< GenericResponse > SendMailByIdWithHttpInfo (SendMail payload)
+        {
+            // verify the required parameter 'payload' is set
+            if (payload == null)
+                throw new ApiException(400, "Missing required parameter 'payload' when calling DefaultApi->SendMailById");
+
+            var localVarPath = "/mail/send";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (payload != null) localVarFormParams.Add("payload", this.Configuration.ApiClient.ParameterToString(payload)); // form parameter
+            // authentication (apiKeyAuth) required
+            if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
+            {
+                localVarHeaderParams["X-API-KEY"] = this.Configuration.GetApiKeyWithPrefix("X-API-KEY");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("SendMailById", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<GenericResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                (GenericResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(GenericResponse)));
+        }
+
+        /// <summary>
+        /// Sends an Email Sends An email through one of your mail orders.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <returns>Task of GenericResponse</returns>
+        public async System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (SendMail payload)
+        {
+             ApiResponse<GenericResponse> localVarResponse = await SendMailByIdAsyncWithHttpInfo(payload);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Sends an Email Sends An email through one of your mail orders.
+        /// </summary>
+        /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="payload"></param>
+        /// <returns>Task of ApiResponse (GenericResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdAsyncWithHttpInfo (SendMail payload)
+        {
+            // verify the required parameter 'payload' is set
+            if (payload == null)
+                throw new ApiException(400, "Missing required parameter 'payload' when calling DefaultApi->SendMailById");
+
+            var localVarPath = "/mail/send";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json", 
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (payload != null) localVarFormParams.Add("payload", this.Configuration.ApiClient.ParameterToString(payload)); // form parameter
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {

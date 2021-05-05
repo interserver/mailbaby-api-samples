@@ -174,11 +174,11 @@ open class DefaultAPI {
 
     /**
      Sends an Email
-     - parameter subject: (form)       - parameter body: (form)       - parameter from: (form)       - parameter to: (form)       - parameter _id: (form)       - parameter toName: (form)       - parameter fromName: (form)  
+     - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendMailById(subject: String, body: String, from: String, to: String, _id: Int, toName: String, fromName: String, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
-        sendMailByIdWithRequestBuilder(subject: subject, body: body, from: from, to: to, _id: _id, toName: toName, fromName: fromName).execute { (response, error) -> Void in
+    open class func sendMailById(body: SendMail, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
+        sendMailByIdWithRequestBuilder(body: body).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -195,31 +195,59 @@ open class DefaultAPI {
   "status_text" : "The command completed successfully.",
   "status" : "ok"
 }}]
-     - parameter subject: (form)       - parameter body: (form)       - parameter from: (form)       - parameter to: (form)       - parameter _id: (form)       - parameter toName: (form)       - parameter fromName: (form)  
+     - parameter body: (body)  
 
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendMailByIdWithRequestBuilder(subject: String, body: String, from: String, to: String, _id: Int, toName: String, fromName: String) -> RequestBuilder<GenericResponse> {
+    open class func sendMailByIdWithRequestBuilder(body: SendMail) -> RequestBuilder<GenericResponse> {
         let path = "/mail/send"
         let URLString = SwaggerClientAPI.basePath + path
-        let formParams: [String:Any?] = [
-                        "subject": subject,
-                        "body": body,
-                        "from": from,
-                        "to": to,
-                        "id": _id.encodeToJSON(),
-                        "toName": toName,
-                        "fromName": fromName
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
 
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<GenericResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
+    }
+
+    /**
+     Sends an Email
+     - parameter payload: (form)  
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func sendMailById(payload: SendMail, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
+        sendMailByIdWithRequestBuilder(payload: payload).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Sends an Email
+     - POST /mail/send
+     - Sends An email through one of your mail orders.
+     - API Key:
+       - type: apiKey X-API-KEY 
+       - name: apiKeyAuth
+     - examples: [{contentType=application/json, example={
+  "status_text" : "The command completed successfully.",
+  "status" : "ok"
+}}]
+     - parameter payload: (form)  
+
+     - returns: RequestBuilder<GenericResponse> 
+     */
+    open class func sendMailByIdWithRequestBuilder(payload: SendMail) -> RequestBuilder<GenericResponse> {
+        let path = "/mail/send"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
+
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<GenericResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 
     /**

@@ -163,10 +163,17 @@ __PACKAGE__->class_documentation({description => 'Details for an Email',
 }                                 );
 
 __PACKAGE__->method_documentation({
-    'id' => {
-        datatype => 'int',
-        base_name => 'id',
-        description => 'The ID of the Mail order within our system to use as the Mail Account.',
+    'subject' => {
+        datatype => 'string',
+        base_name => 'subject',
+        description => 'The subject or title of the email',
+        format => '',
+        read_only => '',
+            },
+    'body' => {
+        datatype => 'string',
+        base_name => 'body',
+        description => 'The main email contents.',
         format => '',
         read_only => '',
             },
@@ -184,17 +191,10 @@ __PACKAGE__->method_documentation({
         format => '',
         read_only => '',
             },
-    'subject' => {
-        datatype => 'string',
-        base_name => 'subject',
-        description => 'The subject or title of the email',
-        format => '',
-        read_only => '',
-            },
-    'body' => {
-        datatype => 'string',
-        base_name => 'body',
-        description => 'The main email contents.',
+    'id' => {
+        datatype => 'int',
+        base_name => 'id',
+        description => 'The ID of the Mail order within our system to use as the Mail Account.',
         format => '',
         read_only => '',
             },
@@ -229,11 +229,11 @@ __PACKAGE__->method_documentation({
 });
 
 __PACKAGE__->openapi_types( {
-    'id' => 'int',
-    'from' => 'MailContact',
-    'to' => 'ARRAY[MailContact]',
     'subject' => 'string',
     'body' => 'string',
+    'from' => 'MailContact',
+    'to' => 'ARRAY[MailContact]',
+    'id' => 'int',
     'replyto' => 'ARRAY[MailContact]',
     'cc' => 'ARRAY[MailContact]',
     'bcc' => 'ARRAY[MailContact]',
@@ -241,11 +241,11 @@ __PACKAGE__->openapi_types( {
 } );
 
 __PACKAGE__->attribute_map( {
-    'id' => 'id',
-    'from' => 'from',
-    'to' => 'to',
     'subject' => 'subject',
     'body' => 'body',
+    'from' => 'from',
+    'to' => 'to',
+    'id' => 'id',
     'replyto' => 'replyto',
     'cc' => 'cc',
     'bcc' => 'bcc',

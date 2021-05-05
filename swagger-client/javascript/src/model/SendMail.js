@@ -26,21 +26,21 @@ export default class SendMail {
     * Details for an Email
     * @alias module:model/SendMail
     * @class
-    * @param id {Number} The ID of the Mail order within our system to use as the Mail Account.
-    * @param from {module:model/MailContact} 
-    * @param to {Array.<module:model/MailContact>} The Contact whom is the primary recipient of this email.
     * @param subject {String} The subject or title of the email
     * @param body {String} The main email contents.
+    * @param from {module:model/MailContact} 
+    * @param to {Array.<module:model/MailContact>} The Contact whom is the primary recipient of this email.
+    * @param id {Number} The ID of the Mail order within our system to use as the Mail Account.
     */
 
-    constructor(id, from, to, subject, body) {
+    constructor(subject, body, from, to, id) {
         
         
-        this['id'] = id;
-        this['from'] = from;
-        this['to'] = to;
         this['subject'] = subject;
         this['body'] = body;
+        this['from'] = from;
+        this['to'] = to;
+        this['id'] = id;
         
     }
 
@@ -56,8 +56,11 @@ export default class SendMail {
             obj = obj || new SendMail();
                         
             
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'Number');
+            if (data.hasOwnProperty('subject')) {
+                obj['subject'] = ApiClient.convertToType(data['subject'], 'String');
+            }
+            if (data.hasOwnProperty('body')) {
+                obj['body'] = ApiClient.convertToType(data['body'], 'String');
             }
             if (data.hasOwnProperty('from')) {
                 obj['from'] = MailContact.constructFromObject(data['from']);
@@ -65,11 +68,8 @@ export default class SendMail {
             if (data.hasOwnProperty('to')) {
                 obj['to'] = ApiClient.convertToType(data['to'], [MailContact]);
             }
-            if (data.hasOwnProperty('subject')) {
-                obj['subject'] = ApiClient.convertToType(data['subject'], 'String');
-            }
-            if (data.hasOwnProperty('body')) {
-                obj['body'] = ApiClient.convertToType(data['body'], 'String');
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'Number');
             }
             if (data.hasOwnProperty('replyto')) {
                 obj['replyto'] = ApiClient.convertToType(data['replyto'], [MailContact]);
@@ -88,10 +88,15 @@ export default class SendMail {
     }
 
     /**
-    * The ID of the Mail order within our system to use as the Mail Account.
-    * @member {Number} id
+    * The subject or title of the email
+    * @member {String} subject
     */
-    'id' = undefined;
+    'subject' = undefined;
+    /**
+    * The main email contents.
+    * @member {String} body
+    */
+    'body' = undefined;
     /**
     * @member {module:model/MailContact} from
     */
@@ -102,15 +107,10 @@ export default class SendMail {
     */
     'to' = undefined;
     /**
-    * The subject or title of the email
-    * @member {String} subject
+    * The ID of the Mail order within our system to use as the Mail Account.
+    * @member {Number} id
     */
-    'subject' = undefined;
-    /**
-    * The main email contents.
-    * @member {String} body
-    */
-    'body' = undefined;
+    'id' = undefined;
     /**
     * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
     * @member {Array.<module:model/MailContact>} replyto

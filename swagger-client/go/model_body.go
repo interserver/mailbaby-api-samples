@@ -10,18 +10,5 @@
 package swagger
 
 type Body struct {
-	// The Subject of the email
-	Subject string `json:"subject"`
-	// The contents of the email
-	Body string `json:"body"`
-	// The email address of who this email will be sent from.
-	From string `json:"from"`
-	// The email address of who this email will be sent to.
-	To string `json:"to"`
-	// The ID of your mail order this will be sent through.
-	Id int32 `json:"id,omitempty"`
-	// The name or title of who this email is being sent to.
-	ToName string `json:"toName,omitempty"`
-	// The name or title of who this email is being sent from.
-	FromName string `json:"fromName,omitempty"`
+	Payload *SendMail `json:"payload,omitempty"`
 }

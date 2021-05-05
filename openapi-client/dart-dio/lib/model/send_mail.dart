@@ -15,9 +15,13 @@ part 'send_mail.g.dart';
 
 abstract class SendMail implements Built<SendMail, SendMailBuilder> {
 
-    /// The ID of the Mail order within our system to use as the Mail Account.
-    @BuiltValueField(wireName: r'id')
-    int get id;
+    /// The subject or title of the email
+    @BuiltValueField(wireName: r'subject')
+    String get subject;
+
+    /// The main email contents.
+    @BuiltValueField(wireName: r'body')
+    String get body;
 
     @BuiltValueField(wireName: r'from')
     MailContact get from;
@@ -26,13 +30,9 @@ abstract class SendMail implements Built<SendMail, SendMailBuilder> {
     @BuiltValueField(wireName: r'to')
     BuiltList<MailContact> get to;
 
-    /// The subject or title of the email
-    @BuiltValueField(wireName: r'subject')
-    String get subject;
-
-    /// The main email contents.
-    @BuiltValueField(wireName: r'body')
-    String get body;
+    /// The ID of the Mail order within our system to use as the Mail Account.
+    @BuiltValueField(wireName: r'id')
+    int get id;
 
     /// Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
     @nullable
@@ -76,9 +76,13 @@ class _$SendMailSerializer implements StructuredSerializer<SendMail> {
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object>[];
         result
-            ..add(r'id')
-            ..add(serializers.serialize(object.id,
-                specifiedType: const FullType(int)));
+            ..add(r'subject')
+            ..add(serializers.serialize(object.subject,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'body')
+            ..add(serializers.serialize(object.body,
+                specifiedType: const FullType(String)));
         result
             ..add(r'from')
             ..add(serializers.serialize(object.from,
@@ -88,13 +92,9 @@ class _$SendMailSerializer implements StructuredSerializer<SendMail> {
             ..add(serializers.serialize(object.to,
                 specifiedType: const FullType(BuiltList, [FullType(MailContact)])));
         result
-            ..add(r'subject')
-            ..add(serializers.serialize(object.subject,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'body')
-            ..add(serializers.serialize(object.body,
-                specifiedType: const FullType(String)));
+            ..add(r'id')
+            ..add(serializers.serialize(object.id,
+                specifiedType: const FullType(int)));
         if (object.replyto != null) {
             result
                 ..add(r'replyto')
@@ -133,9 +133,13 @@ class _$SendMailSerializer implements StructuredSerializer<SendMail> {
             iterator.moveNext();
             final dynamic value = iterator.current;
             switch (key) {
-                case r'id':
-                    result.id = serializers.deserialize(value,
-                        specifiedType: const FullType(int)) as int;
+                case r'subject':
+                    result.subject = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'body':
+                    result.body = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
                     break;
                 case r'from':
                     result.from.replace(serializers.deserialize(value,
@@ -145,13 +149,9 @@ class _$SendMailSerializer implements StructuredSerializer<SendMail> {
                     result.to.replace(serializers.deserialize(value,
                         specifiedType: const FullType(BuiltList, [FullType(MailContact)])) as BuiltList<MailContact>);
                     break;
-                case r'subject':
-                    result.subject = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'body':
-                    result.body = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
+                case r'id':
+                    result.id = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
                     break;
                 case r'replyto':
                     result.replyto.replace(serializers.deserialize(value,

@@ -71,14 +71,8 @@ describe "DefaultApi" do
   # unit tests for send_mail_by_id
   # Sends an Email
   # Sends An email through one of your mail orders.
-  # @param subject The Subject of the email
-  # @param body The contents of the email
-  # @param from The email address of who this email will be sent from.
-  # @param to The email address of who this email will be sent to.
+  # @param send_mail 
   # @param [Hash] opts the optional parameters
-  # @option opts [Int32] :id The ID of your mail order this will be sent through.
-  # @option opts [String] :to_name The name or title of who this email is being sent to.
-  # @option opts [String] :from_name The name or title of who this email is being sent from.
   # @return [GenericResponse]
   describe "send_mail_by_id test" do
     it "should work" do

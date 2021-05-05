@@ -64,28 +64,33 @@ def send_adv_mail_by_id(body):  # noqa: E501
     return 'do some magic!'
 
 
-def send_mail_by_id(subject, body, _from, to, id, to_name, from_name):  # noqa: E501
+def send_mail_by_id(body):  # noqa: E501
     """Sends an Email
 
     Sends An email through one of your mail orders. # noqa: E501
 
-    :param subject: 
-    :type subject: str
     :param body: 
-    :type body: str
-    :param _from: 
-    :type _from: str
-    :param to: 
-    :type to: str
-    :param id: 
-    :type id: int
-    :param to_name: 
-    :type to_name: str
-    :param from_name: 
-    :type from_name: str
+    :type body: dict | bytes
 
     :rtype: GenericResponse
     """
+    if connexion.request.is_json:
+        body = SendMail.from_dict(connexion.request.get_json())  # noqa: E501
+    return 'do some magic!'
+
+
+def send_mail_by_id(payload):  # noqa: E501
+    """Sends an Email
+
+    Sends An email through one of your mail orders. # noqa: E501
+
+    :param payload: 
+    :type payload: dict | bytes
+
+    :rtype: GenericResponse
+    """
+    if connexion.request.is_json:
+        payload = SendMail.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 

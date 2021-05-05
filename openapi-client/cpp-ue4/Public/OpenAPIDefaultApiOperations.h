@@ -130,20 +130,7 @@ public:
 	void SetupHttpRequest(const FHttpRequestRef& HttpRequest) const final;
 	FString ComputePath() const final;
     
-	/* The Subject of the email */
-	FString Subject;
-	/* The contents of the email */
-	FString Body;
-	/* The email address of who this email will be sent from. */
-	FString From;
-	/* The email address of who this email will be sent to. */
-	FString To;
-	/* The ID of your mail order this will be sent through. */
-	TOptional<int32> Id;
-	/* The name or title of who this email is being sent to. */
-	TOptional<FString> ToName;
-	/* The name or title of who this email is being sent from. */
-	TOptional<FString> FromName;
+	OpenAPISendMail OpenAPISendMail;
 };
 
 class OPENAPI_API OpenAPIDefaultApi::SendMailByIdResponse : public Response

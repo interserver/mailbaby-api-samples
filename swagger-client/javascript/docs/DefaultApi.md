@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMailById"></a>
 # **sendMailById**
-> GenericResponse sendMailById(subjectbodyfromtoidtoNamefromName)
+> GenericResponse sendMailById(body)
 
 Sends an Email
 
@@ -218,15 +218,9 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyApi.DefaultApi();
-let subject = "subject_example"; // String | 
-let body = "body_example"; // String | 
-let from = "from_example"; // String | 
-let to = "to_example"; // String | 
-let id = 56; // Number | 
-let toName = "toName_example"; // String | 
-let fromName = "fromName_example"; // String | 
+let body = new MailBabyApi.SendMail(); // SendMail | 
 
-apiInstance.sendMailById(subjectbodyfromtoidtoNamefromName, (error, data, response) => {
+apiInstance.sendMailById(body, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -239,13 +233,7 @@ apiInstance.sendMailById(subjectbodyfromtoidtoNamefromName, (error, data, respon
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **String**|  | 
- **body** | **String**|  | 
- **from** | **String**|  | 
- **to** | **String**|  | 
- **id** | **Number**|  | 
- **toName** | **String**|  | 
- **fromName** | **String**|  | 
+ **body** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type
 
@@ -257,7 +245,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 <a name="validateMailOrder"></a>

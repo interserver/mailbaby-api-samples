@@ -45,11 +45,19 @@ public class SendMailTest {
     }
 
     /**
-     * Test the property 'id'
+     * Test the property 'subject'
      */
     @Test
-    public void idTest() {
-        // TODO: test id
+    public void subjectTest() {
+        // TODO: test subject
+    }
+
+    /**
+     * Test the property 'body'
+     */
+    @Test
+    public void bodyTest() {
+        // TODO: test body
     }
 
     /**
@@ -69,19 +77,11 @@ public class SendMailTest {
     }
 
     /**
-     * Test the property 'subject'
+     * Test the property 'id'
      */
     @Test
-    public void subjectTest() {
-        // TODO: test subject
-    }
-
-    /**
-     * Test the property 'body'
-     */
-    @Test
-    public void bodyTest() {
-        // TODO: test body
+    public void idTest() {
+        // TODO: test id
     }
 
     /**

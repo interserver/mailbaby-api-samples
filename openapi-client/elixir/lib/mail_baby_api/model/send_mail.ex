@@ -9,11 +9,11 @@ defmodule MailBabyAPI.Model.SendMail do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"id",
-    :"from",
-    :"to",
     :"subject",
     :"body",
+    :"from",
+    :"to",
+    :"id",
     :"replyto",
     :"cc",
     :"bcc",
@@ -21,11 +21,11 @@ defmodule MailBabyAPI.Model.SendMail do
   ]
 
   @type t :: %__MODULE__{
-    :"id" => integer(),
-    :"from" => MailBabyAPI.Model.MailContact.t,
-    :"to" => [MailBabyAPI.Model.MailContact.t],
     :"subject" => String.t,
     :"body" => String.t,
+    :"from" => MailBabyAPI.Model.MailContact.t,
+    :"to" => [MailBabyAPI.Model.MailContact.t],
+    :"id" => integer(),
     :"replyto" => [MailBabyAPI.Model.MailContact.t] | nil,
     :"cc" => [MailBabyAPI.Model.MailContact.t] | nil,
     :"bcc" => [MailBabyAPI.Model.MailContact.t] | nil,

@@ -6,9 +6,15 @@ void main() {
   var instance = new SendMail();
 
   group('test SendMail', () {
-    // The ID of the Mail order within our system to use as the Mail Account.
-    // int id (default value: null)
-    test('to test the property `id`', () async {
+    // The subject or title of the email
+    // String subject (default value: null)
+    test('to test the property `subject`', () async {
+      // TODO
+    });
+
+    // The main email contents.
+    // String body (default value: null)
+    test('to test the property `body`', () async {
       // TODO
     });
 
@@ -23,15 +29,9 @@ void main() {
       // TODO
     });
 
-    // The subject or title of the email
-    // String subject (default value: null)
-    test('to test the property `subject`', () async {
-      // TODO
-    });
-
-    // The main email contents.
-    // String body (default value: null)
-    test('to test the property `body`', () async {
+    // The ID of the Mail order within our system to use as the Mail Account.
+    // int id (default value: null)
+    test('to test the property `id`', () async {
       // TODO
     });
 

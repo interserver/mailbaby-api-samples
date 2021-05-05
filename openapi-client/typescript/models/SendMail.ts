@@ -19,15 +19,6 @@ import { HttpFile } from '../http/http';
 */
 export class SendMail {
     /**
-    * The ID of the Mail order within our system to use as the Mail Account.
-    */
-    'id': number;
-    'from': MailContact;
-    /**
-    * The Contact whom is the primary recipient of this email.
-    */
-    'to': Array<MailContact>;
-    /**
     * The subject or title of the email
     */
     'subject': string;
@@ -35,6 +26,15 @@ export class SendMail {
     * The main email contents.
     */
     'body': string;
+    'from': MailContact;
+    /**
+    * The Contact whom is the primary recipient of this email.
+    */
+    'to': Array<MailContact>;
+    /**
+    * The ID of the Mail order within our system to use as the Mail Account.
+    */
+    'id': number;
     /**
     * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
     */
@@ -56,10 +56,16 @@ export class SendMail {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "id",
-            "baseName": "id",
-            "type": "number",
-            "format": "int64"
+            "name": "subject",
+            "baseName": "subject",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "body",
+            "baseName": "body",
+            "type": "string",
+            "format": ""
         },
         {
             "name": "from",
@@ -74,16 +80,10 @@ export class SendMail {
             "format": ""
         },
         {
-            "name": "subject",
-            "baseName": "subject",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "body",
-            "baseName": "body",
-            "type": "string",
-            "format": ""
+            "name": "id",
+            "baseName": "id",
+            "type": "number",
+            "format": "int64"
         },
         {
             "name": "replyto",

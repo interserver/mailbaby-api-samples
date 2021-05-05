@@ -9,33 +9,14 @@ import Foundation
 
 
 open class Body: JSONEncodable {
-    /** The Subject of the email */
-    public var subject: String?
-    /** The contents of the email */
-    public var body: String?
-    /** The email address of who this email will be sent from. */
-    public var from: String?
-    /** The email address of who this email will be sent to. */
-    public var to: String?
-    /** The ID of your mail order this will be sent through. */
-    public var id: Int32?
-    /** The name or title of who this email is being sent to. */
-    public var toName: String?
-    /** The name or title of who this email is being sent from. */
-    public var fromName: String?
+    public var payload: SendMail?
 
     public init() {}
 
     // MARK: JSONEncodable
     open func encodeToJSON() -> Any {
         var nillableDictionary = [String:Any?]()
-        nillableDictionary["subject"] = self.subject
-        nillableDictionary["body"] = self.body
-        nillableDictionary["from"] = self.from
-        nillableDictionary["to"] = self.to
-        nillableDictionary["id"] = self.id?.encodeToJSON()
-        nillableDictionary["toName"] = self.toName
-        nillableDictionary["fromName"] = self.fromName
+        nillableDictionary["payload"] = self.payload?.encodeToJSON()
 
         let dictionary: [String:Any] = APIHelper.rejectNil(nillableDictionary) ?? [:]
         return dictionary

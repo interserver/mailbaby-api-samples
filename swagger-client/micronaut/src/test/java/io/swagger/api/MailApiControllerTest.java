@@ -55,16 +55,20 @@ class MailApiControllerTest {
     }
 
     @Test
-    void sendMailByIdWithFormTest() {
-        String subject = "subject_example";
-        String body = "body_example";
-        String from = "from_example";
-        String to = "to_example";
-        Integer id = 56;
-        String toName = "toName_example";
-        String fromName = "fromName_example";
+    void sendMailByIdTest() {
+        SendMail body = new SendMail();
         try {
-            api.sendMailById(subject, body, from, to, id, toName, fromName).blockingGet();
+            api.sendMailById(body).blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
+    void sendMailByIdWithFormTest() {
+        SendMail payload = new SendMail();
+        try {
+            api.sendMailById(payload).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

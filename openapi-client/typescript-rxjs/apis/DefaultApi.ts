@@ -34,13 +34,7 @@ export interface SendAdvMailByIdRequest {
 }
 
 export interface SendMailByIdRequest {
-    subject: string;
-    body: string;
-    from: string;
-    to: string;
-    id?: number;
-    toName?: string;
-    fromName?: string;
+    sendMail: SendMail;
 }
 
 export interface ViewMailLogByIdRequest {
@@ -137,32 +131,21 @@ export class DefaultApi extends BaseAPI {
      * Sends An email through one of your mail orders.
      * Sends an Email
      */
-    sendMailById({ subject, body, from, to, id, toName, fromName }: SendMailByIdRequest): Observable<GenericResponse>
-    sendMailById({ subject, body, from, to, id, toName, fromName }: SendMailByIdRequest, opts?: OperationOpts): Observable<RawAjaxResponse<GenericResponse>>
-    sendMailById({ subject, body, from, to, id, toName, fromName }: SendMailByIdRequest, opts?: OperationOpts): Observable<GenericResponse | RawAjaxResponse<GenericResponse>> {
-        throwIfNullOrUndefined(subject, 'subject', 'sendMailById');
-        throwIfNullOrUndefined(body, 'body', 'sendMailById');
-        throwIfNullOrUndefined(from, 'from', 'sendMailById');
-        throwIfNullOrUndefined(to, 'to', 'sendMailById');
+    sendMailById({ sendMail }: SendMailByIdRequest): Observable<GenericResponse>
+    sendMailById({ sendMail }: SendMailByIdRequest, opts?: OperationOpts): Observable<RawAjaxResponse<GenericResponse>>
+    sendMailById({ sendMail }: SendMailByIdRequest, opts?: OperationOpts): Observable<GenericResponse | RawAjaxResponse<GenericResponse>> {
+        throwIfNullOrUndefined(sendMail, 'sendMail', 'sendMailById');
 
         const headers: HttpHeaders = {
+            'Content-Type': 'application/json',
             ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication
         };
-
-        const formData = new FormData();
-        if (subject !== undefined) { formData.append('subject', subject as any); }
-        if (body !== undefined) { formData.append('body', body as any); }
-        if (from !== undefined) { formData.append('from', from as any); }
-        if (to !== undefined) { formData.append('to', to as any); }
-        if (id !== undefined) { formData.append('id', id as any); }
-        if (toName !== undefined) { formData.append('toName', toName as any); }
-        if (fromName !== undefined) { formData.append('fromName', fromName as any); }
 
         return this.request<GenericResponse>({
             url: '/mail/send',
             method: 'POST',
             headers,
-            body: formData,
+            body: sendMail,
         }, opts?.responseOpts);
     };
 

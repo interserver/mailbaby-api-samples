@@ -13,50 +13,19 @@ require 'date'
 
 module SwaggerClient
   class Body
-    # The Subject of the email
-    attr_accessor :subject
-
-    # The contents of the email
-    attr_accessor :body
-
-    # The email address of who this email will be sent from.
-    attr_accessor :from
-
-    # The email address of who this email will be sent to.
-    attr_accessor :to
-
-    # The ID of your mail order this will be sent through.
-    attr_accessor :id
-
-    # The name or title of who this email is being sent to.
-    attr_accessor :to_name
-
-    # The name or title of who this email is being sent from.
-    attr_accessor :from_name
+    attr_accessor :payload
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'subject' => :'subject',
-        :'body' => :'body',
-        :'from' => :'from',
-        :'to' => :'to',
-        :'id' => :'id',
-        :'to_name' => :'toName',
-        :'from_name' => :'fromName'
+        :'payload' => :'payload'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'subject' => :'Object',
-        :'body' => :'Object',
-        :'from' => :'Object',
-        :'to' => :'Object',
-        :'id' => :'Object',
-        :'to_name' => :'Object',
-        :'from_name' => :'Object'
+        :'payload' => :'Object'
       }
     end
 
@@ -81,32 +50,8 @@ module SwaggerClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'subject')
-        self.subject = attributes[:'subject']
-      end
-
-      if attributes.key?(:'body')
-        self.body = attributes[:'body']
-      end
-
-      if attributes.key?(:'from')
-        self.from = attributes[:'from']
-      end
-
-      if attributes.key?(:'to')
-        self.to = attributes[:'to']
-      end
-
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
-      end
-
-      if attributes.key?(:'to_name')
-        self.to_name = attributes[:'to_name']
-      end
-
-      if attributes.key?(:'from_name')
-        self.from_name = attributes[:'from_name']
+      if attributes.key?(:'payload')
+        self.payload = attributes[:'payload']
       end
     end
 
@@ -114,32 +59,12 @@ module SwaggerClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @subject.nil?
-        invalid_properties.push('invalid value for "subject", subject cannot be nil.')
-      end
-
-      if @body.nil?
-        invalid_properties.push('invalid value for "body", body cannot be nil.')
-      end
-
-      if @from.nil?
-        invalid_properties.push('invalid value for "from", from cannot be nil.')
-      end
-
-      if @to.nil?
-        invalid_properties.push('invalid value for "to", to cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @subject.nil?
-      return false if @body.nil?
-      return false if @from.nil?
-      return false if @to.nil?
       true
     end
 
@@ -148,13 +73,7 @@ module SwaggerClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          subject == o.subject &&
-          body == o.body &&
-          from == o.from &&
-          to == o.to &&
-          id == o.id &&
-          to_name == o.to_name &&
-          from_name == o.from_name
+          payload == o.payload
     end
 
     # @see the `==` method
@@ -166,7 +85,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [subject, body, from, to, id, to_name, from_name].hash
+      [payload].hash
     end
 
     # Builds the object from hash

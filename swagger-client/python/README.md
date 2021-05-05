@@ -119,17 +119,11 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
-subject = 'subject_example' # str | 
-body = 'body_example' # str | 
-_from = '_from_example' # str | 
-to = 'to_example' # str | 
-id = 56 # int | 
-to_name = 'to_name_example' # str | 
-from_name = 'from_name_example' # str | 
+body = swagger_client.SendMail() # SendMail | 
 
 try:
     # Sends an Email
-    api_response = api_instance.send_mail_by_id(subject, body, _from, to, id, to_name, from_name)
+    api_response = api_instance.send_mail_by_id(body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->send_mail_by_id: %s\n" % e)

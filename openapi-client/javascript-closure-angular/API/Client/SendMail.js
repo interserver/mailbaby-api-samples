@@ -7,11 +7,18 @@ goog.provide('API.Client.SendMail');
 API.Client.SendMail = function() {}
 
 /**
- * The ID of the Mail order within our system to use as the Mail Account.
- * @type {!number}
+ * The subject or title of the email
+ * @type {!string}
  * @export
  */
-API.Client.SendMail.prototype.id;
+API.Client.SendMail.prototype.subject;
+
+/**
+ * The main email contents.
+ * @type {!string}
+ * @export
+ */
+API.Client.SendMail.prototype.body;
 
 /**
  * @type {!API.Client.MailContact}
@@ -27,18 +34,11 @@ API.Client.SendMail.prototype.from;
 API.Client.SendMail.prototype.to;
 
 /**
- * The subject or title of the email
- * @type {!string}
+ * The ID of the Mail order within our system to use as the Mail Account.
+ * @type {!number}
  * @export
  */
-API.Client.SendMail.prototype.subject;
-
-/**
- * The main email contents.
- * @type {!string}
- * @export
- */
-API.Client.SendMail.prototype.body;
+API.Client.SendMail.prototype.id;
 
 /**
  * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.

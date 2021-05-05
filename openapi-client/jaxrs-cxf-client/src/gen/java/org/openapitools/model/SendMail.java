@@ -22,21 +22,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @ApiModel(description="Details for an Email")
 public class SendMail  {
   
-  @ApiModelProperty(required = true, value = "The ID of the Mail order within our system to use as the Mail Account.")
- /**
-   * The ID of the Mail order within our system to use as the Mail Account.
-  **/
-  private Long id;
-
-  @ApiModelProperty(required = true, value = "")
-  private MailContact from;
-
-  @ApiModelProperty(required = true, value = "The Contact whom is the primary recipient of this email.")
- /**
-   * The Contact whom is the primary recipient of this email.
-  **/
-  private List<MailContact> to = new ArrayList<>();
-
   @ApiModelProperty(example = "Your Package has been Delivered!", required = true, value = "The subject or title of the email")
  /**
    * The subject or title of the email
@@ -48,6 +33,21 @@ public class SendMail  {
    * The main email contents.
   **/
   private String body;
+
+  @ApiModelProperty(required = true, value = "")
+  private MailContact from;
+
+  @ApiModelProperty(required = true, value = "The Contact whom is the primary recipient of this email.")
+ /**
+   * The Contact whom is the primary recipient of this email.
+  **/
+  private List<MailContact> to = new ArrayList<>();
+
+  @ApiModelProperty(example = "5000", required = true, value = "The ID of the Mail order within our system to use as the Mail Account.")
+ /**
+   * The ID of the Mail order within our system to use as the Mail Account.
+  **/
+  private Long id;
 
   @ApiModelProperty(value = "Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.")
  /**
@@ -73,20 +73,38 @@ public class SendMail  {
   **/
   private List<MailAttachment> attachments = null;
  /**
-   * The ID of the Mail order within our system to use as the Mail Account.
-   * @return id
+   * The subject or title of the email
+   * @return subject
   **/
-  @JsonProperty("id")
-  public Long getId() {
-    return id;
+  @JsonProperty("subject")
+  public String getSubject() {
+    return subject;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setSubject(String subject) {
+    this.subject = subject;
   }
 
-  public SendMail id(Long id) {
-    this.id = id;
+  public SendMail subject(String subject) {
+    this.subject = subject;
+    return this;
+  }
+
+ /**
+   * The main email contents.
+   * @return body
+  **/
+  @JsonProperty("body")
+  public String getBody() {
+    return body;
+  }
+
+  public void setBody(String body) {
+    this.body = body;
+  }
+
+  public SendMail body(String body) {
+    this.body = body;
     return this;
   }
 
@@ -132,38 +150,20 @@ public class SendMail  {
   }
 
  /**
-   * The subject or title of the email
-   * @return subject
+   * The ID of the Mail order within our system to use as the Mail Account.
+   * @return id
   **/
-  @JsonProperty("subject")
-  public String getSubject() {
-    return subject;
+  @JsonProperty("id")
+  public Long getId() {
+    return id;
   }
 
-  public void setSubject(String subject) {
-    this.subject = subject;
+  public void setId(Long id) {
+    this.id = id;
   }
 
-  public SendMail subject(String subject) {
-    this.subject = subject;
-    return this;
-  }
-
- /**
-   * The main email contents.
-   * @return body
-  **/
-  @JsonProperty("body")
-  public String getBody() {
-    return body;
-  }
-
-  public void setBody(String body) {
-    this.body = body;
-  }
-
-  public SendMail body(String body) {
-    this.body = body;
+  public SendMail id(Long id) {
+    this.id = id;
     return this;
   }
 
@@ -265,11 +265,11 @@ public class SendMail  {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendMail {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    from: ").append(toIndentedString(from)).append("\n");
-    sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    from: ").append(toIndentedString(from)).append("\n");
+    sb.append("    to: ").append(toIndentedString(to)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    replyto: ").append(toIndentedString(replyto)).append("\n");
     sb.append("    cc: ").append(toIndentedString(cc)).append("\n");
     sb.append("    bcc: ").append(toIndentedString(bcc)).append("\n");

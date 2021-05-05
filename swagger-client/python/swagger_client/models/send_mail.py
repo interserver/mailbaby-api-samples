@@ -28,11 +28,11 @@ class SendMail(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'id': 'int',
-        '_from': 'MailContact',
-        'to': 'list[MailContact]',
         'subject': 'str',
         'body': 'str',
+        '_from': 'MailContact',
+        'to': 'list[MailContact]',
+        'id': 'int',
         'replyto': 'list[MailContact]',
         'cc': 'list[MailContact]',
         'bcc': 'list[MailContact]',
@@ -40,34 +40,34 @@ class SendMail(object):
     }
 
     attribute_map = {
-        'id': 'id',
-        '_from': 'from',
-        'to': 'to',
         'subject': 'subject',
         'body': 'body',
+        '_from': 'from',
+        'to': 'to',
+        'id': 'id',
         'replyto': 'replyto',
         'cc': 'cc',
         'bcc': 'bcc',
         'attachments': 'attachments'
     }
 
-    def __init__(self, id=None, _from=None, to=None, subject=None, body=None, replyto=None, cc=None, bcc=None, attachments=None):  # noqa: E501
+    def __init__(self, subject=None, body=None, _from=None, to=None, id=None, replyto=None, cc=None, bcc=None, attachments=None):  # noqa: E501
         """SendMail - a model defined in Swagger"""  # noqa: E501
-        self._id = None
-        self.__from = None
-        self._to = None
         self._subject = None
         self._body = None
+        self.__from = None
+        self._to = None
+        self._id = None
         self._replyto = None
         self._cc = None
         self._bcc = None
         self._attachments = None
         self.discriminator = None
-        self.id = id
-        self._from = _from
-        self.to = to
         self.subject = subject
         self.body = body
+        self._from = _from
+        self.to = to
+        self.id = id
         if replyto is not None:
             self.replyto = replyto
         if cc is not None:
@@ -76,79 +76,6 @@ class SendMail(object):
             self.bcc = bcc
         if attachments is not None:
             self.attachments = attachments
-
-    @property
-    def id(self):
-        """Gets the id of this SendMail.  # noqa: E501
-
-        The ID of the Mail order within our system to use as the Mail Account.  # noqa: E501
-
-        :return: The id of this SendMail.  # noqa: E501
-        :rtype: int
-        """
-        return self._id
-
-    @id.setter
-    def id(self, id):
-        """Sets the id of this SendMail.
-
-        The ID of the Mail order within our system to use as the Mail Account.  # noqa: E501
-
-        :param id: The id of this SendMail.  # noqa: E501
-        :type: int
-        """
-        if id is None:
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
-
-        self._id = id
-
-    @property
-    def _from(self):
-        """Gets the _from of this SendMail.  # noqa: E501
-
-
-        :return: The _from of this SendMail.  # noqa: E501
-        :rtype: MailContact
-        """
-        return self.__from
-
-    @_from.setter
-    def _from(self, _from):
-        """Sets the _from of this SendMail.
-
-
-        :param _from: The _from of this SendMail.  # noqa: E501
-        :type: MailContact
-        """
-        if _from is None:
-            raise ValueError("Invalid value for `_from`, must not be `None`")  # noqa: E501
-
-        self.__from = _from
-
-    @property
-    def to(self):
-        """Gets the to of this SendMail.  # noqa: E501
-
-        The Contact whom is the primary recipient of this email.  # noqa: E501
-
-        :return: The to of this SendMail.  # noqa: E501
-        :rtype: list[MailContact]
-        """
-        return self._to
-
-    @to.setter
-    def to(self, to):
-        """Sets the to of this SendMail.
-
-        The Contact whom is the primary recipient of this email.  # noqa: E501
-
-        :param to: The to of this SendMail.  # noqa: E501
-        :type: list[MailContact]
-        """
-        if to is None:
-            raise ValueError("Invalid value for `to`, must not be `None`")  # noqa: E501
-
-        self._to = to
 
     @property
     def subject(self):
@@ -199,6 +126,79 @@ class SendMail(object):
             raise ValueError("Invalid value for `body`, must not be `None`")  # noqa: E501
 
         self._body = body
+
+    @property
+    def _from(self):
+        """Gets the _from of this SendMail.  # noqa: E501
+
+
+        :return: The _from of this SendMail.  # noqa: E501
+        :rtype: MailContact
+        """
+        return self.__from
+
+    @_from.setter
+    def _from(self, _from):
+        """Sets the _from of this SendMail.
+
+
+        :param _from: The _from of this SendMail.  # noqa: E501
+        :type: MailContact
+        """
+        if _from is None:
+            raise ValueError("Invalid value for `_from`, must not be `None`")  # noqa: E501
+
+        self.__from = _from
+
+    @property
+    def to(self):
+        """Gets the to of this SendMail.  # noqa: E501
+
+        The Contact whom is the primary recipient of this email.  # noqa: E501
+
+        :return: The to of this SendMail.  # noqa: E501
+        :rtype: list[MailContact]
+        """
+        return self._to
+
+    @to.setter
+    def to(self, to):
+        """Sets the to of this SendMail.
+
+        The Contact whom is the primary recipient of this email.  # noqa: E501
+
+        :param to: The to of this SendMail.  # noqa: E501
+        :type: list[MailContact]
+        """
+        if to is None:
+            raise ValueError("Invalid value for `to`, must not be `None`")  # noqa: E501
+
+        self._to = to
+
+    @property
+    def id(self):
+        """Gets the id of this SendMail.  # noqa: E501
+
+        The ID of the Mail order within our system to use as the Mail Account.  # noqa: E501
+
+        :return: The id of this SendMail.  # noqa: E501
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this SendMail.
+
+        The ID of the Mail order within our system to use as the Mail Account.  # noqa: E501
+
+        :param id: The id of this SendMail.  # noqa: E501
+        :type: int
+        """
+        if id is None:
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
+
+        self._id = id
 
     @property
     def replyto(self):

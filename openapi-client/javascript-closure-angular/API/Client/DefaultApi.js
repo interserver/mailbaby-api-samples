@@ -187,17 +187,11 @@ API.Client.DefaultApi.prototype.sendAdvMailById = function(sendMail, opt_extraHt
 /**
  * Sends an Email
  * Sends An email through one of your mail orders.
- * @param {!string} subject The Subject of the email
- * @param {!string} body The contents of the email
- * @param {!string} from The email address of who this email will be sent from.
- * @param {!string} to The email address of who this email will be sent to.
- * @param {!number=} opt_id The ID of your mail order this will be sent through.
- * @param {!string=} opt_toName The name or title of who this email is being sent to.
- * @param {!string=} opt_fromName The name or title of who this email is being sent from.
+ * @param {!SendMail} sendMail 
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.GenericResponse>}
  */
-API.Client.DefaultApi.prototype.sendMailById = function(subject, body, from, to, opt_id, opt_toName, opt_fromName, opt_extraHttpRequestParams) {
+API.Client.DefaultApi.prototype.sendMailById = function(sendMail, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/mail/send';
 
@@ -206,48 +200,17 @@ API.Client.DefaultApi.prototype.sendMailById = function(subject, body, from, to,
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  /** @type {!Object} */
-  var formParams = {};
-
-  // verify required parameter 'subject' is set
-  if (!subject) {
-    throw new Error('Missing required parameter subject when calling sendMailById');
+  // verify required parameter 'sendMail' is set
+  if (!sendMail) {
+    throw new Error('Missing required parameter sendMail when calling sendMailById');
   }
-  // verify required parameter 'body' is set
-  if (!body) {
-    throw new Error('Missing required parameter body when calling sendMailById');
-  }
-  // verify required parameter 'from' is set
-  if (!from) {
-    throw new Error('Missing required parameter from when calling sendMailById');
-  }
-  // verify required parameter 'to' is set
-  if (!to) {
-    throw new Error('Missing required parameter to when calling sendMailById');
-  }
-  headerParams['Content-Type'] = 'application/x-www-form-urlencoded';
-
-  formParams['subject'] = subject;
-
-  formParams['body'] = body;
-
-  formParams['from'] = from;
-
-  formParams['to'] = to;
-
-  formParams['id'] = opt_id;
-
-  formParams['toName'] = opt_toName;
-
-  formParams['fromName'] = opt_fromName;
-
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'POST',
     url: path,
-    json: false,
-        data: this.httpParamSerializer(formParams),
-    params: queryParameters,
+    json: true,
+    data: sendMail,
+        params: queryParameters,
     headers: headerParams
   };
 

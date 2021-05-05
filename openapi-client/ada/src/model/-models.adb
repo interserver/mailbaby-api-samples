@@ -315,11 +315,11 @@ package body .Models is
                         Value : in SendMail_Type) is
    begin
       Into.Start_Entity (Name);
-      Into.Write_Long_Entity ("id", Value.Id);
-      Serialize (Into, "from", Value.From);
-      Serialize (Into, "to", Value.To);
       Into.Write_Entity ("subject", Value.Subject);
       Into.Write_Entity ("body", Value.P_Body);
+      Serialize (Into, "from", Value.From);
+      Serialize (Into, "to", Value.To);
+      Into.Write_Long_Entity ("id", Value.Id);
       Serialize (Into, "replyto", Value.Replyto);
       Serialize (Into, "cc", Value.Cc);
       Serialize (Into, "bcc", Value.Bcc);
@@ -344,11 +344,11 @@ package body .Models is
       Object : Swagger.Value_Type;
    begin
       Swagger.Streams.Deserialize (From, Name, Object);
-      Swagger.Streams.Deserialize (Object, "id", Value.Id);
-      Deserialize (Object, "from", Value.From);
-      Deserialize (Object, "to", Value.To);
       Swagger.Streams.Deserialize (Object, "subject", Value.Subject);
       Swagger.Streams.Deserialize (Object, "body", Value.P_Body);
+      Deserialize (Object, "from", Value.From);
+      Deserialize (Object, "to", Value.To);
+      Swagger.Streams.Deserialize (Object, "id", Value.Id);
       Deserialize (Object, "replyto", Value.Replyto);
       Deserialize (Object, "cc", Value.Cc);
       Deserialize (Object, "bcc", Value.Bcc);

@@ -85,9 +85,33 @@ exports.sendAdvMailById = function(body) {
  * Sends an Email
  * Sends An email through one of your mail orders.
  *
+ * body SendMail 
  * returns GenericResponse
  **/
-exports.sendMailById = function() {
+exports.sendMailById = function(body) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "status_text" : "The command completed successfully.",
+  "status" : "ok"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Sends an Email
+ * Sends An email through one of your mail orders.
+ *
+ * body SendMail 
+ * returns GenericResponse
+ **/
+exports.sendMailById = function(body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {

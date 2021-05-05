@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **send_mail_by_id**
-> send_mail_by_id (subject: STRING_32 ; body: STRING_32 ; var_from: STRING_32 ; to: STRING_32 ; id:  detachable INTEGER_32 ; to_name:  detachable STRING_32 ; from_name:  detachable STRING_32 ): detachable GENERIC_RESPONSE
+> send_mail_by_id (send_mail: SEND_MAIL ): detachable GENERIC_RESPONSE
 	
 
 Sends an Email
@@ -139,13 +139,7 @@ Sends An email through one of your mail orders.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **STRING_32**| The Subject of the email | [default to null]
- **body** | **STRING_32**| The contents of the email | [default to null]
- **var_from** | **STRING_32**| The email address of who this email will be sent from. | [default to null]
- **to** | **STRING_32**| The email address of who this email will be sent to. | [default to null]
- **id** | **INTEGER_32**| The ID of your mail order this will be sent through. | [optional] [default to null]
- **to_name** | **STRING_32**| The name or title of who this email is being sent to. | [optional] [default to null]
- **from_name** | **STRING_32**| The name or title of who this email is being sent from. | [optional] [default to null]
+ **send_mail** | [**SEND_MAIL**](SEND_MAIL.md)|  | 
 
 ### Return type
 
@@ -157,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

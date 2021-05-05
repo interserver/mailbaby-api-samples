@@ -282,7 +282,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMailById"></a>
 # **sendMailById**
-> GenericResponse sendMailById(subject, body, from, to, id, toName, fromName)
+> GenericResponse sendMailById(sendMail)
 
 Sends an Email
 
@@ -310,15 +310,9 @@ public class Example {
     //apiKeyAuth.setApiKeyPrefix("Token");
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
-    String subject = "subject_example"; // String | The Subject of the email
-    String body = "body_example"; // String | The contents of the email
-    String from = "from_example"; // String | The email address of who this email will be sent from.
-    String to = "to_example"; // String | The email address of who this email will be sent to.
-    Integer id = 56; // Integer | The ID of your mail order this will be sent through.
-    String toName = "toName_example"; // String | The name or title of who this email is being sent to.
-    String fromName = "fromName_example"; // String | The name or title of who this email is being sent from.
+    SendMail sendMail = new SendMail(); // SendMail | 
     try {
-      GenericResponse result = apiInstance.sendMailById(subject, body, from, to, id, toName, fromName);
+      GenericResponse result = apiInstance.sendMailById(sendMail);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#sendMailById");
@@ -335,13 +329,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **String**| The Subject of the email |
- **body** | **String**| The contents of the email |
- **from** | **String**| The email address of who this email will be sent from. |
- **to** | **String**| The email address of who this email will be sent to. |
- **id** | **Integer**| The ID of your mail order this will be sent through. | [optional]
- **toName** | **String**| The name or title of who this email is being sent to. | [optional]
- **fromName** | **String**| The name or title of who this email is being sent from. | [optional]
+ **sendMail** | [**SendMail**](SendMail.md)|  |
 
 ### Return type
 
@@ -353,7 +341,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 ### HTTP response details

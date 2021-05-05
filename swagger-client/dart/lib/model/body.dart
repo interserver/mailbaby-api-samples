@@ -1,48 +1,24 @@
 part of swagger.api;
 
 class Body {
-  /* The Subject of the email */
-  String subject = null;
-/* The contents of the email */
-  String body = null;
-/* The email address of who this email will be sent from. */
-  String from = null;
-/* The email address of who this email will be sent to. */
-  String to = null;
-/* The ID of your mail order this will be sent through. */
-  int id = null;
-/* The name or title of who this email is being sent to. */
-  String toName = null;
-/* The name or title of who this email is being sent from. */
-  String fromName = null;
+  
+  SendMail payload = null;
 
   Body();
 
   @override
   String toString() {
-    return 'Body[subject=$subject, body=$body, from=$from, to=$to, id=$id, toName=$toName, fromName=$fromName, ]';
+    return 'Body[payload=$payload, ]';
   }
 
   Body.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    subject = json['subject'];
-    body = json['body'];
-    from = json['from'];
-    to = json['to'];
-    id = json['id'];
-    toName = json['toName'];
-    fromName = json['fromName'];
+    payload = new SendMail.fromJson(json['payload']);
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'subject': subject,
-      'body': body,
-      'from': from,
-      'to': to,
-      'id': id,
-      'toName': toName,
-      'fromName': fromName
+      'payload': payload
      };
   }
 

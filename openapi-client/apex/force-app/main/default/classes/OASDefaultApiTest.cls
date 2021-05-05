@@ -139,13 +139,7 @@ private class OASDefaultApiTest {
         Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
 
         Map<String, Object> params = new Map<String, Object>{
-            'subject' => 'null',
-            'body' => 'null',
-            'r_from' => 'null',
-            'to' => 'null',
-            'id' => '',
-            'toName' => 'null',
-            'fromName' => 'null'
+            'oaSSendMail' => ''
         };
 
         OASClient client;

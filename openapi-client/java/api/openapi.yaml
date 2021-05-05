@@ -133,7 +133,14 @@ paths:
       operationId: sendMailById
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendMail'
           application/x-www-form-urlencoded:
+            encoding:
+              payload:
+                contentType: application/json
+                style: form
             schema:
               $ref: '#/components/schemas/body'
         required: true
@@ -159,7 +166,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
           description: The specified resource was not found
       summary: Sends an Email
-      x-contentType: application/x-www-form-urlencoded
+      x-contentType: application/json
       x-accepts: application/json
   /mail/advsend:
     post:
@@ -424,27 +431,15 @@ components:
         from:
           name: John Doe
           email: johndoe@company.com
-        id: 0
         to:
         - name: John Doe
           email: johndoe@company.com
         - name: John Doe
           email: johndoe@company.com
+        id: 5000
         body: |
           The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
       properties:
-        id:
-          description: The ID of the Mail order within our system to use as the Mail
-            Account.
-          format: int64
-          type: integer
-        from:
-          $ref: '#/components/schemas/MailContact'
-        to:
-          description: The Contact whom is the primary recipient of this email.
-          items:
-            $ref: '#/components/schemas/MailContact'
-          type: array
         subject:
           description: The subject or title of the email
           example: Your Package has been Delivered!
@@ -454,6 +449,19 @@ components:
           example: |
             The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
           type: string
+        from:
+          $ref: '#/components/schemas/MailContact'
+        to:
+          description: The Contact whom is the primary recipient of this email.
+          items:
+            $ref: '#/components/schemas/MailContact'
+          type: array
+        id:
+          description: The ID of the Mail order within our system to use as the Mail
+            Account.
+          example: 5000
+          format: int64
+          type: integer
         replyto:
           description: Optional list of Contacts that specify where replies to the
             email should be sent instead of the _from_ address.
@@ -485,42 +493,12 @@ components:
       - id
       - subject
       - to
+      title: Email details
       type: object
     body:
       properties:
-        subject:
-          description: The Subject of the email
-          example: test subject
-          type: string
-        body:
-          description: The contents of the email
-          example: test body
-          type: string
-        from:
-          description: The email address of who this email will be sent from.
-          example: me@domain.com
-          type: string
-        to:
-          description: The email address of who this email will be sent to.
-          example: my@domain.com
-          type: string
-        id:
-          description: The ID of your mail order this will be sent through.
-          example: 5000
-          type: integer
-        toName:
-          description: The name or title of who this email is being sent to.
-          example: John Doe
-          type: string
-        fromName:
-          description: The name or title of who this email is being sent from.
-          example: Jane Doe
-          type: string
-      required:
-      - body
-      - from
-      - subject
-      - to
+        payload:
+          $ref: '#/components/schemas/SendMail'
       type: object
   securitySchemes:
     apiKeyAuth:

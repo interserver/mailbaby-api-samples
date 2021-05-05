@@ -23,11 +23,11 @@ namespace OpenAPI
 void OpenAPISendMail::WriteJson(JsonWriter& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("id")); WriteJsonValue(Writer, Id);
-	Writer->WriteIdentifierPrefix(TEXT("from")); WriteJsonValue(Writer, From);
-	Writer->WriteIdentifierPrefix(TEXT("to")); WriteJsonValue(Writer, To);
 	Writer->WriteIdentifierPrefix(TEXT("subject")); WriteJsonValue(Writer, Subject);
 	Writer->WriteIdentifierPrefix(TEXT("body")); WriteJsonValue(Writer, Body);
+	Writer->WriteIdentifierPrefix(TEXT("from")); WriteJsonValue(Writer, From);
+	Writer->WriteIdentifierPrefix(TEXT("to")); WriteJsonValue(Writer, To);
+	Writer->WriteIdentifierPrefix(TEXT("id")); WriteJsonValue(Writer, Id);
 	if (Replyto.IsSet())
 	{
 		Writer->WriteIdentifierPrefix(TEXT("replyto")); WriteJsonValue(Writer, Replyto.GetValue());	
@@ -55,11 +55,11 @@ bool OpenAPISendMail::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
 	bool ParseSuccess = true;
 
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("id"), Id);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("from"), From);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("to"), To);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("subject"), Subject);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("body"), Body);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("from"), From);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("to"), To);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("id"), Id);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("replyto"), Replyto);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("cc"), Cc);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("bcc"), Bcc);

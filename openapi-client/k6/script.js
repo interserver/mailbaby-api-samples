@@ -67,8 +67,8 @@ export default function() {
         let url = BASE_URL + `/mail/send`;
         // Request No. 1
         // TODO: edit the parameters of the request body.
-        let body = {"subject": "string", "body": "string", "from": "string", "to": "string", "id": "integer", "toName": "string", "fromName": "string"};
-        let params = {headers: {"Content-Type": "application/x-www-form-urlencoded", "Accept": "application/json"}};
+        let body = {"subject": "string", "body": "string", "from": {"email": "string", "name": "string"}, "to": [{"email": "string", "name": "string"}], "id": "long", "replyto": [{"email": "string", "name": "string"}], "cc": [{"email": "string", "name": "string"}], "bcc": [{"email": "string", "name": "string"}], "attachments": [{"data": "file", "filename": "string"}]};
+        let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
         let request = http.post(url, body, params);
         check(request, {
             "search results matching criteria": (r) => r.status === 200
@@ -79,7 +79,7 @@ export default function() {
         let url = BASE_URL + `/mail/advsend`;
         // Request No. 1
         // TODO: edit the parameters of the request body.
-        let body = {"id": "long", "from": {"email": "string", "name": "string"}, "to": [{"email": "string", "name": "string"}], "subject": "string", "body": "string", "replyto": [{"email": "string", "name": "string"}], "cc": [{"email": "string", "name": "string"}], "bcc": [{"email": "string", "name": "string"}], "attachments": [{"data": "file", "filename": "string"}]};
+        let body = {"subject": "string", "body": "string", "from": {"email": "string", "name": "string"}, "to": [{"email": "string", "name": "string"}], "id": "long", "replyto": [{"email": "string", "name": "string"}], "cc": [{"email": "string", "name": "string"}], "bcc": [{"email": "string", "name": "string"}], "attachments": [{"data": "file", "filename": "string"}]};
         let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
         let request = http.post(url, body, params);
         check(request, {

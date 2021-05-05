@@ -9,34 +9,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { SendMail } from './sendMail';
 
 export interface Body { 
-    /**
-     * The Subject of the email
-     */
-    subject: string;
-    /**
-     * The contents of the email
-     */
-    body: string;
-    /**
-     * The email address of who this email will be sent from.
-     */
-    from: string;
-    /**
-     * The email address of who this email will be sent to.
-     */
-    to: string;
-    /**
-     * The ID of your mail order this will be sent through.
-     */
-    id?: number;
-    /**
-     * The name or title of who this email is being sent to.
-     */
-    toName?: string;
-    /**
-     * The name or title of who this email is being sent from.
-     */
-    fromName?: string;
+    payload?: SendMail;
 }

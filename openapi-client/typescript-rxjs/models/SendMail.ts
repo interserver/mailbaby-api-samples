@@ -23,11 +23,17 @@ import {
  */
 export interface SendMail {
     /**
-     * The ID of the Mail order within our system to use as the Mail Account.
-     * @type {number}
+     * The subject or title of the email
+     * @type {string}
      * @memberof SendMail
      */
-    id: number;
+    subject: string;
+    /**
+     * The main email contents.
+     * @type {string}
+     * @memberof SendMail
+     */
+    body: string;
     /**
      * @type {MailContact}
      * @memberof SendMail
@@ -40,17 +46,11 @@ export interface SendMail {
      */
     to: Array<MailContact>;
     /**
-     * The subject or title of the email
-     * @type {string}
+     * The ID of the Mail order within our system to use as the Mail Account.
+     * @type {number}
      * @memberof SendMail
      */
-    subject: string;
-    /**
-     * The main email contents.
-     * @type {string}
-     * @memberof SendMail
-     */
-    body: string;
+    id: number;
     /**
      * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
      * @type {Array<MailContact>}

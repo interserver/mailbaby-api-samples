@@ -424,30 +424,20 @@ font-style: italic;
     <h3 class="field-label">Consumes</h3>
     This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
+      <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
     </ul>
 
-
-
-
-    <h3 class="field-label">Form parameters</h3>
+    <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">subject (required)</div>
+      <div class="param">SendMail <a href="#SendMail">SendMail</a> (required)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The Subject of the email default: null </div><div class="param">body (required)</div>
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The contents of the email default: null </div><div class="param">from (required)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The email address of who this email will be sent from. default: null </div><div class="param">to (required)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The email address of who this email will be sent to. default: null </div><div class="param">id (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The ID of your mail order this will be sent through. default: null </div><div class="param">toName (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The name or title of who this email is being sent to. default: null </div><div class="param">fromName (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The name or title of who this email is being sent from. default: null </div>
     </div>  <!-- field-items -->
+
+
+
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
@@ -587,7 +577,7 @@ available inventory in the system</div>
     <li><a href="#MailContact"><code>MailContact</code> - </a></li>
     <li><a href="#MailLog"><code>MailLog</code> - </a></li>
     <li><a href="#MailOrder"><code>MailOrder</code> - </a></li>
-    <li><a href="#SendMail"><code>SendMail</code> - </a></li>
+    <li><a href="#SendMail"><code>SendMail</code> - Email details</a></li>
   </ol>
 
   <div class="model">
@@ -641,14 +631,14 @@ available inventory in the system</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="SendMail"><code>SendMail</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="SendMail"><code>SendMail</code> - Email details</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Details for an Email</div>
     <div class="field-items">
-      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span> The ID of the Mail order within our system to use as the Mail Account. format: int64</div>
+      <div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The subject or title of the email </div>
+<div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The main email contents. </div>
 <div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#MailContact">MailContact</a></span>  </div>
 <div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#MailContact">array[MailContact]</a></span> The Contact whom is the primary recipient of this email. </div>
-<div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The subject or title of the email </div>
-<div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The main email contents. </div>
+<div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span> The ID of the Mail order within our system to use as the Mail Account. format: int64</div>
 <div class="param">replyto (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailContact">array[MailContact]</a></span> Optional list of Contacts that specify where replies to the email should be sent instead of the <em>from</em> address. </div>
 <div class="param">cc (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailContact">array[MailContact]</a></span> Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. </div>
 <div class="param">bcc (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailContact">array[MailContact]</a></span> Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. </div>

@@ -18,14 +18,16 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-04T21:12:39.987827-04:00[America/New_York]")public interface MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T04:03:25.201844-04:00[America/New_York]")public interface MailApiService {
       Response getMailOrders(Long id,SecurityContext securityContext)
       throws NotFoundException;
       Response placeMailOrder(MailOrder body,SecurityContext securityContext)
       throws NotFoundException;
       Response sendAdvMailById(SendMail body,SecurityContext securityContext)
       throws NotFoundException;
-      Response sendMailById(String subject,String body,String from,String to,Integer id,String toName,String fromName,SecurityContext securityContext)
+      Response sendMailById(SendMail body,SecurityContext securityContext)
+      throws NotFoundException;
+      Response sendMailById(SendMail payload,SecurityContext securityContext)
       throws NotFoundException;
       Response validateMailOrder(SecurityContext securityContext)
       throws NotFoundException;

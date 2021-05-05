@@ -177,42 +177,15 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Sends An email through one of your mail orders.
      * Sends an Email
-     * @param subject The Subject of the email
-     * @param body The contents of the email
-     * @param from The email address of who this email will be sent from.
-     * @param to The email address of who this email will be sent to.
-     * @param id The ID of your mail order this will be sent through.
-     * @param toName The name or title of who this email is being sent to.
-     * @param fromName The name or title of who this email is being sent from.
+     * @param sendMail 
      */
-    public async sendMailById(subject: string, body: string, from: string, to: string, id?: number, toName?: string, fromName?: string, options?: Configuration): Promise<RequestContext> {
+    public async sendMailById(sendMail: SendMail, options?: Configuration): Promise<RequestContext> {
         let config = options || this.configuration;
 
-        // verify required parameter 'subject' is not null or undefined
-        if (subject === null || subject === undefined) {
-            throw new RequiredError('Required parameter subject was null or undefined when calling sendMailById.');
+        // verify required parameter 'sendMail' is not null or undefined
+        if (sendMail === null || sendMail === undefined) {
+            throw new RequiredError('Required parameter sendMail was null or undefined when calling sendMailById.');
         }
-
-
-        // verify required parameter 'body' is not null or undefined
-        if (body === null || body === undefined) {
-            throw new RequiredError('Required parameter body was null or undefined when calling sendMailById.');
-        }
-
-
-        // verify required parameter 'from' is not null or undefined
-        if (from === null || from === undefined) {
-            throw new RequiredError('Required parameter from was null or undefined when calling sendMailById.');
-        }
-
-
-        // verify required parameter 'to' is not null or undefined
-        if (to === null || to === undefined) {
-            throw new RequiredError('Required parameter to was null or undefined when calling sendMailById.');
-        }
-
-
-
 
 
         // Path Params
@@ -227,39 +200,20 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         // Header Params
 
         // Form Params
-        let localVarFormParams = new FormData();
 
-        if (subject !== undefined) {
-             // TODO: replace .append with .set
-             localVarFormParams.append('subject', subject as any);
-        }
-        if (body !== undefined) {
-             // TODO: replace .append with .set
-             localVarFormParams.append('body', body as any);
-        }
-        if (from !== undefined) {
-             // TODO: replace .append with .set
-             localVarFormParams.append('from', from as any);
-        }
-        if (to !== undefined) {
-             // TODO: replace .append with .set
-             localVarFormParams.append('to', to as any);
-        }
-        if (id !== undefined) {
-             // TODO: replace .append with .set
-             localVarFormParams.append('id', id as any);
-        }
-        if (toName !== undefined) {
-             // TODO: replace .append with .set
-             localVarFormParams.append('toName', toName as any);
-        }
-        if (fromName !== undefined) {
-             // TODO: replace .append with .set
-             localVarFormParams.append('fromName', fromName as any);
-        }
-        requestContext.setBody(localVarFormParams);
 
         // Body Params
+        const contentType = ObjectSerializer.getPreferredMediaType([
+            "application/json",
+        
+            "application/x-www-form-urlencoded"
+        ]);
+        requestContext.setHeaderParam("Content-Type", contentType);
+        const serializedBody = ObjectSerializer.stringify(
+            ObjectSerializer.serialize(sendMail, "SendMail", ""),
+            contentType
+        );
+        requestContext.setBody(serializedBody);
 
         let authMethod = null;
         // Apply auth methods

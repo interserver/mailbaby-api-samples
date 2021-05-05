@@ -11,16 +11,16 @@ package swagger
 
 // Details for an Email
 type SendMail struct {
-	// The ID of the Mail order within our system to use as the Mail Account.
-	Id int64 `json:"id"`
-
-	From *MailContact `json:"from"`
-	// The Contact whom is the primary recipient of this email.
-	To []MailContact `json:"to"`
 	// The subject or title of the email
 	Subject string `json:"subject"`
 	// The main email contents.
 	Body string `json:"body"`
+
+	From *MailContact `json:"from"`
+	// The Contact whom is the primary recipient of this email.
+	To []MailContact `json:"to"`
+	// The ID of the Mail order within our system to use as the Mail Account.
+	Id int64 `json:"id"`
 	// Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
 	Replyto []MailContact `json:"replyto,omitempty"`
 	// Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.

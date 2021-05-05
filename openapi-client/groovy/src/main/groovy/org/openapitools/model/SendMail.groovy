@@ -10,16 +10,16 @@ import org.openapitools.model.MailContact;
 
 @Canonical
 class SendMail {
-    /* The ID of the Mail order within our system to use as the Mail Account. */
-    Long id
-    
-    MailContact from
-    /* The Contact whom is the primary recipient of this email. */
-    List<MailContact> to = new ArrayList<>()
     /* The subject or title of the email */
     String subject
     /* The main email contents. */
     String body
+    
+    MailContact from
+    /* The Contact whom is the primary recipient of this email. */
+    List<MailContact> to = new ArrayList<>()
+    /* The ID of the Mail order within our system to use as the Mail Account. */
+    Long id
     /* Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. */
     List<MailContact> replyto = new ArrayList<>()
     /* Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */

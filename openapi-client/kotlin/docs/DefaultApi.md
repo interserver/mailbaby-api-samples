@@ -202,7 +202,7 @@ Configure apiKeyAuth:
 
 <a name="sendMailById"></a>
 # **sendMailById**
-> GenericResponse sendMailById(subject, body, from, to, id, toName, fromName)
+> GenericResponse sendMailById(sendMail)
 
 Sends an Email
 
@@ -215,15 +215,9 @@ Sends An email through one of your mail orders.
 //import org.openapitools.client.models.*
 
 val apiInstance = DefaultApi()
-val subject : kotlin.String = subject_example // kotlin.String | The Subject of the email
-val body : kotlin.String = body_example // kotlin.String | The contents of the email
-val from : kotlin.String = from_example // kotlin.String | The email address of who this email will be sent from.
-val to : kotlin.String = to_example // kotlin.String | The email address of who this email will be sent to.
-val id : kotlin.Int = 56 // kotlin.Int | The ID of your mail order this will be sent through.
-val toName : kotlin.String = toName_example // kotlin.String | The name or title of who this email is being sent to.
-val fromName : kotlin.String = fromName_example // kotlin.String | The name or title of who this email is being sent from.
+val sendMail : SendMail =  // SendMail | 
 try {
-    val result : GenericResponse = apiInstance.sendMailById(subject, body, from, to, id, toName, fromName)
+    val result : GenericResponse = apiInstance.sendMailById(sendMail)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#sendMailById")
@@ -238,13 +232,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **kotlin.String**| The Subject of the email |
- **body** | **kotlin.String**| The contents of the email |
- **from** | **kotlin.String**| The email address of who this email will be sent from. |
- **to** | **kotlin.String**| The email address of who this email will be sent to. |
- **id** | **kotlin.Int**| The ID of your mail order this will be sent through. | [optional]
- **toName** | **kotlin.String**| The name or title of who this email is being sent to. | [optional]
- **fromName** | **kotlin.String**| The name or title of who this email is being sent from. | [optional]
+ **sendMail** | [**SendMail**](SendMail.md)|  |
 
 ### Return type
 
@@ -259,7 +247,7 @@ Configure apiKeyAuth:
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 <a name="validateMailOrder"></a>

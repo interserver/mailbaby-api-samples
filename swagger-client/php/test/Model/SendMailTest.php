@@ -76,9 +76,16 @@ class SendMailTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "id"
+     * Test attribute "subject"
      */
-    public function testPropertyId()
+    public function testPropertySubject()
+    {
+    }
+
+    /**
+     * Test attribute "body"
+     */
+    public function testPropertyBody()
     {
     }
 
@@ -97,16 +104,9 @@ class SendMailTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "subject"
+     * Test attribute "id"
      */
-    public function testPropertySubject()
-    {
-    }
-
-    /**
-     * Test attribute "body"
-     */
-    public function testPropertyBody()
+    public function testPropertyId()
     {
     }
 

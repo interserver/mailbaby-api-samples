@@ -4,7 +4,7 @@
          ping_server/1, ping_server/2,
          place_mail_order/2, place_mail_order/3,
          send_adv_mail_by_id/2, send_adv_mail_by_id/3,
-         send_mail_by_id/5, send_mail_by_id/6,
+         send_mail_by_id/2, send_mail_by_id/3,
          validate_mail_order/1, validate_mail_order/2,
          view_mail_log_by_id/1, view_mail_log_by_id/2]).
 
@@ -96,12 +96,12 @@ send_adv_mail_by_id(Ctx, OpenapiSendMail, Optional) ->
 
 %% @doc Sends an Email
 %% Sends An email through one of your mail orders.
--spec send_mail_by_id(ctx:ctx(), binary(), binary(), binary(), binary()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-send_mail_by_id(Ctx, Subject, Body, From, To) ->
-    send_mail_by_id(Ctx, Subject, Body, From, To, #{}).
+-spec send_mail_by_id(ctx:ctx(), openapi_send_mail:openapi_send_mail()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+send_mail_by_id(Ctx, OpenapiSendMail) ->
+    send_mail_by_id(Ctx, OpenapiSendMail, #{}).
 
--spec send_mail_by_id(ctx:ctx(), binary(), binary(), binary(), binary(), maps:map()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-send_mail_by_id(Ctx, Subject, Body, From, To, Optional) ->
+-spec send_mail_by_id(ctx:ctx(), openapi_send_mail:openapi_send_mail(), maps:map()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+send_mail_by_id(Ctx, OpenapiSendMail, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
@@ -109,8 +109,8 @@ send_mail_by_id(Ctx, Subject, Body, From, To, Optional) ->
     Path = ["/mail/send"],
     QS = [],
     Headers = [],
-    Body1 = {form, [{<<"subject">>, Subject}, {<<"body">>, Body}, {<<"from">>, From}, {<<"to">>, To}]++openapi_utils:optional_params(['id', 'toName', 'fromName'], _OptionalParams)},
-    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/x-www-form-urlencoded">>]),
+    Body1 = OpenapiSendMail,
+    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>, <<"application/x-www-form-urlencoded">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 
     openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).

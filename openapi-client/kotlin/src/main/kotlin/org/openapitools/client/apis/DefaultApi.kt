@@ -263,13 +263,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * Sends an Email
     * Sends An email through one of your mail orders.
-    * @param subject The Subject of the email 
-    * @param body The contents of the email 
-    * @param from The email address of who this email will be sent from. 
-    * @param to The email address of who this email will be sent to. 
-    * @param id The ID of your mail order this will be sent through. (optional)
-    * @param toName The name or title of who this email is being sent to. (optional)
-    * @param fromName The name or title of who this email is being sent from. (optional)
+    * @param sendMail  
     * @return GenericResponse
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -277,8 +271,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun sendMailById(subject: kotlin.String, body: kotlin.String, from: kotlin.String, to: kotlin.String, id: kotlin.Int?, toName: kotlin.String?, fromName: kotlin.String?) : GenericResponse {
-        val localVariableConfig = sendMailByIdRequestConfig(subject = subject, body = body, from = from, to = to, id = id, toName = toName, fromName = fromName)
+    fun sendMailById(sendMail: SendMail) : GenericResponse {
+        val localVariableConfig = sendMailByIdRequestConfig(sendMail = sendMail)
 
         val localVarResponse = request<GenericResponse>(
             localVariableConfig
@@ -302,19 +296,13 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * To obtain the request config of the operation sendMailById
     *
-    * @param subject The Subject of the email 
-    * @param body The contents of the email 
-    * @param from The email address of who this email will be sent from. 
-    * @param to The email address of who this email will be sent to. 
-    * @param id The ID of your mail order this will be sent through. (optional)
-    * @param toName The name or title of who this email is being sent to. (optional)
-    * @param fromName The name or title of who this email is being sent from. (optional)
+    * @param sendMail  
     * @return RequestConfig
     */
-    fun sendMailByIdRequestConfig(subject: kotlin.String, body: kotlin.String, from: kotlin.String, to: kotlin.String, id: kotlin.Int?, toName: kotlin.String?, fromName: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = mapOf("subject" to subject, "body" to body, "from" to from, "to" to to, "id" to id, "toName" to toName, "fromName" to fromName)
+    fun sendMailByIdRequestConfig(sendMail: SendMail) : RequestConfig {
+        val localVariableBody: kotlin.Any? = sendMail
         val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,

@@ -53,44 +53,8 @@
       //expect(instance).to.be.a(MailBabyApi.Body);
     });
 
-    it('should have the property subject (base name: "subject")', function() {
-      // uncomment below and update the code to test the property subject
-      //var instane = new MailBabyApi.Body();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property body (base name: "body")', function() {
-      // uncomment below and update the code to test the property body
-      //var instane = new MailBabyApi.Body();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property from (base name: "from")', function() {
-      // uncomment below and update the code to test the property from
-      //var instane = new MailBabyApi.Body();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property to (base name: "to")', function() {
-      // uncomment below and update the code to test the property to
-      //var instane = new MailBabyApi.Body();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property id (base name: "id")', function() {
-      // uncomment below and update the code to test the property id
-      //var instane = new MailBabyApi.Body();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property toName (base name: "toName")', function() {
-      // uncomment below and update the code to test the property toName
-      //var instane = new MailBabyApi.Body();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property fromName (base name: "fromName")', function() {
-      // uncomment below and update the code to test the property fromName
+    it('should have the property payload (base name: "payload")', function() {
+      // uncomment below and update the code to test the property payload
       //var instane = new MailBabyApi.Body();
       //expect(instance).to.be();
     });

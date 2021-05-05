@@ -48,27 +48,6 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get The ID of the Mail order within our system to use as the Mail Account.
-	 */
-	long long getId();
-
-	/*! \brief Set The ID of the Mail order within our system to use as the Mail Account.
-	 */
-	void setId(long long  id);
-	/*! \brief Get 
-	 */
-	MailContact getFrom();
-
-	/*! \brief Set 
-	 */
-	void setFrom(MailContact  from);
-	/*! \brief Get The Contact whom is the primary recipient of this email.
-	 */
-	std::list<MailContact> getTo();
-
-	/*! \brief Set The Contact whom is the primary recipient of this email.
-	 */
-	void setTo(std::list <MailContact> to);
 	/*! \brief Get The subject or title of the email
 	 */
 	std::string getSubject();
@@ -83,6 +62,27 @@ public:
 	/*! \brief Set The main email contents.
 	 */
 	void setBody(std::string  body);
+	/*! \brief Get 
+	 */
+	MailContact getFrom();
+
+	/*! \brief Set 
+	 */
+	void setFrom(MailContact  from);
+	/*! \brief Get The Contact whom is the primary recipient of this email.
+	 */
+	std::list<MailContact> getTo();
+
+	/*! \brief Set The Contact whom is the primary recipient of this email.
+	 */
+	void setTo(std::list <MailContact> to);
+	/*! \brief Get The ID of the Mail order within our system to use as the Mail Account.
+	 */
+	long long getId();
+
+	/*! \brief Set The ID of the Mail order within our system to use as the Mail Account.
+	 */
+	void setId(long long  id);
 	/*! \brief Get Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
 	 */
 	std::list<MailContact> getReplyto();
@@ -113,11 +113,11 @@ public:
 	void setAttachments(std::list <MailAttachment> attachments);
 
 private:
-	long long id;
-	MailContact from;
-	std::list <MailContact>to;
 	std::string subject;
 	std::string body;
+	MailContact from;
+	std::list <MailContact>to;
+	long long id;
 	std::list <MailContact>replyto;
 	std::list <MailContact>cc;
 	std::list <MailContact>bcc;

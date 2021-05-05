@@ -51,7 +51,7 @@ void main() {
     //
     // Sends An email through one of your mail orders.
     //
-    //Future<GenericResponse> sendMailById(String subject, String body, String from, String to, { int id, String toName, String fromName }) async
+    //Future<GenericResponse> sendMailById(SendMail sendMail) async
     test('test sendMailById', () async {
       // TODO
     });

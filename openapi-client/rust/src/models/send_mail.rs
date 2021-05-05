@@ -14,20 +14,20 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SendMail {
-    /// The ID of the Mail order within our system to use as the Mail Account.
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "from")]
-    pub from: Box<crate::models::MailContact>,
-    /// The Contact whom is the primary recipient of this email.
-    #[serde(rename = "to")]
-    pub to: Vec<crate::models::MailContact>,
     /// The subject or title of the email
     #[serde(rename = "subject")]
     pub subject: String,
     /// The main email contents.
     #[serde(rename = "body")]
     pub body: String,
+    #[serde(rename = "from")]
+    pub from: Box<crate::models::MailContact>,
+    /// The Contact whom is the primary recipient of this email.
+    #[serde(rename = "to")]
+    pub to: Vec<crate::models::MailContact>,
+    /// The ID of the Mail order within our system to use as the Mail Account.
+    #[serde(rename = "id")]
+    pub id: i64,
     /// Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
     #[serde(rename = "replyto", skip_serializing_if = "Option::is_none")]
     pub replyto: Option<Vec<crate::models::MailContact>>,
@@ -44,13 +44,13 @@ pub struct SendMail {
 
 impl SendMail {
     /// Details for an Email
-    pub fn new(id: i64, from: crate::models::MailContact, to: Vec<crate::models::MailContact>, subject: String, body: String) -> SendMail {
+    pub fn new(subject: String, body: String, from: crate::models::MailContact, to: Vec<crate::models::MailContact>, id: i64) -> SendMail {
         SendMail {
-            id,
-            from: Box::new(from),
-            to,
             subject,
             body,
+            from: Box::new(from),
+            to,
+            id,
             replyto: None,
             cc: None,
             bcc: None,

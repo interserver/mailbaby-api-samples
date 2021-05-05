@@ -133,9 +133,16 @@ paths:
       operationId: sendMailById
       requestBody:
         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendMail'
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/body'
+            encoding:
+              payload:
+                contentType: application/json
+                style: form
         required: true
       responses:
         "200":
@@ -345,6 +352,7 @@ components:
           format: binary
       description: A File attachment for an email
     SendMail:
+      title: Email details
       required:
       - body
       - from
@@ -353,18 +361,6 @@ components:
       - to
       type: object
       properties:
-        id:
-          type: integer
-          description: The ID of the Mail order within our system to use as the Mail
-            Account.
-          format: int64
-        from:
-          $ref: '#/components/schemas/MailContact'
-        to:
-          type: array
-          description: The Contact whom is the primary recipient of this email.
-          items:
-            $ref: '#/components/schemas/MailContact'
         subject:
           type: string
           description: The subject or title of the email
@@ -374,6 +370,19 @@ components:
           description: The main email contents.
           example: "The package you ordered on 2021-01-23 has been delivered. If the\
             \ package is broken into many pieces, please blaim someone else.\n"
+        from:
+          $ref: '#/components/schemas/MailContact'
+        to:
+          type: array
+          description: The Contact whom is the primary recipient of this email.
+          items:
+            $ref: '#/components/schemas/MailContact'
+        id:
+          type: integer
+          description: The ID of the Mail order within our system to use as the Mail
+            Account.
+          format: int64
+          example: 5000
         replyto:
           type: array
           description: Optional list of Contacts that specify where replies to the
@@ -401,41 +410,10 @@ components:
             $ref: '#/components/schemas/MailAttachment'
       description: Details for an Email
     body:
-      required:
-      - body
-      - from
-      - subject
-      - to
       type: object
       properties:
-        subject:
-          type: string
-          description: The Subject of the email
-          example: test subject
-        body:
-          type: string
-          description: The contents of the email
-          example: test body
-        from:
-          type: string
-          description: The email address of who this email will be sent from.
-          example: me@domain.com
-        to:
-          type: string
-          description: The email address of who this email will be sent to.
-          example: my@domain.com
-        id:
-          type: integer
-          description: The ID of your mail order this will be sent through.
-          example: 5000
-        toName:
-          type: string
-          description: The name or title of who this email is being sent to.
-          example: John Doe
-        fromName:
-          type: string
-          description: The name or title of who this email is being sent from.
-          example: Jane Doe
+        payload:
+          $ref: '#/components/schemas/SendMail'
   responses:
     NotFound:
       description: The specified resource was not found

@@ -137,38 +137,26 @@ bool sendAdvMailByIdAsync(char * accessToken,
 /*! \brief Sends an Email. *Synchronous*
  *
  * Sends An email through one of your mail orders.
- * \param subject The Subject of the email *Required*
- * \param body The contents of the email *Required*
- * \param from The email address of who this email will be sent from. *Required*
- * \param to The email address of who this email will be sent to. *Required*
- * \param id The ID of your mail order this will be sent through.
- * \param toName The name or title of who this email is being sent to.
- * \param fromName The name or title of who this email is being sent from.
+ * \param sendMail  *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool sendMailByIdSync(char * accessToken,
-	std::string subject, std::string body, std::string from, std::string to, int id, std::string toName, std::string fromName, 
+	SendMail sendMail, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 
 /*! \brief Sends an Email. *Asynchronous*
  *
  * Sends An email through one of your mail orders.
- * \param subject The Subject of the email *Required*
- * \param body The contents of the email *Required*
- * \param from The email address of who this email will be sent from. *Required*
- * \param to The email address of who this email will be sent to. *Required*
- * \param id The ID of your mail order this will be sent through.
- * \param toName The name or title of who this email is being sent to.
- * \param fromName The name or title of who this email is being sent from.
+ * \param sendMail  *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool sendMailByIdAsync(char * accessToken,
-	std::string subject, std::string body, std::string from, std::string to, int id, std::string toName, std::string fromName, 
+	SendMail sendMail, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 

@@ -19,16 +19,16 @@ class SEND_MAIL
 
 feature --Access
 
- 	id: INTEGER_64 
-    	 -- The ID of the Mail order within our system to use as the Mail Account.
-    var_from: detachable MAIL_CONTACT 
-      
-    to: detachable LIST [MAIL_CONTACT] 
-      -- The Contact whom is the primary recipient of this email.
     subject: detachable STRING_32 
       -- The subject or title of the email
     body: detachable STRING_32 
       -- The main email contents.
+    var_from: detachable MAIL_CONTACT 
+      
+    to: detachable LIST [MAIL_CONTACT] 
+      -- The Contact whom is the primary recipient of this email.
+ 	id: INTEGER_64 
+    	 -- The ID of the Mail order within our system to use as the Mail Account.
     replyto: detachable LIST [MAIL_CONTACT] 
       -- Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
     cc: detachable LIST [MAIL_CONTACT] 
@@ -40,12 +40,20 @@ feature --Access
 
 feature -- Change Element  
  
-    set_id (a_name: like id)
-        -- Set 'id' with 'a_name'.
+    set_subject (a_name: like subject)
+        -- Set 'subject' with 'a_name'.
       do
-        id := a_name
+        subject := a_name
       ensure
-        id_set: id = a_name		
+        subject_set: subject = a_name		
+      end
+
+    set_body (a_name: like body)
+        -- Set 'body' with 'a_name'.
+      do
+        body := a_name
+      ensure
+        body_set: body = a_name		
       end
 
     set_var_from (a_name: like var_from)
@@ -64,20 +72,12 @@ feature -- Change Element
         to_set: to = a_name		
       end
 
-    set_subject (a_name: like subject)
-        -- Set 'subject' with 'a_name'.
+    set_id (a_name: like id)
+        -- Set 'id' with 'a_name'.
       do
-        subject := a_name
+        id := a_name
       ensure
-        subject_set: subject = a_name		
-      end
-
-    set_body (a_name: like body)
-        -- Set 'body' with 'a_name'.
-      do
-        body := a_name
-      ensure
-        body_set: body = a_name		
+        id_set: id = a_name		
       end
 
     set_replyto (a_name: like replyto)
@@ -120,9 +120,14 @@ feature -- Change Element
       do
         create Result.make_empty
         Result.append("%Nclass SEND_MAIL%N")
-        if attached id as l_id then
-          Result.append ("%Nid:")
-          Result.append (l_id.out)
+        if attached subject as l_subject then
+          Result.append ("%Nsubject:")
+          Result.append (l_subject.out)
+          Result.append ("%N")    
+        end  
+        if attached body as l_body then
+          Result.append ("%Nbody:")
+          Result.append (l_body.out)
           Result.append ("%N")    
         end  
         if attached var_from as l_var_from then
@@ -137,14 +142,9 @@ feature -- Change Element
             Result.append ("%N")
           end
         end 
-        if attached subject as l_subject then
-          Result.append ("%Nsubject:")
-          Result.append (l_subject.out)
-          Result.append ("%N")    
-        end  
-        if attached body as l_body then
-          Result.append ("%Nbody:")
-          Result.append (l_body.out)
+        if attached id as l_id then
+          Result.append ("%Nid:")
+          Result.append (l_id.out)
           Result.append ("%N")    
         end  
         if attached replyto as l_replyto then

@@ -17,15 +17,6 @@ import { MailContact } from './mailContact';
  */
 export interface SendMail { 
     /**
-     * The ID of the Mail order within our system to use as the Mail Account.
-     */
-    id: number;
-    from: MailContact;
-    /**
-     * The Contact whom is the primary recipient of this email.
-     */
-    to: Array<MailContact>;
-    /**
      * The subject or title of the email
      */
     subject: string;
@@ -33,6 +24,15 @@ export interface SendMail {
      * The main email contents.
      */
     body: string;
+    from: MailContact;
+    /**
+     * The Contact whom is the primary recipient of this email.
+     */
+    to: Array<MailContact>;
+    /**
+     * The ID of the Mail order within our system to use as the Mail Account.
+     */
+    id: number;
     /**
      * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
      */

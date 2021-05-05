@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMailById"></a>
 # **sendMailById**
-> GenericResponse sendMailById(subject, body, from, to, id, toName, fromName)
+> GenericResponse sendMailById(body)
 
 Sends an Email
 
@@ -205,15 +205,9 @@ Sends An email through one of your mail orders.
 //import io.swagger.client.models.*;
 
 val apiInstance = DefaultApi()
-val subject : kotlin.String = subject_example // kotlin.String | 
-val body : kotlin.String = body_example // kotlin.String | 
-val from : kotlin.String = from_example // kotlin.String | 
-val to : kotlin.String = to_example // kotlin.String | 
-val id : kotlin.Int = 56 // kotlin.Int | 
-val toName : kotlin.String = toName_example // kotlin.String | 
-val fromName : kotlin.String = fromName_example // kotlin.String | 
+val body : SendMail =  // SendMail | 
 try {
-    val result : GenericResponse = apiInstance.sendMailById(subject, body, from, to, id, toName, fromName)
+    val result : GenericResponse = apiInstance.sendMailById(body)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#sendMailById")
@@ -228,13 +222,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **kotlin.String**|  |
- **body** | **kotlin.String**|  |
- **from** | **kotlin.String**|  |
- **to** | **kotlin.String**|  |
- **id** | **kotlin.Int**|  |
- **toName** | **kotlin.String**|  |
- **fromName** | **kotlin.String**|  |
+ **body** | [**SendMail**](SendMail.md)|  |
 
 ### Return type
 
@@ -246,7 +234,54 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="sendMailById"></a>
+# **sendMailById**
+> GenericResponse sendMailById(payload)
+
+Sends an Email
+
+Sends An email through one of your mail orders.
+
+### Example
+```kotlin
+// Import classes:
+//import io.swagger.client.infrastructure.*
+//import io.swagger.client.models.*;
+
+val apiInstance = DefaultApi()
+val payload : SendMail =  // SendMail | 
+try {
+    val result : GenericResponse = apiInstance.sendMailById(payload)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#sendMailById")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#sendMailById")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **payload** | [**SendMail**](.md)|  |
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 <a name="validateMailOrder"></a>

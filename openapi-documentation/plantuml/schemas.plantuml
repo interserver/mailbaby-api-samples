@@ -35,11 +35,11 @@ entity MailOrder {
 }
 
 entity SendMail { 
-    * id: Long
-    * from: MailContact
-    * to: List<MailContact>
     * subject: String
     * body: String
+    * from: MailContact
+    * to: List<MailContact>
+    * id: Long
     replyto: List<MailContact>
     cc: List<MailContact>
     bcc: List<MailContact>

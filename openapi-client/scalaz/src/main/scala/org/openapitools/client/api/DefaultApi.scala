@@ -113,7 +113,7 @@ object DefaultApi {
     } yield resp
   }
   
-  def sendMailById(host: String, subject: String, body: String, from: String, to: String, id: Integer, toName: String, fromName: String): Task[GenericResponse] = {
+  def sendMailById(host: String, sendMail: SendMail): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/send"
@@ -128,7 +128,7 @@ object DefaultApi {
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
       uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(sendMail)
       resp          <- client.expect[GenericResponse](req)
 
     } yield resp
@@ -261,7 +261,7 @@ class HttpServiceDefaultApi(service: HttpService) {
     } yield resp
   }
   
-  def sendMailById(subject: String, body: String, from: String, to: String, id: Integer, toName: String, fromName: String): Task[GenericResponse] = {
+  def sendMailById(sendMail: SendMail): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/send"
@@ -276,7 +276,7 @@ class HttpServiceDefaultApi(service: HttpService) {
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))
       uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(sendMail)
       resp          <- client.expect[GenericResponse](req)
 
     } yield resp

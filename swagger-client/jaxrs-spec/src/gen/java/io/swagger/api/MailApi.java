@@ -26,7 +26,7 @@ import javax.validation.Valid;
 
 @Path("/mail")
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-05-04T21:12:28.783968-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-05-05T04:03:14.584569-04:00[America/New_York]")
 public class MailApi {
 
     @GET
@@ -75,7 +75,7 @@ public class MailApi {
     }
     @POST
     @Path("/send")
-    @Consumes({ "application/x-www-form-urlencoded" })
+    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
@@ -85,7 +85,22 @@ public class MailApi {
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
     })
-    public Response sendMailById(@FormParam(value = "subject")  String subject,@FormParam(value = "body")  String body,@FormParam(value = "from")  String from,@FormParam(value = "to")  String to,@FormParam(value = "id")  Integer id,@FormParam(value = "toName")  String toName,@FormParam(value = "fromName")  String fromName) {
+    public Response sendMailById(@Valid SendMail body) {
+        return Response.ok().entity("magic!").build();
+    }
+    @POST
+    @Path("/send")
+    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        @ApiResponse(responseCode = "400", description = "bad input parameter"),
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
+    })
+    public Response sendMailById(@FormParam(value = "payload")  SendMail payload) {
         return Response.ok().entity("magic!").build();
     }
     @GET

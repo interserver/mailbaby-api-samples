@@ -13,12 +13,20 @@ namespace IO.Swagger.Model {
   [DataContract]
   public class SendMail {
     /// <summary>
-    /// The ID of the Mail order within our system to use as the Mail Account.
+    /// The subject or title of the email
     /// </summary>
-    /// <value>The ID of the Mail order within our system to use as the Mail Account.</value>
-    [DataMember(Name="id", EmitDefaultValue=false)]
-    [JsonProperty(PropertyName = "id")]
-    public long? Id { get; set; }
+    /// <value>The subject or title of the email</value>
+    [DataMember(Name="subject", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "subject")]
+    public string Subject { get; set; }
+
+    /// <summary>
+    /// The main email contents.
+    /// </summary>
+    /// <value>The main email contents.</value>
+    [DataMember(Name="body", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "body")]
+    public string Body { get; set; }
 
     /// <summary>
     /// Gets or Sets From
@@ -36,20 +44,12 @@ namespace IO.Swagger.Model {
     public List<MailContact> To { get; set; }
 
     /// <summary>
-    /// The subject or title of the email
+    /// The ID of the Mail order within our system to use as the Mail Account.
     /// </summary>
-    /// <value>The subject or title of the email</value>
-    [DataMember(Name="subject", EmitDefaultValue=false)]
-    [JsonProperty(PropertyName = "subject")]
-    public string Subject { get; set; }
-
-    /// <summary>
-    /// The main email contents.
-    /// </summary>
-    /// <value>The main email contents.</value>
-    [DataMember(Name="body", EmitDefaultValue=false)]
-    [JsonProperty(PropertyName = "body")]
-    public string Body { get; set; }
+    /// <value>The ID of the Mail order within our system to use as the Mail Account.</value>
+    [DataMember(Name="id", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "id")]
+    public long? Id { get; set; }
 
     /// <summary>
     /// Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
@@ -91,11 +91,11 @@ namespace IO.Swagger.Model {
     public override string ToString()  {
       var sb = new StringBuilder();
       sb.Append("class SendMail {\n");
-      sb.Append("  Id: ").Append(Id).Append("\n");
-      sb.Append("  From: ").Append(From).Append("\n");
-      sb.Append("  To: ").Append(To).Append("\n");
       sb.Append("  Subject: ").Append(Subject).Append("\n");
       sb.Append("  Body: ").Append(Body).Append("\n");
+      sb.Append("  From: ").Append(From).Append("\n");
+      sb.Append("  To: ").Append(To).Append("\n");
+      sb.Append("  Id: ").Append(Id).Append("\n");
       sb.Append("  Replyto: ").Append(Replyto).Append("\n");
       sb.Append("  Cc: ").Append(Cc).Append("\n");
       sb.Append("  Bcc: ").Append(Bcc).Append("\n");

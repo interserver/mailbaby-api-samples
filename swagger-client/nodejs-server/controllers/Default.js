@@ -43,8 +43,18 @@ module.exports.sendAdvMailById = function sendAdvMailById (req, res, next, body)
     });
 };
 
-module.exports.sendMailById = function sendMailById (req, res, next) {
-  Default.sendMailById()
+module.exports.sendMailById = function sendMailById (req, res, next, body) {
+  Default.sendMailById(body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.sendMailById = function sendMailById (req, res, next, body) {
+  Default.sendMailById(body)
     .then(function (response) {
       utils.writeJson(res, response);
     })

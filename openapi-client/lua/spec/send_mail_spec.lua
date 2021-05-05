@@ -16,8 +16,15 @@ Please update as you see appropriate
 describe("send_mail", function()
   local openapiclient_send_mail = require "openapiclient.model.send_mail"
 
-  -- unit tests for the property 'id'
-  describe("property id test", function()
+  -- unit tests for the property 'subject'
+  describe("property subject test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
+  -- unit tests for the property 'body'
+  describe("property body test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
@@ -37,15 +44,8 @@ describe("send_mail", function()
     end)
   end)
 
-  -- unit tests for the property 'subject'
-  describe("property subject test", function()
-    it("should work", function()
-      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
-    end)
-  end)
-
-  -- unit tests for the property 'body'
-  describe("property body test", function()
+  -- unit tests for the property 'id'
+  describe("property id test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

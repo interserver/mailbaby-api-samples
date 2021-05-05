@@ -79,13 +79,19 @@ describe 'DefaultApi' do
   # unit tests for send_mail_by_id
   # Sends an Email
   # Sends An email through one of your mail orders.
-  # @param subject 
   # @param body 
-  # @param from 
-  # @param to 
-  # @param id 
-  # @param to_name 
-  # @param from_name 
+  # @param [Hash] opts the optional parameters
+  # @return [GenericResponse]
+  describe 'send_mail_by_id test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for send_mail_by_id
+  # Sends an Email
+  # Sends An email through one of your mail orders.
+  # @param payload 
   # @param [Hash] opts the optional parameters
   # @return [GenericResponse]
   describe 'send_mail_by_id test' do

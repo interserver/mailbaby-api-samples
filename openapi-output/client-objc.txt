@@ -4,6 +4,7 @@
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'objc' is considered stable.
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 Exception in thread "main" java.lang.ClassCastException: class java.lang.Boolean cannot be cast to class java.lang.String (java.lang.Boolean and java.lang.String are in module java.base of loader 'bootstrap')
 	at org.openapitools.codegen.languages.ObjcClientCodegen.processOpts(ObjcClientCodegen.java:249)
 	at org.openapitools.codegen.DefaultGenerator.configureGeneratorProperties(DefaultGenerator.java:250)

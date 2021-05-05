@@ -6,11 +6,11 @@
 
 
 send_mail_t *send_mail_create(
-    long id,
-    mail_contact_t *from,
-    list_t *to,
     char *subject,
     char *body,
+    mail_contact_t *from,
+    list_t *to,
+    long id,
     list_t *replyto,
     list_t *cc,
     list_t *bcc,
@@ -20,11 +20,11 @@ send_mail_t *send_mail_create(
     if (!send_mail_local_var) {
         return NULL;
     }
-    send_mail_local_var->id = id;
-    send_mail_local_var->from = from;
-    send_mail_local_var->to = to;
     send_mail_local_var->subject = subject;
     send_mail_local_var->body = body;
+    send_mail_local_var->from = from;
+    send_mail_local_var->to = to;
+    send_mail_local_var->id = id;
     send_mail_local_var->replyto = replyto;
     send_mail_local_var->cc = cc;
     send_mail_local_var->bcc = bcc;
@@ -39,6 +39,14 @@ void send_mail_free(send_mail_t *send_mail) {
         return ;
     }
     listEntry_t *listEntry;
+    if (send_mail->subject) {
+        free(send_mail->subject);
+        send_mail->subject = NULL;
+    }
+    if (send_mail->body) {
+        free(send_mail->body);
+        send_mail->body = NULL;
+    }
     if (send_mail->from) {
         mail_contact_free(send_mail->from);
         send_mail->from = NULL;
@@ -49,14 +57,6 @@ void send_mail_free(send_mail_t *send_mail) {
         }
         list_free(send_mail->to);
         send_mail->to = NULL;
-    }
-    if (send_mail->subject) {
-        free(send_mail->subject);
-        send_mail->subject = NULL;
-    }
-    if (send_mail->body) {
-        free(send_mail->body);
-        send_mail->body = NULL;
     }
     if (send_mail->replyto) {
         list_ForEach(listEntry, send_mail->replyto) {
@@ -92,13 +92,23 @@ void send_mail_free(send_mail_t *send_mail) {
 cJSON *send_mail_convertToJSON(send_mail_t *send_mail) {
     cJSON *item = cJSON_CreateObject();
 
-    // send_mail->id
-    if (!send_mail->id) {
+    // send_mail->subject
+    if (!send_mail->subject) {
         goto fail;
     }
     
-    if(cJSON_AddNumberToObject(item, "id", send_mail->id) == NULL) {
-    goto fail; //Numeric
+    if(cJSON_AddStringToObject(item, "subject", send_mail->subject) == NULL) {
+    goto fail; //String
+    }
+
+
+    // send_mail->body
+    if (!send_mail->body) {
+        goto fail;
+    }
+    
+    if(cJSON_AddStringToObject(item, "body", send_mail->body) == NULL) {
+    goto fail; //String
     }
 
 
@@ -139,23 +149,13 @@ cJSON *send_mail_convertToJSON(send_mail_t *send_mail) {
     }
 
 
-    // send_mail->subject
-    if (!send_mail->subject) {
+    // send_mail->id
+    if (!send_mail->id) {
         goto fail;
     }
     
-    if(cJSON_AddStringToObject(item, "subject", send_mail->subject) == NULL) {
-    goto fail; //String
-    }
-
-
-    // send_mail->body
-    if (!send_mail->body) {
-        goto fail;
-    }
-    
-    if(cJSON_AddStringToObject(item, "body", send_mail->body) == NULL) {
-    goto fail; //String
+    if(cJSON_AddNumberToObject(item, "id", send_mail->id) == NULL) {
+    goto fail; //Numeric
     }
 
 
@@ -250,16 +250,28 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
 
     send_mail_t *send_mail_local_var = NULL;
 
-    // send_mail->id
-    cJSON *id = cJSON_GetObjectItemCaseSensitive(send_mailJSON, "id");
-    if (!id) {
+    // send_mail->subject
+    cJSON *subject = cJSON_GetObjectItemCaseSensitive(send_mailJSON, "subject");
+    if (!subject) {
         goto end;
     }
 
     
-    if(!cJSON_IsNumber(id))
+    if(!cJSON_IsString(subject))
     {
-    goto end; //Numeric
+    goto end; //String
+    }
+
+    // send_mail->body
+    cJSON *body = cJSON_GetObjectItemCaseSensitive(send_mailJSON, "body");
+    if (!body) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(body))
+    {
+    goto end; //String
     }
 
     // send_mail->from
@@ -297,28 +309,16 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
         list_addElement(toList, toItem);
     }
 
-    // send_mail->subject
-    cJSON *subject = cJSON_GetObjectItemCaseSensitive(send_mailJSON, "subject");
-    if (!subject) {
+    // send_mail->id
+    cJSON *id = cJSON_GetObjectItemCaseSensitive(send_mailJSON, "id");
+    if (!id) {
         goto end;
     }
 
     
-    if(!cJSON_IsString(subject))
+    if(!cJSON_IsNumber(id))
     {
-    goto end; //String
-    }
-
-    // send_mail->body
-    cJSON *body = cJSON_GetObjectItemCaseSensitive(send_mailJSON, "body");
-    if (!body) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(body))
-    {
-    goto end; //String
+    goto end; //Numeric
     }
 
     // send_mail->replyto
@@ -411,11 +411,11 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
 
 
     send_mail_local_var = send_mail_create (
-        id->valuedouble,
-        from_local_nonprim,
-        toList,
         strdup(subject->valuestring),
         strdup(body->valuestring),
+        from_local_nonprim,
+        toList,
+        id->valuedouble,
         replyto ? replytoList : NULL,
         cc ? ccList : NULL,
         bcc ? bccList : NULL,

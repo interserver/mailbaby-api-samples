@@ -71,20 +71,11 @@ proc sendAdvMailById*(httpClient: HttpClient, sendMail: SendMail): (Option[Gener
   constructResult[GenericResponse](response)
 
 
-proc sendMailById*(httpClient: HttpClient, subject: string, body: string, `from`: string, to: string, id: int, toName: string, fromName: string): (Option[GenericResponse], Response) =
+proc sendMailById*(httpClient: HttpClient, sendMail: SendMail): (Option[GenericResponse], Response) =
   ## Sends an Email
-  httpClient.headers["Content-Type"] = "application/x-www-form-urlencoded"
-  let query_for_api_call = encodeQuery([
-    ("subject", $subject), # The Subject of the email
-    ("body", $body), # The contents of the email
-    ("from", $`from`), # The email address of who this email will be sent from.
-    ("to", $to), # The email address of who this email will be sent to.
-    ("id", $id), # The ID of your mail order this will be sent through.
-    ("toName", $toName), # The name or title of who this email is being sent to.
-    ("fromName", $fromName), # The name or title of who this email is being sent from.
-  ])
+  httpClient.headers["Content-Type"] = "application/json"
 
-  let response = httpClient.post(basepath & "/mail/send", $query_for_api_call)
+  let response = httpClient.post(basepath & "/mail/send", $(%sendMail))
   constructResult[GenericResponse](response)
 
 

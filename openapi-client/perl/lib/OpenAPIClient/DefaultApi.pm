@@ -279,49 +279,13 @@ sub send_adv_mail_by_id {
 #
 # Sends an Email
 # 
-# @param string $subject The Subject of the email (required)
-# @param string $body The contents of the email (required)
-# @param string $from The email address of who this email will be sent from. (required)
-# @param string $to The email address of who this email will be sent to. (required)
-# @param int $id The ID of your mail order this will be sent through. (optional)
-# @param string $to_name The name or title of who this email is being sent to. (optional)
-# @param string $from_name The name or title of who this email is being sent from. (optional)
+# @param SendMail $send_mail  (required)
 {
     my $params = {
-    'subject' => {
-        data_type => 'string',
-        description => 'The Subject of the email',
+    'send_mail' => {
+        data_type => 'SendMail',
+        description => '',
         required => '1',
-    },
-    'body' => {
-        data_type => 'string',
-        description => 'The contents of the email',
-        required => '1',
-    },
-    'from' => {
-        data_type => 'string',
-        description => 'The email address of who this email will be sent from.',
-        required => '1',
-    },
-    'to' => {
-        data_type => 'string',
-        description => 'The email address of who this email will be sent to.',
-        required => '1',
-    },
-    'id' => {
-        data_type => 'int',
-        description => 'The ID of your mail order this will be sent through.',
-        required => '0',
-    },
-    'to_name' => {
-        data_type => 'string',
-        description => 'The name or title of who this email is being sent to.',
-        required => '0',
-    },
-    'from_name' => {
-        data_type => 'string',
-        description => 'The name or title of who this email is being sent from.',
-        required => '0',
     },
     };
     __PACKAGE__->method_documentation->{ 'send_mail_by_id' } = { 
@@ -335,24 +299,9 @@ sub send_adv_mail_by_id {
 sub send_mail_by_id {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'subject' is set
-    unless (exists $args{'subject'}) {
-      croak("Missing the required parameter 'subject' when calling send_mail_by_id");
-    }
-
-    # verify the required parameter 'body' is set
-    unless (exists $args{'body'}) {
-      croak("Missing the required parameter 'body' when calling send_mail_by_id");
-    }
-
-    # verify the required parameter 'from' is set
-    unless (exists $args{'from'}) {
-      croak("Missing the required parameter 'from' when calling send_mail_by_id");
-    }
-
-    # verify the required parameter 'to' is set
-    unless (exists $args{'to'}) {
-      croak("Missing the required parameter 'to' when calling send_mail_by_id");
+    # verify the required parameter 'send_mail' is set
+    unless (exists $args{'send_mail'}) {
+      croak("Missing the required parameter 'send_mail' when calling send_mail_by_id");
     }
 
     # parse inputs
@@ -368,44 +317,14 @@ sub send_mail_by_id {
     if ($_header_accept) {
         $header_params->{'Accept'} = $_header_accept;
     }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/x-www-form-urlencoded');
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json', 'application/x-www-form-urlencoded');
 
-    # form params
-    if ( exists $args{'subject'} ) {
-                $form_params->{'subject'} = $self->{api_client}->to_form_value($args{'subject'});
-    }
-    
-    # form params
-    if ( exists $args{'body'} ) {
-                $form_params->{'body'} = $self->{api_client}->to_form_value($args{'body'});
-    }
-    
-    # form params
-    if ( exists $args{'from'} ) {
-                $form_params->{'from'} = $self->{api_client}->to_form_value($args{'from'});
-    }
-    
-    # form params
-    if ( exists $args{'to'} ) {
-                $form_params->{'to'} = $self->{api_client}->to_form_value($args{'to'});
-    }
-    
-    # form params
-    if ( exists $args{'id'} ) {
-                $form_params->{'id'} = $self->{api_client}->to_form_value($args{'id'});
-    }
-    
-    # form params
-    if ( exists $args{'to_name'} ) {
-                $form_params->{'toName'} = $self->{api_client}->to_form_value($args{'to_name'});
-    }
-    
-    # form params
-    if ( exists $args{'from_name'} ) {
-                $form_params->{'fromName'} = $self->{api_client}->to_form_value($args{'from_name'});
-    }
-    
     my $_body_data;
+    # body params
+    if ( exists $args{'send_mail'}) {
+        $_body_data = $args{'send_mail'};
+    }
+
     # authentication setting, if any
     my $auth_settings = [qw(apiKeyAuth )];
 

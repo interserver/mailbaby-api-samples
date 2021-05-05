@@ -430,16 +430,10 @@ func (a *DefaultApiService) SendAdvMailById(ctx context.Context, body SendMail) 
 DefaultApiService Sends an Email
 Sends An email through one of your mail orders.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param subject
  * @param body
- * @param from
- * @param to
- * @param id
- * @param toName
- * @param fromName
 @return GenericResponse
 */
-func (a *DefaultApiService) SendMailById(ctx context.Context, subject string, body string, from string, to string, id int32, toName string, fromName string) (GenericResponse, *http.Response, error) {
+func (a *DefaultApiService) SendMailById(ctx context.Context, body SendMail) (GenericResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -456,7 +450,7 @@ func (a *DefaultApiService) SendMailById(ctx context.Context, subject string, bo
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{"application/x-www-form-urlencoded"}
+	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
@@ -472,13 +466,8 @@ func (a *DefaultApiService) SendMailById(ctx context.Context, subject string, bo
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	localVarFormParams.Add("subject", parameterToString(subject, ""))
-	localVarFormParams.Add("body", parameterToString(body, ""))
-	localVarFormParams.Add("from", parameterToString(from, ""))
-	localVarFormParams.Add("to", parameterToString(to, ""))
-	localVarFormParams.Add("id", parameterToString(id, ""))
-	localVarFormParams.Add("toName", parameterToString(toName, ""))
-	localVarFormParams.Add("fromName", parameterToString(fromName, ""))
+	// body params
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {

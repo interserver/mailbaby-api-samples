@@ -16,19 +16,19 @@ class SendMail(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, id: int=None, _from: MailContact=None, to: List[MailContact]=None, subject: str=None, body: str=None, replyto: List[MailContact]=None, cc: List[MailContact]=None, bcc: List[MailContact]=None, attachments: List[MailAttachment]=None):  # noqa: E501
+    def __init__(self, subject: str=None, body: str=None, _from: MailContact=None, to: List[MailContact]=None, id: int=None, replyto: List[MailContact]=None, cc: List[MailContact]=None, bcc: List[MailContact]=None, attachments: List[MailAttachment]=None):  # noqa: E501
         """SendMail - a model defined in Swagger
 
-        :param id: The id of this SendMail.  # noqa: E501
-        :type id: int
-        :param _from: The _from of this SendMail.  # noqa: E501
-        :type _from: MailContact
-        :param to: The to of this SendMail.  # noqa: E501
-        :type to: List[MailContact]
         :param subject: The subject of this SendMail.  # noqa: E501
         :type subject: str
         :param body: The body of this SendMail.  # noqa: E501
         :type body: str
+        :param _from: The _from of this SendMail.  # noqa: E501
+        :type _from: MailContact
+        :param to: The to of this SendMail.  # noqa: E501
+        :type to: List[MailContact]
+        :param id: The id of this SendMail.  # noqa: E501
+        :type id: int
         :param replyto: The replyto of this SendMail.  # noqa: E501
         :type replyto: List[MailContact]
         :param cc: The cc of this SendMail.  # noqa: E501
@@ -39,11 +39,11 @@ class SendMail(Model):
         :type attachments: List[MailAttachment]
         """
         self.swagger_types = {
-            'id': int,
-            '_from': MailContact,
-            'to': List[MailContact],
             'subject': str,
             'body': str,
+            '_from': MailContact,
+            'to': List[MailContact],
+            'id': int,
             'replyto': List[MailContact],
             'cc': List[MailContact],
             'bcc': List[MailContact],
@@ -51,21 +51,21 @@ class SendMail(Model):
         }
 
         self.attribute_map = {
-            'id': 'id',
-            '_from': 'from',
-            'to': 'to',
             'subject': 'subject',
             'body': 'body',
+            '_from': 'from',
+            'to': 'to',
+            'id': 'id',
             'replyto': 'replyto',
             'cc': 'cc',
             'bcc': 'bcc',
             'attachments': 'attachments'
         }
-        self._id = id
-        self.__from = _from
-        self._to = to
         self._subject = subject
         self._body = body
+        self.__from = _from
+        self._to = to
+        self._id = id
         self._replyto = replyto
         self._cc = cc
         self._bcc = bcc
@@ -81,79 +81,6 @@ class SendMail(Model):
         :rtype: SendMail
         """
         return util.deserialize_model(dikt, cls)
-
-    @property
-    def id(self) -> int:
-        """Gets the id of this SendMail.
-
-        The ID of the Mail order within our system to use as the Mail Account.  # noqa: E501
-
-        :return: The id of this SendMail.
-        :rtype: int
-        """
-        return self._id
-
-    @id.setter
-    def id(self, id: int):
-        """Sets the id of this SendMail.
-
-        The ID of the Mail order within our system to use as the Mail Account.  # noqa: E501
-
-        :param id: The id of this SendMail.
-        :type id: int
-        """
-        if id is None:
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
-
-        self._id = id
-
-    @property
-    def _from(self) -> MailContact:
-        """Gets the _from of this SendMail.
-
-
-        :return: The _from of this SendMail.
-        :rtype: MailContact
-        """
-        return self.__from
-
-    @_from.setter
-    def _from(self, _from: MailContact):
-        """Sets the _from of this SendMail.
-
-
-        :param _from: The _from of this SendMail.
-        :type _from: MailContact
-        """
-        if _from is None:
-            raise ValueError("Invalid value for `_from`, must not be `None`")  # noqa: E501
-
-        self.__from = _from
-
-    @property
-    def to(self) -> List[MailContact]:
-        """Gets the to of this SendMail.
-
-        The Contact whom is the primary recipient of this email.  # noqa: E501
-
-        :return: The to of this SendMail.
-        :rtype: List[MailContact]
-        """
-        return self._to
-
-    @to.setter
-    def to(self, to: List[MailContact]):
-        """Sets the to of this SendMail.
-
-        The Contact whom is the primary recipient of this email.  # noqa: E501
-
-        :param to: The to of this SendMail.
-        :type to: List[MailContact]
-        """
-        if to is None:
-            raise ValueError("Invalid value for `to`, must not be `None`")  # noqa: E501
-
-        self._to = to
 
     @property
     def subject(self) -> str:
@@ -204,6 +131,79 @@ class SendMail(Model):
             raise ValueError("Invalid value for `body`, must not be `None`")  # noqa: E501
 
         self._body = body
+
+    @property
+    def _from(self) -> MailContact:
+        """Gets the _from of this SendMail.
+
+
+        :return: The _from of this SendMail.
+        :rtype: MailContact
+        """
+        return self.__from
+
+    @_from.setter
+    def _from(self, _from: MailContact):
+        """Sets the _from of this SendMail.
+
+
+        :param _from: The _from of this SendMail.
+        :type _from: MailContact
+        """
+        if _from is None:
+            raise ValueError("Invalid value for `_from`, must not be `None`")  # noqa: E501
+
+        self.__from = _from
+
+    @property
+    def to(self) -> List[MailContact]:
+        """Gets the to of this SendMail.
+
+        The Contact whom is the primary recipient of this email.  # noqa: E501
+
+        :return: The to of this SendMail.
+        :rtype: List[MailContact]
+        """
+        return self._to
+
+    @to.setter
+    def to(self, to: List[MailContact]):
+        """Sets the to of this SendMail.
+
+        The Contact whom is the primary recipient of this email.  # noqa: E501
+
+        :param to: The to of this SendMail.
+        :type to: List[MailContact]
+        """
+        if to is None:
+            raise ValueError("Invalid value for `to`, must not be `None`")  # noqa: E501
+
+        self._to = to
+
+    @property
+    def id(self) -> int:
+        """Gets the id of this SendMail.
+
+        The ID of the Mail order within our system to use as the Mail Account.  # noqa: E501
+
+        :return: The id of this SendMail.
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id: int):
+        """Sets the id of this SendMail.
+
+        The ID of the Mail order within our system to use as the Mail Account.  # noqa: E501
+
+        :param id: The id of this SendMail.
+        :type id: int
+        """
+        if id is None:
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
+
+        self._id = id
 
     @property
     def replyto(self) -> List[MailContact]:

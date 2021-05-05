@@ -8,21 +8,21 @@ import 'package:openapi/model/mail_contact.dart';
 part 'send_mail.jser.dart';
 
 class SendMail {
-   /* The ID of the Mail order within our system to use as the Mail Account. */
-  @Alias('id', isNullable: false,  )
-  final int id;
-  
-  @Alias('from', isNullable: false,  )
-  final MailContact from;
-   /* The Contact whom is the primary recipient of this email. */
-  @Alias('to', isNullable: false,  )
-  final List<MailContact> to;
    /* The subject or title of the email */
   @Alias('subject', isNullable: false,  )
   final String subject;
    /* The main email contents. */
   @Alias('body', isNullable: false,  )
   final String body;
+  
+  @Alias('from', isNullable: false,  )
+  final MailContact from;
+   /* The Contact whom is the primary recipient of this email. */
+  @Alias('to', isNullable: false,  )
+  final List<MailContact> to;
+   /* The ID of the Mail order within our system to use as the Mail Account. */
+  @Alias('id', isNullable: false,  )
+  final int id;
    /* Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. */
   @Alias('replyto', isNullable: false,  )
   final List<MailContact> replyto;
@@ -42,11 +42,11 @@ class SendMail {
 
 {
     
-     this.id = null,  
+     this.subject = null,  
+     this.body = null,  
      this.from = null,  
      this.to = const [],  
-     this.subject = null,  
-     this.body = null,   this.replyto = const [],  
+     this.id = null,   this.replyto = const [],  
      this.cc = const [],  
      this.bcc = const [],  
      this.attachments = const [] 
@@ -56,7 +56,7 @@ class SendMail {
 
   @override
   String toString() {
-    return 'SendMail[id=$id, from=$from, to=$to, subject=$subject, body=$body, replyto=$replyto, cc=$cc, bcc=$bcc, attachments=$attachments, ]';
+    return 'SendMail[subject=$subject, body=$body, from=$from, to=$to, id=$id, replyto=$replyto, cc=$cc, bcc=$bcc, attachments=$attachments, ]';
   }
 }
 

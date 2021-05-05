@@ -205,35 +205,15 @@ export default class DefaultApi {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param {String} subject The Subject of the email
-     * @param {String} body The contents of the email
-     * @param {String} from The email address of who this email will be sent from.
-     * @param {String} to The email address of who this email will be sent to.
-     * @param {Object} opts Optional parameters
-     * @param {Number} opts.id The ID of your mail order this will be sent through.
-     * @param {String} opts.toName The name or title of who this email is being sent to.
-     * @param {String} opts.fromName The name or title of who this email is being sent from.
+     * @param {module:model/SendMail} sendMail 
      * @param {module:api/DefaultApi~sendMailByIdCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    sendMailById(subject, body, from, to, opts, callback) {
-      opts = opts || {};
-      let postBody = null;
-      // verify the required parameter 'subject' is set
-      if (subject === undefined || subject === null) {
-        throw new Error("Missing the required parameter 'subject' when calling sendMailById");
-      }
-      // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling sendMailById");
-      }
-      // verify the required parameter 'from' is set
-      if (from === undefined || from === null) {
-        throw new Error("Missing the required parameter 'from' when calling sendMailById");
-      }
-      // verify the required parameter 'to' is set
-      if (to === undefined || to === null) {
-        throw new Error("Missing the required parameter 'to' when calling sendMailById");
+    sendMailById(sendMail, callback) {
+      let postBody = sendMail;
+      // verify the required parameter 'sendMail' is set
+      if (sendMail === undefined || sendMail === null) {
+        throw new Error("Missing the required parameter 'sendMail' when calling sendMailById");
       }
 
       let pathParams = {
@@ -243,17 +223,10 @@ export default class DefaultApi {
       let headerParams = {
       };
       let formParams = {
-        'subject': subject,
-        'body': body,
-        'from': from,
-        'to': to,
-        'id': opts['id'],
-        'toName': opts['toName'],
-        'fromName': opts['fromName']
       };
 
       let authNames = ['apiKeyAuth'];
-      let contentTypes = ['application/x-www-form-urlencoded'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
       let accepts = ['application/json'];
       let returnType = GenericResponse;
       return this.apiClient.callApi(

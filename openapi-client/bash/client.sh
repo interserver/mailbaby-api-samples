@@ -98,13 +98,7 @@ declare -A operation_parameters_minimum_occurrences
 operation_parameters_minimum_occurrences["getMailOrders:::id"]=0
 operation_parameters_minimum_occurrences["placeMailOrder:::MailOrder"]=0
 operation_parameters_minimum_occurrences["sendAdvMailById:::SendMail"]=1
-operation_parameters_minimum_occurrences["sendMailById:::subject"]=1
-operation_parameters_minimum_occurrences["sendMailById:::body"]=1
-operation_parameters_minimum_occurrences["sendMailById:::from"]=1
-operation_parameters_minimum_occurrences["sendMailById:::to"]=1
-operation_parameters_minimum_occurrences["sendMailById:::id"]=0
-operation_parameters_minimum_occurrences["sendMailById:::toName"]=0
-operation_parameters_minimum_occurrences["sendMailById:::fromName"]=0
+operation_parameters_minimum_occurrences["sendMailById:::SendMail"]=1
 operation_parameters_minimum_occurrences["viewMailLogById:::id"]=0
 operation_parameters_minimum_occurrences["viewMailLogById:::searchString"]=0
 operation_parameters_minimum_occurrences["viewMailLogById:::skip"]=0
@@ -120,13 +114,7 @@ declare -A operation_parameters_maximum_occurrences
 operation_parameters_maximum_occurrences["getMailOrders:::id"]=0
 operation_parameters_maximum_occurrences["placeMailOrder:::MailOrder"]=0
 operation_parameters_maximum_occurrences["sendAdvMailById:::SendMail"]=0
-operation_parameters_maximum_occurrences["sendMailById:::subject"]=0
-operation_parameters_maximum_occurrences["sendMailById:::body"]=0
-operation_parameters_maximum_occurrences["sendMailById:::from"]=0
-operation_parameters_maximum_occurrences["sendMailById:::to"]=0
-operation_parameters_maximum_occurrences["sendMailById:::id"]=0
-operation_parameters_maximum_occurrences["sendMailById:::toName"]=0
-operation_parameters_maximum_occurrences["sendMailById:::fromName"]=0
+operation_parameters_maximum_occurrences["sendMailById:::SendMail"]=0
 operation_parameters_maximum_occurrences["viewMailLogById:::id"]=0
 operation_parameters_maximum_occurrences["viewMailLogById:::searchString"]=0
 operation_parameters_maximum_occurrences["viewMailLogById:::skip"]=0
@@ -139,13 +127,7 @@ declare -A operation_parameters_collection_type
 operation_parameters_collection_type["getMailOrders:::id"]=""
 operation_parameters_collection_type["placeMailOrder:::MailOrder"]=""
 operation_parameters_collection_type["sendAdvMailById:::SendMail"]=""
-operation_parameters_collection_type["sendMailById:::subject"]=""
-operation_parameters_collection_type["sendMailById:::body"]=""
-operation_parameters_collection_type["sendMailById:::from"]=""
-operation_parameters_collection_type["sendMailById:::to"]=""
-operation_parameters_collection_type["sendMailById:::id"]=""
-operation_parameters_collection_type["sendMailById:::toName"]=""
-operation_parameters_collection_type["sendMailById:::fromName"]=""
+operation_parameters_collection_type["sendMailById:::SendMail"]=""
 operation_parameters_collection_type["viewMailLogById:::id"]=""
 operation_parameters_collection_type["viewMailLogById:::searchString"]=""
 operation_parameters_collection_type["viewMailLogById:::skip"]=""
@@ -689,6 +671,8 @@ print_sendMailById_help() {
     echo -e "Sends An email through one of your mail orders." | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json,application/x-www-form-urlencoded]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1003,10 +987,50 @@ call_sendMailById() {
     if [[ -n $basic_auth_credential ]]; then
         basic_auth_option="-u ${basic_auth_credential}"
     fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the OpenAPI specification
+    # if values produces and consumes are defined unambigously
+    #
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo -e "\\t- application/x-www-form-urlencoded"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
     fi
 }
 

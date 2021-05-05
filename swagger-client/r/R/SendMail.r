@@ -8,11 +8,11 @@
 
 #' SendMail Class
 #'
-#' @field id 
-#' @field from 
-#' @field to 
 #' @field subject 
 #' @field body 
+#' @field from 
+#' @field to 
+#' @field id 
 #' @field replyto 
 #' @field cc 
 #' @field bcc 
@@ -24,19 +24,23 @@
 SendMail <- R6::R6Class(
   'SendMail',
   public = list(
-    `id` = NULL,
-    `from` = NULL,
-    `to` = NULL,
     `subject` = NULL,
     `body` = NULL,
+    `from` = NULL,
+    `to` = NULL,
+    `id` = NULL,
     `replyto` = NULL,
     `cc` = NULL,
     `bcc` = NULL,
     `attachments` = NULL,
-    initialize = function(`id`, `from`, `to`, `subject`, `body`, `replyto`, `cc`, `bcc`, `attachments`){
-      if (!missing(`id`)) {
-        stopifnot(is.numeric(`id`), length(`id`) == 1)
-        self$`id` <- `id`
+    initialize = function(`subject`, `body`, `from`, `to`, `id`, `replyto`, `cc`, `bcc`, `attachments`){
+      if (!missing(`subject`)) {
+        stopifnot(is.character(`subject`), length(`subject`) == 1)
+        self$`subject` <- `subject`
+      }
+      if (!missing(`body`)) {
+        stopifnot(is.character(`body`), length(`body`) == 1)
+        self$`body` <- `body`
       }
       if (!missing(`from`)) {
         stopifnot(R6::is.R6(`from`))
@@ -47,13 +51,9 @@ SendMail <- R6::R6Class(
         lapply(`to`, function(x) stopifnot(R6::is.R6(x)))
         self$`to` <- `to`
       }
-      if (!missing(`subject`)) {
-        stopifnot(is.character(`subject`), length(`subject`) == 1)
-        self$`subject` <- `subject`
-      }
-      if (!missing(`body`)) {
-        stopifnot(is.character(`body`), length(`body`) == 1)
-        self$`body` <- `body`
+      if (!missing(`id`)) {
+        stopifnot(is.numeric(`id`), length(`id`) == 1)
+        self$`id` <- `id`
       }
       if (!missing(`replyto`)) {
         stopifnot(is.list(`replyto`), length(`replyto`) != 0)
@@ -78,8 +78,11 @@ SendMail <- R6::R6Class(
     },
     toJSON = function() {
       SendMailObject <- list()
-      if (!is.null(self$`id`)) {
-        SendMailObject[['id']] <- self$`id`
+      if (!is.null(self$`subject`)) {
+        SendMailObject[['subject']] <- self$`subject`
+      }
+      if (!is.null(self$`body`)) {
+        SendMailObject[['body']] <- self$`body`
       }
       if (!is.null(self$`from`)) {
         SendMailObject[['from']] <- self$`from`$toJSON()
@@ -87,11 +90,8 @@ SendMail <- R6::R6Class(
       if (!is.null(self$`to`)) {
         SendMailObject[['to']] <- lapply(self$`to`, function(x) x$toJSON())
       }
-      if (!is.null(self$`subject`)) {
-        SendMailObject[['subject']] <- self$`subject`
-      }
-      if (!is.null(self$`body`)) {
-        SendMailObject[['body']] <- self$`body`
+      if (!is.null(self$`id`)) {
+        SendMailObject[['id']] <- self$`id`
       }
       if (!is.null(self$`replyto`)) {
         SendMailObject[['replyto']] <- lapply(self$`replyto`, function(x) x$toJSON())
@@ -110,8 +110,11 @@ SendMail <- R6::R6Class(
     },
     fromJSON = function(SendMailJson) {
       SendMailObject <- jsonlite::fromJSON(SendMailJson)
-      if (!is.null(SendMailObject$`id`)) {
-        self$`id` <- SendMailObject$`id`
+      if (!is.null(SendMailObject$`subject`)) {
+        self$`subject` <- SendMailObject$`subject`
+      }
+      if (!is.null(SendMailObject$`body`)) {
+        self$`body` <- SendMailObject$`body`
       }
       if (!is.null(SendMailObject$`from`)) {
         fromObject <- MailContact$new()
@@ -125,11 +128,8 @@ SendMail <- R6::R6Class(
           toObject
         })
       }
-      if (!is.null(SendMailObject$`subject`)) {
-        self$`subject` <- SendMailObject$`subject`
-      }
-      if (!is.null(SendMailObject$`body`)) {
-        self$`body` <- SendMailObject$`body`
+      if (!is.null(SendMailObject$`id`)) {
+        self$`id` <- SendMailObject$`id`
       }
       if (!is.null(SendMailObject$`replyto`)) {
         self$`replyto` <- lapply(SendMailObject$`replyto`, function(x) {
@@ -163,21 +163,21 @@ SendMail <- R6::R6Class(
     toJSONString = function() {
        sprintf(
         '{
-           "id": %d,
-           "from": %s,
-           "to": [%s],
            "subject": %s,
            "body": %s,
+           "from": %s,
+           "to": [%s],
+           "id": %d,
            "replyto": [%s],
            "cc": [%s],
            "bcc": [%s],
            "attachments": [%s]
         }',
-        self$`id`,
-        self$`from`$toJSON(),
-        lapply(self$`to`, function(x) paste(x$toJSON(), sep=",")),
         self$`subject`,
         self$`body`,
+        self$`from`$toJSON(),
+        lapply(self$`to`, function(x) paste(x$toJSON(), sep=",")),
+        self$`id`,
         lapply(self$`replyto`, function(x) paste(x$toJSON(), sep=",")),
         lapply(self$`cc`, function(x) paste(x$toJSON(), sep=",")),
         lapply(self$`bcc`, function(x) paste(x$toJSON(), sep=",")),
@@ -186,12 +186,12 @@ SendMail <- R6::R6Class(
     },
     fromJSONString = function(SendMailJson) {
       SendMailObject <- jsonlite::fromJSON(SendMailJson)
-      self$`id` <- SendMailObject$`id`
+      self$`subject` <- SendMailObject$`subject`
+      self$`body` <- SendMailObject$`body`
       MailContactObject <- MailContact$new()
       self$`from` <- MailContactObject$fromJSON(jsonlite::toJSON(SendMailObject$from, auto_unbox = TRUE))
       self$`to` <- lapply(SendMailObject$`to`, function(x) MailContact$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self$`subject` <- SendMailObject$`subject`
-      self$`body` <- SendMailObject$`body`
+      self$`id` <- SendMailObject$`id`
       self$`replyto` <- lapply(SendMailObject$`replyto`, function(x) MailContact$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
       self$`cc` <- lapply(SendMailObject$`cc`, function(x) MailContact$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
       self$`bcc` <- lapply(SendMailObject$`bcc`, function(x) MailContact$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))

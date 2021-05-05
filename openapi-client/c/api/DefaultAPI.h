@@ -45,7 +45,7 @@ DefaultAPI_sendAdvMailById(apiClient_t *apiClient, send_mail_t * send_mail );
 // Sends An email through one of your mail orders.
 //
 generic_response_t*
-DefaultAPI_sendMailById(apiClient_t *apiClient, char * subject , char * body , char * from , char * to , int id , char * toName , char * fromName );
+DefaultAPI_sendMailById(apiClient_t *apiClient, send_mail_t * send_mail );
 
 
 // validatess order details before placing an order

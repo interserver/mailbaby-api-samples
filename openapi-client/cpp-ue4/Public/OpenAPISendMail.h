@@ -31,15 +31,15 @@ public:
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) final;
 	void WriteJson(JsonWriter& Writer) const final;
 
-	/* The ID of the Mail order within our system to use as the Mail Account. */
-	int64 Id = 0;
-	OpenAPIMailContact From;
-	/* The Contact whom is the primary recipient of this email. */
-	TArray<OpenAPIMailContact> To;
 	/* The subject or title of the email */
 	FString Subject;
 	/* The main email contents. */
 	FString Body;
+	OpenAPIMailContact From;
+	/* The Contact whom is the primary recipient of this email. */
+	TArray<OpenAPIMailContact> To;
+	/* The ID of the Mail order within our system to use as the Mail Account. */
+	int64 Id = 0;
 	/* Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. */
 	TOptional<TArray<OpenAPIMailContact>> Replyto;
 	/* Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */

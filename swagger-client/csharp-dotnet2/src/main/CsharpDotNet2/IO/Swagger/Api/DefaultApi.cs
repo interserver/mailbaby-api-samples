@@ -37,15 +37,15 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
-        /// <param name="subject"></param>
         /// <param name="body"></param>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <param name="id"></param>
-        /// <param name="toName"></param>
-        /// <param name="fromName"></param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendMailById (string subject, string body, string from, string to, int? id, string toName, string fromName);
+        GenericResponse SendMailById (SendMail body);
+        /// <summary>
+        /// Sends an Email Sends An email through one of your mail orders.
+        /// </summary>
+        /// <param name="payload"></param>
+        /// <returns>GenericResponse</returns>
+        GenericResponse SendMailById (SendMail payload);
         /// <summary>
         /// validatess order details before placing an order 
         /// </summary>
@@ -250,30 +250,12 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
-        /// <param name="subject"></param>
         /// <param name="body"></param>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <param name="id"></param>
-        /// <param name="toName"></param>
-        /// <param name="fromName"></param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendMailById (string subject, string body, string from, string to, int? id, string toName, string fromName)
+        public GenericResponse SendMailById (SendMail body)
         {
-            // verify the required parameter 'subject' is set
-            if (subject == null) throw new ApiException(400, "Missing required parameter 'subject' when calling SendMailById");
             // verify the required parameter 'body' is set
             if (body == null) throw new ApiException(400, "Missing required parameter 'body' when calling SendMailById");
-            // verify the required parameter 'from' is set
-            if (from == null) throw new ApiException(400, "Missing required parameter 'from' when calling SendMailById");
-            // verify the required parameter 'to' is set
-            if (to == null) throw new ApiException(400, "Missing required parameter 'to' when calling SendMailById");
-            // verify the required parameter 'id' is set
-            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling SendMailById");
-            // verify the required parameter 'toName' is set
-            if (toName == null) throw new ApiException(400, "Missing required parameter 'toName' when calling SendMailById");
-            // verify the required parameter 'fromName' is set
-            if (fromName == null) throw new ApiException(400, "Missing required parameter 'fromName' when calling SendMailById");
     
             var path = "/mail/send";
             path = path.Replace("{format}", "json");
@@ -284,13 +266,42 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
     
-                                    if (subject != null) formParams.Add("subject", ApiClient.ParameterToString(subject)); // form parameter
-if (body != null) formParams.Add("body", ApiClient.ParameterToString(body)); // form parameter
-if (from != null) formParams.Add("from", ApiClient.ParameterToString(from)); // form parameter
-if (to != null) formParams.Add("to", ApiClient.ParameterToString(to)); // form parameter
-if (id != null) formParams.Add("id", ApiClient.ParameterToString(id)); // form parameter
-if (toName != null) formParams.Add("toName", ApiClient.ParameterToString(toName)); // form parameter
-if (fromName != null) formParams.Add("fromName", ApiClient.ParameterToString(fromName)); // form parameter
+                                    postBody = ApiClient.Serialize(body); // http body (model) parameter
+
+            // authentication setting, if any
+            String[] authSettings = new String[] { "apiKeyAuth" };
+    
+            // make the HTTP request
+            IRestResponse response = (IRestResponse) ApiClient.CallApi(path, Method.POST, queryParams, postBody, headerParams, formParams, fileParams, authSettings);
+    
+            if (((int)response.StatusCode) >= 400)
+                throw new ApiException ((int)response.StatusCode, "Error calling SendMailById: " + response.Content, response.Content);
+            else if (((int)response.StatusCode) == 0)
+                throw new ApiException ((int)response.StatusCode, "Error calling SendMailById: " + response.ErrorMessage, response.ErrorMessage);
+    
+            return (GenericResponse) ApiClient.Deserialize(response.Content, typeof(GenericResponse), response.Headers);
+        }
+    
+        /// <summary>
+        /// Sends an Email Sends An email through one of your mail orders.
+        /// </summary>
+        /// <param name="payload"></param>
+        /// <returns>GenericResponse</returns>
+        public GenericResponse SendMailById (SendMail payload)
+        {
+            // verify the required parameter 'payload' is set
+            if (payload == null) throw new ApiException(400, "Missing required parameter 'payload' when calling SendMailById");
+    
+            var path = "/mail/send";
+            path = path.Replace("{format}", "json");
+                
+            var queryParams = new Dictionary<String, String>();
+            var headerParams = new Dictionary<String, String>();
+            var formParams = new Dictionary<String, String>();
+            var fileParams = new Dictionary<String, FileParameter>();
+            String postBody = null;
+    
+                                    if (payload != null) formParams.Add("payload", ApiClient.ParameterToString(payload)); // form parameter
 
             // authentication setting, if any
             String[] authSettings = new String[] { "apiKeyAuth" };

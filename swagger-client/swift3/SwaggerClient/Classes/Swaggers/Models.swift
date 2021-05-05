@@ -296,32 +296,8 @@ class Decoders {
         Decoders.addDecoder(clazz: Body.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<Body> in
             if let sourceDictionary = source as? [AnyHashable: Any] {
                 let _result = instance == nil ? Body() : instance as! Body
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["subject"] as AnyObject?) {
-                case let .success(value): _result.subject = value
-                case let .failure(error): break
-                }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["body"] as AnyObject?) {
-                case let .success(value): _result.body = value
-                case let .failure(error): break
-                }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["from"] as AnyObject?) {
-                case let .success(value): _result.from = value
-                case let .failure(error): break
-                }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["to"] as AnyObject?) {
-                case let .success(value): _result.to = value
-                case let .failure(error): break
-                }
-                switch Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["id"] as AnyObject?) {
-                case let .success(value): _result.id = value
-                case let .failure(error): break
-                }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["toName"] as AnyObject?) {
-                case let .success(value): _result.toName = value
-                case let .failure(error): break
-                }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["fromName"] as AnyObject?) {
-                case let .success(value): _result.fromName = value
+                switch Decoders.decodeOptional(clazz: SendMail.self, source: sourceDictionary["payload"] as AnyObject?) {
+                case let .success(value): _result.payload = value
                 case let .failure(error): break
                 }
                 return .success(_result)
@@ -478,8 +454,12 @@ class Decoders {
         Decoders.addDecoder(clazz: SendMail.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<SendMail> in
             if let sourceDictionary = source as? [AnyHashable: Any] {
                 let _result = instance == nil ? SendMail() : instance as! SendMail
-                switch Decoders.decodeOptional(clazz: Int64.self, source: sourceDictionary["id"] as AnyObject?) {
-                case let .success(value): _result.id = value
+                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["subject"] as AnyObject?) {
+                case let .success(value): _result.subject = value
+                case let .failure(error): break
+                }
+                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["body"] as AnyObject?) {
+                case let .success(value): _result.body = value
                 case let .failure(error): break
                 }
                 switch Decoders.decodeOptional(clazz: MailContact.self, source: sourceDictionary["from"] as AnyObject?) {
@@ -490,12 +470,8 @@ class Decoders {
                 case let .success(value): _result.to = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["subject"] as AnyObject?) {
-                case let .success(value): _result.subject = value
-                case let .failure(error): break
-                }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["body"] as AnyObject?) {
-                case let .success(value): _result.body = value
+                switch Decoders.decodeOptional(clazz: Int64.self, source: sourceDictionary["id"] as AnyObject?) {
+                case let .success(value): _result.id = value
                 case let .failure(error): break
                 }
                 switch Decoders.decodeOptional(clazz: [MailContact].self, source: sourceDictionary["replyto"] as AnyObject?) {

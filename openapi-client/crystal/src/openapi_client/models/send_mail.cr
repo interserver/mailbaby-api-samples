@@ -14,9 +14,14 @@ module
   # Details for an Email
   class SendMail include JSON::Serializable
    include JSON::Serializable 
-    # The ID of the Mail order within our system to use as the Mail Account.
-    @[JSON::Field(key: id, type: Int64)]
-    property id : Int64
+    # The subject or title of the email
+    @[JSON::Field(key: subject, type: String)]
+    property subject : String
+
+
+    # The main email contents.
+    @[JSON::Field(key: body, type: String)]
+    property body : String
 
 
     @[JSON::Field(key: from, type: MailContact)]
@@ -28,14 +33,9 @@ module
     property to : Array(MailContact)
 
 
-    # The subject or title of the email
-    @[JSON::Field(key: subject, type: String)]
-    property subject : String
-
-
-    # The main email contents.
-    @[JSON::Field(key: body, type: String)]
-    property body : String
+    # The ID of the Mail order within our system to use as the Mail Account.
+    @[JSON::Field(key: id, type: Int64)]
+    property id : Int64
 
 
     # Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
@@ -59,15 +59,19 @@ module
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@id : Int64, @from : MailContact, @to : Array(MailContact), @subject : String, @body : String, @replyto : Array(MailContact) | Nil, @cc : Array(MailContact) | Nil, @bcc : Array(MailContact) | Nil, @attachments : Array(MailAttachment) | Nil)
+    def initialize(@subject : String, @body : String, @from : MailContact, @to : Array(MailContact), @id : Int64, @replyto : Array(MailContact) | Nil, @cc : Array(MailContact) | Nil, @bcc : Array(MailContact) | Nil, @attachments : Array(MailAttachment) | Nil)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push("invalid value for \"id\", id cannot be nil.")
+      if @subject.nil?
+        invalid_properties.push("invalid value for \"subject\", subject cannot be nil.")
+      end
+
+      if @body.nil?
+        invalid_properties.push("invalid value for \"body\", body cannot be nil.")
       end
 
       if @from.nil?
@@ -78,12 +82,8 @@ module
         invalid_properties.push("invalid value for \"to\", to cannot be nil.")
       end
 
-      if @subject.nil?
-        invalid_properties.push("invalid value for \"subject\", subject cannot be nil.")
-      end
-
-      if @body.nil?
-        invalid_properties.push("invalid value for \"body\", body cannot be nil.")
+      if @id.nil?
+        invalid_properties.push("invalid value for \"id\", id cannot be nil.")
       end
 
       invalid_properties
@@ -92,11 +92,11 @@ module
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
-      return false if @from.nil?
-      return false if @to.nil?
       return false if @subject.nil?
       return false if @body.nil?
+      return false if @from.nil?
+      return false if @to.nil?
+      return false if @id.nil?
       true
     end
 
@@ -105,11 +105,11 @@ module
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
-          from == o.from &&
-          to == o.to &&
           subject == o.subject &&
           body == o.body &&
+          from == o.from &&
+          to == o.to &&
+          id == o.id &&
           replyto == o.replyto &&
           cc == o.cc &&
           bcc == o.bcc &&
@@ -125,7 +125,7 @@ module
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, from, to, subject, body, replyto, cc, bcc, attachments].hash
+      [subject, body, from, to, id, replyto, cc, bcc, attachments].hash
     end
 
     # Builds the object from hash

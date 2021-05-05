@@ -27,57 +27,10 @@ namespace IO.Swagger.Models
     public partial class Body : IEquatable<Body>
     { 
         /// <summary>
-        /// The Subject of the email
+        /// Gets or Sets Payload
         /// </summary>
-        /// <value>The Subject of the email</value>
-        [Required]
-        [DataMember(Name="subject")]
-        public string Subject { get; set; }
-
-        /// <summary>
-        /// The contents of the email
-        /// </summary>
-        /// <value>The contents of the email</value>
-        [Required]
-        [DataMember(Name="body")]
-        public string _Body { get; set; }
-
-        /// <summary>
-        /// The email address of who this email will be sent from.
-        /// </summary>
-        /// <value>The email address of who this email will be sent from.</value>
-        [Required]
-        [DataMember(Name="from")]
-        public string From { get; set; }
-
-        /// <summary>
-        /// The email address of who this email will be sent to.
-        /// </summary>
-        /// <value>The email address of who this email will be sent to.</value>
-        [Required]
-        [DataMember(Name="to")]
-        public string To { get; set; }
-
-        /// <summary>
-        /// The ID of your mail order this will be sent through.
-        /// </summary>
-        /// <value>The ID of your mail order this will be sent through.</value>
-        [DataMember(Name="id")]
-        public int? Id { get; set; }
-
-        /// <summary>
-        /// The name or title of who this email is being sent to.
-        /// </summary>
-        /// <value>The name or title of who this email is being sent to.</value>
-        [DataMember(Name="toName")]
-        public string ToName { get; set; }
-
-        /// <summary>
-        /// The name or title of who this email is being sent from.
-        /// </summary>
-        /// <value>The name or title of who this email is being sent from.</value>
-        [DataMember(Name="fromName")]
-        public string FromName { get; set; }
+        [DataMember(Name="payload")]
+        public SendMail Payload { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -87,13 +40,7 @@ namespace IO.Swagger.Models
         {
             var sb = new StringBuilder();
             sb.Append("class Body {\n");
-            sb.Append("  Subject: ").Append(Subject).Append("\n");
-            sb.Append("  _Body: ").Append(_Body).Append("\n");
-            sb.Append("  From: ").Append(From).Append("\n");
-            sb.Append("  To: ").Append(To).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  ToName: ").Append(ToName).Append("\n");
-            sb.Append("  FromName: ").Append(FromName).Append("\n");
+            sb.Append("  Payload: ").Append(Payload).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -131,39 +78,9 @@ namespace IO.Swagger.Models
 
             return 
                 (
-                    Subject == other.Subject ||
-                    Subject != null &&
-                    Subject.Equals(other.Subject)
-                ) && 
-                (
-                    _Body == other._Body ||
-                    _Body != null &&
-                    _Body.Equals(other._Body)
-                ) && 
-                (
-                    From == other.From ||
-                    From != null &&
-                    From.Equals(other.From)
-                ) && 
-                (
-                    To == other.To ||
-                    To != null &&
-                    To.Equals(other.To)
-                ) && 
-                (
-                    Id == other.Id ||
-                    Id != null &&
-                    Id.Equals(other.Id)
-                ) && 
-                (
-                    ToName == other.ToName ||
-                    ToName != null &&
-                    ToName.Equals(other.ToName)
-                ) && 
-                (
-                    FromName == other.FromName ||
-                    FromName != null &&
-                    FromName.Equals(other.FromName)
+                    Payload == other.Payload ||
+                    Payload != null &&
+                    Payload.Equals(other.Payload)
                 );
         }
 
@@ -177,20 +94,8 @@ namespace IO.Swagger.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
-                    if (Subject != null)
-                    hashCode = hashCode * 59 + Subject.GetHashCode();
-                    if (_Body != null)
-                    hashCode = hashCode * 59 + _Body.GetHashCode();
-                    if (From != null)
-                    hashCode = hashCode * 59 + From.GetHashCode();
-                    if (To != null)
-                    hashCode = hashCode * 59 + To.GetHashCode();
-                    if (Id != null)
-                    hashCode = hashCode * 59 + Id.GetHashCode();
-                    if (ToName != null)
-                    hashCode = hashCode * 59 + ToName.GetHashCode();
-                    if (FromName != null)
-                    hashCode = hashCode * 59 + FromName.GetHashCode();
+                    if (Payload != null)
+                    hashCode = hashCode * 59 + Payload.GetHashCode();
                 return hashCode;
             }
         }

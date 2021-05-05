@@ -152,7 +152,7 @@ Sends An email through one of your mail orders allowing additional options such 
 ```R
 library(openapi)
 
-var.send.mail <- SendMail$new(123, MailContact$new("email_example", "name_example"), list(MailContact$new("email_example", "name_example")), "subject_example", "body_example", list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailAttachment$new(123, "filename_example"))) # SendMail | 
+var.send.mail <- SendMail$new("subject_example", "body_example", MailContact$new("email_example", "name_example"), list(MailContact$new("email_example", "name_example")), 123, list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailAttachment$new(123, "filename_example"))) # SendMail | 
 
 #Sends an Email with Advanced Options
 api.instance <- DefaultApi$new()
@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 | **404** | The specified resource was not found |  -  |
 
 # **SendMailById**
-> GenericResponse SendMailById(subject, body, from, to, id=var.id, to.name=var.to.name, from.name=var.from.name)
+> GenericResponse SendMailById(send.mail)
 
 Sends an Email
 
@@ -200,19 +200,13 @@ Sends An email through one of your mail orders.
 ```R
 library(openapi)
 
-var.subject <- 'subject_example' # character | The Subject of the email
-var.body <- 'body_example' # character | The contents of the email
-var.from <- 'from_example' # character | The email address of who this email will be sent from.
-var.to <- 'to_example' # character | The email address of who this email will be sent to.
-var.id <- 56 # integer | The ID of your mail order this will be sent through.
-var.to.name <- 'to.name_example' # character | The name or title of who this email is being sent to.
-var.from.name <- 'from.name_example' # character | The name or title of who this email is being sent from.
+var.send.mail <- SendMail$new("subject_example", "body_example", MailContact$new("email_example", "name_example"), list(MailContact$new("email_example", "name_example")), 123, list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailAttachment$new(123, "filename_example"))) # SendMail | 
 
 #Sends an Email
 api.instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
 api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$SendMailById(var.subject, var.body, var.from, var.to, id=var.id, to.name=var.to.name, from.name=var.from.name)
+result <- api.instance$SendMailById(var.send.mail)
 dput(result)
 ```
 
@@ -220,13 +214,7 @@ dput(result)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **character**| The Subject of the email | 
- **body** | **character**| The contents of the email | 
- **from** | **character**| The email address of who this email will be sent from. | 
- **to** | **character**| The email address of who this email will be sent to. | 
- **id** | **integer**| The ID of your mail order this will be sent through. | [optional] 
- **to.name** | **character**| The name or title of who this email is being sent to. | [optional] 
- **from.name** | **character**| The name or title of who this email is being sent from. | [optional] 
+ **send.mail** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type
 
@@ -238,7 +226,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 ### HTTP response details

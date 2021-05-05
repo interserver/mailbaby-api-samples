@@ -236,42 +236,24 @@ module
 
     # Sends an Email
     # Sends An email through one of your mail orders.
-    # @param subject [String] The Subject of the email
-    # @param body [String] The contents of the email
-    # @param from [String] The email address of who this email will be sent from.
-    # @param to [String] The email address of who this email will be sent to.
+    # @param send_mail [SendMail] 
     # @return [GenericResponse]
-    def send_mail_by_id(subject : String, body : String, from : String, to : String, id : Int32?, to_name : String?, from_name : String?)
-      data, _status_code, _headers = send_mail_by_id_with_http_info(subject, body, from, to, id, to_name, from_name)
+    def send_mail_by_id(send_mail : SendMail)
+      data, _status_code, _headers = send_mail_by_id_with_http_info(send_mail)
       data
     end
 
     # Sends an Email
     # Sends An email through one of your mail orders.
-    # @param subject [String] The Subject of the email
-    # @param body [String] The contents of the email
-    # @param from [String] The email address of who this email will be sent from.
-    # @param to [String] The email address of who this email will be sent to.
+    # @param send_mail [SendMail] 
     # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_mail_by_id_with_http_info(subject : String, body : String, from : String, to : String, id : Int32?, to_name : String?, from_name : String?)
+    def send_mail_by_id_with_http_info(send_mail : SendMail)
       if @api_client.config.debugging
         Log.debug {"Calling API: DefaultApi.send_mail_by_id ..."}
       end
-      # verify the required parameter "subject" is set
-      if @api_client.config.client_side_validation && subject.nil?
-        raise ArgumentError.new("Missing the required parameter 'subject' when calling DefaultApi.send_mail_by_id")
-      end
-      # verify the required parameter "body" is set
-      if @api_client.config.client_side_validation && body.nil?
-        raise ArgumentError.new("Missing the required parameter 'body' when calling DefaultApi.send_mail_by_id")
-      end
-      # verify the required parameter "from" is set
-      if @api_client.config.client_side_validation && from.nil?
-        raise ArgumentError.new("Missing the required parameter 'from' when calling DefaultApi.send_mail_by_id")
-      end
-      # verify the required parameter "to" is set
-      if @api_client.config.client_side_validation && to.nil?
-        raise ArgumentError.new("Missing the required parameter 'to' when calling DefaultApi.send_mail_by_id")
+      # verify the required parameter "send_mail" is set
+      if @api_client.config.client_side_validation && send_mail.nil?
+        raise ArgumentError.new("Missing the required parameter 'send_mail' when calling DefaultApi.send_mail_by_id")
       end
       # resource path
       local_var_path = "/mail/send"
@@ -284,20 +266,13 @@ module
       # HTTP header "Accept" (if needed)
       header_params["Accept"] = @api_client.select_header_accept(["application/json"])
       # HTTP header "Content-Type"
-      header_params["Content-Type"] = @api_client.select_header_content_type(["application/x-www-form-urlencoded"])
+      header_params["Content-Type"] = @api_client.select_header_content_type(["application/json", "application/x-www-form-urlencoded"])
 
       # form parameters
       form_params = Hash(Symbol, String).new
-      form_params[:"subject"] = subject
-      form_params[:"body"] = body
-      form_params[:"from"] = from
-      form_params[:"to"] = to
-      form_params[:"id"] = id
-      form_params[:"toName"] = to_name
-      form_params[:"fromName"] = from_name
 
       # http body (model)
-      post_body = nil
+      post_body = send_mail.to_json
 
       # return_type
       return_type = "GenericResponse"

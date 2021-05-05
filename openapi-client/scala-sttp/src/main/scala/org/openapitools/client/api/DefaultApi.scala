@@ -115,29 +115,15 @@ class DefaultApi(baseUrl: String) {
    * Available security schemes:
    *   apiKeyAuth (apiKey)
    * 
-   * @param subject The Subject of the email
-   * @param body The contents of the email
-   * @param from The email address of who this email will be sent from.
-   * @param to The email address of who this email will be sent to.
-   * @param id The ID of your mail order this will be sent through.
-   * @param toName The name or title of who this email is being sent to.
-   * @param fromName The name or title of who this email is being sent from.
+   * @param sendMail 
    */
-  def sendMailById(apiKey: String)(subject: String, body: String, from: String, to: String, id: Option[Int] = None, toName: Option[String] = None, fromName: Option[String] = None
+  def sendMailById(apiKey: String)(sendMail: SendMail
 ): Request[Either[ResponseError[Exception], GenericResponse], Nothing] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/send")
-      .contentType("application/x-www-form-urlencoded")
+      .contentType("application/json")
       .header("X-API-KEY", apiKey)
-      .body(Map(
-        "subject" -> subject, 
-        "body" -> body, 
-        "from" -> from, 
-        "to" -> to, 
-        "id" -> id, 
-        "toName" -> toName, 
-        "fromName" -> fromName
-      ))
+      .body(sendMail)
       .response(asJson[GenericResponse])
 
   /**

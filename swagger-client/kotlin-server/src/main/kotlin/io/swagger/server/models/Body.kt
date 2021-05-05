@@ -10,13 +10,10 @@
 * Do not edit the class manually.
 */package io.swagger.server.models
 
+import io.swagger.server.models.SendMail
 
 /**
- *  * @param subject The Subject of the email * @param body The contents of the email * @param from The email address of who this email will be sent from. * @param to The email address of who this email will be sent to. * @param id The ID of your mail order this will be sent through. * @param toName The name or title of who this email is being sent to. * @param fromName The name or title of who this email is being sent from.*/
-data class Body (        /* The Subject of the email */
-        val subject: kotlin.String,        /* The contents of the email */
-        val body: kotlin.String,        /* The email address of who this email will be sent from. */
-        val from: kotlin.String,        /* The email address of who this email will be sent to. */
-        val to: kotlin.String,    /* The ID of your mail order this will be sent through. */    val id: kotlin.Int? = null,    /* The name or title of who this email is being sent to. */    val toName: kotlin.String? = null,    /* The name or title of who this email is being sent from. */    val fromName: kotlin.String? = null
+ *  * @param payload */
+data class Body (    val payload: SendMail? = null
 ) {
 }

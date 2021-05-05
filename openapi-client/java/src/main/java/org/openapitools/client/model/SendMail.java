@@ -32,11 +32,15 @@ import org.openapitools.client.model.MailContact;
  * Details for an Email
  */
 @ApiModel(description = "Details for an Email")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-04T21:10:15.803872-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-05T04:01:00.029955-04:00[America/New_York]")
 public class SendMail {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private Long id;
+  public static final String SERIALIZED_NAME_SUBJECT = "subject";
+  @SerializedName(SERIALIZED_NAME_SUBJECT)
+  private String subject;
+
+  public static final String SERIALIZED_NAME_BODY = "body";
+  @SerializedName(SERIALIZED_NAME_BODY)
+  private String body;
 
   public static final String SERIALIZED_NAME_FROM = "from";
   @SerializedName(SERIALIZED_NAME_FROM)
@@ -46,13 +50,9 @@ public class SendMail {
   @SerializedName(SERIALIZED_NAME_TO)
   private List<MailContact> to = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_SUBJECT = "subject";
-  @SerializedName(SERIALIZED_NAME_SUBJECT)
-  private String subject;
-
-  public static final String SERIALIZED_NAME_BODY = "body";
-  @SerializedName(SERIALIZED_NAME_BODY)
-  private String body;
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private Long id;
 
   public static final String SERIALIZED_NAME_REPLYTO = "replyto";
   @SerializedName(SERIALIZED_NAME_REPLYTO)
@@ -71,25 +71,47 @@ public class SendMail {
   private List<MailAttachment> attachments = null;
 
 
-  public SendMail id(Long id) {
+  public SendMail subject(String subject) {
     
-    this.id = id;
+    this.subject = subject;
     return this;
   }
 
    /**
-   * The ID of the Mail order within our system to use as the Mail Account.
-   * @return id
+   * The subject or title of the email
+   * @return subject
   **/
-  @ApiModelProperty(required = true, value = "The ID of the Mail order within our system to use as the Mail Account.")
+  @ApiModelProperty(example = "Your Package has been Delivered!", required = true, value = "The subject or title of the email")
 
-  public Long getId() {
-    return id;
+  public String getSubject() {
+    return subject;
   }
 
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setSubject(String subject) {
+    this.subject = subject;
+  }
+
+
+  public SendMail body(String body) {
+    
+    this.body = body;
+    return this;
+  }
+
+   /**
+   * The main email contents.
+   * @return body
+  **/
+  @ApiModelProperty(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else. ", required = true, value = "The main email contents.")
+
+  public String getBody() {
+    return body;
+  }
+
+
+  public void setBody(String body) {
+    this.body = body;
   }
 
 
@@ -142,47 +164,25 @@ public class SendMail {
   }
 
 
-  public SendMail subject(String subject) {
+  public SendMail id(Long id) {
     
-    this.subject = subject;
+    this.id = id;
     return this;
   }
 
    /**
-   * The subject or title of the email
-   * @return subject
+   * The ID of the Mail order within our system to use as the Mail Account.
+   * @return id
   **/
-  @ApiModelProperty(example = "Your Package has been Delivered!", required = true, value = "The subject or title of the email")
+  @ApiModelProperty(example = "5000", required = true, value = "The ID of the Mail order within our system to use as the Mail Account.")
 
-  public String getSubject() {
-    return subject;
+  public Long getId() {
+    return id;
   }
 
 
-  public void setSubject(String subject) {
-    this.subject = subject;
-  }
-
-
-  public SendMail body(String body) {
-    
-    this.body = body;
-    return this;
-  }
-
-   /**
-   * The main email contents.
-   * @return body
-  **/
-  @ApiModelProperty(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else. ", required = true, value = "The main email contents.")
-
-  public String getBody() {
-    return body;
-  }
-
-
-  public void setBody(String body) {
-    this.body = body;
+  public void setId(Long id) {
+    this.id = id;
   }
 
 
@@ -319,11 +319,11 @@ public class SendMail {
       return false;
     }
     SendMail sendMail = (SendMail) o;
-    return Objects.equals(this.id, sendMail.id) &&
+    return Objects.equals(this.subject, sendMail.subject) &&
+        Objects.equals(this.body, sendMail.body) &&
         Objects.equals(this.from, sendMail.from) &&
         Objects.equals(this.to, sendMail.to) &&
-        Objects.equals(this.subject, sendMail.subject) &&
-        Objects.equals(this.body, sendMail.body) &&
+        Objects.equals(this.id, sendMail.id) &&
         Objects.equals(this.replyto, sendMail.replyto) &&
         Objects.equals(this.cc, sendMail.cc) &&
         Objects.equals(this.bcc, sendMail.bcc) &&
@@ -332,18 +332,18 @@ public class SendMail {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, from, to, subject, body, replyto, cc, bcc, attachments);
+    return Objects.hash(subject, body, from, to, id, replyto, cc, bcc, attachments);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendMail {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    from: ").append(toIndentedString(from)).append("\n");
-    sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    from: ").append(toIndentedString(from)).append("\n");
+    sb.append("    to: ").append(toIndentedString(to)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    replyto: ").append(toIndentedString(replyto)).append("\n");
     sb.append("    cc: ").append(toIndentedString(cc)).append("\n");
     sb.append("    bcc: ").append(toIndentedString(bcc)).append("\n");

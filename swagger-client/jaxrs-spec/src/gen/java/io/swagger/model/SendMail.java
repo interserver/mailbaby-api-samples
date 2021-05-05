@@ -18,15 +18,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SendMail   {
 
-  private @Valid Long id = null;
+  private @Valid String subject = null;
+
+  private @Valid String body = null;
 
   private @Valid MailContact from = null;
 
   private @Valid List<MailContact> to = new ArrayList<MailContact>();
 
-  private @Valid String subject = null;
-
-  private @Valid String body = null;
+  private @Valid Long id = null;
 
   private @Valid List<MailContact> replyto = new ArrayList<MailContact>();
 
@@ -37,23 +37,43 @@ public class SendMail   {
   private @Valid List<MailAttachment> attachments = new ArrayList<MailAttachment>();
 
   /**
-   * The ID of the Mail order within our system to use as the Mail Account.
+   * The subject or title of the email
    **/
-  public SendMail id(Long id) {
-    this.id = id;
+  public SendMail subject(String subject) {
+    this.subject = subject;
     return this;
   }
 
   
-  @ApiModelProperty(required = true, value = "The ID of the Mail order within our system to use as the Mail Account.")
-  @JsonProperty("id")
+  @ApiModelProperty(example = "Your Package has been Delivered!", required = true, value = "The subject or title of the email")
+  @JsonProperty("subject")
   @NotNull
 
-  public Long getId() {
-    return id;
+  public String getSubject() {
+    return subject;
   }
-  public void setId(Long id) {
-    this.id = id;
+  public void setSubject(String subject) {
+    this.subject = subject;
+  }
+
+  /**
+   * The main email contents.
+   **/
+  public SendMail body(String body) {
+    this.body = body;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else. ", required = true, value = "The main email contents.")
+  @JsonProperty("body")
+  @NotNull
+
+  public String getBody() {
+    return body;
+  }
+  public void setBody(String body) {
+    this.body = body;
   }
 
   /**
@@ -96,43 +116,23 @@ public class SendMail   {
   }
 
   /**
-   * The subject or title of the email
+   * The ID of the Mail order within our system to use as the Mail Account.
    **/
-  public SendMail subject(String subject) {
-    this.subject = subject;
+  public SendMail id(Long id) {
+    this.id = id;
     return this;
   }
 
   
-  @ApiModelProperty(example = "Your Package has been Delivered!", required = true, value = "The subject or title of the email")
-  @JsonProperty("subject")
+  @ApiModelProperty(example = "5000", required = true, value = "The ID of the Mail order within our system to use as the Mail Account.")
+  @JsonProperty("id")
   @NotNull
 
-  public String getSubject() {
-    return subject;
+  public Long getId() {
+    return id;
   }
-  public void setSubject(String subject) {
-    this.subject = subject;
-  }
-
-  /**
-   * The main email contents.
-   **/
-  public SendMail body(String body) {
-    this.body = body;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else. ", required = true, value = "The main email contents.")
-  @JsonProperty("body")
-  @NotNull
-
-  public String getBody() {
-    return body;
-  }
-  public void setBody(String body) {
-    this.body = body;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   /**
@@ -221,11 +221,11 @@ public class SendMail   {
       return false;
     }
     SendMail sendMail = (SendMail) o;
-    return Objects.equals(id, sendMail.id) &&
+    return Objects.equals(subject, sendMail.subject) &&
+        Objects.equals(body, sendMail.body) &&
         Objects.equals(from, sendMail.from) &&
         Objects.equals(to, sendMail.to) &&
-        Objects.equals(subject, sendMail.subject) &&
-        Objects.equals(body, sendMail.body) &&
+        Objects.equals(id, sendMail.id) &&
         Objects.equals(replyto, sendMail.replyto) &&
         Objects.equals(cc, sendMail.cc) &&
         Objects.equals(bcc, sendMail.bcc) &&
@@ -234,7 +234,7 @@ public class SendMail   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, from, to, subject, body, replyto, cc, bcc, attachments);
+    return Objects.hash(subject, body, from, to, id, replyto, cc, bcc, attachments);
   }
 
   @Override
@@ -242,11 +242,11 @@ public class SendMail   {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendMail {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    from: ").append(toIndentedString(from)).append("\n");
-    sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    from: ").append(toIndentedString(from)).append("\n");
+    sb.append("    to: ").append(toIndentedString(to)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    replyto: ").append(toIndentedString(replyto)).append("\n");
     sb.append("    cc: ").append(toIndentedString(cc)).append("\n");
     sb.append("    bcc: ").append(toIndentedString(bcc)).append("\n");

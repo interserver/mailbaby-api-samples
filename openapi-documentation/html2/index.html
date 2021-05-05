@@ -942,13 +942,19 @@ ul.nav-tabs {
   }
 };
     defs["SendMail"] = {
+  "title" : "Email details",
   "required" : [ "body", "from", "id", "subject", "to" ],
   "type" : "object",
   "properties" : {
-    "id" : {
-      "type" : "integer",
-      "description" : "The ID of the Mail order within our system to use as the Mail Account.",
-      "format" : "int64"
+    "subject" : {
+      "type" : "string",
+      "description" : "The subject or title of the email",
+      "example" : "Your Package has been Delivered!"
+    },
+    "body" : {
+      "type" : "string",
+      "description" : "The main email contents.",
+      "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n"
     },
     "from" : {
       "$ref" : "#/components/schemas/MailContact"
@@ -960,15 +966,11 @@ ul.nav-tabs {
         "$ref" : "#/components/schemas/MailContact"
       }
     },
-    "subject" : {
-      "type" : "string",
-      "description" : "The subject or title of the email",
-      "example" : "Your Package has been Delivered!"
-    },
-    "body" : {
-      "type" : "string",
-      "description" : "The main email contents.",
-      "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n"
+    "id" : {
+      "type" : "integer",
+      "description" : "The ID of the Mail order within our system to use as the Mail Account.",
+      "format" : "int64",
+      "example" : 5000
     },
     "replyto" : {
       "type" : "array",
@@ -2849,7 +2851,7 @@ $(document).ready(function() {
                             <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "X-API-KEY: [[apiKey]]"\
  -H "Accept: application/json"\
- -H "Content-Type: application/x-www-form-urlencoded"\
+ -H "Content-Type: application/json,application/x-www-form-urlencoded"\
  "https://api.mailbaby.net/mail/send"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-sendMailById-0-java">
@@ -2873,16 +2875,10 @@ public class DefaultApiExample {
         
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
-        String subject = subject_example; // String | The Subject of the email
-        String body = body_example; // String | The contents of the email
-        String from = from_example; // String | The email address of who this email will be sent from.
-        String to = to_example; // String | The email address of who this email will be sent to.
-        Integer id = 56; // Integer | The ID of your mail order this will be sent through.
-        String toName = toName_example; // String | The name or title of who this email is being sent to.
-        String fromName = fromName_example; // String | The name or title of who this email is being sent from.
+        SendMail sendMail = ; // SendMail | 
         
         try {
-            GenericResponse result = apiInstance.sendMailById(subject, body, from, to, id, toName, fromName);
+            GenericResponse result = apiInstance.sendMailById(sendMail);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#sendMailById");
@@ -2899,16 +2895,10 @@ public class DefaultApiExample {
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        String subject = subject_example; // String | The Subject of the email
-        String body = body_example; // String | The contents of the email
-        String from = from_example; // String | The email address of who this email will be sent from.
-        String to = to_example; // String | The email address of who this email will be sent to.
-        Integer id = 56; // Integer | The ID of your mail order this will be sent through.
-        String toName = toName_example; // String | The name or title of who this email is being sent to.
-        String fromName = fromName_example; // String | The name or title of who this email is being sent from.
+        SendMail sendMail = ; // SendMail | 
         
         try {
-            GenericResponse result = apiInstance.sendMailById(subject, body, from, to, id, toName, fromName);
+            GenericResponse result = apiInstance.sendMailById(sendMail);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#sendMailById");
@@ -2932,22 +2922,10 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
-String *subject = subject_example; // The Subject of the email (default to null)
-String *body = body_example; // The contents of the email (default to null)
-String *from = from_example; // The email address of who this email will be sent from. (default to null)
-String *to = to_example; // The email address of who this email will be sent to. (default to null)
-Integer *id = 56; // The ID of your mail order this will be sent through. (optional) (default to null)
-String *toName = toName_example; // The name or title of who this email is being sent to. (optional) (default to null)
-String *fromName = fromName_example; // The name or title of who this email is being sent from. (optional) (default to null)
+SendMail *sendMail = ; // 
 
 // Sends an Email
-[apiInstance sendMailByIdWith:subject
-    body:body
-    from:from
-    to:to
-    id:id
-    toName:toName
-    fromName:fromName
+[apiInstance sendMailByIdWith:sendMail
               completionHandler: ^(GenericResponse output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -2971,15 +2949,7 @@ apiKeyAuth.apiKey = "YOUR API KEY";
 
 // Create an instance of the API class
 var api = new MailBabyApi.DefaultApi()
-var subject = subject_example; // {String} The Subject of the email
-var body = body_example; // {String} The contents of the email
-var from = from_example; // {String} The email address of who this email will be sent from.
-var to = to_example; // {String} The email address of who this email will be sent to.
-var opts = {
-  'id': 56, // {Integer} The ID of your mail order this will be sent through.
-  'toName': toName_example, // {String} The name or title of who this email is being sent to.
-  'fromName': fromName_example // {String} The name or title of who this email is being sent from.
-};
+var sendMail = ; // {SendMail} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -2988,7 +2958,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.sendMailById(subject, body, from, to, opts, callback);
+api.sendMailById(sendMail, callback);
 </code></pre>
                             </div>
 
@@ -3015,17 +2985,11 @@ namespace Example
             
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
-            var subject = subject_example;  // String | The Subject of the email (default to null)
-            var body = body_example;  // String | The contents of the email (default to null)
-            var from = from_example;  // String | The email address of who this email will be sent from. (default to null)
-            var to = to_example;  // String | The email address of who this email will be sent to. (default to null)
-            var id = 56;  // Integer | The ID of your mail order this will be sent through. (optional)  (default to null)
-            var toName = toName_example;  // String | The name or title of who this email is being sent to. (optional)  (default to null)
-            var fromName = fromName_example;  // String | The name or title of who this email is being sent from. (optional)  (default to null)
+            var sendMail = new SendMail(); // SendMail | 
 
             try {
                 // Sends an Email
-                GenericResponse result = apiInstance.sendMailById(subject, body, from, to, id, toName, fromName);
+                GenericResponse result = apiInstance.sendMailById(sendMail);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.sendMailById: " + e.Message );
@@ -3047,16 +3011,10 @@ interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApi
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
-$subject = subject_example; // String | The Subject of the email
-$body = body_example; // String | The contents of the email
-$from = from_example; // String | The email address of who this email will be sent from.
-$to = to_example; // String | The email address of who this email will be sent to.
-$id = 56; // Integer | The ID of your mail order this will be sent through.
-$toName = toName_example; // String | The name or title of who this email is being sent to.
-$fromName = fromName_example; // String | The name or title of who this email is being sent from.
+$sendMail = ; // SendMail | 
 
 try {
-    $result = $api_instance->sendMailById($subject, $body, $from, $to, $id, $toName, $fromName);
+    $result = $api_instance->sendMailById($sendMail);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->sendMailById: ', $e->getMessage(), PHP_EOL;
@@ -3076,16 +3034,10 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = MailBabyApi::DefaultApi->new();
-my $subject = subject_example; # String | The Subject of the email
-my $body = body_example; # String | The contents of the email
-my $from = from_example; # String | The email address of who this email will be sent from.
-my $to = to_example; # String | The email address of who this email will be sent to.
-my $id = 56; # Integer | The ID of your mail order this will be sent through.
-my $toName = toName_example; # String | The name or title of who this email is being sent to.
-my $fromName = fromName_example; # String | The name or title of who this email is being sent from.
+my $sendMail = MailBabyApi::Object::SendMail->new(); # SendMail | 
 
 eval { 
-    my $result = $api_instance->sendMailById(subject => $subject, body => $body, from => $from, to => $to, id => $id, toName => $toName, fromName => $fromName);
+    my $result = $api_instance->sendMailById(sendMail => $sendMail);
     print Dumper($result);
 };
 if ($@) {
@@ -3107,17 +3059,11 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
-subject = subject_example # String | The Subject of the email (default to null)
-body = body_example # String | The contents of the email (default to null)
-from = from_example # String | The email address of who this email will be sent from. (default to null)
-to = to_example # String | The email address of who this email will be sent to. (default to null)
-id = 56 # Integer | The ID of your mail order this will be sent through. (optional) (default to null)
-toName = toName_example # String | The name or title of who this email is being sent to. (optional) (default to null)
-fromName = fromName_example # String | The name or title of who this email is being sent from. (optional) (default to null)
+sendMail =  # SendMail | 
 
 try: 
     # Sends an Email
-    api_response = api_instance.send_mail_by_id(subject, body, from, to, id=id, toName=toName, fromName=fromName)
+    api_response = api_instance.send_mail_by_id(sendMail)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->sendMailById: %s\n" % e)</code></pre>
@@ -3127,16 +3073,10 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
-    let subject = subject_example; // String
-    let body = body_example; // String
-    let from = from_example; // String
-    let to = to_example; // String
-    let id = 56; // Integer
-    let toName = toName_example; // String
-    let fromName = fromName_example; // String
+    let sendMail = ; // SendMail
 
     let mut context = DefaultApi::Context::default();
-    let result = client.sendMailById(subject, body, from, to, id, toName, fromName, &context).wait();
+    let result = client.sendMailById(sendMail, &context).wait();
 
     println!("{:?}", result);
 }
@@ -3153,166 +3093,64 @@ pub fn main() {
 
 
 
-
-                            <div class="methodsubtabletitle">Form parameters</div>
+                            <div class="methodsubtabletitle">Body parameters</div>
                             <table id="methodsubtable">
                               <tr>
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                  <tr><td style="width:150px;">subject*</td>
+                                <tr><td style="width:150px;">sendMail <span style="color:red;">*</span></td>
 <td>
+<p class="marked"></p>
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/SendMail"
+      }
+    },
+    "application/x-www-form-urlencoded" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/body"
+      },
+      "encoding" : {
+        "payload" : {
+          "contentType" : "application/json",
+          "style" : "form"
+        }
+      }
+    }
+  },
+  "required" : true
+};
 
+  var schema = findNode('schema',schemaWrapper).schema;
+  if (!schema) {
+    schema = schemaWrapper.schema;
+  }
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
 
-    <div id="d2e199_sendMailById_subject">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    String
-                </span>
-
-                    <div class="inner description marked">
-The Subject of the email
-                    </div>
-            </div>
-                <div class="inner required">
-                    Required
-                </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                                  <tr><td style="width:150px;">body*</td>
-<td>
-
-
-    <div id="d2e199_sendMailById_body">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    String
-                </span>
-
-                    <div class="inner description marked">
-The contents of the email
-                    </div>
-            </div>
-                <div class="inner required">
-                    Required
-                </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                                  <tr><td style="width:150px;">from*</td>
-<td>
-
-
-    <div id="d2e199_sendMailById_from">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    String
-                </span>
-
-                    <div class="inner description marked">
-The email address of who this email will be sent from.
-                    </div>
-            </div>
-                <div class="inner required">
-                    Required
-                </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                                  <tr><td style="width:150px;">to*</td>
-<td>
-
-
-    <div id="d2e199_sendMailById_to">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    String
-                </span>
-
-                    <div class="inner description marked">
-The email address of who this email will be sent to.
-                    </div>
-            </div>
-                <div class="inner required">
-                    Required
-                </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                                  <tr><td style="width:150px;">id</td>
-<td>
-
-
-    <div id="d2e199_sendMailById_id">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    Integer
-                </span>
-
-                    <div class="inner description marked">
-The ID of your mail order this will be sent through.
-                    </div>
-            </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                                  <tr><td style="width:150px;">toName</td>
-<td>
-
-
-    <div id="d2e199_sendMailById_toName">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    String
-                </span>
-
-                    <div class="inner description marked">
-The name or title of who this email is being sent to.
-                    </div>
-            </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                                  <tr><td style="width:150px;">fromName</td>
-<td>
-
-
-    <div id="d2e199_sendMailById_fromName">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    String
-                </span>
-
-                    <div class="inner description marked">
-The name or title of who this email is being sent from.
-                    </div>
-            </div>
-        </div>
-    </div>
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_sendMailById_sendMail');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_sendMailById_sendMail"></div>
 </td>
 </tr>
 
                             </table>
+
 
 
                           <h2>Responses</h2>

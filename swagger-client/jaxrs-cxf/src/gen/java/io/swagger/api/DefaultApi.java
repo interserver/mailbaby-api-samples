@@ -103,7 +103,7 @@ public interface DefaultApi  {
      */
     @POST
     @Path("/mail/send")
-    @Consumes({ "application/x-www-form-urlencoded" })
+    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", tags={  })
     @ApiResponses(value = { 
@@ -111,7 +111,25 @@ public interface DefaultApi  {
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public GenericResponse sendMailById(@Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body, @Multipart(value = "from")  String from, @Multipart(value = "to")  String to, @Multipart(value = "id")  Integer id, @Multipart(value = "toName")  String toName, @Multipart(value = "fromName")  String fromName);
+    public GenericResponse sendMailById(@Valid SendMail body);
+
+    /**
+     * Sends an Email
+     *
+     * Sends An email through one of your mail orders.
+     *
+     */
+    @POST
+    @Path("/mail/send")
+    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Sends an Email", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        @ApiResponse(responseCode = "400", description = "bad input parameter"),
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
+    public GenericResponse sendMailById(@Multipart(value = "payload")  SendMail payload);
 
     /**
      * validatess order details before placing an order

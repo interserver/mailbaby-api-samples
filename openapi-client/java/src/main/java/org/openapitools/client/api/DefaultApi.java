@@ -522,13 +522,7 @@ public class DefaultApi {
     }
     /**
      * Build call for sendMailById
-     * @param subject The Subject of the email (required)
-     * @param body The contents of the email (required)
-     * @param from The email address of who this email will be sent from. (required)
-     * @param to The email address of who this email will be sent to. (required)
-     * @param id The ID of your mail order this will be sent through. (optional)
-     * @param toName The name or title of who this email is being sent to. (optional)
-     * @param fromName The name or title of who this email is being sent from. (optional)
+     * @param sendMail  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -541,8 +535,8 @@ public class DefaultApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sendMailByIdCall(String subject, String body, String from, String to, Integer id, String toName, String fromName, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = null;
+    public okhttp3.Call sendMailByIdCall(SendMail sendMail, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = sendMail;
 
         // create path and map variables
         String localVarPath = "/mail/send";
@@ -553,34 +547,6 @@ public class DefaultApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (subject != null) {
-            localVarFormParams.put("subject", subject);
-        }
-
-        if (body != null) {
-            localVarFormParams.put("body", body);
-        }
-
-        if (from != null) {
-            localVarFormParams.put("from", from);
-        }
-
-        if (to != null) {
-            localVarFormParams.put("to", to);
-        }
-
-        if (id != null) {
-            localVarFormParams.put("id", id);
-        }
-
-        if (toName != null) {
-            localVarFormParams.put("toName", toName);
-        }
-
-        if (fromName != null) {
-            localVarFormParams.put("fromName", fromName);
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -590,7 +556,7 @@ public class DefaultApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/x-www-form-urlencoded"
+            "application/json", "application/x-www-form-urlencoded"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -600,30 +566,15 @@ public class DefaultApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call sendMailByIdValidateBeforeCall(String subject, String body, String from, String to, Integer id, String toName, String fromName, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call sendMailByIdValidateBeforeCall(SendMail sendMail, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'subject' is set
-        if (subject == null) {
-            throw new ApiException("Missing the required parameter 'subject' when calling sendMailById(Async)");
-        }
-        
-        // verify the required parameter 'body' is set
-        if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling sendMailById(Async)");
-        }
-        
-        // verify the required parameter 'from' is set
-        if (from == null) {
-            throw new ApiException("Missing the required parameter 'from' when calling sendMailById(Async)");
-        }
-        
-        // verify the required parameter 'to' is set
-        if (to == null) {
-            throw new ApiException("Missing the required parameter 'to' when calling sendMailById(Async)");
+        // verify the required parameter 'sendMail' is set
+        if (sendMail == null) {
+            throw new ApiException("Missing the required parameter 'sendMail' when calling sendMailById(Async)");
         }
         
 
-        okhttp3.Call localVarCall = sendMailByIdCall(subject, body, from, to, id, toName, fromName, _callback);
+        okhttp3.Call localVarCall = sendMailByIdCall(sendMail, _callback);
         return localVarCall;
 
     }
@@ -631,13 +582,7 @@ public class DefaultApi {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param subject The Subject of the email (required)
-     * @param body The contents of the email (required)
-     * @param from The email address of who this email will be sent from. (required)
-     * @param to The email address of who this email will be sent to. (required)
-     * @param id The ID of your mail order this will be sent through. (optional)
-     * @param toName The name or title of who this email is being sent to. (optional)
-     * @param fromName The name or title of who this email is being sent from. (optional)
+     * @param sendMail  (required)
      * @return GenericResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -649,21 +594,15 @@ public class DefaultApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public GenericResponse sendMailById(String subject, String body, String from, String to, Integer id, String toName, String fromName) throws ApiException {
-        ApiResponse<GenericResponse> localVarResp = sendMailByIdWithHttpInfo(subject, body, from, to, id, toName, fromName);
+    public GenericResponse sendMailById(SendMail sendMail) throws ApiException {
+        ApiResponse<GenericResponse> localVarResp = sendMailByIdWithHttpInfo(sendMail);
         return localVarResp.getData();
     }
 
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param subject The Subject of the email (required)
-     * @param body The contents of the email (required)
-     * @param from The email address of who this email will be sent from. (required)
-     * @param to The email address of who this email will be sent to. (required)
-     * @param id The ID of your mail order this will be sent through. (optional)
-     * @param toName The name or title of who this email is being sent to. (optional)
-     * @param fromName The name or title of who this email is being sent from. (optional)
+     * @param sendMail  (required)
      * @return ApiResponse&lt;GenericResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -675,8 +614,8 @@ public class DefaultApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GenericResponse> sendMailByIdWithHttpInfo(String subject, String body, String from, String to, Integer id, String toName, String fromName) throws ApiException {
-        okhttp3.Call localVarCall = sendMailByIdValidateBeforeCall(subject, body, from, to, id, toName, fromName, null);
+    public ApiResponse<GenericResponse> sendMailByIdWithHttpInfo(SendMail sendMail) throws ApiException {
+        okhttp3.Call localVarCall = sendMailByIdValidateBeforeCall(sendMail, null);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -684,13 +623,7 @@ public class DefaultApi {
     /**
      * Sends an Email (asynchronously)
      * Sends An email through one of your mail orders.
-     * @param subject The Subject of the email (required)
-     * @param body The contents of the email (required)
-     * @param from The email address of who this email will be sent from. (required)
-     * @param to The email address of who this email will be sent to. (required)
-     * @param id The ID of your mail order this will be sent through. (optional)
-     * @param toName The name or title of who this email is being sent to. (optional)
-     * @param fromName The name or title of who this email is being sent from. (optional)
+     * @param sendMail  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -703,9 +636,9 @@ public class DefaultApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sendMailByIdAsync(String subject, String body, String from, String to, Integer id, String toName, String fromName, final ApiCallback<GenericResponse> _callback) throws ApiException {
+    public okhttp3.Call sendMailByIdAsync(SendMail sendMail, final ApiCallback<GenericResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = sendMailByIdValidateBeforeCall(subject, body, from, to, id, toName, fromName, _callback);
+        okhttp3.Call localVarCall = sendMailByIdValidateBeforeCall(sendMail, _callback);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

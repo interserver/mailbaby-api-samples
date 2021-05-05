@@ -137,34 +137,19 @@ defmodule MailBabyAPI.Api.Default do
   ## Parameters
 
   - connection (MailBabyAPI.Connection): Connection to server
-  - subject (String.t): The Subject of the email
-  - body (String.t): The contents of the email
-  - from (String.t): The email address of who this email will be sent from.
-  - to (String.t): The email address of who this email will be sent to.
+  - send_mail (SendMail): 
   - opts (KeywordList): [optional] Optional parameters
-    - :id (integer()): The ID of your mail order this will be sent through.
-    - :to_name (String.t): The name or title of who this email is being sent to.
-    - :from_name (String.t): The name or title of who this email is being sent from.
   ## Returns
 
   {:ok, MailBabyAPI.Model.GenericResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec send_mail_by_id(Tesla.Env.client, String.t, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
-  def send_mail_by_id(connection, subject, body, from, to, opts \\ []) do
-    optional_params = %{
-      :"id" => :form,
-      :"toName" => :form,
-      :"fromName" => :form
-    }
+  @spec send_mail_by_id(Tesla.Env.client, MailBabyAPI.Model.SendMail.t, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
+  def send_mail_by_id(connection, send_mail, _opts \\ []) do
     %{}
     |> method(:post)
     |> url("/mail/send")
-    |> add_param(:form, :"subject", subject)
-    |> add_param(:form, :"body", body)
-    |> add_param(:form, :"from", from)
-    |> add_param(:form, :"to", to)
-    |> add_optional_params(optional_params, opts)
+    |> add_param(:body, :body, send_mail)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([

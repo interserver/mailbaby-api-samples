@@ -24,7 +24,7 @@ void
 GenericResponse::__init()
 {
 	//status = std::string();
-	//status_text = std::string();
+	//text = std::string();
 }
 
 void
@@ -35,10 +35,10 @@ GenericResponse::__cleanup()
 	//delete status;
 	//status = NULL;
 	//}
-	//if(status_text != NULL) {
+	//if(text != NULL) {
 	//
-	//delete status_text;
-	//status_text = NULL;
+	//delete text;
+	//text = NULL;
 	//}
 	//
 }
@@ -59,13 +59,13 @@ GenericResponse::fromJson(char* jsonStr)
 			
 		}
 	}
-	const gchar *status_textKey = "status_text";
-	node = json_object_get_member(pJsonObject, status_textKey);
+	const gchar *textKey = "text";
+	node = json_object_get_member(pJsonObject, textKey);
 	if (node !=NULL) {
 	
 
 		if (isprimitive("std::string")) {
-			jsonToValue(&status_text, node, "std::string", "");
+			jsonToValue(&text, node, "std::string", "");
 		} else {
 			
 		}
@@ -92,14 +92,14 @@ GenericResponse::toJson()
 	const gchar *statusKey = "status";
 	json_object_set_member(pJsonObject, statusKey, node);
 	if (isprimitive("std::string")) {
-		std::string obj = getStatusText();
+		std::string obj = getText();
 		node = converttoJson(&obj, "std::string", "");
 	}
 	else {
 		
 	}
-	const gchar *status_textKey = "status_text";
-	json_object_set_member(pJsonObject, status_textKey, node);
+	const gchar *textKey = "text";
+	json_object_set_member(pJsonObject, textKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -121,15 +121,15 @@ GenericResponse::setStatus(std::string  status)
 }
 
 std::string
-GenericResponse::getStatusText()
+GenericResponse::getText()
 {
-	return status_text;
+	return text;
 }
 
 void
-GenericResponse::setStatusText(std::string  status_text)
+GenericResponse::setText(std::string  text)
 {
-	this->status_text = status_text;
+	this->text = text;
 }
 
 

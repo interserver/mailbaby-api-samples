@@ -13,7 +13,7 @@
 /**
  * OASGenericResponse
  */
-public class OASGenericResponse implements OAS.MappedProperties {
+public class OASGenericResponse {
     /**
      * Get status
      * @return status
@@ -21,23 +21,15 @@ public class OASGenericResponse implements OAS.MappedProperties {
     public String status { get; set; }
 
     /**
-     * Get statusText
-     * @return statusText
+     * Get text
+     * @return text
      */
-    public String statusText { get; set; }
-
-    private static final Map<String, String> propertyMappings = new Map<String, String>{
-        'status_text' => 'statusText'
-    };
-
-    public Map<String, String> getPropertyMappings() {
-        return propertyMappings;
-    }
+    public String text { get; set; }
 
     public static OASGenericResponse getExample() {
         OASGenericResponse genericResponse = new OASGenericResponse();
           genericResponse.status = 'ok';
-          genericResponse.statusText = 'The command completed successfully.';
+          genericResponse.text = 'The command completed successfully.';
         return genericResponse;
     }
 
@@ -45,7 +37,7 @@ public class OASGenericResponse implements OAS.MappedProperties {
         if (obj instanceof OASGenericResponse) {           
             OASGenericResponse genericResponse = (OASGenericResponse) obj;
             return this.status == genericResponse.status
-                && this.statusText == genericResponse.statusText;
+                && this.text == genericResponse.text;
         }
         return false;
     }
@@ -53,7 +45,7 @@ public class OASGenericResponse implements OAS.MappedProperties {
     public Integer hashCode() {
         Integer hashCode = 43;
         hashCode = (17 * hashCode) + (status == null ? 0 : System.hashCode(status));
-        hashCode = (17 * hashCode) + (statusText == null ? 0 : System.hashCode(statusText));
+        hashCode = (17 * hashCode) + (text == null ? 0 : System.hashCode(text));
         return hashCode;
     }
 }

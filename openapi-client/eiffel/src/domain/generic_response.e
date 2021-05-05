@@ -21,7 +21,7 @@ feature --Access
 
     status: detachable STRING_32 
       
-    status_text: detachable STRING_32 
+    text: detachable STRING_32 
       
 
 feature -- Change Element  
@@ -34,12 +34,12 @@ feature -- Change Element
         status_set: status = a_name		
       end
 
-    set_status_text (a_name: like status_text)
-        -- Set 'status_text' with 'a_name'.
+    set_text (a_name: like text)
+        -- Set 'text' with 'a_name'.
       do
-        status_text := a_name
+        text := a_name
       ensure
-        status_text_set: status_text = a_name		
+        text_set: text = a_name		
       end
 
 
@@ -55,9 +55,9 @@ feature -- Change Element
           Result.append (l_status.out)
           Result.append ("%N")    
         end  
-        if attached status_text as l_status_text then
-          Result.append ("%Nstatus_text:")
-          Result.append (l_status_text.out)
+        if attached text as l_text then
+          Result.append ("%Ntext:")
+          Result.append (l_text.out)
           Result.append ("%N")    
         end  
       end

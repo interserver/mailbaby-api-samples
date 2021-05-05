@@ -19,7 +19,7 @@ export interface ErrorResponse {
 
 export interface GenericResponse {
   status?: string;
-  status_text?: string;
+  text?: string;
 }
 
 

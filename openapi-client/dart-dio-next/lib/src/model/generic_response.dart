@@ -13,8 +13,8 @@ abstract class GenericResponse implements Built<GenericResponse, GenericResponse
     @BuiltValueField(wireName: r'status')
     String? get status;
 
-    @BuiltValueField(wireName: r'status_text')
-    String? get statusText;
+    @BuiltValueField(wireName: r'text')
+    String? get text;
 
     GenericResponse._();
 
@@ -43,10 +43,10 @@ class _$GenericResponseSerializer implements StructuredSerializer<GenericRespons
                 ..add(serializers.serialize(object.status,
                     specifiedType: const FullType(String)));
         }
-        if (object.statusText != null) {
+        if (object.text != null) {
             result
-                ..add(r'status_text')
-                ..add(serializers.serialize(object.statusText,
+                ..add(r'text')
+                ..add(serializers.serialize(object.text,
                     specifiedType: const FullType(String)));
         }
         return result;
@@ -67,8 +67,8 @@ class _$GenericResponseSerializer implements StructuredSerializer<GenericRespons
                     result.status = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
-                case r'status_text':
-                    result.statusText = serializers.deserialize(value,
+                case r'text':
+                    result.text = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
                     break;
             }

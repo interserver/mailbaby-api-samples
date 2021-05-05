@@ -5,6 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | **character** |  | [optional] 
-**status_text** | **character** |  | [optional] 
+**text** | **character** |  | [optional] 
 
 

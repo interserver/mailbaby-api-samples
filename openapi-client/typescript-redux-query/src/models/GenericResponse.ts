@@ -29,13 +29,13 @@ export interface GenericResponse  {
      * @type {string}
      * @memberof GenericResponse
      */
-    statusText?: string;
+    text?: string;
 }
 
 export function GenericResponseFromJSON(json: any): GenericResponse {
     return {
         'status': !exists(json, 'status') ? undefined : json['status'],
-        'statusText': !exists(json, 'status_text') ? undefined : json['status_text'],
+        'text': !exists(json, 'text') ? undefined : json['text'],
     };
 }
 
@@ -45,7 +45,7 @@ export function GenericResponseToJSON(value?: GenericResponse): any {
     }
     return {
         'status': value.status,
-        'status_text': value.statusText,
+        'text': value.text,
     };
 }
 

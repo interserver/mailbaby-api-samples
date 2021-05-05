@@ -19,7 +19,7 @@ public class GenericResponse   {
   private String status = null;
   
   @Schema(example = "The command completed successfully.", description = "")
-  private String statusText = null;
+  private String text = null;
  /**
    * Get status
    * @return status
@@ -39,20 +39,20 @@ public class GenericResponse   {
   }
 
  /**
-   * Get statusText
-   * @return statusText
+   * Get text
+   * @return text
   **/
-  @JsonProperty("status_text")
-  public String getStatusText() {
-    return statusText;
+  @JsonProperty("text")
+  public String getText() {
+    return text;
   }
 
-  public void setStatusText(String statusText) {
-    this.statusText = statusText;
+  public void setText(String text) {
+    this.text = text;
   }
 
-  public GenericResponse statusText(String statusText) {
-    this.statusText = statusText;
+  public GenericResponse text(String text) {
+    this.text = text;
     return this;
   }
 
@@ -63,7 +63,7 @@ public class GenericResponse   {
     sb.append("class GenericResponse {\n");
     
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    statusText: ").append(toIndentedString(statusText)).append("\n");
+    sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("}");
     return sb.toString();
   }

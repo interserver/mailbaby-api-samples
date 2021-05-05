@@ -4,4 +4,4 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | [**kotlin.String**](.md) |  |  [optional]
-**statusText** | [**kotlin.String**](.md) |  |  [optional]
+**text** | [**kotlin.String**](.md) |  |  [optional]

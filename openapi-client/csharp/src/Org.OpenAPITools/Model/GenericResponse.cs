@@ -34,11 +34,11 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="GenericResponse" /> class.
         /// </summary>
         /// <param name="status">status.</param>
-        /// <param name="statusText">statusText.</param>
-        public GenericResponse(string status = default(string), string statusText = default(string))
+        /// <param name="text">text.</param>
+        public GenericResponse(string status = default(string), string text = default(string))
         {
             this.Status = status;
-            this.StatusText = statusText;
+            this.Text = text;
         }
 
         /// <summary>
@@ -48,10 +48,10 @@ namespace Org.OpenAPITools.Model
         public string Status { get; set; }
 
         /// <summary>
-        /// Gets or Sets StatusText
+        /// Gets or Sets Text
         /// </summary>
-        [DataMember(Name="status_text", EmitDefaultValue=false)]
-        public string StatusText { get; set; }
+        [DataMember(Name="text", EmitDefaultValue=false)]
+        public string Text { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,7 +62,7 @@ namespace Org.OpenAPITools.Model
             var sb = new StringBuilder();
             sb.Append("class GenericResponse {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  StatusText: ").Append(StatusText).Append("\n");
+            sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -103,9 +103,9 @@ namespace Org.OpenAPITools.Model
                     this.Status.Equals(input.Status))
                 ) && 
                 (
-                    this.StatusText == input.StatusText ||
-                    (this.StatusText != null &&
-                    this.StatusText.Equals(input.StatusText))
+                    this.Text == input.Text ||
+                    (this.Text != null &&
+                    this.Text.Equals(input.Text))
                 );
         }
 
@@ -120,8 +120,8 @@ namespace Org.OpenAPITools.Model
                 int hashCode = 41;
                 if (this.Status != null)
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
-                if (this.StatusText != null)
-                    hashCode = hashCode * 59 + this.StatusText.GetHashCode();
+                if (this.Text != null)
+                    hashCode = hashCode * 59 + this.Text.GetHashCode();
                 return hashCode;
             }
         }

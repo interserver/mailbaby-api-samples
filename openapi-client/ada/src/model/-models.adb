@@ -274,7 +274,7 @@ package body .Models is
    begin
       Into.Start_Entity (Name);
       Into.Write_Entity ("status", Value.Status);
-      Into.Write_Entity ("status_text", Value.Status_Text);
+      Into.Write_Entity ("text", Value.Text);
       Into.End_Entity (Name);
    end Serialize;
 
@@ -296,7 +296,7 @@ package body .Models is
    begin
       Swagger.Streams.Deserialize (From, Name, Object);
       Swagger.Streams.Deserialize (Object, "status", Value.Status);
-      Swagger.Streams.Deserialize (Object, "status_text", Value.Status_Text);
+      Swagger.Streams.Deserialize (Object, "text", Value.Text);
    end Deserialize;
 
    procedure Deserialize (From  : in Swagger.Value_Type;

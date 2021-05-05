@@ -14,10 +14,10 @@ package io.swagger.client.model
 
 /**
  * @param status  for example: '''ok'''
- * @param statusText  for example: '''The command completed successfully.'''
+ * @param text  for example: '''The command completed successfully.'''
  */
 case class GenericResponse (
   status: Option[String] = None,
-  statusText: Option[String] = None
+  text: Option[String] = None
 )
 

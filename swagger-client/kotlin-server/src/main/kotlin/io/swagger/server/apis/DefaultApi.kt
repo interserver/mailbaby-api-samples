@@ -92,7 +92,7 @@ fun Route.DefaultApi() {
         } else {
             val exampleContentType = "application/json"
             val exampleContentString = """{
-  "status_text" : "The command completed successfully.",
+  "text" : "The command completed successfully.",
   "status" : "ok"
 }"""
             
@@ -109,7 +109,7 @@ fun Route.DefaultApi() {
         } else {
             val exampleContentType = "application/json"
             val exampleContentString = """{
-  "status_text" : "The command completed successfully.",
+  "text" : "The command completed successfully.",
   "status" : "ok"
 }"""
             

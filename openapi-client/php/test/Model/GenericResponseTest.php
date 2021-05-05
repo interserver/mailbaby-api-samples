@@ -90,9 +90,9 @@ class GenericResponseTest extends TestCase
     }
 
     /**
-     * Test attribute "statusText"
+     * Test attribute "text"
      */
-    public function testPropertyStatusText()
+    public function testPropertyText()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

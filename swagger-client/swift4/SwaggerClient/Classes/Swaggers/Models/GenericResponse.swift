@@ -13,14 +13,10 @@ public struct GenericResponse: Codable {
 
     public var status: String?
 
-    public var statusText: String?
-    public init(status: String? = nil, statusText: String? = nil) { 
+    public var text: String?
+    public init(status: String? = nil, text: String? = nil) { 
         self.status = status
-        self.statusText = statusText
-    }
-    public enum CodingKeys: String, CodingKey { 
-        case status
-        case statusText = "status_text"
+        self.text = text
     }
 
 }

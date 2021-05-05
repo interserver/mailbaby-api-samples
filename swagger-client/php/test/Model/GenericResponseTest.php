@@ -83,9 +83,9 @@ class GenericResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "statusText"
+     * Test attribute "text"
      */
-    public function testPropertyStatusText()
+    public function testPropertyText()
     {
     }
 }

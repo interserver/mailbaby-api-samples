@@ -13,7 +13,7 @@ import GenericResponse._
 
 case class GenericResponse (
   status: Option[String],
-statusText: Option[String])
+text: Option[String])
 
 object GenericResponse {
   import DateTimeCodecs._

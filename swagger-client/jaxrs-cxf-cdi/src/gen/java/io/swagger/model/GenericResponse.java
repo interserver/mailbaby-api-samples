@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.*;
 
 public class GenericResponse   {
   private String status = null;
-  private String statusText = null;
+  private String text = null;
 
   /**
    **/
@@ -35,20 +35,20 @@ public class GenericResponse   {
 
   /**
    **/
-  public GenericResponse statusText(String statusText) {
-    this.statusText = statusText;
+  public GenericResponse text(String text) {
+    this.text = text;
     return this;
   }
 
   
   
   @Schema(example = "The command completed successfully.", description = "")
-  @JsonProperty("status_text")
-  public String getStatusText() {
-    return statusText;
+  @JsonProperty("text")
+  public String getText() {
+    return text;
   }
-  public void setStatusText(String statusText) {
-    this.statusText = statusText;
+  public void setText(String text) {
+    this.text = text;
   }
 
 
@@ -62,12 +62,12 @@ public class GenericResponse   {
     }
     GenericResponse genericResponse = (GenericResponse) o;
     return Objects.equals(status, genericResponse.status) &&
-        Objects.equals(statusText, genericResponse.statusText);
+        Objects.equals(text, genericResponse.text);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, statusText);
+    return Objects.hash(status, text);
   }
 
   @Override
@@ -76,7 +76,7 @@ public class GenericResponse   {
     sb.append("class GenericResponse {\n");
     
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    statusText: ").append(toIndentedString(statusText)).append("\n");
+    sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("}");
     return sb.toString();
   }

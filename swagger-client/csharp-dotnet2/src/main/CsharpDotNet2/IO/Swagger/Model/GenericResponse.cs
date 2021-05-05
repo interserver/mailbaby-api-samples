@@ -20,11 +20,11 @@ namespace IO.Swagger.Model {
     public string Status { get; set; }
 
     /// <summary>
-    /// Gets or Sets StatusText
+    /// Gets or Sets Text
     /// </summary>
-    [DataMember(Name="status_text", EmitDefaultValue=false)]
-    [JsonProperty(PropertyName = "status_text")]
-    public string StatusText { get; set; }
+    [DataMember(Name="text", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "text")]
+    public string Text { get; set; }
 
 
     /// <summary>
@@ -35,7 +35,7 @@ namespace IO.Swagger.Model {
       var sb = new StringBuilder();
       sb.Append("class GenericResponse {\n");
       sb.Append("  Status: ").Append(Status).Append("\n");
-      sb.Append("  StatusText: ").Append(StatusText).Append("\n");
+      sb.Append("  Text: ").Append(Text).Append("\n");
       sb.Append("}\n");
       return sb.ToString();
     }

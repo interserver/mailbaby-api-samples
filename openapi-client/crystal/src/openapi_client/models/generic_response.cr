@@ -17,12 +17,12 @@ module
     property status : String
 
 
-    @[JSON::Field(key: status_text, type: String)]
-    property status_text : String
+    @[JSON::Field(key: text, type: String)]
+    property text : String
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@status : String | Nil, @status_text : String | Nil)
+    def initialize(@status : String | Nil, @text : String | Nil)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -44,7 +44,7 @@ module
       return true if self.equal?(o)
       self.class == o.class &&
           status == o.status &&
-          status_text == o.status_text
+          text == o.text
     end
 
     # @see the `==` method
@@ -56,7 +56,7 @@ module
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [status, status_text].hash
+      [status, text].hash
     end
 
     # Builds the object from hash

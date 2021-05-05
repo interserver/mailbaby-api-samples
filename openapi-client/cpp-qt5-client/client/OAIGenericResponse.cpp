@@ -37,8 +37,8 @@ void OAIGenericResponse::initializeModel() {
     m_status_isSet = false;
     m_status_isValid = false;
 
-    m_status_text_isSet = false;
-    m_status_text_isValid = false;
+    m_text_isSet = false;
+    m_text_isValid = false;
 }
 
 void OAIGenericResponse::fromJson(QString jsonString) {
@@ -53,8 +53,8 @@ void OAIGenericResponse::fromJsonObject(QJsonObject json) {
     m_status_isValid = ::OpenAPI::fromJsonValue(status, json[QString("status")]);
     m_status_isSet = !json[QString("status")].isNull() && m_status_isValid;
 
-    m_status_text_isValid = ::OpenAPI::fromJsonValue(status_text, json[QString("status_text")]);
-    m_status_text_isSet = !json[QString("status_text")].isNull() && m_status_text_isValid;
+    m_text_isValid = ::OpenAPI::fromJsonValue(text, json[QString("text")]);
+    m_text_isSet = !json[QString("text")].isNull() && m_text_isValid;
 }
 
 QString OAIGenericResponse::asJson() const {
@@ -69,8 +69,8 @@ QJsonObject OAIGenericResponse::asJsonObject() const {
     if (m_status_isSet) {
         obj.insert(QString("status"), ::OpenAPI::toJsonValue(status));
     }
-    if (m_status_text_isSet) {
-        obj.insert(QString("status_text"), ::OpenAPI::toJsonValue(status_text));
+    if (m_text_isSet) {
+        obj.insert(QString("text"), ::OpenAPI::toJsonValue(text));
     }
     return obj;
 }
@@ -91,20 +91,20 @@ bool OAIGenericResponse::is_status_Valid() const{
     return m_status_isValid;
 }
 
-QString OAIGenericResponse::getStatusText() const {
-    return status_text;
+QString OAIGenericResponse::getText() const {
+    return text;
 }
-void OAIGenericResponse::setStatusText(const QString &status_text) {
-    this->status_text = status_text;
-    this->m_status_text_isSet = true;
-}
-
-bool OAIGenericResponse::is_status_text_Set() const{
-    return m_status_text_isSet;
+void OAIGenericResponse::setText(const QString &text) {
+    this->text = text;
+    this->m_text_isSet = true;
 }
 
-bool OAIGenericResponse::is_status_text_Valid() const{
-    return m_status_text_isValid;
+bool OAIGenericResponse::is_text_Set() const{
+    return m_text_isSet;
+}
+
+bool OAIGenericResponse::is_text_Valid() const{
+    return m_text_isValid;
 }
 
 bool OAIGenericResponse::isSet() const {
@@ -115,7 +115,7 @@ bool OAIGenericResponse::isSet() const {
             break;
         }
 
-        if (m_status_text_isSet) {
+        if (m_text_isSet) {
             isObjectUpdated = true;
             break;
         }

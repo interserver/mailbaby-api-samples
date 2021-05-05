@@ -378,13 +378,13 @@
             "type" : "string",
             "example" : "ok"
           },
-          "status_text" : {
+          "text" : {
             "type" : "string",
             "example" : "The command completed successfully."
           }
         },
         "example" : {
-          "status_text" : "The command completed successfully.",
+          "text" : "The command completed successfully.",
           "status" : "ok"
         }
       },

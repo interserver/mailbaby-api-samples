@@ -13,5 +13,5 @@ type GenericResponse struct {
 
 	Status string `json:"status,omitempty"`
 
-	StatusText string `json:"status_text,omitempty"`
+	Text string `json:"text,omitempty"`
 }

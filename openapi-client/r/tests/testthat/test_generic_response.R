@@ -12,10 +12,10 @@ test_that("status", {
   #expect_equal(model.instance$`status`, "EXPECTED_RESULT")
 })
 
-test_that("status_text", {
-  # tests for the property `status_text` (character)
+test_that("text", {
+  # tests for the property `text` (character)
 
   # uncomment below to test the property 
-  #expect_equal(model.instance$`status_text`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`text`, "EXPECTED_RESULT")
 })
 

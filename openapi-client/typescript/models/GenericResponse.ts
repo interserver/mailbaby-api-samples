@@ -14,7 +14,7 @@ import { HttpFile } from '../http/http';
 
 export class GenericResponse {
     'status'?: string;
-    'statusText'?: string;
+    'text'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -26,8 +26,8 @@ export class GenericResponse {
             "format": ""
         },
         {
-            "name": "statusText",
-            "baseName": "status_text",
+            "name": "text",
+            "baseName": "text",
             "type": "string",
             "format": ""
         }    ];

@@ -57,7 +57,7 @@ class GenericResponse implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'status' => 'string',
-'statusText' => 'string'    ];
+'text' => 'string'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -66,7 +66,7 @@ class GenericResponse implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'status' => null,
-'statusText' => null    ];
+'text' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -96,7 +96,7 @@ class GenericResponse implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'status' => 'status',
-'statusText' => 'status_text'    ];
+'text' => 'text'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -105,7 +105,7 @@ class GenericResponse implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'status' => 'setStatus',
-'statusText' => 'setStatusText'    ];
+'text' => 'setText'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -114,7 +114,7 @@ class GenericResponse implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'status' => 'getStatus',
-'statusText' => 'getStatusText'    ];
+'text' => 'getText'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -175,7 +175,7 @@ class GenericResponse implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['statusText'] = isset($data['statusText']) ? $data['statusText'] : null;
+        $this->container['text'] = isset($data['text']) ? $data['text'] : null;
     }
 
     /**
@@ -227,25 +227,25 @@ class GenericResponse implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets statusText
+     * Gets text
      *
      * @return string
      */
-    public function getStatusText()
+    public function getText()
     {
-        return $this->container['statusText'];
+        return $this->container['text'];
     }
 
     /**
-     * Sets statusText
+     * Sets text
      *
-     * @param string $statusText statusText
+     * @param string $text text
      *
      * @return $this
      */
-    public function setStatusText($statusText)
+    public function setText($text)
     {
-        $this->container['statusText'] = $statusText;
+        $this->container['text'] = $text;
 
         return $this;
     }

@@ -10,7 +10,7 @@
 
 -type openapi_generic_response() ::
   [ {'status', binary() }
-  | {'status_text', binary() }
+  | {'text', binary() }
   ].
 
 
@@ -19,7 +19,7 @@ openapi_generic_response() ->
 
 openapi_generic_response(Fields) ->
   Default = [ {'status', binary() }
-            , {'status_text', binary() }
+            , {'text', binary() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

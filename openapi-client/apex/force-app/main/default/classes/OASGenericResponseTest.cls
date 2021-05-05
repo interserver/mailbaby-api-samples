@@ -68,11 +68,4 @@ private class OASGenericResponseTest {
         System.assertEquals(genericResponse1.hashCode(), genericResponse2.hashCode());
         System.assertEquals(genericResponse3.hashCode(), genericResponse4.hashCode());
     }
-
-    @isTest
-    private static void maintainRenamedProperties() {
-        OASGenericResponse genericResponse = new OASGenericResponse();
-        Map<String, String> x-property-mappings = genericResponse.getx-property-mappings();
-        System.assertEquals('statusText', x-property-mappings.get('status_text'));
-    }
 }

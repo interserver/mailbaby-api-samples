@@ -4,4 +4,4 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | **String** |  | [optional] 
-**statusText** | **String** |  | [optional] 
+**text** | **String** |  | [optional] 

@@ -18,7 +18,7 @@ import (
 // GenericResponse struct for GenericResponse
 type GenericResponse struct {
 	Status *string `json:"status,omitempty"`
-	StatusText *string `json:"status_text,omitempty"`
+	Text *string `json:"text,omitempty"`
 }
 
 // NewGenericResponse instantiates a new GenericResponse object
@@ -70,36 +70,36 @@ func (o *GenericResponse) SetStatus(v string) {
 	o.Status = &v
 }
 
-// GetStatusText returns the StatusText field value if set, zero value otherwise.
-func (o *GenericResponse) GetStatusText() string {
-	if o == nil || o.StatusText == nil {
+// GetText returns the Text field value if set, zero value otherwise.
+func (o *GenericResponse) GetText() string {
+	if o == nil || o.Text == nil {
 		var ret string
 		return ret
 	}
-	return *o.StatusText
+	return *o.Text
 }
 
-// GetStatusTextOk returns a tuple with the StatusText field value if set, nil otherwise
+// GetTextOk returns a tuple with the Text field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenericResponse) GetStatusTextOk() (*string, bool) {
-	if o == nil || o.StatusText == nil {
+func (o *GenericResponse) GetTextOk() (*string, bool) {
+	if o == nil || o.Text == nil {
 		return nil, false
 	}
-	return o.StatusText, true
+	return o.Text, true
 }
 
-// HasStatusText returns a boolean if a field has been set.
-func (o *GenericResponse) HasStatusText() bool {
-	if o != nil && o.StatusText != nil {
+// HasText returns a boolean if a field has been set.
+func (o *GenericResponse) HasText() bool {
+	if o != nil && o.Text != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetStatusText gets a reference to the given string and assigns it to the StatusText field.
-func (o *GenericResponse) SetStatusText(v string) {
-	o.StatusText = &v
+// SetText gets a reference to the given string and assigns it to the Text field.
+func (o *GenericResponse) SetText(v string) {
+	o.Text = &v
 }
 
 func (o GenericResponse) MarshalJSON() ([]byte, error) {
@@ -107,8 +107,8 @@ func (o GenericResponse) MarshalJSON() ([]byte, error) {
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
-	if o.StatusText != nil {
-		toSerialize["status_text"] = o.StatusText
+	if o.Text != nil {
+		toSerialize["text"] = o.Text
 	}
 	return json.Marshal(toSerialize)
 }

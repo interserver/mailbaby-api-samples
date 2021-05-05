@@ -4,13 +4,13 @@ package org.openapitools.client.model
 
 case class GenericResponse (
     _status: Option[String],
-    _statusText: Option[String]
+    _text: Option[String]
 )
 object GenericResponse {
-    def toStringBody(var_status: Object, var_statusText: Object) =
+    def toStringBody(var_status: Object, var_text: Object) =
         s"""
         | {
-        | "status":$var_status,"statusText":$var_statusText
+        | "status":$var_status,"text":$var_text
         | }
         """.stripMargin
 }

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | Pointer to **string** |  | [optional] 
-**StatusText** | Pointer to **string** |  | [optional] 
+**Text** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -51,30 +51,30 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### GetStatusText
+### GetText
 
-`func (o *GenericResponse) GetStatusText() string`
+`func (o *GenericResponse) GetText() string`
 
-GetStatusText returns the StatusText field if non-nil, zero value otherwise.
+GetText returns the Text field if non-nil, zero value otherwise.
 
-### GetStatusTextOk
+### GetTextOk
 
-`func (o *GenericResponse) GetStatusTextOk() (*string, bool)`
+`func (o *GenericResponse) GetTextOk() (*string, bool)`
 
-GetStatusTextOk returns a tuple with the StatusText field if it's non-nil, zero value otherwise
+GetTextOk returns a tuple with the Text field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStatusText
+### SetText
 
-`func (o *GenericResponse) SetStatusText(v string)`
+`func (o *GenericResponse) SetText(v string)`
 
-SetStatusText sets StatusText field to given value.
+SetText sets Text field to given value.
 
-### HasStatusText
+### HasText
 
-`func (o *GenericResponse) HasStatusText() bool`
+`func (o *GenericResponse) HasText() bool`
 
-HasStatusText returns a boolean if a field has been set.
+HasText returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

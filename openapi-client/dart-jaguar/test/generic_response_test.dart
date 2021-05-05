@@ -11,8 +11,8 @@ void main() {
       // TODO
     });
 
-    // String statusText (default value: null)
-    test('to test the property `statusText`', () async {
+    // String text (default value: null)
+    test('to test the property `text`', () async {
       // TODO
     });
 

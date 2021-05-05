@@ -44,10 +44,10 @@ public:
     bool is_status_Set() const;
     bool is_status_Valid() const;
 
-    QString getStatusText() const;
-    void setStatusText(const QString &status_text);
-    bool is_status_text_Set() const;
-    bool is_status_text_Valid() const;
+    QString getText() const;
+    void setText(const QString &text);
+    bool is_text_Set() const;
+    bool is_text_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -59,9 +59,9 @@ private:
     bool m_status_isSet;
     bool m_status_isValid;
 
-    QString status_text;
-    bool m_status_text_isSet;
-    bool m_status_text_isValid;
+    QString text;
+    bool m_text_isSet;
+    bool m_text_isValid;
 };
 
 } // namespace OpenAPI

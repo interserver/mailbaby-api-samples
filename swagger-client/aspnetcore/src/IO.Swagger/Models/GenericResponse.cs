@@ -33,10 +33,10 @@ namespace IO.Swagger.Models
         public string Status { get; set; }
 
         /// <summary>
-        /// Gets or Sets StatusText
+        /// Gets or Sets Text
         /// </summary>
-        [DataMember(Name="status_text")]
-        public string StatusText { get; set; }
+        [DataMember(Name="text")]
+        public string Text { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -47,7 +47,7 @@ namespace IO.Swagger.Models
             var sb = new StringBuilder();
             sb.Append("class GenericResponse {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  StatusText: ").Append(StatusText).Append("\n");
+            sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -90,9 +90,9 @@ namespace IO.Swagger.Models
                     Status.Equals(other.Status)
                 ) && 
                 (
-                    StatusText == other.StatusText ||
-                    StatusText != null &&
-                    StatusText.Equals(other.StatusText)
+                    Text == other.Text ||
+                    Text != null &&
+                    Text.Equals(other.Text)
                 );
         }
 
@@ -108,8 +108,8 @@ namespace IO.Swagger.Models
                 // Suitable nullity checks etc, of course :)
                     if (Status != null)
                     hashCode = hashCode * 59 + Status.GetHashCode();
-                    if (StatusText != null)
-                    hashCode = hashCode * 59 + StatusText.GetHashCode();
+                    if (Text != null)
+                    hashCode = hashCode * 59 + Text.GetHashCode();
                 return hashCode;
             }
         }

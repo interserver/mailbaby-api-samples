@@ -7,11 +7,11 @@
 
 type t = {
     status: string option [@default None];
-    status_text: string option [@default None];
+    text: string option [@default None];
 } [@@deriving yojson { strict = false }, show ];;
 
 let create () : t = {
     status = None;
-    status_text = None;
+    text = None;
 }
 

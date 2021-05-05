@@ -113,7 +113,7 @@ export interface GenericResponse {
      * @type {string}
      * @memberof GenericResponse
      */
-    statusText?: string;
+    text?: string;
 }
 /**
  * A File attachment for an email

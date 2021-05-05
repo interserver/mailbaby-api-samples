@@ -12,16 +12,12 @@ import Foundation
 public struct GenericResponse: Codable {
 
     public var status: String?
-    public var statusText: String?
+    public var text: String?
 
-    public init(status: String? = nil, statusText: String? = nil) {
+    public init(status: String? = nil, text: String? = nil) {
         self.status = status
-        self.statusText = statusText
+        self.text = text
     }
 
-    public enum CodingKeys: String, CodingKey { 
-        case status
-        case statusText = "status_text"
-    }
 
 }

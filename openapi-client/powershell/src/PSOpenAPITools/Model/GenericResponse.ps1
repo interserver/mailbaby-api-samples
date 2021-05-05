@@ -17,7 +17,7 @@ No description available.
 
 .PARAMETER Status
 No description available.
-.PARAMETER StatusText
+.PARAMETER Text
 No description available.
 .OUTPUTS
 
@@ -32,7 +32,7 @@ function Initialize-GenericResponse {
         ${Status},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${StatusText}
+        ${Text}
     )
 
     Process {
@@ -42,7 +42,7 @@ function Initialize-GenericResponse {
 
         $PSO = [PSCustomObject]@{
             "status" = ${Status}
-            "status_text" = ${StatusText}
+            "text" = ${Text}
         }
 
 
@@ -80,7 +80,7 @@ function ConvertFrom-JsonToGenericResponse {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in GenericResponse
-        $AllProperties = ("status", "status_text")
+        $AllProperties = ("status", "text")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -93,15 +93,15 @@ function ConvertFrom-JsonToGenericResponse {
             $Status = $JsonParameters.PSobject.Properties["status"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "status_text"))) { #optional property not found
-            $StatusText = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "text"))) { #optional property not found
+            $Text = $null
         } else {
-            $StatusText = $JsonParameters.PSobject.Properties["status_text"].value
+            $Text = $JsonParameters.PSobject.Properties["text"].value
         }
 
         $PSO = [PSCustomObject]@{
             "status" = ${Status}
-            "status_text" = ${StatusText}
+            "text" = ${Text}
         }
 
         return $PSO

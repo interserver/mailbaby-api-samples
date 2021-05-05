@@ -20,13 +20,13 @@ typedef struct generic_response_t generic_response_t;
 
 typedef struct generic_response_t {
     char *status; // string
-    char *status_text; // string
+    char *text; // string
 
 } generic_response_t;
 
 generic_response_t *generic_response_create(
     char *status,
-    char *status_text
+    char *text
 );
 
 void generic_response_free(generic_response_t *generic_response);

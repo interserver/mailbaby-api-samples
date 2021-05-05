@@ -4,25 +4,25 @@ class GenericResponse {
   
   String status = null;
 
-  String statusText = null;
+  String text = null;
 
   GenericResponse();
 
   @override
   String toString() {
-    return 'GenericResponse[status=$status, statusText=$statusText, ]';
+    return 'GenericResponse[status=$status, text=$text, ]';
   }
 
   GenericResponse.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
     status = json['status'];
-    statusText = json['status_text'];
+    text = json['text'];
   }
 
   Map<String, dynamic> toJson() {
     return {
       'status': status,
-      'status_text': statusText
+      'text': text
      };
   }
 

@@ -15,15 +15,15 @@
 pub struct GenericResponse {
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<String>,
-    #[serde(rename = "status_text", skip_serializing_if = "Option::is_none")]
-    pub status_text: Option<String>,
+    #[serde(rename = "text", skip_serializing_if = "Option::is_none")]
+    pub text: Option<String>,
 }
 
 impl GenericResponse {
     pub fn new() -> GenericResponse {
         GenericResponse {
             status: None,
-            status_text: None,
+            text: None,
         }
     }
 }

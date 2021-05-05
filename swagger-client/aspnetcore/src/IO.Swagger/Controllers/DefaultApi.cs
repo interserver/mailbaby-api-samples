@@ -139,7 +139,7 @@ namespace IO.Swagger.Controllers
             //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(404, default(ErrorResponse));
             string exampleJson = null;
-            exampleJson = "{\n  \"status_text\" : \"The command completed successfully.\",\n  \"status\" : \"ok\"\n}";
+            exampleJson = "{\n  \"text\" : \"The command completed successfully.\",\n  \"status\" : \"ok\"\n}";
             
                         var example = exampleJson != null
                         ? JsonConvert.DeserializeObject<GenericResponse>(exampleJson)
@@ -178,7 +178,7 @@ namespace IO.Swagger.Controllers
             //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(404, default(ErrorResponse));
             string exampleJson = null;
-            exampleJson = "{\n  \"status_text\" : \"The command completed successfully.\",\n  \"status\" : \"ok\"\n}";
+            exampleJson = "{\n  \"text\" : \"The command completed successfully.\",\n  \"status\" : \"ok\"\n}";
             
                         var example = exampleJson != null
                         ? JsonConvert.DeserializeObject<GenericResponse>(exampleJson)

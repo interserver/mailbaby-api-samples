@@ -27,15 +27,15 @@ import java.io.IOException;
 /**
  * GenericResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-05T12:52:21.077776-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-05T15:30:32.100616-04:00[America/New_York]")
 public class GenericResponse {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   private String status;
 
-  public static final String SERIALIZED_NAME_STATUS_TEXT = "status_text";
-  @SerializedName(SERIALIZED_NAME_STATUS_TEXT)
-  private String statusText;
+  public static final String SERIALIZED_NAME_TEXT = "text";
+  @SerializedName(SERIALIZED_NAME_TEXT)
+  private String text;
 
 
   public GenericResponse status(String status) {
@@ -61,26 +61,26 @@ public class GenericResponse {
   }
 
 
-  public GenericResponse statusText(String statusText) {
+  public GenericResponse text(String text) {
     
-    this.statusText = statusText;
+    this.text = text;
     return this;
   }
 
    /**
-   * Get statusText
-   * @return statusText
+   * Get text
+   * @return text
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "The command completed successfully.", value = "")
 
-  public String getStatusText() {
-    return statusText;
+  public String getText() {
+    return text;
   }
 
 
-  public void setStatusText(String statusText) {
-    this.statusText = statusText;
+  public void setText(String text) {
+    this.text = text;
   }
 
 
@@ -94,12 +94,12 @@ public class GenericResponse {
     }
     GenericResponse genericResponse = (GenericResponse) o;
     return Objects.equals(this.status, genericResponse.status) &&
-        Objects.equals(this.statusText, genericResponse.statusText);
+        Objects.equals(this.text, genericResponse.text);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, statusText);
+    return Objects.hash(status, text);
   }
 
   @Override
@@ -107,7 +107,7 @@ public class GenericResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class GenericResponse {\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    statusText: ").append(toIndentedString(statusText)).append("\n");
+    sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -8,8 +8,8 @@ class GenericResponse {
   @Alias('status', isNullable: false,  )
   final String status;
   
-  @Alias('status_text', isNullable: false,  )
-  final String statusText;
+  @Alias('text', isNullable: false,  )
+  final String text;
   
 
   GenericResponse(
@@ -17,14 +17,14 @@ class GenericResponse {
 
 {
      this.status = null,  
-     this.statusText = null 
+     this.text = null 
     
     }
   );
 
   @override
   String toString() {
-    return 'GenericResponse[status=$status, statusText=$statusText, ]';
+    return 'GenericResponse[status=$status, text=$text, ]';
   }
 }
 

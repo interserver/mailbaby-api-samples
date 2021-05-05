@@ -15,11 +15,11 @@ package io.swagger.client.models
 /**
  * 
  * @param status 
- * @param statusText 
+ * @param text 
  */
 data class GenericResponse (
 
     val status: kotlin.String? = null,
-    val statusText: kotlin.String? = null
+    val text: kotlin.String? = null
 ) {
 }

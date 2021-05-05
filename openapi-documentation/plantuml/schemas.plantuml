@@ -9,7 +9,7 @@ entity ErrorResponse {
 
 entity GenericResponse { 
     status: String
-    status_text: String
+    text: String
 }
 
 entity MailAttachment { 

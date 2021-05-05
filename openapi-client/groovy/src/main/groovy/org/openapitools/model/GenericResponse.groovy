@@ -9,5 +9,5 @@ class GenericResponse {
     
     String status
     
-    String statusText
+    String text
 }

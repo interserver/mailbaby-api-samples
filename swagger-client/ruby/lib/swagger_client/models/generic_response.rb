@@ -15,13 +15,13 @@ module SwaggerClient
   class GenericResponse
     attr_accessor :status
 
-    attr_accessor :status_text
+    attr_accessor :text
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'status' => :'status',
-        :'status_text' => :'status_text'
+        :'text' => :'text'
       }
     end
 
@@ -29,7 +29,7 @@ module SwaggerClient
     def self.openapi_types
       {
         :'status' => :'Object',
-        :'status_text' => :'Object'
+        :'text' => :'Object'
       }
     end
 
@@ -58,8 +58,8 @@ module SwaggerClient
         self.status = attributes[:'status']
       end
 
-      if attributes.key?(:'status_text')
-        self.status_text = attributes[:'status_text']
+      if attributes.key?(:'text')
+        self.text = attributes[:'text']
       end
     end
 
@@ -82,7 +82,7 @@ module SwaggerClient
       return true if self.equal?(o)
       self.class == o.class &&
           status == o.status &&
-          status_text == o.status_text
+          text == o.text
     end
 
     # @see the `==` method
@@ -94,7 +94,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [status, status_text].hash
+      [status, text].hash
     end
 
     # Builds the object from hash

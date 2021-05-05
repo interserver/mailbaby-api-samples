@@ -17,13 +17,13 @@ import com.squareup.moshi.Json
 /**
  * 
  * @param status 
- * @param statusText 
+ * @param text 
  */
 
 data class GenericResponse (
     @Json(name = "status")
     val status: kotlin.String? = null,
-    @Json(name = "status_text")
-    val statusText: kotlin.String? = null
+    @Json(name = "text")
+    val text: kotlin.String? = null
 )
 

@@ -434,7 +434,7 @@
             "example" : "ok",
             "type" : "string"
           },
-          "status_text" : {
+          "text" : {
             "example" : "The command completed successfully.",
             "type" : "string"
           }

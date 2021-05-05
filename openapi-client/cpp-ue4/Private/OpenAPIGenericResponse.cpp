@@ -27,9 +27,9 @@ void OpenAPIGenericResponse::WriteJson(JsonWriter& Writer) const
 	{
 		Writer->WriteIdentifierPrefix(TEXT("status")); WriteJsonValue(Writer, Status.GetValue());	
 	}
-	if (StatusText.IsSet())
+	if (Text.IsSet())
 	{
-		Writer->WriteIdentifierPrefix(TEXT("status_text")); WriteJsonValue(Writer, StatusText.GetValue());	
+		Writer->WriteIdentifierPrefix(TEXT("text")); WriteJsonValue(Writer, Text.GetValue());	
 	}
 	Writer->WriteObjectEnd();
 }
@@ -43,7 +43,7 @@ bool OpenAPIGenericResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("status"), Status);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("status_text"), StatusText);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("text"), Text);
 
 	return ParseSuccess;
 }

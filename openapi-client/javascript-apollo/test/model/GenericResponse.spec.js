@@ -60,8 +60,8 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property statusText (base name: "status_text")', function() {
-      // uncomment below and update the code to test the property statusText
+    it('should have the property text (base name: "text")', function() {
+      // uncomment below and update the code to test the property text
       //var instane = new MailBabyApi.GenericResponse();
       //expect(instance).to.be();
     });

@@ -14,7 +14,7 @@ package org.openapitools.client.model
 
 case class GenericResponse(
   status: Option[String] = None,
-  statusText: Option[String] = None
+  text: Option[String] = None
 )
 
 

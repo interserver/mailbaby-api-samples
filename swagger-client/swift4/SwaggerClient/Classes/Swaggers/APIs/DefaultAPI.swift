@@ -153,7 +153,7 @@ open class DefaultAPI {
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
-  "status_text" : "The command completed successfully.",
+  "text" : "The command completed successfully.",
   "status" : "ok"
 }}]
      - parameter body: (body)  
@@ -192,7 +192,7 @@ open class DefaultAPI {
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
-  "status_text" : "The command completed successfully.",
+  "text" : "The command completed successfully.",
   "status" : "ok"
 }}]
      - parameter subject: (form)       - parameter body: (form)       - parameter from: (form)       - parameter to: (form)       - parameter _id: (form)       - parameter replyto: (form)       - parameter cc: (form)       - parameter bcc: (form)       - parameter attachments: (form)  
@@ -231,7 +231,7 @@ open class DefaultAPI {
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
-  "status_text" : "The command completed successfully.",
+  "text" : "The command completed successfully.",
   "status" : "ok"
 }}]
      - parameter to: (form)       - parameter from: (form)       - parameter subject: (form)       - parameter body: (form)  
@@ -270,7 +270,7 @@ open class DefaultAPI {
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
-  "status_text" : "The command completed successfully.",
+  "text" : "The command completed successfully.",
   "status" : "ok"
 }}]
      - parameter body: (body)  

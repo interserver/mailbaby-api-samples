@@ -28,5 +28,5 @@ export interface GenericResponse {
      * @type {string}
      * @memberof GenericResponse
      */
-    statusText?: any;
+    text?: any;
 }

@@ -14,7 +14,7 @@ import { RequestFile } from './models';
 
 export class GenericResponse {
     'status'?: string;
-    'statusText'?: string;
+    'text'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -25,8 +25,8 @@ export class GenericResponse {
             "type": "string"
         },
         {
-            "name": "statusText",
-            "baseName": "status_text",
+            "name": "text",
+            "baseName": "text",
             "type": "string"
         }    ];
 

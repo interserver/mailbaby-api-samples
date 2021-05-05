@@ -69,7 +69,7 @@ exports.sendAdvMail = function(body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "status_text" : "The command completed successfully.",
+  "text" : "The command completed successfully.",
   "status" : "ok"
 };
     if (Object.keys(examples).length > 0) {
@@ -92,7 +92,7 @@ exports.sendAdvMail = function(body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "status_text" : "The command completed successfully.",
+  "text" : "The command completed successfully.",
   "status" : "ok"
 };
     if (Object.keys(examples).length > 0) {
@@ -115,7 +115,7 @@ exports.sendMail = function(body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "status_text" : "The command completed successfully.",
+  "text" : "The command completed successfully.",
   "status" : "ok"
 };
     if (Object.keys(examples).length > 0) {
@@ -138,7 +138,7 @@ exports.sendMail = function(body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "status_text" : "The command completed successfully.",
+  "text" : "The command completed successfully.",
   "status" : "ok"
 };
     if (Object.keys(examples).length > 0) {

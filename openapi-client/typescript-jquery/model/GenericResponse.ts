@@ -15,6 +15,6 @@ import * as models from './models';
 export interface GenericResponse {
     status?: string;
 
-    status_text?: string;
+    text?: string;
 
 }

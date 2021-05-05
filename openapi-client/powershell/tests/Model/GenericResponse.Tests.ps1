@@ -10,7 +10,7 @@ Describe -tag 'PSOpenAPITools' -name 'GenericResponse' {
     Context 'GenericResponse' {
         It 'Initialize-GenericResponse' {
             # a simple test to create an object
-            #$NewObject = Initialize-GenericResponse -Status "TEST_VALUE" -StatusText "TEST_VALUE"
+            #$NewObject = Initialize-GenericResponse -Status "TEST_VALUE" -Text "TEST_VALUE"
             #$NewObject | Should -BeOfType GenericResponse
             #$NewObject.property | Should -Be 0
         }

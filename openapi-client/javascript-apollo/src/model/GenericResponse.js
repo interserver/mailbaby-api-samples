@@ -25,10 +25,10 @@ class GenericResponse {
      */
     status;
     /**
-     * @member {String} status_text
+     * @member {String} text
      * @type {String}
      */
-    status_text;
+    text;
 
     
 
@@ -63,8 +63,8 @@ class GenericResponse {
             if (data.hasOwnProperty('status')) {
                 obj['status'] = ApiClient.convertToType(data['status'], 'String');
             }
-            if (data.hasOwnProperty('status_text')) {
-                obj['status_text'] = ApiClient.convertToType(data['status_text'], 'String');
+            if (data.hasOwnProperty('text')) {
+                obj['text'] = ApiClient.convertToType(data['text'], 'String');
             }
         }
         return obj;

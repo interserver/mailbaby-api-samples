@@ -106,7 +106,7 @@ export type GenericResponse = {
      * @type {string}
      * @memberof GenericResponse
      */
-    status_text?: string;
+    text?: string;
 }
 
 

@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "Mail Order Details")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T12:54:52.339714-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T15:33:01.201461-04:00[America/New_York]")
 public class MailLog   {
   @JsonProperty("id")
   private Long id = null;

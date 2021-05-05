@@ -492,7 +492,7 @@ h2. Models
         
         ||Field Name||Required||Type||Description||Enum||
          |status |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |status_text |(x) |{noformat:nopanel=true}String{noformat} | |  |
+         |text |(x) |{noformat:nopanel=true}String{noformat} | |  |
          
         {anchor:MailAttachmentModelAnchor}
         h3. MailAttachment

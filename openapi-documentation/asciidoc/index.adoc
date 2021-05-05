@@ -729,7 +729,7 @@ endif::internal-generation[]
 | 
 |  
 
-| status_text 
+| text 
 |  
 | String  
 | 

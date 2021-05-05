@@ -11,15 +11,15 @@ import AnyCodable
 public struct GenericResponse: Codable, Hashable {
 
     public var status: String?
-    public var statusText: String?
+    public var text: String?
 
-    public init(status: String? = nil, statusText: String? = nil) {
+    public init(status: String? = nil, text: String? = nil) {
         self.status = status
-        self.statusText = statusText
+        self.text = text
     }
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case status
-        case statusText = "status_text"
+        case text
     }
 
     // Encodable protocol methods
@@ -27,7 +27,7 @@ public struct GenericResponse: Codable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(status, forKey: .status)
-        try container.encodeIfPresent(statusText, forKey: .statusText)
+        try container.encodeIfPresent(text, forKey: .text)
     }
 
 

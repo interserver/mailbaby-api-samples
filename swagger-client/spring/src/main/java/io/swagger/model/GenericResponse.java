@@ -12,15 +12,15 @@ import javax.validation.constraints.*;
  * GenericResponse
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-05T12:54:55.229565-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-05T15:33:04.000268-04:00[America/New_York]")
 
 
 public class GenericResponse   {
   @JsonProperty("status")
   private String status = null;
 
-  @JsonProperty("status_text")
-  private String statusText = null;
+  @JsonProperty("text")
+  private String text = null;
 
   public GenericResponse status(String status) {
     this.status = status;
@@ -41,23 +41,23 @@ public class GenericResponse   {
     this.status = status;
   }
 
-  public GenericResponse statusText(String statusText) {
-    this.statusText = statusText;
+  public GenericResponse text(String text) {
+    this.text = text;
     return this;
   }
 
   /**
-   * Get statusText
-   * @return statusText
+   * Get text
+   * @return text
    **/
   @Schema(example = "The command completed successfully.", description = "")
   
-    public String getStatusText() {
-    return statusText;
+    public String getText() {
+    return text;
   }
 
-  public void setStatusText(String statusText) {
-    this.statusText = statusText;
+  public void setText(String text) {
+    this.text = text;
   }
 
 
@@ -71,12 +71,12 @@ public class GenericResponse   {
     }
     GenericResponse genericResponse = (GenericResponse) o;
     return Objects.equals(this.status, genericResponse.status) &&
-        Objects.equals(this.statusText, genericResponse.statusText);
+        Objects.equals(this.text, genericResponse.text);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, statusText);
+    return Objects.hash(status, text);
   }
 
   @Override
@@ -85,7 +85,7 @@ public class GenericResponse   {
     sb.append("class GenericResponse {\n");
     
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    statusText: ").append(toIndentedString(statusText)).append("\n");
+    sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("}");
     return sb.toString();
   }

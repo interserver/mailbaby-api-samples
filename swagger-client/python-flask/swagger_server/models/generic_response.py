@@ -14,25 +14,25 @@ class GenericResponse(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, status: str=None, status_text: str=None):  # noqa: E501
+    def __init__(self, status: str=None, text: str=None):  # noqa: E501
         """GenericResponse - a model defined in Swagger
 
         :param status: The status of this GenericResponse.  # noqa: E501
         :type status: str
-        :param status_text: The status_text of this GenericResponse.  # noqa: E501
-        :type status_text: str
+        :param text: The text of this GenericResponse.  # noqa: E501
+        :type text: str
         """
         self.swagger_types = {
             'status': str,
-            'status_text': str
+            'text': str
         }
 
         self.attribute_map = {
             'status': 'status',
-            'status_text': 'status_text'
+            'text': 'text'
         }
         self._status = status
-        self._status_text = status_text
+        self._text = text
 
     @classmethod
     def from_dict(cls, dikt) -> 'GenericResponse':
@@ -67,22 +67,22 @@ class GenericResponse(Model):
         self._status = status
 
     @property
-    def status_text(self) -> str:
-        """Gets the status_text of this GenericResponse.
+    def text(self) -> str:
+        """Gets the text of this GenericResponse.
 
 
-        :return: The status_text of this GenericResponse.
+        :return: The text of this GenericResponse.
         :rtype: str
         """
-        return self._status_text
+        return self._text
 
-    @status_text.setter
-    def status_text(self, status_text: str):
-        """Sets the status_text of this GenericResponse.
+    @text.setter
+    def text(self, text: str):
+        """Sets the text of this GenericResponse.
 
 
-        :param status_text: The status_text of this GenericResponse.
-        :type status_text: str
+        :param text: The text of this GenericResponse.
+        :type text: str
         """
 
-        self._status_text = status_text
+        self._text = text

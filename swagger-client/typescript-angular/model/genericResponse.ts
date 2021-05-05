@@ -12,5 +12,5 @@
 
 export interface GenericResponse { 
     status?: string;
-    statusText?: string;
+    text?: string;
 }

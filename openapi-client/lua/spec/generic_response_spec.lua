@@ -23,8 +23,8 @@ describe("generic_response", function()
     end)
   end)
 
-  -- unit tests for the property 'status_text'
-  describe("property status_text test", function()
+  -- unit tests for the property 'text'
+  describe("property text test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

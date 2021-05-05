@@ -302,13 +302,13 @@ components:
       type: object
     GenericResponse:
       example:
-        status_text: The command completed successfully.
+        text: The command completed successfully.
         status: ok
       properties:
         status:
           example: ok
           type: string
-        status_text:
+        text:
           example: The command completed successfully.
           type: string
       type: object

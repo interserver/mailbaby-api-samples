@@ -54,15 +54,15 @@ public:
 	void setStatus(std::string  status);
 	/*! \brief Get 
 	 */
-	std::string getStatusText();
+	std::string getText();
 
 	/*! \brief Set 
 	 */
-	void setStatusText(std::string  status_text);
+	void setText(std::string  text);
 
 private:
 	std::string status;
-	std::string status_text;
+	std::string text;
 	void __init();
 	void __cleanup();
 

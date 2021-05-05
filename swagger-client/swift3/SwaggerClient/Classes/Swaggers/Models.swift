@@ -300,8 +300,8 @@ class Decoders {
                 case let .success(value): _result.status = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["status_text"] as AnyObject?) {
-                case let .success(value): _result.statusText = value
+                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["text"] as AnyObject?) {
+                case let .success(value): _result.text = value
                 case let .failure(error): break
                 }
                 return .success(_result)

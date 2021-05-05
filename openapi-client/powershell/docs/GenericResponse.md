@@ -4,14 +4,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | **String** |  | [optional] 
-**StatusText** | **String** |  | [optional] 
+**Text** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $GenericResponse = Initialize-PSOpenAPIToolsGenericResponse  -Status ok `
- -StatusText The command completed successfully.
+ -Text The command completed successfully.
 ```
 
 - Convert the resource to JSON

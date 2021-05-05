@@ -6,12 +6,12 @@
 
 -type openapi_generic_response() ::
     #{ 'status' => binary(),
-       'status_text' => binary()
+       'text' => binary()
      }.
 
 encode(#{ 'status' := Status,
-          'status_text' := StatusText
+          'text' := Text
         }) ->
     #{ 'status' => Status,
-       'status_text' => StatusText
+       'text' => Text
      }.

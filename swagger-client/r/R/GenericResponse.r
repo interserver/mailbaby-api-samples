@@ -9,7 +9,7 @@
 #' GenericResponse Class
 #'
 #' @field status 
-#' @field status_text 
+#' @field text 
 #'
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -18,15 +18,15 @@ GenericResponse <- R6::R6Class(
   'GenericResponse',
   public = list(
     `status` = NULL,
-    `status_text` = NULL,
-    initialize = function(`status`, `status_text`){
+    `text` = NULL,
+    initialize = function(`status`, `text`){
       if (!missing(`status`)) {
         stopifnot(is.character(`status`), length(`status`) == 1)
         self$`status` <- `status`
       }
-      if (!missing(`status_text`)) {
-        stopifnot(is.character(`status_text`), length(`status_text`) == 1)
-        self$`status_text` <- `status_text`
+      if (!missing(`text`)) {
+        stopifnot(is.character(`text`), length(`text`) == 1)
+        self$`text` <- `text`
       }
     },
     toJSON = function() {
@@ -34,8 +34,8 @@ GenericResponse <- R6::R6Class(
       if (!is.null(self$`status`)) {
         GenericResponseObject[['status']] <- self$`status`
       }
-      if (!is.null(self$`status_text`)) {
-        GenericResponseObject[['status_text']] <- self$`status_text`
+      if (!is.null(self$`text`)) {
+        GenericResponseObject[['text']] <- self$`text`
       }
 
       GenericResponseObject
@@ -45,24 +45,24 @@ GenericResponse <- R6::R6Class(
       if (!is.null(GenericResponseObject$`status`)) {
         self$`status` <- GenericResponseObject$`status`
       }
-      if (!is.null(GenericResponseObject$`status_text`)) {
-        self$`status_text` <- GenericResponseObject$`status_text`
+      if (!is.null(GenericResponseObject$`text`)) {
+        self$`text` <- GenericResponseObject$`text`
       }
     },
     toJSONString = function() {
        sprintf(
         '{
            "status": %s,
-           "status_text": %s
+           "text": %s
         }',
         self$`status`,
-        self$`status_text`
+        self$`text`
       )
     },
     fromJSONString = function(GenericResponseJson) {
       GenericResponseObject <- jsonlite::fromJSON(GenericResponseJson)
       self$`status` <- GenericResponseObject$`status`
-      self$`status_text` <- GenericResponseObject$`status_text`
+      self$`text` <- GenericResponseObject$`text`
     }
   )
 )

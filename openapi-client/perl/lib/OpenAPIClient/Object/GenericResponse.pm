@@ -168,9 +168,9 @@ __PACKAGE__->method_documentation({
         format => '',
         read_only => '',
             },
-    'status_text' => {
+    'text' => {
         datatype => 'string',
-        base_name => 'status_text',
+        base_name => 'text',
         description => '',
         format => '',
         read_only => '',
@@ -179,12 +179,12 @@ __PACKAGE__->method_documentation({
 
 __PACKAGE__->openapi_types( {
     'status' => 'string',
-    'status_text' => 'string'
+    'text' => 'string'
 } );
 
 __PACKAGE__->attribute_map( {
     'status' => 'status',
-    'status_text' => 'status_text'
+    'text' => 'text'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

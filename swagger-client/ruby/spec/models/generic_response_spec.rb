@@ -37,7 +37,7 @@ describe 'GenericResponse' do
     end
   end
 
-  describe 'test attribute "status_text"' do
+  describe 'test attribute "text"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

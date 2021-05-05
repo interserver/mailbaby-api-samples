@@ -41,7 +41,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-05T12:54:55.229565-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-05T15:33:04.000268-04:00[America/New_York]")
 @RestController
 public class MailApiController implements MailApi {
 
@@ -80,7 +80,7 @@ public class MailApiController implements MailApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<GenericResponse>(objectMapper.readValue("{\n  \"status_text\" : \"The command completed successfully.\",\n  \"status\" : \"ok\"\n}", GenericResponse.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<GenericResponse>(objectMapper.readValue("{\n  \"text\" : \"The command completed successfully.\",\n  \"status\" : \"ok\"\n}", GenericResponse.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<GenericResponse>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -94,7 +94,7 @@ public class MailApiController implements MailApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<GenericResponse>(objectMapper.readValue("{\n  \"status_text\" : \"The command completed successfully.\",\n  \"status\" : \"ok\"\n}", GenericResponse.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<GenericResponse>(objectMapper.readValue("{\n  \"text\" : \"The command completed successfully.\",\n  \"status\" : \"ok\"\n}", GenericResponse.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<GenericResponse>(HttpStatus.INTERNAL_SERVER_ERROR);

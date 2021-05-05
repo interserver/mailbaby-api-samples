@@ -13,33 +13,33 @@ class GenericResponse {
   /// Returns a new [GenericResponse] instance.
   GenericResponse({
     this.status,
-    this.statusText,
+    this.text,
   });
 
   String status;
 
-  String statusText;
+  String text;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GenericResponse &&
      other.status == status &&
-     other.statusText == statusText;
+     other.text == text;
 
   @override
   int get hashCode =>
     (status == null ? 0 : status.hashCode) +
-    (statusText == null ? 0 : statusText.hashCode);
+    (text == null ? 0 : text.hashCode);
 
   @override
-  String toString() => 'GenericResponse[status=$status, statusText=$statusText]';
+  String toString() => 'GenericResponse[status=$status, text=$text]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (status != null) {
       json[r'status'] = status;
     }
-    if (statusText != null) {
-      json[r'status_text'] = statusText;
+    if (text != null) {
+      json[r'text'] = text;
     }
     return json;
   }
@@ -50,7 +50,7 @@ class GenericResponse {
     ? null
     : GenericResponse(
         status: json[r'status'],
-        statusText: json[r'status_text'],
+        text: json[r'text'],
     );
 
   static List<GenericResponse> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>

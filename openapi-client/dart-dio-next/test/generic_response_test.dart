@@ -12,8 +12,8 @@ void main() {
       // TODO
     });
 
-    // String statusText
-    test('to test the property `statusText`', () async {
+    // String text
+    test('to test the property `text`', () async {
       // TODO
     });
 

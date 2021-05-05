@@ -19,10 +19,10 @@ local function cast_generic_response(t)
 	return setmetatable(t, generic_response_mt)
 end
 
-local function new_generic_response(status, status_text)
+local function new_generic_response(status, text)
 	return cast_generic_response({
 		["status"] = status;
-		["status_text"] = status_text;
+		["text"] = text;
 	})
 end
 

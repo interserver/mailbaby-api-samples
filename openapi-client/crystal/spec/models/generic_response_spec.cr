@@ -29,7 +29,7 @@ describe ::GenericResponse do
     end
   end
 
-  describe "test attribute 'status_text'" do
+  describe "test attribute 'text'" do
     it "should work" do
       # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
     end

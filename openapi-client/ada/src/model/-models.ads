@@ -168,7 +168,7 @@ package .Models is
    type GenericResponse_Type is
      record
        Status : Swagger.Nullable_UString;
-       Status_Text : Swagger.Nullable_UString;
+       Text : Swagger.Nullable_UString;
      end record;
 
    package GenericResponse_Type_Vectors is

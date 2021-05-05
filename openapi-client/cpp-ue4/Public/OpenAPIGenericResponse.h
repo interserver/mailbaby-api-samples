@@ -30,7 +30,7 @@ public:
 	void WriteJson(JsonWriter& Writer) const final;
 
 	TOptional<FString> Status;
-	TOptional<FString> StatusText;
+	TOptional<FString> Text;
 };
 
 }

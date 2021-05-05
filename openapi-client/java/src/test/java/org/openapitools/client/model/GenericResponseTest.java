@@ -49,11 +49,11 @@ public class GenericResponseTest {
     }
 
     /**
-     * Test the property 'statusText'
+     * Test the property 'text'
      */
     @Test
-    public void statusTextTest() {
-        // TODO: test statusText
+    public void textTest() {
+        // TODO: test text
     }
 
 }

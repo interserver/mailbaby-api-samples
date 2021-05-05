@@ -15,7 +15,7 @@ import org.openapitools.client.core.ApiModel
 
 case class GenericResponse (
   status: Option[String] = None,
-  statusText: Option[String] = None
+  text: Option[String] = None
 ) extends ApiModel
 
 

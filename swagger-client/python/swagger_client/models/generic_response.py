@@ -29,23 +29,23 @@ class GenericResponse(object):
     """
     swagger_types = {
         'status': 'str',
-        'status_text': 'str'
+        'text': 'str'
     }
 
     attribute_map = {
         'status': 'status',
-        'status_text': 'status_text'
+        'text': 'text'
     }
 
-    def __init__(self, status=None, status_text=None):  # noqa: E501
+    def __init__(self, status=None, text=None):  # noqa: E501
         """GenericResponse - a model defined in Swagger"""  # noqa: E501
         self._status = None
-        self._status_text = None
+        self._text = None
         self.discriminator = None
         if status is not None:
             self.status = status
-        if status_text is not None:
-            self.status_text = status_text
+        if text is not None:
+            self.text = text
 
     @property
     def status(self):
@@ -69,25 +69,25 @@ class GenericResponse(object):
         self._status = status
 
     @property
-    def status_text(self):
-        """Gets the status_text of this GenericResponse.  # noqa: E501
+    def text(self):
+        """Gets the text of this GenericResponse.  # noqa: E501
 
 
-        :return: The status_text of this GenericResponse.  # noqa: E501
+        :return: The text of this GenericResponse.  # noqa: E501
         :rtype: str
         """
-        return self._status_text
+        return self._text
 
-    @status_text.setter
-    def status_text(self, status_text):
-        """Sets the status_text of this GenericResponse.
+    @text.setter
+    def text(self, text):
+        """Sets the text of this GenericResponse.
 
 
-        :param status_text: The status_text of this GenericResponse.  # noqa: E501
+        :param text: The text of this GenericResponse.  # noqa: E501
         :type: str
         """
 
-        self._status_text = status_text
+        self._text = text
 
     def to_dict(self):
         """Returns the model properties as a dict"""

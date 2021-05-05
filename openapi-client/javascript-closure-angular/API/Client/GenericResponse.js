@@ -15,5 +15,5 @@ API.Client.GenericResponse.prototype.status;
  * @type {!string}
  * @export
  */
-API.Client.GenericResponse.prototype.statusText;
+API.Client.GenericResponse.prototype.text;
 

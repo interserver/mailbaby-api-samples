@@ -46,8 +46,8 @@ export default class GenericResponse {
             if (data.hasOwnProperty('status')) {
                 obj['status'] = ApiClient.convertToType(data['status'], 'String');
             }
-            if (data.hasOwnProperty('status_text')) {
-                obj['status_text'] = ApiClient.convertToType(data['status_text'], 'String');
+            if (data.hasOwnProperty('text')) {
+                obj['text'] = ApiClient.convertToType(data['text'], 'String');
             }
         }
         return obj;
@@ -58,9 +58,9 @@ export default class GenericResponse {
     */
     'status' = undefined;
     /**
-    * @member {String} status_text
+    * @member {String} text
     */
-    'status_text' = undefined;
+    'text' = undefined;
 
 
 

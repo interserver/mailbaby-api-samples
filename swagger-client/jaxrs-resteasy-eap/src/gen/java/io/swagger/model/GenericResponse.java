@@ -8,9 +8,9 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T12:54:46.628806-04:00[America/New_York]")public class GenericResponse   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T15:32:55.165195-04:00[America/New_York]")public class GenericResponse   {
   private String status = null;
-  private String statusText = null;
+  private String text = null;
 
   /**
    **/
@@ -28,12 +28,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
    **/
   
   @Schema(example = "The command completed successfully.", description = "")
-  @JsonProperty("status_text")
-  public String getStatusText() {
-    return statusText;
+  @JsonProperty("text")
+  public String getText() {
+    return text;
   }
-  public void setStatusText(String statusText) {
-    this.statusText = statusText;
+  public void setText(String text) {
+    this.text = text;
   }
 
 
@@ -47,12 +47,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
     }
     GenericResponse genericResponse = (GenericResponse) o;
     return Objects.equals(status, genericResponse.status) &&
-        Objects.equals(statusText, genericResponse.statusText);
+        Objects.equals(text, genericResponse.text);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, statusText);
+    return Objects.hash(status, text);
   }
 
   @Override
@@ -61,7 +61,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
     sb.append("class GenericResponse {\n");
     
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    statusText: ").append(toIndentedString(statusText)).append("\n");
+    sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("}");
     return sb.toString();
   }

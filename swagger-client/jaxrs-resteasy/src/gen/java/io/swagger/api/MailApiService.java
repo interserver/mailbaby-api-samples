@@ -22,7 +22,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T12:54:49.445110-04:00[America/New_York]")public interface MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T15:32:58.166139-04:00[America/New_York]")public interface MailApiService {
       Response getMailOrders(Long id,SecurityContext securityContext)
       throws NotFoundException;
       Response placeMailOrder(MailOrder body,SecurityContext securityContext)

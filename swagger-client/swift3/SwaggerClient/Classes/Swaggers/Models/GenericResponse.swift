@@ -10,7 +10,7 @@ import Foundation
 
 open class GenericResponse: JSONEncodable {
     public var status: String?
-    public var statusText: String?
+    public var text: String?
 
     public init() {}
 
@@ -18,7 +18,7 @@ open class GenericResponse: JSONEncodable {
     open func encodeToJSON() -> Any {
         var nillableDictionary = [String:Any?]()
         nillableDictionary["status"] = self.status
-        nillableDictionary["status_text"] = self.statusText
+        nillableDictionary["text"] = self.text
 
         let dictionary: [String:Any] = APIHelper.rejectNil(nillableDictionary) ?? [:]
         return dictionary

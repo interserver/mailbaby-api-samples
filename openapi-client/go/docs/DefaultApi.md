@@ -221,7 +221,7 @@ import (
 
 func main() {
     sendMail := *openapiclient.NewSendMail("Your Package has been Delivered!", "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-", *openapiclient.NewMailContact("johndoe@company.com"), []openapiclient.MailContact{*openapiclient.NewMailContact("johndoe@company.com")}, int64(5000)) // SendMail | 
+", []openapiclient.SendMailFrom{*openapiclient.NewSendMailFrom("johndoe@company.com")}, []openapiclient.MailContact{*openapiclient.NewMailContact("johndoe@company.com")}, int64(5000)) // SendMail | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -288,7 +288,7 @@ import (
 
 func main() {
     sendMail := *openapiclient.NewSendMail("Your Package has been Delivered!", "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-", *openapiclient.NewMailContact("johndoe@company.com"), []openapiclient.MailContact{*openapiclient.NewMailContact("johndoe@company.com")}, int64(5000)) // SendMail | 
+", []openapiclient.SendMailFrom{*openapiclient.NewSendMailFrom("johndoe@company.com")}, []openapiclient.MailContact{*openapiclient.NewMailContact("johndoe@company.com")}, int64(5000)) // SendMail | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

@@ -143,7 +143,7 @@ namespace IO.Swagger.Api
         /// <param name="bcc"></param>
         /// <param name="attachments"></param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendMailById (string subject, string body, MailContact from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments);
+        GenericResponse SendMailById (string subject, string body, List<SendMailFrom> from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments);
 
         /// <summary>
         /// Sends an Email
@@ -162,7 +162,7 @@ namespace IO.Swagger.Api
         /// <param name="bcc"></param>
         /// <param name="attachments"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        ApiResponse<GenericResponse> SendMailByIdWithHttpInfo (string subject, string body, MailContact from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments);
+        ApiResponse<GenericResponse> SendMailByIdWithHttpInfo (string subject, string body, List<SendMailFrom> from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments);
         /// <summary>
         /// validatess order details before placing an order
         /// </summary>
@@ -331,7 +331,7 @@ namespace IO.Swagger.Api
         /// <param name="bcc"></param>
         /// <param name="attachments"></param>
         /// <returns>Task of GenericResponse</returns>
-        System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (string subject, string body, MailContact from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments);
+        System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (string subject, string body, List<SendMailFrom> from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments);
 
         /// <summary>
         /// Sends an Email
@@ -350,7 +350,7 @@ namespace IO.Swagger.Api
         /// <param name="bcc"></param>
         /// <param name="attachments"></param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdAsyncWithHttpInfo (string subject, string body, MailContact from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments);
+        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdAsyncWithHttpInfo (string subject, string body, List<SendMailFrom> from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments);
         /// <summary>
         /// validatess order details before placing an order
         /// </summary>
@@ -1241,7 +1241,7 @@ namespace IO.Swagger.Api
         /// <param name="bcc"></param>
         /// <param name="attachments"></param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendMailById (string subject, string body, MailContact from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments)
+        public GenericResponse SendMailById (string subject, string body, List<SendMailFrom> from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments)
         {
              ApiResponse<GenericResponse> localVarResponse = SendMailByIdWithHttpInfo(subject, body, from, to, id, replyto, cc, bcc, attachments);
              return localVarResponse.Data;
@@ -1261,7 +1261,7 @@ namespace IO.Swagger.Api
         /// <param name="bcc"></param>
         /// <param name="attachments"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        public ApiResponse< GenericResponse > SendMailByIdWithHttpInfo (string subject, string body, MailContact from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments)
+        public ApiResponse< GenericResponse > SendMailByIdWithHttpInfo (string subject, string body, List<SendMailFrom> from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments)
         {
             // verify the required parameter 'subject' is set
             if (subject == null)
@@ -1361,7 +1361,7 @@ namespace IO.Swagger.Api
         /// <param name="bcc"></param>
         /// <param name="attachments"></param>
         /// <returns>Task of GenericResponse</returns>
-        public async System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (string subject, string body, MailContact from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments)
+        public async System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (string subject, string body, List<SendMailFrom> from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments)
         {
              ApiResponse<GenericResponse> localVarResponse = await SendMailByIdAsyncWithHttpInfo(subject, body, from, to, id, replyto, cc, bcc, attachments);
              return localVarResponse.Data;
@@ -1382,7 +1382,7 @@ namespace IO.Swagger.Api
         /// <param name="bcc"></param>
         /// <param name="attachments"></param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdAsyncWithHttpInfo (string subject, string body, MailContact from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments)
+        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdAsyncWithHttpInfo (string subject, string body, List<SendMailFrom> from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments)
         {
             // verify the required parameter 'subject' is set
             if (subject == null)

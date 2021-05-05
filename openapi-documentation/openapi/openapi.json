@@ -533,7 +533,11 @@
             "type" : "string"
           },
           "from" : {
-            "$ref" : "#/components/schemas/MailContact"
+            "description" : "The contact whom is the this email is from.",
+            "items" : {
+              "$ref" : "#/components/schemas/SendMail_from"
+            },
+            "type" : "array"
           },
           "to" : {
             "description" : "The Contact whom is the primary recipient of this email.",
@@ -579,6 +583,23 @@
         },
         "required" : [ "body", "from", "id", "subject", "to" ],
         "title" : "Email details",
+        "type" : "object"
+      },
+      "SendMail_from" : {
+        "description" : "An Email Contact",
+        "properties" : {
+          "email" : {
+            "description" : "The email address",
+            "example" : "johndoe@company.com",
+            "type" : "string"
+          },
+          "name" : {
+            "description" : "Optional contact name",
+            "example" : "John Doe",
+            "type" : "string"
+          }
+        },
+        "required" : [ "email" ],
         "type" : "object"
       }
     },

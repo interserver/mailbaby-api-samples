@@ -83,6 +83,7 @@ Class | Method | HTTP request | Description
  - [OASMailLog](OASMailLog.md)
  - [OASMailOrder](OASMailOrder.md)
  - [OASSendMail](OASSendMail.md)
+ - [OASSendMailFrom](OASSendMailFrom.md)
 
 
 ## Documentation for Authorization

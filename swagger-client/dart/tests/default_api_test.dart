@@ -43,7 +43,7 @@ void main() {
     //
     // Sends An email through one of your mail orders.
     //
-    //Future<GenericResponse> sendMailById(SendMail body, String subject, String body, MailContact from, List<MailContact> to, int id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments) async
+    //Future<GenericResponse> sendMailById(SendMail body, String subject, String body, List<SendMailFrom> from, List<MailContact> to, int id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments) async
     test('test sendMailById', () async {
       // TODO
     });

@@ -9,6 +9,7 @@ docs/MailContact.md
 docs/MailLog.md
 docs/MailOrder.md
 docs/SendMail.md
+docs/SendMailFrom.md
 git_push.sh
 mocha.opts
 package.json
@@ -22,6 +23,7 @@ src/model/MailContact.js
 src/model/MailLog.js
 src/model/MailOrder.js
 src/model/SendMail.js
+src/model/SendMailFrom.js
 test/api/DefaultApi.spec.js
 test/model/ErrorResponse.spec.js
 test/model/GenericResponse.spec.js
@@ -30,3 +32,4 @@ test/model/MailContact.spec.js
 test/model/MailLog.spec.js
 test/model/MailOrder.spec.js
 test/model/SendMail.spec.js
+test/model/SendMailFrom.spec.js

@@ -21,6 +21,7 @@ import io.swagger.client.model.MailLog
 import io.swagger.client.model.MailOrder
 import io.swagger.client.model.MailOrders
 import io.swagger.client.model.SendMail
+import io.swagger.client.model.SendMail_from
 import io.swagger.client.{ApiInvoker, ApiException}
 
 import com.sun.jersey.multipart.FormDataMultiPart
@@ -203,7 +204,7 @@ class DefaultApi(
    * @param attachments  
    * @return GenericResponse
    */
-  def sendMailById(body: SendMail, subject: String, body: String, from: MailContact, to: List[MailContact], id: Long, replyto: List[MailContact], cc: List[MailContact], bcc: List[MailContact], attachments: List[MailAttachment]): Option[GenericResponse] = {
+  def sendMailById(body: SendMail, subject: String, body: String, from: List[SendMail_from], to: List[MailContact], id: Long, replyto: List[MailContact], cc: List[MailContact], bcc: List[MailContact], attachments: List[MailAttachment]): Option[GenericResponse] = {
     val await = Try(Await.result(sendMailByIdAsync(body, subject, body, from, to, id, replyto, cc, bcc, attachments), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -227,7 +228,7 @@ class DefaultApi(
    * @param attachments  
    * @return Future(GenericResponse)
    */
-  def sendMailByIdAsync(body: SendMail, subject: String, body: String, from: MailContact, to: List[MailContact], id: Long, replyto: List[MailContact], cc: List[MailContact], bcc: List[MailContact], attachments: List[MailAttachment]): Future[GenericResponse] = {
+  def sendMailByIdAsync(body: SendMail, subject: String, body: String, from: List[SendMail_from], to: List[MailContact], id: Long, replyto: List[MailContact], cc: List[MailContact], bcc: List[MailContact], attachments: List[MailAttachment]): Future[GenericResponse] = {
       helper.sendMailById(body, subject, body, from, to, id, replyto, cc, bcc, attachments)
   }
 
@@ -361,7 +362,7 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
   def sendMailById(body: SendMail,
     subject: String,
     body: String,
-    from: MailContact,
+    from: List[SendMail_from],
     to: List[MailContact],
     id: Long,
     replyto: List[MailContact],

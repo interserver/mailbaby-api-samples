@@ -54,6 +54,7 @@ Class | Method | HTTP request | Description
  - [io.swagger.client.models.MailOrder](docs/MailOrder.md)
  - [io.swagger.client.models.MailOrders](docs/MailOrders.md)
  - [io.swagger.client.models.SendMail](docs/SendMail.md)
+ - [io.swagger.client.models.SendMailFrom](docs/SendMailFrom.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization

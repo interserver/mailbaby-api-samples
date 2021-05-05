@@ -32,6 +32,7 @@ use DateTime;
 
 use OpenAPIClient::Object::MailAttachment;
 use OpenAPIClient::Object::MailContact;
+use OpenAPIClient::Object::SendMailFrom;
 
 use base ("Class::Accessor", "Class::Data::Inheritable");
 
@@ -178,9 +179,9 @@ __PACKAGE__->method_documentation({
         read_only => '',
             },
     'from' => {
-        datatype => 'MailContact',
+        datatype => 'ARRAY[SendMailFrom]',
         base_name => 'from',
-        description => '',
+        description => 'The contact whom is the this email is from.',
         format => '',
         read_only => '',
             },
@@ -231,7 +232,7 @@ __PACKAGE__->method_documentation({
 __PACKAGE__->openapi_types( {
     'subject' => 'string',
     'body' => 'string',
-    'from' => 'MailContact',
+    'from' => 'ARRAY[SendMailFrom]',
     'to' => 'ARRAY[MailContact]',
     'id' => 'int',
     'replyto' => 'ARRAY[MailContact]',

@@ -11,6 +11,7 @@
  */
 import { MailAttachment } from './mailAttachment';
 import { MailContact } from './mailContact';
+import { SendMailFrom } from './sendMailFrom';
 
 /**
  * Details for an Email
@@ -24,7 +25,10 @@ export interface SendMail {
      * The main email contents.
      */
     body: string;
-    from: MailContact;
+    /**
+     * The contact whom is the this email is from.
+     */
+    from: Array<SendMailFrom>;
     /**
      * The Contact whom is the primary recipient of this email.
      */

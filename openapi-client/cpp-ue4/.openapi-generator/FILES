@@ -13,6 +13,7 @@ Private/OpenAPIMailOrder.cpp
 Private/OpenAPIModule.cpp
 Private/OpenAPIModule.h
 Private/OpenAPISendMail.cpp
+Private/OpenAPISendMailFrom.cpp
 Public/OpenAPIBaseModel.h
 Public/OpenAPIDefaultApi.h
 Public/OpenAPIDefaultApiOperations.h
@@ -24,3 +25,4 @@ Public/OpenAPIMailContact.h
 Public/OpenAPIMailLog.h
 Public/OpenAPIMailOrder.h
 Public/OpenAPISendMail.h
+Public/OpenAPISendMailFrom.h

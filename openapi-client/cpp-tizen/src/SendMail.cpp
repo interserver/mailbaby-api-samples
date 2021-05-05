@@ -25,7 +25,7 @@ SendMail::__init()
 {
 	//subject = std::string();
 	//body = std::string();
-	//from = new MailContact();
+	//new std::list()std::list> from;
 	//new std::list()std::list> to;
 	//id = long(0);
 	//new std::list()std::list> replyto;
@@ -48,7 +48,7 @@ SendMail::__cleanup()
 	//body = NULL;
 	//}
 	//if(from != NULL) {
-	//
+	//from.RemoveAll(true);
 	//delete from;
 	//from = NULL;
 	//}
@@ -116,15 +116,25 @@ SendMail::fromJson(char* jsonStr)
 	node = json_object_get_member(pJsonObject, fromKey);
 	if (node !=NULL) {
 	
-
-		if (isprimitive("MailContact")) {
-			jsonToValue(&from, node, "MailContact", "MailContact");
-		} else {
-			
-			MailContact* obj = static_cast<MailContact*> (&from);
-			obj->fromJson(json_to_string(node, false));
-			
+		{
+			JsonArray* arr = json_node_get_array(node);
+			JsonNode*  temp_json;
+			list<SendMail_from> new_list;
+			SendMail_from inst;
+			for (guint i=0;i<json_array_get_length(arr);i++) {
+				temp_json = json_array_get_element(arr,i);
+				if (isprimitive("SendMail_from")) {
+					jsonToValue(&inst, temp_json, "SendMail_from", "");
+				} else {
+					
+					inst.fromJson(json_to_string(temp_json, false));
+					
+				}
+				new_list.push_back(inst);
+			}
+			from = new_list;
 		}
+		
 	}
 	const gchar *toKey = "to";
 	node = json_object_get_member(pJsonObject, toKey);
@@ -287,18 +297,29 @@ SendMail::toJson()
 	}
 	const gchar *bodyKey = "body";
 	json_object_set_member(pJsonObject, bodyKey, node);
-	if (isprimitive("MailContact")) {
-		MailContact obj = getFrom();
-		node = converttoJson(&obj, "MailContact", "");
-	}
-	else {
-		
-		MailContact obj = static_cast<MailContact> (getFrom());
+	if (isprimitive("SendMail_from")) {
+		list<SendMail_from> new_list = static_cast<list <SendMail_from> > (getFrom());
+		node = converttoJson(&new_list, "SendMail_from", "array");
+	} else {
+		node = json_node_alloc();
+		list<SendMail_from> new_list = static_cast<list <SendMail_from> > (getFrom());
+		JsonArray* json_array = json_array_new();
 		GError *mygerror;
-		mygerror = NULL;
-		node = json_from_string(obj.toJson(), &mygerror);
+		
+		for (list<SendMail_from>::iterator it = new_list.begin(); it != new_list.end(); it++) {
+			mygerror = NULL;
+			SendMail_from obj = *it;
+			JsonNode *node_temp = json_from_string(obj.toJson(), &mygerror);
+			json_array_add_element(json_array, node_temp);
+			g_clear_error(&mygerror);
+		}
+		json_node_init_array(node, json_array);
+		json_array_unref(json_array);
 		
 	}
+
+
+	
 	const gchar *fromKey = "from";
 	json_object_set_member(pJsonObject, fromKey, node);
 	if (isprimitive("MailContact")) {
@@ -467,14 +488,14 @@ SendMail::setBody(std::string  body)
 	this->body = body;
 }
 
-MailContact
+std::list<SendMail_from>
 SendMail::getFrom()
 {
 	return from;
 }
 
 void
-SendMail::setFrom(MailContact  from)
+SendMail::setFrom(std::list <SendMail_from> from)
 {
 	this->from = from;
 }

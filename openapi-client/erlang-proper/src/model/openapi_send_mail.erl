@@ -11,7 +11,7 @@
 -type openapi_send_mail() ::
   [ {'subject', binary() }
   | {'body', binary() }
-  | {'from', openapi_mail_contact:openapi_mail_contact() }
+  | {'from', list(openapi_send_mail_from:openapi_send_mail_from()) }
   | {'to', list(openapi_mail_contact:openapi_mail_contact()) }
   | {'id', integer() }
   | {'replyto', list(openapi_mail_contact:openapi_mail_contact()) }
@@ -27,7 +27,7 @@ openapi_send_mail() ->
 openapi_send_mail(Fields) ->
   Default = [ {'subject', binary() }
             , {'body', binary() }
-            , {'from', openapi_mail_contact:openapi_mail_contact() }
+            , {'from', list(openapi_send_mail_from:openapi_send_mail_from()) }
             , {'to', list(openapi_mail_contact:openapi_mail_contact()) }
             , {'id', integer() }
             , {'replyto', list(openapi_mail_contact:openapi_mail_contact()) }

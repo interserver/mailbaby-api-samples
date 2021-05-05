@@ -32,6 +32,7 @@ import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
 import io.swagger.model.SendMail;
+import io.swagger.model.SendMailFrom;
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;

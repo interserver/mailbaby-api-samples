@@ -54,6 +54,8 @@ class ApiClient {
           return new MailOrders.fromJson(value);
         case 'SendMail':
           return new SendMail.fromJson(value);
+        case 'SendMailFrom':
+          return new SendMailFrom.fromJson(value);
         default:
           {
             Match match;

@@ -95,6 +95,7 @@ Class | Method | HTTP request | Description
 - [MailLog](docs/Model/MailLog.md)
 - [MailOrder](docs/Model/MailOrder.md)
 - [SendMail](docs/Model/SendMail.md)
+- [SendMailFrom](docs/Model/SendMailFrom.md)
 
 ## Authorization
 

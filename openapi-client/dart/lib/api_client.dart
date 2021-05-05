@@ -206,6 +206,8 @@ class ApiClient {
           return MailOrder.fromJson(value);
         case 'SendMail':
           return SendMail.fromJson(value);
+        case 'SendMailFrom':
+          return SendMailFrom.fromJson(value);
         default:
           Match match;
           if (value is List && (match = _regList.firstMatch(targetType)) != null) {

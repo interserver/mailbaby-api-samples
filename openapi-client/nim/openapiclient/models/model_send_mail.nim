@@ -12,12 +12,13 @@ import tables
 
 import model_mail_attachment
 import model_mail_contact
+import model_send_mail_from
 
 type SendMail* = object
   ## Details for an Email
   subject*: string ## The subject or title of the email
   body*: string ## The main email contents.
-  `from`*: MailContact
+  `from`*: seq[SendMail_from] ## The contact whom is the this email is from.
   to*: seq[MailContact] ## The Contact whom is the primary recipient of this email.
   id*: int64 ## The ID of the Mail order within our system to use as the Mail Account.
   replyto*: seq[MailContact] ## Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.

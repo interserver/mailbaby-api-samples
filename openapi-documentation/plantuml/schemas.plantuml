@@ -37,7 +37,7 @@ entity MailOrder {
 entity SendMail { 
     * subject: String
     * body: String
-    * from: MailContact
+    * from: List<SendMailFrom>
     * to: List<MailContact>
     * id: Long
     replyto: List<MailContact>
@@ -46,8 +46,13 @@ entity SendMail {
     attachments: List<MailAttachment>
 }
 
+entity SendMailFrom { 
+    * email: String
+    name: String
+}
 
-SendMail -- MailContact : from
+
+SendMail -- "0..*" SendMailFrom : from
 SendMail -- "0..*" MailContact : to
 SendMail -- "0..*" MailContact : replyto
 SendMail -- "0..*" MailContact : cc

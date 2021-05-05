@@ -23,6 +23,7 @@
 
 #include "OAIMailAttachment.h"
 #include "OAIMailContact.h"
+#include "OAISendMail_from.h"
 #include <QList>
 #include <QString>
 
@@ -52,8 +53,8 @@ public:
     bool is_body_Set() const;
     bool is_body_Valid() const;
 
-    OAIMailContact getFrom() const;
-    void setFrom(const OAIMailContact &from);
+    QList<OAISendMail_from> getFrom() const;
+    void setFrom(const QList<OAISendMail_from> &from);
     bool is_from_Set() const;
     bool is_from_Valid() const;
 
@@ -101,7 +102,7 @@ private:
     bool m_body_isSet;
     bool m_body_isValid;
 
-    OAIMailContact from;
+    QList<OAISendMail_from> from;
     bool m_from_isSet;
     bool m_from_isValid;
 

@@ -34,14 +34,14 @@ namespace IO.Swagger.Model
         /// </summary>
         /// <param name="subject">The subject or title of the email (required).</param>
         /// <param name="body">The main email contents. (required).</param>
-        /// <param name="from">from (required).</param>
+        /// <param name="from">The contact whom is the this email is from. (required).</param>
         /// <param name="to">The Contact whom is the primary recipient of this email. (required).</param>
         /// <param name="id">The ID of the Mail order within our system to use as the Mail Account. (required).</param>
         /// <param name="replyto">Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address..</param>
         /// <param name="cc">Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well..</param>
         /// <param name="bcc">Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list..</param>
         /// <param name="attachments">Optional file attachments to include in the email.</param>
-        public SendMail(string subject = default(string), string body = default(string), MailContact from = default(MailContact), List<MailContact> to = default(List<MailContact>), long? id = default(long?), List<MailContact> replyto = default(List<MailContact>), List<MailContact> cc = default(List<MailContact>), List<MailContact> bcc = default(List<MailContact>), List<MailAttachment> attachments = default(List<MailAttachment>))
+        public SendMail(string subject = default(string), string body = default(string), List<SendMailFrom> from = default(List<SendMailFrom>), List<MailContact> to = default(List<MailContact>), long? id = default(long?), List<MailContact> replyto = default(List<MailContact>), List<MailContact> cc = default(List<MailContact>), List<MailContact> bcc = default(List<MailContact>), List<MailAttachment> attachments = default(List<MailAttachment>))
         {
             // to ensure "subject" is required (not null)
             if (subject == null)
@@ -109,10 +109,11 @@ namespace IO.Swagger.Model
         public string Body { get; set; }
 
         /// <summary>
-        /// Gets or Sets From
+        /// The contact whom is the this email is from.
         /// </summary>
+        /// <value>The contact whom is the this email is from.</value>
         [DataMember(Name="from", EmitDefaultValue=false)]
-        public MailContact From { get; set; }
+        public List<SendMailFrom> From { get; set; }
 
         /// <summary>
         /// The Contact whom is the primary recipient of this email.
@@ -219,8 +220,9 @@ namespace IO.Swagger.Model
                 ) && 
                 (
                     this.From == input.From ||
-                    (this.From != null &&
-                    this.From.Equals(input.From))
+                    this.From != null &&
+                    input.From != null &&
+                    this.From.SequenceEqual(input.From)
                 ) && 
                 (
                     this.To == input.To ||

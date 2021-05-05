@@ -83,6 +83,7 @@ Category | Method | HTTP request | Description
  - [mail_log_t](docs/mail_log.md)
  - [mail_order_t](docs/mail_order.md)
  - [send_mail_t](docs/send_mail.md)
+ - [send_mail_from_t](docs/send_mail_from.md)
 
 
 ## Documentation for Authorization

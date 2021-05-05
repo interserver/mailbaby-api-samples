@@ -40,6 +40,7 @@ Class | Method | HTTP request | Description
  - [MAIL_LOG](docs/MAIL_LOG.md)
  - [MAIL_ORDER](docs/MAIL_ORDER.md)
  - [SEND_MAIL](docs/SEND_MAIL.md)
+ - [SEND_MAIL_FROM](docs/SEND_MAIL_FROM.md)
 
 
 ## Documentation For Authorization

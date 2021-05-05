@@ -21,4 +21,5 @@ export {
   MailLog,
   MailOrder,
   SendMail,
+  SendMailFrom,
 } from './models';

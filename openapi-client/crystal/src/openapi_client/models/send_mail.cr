@@ -24,8 +24,9 @@ module
     property body : String
 
 
-    @[JSON::Field(key: from, type: MailContact)]
-    property from : MailContact
+    # The contact whom is the this email is from.
+    @[JSON::Field(key: from, type: Array(SendMailFrom))]
+    property from : Array(SendMailFrom)
 
 
     # The Contact whom is the primary recipient of this email.
@@ -59,7 +60,7 @@ module
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@subject : String, @body : String, @from : MailContact, @to : Array(MailContact), @id : Int64, @replyto : Array(MailContact) | Nil, @cc : Array(MailContact) | Nil, @bcc : Array(MailContact) | Nil, @attachments : Array(MailAttachment) | Nil)
+    def initialize(@subject : String, @body : String, @from : Array(SendMailFrom), @to : Array(MailContact), @id : Int64, @replyto : Array(MailContact) | Nil, @cc : Array(MailContact) | Nil, @bcc : Array(MailContact) | Nil, @attachments : Array(MailAttachment) | Nil)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?

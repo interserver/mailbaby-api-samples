@@ -13,6 +13,7 @@ export(MailContact)
 export(MailLog)
 export(MailOrder)
 export(SendMail)
+export(SendMailFrom)
 
 # APIs
 export(DefaultApi)

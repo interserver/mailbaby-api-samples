@@ -227,11 +227,11 @@ export interface SendMail {
      */
     body: string;
     /**
-     * 
-     * @type {MailContact}
+     * The contact whom is the this email is from.
+     * @type {Array<SendMailFrom>}
      * @memberof SendMail
      */
-    from: MailContact;
+    from: Array<SendMailFrom>;
     /**
      * The Contact whom is the primary recipient of this email.
      * @type {Array<MailContact>}
@@ -268,6 +268,25 @@ export interface SendMail {
      * @memberof SendMail
      */
     attachments?: Array<MailAttachment>;
+}
+/**
+ * An Email Contact
+ * @export
+ * @interface SendMailFrom
+ */
+export interface SendMailFrom {
+    /**
+     * The email address
+     * @type {string}
+     * @memberof SendMailFrom
+     */
+    email: string;
+    /**
+     * Optional contact name
+     * @type {string}
+     * @memberof SendMailFrom
+     */
+    name?: string;
 }
 /**
  * DefaultApi - fetch parameter creator
@@ -416,7 +435,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * @param {SendMail} body 
          * @param {string} subject 
          * @param {string} body 
-         * @param {MailContact} from 
+         * @param {Array<SendMailFrom>} from 
          * @param {Array<MailContact>} to 
          * @param {number} id 
          * @param {Array<MailContact>} replyto 
@@ -426,7 +445,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById(body: SendMail, subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options: any = {}): FetchArgs {
+        sendMailById(body: SendMail, subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options: any = {}): FetchArgs {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling sendMailById.');
@@ -490,8 +509,10 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 localVarFormParams.set('body', body as any);
             }
 
-            if (from !== undefined) {
-                localVarFormParams.set('from', from as any);
+            if (from) {
+                from.forEach((element) => {
+                    localVarFormParams.append('from', element as any);
+                })
             }
 
             if (to) {
@@ -717,7 +738,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {SendMail} body 
          * @param {string} subject 
          * @param {string} body 
-         * @param {MailContact} from 
+         * @param {Array<SendMailFrom>} from 
          * @param {Array<MailContact>} to 
          * @param {number} id 
          * @param {Array<MailContact>} replyto 
@@ -727,7 +748,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById(body: SendMail, subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
+        sendMailById(body: SendMail, subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
             const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMailById(body, subject, body, from, to, id, replyto, cc, bcc, attachments, options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -833,7 +854,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
          * @param {SendMail} body 
          * @param {string} subject 
          * @param {string} body 
-         * @param {MailContact} from 
+         * @param {Array<SendMailFrom>} from 
          * @param {Array<MailContact>} to 
          * @param {number} id 
          * @param {Array<MailContact>} replyto 
@@ -843,7 +864,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById(body: SendMail, subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any) {
+        sendMailById(body: SendMail, subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any) {
             return DefaultApiFp(configuration).sendMailById(body, subject, body, from, to, id, replyto, cc, bcc, attachments, options)(fetch, basePath);
         },
         /**
@@ -931,7 +952,7 @@ export class DefaultApi extends BaseAPI {
      * @param {SendMail} body 
      * @param {string} subject 
      * @param {string} body 
-     * @param {MailContact} from 
+     * @param {Array<SendMailFrom>} from 
      * @param {Array<MailContact>} to 
      * @param {number} id 
      * @param {Array<MailContact>} replyto 
@@ -942,7 +963,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public sendMailById(body: SendMail, subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any) {
+    public sendMailById(body: SendMail, subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any) {
         return DefaultApiFp(this.configuration).sendMailById(body, subject, body, from, to, id, replyto, cc, bcc, attachments, options)(this.fetch, this.basePath);
     }
 

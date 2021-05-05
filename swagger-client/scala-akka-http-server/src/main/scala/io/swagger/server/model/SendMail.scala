@@ -9,7 +9,7 @@ package io.swagger.server.model
  * @param subject The subject or title of the email for example: ''Your Package has been Delivered!''
  * @param body The main email contents. for example: ''The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
 ''
- * @param from 
+ * @param from The contact whom is the this email is from.
  * @param to The Contact whom is the primary recipient of this email.
  * @param id The ID of the Mail order within our system to use as the Mail Account. for example: ''5000''
  * @param replyto Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
@@ -20,7 +20,7 @@ package io.swagger.server.model
 case class SendMail (
   subject: String,
   body: String,
-  from: MailContact,
+  from: List[SendMail_from],
   to: List[MailContact],
   id: Long,
   replyto: Option[List[MailContact]],

@@ -13,6 +13,7 @@ import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
 import io.swagger.model.SendMail;
+import io.swagger.model.SendMailFrom;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micronaut.http.*;
 import io.micronaut.http.annotation.*;
@@ -30,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T04:12:10.266172-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T04:30:04.105520-04:00[America/New_York]")
 @Controller
 public interface MailApi {
 
@@ -97,7 +98,7 @@ public interface MailApi {
     @Post(value = "/mail/send", produces = { "application/json" }, consumes = {"application/json", "application/x-www-form-urlencoded"})
     default Single<HttpResponse<GenericResponse>> sendMailById(@Parameter(description = "") @QueryValue(value = "subject")  String subject
 ,@Parameter(description = "") @QueryValue(value = "body")  String body
-,@Parameter(description = "") @QueryValue(value = "from")  MailContact from
+,@Parameter(description = "") @QueryValue(value = "from")  List<SendMailFrom> from
 ,@Parameter(description = "") @QueryValue(value = "to")  List<MailContact> to
 ,@Parameter(description = "") @QueryValue(value = "id")  Long id
 ,@Parameter(description = "") @QueryValue(value = "replyto")  List<MailContact> replyto

@@ -19,6 +19,7 @@ import io.swagger.client.models.MailLog
 import io.swagger.client.models.MailOrder
 import io.swagger.client.models.MailOrders
 import io.swagger.client.models.SendMail
+import io.swagger.client.models.SendMailFrom
 
 import io.swagger.client.infrastructure.*
 
@@ -165,7 +166,7 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
      * @return GenericResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun sendMailById(subject: kotlin.String, body: kotlin.String, from: MailContact, to: kotlin.Array<MailContact>, id: kotlin.Long, replyto: kotlin.Array<MailContact>, cc: kotlin.Array<MailContact>, bcc: kotlin.Array<MailContact>, attachments: kotlin.Array<MailAttachment>): GenericResponse {
+    fun sendMailById(subject: kotlin.String, body: kotlin.String, from: kotlin.Array<SendMailFrom>, to: kotlin.Array<MailContact>, id: kotlin.Long, replyto: kotlin.Array<MailContact>, cc: kotlin.Array<MailContact>, bcc: kotlin.Array<MailContact>, attachments: kotlin.Array<MailAttachment>): GenericResponse {
         val localVariableBody: kotlin.Any? = mapOf("subject" to "$subject", "body" to "$body", "from" to "$from", "to" to "$to", "id" to "$id", "replyto" to "$replyto", "cc" to "$cc", "bcc" to "$bcc", "attachments" to "$attachments")
         
         val localVariableHeaders: kotlin.collections.Map<kotlin.String, kotlin.String> = mapOf("Content-Type" to "multipart/form-data")

@@ -425,7 +425,9 @@ components:
         - name: John Doe
           email: johndoe@company.com
         from:
-          name: John Doe
+        - name: John Doe
+          email: johndoe@company.com
+        - name: John Doe
           email: johndoe@company.com
         to:
         - name: John Doe
@@ -446,7 +448,10 @@ components:
             The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
           type: string
         from:
-          $ref: '#/components/schemas/MailContact'
+          description: The contact whom is the this email is from.
+          items:
+            $ref: '#/components/schemas/SendMail_from'
+          type: array
         to:
           description: The Contact whom is the primary recipient of this email.
           items:
@@ -490,6 +495,23 @@ components:
       - subject
       - to
       title: Email details
+      type: object
+    SendMail_from:
+      description: An Email Contact
+      example:
+        name: John Doe
+        email: johndoe@company.com
+      properties:
+        email:
+          description: The email address
+          example: johndoe@company.com
+          type: string
+        name:
+          description: Optional contact name
+          example: John Doe
+          type: string
+      required:
+      - email
       type: object
   securitySchemes:
     apiKeyAuth:

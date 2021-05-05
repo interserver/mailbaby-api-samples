@@ -116,6 +116,7 @@ Class | Method | HTTP request | Description
  - [MailBabyApi.MailOrder](docs/MailOrder.md)
  - [MailBabyApi.MailOrders](docs/MailOrders.md)
  - [MailBabyApi.SendMail](docs/SendMail.md)
+ - [MailBabyApi.SendMailFrom](docs/SendMailFrom.md)
 
 ## Documentation for Authorization
 

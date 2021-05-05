@@ -9,6 +9,7 @@ from swagger_server.models.mail_log import MailLog  # noqa: E501
 from swagger_server.models.mail_order import MailOrder  # noqa: E501
 from swagger_server.models.mail_orders import MailOrders  # noqa: E501
 from swagger_server.models.send_mail import SendMail  # noqa: E501
+from swagger_server.models.send_mail_from import SendMailFrom  # noqa: E501
 from swagger_server import util
 
 
@@ -91,7 +92,7 @@ def send_mail_by_id(subject, body, _from, to, id, replyto, cc, bcc, attachments)
     :param body: 
     :type body: str
     :param _from: 
-    :type _from: dict | bytes
+    :type _from: list | bytes
     :param to: 
     :type to: list | bytes
     :param id: 
@@ -108,7 +109,7 @@ def send_mail_by_id(subject, body, _from, to, id, replyto, cc, bcc, attachments)
     :rtype: GenericResponse
     """
     if connexion.request.is_json:
-        _from = MailContact.from_dict(connexion.request.get_json())  # noqa: E501
+        _from = [SendMailFrom.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
     if connexion.request.is_json:
         to = [MailContact.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
     if connexion.request.is_json:

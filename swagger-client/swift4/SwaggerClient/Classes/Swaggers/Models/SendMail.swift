@@ -17,7 +17,8 @@ public struct SendMail: Codable {
     /** The main email contents. */
     public var body: String
 
-    public var from: MailContact
+    /** The contact whom is the this email is from. */
+    public var from: [SendMailFrom]
 
     /** The Contact whom is the primary recipient of this email. */
     public var to: [MailContact]
@@ -36,7 +37,7 @@ public struct SendMail: Codable {
 
     /** Optional file attachments to include in the email */
     public var attachments: [MailAttachment]?
-    public init(subject: String, body: String, from: MailContact, to: [MailContact], _id: Int64, replyto: [MailContact]? = nil, cc: [MailContact]? = nil, bcc: [MailContact]? = nil, attachments: [MailAttachment]? = nil) { 
+    public init(subject: String, body: String, from: [SendMailFrom], to: [MailContact], _id: Int64, replyto: [MailContact]? = nil, cc: [MailContact]? = nil, bcc: [MailContact]? = nil, attachments: [MailAttachment]? = nil) { 
         self.subject = subject
         self.body = body
         self.from = from

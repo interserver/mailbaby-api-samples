@@ -21,6 +21,7 @@ import io.swagger.client.model.MailLog;
 import io.swagger.client.model.MailOrder;
 import io.swagger.client.model.MailOrders;
 import io.swagger.client.model.SendMail;
+import io.swagger.client.model.SendMailFrom;
 import org.junit.Test;
 import org.junit.Ignore;
 

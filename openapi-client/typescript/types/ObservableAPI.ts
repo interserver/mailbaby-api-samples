@@ -10,6 +10,7 @@ import { MailContact } from '../models/MailContact';
 import { MailLog } from '../models/MailLog';
 import { MailOrder } from '../models/MailOrder';
 import { SendMail } from '../models/SendMail';
+import { SendMailFrom } from '../models/SendMailFrom';
 
 import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
 export class ObservableDefaultApi {

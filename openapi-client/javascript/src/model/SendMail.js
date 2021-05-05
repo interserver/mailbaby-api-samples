@@ -14,6 +14,7 @@
 import ApiClient from '../ApiClient';
 import MailAttachment from './MailAttachment';
 import MailContact from './MailContact';
+import SendMailFrom from './SendMailFrom';
 
 /**
  * The SendMail model module.
@@ -27,7 +28,7 @@ class SendMail {
      * @alias module:model/SendMail
      * @param subject {String} The subject or title of the email
      * @param body {String} The main email contents.
-     * @param from {module:model/MailContact} 
+     * @param from {Array.<module:model/SendMailFrom>} The contact whom is the this email is from.
      * @param to {Array.<module:model/MailContact>} The Contact whom is the primary recipient of this email.
      * @param id {Number} The ID of the Mail order within our system to use as the Mail Account.
      */
@@ -67,7 +68,7 @@ class SendMail {
                 obj['body'] = ApiClient.convertToType(data['body'], 'String');
             }
             if (data.hasOwnProperty('from')) {
-                obj['from'] = MailContact.constructFromObject(data['from']);
+                obj['from'] = ApiClient.convertToType(data['from'], [SendMailFrom]);
             }
             if (data.hasOwnProperty('to')) {
                 obj['to'] = ApiClient.convertToType(data['to'], [MailContact]);
@@ -107,7 +108,8 @@ SendMail.prototype['subject'] = undefined;
 SendMail.prototype['body'] = undefined;
 
 /**
- * @member {module:model/MailContact} from
+ * The contact whom is the this email is from.
+ * @member {Array.<module:model/SendMailFrom>} from
  */
 SendMail.prototype['from'] = undefined;
 

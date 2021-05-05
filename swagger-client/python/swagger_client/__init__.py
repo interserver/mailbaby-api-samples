@@ -28,3 +28,4 @@ from swagger_client.models.mail_log import MailLog
 from swagger_client.models.mail_order import MailOrder
 from swagger_client.models.mail_orders import MailOrders
 from swagger_client.models.send_mail import SendMail
+from swagger_client.models.send_mail_from import SendMailFrom

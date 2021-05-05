@@ -30,7 +30,7 @@ class SendMail(object):
     swagger_types = {
         'subject': 'str',
         'body': 'str',
-        '_from': 'MailContact',
+        '_from': 'list[SendMailFrom]',
         'to': 'list[MailContact]',
         'id': 'int',
         'replyto': 'list[MailContact]',
@@ -131,9 +131,10 @@ class SendMail(object):
     def _from(self):
         """Gets the _from of this SendMail.  # noqa: E501
 
+        The contact whom is the this email is from.  # noqa: E501
 
         :return: The _from of this SendMail.  # noqa: E501
-        :rtype: MailContact
+        :rtype: list[SendMailFrom]
         """
         return self.__from
 
@@ -141,9 +142,10 @@ class SendMail(object):
     def _from(self, _from):
         """Sets the _from of this SendMail.
 
+        The contact whom is the this email is from.  # noqa: E501
 
         :param _from: The _from of this SendMail.  # noqa: E501
-        :type: MailContact
+        :type: list[SendMailFrom]
         """
         if _from is None:
             raise ValueError("Invalid value for `_from`, must not be `None`")  # noqa: E501

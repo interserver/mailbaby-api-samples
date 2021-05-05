@@ -79,6 +79,7 @@ private class OASSendMailTest {
     @isTest
     private static void defaultValuesPopulated() {
         OASSendMail sendMail = new OASSendMail();
+        System.assertEquals(new List<OASSendMailFrom>(), sendMail.r_from);
         System.assertEquals(new List<OASMailContact>(), sendMail.to);
         System.assertEquals(new List<OASMailContact>(), sendMail.replyto);
         System.assertEquals(new List<OASMailContact>(), sendMail.cc);
@@ -86,7 +87,6 @@ private class OASSendMailTest {
         System.assertEquals(new List<OASMailAttachment>(), sendMail.attachments);
         System.assertEquals(null, sendMail.subject);
         System.assertEquals(null, sendMail.body);
-        System.assertEquals(null, sendMail.r_from);
         System.assertEquals(null, sendMail.id);
     }
 }

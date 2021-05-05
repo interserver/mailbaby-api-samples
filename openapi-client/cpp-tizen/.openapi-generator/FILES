@@ -26,3 +26,5 @@ src/Object.h
 src/RequestInfo.h
 src/SendMail.cpp
 src/SendMail.h
+src/SendMailFrom.cpp
+src/SendMailFrom.h

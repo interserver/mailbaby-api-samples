@@ -17,7 +17,7 @@
 #'
 #' @field body  character 
 #'
-#' @field from  \link{MailContact} 
+#' @field from  list( \link{SendMailFrom} ) 
 #'
 #' @field to  list( \link{MailContact} ) 
 #'
@@ -59,7 +59,8 @@ SendMail <- R6::R6Class(
         self$`body` <- `body`
       }
       if (!missing(`from`)) {
-        stopifnot(R6::is.R6(`from`))
+        stopifnot(is.vector(`from`), length(`from`) != 0)
+        sapply(`from`, function(x) stopifnot(R6::is.R6(x)))
         self$`from` <- `from`
       }
       if (!missing(`to`)) {
@@ -104,7 +105,7 @@ SendMail <- R6::R6Class(
       }
       if (!is.null(self$`from`)) {
         SendMailObject[['from']] <-
-          self$`from`$toJSON()
+          lapply(self$`from`, function(x) x$toJSON())
       }
       if (!is.null(self$`to`)) {
         SendMailObject[['to']] <-
@@ -142,9 +143,7 @@ SendMail <- R6::R6Class(
         self$`body` <- SendMailObject$`body`
       }
       if (!is.null(SendMailObject$`from`)) {
-        fromObject <- MailContact$new()
-        fromObject$fromJSON(jsonlite::toJSON(SendMailObject$from, auto_unbox = TRUE, digits = NA))
-        self$`from` <- fromObject
+        self$`from` <- ApiClient$new()$deserializeObj(SendMailObject$`from`, "array[SendMailFrom]", loadNamespace("openapi"))
       }
       if (!is.null(SendMailObject$`to`)) {
         self$`to` <- ApiClient$new()$deserializeObj(SendMailObject$`to`, "array[MailContact]", loadNamespace("openapi"))
@@ -185,9 +184,9 @@ SendMail <- R6::R6Class(
         if (!is.null(self$`from`)) {
         sprintf(
         '"from":
-        %s
-        ',
-        jsonlite::toJSON(self$`from`$toJSON(), auto_unbox=TRUE, digits = NA)
+        [%s]
+',
+        paste(sapply(self$`from`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox=TRUE, digits = NA)), collapse=",")
         )},
         if (!is.null(self$`to`)) {
         sprintf(
@@ -239,7 +238,7 @@ SendMail <- R6::R6Class(
       SendMailObject <- jsonlite::fromJSON(SendMailJson)
       self$`subject` <- SendMailObject$`subject`
       self$`body` <- SendMailObject$`body`
-      self$`from` <- MailContact$new()$fromJSON(jsonlite::toJSON(SendMailObject$from, auto_unbox = TRUE, digits = NA))
+      self$`from` <- ApiClient$new()$deserializeObj(SendMailObject$`from`, "array[SendMailFrom]", loadNamespace("openapi"))
       self$`to` <- ApiClient$new()$deserializeObj(SendMailObject$`to`, "array[MailContact]", loadNamespace("openapi"))
       self$`id` <- SendMailObject$`id`
       self$`replyto` <- ApiClient$new()$deserializeObj(SendMailObject$`replyto`, "array[MailContact]", loadNamespace("openapi"))

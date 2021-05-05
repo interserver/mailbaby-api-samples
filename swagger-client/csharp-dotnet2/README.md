@@ -218,6 +218,7 @@ Class | Method | HTTP request | Description
  - [IO.Swagger.Model.MailOrder](docs/MailOrder.md)
  - [IO.Swagger.Model.MailOrders](docs/MailOrders.md)
  - [IO.Swagger.Model.SendMail](docs/SendMail.md)
+ - [IO.Swagger.Model.SendMailFrom](docs/SendMailFrom.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization

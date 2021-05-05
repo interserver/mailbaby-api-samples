@@ -17,6 +17,7 @@
 [main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
 [main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
 [main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift5/OpenAPIClient/Classes/OpenAPIs/Models/GenericResponse.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift5/docs/GenericResponse.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift5/OpenAPIClient/Classes/OpenAPIs/Models/MailAttachment.swift
@@ -31,12 +32,14 @@
 [main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
 [main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
 [main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
+[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift5/OpenAPIClient/Classes/OpenAPIs/Models/ModelErrorResponse.swift
 [main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift5/docs/ModelErrorResponse.md
-[main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift5/OpenAPIClient/Classes/OpenAPIs/Models/SendMail.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift5/docs/SendMail.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift5/OpenAPIClient/Classes/OpenAPIs/Models/SendMailFrom.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift5/docs/SendMailFrom.md
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse
 [main] WARN  o.o.c.languages.Swift5ClientCodegen - ErrorResponse (reserved word) cannot be used as model name. Renamed to ModelErrorResponse

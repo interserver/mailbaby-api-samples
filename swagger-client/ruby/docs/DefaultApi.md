@@ -284,7 +284,7 @@ end
 api_instance = SwaggerClient::DefaultApi.new
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
-from = SwaggerClient::MailContact.new # MailContact | 
+from = [SwaggerClient::SendMailFrom.new] # Array<SendMailFrom> | 
 to = [SwaggerClient::MailContact.new] # Array<MailContact> | 
 id = 789 # Integer | 
 replyto = [SwaggerClient::MailContact.new] # Array<MailContact> | 
@@ -308,7 +308,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **String**|  | 
  **body** | **String**|  | 
- **from** | [**MailContact**](.md)|  | 
+ **from** | [**Array&lt;SendMailFrom&gt;**](SendMailFrom.md)|  | 
  **to** | [**Array&lt;MailContact&gt;**](MailContact.md)|  | 
  **id** | **Integer**|  | 
  **replyto** | [**Array&lt;MailContact&gt;**](MailContact.md)|  | 

@@ -13,6 +13,7 @@ docs/MailContact.md
 docs/MailLog.md
 docs/MailOrder.md
 docs/SendMail.md
+docs/SendMailFrom.md
 git_push.sh
 mono_nunit_test.sh
 src/Org.OpenAPITools.Test/Api/DefaultApiTests.cs
@@ -22,6 +23,7 @@ src/Org.OpenAPITools.Test/Model/MailAttachmentTests.cs
 src/Org.OpenAPITools.Test/Model/MailContactTests.cs
 src/Org.OpenAPITools.Test/Model/MailLogTests.cs
 src/Org.OpenAPITools.Test/Model/MailOrderTests.cs
+src/Org.OpenAPITools.Test/Model/SendMailFromTests.cs
 src/Org.OpenAPITools.Test/Model/SendMailTests.cs
 src/Org.OpenAPITools.Test/Org.OpenAPITools.Test.csproj
 src/Org.OpenAPITools.Test/packages.config
@@ -42,6 +44,7 @@ src/Org.OpenAPITools/Model/MailContact.cs
 src/Org.OpenAPITools/Model/MailLog.cs
 src/Org.OpenAPITools/Model/MailOrder.cs
 src/Org.OpenAPITools/Model/SendMail.cs
+src/Org.OpenAPITools/Model/SendMailFrom.cs
 src/Org.OpenAPITools/Org.OpenAPITools.csproj
 src/Org.OpenAPITools/Org.OpenAPITools.nuspec
 src/Org.OpenAPITools/Properties/AssemblyInfo.cs

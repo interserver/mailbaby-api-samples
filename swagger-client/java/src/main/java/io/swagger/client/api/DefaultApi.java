@@ -34,6 +34,7 @@ import io.swagger.client.model.MailLog;
 import io.swagger.client.model.MailOrder;
 import io.swagger.client.model.MailOrders;
 import io.swagger.client.model.SendMail;
+import io.swagger.client.model.SendMailFrom;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -674,7 +675,7 @@ public class DefaultApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call sendMailByIdCall(String subject, String body, MailContact from, List<MailContact> to, Long id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call sendMailByIdCall(String subject, String body, List<SendMailFrom> from, List<MailContact> to, Long id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -734,7 +735,7 @@ public class DefaultApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call sendMailByIdValidateBeforeCall(String subject, String body, MailContact from, List<MailContact> to, Long id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call sendMailByIdValidateBeforeCall(String subject, String body, List<SendMailFrom> from, List<MailContact> to, Long id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'subject' is set
         if (subject == null) {
             throw new ApiException("Missing the required parameter 'subject' when calling sendMailById(Async)");
@@ -796,7 +797,7 @@ public class DefaultApi {
      * @return GenericResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GenericResponse sendMailById(String subject, String body, MailContact from, List<MailContact> to, Long id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments) throws ApiException {
+    public GenericResponse sendMailById(String subject, String body, List<SendMailFrom> from, List<MailContact> to, Long id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments) throws ApiException {
         ApiResponse<GenericResponse> resp = sendMailByIdWithHttpInfo(subject, body, from, to, id, replyto, cc, bcc, attachments);
         return resp.getData();
     }
@@ -816,7 +817,7 @@ public class DefaultApi {
      * @return ApiResponse&lt;GenericResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GenericResponse> sendMailByIdWithHttpInfo(String subject, String body, MailContact from, List<MailContact> to, Long id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments) throws ApiException {
+    public ApiResponse<GenericResponse> sendMailByIdWithHttpInfo(String subject, String body, List<SendMailFrom> from, List<MailContact> to, Long id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments) throws ApiException {
         com.squareup.okhttp.Call call = sendMailByIdValidateBeforeCall(subject, body, from, to, id, replyto, cc, bcc, attachments, null, null);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -838,7 +839,7 @@ public class DefaultApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call sendMailByIdAsync(String subject, String body, MailContact from, List<MailContact> to, Long id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments, final ApiCallback<GenericResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call sendMailByIdAsync(String subject, String body, List<SendMailFrom> from, List<MailContact> to, Long id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments, final ApiCallback<GenericResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

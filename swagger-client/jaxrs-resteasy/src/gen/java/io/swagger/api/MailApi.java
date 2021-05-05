@@ -20,6 +20,7 @@ import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
 import io.swagger.model.SendMail;
+import io.swagger.model.SendMailFrom;
 
 import java.util.Map;
 import java.util.List;
@@ -37,7 +38,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T04:12:07.432157-04:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T04:30:01.188410-04:00[America/New_York]")public class MailApi  {
 
     @Inject MailApiService service;
 
@@ -128,7 +129,7 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendMailById(@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Parameter(description = "", required=true)@FormParam("from")  MailContact from,@Parameter(description = "", required=true)@FormParam("to")  List<MailContact> to,@Parameter(description = "", required=true)@FormParam("id")  Long id,@Parameter(description = "", required=true)@FormParam("replyto")  List<MailContact> replyto,@Parameter(description = "", required=true)@FormParam("cc")  List<MailContact> cc,@Parameter(description = "", required=true)@FormParam("bcc")  List<MailContact> bcc,@Parameter(description = "", required=true)@FormParam("attachments")  List<MailAttachment> attachments,@Context SecurityContext securityContext)
+    public Response sendMailById(@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Parameter(description = "", required=true)@FormParam("from")  List<SendMailFrom> from,@Parameter(description = "", required=true)@FormParam("to")  List<MailContact> to,@Parameter(description = "", required=true)@FormParam("id")  Long id,@Parameter(description = "", required=true)@FormParam("replyto")  List<MailContact> replyto,@Parameter(description = "", required=true)@FormParam("cc")  List<MailContact> cc,@Parameter(description = "", required=true)@FormParam("bcc")  List<MailContact> bcc,@Parameter(description = "", required=true)@FormParam("attachments")  List<MailAttachment> attachments,@Context SecurityContext securityContext)
     throws NotFoundException {
         return service.sendMailById(subject,body,from,to,id,replyto,cc,bcc,attachments,securityContext);
     }

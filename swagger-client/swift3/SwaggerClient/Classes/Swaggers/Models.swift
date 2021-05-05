@@ -444,7 +444,7 @@ class Decoders {
                 case let .success(value): _result.body = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: MailContact.self, source: sourceDictionary["from"] as AnyObject?) {
+                switch Decoders.decodeOptional(clazz: [SendMailFrom].self, source: sourceDictionary["from"] as AnyObject?) {
                 case let .success(value): _result.from = value
                 case let .failure(error): break
                 }
@@ -475,6 +475,28 @@ class Decoders {
                 return .success(_result)
             } else {
                 return .failure(.typeMismatch(expected: "SendMail", actual: "\(source)"))
+            }
+        }
+        // Decoder for [SendMailFrom]
+        Decoders.addDecoder(clazz: [SendMailFrom].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[SendMailFrom]> in
+            return Decoders.decode(clazz: [SendMailFrom].self, source: source)
+        }
+
+        // Decoder for SendMailFrom
+        Decoders.addDecoder(clazz: SendMailFrom.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<SendMailFrom> in
+            if let sourceDictionary = source as? [AnyHashable: Any] {
+                let _result = instance == nil ? SendMailFrom() : instance as! SendMailFrom
+                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["email"] as AnyObject?) {
+                case let .success(value): _result.email = value
+                case let .failure(error): break
+                }
+                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["name"] as AnyObject?) {
+                case let .success(value): _result.name = value
+                case let .failure(error): break
+                }
+                return .success(_result)
+            } else {
+                return .failure(.typeMismatch(expected: "SendMailFrom", actual: "\(source)"))
             }
         }
     }()

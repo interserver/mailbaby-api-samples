@@ -8,6 +8,7 @@ import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
 import io.swagger.model.SendMail;
+import io.swagger.model.SendMailFrom;
 
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
@@ -70,7 +71,7 @@ class MailApiControllerTest {
     void sendMailByIdWithFormTest() {
         String subject = "subject_example";
         String body = "body_example";
-        MailContact from = new MailContact();
+        List<SendMailFrom> from = Arrays.asList(new SendMailFrom());
         List<MailContact> to = Arrays.asList(new MailContact());
         Long id = 789L;
         List<MailContact> replyto = Arrays.asList(new MailContact());

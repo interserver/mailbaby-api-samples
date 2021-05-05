@@ -12,6 +12,7 @@
 
 import { MailAttachment } from './MailAttachment';
 import { MailContact } from './MailContact';
+import { SendMailFrom } from './SendMailFrom';
 import { HttpFile } from '../http/http';
 
 /**
@@ -26,7 +27,10 @@ export class SendMail {
     * The main email contents.
     */
     'body': string;
-    'from': MailContact;
+    /**
+    * The contact whom is the this email is from.
+    */
+    'from': Array<SendMailFrom>;
     /**
     * The Contact whom is the primary recipient of this email.
     */
@@ -70,7 +74,7 @@ export class SendMail {
         {
             "name": "from",
             "baseName": "from",
-            "type": "MailContact",
+            "type": "Array<SendMailFrom>",
             "format": ""
         },
         {

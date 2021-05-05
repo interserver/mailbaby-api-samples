@@ -68,4 +68,5 @@ Class | Description
  *MailLog* | Mail Order Details
  *MailOrder* | 
  *SendMail* | Details for an Email
+ *SendMail_from* | An Email Contact
 

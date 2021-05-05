@@ -10,4 +10,5 @@ openapiclient/models/model_mail_contact.nim
 openapiclient/models/model_mail_log.nim
 openapiclient/models/model_mail_order.nim
 openapiclient/models/model_send_mail.nim
+openapiclient/models/model_send_mail_from.nim
 sample_client.nim

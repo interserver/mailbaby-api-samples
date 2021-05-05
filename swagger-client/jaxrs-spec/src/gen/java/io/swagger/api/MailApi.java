@@ -8,6 +8,7 @@ import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
 import io.swagger.model.SendMail;
+import io.swagger.model.SendMailFrom;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -28,7 +29,7 @@ import javax.validation.Valid;
 
 @Path("/mail")
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-05-05T04:11:56.072505-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-05-05T04:29:50.019974-04:00[America/New_York]")
 public class MailApi {
 
     @GET
@@ -102,7 +103,7 @@ public class MailApi {
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
     })
-    public Response sendMailById(@FormParam(value = "subject")  String subject,@FormParam(value = "body")  String body,@FormParam(value = "from")  MailContact from,@FormParam(value = "to")  List<MailContact> to,@FormParam(value = "id")  Long id,@FormParam(value = "replyto")  List<MailContact> replyto,@FormParam(value = "cc")  List<MailContact> cc,@FormParam(value = "bcc")  List<MailContact> bcc,@FormParam(value = "attachments")  List<MailAttachment> attachments) {
+    public Response sendMailById(@FormParam(value = "subject")  String subject,@FormParam(value = "body")  String body,@FormParam(value = "from")  List<SendMailFrom> from,@FormParam(value = "to")  List<MailContact> to,@FormParam(value = "id")  Long id,@FormParam(value = "replyto")  List<MailContact> replyto,@FormParam(value = "cc")  List<MailContact> cc,@FormParam(value = "bcc")  List<MailContact> bcc,@FormParam(value = "attachments")  List<MailAttachment> attachments) {
         return Response.ok().entity("magic!").build();
     }
     @GET

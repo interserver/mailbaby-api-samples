@@ -11,6 +11,7 @@ docs/MailContact.md
 docs/MailLog.md
 docs/MailOrder.md
 docs/SendMail.md
+docs/SendMailFrom.md
 git_push.sh
 src/apis/configuration.rs
 src/apis/default_api.rs
@@ -24,3 +25,4 @@ src/models/mail_log.rs
 src/models/mail_order.rs
 src/models/mod.rs
 src/models/send_mail.rs
+src/models/send_mail_from.rs

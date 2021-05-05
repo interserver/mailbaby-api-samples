@@ -44,6 +44,7 @@ Class | Method | HTTP request | Description
  - [MailOrder](docs/MailOrder.md)
  - [ModelErrorResponse](docs/ModelErrorResponse.md)
  - [SendMail](docs/SendMail.md)
+ - [SendMailFrom](docs/SendMailFrom.md)
 
 
 ## Documentation For Authorization

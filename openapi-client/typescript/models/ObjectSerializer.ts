@@ -5,6 +5,7 @@ export * from './MailContact';
 export * from './MailLog';
 export * from './MailOrder';
 export * from './SendMail';
+export * from './SendMailFrom';
 
 import { ErrorResponse } from './ErrorResponse';
 import { GenericResponse } from './GenericResponse';
@@ -13,6 +14,7 @@ import { MailContact } from './MailContact';
 import { MailLog } from './MailLog';
 import { MailOrder } from './MailOrder';
 import { SendMail } from './SendMail';
+import { SendMailFrom } from './SendMailFrom';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -43,6 +45,7 @@ let typeMap: {[index: string]: any} = {
     "MailLog": MailLog,
     "MailOrder": MailOrder,
     "SendMail": SendMail,
+    "SendMailFrom": SendMailFrom,
 }
 
 export class ObjectSerializer {

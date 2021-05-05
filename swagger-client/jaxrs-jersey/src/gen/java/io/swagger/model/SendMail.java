@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.model.MailAttachment;
 import io.swagger.model.MailContact;
+import io.swagger.model.SendMailFrom;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ import javax.validation.Valid;
  * Details for an Email
  */
 @Schema(description = "Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-05T04:11:58.544220-04:00[America/New_York]")public class SendMail   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-05T04:29:52.553691-04:00[America/New_York]")public class SendMail   {
   @JsonProperty("subject")
   private String subject = null;
 
@@ -35,7 +36,7 @@ import javax.validation.Valid;
   private String body = null;
 
   @JsonProperty("from")
-  private MailContact from = null;
+  private List<SendMailFrom> from = new ArrayList<SendMailFrom>();
 
   @JsonProperty("to")
   private List<MailContact> to = new ArrayList<MailContact>();
@@ -95,24 +96,29 @@ import javax.validation.Valid;
     this.body = body;
   }
 
-  public SendMail from(MailContact from) {
+  public SendMail from(List<SendMailFrom> from) {
     this.from = from;
     return this;
   }
 
+  public SendMail addFromItem(SendMailFrom fromItem) {
+    this.from.add(fromItem);
+    return this;
+  }
+
   /**
-   * Get from
+   * The contact whom is the this email is from.
    * @return from
    **/
   @JsonProperty("from")
-  @Schema(required = true, description = "")
+  @Schema(required = true, description = "The contact whom is the this email is from.")
   @NotNull
   @Valid
-  public MailContact getFrom() {
+  public List<SendMailFrom> getFrom() {
     return from;
   }
 
-  public void setFrom(MailContact from) {
+  public void setFrom(List<SendMailFrom> from) {
     this.from = from;
   }
 

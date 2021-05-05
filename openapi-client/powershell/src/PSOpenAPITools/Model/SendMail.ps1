@@ -20,7 +20,7 @@ The subject or title of the email
 .PARAMETER Body
 The main email contents.
 .PARAMETER VarFrom
-No description available.
+The contact whom is the this email is from.
 .PARAMETER To
 The Contact whom is the primary recipient of this email.
 .PARAMETER Id
@@ -48,7 +48,7 @@ function Initialize-SendMail {
         [String]
         ${Body},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject]
+        [PSCustomObject[]]
         ${VarFrom},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]

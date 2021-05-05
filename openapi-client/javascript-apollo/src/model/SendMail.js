@@ -14,6 +14,7 @@
 import ApiClient from '../ApiClient';
 import MailAttachment from './MailAttachment';
 import MailContact from './MailContact';
+import SendMailFrom from './SendMailFrom';
 
 /**
  * The SendMail model module.
@@ -32,8 +33,12 @@ class SendMail {
      */
     body;
     /**
-     * @member {MailContact} from
-     * @type {MailContact}
+     * @member {Array.<CodegenProperty{openApiType='SendMailFrom', baseName='from', complexType='SendMailFrom', getter='getFrom', setter='setFrom', description='null', dataType='SendMailFrom', datatypeWithEnum='SendMailFrom', dataFormat='null', name='from', min='null', max='null', defaultValue='null', defaultValueWithParam=' = SendMailFrom.constructFromObject(data['from']);', baseType='SendMailFrom', containerType='null', title='null', unescapedDescription='null', maxLength=null, minLength=null, pattern='null', example='null', jsonSchema='{
+  "$ref" : "#/components/schemas/SendMail_from"
+}', minimum='null', maximum='null', exclusiveMinimum=false, exclusiveMaximum=false, required=false, deprecated=false, hasMoreNonReadOnly=false, isPrimitiveType=false, isModel=true, isContainer=false, isString=false, isNumeric=false, isInteger=false, isLong=false, isNumber=false, isFloat=false, isDouble=false, isDecimal=false, isByteArray=false, isBinary=false, isFile=false, isBoolean=false, isDate=false, isDateTime=false, isUuid=false, isUri=false, isEmail=false, isFreeFormObject=false, isArray=false, isMap=false, isEnum=false, isReadOnly=false, isWriteOnly=false, isNullable=false, isSelfReference=false, isCircularReference=false, isDiscriminator=false, _enum=null, allowableValues=null, items=null, additionalProperties=null, vars=[], requiredVars=[], mostInnerItems=null, vendorExtensions={}, hasValidation=false, isInherited=false, discriminatorValue='null', nameInCamelCase='From', nameInSnakeCase='FROM', enumName='null', maxItems=null, minItems=null, maxProperties=null, minProperties=null, uniqueItems=false, multipleOf=null, isXmlAttribute=false, xmlPrefix='null', xmlName='null', xmlNamespace='null', isXmlWrapped=false, isNull=false, getAdditionalPropertiesIsAnyType=false, getHasVars=false, getHasRequired=false}>} from
+     * @type {Array.<CodegenProperty{openApiType='SendMailFrom', baseName='from', complexType='SendMailFrom', getter='getFrom', setter='setFrom', description='null', dataType='SendMailFrom', datatypeWithEnum='SendMailFrom', dataFormat='null', name='from', min='null', max='null', defaultValue='null', defaultValueWithParam=' = SendMailFrom.constructFromObject(data['from']);', baseType='SendMailFrom', containerType='null', title='null', unescapedDescription='null', maxLength=null, minLength=null, pattern='null', example='null', jsonSchema='{
+  "$ref" : "#/components/schemas/SendMail_from"
+}', minimum='null', maximum='null', exclusiveMinimum=false, exclusiveMaximum=false, required=false, deprecated=false, hasMoreNonReadOnly=false, isPrimitiveType=false, isModel=true, isContainer=false, isString=false, isNumeric=false, isInteger=false, isLong=false, isNumber=false, isFloat=false, isDouble=false, isDecimal=false, isByteArray=false, isBinary=false, isFile=false, isBoolean=false, isDate=false, isDateTime=false, isUuid=false, isUri=false, isEmail=false, isFreeFormObject=false, isArray=false, isMap=false, isEnum=false, isReadOnly=false, isWriteOnly=false, isNullable=false, isSelfReference=false, isCircularReference=false, isDiscriminator=false, _enum=null, allowableValues=null, items=null, additionalProperties=null, vars=[], requiredVars=[], mostInnerItems=null, vendorExtensions={}, hasValidation=false, isInherited=false, discriminatorValue='null', nameInCamelCase='From', nameInSnakeCase='FROM', enumName='null', maxItems=null, minItems=null, maxProperties=null, minProperties=null, uniqueItems=false, multipleOf=null, isXmlAttribute=false, xmlPrefix='null', xmlName='null', xmlNamespace='null', isXmlWrapped=false, isNull=false, getAdditionalPropertiesIsAnyType=false, getHasVars=false, getHasRequired=false}>}
      */
     from;
     /**
@@ -95,7 +100,9 @@ class SendMail {
      * @alias module:model/SendMail
      * @param subject {String} The subject or title of the email
      * @param body {String} The main email contents.
-     * @param from {MailContact} 
+     * @param from {Array.<CodegenProperty{openApiType='SendMailFrom', baseName='from', complexType='SendMailFrom', getter='getFrom', setter='setFrom', description='null', dataType='SendMailFrom', datatypeWithEnum='SendMailFrom', dataFormat='null', name='from', min='null', max='null', defaultValue='null', defaultValueWithParam=' = SendMailFrom.constructFromObject(data['from']);', baseType='SendMailFrom', containerType='null', title='null', unescapedDescription='null', maxLength=null, minLength=null, pattern='null', example='null', jsonSchema='{
+  "$ref" : "#/components/schemas/SendMail_from"
+}', minimum='null', maximum='null', exclusiveMinimum=false, exclusiveMaximum=false, required=false, deprecated=false, hasMoreNonReadOnly=false, isPrimitiveType=false, isModel=true, isContainer=false, isString=false, isNumeric=false, isInteger=false, isLong=false, isNumber=false, isFloat=false, isDouble=false, isDecimal=false, isByteArray=false, isBinary=false, isFile=false, isBoolean=false, isDate=false, isDateTime=false, isUuid=false, isUri=false, isEmail=false, isFreeFormObject=false, isArray=false, isMap=false, isEnum=false, isReadOnly=false, isWriteOnly=false, isNullable=false, isSelfReference=false, isCircularReference=false, isDiscriminator=false, _enum=null, allowableValues=null, items=null, additionalProperties=null, vars=[], requiredVars=[], mostInnerItems=null, vendorExtensions={}, hasValidation=false, isInherited=false, discriminatorValue='null', nameInCamelCase='From', nameInSnakeCase='FROM', enumName='null', maxItems=null, minItems=null, maxProperties=null, minProperties=null, uniqueItems=false, multipleOf=null, isXmlAttribute=false, xmlPrefix='null', xmlName='null', xmlNamespace='null', isXmlWrapped=false, isNull=false, getAdditionalPropertiesIsAnyType=false, getHasVars=false, getHasRequired=false}>} The contact whom is the this email is from.
      * @param to {Array.<CodegenProperty{openApiType='MailContact', baseName='to', complexType='MailContact', getter='getTo', setter='setTo', description='null', dataType='MailContact', datatypeWithEnum='MailContact', dataFormat='null', name='to', min='null', max='null', defaultValue='null', defaultValueWithParam=' = MailContact.constructFromObject(data['to']);', baseType='MailContact', containerType='null', title='null', unescapedDescription='null', maxLength=null, minLength=null, pattern='null', example='null', jsonSchema='{
   "$ref" : "#/components/schemas/MailContact"
 }', minimum='null', maximum='null', exclusiveMinimum=false, exclusiveMaximum=false, required=false, deprecated=false, hasMoreNonReadOnly=false, isPrimitiveType=false, isModel=true, isContainer=false, isString=false, isNumeric=false, isInteger=false, isLong=false, isNumber=false, isFloat=false, isDouble=false, isDecimal=false, isByteArray=false, isBinary=false, isFile=false, isBoolean=false, isDate=false, isDateTime=false, isUuid=false, isUri=false, isEmail=false, isFreeFormObject=false, isArray=false, isMap=false, isEnum=false, isReadOnly=false, isWriteOnly=false, isNullable=false, isSelfReference=false, isCircularReference=false, isDiscriminator=false, _enum=null, allowableValues=null, items=null, additionalProperties=null, vars=[], requiredVars=[], mostInnerItems=null, vendorExtensions={}, hasValidation=false, isInherited=false, discriminatorValue='null', nameInCamelCase='To', nameInSnakeCase='TO', enumName='null', maxItems=null, minItems=null, maxProperties=null, minProperties=null, uniqueItems=false, multipleOf=null, isXmlAttribute=false, xmlPrefix='null', xmlName='null', xmlNamespace='null', isXmlWrapped=false, isNull=false, getAdditionalPropertiesIsAnyType=false, getHasVars=false, getHasRequired=false}>} The Contact whom is the primary recipient of this email.
@@ -137,7 +144,7 @@ class SendMail {
                 obj['body'] = ApiClient.convertToType(data['body'], 'String');
             }
             if (data.hasOwnProperty('from')) {
-                obj['from'] = MailContact.constructFromObject(data['from']);
+                obj['from'] = ApiClient.convertToType(data['from'], [SendMailFrom]);
             }
             if (data.hasOwnProperty('to')) {
                 obj['to'] = ApiClient.convertToType(data['to'], [MailContact]);

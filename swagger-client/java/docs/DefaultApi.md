@@ -295,7 +295,7 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 DefaultApi apiInstance = new DefaultApi();
 String subject = "subject_example"; // String | 
 String body = "body_example"; // String | 
-MailContact from = new MailContact(); // MailContact | 
+List<SendMailFrom> from = Arrays.asList(new SendMailFrom()); // List<SendMailFrom> | 
 List<MailContact> to = Arrays.asList(new MailContact()); // List<MailContact> | 
 Long id = 789L; // Long | 
 List<MailContact> replyto = Arrays.asList(new MailContact()); // List<MailContact> | 
@@ -317,7 +317,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **String**|  |
  **body** | **String**|  |
- **from** | [**MailContact**](.md)|  |
+ **from** | [**List&lt;SendMailFrom&gt;**](SendMailFrom.md)|  |
  **to** | [**List&lt;MailContact&gt;**](MailContact.md)|  |
  **id** | **Long**|  |
  **replyto** | [**List&lt;MailContact&gt;**](MailContact.md)|  |

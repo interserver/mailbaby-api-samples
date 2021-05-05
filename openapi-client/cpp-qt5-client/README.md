@@ -135,6 +135,7 @@ Class | Method | HTTP request | Description
  - [OAIMailLog](OAIMailLog.md)
  - [OAIMailOrder](OAIMailOrder.md)
  - [OAISendMail](OAISendMail.md)
+ - [OAISendMail_from](OAISendMail_from.md)
 
 
 ## Documentation for Servers

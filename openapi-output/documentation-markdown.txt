@@ -36,6 +36,8 @@
 [main] WARN  o.o.codegen.DefaultCodegen - escapeUnsafeCharacters should be overridden in the code generator with proper logic to escape unsafe characters
 [main] WARN  o.o.codegen.DefaultCodegen - escapeUnsafeCharacters should be overridden in the code generator with proper logic to escape unsafe characters
 [main] WARN  o.o.codegen.DefaultCodegen - escapeUnsafeCharacters should be overridden in the code generator with proper logic to escape unsafe characters
+[main] WARN  o.o.codegen.DefaultCodegen - escapeUnsafeCharacters should be overridden in the code generator with proper logic to escape unsafe characters
+[main] WARN  o.o.codegen.DefaultCodegen - escapeUnsafeCharacters should be overridden in the code generator with proper logic to escape unsafe characters
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-documentation/markdown/Models/ErrorResponse.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-documentation/markdown/Models/GenericResponse.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-documentation/markdown/Models/MailAttachment.md
@@ -43,6 +45,7 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-documentation/markdown/Models/MailLog.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-documentation/markdown/Models/MailOrder.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-documentation/markdown/Models/SendMail.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-documentation/markdown/Models/SendMailFrom.md
 [main] WARN  o.o.codegen.DefaultCodegen - escapeUnsafeCharacters should be overridden in the code generator with proper logic to escape unsafe characters
 [main] WARN  o.o.codegen.DefaultCodegen - escapeUnsafeCharacters should be overridden in the code generator with proper logic to escape unsafe characters
 [main] WARN  o.o.codegen.DefaultCodegen - escapeUnsafeCharacters should be overridden in the code generator with proper logic to escape unsafe characters

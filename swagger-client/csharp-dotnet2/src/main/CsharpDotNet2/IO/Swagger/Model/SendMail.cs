@@ -29,11 +29,12 @@ namespace IO.Swagger.Model {
     public string Body { get; set; }
 
     /// <summary>
-    /// Gets or Sets From
+    /// The contact whom is the this email is from.
     /// </summary>
+    /// <value>The contact whom is the this email is from.</value>
     [DataMember(Name="from", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "from")]
-    public MailContact From { get; set; }
+    public List<SendMailFrom> From { get; set; }
 
     /// <summary>
     /// The Contact whom is the primary recipient of this email.

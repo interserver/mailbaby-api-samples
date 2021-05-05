@@ -119,6 +119,7 @@ Class | Method | HTTP request | Description
  - [Model.MailOrder](docs/MailOrder.md)
  - [Model.MailOrders](docs/MailOrders.md)
  - [Model.SendMail](docs/SendMail.md)
+ - [Model.SendMailFrom](docs/SendMailFrom.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization

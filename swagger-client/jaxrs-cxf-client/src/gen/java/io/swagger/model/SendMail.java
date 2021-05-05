@@ -2,6 +2,7 @@ package io.swagger.model;
 
 import io.swagger.model.MailAttachment;
 import io.swagger.model.MailContact;
+import io.swagger.model.SendMailFrom;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +37,11 @@ public class SendMail   {
   **/
   private String body = null;
   
-  @Schema(required = true, description = "")
-  private MailContact from = null;
+  @Schema(required = true, description = "The contact whom is the this email is from.")
+ /**
+   * The contact whom is the this email is from.  
+  **/
+  private List<SendMailFrom> from = new ArrayList<SendMailFrom>();
   
   @Schema(required = true, description = "The Contact whom is the primary recipient of this email.")
  /**
@@ -111,20 +115,25 @@ public class SendMail   {
   }
 
  /**
-   * Get from
+   * The contact whom is the this email is from.
    * @return from
   **/
   @JsonProperty("from")
-  public MailContact getFrom() {
+  public List<SendMailFrom> getFrom() {
     return from;
   }
 
-  public void setFrom(MailContact from) {
+  public void setFrom(List<SendMailFrom> from) {
     this.from = from;
   }
 
-  public SendMail from(MailContact from) {
+  public SendMail from(List<SendMailFrom> from) {
     this.from = from;
+    return this;
+  }
+
+  public SendMail addFromItem(SendMailFrom fromItem) {
+    this.from.add(fromItem);
     return this;
   }
 

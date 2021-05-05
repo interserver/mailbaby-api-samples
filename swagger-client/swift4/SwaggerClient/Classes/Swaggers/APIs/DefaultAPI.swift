@@ -216,7 +216,7 @@ open class DefaultAPI {
      - parameter subject: (form)       - parameter body: (form)       - parameter from: (form)       - parameter to: (form)       - parameter _id: (form)       - parameter replyto: (form)       - parameter cc: (form)       - parameter bcc: (form)       - parameter attachments: (form)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendMailById(subject: String, body: String, from: MailContact, to: [MailContact], _id: Int64, replyto: [MailContact], cc: [MailContact], bcc: [MailContact], attachments: [MailAttachment], completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
+    open class func sendMailById(subject: String, body: String, from: [SendMailFrom], to: [MailContact], _id: Int64, replyto: [MailContact], cc: [MailContact], bcc: [MailContact], attachments: [MailAttachment], completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
         sendMailByIdWithRequestBuilder(subject: subject, body: body, from: from, to: to, _id: _id, replyto: replyto, cc: cc, bcc: bcc, attachments: attachments).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -238,7 +238,7 @@ open class DefaultAPI {
 
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendMailByIdWithRequestBuilder(subject: String, body: String, from: MailContact, to: [MailContact], _id: Int64, replyto: [MailContact], cc: [MailContact], bcc: [MailContact], attachments: [MailAttachment]) -> RequestBuilder<GenericResponse> {
+    open class func sendMailByIdWithRequestBuilder(subject: String, body: String, from: [SendMailFrom], to: [MailContact], _id: Int64, replyto: [MailContact], cc: [MailContact], bcc: [MailContact], attachments: [MailAttachment]) -> RequestBuilder<GenericResponse> {
         let path = "/mail/send"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)

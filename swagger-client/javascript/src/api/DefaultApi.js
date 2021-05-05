@@ -20,6 +20,7 @@ import MailLog from '../model/MailLog';
 import MailOrder from '../model/MailOrder';
 import MailOrders from '../model/MailOrders';
 import SendMail from '../model/SendMail';
+import SendMailFrom from '../model/SendMailFrom';
 
 /**
 * Default service.
@@ -214,7 +215,7 @@ export default class DefaultApi {
       let formParams = {
         'subject': subject,
         'body': body,
-        'from': from,
+        'from': this.apiClient.buildCollectionParam(from, 'multi'),
         'to': this.apiClient.buildCollectionParam(to, 'multi'),
         'id': id,
         'replyto': this.apiClient.buildCollectionParam(replyto, 'multi'),

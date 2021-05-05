@@ -14,6 +14,7 @@
 import {
     MailAttachment,
     MailContact,
+    SendMailFrom,
 } from './';
 
 /**
@@ -35,10 +36,11 @@ export interface SendMail {
      */
     body: string;
     /**
-     * @type {MailContact}
+     * The contact whom is the this email is from.
+     * @type {Array<SendMailFrom>}
      * @memberof SendMail
      */
-    from: MailContact;
+    from: Array<SendMailFrom>;
     /**
      * The Contact whom is the primary recipient of this email.
      * @type {Array<MailContact>}

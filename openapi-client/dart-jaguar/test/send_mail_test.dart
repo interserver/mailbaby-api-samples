@@ -18,7 +18,8 @@ void main() {
       // TODO
     });
 
-    // MailContact from (default value: null)
+    // The contact whom is the this email is from.
+    // List<SendMailFrom> from (default value: const [])
     test('to test the property `from`', () async {
       // TODO
     });

@@ -856,8 +856,8 @@ Details for an Email
 
 | from 
 | X 
-| MailContact  
-| 
+| List  of <<SendMail_from>> 
+| The contact whom is the this email is from.
 |  
 
 | to 
@@ -894,6 +894,31 @@ Details for an Email
 |  
 | List  of <<MailAttachment>> 
 | Optional file attachments to include in the email
+|  
+
+|===
+
+
+[#SendMailFrom]
+=== _SendMailFrom_ 
+
+An Email Contact
+
+[.fields-SendMailFrom]
+[cols="2,1,2,4,1"]
+|===         
+| Field Name| Required| Type| Description| Format
+
+| email 
+| X 
+| String  
+| The email address
+|  
+
+| name 
+|  
+| String  
+| Optional contact name
 |  
 
 |===

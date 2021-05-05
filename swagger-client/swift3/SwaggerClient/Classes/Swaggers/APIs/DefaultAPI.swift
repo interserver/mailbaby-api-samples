@@ -210,7 +210,7 @@ open class DefaultAPI: APIBase {
      - parameter attachments: (form)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendMailById(subject: String, body: String, from: MailContact, to: [MailContact], id: Int64, replyto: [MailContact], cc: [MailContact], bcc: [MailContact], attachments: [MailAttachment], completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
+    open class func sendMailById(subject: String, body: String, from: [SendMailFrom], to: [MailContact], id: Int64, replyto: [MailContact], cc: [MailContact], bcc: [MailContact], attachments: [MailAttachment], completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
         sendMailByIdWithRequestBuilder(subject: subject, body: body, from: from, to: to, id: id, replyto: replyto, cc: cc, bcc: bcc, attachments: attachments).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -239,7 +239,7 @@ open class DefaultAPI: APIBase {
      - parameter attachments: (form)  
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendMailByIdWithRequestBuilder(subject: String, body: String, from: MailContact, to: [MailContact], id: Int64, replyto: [MailContact], cc: [MailContact], bcc: [MailContact], attachments: [MailAttachment]) -> RequestBuilder<GenericResponse> {
+    open class func sendMailByIdWithRequestBuilder(subject: String, body: String, from: [SendMailFrom], to: [MailContact], id: Int64, replyto: [MailContact], cc: [MailContact], bcc: [MailContact], attachments: [MailAttachment]) -> RequestBuilder<GenericResponse> {
         let path = "/mail/send"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = body.encodeToJSON()

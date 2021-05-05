@@ -7,6 +7,7 @@
             [mail-baby-api.specs.mail-attachment :refer :all]
             [mail-baby-api.specs.error-response :refer :all]
             [mail-baby-api.specs.generic-response :refer :all]
+            [mail-baby-api.specs.send-mail-from :refer :all]
             [mail-baby-api.specs.mail-log :refer :all]
             [mail-baby-api.specs.mail-contact :refer :all]
             [mail-baby-api.specs.send-mail :refer :all]

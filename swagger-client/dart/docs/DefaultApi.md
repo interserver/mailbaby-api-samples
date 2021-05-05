@@ -210,7 +210,7 @@ var api_instance = new DefaultApi();
 var body = new SendMail(); // SendMail | 
 var subject = subject_example; // String | 
 var body = body_example; // String | 
-var from = ; // MailContact | 
+var from = []; // List<SendMailFrom> | 
 var to = []; // List<MailContact> | 
 var id = 789; // int | 
 var replyto = []; // List<MailContact> | 
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
  **body** | [**SendMail**](SendMail.md)|  | 
  **subject** | **String**|  | 
  **body** | **String**|  | 
- **from** | [**MailContact**](.md)|  | 
+ **from** | [**List&lt;SendMailFrom&gt;**](SendMailFrom.md)|  | 
  **to** | [**List&lt;MailContact&gt;**](MailContact.md)|  | 
  **id** | **int**|  | 
  **replyto** | [**List&lt;MailContact&gt;**](MailContact.md)|  | 

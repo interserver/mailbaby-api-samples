@@ -8,7 +8,7 @@
 send_mail_t *send_mail_create(
     char *subject,
     char *body,
-    mail_contact_t *from,
+    list_t *from,
     list_t *to,
     long id,
     list_t *replyto,
@@ -48,7 +48,10 @@ void send_mail_free(send_mail_t *send_mail) {
         send_mail->body = NULL;
     }
     if (send_mail->from) {
-        mail_contact_free(send_mail->from);
+        list_ForEach(listEntry, send_mail->from) {
+            send_mail_from_free(listEntry->data);
+        }
+        list_free(send_mail->from);
         send_mail->from = NULL;
     }
     if (send_mail->to) {
@@ -117,13 +120,20 @@ cJSON *send_mail_convertToJSON(send_mail_t *send_mail) {
         goto fail;
     }
     
-    cJSON *from_local_JSON = mail_contact_convertToJSON(send_mail->from);
-    if(from_local_JSON == NULL) {
-    goto fail; //model
+    cJSON *from = cJSON_AddArrayToObject(item, "from");
+    if(from == NULL) {
+    goto fail; //nonprimitive container
     }
-    cJSON_AddItemToObject(item, "from", from_local_JSON);
-    if(item->child == NULL) {
+
+    listEntry_t *fromListEntry;
+    if (send_mail->from) {
+    list_ForEach(fromListEntry, send_mail->from) {
+    cJSON *itemLocal = send_mail_from_convertToJSON(fromListEntry->data);
+    if(itemLocal == NULL) {
     goto fail;
+    }
+    cJSON_AddItemToArray(from, itemLocal);
+    }
     }
 
 
@@ -280,9 +290,24 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
         goto end;
     }
 
-    mail_contact_t *from_local_nonprim = NULL;
+    list_t *fromList;
     
-    from_local_nonprim = mail_contact_parseFromJSON(from); //nonprimitive
+    cJSON *from_local_nonprimitive;
+    if(!cJSON_IsArray(from)){
+        goto end; //nonprimitive container
+    }
+
+    fromList = list_create();
+
+    cJSON_ArrayForEach(from_local_nonprimitive,from )
+    {
+        if(!cJSON_IsObject(from_local_nonprimitive)){
+            goto end;
+        }
+        send_mail_from_t *fromItem = send_mail_from_parseFromJSON(from_local_nonprimitive);
+
+        list_addElement(fromList, fromItem);
+    }
 
     // send_mail->to
     cJSON *to = cJSON_GetObjectItemCaseSensitive(send_mailJSON, "to");
@@ -413,7 +438,7 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
     send_mail_local_var = send_mail_create (
         strdup(subject->valuestring),
         strdup(body->valuestring),
-        from_local_nonprim,
+        fromList,
         toList,
         id->valuedouble,
         replyto ? replytoList : NULL,
@@ -424,10 +449,6 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
 
     return send_mail_local_var;
 end:
-    if (from_local_nonprim) {
-        mail_contact_free(from_local_nonprim);
-        from_local_nonprim = NULL;
-    }
     return NULL;
 
 }

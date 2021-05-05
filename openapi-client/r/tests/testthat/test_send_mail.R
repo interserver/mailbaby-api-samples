@@ -22,7 +22,8 @@ test_that("body", {
 })
 
 test_that("from", {
-  # tests for the property `from` (MailContact)
+  # tests for the property `from` (array[SendMailFrom])
+  # The contact whom is the this email is from.
 
   # uncomment below to test the property 
   #expect_equal(model.instance$`from`, "EXPECTED_RESULT")

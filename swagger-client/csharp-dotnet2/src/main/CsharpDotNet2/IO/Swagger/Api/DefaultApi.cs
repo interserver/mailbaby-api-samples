@@ -53,7 +53,7 @@ namespace IO.Swagger.Api
         /// <param name="bcc"></param>
         /// <param name="attachments"></param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendMailById (string subject, string body, MailContact from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments);
+        GenericResponse SendMailById (string subject, string body, List<SendMailFrom> from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments);
         /// <summary>
         /// validatess order details before placing an order 
         /// </summary>
@@ -303,7 +303,7 @@ namespace IO.Swagger.Api
         /// <param name="bcc"></param>
         /// <param name="attachments"></param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendMailById (string subject, string body, MailContact from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments)
+        public GenericResponse SendMailById (string subject, string body, List<SendMailFrom> from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments)
         {
             // verify the required parameter 'subject' is set
             if (subject == null) throw new ApiException(400, "Missing required parameter 'subject' when calling SendMailById");

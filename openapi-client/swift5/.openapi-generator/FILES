@@ -18,6 +18,7 @@ OpenAPIClient/Classes/OpenAPIs/Models/MailLog.swift
 OpenAPIClient/Classes/OpenAPIs/Models/MailOrder.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ModelErrorResponse.swift
 OpenAPIClient/Classes/OpenAPIs/Models/SendMail.swift
+OpenAPIClient/Classes/OpenAPIs/Models/SendMailFrom.swift
 OpenAPIClient/Classes/OpenAPIs/OpenISO8601DateFormatter.swift
 OpenAPIClient/Classes/OpenAPIs/SynchronizedDictionary.swift
 OpenAPIClient/Classes/OpenAPIs/URLSessionImplementations.swift
@@ -31,5 +32,6 @@ docs/MailLog.md
 docs/MailOrder.md
 docs/ModelErrorResponse.md
 docs/SendMail.md
+docs/SendMailFrom.md
 git_push.sh
 project.yml

@@ -45,6 +45,7 @@ set(SRCS
     model/mail_log.c
     model/mail_order.c
     model/send_mail.c
+    model/send_mail_from.c
     api/DefaultAPI.c
 
 )
@@ -63,6 +64,7 @@ set(HDRS
     model/mail_log.h
     model/mail_order.h
     model/send_mail.h
+    model/send_mail_from.h
     api/DefaultAPI.h
 
 )

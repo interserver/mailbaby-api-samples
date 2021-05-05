@@ -3,6 +3,8 @@ import 'package:jaguar_serializer/jaguar_serializer.dart';
 
 import 'package:openapi/model/mail_attachment.dart';
 
+import 'package:openapi/model/send_mail_from.dart';
+
 import 'package:openapi/model/mail_contact.dart';
 
 part 'send_mail.jser.dart';
@@ -14,9 +16,9 @@ class SendMail {
    /* The main email contents. */
   @Alias('body', isNullable: false,  )
   final String body;
-  
+   /* The contact whom is the this email is from. */
   @Alias('from', isNullable: false,  )
-  final MailContact from;
+  final List<SendMailFrom> from;
    /* The Contact whom is the primary recipient of this email. */
   @Alias('to', isNullable: false,  )
   final List<MailContact> to;
@@ -44,7 +46,7 @@ class SendMail {
     
      this.subject = null,  
      this.body = null,  
-     this.from = null,  
+     this.from = const [],  
      this.to = const [],  
      this.id = null,   this.replyto = const [],  
      this.cc = const [],  

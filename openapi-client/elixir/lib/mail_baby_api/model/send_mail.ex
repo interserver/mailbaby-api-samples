@@ -23,7 +23,7 @@ defmodule MailBabyAPI.Model.SendMail do
   @type t :: %__MODULE__{
     :"subject" => String.t,
     :"body" => String.t,
-    :"from" => MailBabyAPI.Model.MailContact.t,
+    :"from" => [MailBabyAPI.Model.SendMailFrom.t],
     :"to" => [MailBabyAPI.Model.MailContact.t],
     :"id" => integer(),
     :"replyto" => [MailBabyAPI.Model.MailContact.t] | nil,
@@ -37,7 +37,7 @@ defimpl Poison.Decoder, for: MailBabyAPI.Model.SendMail do
   import MailBabyAPI.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"from", :struct, MailBabyAPI.Model.MailContact, options)
+    |> deserialize(:"from", :list, MailBabyAPI.Model.SendMailFrom, options)
     |> deserialize(:"to", :list, MailBabyAPI.Model.MailContact, options)
     |> deserialize(:"replyto", :list, MailBabyAPI.Model.MailContact, options)
     |> deserialize(:"cc", :list, MailBabyAPI.Model.MailContact, options)

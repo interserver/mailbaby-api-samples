@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.client.model.MailAttachment;
 import org.openapitools.client.model.MailContact;
+import org.openapitools.client.model.SendMailFrom;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;

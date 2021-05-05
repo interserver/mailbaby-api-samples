@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **subject** | **kotlin.String** | The subject or title of the email | 
 **body** | **kotlin.String** | The main email contents. | 
-**from** | [**MailContact**](MailContact.md) |  | 
+**from** | [**kotlin.collections.List&lt;SendMailFrom&gt;**](SendMailFrom.md) | The contact whom is the this email is from. | 
 **to** | [**kotlin.collections.List&lt;MailContact&gt;**](MailContact.md) | The Contact whom is the primary recipient of this email. | 
 **id** | **kotlin.Long** | The ID of the Mail order within our system to use as the Mail Account. | 
 **replyto** | [**kotlin.collections.List&lt;MailContact&gt;**](MailContact.md) | Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. |  [optional]

@@ -17,13 +17,14 @@ typedef struct send_mail_t send_mail_t;
 
 #include "mail_attachment.h"
 #include "mail_contact.h"
+#include "send_mail_from.h"
 
 
 
 typedef struct send_mail_t {
     char *subject; // string
     char *body; // string
-    struct mail_contact_t *from; //model
+    list_t *from; //nonprimitive container
     list_t *to; //nonprimitive container
     long id; //numeric
     list_t *replyto; //nonprimitive container
@@ -36,7 +37,7 @@ typedef struct send_mail_t {
 send_mail_t *send_mail_create(
     char *subject,
     char *body,
-    mail_contact_t *from,
+    list_t *from,
     list_t *to,
     long id,
     list_t *replyto,

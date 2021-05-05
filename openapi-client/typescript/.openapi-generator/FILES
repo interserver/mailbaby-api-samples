@@ -19,6 +19,7 @@ models/MailLog.ts
 models/MailOrder.ts
 models/ObjectSerializer.ts
 models/SendMail.ts
+models/SendMailFrom.ts
 models/all.ts
 package.json
 rxjsStub.ts

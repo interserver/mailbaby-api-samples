@@ -11,7 +11,8 @@ type t = {
     subject: string;
     (* The main email contents. *)
     body: string;
-    from: Mail_contact.t;
+    (* The contact whom is the this email is from. *)
+    from: Send_mail_from.t list;
     (* The Contact whom is the primary recipient of this email. *)
     _to: Mail_contact.t list;
     (* The ID of the Mail order within our system to use as the Mail Account. *)
@@ -27,7 +28,7 @@ type t = {
 } [@@deriving yojson { strict = false }, show ];;
 
 (** Details for an Email *)
-let create (subject : string) (body : string) (from : Mail_contact.t) (_to : Mail_contact.t list) (id : int64) : t = {
+let create (subject : string) (body : string) (from : Send_mail_from.t list) (_to : Mail_contact.t list) (id : int64) : t = {
     subject = subject;
     body = body;
     from = from;

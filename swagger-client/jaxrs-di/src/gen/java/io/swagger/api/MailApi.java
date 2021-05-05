@@ -21,6 +21,7 @@ import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
 import io.swagger.model.SendMail;
+import io.swagger.model.SendMailFrom;
 
 import java.util.Map;
 import java.util.List;
@@ -39,7 +40,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-05T04:12:01.474741-04:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-05T04:29:55.439225-04:00[America/New_York]")public class MailApi  {
 
    private MailApiService delegate;
 
@@ -142,7 +143,7 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
     public Response sendMailById(@Parameter(description = "", required=true)  @FormParam("subject")  String subject
 ,@Parameter(description = "", required=true)  @FormParam("body")  String body
-,@Parameter(description = "", required=true)  @FormParam("from")  MailContact from
+,@Parameter(description = "", required=true)  @FormParam("from")  List<SendMailFrom> from
 ,@Parameter(description = "", required=true)  @FormParam("to")  List<MailContact> to
 ,@Parameter(description = "", required=true)  @FormParam("id")  Long id
 ,@Parameter(description = "", required=true)  @FormParam("replyto")  List<MailContact> replyto

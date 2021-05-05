@@ -11,3 +11,4 @@ src/mail_baby_api/specs/mail_contact.clj
 src/mail_baby_api/specs/mail_log.clj
 src/mail_baby_api/specs/mail_order.clj
 src/mail_baby_api/specs/send_mail.clj
+src/mail_baby_api/specs/send_mail_from.clj

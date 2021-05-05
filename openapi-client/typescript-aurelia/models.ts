@@ -82,7 +82,10 @@ export interface SendMail {
    * The main email contents.
    */
   body: string;
-  from: MailContact;
+  /**
+   * The contact whom is the this email is from.
+   */
+  from: Array<SendMailFrom>;
   /**
    * The Contact whom is the primary recipient of this email.
    */
@@ -107,5 +110,20 @@ export interface SendMail {
    * Optional file attachments to include in the email
    */
   attachments?: Array<MailAttachment>;
+}
+
+
+/**
+ * An Email Contact
+ */
+export interface SendMailFrom {
+  /**
+   * The email address
+   */
+  email: string;
+  /**
+   * Optional contact name
+   */
+  name?: string;
 }
 

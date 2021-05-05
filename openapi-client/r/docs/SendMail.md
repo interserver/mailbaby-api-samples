@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **subject** | **character** | The subject or title of the email | 
 **body** | **character** | The main email contents. | 
-**from** | [**MailContact**](MailContact.md) |  | 
+**from** | [**array[SendMailFrom]**](SendMail_from.md) | The contact whom is the this email is from. | 
 **to** | [**array[MailContact]**](MailContact.md) | The Contact whom is the primary recipient of this email. | 
 **id** | **integer** | The ID of the Mail order within our system to use as the Mail Account. | 
 **replyto** | [**array[MailContact]**](MailContact.md) | Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. | [optional] 

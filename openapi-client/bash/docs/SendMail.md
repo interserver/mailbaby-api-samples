@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **subject** | **string** |  | [default to null]
 **body** | **string** |  | [default to null]
-**from** | [**MailContact**](MailContact.md) |  | [default to null]
+**from** | [**array[SendMailFrom]**](SendMailFrom.md) |  | [default to null]
 **to** | [**array[MailContact]**](MailContact.md) |  | [default to null]
 **id** | **integer** |  | [default to null]
 **replyto** | [**array[MailContact]**](MailContact.md) |  | [optional] [default to null]

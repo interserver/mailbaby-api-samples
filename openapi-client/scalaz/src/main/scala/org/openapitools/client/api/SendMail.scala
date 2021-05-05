@@ -16,7 +16,8 @@ case class SendMail (
   subject: String,
 /* The main email contents. */
   body: String,
-from: MailContact,
+/* The contact whom is the this email is from. */
+  from: List[SendMailFrom],
 /* The Contact whom is the primary recipient of this email. */
   to: List[MailContact],
 /* The ID of the Mail order within our system to use as the Mail Account. */

@@ -13,4 +13,5 @@ model/mailContact.ts
 model/mailLog.ts
 model/mailOrder.ts
 model/sendMail.ts
+model/sendMailFrom.ts
 variables.ts

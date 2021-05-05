@@ -26,7 +26,8 @@ void main() {
       // TODO
     });
 
-    // MailContact from
+    // The contact whom is the this email is from.
+    // BuiltList<SendMailFrom> from
     test('to test the property `from`', () async {
       // TODO
     });

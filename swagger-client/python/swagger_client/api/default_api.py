@@ -470,6 +470,7 @@ class DefaultApi(object):
             form_params.append(('body', params['body']))  # noqa: E501
         if '_from' in params:
             form_params.append(('from', params['_from']))  # noqa: E501
+            collection_formats['from'] = 'multi'  # noqa: E501
         if 'to' in params:
             form_params.append(('to', params['to']))  # noqa: E501
             collection_formats['to'] = 'multi'  # noqa: E501
@@ -530,7 +531,7 @@ class DefaultApi(object):
         :param async_req bool
         :param str subject: (required)
         :param str body: (required)
-        :param MailContact _from: (required)
+        :param list[SendMailFrom] _from: (required)
         :param list[MailContact] to: (required)
         :param int id: (required)
         :param list[MailContact] replyto: (required)
@@ -560,7 +561,7 @@ class DefaultApi(object):
         :param async_req bool
         :param str subject: (required)
         :param str body: (required)
-        :param MailContact _from: (required)
+        :param list[SendMailFrom] _from: (required)
         :param list[MailContact] to: (required)
         :param int id: (required)
         :param list[MailContact] replyto: (required)
@@ -640,6 +641,7 @@ class DefaultApi(object):
             form_params.append(('body', params['body']))  # noqa: E501
         if '_from' in params:
             form_params.append(('from', params['_from']))  # noqa: E501
+            collection_formats['from'] = 'multi'  # noqa: E501
         if 'to' in params:
             form_params.append(('to', params['to']))  # noqa: E501
             collection_formats['to'] = 'multi'  # noqa: E501

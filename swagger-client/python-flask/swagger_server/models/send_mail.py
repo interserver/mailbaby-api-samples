@@ -8,6 +8,7 @@ from typing import List, Dict  # noqa: F401
 from swagger_server.models.base_model_ import Model
 from swagger_server.models.mail_attachment import MailAttachment  # noqa: F401,E501
 from swagger_server.models.mail_contact import MailContact  # noqa: F401,E501
+from swagger_server.models.send_mail_from import SendMailFrom  # noqa: F401,E501
 from swagger_server import util
 
 
@@ -16,7 +17,7 @@ class SendMail(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, subject: str=None, body: str=None, _from: MailContact=None, to: List[MailContact]=None, id: int=None, replyto: List[MailContact]=None, cc: List[MailContact]=None, bcc: List[MailContact]=None, attachments: List[MailAttachment]=None):  # noqa: E501
+    def __init__(self, subject: str=None, body: str=None, _from: List[SendMailFrom]=None, to: List[MailContact]=None, id: int=None, replyto: List[MailContact]=None, cc: List[MailContact]=None, bcc: List[MailContact]=None, attachments: List[MailAttachment]=None):  # noqa: E501
         """SendMail - a model defined in Swagger
 
         :param subject: The subject of this SendMail.  # noqa: E501
@@ -24,7 +25,7 @@ class SendMail(Model):
         :param body: The body of this SendMail.  # noqa: E501
         :type body: str
         :param _from: The _from of this SendMail.  # noqa: E501
-        :type _from: MailContact
+        :type _from: List[SendMailFrom]
         :param to: The to of this SendMail.  # noqa: E501
         :type to: List[MailContact]
         :param id: The id of this SendMail.  # noqa: E501
@@ -41,7 +42,7 @@ class SendMail(Model):
         self.swagger_types = {
             'subject': str,
             'body': str,
-            '_from': MailContact,
+            '_from': List[SendMailFrom],
             'to': List[MailContact],
             'id': int,
             'replyto': List[MailContact],
@@ -133,22 +134,24 @@ class SendMail(Model):
         self._body = body
 
     @property
-    def _from(self) -> MailContact:
+    def _from(self) -> List[SendMailFrom]:
         """Gets the _from of this SendMail.
 
+        The contact whom is the this email is from.  # noqa: E501
 
         :return: The _from of this SendMail.
-        :rtype: MailContact
+        :rtype: List[SendMailFrom]
         """
         return self.__from
 
     @_from.setter
-    def _from(self, _from: MailContact):
+    def _from(self, _from: List[SendMailFrom]):
         """Sets the _from of this SendMail.
 
+        The contact whom is the this email is from.  # noqa: E501
 
         :param _from: The _from of this SendMail.
-        :type _from: MailContact
+        :type _from: List[SendMailFrom]
         """
         if _from is None:
             raise ValueError("Invalid value for `_from`, must not be `None`")  # noqa: E501

@@ -41,6 +41,7 @@ import io.swagger.server.models.MailLog
 import io.swagger.server.models.MailOrder
 import io.swagger.server.models.MailOrders
 import io.swagger.server.models.SendMail
+import io.swagger.server.models.SendMailFrom
 
 @KtorExperimentalLocationsAPI
 fun Route.DefaultApi() {

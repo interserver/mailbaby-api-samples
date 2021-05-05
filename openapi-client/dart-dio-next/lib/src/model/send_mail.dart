@@ -2,6 +2,7 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
+import 'package:openapi/src/model/send_mail_from.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/mail_attachment.dart';
 import 'package:openapi/src/model/mail_contact.dart';
@@ -21,8 +22,9 @@ abstract class SendMail implements Built<SendMail, SendMailBuilder> {
     @BuiltValueField(wireName: r'body')
     String get body;
 
+    /// The contact whom is the this email is from.
     @BuiltValueField(wireName: r'from')
-    MailContact get from;
+    BuiltList<SendMailFrom> get from;
 
     /// The Contact whom is the primary recipient of this email.
     @BuiltValueField(wireName: r'to')
@@ -80,7 +82,7 @@ class _$SendMailSerializer implements StructuredSerializer<SendMail> {
         result
             ..add(r'from')
             ..add(serializers.serialize(object.from,
-                specifiedType: const FullType(MailContact)));
+                specifiedType: const FullType(BuiltList, [FullType(SendMailFrom)])));
         result
             ..add(r'to')
             ..add(serializers.serialize(object.to,
@@ -137,7 +139,7 @@ class _$SendMailSerializer implements StructuredSerializer<SendMail> {
                     break;
                 case r'from':
                     result.from.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(MailContact)) as MailContact);
+                        specifiedType: const FullType(BuiltList, [FullType(SendMailFrom)])) as BuiltList<SendMailFrom>);
                     break;
                 case r'to':
                     result.to.replace(serializers.deserialize(value,

@@ -265,7 +265,7 @@ module SwaggerClient
       form_params = opts[:form_params] || {}
       form_params['subject'] = subject
       form_params['body'] = body
-      form_params['from'] = from
+      form_params['from'] = @api_client.build_collection_param(from, :multi)
       form_params['to'] = @api_client.build_collection_param(to, :multi)
       form_params['id'] = id
       form_params['replyto'] = @api_client.build_collection_param(replyto, :multi)
@@ -380,7 +380,7 @@ module SwaggerClient
       form_params = opts[:form_params] || {}
       form_params['subject'] = subject
       form_params['body'] = body
-      form_params['from'] = from
+      form_params['from'] = @api_client.build_collection_param(from, :multi)
       form_params['to'] = @api_client.build_collection_param(to, :multi)
       form_params['id'] = id
       form_params['replyto'] = @api_client.build_collection_param(replyto, :multi)

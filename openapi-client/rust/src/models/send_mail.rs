@@ -20,8 +20,9 @@ pub struct SendMail {
     /// The main email contents.
     #[serde(rename = "body")]
     pub body: String,
+    /// The contact whom is the this email is from.
     #[serde(rename = "from")]
-    pub from: Box<crate::models::MailContact>,
+    pub from: Vec<crate::models::SendMailFrom>,
     /// The Contact whom is the primary recipient of this email.
     #[serde(rename = "to")]
     pub to: Vec<crate::models::MailContact>,
@@ -44,11 +45,11 @@ pub struct SendMail {
 
 impl SendMail {
     /// Details for an Email
-    pub fn new(subject: String, body: String, from: crate::models::MailContact, to: Vec<crate::models::MailContact>, id: i64) -> SendMail {
+    pub fn new(subject: String, body: String, from: Vec<crate::models::SendMailFrom>, to: Vec<crate::models::MailContact>, id: i64) -> SendMail {
         SendMail {
             subject,
             body,
-            from: Box::new(from),
+            from,
             to,
             id,
             replyto: None,

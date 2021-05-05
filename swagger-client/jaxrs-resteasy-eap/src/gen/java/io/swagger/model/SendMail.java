@@ -6,16 +6,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.model.MailAttachment;
 import io.swagger.model.MailContact;
+import io.swagger.model.SendMailFrom;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T04:12:04.510488-04:00[America/New_York]")public class SendMail   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T04:29:58.444271-04:00[America/New_York]")public class SendMail   {
   private String subject = null;
   private String body = null;
-  private MailContact from = null;
+  private List<SendMailFrom> from = new ArrayList<SendMailFrom>();
   private List<MailContact> to = new ArrayList<MailContact>();
   private Long id = null;
   private List<MailContact> replyto = new ArrayList<MailContact>();
@@ -52,15 +53,16 @@ import io.swagger.v3.oas.annotations.media.Schema;
   }
 
   /**
+   * The contact whom is the this email is from.
    **/
   
-  @Schema(required = true, description = "")
+  @Schema(required = true, description = "The contact whom is the this email is from.")
   @JsonProperty("from")
   @NotNull
-  public MailContact getFrom() {
+  public List<SendMailFrom> getFrom() {
     return from;
   }
-  public void setFrom(MailContact from) {
+  public void setFrom(List<SendMailFrom> from) {
     this.from = from;
   }
 

@@ -26,6 +26,7 @@ Class | Method | HTTP request | Description
  - [MailLog](./Models/MailLog.md)
  - [MailOrder](./Models/MailOrder.md)
  - [SendMail](./Models/SendMail.md)
+ - [SendMailFrom](./Models/SendMailFrom.md)
 
 
 <a name="documentation-for-authorization"></a>

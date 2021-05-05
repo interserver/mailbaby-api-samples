@@ -37,6 +37,10 @@ force-app/main/default/classes/OASResponseMock.cls
 force-app/main/default/classes/OASResponseMock.cls-meta.xml
 force-app/main/default/classes/OASSendMail.cls
 force-app/main/default/classes/OASSendMail.cls-meta.xml
+force-app/main/default/classes/OASSendMailFrom.cls
+force-app/main/default/classes/OASSendMailFrom.cls-meta.xml
+force-app/main/default/classes/OASSendMailFromTest.cls
+force-app/main/default/classes/OASSendMailFromTest.cls-meta.xml
 force-app/main/default/classes/OASSendMailTest.cls
 force-app/main/default/classes/OASSendMailTest.cls-meta.xml
 force-app/main/default/classes/OASTest.cls

@@ -59,7 +59,7 @@ class SendMail implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'subject' => 'string',
 'body' => 'string',
-'from' => '\Interserver\Mailbaby\Model\MailContact',
+'from' => '\Interserver\Mailbaby\Model\SendMailFrom[]',
 'to' => '\Interserver\Mailbaby\Model\MailContact[]',
 'id' => 'int',
 'replyto' => '\Interserver\Mailbaby\Model\MailContact[]',
@@ -311,7 +311,7 @@ class SendMail implements ModelInterface, ArrayAccess
     /**
      * Gets from
      *
-     * @return \Interserver\Mailbaby\Model\MailContact
+     * @return \Interserver\Mailbaby\Model\SendMailFrom[]
      */
     public function getFrom()
     {
@@ -321,7 +321,7 @@ class SendMail implements ModelInterface, ArrayAccess
     /**
      * Sets from
      *
-     * @param \Interserver\Mailbaby\Model\MailContact $from from
+     * @param \Interserver\Mailbaby\Model\SendMailFrom[] $from The contact whom is the this email is from.
      *
      * @return $this
      */

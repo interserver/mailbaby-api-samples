@@ -43,7 +43,8 @@ SendMail <- R6::R6Class(
         self$`body` <- `body`
       }
       if (!missing(`from`)) {
-        stopifnot(R6::is.R6(`from`))
+        stopifnot(is.list(`from`), length(`from`) != 0)
+        lapply(`from`, function(x) stopifnot(R6::is.R6(x)))
         self$`from` <- `from`
       }
       if (!missing(`to`)) {
@@ -85,7 +86,7 @@ SendMail <- R6::R6Class(
         SendMailObject[['body']] <- self$`body`
       }
       if (!is.null(self$`from`)) {
-        SendMailObject[['from']] <- self$`from`$toJSON()
+        SendMailObject[['from']] <- lapply(self$`from`, function(x) x$toJSON())
       }
       if (!is.null(self$`to`)) {
         SendMailObject[['to']] <- lapply(self$`to`, function(x) x$toJSON())
@@ -117,9 +118,11 @@ SendMail <- R6::R6Class(
         self$`body` <- SendMailObject$`body`
       }
       if (!is.null(SendMailObject$`from`)) {
-        fromObject <- MailContact$new()
-        fromObject$fromJSON(jsonlite::toJSON(SendMailObject$from, auto_unbox = TRUE))
-        self$`from` <- fromObject
+        self$`from` <- lapply(SendMailObject$`from`, function(x) {
+          fromObject <- SendMailFrom$new()
+          fromObject$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE))
+          fromObject
+        })
       }
       if (!is.null(SendMailObject$`to`)) {
         self$`to` <- lapply(SendMailObject$`to`, function(x) {
@@ -165,7 +168,7 @@ SendMail <- R6::R6Class(
         '{
            "subject": %s,
            "body": %s,
-           "from": %s,
+           "from": [%s],
            "to": [%s],
            "id": %d,
            "replyto": [%s],
@@ -175,7 +178,7 @@ SendMail <- R6::R6Class(
         }',
         self$`subject`,
         self$`body`,
-        self$`from`$toJSON(),
+        lapply(self$`from`, function(x) paste(x$toJSON(), sep=",")),
         lapply(self$`to`, function(x) paste(x$toJSON(), sep=",")),
         self$`id`,
         lapply(self$`replyto`, function(x) paste(x$toJSON(), sep=",")),
@@ -188,8 +191,7 @@ SendMail <- R6::R6Class(
       SendMailObject <- jsonlite::fromJSON(SendMailJson)
       self$`subject` <- SendMailObject$`subject`
       self$`body` <- SendMailObject$`body`
-      MailContactObject <- MailContact$new()
-      self$`from` <- MailContactObject$fromJSON(jsonlite::toJSON(SendMailObject$from, auto_unbox = TRUE))
+      self$`from` <- lapply(SendMailObject$`from`, function(x) SendMailFrom$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
       self$`to` <- lapply(SendMailObject$`to`, function(x) MailContact$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
       self$`id` <- SendMailObject$`id`
       self$`replyto` <- lapply(SendMailObject$`replyto`, function(x) MailContact$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))

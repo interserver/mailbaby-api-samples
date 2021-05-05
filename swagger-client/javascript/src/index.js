@@ -20,6 +20,7 @@ import MailLog from './model/MailLog';
 import MailOrder from './model/MailOrder';
 import MailOrders from './model/MailOrders';
 import SendMail from './model/SendMail';
+import SendMailFrom from './model/SendMailFrom';
 import DefaultApi from './api/DefaultApi';
 
 /**
@@ -107,6 +108,12 @@ export {
      * @property {module:model/SendMail}
      */
     SendMail,
+
+    /**
+     * The SendMailFrom model constructor.
+     * @property {module:model/SendMailFrom}
+     */
+    SendMailFrom,
 
     /**
     * The DefaultApi service constructor.

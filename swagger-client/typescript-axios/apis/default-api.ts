@@ -24,6 +24,7 @@ import { MailLog } from '../models';
 import { MailOrder } from '../models';
 import { MailOrders } from '../models';
 import { SendMail } from '../models';
+import { SendMailFrom } from '../models';
 /**
  * DefaultApi - axios parameter creator
  * @export
@@ -249,9 +250,10 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             if (body !== undefined) { 
                 localVarFormParams.set('body', body as any);
             }
-
-            if (from !== undefined) { 
-                localVarFormParams.set('from', from as any);
+            if (from) {
+                from.forEach((element) => {
+                    localVarFormParams.append('from', element as any);
+                })
             }
             if (to) {
                 to.forEach((element) => {
@@ -309,7 +311,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Sends an Email
          * @param {string} subject 
          * @param {string} body 
-         * @param {MailContact} from 
+         * @param {Array&lt;SendMailFrom&gt;} from 
          * @param {Array&lt;MailContact&gt;} to 
          * @param {number} id 
          * @param {Array&lt;MailContact&gt;} replyto 
@@ -319,7 +321,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById: async (subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options: any = {}): Promise<RequestArgs> => {
+        sendMailById: async (subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'subject' is not null or undefined
             if (subject === null || subject === undefined) {
                 throw new RequiredError('subject','Required parameter subject was null or undefined when calling sendMailById.');
@@ -384,9 +386,10 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             if (body !== undefined) { 
                 localVarFormParams.set('body', body as any);
             }
-
-            if (from !== undefined) { 
-                localVarFormParams.set('from', from as any);
+            if (from) {
+                from.forEach((element) => {
+                    localVarFormParams.append('from', element as any);
+                })
             }
             if (to) {
                 to.forEach((element) => {
@@ -626,7 +629,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @summary Sends an Email
          * @param {string} subject 
          * @param {string} body 
-         * @param {MailContact} from 
+         * @param {Array&lt;SendMailFrom&gt;} from 
          * @param {Array&lt;MailContact&gt;} to 
          * @param {number} id 
          * @param {Array&lt;MailContact&gt;} replyto 
@@ -636,7 +639,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendMailById(subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+        async sendMailById(subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
             const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).sendMailById(subject, body, from, to, id, replyto, cc, bcc, attachments, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -736,7 +739,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @summary Sends an Email
          * @param {string} subject 
          * @param {string} body 
-         * @param {MailContact} from 
+         * @param {Array&lt;SendMailFrom&gt;} from 
          * @param {Array&lt;MailContact&gt;} to 
          * @param {number} id 
          * @param {Array&lt;MailContact&gt;} replyto 
@@ -746,7 +749,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById(subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any): AxiosPromise<GenericResponse> {
+        sendMailById(subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any): AxiosPromise<GenericResponse> {
             return DefaultApiFp(configuration).sendMailById(subject, body, from, to, id, replyto, cc, bcc, attachments, options).then((request) => request(axios, basePath));
         },
         /**
@@ -841,7 +844,7 @@ export class DefaultApi extends BaseAPI {
      * @summary Sends an Email
      * @param {string} subject 
      * @param {string} body 
-     * @param {MailContact} from 
+     * @param {Array&lt;SendMailFrom&gt;} from 
      * @param {Array&lt;MailContact&gt;} to 
      * @param {number} id 
      * @param {Array&lt;MailContact&gt;} replyto 
@@ -852,7 +855,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public sendMailById(subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any) {
+    public sendMailById(subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any) {
         return DefaultApiFp(this.configuration).sendMailById(subject, body, from, to, id, replyto, cc, bcc, attachments, options).then((request) => request(this.axios, this.basePath));
     }
     /**

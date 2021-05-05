@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
   **body** | [**SendMail**](SendMail.md)|  | 
   **subject** | **string**|  | 
   **body** | **string**|  | 
-  **from** | [**MailContact**](.md)|  | 
+  **from** | [**[]SendMailFrom**](SendMailFrom.md)|  | 
   **to** | [**[]MailContact**](MailContact.md)|  | 
   **id** | **int64**|  | 
   **replyto** | [**[]MailContact**](MailContact.md)|  | 

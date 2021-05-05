@@ -6,3 +6,4 @@ export * from './mail-log';
 export * from './mail-order';
 export * from './mail-orders';
 export * from './send-mail';
+export * from './send-mail-from';

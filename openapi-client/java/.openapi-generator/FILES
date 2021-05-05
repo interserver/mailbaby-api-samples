@@ -13,6 +13,7 @@ docs/MailContact.md
 docs/MailLog.md
 docs/MailOrder.md
 docs/SendMail.md
+docs/SendMailFrom.md
 git_push.sh
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
@@ -47,6 +48,7 @@ src/main/java/org/openapitools/client/model/MailContact.java
 src/main/java/org/openapitools/client/model/MailLog.java
 src/main/java/org/openapitools/client/model/MailOrder.java
 src/main/java/org/openapitools/client/model/SendMail.java
+src/main/java/org/openapitools/client/model/SendMailFrom.java
 src/test/java/org/openapitools/client/api/DefaultApiTest.java
 src/test/java/org/openapitools/client/model/ErrorResponseTest.java
 src/test/java/org/openapitools/client/model/GenericResponseTest.java
@@ -54,4 +56,5 @@ src/test/java/org/openapitools/client/model/MailAttachmentTest.java
 src/test/java/org/openapitools/client/model/MailContactTest.java
 src/test/java/org/openapitools/client/model/MailLogTest.java
 src/test/java/org/openapitools/client/model/MailOrderTest.java
+src/test/java/org/openapitools/client/model/SendMailFromTest.java
 src/test/java/org/openapitools/client/model/SendMailTest.java

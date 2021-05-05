@@ -10,6 +10,7 @@ docs/MailContact.md
 docs/MailLog.md
 docs/MailOrder.md
 docs/SendMail.md
+docs/SendMailFrom.md
 src/PSOpenAPITools/Api/DefaultApi.ps1
 src/PSOpenAPITools/Client/Configuration.ps1
 src/PSOpenAPITools/Model/ErrorResponse.ps1
@@ -19,6 +20,7 @@ src/PSOpenAPITools/Model/MailContact.ps1
 src/PSOpenAPITools/Model/MailLog.ps1
 src/PSOpenAPITools/Model/MailOrder.ps1
 src/PSOpenAPITools/Model/SendMail.ps1
+src/PSOpenAPITools/Model/SendMailFrom.ps1
 src/PSOpenAPITools/PSOpenAPITools.psm1
 src/PSOpenAPITools/Private/ApiClient.ps1
 src/PSOpenAPITools/Private/Get-CommonParameters.ps1
@@ -34,3 +36,4 @@ tests/Model/MailContact.Tests.ps1
 tests/Model/MailLog.Tests.ps1
 tests/Model/MailOrder.Tests.ps1
 tests/Model/SendMail.Tests.ps1
+tests/Model/SendMailFrom.Tests.ps1

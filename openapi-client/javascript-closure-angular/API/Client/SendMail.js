@@ -21,7 +21,8 @@ API.Client.SendMail.prototype.subject;
 API.Client.SendMail.prototype.body;
 
 /**
- * @type {!API.Client.MailContact}
+ * The contact whom is the this email is from.
+ * @type {!Array<!API.Client.SendMail_from>}
  * @export
  */
 API.Client.SendMail.prototype.from;

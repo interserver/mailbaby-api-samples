@@ -244,6 +244,7 @@ use OpenAPIClient::Object::MailContact;
 use OpenAPIClient::Object::MailLog;
 use OpenAPIClient::Object::MailOrder;
 use OpenAPIClient::Object::SendMail;
+use OpenAPIClient::Object::SendMailFrom;
 
 ````
 
@@ -265,6 +266,7 @@ use OpenAPIClient::Object::MailContact;
 use OpenAPIClient::Object::MailLog;
 use OpenAPIClient::Object::MailOrder;
 use OpenAPIClient::Object::SendMail;
+use OpenAPIClient::Object::SendMailFrom;
 
 # for displaying the API response data
 use Data::Dumper;
@@ -312,6 +314,7 @@ Class | Method | HTTP request | Description
  - [OpenAPIClient::Object::MailLog](docs/MailLog.md)
  - [OpenAPIClient::Object::MailOrder](docs/MailOrder.md)
  - [OpenAPIClient::Object::SendMail](docs/SendMail.md)
+ - [OpenAPIClient::Object::SendMailFrom](docs/SendMailFrom.md)
 
 
 # DOCUMENTATION FOR AUTHORIZATION

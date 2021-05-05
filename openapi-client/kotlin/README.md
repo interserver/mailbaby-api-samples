@@ -54,6 +54,7 @@ Class | Method | HTTP request | Description
  - [org.openapitools.client.models.MailLog](docs/MailLog.md)
  - [org.openapitools.client.models.MailOrder](docs/MailOrder.md)
  - [org.openapitools.client.models.SendMail](docs/SendMail.md)
+ - [org.openapitools.client.models.SendMailFrom](docs/SendMailFrom.md)
 
 
 <a name="documentation-for-authorization"></a>

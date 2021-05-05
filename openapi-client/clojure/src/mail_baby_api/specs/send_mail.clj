@@ -1,7 +1,7 @@
 (ns mail-baby-api.specs.send-mail
   (:require [clojure.spec.alpha :as s]
             [spec-tools.data-spec :as ds]
-            [mail-baby-api.specs.mail-contact :refer :all]
+            [mail-baby-api.specs.send-mail-from :refer :all]
             [mail-baby-api.specs.mail-contact :refer :all]
             [mail-baby-api.specs.mail-contact :refer :all]
             [mail-baby-api.specs.mail-contact :refer :all]
@@ -15,7 +15,7 @@
   {
    (ds/req :subject) string?
    (ds/req :body) string?
-   (ds/req :from) mail-contact-spec
+   (ds/req :from) (s/coll-of send-mail-from-spec)
    (ds/req :to) (s/coll-of mail-contact-spec)
    (ds/req :id) int?
    (ds/opt :replyto) (s/coll-of mail-contact-spec)

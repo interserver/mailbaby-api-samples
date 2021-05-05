@@ -114,7 +114,7 @@ QJsonObject OAISendMail::asJsonObject() const {
     if (m_body_isSet) {
         obj.insert(QString("body"), ::OpenAPI::toJsonValue(body));
     }
-    if (from.isSet()) {
+    if (from.size() > 0) {
         obj.insert(QString("from"), ::OpenAPI::toJsonValue(from));
     }
     if (to.size() > 0) {
@@ -170,10 +170,10 @@ bool OAISendMail::is_body_Valid() const{
     return m_body_isValid;
 }
 
-OAIMailContact OAISendMail::getFrom() const {
+QList<OAISendMail_from> OAISendMail::getFrom() const {
     return from;
 }
-void OAISendMail::setFrom(const OAIMailContact &from) {
+void OAISendMail::setFrom(const QList<OAISendMail_from> &from) {
     this->from = from;
     this->m_from_isSet = true;
 }
@@ -295,7 +295,7 @@ bool OAISendMail::isSet() const {
             break;
         }
 
-        if (from.isSet()) {
+        if (from.size() > 0) {
             isObjectUpdated = true;
             break;
         }

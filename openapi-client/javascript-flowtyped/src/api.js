@@ -220,11 +220,11 @@ export type SendMail = {
      */
     body: string;
     /**
-     * 
-     * @type {MailContact}
+     * The contact whom is the this email is from.
+     * @type {Array<SendMailFrom>}
      * @memberof SendMail
      */
-    from: MailContact;
+    from: Array<SendMailFrom>;
     /**
      * The Contact whom is the primary recipient of this email.
      * @type {Array<MailContact>}
@@ -261,6 +261,26 @@ export type SendMail = {
      * @memberof SendMail
      */
     attachments?: Array<MailAttachment>;
+}
+
+
+/**
+ * An Email Contact
+ * @export
+ */
+export type SendMailFrom = {
+    /**
+     * The email address
+     * @type {string}
+     * @memberof SendMailFrom
+     */
+    email: string;
+    /**
+     * Optional contact name
+     * @type {string}
+     * @memberof SendMailFrom
+     */
+    name?: string;
 }
 
 

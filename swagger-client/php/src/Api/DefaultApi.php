@@ -1383,7 +1383,7 @@ class DefaultApi
      *
      * @param  string $subject subject (required)
      * @param  string $body body (required)
-     * @param  \Interserver\Mailbaby\Model\MailContact $from from (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailFrom[] $from from (required)
      * @param  \Interserver\Mailbaby\Model\MailContact[] $to to (required)
      * @param  int $id id (required)
      * @param  \Interserver\Mailbaby\Model\MailContact[] $replyto replyto (required)
@@ -1408,7 +1408,7 @@ class DefaultApi
      *
      * @param  string $subject (required)
      * @param  string $body (required)
-     * @param  \Interserver\Mailbaby\Model\MailContact $from (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailFrom[] $from (required)
      * @param  \Interserver\Mailbaby\Model\MailContact[] $to (required)
      * @param  int $id (required)
      * @param  \Interserver\Mailbaby\Model\MailContact[] $replyto (required)
@@ -1507,7 +1507,7 @@ class DefaultApi
      *
      * @param  string $subject (required)
      * @param  string $body (required)
-     * @param  \Interserver\Mailbaby\Model\MailContact $from (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailFrom[] $from (required)
      * @param  \Interserver\Mailbaby\Model\MailContact[] $to (required)
      * @param  int $id (required)
      * @param  \Interserver\Mailbaby\Model\MailContact[] $replyto (required)
@@ -1535,7 +1535,7 @@ class DefaultApi
      *
      * @param  string $subject (required)
      * @param  string $body (required)
-     * @param  \Interserver\Mailbaby\Model\MailContact $from (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailFrom[] $from (required)
      * @param  \Interserver\Mailbaby\Model\MailContact[] $to (required)
      * @param  int $id (required)
      * @param  \Interserver\Mailbaby\Model\MailContact[] $replyto (required)
@@ -1593,7 +1593,7 @@ class DefaultApi
      *
      * @param  string $subject (required)
      * @param  string $body (required)
-     * @param  \Interserver\Mailbaby\Model\MailContact $from (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailFrom[] $from (required)
      * @param  \Interserver\Mailbaby\Model\MailContact[] $to (required)
      * @param  int $id (required)
      * @param  \Interserver\Mailbaby\Model\MailContact[] $replyto (required)

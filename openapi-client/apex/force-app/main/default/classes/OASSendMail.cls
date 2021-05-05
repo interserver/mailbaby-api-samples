@@ -27,10 +27,10 @@ public class OASSendMail implements OAS.MappedProperties {
     public String body { get; set; }
 
     /**
-     * Get r_from
+     * The contact whom is the this email is from.
      * @return r_from
      */
-    public OASMailContact r_from { get; set; }
+    public List<OASSendMailFrom> r_from { get; set; }
 
     /**
      * The Contact whom is the primary recipient of this email.
@@ -77,6 +77,7 @@ public class OASSendMail implements OAS.MappedProperties {
     }
 
     public OASSendMail() {
+        r_from = new List<OASSendMailFrom>();
         to = new List<OASMailContact>();
         replyto = new List<OASMailContact>();
         cc = new List<OASMailContact>();
@@ -88,7 +89,7 @@ public class OASSendMail implements OAS.MappedProperties {
         OASSendMail sendMail = new OASSendMail();
           sendMail.subject = 'Your Package has been Delivered!';
           sendMail.body = 'The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n';
-          sendMail.r_from = OASMailContact.getExample();
+          sendMail.r_from = new List<OASSendMailFrom>{OASSendMailFrom.getExample()};
           sendMail.to = new List<OASMailContact>{OASMailContact.getExample()};
           sendMail.id = 5000L;
           sendMail.replyto = new List<OASMailContact>{OASMailContact.getExample()};

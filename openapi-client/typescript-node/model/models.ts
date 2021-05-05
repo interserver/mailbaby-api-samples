@@ -7,6 +7,7 @@ export * from './mailContact';
 export * from './mailLog';
 export * from './mailOrder';
 export * from './sendMail';
+export * from './sendMailFrom';
 
 import * as fs from 'fs';
 
@@ -28,6 +29,7 @@ import { MailContact } from './mailContact';
 import { MailLog } from './mailLog';
 import { MailOrder } from './mailOrder';
 import { SendMail } from './sendMail';
+import { SendMailFrom } from './sendMailFrom';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -52,6 +54,7 @@ let typeMap: {[index: string]: any} = {
     "MailLog": MailLog,
     "MailOrder": MailOrder,
     "SendMail": SendMail,
+    "SendMailFrom": SendMailFrom,
 }
 
 export class ObjectSerializer {

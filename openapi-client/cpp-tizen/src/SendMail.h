@@ -11,6 +11,7 @@
 #include <string>
 #include "MailAttachment.h"
 #include "MailContact.h"
+#include "SendMail_from.h"
 #include <list>
 #include "Object.h"
 
@@ -62,13 +63,13 @@ public:
 	/*! \brief Set The main email contents.
 	 */
 	void setBody(std::string  body);
-	/*! \brief Get 
+	/*! \brief Get The contact whom is the this email is from.
 	 */
-	MailContact getFrom();
+	std::list<SendMail_from> getFrom();
 
-	/*! \brief Set 
+	/*! \brief Set The contact whom is the this email is from.
 	 */
-	void setFrom(MailContact  from);
+	void setFrom(std::list <SendMail_from> from);
 	/*! \brief Get The Contact whom is the primary recipient of this email.
 	 */
 	std::list<MailContact> getTo();
@@ -115,7 +116,7 @@ public:
 private:
 	std::string subject;
 	std::string body;
-	MailContact from;
+	std::list <SendMail_from>from;
 	std::list <MailContact>to;
 	long long id;
 	std::list <MailContact>replyto;

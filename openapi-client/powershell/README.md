@@ -70,6 +70,7 @@ Class | Method | HTTP request | Description
  - [PSOpenAPITools/Model.MailLog](docs/MailLog.md)
  - [PSOpenAPITools/Model.MailOrder](docs/MailOrder.md)
  - [PSOpenAPITools/Model.SendMail](docs/SendMail.md)
+ - [PSOpenAPITools/Model.SendMailFrom](docs/SendMailFrom.md)
 
 
 ## Documentation for Authorization

@@ -15,6 +15,7 @@
 #include "OpenAPIBaseModel.h"
 #include "OpenAPIMailAttachment.h"
 #include "OpenAPIMailContact.h"
+#include "OpenAPISendMailFrom.h"
 
 namespace OpenAPI 
 {
@@ -35,7 +36,8 @@ public:
 	FString Subject;
 	/* The main email contents. */
 	FString Body;
-	OpenAPIMailContact From;
+	/* The contact whom is the this email is from. */
+	TArray<OpenAPISendMailFrom> From;
 	/* The Contact whom is the primary recipient of this email. */
 	TArray<OpenAPIMailContact> To;
 	/* The ID of the Mail order within our system to use as the Mail Account. */

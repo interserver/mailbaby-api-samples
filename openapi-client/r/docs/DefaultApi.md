@@ -152,7 +152,7 @@ Sends An email through one of your mail orders allowing additional options such 
 ```R
 library(openapi)
 
-var.send.mail <- SendMail$new("subject_example", "body_example", MailContact$new("email_example", "name_example"), list(MailContact$new("email_example", "name_example")), 123, list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailAttachment$new(123, "filename_example"))) # SendMail | 
+var.send.mail <- SendMail$new("subject_example", "body_example", list(SendMail_from$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), 123, list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailAttachment$new(123, "filename_example"))) # SendMail | 
 
 #Sends an Email with Advanced Options
 api.instance <- DefaultApi$new()
@@ -200,7 +200,7 @@ Sends An email through one of your mail orders.
 ```R
 library(openapi)
 
-var.send.mail <- SendMail$new("subject_example", "body_example", MailContact$new("email_example", "name_example"), list(MailContact$new("email_example", "name_example")), 123, list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailAttachment$new(123, "filename_example"))) # SendMail | 
+var.send.mail <- SendMail$new("subject_example", "body_example", list(SendMail_from$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), 123, list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailAttachment$new(123, "filename_example"))) # SendMail | 
 
 #Sends an Email
 api.instance <- DefaultApi$new()

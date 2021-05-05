@@ -291,7 +291,7 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
 );
 $subject = "subject_example"; // string | 
 $body = "body_example"; // string | 
-$from = new \Interserver\Mailbaby\Model\MailContact(); // \Interserver\Mailbaby\Model\MailContact | 
+$from = array(new \Interserver\Mailbaby\Model\SendMailFrom()); // \Interserver\Mailbaby\Model\SendMailFrom[] | 
 $to = array(new \Interserver\Mailbaby\Model\MailContact()); // \Interserver\Mailbaby\Model\MailContact[] | 
 $id = 789; // int | 
 $replyto = array(new \Interserver\Mailbaby\Model\MailContact()); // \Interserver\Mailbaby\Model\MailContact[] | 
@@ -314,7 +314,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **string**|  |
  **body** | **string**|  |
- **from** | [**\Interserver\Mailbaby\Model\MailContact**](../Model/.md)|  |
+ **from** | [**\Interserver\Mailbaby\Model\SendMailFrom[]**](../Model/\Interserver\Mailbaby\Model\SendMailFrom.md)|  |
  **to** | [**\Interserver\Mailbaby\Model\MailContact[]**](../Model/\Interserver\Mailbaby\Model\MailContact.md)|  |
  **id** | **int**|  |
  **replyto** | [**\Interserver\Mailbaby\Model\MailContact[]**](../Model/\Interserver\Mailbaby\Model\MailContact.md)|  |

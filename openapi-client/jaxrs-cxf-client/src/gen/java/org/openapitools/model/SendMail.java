@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.MailAttachment;
 import org.openapitools.model.MailContact;
+import org.openapitools.model.SendMailFrom;
 
 import io.swagger.annotations.ApiModelProperty;
 import javax.xml.bind.annotation.XmlElement;
@@ -34,8 +35,11 @@ public class SendMail  {
   **/
   private String body;
 
-  @ApiModelProperty(required = true, value = "")
-  private MailContact from;
+  @ApiModelProperty(required = true, value = "The contact whom is the this email is from.")
+ /**
+   * The contact whom is the this email is from.
+  **/
+  private List<SendMailFrom> from = new ArrayList<>();
 
   @ApiModelProperty(required = true, value = "The Contact whom is the primary recipient of this email.")
  /**
@@ -109,20 +113,25 @@ public class SendMail  {
   }
 
  /**
-   * Get from
+   * The contact whom is the this email is from.
    * @return from
   **/
   @JsonProperty("from")
-  public MailContact getFrom() {
+  public List<SendMailFrom> getFrom() {
     return from;
   }
 
-  public void setFrom(MailContact from) {
+  public void setFrom(List<SendMailFrom> from) {
     this.from = from;
   }
 
-  public SendMail from(MailContact from) {
+  public SendMail from(List<SendMailFrom> from) {
     this.from = from;
+    return this;
+  }
+
+  public SendMail addFromItem(SendMailFrom fromItem) {
+    this.from.add(fromItem);
     return this;
   }
 

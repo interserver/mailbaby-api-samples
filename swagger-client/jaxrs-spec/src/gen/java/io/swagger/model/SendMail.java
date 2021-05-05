@@ -2,6 +2,7 @@ package io.swagger.model;
 
 import io.swagger.model.MailAttachment;
 import io.swagger.model.MailContact;
+import io.swagger.model.SendMailFrom;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class SendMail   {
 
   private @Valid String body = null;
 
-  private @Valid MailContact from = null;
+  private @Valid List<SendMailFrom> from = new ArrayList<SendMailFrom>();
 
   private @Valid List<MailContact> to = new ArrayList<MailContact>();
 
@@ -77,21 +78,22 @@ public class SendMail   {
   }
 
   /**
+   * The contact whom is the this email is from.
    **/
-  public SendMail from(MailContact from) {
+  public SendMail from(List<SendMailFrom> from) {
     this.from = from;
     return this;
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The contact whom is the this email is from.")
   @JsonProperty("from")
   @NotNull
 
-  public MailContact getFrom() {
+  public List<SendMailFrom> getFrom() {
     return from;
   }
-  public void setFrom(MailContact from) {
+  public void setFrom(List<SendMailFrom> from) {
     this.from = from;
   }
 

@@ -216,6 +216,7 @@ Class | Method | HTTP request | Description
  - [MailOrder](docs/Model/MailOrder.md)
  - [MailOrders](docs/Model/MailOrders.md)
  - [SendMail](docs/Model/SendMail.md)
+ - [SendMailFrom](docs/Model/SendMailFrom.md)
 
 ## Documentation For Authorization
 

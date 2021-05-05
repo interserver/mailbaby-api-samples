@@ -133,7 +133,7 @@ api_instance = SwaggerClient::DefaultApi.new
 body = SwaggerClient::SendMail.new # SendMail | 
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
-from = SwaggerClient::MailContact.new # MailContact | 
+from = [SwaggerClient::SendMailFrom.new] # Array<SendMailFrom> | 
 to = [SwaggerClient::MailContact.new] # Array<MailContact> | 
 id = 789 # Integer | 
 replyto = [SwaggerClient::MailContact.new] # Array<MailContact> | 
@@ -214,6 +214,7 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::MailOrder](docs/MailOrder.md)
  - [SwaggerClient::MailOrders](docs/MailOrders.md)
  - [SwaggerClient::SendMail](docs/SendMail.md)
+ - [SwaggerClient::SendMailFrom](docs/SendMailFrom.md)
 
 ## Documentation for Authorization
 

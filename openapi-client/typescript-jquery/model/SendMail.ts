@@ -26,7 +26,10 @@ export interface SendMail {
      */
     body: string;
 
-    from: models.MailContact;
+    /**
+     * The contact whom is the this email is from.
+     */
+    from: Array<models.SendMailFrom>;
 
     /**
      * The Contact whom is the primary recipient of this email.

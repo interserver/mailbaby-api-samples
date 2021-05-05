@@ -254,7 +254,7 @@ Sends An email through one of your mail orders.
 val apiInstance = DefaultApi()
 val subject : kotlin.String = subject_example // kotlin.String | 
 val body : kotlin.String = body_example // kotlin.String | 
-val from : MailContact =  // MailContact | 
+val from : kotlin.Array<SendMailFrom> =  // kotlin.Array<SendMailFrom> | 
 val to : kotlin.Array<MailContact> =  // kotlin.Array<MailContact> | 
 val id : kotlin.Long = 789 // kotlin.Long | 
 val replyto : kotlin.Array<MailContact> =  // kotlin.Array<MailContact> | 
@@ -279,7 +279,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **kotlin.String**|  |
  **body** | **kotlin.String**|  |
- **from** | [**MailContact**](.md)|  |
+ **from** | [**kotlin.Array&lt;SendMailFrom&gt;**](SendMailFrom.md)|  |
  **to** | [**kotlin.Array&lt;MailContact&gt;**](MailContact.md)|  |
  **id** | **kotlin.Long**|  |
  **replyto** | [**kotlin.Array&lt;MailContact&gt;**](MailContact.md)|  |

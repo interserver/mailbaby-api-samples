@@ -5,8 +5,8 @@ class SendMail {
   String subject = null;
 /* The main email contents. */
   String body = null;
-
-  MailContact from = null;
+/* The contact whom is the this email is from. */
+  List<SendMailFrom> from = [];
 /* The Contact whom is the primary recipient of this email. */
   List<MailContact> to = [];
 /* The ID of the Mail order within our system to use as the Mail Account. */
@@ -31,7 +31,7 @@ class SendMail {
     if (json == null) return;
     subject = json['subject'];
     body = json['body'];
-    from = new MailContact.fromJson(json['from']);
+    from = SendMailFrom.listFromJson(json['from']);
     to = MailContact.listFromJson(json['to']);
     id = json['id'];
     replyto = MailContact.listFromJson(json['replyto']);

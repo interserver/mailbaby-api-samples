@@ -13,6 +13,7 @@ from swagger_server.models.mail_log import MailLog  # noqa: E501
 from swagger_server.models.mail_order import MailOrder  # noqa: E501
 from swagger_server.models.mail_orders import MailOrders  # noqa: E501
 from swagger_server.models.send_mail import SendMail  # noqa: E501
+from swagger_server.models.send_mail_from import SendMailFrom  # noqa: E501
 from swagger_server.test import BaseTestCase
 
 
@@ -79,7 +80,7 @@ class TestDefaultController(BaseTestCase):
         body = SendMail()
         data = dict(subject='subject_example',
                     body='body_example',
-                    _from=MailContact(),
+                    _from=SendMailFrom(),
                     to=MailContact(),
                     id=789,
                     replyto=MailContact(),

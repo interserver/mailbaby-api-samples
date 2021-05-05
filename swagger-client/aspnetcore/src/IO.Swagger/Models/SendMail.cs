@@ -43,11 +43,12 @@ namespace IO.Swagger.Models
         public string Body { get; set; }
 
         /// <summary>
-        /// Gets or Sets From
+        /// The contact whom is the this email is from.
         /// </summary>
+        /// <value>The contact whom is the this email is from.</value>
         [Required]
         [DataMember(Name="from")]
-        public MailContact From { get; set; }
+        public List<SendMailFrom> From { get; set; }
 
         /// <summary>
         /// The Contact whom is the primary recipient of this email.
@@ -159,7 +160,7 @@ namespace IO.Swagger.Models
                 (
                     From == other.From ||
                     From != null &&
-                    From.Equals(other.From)
+                    From.SequenceEqual(other.From)
                 ) && 
                 (
                     To == other.To ||

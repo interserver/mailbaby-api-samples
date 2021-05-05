@@ -14,7 +14,8 @@ open class SendMail: JSONEncodable {
     public var subject: String?
     /** The main email contents. */
     public var body: String?
-    public var from: MailContact?
+    /** The contact whom is the this email is from. */
+    public var from: [SendMailFrom]?
     /** The Contact whom is the primary recipient of this email. */
     public var to: [MailContact]?
     /** The ID of the Mail order within our system to use as the Mail Account. */

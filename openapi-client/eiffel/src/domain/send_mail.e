@@ -23,8 +23,8 @@ feature --Access
       -- The subject or title of the email
     body: detachable STRING_32 
       -- The main email contents.
-    var_from: detachable MAIL_CONTACT 
-      
+    var_from: detachable LIST [SEND_MAIL_FROM] 
+      -- The contact whom is the this email is from.
     to: detachable LIST [MAIL_CONTACT] 
       -- The Contact whom is the primary recipient of this email.
  	id: INTEGER_64 
@@ -131,10 +131,12 @@ feature -- Change Element
           Result.append ("%N")    
         end  
         if attached var_from as l_var_from then
-          Result.append ("%Nvar_from:")
-          Result.append (l_var_from.out)
-          Result.append ("%N")    
-        end  
+          across l_var_from as ic loop
+            Result.append ("%N var_from:")
+            Result.append (ic.item.out)
+            Result.append ("%N")
+          end
+        end 
         if attached to as l_to then
           across l_to as ic loop
             Result.append ("%N to:")

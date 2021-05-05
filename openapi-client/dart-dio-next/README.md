@@ -83,6 +83,7 @@ Class | Method | HTTP request | Description
  - [MailLog](doc/MailLog.md)
  - [MailOrder](doc/MailOrder.md)
  - [SendMail](doc/SendMail.md)
+ - [SendMailFrom](doc/SendMailFrom.md)
 
 
 ## Documentation For Authorization

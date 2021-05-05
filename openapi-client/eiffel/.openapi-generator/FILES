@@ -10,6 +10,7 @@ docs/MAIL_CONTACT.md
 docs/MAIL_LOG.md
 docs/MAIL_ORDER.md
 docs/SEND_MAIL.md
+docs/SEND_MAIL_FROM.md
 src/api/default_api.e
 src/api_client.e
 src/domain/error_response.e
@@ -19,6 +20,7 @@ src/domain/mail_contact.e
 src/domain/mail_log.e
 src/domain/mail_order.e
 src/domain/send_mail.e
+src/domain/send_mail_from.e
 src/framework/api_client_request.e
 src/framework/api_client_response.e
 src/framework/api_error.e

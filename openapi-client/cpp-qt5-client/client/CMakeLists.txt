@@ -22,6 +22,7 @@ add_library(${PROJECT_NAME}
     OAIMailLog.cpp
     OAIMailOrder.cpp
     OAISendMail.cpp
+    OAISendMail_from.cpp
     OAIDefaultApi.cpp
     OAIHelpers.cpp
     OAIHttpRequest.cpp

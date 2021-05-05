@@ -361,7 +361,10 @@ components:
           example: "The package you ordered on 2021-01-23 has been delivered. If the\
             \ package is broken into many pieces, please blaim someone else.\n"
         from:
-          $ref: '#/components/schemas/MailContact'
+          type: array
+          description: The contact whom is the this email is from.
+          items:
+            $ref: '#/components/schemas/SendMail_from'
         to:
           type: array
           description: The Contact whom is the primary recipient of this email.
@@ -399,6 +402,20 @@ components:
           items:
             $ref: '#/components/schemas/MailAttachment'
       description: Details for an Email
+    SendMail_from:
+      required:
+      - email
+      type: object
+      properties:
+        email:
+          type: string
+          description: The email address
+          example: johndoe@company.com
+        name:
+          type: string
+          description: Optional contact name
+          example: John Doe
+      description: An Email Contact
   responses:
     NotFound:
       description: The specified resource was not found

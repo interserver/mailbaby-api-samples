@@ -19,6 +19,9 @@ import {
     MailContact,
     MailContactFromJSON,
     MailContactToJSON,
+    SendMailFrom,
+    SendMailFromFromJSON,
+    SendMailFromToJSON,
 } from './';
 
 /**
@@ -40,11 +43,11 @@ export interface SendMail  {
      */
     body: string;
     /**
-     * 
-     * @type {MailContact}
+     * The contact whom is the this email is from.
+     * @type {Array<SendMailFrom>}
      * @memberof SendMail
      */
-    from: MailContact;
+    from: Array<SendMailFrom>;
     /**
      * The Contact whom is the primary recipient of this email.
      * @type {Array<MailContact>}
@@ -87,7 +90,7 @@ export function SendMailFromJSON(json: any): SendMail {
     return {
         'subject': json['subject'],
         'body': json['body'],
-        'from': MailContactFromJSON(json['from']),
+        'from': (json['from'] as Array<any>).map(SendMailFromFromJSON),
         'to': (json['to'] as Array<any>).map(MailContactFromJSON),
         'id': json['id'],
         'replyto': !exists(json, 'replyto') ? undefined : (json['replyto'] as Array<any>).map(MailContactFromJSON),
@@ -104,7 +107,7 @@ export function SendMailToJSON(value?: SendMail): any {
     return {
         'subject': value.subject,
         'body': value.body,
-        'from': MailContactToJSON(value.from),
+        'from': (value.from as Array<any>).map(SendMailFromToJSON),
         'to': (value.to as Array<any>).map(MailContactToJSON),
         'id': value.id,
         'replyto': value.replyto === undefined ? undefined : (value.replyto as Array<any>).map(MailContactToJSON),

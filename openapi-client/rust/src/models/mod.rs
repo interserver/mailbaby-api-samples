@@ -12,3 +12,5 @@ pub mod mail_order;
 pub use self::mail_order::MailOrder;
 pub mod send_mail;
 pub use self::send_mail::SendMail;
+pub mod send_mail_from;
+pub use self::send_mail_from::SendMailFrom;

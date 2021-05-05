@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.client.model.MailAttachment;
 import io.swagger.client.model.MailContact;
+import io.swagger.client.model.SendMailFrom;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ import java.util.List;
  * Details for an Email
  */
 @Schema(description = "Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-05T04:11:42.565730-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-05-05T04:29:36.011646-04:00[America/New_York]")
 public class SendMail {
   @SerializedName("subject")
   private String subject = null;
@@ -38,7 +39,7 @@ public class SendMail {
   private String body = null;
 
   @SerializedName("from")
-  private MailContact from = null;
+  private List<SendMailFrom> from = new ArrayList<SendMailFrom>();
 
   @SerializedName("to")
   private List<MailContact> to = new ArrayList<MailContact>();
@@ -94,21 +95,26 @@ public class SendMail {
     this.body = body;
   }
 
-  public SendMail from(MailContact from) {
+  public SendMail from(List<SendMailFrom> from) {
     this.from = from;
     return this;
   }
 
+  public SendMail addFromItem(SendMailFrom fromItem) {
+    this.from.add(fromItem);
+    return this;
+  }
+
    /**
-   * Get from
+   * The contact whom is the this email is from.
    * @return from
   **/
-  @Schema(required = true, description = "")
-  public MailContact getFrom() {
+  @Schema(required = true, description = "The contact whom is the this email is from.")
+  public List<SendMailFrom> getFrom() {
     return from;
   }
 
-  public void setFrom(MailContact from) {
+  public void setFrom(List<SendMailFrom> from) {
     this.from = from;
   }
 

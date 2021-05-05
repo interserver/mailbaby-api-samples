@@ -21,7 +21,8 @@ type SendMail struct {
 	Subject string `json:"subject"`
 	// The main email contents.
 	Body string `json:"body"`
-	From MailContact `json:"from"`
+	// The contact whom is the this email is from.
+	From []SendMailFrom `json:"from"`
 	// The Contact whom is the primary recipient of this email.
 	To []MailContact `json:"to"`
 	// The ID of the Mail order within our system to use as the Mail Account.
@@ -40,7 +41,7 @@ type SendMail struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSendMail(subject string, body string, from MailContact, to []MailContact, id int64) *SendMail {
+func NewSendMail(subject string, body string, from []SendMailFrom, to []MailContact, id int64) *SendMail {
 	this := SendMail{}
 	this.Subject = subject
 	this.Body = body
@@ -107,9 +108,9 @@ func (o *SendMail) SetBody(v string) {
 }
 
 // GetFrom returns the From field value
-func (o *SendMail) GetFrom() MailContact {
+func (o *SendMail) GetFrom() []SendMailFrom {
 	if o == nil {
-		var ret MailContact
+		var ret []SendMailFrom
 		return ret
 	}
 
@@ -118,7 +119,7 @@ func (o *SendMail) GetFrom() MailContact {
 
 // GetFromOk returns a tuple with the From field value
 // and a boolean to check if the value has been set.
-func (o *SendMail) GetFromOk() (*MailContact, bool) {
+func (o *SendMail) GetFromOk() (*[]SendMailFrom, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -126,7 +127,7 @@ func (o *SendMail) GetFromOk() (*MailContact, bool) {
 }
 
 // SetFrom sets field value
-func (o *SendMail) SetFrom(v MailContact) {
+func (o *SendMail) SetFrom(v []SendMailFrom) {
 	o.From = v
 }
 

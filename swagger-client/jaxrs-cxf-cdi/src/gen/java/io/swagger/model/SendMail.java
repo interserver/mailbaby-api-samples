@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.model.MailAttachment;
 import io.swagger.model.MailContact;
+import io.swagger.model.SendMailFrom;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import javax.xml.bind.annotation.*;
 public class SendMail   {
   private String subject = null;
   private String body = null;
-  private MailContact from = null;
+  private List<SendMailFrom> from = new ArrayList<SendMailFrom>();
   private List<MailContact> to = new ArrayList<MailContact>();
   private Long id = null;
   private List<MailContact> replyto = new ArrayList<MailContact>();
@@ -71,22 +72,23 @@ public class SendMail   {
   }
 
   /**
+   * The contact whom is the this email is from.
    **/
-  public SendMail from(MailContact from) {
+  public SendMail from(List<SendMailFrom> from) {
     this.from = from;
     return this;
   }
 
   
   
-  @Schema(required = true, description = "")
+  @Schema(required = true, description = "The contact whom is the this email is from.")
   @JsonProperty("from")
   @NotNull
   @Valid
-  public MailContact getFrom() {
+  public List<SendMailFrom> getFrom() {
     return from;
   }
-  public void setFrom(MailContact from) {
+  public void setFrom(List<SendMailFrom> from) {
     this.from = from;
   }
 

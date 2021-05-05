@@ -20,6 +20,7 @@ module SwaggerClient
     # The main email contents.
     attr_accessor :body
 
+    # The contact whom is the this email is from.
     attr_accessor :from
 
     # The Contact whom is the primary recipient of this email.
@@ -100,7 +101,9 @@ module SwaggerClient
       end
 
       if attributes.key?(:'from')
-        self.from = attributes[:'from']
+        if (value = attributes[:'from']).is_a?(Array)
+          self.from = value
+        end
       end
 
       if attributes.key?(:'to')

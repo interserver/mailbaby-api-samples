@@ -17,6 +17,7 @@ import 'package:openapi/model/mail_contact.dart';
 import 'package:openapi/model/mail_log.dart';
 import 'package:openapi/model/mail_order.dart';
 import 'package:openapi/model/send_mail.dart';
+import 'package:openapi/model/send_mail_from.dart';
 
 
 
@@ -28,6 +29,7 @@ final _jsonJaguarRepo = JsonRepo()
 ..add(MailLogSerializer())
 ..add(MailOrderSerializer())
 ..add(SendMailSerializer())
+..add(SendMailFromSerializer())
 ;
 final Map<String, CodecRepo> defaultConverters = {
     MimeTypes.json: _jsonJaguarRepo,

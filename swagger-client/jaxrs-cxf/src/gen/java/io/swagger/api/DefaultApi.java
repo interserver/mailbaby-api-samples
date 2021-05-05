@@ -8,6 +8,7 @@ import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
 import io.swagger.model.SendMail;
+import io.swagger.model.SendMailFrom;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -131,7 +132,7 @@ public interface DefaultApi  {
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public GenericResponse sendMailById(@Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body, @Multipart(value = "from")  MailContact from, @Multipart(value = "to")  List<MailContact> to, @Multipart(value = "id")  Long id, @Multipart(value = "replyto")  List<MailContact> replyto, @Multipart(value = "cc")  List<MailContact> cc, @Multipart(value = "bcc")  List<MailContact> bcc, @Multipart(value = "attachments")  List<MailAttachment> attachments);
+    public GenericResponse sendMailById(@Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body, @Multipart(value = "from")  List<SendMailFrom> from, @Multipart(value = "to")  List<MailContact> to, @Multipart(value = "id")  Long id, @Multipart(value = "replyto")  List<MailContact> replyto, @Multipart(value = "cc")  List<MailContact> cc, @Multipart(value = "bcc")  List<MailContact> bcc, @Multipart(value = "attachments")  List<MailAttachment> attachments);
 
     /**
      * validatess order details before placing an order

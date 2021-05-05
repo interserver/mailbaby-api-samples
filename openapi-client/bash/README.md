@@ -118,6 +118,7 @@ Class | Method | HTTP request | Description
  - [MailLog](docs/MailLog.md)
  - [MailOrder](docs/MailOrder.md)
  - [SendMail](docs/SendMail.md)
+ - [SendMailFrom](docs/SendMailFrom.md)
 
 
 ## Documentation For Authorization

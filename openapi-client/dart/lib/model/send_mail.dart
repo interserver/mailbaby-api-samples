@@ -14,7 +14,7 @@ class SendMail {
   SendMail({
     @required this.subject,
     @required this.body,
-    @required this.from,
+    this.from = const [],
     this.to = const [],
     @required this.id,
     this.replyto = const [],
@@ -29,7 +29,8 @@ class SendMail {
   /// The main email contents.
   String body;
 
-  MailContact from;
+  /// The contact whom is the this email is from.
+  List<SendMailFrom> from;
 
   /// The Contact whom is the primary recipient of this email.
   List<MailContact> to;
@@ -105,7 +106,7 @@ class SendMail {
     : SendMail(
         subject: json[r'subject'],
         body: json[r'body'],
-        from: MailContact.fromJson(json[r'from']),
+        from: SendMailFrom.listFromJson(json[r'from']),
         to: MailContact.listFromJson(json[r'to']),
         id: json[r'id'],
         replyto: MailContact.listFromJson(json[r'replyto']),

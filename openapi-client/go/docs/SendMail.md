@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Subject** | **string** | The subject or title of the email | 
 **Body** | **string** | The main email contents. | 
-**From** | [**MailContact**](MailContact.md) |  | 
+**From** | [**[]SendMailFrom**](SendMailFrom.md) | The contact whom is the this email is from. | 
 **To** | [**[]MailContact**](MailContact.md) | The Contact whom is the primary recipient of this email. | 
 **Id** | **int64** | The ID of the Mail order within our system to use as the Mail Account. | 
 **Replyto** | Pointer to [**[]MailContact**](MailContact.md) | Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewSendMail
 
-`func NewSendMail(subject string, body string, from MailContact, to []MailContact, id int64, ) *SendMail`
+`func NewSendMail(subject string, body string, from []SendMailFrom, to []MailContact, id int64, ) *SendMail`
 
 NewSendMail instantiates a new SendMail object
 This constructor will assign default values to properties that have it defined,
@@ -75,20 +75,20 @@ SetBody sets Body field to given value.
 
 ### GetFrom
 
-`func (o *SendMail) GetFrom() MailContact`
+`func (o *SendMail) GetFrom() []SendMailFrom`
 
 GetFrom returns the From field if non-nil, zero value otherwise.
 
 ### GetFromOk
 
-`func (o *SendMail) GetFromOk() (*MailContact, bool)`
+`func (o *SendMail) GetFromOk() (*[]SendMailFrom, bool)`
 
 GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrom
 
-`func (o *SendMail) SetFrom(v MailContact)`
+`func (o *SendMail) SetFrom(v []SendMailFrom)`
 
 SetFrom sets From field to given value.
 

@@ -15,3 +15,4 @@ src/gatling/scala/org/openapitools/client/model/MailContact.scala
 src/gatling/scala/org/openapitools/client/model/MailLog.scala
 src/gatling/scala/org/openapitools/client/model/MailOrder.scala
 src/gatling/scala/org/openapitools/client/model/SendMail.scala
+src/gatling/scala/org/openapitools/client/model/SendMailFrom.scala

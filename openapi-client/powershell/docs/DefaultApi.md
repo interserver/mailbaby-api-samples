@@ -165,7 +165,7 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
-$SendMail = (Initialize-SendMail -Subject "Subject_example" -Body "Body_example" -VarFrom (Initialize-MailContact -Email "Email_example" -Name "Name_example") -To @((Initialize-MailContact -Email "Email_example" -Name "Name_example")) -Id 123 -Replyto @() -Cc @() -Bcc @() -Attachments @((Initialize-MailAttachment -Filename "Filename_example" -VarData 123))) # SendMail | 
+$SendMail = (Initialize-SendMail -Subject "Subject_example" -Body "Body_example" -VarFrom @((Initialize-SendMail_from -Email "Email_example" -Name "Name_example")) -To @((Initialize-MailContact -Email "Email_example" -Name "Name_example")) -Id 123 -Replyto @((Initialize-MailContact -Email "Email_example" -Name "Name_example")) -Cc @() -Bcc @() -Attachments @((Initialize-MailAttachment -Filename "Filename_example" -VarData 123))) # SendMail | 
 
 # Sends an Email with Advanced Options
 try {
@@ -215,7 +215,7 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
-$SendMail = (Initialize-SendMail -Subject "Subject_example" -Body "Body_example" -VarFrom  -To @() -Id 123 -Replyto @() -Cc @() -Bcc @() -Attachments @((Initialize-MailAttachment -Filename "Filename_example" -VarData 123))) # SendMail | 
+$SendMail = (Initialize-SendMail -Subject "Subject_example" -Body "Body_example" -VarFrom @((Initialize-SendMail_from -Email "Email_example" -Name "Name_example")) -To @() -Id 123 -Replyto @() -Cc @() -Bcc @() -Attachments @((Initialize-MailAttachment -Filename "Filename_example" -VarData 123))) # SendMail | 
 
 # Sends an Email
 try {

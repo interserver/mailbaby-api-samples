@@ -169,7 +169,7 @@ Sends An email through one of your mail orders allowing additional options such 
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let sendMail = SendMail(subject: "subject_example", body: "body_example", from: MailContact(email: "email_example", name: "name_example"), to: [nil], id: 123, replyto: [nil], cc: [nil], bcc: [nil], attachments: [MailAttachment(data: URL(string: "https://example.com")!, filename: "filename_example")]) // SendMail | 
+let sendMail = SendMail(subject: "subject_example", body: "body_example", from: [SendMail_from(email: "email_example", name: "name_example")], to: [MailContact(email: "email_example", name: "name_example")], id: 123, replyto: [nil], cc: [nil], bcc: [nil], attachments: [MailAttachment(data: URL(string: "https://example.com")!, filename: "filename_example")]) // SendMail | 
 
 // Sends an Email with Advanced Options
 DefaultAPI.sendAdvMailById(sendMail: sendMail) { (response, error) in
@@ -219,7 +219,7 @@ Sends An email through one of your mail orders.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let sendMail = SendMail(subject: "subject_example", body: "body_example", from: MailContact(email: "email_example", name: "name_example"), to: [nil], id: 123, replyto: [nil], cc: [nil], bcc: [nil], attachments: [MailAttachment(data: URL(string: "https://example.com")!, filename: "filename_example")]) // SendMail | 
+let sendMail = SendMail(subject: "subject_example", body: "body_example", from: [SendMail_from(email: "email_example", name: "name_example")], to: [MailContact(email: "email_example", name: "name_example")], id: 123, replyto: [nil], cc: [nil], bcc: [nil], attachments: [MailAttachment(data: URL(string: "https://example.com")!, filename: "filename_example")]) // SendMail | 
 
 // Sends an Email
 DefaultAPI.sendMailById(sendMail: sendMail) { (response, error) in

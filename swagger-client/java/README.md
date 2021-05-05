@@ -2,7 +2,7 @@
 
 Mail Baby API
 - API version: 1.0.0
-  - Build date: 2021-05-05T04:11:42.565730-04:00[America/New_York]
+  - Build date: 2021-05-05T04:29:36.011646-04:00[America/New_York]
 
 This is an API defintion for accesssing the Mail.Baby mail service.
 
@@ -205,7 +205,7 @@ public class DefaultApiExample {
         SendMail body = new SendMail(); // SendMail | 
         String subject = "subject_example"; // String | 
         String body = "body_example"; // String | 
-        MailContact from = new MailContact(); // MailContact | 
+        List<SendMailFrom> from = Arrays.asList(new SendMailFrom()); // List<SendMailFrom> | 
         List<MailContact> to = Arrays.asList(new MailContact()); // List<MailContact> | 
         Long id = 789L; // Long | 
         List<MailContact> replyto = Arrays.asList(new MailContact()); // List<MailContact> | 
@@ -308,6 +308,7 @@ Class | Method | HTTP request | Description
  - [MailOrder](docs/MailOrder.md)
  - [MailOrders](docs/MailOrders.md)
  - [SendMail](docs/SendMail.md)
+ - [SendMailFrom](docs/SendMailFrom.md)
 
 ## Documentation for Authorization
 

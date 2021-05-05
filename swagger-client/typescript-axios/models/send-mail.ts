@@ -30,8 +30,8 @@ export interface SendMail {
      */
     body: any;
     /**
-     * 
-     * @type {MailContact}
+     * The contact whom is the this email is from.
+     * @type {Array&lt;SendMailFrom&gt;}
      * @memberof SendMail
      */
     from: any;

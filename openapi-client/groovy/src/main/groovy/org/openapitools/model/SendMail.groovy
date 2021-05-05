@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.MailAttachment;
 import org.openapitools.model.MailContact;
+import org.openapitools.model.SendMailFrom;
 
 @Canonical
 class SendMail {
@@ -14,8 +15,8 @@ class SendMail {
     String subject
     /* The main email contents. */
     String body
-    
-    MailContact from
+    /* The contact whom is the this email is from. */
+    List<SendMailFrom> from = new ArrayList<>()
     /* The Contact whom is the primary recipient of this email. */
     List<MailContact> to = new ArrayList<>()
     /* The ID of the Mail order within our system to use as the Mail Account. */

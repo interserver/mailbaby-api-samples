@@ -27,12 +27,13 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.client.model.MailAttachment;
 import org.openapitools.client.model.MailContact;
+import org.openapitools.client.model.SendMailFrom;
 
 /**
  * Details for an Email
  */
 @ApiModel(description = "Details for an Email")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-05T04:09:43.498275-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-05T04:27:36.900025-04:00[America/New_York]")
 public class SendMail {
   public static final String SERIALIZED_NAME_SUBJECT = "subject";
   @SerializedName(SERIALIZED_NAME_SUBJECT)
@@ -44,7 +45,7 @@ public class SendMail {
 
   public static final String SERIALIZED_NAME_FROM = "from";
   @SerializedName(SERIALIZED_NAME_FROM)
-  private MailContact from;
+  private List<SendMailFrom> from = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
@@ -115,24 +116,29 @@ public class SendMail {
   }
 
 
-  public SendMail from(MailContact from) {
+  public SendMail from(List<SendMailFrom> from) {
     
     this.from = from;
     return this;
   }
 
+  public SendMail addFromItem(SendMailFrom fromItem) {
+    this.from.add(fromItem);
+    return this;
+  }
+
    /**
-   * Get from
+   * The contact whom is the this email is from.
    * @return from
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The contact whom is the this email is from.")
 
-  public MailContact getFrom() {
+  public List<SendMailFrom> getFrom() {
     return from;
   }
 
 
-  public void setFrom(MailContact from) {
+  public void setFrom(List<SendMailFrom> from) {
     this.from = from;
   }
 

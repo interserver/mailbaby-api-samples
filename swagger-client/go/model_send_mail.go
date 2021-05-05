@@ -15,7 +15,8 @@ type SendMail struct {
 	Subject string `json:"subject"`
 	// The main email contents.
 	Body string `json:"body"`
-	From *MailContact `json:"from"`
+	// The contact whom is the this email is from.
+	From []SendMailFrom `json:"from"`
 	// The Contact whom is the primary recipient of this email.
 	To []MailContact `json:"to"`
 	// The ID of the Mail order within our system to use as the Mail Account.

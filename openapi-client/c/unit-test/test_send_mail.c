@@ -16,7 +16,6 @@
 #include "../model/send_mail.h"
 send_mail_t* instantiate_send_mail(int include_optional);
 
-#include "test_mail_contact.c"
 
 
 send_mail_t* instantiate_send_mail(int include_optional) {
@@ -26,8 +25,7 @@ send_mail_t* instantiate_send_mail(int include_optional) {
       "Your Package has been Delivered!",
       "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
 ",
-       // false, not to have infinite recursion
-      instantiate_mail_contact(0),
+      list_create(),
       list_create(),
       5000,
       list_create(),
@@ -40,7 +38,7 @@ send_mail_t* instantiate_send_mail(int include_optional) {
       "Your Package has been Delivered!",
       "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
 ",
-      NULL,
+      list_create(),
       list_create(),
       5000,
       list_create(),

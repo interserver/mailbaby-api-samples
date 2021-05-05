@@ -13,6 +13,7 @@ import io.swagger.server.model.MailLog
 import io.swagger.server.model.MailOrder
 import io.swagger.server.model.MailOrders
 import io.swagger.server.model.SendMail
+import io.swagger.server.model.SendMail_from
 
 class DefaultApi(
     defaultService: DefaultApiService,

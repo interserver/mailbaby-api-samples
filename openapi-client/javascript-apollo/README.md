@@ -147,6 +147,7 @@ Class | Method | HTTP request | Description
  - [MailBabyApi.MailLog](docs/MailLog.md)
  - [MailBabyApi.MailOrder](docs/MailOrder.md)
  - [MailBabyApi.SendMail](docs/SendMail.md)
+ - [MailBabyApi.SendMailFrom](docs/SendMailFrom.md)
 
 
 ## Documentation for Authorization

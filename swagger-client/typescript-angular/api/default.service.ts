@@ -25,6 +25,7 @@ import { MailLog } from '../model/mailLog';
 import { MailOrder } from '../model/mailOrder';
 import { MailOrders } from '../model/mailOrders';
 import { SendMail } from '../model/sendMail';
+import { SendMailFrom } from '../model/sendMailFrom';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -317,10 +318,10 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendMailByIdForm(subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
-    public sendMailByIdForm(subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
-    public sendMailByIdForm(subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
-    public sendMailByIdForm(subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public sendMailByIdForm(subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
+    public sendMailByIdForm(subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
+    public sendMailByIdForm(subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
+    public sendMailByIdForm(subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (subject === null || subject === undefined) {
             throw new Error('Required parameter subject was null or undefined when calling sendMailById.');
@@ -397,8 +398,10 @@ export class DefaultService {
         if (body !== undefined) {
             formParams = formParams.append('body', <any>body) as any || formParams;
         }
-        if (from !== undefined) {
-            formParams = formParams.append('from', <any>from) as any || formParams;
+        if (from) {
+            from.forEach((element) => {
+                formParams = formParams.append('from', <any>element) as any || formParams;
+            })
         }
         if (to) {
             to.forEach((element) => {

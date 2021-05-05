@@ -19,6 +19,7 @@ import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
 import io.swagger.model.SendMail;
+import io.swagger.model.SendMailFrom;
 
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T04:12:04.510488-04:00[America/New_York]")public interface MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T04:29:58.444271-04:00[America/New_York]")public interface MailApi  {
    
     @GET
     
@@ -101,7 +102,7 @@ import javax.validation.constraints.*;
                 @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
                 @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
          })
-    Response sendMailById(@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Parameter(description = "", required=true)@FormParam("from")  MailContact from,@Parameter(description = "", required=true)@FormParam("to")  List<MailContact> to,@Parameter(description = "", required=true)@FormParam("id")  Long id,@Parameter(description = "", required=true)@FormParam("replyto")  List<MailContact> replyto,@Parameter(description = "", required=true)@FormParam("cc")  List<MailContact> cc,@Parameter(description = "", required=true)@FormParam("bcc")  List<MailContact> bcc,@Parameter(description = "", required=true)@FormParam("attachments")  List<MailAttachment> attachments,@Context SecurityContext securityContext);
+    Response sendMailById(@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Parameter(description = "", required=true)@FormParam("from")  List<SendMailFrom> from,@Parameter(description = "", required=true)@FormParam("to")  List<MailContact> to,@Parameter(description = "", required=true)@FormParam("id")  Long id,@Parameter(description = "", required=true)@FormParam("replyto")  List<MailContact> replyto,@Parameter(description = "", required=true)@FormParam("cc")  List<MailContact> cc,@Parameter(description = "", required=true)@FormParam("bcc")  List<MailContact> bcc,@Parameter(description = "", required=true)@FormParam("attachments")  List<MailAttachment> attachments,@Context SecurityContext securityContext);
 
     @GET
     @Path("/order")

@@ -12,6 +12,7 @@ MailLog : io.swagger.model.MailLog
 MailOrder : io.swagger.model.MailOrder
 MailOrders : io.swagger.model.MailOrders
 SendMail : io.swagger.model.SendMail
+SendMailFrom : io.swagger.model.SendMailFrom
 
 entityProcessors:
   - json

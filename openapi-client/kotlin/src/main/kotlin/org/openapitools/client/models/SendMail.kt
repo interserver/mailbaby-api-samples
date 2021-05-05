@@ -13,6 +13,7 @@ package org.openapitools.client.models
 
 import org.openapitools.client.models.MailAttachment
 import org.openapitools.client.models.MailContact
+import org.openapitools.client.models.SendMailFrom
 
 import com.squareup.moshi.Json
 
@@ -20,7 +21,7 @@ import com.squareup.moshi.Json
  * Details for an Email
  * @param subject The subject or title of the email
  * @param body The main email contents.
- * @param from 
+ * @param from The contact whom is the this email is from.
  * @param to The Contact whom is the primary recipient of this email.
  * @param id The ID of the Mail order within our system to use as the Mail Account.
  * @param replyto Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
@@ -36,8 +37,9 @@ data class SendMail (
     /* The main email contents. */
     @Json(name = "body")
     val body: kotlin.String,
+    /* The contact whom is the this email is from. */
     @Json(name = "from")
-    val from: MailContact,
+    val from: kotlin.collections.List<SendMailFrom>,
     /* The Contact whom is the primary recipient of this email. */
     @Json(name = "to")
     val to: kotlin.collections.List<MailContact>,

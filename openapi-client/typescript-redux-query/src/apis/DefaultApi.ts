@@ -27,9 +27,6 @@ import {
     MailOrder,
     MailOrderFromJSON,
     MailOrderToJSON,
-    SendMail,
-    SendMailFromJSON,
-    SendMailToJSON,
     SendMailAdv,
     SendMailAdvFromJSON,
     SendMailAdvToJSON,
@@ -48,7 +45,10 @@ export interface SendAdvMailRequest {
 }
 
 export interface SendMailRequest {
-    sendMail: SendMail;
+    to?: string;
+    from?: string;
+    subject?: string;
+    body?: string;
 }
 
 export interface ViewMailLogByIdRequest {
@@ -251,21 +251,32 @@ export function sendAdvMail<T>(requestParameters: SendAdvMailRequest, requestCon
  * Sends an Email
  */
 function sendMailRaw<T>(requestParameters: SendMailRequest, requestConfig: runtime.TypedQueryConfig<T, GenericResponse> = {}): QueryConfig<T> {
-    if (requestParameters.sendMail === null || requestParameters.sendMail === undefined) {
-        throw new runtime.RequiredError('sendMail','Required parameter requestParameters.sendMail was null or undefined when calling sendMail.');
-    }
-
     let queryParameters = null;
 
 
     const headerParameters : runtime.HttpHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
-
 
     const { meta = {} } = requestConfig;
 
     meta.authType = ['api_key', 'header'];
+    const formData = new FormData();
+    if (requestParameters.to !== undefined) {
+        formData.append('to', requestParameters.to as any);
+    }
+
+    if (requestParameters.from !== undefined) {
+        formData.append('from', requestParameters.from as any);
+    }
+
+    if (requestParameters.subject !== undefined) {
+        formData.append('subject', requestParameters.subject as any);
+    }
+
+    if (requestParameters.body !== undefined) {
+        formData.append('body', requestParameters.body as any);
+    }
+
     const config: QueryConfig<T> = {
         url: `${runtime.Configuration.basePath}/mail/send`,
         meta,
@@ -278,7 +289,7 @@ function sendMailRaw<T>(requestParameters: SendMailRequest, requestConfig: runti
             method: 'POST',
             headers: headerParameters,
         },
-        body: queryParameters || SendMailToJSON(requestParameters.sendMail),
+        body: formData,
     };
 
     const { transform: requestTransform } = requestConfig;

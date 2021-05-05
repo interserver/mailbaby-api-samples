@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendMail**
-> GenericResponse sendMail(sendMail)
+> GenericResponse sendMail(to, from, subject, body)
 
 Sends an Email
 
@@ -208,10 +208,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
 final api_instance = DefaultApi();
-final sendMail = SendMail(); // SendMail | 
+final to = to_example; // String | The Contact whom is the primary recipient of this email.
+final from = from_example; // String | The contact whom is the this email is from.
+final subject = subject_example; // String | The subject or title of the email
+final body = body_example; // String | The main email contents.
 
 try { 
-    final result = api_instance.sendMail(sendMail);
+    final result = api_instance.sendMail(to, from, subject, body);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->sendMail: $e\n');
@@ -222,7 +225,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sendMail** | [**SendMail**](SendMail.md)|  | 
+ **to** | **String**| The Contact whom is the primary recipient of this email. | [optional] 
+ **from** | **String**| The contact whom is the this email is from. | [optional] 
+ **subject** | **String**| The subject or title of the email | [optional] 
+ **body** | **String**| The main email contents. | [optional] 
 
 ### Return type
 
@@ -234,7 +240,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded, application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

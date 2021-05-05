@@ -200,7 +200,10 @@ Name | Type | Description  | Notes
 <a name="Send-Mail"></a>
 # **Send-Mail**
 > GenericResponse Send-Mail<br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-SendMail] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-To] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Subject] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Body] <String><br>
 
 Sends an Email
 
@@ -215,11 +218,14 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
-$SendMail = (Initialize-SendMail -To "To_example" -VarFrom "VarFrom_example" -Subject "Subject_example" -Body "Body_example") # SendMail | 
+$To = "To_example" # String | The Contact whom is the primary recipient of this email. (optional)
+$From = "From_example" # String | The contact whom is the this email is from. (optional)
+$Subject = "Subject_example" # String | The subject or title of the email (optional)
+$Body = "Body_example" # String | The main email contents. (optional)
 
 # Sends an Email
 try {
-     $Result = Send-Mail -SendMail $SendMail
+     $Result = Send-Mail -To $To -From $From -Subject $Subject -Body $Body
 } catch {
     Write-Host ("Exception occured when calling Send-Mail: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -230,7 +236,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **SendMail** | [**SendMail**](SendMail.md)|  | 
+ **To** | **String**| The Contact whom is the primary recipient of this email. | [optional] 
+ **From** | **String**| The contact whom is the this email is from. | [optional] 
+ **Subject** | **String**| The subject or title of the email | [optional] 
+ **Body** | **String**| The main email contents. | [optional] 
 
 ### Return type
 
@@ -242,7 +251,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded, application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

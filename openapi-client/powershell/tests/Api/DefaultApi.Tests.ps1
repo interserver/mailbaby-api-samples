@@ -41,7 +41,7 @@ Describe -tag 'PSOpenAPITools' -name 'DefaultApi' {
 
     Context 'Send-Mail' {
         It 'Test Send-Mail' {
-            #$TestResult = Send-Mail -SendMail "TEST_VALUE"
+            #$TestResult = Send-Mail -To "TEST_VALUE" -From "TEST_VALUE" -Subject "TEST_VALUE" -Body "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }

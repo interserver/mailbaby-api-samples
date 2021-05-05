@@ -249,7 +249,7 @@ Name | Type | Description  | Notes
 ## `sendMail()`
 
 ```php
-sendMail($sendMail): \Interserver\Mailbaby\Model\GenericResponse
+sendMail($to, $from, $subject, $body): \Interserver\Mailbaby\Model\GenericResponse
 ```
 
 Sends an Email
@@ -275,10 +275,13 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$sendMail = new \Interserver\Mailbaby\Model\SendMail(); // \Interserver\Mailbaby\Model\SendMail
+$to = 'to_example'; // string | The Contact whom is the primary recipient of this email.
+$from = 'from_example'; // string | The contact whom is the this email is from.
+$subject = 'subject_example'; // string | The subject or title of the email
+$body = 'body_example'; // string | The main email contents.
 
 try {
-    $result = $apiInstance->sendMail($sendMail);
+    $result = $apiInstance->sendMail($to, $from, $subject, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->sendMail: ', $e->getMessage(), PHP_EOL;
@@ -289,7 +292,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sendMail** | [**\Interserver\Mailbaby\Model\SendMail**](../Model/SendMail.md)|  |
+ **to** | **string**| The Contact whom is the primary recipient of this email. | [optional]
+ **from** | **string**| The contact whom is the this email is from. | [optional]
+ **subject** | **string**| The subject or title of the email | [optional]
+ **body** | **string**| The main email contents. | [optional]
 
 ### Return type
 
@@ -301,7 +307,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`, `application/x-www-form-urlencoded`
+- **Content-Type**: `application/x-www-form-urlencoded`, `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

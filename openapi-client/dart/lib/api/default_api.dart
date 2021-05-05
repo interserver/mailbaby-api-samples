@@ -280,22 +280,29 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [SendMail] sendMail (required):
-  Future<Response> sendMailWithHttpInfo(SendMail sendMail) async {
+  /// * [String] to:
+  ///   The Contact whom is the primary recipient of this email.
+  ///
+  /// * [String] from:
+  ///   The contact whom is the this email is from.
+  ///
+  /// * [String] subject:
+  ///   The subject or title of the email
+  ///
+  /// * [String] body:
+  ///   The main email contents.
+  Future<Response> sendMailWithHttpInfo({ String to, String from, String subject, String body }) async {
     // Verify required params are set.
-    if (sendMail == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: sendMail');
-    }
 
     final path = r'/mail/send';
 
-    Object postBody = sendMail;
+    Object postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    final contentTypes = <String>['application/json', 'application/x-www-form-urlencoded'];
+    final contentTypes = <String>['application/x-www-form-urlencoded', 'application/json'];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
     final authNames = <String>['apiKeyAuth'];
 
@@ -305,10 +312,38 @@ class DefaultApi {
     ) {
       bool hasFields = false;
       final mp = MultipartRequest(null, null);
+      if (to != null) {
+        hasFields = true;
+        mp.fields[r'to'] = parameterToString(to);
+      }
+      if (from != null) {
+        hasFields = true;
+        mp.fields[r'from'] = parameterToString(from);
+      }
+      if (subject != null) {
+        hasFields = true;
+        mp.fields[r'subject'] = parameterToString(subject);
+      }
+      if (body != null) {
+        hasFields = true;
+        mp.fields[r'body'] = parameterToString(body);
+      }
       if (hasFields) {
         postBody = mp;
       }
     } else {
+      if (to != null) {
+        formParams[r'to'] = parameterToString(to);
+      }
+      if (from != null) {
+        formParams[r'from'] = parameterToString(from);
+      }
+      if (subject != null) {
+        formParams[r'subject'] = parameterToString(subject);
+      }
+      if (body != null) {
+        formParams[r'body'] = parameterToString(body);
+      }
     }
 
     return await apiClient.invokeAPI(
@@ -329,9 +364,19 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [SendMail] sendMail (required):
-  Future<GenericResponse> sendMail(SendMail sendMail) async {
-    final response = await sendMailWithHttpInfo(sendMail);
+  /// * [String] to:
+  ///   The Contact whom is the primary recipient of this email.
+  ///
+  /// * [String] from:
+  ///   The contact whom is the this email is from.
+  ///
+  /// * [String] subject:
+  ///   The subject or title of the email
+  ///
+  /// * [String] body:
+  ///   The main email contents.
+  Future<GenericResponse> sendMail({ String to, String from, String subject, String body }) async {
+    final response = await sendMailWithHttpInfo( to: to, from: from, subject: subject, body: body );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

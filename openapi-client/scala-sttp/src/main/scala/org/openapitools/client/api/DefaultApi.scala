@@ -15,7 +15,6 @@ import org.openapitools.client.model.ErrorResponse
 import org.openapitools.client.model.GenericResponse
 import org.openapitools.client.model.MailLog
 import org.openapitools.client.model.MailOrder
-import org.openapitools.client.model.SendMail
 import org.openapitools.client.model.SendMailAdv
 import org.openapitools.client.core.JsonSupport._
 import sttp.client._
@@ -116,15 +115,23 @@ class DefaultApi(baseUrl: String) {
    * Available security schemes:
    *   apiKeyAuth (apiKey)
    * 
-   * @param sendMail 
+   * @param to The Contact whom is the primary recipient of this email.
+   * @param from The contact whom is the this email is from.
+   * @param subject The subject or title of the email
+   * @param body The main email contents.
    */
-  def sendMail(apiKey: String)(sendMail: SendMail
+  def sendMail(apiKey: String)(to: Option[String] = None, from: Option[String] = None, subject: Option[String] = None, body: Option[String] = None
 ): Request[Either[ResponseError[Exception], GenericResponse], Nothing] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/send")
-      .contentType("application/json")
+      .contentType("application/x-www-form-urlencoded")
       .header("X-API-KEY", apiKey)
-      .body(sendMail)
+      .body(Map(
+        "to" -> to, 
+        "from" -> from, 
+        "subject" -> subject, 
+        "body" -> body
+      ))
       .response(asJson[GenericResponse])
 
   /**

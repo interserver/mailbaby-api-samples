@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * Mail Order Details
  **/
 @Schema(description = "Mail Order Details")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-05T06:29:17.938934-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-05T06:54:12.801607-04:00[America/New_York]")
 public class MailLog   {
   @JsonProperty("id")
   private Long id = null;

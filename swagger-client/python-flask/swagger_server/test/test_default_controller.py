@@ -98,7 +98,7 @@ class TestDefaultController(BaseTestCase):
             method='POST',
             data=json.dumps(body),
             data=data,
-            content_type='application/json')
+            content_type='application/x-www-form-urlencoded')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

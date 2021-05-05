@@ -27,9 +27,6 @@ import {
     MailOrder,
     MailOrderFromJSON,
     MailOrderToJSON,
-    SendMail,
-    SendMailFromJSON,
-    SendMailToJSON,
     SendMailAdv,
     SendMailAdvFromJSON,
     SendMailAdvToJSON,
@@ -48,7 +45,10 @@ export interface SendAdvMailRequest {
 }
 
 export interface SendMailRequest {
-    sendMail: SendMail;
+    to?: string;
+    from?: string;
+    subject?: string;
+    body?: string;
 }
 
 export interface ViewMailLogByIdRequest {
@@ -200,18 +200,43 @@ export class DefaultApi extends runtime.BaseAPI {
      * Sends an Email
      */
     async sendMailRaw(requestParameters: SendMailRequest): Promise<runtime.ApiResponse<GenericResponse>> {
-        if (requestParameters.sendMail === null || requestParameters.sendMail === undefined) {
-            throw new runtime.RequiredError('sendMail','Required parameter requestParameters.sendMail was null or undefined when calling sendMail.');
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
-
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
+        }
+
+        const consumes: runtime.Consume[] = [
+            { contentType: 'application/x-www-form-urlencoded' },
+            { contentType: 'application/json' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters.to !== undefined) {
+            formParams.append('to', requestParameters.to as any);
+        }
+
+        if (requestParameters.from !== undefined) {
+            formParams.append('from', requestParameters.from as any);
+        }
+
+        if (requestParameters.subject !== undefined) {
+            formParams.append('subject', requestParameters.subject as any);
+        }
+
+        if (requestParameters.body !== undefined) {
+            formParams.append('body', requestParameters.body as any);
         }
 
         const response = await this.request({
@@ -219,7 +244,7 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SendMailToJSON(requestParameters.sendMail),
+            body: formParams,
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GenericResponseFromJSON(jsonValue));

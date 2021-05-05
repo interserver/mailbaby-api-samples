@@ -213,45 +213,6 @@ open class DefaultAPI {
 
     /**
      Sends an Email
-     - parameter body: (body)  
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func sendMail(body: SendMail, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
-        sendMailWithRequestBuilder(body: body).execute { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Sends an Email
-     - POST /mail/send
-     - Sends An email through one of your mail orders.
-     - API Key:
-       - type: apiKey X-API-KEY 
-       - name: apiKeyAuth
-     - examples: [{contentType=application/json, example={
-  "status_text" : "The command completed successfully.",
-  "status" : "ok"
-}}]
-     - parameter body: (body)  
-
-     - returns: RequestBuilder<GenericResponse> 
-     */
-    open class func sendMailWithRequestBuilder(body: SendMail) -> RequestBuilder<GenericResponse> {
-        let path = "/mail/send"
-        let URLString = SwaggerClientAPI.basePath + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
-
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<GenericResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
-    }
-
-    /**
-     Sends an Email
      - parameter to: (form)       - parameter from: (form)       - parameter subject: (form)       - parameter body: (form)  
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -278,6 +239,45 @@ open class DefaultAPI {
      - returns: RequestBuilder<GenericResponse> 
      */
     open class func sendMailWithRequestBuilder(to: String, from: String, subject: String, body: String) -> RequestBuilder<GenericResponse> {
+        let path = "/mail/send"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
+
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<GenericResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
+    }
+
+    /**
+     Sends an Email
+     - parameter body: (body)  
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func sendMail(body: SendMail, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
+        sendMailWithRequestBuilder(body: body).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Sends an Email
+     - POST /mail/send
+     - Sends An email through one of your mail orders.
+     - API Key:
+       - type: apiKey X-API-KEY 
+       - name: apiKeyAuth
+     - examples: [{contentType=application/json, example={
+  "status_text" : "The command completed successfully.",
+  "status" : "ok"
+}}]
+     - parameter body: (body)  
+
+     - returns: RequestBuilder<GenericResponse> 
+     */
+    open class func sendMailWithRequestBuilder(body: SendMail) -> RequestBuilder<GenericResponse> {
         let path = "/mail/send"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)

@@ -77,16 +77,6 @@ class MailApiControllerTest {
     }
 
     @Test
-    void sendMailTest() {
-        SendMail body = new SendMail();
-        try {
-            api.sendMail(body).blockingGet();
-        } catch (UnsupportedOperationException e) {
-            assumeTrue(false, "API is not yet implemented");
-        }
-    }
-
-    @Test
     void sendMailWithFormTest() {
         String to = "to_example";
         String from = "from_example";
@@ -94,6 +84,16 @@ class MailApiControllerTest {
         String body = "body_example";
         try {
             api.sendMail(to, from, subject, body).blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
+    void sendMailTest() {
+        SendMail body = new SendMail();
+        try {
+            api.sendMail(body).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

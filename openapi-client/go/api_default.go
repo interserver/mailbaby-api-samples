@@ -518,11 +518,26 @@ func (a *DefaultApiService) SendAdvMailExecute(r ApiSendAdvMailRequest) (Generic
 type ApiSendMailRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
-	sendMail *SendMail
+	to *string
+	from *string
+	subject *string
+	body *string
 }
 
-func (r ApiSendMailRequest) SendMail(sendMail SendMail) ApiSendMailRequest {
-	r.sendMail = &sendMail
+func (r ApiSendMailRequest) To(to string) ApiSendMailRequest {
+	r.to = &to
+	return r
+}
+func (r ApiSendMailRequest) From(from string) ApiSendMailRequest {
+	r.from = &from
+	return r
+}
+func (r ApiSendMailRequest) Subject(subject string) ApiSendMailRequest {
+	r.subject = &subject
+	return r
+}
+func (r ApiSendMailRequest) Body(body string) ApiSendMailRequest {
+	r.body = &body
 	return r
 }
 
@@ -567,12 +582,9 @@ func (a *DefaultApiService) SendMailExecute(r ApiSendMailRequest) (GenericRespon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.sendMail == nil {
-		return localVarReturnValue, nil, reportError("sendMail is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+	localVarHTTPContentTypes := []string{"application/x-www-form-urlencoded", "application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -588,8 +600,18 @@ func (a *DefaultApiService) SendMailExecute(r ApiSendMailRequest) (GenericRespon
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.sendMail
+	if r.to != nil {
+		localVarFormParams.Add("to", parameterToString(*r.to, ""))
+	}
+	if r.from != nil {
+		localVarFormParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.subject != nil {
+		localVarFormParams.Add("subject", parameterToString(*r.subject, ""))
+	}
+	if r.body != nil {
+		localVarFormParams.Add("body", parameterToString(*r.body, ""))
+	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

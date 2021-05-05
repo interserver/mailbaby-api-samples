@@ -125,7 +125,7 @@ public interface DefaultApi  {
      */
     @POST
     @Path("/mail/send")
-    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
+    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", tags={  })
     @ApiResponses(value = { 
@@ -133,7 +133,7 @@ public interface DefaultApi  {
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public GenericResponse sendMail(@Valid SendMail body);
+    public GenericResponse sendMail(@Multipart(value = "to")  String to, @Multipart(value = "from")  String from, @Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body);
 
     /**
      * Sends an Email
@@ -143,7 +143,7 @@ public interface DefaultApi  {
      */
     @POST
     @Path("/mail/send")
-    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
+    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", tags={  })
     @ApiResponses(value = { 
@@ -151,7 +151,7 @@ public interface DefaultApi  {
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public GenericResponse sendMail(@Multipart(value = "to")  String to, @Multipart(value = "from")  String from, @Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body);
+    public GenericResponse sendMail(@Valid SendMail body);
 
     /**
      * validatess order details before placing an order

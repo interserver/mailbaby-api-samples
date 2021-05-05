@@ -114,26 +114,26 @@
 (defn-spec send-mail-with-http-info any?
   "Sends an Email
   Sends An email through one of your mail orders."
-  [send-mail send-mail]
-  (check-required-params send-mail)
-  (call-api "/mail/send" :post
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {}
-             :body-param    send-mail
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
-             :accepts       ["application/json"]
-             :auth-names    ["apiKeyAuth"]}))
+  ([] (send-mail-with-http-info nil))
+  ([{:keys [to from subject body]} (s/map-of keyword? any?)]
+   (call-api "/mail/send" :post
+             {:path-params   {}
+              :header-params {}
+              :query-params  {}
+              :form-params   {"to" to "from" from "subject" subject "body" body }
+              :content-types ["application/x-www-form-urlencoded" "application/json"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKeyAuth"]})))
 
 (defn-spec send-mail generic-response-spec
   "Sends an Email
   Sends An email through one of your mail orders."
-  [send-mail send-mail]
-  (let [res (:data (send-mail-with-http-info send-mail))]
-    (if (:decode-models *api-context*)
-       (st/decode generic-response-spec res st/string-transformer)
-       res)))
+  ([] (send-mail nil))
+  ([optional-params any?]
+   (let [res (:data (send-mail-with-http-info optional-params))]
+     (if (:decode-models *api-context*)
+        (st/decode generic-response-spec res st/string-transformer)
+        res))))
 
 
 (defn-spec validate-mail-order-with-http-info any?

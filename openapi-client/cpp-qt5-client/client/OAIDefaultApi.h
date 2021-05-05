@@ -21,7 +21,6 @@
 #include "OAIGenericResponse.h"
 #include "OAIMailLog.h"
 #include "OAIMailOrder.h"
-#include "OAISendMail.h"
 #include "OAISendMailAdv.h"
 #include <QString>
 
@@ -80,9 +79,12 @@ public:
     void sendAdvMail(const OAISendMailAdv &oai_send_mail_adv);
 
     /**
-    * @param[in]  oai_send_mail OAISendMail [required]
+    * @param[in]  to QString [optional]
+    * @param[in]  from QString [optional]
+    * @param[in]  subject QString [optional]
+    * @param[in]  body QString [optional]
     */
-    void sendMail(const OAISendMail &oai_send_mail);
+    void sendMail(const ::OpenAPI::OptionalParam<QString> &to = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &subject = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &body = ::OpenAPI::OptionalParam<QString>());
 
 
     Q_DECL_DEPRECATED void validateMailOrder();

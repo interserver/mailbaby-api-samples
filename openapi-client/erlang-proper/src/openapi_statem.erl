@@ -101,11 +101,11 @@ send_adv_mail_args(_S) ->
 %% send_mail
 %%==============================================================================
 
-send_mail(OpenapiSendMail) ->
-  openapi_api:send_mail(OpenapiSendMail).
+send_mail() ->
+  openapi_api:send_mail().
 
 send_mail_args(_S) ->
-  [openapi_send_mail:openapi_send_mail()].
+  [].
 
 %%==============================================================================
 %% validate_mail_order

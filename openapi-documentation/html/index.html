@@ -425,20 +425,25 @@ font-style: italic;
     <h3 class="field-label">Consumes</h3>
     This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
-      <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
+      <li><code>application/json</code></li>
     </ul>
 
-    <h3 class="field-label">Request body</h3>
+
+
+
+    <h3 class="field-label">Form parameters</h3>
     <div class="field-items">
-      <div class="param">SendMail <a href="#SendMail">SendMail</a> (required)</div>
+      <div class="param">to (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The Contact whom is the primary recipient of this email. default: null </div><div class="param">from (optional)</div>
 
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The contact whom is the this email is from. default: null </div><div class="param">subject (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The subject or title of the email default: null </div><div class="param">body (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The main email contents. default: null </div>
     </div>  <!-- field-items -->
-
-
-
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">

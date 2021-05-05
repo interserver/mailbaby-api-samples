@@ -18,7 +18,6 @@ import {
     GenericResponse,
     MailLog,
     MailOrder,
-    SendMail,
     SendMailAdv,
 } from '../models';
 
@@ -35,7 +34,10 @@ export interface SendAdvMailRequest {
 }
 
 export interface SendMailRequest {
-    sendMail: SendMail;
+    to?: string;
+    from?: string;
+    subject?: string;
+    body?: string;
 }
 
 export interface ViewMailLogByIdRequest {
@@ -132,21 +134,25 @@ export class DefaultApi extends BaseAPI {
      * Sends An email through one of your mail orders.
      * Sends an Email
      */
-    sendMail({ sendMail }: SendMailRequest): Observable<GenericResponse>
-    sendMail({ sendMail }: SendMailRequest, opts?: OperationOpts): Observable<RawAjaxResponse<GenericResponse>>
-    sendMail({ sendMail }: SendMailRequest, opts?: OperationOpts): Observable<GenericResponse | RawAjaxResponse<GenericResponse>> {
-        throwIfNullOrUndefined(sendMail, 'sendMail', 'sendMail');
+    sendMail({ to, from, subject, body }: SendMailRequest): Observable<GenericResponse>
+    sendMail({ to, from, subject, body }: SendMailRequest, opts?: OperationOpts): Observable<RawAjaxResponse<GenericResponse>>
+    sendMail({ to, from, subject, body }: SendMailRequest, opts?: OperationOpts): Observable<GenericResponse | RawAjaxResponse<GenericResponse>> {
 
         const headers: HttpHeaders = {
-            'Content-Type': 'application/json',
             ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication
         };
+
+        const formData = new FormData();
+        if (to !== undefined) { formData.append('to', to as any); }
+        if (from !== undefined) { formData.append('from', from as any); }
+        if (subject !== undefined) { formData.append('subject', subject as any); }
+        if (body !== undefined) { formData.append('body', body as any); }
 
         return this.request<GenericResponse>({
             url: '/mail/send',
             method: 'POST',
             headers,
-            body: sendMail,
+            body: formData,
         }, opts?.responseOpts);
     };
 

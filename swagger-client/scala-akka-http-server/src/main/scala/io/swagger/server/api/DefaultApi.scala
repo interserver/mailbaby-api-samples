@@ -90,7 +90,7 @@ class DefaultApi(
             formFields("to".as[String], "from".as[String], "subject".as[String], "body".as[String]) { (to, from, subject, body) =>
               
                 entity(as[SendMail]){ body =>
-                  defaultService.sendMail(body = body, to = to, from = from, subject = subject, body = body)
+                  defaultService.sendMail(to = to, from = from, subject = subject, body = body, body = body)
                 }
              
             }
@@ -202,7 +202,7 @@ trait DefaultApiService {
    * Code: 401, Message: Unauthorized, DataType: ErrorResponse
    * Code: 404, Message: The specified resource was not found, DataType: ErrorResponse
    */
-  def sendMail(body: String, to: String, from: String, subject: String, body: String)
+  def sendMail(to: String, from: String, subject: String, body: String, body: String)
       (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
 
   def validateMailOrder200: Route =

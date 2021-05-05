@@ -25,7 +25,6 @@ import org.openapitools.client.api.ErrorResponse
 import org.openapitools.client.api.GenericResponse
 import org.openapitools.client.api.MailLog
 import org.openapitools.client.api.MailOrder
-import org.openapitools.client.api.SendMail
 import org.openapitools.client.api.SendMailAdv
 
 object DefaultApi {
@@ -114,7 +113,7 @@ object DefaultApi {
     } yield resp
   }
   
-  def sendMail(host: String, sendMail: SendMail): Task[GenericResponse] = {
+  def sendMail(host: String, to: String, from: String, subject: String, body: String): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/send"
@@ -129,7 +128,7 @@ object DefaultApi {
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
       uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(sendMail)
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
       resp          <- client.expect[GenericResponse](req)
 
     } yield resp
@@ -262,7 +261,7 @@ class HttpServiceDefaultApi(service: HttpService) {
     } yield resp
   }
   
-  def sendMail(sendMail: SendMail): Task[GenericResponse] = {
+  def sendMail(to: String, from: String, subject: String, body: String): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/send"
@@ -277,7 +276,7 @@ class HttpServiceDefaultApi(service: HttpService) {
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))
       uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(sendMail)
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
       resp          <- client.expect[GenericResponse](req)
 
     } yield resp

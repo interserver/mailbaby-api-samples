@@ -327,8 +327,17 @@ Sends an Email
 
 No description available.
 
-.PARAMETER SendMail
-No description available.
+.PARAMETER To
+The Contact whom is the primary recipient of this email.
+
+.PARAMETER From
+The contact whom is the this email is from.
+
+.PARAMETER Subject
+The subject or title of the email
+
+.PARAMETER Body
+The main email contents.
 
 .PARAMETER WithHttpInfo
 
@@ -342,8 +351,17 @@ function Send-Mail {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${SendMail},
+        [String]
+        ${To},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${From},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Subject},
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Body},
         [Switch]
         $WithHttpInfo
     )
@@ -366,15 +384,25 @@ function Send-Mail {
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json', 'application/x-www-form-urlencoded')
+        $LocalVarContentTypes = @('application/x-www-form-urlencoded', 'application/json')
 
         $LocalVarUri = '/mail/send'
 
-        if (!$SendMail) {
-            throw "Error! The required parameter `SendMail` missing when calling sendMail."
+        if ($To) {
+            $LocalVarFormParameters['to'] = $To
         }
 
-        $LocalVarBodyParameter = $SendMail | ConvertTo-Json -Depth 100
+        if ($From) {
+            $LocalVarFormParameters['from'] = $From
+        }
+
+        if ($Subject) {
+            $LocalVarFormParameters['subject'] = $Subject
+        }
+
+        if ($Body) {
+            $LocalVarFormParameters['body'] = $Body
+        }
 
         if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
             $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]

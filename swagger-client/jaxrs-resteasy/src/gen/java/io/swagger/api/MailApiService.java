@@ -22,7 +22,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T06:29:35.037261-04:00[America/New_York]")public interface MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T06:54:30.068724-04:00[America/New_York]")public interface MailApiService {
       Response getMailOrders(Long id,SecurityContext securityContext)
       throws NotFoundException;
       Response placeMailOrder(MailOrder body,SecurityContext securityContext)
@@ -31,9 +31,9 @@ import javax.ws.rs.core.SecurityContext;
       throws NotFoundException;
       Response sendAdvMail(String subject,String body,List<SendMailAdvFrom> from,List<MailContact> to,Long id,List<MailContact> replyto,List<MailContact> cc,List<MailContact> bcc,List<MailAttachment> attachments,SecurityContext securityContext)
       throws NotFoundException;
-      Response sendMail(SendMail body,SecurityContext securityContext)
-      throws NotFoundException;
       Response sendMail(String to,String from,String subject,String body,SecurityContext securityContext)
+      throws NotFoundException;
+      Response sendMail(SendMail body,SecurityContext securityContext)
       throws NotFoundException;
       Response validateMailOrder(SecurityContext securityContext)
       throws NotFoundException;

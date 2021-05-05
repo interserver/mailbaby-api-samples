@@ -82,16 +82,21 @@ package body .Clients is
    --  Sends An email through one of your mail orders.
    procedure Send_Mail
       (Client : in out Client_Type;
-       Send_Mail_Type : in .Models.SendMail_Type;
+       To : in Swagger.Nullable_UString;
+       From : in Swagger.Nullable_UString;
+       Subject : in Swagger.Nullable_UString;
+       P_Body : in Swagger.Nullable_UString;
        Result : out .Models.GenericResponse_Type) is
       URI   : Swagger.Clients.URI_Type;
       Req   : Swagger.Clients.Request_Type;
       Reply : Swagger.Value_Type;
    begin
       Client.Set_Accept ((1 => Swagger.Clients.APPLICATION_JSON));
-      Client.Initialize (Req, (Swagger.Clients.APPLICATION_JSON,
-                               Swagger.Clients.APPLICATION_X_WWW_FORM_URLENCODED));
-      .Models.Serialize (Req.Stream, "", Send_Mail_Type);
+      Client.Initialize (Req, (1 => Swagger.Clients.APPLICATION_FORM));
+      .Models.Serialize (Req.Stream, "to", To);
+      .Models.Serialize (Req.Stream, "from", From);
+      .Models.Serialize (Req.Stream, "subject", Subject);
+      .Models.Serialize (Req.Stream, "body", P_Body);
 
       URI.Set_Path ("/mail/send");
       Client.Call (Swagger.Clients.POST, URI, Req, Reply);

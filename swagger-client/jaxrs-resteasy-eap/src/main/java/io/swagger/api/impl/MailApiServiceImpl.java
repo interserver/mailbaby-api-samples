@@ -5,6 +5,8 @@ import io.swagger.model.*;
 
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
+import io.swagger.model.MailAttachment;
+import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
@@ -17,7 +19,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T04:03:22.653793-04:00[America/New_York]")public class MailApiServiceImpl implements MailApi {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T04:12:04.510488-04:00[America/New_York]")public class MailApiServiceImpl implements MailApi {
       public Response getMailOrders(Long id,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
@@ -34,7 +36,7 @@ import javax.ws.rs.core.SecurityContext;
       // do some magic!
       return Response.ok().build();
   }
-      public Response sendMailById(SendMail payload,SecurityContext securityContext) {
+      public Response sendMailById(String subject,String body,MailContact from,List<MailContact> to,Long id,List<MailContact> replyto,List<MailContact> cc,List<MailContact> bcc,List<MailAttachment> attachments,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }

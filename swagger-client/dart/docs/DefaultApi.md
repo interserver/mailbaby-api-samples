@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendMailById**
-> GenericResponse sendMailById(body, payload)
+> GenericResponse sendMailById(body, subject, body, from, to, id, replyto, cc, bcc, attachments)
 
 Sends an Email
 
@@ -208,10 +208,18 @@ import 'package:swagger/api.dart';
 
 var api_instance = new DefaultApi();
 var body = new SendMail(); // SendMail | 
-var payload = ; // SendMail | 
+var subject = subject_example; // String | 
+var body = body_example; // String | 
+var from = ; // MailContact | 
+var to = []; // List<MailContact> | 
+var id = 789; // int | 
+var replyto = []; // List<MailContact> | 
+var cc = []; // List<MailContact> | 
+var bcc = []; // List<MailContact> | 
+var attachments = []; // List<MailAttachment> | 
 
 try {
-    var result = api_instance.sendMailById(body, payload);
+    var result = api_instance.sendMailById(body, subject, body, from, to, id, replyto, cc, bcc, attachments);
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->sendMailById: $e\n");
@@ -223,7 +231,15 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**SendMail**](SendMail.md)|  | 
- **payload** | [**SendMail**](.md)|  | 
+ **subject** | **String**|  | 
+ **body** | **String**|  | 
+ **from** | [**MailContact**](.md)|  | 
+ **to** | [**List&lt;MailContact&gt;**](MailContact.md)|  | 
+ **id** | **int**|  | 
+ **replyto** | [**List&lt;MailContact&gt;**](MailContact.md)|  | 
+ **cc** | [**List&lt;MailContact&gt;**](MailContact.md)|  | 
+ **bcc** | [**List&lt;MailContact&gt;**](MailContact.md)|  | 
+ **attachments** | [**List&lt;MailAttachment&gt;**](MailAttachment.md)|  | 
 
 ### Return type
 

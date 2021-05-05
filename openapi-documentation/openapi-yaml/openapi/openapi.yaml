@@ -132,12 +132,8 @@ paths:
             schema:
               $ref: '#/components/schemas/SendMail'
           application/x-www-form-urlencoded:
-            encoding:
-              payload:
-                contentType: application/json
-                style: form
             schema:
-              $ref: '#/components/schemas/body'
+              $ref: '#/components/schemas/SendMail'
         required: true
       responses:
         "200":
@@ -484,11 +480,6 @@ components:
       - subject
       - to
       title: Email details
-      type: object
-    body:
-      properties:
-        payload:
-          $ref: '#/components/schemas/SendMail'
       type: object
   securitySchemes:
     apiKeyAuth:

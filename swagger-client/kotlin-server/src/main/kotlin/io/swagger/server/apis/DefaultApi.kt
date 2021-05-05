@@ -35,6 +35,8 @@ import io.swagger.server.infrastructure.ApiPrincipal
 
 import io.swagger.server.models.ErrorResponse
 import io.swagger.server.models.GenericResponse
+import io.swagger.server.models.MailAttachment
+import io.swagger.server.models.MailContact
 import io.swagger.server.models.MailLog
 import io.swagger.server.models.MailOrder
 import io.swagger.server.models.MailOrders

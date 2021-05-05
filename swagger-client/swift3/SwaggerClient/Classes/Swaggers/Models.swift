@@ -287,24 +287,6 @@ class Decoders {
             }
         }
 
-        // Decoder for [Body]
-        Decoders.addDecoder(clazz: [Body].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[Body]> in
-            return Decoders.decode(clazz: [Body].self, source: source)
-        }
-
-        // Decoder for Body
-        Decoders.addDecoder(clazz: Body.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<Body> in
-            if let sourceDictionary = source as? [AnyHashable: Any] {
-                let _result = instance == nil ? Body() : instance as! Body
-                switch Decoders.decodeOptional(clazz: SendMail.self, source: sourceDictionary["payload"] as AnyObject?) {
-                case let .success(value): _result.payload = value
-                case let .failure(error): break
-                }
-                return .success(_result)
-            } else {
-                return .failure(.typeMismatch(expected: "Body", actual: "\(source)"))
-            }
-        }
         // Decoder for [GenericResponse]
         Decoders.addDecoder(clazz: [GenericResponse].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[GenericResponse]> in
             return Decoders.decode(clazz: [GenericResponse].self, source: source)

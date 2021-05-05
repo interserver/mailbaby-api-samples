@@ -11,7 +11,7 @@ import java.util.List;
 import io.swagger.model.*;
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-05T04:03:09.061356-04:00[America/New_York]")public class PingController  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-05T04:11:50.576442-04:00[America/New_York]")public class PingController  {
   /** 
    * Uncomment and implement as you see fit.  These operations will map
    * Directly to operation calls from the routing logic.  Because the inflector

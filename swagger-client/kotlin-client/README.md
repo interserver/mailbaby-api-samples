@@ -46,7 +46,6 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [io.swagger.client.models.Body](docs/Body.md)
  - [io.swagger.client.models.ErrorResponse](docs/ErrorResponse.md)
  - [io.swagger.client.models.GenericResponse](docs/GenericResponse.md)
  - [io.swagger.client.models.MailAttachment](docs/MailAttachment.md)

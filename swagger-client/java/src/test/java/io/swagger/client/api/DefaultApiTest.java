@@ -15,6 +15,8 @@ package io.swagger.client.api;
 import io.swagger.client.ApiException;
 import io.swagger.client.model.ErrorResponse;
 import io.swagger.client.model.GenericResponse;
+import io.swagger.client.model.MailAttachment;
+import io.swagger.client.model.MailContact;
 import io.swagger.client.model.MailLog;
 import io.swagger.client.model.MailOrder;
 import io.swagger.client.model.MailOrders;

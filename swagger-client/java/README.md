@@ -2,7 +2,7 @@
 
 Mail Baby API
 - API version: 1.0.0
-  - Build date: 2021-05-05T04:03:00.389294-04:00[America/New_York]
+  - Build date: 2021-05-05T04:11:42.565730-04:00[America/New_York]
 
 This is an API defintion for accesssing the Mail.Baby mail service.
 
@@ -203,9 +203,17 @@ public class DefaultApiExample {
 
         DefaultApi apiInstance = new DefaultApi();
         SendMail body = new SendMail(); // SendMail | 
-        SendMail payload = new SendMail(); // SendMail | 
+        String subject = "subject_example"; // String | 
+        String body = "body_example"; // String | 
+        MailContact from = new MailContact(); // MailContact | 
+        List<MailContact> to = Arrays.asList(new MailContact()); // List<MailContact> | 
+        Long id = 789L; // Long | 
+        List<MailContact> replyto = Arrays.asList(new MailContact()); // List<MailContact> | 
+        List<MailContact> cc = Arrays.asList(new MailContact()); // List<MailContact> | 
+        List<MailContact> bcc = Arrays.asList(new MailContact()); // List<MailContact> | 
+        List<MailAttachment> attachments = Arrays.asList(new MailAttachment()); // List<MailAttachment> | 
         try {
-            GenericResponse result = apiInstance.sendMailById(body, payload);
+            GenericResponse result = apiInstance.sendMailById(body, subject, body, from, to, id, replyto, cc, bcc, attachments);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#sendMailById");
@@ -292,7 +300,6 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [Body](docs/Body.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [GenericResponse](docs/GenericResponse.md)
  - [MailAttachment](docs/MailAttachment.md)

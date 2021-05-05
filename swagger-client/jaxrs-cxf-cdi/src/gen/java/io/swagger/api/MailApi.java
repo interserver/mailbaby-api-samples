@@ -2,6 +2,8 @@ package io.swagger.api;
 
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
+import io.swagger.model.MailAttachment;
+import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
@@ -37,7 +39,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-05T04:03:11.903542-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-05T04:11:53.263707-04:00[America/New_York]")
 public class MailApi  {
 
   @Context SecurityContext securityContext;
@@ -122,8 +124,8 @@ public class MailApi  {
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendMailById(@Multipart(value = "payload")  SendMail payload) {
-        return delegate.sendMailById(payload, securityContext);
+    public Response sendMailById(@Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body, @Multipart(value = "from")  MailContact from, @Multipart(value = "to")  List<MailContact> to, @Multipart(value = "id")  Long id, @Multipart(value = "replyto")  List<MailContact> replyto, @Multipart(value = "cc")  List<MailContact> cc, @Multipart(value = "bcc")  List<MailContact> bcc, @Multipart(value = "attachments")  List<MailAttachment> attachments) {
+        return delegate.sendMailById(subject, body, from, to, id, replyto, cc, bcc, attachments, securityContext);
     }
 
     @GET

@@ -12,7 +12,7 @@ Contact: detain@interserver.net
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{349C05B7-B5AC-4794-A380-5B7073E2C27D}</ProjectGuid>
+    <ProjectGuid>{46504EFF-F8B2-47C8-90CB-D30EBEA474CC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IO.Swagger</RootNamespace>

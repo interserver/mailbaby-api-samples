@@ -7,6 +7,8 @@ from six import BytesIO
 
 from swagger_server.models.error_response import ErrorResponse  # noqa: E501
 from swagger_server.models.generic_response import GenericResponse  # noqa: E501
+from swagger_server.models.mail_attachment import MailAttachment  # noqa: E501
+from swagger_server.models.mail_contact import MailContact  # noqa: E501
 from swagger_server.models.mail_log import MailLog  # noqa: E501
 from swagger_server.models.mail_order import MailOrder  # noqa: E501
 from swagger_server.models.mail_orders import MailOrders  # noqa: E501
@@ -75,7 +77,15 @@ class TestDefaultController(BaseTestCase):
         Sends an Email
         """
         body = SendMail()
-        data = dict(payload=SendMail())
+        data = dict(subject='subject_example',
+                    body='body_example',
+                    _from=MailContact(),
+                    to=MailContact(),
+                    id=789,
+                    replyto=MailContact(),
+                    cc=MailContact(),
+                    bcc=MailContact(),
+                    attachments=MailAttachment())
         response = self.client.open(
             '/mail/send',
             method='POST',

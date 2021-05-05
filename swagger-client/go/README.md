@@ -32,7 +32,6 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [Body](docs/Body.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [GenericResponse](docs/GenericResponse.md)
  - [MailAttachment](docs/MailAttachment.md)

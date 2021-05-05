@@ -139,11 +139,7 @@ paths:
               $ref: '#/components/schemas/SendMail'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/body'
-            encoding:
-              payload:
-                contentType: application/json
-                style: form
+              $ref: '#/components/schemas/SendMail'
         required: true
       responses:
         "200":
@@ -412,11 +408,6 @@ components:
           items:
             $ref: '#/components/schemas/MailAttachment'
       description: Details for an Email
-    body:
-      type: object
-      properties:
-        payload:
-          $ref: '#/components/schemas/SendMail'
   responses:
     NotFound:
       description: The specified resource was not found

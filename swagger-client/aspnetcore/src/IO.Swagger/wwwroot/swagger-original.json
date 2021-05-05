@@ -190,13 +190,7 @@
             },
             "application/x-www-form-urlencoded" : {
               "schema" : {
-                "$ref" : "#/components/schemas/body"
-              },
-              "encoding" : {
-                "payload" : {
-                  "contentType" : "application/json",
-                  "style" : "form"
-                }
+                "$ref" : "#/components/schemas/SendMail"
               }
             }
           },
@@ -543,14 +537,6 @@
           }
         },
         "description" : "Details for an Email"
-      },
-      "body" : {
-        "type" : "object",
-        "properties" : {
-          "payload" : {
-            "$ref" : "#/components/schemas/SendMail"
-          }
-        }
       }
     },
     "responses" : {

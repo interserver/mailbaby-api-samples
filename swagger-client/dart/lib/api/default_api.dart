@@ -233,16 +233,64 @@ class DefaultApi {
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;
       MultipartRequest mp = new MultipartRequest(null, null);
-      if (payload != null) {
+      if (subject != null) {
         hasFields = true;
-        mp.fields['payload'] = parameterToString(payload);
+        mp.fields['subject'] = parameterToString(subject);
+      }
+      if (body != null) {
+        hasFields = true;
+        mp.fields['body'] = parameterToString(body);
+      }
+      if (from != null) {
+        hasFields = true;
+        mp.fields['from'] = parameterToString(from);
+      }
+      if (to != null) {
+        hasFields = true;
+        mp.fields['to'] = parameterToString(to);
+      }
+      if (id != null) {
+        hasFields = true;
+        mp.fields['id'] = parameterToString(id);
+      }
+      if (replyto != null) {
+        hasFields = true;
+        mp.fields['replyto'] = parameterToString(replyto);
+      }
+      if (cc != null) {
+        hasFields = true;
+        mp.fields['cc'] = parameterToString(cc);
+      }
+      if (bcc != null) {
+        hasFields = true;
+        mp.fields['bcc'] = parameterToString(bcc);
+      }
+      if (attachments != null) {
+        hasFields = true;
+        mp.fields['attachments'] = parameterToString(attachments);
       }
       if(hasFields)
         postBody = mp;
     }
     else {
-      if (payload != null)
-        formParams['payload'] = parameterToString(payload);
+      if (subject != null)
+        formParams['subject'] = parameterToString(subject);
+if (body != null)
+        formParams['body'] = parameterToString(body);
+if (from != null)
+        formParams['from'] = parameterToString(from);
+if (to != null)
+        formParams['to'] = parameterToString(to);
+if (id != null)
+        formParams['id'] = parameterToString(id);
+if (replyto != null)
+        formParams['replyto'] = parameterToString(replyto);
+if (cc != null)
+        formParams['cc'] = parameterToString(cc);
+if (bcc != null)
+        formParams['bcc'] = parameterToString(bcc);
+if (attachments != null)
+        formParams['attachments'] = parameterToString(attachments);
     }
 
     var response = await apiClient.invokeAPI(path,

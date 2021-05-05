@@ -19,6 +19,8 @@ import { Observable }                                        from 'rxjs';
 
 import { ErrorResponse } from '../model/errorResponse';
 import { GenericResponse } from '../model/genericResponse';
+import { MailAttachment } from '../model/mailAttachment';
+import { MailContact } from '../model/mailContact';
 import { MailLog } from '../model/mailLog';
 import { MailOrder } from '../model/mailOrder';
 import { MailOrders } from '../model/mailOrders';
@@ -303,17 +305,57 @@ export class DefaultService {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param payload 
+     * @param subject 
+     * @param body 
+     * @param from 
+     * @param to 
+     * @param id 
+     * @param replyto 
+     * @param cc 
+     * @param bcc 
+     * @param attachments 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendMailByIdForm(payload: SendMail, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
-    public sendMailByIdForm(payload: SendMail, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
-    public sendMailByIdForm(payload: SendMail, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
-    public sendMailByIdForm(payload: SendMail, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public sendMailByIdForm(subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
+    public sendMailByIdForm(subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
+    public sendMailByIdForm(subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
+    public sendMailByIdForm(subject: string, body: string, from: MailContact, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (payload === null || payload === undefined) {
-            throw new Error('Required parameter payload was null or undefined when calling sendMailById.');
+        if (subject === null || subject === undefined) {
+            throw new Error('Required parameter subject was null or undefined when calling sendMailById.');
+        }
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling sendMailById.');
+        }
+
+        if (from === null || from === undefined) {
+            throw new Error('Required parameter from was null or undefined when calling sendMailById.');
+        }
+
+        if (to === null || to === undefined) {
+            throw new Error('Required parameter to was null or undefined when calling sendMailById.');
+        }
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling sendMailById.');
+        }
+
+        if (replyto === null || replyto === undefined) {
+            throw new Error('Required parameter replyto was null or undefined when calling sendMailById.');
+        }
+
+        if (cc === null || cc === undefined) {
+            throw new Error('Required parameter cc was null or undefined when calling sendMailById.');
+        }
+
+        if (bcc === null || bcc === undefined) {
+            throw new Error('Required parameter bcc was null or undefined when calling sendMailById.');
+        }
+
+        if (attachments === null || attachments === undefined) {
+            throw new Error('Required parameter attachments was null or undefined when calling sendMailById.');
         }
 
         let headers = this.defaultHeaders;
@@ -349,8 +391,42 @@ export class DefaultService {
             formParams = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
         }
 
-        if (payload !== undefined) {
-            formParams = formParams.append('payload', <any>payload) as any || formParams;
+        if (subject !== undefined) {
+            formParams = formParams.append('subject', <any>subject) as any || formParams;
+        }
+        if (body !== undefined) {
+            formParams = formParams.append('body', <any>body) as any || formParams;
+        }
+        if (from !== undefined) {
+            formParams = formParams.append('from', <any>from) as any || formParams;
+        }
+        if (to) {
+            to.forEach((element) => {
+                formParams = formParams.append('to', <any>element) as any || formParams;
+            })
+        }
+        if (id !== undefined) {
+            formParams = formParams.append('id', <any>id) as any || formParams;
+        }
+        if (replyto) {
+            replyto.forEach((element) => {
+                formParams = formParams.append('replyto', <any>element) as any || formParams;
+            })
+        }
+        if (cc) {
+            cc.forEach((element) => {
+                formParams = formParams.append('cc', <any>element) as any || formParams;
+            })
+        }
+        if (bcc) {
+            bcc.forEach((element) => {
+                formParams = formParams.append('bcc', <any>element) as any || formParams;
+            })
+        }
+        if (attachments) {
+            attachments.forEach((element) => {
+                formParams = formParams.append('attachments', <any>element) as any || formParams;
+            })
         }
 
         return this.httpClient.request<GenericResponse>('post',`${this.basePath}/mail/send`,

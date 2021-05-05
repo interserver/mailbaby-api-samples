@@ -161,13 +161,21 @@ DefaultApi <- R6::R6Class(
       }
 
     }
-    send_mail_by_id = function(body, payload, ...){
+    send_mail_by_id = function(body, subject, body, from, to, id, replyto, cc, bcc, attachments, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()
 
       body <- list(
-          "payload" = payload
+          "subject" = subject,
+          "body" = body,
+          "from" = from,
+          "to" = to,
+          "id" = id,
+          "replyto" = replyto,
+          "cc" = cc,
+          "bcc" = bcc,
+          "attachments" = attachments
       )
 
       if (!missing(`body`)) {

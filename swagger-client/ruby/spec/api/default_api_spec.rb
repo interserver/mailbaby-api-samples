@@ -91,7 +91,15 @@ describe 'DefaultApi' do
   # unit tests for send_mail_by_id
   # Sends an Email
   # Sends An email through one of your mail orders.
-  # @param payload 
+  # @param subject 
+  # @param body 
+  # @param from 
+  # @param to 
+  # @param id 
+  # @param replyto 
+  # @param cc 
+  # @param bcc 
+  # @param attachments 
   # @param [Hash] opts the optional parameters
   # @return [GenericResponse]
   describe 'send_mail_by_id test' do

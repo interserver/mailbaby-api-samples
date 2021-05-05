@@ -432,7 +432,23 @@
 
     <h3 class="field-label">Form parameters</h3>
     <div class="field-items">
-      <div class="param">payload (required)</div>
+      <div class="param">subject (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">body (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">from (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">to (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  format: int64</div>      <div class="param">replyto (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">cc (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">bcc (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">attachments (required)</div>
       
             <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
 
@@ -577,7 +593,6 @@ available inventory in the system</div>
     <li><a href="#MailOrder"><code>MailOrder</code></a></li>
     <li><a href="#MailOrders"><code>MailOrders</code></a></li>
     <li><a href="#SendMail"><code>SendMail</code> - Email details</a></li>
-    <li><a href="#body"><code>body</code></a></li>
   </ol>
 
   <div class="model">
@@ -663,13 +678,6 @@ available inventory in the system</div>
 <div class="param">cc (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailContact">array[MailContact]</a></span> Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. </div>
 <div class="param">bcc (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailContact">array[MailContact]</a></span> Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. </div>
 <div class="param">attachments (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailAttachment">array[MailAttachment]</a></span> Optional file attachments to include in the email </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="body"><code>body</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">payload (optional)</div><div class="param-desc"><span class="param-type"><a href="#SendMail">SendMail</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   </body>

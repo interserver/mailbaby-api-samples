@@ -15,6 +15,8 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
+import io.swagger.model.MailAttachment;
+import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
@@ -37,7 +39,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-05T04:03:19.931569-04:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-05T04:12:01.474741-04:00[America/New_York]")public class MailApi  {
 
    private MailApiService delegate;
 
@@ -138,10 +140,18 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendMailById(@Parameter(description = "", required=true)  @FormParam("payload")  SendMail payload
+    public Response sendMailById(@Parameter(description = "", required=true)  @FormParam("subject")  String subject
+,@Parameter(description = "", required=true)  @FormParam("body")  String body
+,@Parameter(description = "", required=true)  @FormParam("from")  MailContact from
+,@Parameter(description = "", required=true)  @FormParam("to")  List<MailContact> to
+,@Parameter(description = "", required=true)  @FormParam("id")  Long id
+,@Parameter(description = "", required=true)  @FormParam("replyto")  List<MailContact> replyto
+,@Parameter(description = "", required=true)  @FormParam("cc")  List<MailContact> cc
+,@Parameter(description = "", required=true)  @FormParam("bcc")  List<MailContact> bcc
+,@Parameter(description = "", required=true)  @FormParam("attachments")  List<MailAttachment> attachments
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.sendMailById(payload,securityContext);
+        return delegate.sendMailById(subject,body,from,to,id,replyto,cc,bcc,attachments,securityContext);
     }
     @GET
     @Path("/order")

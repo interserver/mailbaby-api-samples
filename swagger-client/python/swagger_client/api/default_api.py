@@ -464,8 +464,29 @@ class DefaultApi(object):
 
         form_params = []
         local_var_files = {}
-        if 'payload' in params:
-            form_params.append(('payload', params['payload']))  # noqa: E501
+        if 'subject' in params:
+            form_params.append(('subject', params['subject']))  # noqa: E501
+        if 'body' in params:
+            form_params.append(('body', params['body']))  # noqa: E501
+        if '_from' in params:
+            form_params.append(('from', params['_from']))  # noqa: E501
+        if 'to' in params:
+            form_params.append(('to', params['to']))  # noqa: E501
+            collection_formats['to'] = 'multi'  # noqa: E501
+        if 'id' in params:
+            form_params.append(('id', params['id']))  # noqa: E501
+        if 'replyto' in params:
+            form_params.append(('replyto', params['replyto']))  # noqa: E501
+            collection_formats['replyto'] = 'multi'  # noqa: E501
+        if 'cc' in params:
+            form_params.append(('cc', params['cc']))  # noqa: E501
+            collection_formats['cc'] = 'multi'  # noqa: E501
+        if 'bcc' in params:
+            form_params.append(('bcc', params['bcc']))  # noqa: E501
+            collection_formats['bcc'] = 'multi'  # noqa: E501
+        if 'attachments' in params:
+            form_params.append(('attachments', params['attachments']))  # noqa: E501
+            collection_formats['attachments'] = 'multi'  # noqa: E501
 
         body_params = None
         if 'body' in params:
@@ -497,45 +518,61 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def send_mail_by_id(self, payload, **kwargs):  # noqa: E501
+    def send_mail_by_id(self, subject, body, _from, to, id, replyto, cc, bcc, attachments, **kwargs):  # noqa: E501
         """Sends an Email  # noqa: E501
 
         Sends An email through one of your mail orders.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_mail_by_id(payload, async_req=True)
+        >>> thread = api.send_mail_by_id(subject, body, _from, to, id, replyto, cc, bcc, attachments, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param SendMail payload: (required)
+        :param str subject: (required)
+        :param str body: (required)
+        :param MailContact _from: (required)
+        :param list[MailContact] to: (required)
+        :param int id: (required)
+        :param list[MailContact] replyto: (required)
+        :param list[MailContact] cc: (required)
+        :param list[MailContact] bcc: (required)
+        :param list[MailAttachment] attachments: (required)
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.send_mail_by_id_with_http_info(payload, **kwargs)  # noqa: E501
+            return self.send_mail_by_id_with_http_info(subject, body, _from, to, id, replyto, cc, bcc, attachments, **kwargs)  # noqa: E501
         else:
-            (data) = self.send_mail_by_id_with_http_info(payload, **kwargs)  # noqa: E501
+            (data) = self.send_mail_by_id_with_http_info(subject, body, _from, to, id, replyto, cc, bcc, attachments, **kwargs)  # noqa: E501
             return data
 
-    def send_mail_by_id_with_http_info(self, payload, **kwargs):  # noqa: E501
+    def send_mail_by_id_with_http_info(self, subject, body, _from, to, id, replyto, cc, bcc, attachments, **kwargs):  # noqa: E501
         """Sends an Email  # noqa: E501
 
         Sends An email through one of your mail orders.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_mail_by_id_with_http_info(payload, async_req=True)
+        >>> thread = api.send_mail_by_id_with_http_info(subject, body, _from, to, id, replyto, cc, bcc, attachments, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param SendMail payload: (required)
+        :param str subject: (required)
+        :param str body: (required)
+        :param MailContact _from: (required)
+        :param list[MailContact] to: (required)
+        :param int id: (required)
+        :param list[MailContact] replyto: (required)
+        :param list[MailContact] cc: (required)
+        :param list[MailContact] bcc: (required)
+        :param list[MailAttachment] attachments: (required)
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['payload']  # noqa: E501
+        all_params = ['subject', 'body', '_from', 'to', 'id', 'replyto', 'cc', 'bcc', 'attachments']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -550,10 +587,42 @@ class DefaultApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'payload' is set
-        if ('payload' not in params or
-                params['payload'] is None):
-            raise ValueError("Missing the required parameter `payload` when calling `send_mail_by_id`")  # noqa: E501
+        # verify the required parameter 'subject' is set
+        if ('subject' not in params or
+                params['subject'] is None):
+            raise ValueError("Missing the required parameter `subject` when calling `send_mail_by_id`")  # noqa: E501
+        # verify the required parameter 'body' is set
+        if ('body' not in params or
+                params['body'] is None):
+            raise ValueError("Missing the required parameter `body` when calling `send_mail_by_id`")  # noqa: E501
+        # verify the required parameter '_from' is set
+        if ('_from' not in params or
+                params['_from'] is None):
+            raise ValueError("Missing the required parameter `_from` when calling `send_mail_by_id`")  # noqa: E501
+        # verify the required parameter 'to' is set
+        if ('to' not in params or
+                params['to'] is None):
+            raise ValueError("Missing the required parameter `to` when calling `send_mail_by_id`")  # noqa: E501
+        # verify the required parameter 'id' is set
+        if ('id' not in params or
+                params['id'] is None):
+            raise ValueError("Missing the required parameter `id` when calling `send_mail_by_id`")  # noqa: E501
+        # verify the required parameter 'replyto' is set
+        if ('replyto' not in params or
+                params['replyto'] is None):
+            raise ValueError("Missing the required parameter `replyto` when calling `send_mail_by_id`")  # noqa: E501
+        # verify the required parameter 'cc' is set
+        if ('cc' not in params or
+                params['cc'] is None):
+            raise ValueError("Missing the required parameter `cc` when calling `send_mail_by_id`")  # noqa: E501
+        # verify the required parameter 'bcc' is set
+        if ('bcc' not in params or
+                params['bcc'] is None):
+            raise ValueError("Missing the required parameter `bcc` when calling `send_mail_by_id`")  # noqa: E501
+        # verify the required parameter 'attachments' is set
+        if ('attachments' not in params or
+                params['attachments'] is None):
+            raise ValueError("Missing the required parameter `attachments` when calling `send_mail_by_id`")  # noqa: E501
 
         collection_formats = {}
 
@@ -565,8 +634,29 @@ class DefaultApi(object):
 
         form_params = []
         local_var_files = {}
-        if 'payload' in params:
-            form_params.append(('payload', params['payload']))  # noqa: E501
+        if 'subject' in params:
+            form_params.append(('subject', params['subject']))  # noqa: E501
+        if 'body' in params:
+            form_params.append(('body', params['body']))  # noqa: E501
+        if '_from' in params:
+            form_params.append(('from', params['_from']))  # noqa: E501
+        if 'to' in params:
+            form_params.append(('to', params['to']))  # noqa: E501
+            collection_formats['to'] = 'multi'  # noqa: E501
+        if 'id' in params:
+            form_params.append(('id', params['id']))  # noqa: E501
+        if 'replyto' in params:
+            form_params.append(('replyto', params['replyto']))  # noqa: E501
+            collection_formats['replyto'] = 'multi'  # noqa: E501
+        if 'cc' in params:
+            form_params.append(('cc', params['cc']))  # noqa: E501
+            collection_formats['cc'] = 'multi'  # noqa: E501
+        if 'bcc' in params:
+            form_params.append(('bcc', params['bcc']))  # noqa: E501
+            collection_formats['bcc'] = 'multi'  # noqa: E501
+        if 'attachments' in params:
+            form_params.append(('attachments', params['attachments']))  # noqa: E501
+            collection_formats['attachments'] = 'multi'  # noqa: E501
 
         body_params = None
         if 'body' in params:

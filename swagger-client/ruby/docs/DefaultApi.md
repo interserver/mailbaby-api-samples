@@ -263,7 +263,7 @@ Name | Type | Description  | Notes
 
 
 # **send_mail_by_id**
-> GenericResponse send_mail_by_id(payload)
+> GenericResponse send_mail_by_id(subjectbodyfromtoidreplytoccbccattachments)
 
 Sends an Email
 
@@ -282,12 +282,20 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::DefaultApi.new
-payload = SwaggerClient::SendMail.new # SendMail | 
+subject = 'subject_example' # String | 
+body = 'body_example' # String | 
+from = SwaggerClient::MailContact.new # MailContact | 
+to = [SwaggerClient::MailContact.new] # Array<MailContact> | 
+id = 789 # Integer | 
+replyto = [SwaggerClient::MailContact.new] # Array<MailContact> | 
+cc = [SwaggerClient::MailContact.new] # Array<MailContact> | 
+bcc = [SwaggerClient::MailContact.new] # Array<MailContact> | 
+attachments = [SwaggerClient::MailAttachment.new] # Array<MailAttachment> | 
 
 
 begin
   #Sends an Email
-  result = api_instance.send_mail_by_id(payload)
+  result = api_instance.send_mail_by_id(subjectbodyfromtoidreplytoccbccattachments)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling DefaultApi->send_mail_by_id: #{e}"
@@ -298,7 +306,15 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**SendMail**](.md)|  | 
+ **subject** | **String**|  | 
+ **body** | **String**|  | 
+ **from** | [**MailContact**](.md)|  | 
+ **to** | [**Array&lt;MailContact&gt;**](MailContact.md)|  | 
+ **id** | **Integer**|  | 
+ **replyto** | [**Array&lt;MailContact&gt;**](MailContact.md)|  | 
+ **cc** | [**Array&lt;MailContact&gt;**](MailContact.md)|  | 
+ **bcc** | [**Array&lt;MailContact&gt;**](MailContact.md)|  | 
+ **attachments** | [**Array&lt;MailAttachment&gt;**](MailAttachment.md)|  | 
 
 ### Return type
 

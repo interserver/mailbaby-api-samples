@@ -3,6 +3,8 @@ package io.swagger.api.impl;
 import io.swagger.api.*;
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
+import io.swagger.model.MailAttachment;
+import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
@@ -89,7 +91,7 @@ public class DefaultApiServiceImpl implements DefaultApi {
      * Sends An email through one of your mail orders.
      *
      */
-    public GenericResponse sendMailById(SendMail payload) {
+    public GenericResponse sendMailById(String subject, String body, MailContact from, List<MailContact> to, Long id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments) {
         // TODO: Implement...
         
         return null;

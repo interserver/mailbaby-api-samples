@@ -7,6 +7,8 @@ import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
+import io.swagger.model.MailAttachment;
+import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
@@ -21,7 +23,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-05T04:03:11.903542-04:00[America/New_York]")public class MailApiServiceImpl implements MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-05T04:11:53.263707-04:00[America/New_York]")public class MailApiServiceImpl implements MailApiService {
       @Override
       public Response getMailOrders(Long id, SecurityContext securityContext) {
       // do some magic!
@@ -43,7 +45,7 @@ import javax.ws.rs.core.SecurityContext;
       return Response.ok().entity("magic!").build();
   }
       @Override
-      public Response sendMailById(SendMail payload, SecurityContext securityContext) {
+      public Response sendMailById(String subject, String body, MailContact from, List<MailContact> to, Long id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments, SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }

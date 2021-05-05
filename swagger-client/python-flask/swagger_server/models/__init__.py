@@ -3,7 +3,6 @@
 # flake8: noqa
 from __future__ import absolute_import
 # import models into model package
-from swagger_server.models.body import Body
 from swagger_server.models.error_response import ErrorResponse
 from swagger_server.models.generic_response import GenericResponse
 from swagger_server.models.mail_attachment import MailAttachment

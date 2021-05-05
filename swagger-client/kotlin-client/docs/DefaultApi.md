@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMailById"></a>
 # **sendMailById**
-> GenericResponse sendMailById(payload)
+> GenericResponse sendMailById(subject, body, from, to, id, replyto, cc, bcc, attachments)
 
 Sends an Email
 
@@ -252,9 +252,17 @@ Sends An email through one of your mail orders.
 //import io.swagger.client.models.*;
 
 val apiInstance = DefaultApi()
-val payload : SendMail =  // SendMail | 
+val subject : kotlin.String = subject_example // kotlin.String | 
+val body : kotlin.String = body_example // kotlin.String | 
+val from : MailContact =  // MailContact | 
+val to : kotlin.Array<MailContact> =  // kotlin.Array<MailContact> | 
+val id : kotlin.Long = 789 // kotlin.Long | 
+val replyto : kotlin.Array<MailContact> =  // kotlin.Array<MailContact> | 
+val cc : kotlin.Array<MailContact> =  // kotlin.Array<MailContact> | 
+val bcc : kotlin.Array<MailContact> =  // kotlin.Array<MailContact> | 
+val attachments : kotlin.Array<MailAttachment> =  // kotlin.Array<MailAttachment> | 
 try {
-    val result : GenericResponse = apiInstance.sendMailById(payload)
+    val result : GenericResponse = apiInstance.sendMailById(subject, body, from, to, id, replyto, cc, bcc, attachments)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#sendMailById")
@@ -269,7 +277,15 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**SendMail**](.md)|  |
+ **subject** | **kotlin.String**|  |
+ **body** | **kotlin.String**|  |
+ **from** | [**MailContact**](.md)|  |
+ **to** | [**kotlin.Array&lt;MailContact&gt;**](MailContact.md)|  |
+ **id** | **kotlin.Long**|  |
+ **replyto** | [**kotlin.Array&lt;MailContact&gt;**](MailContact.md)|  |
+ **cc** | [**kotlin.Array&lt;MailContact&gt;**](MailContact.md)|  |
+ **bcc** | [**kotlin.Array&lt;MailContact&gt;**](MailContact.md)|  |
+ **attachments** | [**kotlin.Array&lt;MailAttachment&gt;**](MailAttachment.md)|  |
 
 ### Return type
 

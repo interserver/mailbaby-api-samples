@@ -268,7 +268,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **sendMailById**
-> \Interserver\Mailbaby\Model\GenericResponse sendMailById($payload)
+> \Interserver\Mailbaby\Model\GenericResponse sendMailById($subject, $body, $from, $to, $id, $replyto, $cc, $bcc, $attachments)
 
 Sends an Email
 
@@ -289,10 +289,18 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$payload = new \Interserver\Mailbaby\Model\SendMail(); // \Interserver\Mailbaby\Model\SendMail | 
+$subject = "subject_example"; // string | 
+$body = "body_example"; // string | 
+$from = new \Interserver\Mailbaby\Model\MailContact(); // \Interserver\Mailbaby\Model\MailContact | 
+$to = array(new \Interserver\Mailbaby\Model\MailContact()); // \Interserver\Mailbaby\Model\MailContact[] | 
+$id = 789; // int | 
+$replyto = array(new \Interserver\Mailbaby\Model\MailContact()); // \Interserver\Mailbaby\Model\MailContact[] | 
+$cc = array(new \Interserver\Mailbaby\Model\MailContact()); // \Interserver\Mailbaby\Model\MailContact[] | 
+$bcc = array(new \Interserver\Mailbaby\Model\MailContact()); // \Interserver\Mailbaby\Model\MailContact[] | 
+$attachments = array(new \Interserver\Mailbaby\Model\MailAttachment()); // \Interserver\Mailbaby\Model\MailAttachment[] | 
 
 try {
-    $result = $apiInstance->sendMailById($payload);
+    $result = $apiInstance->sendMailById($subject, $body, $from, $to, $id, $replyto, $cc, $bcc, $attachments);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->sendMailById: ', $e->getMessage(), PHP_EOL;
@@ -304,7 +312,15 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**\Interserver\Mailbaby\Model\SendMail**](../Model/.md)|  |
+ **subject** | **string**|  |
+ **body** | **string**|  |
+ **from** | [**\Interserver\Mailbaby\Model\MailContact**](../Model/.md)|  |
+ **to** | [**\Interserver\Mailbaby\Model\MailContact[]**](../Model/\Interserver\Mailbaby\Model\MailContact.md)|  |
+ **id** | **int**|  |
+ **replyto** | [**\Interserver\Mailbaby\Model\MailContact[]**](../Model/\Interserver\Mailbaby\Model\MailContact.md)|  |
+ **cc** | [**\Interserver\Mailbaby\Model\MailContact[]**](../Model/\Interserver\Mailbaby\Model\MailContact.md)|  |
+ **bcc** | [**\Interserver\Mailbaby\Model\MailContact[]**](../Model/\Interserver\Mailbaby\Model\MailContact.md)|  |
+ **attachments** | [**\Interserver\Mailbaby\Model\MailAttachment[]**](../Model/\Interserver\Mailbaby\Model\MailAttachment.md)|  |
 
 ### Return type
 

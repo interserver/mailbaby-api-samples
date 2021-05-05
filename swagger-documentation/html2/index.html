@@ -689,14 +689,6 @@
   <script>
     // Script section to load models into a JS Var
     var defs = {}
-            defs["body"] = {
-  "type" : "object",
-  "properties" : {
-    "payload" : {
-      "$ref" : "#/components/schemas/SendMail"
-    }
-  }
-};
             defs["ErrorResponse"] = {
   "required" : [ "code", "message" ],
   "type" : "object",
@@ -2642,13 +2634,7 @@ except ApiException as e:
     },
     "application/x-www-form-urlencoded" : {
       "schema" : {
-        "$ref" : "#/components/schemas/body"
-      },
-      "encoding" : {
-        "payload" : {
-          "contentType" : "application/json",
-          "style" : "form"
-        }
+        "$ref" : "#/components/schemas/SendMail"
       }
     }
   },
@@ -2682,15 +2668,170 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                  <tr><td style="width:150px;">payload*</td>
+                                  <tr><td style="width:150px;">subject*</td>
                                   <td>
                                   
                                   
-                                      <div id="d2e199_sendMailById_payload">
+                                      <div id="d2e199_sendMailById_subject">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      SendMail
+                                                      String
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">body*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendMailById_body">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">from*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendMailById_from">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      MailContact
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">to*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendMailById_to">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      array[MailContact]
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">id*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendMailById_id">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      Long
+                                                  </span>
+                                                      <span class="format">
+                                                          (int64)
+                                                      </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">replyto*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendMailById_replyto">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      array[MailContact]
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">cc*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendMailById_cc">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      array[MailContact]
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">bcc*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendMailById_bcc">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      array[MailContact]
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">attachments*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendMailById_attachments">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      array[MailAttachment]
                                                   </span>
                                   
                                               </div>

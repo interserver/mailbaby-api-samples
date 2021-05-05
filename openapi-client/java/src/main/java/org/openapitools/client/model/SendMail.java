@@ -32,7 +32,7 @@ import org.openapitools.client.model.MailContact;
  * Details for an Email
  */
 @ApiModel(description = "Details for an Email")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-05T04:01:00.029955-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-05T04:09:43.498275-04:00[America/New_York]")
 public class SendMail {
   public static final String SERIALIZED_NAME_SUBJECT = "subject";
   @SerializedName(SERIALIZED_NAME_SUBJECT)

@@ -16,6 +16,8 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
+import io.swagger.model.MailAttachment;
+import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
@@ -41,7 +43,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-05T04:03:17.152773-04:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-05T04:11:58.544220-04:00[America/New_York]")public class MailApi  {
    private final MailApiService delegate;
 
    public MailApi(@Context ServletConfig servletContext) {

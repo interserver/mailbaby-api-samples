@@ -269,7 +269,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMailById"></a>
 # **sendMailById**
-> GenericResponse sendMailById(payload)
+> GenericResponse sendMailById(subject, body, from, to, id, replyto, cc, bcc, attachments)
 
 Sends an Email
 
@@ -293,9 +293,17 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 //apiKeyAuth.setApiKeyPrefix("Token");
 
 DefaultApi apiInstance = new DefaultApi();
-SendMail payload = new SendMail(); // SendMail | 
+String subject = "subject_example"; // String | 
+String body = "body_example"; // String | 
+MailContact from = new MailContact(); // MailContact | 
+List<MailContact> to = Arrays.asList(new MailContact()); // List<MailContact> | 
+Long id = 789L; // Long | 
+List<MailContact> replyto = Arrays.asList(new MailContact()); // List<MailContact> | 
+List<MailContact> cc = Arrays.asList(new MailContact()); // List<MailContact> | 
+List<MailContact> bcc = Arrays.asList(new MailContact()); // List<MailContact> | 
+List<MailAttachment> attachments = Arrays.asList(new MailAttachment()); // List<MailAttachment> | 
 try {
-    GenericResponse result = apiInstance.sendMailById(payload);
+    GenericResponse result = apiInstance.sendMailById(subject, body, from, to, id, replyto, cc, bcc, attachments);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling DefaultApi#sendMailById");
@@ -307,7 +315,15 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**SendMail**](.md)|  |
+ **subject** | **String**|  |
+ **body** | **String**|  |
+ **from** | [**MailContact**](.md)|  |
+ **to** | [**List&lt;MailContact&gt;**](MailContact.md)|  |
+ **id** | **Long**|  |
+ **replyto** | [**List&lt;MailContact&gt;**](MailContact.md)|  |
+ **cc** | [**List&lt;MailContact&gt;**](MailContact.md)|  |
+ **bcc** | [**List&lt;MailContact&gt;**](MailContact.md)|  |
+ **attachments** | [**List&lt;MailAttachment&gt;**](MailAttachment.md)|  |
 
 ### Return type
 

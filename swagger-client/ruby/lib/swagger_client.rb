@@ -16,7 +16,6 @@ require 'swagger_client/version'
 require 'swagger_client/configuration'
 
 # Models
-require 'swagger_client/models/body'
 require 'swagger_client/models/error_response'
 require 'swagger_client/models/generic_response'
 require 'swagger_client/models/mail_attachment'

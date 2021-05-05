@@ -7,6 +7,8 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
+import io.swagger.model.MailAttachment;
+import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
@@ -21,12 +23,12 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-05T04:03:17.152773-04:00[America/New_York]")public abstract class MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-05T04:11:58.544220-04:00[America/New_York]")public abstract class MailApiService {
     public abstract Response getMailOrders( Long id,SecurityContext securityContext) throws NotFoundException;
     public abstract Response placeMailOrder(MailOrder body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response sendAdvMailById(SendMail body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response sendMailById(SendMail body,SecurityContext securityContext) throws NotFoundException;
-    public abstract Response sendMailById(SendMail payload,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response sendMailById(String subject,String body,MailContact from,List<MailContact> to,Long id,List<MailContact> replyto,List<MailContact> cc,List<MailContact> bcc,List<MailAttachment> attachments,SecurityContext securityContext) throws NotFoundException;
     public abstract Response validateMailOrder(SecurityContext securityContext) throws NotFoundException;
     public abstract Response viewMailLogById( Long id, String searchString, @Min(0) Integer skip, @Min(0) @Max(50) Integer limit,SecurityContext securityContext) throws NotFoundException;
 }

@@ -20,7 +20,6 @@
 [main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
 [main] INFO  o.o.c.languages.CSharpClientCodegen - Generating code for .NET Framework netstandard2.0
 [main] INFO  o.o.codegen.DefaultGenerator - Model MailOrders not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
-[main] INFO  o.o.codegen.DefaultGenerator - Model body not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp-netcore/src/Org.OpenAPITools/Model/ErrorResponse.cs
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp-netcore/src/Org.OpenAPITools.Test/Model/ErrorResponseTests.cs
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp-netcore/docs/ErrorResponse.md

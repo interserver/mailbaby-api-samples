@@ -2,6 +2,8 @@ package io.swagger.api;
 
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
+import io.swagger.model.MailAttachment;
+import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
@@ -66,9 +68,17 @@ class MailApiControllerTest {
 
     @Test
     void sendMailByIdWithFormTest() {
-        SendMail payload = new SendMail();
+        String subject = "subject_example";
+        String body = "body_example";
+        MailContact from = new MailContact();
+        List<MailContact> to = Arrays.asList(new MailContact());
+        Long id = 789L;
+        List<MailContact> replyto = Arrays.asList(new MailContact());
+        List<MailContact> cc = Arrays.asList(new MailContact());
+        List<MailContact> bcc = Arrays.asList(new MailContact());
+        List<MailAttachment> attachments = Arrays.asList(new MailAttachment());
         try {
-            api.sendMailById(payload).blockingGet();
+            api.sendMailById(subject, body, from, to, id, replyto, cc, bcc, attachments).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

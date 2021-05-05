@@ -129,7 +129,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SendMailById**
-> GenericResponse SendMailById(ctx, body, payload)
+> GenericResponse SendMailById(ctx, body, subject, body, from, to, id, replyto, cc, bcc, attachments)
 Sends an Email
 
 Sends An email through one of your mail orders.
@@ -140,7 +140,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **body** | [**SendMail**](SendMail.md)|  | 
-  **payload** | [**SendMail**](.md)|  | 
+  **subject** | **string**|  | 
+  **body** | **string**|  | 
+  **from** | [**MailContact**](.md)|  | 
+  **to** | [**[]MailContact**](MailContact.md)|  | 
+  **id** | **int64**|  | 
+  **replyto** | [**[]MailContact**](MailContact.md)|  | 
+  **cc** | [**[]MailContact**](MailContact.md)|  | 
+  **bcc** | [**[]MailContact**](MailContact.md)|  | 
+  **attachments** | [**[]MailAttachment**](MailAttachment.md)|  | 
 
 ### Return type
 

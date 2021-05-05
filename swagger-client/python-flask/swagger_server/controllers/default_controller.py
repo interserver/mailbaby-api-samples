@@ -3,6 +3,8 @@ import six
 
 from swagger_server.models.error_response import ErrorResponse  # noqa: E501
 from swagger_server.models.generic_response import GenericResponse  # noqa: E501
+from swagger_server.models.mail_attachment import MailAttachment  # noqa: E501
+from swagger_server.models.mail_contact import MailContact  # noqa: E501
 from swagger_server.models.mail_log import MailLog  # noqa: E501
 from swagger_server.models.mail_order import MailOrder  # noqa: E501
 from swagger_server.models.mail_orders import MailOrders  # noqa: E501
@@ -79,18 +81,44 @@ def send_mail_by_id(body):  # noqa: E501
     return 'do some magic!'
 
 
-def send_mail_by_id(payload):  # noqa: E501
+def send_mail_by_id(subject, body, _from, to, id, replyto, cc, bcc, attachments):  # noqa: E501
     """Sends an Email
 
     Sends An email through one of your mail orders. # noqa: E501
 
-    :param payload: 
-    :type payload: dict | bytes
+    :param subject: 
+    :type subject: str
+    :param body: 
+    :type body: str
+    :param _from: 
+    :type _from: dict | bytes
+    :param to: 
+    :type to: list | bytes
+    :param id: 
+    :type id: int
+    :param replyto: 
+    :type replyto: list | bytes
+    :param cc: 
+    :type cc: list | bytes
+    :param bcc: 
+    :type bcc: list | bytes
+    :param attachments: 
+    :type attachments: list | bytes
 
     :rtype: GenericResponse
     """
     if connexion.request.is_json:
-        payload = SendMail.from_dict(connexion.request.get_json())  # noqa: E501
+        _from = MailContact.from_dict(connexion.request.get_json())  # noqa: E501
+    if connexion.request.is_json:
+        to = [MailContact.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
+    if connexion.request.is_json:
+        replyto = [MailContact.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
+    if connexion.request.is_json:
+        cc = [MailContact.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
+    if connexion.request.is_json:
+        bcc = [MailContact.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
+    if connexion.request.is_json:
+        attachments = [MailAttachment.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
     return 'do some magic!'
 
 

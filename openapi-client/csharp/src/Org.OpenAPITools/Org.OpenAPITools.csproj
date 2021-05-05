@@ -12,7 +12,7 @@ Contact: detain@interserver.net
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B2B0C6F1-E966-452D-82FC-86046397D931}</ProjectGuid>
+    <ProjectGuid>{3C38D560-8385-49A1-823E-8A507670332C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Org.OpenAPITools</RootNamespace>

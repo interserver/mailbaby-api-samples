@@ -7,7 +7,6 @@
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] INFO  o.o.c.l.CLibcurlClientCodegen - Environment variable C_POST_PROCESS_FILE not defined so the C code may not be properly formatted by uncrustify (0.66 or later) or other code formatter. To define it, try `export C_POST_PROCESS_FILE="/usr/local/bin/uncrustify --no-backup" && export UNCRUSTIFY_CONFIG=/path/to/uncrustify-rules.cfg` (Linux/Mac). Note: replace /path/to with the location of uncrustify-rules.cfg
 [main] INFO  o.o.codegen.DefaultGenerator - Model MailOrders not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
-[main] INFO  o.o.codegen.DefaultGenerator - Model body not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/c/model/error_response.h
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/c/model/error_response.c
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/c/unit-test/test_error_response.c

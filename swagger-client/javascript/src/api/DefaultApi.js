@@ -14,6 +14,8 @@
 import ApiClient from "../ApiClient";
 import ErrorResponse from '../model/ErrorResponse';
 import GenericResponse from '../model/GenericResponse';
+import MailAttachment from '../model/MailAttachment';
+import MailContact from '../model/MailContact';
 import MailLog from '../model/MailLog';
 import MailOrder from '../model/MailOrder';
 import MailOrders from '../model/MailOrders';
@@ -200,7 +202,7 @@ export default class DefaultApi {
      * @param {module:api/DefaultApi~sendMailByIdCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    sendMailById(body, payload, callback) {
+    sendMailById(body, subject, body, from, to, id, replyto, cc, bcc, attachments, callback) {
       let postBody = body;
 
       let pathParams = {
@@ -210,7 +212,15 @@ export default class DefaultApi {
       let headerParams = {
       };
       let formParams = {
-        'payload': payload
+        'subject': subject,
+        'body': body,
+        'from': from,
+        'to': this.apiClient.buildCollectionParam(to, 'multi'),
+        'id': id,
+        'replyto': this.apiClient.buildCollectionParam(replyto, 'multi'),
+        'cc': this.apiClient.buildCollectionParam(cc, 'multi'),
+        'bcc': this.apiClient.buildCollectionParam(bcc, 'multi'),
+        'attachments': this.apiClient.buildCollectionParam(attachments, 'multi')
       };
 
       let authNames = ['apiKeyAuth'];

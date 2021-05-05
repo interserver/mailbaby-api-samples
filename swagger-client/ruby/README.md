@@ -131,12 +131,20 @@ end
 
 api_instance = SwaggerClient::DefaultApi.new
 body = SwaggerClient::SendMail.new # SendMail | 
-payload = SwaggerClient::SendMail.new # SendMail | 
+subject = 'subject_example' # String | 
+body = 'body_example' # String | 
+from = SwaggerClient::MailContact.new # MailContact | 
+to = [SwaggerClient::MailContact.new] # Array<MailContact> | 
+id = 789 # Integer | 
+replyto = [SwaggerClient::MailContact.new] # Array<MailContact> | 
+cc = [SwaggerClient::MailContact.new] # Array<MailContact> | 
+bcc = [SwaggerClient::MailContact.new] # Array<MailContact> | 
+attachments = [SwaggerClient::MailAttachment.new] # Array<MailAttachment> | 
 
 
 begin
   #Sends an Email
-  result = api_instance.send_mail_by_id(body, payload)
+  result = api_instance.send_mail_by_id(body, subject, body, from, to, id, replyto, cc, bcc, attachments)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling DefaultApi->send_mail_by_id: #{e}"
@@ -198,7 +206,6 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [SwaggerClient::Body](docs/Body.md)
  - [SwaggerClient::ErrorResponse](docs/ErrorResponse.md)
  - [SwaggerClient::GenericResponse](docs/GenericResponse.md)
  - [SwaggerClient::MailAttachment](docs/MailAttachment.md)

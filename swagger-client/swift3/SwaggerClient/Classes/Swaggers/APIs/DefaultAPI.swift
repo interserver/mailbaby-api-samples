@@ -199,11 +199,19 @@ open class DefaultAPI: APIBase {
 
     /**
      Sends an Email
-     - parameter payload: (form)  
+     - parameter subject: (form)  
+     - parameter body: (form)  
+     - parameter from: (form)  
+     - parameter to: (form)  
+     - parameter id: (form)  
+     - parameter replyto: (form)  
+     - parameter cc: (form)  
+     - parameter bcc: (form)  
+     - parameter attachments: (form)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendMailById(payload: SendMail, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
-        sendMailByIdWithRequestBuilder(payload: payload).execute { (response, error) -> Void in
+    open class func sendMailById(subject: String, body: String, from: MailContact, to: [MailContact], id: Int64, replyto: [MailContact], cc: [MailContact], bcc: [MailContact], attachments: [MailAttachment], completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
+        sendMailByIdWithRequestBuilder(subject: subject, body: body, from: from, to: to, id: id, replyto: replyto, cc: cc, bcc: bcc, attachments: attachments).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -220,10 +228,18 @@ open class DefaultAPI: APIBase {
   "status_text" : "The command completed successfully.",
   "status" : "ok"
 }}]
-     - parameter payload: (form)  
+     - parameter subject: (form)  
+     - parameter body: (form)  
+     - parameter from: (form)  
+     - parameter to: (form)  
+     - parameter id: (form)  
+     - parameter replyto: (form)  
+     - parameter cc: (form)  
+     - parameter bcc: (form)  
+     - parameter attachments: (form)  
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendMailByIdWithRequestBuilder(payload: SendMail) -> RequestBuilder<GenericResponse> {
+    open class func sendMailByIdWithRequestBuilder(subject: String, body: String, from: MailContact, to: [MailContact], id: Int64, replyto: [MailContact], cc: [MailContact], bcc: [MailContact], attachments: [MailAttachment]) -> RequestBuilder<GenericResponse> {
         let path = "/mail/send"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = body.encodeToJSON()

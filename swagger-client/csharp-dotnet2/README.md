@@ -210,7 +210,6 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [IO.Swagger.Model.Body](docs/Body.md)
  - [IO.Swagger.Model.ErrorResponse](docs/ErrorResponse.md)
  - [IO.Swagger.Model.GenericResponse](docs/GenericResponse.md)
  - [IO.Swagger.Model.MailAttachment](docs/MailAttachment.md)

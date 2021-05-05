@@ -43,9 +43,17 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
-        /// <param name="payload"></param>
+        /// <param name="subject"></param>
+        /// <param name="body"></param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <param name="id"></param>
+        /// <param name="replyto"></param>
+        /// <param name="cc"></param>
+        /// <param name="bcc"></param>
+        /// <param name="attachments"></param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendMailById (SendMail payload);
+        GenericResponse SendMailById (string subject, string body, MailContact from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments);
         /// <summary>
         /// validatess order details before placing an order 
         /// </summary>
@@ -285,12 +293,36 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Sends an Email Sends An email through one of your mail orders.
         /// </summary>
-        /// <param name="payload"></param>
+        /// <param name="subject"></param>
+        /// <param name="body"></param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <param name="id"></param>
+        /// <param name="replyto"></param>
+        /// <param name="cc"></param>
+        /// <param name="bcc"></param>
+        /// <param name="attachments"></param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendMailById (SendMail payload)
+        public GenericResponse SendMailById (string subject, string body, MailContact from, List<MailContact> to, long? id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments)
         {
-            // verify the required parameter 'payload' is set
-            if (payload == null) throw new ApiException(400, "Missing required parameter 'payload' when calling SendMailById");
+            // verify the required parameter 'subject' is set
+            if (subject == null) throw new ApiException(400, "Missing required parameter 'subject' when calling SendMailById");
+            // verify the required parameter 'body' is set
+            if (body == null) throw new ApiException(400, "Missing required parameter 'body' when calling SendMailById");
+            // verify the required parameter 'from' is set
+            if (from == null) throw new ApiException(400, "Missing required parameter 'from' when calling SendMailById");
+            // verify the required parameter 'to' is set
+            if (to == null) throw new ApiException(400, "Missing required parameter 'to' when calling SendMailById");
+            // verify the required parameter 'id' is set
+            if (id == null) throw new ApiException(400, "Missing required parameter 'id' when calling SendMailById");
+            // verify the required parameter 'replyto' is set
+            if (replyto == null) throw new ApiException(400, "Missing required parameter 'replyto' when calling SendMailById");
+            // verify the required parameter 'cc' is set
+            if (cc == null) throw new ApiException(400, "Missing required parameter 'cc' when calling SendMailById");
+            // verify the required parameter 'bcc' is set
+            if (bcc == null) throw new ApiException(400, "Missing required parameter 'bcc' when calling SendMailById");
+            // verify the required parameter 'attachments' is set
+            if (attachments == null) throw new ApiException(400, "Missing required parameter 'attachments' when calling SendMailById");
     
             var path = "/mail/send";
             path = path.Replace("{format}", "json");
@@ -301,7 +333,15 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
     
-                                    if (payload != null) formParams.Add("payload", ApiClient.ParameterToString(payload)); // form parameter
+                                    if (subject != null) formParams.Add("subject", ApiClient.ParameterToString(subject)); // form parameter
+if (body != null) formParams.Add("body", ApiClient.ParameterToString(body)); // form parameter
+if (from != null) formParams.Add("from", ApiClient.ParameterToString(from)); // form parameter
+if (to != null) formParams.Add("to", ApiClient.ParameterToString(to)); // form parameter
+if (id != null) formParams.Add("id", ApiClient.ParameterToString(id)); // form parameter
+if (replyto != null) formParams.Add("replyto", ApiClient.ParameterToString(replyto)); // form parameter
+if (cc != null) formParams.Add("cc", ApiClient.ParameterToString(cc)); // form parameter
+if (bcc != null) formParams.Add("bcc", ApiClient.ParameterToString(bcc)); // form parameter
+if (attachments != null) formParams.Add("attachments", ApiClient.ParameterToString(attachments)); // form parameter
 
             // authentication setting, if any
             String[] authSettings = new String[] { "apiKeyAuth" };

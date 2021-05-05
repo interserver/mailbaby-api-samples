@@ -1269,8 +1269,40 @@ class DefaultApi
 
 
         // form params
-        if ($payload !== null) {
-            $formParams['payload'] = ObjectSerializer::toFormValue($payload);
+        if ($subject !== null) {
+            $formParams['subject'] = ObjectSerializer::toFormValue($subject);
+        }
+        // form params
+        if ($body !== null) {
+            $formParams['body'] = ObjectSerializer::toFormValue($body);
+        }
+        // form params
+        if ($from !== null) {
+            $formParams['from'] = ObjectSerializer::toFormValue($from);
+        }
+        // form params
+        if ($to !== null) {
+            $formParams['to'] = ObjectSerializer::toFormValue($to);
+        }
+        // form params
+        if ($id !== null) {
+            $formParams['id'] = ObjectSerializer::toFormValue($id);
+        }
+        // form params
+        if ($replyto !== null) {
+            $formParams['replyto'] = ObjectSerializer::toFormValue($replyto);
+        }
+        // form params
+        if ($cc !== null) {
+            $formParams['cc'] = ObjectSerializer::toFormValue($cc);
+        }
+        // form params
+        if ($bcc !== null) {
+            $formParams['bcc'] = ObjectSerializer::toFormValue($bcc);
+        }
+        // form params
+        if ($attachments !== null) {
+            $formParams['attachments'] = ObjectSerializer::toFormValue($attachments);
         }
         // body params
         $_tempBody = null;
@@ -1349,15 +1381,23 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  \Interserver\Mailbaby\Model\SendMail $payload payload (required)
+     * @param  string $subject subject (required)
+     * @param  string $body body (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact $from from (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $to to (required)
+     * @param  int $id id (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $replyto replyto (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $cc cc (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $bcc bcc (required)
+     * @param  \Interserver\Mailbaby\Model\MailAttachment[] $attachments attachments (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\GenericResponse
      */
-    public function sendMailById($payload)
+    public function sendMailById($subject, $body, $from, $to, $id, $replyto, $cc, $bcc, $attachments)
     {
-        list($response) = $this->sendMailByIdWithHttpInfo($payload);
+        list($response) = $this->sendMailByIdWithHttpInfo($subject, $body, $from, $to, $id, $replyto, $cc, $bcc, $attachments);
         return $response;
     }
 
@@ -1366,16 +1406,24 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  \Interserver\Mailbaby\Model\SendMail $payload (required)
+     * @param  string $subject (required)
+     * @param  string $body (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact $from (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $to (required)
+     * @param  int $id (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $replyto (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $cc (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $bcc (required)
+     * @param  \Interserver\Mailbaby\Model\MailAttachment[] $attachments (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\GenericResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sendMailByIdWithHttpInfo($payload)
+    public function sendMailByIdWithHttpInfo($subject, $body, $from, $to, $id, $replyto, $cc, $bcc, $attachments)
     {
         $returnType = '\Interserver\Mailbaby\Model\GenericResponse';
-        $request = $this->sendMailByIdRequest($payload);
+        $request = $this->sendMailByIdRequest($subject, $body, $from, $to, $id, $replyto, $cc, $bcc, $attachments);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1457,14 +1505,22 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  \Interserver\Mailbaby\Model\SendMail $payload (required)
+     * @param  string $subject (required)
+     * @param  string $body (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact $from (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $to (required)
+     * @param  int $id (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $replyto (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $cc (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $bcc (required)
+     * @param  \Interserver\Mailbaby\Model\MailAttachment[] $attachments (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailByIdAsync($payload)
+    public function sendMailByIdAsync($subject, $body, $from, $to, $id, $replyto, $cc, $bcc, $attachments)
     {
-        return $this->sendMailByIdAsyncWithHttpInfo($payload)
+        return $this->sendMailByIdAsyncWithHttpInfo($subject, $body, $from, $to, $id, $replyto, $cc, $bcc, $attachments)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1477,15 +1533,23 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  \Interserver\Mailbaby\Model\SendMail $payload (required)
+     * @param  string $subject (required)
+     * @param  string $body (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact $from (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $to (required)
+     * @param  int $id (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $replyto (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $cc (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $bcc (required)
+     * @param  \Interserver\Mailbaby\Model\MailAttachment[] $attachments (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailByIdAsyncWithHttpInfo($payload)
+    public function sendMailByIdAsyncWithHttpInfo($subject, $body, $from, $to, $id, $replyto, $cc, $bcc, $attachments)
     {
         $returnType = '\Interserver\Mailbaby\Model\GenericResponse';
-        $request = $this->sendMailByIdRequest($payload);
+        $request = $this->sendMailByIdRequest($subject, $body, $from, $to, $id, $replyto, $cc, $bcc, $attachments);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1527,17 +1591,73 @@ class DefaultApi
     /**
      * Create request for operation 'sendMailById'
      *
-     * @param  \Interserver\Mailbaby\Model\SendMail $payload (required)
+     * @param  string $subject (required)
+     * @param  string $body (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact $from (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $to (required)
+     * @param  int $id (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $replyto (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $cc (required)
+     * @param  \Interserver\Mailbaby\Model\MailContact[] $bcc (required)
+     * @param  \Interserver\Mailbaby\Model\MailAttachment[] $attachments (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function sendMailByIdRequest($payload)
+    protected function sendMailByIdRequest($subject, $body, $from, $to, $id, $replyto, $cc, $bcc, $attachments)
     {
-        // verify the required parameter 'payload' is set
-        if ($payload === null || (is_array($payload) && count($payload) === 0)) {
+        // verify the required parameter 'subject' is set
+        if ($subject === null || (is_array($subject) && count($subject) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $payload when calling sendMailById'
+                'Missing the required parameter $subject when calling sendMailById'
+            );
+        }
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling sendMailById'
+            );
+        }
+        // verify the required parameter 'from' is set
+        if ($from === null || (is_array($from) && count($from) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $from when calling sendMailById'
+            );
+        }
+        // verify the required parameter 'to' is set
+        if ($to === null || (is_array($to) && count($to) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $to when calling sendMailById'
+            );
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling sendMailById'
+            );
+        }
+        // verify the required parameter 'replyto' is set
+        if ($replyto === null || (is_array($replyto) && count($replyto) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $replyto when calling sendMailById'
+            );
+        }
+        // verify the required parameter 'cc' is set
+        if ($cc === null || (is_array($cc) && count($cc) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $cc when calling sendMailById'
+            );
+        }
+        // verify the required parameter 'bcc' is set
+        if ($bcc === null || (is_array($bcc) && count($bcc) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $bcc when calling sendMailById'
+            );
+        }
+        // verify the required parameter 'attachments' is set
+        if ($attachments === null || (is_array($attachments) && count($attachments) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $attachments when calling sendMailById'
             );
         }
 
@@ -1551,8 +1671,40 @@ class DefaultApi
 
 
         // form params
-        if ($payload !== null) {
-            $formParams['payload'] = ObjectSerializer::toFormValue($payload);
+        if ($subject !== null) {
+            $formParams['subject'] = ObjectSerializer::toFormValue($subject);
+        }
+        // form params
+        if ($body !== null) {
+            $formParams['body'] = ObjectSerializer::toFormValue($body);
+        }
+        // form params
+        if ($from !== null) {
+            $formParams['from'] = ObjectSerializer::toFormValue($from);
+        }
+        // form params
+        if ($to !== null) {
+            $formParams['to'] = ObjectSerializer::toFormValue($to);
+        }
+        // form params
+        if ($id !== null) {
+            $formParams['id'] = ObjectSerializer::toFormValue($id);
+        }
+        // form params
+        if ($replyto !== null) {
+            $formParams['replyto'] = ObjectSerializer::toFormValue($replyto);
+        }
+        // form params
+        if ($cc !== null) {
+            $formParams['cc'] = ObjectSerializer::toFormValue($cc);
+        }
+        // form params
+        if ($bcc !== null) {
+            $formParams['bcc'] = ObjectSerializer::toFormValue($bcc);
+        }
+        // form params
+        if ($attachments !== null) {
+            $formParams['attachments'] = ObjectSerializer::toFormValue($attachments);
         }
         // body params
         $_tempBody = null;

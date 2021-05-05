@@ -7,6 +7,8 @@ import akka.http.scaladsl.marshalling.ToEntityMarshaller
 import io.swagger.server.AkkaHttpHelper._
 import io.swagger.server.model.ErrorResponse
 import io.swagger.server.model.GenericResponse
+import io.swagger.server.model.MailAttachment
+import io.swagger.server.model.MailContact
 import io.swagger.server.model.MailLog
 import io.swagger.server.model.MailOrder
 import io.swagger.server.model.MailOrders
@@ -83,10 +85,10 @@ class DefaultApi(
       post {
         parameters() { () =>
           
-            formFields("payload".as[String]) { (payload) =>
+            formFields("subject".as[String], "body".as[String], "from".as[String], "to".as[String], "id".as[Long], "replyto".as[String], "cc".as[String], "bcc".as[String], "attachments".as[String]) { (subject, body, from, to, id, replyto, cc, bcc, attachments) =>
               
                 entity(as[SendMail]){ body =>
-                  defaultService.sendMailById(body = body, payload = payload)
+                  defaultService.sendMailById(body = body, subject = subject, body = body, from = from, to = to, id = id, replyto = replyto, cc = cc, bcc = bcc, attachments = attachments)
                 }
              
             }
@@ -198,7 +200,7 @@ trait DefaultApiService {
    * Code: 401, Message: Unauthorized, DataType: ErrorResponse
    * Code: 404, Message: The specified resource was not found, DataType: ErrorResponse
    */
-  def sendMailById(body: SendMail, payload: String)
+  def sendMailById(body: String, subject: String, body: String, from: String, to: String, id: Long, replyto: String, cc: String, bcc: String, attachments: String)
       (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
 
   def validateMailOrder200: Route =

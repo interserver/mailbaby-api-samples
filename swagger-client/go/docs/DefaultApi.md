@@ -138,7 +138,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SendMail**
-> GenericResponse SendMail(ctx, body, to, from, subject, body)
+> GenericResponse SendMail(ctx, to, from, subject, body, body)
 Sends an Email
 
 Sends An email through one of your mail orders.
@@ -148,11 +148,11 @@ Sends An email through one of your mail orders.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**Body**](Body.md)|  | 
   **to** | **string**|  | 
   **from** | **string**|  | 
   **subject** | **string**|  | 
   **body** | **string**|  | 
+  **body** | [**Body1**](Body1.md)|  | 
 
 ### Return type
 
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded, application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

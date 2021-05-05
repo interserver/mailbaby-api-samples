@@ -24,7 +24,7 @@
 
 package io.swagger.api;
 
-import io.swagger.model.Body;
+import io.swagger.model.Body1;
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -151,8 +151,11 @@ public class DefaultApiTest {
      */
     @Test
     public void sendMailTest() {
-        Body body = null;
-        //GenericResponse response = api.sendMail(body);
+        String to = null;
+        String from = null;
+        String subject = null;
+        String body = null;
+        //GenericResponse response = api.sendMail(to, from, subject, body);
         //assertNotNull(response);
         // TODO: test validations
         

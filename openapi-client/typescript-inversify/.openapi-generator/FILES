@@ -6,7 +6,7 @@ HttpResponse.ts
 IAPIConfiguration.ts
 IHttpClient.ts
 api/default.service.ts
-model/body.ts
+model/body1.ts
 model/errorResponse.ts
 model/genericResponse.ts
 model/mailAttachment.ts

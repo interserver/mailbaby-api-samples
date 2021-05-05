@@ -19,7 +19,6 @@ import {
   GenericResponse,
   MailOrder,
   SendMailAdv,
-  Body,
 } from './models';
 
 /**
@@ -53,7 +52,10 @@ export interface ISendAdvMailParams {
  * sendMail - parameters interface
  */
 export interface ISendMailParams {
-  body: Body;
+  to?: string;
+  from?: string;
+  subject?: string;
+  body?: string;
 }
 
 /**
@@ -209,11 +211,13 @@ export class DefaultApi extends Api {
   /**
    * Sends an Email
    * Sends An email through one of your mail orders.
-   * @param params.body 
+   * @param params.to The Contact whom is the primary recipient of this email.
+   * @param params.from The contact whom is the this email is from.
+   * @param params.subject The subject or title of the email
+   * @param params.body The main email contents.
    */
   async sendMail(params: ISendMailParams): Promise<GenericResponse> {
     // Verify required parameters are set
-    this.ensureParamIsSet('sendMail', params, 'body');
 
     // Create URL to call
     const url = `${this.basePath}/mail/send`;
@@ -221,9 +225,14 @@ export class DefaultApi extends Api {
     const response = await this.httpClient.createRequest(url)
       // Set HTTP method
       .asPost()
-      // Encode body parameter
-      .withHeader('content-type', 'application/json')
-      .withContent(JSON.stringify(params['body'] || {}))
+      // Encode form parameters
+      .withHeader('content-type', 'application/x-www-form-urlencoded')
+      .withContent(this.queryString({ 
+        'to': params['to'],
+        'from': params['from'],
+        'subject': params['subject'],
+        'body': params['body'],
+      }))
 
       // Authentication 'apiKeyAuth' required
       .withHeader('X-API-KEY', this.authStorage.getapiKeyAuth())

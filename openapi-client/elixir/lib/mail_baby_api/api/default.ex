@@ -137,19 +137,29 @@ defmodule MailBabyAPI.Api.Default do
   ## Parameters
 
   - connection (MailBabyAPI.Connection): Connection to server
-  - body (Body): 
   - opts (KeywordList): [optional] Optional parameters
+    - :to (String.t): The Contact whom is the primary recipient of this email.
+    - :from (String.t): The contact whom is the this email is from.
+    - :subject (String.t): The subject or title of the email
+    - :body (String.t): The main email contents.
   ## Returns
 
   {:ok, MailBabyAPI.Model.GenericResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec send_mail(Tesla.Env.client, MailBabyAPI.Model.Body.t, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
-  def send_mail(connection, body, _opts \\ []) do
+  @spec send_mail(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
+  def send_mail(connection, opts \\ []) do
+    optional_params = %{
+      :"to" => :form,
+      :"from" => :form,
+      :"subject" => :form,
+      :"body" => :form
+    }
     %{}
     |> method(:post)
     |> url("/mail/send")
-    |> add_param(:body, :body, body)
+    |> add_optional_params(optional_params, opts)
+    |> ensure_body()
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([

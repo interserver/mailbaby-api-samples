@@ -300,9 +300,6 @@ h3. sendMail
 ----
 h4. Parameters
 
-h5. Body Parameter
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
-        |Body | | Body | (/) | |  |  |
 
 
 ----
@@ -477,8 +474,8 @@ h4. Responses
 {anchor:models}
 h2. Models
 
-        {anchor:BodyModelAnchor}
-        h3. Body
+        {anchor:Body1ModelAnchor}
+        h3. Body1
 
         Details for an Email
         

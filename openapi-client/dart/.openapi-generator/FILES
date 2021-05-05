@@ -2,7 +2,7 @@
 .openapi-generator-ignore
 .travis.yml
 README.md
-doc/Body.md
+doc/Body1.md
 doc/DefaultApi.md
 doc/ErrorResponse.md
 doc/GenericResponse.md
@@ -23,7 +23,7 @@ lib/auth/authentication.dart
 lib/auth/http_basic_auth.dart
 lib/auth/http_bearer_auth.dart
 lib/auth/oauth.dart
-lib/model/body.dart
+lib/model/body1.dart
 lib/model/error_response.dart
 lib/model/generic_response.dart
 lib/model/mail_attachment.dart
@@ -33,7 +33,7 @@ lib/model/mail_order.dart
 lib/model/send_mail_adv.dart
 lib/model/send_mail_adv_from.dart
 pubspec.yaml
-test/body_test.dart
+test/body1_test.dart
 test/default_api_test.dart
 test/error_response_test.dart
 test/generic_response_test.dart

@@ -33,7 +33,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [BODY](docs/BODY.md)
+ - [BODY_1](docs/BODY_1.md)
  - [ERROR_RESPONSE](docs/ERROR_RESPONSE.md)
  - [GENERIC_RESPONSE](docs/GENERIC_RESPONSE.md)
  - [MAIL_ATTACHMENT](docs/MAIL_ATTACHMENT.md)

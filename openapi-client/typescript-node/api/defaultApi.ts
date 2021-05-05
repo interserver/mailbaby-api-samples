@@ -15,7 +15,6 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
-import { Body } from '../model/body';
 import { ErrorResponse } from '../model/errorResponse';
 import { GenericResponse } from '../model/genericResponse';
 import { MailLog } from '../model/mailLog';
@@ -359,9 +358,12 @@ export class DefaultApi {
     /**
      * Sends An email through one of your mail orders.
      * @summary Sends an Email
-     * @param body 
+     * @param to The Contact whom is the primary recipient of this email.
+     * @param from The contact whom is the this email is from.
+     * @param subject The subject or title of the email
+     * @param body The main email contents.
      */
-    public async sendMail (body: Body, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
+    public async sendMail (to?: string, from?: string, subject?: string, body?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
         const localVarPath = this.basePath + '/mail/send';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -374,14 +376,25 @@ export class DefaultApi {
         }
         let localVarFormParams: any = {};
 
-        // verify required parameter 'body' is not null or undefined
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling sendMail.');
-        }
-
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
+
+        if (to !== undefined) {
+            localVarFormParams['to'] = ObjectSerializer.serialize(to, "string");
+        }
+
+        if (from !== undefined) {
+            localVarFormParams['from'] = ObjectSerializer.serialize(from, "string");
+        }
+
+        if (subject !== undefined) {
+            localVarFormParams['subject'] = ObjectSerializer.serialize(subject, "string");
+        }
+
+        if (body !== undefined) {
+            localVarFormParams['body'] = ObjectSerializer.serialize(body, "string");
+        }
 
         let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
@@ -390,7 +403,6 @@ export class DefaultApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(body, "Body")
         };
 
         let authenticationPromise = Promise.resolve();

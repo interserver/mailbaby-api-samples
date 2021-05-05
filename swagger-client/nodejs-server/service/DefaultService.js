@@ -108,7 +108,7 @@ exports.sendAdvMail = function(body) {
  * Sends an Email
  * Sends An email through one of your mail orders.
  *
- * body Body 
+ * body Body_1 
  * returns GenericResponse
  **/
 exports.sendMail = function(body) {
@@ -131,7 +131,7 @@ exports.sendMail = function(body) {
  * Sends an Email
  * Sends An email through one of your mail orders.
  *
- * body Body 
+ * body Body_1 
  * returns GenericResponse
  **/
 exports.sendMail = function(body) {

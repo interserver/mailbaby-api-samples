@@ -1,7 +1,7 @@
 package io.swagger.api.impl;
 
 import io.swagger.api.*;
-import io.swagger.model.Body;
+import io.swagger.model.Body1;
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -93,7 +93,7 @@ public class DefaultApiServiceImpl implements DefaultApi {
      * Sends An email through one of your mail orders.
      *
      */
-    public GenericResponse sendMail(Body body) {
+    public GenericResponse sendMail(String to, String from, String subject, String body) {
         // TODO: Implement...
         
         return null;
@@ -105,7 +105,7 @@ public class DefaultApiServiceImpl implements DefaultApi {
      * Sends An email through one of your mail orders.
      *
      */
-    public GenericResponse sendMail(String to, String from, String subject, String body) {
+    public GenericResponse sendMail(Body1 body) {
         // TODO: Implement...
         
         return null;

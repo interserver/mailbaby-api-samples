@@ -11,7 +11,7 @@ export 'package:openapi/src/model/date.dart';
 
 export 'package:openapi/src/api/default_api.dart';
 
-export 'package:openapi/src/model/body.dart';
+export 'package:openapi/src/model/body1.dart';
 export 'package:openapi/src/model/error_response.dart';
 export 'package:openapi/src/model/generic_response.dart';
 export 'package:openapi/src/model/mail_attachment.dart';

@@ -2,7 +2,7 @@
 Build.ps1
 README.md
 appveyor.yml
-docs/Body.md
+docs/Body1.md
 docs/DefaultApi.md
 docs/ErrorResponse.md
 docs/GenericResponse.md
@@ -14,7 +14,7 @@ docs/SendMailAdv.md
 docs/SendMailAdvFrom.md
 src/PSOpenAPITools/Api/DefaultApi.ps1
 src/PSOpenAPITools/Client/Configuration.ps1
-src/PSOpenAPITools/Model/Body.ps1
+src/PSOpenAPITools/Model/Body1.ps1
 src/PSOpenAPITools/Model/ErrorResponse.ps1
 src/PSOpenAPITools/Model/GenericResponse.ps1
 src/PSOpenAPITools/Model/MailAttachment.ps1
@@ -31,7 +31,7 @@ src/PSOpenAPITools/Private/Out-DebugParameter.ps1
 src/PSOpenAPITools/Private/RSAEncryptionProvider.cs
 src/PSOpenAPITools/en-US/about_PSOpenAPITools.help.txt
 tests/Api/DefaultApi.Tests.ps1
-tests/Model/Body.Tests.ps1
+tests/Model/Body1.Tests.ps1
 tests/Model/ErrorResponse.Tests.ps1
 tests/Model/GenericResponse.Tests.ps1
 tests/Model/MailAttachment.Tests.ps1

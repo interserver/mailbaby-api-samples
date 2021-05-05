@@ -5,7 +5,7 @@ import io.swagger.model.*;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
-import io.swagger.model.Body;
+import io.swagger.model.Body1;
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -25,13 +25,13 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-05T07:12:49.991121-04:00[America/New_York]")public abstract class MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-05T07:19:51.007649-04:00[America/New_York]")public abstract class MailApiService {
     public abstract Response getMailOrders( Long id,SecurityContext securityContext) throws NotFoundException;
     public abstract Response placeMailOrder(MailOrder body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response sendAdvMail(SendMailAdv body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response sendAdvMail(String subject,String body,List<SendMailAdvFrom> from,List<MailContact> to,Long id,List<MailContact> replyto,List<MailContact> cc,List<MailContact> bcc,List<MailAttachment> attachments,SecurityContext securityContext) throws NotFoundException;
-    public abstract Response sendMail(Body body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response sendMail(String to,String from,String subject,String body,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response sendMail(Body1 body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response validateMailOrder(SecurityContext securityContext) throws NotFoundException;
     public abstract Response viewMailLogById( Long id, String searchString, @Min(0) Integer skip, @Min(0) @Max(50) Integer limit,SecurityContext securityContext) throws NotFoundException;
 }

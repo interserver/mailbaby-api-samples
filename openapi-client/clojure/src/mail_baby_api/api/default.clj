@@ -3,12 +3,12 @@
             [clojure.spec.alpha :as s]
             [spec-tools.core :as st]
             [orchestra.core :refer [defn-spec]]
+            [mail-baby-api.specs.body-1 :refer :all]
             [mail-baby-api.specs.mail-order :refer :all]
             [mail-baby-api.specs.mail-attachment :refer :all]
             [mail-baby-api.specs.error-response :refer :all]
             [mail-baby-api.specs.send-mail-adv-from :refer :all]
             [mail-baby-api.specs.generic-response :refer :all]
-            [mail-baby-api.specs.body :refer :all]
             [mail-baby-api.specs.send-mail-adv :refer :all]
             [mail-baby-api.specs.mail-log :refer :all]
             [mail-baby-api.specs.mail-contact :refer :all]
@@ -114,26 +114,26 @@
 (defn-spec send-mail-with-http-info any?
   "Sends an Email
   Sends An email through one of your mail orders."
-  [body body]
-  (check-required-params body)
-  (call-api "/mail/send" :post
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {}
-             :body-param    body
-             :content-types ["application/json" "application/x-www-form-urlencoded"]
-             :accepts       ["application/json"]
-             :auth-names    ["apiKeyAuth"]}))
+  ([] (send-mail-with-http-info nil))
+  ([{:keys [to from subject body]} (s/map-of keyword? any?)]
+   (call-api "/mail/send" :post
+             {:path-params   {}
+              :header-params {}
+              :query-params  {}
+              :form-params   {"to" to "from" from "subject" subject "body" body }
+              :content-types ["application/x-www-form-urlencoded" "application/json"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKeyAuth"]})))
 
 (defn-spec send-mail generic-response-spec
   "Sends an Email
   Sends An email through one of your mail orders."
-  [body body]
-  (let [res (:data (send-mail-with-http-info body))]
-    (if (:decode-models *api-context*)
-       (st/decode generic-response-spec res st/string-transformer)
-       res)))
+  ([] (send-mail nil))
+  ([optional-params any?]
+   (let [res (:data (send-mail-with-http-info optional-params))]
+     (if (:decode-models *api-context*)
+        (st/decode generic-response-spec res st/string-transformer)
+        res))))
 
 
 (defn-spec validate-mail-order-with-http-info any?

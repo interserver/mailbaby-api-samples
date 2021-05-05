@@ -11,7 +11,7 @@ http/http.ts
 http/isomorphic-fetch.ts
 index.ts
 middleware.ts
-models/Body.ts
+models/Body1.ts
 models/ErrorResponse.ts
 models/GenericResponse.ts
 models/MailAttachment.ts

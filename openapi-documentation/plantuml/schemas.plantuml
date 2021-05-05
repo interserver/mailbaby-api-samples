@@ -2,7 +2,7 @@
 
 title Mail Baby API Schemas Diagram
 
-entity Body { 
+entity Body1 { 
     to: String
     from: String
     subject: String

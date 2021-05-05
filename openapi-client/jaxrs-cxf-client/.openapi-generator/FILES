@@ -1,7 +1,7 @@
 .openapi-generator-ignore
 pom.xml
 src/gen/java/org/openapitools/api/DefaultApi.java
-src/gen/java/org/openapitools/model/Body.java
+src/gen/java/org/openapitools/model/Body1.java
 src/gen/java/org/openapitools/model/ErrorResponse.java
 src/gen/java/org/openapitools/model/GenericResponse.java
 src/gen/java/org/openapitools/model/MailAttachment.java

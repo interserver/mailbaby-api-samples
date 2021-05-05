@@ -13,7 +13,7 @@
 
 
 import ApiClient from './ApiClient';
-import Body from './model/Body';
+import Body1 from './model/Body1';
 import ErrorResponse from './model/ErrorResponse';
 import GenericResponse from './model/GenericResponse';
 import MailAttachment from './model/MailAttachment';
@@ -64,10 +64,10 @@ export {
     ApiClient,
 
     /**
-     * The Body model constructor.
-     * @property {module:model/Body}
+     * The Body1 model constructor.
+     * @property {module:model/Body1}
      */
-    Body,
+    Body1,
 
     /**
      * The ErrorResponse model constructor.

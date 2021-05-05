@@ -13,7 +13,6 @@
 
 
 import ApiClient from "../ApiClient";
-import Body from '../model/Body';
 import ErrorResponse from '../model/ErrorResponse';
 import GenericResponse from '../model/GenericResponse';
 import MailLog from '../model/MailLog';
@@ -206,16 +205,17 @@ export default class DefaultApi {
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param {module:model/Body} body 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.to The Contact whom is the primary recipient of this email.
+     * @param {String} opts.from The contact whom is the this email is from.
+     * @param {String} opts.subject The subject or title of the email
+     * @param {String} opts.body The main email contents.
      * @param {module:api/DefaultApi~sendMailCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    sendMail(body, callback) {
-      let postBody = body;
-      // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling sendMail");
-      }
+    sendMail(opts, callback) {
+      opts = opts || {};
+      let postBody = null;
 
       let pathParams = {
       };
@@ -224,10 +224,14 @@ export default class DefaultApi {
       let headerParams = {
       };
       let formParams = {
+        'to': opts['to'],
+        'from': opts['from'],
+        'subject': opts['subject'],
+        'body': opts['body']
       };
 
       let authNames = ['apiKeyAuth'];
-      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let contentTypes = ['application/x-www-form-urlencoded', 'application/json'];
       let accepts = ['application/json'];
       let returnType = GenericResponse;
       return this.apiClient.callApi(

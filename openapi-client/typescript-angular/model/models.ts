@@ -1,4 +1,4 @@
-export * from './body';
+export * from './body1';
 export * from './errorResponse';
 export * from './genericResponse';
 export * from './mailAttachment';

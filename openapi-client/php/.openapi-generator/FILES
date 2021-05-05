@@ -5,7 +5,7 @@
 README.md
 composer.json
 docs/Api/DefaultApi.md
-docs/Model/Body.md
+docs/Model/Body1.md
 docs/Model/ErrorResponse.md
 docs/Model/GenericResponse.md
 docs/Model/MailAttachment.md
@@ -20,7 +20,7 @@ src/Api/DefaultApi.php
 src/ApiException.php
 src/Configuration.php
 src/HeaderSelector.php
-src/Model/Body.php
+src/Model/Body1.php
 src/Model/ErrorResponse.php
 src/Model/GenericResponse.php
 src/Model/MailAttachment.php
@@ -32,7 +32,7 @@ src/Model/SendMailAdv.php
 src/Model/SendMailAdvFrom.php
 src/ObjectSerializer.php
 test/Api/DefaultApiTest.php
-test/Model/BodyTest.php
+test/Model/Body1Test.php
 test/Model/ErrorResponseTest.php
 test/Model/GenericResponseTest.php
 test/Model/MailAttachmentTest.php

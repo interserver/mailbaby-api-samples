@@ -19,7 +19,7 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [Body](./Models/Body.md)
+ - [Body1](./Models/Body1.md)
  - [ErrorResponse](./Models/ErrorResponse.md)
  - [GenericResponse](./Models/GenericResponse.md)
  - [MailAttachment](./Models/MailAttachment.md)

@@ -237,7 +237,7 @@ use OpenAPIClient::DefaultApi;
 
 To load the models:
 ```perl
-use OpenAPIClient::Object::Body;
+use OpenAPIClient::Object::Body1;
 use OpenAPIClient::Object::ErrorResponse;
 use OpenAPIClient::Object::GenericResponse;
 use OpenAPIClient::Object::MailAttachment;
@@ -260,7 +260,7 @@ use warnings;
 use OpenAPIClient::DefaultApi;
 
 # load the models
-use OpenAPIClient::Object::Body;
+use OpenAPIClient::Object::Body1;
 use OpenAPIClient::Object::ErrorResponse;
 use OpenAPIClient::Object::GenericResponse;
 use OpenAPIClient::Object::MailAttachment;
@@ -309,7 +309,7 @@ Class | Method | HTTP request | Description
 
 
 # DOCUMENTATION FOR MODELS
- - [OpenAPIClient::Object::Body](docs/Body.md)
+ - [OpenAPIClient::Object::Body1](docs/Body1.md)
  - [OpenAPIClient::Object::ErrorResponse](docs/ErrorResponse.md)
  - [OpenAPIClient::Object::GenericResponse](docs/GenericResponse.md)
  - [OpenAPIClient::Object::MailAttachment](docs/MailAttachment.md)

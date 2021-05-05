@@ -13,7 +13,6 @@
 
 package org.openapitools.api;
 
-import org.openapitools.model.Body;
 import org.openapitools.model.ErrorResponse;
 import org.openapitools.model.GenericResponse;
 import org.openapitools.model.MailLog;
@@ -141,8 +140,11 @@ public class DefaultApiTest {
      */
     @Test
     public void sendMailTest() {
-        Body body = null;
-        //GenericResponse response = api.sendMail(body);
+        String to = null;
+        String from = null;
+        String subject = null;
+        String body = null;
+        //GenericResponse response = api.sendMail(to, from, subject, body);
         //assertNotNull(response);
         // TODO: test validations
         

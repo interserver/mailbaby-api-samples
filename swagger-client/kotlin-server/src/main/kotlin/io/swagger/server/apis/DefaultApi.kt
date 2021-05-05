@@ -33,7 +33,7 @@ import io.swagger.server.Paths
 import io.swagger.server.infrastructure.ApiPrincipal
 
 
-import io.swagger.server.models.Body
+import io.swagger.server.models.Body1
 import io.swagger.server.models.ErrorResponse
 import io.swagger.server.models.GenericResponse
 import io.swagger.server.models.MailAttachment

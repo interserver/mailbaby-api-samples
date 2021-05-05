@@ -5,7 +5,7 @@ from __future__ import absolute_import
 from flask import json
 from six import BytesIO
 
-from swagger_server.models.body import Body  # noqa: E501
+from swagger_server.models.body1 import Body1  # noqa: E501
 from swagger_server.models.error_response import ErrorResponse  # noqa: E501
 from swagger_server.models.generic_response import GenericResponse  # noqa: E501
 from swagger_server.models.mail_attachment import MailAttachment  # noqa: E501
@@ -88,7 +88,7 @@ class TestDefaultController(BaseTestCase):
 
         Sends an Email
         """
-        body = Body()
+        body = Body1()
         data = dict(to='to_example',
                     _from='_from_example',
                     subject='subject_example',
@@ -98,7 +98,7 @@ class TestDefaultController(BaseTestCase):
             method='POST',
             data=json.dumps(body),
             data=data,
-            content_type='application/json')
+            content_type='application/x-www-form-urlencoded')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

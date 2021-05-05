@@ -8,7 +8,7 @@
 #
 
 # Models
-import openapiclient/models/model_body
+import openapiclient/models/model_body_1
 import openapiclient/models/model_error_response
 import openapiclient/models/model_generic_response
 import openapiclient/models/model_mail_attachment
@@ -18,7 +18,7 @@ import openapiclient/models/model_mail_order
 import openapiclient/models/model_send_mail_adv
 import openapiclient/models/model_send_mail_adv_from
 
-export model_body
+export model_body_1
 export model_error_response
 export model_generic_response
 export model_mail_attachment

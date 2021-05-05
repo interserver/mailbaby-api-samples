@@ -1137,15 +1137,18 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  \Interserver\Mailbaby\Model\Body $body body (required)
+     * @param  string $to The Contact whom is the primary recipient of this email. (optional)
+     * @param  string $from The contact whom is the this email is from. (optional)
+     * @param  string $subject The subject or title of the email (optional)
+     * @param  string $body The main email contents. (optional)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse
      */
-    public function sendMail($body)
+    public function sendMail($to = null, $from = null, $subject = null, $body = null)
     {
-        list($response) = $this->sendMailWithHttpInfo($body);
+        list($response) = $this->sendMailWithHttpInfo($to, $from, $subject, $body);
         return $response;
     }
 
@@ -1154,15 +1157,18 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  \Interserver\Mailbaby\Model\Body $body (required)
+     * @param  string $to The Contact whom is the primary recipient of this email. (optional)
+     * @param  string $from The contact whom is the this email is from. (optional)
+     * @param  string $subject The subject or title of the email (optional)
+     * @param  string $body The main email contents. (optional)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sendMailWithHttpInfo($body)
+    public function sendMailWithHttpInfo($to = null, $from = null, $subject = null, $body = null)
     {
-        $request = $this->sendMailRequest($body);
+        $request = $this->sendMailRequest($to, $from, $subject, $body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1280,14 +1286,17 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  \Interserver\Mailbaby\Model\Body $body (required)
+     * @param  string $to The Contact whom is the primary recipient of this email. (optional)
+     * @param  string $from The contact whom is the this email is from. (optional)
+     * @param  string $subject The subject or title of the email (optional)
+     * @param  string $body The main email contents. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailAsync($body)
+    public function sendMailAsync($to = null, $from = null, $subject = null, $body = null)
     {
-        return $this->sendMailAsyncWithHttpInfo($body)
+        return $this->sendMailAsyncWithHttpInfo($to, $from, $subject, $body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1300,15 +1309,18 @@ class DefaultApi
      *
      * Sends an Email
      *
-     * @param  \Interserver\Mailbaby\Model\Body $body (required)
+     * @param  string $to The Contact whom is the primary recipient of this email. (optional)
+     * @param  string $from The contact whom is the this email is from. (optional)
+     * @param  string $subject The subject or title of the email (optional)
+     * @param  string $body The main email contents. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailAsyncWithHttpInfo($body)
+    public function sendMailAsyncWithHttpInfo($to = null, $from = null, $subject = null, $body = null)
     {
         $returnType = '\Interserver\Mailbaby\Model\GenericResponse';
-        $request = $this->sendMailRequest($body);
+        $request = $this->sendMailRequest($to, $from, $subject, $body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1346,19 +1358,16 @@ class DefaultApi
     /**
      * Create request for operation 'sendMail'
      *
-     * @param  \Interserver\Mailbaby\Model\Body $body (required)
+     * @param  string $to The Contact whom is the primary recipient of this email. (optional)
+     * @param  string $from The contact whom is the this email is from. (optional)
+     * @param  string $subject The subject or title of the email (optional)
+     * @param  string $body The main email contents. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function sendMailRequest($body)
+    public function sendMailRequest($to = null, $from = null, $subject = null, $body = null)
     {
-        // verify the required parameter 'body' is set
-        if ($body === null || (is_array($body) && count($body) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $body when calling sendMail'
-            );
-        }
 
         $resourcePath = '/mail/send';
         $formParams = [];
@@ -1370,6 +1379,22 @@ class DefaultApi
 
 
 
+        // form params
+        if ($to !== null) {
+            $formParams['to'] = ObjectSerializer::toFormValue($to);
+        }
+        // form params
+        if ($from !== null) {
+            $formParams['from'] = ObjectSerializer::toFormValue($from);
+        }
+        // form params
+        if ($subject !== null) {
+            $formParams['subject'] = ObjectSerializer::toFormValue($subject);
+        }
+        // form params
+        if ($body !== null) {
+            $formParams['body'] = ObjectSerializer::toFormValue($body);
+        }
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -1378,18 +1403,12 @@ class DefaultApi
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 ['application/json'],
-                ['application/json', 'application/x-www-form-urlencoded']
+                ['application/x-www-form-urlencoded', 'application/json']
             );
         }
 
         // for model (json/xml)
-        if (isset($body)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($body));
-            } else {
-                $httpBody = $body;
-            }
-        } elseif (count($formParams) > 0) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

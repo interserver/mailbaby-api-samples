@@ -4,7 +4,7 @@ api/api.ts
 configuration.ts
 git_push.sh
 index.ts
-model/Body.ts
+model/Body1.ts
 model/ErrorResponse.ts
 model/GenericResponse.ts
 model/MailAttachment.ts

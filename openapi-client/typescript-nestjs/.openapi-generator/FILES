@@ -7,7 +7,7 @@ api/default.service.ts
 configuration.ts
 git_push.sh
 index.ts
-model/body.ts
+model/body1.ts
 model/errorResponse.ts
 model/genericResponse.ts
 model/mailAttachment.ts

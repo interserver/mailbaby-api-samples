@@ -192,8 +192,8 @@ class ApiClient {
           break;
         case 'double':
           return value is double ? value : double.parse('$value');
-        case 'Body':
-          return Body.fromJson(value);
+        case 'Body1':
+          return Body1.fromJson(value);
         case 'ErrorResponse':
           return ErrorResponse.fromJson(value);
         case 'GenericResponse':

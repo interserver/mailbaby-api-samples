@@ -13,7 +13,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/standard_json_plugin.dart';
 
-import 'package:openapi/model/body.dart';
+import 'package:openapi/model/body1.dart';
 import 'package:openapi/model/error_response.dart';
 import 'package:openapi/model/generic_response.dart';
 import 'package:openapi/model/mail_attachment.dart';
@@ -26,7 +26,7 @@ import 'package:openapi/model/send_mail_adv_from.dart';
 part 'serializers.g.dart';
 
 @SerializersFor(const [
-  Body,
+  Body1,
   ErrorResponse,
   GenericResponse,
   MailAttachment,

@@ -690,7 +690,7 @@ static bool sendMailProcessor(MemoryStruct_s p_chunk, long code, char* errormsg,
 }
 
 static bool sendMailHelper(char * accessToken,
-	Body body, 
+	std::string to, std::string from, std::string subject, std::string body, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -702,8 +702,8 @@ static bool sendMailHelper(char * accessToken,
 	string accessHeader = "Authorization: Bearer ";
 	accessHeader.append(accessToken);
 	headerList = curl_slist_append(headerList, accessHeader.c_str());
-	headerList = curl_slist_append(headerList, "Content-Type: application/json");
 	headerList = curl_slist_append(headerList, "Content-Type: application/x-www-form-urlencoded");
+	headerList = curl_slist_append(headerList, "Content-Type: application/json");
 
 	map <string, string> queryParams;
 	string itemAtq;
@@ -711,19 +711,6 @@ static bool sendMailHelper(char * accessToken,
 	string mBody = "";
 	JsonNode* node;
 	JsonArray* json_array;
-
-	if (isprimitive("Body")) {
-		node = converttoJson(&body, "Body", "");
-	}
-	
-	char *jsonStr =  body.toJson();
-	node = json_from_string(jsonStr, NULL);
-	g_free(static_cast<gpointer>(jsonStr));
-	
-
-	char *jsonStr1 =  json_to_string(node, false);
-	mBody.append(jsonStr1);
-	g_free(static_cast<gpointer>(jsonStr1));
 
 	string url("/mail/send");
 	int pos;
@@ -775,22 +762,22 @@ static bool sendMailHelper(char * accessToken,
 
 
 bool DefaultManager::sendMailAsync(char * accessToken,
-	Body body, 
+	std::string to, std::string from, std::string subject, std::string body, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
 	return sendMailHelper(accessToken,
-	body, 
+	to, from, subject, body, 
 	handler, userData, true);
 }
 
 bool DefaultManager::sendMailSync(char * accessToken,
-	Body body, 
+	std::string to, std::string from, std::string subject, std::string body, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
 	return sendMailHelper(accessToken,
-	body, 
+	to, from, subject, body, 
 	handler, userData, false);
 }
 

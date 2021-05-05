@@ -153,11 +153,17 @@ feature -- API Access
 			end
 		end	
 
-	send_mail (body: BODY): detachable GENERIC_RESPONSE
+	send_mail (to: STRING_32; var_from: STRING_32; subject: STRING_32; body: STRING_32): detachable GENERIC_RESPONSE
 			-- Sends an Email
 			-- Sends An email through one of your mail orders.
 			-- 
-			-- argument: body  (required)
+			-- argument: to The Contact whom is the primary recipient of this email. (optional, default to null)
+			-- 
+			-- argument: var_from The contact whom is the this email is from. (optional, default to null)
+			-- 
+			-- argument: subject The subject or title of the email (optional, default to null)
+			-- 
+			-- argument: body The main email contents. (optional, default to null)
 			-- 
 			-- 
 			-- Result GENERIC_RESPONSE
@@ -169,14 +175,26 @@ feature -- API Access
 		do
 			reset_error
 			create l_request
-			l_request.set_body(body)
+			
 			l_path := "/mail/send"
 
+			if attached to as l_to then
+				l_request.add_form(l_to,"to");
+			end
+			if attached var_from as l_var_from then
+				l_request.add_form(l_var_from,"from");
+			end
+			if attached subject as l_subject then
+				l_request.add_form(l_subject,"subject");
+			end
+			if attached body as l_body then
+				l_request.add_form(l_body,"body");
+			end
 
 			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"application/json">>)  as l_accept then
 				l_request.add_header(l_accept,"Accept");
 			end
-			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/json", "application/x-www-form-urlencoded">>),"Content-Type")
+			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/x-www-form-urlencoded", "application/json">>),"Content-Type")
 			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth">>)
 			l_response := api_client.call_api (l_path, "Post", l_request, Void, agent deserializer)
 			if l_response.has_error then

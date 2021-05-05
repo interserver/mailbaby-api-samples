@@ -255,53 +255,6 @@ Name | Type | Description  | Notes
 
 <a name="sendMail"></a>
 # **sendMail**
-> GenericResponse sendMail(body)
-
-Sends an Email
-
-Sends An email through one of your mail orders.
-
-### Example
-```kotlin
-// Import classes:
-//import io.swagger.client.infrastructure.*
-//import io.swagger.client.models.*;
-
-val apiInstance = DefaultApi()
-val body : Body =  // Body | 
-try {
-    val result : GenericResponse = apiInstance.sendMail(body)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DefaultApi#sendMail")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DefaultApi#sendMail")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**Body**](Body.md)|  |
-
-### Return type
-
-[**GenericResponse**](GenericResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/x-www-form-urlencoded
- - **Accept**: application/json
-
-<a name="sendMail"></a>
-# **sendMail**
 > GenericResponse sendMail(to, from, subject, body)
 
 Sends an Email
@@ -350,7 +303,54 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded, application/json
+ - **Accept**: application/json
+
+<a name="sendMail"></a>
+# **sendMail**
+> GenericResponse sendMail(body)
+
+Sends an Email
+
+Sends An email through one of your mail orders.
+
+### Example
+```kotlin
+// Import classes:
+//import io.swagger.client.infrastructure.*
+//import io.swagger.client.models.*;
+
+val apiInstance = DefaultApi()
+val body : Body1 =  // Body1 | 
+try {
+    val result : GenericResponse = apiInstance.sendMail(body)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#sendMail")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#sendMail")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**Body1**](Body1.md)|  |
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded, application/json
  - **Accept**: application/json
 
 <a name="validateMailOrder"></a>

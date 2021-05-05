@@ -139,7 +139,10 @@
 #' Sends An email through one of your mail orders.
 #'
 #' \itemize{
-#' \item \emph{ @param } body \link{Body}
+#' \item \emph{ @param } to character
+#' \item \emph{ @param } from character
+#' \item \emph{ @param } subject character
+#' \item \emph{ @param } body character
 #' \item \emph{ @returnType } \link{GenericResponse} \cr
 #'
 #'
@@ -282,7 +285,10 @@
 #' ####################  SendMail  ####################
 #'
 #' library(openapi)
-#' var.body <- Body$new() # Body | 
+#' var.to <- 'to_example' # character | The Contact whom is the primary recipient of this email.
+#' var.from <- 'from_example' # character | The contact whom is the this email is from.
+#' var.subject <- 'subject_example' # character | The subject or title of the email
+#' var.body <- 'body_example' # character | The main email contents.
 #'
 #' #Sends an Email
 #' api.instance <- DefaultApi$new()
@@ -290,7 +296,7 @@
 #' #Configure API key authorization: apiKeyAuth
 #' api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
 #'
-#' result <- api.instance$SendMail(var.body)
+#' result <- api.instance$SendMail(to=var.to, from=var.from, subject=var.subject, body=var.body)
 #'
 #'
 #' ####################  ValidateMailOrder  ####################
@@ -535,8 +541,8 @@ DefaultApi <- R6::R6Class(
         ApiResponse$new("API server error", resp)
       }
     },
-    SendMail = function(body, ...){
-      apiResponse <- self$SendMailWithHttpInfo(body, ...)
+    SendMail = function(to=NULL, from=NULL, subject=NULL, body=NULL, ...){
+      apiResponse <- self$SendMailWithHttpInfo(to, from, subject, body, ...)
       resp <- apiResponse$response
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
         apiResponse$content
@@ -549,20 +555,17 @@ DefaultApi <- R6::R6Class(
       }
     },
 
-    SendMailWithHttpInfo = function(body, ...){
+    SendMailWithHttpInfo = function(to=NULL, from=NULL, subject=NULL, body=NULL, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- c()
 
-      if (missing(`body`)) {
-        stop("Missing required parameter `body`.")
-      }
-
-      if (!missing(`body`)) {
-        body <- `body`$toJSONString()
-      } else {
-        body <- NULL
-      }
+      body <- list(
+        "to" = to,
+        "from" = from,
+        "subject" = subject,
+        "body" = body
+      )
 
       urlPath <- "/mail/send"
       # API key authentication

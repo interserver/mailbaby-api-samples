@@ -14,7 +14,6 @@
 
 goog.provide('API.Client.DefaultApi');
 
-goog.require('API.Client.Body');
 goog.require('API.Client.ErrorResponse');
 goog.require('API.Client.GenericResponse');
 goog.require('API.Client.MailLog');
@@ -188,11 +187,14 @@ API.Client.DefaultApi.prototype.sendAdvMail = function(sendMailAdv, opt_extraHtt
 /**
  * Sends an Email
  * Sends An email through one of your mail orders.
- * @param {!Body} body 
+ * @param {!string=} opt_to The Contact whom is the primary recipient of this email.
+ * @param {!string=} opt_from The contact whom is the this email is from.
+ * @param {!string=} opt_subject The subject or title of the email
+ * @param {!string=} opt_body The main email contents.
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.GenericResponse>}
  */
-API.Client.DefaultApi.prototype.sendMail = function(body, opt_extraHttpRequestParams) {
+API.Client.DefaultApi.prototype.sendMail = function(opt_to, opt_from, opt_subject, opt_body, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/mail/send';
 
@@ -201,17 +203,26 @@ API.Client.DefaultApi.prototype.sendMail = function(body, opt_extraHttpRequestPa
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'body' is set
-  if (!body) {
-    throw new Error('Missing required parameter body when calling sendMail');
-  }
+  /** @type {!Object} */
+  var formParams = {};
+
+  headerParams['Content-Type'] = 'application/x-www-form-urlencoded';
+
+  formParams['to'] = opt_to;
+
+  formParams['from'] = opt_from;
+
+  formParams['subject'] = opt_subject;
+
+  formParams['body'] = opt_body;
+
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'POST',
     url: path,
-    json: true,
-    data: body,
-        params: queryParameters,
+    json: false,
+        data: this.httpParamSerializer(formParams),
+    params: queryParameters,
     headers: headerParams
   };
 

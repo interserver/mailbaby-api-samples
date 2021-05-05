@@ -140,7 +140,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [MailBabyApi.Body](docs/Body.md)
+ - [MailBabyApi.Body1](docs/Body1.md)
  - [MailBabyApi.ErrorResponse](docs/ErrorResponse.md)
  - [MailBabyApi.GenericResponse](docs/GenericResponse.md)
  - [MailBabyApi.MailAttachment](docs/MailAttachment.md)

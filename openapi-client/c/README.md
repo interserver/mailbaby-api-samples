@@ -76,7 +76,7 @@ Category | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [body_t](docs/body.md)
+ - [body_1_t](docs/body_1.md)
  - [error_response_t](docs/error_response.md)
  - [generic_response_t](docs/generic_response.md)
  - [mail_attachment_t](docs/mail_attachment.md)

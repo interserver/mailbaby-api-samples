@@ -3,7 +3,7 @@
 apis/DefaultApi.ts
 apis/index.ts
 index.ts
-models/Body.ts
+models/Body1.ts
 models/ErrorResponse.ts
 models/GenericResponse.ts
 models/MailAttachment.ts

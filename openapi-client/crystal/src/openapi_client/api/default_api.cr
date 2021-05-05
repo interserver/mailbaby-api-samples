@@ -236,24 +236,18 @@ module
 
     # Sends an Email
     # Sends An email through one of your mail orders.
-    # @param body [Body] 
     # @return [GenericResponse]
-    def send_mail(body : Body)
-      data, _status_code, _headers = send_mail_with_http_info(body)
+    def send_mail(to : String?, from : String?, subject : String?, body : String?)
+      data, _status_code, _headers = send_mail_with_http_info(to, from, subject, body)
       data
     end
 
     # Sends an Email
     # Sends An email through one of your mail orders.
-    # @param body [Body] 
     # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_mail_with_http_info(body : Body)
+    def send_mail_with_http_info(to : String?, from : String?, subject : String?, body : String?)
       if @api_client.config.debugging
         Log.debug {"Calling API: DefaultApi.send_mail ..."}
-      end
-      # verify the required parameter "body" is set
-      if @api_client.config.client_side_validation && body.nil?
-        raise ArgumentError.new("Missing the required parameter 'body' when calling DefaultApi.send_mail")
       end
       # resource path
       local_var_path = "/mail/send"
@@ -266,13 +260,17 @@ module
       # HTTP header "Accept" (if needed)
       header_params["Accept"] = @api_client.select_header_accept(["application/json"])
       # HTTP header "Content-Type"
-      header_params["Content-Type"] = @api_client.select_header_content_type(["application/json", "application/x-www-form-urlencoded"])
+      header_params["Content-Type"] = @api_client.select_header_content_type(["application/x-www-form-urlencoded", "application/json"])
 
       # form parameters
       form_params = Hash(Symbol, String).new
+      form_params[:"to"] = to
+      form_params[:"from"] = from
+      form_params[:"subject"] = subject
+      form_params[:"body"] = body
 
       # http body (model)
-      post_body = body.to_json
+      post_body = nil
 
       # return_type
       return_type = "GenericResponse"

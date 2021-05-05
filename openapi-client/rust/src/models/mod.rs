@@ -1,5 +1,5 @@
-pub mod body;
-pub use self::body::Body;
+pub mod body_1;
+pub use self::body_1::Body1;
 pub mod error_response;
 pub use self::error_response::ErrorResponse;
 pub mod generic_response;

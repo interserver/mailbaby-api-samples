@@ -3,7 +3,7 @@
 git_push.sh
 openapiclient-1.0.0-1.rockspec
 openapiclient/api/default_api.lua
-openapiclient/model/body.lua
+openapiclient/model/body_1.lua
 openapiclient/model/error_response.lua
 openapiclient/model/generic_response.lua
 openapiclient/model/mail_attachment.lua
@@ -12,7 +12,7 @@ openapiclient/model/mail_log.lua
 openapiclient/model/mail_order.lua
 openapiclient/model/send_mail_adv.lua
 openapiclient/model/send_mail_adv_from.lua
-spec/body_spec.lua
+spec/body_1_spec.lua
 spec/default_api_spec.lua
 spec/error_response_spec.lua
 spec/generic_response_spec.lua

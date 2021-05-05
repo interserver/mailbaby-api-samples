@@ -4,7 +4,7 @@
         , ping_server/0
         , place_mail_order/1
         , send_adv_mail/1
-        , send_mail/1
+        , send_mail/0
         , validate_mail_order/0
         , view_mail_log_by_id/0
         ]).
@@ -62,14 +62,14 @@ send_adv_mail(OpenapiSendMailAdv) ->
 
 %% @doc Sends an Email
 %% Sends An email through one of your mail orders.
--spec send_mail(openapi_body:openapi_body()) ->
+-spec send_mail() ->
   openapi_utils:response().
-send_mail(OpenapiBody) ->
+send_mail() ->
   Method      = post,
   Host        = application:get_env(openapi, host, "http://localhost:8080"),
   Path        = ["/mail/send"],
-  Body        = OpenapiBody,
-  ContentType = hd(["application/json", "application/x-www-form-urlencoded"]),
+  Body        = {form, []++openapi_utils:optional_params(['to', 'from', 'subject', 'body'], _OptionalParams)},
+  ContentType = hd(["application/x-www-form-urlencoded", "application/json"]),
 
   openapi_utils:request(Method, [Host, ?BASE_URL, Path], jsx:encode(Body), ContentType).
 

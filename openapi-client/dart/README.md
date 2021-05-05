@@ -74,7 +74,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [Body](doc//Body.md)
+ - [Body1](doc//Body1.md)
  - [ErrorResponse](doc//ErrorResponse.md)
  - [GenericResponse](doc//GenericResponse.md)
  - [MailAttachment](doc//MailAttachment.md)

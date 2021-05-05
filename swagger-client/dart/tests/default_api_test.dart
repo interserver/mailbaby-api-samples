@@ -43,7 +43,7 @@ void main() {
     //
     // Sends An email through one of your mail orders.
     //
-    //Future<GenericResponse> sendMail(Body body, String to, String from, String subject, String body) async
+    //Future<GenericResponse> sendMail(String to, String from, String subject, String body, Body1 body) async
     test('test sendMail', () async {
       // TODO
     });

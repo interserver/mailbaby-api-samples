@@ -85,10 +85,10 @@ paths:
       operationId: sendMail
       requestBody:
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/body'
-          application/x-www-form-urlencoded:
+          application/json:
             schema:
               $ref: '#/components/schemas/body_1'
         required: true
@@ -113,7 +113,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-      x-contentType: application/json
+      x-contentType: application/x-www-form-urlencoded
       x-accepts: application/json
   /mail/advsend:
     post:

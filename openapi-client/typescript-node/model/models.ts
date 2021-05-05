@@ -1,6 +1,6 @@
 import localVarRequest from 'request';
 
-export * from './body';
+export * from './body1';
 export * from './errorResponse';
 export * from './genericResponse';
 export * from './mailAttachment';
@@ -23,7 +23,7 @@ export interface RequestDetailedFile {
 export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 
-import { Body } from './body';
+import { Body1 } from './body1';
 import { ErrorResponse } from './errorResponse';
 import { GenericResponse } from './genericResponse';
 import { MailAttachment } from './mailAttachment';
@@ -49,7 +49,7 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
-    "Body": Body,
+    "Body1": Body1,
     "ErrorResponse": ErrorResponse,
     "GenericResponse": GenericResponse,
     "MailAttachment": MailAttachment,

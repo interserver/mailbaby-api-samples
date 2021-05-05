@@ -11,7 +11,7 @@
  */
 package io.swagger.client.apis
 
-import io.swagger.client.models.Body
+import io.swagger.client.models.Body1
 import io.swagger.client.models.ErrorResponse
 import io.swagger.client.models.GenericResponse
 import io.swagger.client.models.MailAttachment
@@ -164,12 +164,15 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
+     * @param to  
+     * @param from  
+     * @param subject  
      * @param body  
      * @return GenericResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun sendMail(body: Body): GenericResponse {
-        val localVariableBody: kotlin.Any? = body
+    fun sendMail(to: kotlin.String, from: kotlin.String, subject: kotlin.String, body: kotlin.String): GenericResponse {
+        val localVariableBody: kotlin.Any? = mapOf("to" to "$to", "from" to "$from", "subject" to "$subject", "body" to "$body")
         
         val localVariableHeaders: kotlin.collections.Map<kotlin.String, kotlin.String> = mapOf("Content-Type" to "multipart/form-data")
         val localVariableConfig = RequestConfig(
@@ -191,15 +194,12 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
-     * @param to  
-     * @param from  
-     * @param subject  
      * @param body  
      * @return GenericResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun sendMail(to: kotlin.String, from: kotlin.String, subject: kotlin.String, body: kotlin.String): GenericResponse {
-        val localVariableBody: kotlin.Any? = mapOf("to" to "$to", "from" to "$from", "subject" to "$subject", "body" to "$body")
+    fun sendMail(body: Body1): GenericResponse {
+        val localVariableBody: kotlin.Any? = body
         
         val localVariableHeaders: kotlin.collections.Map<kotlin.String, kotlin.String> = mapOf("Content-Type" to "multipart/form-data")
         val localVariableConfig = RequestConfig(

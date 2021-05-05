@@ -5,7 +5,6 @@
 #include <cstring>
 #include <list>
 #include <glib.h>
-#include "Body.h"
 #include "ErrorResponse.h"
 #include "GenericResponse.h"
 #include "MailLog.h"
@@ -138,26 +137,32 @@ bool sendAdvMailAsync(char * accessToken,
 /*! \brief Sends an Email. *Synchronous*
  *
  * Sends An email through one of your mail orders.
- * \param body  *Required*
+ * \param to The Contact whom is the primary recipient of this email.
+ * \param from The contact whom is the this email is from.
+ * \param subject The subject or title of the email
+ * \param body The main email contents.
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool sendMailSync(char * accessToken,
-	Body body, 
+	std::string to, std::string from, std::string subject, std::string body, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 
 /*! \brief Sends an Email. *Asynchronous*
  *
  * Sends An email through one of your mail orders.
- * \param body  *Required*
+ * \param to The Contact whom is the primary recipient of this email.
+ * \param from The contact whom is the this email is from.
+ * \param subject The subject or title of the email
+ * \param body The main email contents.
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool sendMailAsync(char * accessToken,
-	Body body, 
+	std::string to, std::string from, std::string subject, std::string body, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 

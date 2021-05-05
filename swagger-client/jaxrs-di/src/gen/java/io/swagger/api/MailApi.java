@@ -13,7 +13,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
-import io.swagger.model.Body;
+import io.swagger.model.Body1;
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -41,7 +41,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-05T07:12:53.145026-04:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-05T07:19:53.844720-04:00[America/New_York]")public class MailApi  {
 
    private MailApiService delegate;
 
@@ -137,27 +137,7 @@ import javax.validation.constraints.*;
     }
     @POST
     @Path("/send")
-    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
-    @Produces({ "application/json" })
-    @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
-        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
-        
-        @ApiResponse(responseCode = "400", description = "bad input parameter"),
-        
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
-        
-        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendMail(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) Body body
-
-,@Context SecurityContext securityContext)
-    throws NotFoundException {
-        return delegate.sendMail(body,securityContext);
-    }
-    @POST
-    @Path("/send")
-    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
+    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
@@ -176,6 +156,26 @@ import javax.validation.constraints.*;
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return delegate.sendMail(to,from,subject,body,securityContext);
+    }
+    @POST
+    @Path("/send")
+    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "bad input parameter"),
+        
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
+    public Response sendMail(@Parameter(in = ParameterIn.DEFAULT, description = "" ,required=true) Body1 body
+
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return delegate.sendMail(body,securityContext);
     }
     @GET
     @Path("/order")

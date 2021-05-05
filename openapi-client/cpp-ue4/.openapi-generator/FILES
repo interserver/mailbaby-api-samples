@@ -1,7 +1,7 @@
 .openapi-generator-ignore
 OpenAPI.Build.cs
 Private/OpenAPIBaseModel.cpp
-Private/OpenAPIBody.cpp
+Private/OpenAPIBody1.cpp
 Private/OpenAPIDefaultApi.cpp
 Private/OpenAPIDefaultApiOperations.cpp
 Private/OpenAPIErrorResponse.cpp
@@ -16,7 +16,7 @@ Private/OpenAPIModule.h
 Private/OpenAPISendMailAdv.cpp
 Private/OpenAPISendMailAdvFrom.cpp
 Public/OpenAPIBaseModel.h
-Public/OpenAPIBody.h
+Public/OpenAPIBody1.h
 Public/OpenAPIDefaultApi.h
 Public/OpenAPIDefaultApiOperations.h
 Public/OpenAPIErrorResponse.h

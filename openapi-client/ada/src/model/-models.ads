@@ -191,7 +191,7 @@ package .Models is
 
 
 
-   type Model_Body is
+   type Body1_Type is
      record
        To : Swagger.Nullable_UString;
        From : Swagger.Nullable_UString;
@@ -199,25 +199,25 @@ package .Models is
        P_Body : Swagger.Nullable_UString;
      end record;
 
-   package Model_Body_Vectors is
+   package Body1_Type_Vectors is
       new Ada.Containers.Vectors (Index_Type   => Positive,
-                                  Element_Type => Model_Body);
+                                  Element_Type => Body1_Type);
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in Model_Body);
+                        Value : in Body1_Type);
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in Model_Body_Vectors.Vector);
+                        Value : in Body1_Type_Vectors.Vector);
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out Model_Body);
+                          Value : out Body1_Type);
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out Model_Body_Vectors.Vector);
+                          Value : out Body1_Type_Vectors.Vector);
 
 
 

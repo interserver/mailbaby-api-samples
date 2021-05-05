@@ -13,7 +13,7 @@ package io.swagger.client.api
 
 import java.text.SimpleDateFormat
 
-import io.swagger.client.model.Body
+import io.swagger.client.model.Body1
 import io.swagger.client.model.ErrorResponse
 import io.swagger.client.model.GenericResponse
 import io.swagger.client.model.MailAttachment
@@ -211,15 +211,15 @@ class DefaultApi(
    * Sends an Email
    * Sends An email through one of your mail orders.
    *
-   * @param body  
    * @param to  
    * @param from  
    * @param subject  
    * @param body  
+   * @param body  
    * @return GenericResponse
    */
-  def sendMail(body: Body, to: String, from: String, subject: String, body: String): Option[GenericResponse] = {
-    val await = Try(Await.result(sendMailAsync(body, to, from, subject, body), Duration.Inf))
+  def sendMail(to: String, from: String, subject: String, body: String, body: Body1): Option[GenericResponse] = {
+    val await = Try(Await.result(sendMailAsync(to, from, subject, body, body), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -230,15 +230,15 @@ class DefaultApi(
    * Sends an Email asynchronously
    * Sends An email through one of your mail orders.
    *
-   * @param body  
    * @param to  
    * @param from  
    * @param subject  
    * @param body  
+   * @param body  
    * @return Future(GenericResponse)
    */
-  def sendMailAsync(body: Body, to: String, from: String, subject: String, body: String): Future[GenericResponse] = {
-      helper.sendMail(body, to, from, subject, body)
+  def sendMailAsync(to: String, from: String, subject: String, body: String, body: Body1): Future[GenericResponse] = {
+      helper.sendMail(to, from, subject, body, body)
   }
 
   /**
@@ -387,11 +387,11 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
-  def sendMail(body: Body,
-    to: String,
+  def sendMail(to: String,
     from: String,
     subject: String,
-    body: String)(implicit reader: ClientResponseReader[GenericResponse], writer: RequestWriter[Body]): Future[GenericResponse] = {
+    body: String,
+    body: Body1)(implicit reader: ClientResponseReader[GenericResponse], writer: RequestWriter[Body1]): Future[GenericResponse] = {
     // create path and map variables
     val path = (addFmt("/mail/send"))
 
@@ -399,7 +399,6 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling DefaultApi->sendMail")
     if (to == null) throw new Exception("Missing required parameter 'to' when calling DefaultApi->sendMail")
 
     if (from == null) throw new Exception("Missing required parameter 'from' when calling DefaultApi->sendMail")
@@ -408,6 +407,7 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
 
     if (body == null) throw new Exception("Missing required parameter 'body' when calling DefaultApi->sendMail")
 
+    if (body == null) throw new Exception("Missing required parameter 'body' when calling DefaultApi->sendMail")
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(body))
     resFuture flatMap { resp =>

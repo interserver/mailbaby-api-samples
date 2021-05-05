@@ -14,7 +14,7 @@
 /**
  * Details for an Email
  */
-export interface Body {
+export interface Body1 {
   /**
    * The Contact whom is the primary recipient of this email.
    */

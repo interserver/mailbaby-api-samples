@@ -5,7 +5,6 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/body.h"
 #include "../model/error_response.h"
 #include "../model/generic_response.h"
 #include "../model/mail_log.h"
@@ -46,7 +45,7 @@ DefaultAPI_sendAdvMail(apiClient_t *apiClient, send_mail_adv_t * send_mail_adv )
 // Sends An email through one of your mail orders.
 //
 generic_response_t*
-DefaultAPI_sendMail(apiClient_t *apiClient, body_t * body );
+DefaultAPI_sendMail(apiClient_t *apiClient, char * to , char * from , char * subject , char * body );
 
 
 // validatess order details before placing an order

@@ -15,9 +15,6 @@
 import { HttpMethods, QueryConfig, ResponseBody, ResponseText } from 'redux-query';
 import * as runtime from '../runtime';
 import {
-    Body,
-    BodyFromJSON,
-    BodyToJSON,
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
@@ -48,7 +45,10 @@ export interface SendAdvMailRequest {
 }
 
 export interface SendMailRequest {
-    body: Body;
+    to?: string;
+    from?: string;
+    subject?: string;
+    body?: string;
 }
 
 export interface ViewMailLogByIdRequest {
@@ -251,21 +251,32 @@ export function sendAdvMail<T>(requestParameters: SendAdvMailRequest, requestCon
  * Sends an Email
  */
 function sendMailRaw<T>(requestParameters: SendMailRequest, requestConfig: runtime.TypedQueryConfig<T, GenericResponse> = {}): QueryConfig<T> {
-    if (requestParameters.body === null || requestParameters.body === undefined) {
-        throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling sendMail.');
-    }
-
     let queryParameters = null;
 
 
     const headerParameters : runtime.HttpHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
-
 
     const { meta = {} } = requestConfig;
 
     meta.authType = ['api_key', 'header'];
+    const formData = new FormData();
+    if (requestParameters.to !== undefined) {
+        formData.append('to', requestParameters.to as any);
+    }
+
+    if (requestParameters.from !== undefined) {
+        formData.append('from', requestParameters.from as any);
+    }
+
+    if (requestParameters.subject !== undefined) {
+        formData.append('subject', requestParameters.subject as any);
+    }
+
+    if (requestParameters.body !== undefined) {
+        formData.append('body', requestParameters.body as any);
+    }
+
     const config: QueryConfig<T> = {
         url: `${runtime.Configuration.basePath}/mail/send`,
         meta,
@@ -278,7 +289,7 @@ function sendMailRaw<T>(requestParameters: SendMailRequest, requestConfig: runti
             method: 'POST',
             headers: headerParameters,
         },
-        body: queryParameters || BodyToJSON(requestParameters.body),
+        body: formData,
     };
 
     const { transform: requestTransform } = requestConfig;

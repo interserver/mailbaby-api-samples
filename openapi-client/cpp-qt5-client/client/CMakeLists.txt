@@ -15,7 +15,7 @@ find_package(Qt5Core REQUIRED)
 find_package(Qt5Network REQUIRED)
 
 add_library(${PROJECT_NAME}
-    OAIBody.cpp
+    OAIBody_1.cpp
     OAIErrorResponse.cpp
     OAIGenericResponse.cpp
     OAIMailAttachment.cpp

@@ -202,7 +202,7 @@ Configure apiKeyAuth:
 
 <a name="sendMail"></a>
 # **sendMail**
-> GenericResponse sendMail(body)
+> GenericResponse sendMail(to, from, subject, body)
 
 Sends an Email
 
@@ -215,9 +215,12 @@ Sends An email through one of your mail orders.
 //import org.openapitools.client.models.*
 
 val apiInstance = DefaultApi()
-val body : Body =  // Body | 
+val to : kotlin.String = to_example // kotlin.String | The Contact whom is the primary recipient of this email.
+val from : kotlin.String = from_example // kotlin.String | The contact whom is the this email is from.
+val subject : kotlin.String = subject_example // kotlin.String | The subject or title of the email
+val body : kotlin.String = body_example // kotlin.String | The main email contents.
 try {
-    val result : GenericResponse = apiInstance.sendMail(body)
+    val result : GenericResponse = apiInstance.sendMail(to, from, subject, body)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#sendMail")
@@ -232,7 +235,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Body**](Body.md)|  |
+ **to** | **kotlin.String**| The Contact whom is the primary recipient of this email. | [optional]
+ **from** | **kotlin.String**| The contact whom is the this email is from. | [optional]
+ **subject** | **kotlin.String**| The subject or title of the email | [optional]
+ **body** | **kotlin.String**| The main email contents. | [optional]
 
 ### Return type
 
@@ -247,7 +253,7 @@ Configure apiKeyAuth:
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded, application/json
  - **Accept**: application/json
 
 <a name="validateMailOrder"></a>

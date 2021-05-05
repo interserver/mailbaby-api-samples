@@ -37,8 +37,11 @@ describe("DefaultApi", () => {
     return expect(instance.sendAdvMail(body, {})).resolves.toBe(null)
   })
   test("sendMail", () => {
-    const body: api.Body = undefined
-    return expect(instance.sendMail(body, {})).resolves.toBe(null)
+    const to: string = "to_example"
+    const from: string = "from_example"
+    const subject: string = "subject_example"
+    const body: string = "body_example"
+    return expect(instance.sendMail(to, from, subject, body, {})).resolves.toBe(null)
   })
   test("validateMailOrder", () => {
     return expect(instance.validateMailOrder({})).resolves.toBe(null)

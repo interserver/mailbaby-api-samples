@@ -1,6 +1,6 @@
 .openapi-generator-ignore
 Apis/DefaultApi.md
-Models/Body.md
+Models/Body1.md
 Models/ErrorResponse.md
 Models/GenericResponse.md
 Models/MailAttachment.md

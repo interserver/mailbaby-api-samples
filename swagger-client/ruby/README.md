@@ -139,16 +139,16 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::DefaultApi.new
-body = SwaggerClient::Body.new # Body | 
 to = 'to_example' # String | 
 from = 'from_example' # String | 
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
+body = SwaggerClient::Body1.new # Body1 | 
 
 
 begin
   #Sends an Email
-  result = api_instance.send_mail(body, to, from, subject, body)
+  result = api_instance.send_mail(to, from, subject, body, body)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling DefaultApi->send_mail: #{e}"

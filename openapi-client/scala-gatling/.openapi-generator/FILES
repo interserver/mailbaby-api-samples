@@ -8,7 +8,7 @@ src/gatling/resources/conf/logback.xml
 src/gatling/resources/conf/longevity.conf
 src/gatling/resources/conf/stress.conf
 src/gatling/scala/org/openapitools/client/api/DefaultApiSimulation.scala
-src/gatling/scala/org/openapitools/client/model/Body.scala
+src/gatling/scala/org/openapitools/client/model/Body1.scala
 src/gatling/scala/org/openapitools/client/model/ErrorResponse.scala
 src/gatling/scala/org/openapitools/client/model/GenericResponse.scala
 src/gatling/scala/org/openapitools/client/model/MailAttachment.scala

@@ -279,13 +279,31 @@ sub send_adv_mail {
 #
 # Sends an Email
 # 
-# @param Body $body  (required)
+# @param string $to The Contact whom is the primary recipient of this email. (optional)
+# @param string $from The contact whom is the this email is from. (optional)
+# @param string $subject The subject or title of the email (optional)
+# @param string $body The main email contents. (optional)
 {
     my $params = {
+    'to' => {
+        data_type => 'string',
+        description => 'The Contact whom is the primary recipient of this email.',
+        required => '0',
+    },
+    'from' => {
+        data_type => 'string',
+        description => 'The contact whom is the this email is from.',
+        required => '0',
+    },
+    'subject' => {
+        data_type => 'string',
+        description => 'The subject or title of the email',
+        required => '0',
+    },
     'body' => {
-        data_type => 'Body',
-        description => '',
-        required => '1',
+        data_type => 'string',
+        description => 'The main email contents.',
+        required => '0',
     },
     };
     __PACKAGE__->method_documentation->{ 'send_mail' } = { 
@@ -298,11 +316,6 @@ sub send_adv_mail {
 #
 sub send_mail {
     my ($self, %args) = @_;
-
-    # verify the required parameter 'body' is set
-    unless (exists $args{'body'}) {
-      croak("Missing the required parameter 'body' when calling send_mail");
-    }
 
     # parse inputs
     my $_resource_path = '/mail/send';
@@ -317,14 +330,29 @@ sub send_mail {
     if ($_header_accept) {
         $header_params->{'Accept'} = $_header_accept;
     }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json', 'application/x-www-form-urlencoded');
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/x-www-form-urlencoded', 'application/json');
 
-    my $_body_data;
-    # body params
-    if ( exists $args{'body'}) {
-        $_body_data = $args{'body'};
+    # form params
+    if ( exists $args{'to'} ) {
+                $form_params->{'to'} = $self->{api_client}->to_form_value($args{'to'});
     }
-
+    
+    # form params
+    if ( exists $args{'from'} ) {
+                $form_params->{'from'} = $self->{api_client}->to_form_value($args{'from'});
+    }
+    
+    # form params
+    if ( exists $args{'subject'} ) {
+                $form_params->{'subject'} = $self->{api_client}->to_form_value($args{'subject'});
+    }
+    
+    # form params
+    if ( exists $args{'body'} ) {
+                $form_params->{'body'} = $self->{api_client}->to_form_value($args{'body'});
+    }
+    
+    my $_body_data;
     # authentication setting, if any
     my $auth_settings = [qw(apiKeyAuth )];
 

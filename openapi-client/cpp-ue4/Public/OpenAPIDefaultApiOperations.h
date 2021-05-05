@@ -15,7 +15,6 @@
 #include "OpenAPIBaseModel.h"
 #include "OpenAPIDefaultApi.h"
 
-#include "OpenAPIBody.h"
 #include "OpenAPIErrorResponse.h"
 #include "OpenAPIGenericResponse.h"
 #include "OpenAPIMailLog.h"
@@ -131,7 +130,14 @@ public:
 	void SetupHttpRequest(const FHttpRequestRef& HttpRequest) const final;
 	FString ComputePath() const final;
     
-	OpenAPIBody OpenAPIBody;
+	/* The Contact whom is the primary recipient of this email. */
+	TOptional<FString> To;
+	/* The contact whom is the this email is from. */
+	TOptional<FString> From;
+	/* The subject or title of the email */
+	TOptional<FString> Subject;
+	/* The main email contents. */
+	TOptional<FString> Body;
 };
 
 class OPENAPI_API OpenAPIDefaultApi::SendMailResponse : public Response

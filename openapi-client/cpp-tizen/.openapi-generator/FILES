@@ -2,8 +2,8 @@
 doc/Doxyfile
 doc/README.md
 doc/generateDocumentation.sh
-src/Body.cpp
-src/Body.h
+src/Body1.cpp
+src/Body1.h
 src/DefaultManager.cpp
 src/DefaultManager.h
 src/Error.cpp

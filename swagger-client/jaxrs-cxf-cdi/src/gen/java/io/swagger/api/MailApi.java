@@ -41,7 +41,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-05T15:32:43.511557-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-05T15:40:35.379870-04:00[America/New_York]")
 public class MailApi  {
 
   @Context SecurityContext securityContext;
@@ -58,10 +58,8 @@ public class MailApi  {
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailOrders.class))),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response getMailOrders( 
-@Parameter(description = "The ID of your mail order this will be sent through.")  @QueryParam("id") Long id
-) {
-        return delegate.getMailOrders(id, securityContext);
+    public Response getMailOrders() {
+        return delegate.getMailOrders(securityContext);
     }
 
     @POST

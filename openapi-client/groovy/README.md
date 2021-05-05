@@ -6,7 +6,7 @@ This Groovy package, using the [http-builder-ng library](https://http-builder-ng
 
 - API version: 1.0.0
 - Package version: 1.0.0
-- Build date: 2021-05-05T15:30:29.069282-04:00[America/New_York]
+- Build date: 2021-05-05T15:38:21.187559-04:00[America/New_York]
 - Build package: org.openapitools.codegen.languages.GroovyClientCodegen
 For more information, please visit [https://www.interserver.net/contact-information.html](https://www.interserver.net/contact-information.html)
 
@@ -34,9 +34,8 @@ Then, run:
 
 ```groovy
 def apiInstance = new DefaultApi()
-def id = 56L // Long | The ID of your mail order this will be sent through.
 
-apiInstance.getMailOrders(id)
+apiInstance.getMailOrders()
     {
     // on success
     def result = (List&lt;MailOrder&gt;)it

@@ -16,7 +16,6 @@ package body .Clients is
    --  displays a list of mail service orders
    procedure Get_Mail_Orders
       (Client : in out Client_Type;
-       Id : in Swagger.Nullable_Long;
        Result : out .Models.MailOrder_Type_Vectors.Vector) is
       URI   : Swagger.Clients.URI_Type;
       Reply : Swagger.Value_Type;
@@ -25,7 +24,6 @@ package body .Clients is
                           Swagger.Clients.APPLICATION_XML,
                           Swagger.Clients.TEXT_PLAIN));
 
-      URI.Add_Param ("id", Id);
       URI.Set_Path ("/mail");
       Client.Call (Swagger.Clients.GET, URI, Reply);
       .Models.Deserialize (Reply, "", Result);

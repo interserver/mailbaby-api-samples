@@ -34,13 +34,11 @@ class DefaultApi(baseUrl: String) {
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
-   * 
-   * @param id The ID of your mail order this will be sent through.
    */
-  def getMailOrders(apiKey: String)(id: Option[Long] = None
+  def getMailOrders(apiKey: String)(
 ): Request[Either[ResponseError[Exception], Seq[MailOrder]], Nothing] =
     basicRequest
-      .method(Method.GET, uri"$baseUrl/mail?id=${ id }")
+      .method(Method.GET, uri"$baseUrl/mail")
       .contentType("application/json")
       .header("X-API-KEY", apiKey)
       .response(asJson[Seq[MailOrder]])

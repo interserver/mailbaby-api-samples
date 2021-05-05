@@ -26,7 +26,6 @@ describe "DefaultApi" do
   # unit tests for get_mail_orders
   # displays a list of mail service orders
   # @param [Hash] opts the optional parameters
-  # @option opts [Int64] :id The ID of your mail order this will be sent through.
   # @return [Array(MailOrder)]
   describe "get_mail_orders test" do
     it "should work" do

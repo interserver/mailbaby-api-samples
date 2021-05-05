@@ -26,14 +26,6 @@ namespace OpenAPI
 FString OpenAPIDefaultApi::GetMailOrdersRequest::ComputePath() const
 {
 	FString Path(TEXT("/mail"));
-	TArray<FString> QueryParams;
-	if(Id.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("id=")) + ToUrlString(Id.GetValue()));
-	}
-	Path += TCHAR('?');
-	Path += FString::Join(QueryParams, TEXT("&"));
-
 	return Path;
 }
 

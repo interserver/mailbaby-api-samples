@@ -30,7 +30,6 @@ namespace IO.Swagger.Controllers
         /// <summary>
         /// displays a list of mail service orders
         /// </summary>
-        /// <param name="id">The ID of your mail order this will be sent through.</param>
         /// <response code="200">OK</response>
         /// <response code="401">Unauthorized</response>
         [HttpGet]
@@ -40,7 +39,7 @@ namespace IO.Swagger.Controllers
         [SwaggerOperation("GetMailOrders")]
         [SwaggerResponse(statusCode: 200, type: typeof(MailOrders), description: "OK")]
         [SwaggerResponse(statusCode: 401, type: typeof(ErrorResponse), description: "Unauthorized")]
-        public virtual IActionResult GetMailOrders([FromQuery]long? id)
+        public virtual IActionResult GetMailOrders()
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default(MailOrders));

@@ -55,19 +55,6 @@ displays a list of mail service orders
 
 
 
-====== Query Parameters
-
-[cols="2,3,1,1,1"]
-|===         
-|Name| Description| Required| Default| Pattern
-
-| id 
-| The ID of your mail order this will be sent through.  
-| - 
-| null 
-|  
-
-|===         
 
 
 ===== Return Type

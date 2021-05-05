@@ -42,13 +42,10 @@ template constructResult[T](response: Response): untyped =
     (none(T.typedesc), response)
 
 
-proc getMailOrders*(httpClient: HttpClient, id: int64): (Option[seq[MailOrder]], Response) =
+proc getMailOrders*(httpClient: HttpClient): (Option[seq[MailOrder]], Response) =
   ## displays a list of mail service orders
-  let query_for_api_call = encodeQuery([
-    ("id", $id), # The ID of your mail order this will be sent through.
-  ])
 
-  let response = httpClient.get(basepath & "/mail" & "?" & query_for_api_call)
+  let response = httpClient.get(basepath & "/mail")
   constructResult[seq[MailOrder]](response)
 
 

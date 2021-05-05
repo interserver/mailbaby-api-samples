@@ -18,7 +18,6 @@ package .Clients is
    --  displays a list of mail service orders
    procedure Get_Mail_Orders
       (Client : in out Client_Type;
-       Id : in Swagger.Nullable_Long;
        Result : out .Models.MailOrder_Type_Vectors.Vector);
 
    --  Checks if the server is running

@@ -24,11 +24,9 @@ inherit
 feature -- API Access
 
 
-	mail_orders (id: INTEGER_64): detachable LIST [MAIL_ORDER]
+	mail_orders : detachable LIST [MAIL_ORDER]
 			-- displays a list of mail service orders
 			-- 
-			-- 
-			-- argument: id The ID of your mail order this will be sent through. (optional, default to null)
 			-- 
 			-- 
 			-- Result LIST [MAIL_ORDER]
@@ -42,7 +40,6 @@ feature -- API Access
 			create l_request
 			
 			l_path := "/mail"
-			l_request.fill_query_params(api_client.parameter_to_tuple("", "id", id));
 
 
 			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"application/json", "application/xml", "text/plain">>)  as l_accept then

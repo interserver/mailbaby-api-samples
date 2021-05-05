@@ -19,11 +19,10 @@ feature -- Test routines
             --  
         local
             l_response: LIST [MAIL_ORDER]
-            l_id: INTEGER_64
         do
             -- TODO: Initialize required params.
                       
-            -- l_response := api.mail_orders(l_id)
+            -- l_response := api.mail_orders
             assert ("not_implemented", False)
         end
     

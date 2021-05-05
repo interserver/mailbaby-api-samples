@@ -46,8 +46,7 @@ public class DefaultApiTest {
      */
     @Test
     public void getMailOrdersTest() throws ApiException {
-        Long id = null;
-        List<MailOrder> response = api.getMailOrders(id);
+        List<MailOrder> response = api.getMailOrders();
 
         // TODO: test validations
     }

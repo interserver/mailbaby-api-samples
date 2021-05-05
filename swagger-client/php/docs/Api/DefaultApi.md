@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**viewMailLog**](DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 # **getMailOrders**
-> \Interserver\Mailbaby\Model\MailOrders getMailOrders($id)
+> \Interserver\Mailbaby\Model\MailOrders getMailOrders()
 
 displays a list of mail service orders
 
@@ -32,10 +32,9 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 789; // int | The ID of your mail order this will be sent through.
 
 try {
-    $result = $apiInstance->getMailOrders($id);
+    $result = $apiInstance->getMailOrders();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->getMailOrders: ', $e->getMessage(), PHP_EOL;
@@ -44,10 +43,7 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of your mail order this will be sent through. | [optional]
+This endpoint does not need any parameter.
 
 ### Return type
 

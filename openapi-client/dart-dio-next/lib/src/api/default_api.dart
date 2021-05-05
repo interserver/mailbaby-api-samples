@@ -27,7 +27,6 @@ class DefaultApi {
   ///
   /// 
   Future<Response<BuiltList<MailOrder>>> getMailOrders({ 
-    int? id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -59,7 +58,6 @@ class DefaultApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (id != null) r'id': id,
     };
 
     final _response = await _dio.request<Object>(

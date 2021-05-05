@@ -328,11 +328,10 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
         /**
          * 
          * @summary displays a list of mail service orders
-         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailOrders(id?: number, options: any = {}): FetchArgs {
+        getMailOrders(options: any = {}): FetchArgs {
             const localVarPath = `/mail`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -345,10 +344,6 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
 					? configuration.apiKey("X-API-KEY")
 					: configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            if (id !== undefined) {
-                localVarQueryParameter['id'] = id;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -731,12 +726,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary displays a list of mail service orders
-         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailOrders(id?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<MailOrders> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).getMailOrders(id, options);
+        getMailOrders(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<MailOrders> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).getMailOrders(options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -887,12 +881,11 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
         /**
          * 
          * @summary displays a list of mail service orders
-         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailOrders(id?: number, options?: any) {
-            return DefaultApiFp(configuration).getMailOrders(id, options)(fetch, basePath);
+        getMailOrders(options?: any) {
+            return DefaultApiFp(configuration).getMailOrders(options)(fetch, basePath);
         },
         /**
          * 
@@ -981,13 +974,12 @@ export class DefaultApi extends BaseAPI {
     /**
      * 
      * @summary displays a list of mail service orders
-     * @param {number} [id] The ID of your mail order this will be sent through.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public getMailOrders(id?: number, options?: any) {
-        return DefaultApiFp(this.configuration).getMailOrders(id, options)(this.fetch, this.basePath);
+    public getMailOrders(options?: any) {
+        return DefaultApiFp(this.configuration).getMailOrders(options)(this.fetch, this.basePath);
     }
 
     /**

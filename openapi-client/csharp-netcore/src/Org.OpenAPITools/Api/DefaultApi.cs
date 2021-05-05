@@ -31,9 +31,8 @@ namespace Org.OpenAPITools.Api
         /// displays a list of mail service orders
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>List&lt;MailOrder&gt;</returns>
-        List<MailOrder> GetMailOrders(long? id = default(long?));
+        List<MailOrder> GetMailOrders();
 
         /// <summary>
         /// displays a list of mail service orders
@@ -42,9 +41,8 @@ namespace Org.OpenAPITools.Api
         /// 
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>ApiResponse of List&lt;MailOrder&gt;</returns>
-        ApiResponse<List<MailOrder>> GetMailOrdersWithHttpInfo(long? id = default(long?));
+        ApiResponse<List<MailOrder>> GetMailOrdersWithHttpInfo();
         /// <summary>
         /// Checks if the server is running
         /// </summary>
@@ -189,10 +187,9 @@ namespace Org.OpenAPITools.Api
         /// 
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;MailOrder&gt;</returns>
-        System.Threading.Tasks.Task<List<MailOrder>> GetMailOrdersAsync(long? id = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<MailOrder>> GetMailOrdersAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// displays a list of mail service orders
@@ -201,10 +198,9 @@ namespace Org.OpenAPITools.Api
         /// 
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;MailOrder&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<MailOrder>>> GetMailOrdersWithHttpInfoAsync(long? id = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<MailOrder>>> GetMailOrdersWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Checks if the server is running
         /// </summary>
@@ -475,11 +471,10 @@ namespace Org.OpenAPITools.Api
         /// displays a list of mail service orders 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>List&lt;MailOrder&gt;</returns>
-        public List<MailOrder> GetMailOrders(long? id = default(long?))
+        public List<MailOrder> GetMailOrders()
         {
-            Org.OpenAPITools.Client.ApiResponse<List<MailOrder>> localVarResponse = GetMailOrdersWithHttpInfo(id);
+            Org.OpenAPITools.Client.ApiResponse<List<MailOrder>> localVarResponse = GetMailOrdersWithHttpInfo();
             return localVarResponse.Data;
         }
 
@@ -487,9 +482,8 @@ namespace Org.OpenAPITools.Api
         /// displays a list of mail service orders 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>ApiResponse of List&lt;MailOrder&gt;</returns>
-        public Org.OpenAPITools.Client.ApiResponse<List<MailOrder>> GetMailOrdersWithHttpInfo(long? id = default(long?))
+        public Org.OpenAPITools.Client.ApiResponse<List<MailOrder>> GetMailOrdersWithHttpInfo()
         {
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -509,10 +503,6 @@ namespace Org.OpenAPITools.Api
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            if (id != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("", "id", id));
-            }
 
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
@@ -536,12 +526,11 @@ namespace Org.OpenAPITools.Api
         /// displays a list of mail service orders 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;MailOrder&gt;</returns>
-        public async System.Threading.Tasks.Task<List<MailOrder>> GetMailOrdersAsync(long? id = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<MailOrder>> GetMailOrdersAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<List<MailOrder>> localVarResponse = await GetMailOrdersWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<List<MailOrder>> localVarResponse = await GetMailOrdersWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -549,10 +538,9 @@ namespace Org.OpenAPITools.Api
         /// displays a list of mail service orders 
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;MailOrder&gt;)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<List<MailOrder>>> GetMailOrdersWithHttpInfoAsync(long? id = default(long?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<List<MailOrder>>> GetMailOrdersWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -574,10 +562,6 @@ namespace Org.OpenAPITools.Api
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            if (id != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("", "id", id));
-            }
 
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))

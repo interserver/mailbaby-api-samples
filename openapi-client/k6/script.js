@@ -35,8 +35,7 @@ export default function() {
         sleep(SLEEP_DURATION);
     });
     group("/mail", () => {
-        let id = "TODO_EDIT_THE_ID";
-        let url = BASE_URL + `/mail?id=${id}`;
+        let url = BASE_URL + `/mail`;
         // Request No. 1
         let request = http.get(url);
         check(request, {

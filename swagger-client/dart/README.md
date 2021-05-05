@@ -49,10 +49,9 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
 
 var api_instance = new DefaultApi();
-var id = 789; // int | The ID of your mail order this will be sent through.
 
 try {
-    var result = api_instance.getMailOrders(id);
+    var result = api_instance.getMailOrders();
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->getMailOrders: $e\n");

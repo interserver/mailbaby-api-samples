@@ -18,25 +18,23 @@
 
 (defn-spec get-mail-orders-with-http-info any?
   "displays a list of mail service orders"
-  ([] (get-mail-orders-with-http-info nil))
-  ([{:keys [id]} (s/map-of keyword? any?)]
-   (call-api "/mail" :get
-             {:path-params   {}
-              :header-params {}
-              :query-params  {"id" id }
-              :form-params   {}
-              :content-types []
-              :accepts       ["application/json" "application/xml" "text/plain"]
-              :auth-names    ["apiKeyAuth"]})))
+  []
+  (call-api "/mail" :get
+            {:path-params   {}
+             :header-params {}
+             :query-params  {}
+             :form-params   {}
+             :content-types []
+             :accepts       ["application/json" "application/xml" "text/plain"]
+             :auth-names    ["apiKeyAuth"]}))
 
 (defn-spec get-mail-orders (s/coll-of mail-order-spec)
   "displays a list of mail service orders"
-  ([] (get-mail-orders nil))
-  ([optional-params any?]
-   (let [res (:data (get-mail-orders-with-http-info optional-params))]
-     (if (:decode-models *api-context*)
-        (st/decode (s/coll-of mail-order-spec) res st/string-transformer)
-        res))))
+  []
+  (let [res (:data (get-mail-orders-with-http-info))]
+    (if (:decode-models *api-context*)
+       (st/decode (s/coll-of mail-order-spec) res st/string-transformer)
+       res)))
 
 
 (defn-spec ping-server-with-http-info any?

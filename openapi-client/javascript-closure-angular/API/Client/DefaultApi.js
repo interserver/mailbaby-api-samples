@@ -50,11 +50,10 @@ API.Client.DefaultApi.$inject = ['$http', '$httpParamSerializer', '$injector'];
 /**
  * displays a list of mail service orders
  * 
- * @param {!number=} opt_id The ID of your mail order this will be sent through.
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!Array<!API.Client.MailOrder>>}
  */
-API.Client.DefaultApi.prototype.getMailOrders = function(opt_id, opt_extraHttpRequestParams) {
+API.Client.DefaultApi.prototype.getMailOrders = function(opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/mail';
 
@@ -63,10 +62,6 @@ API.Client.DefaultApi.prototype.getMailOrders = function(opt_id, opt_extraHttpRe
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  if (opt_id !== undefined) {
-    queryParameters['id'] = opt_id;
-  }
-
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'GET',

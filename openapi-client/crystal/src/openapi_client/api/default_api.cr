@@ -19,14 +19,14 @@ module
     end
     # displays a list of mail service orders
     # @return [Array(MailOrder)]
-    def get_mail_orders(id : Int64?)
-      data, _status_code, _headers = get_mail_orders_with_http_info(id)
+    def get_mail_orders()
+      data, _status_code, _headers = get_mail_orders_with_http_info()
       data
     end
 
     # displays a list of mail service orders
     # @return [Array<(Array(MailOrder), Integer, Hash)>] Array(MailOrder) data, response status code and response headers
-    def get_mail_orders_with_http_info(id : Int64?)
+    def get_mail_orders_with_http_info()
       if @api_client.config.debugging
         Log.debug {"Calling API: DefaultApi.get_mail_orders ..."}
       end
@@ -35,7 +35,6 @@ module
 
       # query parameters
       query_params = Hash(Symbol, String).new
-      query_params[:"id"] = id
 
       # header parameters
       header_params = Hash(String, String).new

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 <a name="getmailorders"></a>
 # **GetMailOrders**
-> List&lt;MailOrder&gt; GetMailOrders (long? id = null)
+> List&lt;MailOrder&gt; GetMailOrders ()
 
 displays a list of mail service orders
 
@@ -41,12 +41,11 @@ namespace Example
             // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi(config);
-            var id = 789;  // long? | The ID of your mail order this will be sent through. (optional) 
 
             try
             {
                 // displays a list of mail service orders
-                List<MailOrder> result = apiInstance.GetMailOrders(id);
+                List<MailOrder> result = apiInstance.GetMailOrders();
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -61,10 +60,7 @@ namespace Example
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **long?**| The ID of your mail order this will be sent through. | [optional] 
+This endpoint does not need any parameter.
 
 ### Return type
 

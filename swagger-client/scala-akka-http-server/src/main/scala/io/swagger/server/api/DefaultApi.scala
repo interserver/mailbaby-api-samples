@@ -25,12 +25,12 @@ class DefaultApi(
   lazy val route: Route =
     path() { () => 
       get {
-        parameters("id".as[Long].?) { (id) =>
+        parameters() { () =>
           
             formFields() { () =>
               
                 
-                  defaultService.getMailOrders(id = id)
+                  defaultService.getMailOrders()
                
              
             }
@@ -140,7 +140,7 @@ trait DefaultApiService {
    * Code: 200, Message: OK, DataType: MailOrders
    * Code: 401, Message: Unauthorized, DataType: ErrorResponse
    */
-  def getMailOrders(id: Option[Long])
+  def getMailOrders()
       (implicit toEntityMarshallerMailOrders: ToEntityMarshaller[MailOrders], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
 
   def pingServer200: Route =

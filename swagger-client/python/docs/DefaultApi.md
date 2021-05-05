@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**view_mail_log**](DefaultApi.md#view_mail_log) | **GET** /mail/log | displays the mail log
 
 # **get_mail_orders**
-> MailOrders get_mail_orders(id=id)
+> MailOrders get_mail_orders()
 
 displays a list of mail service orders
 
@@ -33,21 +33,17 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
-id = 789 # int | The ID of your mail order this will be sent through. (optional)
 
 try:
     # displays a list of mail service orders
-    api_response = api_instance.get_mail_orders(id=id)
+    api_response = api_instance.get_mail_orders()
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->get_mail_orders: %s\n" % e)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
+This endpoint does not need any parameter.
 
 ### Return type
 

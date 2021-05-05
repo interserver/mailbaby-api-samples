@@ -18,21 +18,16 @@ defmodule MailBabyAPI.Api.Default do
 
   - connection (MailBabyAPI.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :id (integer()): The ID of your mail order this will be sent through.
   ## Returns
 
   {:ok, [%MailOrder{}, ...]} on success
   {:error, Tesla.Env.t} on failure
   """
   @spec get_mail_orders(Tesla.Env.client, keyword()) :: {:ok, list(MailBabyAPI.Model.MailOrder.t)} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:error, Tesla.Env.t}
-  def get_mail_orders(connection, opts \\ []) do
-    optional_params = %{
-      :"id" => :query
-    }
+  def get_mail_orders(connection, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/mail")
-    |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([

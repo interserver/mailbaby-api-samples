@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T15:33:01.201461-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T15:40:53.636358-04:00[America/New_York]")
 @Controller
 public interface MailApi {
 
@@ -41,8 +41,7 @@ public interface MailApi {
     @ApiResponse(responseCode = "200", description = "OK")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @Get(value = "/mail", produces = { "application/json", "application/xml", "text/plain" })
-    default Single<HttpResponse<MailOrders>> getMailOrders(@Nullable @Parameter(description = "The ID of your mail order this will be sent through.") @Valid @QueryValue(value = "id") Long id
-) {
+    default Single<HttpResponse<MailOrders>> getMailOrders() {
         return Single.fromCallable(() -> {
             throw new UnsupportedOperationException();
         });

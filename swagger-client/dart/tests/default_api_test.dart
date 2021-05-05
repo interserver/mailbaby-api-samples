@@ -9,7 +9,7 @@ void main() {
   group('tests for DefaultApi', () {
     // displays a list of mail service orders
     //
-    //Future<MailOrders> getMailOrders({ int id }) async
+    //Future<MailOrders> getMailOrders() async
     test('test getMailOrders', () async {
       // TODO
     });

@@ -313,8 +313,7 @@ case $state in
       getMailOrders)
         local -a _op_arguments
         _op_arguments=(
-                    "id=:[QUERY] The ID of your mail order this will be sent through."
-          )
+                              )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       pingServer)

@@ -26,11 +26,9 @@ class TestDefaultController(BaseTestCase):
 
         displays a list of mail service orders
         """
-        query_string = [('id', 789)]
         response = self.client.open(
             '/mail',
-            method='GET',
-            query_string=query_string)
+            method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

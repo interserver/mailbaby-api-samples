@@ -15,7 +15,7 @@
 // displays a list of mail service orders
 //
 list_t*
-DefaultAPI_getMailOrders(apiClient_t *apiClient, long id );
+DefaultAPI_getMailOrders(apiClient_t *apiClient);
 
 
 // Checks if the server is running

@@ -91,11 +91,10 @@ class DefaultApi(
    * displays a list of mail service orders
    * 
    *
-   * @param id The ID of your mail order this will be sent through. (optional)
    * @return MailOrders
    */
-  def getMailOrders(id: Option[Long] = None): Option[MailOrders] = {
-    val await = Try(Await.result(getMailOrdersAsync(id), Duration.Inf))
+  def getMailOrders(): Option[MailOrders] = {
+    val await = Try(Await.result(getMailOrdersAsync(), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -106,11 +105,10 @@ class DefaultApi(
    * displays a list of mail service orders asynchronously
    * 
    *
-   * @param id The ID of your mail order this will be sent through. (optional)
    * @return Future(MailOrders)
    */
-  def getMailOrdersAsync(id: Option[Long] = None): Future[MailOrders] = {
-      helper.getMailOrders(id)
+  def getMailOrdersAsync(): Future[MailOrders] = {
+      helper.getMailOrders()
   }
 
   /**
@@ -301,8 +299,7 @@ class DefaultApi(
 
 class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def getMailOrders(id: Option[Long] = None
-    )(implicit reader: ClientResponseReader[MailOrders]): Future[MailOrders] = {
+  def getMailOrders()(implicit reader: ClientResponseReader[MailOrders]): Future[MailOrders] = {
     // create path and map variables
     val path = (addFmt("/mail"))
 
@@ -310,10 +307,6 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
-    id match {
-      case Some(param) => queryParams += "id" -> param.toString
-      case _ => queryParams
-    }
 
     val resFuture = client.submit("GET", path, queryParams.toMap, headerParams.toMap, "")
     resFuture flatMap { resp =>

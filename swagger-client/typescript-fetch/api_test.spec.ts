@@ -22,8 +22,7 @@ describe("DefaultApi", () => {
   });
 
   test("getMailOrders", () => {
-    const id: number = 789
-    return expect(instance.getMailOrders(id, {})).resolves.toBe(null)
+    return expect(instance.getMailOrders({})).resolves.toBe(null)
   })
   test("pingServer", () => {
     return expect(instance.pingServer({})).resolves.toBe(null)

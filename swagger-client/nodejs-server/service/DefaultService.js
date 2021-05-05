@@ -4,10 +4,9 @@
 /**
  * displays a list of mail service orders
  *
- * id Long The ID of your mail order this will be sent through. (optional)
  * returns MailOrders
  **/
-exports.getMailOrders = function(id) {
+exports.getMailOrders = function() {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {

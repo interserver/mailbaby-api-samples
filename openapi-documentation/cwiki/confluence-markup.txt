@@ -28,9 +28,6 @@ h4. Parameters
 
 
 
-h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
-        |id |The ID of your mail order this will be sent through. | Long | (x) |null |  |  |
 ----
 h4. Responses
 

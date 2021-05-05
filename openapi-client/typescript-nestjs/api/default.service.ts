@@ -46,18 +46,11 @@ export class DefaultService {
     /**
      * displays a list of mail service orders
      * 
-     * @param id The ID of your mail order this will be sent through.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getMailOrders(id?: number, ): Observable<AxiosResponse<Array<MailOrder>>>;
-    public getMailOrders(id?: number, ): Observable<any> {
-
-
-        let queryParameters = {};   
-        if (id !== undefined && id !== null) {
-            queryParameters['id'] = <any>id;
-        }
+    public getMailOrders(): Observable<AxiosResponse<Array<MailOrder>>>;
+    public getMailOrders(): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -82,7 +75,6 @@ export class DefaultService {
         ];
         return this.httpClient.get<Array<MailOrder>>(`${this.basePath}/mail`,
             {
-                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers
             }

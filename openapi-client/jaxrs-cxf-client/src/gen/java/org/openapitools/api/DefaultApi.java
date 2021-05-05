@@ -42,7 +42,7 @@ public interface DefaultApi  {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = MailOrder.class, responseContainer = "List"),
         @ApiResponse(code = 401, message = "Unauthorized", response = ErrorResponse.class) })
-    public List<MailOrder> getMailOrders(@QueryParam("id") Long id);
+    public List<MailOrder> getMailOrders();
 
     /**
      * Checks if the server is running

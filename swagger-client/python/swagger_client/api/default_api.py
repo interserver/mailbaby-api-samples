@@ -41,7 +41,6 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param int id: The ID of your mail order this will be sent through.
         :return: MailOrders
                  If the method is called asynchronously,
                  returns the request thread.
@@ -62,13 +61,12 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param int id: The ID of your mail order this will be sent through.
         :return: MailOrders
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id']  # noqa: E501
+        all_params = []  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -89,8 +87,6 @@ class DefaultApi(object):
         path_params = {}
 
         query_params = []
-        if 'id' in params:
-            query_params.append(('id', params['id']))  # noqa: E501
 
         header_params = {}
 

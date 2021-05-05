@@ -63,13 +63,10 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::DefaultApi.new
-opts = { 
-  id: 789 # Integer | The ID of your mail order this will be sent through.
-}
 
 begin
   #displays a list of mail service orders
-  result = api_instance.get_mail_orders(opts)
+  result = api_instance.get_mail_orders
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling DefaultApi->get_mail_orders: #{e}"

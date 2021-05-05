@@ -28,16 +28,11 @@ public class OASDefaultApi {
     /**
      * displays a list of mail service orders
      * 
-     * @param id The ID of your mail order this will be sent through. (optional)
      * @return List<OASMailOrder>
      * @throws OAS.ApiException if fails to make API call
      */
-    public List<OASMailOrder> getMailOrders(Map<String, Object> params) {
+    public List<OASMailOrder> getMailOrders() {
         List<OAS.Param> query = new List<OAS.Param>();
-
-        // cast query params to verify their expected type
-        query.addAll(client.makeParam('id', (Long) params.get('id')));
-
         List<OAS.Param> form = new List<OAS.Param>();
 
         return (List<OASMailOrder>) client.invoke(

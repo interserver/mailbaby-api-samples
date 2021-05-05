@@ -10,7 +10,7 @@ class DefaultApi {
   /// displays a list of mail service orders
   ///
   /// 
-  Future<MailOrders> getMailOrders({ int id }) async {
+  Future<MailOrders> getMailOrders() async {
     Object postBody = null;
 
     // verify required params are set
@@ -22,9 +22,6 @@ class DefaultApi {
     List<QueryParam> queryParams = [];
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
-    if(id != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("", "id", id));
-    }
     
     List<String> contentTypes = [];
 

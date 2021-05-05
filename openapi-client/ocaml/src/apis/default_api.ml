@@ -5,12 +5,11 @@
  *
  *)
 
-let get_mail_orders ?id () =
+let get_mail_orders () =
     let open Lwt in
     let uri = Request.build_uri "/mail" in
     let headers = Request.default_headers in
     let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
-    let uri = Request.maybe_add_query_param uri "id" Int64.to_string id in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as_list_of (JsonSupport.unwrap Mail_order.of_yojson) resp body
 

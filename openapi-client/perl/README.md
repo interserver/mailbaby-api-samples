@@ -281,10 +281,9 @@ my $api_instance = OpenAPIClient::DefaultApi->new(
     #api_key_prefix => {'X-API-KEY' => 'Bearer'},
 );
 
-my $id = 789; # int | The ID of your mail order this will be sent through.
 
 eval {
-    my $result = $api_instance->get_mail_orders(id => $id);
+    my $result = $api_instance->get_mail_orders();
     print Dumper($result);
 };
 if ($@) {

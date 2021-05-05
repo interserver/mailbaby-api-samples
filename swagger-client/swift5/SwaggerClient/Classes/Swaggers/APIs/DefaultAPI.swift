@@ -13,11 +13,10 @@ open class DefaultAPI {
     /**
      displays a list of mail service orders
 
-     - parameter _id: (query) The ID of your mail order this will be sent through. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getMailOrders(_id: Int64? = nil, completion: @escaping ((_ data: MailOrders?,_ error: Error?) -> Void)) {
-        getMailOrdersWithRequestBuilder(_id: _id).execute { (response, error) -> Void in
+    open class func getMailOrders(completion: @escaping ((_ data: MailOrders?,_ error: Error?) -> Void)) {
+        getMailOrdersWithRequestBuilder().execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -44,18 +43,14 @@ open class DefaultAPI {
   "status" : "active",
   "username" : "mb1234"
 } ]}]
-     - parameter _id: (query) The ID of your mail order this will be sent through. (optional)
 
      - returns: RequestBuilder<MailOrders> 
      */
-    open class func getMailOrdersWithRequestBuilder(_id: Int64? = nil) -> RequestBuilder<MailOrders> {
+    open class func getMailOrdersWithRequestBuilder() -> RequestBuilder<MailOrders> {
         let path = "/mail"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-                        "id": _id?.encodeToJSON()
-        ])
+        let url = URLComponents(string: URLString)
 
 
         let requestBuilder: RequestBuilder<MailOrders>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()

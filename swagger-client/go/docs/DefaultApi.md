@@ -13,21 +13,11 @@ Method | HTTP request | Description
 [**ViewMailLog**](DefaultApi.md#ViewMailLog) | **Get** /mail/log | displays the mail log
 
 # **GetMailOrders**
-> []MailOrder GetMailOrders(ctx, optional)
+> []MailOrder GetMailOrders(ctx, )
 displays a list of mail service orders
 
 ### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***DefaultApiGetMailOrdersOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a DefaultApiGetMailOrdersOpts struct
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **optional.Int64**| The ID of your mail order this will be sent through. | 
+This endpoint does not need any parameter.
 
 ### Return type
 

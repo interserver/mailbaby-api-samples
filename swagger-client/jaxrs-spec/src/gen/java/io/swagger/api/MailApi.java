@@ -30,7 +30,7 @@ import javax.validation.Valid;
 
 @Path("/mail")
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-05-05T15:32:46.384858-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-05-05T15:40:38.374699-04:00[America/New_York]")
 public class MailApi {
 
     @GET
@@ -41,10 +41,7 @@ public class MailApi {
         @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailOrders.class))),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
     })
-    public Response getMailOrders(  @QueryParam("id") 
-
- @Parameter(description = "The ID of your mail order this will be sent through.")  Long id
-) {
+    public Response getMailOrders() {
         return Response.ok().entity("magic!").build();
     }
     @POST

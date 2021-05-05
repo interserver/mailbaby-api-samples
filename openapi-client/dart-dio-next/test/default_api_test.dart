@@ -9,7 +9,7 @@ void main() {
   group(DefaultApi, () {
     // displays a list of mail service orders
     //
-    //Future<BuiltList<MailOrder>> getMailOrders({ int id }) async
+    //Future<BuiltList<MailOrder>> getMailOrders() async
     test('test getMailOrders', () async {
       // TODO
     });

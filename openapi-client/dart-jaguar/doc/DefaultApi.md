@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **getMailOrders**
-> List<MailOrder> getMailOrders(id)
+> List<MailOrder> getMailOrders()
 
 displays a list of mail service orders
 
@@ -32,10 +32,9 @@ import 'package:openapi/api.dart';
 //openapi.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
 
 var api_instance = new DefaultApi();
-var id = 789; // int | The ID of your mail order this will be sent through.
 
 try { 
-    var result = api_instance.getMailOrders(id);
+    var result = api_instance.getMailOrders();
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->getMailOrders: $e\n");
@@ -43,10 +42,7 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of your mail order this will be sent through. | [optional] [default to null]
+This endpoint does not need any parameter.
 
 ### Return type
 

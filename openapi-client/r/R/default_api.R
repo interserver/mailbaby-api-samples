@@ -18,7 +18,6 @@
 #' 
 #'
 #' \itemize{
-#' \item \emph{ @param } id integer
 #' \item \emph{ @returnType } list( \link{MailOrder} ) \cr
 #'
 #'
@@ -233,7 +232,6 @@
 #' ####################  GetMailOrders  ####################
 #'
 #' library(openapi)
-#' var.id <- 56 # integer | The ID of your mail order this will be sent through.
 #'
 #' #displays a list of mail service orders
 #' api.instance <- DefaultApi$new()
@@ -241,7 +239,7 @@
 #' #Configure API key authorization: apiKeyAuth
 #' api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
 #'
-#' result <- api.instance$GetMailOrders(id=var.id)
+#' result <- api.instance$GetMailOrders()
 #'
 #'
 #' ####################  PingServer  ####################
@@ -345,8 +343,8 @@ DefaultApi <- R6::R6Class(
         self$apiClient <- ApiClient$new()
       }
     },
-    GetMailOrders = function(id=NULL, ...){
-      apiResponse <- self$GetMailOrdersWithHttpInfo(id, ...)
+    GetMailOrders = function(...){
+      apiResponse <- self$GetMailOrdersWithHttpInfo(...)
       resp <- apiResponse$response
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
         apiResponse$content
@@ -359,12 +357,10 @@ DefaultApi <- R6::R6Class(
       }
     },
 
-    GetMailOrdersWithHttpInfo = function(id=NULL, ...){
+    GetMailOrdersWithHttpInfo = function(...){
       args <- list(...)
       queryParams <- list()
       headerParams <- c()
-
-      queryParams['id'] <- id
 
       body <- NULL
       urlPath <- "/mail"

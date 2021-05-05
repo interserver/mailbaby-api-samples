@@ -35,7 +35,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T15:32:55.165195-04:00[America/New_York]")public interface MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T15:40:47.017621-04:00[America/New_York]")public interface MailApi  {
    
     @GET
     
@@ -47,7 +47,7 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailOrders.class))),
                 @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
          })
-    Response getMailOrders( @QueryParam("id") Long id,@Context SecurityContext securityContext);
+    Response getMailOrders(@Context SecurityContext securityContext);
 
     @POST
     @Path("/order")

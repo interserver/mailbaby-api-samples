@@ -79,9 +79,6 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
 
 var api = new MailBabyApi.DefaultApi()
-var opts = { 
-  'id': 789 // {Number} The ID of your mail order this will be sent through.
-};
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -89,7 +86,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getMailOrders(opts, callback);
+api.getMailOrders(callback);
 ```
 
 ## Documentation for API Endpoints

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 # **getMailOrders**
 ```swift
-    open class func getMailOrders(id: Int64? = nil, completion: @escaping (_ data: [MailOrder]?, _ error: Error?) -> Void)
+    open class func getMailOrders(completion: @escaping (_ data: [MailOrder]?, _ error: Error?) -> Void)
 ```
 
 displays a list of mail service orders
@@ -25,10 +25,9 @@ displays a list of mail service orders
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let id = 987 // Int64 | The ID of your mail order this will be sent through. (optional)
 
 // displays a list of mail service orders
-DefaultAPI.getMailOrders(id: id) { (response, error) in
+DefaultAPI.getMailOrders() { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -41,10 +40,7 @@ DefaultAPI.getMailOrders(id: id) { (response, error) in
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Int64** | The ID of your mail order this will be sent through. | [optional] 
+This endpoint does not need any parameter.
 
 ### Return type
 

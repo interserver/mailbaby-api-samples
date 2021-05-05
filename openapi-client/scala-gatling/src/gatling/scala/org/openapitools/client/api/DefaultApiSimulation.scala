@@ -67,17 +67,14 @@ class DefaultApiSimulation extends Simulation {
     val scenarioBuilders: mutable.MutableList[PopulationBuilder] = new mutable.MutableList[PopulationBuilder]()
 
     // Set up CSV feeders
-    val getMailOrdersQUERYFeeder = csv(userDataDirectory + File.separator + "getMailOrders-queryParams.csv").random
     val viewMailLogQUERYFeeder = csv(userDataDirectory + File.separator + "viewMailLog-queryParams.csv").random
 
     // Setup all scenarios
 
     
     val scngetMailOrders = scenario("getMailOrdersSimulation")
-        .feed(getMailOrdersQUERYFeeder)
         .exec(http("getMailOrders")
         .httpRequest("GET","/mail")
-        .queryParam("id","${id}")
 )
 
     // Run scngetMailOrders with warm up and reach a constant rate for entire duration

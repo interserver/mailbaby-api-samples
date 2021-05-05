@@ -29,15 +29,14 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
     /**
      * displays a list of mail service orders
      * 
-     * @param id The ID of your mail order this will be sent through. (optional)
      * @return MailOrders
      */
     @Suppress("UNCHECKED_CAST")
-    fun getMailOrders(id: kotlin.Long? = null): MailOrders {
-        val localVariableQuery: MultiValueMap = mapOf("id" to listOf("$id"))
+    fun getMailOrders(): MailOrders {
+        
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
-                "/mail", query = localVariableQuery
+                "/mail"
         )
         val response = request<MailOrders>(
                 localVariableConfig

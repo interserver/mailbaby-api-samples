@@ -35,11 +35,10 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @summary displays a list of mail service orders
-         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailOrders: async (id?: number, options: any = {}): Promise<RequestArgs> => {
+        getMailOrders: async (options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/mail`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -57,10 +56,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                     ? await configuration.apiKey("X-API-KEY")
                     : await configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            if (id !== undefined) {
-                localVarQueryParameter['id'] = id;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -663,12 +658,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary displays a list of mail service orders
-         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMailOrders(id?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MailOrders>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getMailOrders(id, options);
+        async getMailOrders(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MailOrders>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getMailOrders(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -810,12 +804,11 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          * 
          * @summary displays a list of mail service orders
-         * @param {number} [id] The ID of your mail order this will be sent through.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailOrders(id?: number, options?: any): AxiosPromise<MailOrders> {
-            return DefaultApiFp(configuration).getMailOrders(id, options).then((request) => request(axios, basePath));
+        getMailOrders(options?: any): AxiosPromise<MailOrders> {
+            return DefaultApiFp(configuration).getMailOrders(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -922,13 +915,12 @@ export class DefaultApi extends BaseAPI {
     /**
      * 
      * @summary displays a list of mail service orders
-     * @param {number} [id] The ID of your mail order this will be sent through.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public getMailOrders(id?: number, options?: any) {
-        return DefaultApiFp(this.configuration).getMailOrders(id, options).then((request) => request(this.axios, this.basePath));
+    public getMailOrders(options?: any) {
+        return DefaultApiFp(this.configuration).getMailOrders(options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

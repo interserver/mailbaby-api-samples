@@ -78,16 +78,13 @@ pub enum ViewMailLogError {
 }
 
 
-pub async fn get_mail_orders(configuration: &configuration::Configuration, id: Option<i64>) -> Result<Vec<crate::models::MailOrder>, Error<GetMailOrdersError>> {
+pub async fn get_mail_orders(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::MailOrder>, Error<GetMailOrdersError>> {
 
     let local_var_client = &configuration.client;
 
     let local_var_uri_str = format!("{}/mail", configuration.base_path);
     let mut local_var_req_builder = local_var_client.get(local_var_uri_str.as_str());
 
-    if let Some(ref local_var_str) = id {
-        local_var_req_builder = local_var_req_builder.query(&[("id", &local_var_str.to_string())]);
-    }
     if let Some(ref local_var_user_agent) = configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }

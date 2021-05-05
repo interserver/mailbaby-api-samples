@@ -35,7 +35,7 @@ public class DefaultApiServiceImpl implements DefaultApi {
      * displays a list of mail service orders
      *
      */
-    public MailOrders getMailOrders(Long id) {
+    public MailOrders getMailOrders() {
         // TODO: Implement...
         
         return null;

@@ -16,12 +16,6 @@ import { ObservableDefaultApi } from "./ObservableAPI";
 import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
 
 export interface DefaultApiGetMailOrdersRequest {
-    /**
-     * The ID of your mail order this will be sent through.
-     * @type number
-     * @memberof DefaultApigetMailOrders
-     */
-    id?: number
 }
 
 export interface DefaultApiPingServerRequest {
@@ -114,7 +108,7 @@ export class ObjectDefaultApi {
      * @param param the request object
      */
     public getMailOrders(param: DefaultApiGetMailOrdersRequest, options?: Configuration): Promise<Array<MailOrder>> {
-        return this.api.getMailOrders(param.id,  options).toPromise();
+        return this.api.getMailOrders( options).toPromise();
     }
 
     /**

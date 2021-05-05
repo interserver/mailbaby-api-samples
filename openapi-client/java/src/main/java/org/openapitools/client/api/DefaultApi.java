@@ -60,7 +60,6 @@ public class DefaultApi {
 
     /**
      * Build call for getMailOrders
-     * @param id The ID of your mail order this will be sent through. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -71,7 +70,7 @@ public class DefaultApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getMailOrdersCall(Long id, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getMailOrdersCall(final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -82,10 +81,6 @@ public class DefaultApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (id != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("id", id));
-        }
 
         final String[] localVarAccepts = {
             "application/json", "application/xml", "text/plain"
@@ -106,10 +101,10 @@ public class DefaultApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getMailOrdersValidateBeforeCall(Long id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getMailOrdersValidateBeforeCall(final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = getMailOrdersCall(id, _callback);
+        okhttp3.Call localVarCall = getMailOrdersCall(_callback);
         return localVarCall;
 
     }
@@ -117,7 +112,6 @@ public class DefaultApi {
     /**
      * displays a list of mail service orders
      * 
-     * @param id The ID of your mail order this will be sent through. (optional)
      * @return List&lt;MailOrder&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -127,15 +121,14 @@ public class DefaultApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public List<MailOrder> getMailOrders(Long id) throws ApiException {
-        ApiResponse<List<MailOrder>> localVarResp = getMailOrdersWithHttpInfo(id);
+    public List<MailOrder> getMailOrders() throws ApiException {
+        ApiResponse<List<MailOrder>> localVarResp = getMailOrdersWithHttpInfo();
         return localVarResp.getData();
     }
 
     /**
      * displays a list of mail service orders
      * 
-     * @param id The ID of your mail order this will be sent through. (optional)
      * @return ApiResponse&lt;List&lt;MailOrder&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -145,8 +138,8 @@ public class DefaultApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<MailOrder>> getMailOrdersWithHttpInfo(Long id) throws ApiException {
-        okhttp3.Call localVarCall = getMailOrdersValidateBeforeCall(id, null);
+    public ApiResponse<List<MailOrder>> getMailOrdersWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = getMailOrdersValidateBeforeCall(null);
         Type localVarReturnType = new TypeToken<List<MailOrder>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -154,7 +147,6 @@ public class DefaultApi {
     /**
      * displays a list of mail service orders (asynchronously)
      * 
-     * @param id The ID of your mail order this will be sent through. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -165,9 +157,9 @@ public class DefaultApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getMailOrdersAsync(Long id, final ApiCallback<List<MailOrder>> _callback) throws ApiException {
+    public okhttp3.Call getMailOrdersAsync(final ApiCallback<List<MailOrder>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getMailOrdersValidateBeforeCall(id, _callback);
+        okhttp3.Call localVarCall = getMailOrdersValidateBeforeCall(_callback);
         Type localVarReturnType = new TypeToken<List<MailOrder>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

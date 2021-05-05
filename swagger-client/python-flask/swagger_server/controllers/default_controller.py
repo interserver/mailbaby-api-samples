@@ -14,13 +14,11 @@ from swagger_server.models.send_mail_adv_from import SendMailAdvFrom  # noqa: E5
 from swagger_server import util
 
 
-def get_mail_orders(id=None):  # noqa: E501
+def get_mail_orders():  # noqa: E501
     """displays a list of mail service orders
 
      # noqa: E501
 
-    :param id: The ID of your mail order this will be sent through.
-    :type id: int
 
     :rtype: MailOrders
     """

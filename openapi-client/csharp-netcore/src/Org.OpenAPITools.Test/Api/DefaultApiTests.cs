@@ -62,8 +62,7 @@ namespace Org.OpenAPITools.Test.Api
         public void GetMailOrdersTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //long? id = null;
-            //var response = instance.GetMailOrders(id);
+            //var response = instance.GetMailOrders();
             //Assert.IsType<List<MailOrder>>(response);
         }
 

@@ -49,9 +49,8 @@ export class DefaultApi {
     /**
      * 
      * @summary displays a list of mail service orders
-     * @param id The ID of your mail order this will be sent through.
      */
-    public getMailOrders(id?: number, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public getMailOrders(extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: Array<models.MailOrder>;  },
     { response: JQueryXHR; errorThrown: string }
     > {
@@ -59,9 +58,6 @@ export class DefaultApi {
 
         let queryParameters: any = {};
         let headerParams: any = {};
-        if (id !== null && id !== undefined) {
-            queryParameters['id'] = <string><any>id;
-        }
 
         localVarPath = localVarPath + "?" + $.param(queryParameters);
         // to determine the Content-Type header

@@ -33,8 +33,7 @@ isa_ok($api, 'OpenAPIClient::DefaultApi');
 # get_mail_orders test
 #
 # uncomment below and update the test
-#my $get_mail_orders_id = undef; # replace NULL with a proper value
-#my $get_mail_orders_result = $api->get_mail_orders(id => $get_mail_orders_id);
+#my $get_mail_orders_result = $api->get_mail_orders();
 
 #
 # ping_server test

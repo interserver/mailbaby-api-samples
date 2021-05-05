@@ -18,7 +18,6 @@ module SwaggerClient
     end
     # displays a list of mail service orders
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :id The ID of your mail order this will be sent through.
     # @return [MailOrders]
     def get_mail_orders(opts = {})
       data, _status_code, _headers = get_mail_orders_with_http_info(opts)
@@ -27,7 +26,6 @@ module SwaggerClient
 
     # displays a list of mail service orders
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :id The ID of your mail order this will be sent through.
     # @return [Array<(MailOrders, Integer, Hash)>] MailOrders data, response status code and response headers
     def get_mail_orders_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -38,7 +36,6 @@ module SwaggerClient
 
       # query parameters
       query_params = opts[:query_params] || {}
-      query_params[:'id'] = opts[:'id'] if !opts[:'id'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

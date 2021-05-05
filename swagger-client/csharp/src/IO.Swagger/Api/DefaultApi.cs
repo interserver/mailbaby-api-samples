@@ -30,9 +30,8 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>MailOrders</returns>
-        MailOrders GetMailOrders (long? id = null);
+        MailOrders GetMailOrders ();
 
         /// <summary>
         /// displays a list of mail service orders
@@ -41,9 +40,8 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>ApiResponse of MailOrders</returns>
-        ApiResponse<MailOrders> GetMailOrdersWithHttpInfo (long? id = null);
+        ApiResponse<MailOrders> GetMailOrdersWithHttpInfo ();
         /// <summary>
         /// Checks if the server is running
         /// </summary>
@@ -245,9 +243,8 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>Task of MailOrders</returns>
-        System.Threading.Tasks.Task<MailOrders> GetMailOrdersAsync (long? id = null);
+        System.Threading.Tasks.Task<MailOrders> GetMailOrdersAsync ();
 
         /// <summary>
         /// displays a list of mail service orders
@@ -256,9 +253,8 @@ namespace IO.Swagger.Api
         /// 
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>Task of ApiResponse (MailOrders)</returns>
-        System.Threading.Tasks.Task<ApiResponse<MailOrders>> GetMailOrdersAsyncWithHttpInfo (long? id = null);
+        System.Threading.Tasks.Task<ApiResponse<MailOrders>> GetMailOrdersAsyncWithHttpInfo ();
         /// <summary>
         /// Checks if the server is running
         /// </summary>
@@ -566,11 +562,10 @@ namespace IO.Swagger.Api
         /// displays a list of mail service orders 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>MailOrders</returns>
-        public MailOrders GetMailOrders (long? id = null)
+        public MailOrders GetMailOrders ()
         {
-             ApiResponse<MailOrders> localVarResponse = GetMailOrdersWithHttpInfo(id);
+             ApiResponse<MailOrders> localVarResponse = GetMailOrdersWithHttpInfo();
              return localVarResponse.Data;
         }
 
@@ -578,9 +573,8 @@ namespace IO.Swagger.Api
         /// displays a list of mail service orders 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>ApiResponse of MailOrders</returns>
-        public ApiResponse< MailOrders > GetMailOrdersWithHttpInfo (long? id = null)
+        public ApiResponse< MailOrders > GetMailOrdersWithHttpInfo ()
         {
 
             var localVarPath = "/mail";
@@ -606,7 +600,6 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (id != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "id", id)); // query parameter
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
@@ -635,11 +628,10 @@ namespace IO.Swagger.Api
         /// displays a list of mail service orders 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>Task of MailOrders</returns>
-        public async System.Threading.Tasks.Task<MailOrders> GetMailOrdersAsync (long? id = null)
+        public async System.Threading.Tasks.Task<MailOrders> GetMailOrdersAsync ()
         {
-             ApiResponse<MailOrders> localVarResponse = await GetMailOrdersAsyncWithHttpInfo(id);
+             ApiResponse<MailOrders> localVarResponse = await GetMailOrdersAsyncWithHttpInfo();
              return localVarResponse.Data;
 
         }
@@ -648,9 +640,8 @@ namespace IO.Swagger.Api
         /// displays a list of mail service orders 
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of your mail order this will be sent through. (optional)</param>
         /// <returns>Task of ApiResponse (MailOrders)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<MailOrders>> GetMailOrdersAsyncWithHttpInfo (long? id = null)
+        public async System.Threading.Tasks.Task<ApiResponse<MailOrders>> GetMailOrdersAsyncWithHttpInfo ()
         {
 
             var localVarPath = "/mail";
@@ -676,7 +667,6 @@ namespace IO.Swagger.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (id != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "id", id)); // query parameter
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {

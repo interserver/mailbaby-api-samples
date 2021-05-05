@@ -48,19 +48,15 @@ export default class DefaultApi {
 
     /**
      * displays a list of mail service orders
-     * @param {Object} opts Optional parameters
-     * @param {Number} opts.id The ID of your mail order this will be sent through.
      * @param {module:api/DefaultApi~getMailOrdersCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Array.<module:model/MailOrder>}
      */
-    getMailOrders(opts, callback) {
-      opts = opts || {};
+    getMailOrders(callback) {
       let postBody = null;
 
       let pathParams = {
       };
       let queryParams = {
-        'id': opts['id']
       };
       let headerParams = {
       };

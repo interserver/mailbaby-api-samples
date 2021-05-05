@@ -41,7 +41,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-05T15:32:52.034450-04:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-05T15:40:44.057306-04:00[America/New_York]")public class MailApi  {
 
    private MailApiService delegate;
 
@@ -63,10 +63,9 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailOrders.class))),
         
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response getMailOrders(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through.") @QueryParam("id") Long id
-,@Context SecurityContext securityContext)
+    public Response getMailOrders(@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.getMailOrders(id,securityContext);
+        return delegate.getMailOrders(securityContext);
     }
     @POST
     @Path("/order")

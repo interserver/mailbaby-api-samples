@@ -19,11 +19,9 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
      * displays a list of mail service orders
-     * @param id The ID of your mail order this will be sent through.
      */
-    public async getMailOrders(id?: number, options?: Configuration): Promise<RequestContext> {
+    public async getMailOrders(options?: Configuration): Promise<RequestContext> {
         let config = options || this.configuration;
-
 
         // Path Params
         const localVarPath = '/mail';
@@ -33,9 +31,6 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
 
         // Query Params
-        if (id !== undefined) {
-            requestContext.setQueryParam("id", ObjectSerializer.serialize(id, "number", "int64"));
-        }
 
         // Header Params
 

@@ -68,7 +68,6 @@ using namespace test_namespace;
 
 class Example : public QObject {
     Q_OBJECT
-    qint64 create();
 public slots:
    void exampleFunction1();
 };
@@ -83,8 +82,6 @@ example.cpp:
 #include <QTimer>
 #include <QEventLoop> 
 
-qint64 Example::create(){
-    qint64 obj;
  return obj;
 }
 
@@ -93,18 +90,7 @@ void Example::exampleFunction1(){
      
       // Configure API key authorization: apiKeyAuth
       apiInstance.setApiKey("YOUR API KEY NAME","YOUR API KEY");
-        
-      QEventLoop loop;
-      connect(&apiInstance, &OAIDefaultApi::getMailOrdersSignal, [&]() {
-          loop.quit();
-      });
-      connect(&apiInstance, &OAIDefaultApi::getMailOrdersSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
-          qDebug() << "Error happened while issuing request : " << error_str;
-          loop.quit();
-      });
-
-      qint64 id = create(); // qint64 | The ID of your mail order this will be sent through.
-      apiInstance.getMailOrders(id);
+      apiInstance.getMailOrders();
       QTimer::singleShot(5000, &loop, &QEventLoop::quit);
       loop.exec();
   }

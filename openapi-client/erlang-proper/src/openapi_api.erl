@@ -19,9 +19,8 @@ get_mail_orders() ->
   Method      = get,
   Host        = application:get_env(openapi, host, "http://localhost:8080"),
   Path        = ["/mail"],
-  QueryString = [<<"id=">>, Id, <<"&">>],
 
-  openapi_utils:request(Method, [Host, ?BASE_URL, Path, <<"?">>, QueryString]).
+  openapi_utils:request(Method, [Host, ?BASE_URL, Path]).
 
 %% @doc Checks if the server is running
 %% 

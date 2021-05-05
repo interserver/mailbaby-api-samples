@@ -69,10 +69,9 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 789; // int | The ID of your mail order this will be sent through.
 
 try {
-    $result = $apiInstance->getMailOrders($id);
+    $result = $apiInstance->getMailOrders();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->getMailOrders: ', $e->getMessage(), PHP_EOL;

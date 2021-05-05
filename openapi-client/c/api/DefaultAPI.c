@@ -15,9 +15,9 @@
 // displays a list of mail service orders
 //
 list_t*
-DefaultAPI_getMailOrders(apiClient_t *apiClient, long id )
+DefaultAPI_getMailOrders(apiClient_t *apiClient)
 {
-    list_t    *localVarQueryParameters = list_create();
+    list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
     list_t *localVarHeaderType = list_create();
@@ -31,18 +31,6 @@ DefaultAPI_getMailOrders(apiClient_t *apiClient, long id )
 
 
 
-
-    // query parameters
-    char *keyQuery_id = NULL;
-    long valueQuery_id ;
-    keyValuePair_t *keyPairQuery_id = 0;
-    if (id)
-    {
-        keyQuery_id = strdup("id");
-        valueQuery_id = (id);
-        keyPairQuery_id = keyValuePair_create(keyQuery_id, &valueQuery_id);
-        list_addElement(localVarQueryParameters,keyPairQuery_id);
-    }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarHeaderType,"application/xml"); //produces
     list_addElement(localVarHeaderType,"text/plain"); //produces
@@ -86,20 +74,12 @@ DefaultAPI_getMailOrders(apiClient_t *apiClient, long id )
         apiClient->dataReceived = NULL;
         apiClient->dataReceivedLen = 0;
     }
-    list_free(localVarQueryParameters);
+    
     
     
     list_free(localVarHeaderType);
     
     free(localVarPath);
-    if(keyQuery_id){
-        free(keyQuery_id);
-        keyQuery_id = NULL;
-    }
-    if(keyPairQuery_id){
-        keyValuePair_free(keyPairQuery_id);
-        keyPairQuery_id = NULL;
-    }
     return elementToReturn;
 end:
     free(localVarPath);

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 [**view_mail_log**](DefaultApi.md#view_mail_log) | **GET** /mail/log | displays the mail log
 
 # **get_mail_orders**
-> MailOrders get_mail_orders(opts)
+> MailOrders get_mail_orders
 
 displays a list of mail service orders
 
@@ -32,13 +32,10 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::DefaultApi.new
-opts = { 
-  id: 789 # Integer | The ID of your mail order this will be sent through.
-}
 
 begin
   #displays a list of mail service orders
-  result = api_instance.get_mail_orders(opts)
+  result = api_instance.get_mail_orders
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling DefaultApi->get_mail_orders: #{e}"
@@ -46,10 +43,7 @@ end
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Integer**| The ID of your mail order this will be sent through. | [optional] 
+This endpoint does not need any parameter.
 
 ### Return type
 

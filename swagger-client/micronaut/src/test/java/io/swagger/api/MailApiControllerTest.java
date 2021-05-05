@@ -30,9 +30,8 @@ class MailApiControllerTest {
 
     @Test
     void getMailOrdersTest() {
-        Long id = 789L;
         try {
-            api.getMailOrders(id).blockingGet();
+            api.getMailOrders().blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

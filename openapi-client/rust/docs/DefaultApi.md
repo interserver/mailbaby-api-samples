@@ -16,15 +16,12 @@ Method | HTTP request | Description
 
 ## get_mail_orders
 
-> Vec<crate::models::MailOrder> get_mail_orders(id)
+> Vec<crate::models::MailOrder> get_mail_orders()
 displays a list of mail service orders
 
 ### Parameters
 
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**id** | Option<**i64**> | The ID of your mail order this will be sent through. |  |
+This endpoint does not need any parameter.
 
 ### Return type
 

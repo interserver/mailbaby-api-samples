@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## GetMailOrders
 
-> []MailOrder GetMailOrders(ctx).Id(id).Execute()
+> []MailOrder GetMailOrders(ctx).Execute()
 
 displays a list of mail service orders
 
@@ -33,11 +33,10 @@ import (
 )
 
 func main() {
-    id := int64(789) // int64 | The ID of your mail order this will be sent through. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetMailOrders(context.Background()).Id(id).Execute()
+    resp, r, err := api_client.DefaultApi.GetMailOrders(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetMailOrders``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -49,16 +48,12 @@ func main() {
 
 ### Path Parameters
 
-
+This endpoint does not need any parameter.
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetMailOrdersRequest struct via the builder pattern
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int64** | The ID of your mail order this will be sent through. | 
 
 ### Return type
 

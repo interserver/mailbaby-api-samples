@@ -14,17 +14,14 @@ Feature | HTTP request | Description
 
 
 # **mail_orders**
-> mail_orders (id:  detachable INTEGER_64 ): detachable LIST [MAIL_ORDER]
+> mail_orders : detachable LIST [MAIL_ORDER]
 	
 
 displays a list of mail service orders
 
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **INTEGER_64**| The ID of your mail order this will be sent through. | [optional] [default to null]
+This endpoint does not need any parameter.
 
 ### Return type
 

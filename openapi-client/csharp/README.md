@@ -85,12 +85,11 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi(Configuration.Default);
-            var id = 789;  // long? | The ID of your mail order this will be sent through. (optional) 
 
             try
             {
                 // displays a list of mail service orders
-                List<MailOrder> result = apiInstance.GetMailOrders(id);
+                List<MailOrder> result = apiInstance.GetMailOrders();
                 Debug.WriteLine(result);
             }
             catch (ApiException e)

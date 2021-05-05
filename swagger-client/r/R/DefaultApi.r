@@ -53,14 +53,10 @@ DefaultApi <- R6::R6Class(
         self$apiClient <- ApiClient$new()
       }
     },
-    get_mail_orders = function(id, ...){
+    get_mail_orders = function(...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()
-
-      if (!missing(`id`)) {
-        queryParams['id'] <- id
-      }
 
       urlPath <- "/mail"
       resp <- self$apiClient$callApi(url = paste0(self$apiClient$basePath, urlPath),

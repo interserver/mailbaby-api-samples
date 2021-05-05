@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 <a name="getMailOrders"></a>
 # **getMailOrders**
-> List&lt;MailOrder&gt; getMailOrders(id)
+> List&lt;MailOrder&gt; getMailOrders()
 
 displays a list of mail service orders
 
@@ -41,9 +41,8 @@ public class Example {
     //apiKeyAuth.setApiKeyPrefix("Token");
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
-    Long id = 56L; // Long | The ID of your mail order this will be sent through.
     try {
-      List<MailOrder> result = apiInstance.getMailOrders(id);
+      List<MailOrder> result = apiInstance.getMailOrders();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#getMailOrders");
@@ -57,10 +56,7 @@ public class Example {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Long**| The ID of your mail order this will be sent through. | [optional]
+This endpoint does not need any parameter.
 
 ### Return type
 

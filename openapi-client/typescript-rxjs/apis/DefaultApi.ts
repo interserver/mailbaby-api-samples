@@ -21,10 +21,6 @@ import {
     SendMailAdv,
 } from '../models';
 
-export interface GetMailOrdersRequest {
-    id?: number;
-}
-
 export interface PlaceMailOrderRequest {
     mailOrder?: MailOrder;
 }
@@ -55,23 +51,17 @@ export class DefaultApi extends BaseAPI {
     /**
      * displays a list of mail service orders
      */
-    getMailOrders({ id }: GetMailOrdersRequest): Observable<Array<MailOrder>>
-    getMailOrders({ id }: GetMailOrdersRequest, opts?: OperationOpts): Observable<RawAjaxResponse<Array<MailOrder>>>
-    getMailOrders({ id }: GetMailOrdersRequest, opts?: OperationOpts): Observable<Array<MailOrder> | RawAjaxResponse<Array<MailOrder>>> {
-
+    getMailOrders(): Observable<Array<MailOrder>>
+    getMailOrders(opts?: OperationOpts): Observable<RawAjaxResponse<Array<MailOrder>>>
+    getMailOrders(opts?: OperationOpts): Observable<Array<MailOrder> | RawAjaxResponse<Array<MailOrder>>> {
         const headers: HttpHeaders = {
             ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication
         };
-
-        const query: HttpQuery = {};
-
-        if (id != null) { query['id'] = id; }
 
         return this.request<Array<MailOrder>>({
             url: '/mail',
             method: 'GET',
             headers,
-            query,
         }, opts?.responseOpts);
     };
 

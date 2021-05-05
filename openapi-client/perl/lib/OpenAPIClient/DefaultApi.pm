@@ -53,14 +53,8 @@ sub new {
 #
 # displays a list of mail service orders
 # 
-# @param int $id The ID of your mail order this will be sent through. (optional)
 {
     my $params = {
-    'id' => {
-        data_type => 'int',
-        description => 'The ID of your mail order this will be sent through.',
-        required => '0',
-    },
     };
     __PACKAGE__->method_documentation->{ 'get_mail_orders' } = { 
         summary => 'displays a list of mail service orders',
@@ -87,11 +81,6 @@ sub get_mail_orders {
         $header_params->{'Accept'} = $_header_accept;
     }
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
-
-    # query params
-    if ( exists $args{'id'}) {
-        $query_params->{'id'} = $self->{api_client}->to_query_value($args{'id'});
-    }
 
     my $_body_data;
     # authentication setting, if any

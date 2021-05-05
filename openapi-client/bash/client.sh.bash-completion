@@ -79,7 +79,7 @@ _()
     # An associative array of operations to their parameters
     # Only include path, query and header parameters
     declare -A operation_parameters
-    operation_parameters["getMailOrders"]="id= "
+    operation_parameters["getMailOrders"]=""
     operation_parameters["pingServer"]=""
     operation_parameters["placeMailOrder"]=""
     operation_parameters["sendAdvMail"]=""

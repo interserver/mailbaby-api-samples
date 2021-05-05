@@ -1150,7 +1150,7 @@ ul.nav-tabs {
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
  -H "Accept: application/json,application/xml,text/plain"\
- "https://api.mailbaby.net/mail?id="</code></pre>
+ "https://api.mailbaby.net/mail"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getMailOrders-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -1173,10 +1173,9 @@ public class DefaultApiExample {
         
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
-        Long id = 789; // Long | The ID of your mail order this will be sent through.
         
         try {
-            array[MailOrder] result = apiInstance.getMailOrders(id);
+            array[MailOrder] result = apiInstance.getMailOrders();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#getMailOrders");
@@ -1193,10 +1192,9 @@ public class DefaultApiExample {
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        Long id = 789; // Long | The ID of your mail order this will be sent through.
         
         try {
-            array[MailOrder] result = apiInstance.getMailOrders(id);
+            array[MailOrder] result = apiInstance.getMailOrders();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#getMailOrders");
@@ -1220,11 +1218,10 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
-Long *id = 789; // The ID of your mail order this will be sent through. (optional) (default to null)
 
 // displays a list of mail service orders
-[apiInstance getMailOrdersWith:id
-              completionHandler: ^(array[MailOrder] output, NSError* error) {
+[apiInstance getMailOrdersWithCompletionHandler: 
+              ^(array[MailOrder] output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -1247,10 +1244,6 @@ apiKeyAuth.apiKey = "YOUR API KEY";
 
 // Create an instance of the API class
 var api = new MailBabyApi.DefaultApi()
-var opts = {
-  'id': 789 // {Long} The ID of your mail order this will be sent through.
-};
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1258,7 +1251,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getMailOrders(opts, callback);
+api.getMailOrders(callback);
 </code></pre>
                             </div>
 
@@ -1285,11 +1278,10 @@ namespace Example
             
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
-            var id = 789;  // Long | The ID of your mail order this will be sent through. (optional)  (default to null)
 
             try {
                 // displays a list of mail service orders
-                array[MailOrder] result = apiInstance.getMailOrders(id);
+                array[MailOrder] result = apiInstance.getMailOrders();
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.getMailOrders: " + e.Message );
@@ -1311,10 +1303,9 @@ interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApi
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
-$id = 789; // Long | The ID of your mail order this will be sent through.
 
 try {
-    $result = $api_instance->getMailOrders($id);
+    $result = $api_instance->getMailOrders();
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->getMailOrders: ', $e->getMessage(), PHP_EOL;
@@ -1334,10 +1325,9 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = MailBabyApi::DefaultApi->new();
-my $id = 789; # Long | The ID of your mail order this will be sent through.
 
 eval { 
-    my $result = $api_instance->getMailOrders(id => $id);
+    my $result = $api_instance->getMailOrders();
     print Dumper($result);
 };
 if ($@) {
@@ -1359,11 +1349,10 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
-id = 789 # Long | The ID of your mail order this will be sent through. (optional) (default to null)
 
 try: 
     # displays a list of mail service orders
-    api_response = api_instance.get_mail_orders(id=id)
+    api_response = api_instance.get_mail_orders()
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->getMailOrders: %s\n" % e)</code></pre>
@@ -1373,10 +1362,9 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
-    let id = 789; // Long
 
     let mut context = DefaultApi::Context::default();
-    let result = client.getMailOrders(id, &context).wait();
+    let result = client.getMailOrders(&context).wait();
 
     println!("{:?}", result);
 }
@@ -1395,36 +1383,6 @@ pub fn main() {
 
 
 
-                            <div class="methodsubtabletitle">Query parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                <tr><td style="width:150px;">id</td>
-<td>
-
-
-    <div id="d2e199_getMailOrders_id">
-        <div class="json-schema-view">
-            <div class="primitive">
-                <span class="type">
-                    Long
-                </span>
-                    <span class="format">
-                        (int64)
-                    </span>
-
-                    <div class="inner description marked">
-The ID of your mail order this will be sent through.
-                    </div>
-            </div>
-        </div>
-    </div>
-</td>
-</tr>
-
-                            </table>
 
                           <h2>Responses</h2>
                             <h3 id="examples-Default-getMailOrders-title-200"></h3>

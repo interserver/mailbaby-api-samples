@@ -40,16 +40,6 @@ paths:
   /mail:
     get:
       operationId: getMailOrders
-      parameters:
-      - description: The ID of your mail order this will be sent through.
-        explode: true
-        in: query
-        name: id
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
       responses:
         "200":
           content:

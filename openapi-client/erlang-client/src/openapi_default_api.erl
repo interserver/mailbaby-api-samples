@@ -23,7 +23,7 @@ get_mail_orders(Ctx, Optional) ->
 
     Method = get,
     Path = ["/mail"],
-    QS = lists:flatten([])++openapi_utils:optional_params(['id'], _OptionalParams),
+    QS = [],
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),

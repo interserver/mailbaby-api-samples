@@ -91,15 +91,14 @@ class DefaultApi
      *
      * displays a list of mail service orders
      *
-     * @param  int $id The ID of your mail order this will be sent through. (optional)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\MailOrders
      */
-    public function getMailOrders($id = null)
+    public function getMailOrders()
     {
-        list($response) = $this->getMailOrdersWithHttpInfo($id);
+        list($response) = $this->getMailOrdersWithHttpInfo();
         return $response;
     }
 
@@ -108,16 +107,15 @@ class DefaultApi
      *
      * displays a list of mail service orders
      *
-     * @param  int $id The ID of your mail order this will be sent through. (optional)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\MailOrders, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getMailOrdersWithHttpInfo($id = null)
+    public function getMailOrdersWithHttpInfo()
     {
         $returnType = '\Interserver\Mailbaby\Model\MailOrders';
-        $request = $this->getMailOrdersRequest($id);
+        $request = $this->getMailOrdersRequest();
 
         try {
             $options = $this->createHttpClientOption();
@@ -191,14 +189,13 @@ class DefaultApi
      *
      * displays a list of mail service orders
      *
-     * @param  int $id The ID of your mail order this will be sent through. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMailOrdersAsync($id = null)
+    public function getMailOrdersAsync()
     {
-        return $this->getMailOrdersAsyncWithHttpInfo($id)
+        return $this->getMailOrdersAsyncWithHttpInfo()
             ->then(
                 function ($response) {
                     return $response[0];
@@ -211,15 +208,14 @@ class DefaultApi
      *
      * displays a list of mail service orders
      *
-     * @param  int $id The ID of your mail order this will be sent through. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMailOrdersAsyncWithHttpInfo($id = null)
+    public function getMailOrdersAsyncWithHttpInfo()
     {
         $returnType = '\Interserver\Mailbaby\Model\MailOrders';
-        $request = $this->getMailOrdersRequest($id);
+        $request = $this->getMailOrdersRequest();
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -261,12 +257,11 @@ class DefaultApi
     /**
      * Create request for operation 'getMailOrders'
      *
-     * @param  int $id The ID of your mail order this will be sent through. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getMailOrdersRequest($id = null)
+    protected function getMailOrdersRequest()
     {
 
         $resourcePath = '/mail';
@@ -276,10 +271,6 @@ class DefaultApi
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        if ($id !== null) {
-            $queryParams['id'] = ObjectSerializer::toQueryValue($id, 'int64');
-        }
 
 
         // body params

@@ -40,18 +40,14 @@ export default class DefaultApi extends ApiClient {
 
     /**
      * displays a list of mail service orders
-     * @param {Object} opts Optional parameters
-     * @param {Number} opts.id The ID of your mail order this will be sent through.
      * @return {Promise<Array.<MailOrder>>}
      */
-    async getMailOrders(opts) {
-      opts = opts || {};
+    async getMailOrders() {
       let postBody = null;
 
       let pathParams = {
       };
       let queryParams = {
-        'id': opts['id']
       };
       let headerParams = {
         'User-Agent': 'OpenAPI-Generator/1.0.0/Javascript',

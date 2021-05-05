@@ -27,10 +27,9 @@ export class PromiseDefaultApi {
 
     /**
      * displays a list of mail service orders
-     * @param id The ID of your mail order this will be sent through.
      */
-    public getMailOrders(id?: number, options?: Configuration): Promise<Array<MailOrder>> {
-        const result = this.api.getMailOrders(id, options);
+    public getMailOrders(options?: Configuration): Promise<Array<MailOrder>> {
+        const result = this.api.getMailOrders(options);
         return result.toPromise();
     }
 

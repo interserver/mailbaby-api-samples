@@ -28,16 +28,9 @@ type DefaultApiService service
 /*
 DefaultApiService displays a list of mail service orders
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *DefaultApiGetMailOrdersOpts - Optional Parameters:
-     * @param "Id" (optional.Int64) -  The ID of your mail order this will be sent through.
 @return []MailOrder
 */
-
-type DefaultApiGetMailOrdersOpts struct {
-    Id optional.Int64
-}
-
-func (a *DefaultApiService) GetMailOrders(ctx context.Context, localVarOptionals *DefaultApiGetMailOrdersOpts) ([]MailOrder, *http.Response, error) {
+func (a *DefaultApiService) GetMailOrders(ctx context.Context) ([]MailOrder, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -53,9 +46,6 @@ func (a *DefaultApiService) GetMailOrders(ctx context.Context, localVarOptionals
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.Id.IsSet() {
-		localVarQueryParams.Add("id", parameterToString(localVarOptionals.Id.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 

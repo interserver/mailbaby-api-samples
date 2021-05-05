@@ -34,9 +34,8 @@ object Paths {
     /**
      * displays a list of mail service orders
      * 
-     * @param id The ID of your mail order this will be sent through. (optional)
      */
-    @Location("/mail") class getMailOrders(val id: kotlin.Long)
+    @Location("/mail") class getMailOrders()
 
     /**
      * Checks if the server is running

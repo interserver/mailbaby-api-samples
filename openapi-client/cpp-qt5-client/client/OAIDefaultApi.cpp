@@ -227,29 +227,13 @@ QString OAIDefaultApi::getParamStyleDelimiter(QString style, QString name, bool 
     }
 }
 
-void OAIDefaultApi::getMailOrders(const ::OpenAPI::OptionalParam<qint64> &id) {
+void OAIDefaultApi::getMailOrders() {
     QString fullPath = QString(_serverConfigs["getMailOrders"][_serverIndices.value("getMailOrders")].URL()+"/mail");
     
     if(_apiKeys.contains("apiKeyAuth")){
         addHeaders("apiKeyAuth",_apiKeys.find("apiKeyAuth").value());
     }
     
-    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
-    if(id.hasValue())
-    {
-        queryStyle = "form";
-        if(queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "id", true);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("id")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(id.value())));
-    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);

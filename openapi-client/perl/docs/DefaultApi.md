@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **get_mail_orders**
-> ARRAY[MailOrder] get_mail_orders(id => $id)
+> ARRAY[MailOrder] get_mail_orders()
 
 displays a list of mail service orders
 
@@ -35,10 +35,9 @@ my $api_instance = OpenAPIClient::DefaultApi->new(
     #api_key_prefix => {'X-API-KEY' => 'Bearer'},
 );
 
-my $id = 789; # int | The ID of your mail order this will be sent through.
 
 eval { 
-    my $result = $api_instance->get_mail_orders(id => $id);
+    my $result = $api_instance->get_mail_orders();
     print Dumper($result);
 };
 if ($@) {
@@ -47,10 +46,7 @@ if ($@) {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
+This endpoint does not need any parameter.
 
 ### Return type
 

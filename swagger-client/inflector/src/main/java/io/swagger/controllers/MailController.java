@@ -21,7 +21,7 @@ import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailAdvFrom;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-05T15:32:40.501382-04:00[America/New_York]")public class MailController  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2021-05-05T15:40:32.545517-04:00[America/New_York]")public class MailController  {
   /** 
    * Uncomment and implement as you see fit.  These operations will map
    * Directly to operation calls from the routing logic.  Because the inflector
@@ -29,8 +29,7 @@ import io.swagger.model.SendMailAdvFrom;
    **/
 
   /*
-    public ResponseContext getMailOrders(RequestContext request , Long id 
-) {
+    public ResponseContext getMailOrders(RequestContext request ) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */

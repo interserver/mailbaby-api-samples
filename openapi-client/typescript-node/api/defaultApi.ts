@@ -96,9 +96,8 @@ export class DefaultApi {
     /**
      * 
      * @summary displays a list of mail service orders
-     * @param id The ID of your mail order this will be sent through.
      */
-    public async getMailOrders (id?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<MailOrder>;  }> {
+    public async getMailOrders (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<MailOrder>;  }> {
         const localVarPath = this.basePath + '/mail';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -110,10 +109,6 @@ export class DefaultApi {
             localVarHeaderParams.Accept = produces.join(',');
         }
         let localVarFormParams: any = {};
-
-        if (id !== undefined) {
-            localVarQueryParameters['id'] = ObjectSerializer.serialize(id, "number");
-        }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
 

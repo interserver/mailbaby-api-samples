@@ -32,10 +32,6 @@ import {
     SendMailAdvToJSON,
 } from '../models';
 
-export interface GetMailOrdersRequest {
-    id?: number;
-}
-
 export interface PlaceMailOrderRequest {
     mailOrder?: MailOrder;
 }
@@ -62,15 +58,9 @@ export interface ViewMailLogRequest {
 /**
  * displays a list of mail service orders
  */
-function getMailOrdersRaw<T>(requestParameters: GetMailOrdersRequest, requestConfig: runtime.TypedQueryConfig<T, Array<MailOrder>> = {}): QueryConfig<T> {
+function getMailOrdersRaw<T>( requestConfig: runtime.TypedQueryConfig<T, Array<MailOrder>> = {}): QueryConfig<T> {
     let queryParameters = null;
 
-    queryParameters = {};
-
-
-    if (requestParameters.id !== undefined) {
-        queryParameters['id'] = requestParameters.id;
-    }
 
     const headerParameters : runtime.HttpHeaders = {};
 
@@ -104,8 +94,8 @@ function getMailOrdersRaw<T>(requestParameters: GetMailOrdersRequest, requestCon
 /**
 * displays a list of mail service orders
 */
-export function getMailOrders<T>(requestParameters: GetMailOrdersRequest, requestConfig?: runtime.TypedQueryConfig<T, Array<MailOrder>>): QueryConfig<T> {
-    return getMailOrdersRaw(requestParameters, requestConfig);
+export function getMailOrders<T>( requestConfig?: runtime.TypedQueryConfig<T, Array<MailOrder>>): QueryConfig<T> {
+    return getMailOrdersRaw( requestConfig);
 }
 
 /**

@@ -59,10 +59,9 @@ import 'package:openapi/api.dart';
 
 final jaguarApiGen = Openapi();
 var api_instance = jaguarApiGen.getDefaultApi();
-var id = 789; // int | The ID of your mail order this will be sent through.
 
 try {
-    var result = api_instance.getMailOrders(id);
+    var result = api_instance.getMailOrders();
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->getMailOrders: $e\n");

@@ -25,7 +25,6 @@ import {
  * getMailOrders - parameters interface
  */
 export interface IGetMailOrdersParams {
-  id?: number;
 }
 
 /**
@@ -92,9 +91,8 @@ export class DefaultApi extends Api {
 
   /**
    * displays a list of mail service orders
-   * @param params.id The ID of your mail order this will be sent through.
    */
-  async getMailOrders(params: IGetMailOrdersParams): Promise<Array<MailOrder>> {
+  async getMailOrders(): Promise<Array<MailOrder>> {
     // Verify required parameters are set
 
     // Create URL to call
@@ -103,10 +101,6 @@ export class DefaultApi extends Api {
     const response = await this.httpClient.createRequest(url)
       // Set HTTP method
       .asGet()
-      // Set query parameters
-      .withParams({ 
-        'id': params['id'],
-      })
 
       // Authentication 'apiKeyAuth' required
       .withHeader('X-API-KEY', this.authStorage.getapiKeyAuth())

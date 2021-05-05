@@ -17,14 +17,13 @@ Method | HTTP request | Description
 ```c
 // displays a list of mail service orders
 //
-list_t* DefaultAPI_getMailOrders(apiClient_t *apiClient, long id);
+list_t* DefaultAPI_getMailOrders(apiClient_t *apiClient);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration | 
-**id** | **long** | The ID of your mail order this will be sent through. | [optional] 
 
 ### Return type
 

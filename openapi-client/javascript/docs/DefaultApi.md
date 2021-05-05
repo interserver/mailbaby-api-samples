@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## getMailOrders
 
-> [MailOrder] getMailOrders(opts)
+> [MailOrder] getMailOrders()
 
 displays a list of mail service orders
 
@@ -32,10 +32,7 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyApi.DefaultApi();
-let opts = {
-  'id': 789 // Number | The ID of your mail order this will be sent through.
-};
-apiInstance.getMailOrders(opts, (error, data, response) => {
+apiInstance.getMailOrders((error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -46,10 +43,7 @@ apiInstance.getMailOrders(opts, (error, data, response) => {
 
 ### Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Number**| The ID of your mail order this will be sent through. | [optional] 
+This endpoint does not need any parameter.
 
 ### Return type
 

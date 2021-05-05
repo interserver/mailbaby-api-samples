@@ -33,7 +33,7 @@ object DefaultApi {
 
   def escape(value: String): String = URLEncoder.encode(value, "utf-8").replaceAll("\\+", "%20")
 
-  def getMailOrders(host: String, id: Long)(implicit idQuery: QueryParam[Long]): Task[List[MailOrder]] = {
+  def getMailOrders(host: String): Task[List[MailOrder]] = {
     implicit val returnTypeDecoder: EntityDecoder[List[MailOrder]] = jsonOf[List[MailOrder]]
 
     val path = "/mail"
@@ -43,7 +43,7 @@ object DefaultApi {
     val headers = Headers(
       )
     val queryParams = Query(
-      ("id", Some(idQuery.toParamString(id))))
+      )
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
@@ -181,7 +181,7 @@ class HttpServiceDefaultApi(service: HttpService) {
 
   def escape(value: String): String = URLEncoder.encode(value, "utf-8").replaceAll("\\+", "%20")
 
-  def getMailOrders(id: Long)(implicit idQuery: QueryParam[Long]): Task[List[MailOrder]] = {
+  def getMailOrders(): Task[List[MailOrder]] = {
     implicit val returnTypeDecoder: EntityDecoder[List[MailOrder]] = jsonOf[List[MailOrder]]
 
     val path = "/mail"
@@ -191,7 +191,7 @@ class HttpServiceDefaultApi(service: HttpService) {
     val headers = Headers(
       )
     val queryParams = Query(
-      ("id", Some(idQuery.toParamString(id))))
+      )
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))

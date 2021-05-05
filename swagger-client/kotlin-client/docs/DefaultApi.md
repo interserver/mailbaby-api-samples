@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 <a name="getMailOrders"></a>
 # **getMailOrders**
-> MailOrders getMailOrders(id)
+> MailOrders getMailOrders()
 
 displays a list of mail service orders
 
@@ -25,9 +25,8 @@ displays a list of mail service orders
 //import io.swagger.client.models.*;
 
 val apiInstance = DefaultApi()
-val id : kotlin.Long = 789 // kotlin.Long | The ID of your mail order this will be sent through.
 try {
-    val result : MailOrders = apiInstance.getMailOrders(id)
+    val result : MailOrders = apiInstance.getMailOrders()
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#getMailOrders")
@@ -39,10 +38,7 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Long**| The ID of your mail order this will be sent through. | [optional]
+This endpoint does not need any parameter.
 
 ### Return type
 

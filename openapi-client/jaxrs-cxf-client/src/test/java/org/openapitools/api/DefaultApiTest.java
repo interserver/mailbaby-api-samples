@@ -71,8 +71,7 @@ public class DefaultApiTest {
      */
     @Test
     public void getMailOrdersTest() {
-        Long id = null;
-        //List<MailOrder> response = api.getMailOrders(id);
+        //List<MailOrder> response = api.getMailOrders();
         //assertNotNull(response);
         // TODO: test validations
         

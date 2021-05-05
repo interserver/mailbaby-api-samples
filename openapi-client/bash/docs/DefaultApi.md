@@ -21,15 +21,12 @@ displays a list of mail service orders
 ### Example
 
 ```bash
- getMailOrders  id=value
+ getMailOrders
 ```
 
 ### Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **integer** | The ID of your mail order this will be sent through. | [optional] [default to null]
+This endpoint does not need any parameter.
 
 ### Return type
 

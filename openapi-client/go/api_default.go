@@ -30,13 +30,8 @@ type DefaultApiService service
 type ApiGetMailOrdersRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
-	id *int64
 }
 
-func (r ApiGetMailOrdersRequest) Id(id int64) ApiGetMailOrdersRequest {
-	r.id = &id
-	return r
-}
 
 func (r ApiGetMailOrdersRequest) Execute() ([]MailOrder, *_nethttp.Response, error) {
 	return r.ApiService.GetMailOrdersExecute(r)
@@ -79,9 +74,6 @@ func (a *DefaultApiService) GetMailOrdersExecute(r ApiGetMailOrdersRequest) ([]M
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.id != nil {
-		localVarQueryParams.Add("id", parameterToString(*r.id, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

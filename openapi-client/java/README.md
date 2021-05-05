@@ -2,7 +2,7 @@
 
 Mail Baby API
 - API version: 1.0.0
-  - Build date: 2021-05-05T15:30:32.100616-04:00[America/New_York]
+  - Build date: 2021-05-05T15:38:24.155728-04:00[America/New_York]
 
 This is an API defintion for accesssing the Mail.Baby mail service.
 
@@ -93,9 +93,8 @@ public class Example {
     //apiKeyAuth.setApiKeyPrefix("Token");
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
-    Long id = 56L; // Long | The ID of your mail order this will be sent through.
     try {
-      List<MailOrder> result = apiInstance.getMailOrders(id);
+      List<MailOrder> result = apiInstance.getMailOrders();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#getMailOrders");

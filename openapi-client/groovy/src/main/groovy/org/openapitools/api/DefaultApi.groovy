@@ -12,7 +12,7 @@ class DefaultApi {
     String versionPath = ""
     ApiUtils apiUtils = new ApiUtils();
 
-    def getMailOrders ( Long id, Closure onSuccess, Closure onFailure)  {
+    def getMailOrders ( Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail"
 
         // params
@@ -22,9 +22,6 @@ class DefaultApi {
         def contentType
 
 
-        if (id != null) {
-            queryParams.put("id", id)
-        }
 
 
 

@@ -31,10 +31,9 @@ export class ObservableDefaultApi {
 
     /**
      * displays a list of mail service orders
-     * @param id The ID of your mail order this will be sent through.
      */
-    public getMailOrders(id?: number, options?: Configuration): Observable<Array<MailOrder>> {
-        const requestContextPromise = this.requestFactory.getMailOrders(id, options);
+    public getMailOrders(options?: Configuration): Observable<Array<MailOrder>> {
+        const requestContextPromise = this.requestFactory.getMailOrders(options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);

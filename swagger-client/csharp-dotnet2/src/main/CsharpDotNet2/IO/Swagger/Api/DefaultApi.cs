@@ -14,9 +14,8 @@ namespace IO.Swagger.Api
         /// <summary>
         /// displays a list of mail service orders 
         /// </summary>
-        /// <param name="id">The ID of your mail order this will be sent through.</param>
         /// <returns>MailOrders</returns>
-        MailOrders GetMailOrders (long? id);
+        MailOrders GetMailOrders ();
         /// <summary>
         /// Checks if the server is running 
         /// </summary>
@@ -135,9 +134,8 @@ namespace IO.Swagger.Api
         /// <summary>
         /// displays a list of mail service orders 
         /// </summary>
-        /// <param name="id">The ID of your mail order this will be sent through.</param>
         /// <returns>MailOrders</returns>
-        public MailOrders GetMailOrders (long? id)
+        public MailOrders GetMailOrders ()
         {
     
             var path = "/mail";
@@ -149,8 +147,7 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
     
-             if (id != null) queryParams.Add("id", ApiClient.ParameterToString(id)); // query parameter
-                        
+                                    
             // authentication setting, if any
             String[] authSettings = new String[] { "apiKeyAuth" };
     

@@ -34,8 +34,6 @@ public:
 	void SetupHttpRequest(const FHttpRequestRef& HttpRequest) const final;
 	FString ComputePath() const final;
     
-	/* The ID of your mail order this will be sent through. */
-	TOptional<int64> Id;
 };
 
 class OPENAPI_API OpenAPIDefaultApi::GetMailOrdersResponse : public Response

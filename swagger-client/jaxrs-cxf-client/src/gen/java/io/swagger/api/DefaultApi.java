@@ -47,7 +47,7 @@ public interface DefaultApi  {
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailOrders.class))),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public MailOrders getMailOrders(@QueryParam("id")Long id);
+    public MailOrders getMailOrders();
 
     /**
      * Checks if the server is running

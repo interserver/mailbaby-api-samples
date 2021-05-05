@@ -16,7 +16,6 @@ Method | HTTP request | Description
 <a name="Get-MailOrders"></a>
 # **Get-MailOrders**
 > MailOrder[] Get-MailOrders<br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <System.Nullable[Int64]><br>
 
 displays a list of mail service orders
 
@@ -29,11 +28,10 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
-$Id = 987 # Int64 | The ID of your mail order this will be sent through. (optional)
 
 # displays a list of mail service orders
 try {
-     $Result = Get-MailOrders -Id $Id
+     $Result = Get-MailOrders
 } catch {
     Write-Host ("Exception occured when calling Get-MailOrders: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -41,10 +39,7 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **Id** | **Int64**| The ID of your mail order this will be sent through. | [optional] 
+This endpoint does not need any parameter.
 
 ### Return type
 

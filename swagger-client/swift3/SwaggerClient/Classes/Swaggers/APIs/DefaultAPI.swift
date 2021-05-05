@@ -12,11 +12,10 @@ import Alamofire
 open class DefaultAPI: APIBase {
     /**
      displays a list of mail service orders
-     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getMailOrders(id: Int64? = nil, completion: @escaping ((_ data: MailOrders?, _ error: ErrorResponse?) -> Void)) {
-        getMailOrdersWithRequestBuilder(id: id).execute { (response, error) -> Void in
+    open class func getMailOrders(completion: @escaping ((_ data: MailOrders?, _ error: ErrorResponse?) -> Void)) {
+        getMailOrdersWithRequestBuilder().execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -41,17 +40,14 @@ open class DefaultAPI: APIBase {
   "status" : "active",
   "username" : "mb1234"
 } ]}]
-     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
      - returns: RequestBuilder<MailOrders> 
      */
-    open class func getMailOrdersWithRequestBuilder(id: Int64? = nil) -> RequestBuilder<MailOrders> {
+    open class func getMailOrdersWithRequestBuilder() -> RequestBuilder<MailOrders> {
         let path = "/mail"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
-                        "id": id?.encodeToJSON()
-        ])
+
+        let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<MailOrders>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 

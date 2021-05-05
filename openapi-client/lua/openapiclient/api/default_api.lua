@@ -48,13 +48,13 @@ local function new_default_api(authority, basePath, schemes)
 	}, default_api_mt)
 end
 
-function default_api:get_mail_orders(id)
+function default_api:get_mail_orders()
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
 		port = self.port;
-		path = string.format("%s/mail?id=%s",
-			self.basePath, http_util.encodeURIComponent(id));
+		path = string.format("%s/mail",
+			self.basePath);
 	})
 
 	-- set HTTP verb

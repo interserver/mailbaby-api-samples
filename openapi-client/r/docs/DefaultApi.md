@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **GetMailOrders**
-> array[MailOrder] GetMailOrders(id=var.id)
+> array[MailOrder] GetMailOrders()
 
 displays a list of mail service orders
 
@@ -22,21 +22,17 @@ displays a list of mail service orders
 ```R
 library(openapi)
 
-var.id <- 56 # integer | The ID of your mail order this will be sent through.
 
 #displays a list of mail service orders
 api.instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
 api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$GetMailOrders(id=var.id)
+result <- api.instance$GetMailOrders()
 dput(result)
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **integer**| The ID of your mail order this will be sent through. | [optional] 
+This endpoint does not need any parameter.
 
 ### Return type
 

@@ -15,15 +15,12 @@ Method | HTTP request | Description
 
 <a name="getMailOrders"></a>
 # **getMailOrders**
-> List getMailOrders(id)
+> List getMailOrders()
 
 displays a list of mail service orders
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Long**| The ID of your mail order this will be sent through. | [optional] [default to null]
+This endpoint does not need any parameter.
 
 ### Return type
 

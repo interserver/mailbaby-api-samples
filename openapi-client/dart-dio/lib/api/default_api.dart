@@ -29,7 +29,6 @@ class DefaultApi {
   ///
   /// 
   Future<Response<BuiltList<MailOrder>>> getMailOrders({ 
-    int id,
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -42,9 +41,6 @@ class DefaultApi {
       method: 'GET',
       headers: <String, dynamic>{
         ...?headers,
-      },
-      queryParameters: <String, dynamic>{
-        if (id != null) r'id': id,
       },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[

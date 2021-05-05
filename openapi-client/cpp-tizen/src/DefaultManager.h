@@ -31,26 +31,24 @@ public:
 /*! \brief displays a list of mail service orders. *Synchronous*
  *
  * 
- * \param id The ID of your mail order this will be sent through.
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool getMailOrdersSync(char * accessToken,
-	long long id, 
+	
 	void(* handler)(std::list<MailOrder>, Error, void* )
 	, void* userData);
 
 /*! \brief displays a list of mail service orders. *Asynchronous*
  *
  * 
- * \param id The ID of your mail order this will be sent through.
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool getMailOrdersAsync(char * accessToken,
-	long long id, 
+	
 	void(* handler)(std::list<MailOrder>, Error, void* )
 	, void* userData);
 

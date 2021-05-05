@@ -95,7 +95,6 @@ declare -a result_color_table=( "$WHITE" "$WHITE" "$GREEN" "$YELLOW" "$WHITE" "$
 # 0 - optional
 # 1 - required
 declare -A operation_parameters_minimum_occurrences
-operation_parameters_minimum_occurrences["getMailOrders:::id"]=0
 operation_parameters_minimum_occurrences["placeMailOrder:::MailOrder"]=0
 operation_parameters_minimum_occurrences["sendAdvMail:::SendMailAdv"]=1
 operation_parameters_minimum_occurrences["sendMail:::to"]=1
@@ -114,7 +113,6 @@ operation_parameters_minimum_occurrences["viewMailLog:::limit"]=0
 # N - N values
 # 0 - unlimited
 declare -A operation_parameters_maximum_occurrences
-operation_parameters_maximum_occurrences["getMailOrders:::id"]=0
 operation_parameters_maximum_occurrences["placeMailOrder:::MailOrder"]=0
 operation_parameters_maximum_occurrences["sendAdvMail:::SendMailAdv"]=0
 operation_parameters_maximum_occurrences["sendMail:::to"]=0
@@ -130,7 +128,6 @@ operation_parameters_maximum_occurrences["viewMailLog:::limit"]=0
 # The type of collection for specifying multiple values for parameter:
 # - multi, csv, ssv, tsv
 declare -A operation_parameters_collection_type
-operation_parameters_collection_type["getMailOrders:::id"]=""
 operation_parameters_collection_type["placeMailOrder:::MailOrder"]=""
 operation_parameters_collection_type["sendAdvMail:::SendMailAdv"]=""
 operation_parameters_collection_type["sendMail:::to"]=""
@@ -592,9 +589,6 @@ print_getMailOrders_help() {
     echo ""
     echo -e "${BOLD}${WHITE}getMailOrders - displays a list of mail service orders${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}id${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - The ID of your mail order this will be sent through.${YELLOW} Specify as: id=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -748,7 +742,7 @@ call_getMailOrders() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(id  )
+    local query_parameter_names=(  )
     local path
 
     if ! path=$(build_request_path "/mail" path_parameter_names query_parameter_names); then

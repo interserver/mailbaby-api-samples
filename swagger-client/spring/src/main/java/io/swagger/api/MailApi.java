@@ -41,7 +41,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-05T15:33:04.000268-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-05T15:40:56.405237-04:00[America/New_York]")
 @Validated
 public interface MailApi {
 
@@ -54,7 +54,7 @@ public interface MailApi {
     @RequestMapping(value = "/mail",
         produces = { "application/json", "application/xml", "text/plain" }, 
         method = RequestMethod.GET)
-    ResponseEntity<MailOrders> getMailOrders(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through." ,schema=@Schema()) @Valid @RequestParam(value = "id", required = false) Long id);
+    ResponseEntity<MailOrders> getMailOrders();
 
 
     @Operation(summary = "places a mail order", description = "Adds an item to the system", security = {

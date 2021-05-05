@@ -15,9 +15,6 @@ displays a list of mail service orders
 
 No description available.
 
-.PARAMETER Id
-The ID of your mail order this will be sent through.
-
 .PARAMETER ReturnType
 
 Select the return type (optional): application/json, application/xml, text/plain
@@ -33,9 +30,6 @@ MailOrder[]
 function Get-MailOrders {
     [CmdletBinding()]
     Param (
-        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [System.Nullable[Int64]]
-        ${Id},
         [String]
         [ValidateSet("application/json", "application/xml", "text/plain")]
         $ReturnType,
@@ -66,10 +60,6 @@ function Get-MailOrders {
         }
 
         $LocalVarUri = '/mail'
-
-        if ($Id) {
-            $LocalVarQueryParameters['id'] = $Id
-        }
 
         if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
             $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]

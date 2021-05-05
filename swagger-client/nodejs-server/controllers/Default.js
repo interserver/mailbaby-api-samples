@@ -3,8 +3,8 @@
 var utils = require('../utils/writer.js');
 var Default = require('../service/DefaultService');
 
-module.exports.getMailOrders = function getMailOrders (req, res, next, id) {
-  Default.getMailOrders(id)
+module.exports.getMailOrders = function getMailOrders (req, res, next) {
+  Default.getMailOrders()
     .then(function (response) {
       utils.writeJson(res, response);
     })

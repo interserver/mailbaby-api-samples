@@ -64,13 +64,12 @@ public class DefaultApi {
 
     /**
      * Build call for getMailOrders
-     * @param id The ID of your mail order this will be sent through. (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getMailOrdersCall(Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getMailOrdersCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -78,8 +77,6 @@ public class DefaultApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (id != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("id", id));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -114,9 +111,9 @@ public class DefaultApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getMailOrdersValidateBeforeCall(Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getMailOrdersValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        com.squareup.okhttp.Call call = getMailOrdersCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getMailOrdersCall(progressListener, progressRequestListener);
         return call;
 
         
@@ -128,24 +125,22 @@ public class DefaultApi {
     /**
      * displays a list of mail service orders
      * 
-     * @param id The ID of your mail order this will be sent through. (optional)
      * @return MailOrders
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public MailOrders getMailOrders(Long id) throws ApiException {
-        ApiResponse<MailOrders> resp = getMailOrdersWithHttpInfo(id);
+    public MailOrders getMailOrders() throws ApiException {
+        ApiResponse<MailOrders> resp = getMailOrdersWithHttpInfo();
         return resp.getData();
     }
 
     /**
      * displays a list of mail service orders
      * 
-     * @param id The ID of your mail order this will be sent through. (optional)
      * @return ApiResponse&lt;MailOrders&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<MailOrders> getMailOrdersWithHttpInfo(Long id) throws ApiException {
-        com.squareup.okhttp.Call call = getMailOrdersValidateBeforeCall(id, null, null);
+    public ApiResponse<MailOrders> getMailOrdersWithHttpInfo() throws ApiException {
+        com.squareup.okhttp.Call call = getMailOrdersValidateBeforeCall(null, null);
         Type localVarReturnType = new TypeToken<MailOrders>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -153,12 +148,11 @@ public class DefaultApi {
     /**
      * displays a list of mail service orders (asynchronously)
      * 
-     * @param id The ID of your mail order this will be sent through. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getMailOrdersAsync(Long id, final ApiCallback<MailOrders> callback) throws ApiException {
+    public com.squareup.okhttp.Call getMailOrdersAsync(final ApiCallback<MailOrders> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -179,7 +173,7 @@ public class DefaultApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getMailOrdersValidateBeforeCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getMailOrdersValidateBeforeCall(progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<MailOrders>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

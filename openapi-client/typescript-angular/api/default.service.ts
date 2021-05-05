@@ -103,20 +103,13 @@ export class DefaultService {
 
     /**
      * displays a list of mail service orders
-     * @param id The ID of your mail order this will be sent through.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getMailOrders(id?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<Array<MailOrder>>;
-    public getMailOrders(id?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<HttpResponse<Array<MailOrder>>>;
-    public getMailOrders(id?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<HttpEvent<Array<MailOrder>>>;
-    public getMailOrders(id?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<any> {
-
-        let queryParameters = new HttpParams({encoder: this.encoder});
-        if (id !== undefined && id !== null) {
-          queryParameters = this.addToHttpParams(queryParameters,
-            <any>id, 'id');
-        }
+    public getMailOrders(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<Array<MailOrder>>;
+    public getMailOrders(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<HttpResponse<Array<MailOrder>>>;
+    public getMailOrders(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<HttpEvent<Array<MailOrder>>>;
+    public getMailOrders(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/xml' | 'text/plain'}): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -149,7 +142,6 @@ export class DefaultService {
 
         return this.httpClient.get<Array<MailOrder>>(`${this.configuration.basePath}/mail`,
             {
-                params: queryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

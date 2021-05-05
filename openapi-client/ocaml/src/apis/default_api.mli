@@ -5,7 +5,7 @@
  *
  *)
 
-val get_mail_orders : ?id:int64 -> unit -> Mail_order.t list Lwt.t
+val get_mail_orders : unit -> Mail_order.t list Lwt.t
 val ping_server : unit -> unit Lwt.t
 val place_mail_order : mail_order_t:Mail_order.t -> unit -> unit Lwt.t
 val send_adv_mail : send_mail_adv_t:Send_mail_adv.t -> Generic_response.t Lwt.t

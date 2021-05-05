@@ -96,7 +96,7 @@ static bool getMailOrdersProcessor(MemoryStruct_s p_chunk, long code, char* erro
 }
 
 static bool getMailOrdersHelper(char * accessToken,
-	long long id, 
+	
 	void(* handler)(std::list<MailOrder>, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -113,13 +113,6 @@ static bool getMailOrdersHelper(char * accessToken,
 	map <string, string> queryParams;
 	string itemAtq;
 	
-
-	itemAtq = stringify(&id, "long long");
-	queryParams.insert(pair<string, string>("id", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("id");
-	}
-
 	string mBody = "";
 	JsonNode* node;
 	JsonArray* json_array;
@@ -174,22 +167,22 @@ static bool getMailOrdersHelper(char * accessToken,
 
 
 bool DefaultManager::getMailOrdersAsync(char * accessToken,
-	long long id, 
+	
 	void(* handler)(std::list<MailOrder>, Error, void* )
 	, void* userData)
 {
 	return getMailOrdersHelper(accessToken,
-	id, 
+	
 	handler, userData, true);
 }
 
 bool DefaultManager::getMailOrdersSync(char * accessToken,
-	long long id, 
+	
 	void(* handler)(std::list<MailOrder>, Error, void* )
 	, void* userData)
 {
 	return getMailOrdersHelper(accessToken,
-	id, 
+	
 	handler, userData, false);
 }
 

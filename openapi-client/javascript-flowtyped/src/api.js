@@ -329,7 +329,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * @summary displays a list of mail service orders
          * @throws {RequiredError}
          */
-        getMailOrders(id?: number, options: RequestOptions): FetchArgs {
+        getMailOrders(options: RequestOptions): FetchArgs {
             const localVarPath = `/mail`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
@@ -342,10 +342,6 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
 					? configuration.apiKey("X-API-KEY")
 					: configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            if (id !== undefined) {
-                localVarQueryParameter['id'] = ((id:any):string);
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -596,7 +592,7 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
 };
 
 export type DefaultApiType = { 
-    getMailOrders(id?: number, options?: RequestOptions): Promise<Array<MailOrder>>,
+    getMailOrders(options?: RequestOptions): Promise<Array<MailOrder>>,
 
     pingServer(options?: RequestOptions): Promise<Response>,
 
@@ -623,8 +619,8 @@ export const DefaultApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary displays a list of mail service orders
          * @throws {RequiredError}
          */
-        getMailOrders(id?: number, options?: RequestOptions = {}): Promise<Array<MailOrder>> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).getMailOrders(id, options);
+        getMailOrders(options?: RequestOptions = {}): Promise<Array<MailOrder>> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).getMailOrders(options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();

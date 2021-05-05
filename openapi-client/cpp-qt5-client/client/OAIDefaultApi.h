@@ -60,10 +60,8 @@ public:
     QString getParamStyleSuffix(QString style);
     QString getParamStyleDelimiter(QString style, QString name, bool isExplode);
 
-    /**
-    * @param[in]  id qint64 [optional]
-    */
-    void getMailOrders(const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>());
+
+    void getMailOrders();
 
 
     void pingServer();

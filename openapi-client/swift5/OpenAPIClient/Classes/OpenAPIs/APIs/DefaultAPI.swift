@@ -11,12 +11,11 @@ open class DefaultAPI {
     /**
      displays a list of mail service orders
      
-     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getMailOrders(id: Int64? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [MailOrder]?, _ error: Error?) -> Void)) {
-        getMailOrdersWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
+    open class func getMailOrders(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [MailOrder]?, _ error: Error?) -> Void)) {
+        getMailOrdersWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -32,18 +31,14 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - parameter id: (query) The ID of your mail order this will be sent through. (optional)
      - returns: RequestBuilder<[MailOrder]> 
      */
-    open class func getMailOrdersWithRequestBuilder(id: Int64? = nil) -> RequestBuilder<[MailOrder]> {
+    open class func getMailOrdersWithRequestBuilder() -> RequestBuilder<[MailOrder]> {
         let path = "/mail"
         let URLString = OpenAPIClientAPI.basePath + path
         let parameters: [String: Any]? = nil
 
-        var urlComponents = URLComponents(string: URLString)
-        urlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "id": id?.encodeToJSON(),
-        ])
+        let urlComponents = URLComponents(string: URLString)
 
         let nillableHeaders: [String: Any?] = [
             :

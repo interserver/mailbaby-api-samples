@@ -25,12 +25,8 @@ class DefaultApi extends ApiClient with _$DefaultApiClient {
     /// 
     @GetReq(path: "/mail", metadata: {"auth": [ {"type": "apiKey", "name": "apiKeyAuth", "keyName": "X-API-KEY", "where": "header" }]})
     Future<List<MailOrder>> getMailOrders(
-        
-            @QueryParam("id") int id
         ) {
         return super.getMailOrders(
-        
-        id
 
         ).timeout(timeout);
     }

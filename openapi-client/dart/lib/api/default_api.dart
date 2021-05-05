@@ -18,14 +18,7 @@ class DefaultApi {
   /// displays a list of mail service orders
   ///
   /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [int] id:
-  ///   The ID of your mail order this will be sent through.
-  Future<Response> getMailOrdersWithHttpInfo({ int id }) async {
-    // Verify required params are set.
-
+  Future<Response> getMailOrdersWithHttpInfo() async {
     final path = r'/mail';
 
     Object postBody;
@@ -33,10 +26,6 @@ class DefaultApi {
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
-
-    if (id != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'id', id));
-    }
 
     final contentTypes = <String>[];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
@@ -67,13 +56,8 @@ class DefaultApi {
   }
 
   /// displays a list of mail service orders
-  ///
-  /// Parameters:
-  ///
-  /// * [int] id:
-  ///   The ID of your mail order this will be sent through.
-  Future<List<MailOrder>> getMailOrders({ int id }) async {
-    final response = await getMailOrdersWithHttpInfo( id: id );
+  Future<List<MailOrder>> getMailOrders() async {
+    final response = await getMailOrdersWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

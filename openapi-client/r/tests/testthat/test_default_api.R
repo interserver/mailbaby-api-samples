@@ -9,7 +9,6 @@ test_that("GetMailOrders", {
   # tests for GetMailOrders
   # base path: https://api.mailbaby.net
   # displays a list of mail service orders
-  # @param id integer The ID of your mail order this will be sent through. (optional)
   # @return [array[MailOrder]]
 
   # uncomment below to test the operation

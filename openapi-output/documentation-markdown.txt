@@ -71,7 +71,6 @@
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.codegen.DefaultCodegen - escapeUnsafeCharacters should be overridden in the code generator with proper logic to escape unsafe characters
 [main] WARN  o.o.codegen.DefaultCodegen - escapeUnsafeCharacters should be overridden in the code generator with proper logic to escape unsafe characters
-[main] WARN  o.o.codegen.DefaultCodegen - escapeUnsafeCharacters should be overridden in the code generator with proper logic to escape unsafe characters
 [main] WARN  o.o.codegen.DefaultCodegen - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
 [main] WARN  o.o.codegen.DefaultCodegen - escapeUnsafeCharacters should be overridden in the code generator with proper logic to escape unsafe characters
 [main] WARN  o.o.codegen.DefaultCodegen - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote

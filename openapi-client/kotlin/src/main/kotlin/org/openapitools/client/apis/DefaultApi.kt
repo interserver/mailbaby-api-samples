@@ -40,7 +40,6 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * displays a list of mail service orders
     * 
-    * @param id The ID of your mail order this will be sent through. (optional)
     * @return kotlin.collections.List<MailOrder>
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -48,8 +47,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getMailOrders(id: kotlin.Long?) : kotlin.collections.List<MailOrder> {
-        val localVariableConfig = getMailOrdersRequestConfig(id = id)
+    fun getMailOrders() : kotlin.collections.List<MailOrder> {
+        val localVariableConfig = getMailOrdersRequestConfig()
 
         val localVarResponse = request<kotlin.collections.List<MailOrder>>(
             localVariableConfig
@@ -73,17 +72,11 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * To obtain the request config of the operation getMailOrders
     *
-    * @param id The ID of your mail order this will be sent through. (optional)
     * @return RequestConfig
     */
-    fun getMailOrdersRequestConfig(id: kotlin.Long?) : RequestConfig {
+    fun getMailOrdersRequestConfig() : RequestConfig {
         val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (id != null) {
-                    put("id", listOf(id.toString()))
-                }
-            }
+        val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
         val localVariableConfig = RequestConfig(

@@ -12,10 +12,6 @@ private class OASDefaultApiTest {
         res.setStatus('OK');
         Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
 
-        Map<String, Object> params = new Map<String, Object>{
-            'id' => 2147483648L
-        };
-
         OASClient client;
         OASDefaultApi api;
         List<OASMailOrder> response;
@@ -31,7 +27,7 @@ private class OASDefaultApiTest {
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
         expectedResponse = List.getExample();
-        response = (List<OASMailOrder>) api.getMailOrders(params);
+        response = (List<OASMailOrder>) api.getMailOrders();
         System.assertEquals(expectedResponse, response);
 
 
@@ -39,7 +35,7 @@ private class OASDefaultApiTest {
         res.setHeader('Content-Type', 'application/xml');
         res.setBody(js);
         expectedResponse = List.getExample();
-        response = (List<OASMailOrder>) api.getMailOrders(params);
+        response = (List<OASMailOrder>) api.getMailOrders();
         System.assertEquals(expectedResponse, response);
     }
 

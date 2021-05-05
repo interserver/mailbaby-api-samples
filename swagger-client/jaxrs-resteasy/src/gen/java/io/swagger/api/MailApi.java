@@ -39,7 +39,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T15:32:58.166139-04:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T15:40:50.929263-04:00[America/New_York]")public class MailApi  {
 
     @Inject MailApiService service;
 
@@ -54,9 +54,9 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailOrders.class))),
         
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response getMailOrders(  @QueryParam("id") Long id,@Context SecurityContext securityContext)
+    public Response getMailOrders(@Context SecurityContext securityContext)
     throws NotFoundException {
-        return service.getMailOrders(id,securityContext);
+        return service.getMailOrders(securityContext);
     }
     @POST
     @Path("/order")

@@ -46,13 +46,9 @@ OASDefaultApi api = new OASDefaultApi();
 OASClient client = api.getClient();
 
 
-Map<String, Object> params = new Map<String, Object>{
-    'id' => 2147483648L
-};
-
 try {
     // cross your fingers
-    List<OASMailOrder> result = api.getMailOrders(params);
+    List<OASMailOrder> result = api.getMailOrders();
     System.debug(result);
 } catch (OAS.ApiException e) {
     // ...handle your exceptions

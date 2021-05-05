@@ -32,10 +32,6 @@ import {
     SendMailAdvToJSON,
 } from '../models';
 
-export interface GetMailOrdersRequest {
-    id?: number;
-}
-
 export interface PlaceMailOrderRequest {
     mailOrder?: MailOrder;
 }
@@ -66,12 +62,8 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * displays a list of mail service orders
      */
-    async getMailOrdersRaw(requestParameters: GetMailOrdersRequest): Promise<runtime.ApiResponse<Array<MailOrder>>> {
+    async getMailOrdersRaw(): Promise<runtime.ApiResponse<Array<MailOrder>>> {
         const queryParameters: any = {};
-
-        if (requestParameters.id !== undefined) {
-            queryParameters['id'] = requestParameters.id;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -92,8 +84,8 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * displays a list of mail service orders
      */
-    async getMailOrders(requestParameters: GetMailOrdersRequest): Promise<Array<MailOrder>> {
-        const response = await this.getMailOrdersRaw(requestParameters);
+    async getMailOrders(): Promise<Array<MailOrder>> {
+        const response = await this.getMailOrdersRaw();
         return await response.value();
     }
 

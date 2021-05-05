@@ -43,24 +43,18 @@ export class DefaultService {
     /**
      * displays a list of mail service orders
      * 
-     * @param id The ID of your mail order this will be sent through.
      
      */
-    public getMailOrders(id?: number, observe?: 'body', headers?: Headers): Observable<Array<MailOrder>>;
-    public getMailOrders(id?: number, observe?: 'response', headers?: Headers): Observable<HttpResponse<Array<MailOrder>>>;
-    public getMailOrders(id?: number, observe: any = 'body', headers: Headers = {}): Observable<any> {
-        let queryParameters: string[] = [];
-        if (id !== undefined) {
-            queryParameters.push('id='+encodeURIComponent(String(id)));
-        }
-
+    public getMailOrders(observe?: 'body', headers?: Headers): Observable<Array<MailOrder>>;
+    public getMailOrders(observe?: 'response', headers?: Headers): Observable<HttpResponse<Array<MailOrder>>>;
+    public getMailOrders(observe: any = 'body', headers: Headers = {}): Observable<any> {
         // authentication (apiKeyAuth) required
         if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-KEY']) {
             headers['X-API-KEY'] = this.APIConfiguration.apiKeys['X-API-KEY'];
         }
         headers['Accept'] = 'application/json, application/xml, text/plain';
 
-        const response: Observable<HttpResponse<Array<MailOrder>>> = this.httpClient.get(`${this.basePath}/mail?${queryParameters.join('&')}`, headers);
+        const response: Observable<HttpResponse<Array<MailOrder>>> = this.httpClient.get(`${this.basePath}/mail`, headers);
         if (observe === 'body') {
                return response.pipe(
                    map((httpResponse: HttpResponse) => <Array<MailOrder>>(httpResponse.response))

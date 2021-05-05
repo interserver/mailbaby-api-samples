@@ -42,10 +42,9 @@ import 'package:openapi/api.dart';
 
 
 final api = DefaultApi();
-final id = 789; // int | The ID of your mail order this will be sent through.
 
 try {
-    final response = await api.getMailOrders(id);
+    final response = await api.getMailOrders();
     print(response);
 } catch (e) {
     print("Exception when calling DefaultApi->getMailOrders: $e\n");

@@ -31,7 +31,7 @@ API.Client.DefaultApi = function($http, $httpParamSerializer, $injector) {
   /** @private {!string} */
   this.basePath_ = $injector.has('DefaultApiBasePath') ?
                    /** @type {!string} */ ($injector.get('DefaultApiBasePath')) :
-                   'http://mystage.interserver.net:8787';
+                   'https://api.mailbaby.net';
 
   /** @private {!Object<string, string>} */
   this.defaultHeaders_ = $injector.has('DefaultApiDefaultHeaders') ?

@@ -106,12 +106,12 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "http://mystage.interserver.net:8787",
-				Description: "Temporary API Endpoint",
-			},
-			{
 				URL: "https://api.mailbaby.net",
 				Description: "Live API Endpoint",
+			},
+			{
+				URL: "http://mystage.interserver.net:8787",
+				Description: "Temporary API Endpoint",
 			},
 			{
 				URL: "https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0",

@@ -32,7 +32,7 @@ import { COLLECTION_FORMATS }  from '../variables';
 
 @injectable()
 export class DefaultService {
-    private basePath: string = 'http://mystage.interserver.net:8787';
+    private basePath: string = 'https://api.mailbaby.net';
 
     constructor(@inject('IApiHttpClient') private httpClient: IHttpClient,
         @inject('IAPIConfiguration') private APIConfiguration: IAPIConfiguration ) {

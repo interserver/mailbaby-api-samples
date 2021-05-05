@@ -33,7 +33,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
-            System.getProperties().getProperty("org.openapitools.client.baseUrl", "http://mystage.interserver.net:8787")
+            System.getProperties().getProperty("org.openapitools.client.baseUrl", "https://api.mailbaby.net")
         }
     }
 

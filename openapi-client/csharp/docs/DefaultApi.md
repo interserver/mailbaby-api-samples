@@ -1,6 +1,6 @@
 # Org.OpenAPITools.Api.DefaultApi
 
-All URIs are relative to *http://mystage.interserver.net:8787*
+All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -35,7 +35,7 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "http://mystage.interserver.net:8787";
+            Configuration.Default.BasePath = "https://api.mailbaby.net";
             // Configure API key authorization: apiKeyAuth
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -115,7 +115,7 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "http://mystage.interserver.net:8787";
+            Configuration.Default.BasePath = "https://api.mailbaby.net";
             var apiInstance = new DefaultApi(Configuration.Default);
 
             try
@@ -187,7 +187,7 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "http://mystage.interserver.net:8787";
+            Configuration.Default.BasePath = "https://api.mailbaby.net";
             // Configure API key authorization: apiKeyAuth
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -270,7 +270,7 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "http://mystage.interserver.net:8787";
+            Configuration.Default.BasePath = "https://api.mailbaby.net";
             // Configure API key authorization: apiKeyAuth
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -354,7 +354,7 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "http://mystage.interserver.net:8787";
+            Configuration.Default.BasePath = "https://api.mailbaby.net";
             // Configure API key authorization: apiKeyAuth
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -442,7 +442,7 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "http://mystage.interserver.net:8787";
+            Configuration.Default.BasePath = "https://api.mailbaby.net";
             // Configure API key authorization: apiKeyAuth
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -519,7 +519,7 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "http://mystage.interserver.net:8787";
+            Configuration.Default.BasePath = "https://api.mailbaby.net";
             // Configure API key authorization: apiKeyAuth
             Configuration.Default.AddApiKey("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed

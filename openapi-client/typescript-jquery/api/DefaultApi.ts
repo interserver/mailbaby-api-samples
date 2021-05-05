@@ -20,7 +20,7 @@ import { Configuration } from '../configuration';
 
 
 export class DefaultApi {
-    protected basePath = 'http://mystage.interserver.net:8787';
+    protected basePath = 'https://api.mailbaby.net';
     public defaultHeaders: Array<string> = [];
     public defaultExtraJQueryAjaxSettings?: JQueryAjaxSettings = undefined;
     public configuration: Configuration = new Configuration();

@@ -13,7 +13,7 @@
  */
 
 
-export const BASE_PATH = "http://mystage.interserver.net:8787".replace(/\/+$/, "");
+export const BASE_PATH = "https://api.mailbaby.net".replace(/\/+$/, "");
 
 const isBlob = (value: any) => typeof Blob !== 'undefined' && value instanceof Blob;
 

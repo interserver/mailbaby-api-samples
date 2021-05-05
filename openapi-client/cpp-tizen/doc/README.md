@@ -36,7 +36,7 @@ Doxygen is the de facto standard tool for generating/extracting documentation fr
 Check out [Doxygen](https://www.doxygen.org/) for additional information about the Doxygen project.
 
 ## I Don't want to run Doxygen. What are the API files for accessing the REST endpoints?
-All URIs are relative to http://mystage.interserver.nethttp://mystage.interserver.net:8787
+All URIs are relative to https://api.mailbaby.nethttps://api.mailbaby.net
 
 
 ### DefaultManager

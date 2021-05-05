@@ -128,8 +128,8 @@ module
     #property params_encoding : String?
 
     def initialize
-      @scheme = "http"
-      @host = "mystage.interserver.net:8787"
+      @scheme = "https"
+      @host = "api.mailbaby.net"
       @base_path = ""
       @server_index = 0
       @server_operation_index = {} of Symbol => String
@@ -218,12 +218,12 @@ module
     def server_settings
       [
         {
-          url: "http://mystage.interserver.net:8787",
-          description: "Temporary API Endpoint",
-        },
-        {
           url: "https://api.mailbaby.net",
           description: "Live API Endpoint",
+        },
+        {
+          url: "http://mystage.interserver.net:8787",
+          description: "Temporary API Endpoint",
         },
         {
           url: "https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0",

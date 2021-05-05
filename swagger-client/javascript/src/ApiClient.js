@@ -31,9 +31,9 @@ export default class ApiClient {
         /**
          * The base URL against which to resolve every API call's (relative) path.
          * @type {String}
-         * @default http://mystage.interserver.net:8787
+         * @default https://api.mailbaby.net
          */
-        this.basePath = 'http://mystage.interserver.net:8787'.replace(/\/+$/, '');
+        this.basePath = 'https://api.mailbaby.net'.replace(/\/+$/, '');
 
         /**
          * The authentication methods to be included for all API calls.

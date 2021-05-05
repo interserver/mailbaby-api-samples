@@ -38,7 +38,7 @@ local function new_default_api(authority, basePath, schemes)
 	return setmetatable({
 		host = host;
 		port = port;
-		basePath = basePath or "http://mystage.interserver.net:8787";
+		basePath = basePath or "https://api.mailbaby.net";
 		schemes = schemes_map;
 		default_scheme = default_scheme;
 		http_username = nil;

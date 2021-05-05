@@ -22,7 +22,7 @@
 ApiClient  <- R6::R6Class(
   'ApiClient',
   public = list(
-    basePath = "http://mystage.interserver.net:8787",
+    basePath = "https://api.mailbaby.net",
     configuration = NULL,
     userAgent = NULL,
     defaultHeaders = NULL,

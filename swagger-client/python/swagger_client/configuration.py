@@ -46,7 +46,7 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
     def __init__(self):
         """Constructor"""
         # Default Base url
-        self.host = "http://mystage.interserver.net:8787"
+        self.host = "https://api.mailbaby.net"
         # Temp file folder for downloading files
         self.temp_folder_path = None
 

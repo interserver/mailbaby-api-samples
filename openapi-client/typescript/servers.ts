@@ -48,8 +48,8 @@ export class ServerConfiguration<T extends { [key: string]: string }> implements
     }
 }
 
-export const server1 = new ServerConfiguration<{  }>("http://mystage.interserver.net:8787", {  })
-export const server2 = new ServerConfiguration<{  }>("https://api.mailbaby.net", {  })
+export const server1 = new ServerConfiguration<{  }>("https://api.mailbaby.net", {  })
+export const server2 = new ServerConfiguration<{  }>("http://mystage.interserver.net:8787", {  })
 export const server3 = new ServerConfiguration<{  }>("https://virtserver.swaggerhub.com/InterServer/MailBaby/1.0.0", {  })
 
 export const servers = [server1, server2, server3];

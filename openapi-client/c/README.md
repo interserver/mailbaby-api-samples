@@ -61,7 +61,7 @@ Note: You don't need to specify includes for models and include folder seperatel
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://mystage.interserver.net:8787*
+All URIs are relative to *https://api.mailbaby.net*
 
 Category | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

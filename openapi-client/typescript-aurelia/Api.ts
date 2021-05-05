@@ -13,7 +13,7 @@
 import { HttpClient } from 'aurelia-http-client';
 import { AuthStorage } from './AuthStorage';
 
-const BASE_PATH = 'http://mystage.interserver.net:8787'.replace(/\/+$/, '');
+const BASE_PATH = 'https://api.mailbaby.net'.replace(/\/+$/, '');
 
 export class Api {
   basePath: string;

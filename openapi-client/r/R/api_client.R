@@ -39,7 +39,7 @@ ApiClient  <- R6::R6Class(
   'ApiClient',
   public = list(
     # base path of all requests
-    basePath = "http://mystage.interserver.net:8787",
+    basePath = "https://api.mailbaby.net",
     # user agent in the HTTP request
     userAgent = "OpenAPI-Generator/1.0.0/r",
     # default headers in the HTTP request

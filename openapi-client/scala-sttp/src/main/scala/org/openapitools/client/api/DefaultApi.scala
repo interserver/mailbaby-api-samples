@@ -22,7 +22,7 @@ import sttp.model.Method
 
 object DefaultApi {
 
-def apply(baseUrl: String = "http://mystage.interserver.net:8787") = new DefaultApi(baseUrl)
+def apply(baseUrl: String = "https://api.mailbaby.net") = new DefaultApi(baseUrl)
 }
 
 class DefaultApi(baseUrl: String) {

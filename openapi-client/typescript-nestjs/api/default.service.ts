@@ -25,7 +25,7 @@ import { Configuration } from '../configuration';
 @Injectable()
 export class DefaultService {
 
-    protected basePath = 'http://mystage.interserver.net:8787';
+    protected basePath = 'https://api.mailbaby.net';
     public defaultHeaders = new Map()
     public configuration = new Configuration();
 

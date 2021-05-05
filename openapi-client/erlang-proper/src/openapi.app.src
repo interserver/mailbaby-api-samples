@@ -10,7 +10,7 @@
       ]
     }
   , { env
-    , [ {host, "http://mystage.interserver.net"}
+    , [ {host, "http://api.mailbaby.net"}
       , {basic_auth, {"admin", "admin"}}
       ]
     }

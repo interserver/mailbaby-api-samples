@@ -61,7 +61,7 @@ try {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://mystage.interserver.net:8787*
+All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

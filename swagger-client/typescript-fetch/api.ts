@@ -16,7 +16,7 @@ import * as url from "url";
 import * as isomorphicFetch from "isomorphic-fetch";
 import { Configuration } from "./configuration";
 
-const BASE_PATH = "http://mystage.interserver.net:8787".replace(/\/+$/, "");
+const BASE_PATH = "https://api.mailbaby.net".replace(/\/+$/, "");
 
 /**
  *

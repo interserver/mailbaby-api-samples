@@ -8,7 +8,7 @@ import org.openapitools.model.MailOrder
 import org.openapitools.model.SendMailAdv
 
 class DefaultApi {
-    String basePath = "http://mystage.interserver.net:8787"
+    String basePath = "https://api.mailbaby.net"
     String versionPath = ""
     ApiUtils apiUtils = new ApiUtils();
 

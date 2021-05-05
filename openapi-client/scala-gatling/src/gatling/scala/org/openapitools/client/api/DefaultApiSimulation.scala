@@ -42,7 +42,7 @@ class DefaultApiSimulation extends Simulation {
 
 // Setup http protocol configuration
     val httpConf = http
-        .baseURL("http://mystage.interserver.net:8787")
+        .baseURL("https://api.mailbaby.net")
         .doNotTrackHeader("1")
         .acceptLanguageHeader("en-US,en;q=0.5")
         .acceptEncodingHeader("gzip, deflate")

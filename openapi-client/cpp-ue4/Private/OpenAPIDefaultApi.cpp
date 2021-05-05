@@ -22,7 +22,7 @@ namespace OpenAPI
 {
 
 OpenAPIDefaultApi::OpenAPIDefaultApi() 
-: Url(TEXT("http://mystage.interserver.net:8787"))
+: Url(TEXT("https://api.mailbaby.net"))
 {
 }
 

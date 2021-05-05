@@ -24,7 +24,7 @@ import io.swagger.client.models.SendMailAdvFrom
 
 import io.swagger.client.infrastructure.*
 
-class DefaultApi(basePath: kotlin.String = "http://mystage.interserver.net:8787") : ApiClient(basePath) {
+class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClient(basePath) {
 
     /**
      * displays a list of mail service orders

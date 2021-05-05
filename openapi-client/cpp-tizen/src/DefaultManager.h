@@ -228,7 +228,7 @@ bool viewMailLogAsync(char * accessToken,
 
 	static std::string getBasePath()
 	{
-		return "http://mystage.interserver.net:8787";
+		return "https://api.mailbaby.net";
 	}
 };
 /** @}*/

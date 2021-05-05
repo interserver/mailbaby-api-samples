@@ -1,6 +1,6 @@
 # DEFAULT_API
 
-All URIs are relative to *http://mystage.interserver.net:8787*
+All URIs are relative to *https://api.mailbaby.net*
 
 Feature | HTTP request | Description
 ------------- | ------------- | -------------

@@ -84,7 +84,7 @@ String. The OAuth access token.
 
 String. The base URL of the API
 
-default: http://mystage.interserver.net:8787
+default: https://api.mailbaby.net
 
 =back
 
@@ -110,7 +110,7 @@ sub new {
     $p{access_token} //= '';
 
     # base_url
-    $p{base_url} //= 'http://mystage.interserver.net:8787';
+    $p{base_url} //= 'https://api.mailbaby.net';
 
     return bless \%p => $self;
 }

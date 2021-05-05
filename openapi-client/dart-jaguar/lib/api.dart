@@ -43,7 +43,7 @@ final _defaultInterceptors = [OAuthInterceptor(), BasicAuthInterceptor(), ApiKey
 
 class Openapi {
     List<Interceptor> interceptors;
-    String basePath = "http://mystage.interserver.net:8787";
+    String basePath = "https://api.mailbaby.net";
     Route _baseRoute;
     final Duration timeout;
 

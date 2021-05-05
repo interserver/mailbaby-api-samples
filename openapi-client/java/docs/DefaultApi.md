@@ -1,6 +1,6 @@
 # DefaultApi
 
-All URIs are relative to *http://mystage.interserver.net:8787*
+All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -32,7 +32,7 @@ import org.openapitools.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://mystage.interserver.net:8787");
+    defaultClient.setBasePath("https://api.mailbaby.net");
     
     // Configure API key authorization: apiKeyAuth
     ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
@@ -99,7 +99,7 @@ import org.openapitools.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://mystage.interserver.net:8787");
+    defaultClient.setBasePath("https://api.mailbaby.net");
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     try {
@@ -158,7 +158,7 @@ import org.openapitools.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://mystage.interserver.net:8787");
+    defaultClient.setBasePath("https://api.mailbaby.net");
     
     // Configure API key authorization: apiKeyAuth
     ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
@@ -229,7 +229,7 @@ import org.openapitools.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://mystage.interserver.net:8787");
+    defaultClient.setBasePath("https://api.mailbaby.net");
     
     // Configure API key authorization: apiKeyAuth
     ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
@@ -301,7 +301,7 @@ import org.openapitools.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://mystage.interserver.net:8787");
+    defaultClient.setBasePath("https://api.mailbaby.net");
     
     // Configure API key authorization: apiKeyAuth
     ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
@@ -377,7 +377,7 @@ import org.openapitools.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://mystage.interserver.net:8787");
+    defaultClient.setBasePath("https://api.mailbaby.net");
     
     // Configure API key authorization: apiKeyAuth
     ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
@@ -442,7 +442,7 @@ import org.openapitools.client.api.DefaultApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://mystage.interserver.net:8787");
+    defaultClient.setBasePath("https://api.mailbaby.net");
     
     // Configure API key authorization: apiKeyAuth
     ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");

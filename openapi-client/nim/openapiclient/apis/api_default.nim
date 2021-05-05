@@ -24,7 +24,7 @@ import ../models/model_mail_log
 import ../models/model_mail_order
 import ../models/model_send_mail_adv
 
-const basepath = "http://mystage.interserver.net:8787"
+const basepath = "https://api.mailbaby.net"
 
 template constructResult[T](response: Response): untyped =
   if response.code in {Http200, Http201, Http202, Http204, Http206}:

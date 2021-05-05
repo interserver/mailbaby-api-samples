@@ -24,7 +24,7 @@ final _defaultInterceptors = [
 
 class Openapi {
 
-    static const String basePath = r'http://mystage.interserver.net:8787';
+    static const String basePath = r'https://api.mailbaby.net';
 
     final Dio dio;
 

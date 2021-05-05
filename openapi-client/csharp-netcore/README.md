@@ -73,7 +73,7 @@ namespace Example
         {
 
             Configuration config = new Configuration();
-            config.BasePath = "http://mystage.interserver.net:8787";
+            config.BasePath = "https://api.mailbaby.net";
             // Configure API key authorization: apiKeyAuth
             config.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -103,7 +103,7 @@ namespace Example
 <a name="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://mystage.interserver.net:8787*
+All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

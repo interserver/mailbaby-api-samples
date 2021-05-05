@@ -7,7 +7,7 @@ api.instance <- DefaultApi$new()
 
 test_that("GetMailOrders", {
   # tests for GetMailOrders
-  # base path: http://mystage.interserver.net:8787
+  # base path: https://api.mailbaby.net
   # displays a list of mail service orders
   # @param id integer The ID of your mail order this will be sent through. (optional)
   # @return [array[MailOrder]]
@@ -18,7 +18,7 @@ test_that("GetMailOrders", {
 
 test_that("PingServer", {
   # tests for PingServer
-  # base path: http://mystage.interserver.net:8787
+  # base path: https://api.mailbaby.net
   # Checks if the server is running
   # @return [Void]
 
@@ -28,7 +28,7 @@ test_that("PingServer", {
 
 test_that("PlaceMailOrder", {
   # tests for PlaceMailOrder
-  # base path: http://mystage.interserver.net:8787
+  # base path: https://api.mailbaby.net
   # places a mail order
   # Adds an item to the system
   # @param mail.order MailOrder Inventory item to add (optional)
@@ -40,7 +40,7 @@ test_that("PlaceMailOrder", {
 
 test_that("SendAdvMail", {
   # tests for SendAdvMail
-  # base path: http://mystage.interserver.net:8787
+  # base path: https://api.mailbaby.net
   # Sends an Email with Advanced Options
   # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
   # @param send.mail.adv SendMailAdv 
@@ -52,7 +52,7 @@ test_that("SendAdvMail", {
 
 test_that("SendMail", {
   # tests for SendMail
-  # base path: http://mystage.interserver.net:8787
+  # base path: https://api.mailbaby.net
   # Sends an Email
   # Sends An email through one of your mail orders.
   # @param to character The Contact whom is the primary recipient of this email.
@@ -67,7 +67,7 @@ test_that("SendMail", {
 
 test_that("ValidateMailOrder", {
   # tests for ValidateMailOrder
-  # base path: http://mystage.interserver.net:8787
+  # base path: https://api.mailbaby.net
   # validatess order details before placing an order
   # @return [Void]
 
@@ -77,7 +77,7 @@ test_that("ValidateMailOrder", {
 
 test_that("ViewMailLog", {
   # tests for ViewMailLog
-  # base path: http://mystage.interserver.net:8787
+  # base path: https://api.mailbaby.net
   # displays the mail log
   # By passing in the appropriate options, you can search for available inventory in the system 
   # @param id integer The ID of your mail order this will be sent through. (optional)

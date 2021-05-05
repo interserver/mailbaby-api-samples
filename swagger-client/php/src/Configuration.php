@@ -80,7 +80,7 @@ class Configuration
      *
      * @var string
      */
-    protected $host = 'http://mystage.interserver.net:8787';
+    protected $host = 'https://api.mailbaby.net';
 
     /**
      * User agent of the HTTP request, set to "PHP-Swagger" by default

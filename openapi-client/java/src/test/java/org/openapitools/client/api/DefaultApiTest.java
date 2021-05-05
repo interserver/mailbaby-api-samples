@@ -18,7 +18,6 @@ import org.openapitools.client.model.ErrorResponse;
 import org.openapitools.client.model.GenericResponse;
 import org.openapitools.client.model.MailLog;
 import org.openapitools.client.model.MailOrder;
-import org.openapitools.client.model.SendMail;
 import org.openapitools.client.model.SendMailAdv;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -110,8 +109,11 @@ public class DefaultApiTest {
      */
     @Test
     public void sendMailTest() throws ApiException {
-        SendMail sendMail = null;
-        GenericResponse response = api.sendMail(sendMail);
+        String to = null;
+        String from = null;
+        String subject = null;
+        String body = null;
+        GenericResponse response = api.sendMail(to, from, subject, body);
 
         // TODO: test validations
     }

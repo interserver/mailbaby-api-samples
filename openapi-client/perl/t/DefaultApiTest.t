@@ -60,8 +60,11 @@ isa_ok($api, 'OpenAPIClient::DefaultApi');
 # send_mail test
 #
 # uncomment below and update the test
-#my $send_mail_send_mail = undef; # replace NULL with a proper value
-#my $send_mail_result = $api->send_mail(send_mail => $send_mail_send_mail);
+#my $send_mail_to = undef; # replace NULL with a proper value
+#my $send_mail_from = undef; # replace NULL with a proper value
+#my $send_mail_subject = undef; # replace NULL with a proper value
+#my $send_mail_body = undef; # replace NULL with a proper value
+#my $send_mail_result = $api->send_mail(to => $send_mail_to, from => $send_mail_from, subject => $send_mail_subject, body => $send_mail_body);
 
 #
 # validate_mail_order test

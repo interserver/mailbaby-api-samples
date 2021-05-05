@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 
 ## sendMail
 
-> GenericResponse sendMail(sendMail)
+> GenericResponse sendMail(to, from, subject, body)
 
 Sends an Email
 
@@ -228,8 +228,11 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyApi.DefaultApi();
-let sendMail = new MailBabyApi.SendMail(); // SendMail | 
-apiInstance.sendMail(sendMail, (error, data, response) => {
+let to = "to_example"; // String | The Contact whom is the primary recipient of this email.
+let from = "from_example"; // String | The contact whom is the this email is from.
+let subject = "subject_example"; // String | The subject or title of the email
+let body = "body_example"; // String | The main email contents.
+apiInstance.sendMail(to, from, subject, body, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -243,7 +246,10 @@ apiInstance.sendMail(sendMail, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sendMail** | [**SendMail**](SendMail.md)|  | 
+ **to** | **String**| The Contact whom is the primary recipient of this email. | 
+ **from** | **String**| The contact whom is the this email is from. | 
+ **subject** | **String**| The subject or title of the email | 
+ **body** | **String**| The main email contents. | 
 
 ### Return type
 
@@ -255,7 +261,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/x-www-form-urlencoded, application/json
 - **Accept**: application/json
 
 

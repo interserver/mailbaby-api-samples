@@ -19,7 +19,6 @@ import { ErrorResponse } from '../model/errorResponse';
 import { GenericResponse } from '../model/genericResponse';
 import { MailLog } from '../model/mailLog';
 import { MailOrder } from '../model/mailOrder';
-import { SendMail } from '../model/sendMail';
 import { SendMailAdv } from '../model/sendMailAdv';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
@@ -359,9 +358,12 @@ export class DefaultApi {
     /**
      * Sends An email through one of your mail orders.
      * @summary Sends an Email
-     * @param sendMail 
+     * @param to The Contact whom is the primary recipient of this email.
+     * @param from The contact whom is the this email is from.
+     * @param subject The subject or title of the email
+     * @param body The main email contents.
      */
-    public async sendMail (sendMail: SendMail, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
+    public async sendMail (to: string, from: string, subject: string, body: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
         const localVarPath = this.basePath + '/mail/send';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -374,14 +376,45 @@ export class DefaultApi {
         }
         let localVarFormParams: any = {};
 
-        // verify required parameter 'sendMail' is not null or undefined
-        if (sendMail === null || sendMail === undefined) {
-            throw new Error('Required parameter sendMail was null or undefined when calling sendMail.');
+        // verify required parameter 'to' is not null or undefined
+        if (to === null || to === undefined) {
+            throw new Error('Required parameter to was null or undefined when calling sendMail.');
+        }
+
+        // verify required parameter 'from' is not null or undefined
+        if (from === null || from === undefined) {
+            throw new Error('Required parameter from was null or undefined when calling sendMail.');
+        }
+
+        // verify required parameter 'subject' is not null or undefined
+        if (subject === null || subject === undefined) {
+            throw new Error('Required parameter subject was null or undefined when calling sendMail.');
+        }
+
+        // verify required parameter 'body' is not null or undefined
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling sendMail.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
         let localVarUseFormData = false;
+
+        if (to !== undefined) {
+            localVarFormParams['to'] = ObjectSerializer.serialize(to, "string");
+        }
+
+        if (from !== undefined) {
+            localVarFormParams['from'] = ObjectSerializer.serialize(from, "string");
+        }
+
+        if (subject !== undefined) {
+            localVarFormParams['subject'] = ObjectSerializer.serialize(subject, "string");
+        }
+
+        if (body !== undefined) {
+            localVarFormParams['body'] = ObjectSerializer.serialize(body, "string");
+        }
 
         let localVarRequestOptions: localVarRequest.Options = {
             method: 'POST',
@@ -390,7 +423,6 @@ export class DefaultApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(sendMail, "SendMail")
         };
 
         let authenticationPromise = Promise.resolve();

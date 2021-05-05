@@ -55,7 +55,10 @@ test_that("SendMail", {
   # base path: https://api.mailbaby.net
   # Sends an Email
   # Sends An email through one of your mail orders.
-  # @param send.mail SendMail 
+  # @param to character The Contact whom is the primary recipient of this email.
+  # @param from character The contact whom is the this email is from.
+  # @param subject character The subject or title of the email
+  # @param body character The main email contents.
   # @return [GenericResponse]
 
   # uncomment below to test the operation

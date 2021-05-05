@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
  * GenericResponse
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T08:03:58.309379-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-05T08:15:45.455431-04:00[America/New_York]")
 public class GenericResponse   {
   @JsonProperty("status")
   private String status = null;

@@ -309,9 +309,12 @@ export class DefaultApi {
     /**
      * Sends An email through one of your mail orders.
      * @summary Sends an Email
-     * @param sendMail 
+     * @param to The Contact whom is the primary recipient of this email.
+     * @param from The contact whom is the this email is from.
+     * @param subject The subject or title of the email
+     * @param body The main email contents.
      */
-    public sendMail(sendMail: models.SendMail, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public sendMail(to: string, from: string, subject: string, body: string, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: models.GenericResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
@@ -319,17 +322,47 @@ export class DefaultApi {
 
         let queryParameters: any = {};
         let headerParams: any = {};
-        // verify required parameter 'sendMail' is not null or undefined
-        if (sendMail === null || sendMail === undefined) {
-            throw new Error('Required parameter sendMail was null or undefined when calling sendMail.');
+        let formParams = new FormData();
+        let reqHasFile = false;
+
+        // verify required parameter 'to' is not null or undefined
+        if (to === null || to === undefined) {
+            throw new Error('Required parameter to was null or undefined when calling sendMail.');
+        }
+
+        // verify required parameter 'from' is not null or undefined
+        if (from === null || from === undefined) {
+            throw new Error('Required parameter from was null or undefined when calling sendMail.');
+        }
+
+        // verify required parameter 'subject' is not null or undefined
+        if (subject === null || subject === undefined) {
+            throw new Error('Required parameter subject was null or undefined when calling sendMail.');
+        }
+
+        // verify required parameter 'body' is not null or undefined
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling sendMail.');
         }
 
 
         localVarPath = localVarPath + "?" + $.param(queryParameters);
+        if (to !== null && to !== undefined) {
+            formParams.append('to', <any>to);
+        }
+        if (from !== null && from !== undefined) {
+            formParams.append('from', <any>from);
+        }
+        if (subject !== null && subject !== undefined) {
+            formParams.append('subject', <any>subject);
+        }
+        if (body !== null && body !== undefined) {
+            formParams.append('body', <any>body);
+        }
         // to determine the Content-Type header
         let consumes: string[] = [
-            'application/json', 
-            'application/x-www-form-urlencoded'
+            'application/x-www-form-urlencoded', 
+            'application/json'
         ];
 
         // to determine the Accept header
@@ -342,8 +375,10 @@ export class DefaultApi {
             headerParams['X-API-KEY'] = this.configuration.apiKey;
         }
 
+        if (!reqHasFile) {
+            headerParams['Content-Type'] = 'application/x-www-form-urlencoded';
+        }
 
-        headerParams['Content-Type'] = 'application/json';
 
         let requestOptions: JQueryAjaxSettings = {
             url: localVarPath,
@@ -352,9 +387,12 @@ export class DefaultApi {
             processData: false
         };
 
-        requestOptions.data = JSON.stringify(sendMail);
         if (headerParams['Content-Type']) {
             requestOptions.contentType = headerParams['Content-Type'];
+        }
+        requestOptions.data = formParams;
+        if (reqHasFile) {
+            requestOptions.contentType = false;
         }
 
         if (extraJQueryAjaxSettings) {

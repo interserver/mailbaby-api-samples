@@ -129,7 +129,7 @@ Name | Type | Description  | Required | Notes
 
 ## send_mail
 
-> crate::models::GenericResponse send_mail(send_mail)
+> crate::models::GenericResponse send_mail(to, from, subject, body)
 Sends an Email
 
 Sends An email through one of your mail orders.
@@ -139,7 +139,10 @@ Sends An email through one of your mail orders.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**send_mail** | [**SendMail**](SendMail.md) |  | [required] |
+**to** | **String** | The Contact whom is the primary recipient of this email. | [required] |
+**from** | **String** | The contact whom is the this email is from. | [required] |
+**subject** | **String** | The subject or title of the email | [required] |
+**body** | **String** | The main email contents. | [required] |
 
 ### Return type
 
@@ -151,7 +154,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/x-www-form-urlencoded, application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

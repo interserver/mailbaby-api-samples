@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T08:03:55.468297-04:00[America/New_York]")public class SendMailAdv   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T08:15:42.581130-04:00[America/New_York]")public class SendMailAdv   {
   private String subject = null;  private String body = null;  private List<SendMailAdvFrom> from = new ArrayList<SendMailAdvFrom>();  private List<MailContact> to = new ArrayList<MailContact>();  private Long id = null;  private List<MailContact> replyto = new ArrayList<MailContact>();  private List<MailContact> cc = new ArrayList<MailContact>();  private List<MailContact> bcc = new ArrayList<MailContact>();  private List<MailAttachment> attachments = new ArrayList<MailAttachment>();
 
   /**

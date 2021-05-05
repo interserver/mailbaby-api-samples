@@ -2,7 +2,7 @@
 
 Mail Baby API
 - API version: 1.0.0
-  - Build date: 2021-05-05T08:03:29.685055-04:00[America/New_York]
+  - Build date: 2021-05-05T08:15:16.565148-04:00[America/New_York]
 
 This is an API defintion for accesssing the Mail.Baby mail service.
 
@@ -211,13 +211,13 @@ public class DefaultApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
-        SendMail body = new SendMail(); // SendMail | 
         String to = "to_example"; // String | 
         String from = "from_example"; // String | 
         String subject = "subject_example"; // String | 
         String body = "body_example"; // String | 
+        SendMail body = new SendMail(); // SendMail | 
         try {
-            GenericResponse result = apiInstance.sendMail(body, to, from, subject, body);
+            GenericResponse result = apiInstance.sendMail(to, from, subject, body, body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#sendMail");

@@ -93,7 +93,7 @@ public class DefaultApiServiceImpl implements DefaultApi {
      * Sends An email through one of your mail orders.
      *
      */
-    public GenericResponse sendMail(SendMail body) {
+    public GenericResponse sendMail(String to, String from, String subject, String body) {
         // TODO: Implement...
         
         return null;
@@ -105,7 +105,7 @@ public class DefaultApiServiceImpl implements DefaultApi {
      * Sends An email through one of your mail orders.
      *
      */
-    public GenericResponse sendMail(String to, String from, String subject, String body) {
+    public GenericResponse sendMail(SendMail body) {
         // TODO: Implement...
         
         return null;

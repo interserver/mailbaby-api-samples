@@ -9,7 +9,6 @@
 #include "../model/generic_response.h"
 #include "../model/mail_log.h"
 #include "../model/mail_order.h"
-#include "../model/send_mail.h"
 #include "../model/send_mail_adv.h"
 
 
@@ -46,7 +45,7 @@ DefaultAPI_sendAdvMail(apiClient_t *apiClient, send_mail_adv_t * send_mail_adv )
 // Sends An email through one of your mail orders.
 //
 generic_response_t*
-DefaultAPI_sendMail(apiClient_t *apiClient, send_mail_t * send_mail );
+DefaultAPI_sendMail(apiClient_t *apiClient, char * to , char * from , char * subject , char * body );
 
 
 // validatess order details before placing an order

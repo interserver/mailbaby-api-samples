@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMail"></a>
 # **sendMail**
-> GenericResponse sendMail(SendMail)
+> GenericResponse sendMail(to, from, subject, body)
 
 Sends an Email
 
@@ -126,7 +126,10 @@ Sends an Email
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **SendMail** | [**SendMail**](../Models/SendMail.md)|  |
+ **to** | **String**| The Contact whom is the primary recipient of this email. | [default to null]
+ **from** | **String**| The contact whom is the this email is from. | [default to null]
+ **subject** | **String**| The subject or title of the email | [default to null]
+ **body** | **String**| The main email contents. | [default to null]
 
 ### Return type
 
@@ -138,7 +141,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded
+- **Content-Type**: application/x-www-form-urlencoded, application/json
 - **Accept**: application/json
 
 <a name="validateMailOrder"></a>

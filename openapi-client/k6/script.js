@@ -49,7 +49,7 @@ export default function() {
         // Request No. 1
         // TODO: edit the parameters of the request body.
         let body = {"to": "string", "from": "string", "subject": "string", "body": "string"};
-        let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
+        let params = {headers: {"Content-Type": "application/x-www-form-urlencoded", "Accept": "application/json"}};
         let request = http.post(url, body, params);
         check(request, {
             "search results matching criteria": (r) => r.status === 200

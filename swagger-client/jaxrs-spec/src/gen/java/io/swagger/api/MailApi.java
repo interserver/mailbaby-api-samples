@@ -30,7 +30,7 @@ import javax.validation.Valid;
 
 @Path("/mail")
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-05-05T08:03:44.039405-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-05-05T08:15:31.200689-04:00[America/New_York]")
 public class MailApi {
 
     @GET
@@ -94,22 +94,7 @@ public class MailApi {
     }
     @POST
     @Path("/send")
-    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
-    @Produces({ "application/json" })
-    @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
-        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
-        @ApiResponse(responseCode = "400", description = "bad input parameter"),
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
-        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
-    })
-    public Response sendMail(@Valid SendMail body) {
-        return Response.ok().entity("magic!").build();
-    }
-    @POST
-    @Path("/send")
-    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
+    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
@@ -120,6 +105,21 @@ public class MailApi {
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
     })
     public Response sendMail(@FormParam(value = "to")  String to,@FormParam(value = "from")  String from,@FormParam(value = "subject")  String subject,@FormParam(value = "body")  String body) {
+        return Response.ok().entity("magic!").build();
+    }
+    @POST
+    @Path("/send")
+    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        @ApiResponse(responseCode = "400", description = "bad input parameter"),
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
+    })
+    public Response sendMail(@Valid SendMail body) {
         return Response.ok().entity("magic!").build();
     }
     @GET

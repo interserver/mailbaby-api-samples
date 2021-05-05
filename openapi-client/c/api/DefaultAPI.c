@@ -325,11 +325,11 @@ end:
 // Sends An email through one of your mail orders.
 //
 generic_response_t*
-DefaultAPI_sendMail(apiClient_t *apiClient, send_mail_t * send_mail )
+DefaultAPI_sendMail(apiClient_t *apiClient, char * to , char * from , char * subject , char * body )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
-    list_t    *localVarFormParameters = NULL;
+    list_t    *localVarFormParameters = list_create();
     list_t *localVarHeaderType = list_create();
     list_t *localVarContentType = list_create();
     char      *localVarBodyParameters = NULL;
@@ -342,17 +342,56 @@ DefaultAPI_sendMail(apiClient_t *apiClient, send_mail_t * send_mail )
 
 
 
-    // Body Param
-    cJSON *localVarSingleItemJSON_send_mail = NULL;
-    if (send_mail != NULL)
+    // form parameters
+    char *keyForm_to = NULL;
+    char * valueForm_to = 0;
+    keyValuePair_t *keyPairForm_to = 0;
+    if (to != NULL)
     {
-        //string
-        localVarSingleItemJSON_send_mail = send_mail_convertToJSON(send_mail);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_send_mail);
+        keyForm_to = strdup("to");
+        valueForm_to = strdup((to));
+        keyPairForm_to = keyValuePair_create(keyForm_to,valueForm_to);
+        list_addElement(localVarFormParameters,keyPairForm_to);
+    }
+
+    // form parameters
+    char *keyForm_from = NULL;
+    char * valueForm_from = 0;
+    keyValuePair_t *keyPairForm_from = 0;
+    if (from != NULL)
+    {
+        keyForm_from = strdup("from");
+        valueForm_from = strdup((from));
+        keyPairForm_from = keyValuePair_create(keyForm_from,valueForm_from);
+        list_addElement(localVarFormParameters,keyPairForm_from);
+    }
+
+    // form parameters
+    char *keyForm_subject = NULL;
+    char * valueForm_subject = 0;
+    keyValuePair_t *keyPairForm_subject = 0;
+    if (subject != NULL)
+    {
+        keyForm_subject = strdup("subject");
+        valueForm_subject = strdup((subject));
+        keyPairForm_subject = keyValuePair_create(keyForm_subject,valueForm_subject);
+        list_addElement(localVarFormParameters,keyPairForm_subject);
+    }
+
+    // form parameters
+    char *keyForm_body = NULL;
+    char * valueForm_body = 0;
+    keyValuePair_t *keyPairForm_body = 0;
+    if (body != NULL)
+    {
+        keyForm_body = strdup("body");
+        valueForm_body = strdup((body));
+        keyPairForm_body = keyValuePair_create(keyForm_body,valueForm_body);
+        list_addElement(localVarFormParameters,keyPairForm_body);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
-    list_addElement(localVarContentType,"application/json"); //consumes
     list_addElement(localVarContentType,"application/x-www-form-urlencoded"); //consumes
+    list_addElement(localVarContentType,"application/json"); //consumes
     apiClient_invoke(apiClient,
                     localVarPath,
                     localVarQueryParameters,
@@ -391,15 +430,46 @@ DefaultAPI_sendMail(apiClient_t *apiClient, send_mail_t * send_mail )
     }
     
     
-    
+    list_free(localVarFormParameters);
     list_free(localVarHeaderType);
     list_free(localVarContentType);
     free(localVarPath);
-    if (localVarSingleItemJSON_send_mail) {
-        cJSON_Delete(localVarSingleItemJSON_send_mail);
-        localVarSingleItemJSON_send_mail = NULL;
+    if (keyForm_to) {
+        free(keyForm_to);
+        keyForm_to = NULL;
     }
-    free(localVarBodyParameters);
+    if (valueForm_to) {
+        free(valueForm_to);
+        valueForm_to = NULL;
+    }
+    free(keyPairForm_to);
+    if (keyForm_from) {
+        free(keyForm_from);
+        keyForm_from = NULL;
+    }
+    if (valueForm_from) {
+        free(valueForm_from);
+        valueForm_from = NULL;
+    }
+    free(keyPairForm_from);
+    if (keyForm_subject) {
+        free(keyForm_subject);
+        keyForm_subject = NULL;
+    }
+    if (valueForm_subject) {
+        free(valueForm_subject);
+        valueForm_subject = NULL;
+    }
+    free(keyPairForm_subject);
+    if (keyForm_body) {
+        free(keyForm_body);
+        keyForm_body = NULL;
+    }
+    if (valueForm_body) {
+        free(valueForm_body);
+        valueForm_body = NULL;
+    }
+    free(keyPairForm_body);
     return elementToReturn;
 end:
     free(localVarPath);

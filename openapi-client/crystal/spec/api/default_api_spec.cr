@@ -71,7 +71,10 @@ describe "DefaultApi" do
   # unit tests for send_mail
   # Sends an Email
   # Sends An email through one of your mail orders.
-  # @param send_mail 
+  # @param to The Contact whom is the primary recipient of this email.
+  # @param from The contact whom is the this email is from.
+  # @param subject The subject or title of the email
+  # @param body The main email contents.
   # @param [Hash] opts the optional parameters
   # @return [GenericResponse]
   describe "send_mail test" do

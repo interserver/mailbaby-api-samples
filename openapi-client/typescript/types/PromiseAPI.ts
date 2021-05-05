@@ -65,10 +65,13 @@ export class PromiseDefaultApi {
     /**
      * Sends An email through one of your mail orders.
      * Sends an Email
-     * @param sendMail 
+     * @param to The Contact whom is the primary recipient of this email.
+     * @param from The contact whom is the this email is from.
+     * @param subject The subject or title of the email
+     * @param body The main email contents.
      */
-    public sendMail(sendMail: SendMail, options?: Configuration): Promise<GenericResponse> {
-        const result = this.api.sendMail(sendMail, options);
+    public sendMail(to: string, from: string, subject: string, body: string, options?: Configuration): Promise<GenericResponse> {
+        const result = this.api.sendMail(to, from, subject, body, options);
         return result.toPromise();
     }
 

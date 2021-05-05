@@ -39,12 +39,17 @@ let send_adv_mail ~send_mail_adv_t =
     Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body
 
-let send_mail ~send_mail_t =
+let send_mail ~_to ~from ~subject ~body =
     let open Lwt in
     let uri = Request.build_uri "/mail/send" in
     let headers = Request.default_headers in
     let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
-    let body = Request.write_as_json_body Send_mail.to_yojson send_mail_t in
+    let body = Request.init_form_encoded_body () in
+    let body = Request.add_form_encoded_body_param body "_to" (fun x -> x) _to in
+    let body = Request.add_form_encoded_body_param body "from" (fun x -> x) from in
+    let body = Request.add_form_encoded_body_param body "subject" (fun x -> x) subject in
+    let body = Request.add_form_encoded_body_param body "body" (fun x -> x) body in
+    let body = Request.finalize_form_encoded_body body in
     Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body
 

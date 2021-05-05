@@ -279,12 +279,30 @@ sub send_adv_mail {
 #
 # Sends an Email
 # 
-# @param SendMail $send_mail  (required)
+# @param string $to The Contact whom is the primary recipient of this email. (required)
+# @param string $from The contact whom is the this email is from. (required)
+# @param string $subject The subject or title of the email (required)
+# @param string $body The main email contents. (required)
 {
     my $params = {
-    'send_mail' => {
-        data_type => 'SendMail',
-        description => '',
+    'to' => {
+        data_type => 'string',
+        description => 'The Contact whom is the primary recipient of this email.',
+        required => '1',
+    },
+    'from' => {
+        data_type => 'string',
+        description => 'The contact whom is the this email is from.',
+        required => '1',
+    },
+    'subject' => {
+        data_type => 'string',
+        description => 'The subject or title of the email',
+        required => '1',
+    },
+    'body' => {
+        data_type => 'string',
+        description => 'The main email contents.',
         required => '1',
     },
     };
@@ -299,9 +317,24 @@ sub send_adv_mail {
 sub send_mail {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'send_mail' is set
-    unless (exists $args{'send_mail'}) {
-      croak("Missing the required parameter 'send_mail' when calling send_mail");
+    # verify the required parameter 'to' is set
+    unless (exists $args{'to'}) {
+      croak("Missing the required parameter 'to' when calling send_mail");
+    }
+
+    # verify the required parameter 'from' is set
+    unless (exists $args{'from'}) {
+      croak("Missing the required parameter 'from' when calling send_mail");
+    }
+
+    # verify the required parameter 'subject' is set
+    unless (exists $args{'subject'}) {
+      croak("Missing the required parameter 'subject' when calling send_mail");
+    }
+
+    # verify the required parameter 'body' is set
+    unless (exists $args{'body'}) {
+      croak("Missing the required parameter 'body' when calling send_mail");
     }
 
     # parse inputs
@@ -317,14 +350,29 @@ sub send_mail {
     if ($_header_accept) {
         $header_params->{'Accept'} = $_header_accept;
     }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json', 'application/x-www-form-urlencoded');
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/x-www-form-urlencoded', 'application/json');
 
-    my $_body_data;
-    # body params
-    if ( exists $args{'send_mail'}) {
-        $_body_data = $args{'send_mail'};
+    # form params
+    if ( exists $args{'to'} ) {
+                $form_params->{'to'} = $self->{api_client}->to_form_value($args{'to'});
     }
-
+    
+    # form params
+    if ( exists $args{'from'} ) {
+                $form_params->{'from'} = $self->{api_client}->to_form_value($args{'from'});
+    }
+    
+    # form params
+    if ( exists $args{'subject'} ) {
+                $form_params->{'subject'} = $self->{api_client}->to_form_value($args{'subject'});
+    }
+    
+    # form params
+    if ( exists $args{'body'} ) {
+                $form_params->{'body'} = $self->{api_client}->to_form_value($args{'body'});
+    }
+    
+    my $_body_data;
     # authentication setting, if any
     my $auth_settings = [qw(apiKeyAuth )];
 

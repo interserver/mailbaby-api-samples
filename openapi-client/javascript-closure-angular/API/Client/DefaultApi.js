@@ -18,7 +18,6 @@ goog.require('API.Client.ErrorResponse');
 goog.require('API.Client.GenericResponse');
 goog.require('API.Client.MailLog');
 goog.require('API.Client.MailOrder');
-goog.require('API.Client.SendMail');
 goog.require('API.Client.SendMailAdv');
 
 /**
@@ -188,11 +187,14 @@ API.Client.DefaultApi.prototype.sendAdvMail = function(sendMailAdv, opt_extraHtt
 /**
  * Sends an Email
  * Sends An email through one of your mail orders.
- * @param {!SendMail} sendMail 
+ * @param {!string} to The Contact whom is the primary recipient of this email.
+ * @param {!string} from The contact whom is the this email is from.
+ * @param {!string} subject The subject or title of the email
+ * @param {!string} body The main email contents.
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.GenericResponse>}
  */
-API.Client.DefaultApi.prototype.sendMail = function(sendMail, opt_extraHttpRequestParams) {
+API.Client.DefaultApi.prototype.sendMail = function(to, from, subject, body, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/mail/send';
 
@@ -201,17 +203,42 @@ API.Client.DefaultApi.prototype.sendMail = function(sendMail, opt_extraHttpReque
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'sendMail' is set
-  if (!sendMail) {
-    throw new Error('Missing required parameter sendMail when calling sendMail');
+  /** @type {!Object} */
+  var formParams = {};
+
+  // verify required parameter 'to' is set
+  if (!to) {
+    throw new Error('Missing required parameter to when calling sendMail');
   }
+  // verify required parameter 'from' is set
+  if (!from) {
+    throw new Error('Missing required parameter from when calling sendMail');
+  }
+  // verify required parameter 'subject' is set
+  if (!subject) {
+    throw new Error('Missing required parameter subject when calling sendMail');
+  }
+  // verify required parameter 'body' is set
+  if (!body) {
+    throw new Error('Missing required parameter body when calling sendMail');
+  }
+  headerParams['Content-Type'] = 'application/x-www-form-urlencoded';
+
+  formParams['to'] = to;
+
+  formParams['from'] = from;
+
+  formParams['subject'] = subject;
+
+  formParams['body'] = body;
+
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'POST',
     url: path,
-    json: true,
-    data: sendMail,
-        params: queryParameters,
+    json: false,
+        data: this.httpParamSerializer(formParams),
+    params: queryParameters,
     headers: headerParams
   };
 

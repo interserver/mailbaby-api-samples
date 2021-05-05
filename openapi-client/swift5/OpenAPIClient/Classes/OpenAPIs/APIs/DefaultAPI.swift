@@ -193,12 +193,15 @@ open class DefaultAPI {
     /**
      Sends an Email
      
-     - parameter sendMail: (body)  
+     - parameter to: (form) The Contact whom is the primary recipient of this email. 
+     - parameter from: (form) The contact whom is the this email is from. 
+     - parameter subject: (form) The subject or title of the email 
+     - parameter body: (form) The main email contents. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendMail(sendMail: SendMail, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) {
-        sendMailWithRequestBuilder(sendMail: sendMail).execute(apiResponseQueue) { result -> Void in
+    open class func sendMail(to: String, from: String, subject: String, body: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) {
+        sendMailWithRequestBuilder(to: to, from: from, subject: subject, body: body).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -215,18 +218,29 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - parameter sendMail: (body)  
+     - parameter to: (form) The Contact whom is the primary recipient of this email. 
+     - parameter from: (form) The contact whom is the this email is from. 
+     - parameter subject: (form) The subject or title of the email 
+     - parameter body: (form) The main email contents. 
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendMailWithRequestBuilder(sendMail: SendMail) -> RequestBuilder<GenericResponse> {
+    open class func sendMailWithRequestBuilder(to: String, from: String, subject: String, body: String) -> RequestBuilder<GenericResponse> {
         let path = "/mail/send"
         let URLString = OpenAPIClientAPI.basePath + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: sendMail)
+        let formParams: [String: Any?] = [
+            "to": to.encodeToJSON(),
+            "from": from.encodeToJSON(),
+            "subject": subject.encodeToJSON(),
+            "body": body.encodeToJSON(),
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
 
         let urlComponents = URLComponents(string: URLString)
 
         let nillableHeaders: [String: Any?] = [
-            :
+            "Content-Type": "application/x-www-form-urlencoded",
         ]
 
         let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)

@@ -207,7 +207,7 @@ Name | Type | Description  | Notes
 
 # **sendMail**
 ```swift
-    open class func sendMail(sendMail: SendMail, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
+    open class func sendMail(to: String, from: String, subject: String, body: String, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
 ```
 
 Sends an Email
@@ -219,10 +219,13 @@ Sends An email through one of your mail orders.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let sendMail = SendMail(to: "to_example", from: "from_example", subject: "subject_example", body: "body_example") // SendMail | 
+let to = "to_example" // String | The Contact whom is the primary recipient of this email.
+let from = "from_example" // String | The contact whom is the this email is from.
+let subject = "subject_example" // String | The subject or title of the email
+let body = "body_example" // String | The main email contents.
 
 // Sends an Email
-DefaultAPI.sendMail(sendMail: sendMail) { (response, error) in
+DefaultAPI.sendMail(to: to, from: from, subject: subject, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -238,7 +241,10 @@ DefaultAPI.sendMail(sendMail: sendMail) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sendMail** | [**SendMail**](SendMail.md) |  | 
+ **to** | **String** | The Contact whom is the primary recipient of this email. | 
+ **from** | **String** | The contact whom is the this email is from. | 
+ **subject** | **String** | The subject or title of the email | 
+ **body** | **String** | The main email contents. | 
 
 ### Return type
 
@@ -250,7 +256,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Content-Type**: application/x-www-form-urlencoded, application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

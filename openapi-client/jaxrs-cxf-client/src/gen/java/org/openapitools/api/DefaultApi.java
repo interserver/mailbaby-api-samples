@@ -4,7 +4,6 @@ import org.openapitools.model.ErrorResponse;
 import org.openapitools.model.GenericResponse;
 import org.openapitools.model.MailLog;
 import org.openapitools.model.MailOrder;
-import org.openapitools.model.SendMail;
 import org.openapitools.model.SendMailAdv;
 
 import java.io.InputStream;
@@ -101,7 +100,7 @@ public interface DefaultApi  {
      */
     @POST
     @Path("/mail/send")
-    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
+    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
     @Produces({ "application/json" })
     @ApiOperation(value = "Sends an Email", tags={  })
     @ApiResponses(value = { 
@@ -109,7 +108,7 @@ public interface DefaultApi  {
         @ApiResponse(code = 400, message = "bad input parameter"),
         @ApiResponse(code = 401, message = "Unauthorized", response = ErrorResponse.class),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = ErrorResponse.class) })
-    public GenericResponse sendMail(SendMail sendMail);
+    public GenericResponse sendMail(@Multipart(value = "to")  String to, @Multipart(value = "from")  String from, @Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body);
 
     /**
      * validatess order details before placing an order

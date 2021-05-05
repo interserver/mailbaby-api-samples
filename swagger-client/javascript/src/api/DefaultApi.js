@@ -213,7 +213,7 @@ export default class DefaultApi {
      * @param {module:api/DefaultApi~sendMailCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    sendMail(body, to, from, subject, body, callback) {
+    sendMail(to, from, subject, body, body, callback) {
       let postBody = body;
 
       let pathParams = {
@@ -230,7 +230,7 @@ export default class DefaultApi {
       };
 
       let authNames = ['apiKeyAuth'];
-      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let contentTypes = ['application/x-www-form-urlencoded', 'application/json'];
       let accepts = ['application/json'];
       let returnType = GenericResponse;
 

@@ -20,7 +20,8 @@ import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
 import io.swagger.model.SendMail;
-import io.swagger.model.SendMailFrom;
+import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailAdvFrom;
 
 import java.util.Map;
 import java.util.List;
@@ -38,7 +39,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T04:30:01.188410-04:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2021-05-05T06:29:35.037261-04:00[America/New_York]")public class MailApi  {
 
     @Inject MailApiService service;
 
@@ -78,7 +79,7 @@ import javax.validation.constraints.*;
     }
     @POST
     @Path("/advsend")
-    @Consumes({ "application/json" })
+    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
         @SecurityRequirement(name = "apiKeyAuth")
@@ -91,9 +92,28 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendAdvMailById(@Parameter(description = "" ,required=true) SendMail body,@Context SecurityContext securityContext)
+    public Response sendAdvMail(@Parameter(description = "" ,required=true) SendMailAdv body,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return service.sendAdvMailById(body,securityContext);
+        return service.sendAdvMail(body,securityContext);
+    }
+    @POST
+    @Path("/advsend")
+    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "bad input parameter"),
+        
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
+    public Response sendAdvMail(@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Parameter(description = "", required=true)@FormParam("from")  List<SendMailAdvFrom> from,@Parameter(description = "", required=true)@FormParam("to")  List<MailContact> to,@Parameter(description = "", required=true)@FormParam("id")  Long id,@Parameter(description = "", required=true)@FormParam("replyto")  List<MailContact> replyto,@Parameter(description = "", required=true)@FormParam("cc")  List<MailContact> cc,@Parameter(description = "", required=true)@FormParam("bcc")  List<MailContact> bcc,@Parameter(description = "", required=true)@FormParam("attachments")  List<MailAttachment> attachments,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.sendAdvMail(subject,body,from,to,id,replyto,cc,bcc,attachments,securityContext);
     }
     @POST
     @Path("/send")
@@ -110,9 +130,9 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendMailById(@Parameter(description = "" ,required=true) SendMail body,@Context SecurityContext securityContext)
+    public Response sendMail(@Parameter(description = "" ,required=true) SendMail body,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return service.sendMailById(body,securityContext);
+        return service.sendMail(body,securityContext);
     }
     @POST
     @Path("/send")
@@ -129,9 +149,9 @@ import javax.validation.constraints.*;
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
-    public Response sendMailById(@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Parameter(description = "", required=true)@FormParam("from")  List<SendMailFrom> from,@Parameter(description = "", required=true)@FormParam("to")  List<MailContact> to,@Parameter(description = "", required=true)@FormParam("id")  Long id,@Parameter(description = "", required=true)@FormParam("replyto")  List<MailContact> replyto,@Parameter(description = "", required=true)@FormParam("cc")  List<MailContact> cc,@Parameter(description = "", required=true)@FormParam("bcc")  List<MailContact> bcc,@Parameter(description = "", required=true)@FormParam("attachments")  List<MailAttachment> attachments,@Context SecurityContext securityContext)
+    public Response sendMail(@Parameter(description = "", required=true)@FormParam("to")  String to,@Parameter(description = "", required=true)@FormParam("from")  String from,@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return service.sendMailById(subject,body,from,to,id,replyto,cc,bcc,attachments,securityContext);
+        return service.sendMail(to,from,subject,body,securityContext);
     }
     @GET
     @Path("/order")

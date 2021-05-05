@@ -14,60 +14,35 @@ require 'date'
 module SwaggerClient
   # Details for an Email
   class SendMail
+    # The Contact whom is the primary recipient of this email.
+    attr_accessor :to
+
+    # The contact whom is the this email is from.
+    attr_accessor :from
+
     # The subject or title of the email
     attr_accessor :subject
 
     # The main email contents.
     attr_accessor :body
 
-    # The contact whom is the this email is from.
-    attr_accessor :from
-
-    # The Contact whom is the primary recipient of this email.
-    attr_accessor :to
-
-    # The ID of the Mail order within our system to use as the Mail Account.
-    attr_accessor :id
-
-    # Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-    attr_accessor :replyto
-
-    # Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-    attr_accessor :cc
-
-    # Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-    attr_accessor :bcc
-
-    # Optional file attachments to include in the email
-    attr_accessor :attachments
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'subject' => :'subject',
-        :'body' => :'body',
-        :'from' => :'from',
         :'to' => :'to',
-        :'id' => :'id',
-        :'replyto' => :'replyto',
-        :'cc' => :'cc',
-        :'bcc' => :'bcc',
-        :'attachments' => :'attachments'
+        :'from' => :'from',
+        :'subject' => :'subject',
+        :'body' => :'body'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'subject' => :'Object',
-        :'body' => :'Object',
-        :'from' => :'Object',
         :'to' => :'Object',
-        :'id' => :'Object',
-        :'replyto' => :'Object',
-        :'cc' => :'Object',
-        :'bcc' => :'Object',
-        :'attachments' => :'Object'
+        :'from' => :'Object',
+        :'subject' => :'Object',
+        :'body' => :'Object'
       }
     end
 
@@ -92,6 +67,14 @@ module SwaggerClient
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'to')
+        self.to = attributes[:'to']
+      end
+
+      if attributes.key?(:'from')
+        self.from = attributes[:'from']
+      end
+
       if attributes.key?(:'subject')
         self.subject = attributes[:'subject']
       end
@@ -99,83 +82,18 @@ module SwaggerClient
       if attributes.key?(:'body')
         self.body = attributes[:'body']
       end
-
-      if attributes.key?(:'from')
-        if (value = attributes[:'from']).is_a?(Array)
-          self.from = value
-        end
-      end
-
-      if attributes.key?(:'to')
-        if (value = attributes[:'to']).is_a?(Array)
-          self.to = value
-        end
-      end
-
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
-      end
-
-      if attributes.key?(:'replyto')
-        if (value = attributes[:'replyto']).is_a?(Array)
-          self.replyto = value
-        end
-      end
-
-      if attributes.key?(:'cc')
-        if (value = attributes[:'cc']).is_a?(Array)
-          self.cc = value
-        end
-      end
-
-      if attributes.key?(:'bcc')
-        if (value = attributes[:'bcc']).is_a?(Array)
-          self.bcc = value
-        end
-      end
-
-      if attributes.key?(:'attachments')
-        if (value = attributes[:'attachments']).is_a?(Array)
-          self.attachments = value
-        end
-      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @subject.nil?
-        invalid_properties.push('invalid value for "subject", subject cannot be nil.')
-      end
-
-      if @body.nil?
-        invalid_properties.push('invalid value for "body", body cannot be nil.')
-      end
-
-      if @from.nil?
-        invalid_properties.push('invalid value for "from", from cannot be nil.')
-      end
-
-      if @to.nil?
-        invalid_properties.push('invalid value for "to", to cannot be nil.')
-      end
-
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @subject.nil?
-      return false if @body.nil?
-      return false if @from.nil?
-      return false if @to.nil?
-      return false if @id.nil?
       true
     end
 
@@ -184,15 +102,10 @@ module SwaggerClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          subject == o.subject &&
-          body == o.body &&
-          from == o.from &&
           to == o.to &&
-          id == o.id &&
-          replyto == o.replyto &&
-          cc == o.cc &&
-          bcc == o.bcc &&
-          attachments == o.attachments
+          from == o.from &&
+          subject == o.subject &&
+          body == o.body
     end
 
     # @see the `==` method
@@ -204,7 +117,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [subject, body, from, to, id, replyto, cc, bcc, attachments].hash
+      [to, from, subject, body].hash
     end
 
     # Builds the object from hash

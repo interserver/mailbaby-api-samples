@@ -28,12 +28,12 @@ func PlaceMailOrder(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
-func SendAdvMailById(w http.ResponseWriter, r *http.Request) {
+func SendAdvMail(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 }
 
-func SendMailById(w http.ResponseWriter, r *http.Request) {
+func SendMail(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 }

@@ -81,18 +81,9 @@ class SendMailTest extends TestCase
     }
 
     /**
-     * Test attribute "subject"
+     * Test attribute "to"
      */
-    public function testPropertySubject()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "body"
-     */
-    public function testPropertyBody()
+    public function testPropertyTo()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -108,54 +99,18 @@ class SendMailTest extends TestCase
     }
 
     /**
-     * Test attribute "to"
+     * Test attribute "subject"
      */
-    public function testPropertyTo()
+    public function testPropertySubject()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "id"
+     * Test attribute "body"
      */
-    public function testPropertyId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "replyto"
-     */
-    public function testPropertyReplyto()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "cc"
-     */
-    public function testPropertyCc()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "bcc"
-     */
-    public function testPropertyBcc()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "attachments"
-     */
-    public function testPropertyAttachments()
+    public function testPropertyBody()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

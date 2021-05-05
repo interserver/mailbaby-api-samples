@@ -12,9 +12,6 @@
  */
 
 import ApiClient from '../ApiClient';
-import MailAttachment from './MailAttachment';
-import MailContact from './MailContact';
-import SendMailFrom from './SendMailFrom';
 
 /**
 * The SendMail model module.
@@ -27,21 +24,11 @@ export default class SendMail {
     * Details for an Email
     * @alias module:model/SendMail
     * @class
-    * @param subject {String} The subject or title of the email
-    * @param body {String} The main email contents.
-    * @param from {Array.<module:model/SendMailFrom>} The contact whom is the this email is from.
-    * @param to {Array.<module:model/MailContact>} The Contact whom is the primary recipient of this email.
-    * @param id {Number} The ID of the Mail order within our system to use as the Mail Account.
     */
 
-    constructor(subject, body, from, to, id) {
+    constructor() {
         
         
-        this['subject'] = subject;
-        this['body'] = body;
-        this['from'] = from;
-        this['to'] = to;
-        this['id'] = id;
         
     }
 
@@ -57,37 +44,32 @@ export default class SendMail {
             obj = obj || new SendMail();
                         
             
+            if (data.hasOwnProperty('to')) {
+                obj['to'] = ApiClient.convertToType(data['to'], 'String');
+            }
+            if (data.hasOwnProperty('from')) {
+                obj['from'] = ApiClient.convertToType(data['from'], 'String');
+            }
             if (data.hasOwnProperty('subject')) {
                 obj['subject'] = ApiClient.convertToType(data['subject'], 'String');
             }
             if (data.hasOwnProperty('body')) {
                 obj['body'] = ApiClient.convertToType(data['body'], 'String');
             }
-            if (data.hasOwnProperty('from')) {
-                obj['from'] = ApiClient.convertToType(data['from'], [SendMailFrom]);
-            }
-            if (data.hasOwnProperty('to')) {
-                obj['to'] = ApiClient.convertToType(data['to'], [MailContact]);
-            }
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'Number');
-            }
-            if (data.hasOwnProperty('replyto')) {
-                obj['replyto'] = ApiClient.convertToType(data['replyto'], [MailContact]);
-            }
-            if (data.hasOwnProperty('cc')) {
-                obj['cc'] = ApiClient.convertToType(data['cc'], [MailContact]);
-            }
-            if (data.hasOwnProperty('bcc')) {
-                obj['bcc'] = ApiClient.convertToType(data['bcc'], [MailContact]);
-            }
-            if (data.hasOwnProperty('attachments')) {
-                obj['attachments'] = ApiClient.convertToType(data['attachments'], [MailAttachment]);
-            }
         }
         return obj;
     }
 
+    /**
+    * The Contact whom is the primary recipient of this email.
+    * @member {String} to
+    */
+    'to' = undefined;
+    /**
+    * The contact whom is the this email is from.
+    * @member {String} from
+    */
+    'from' = undefined;
     /**
     * The subject or title of the email
     * @member {String} subject
@@ -98,41 +80,6 @@ export default class SendMail {
     * @member {String} body
     */
     'body' = undefined;
-    /**
-    * The contact whom is the this email is from.
-    * @member {Array.<module:model/SendMailFrom>} from
-    */
-    'from' = undefined;
-    /**
-    * The Contact whom is the primary recipient of this email.
-    * @member {Array.<module:model/MailContact>} to
-    */
-    'to' = undefined;
-    /**
-    * The ID of the Mail order within our system to use as the Mail Account.
-    * @member {Number} id
-    */
-    'id' = undefined;
-    /**
-    * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-    * @member {Array.<module:model/MailContact>} replyto
-    */
-    'replyto' = undefined;
-    /**
-    * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-    * @member {Array.<module:model/MailContact>} cc
-    */
-    'cc' = undefined;
-    /**
-    * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-    * @member {Array.<module:model/MailContact>} bcc
-    */
-    'bcc' = undefined;
-    /**
-    * Optional file attachments to include in the email
-    * @member {Array.<module:model/MailAttachment>} attachments
-    */
-    'attachments' = undefined;
 
 
 

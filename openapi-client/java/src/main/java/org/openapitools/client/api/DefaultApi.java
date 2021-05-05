@@ -32,6 +32,7 @@ import org.openapitools.client.model.GenericResponse;
 import org.openapitools.client.model.MailLog;
 import org.openapitools.client.model.MailOrder;
 import org.openapitools.client.model.SendMail;
+import org.openapitools.client.model.SendMailAdv;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -398,8 +399,8 @@ public class DefaultApi {
         return localVarCall;
     }
     /**
-     * Build call for sendAdvMailById
-     * @param sendMail  (required)
+     * Build call for sendAdvMail
+     * @param sendMailAdv  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -412,8 +413,8 @@ public class DefaultApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sendAdvMailByIdCall(SendMail sendMail, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = sendMail;
+    public okhttp3.Call sendAdvMailCall(SendMailAdv sendMailAdv, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = sendMailAdv;
 
         // create path and map variables
         String localVarPath = "/mail/advsend";
@@ -433,7 +434,7 @@ public class DefaultApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/json", "application/x-www-form-urlencoded"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -443,15 +444,15 @@ public class DefaultApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call sendAdvMailByIdValidateBeforeCall(SendMail sendMail, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call sendAdvMailValidateBeforeCall(SendMailAdv sendMailAdv, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'sendMail' is set
-        if (sendMail == null) {
-            throw new ApiException("Missing the required parameter 'sendMail' when calling sendAdvMailById(Async)");
+        // verify the required parameter 'sendMailAdv' is set
+        if (sendMailAdv == null) {
+            throw new ApiException("Missing the required parameter 'sendMailAdv' when calling sendAdvMail(Async)");
         }
         
 
-        okhttp3.Call localVarCall = sendAdvMailByIdCall(sendMail, _callback);
+        okhttp3.Call localVarCall = sendAdvMailCall(sendMailAdv, _callback);
         return localVarCall;
 
     }
@@ -459,7 +460,7 @@ public class DefaultApi {
     /**
      * Sends an Email with Advanced Options
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @param sendMail  (required)
+     * @param sendMailAdv  (required)
      * @return GenericResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -471,15 +472,15 @@ public class DefaultApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public GenericResponse sendAdvMailById(SendMail sendMail) throws ApiException {
-        ApiResponse<GenericResponse> localVarResp = sendAdvMailByIdWithHttpInfo(sendMail);
+    public GenericResponse sendAdvMail(SendMailAdv sendMailAdv) throws ApiException {
+        ApiResponse<GenericResponse> localVarResp = sendAdvMailWithHttpInfo(sendMailAdv);
         return localVarResp.getData();
     }
 
     /**
      * Sends an Email with Advanced Options
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @param sendMail  (required)
+     * @param sendMailAdv  (required)
      * @return ApiResponse&lt;GenericResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -491,8 +492,8 @@ public class DefaultApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GenericResponse> sendAdvMailByIdWithHttpInfo(SendMail sendMail) throws ApiException {
-        okhttp3.Call localVarCall = sendAdvMailByIdValidateBeforeCall(sendMail, null);
+    public ApiResponse<GenericResponse> sendAdvMailWithHttpInfo(SendMailAdv sendMailAdv) throws ApiException {
+        okhttp3.Call localVarCall = sendAdvMailValidateBeforeCall(sendMailAdv, null);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -500,7 +501,7 @@ public class DefaultApi {
     /**
      * Sends an Email with Advanced Options (asynchronously)
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @param sendMail  (required)
+     * @param sendMailAdv  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -513,15 +514,15 @@ public class DefaultApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sendAdvMailByIdAsync(SendMail sendMail, final ApiCallback<GenericResponse> _callback) throws ApiException {
+    public okhttp3.Call sendAdvMailAsync(SendMailAdv sendMailAdv, final ApiCallback<GenericResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = sendAdvMailByIdValidateBeforeCall(sendMail, _callback);
+        okhttp3.Call localVarCall = sendAdvMailValidateBeforeCall(sendMailAdv, _callback);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for sendMailById
+     * Build call for sendMail
      * @param sendMail  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -535,7 +536,7 @@ public class DefaultApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sendMailByIdCall(SendMail sendMail, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call sendMailCall(SendMail sendMail, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = sendMail;
 
         // create path and map variables
@@ -566,15 +567,15 @@ public class DefaultApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call sendMailByIdValidateBeforeCall(SendMail sendMail, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call sendMailValidateBeforeCall(SendMail sendMail, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'sendMail' is set
         if (sendMail == null) {
-            throw new ApiException("Missing the required parameter 'sendMail' when calling sendMailById(Async)");
+            throw new ApiException("Missing the required parameter 'sendMail' when calling sendMail(Async)");
         }
         
 
-        okhttp3.Call localVarCall = sendMailByIdCall(sendMail, _callback);
+        okhttp3.Call localVarCall = sendMailCall(sendMail, _callback);
         return localVarCall;
 
     }
@@ -594,8 +595,8 @@ public class DefaultApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public GenericResponse sendMailById(SendMail sendMail) throws ApiException {
-        ApiResponse<GenericResponse> localVarResp = sendMailByIdWithHttpInfo(sendMail);
+    public GenericResponse sendMail(SendMail sendMail) throws ApiException {
+        ApiResponse<GenericResponse> localVarResp = sendMailWithHttpInfo(sendMail);
         return localVarResp.getData();
     }
 
@@ -614,8 +615,8 @@ public class DefaultApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GenericResponse> sendMailByIdWithHttpInfo(SendMail sendMail) throws ApiException {
-        okhttp3.Call localVarCall = sendMailByIdValidateBeforeCall(sendMail, null);
+    public ApiResponse<GenericResponse> sendMailWithHttpInfo(SendMail sendMail) throws ApiException {
+        okhttp3.Call localVarCall = sendMailValidateBeforeCall(sendMail, null);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -636,9 +637,9 @@ public class DefaultApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sendMailByIdAsync(SendMail sendMail, final ApiCallback<GenericResponse> _callback) throws ApiException {
+    public okhttp3.Call sendMailAsync(SendMail sendMail, final ApiCallback<GenericResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = sendMailByIdValidateBeforeCall(sendMail, _callback);
+        okhttp3.Call localVarCall = sendMailValidateBeforeCall(sendMail, _callback);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

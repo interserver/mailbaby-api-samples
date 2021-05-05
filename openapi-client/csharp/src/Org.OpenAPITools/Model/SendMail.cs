@@ -33,140 +33,45 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SendMail" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SendMail() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SendMail" /> class.
-        /// </summary>
-        /// <param name="subject">The subject or title of the email (required).</param>
-        /// <param name="body">The main email contents. (required).</param>
-        /// <param name="from">The contact whom is the this email is from. (required).</param>
-        /// <param name="to">The Contact whom is the primary recipient of this email. (required).</param>
-        /// <param name="id">The ID of the Mail order within our system to use as the Mail Account. (required).</param>
-        /// <param name="replyto">Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address..</param>
-        /// <param name="cc">Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well..</param>
-        /// <param name="bcc">Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list..</param>
-        /// <param name="attachments">Optional file attachments to include in the email.</param>
-        public SendMail(string subject = default(string), string body = default(string), List<SendMailFrom> from = default(List<SendMailFrom>), List<MailContact> to = default(List<MailContact>), long id = default(long), List<MailContact> replyto = default(List<MailContact>), List<MailContact> cc = default(List<MailContact>), List<MailContact> bcc = default(List<MailContact>), List<MailAttachment> attachments = default(List<MailAttachment>))
+        /// <param name="to">The Contact whom is the primary recipient of this email..</param>
+        /// <param name="from">The contact whom is the this email is from..</param>
+        /// <param name="subject">The subject or title of the email.</param>
+        /// <param name="body">The main email contents..</param>
+        public SendMail(string to = default(string), string from = default(string), string subject = default(string), string body = default(string))
         {
-            // to ensure "subject" is required (not null)
-            if (subject == null)
-            {
-                throw new InvalidDataException("subject is a required property for SendMail and cannot be null");
-            }
-            else
-            {
-                this.Subject = subject;
-            }
-
-            // to ensure "body" is required (not null)
-            if (body == null)
-            {
-                throw new InvalidDataException("body is a required property for SendMail and cannot be null");
-            }
-            else
-            {
-                this.Body = body;
-            }
-
-            // to ensure "from" is required (not null)
-            if (from == null)
-            {
-                throw new InvalidDataException("from is a required property for SendMail and cannot be null");
-            }
-            else
-            {
-                this.From = from;
-            }
-
-            // to ensure "to" is required (not null)
-            if (to == null)
-            {
-                throw new InvalidDataException("to is a required property for SendMail and cannot be null");
-            }
-            else
-            {
-                this.To = to;
-            }
-
-            // to ensure "id" is required (not null)
-            if (id == null)
-            {
-                throw new InvalidDataException("id is a required property for SendMail and cannot be null");
-            }
-            else
-            {
-                this.Id = id;
-            }
-
-            this.Replyto = replyto;
-            this.Cc = cc;
-            this.Bcc = bcc;
-            this.Attachments = attachments;
+            this.To = to;
+            this.From = from;
+            this.Subject = subject;
+            this.Body = body;
         }
+
+        /// <summary>
+        /// The Contact whom is the primary recipient of this email.
+        /// </summary>
+        /// <value>The Contact whom is the primary recipient of this email.</value>
+        [DataMember(Name="to", EmitDefaultValue=false)]
+        public string To { get; set; }
+
+        /// <summary>
+        /// The contact whom is the this email is from.
+        /// </summary>
+        /// <value>The contact whom is the this email is from.</value>
+        [DataMember(Name="from", EmitDefaultValue=false)]
+        public string From { get; set; }
 
         /// <summary>
         /// The subject or title of the email
         /// </summary>
         /// <value>The subject or title of the email</value>
-        [DataMember(Name="subject", EmitDefaultValue=true)]
+        [DataMember(Name="subject", EmitDefaultValue=false)]
         public string Subject { get; set; }
 
         /// <summary>
         /// The main email contents.
         /// </summary>
         /// <value>The main email contents.</value>
-        [DataMember(Name="body", EmitDefaultValue=true)]
+        [DataMember(Name="body", EmitDefaultValue=false)]
         public string Body { get; set; }
-
-        /// <summary>
-        /// The contact whom is the this email is from.
-        /// </summary>
-        /// <value>The contact whom is the this email is from.</value>
-        [DataMember(Name="from", EmitDefaultValue=true)]
-        public List<SendMailFrom> From { get; set; }
-
-        /// <summary>
-        /// The Contact whom is the primary recipient of this email.
-        /// </summary>
-        /// <value>The Contact whom is the primary recipient of this email.</value>
-        [DataMember(Name="to", EmitDefaultValue=true)]
-        public List<MailContact> To { get; set; }
-
-        /// <summary>
-        /// The ID of the Mail order within our system to use as the Mail Account.
-        /// </summary>
-        /// <value>The ID of the Mail order within our system to use as the Mail Account.</value>
-        [DataMember(Name="id", EmitDefaultValue=true)]
-        public long Id { get; set; }
-
-        /// <summary>
-        /// Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-        /// </summary>
-        /// <value>Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.</value>
-        [DataMember(Name="replyto", EmitDefaultValue=false)]
-        public List<MailContact> Replyto { get; set; }
-
-        /// <summary>
-        /// Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-        /// </summary>
-        /// <value>Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.</value>
-        [DataMember(Name="cc", EmitDefaultValue=false)]
-        public List<MailContact> Cc { get; set; }
-
-        /// <summary>
-        /// Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-        /// </summary>
-        /// <value>Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.</value>
-        [DataMember(Name="bcc", EmitDefaultValue=false)]
-        public List<MailContact> Bcc { get; set; }
-
-        /// <summary>
-        /// Optional file attachments to include in the email
-        /// </summary>
-        /// <value>Optional file attachments to include in the email</value>
-        [DataMember(Name="attachments", EmitDefaultValue=false)]
-        public List<MailAttachment> Attachments { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -176,15 +81,10 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class SendMail {\n");
+            sb.Append("  To: ").Append(To).Append("\n");
+            sb.Append("  From: ").Append(From).Append("\n");
             sb.Append("  Subject: ").Append(Subject).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
-            sb.Append("  From: ").Append(From).Append("\n");
-            sb.Append("  To: ").Append(To).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Replyto: ").Append(Replyto).Append("\n");
-            sb.Append("  Cc: ").Append(Cc).Append("\n");
-            sb.Append("  Bcc: ").Append(Bcc).Append("\n");
-            sb.Append("  Attachments: ").Append(Attachments).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -220,6 +120,16 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
+                    this.To == input.To ||
+                    (this.To != null &&
+                    this.To.Equals(input.To))
+                ) && 
+                (
+                    this.From == input.From ||
+                    (this.From != null &&
+                    this.From.Equals(input.From))
+                ) && 
+                (
                     this.Subject == input.Subject ||
                     (this.Subject != null &&
                     this.Subject.Equals(input.Subject))
@@ -228,47 +138,6 @@ namespace Org.OpenAPITools.Model
                     this.Body == input.Body ||
                     (this.Body != null &&
                     this.Body.Equals(input.Body))
-                ) && 
-                (
-                    this.From == input.From ||
-                    this.From != null &&
-                    input.From != null &&
-                    this.From.SequenceEqual(input.From)
-                ) && 
-                (
-                    this.To == input.To ||
-                    this.To != null &&
-                    input.To != null &&
-                    this.To.SequenceEqual(input.To)
-                ) && 
-                (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.Replyto == input.Replyto ||
-                    this.Replyto != null &&
-                    input.Replyto != null &&
-                    this.Replyto.SequenceEqual(input.Replyto)
-                ) && 
-                (
-                    this.Cc == input.Cc ||
-                    this.Cc != null &&
-                    input.Cc != null &&
-                    this.Cc.SequenceEqual(input.Cc)
-                ) && 
-                (
-                    this.Bcc == input.Bcc ||
-                    this.Bcc != null &&
-                    input.Bcc != null &&
-                    this.Bcc.SequenceEqual(input.Bcc)
-                ) && 
-                (
-                    this.Attachments == input.Attachments ||
-                    this.Attachments != null &&
-                    input.Attachments != null &&
-                    this.Attachments.SequenceEqual(input.Attachments)
                 );
         }
 
@@ -281,24 +150,14 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.To != null)
+                    hashCode = hashCode * 59 + this.To.GetHashCode();
+                if (this.From != null)
+                    hashCode = hashCode * 59 + this.From.GetHashCode();
                 if (this.Subject != null)
                     hashCode = hashCode * 59 + this.Subject.GetHashCode();
                 if (this.Body != null)
                     hashCode = hashCode * 59 + this.Body.GetHashCode();
-                if (this.From != null)
-                    hashCode = hashCode * 59 + this.From.GetHashCode();
-                if (this.To != null)
-                    hashCode = hashCode * 59 + this.To.GetHashCode();
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.Replyto != null)
-                    hashCode = hashCode * 59 + this.Replyto.GetHashCode();
-                if (this.Cc != null)
-                    hashCode = hashCode * 59 + this.Cc.GetHashCode();
-                if (this.Bcc != null)
-                    hashCode = hashCode * 59 + this.Bcc.GetHashCode();
-                if (this.Attachments != null)
-                    hashCode = hashCode * 59 + this.Attachments.GetHashCode();
                 return hashCode;
             }
         }

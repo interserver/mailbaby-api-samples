@@ -12,9 +12,6 @@
  */
 
 import ApiClient from '../ApiClient';
-import MailAttachment from './MailAttachment';
-import MailContact from './MailContact';
-import SendMailFrom from './SendMailFrom';
 
 /**
  * The SendMail model module.
@@ -26,15 +23,10 @@ class SendMail {
      * Constructs a new <code>SendMail</code>.
      * Details for an Email
      * @alias module:model/SendMail
-     * @param subject {String} The subject or title of the email
-     * @param body {String} The main email contents.
-     * @param from {Array.<module:model/SendMailFrom>} The contact whom is the this email is from.
-     * @param to {Array.<module:model/MailContact>} The Contact whom is the primary recipient of this email.
-     * @param id {Number} The ID of the Mail order within our system to use as the Mail Account.
      */
-    constructor(subject, body, from, to, id) { 
+    constructor() { 
         
-        SendMail.initialize(this, subject, body, from, to, id);
+        SendMail.initialize(this);
     }
 
     /**
@@ -42,12 +34,7 @@ class SendMail {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, subject, body, from, to, id) { 
-        obj['subject'] = subject;
-        obj['body'] = body;
-        obj['from'] = from;
-        obj['to'] = to;
-        obj['id'] = id;
+    static initialize(obj) { 
     }
 
     /**
@@ -61,32 +48,17 @@ class SendMail {
         if (data) {
             obj = obj || new SendMail();
 
+            if (data.hasOwnProperty('to')) {
+                obj['to'] = ApiClient.convertToType(data['to'], 'String');
+            }
+            if (data.hasOwnProperty('from')) {
+                obj['from'] = ApiClient.convertToType(data['from'], 'String');
+            }
             if (data.hasOwnProperty('subject')) {
                 obj['subject'] = ApiClient.convertToType(data['subject'], 'String');
             }
             if (data.hasOwnProperty('body')) {
                 obj['body'] = ApiClient.convertToType(data['body'], 'String');
-            }
-            if (data.hasOwnProperty('from')) {
-                obj['from'] = ApiClient.convertToType(data['from'], [SendMailFrom]);
-            }
-            if (data.hasOwnProperty('to')) {
-                obj['to'] = ApiClient.convertToType(data['to'], [MailContact]);
-            }
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'Number');
-            }
-            if (data.hasOwnProperty('replyto')) {
-                obj['replyto'] = ApiClient.convertToType(data['replyto'], [MailContact]);
-            }
-            if (data.hasOwnProperty('cc')) {
-                obj['cc'] = ApiClient.convertToType(data['cc'], [MailContact]);
-            }
-            if (data.hasOwnProperty('bcc')) {
-                obj['bcc'] = ApiClient.convertToType(data['bcc'], [MailContact]);
-            }
-            if (data.hasOwnProperty('attachments')) {
-                obj['attachments'] = ApiClient.convertToType(data['attachments'], [MailAttachment]);
             }
         }
         return obj;
@@ -94,6 +66,18 @@ class SendMail {
 
 
 }
+
+/**
+ * The Contact whom is the primary recipient of this email.
+ * @member {String} to
+ */
+SendMail.prototype['to'] = undefined;
+
+/**
+ * The contact whom is the this email is from.
+ * @member {String} from
+ */
+SendMail.prototype['from'] = undefined;
 
 /**
  * The subject or title of the email
@@ -106,48 +90,6 @@ SendMail.prototype['subject'] = undefined;
  * @member {String} body
  */
 SendMail.prototype['body'] = undefined;
-
-/**
- * The contact whom is the this email is from.
- * @member {Array.<module:model/SendMailFrom>} from
- */
-SendMail.prototype['from'] = undefined;
-
-/**
- * The Contact whom is the primary recipient of this email.
- * @member {Array.<module:model/MailContact>} to
- */
-SendMail.prototype['to'] = undefined;
-
-/**
- * The ID of the Mail order within our system to use as the Mail Account.
- * @member {Number} id
- */
-SendMail.prototype['id'] = undefined;
-
-/**
- * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
- * @member {Array.<module:model/MailContact>} replyto
- */
-SendMail.prototype['replyto'] = undefined;
-
-/**
- * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
- * @member {Array.<module:model/MailContact>} cc
- */
-SendMail.prototype['cc'] = undefined;
-
-/**
- * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
- * @member {Array.<module:model/MailContact>} bcc
- */
-SendMail.prototype['bcc'] = undefined;
-
-/**
- * Optional file attachments to include in the email
- * @member {Array.<module:model/MailAttachment>} attachments
- */
-SendMail.prototype['attachments'] = undefined;
 
 
 

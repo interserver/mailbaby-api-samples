@@ -25,6 +25,7 @@ import { GenericResponse } from '../model/genericResponse';
 import { MailLog } from '../model/mailLog';
 import { MailOrder } from '../model/mailOrder';
 import { SendMail } from '../model/sendMail';
+import { SendMailAdv } from '../model/sendMailAdv';
 
 import { COLLECTION_FORMATS }  from '../variables';
 
@@ -119,14 +120,14 @@ export class DefaultService {
     /**
      * Sends an Email with Advanced Options
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @param sendMail 
+     * @param sendMailAdv 
      
      */
-    public sendAdvMailById(sendMail: SendMail, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
-    public sendAdvMailById(sendMail: SendMail, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
-    public sendAdvMailById(sendMail: SendMail, observe: any = 'body', headers: Headers = {}): Observable<any> {
-        if (sendMail === null || sendMail === undefined){
-            throw new Error('Required parameter sendMail was null or undefined when calling sendAdvMailById.');
+    public sendAdvMail(sendMailAdv: SendMailAdv, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
+    public sendAdvMail(sendMailAdv: SendMailAdv, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
+    public sendAdvMail(sendMailAdv: SendMailAdv, observe: any = 'body', headers: Headers = {}): Observable<any> {
+        if (sendMailAdv === null || sendMailAdv === undefined){
+            throw new Error('Required parameter sendMailAdv was null or undefined when calling sendAdvMail.');
         }
 
         // authentication (apiKeyAuth) required
@@ -136,7 +137,7 @@ export class DefaultService {
         headers['Accept'] = 'application/json';
         headers['Content-Type'] = 'application/json';
 
-        const response: Observable<HttpResponse<GenericResponse>> = this.httpClient.post(`${this.basePath}/mail/advsend`, sendMail , headers);
+        const response: Observable<HttpResponse<GenericResponse>> = this.httpClient.post(`${this.basePath}/mail/advsend`, sendMailAdv , headers);
         if (observe === 'body') {
                return response.pipe(
                    map((httpResponse: HttpResponse) => <GenericResponse>(httpResponse.response))
@@ -152,11 +153,11 @@ export class DefaultService {
      * @param sendMail 
      
      */
-    public sendMailById(sendMail: SendMail, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
-    public sendMailById(sendMail: SendMail, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
-    public sendMailById(sendMail: SendMail, observe: any = 'body', headers: Headers = {}): Observable<any> {
+    public sendMail(sendMail: SendMail, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
+    public sendMail(sendMail: SendMail, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
+    public sendMail(sendMail: SendMail, observe: any = 'body', headers: Headers = {}): Observable<any> {
         if (sendMail === null || sendMail === undefined){
-            throw new Error('Required parameter sendMail was null or undefined when calling sendMailById.');
+            throw new Error('Required parameter sendMail was null or undefined when calling sendMail.');
         }
 
         // authentication (apiKeyAuth) required

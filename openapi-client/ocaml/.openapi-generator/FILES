@@ -12,7 +12,8 @@ src/models/mail_contact.ml
 src/models/mail_log.ml
 src/models/mail_order.ml
 src/models/send_mail.ml
-src/models/send_mail_from.ml
+src/models/send_mail_adv.ml
+src/models/send_mail_adv_from.ml
 src/support/enums.ml
 src/support/jsonSupport.ml
 src/support/request.ml

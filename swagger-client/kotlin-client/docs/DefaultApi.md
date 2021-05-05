@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
+[**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 [**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -143,9 +143,9 @@ null (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="sendAdvMailById"></a>
-# **sendAdvMailById**
-> GenericResponse sendAdvMailById(body)
+<a name="sendAdvMail"></a>
+# **sendAdvMail**
+> GenericResponse sendAdvMail(body)
 
 Sends an Email with Advanced Options
 
@@ -158,15 +158,15 @@ Sends An email through one of your mail orders allowing additional options such 
 //import io.swagger.client.models.*;
 
 val apiInstance = DefaultApi()
-val body : SendMail =  // SendMail | 
+val body : SendMailAdv =  // SendMailAdv | 
 try {
-    val result : GenericResponse = apiInstance.sendAdvMailById(body)
+    val result : GenericResponse = apiInstance.sendAdvMail(body)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling DefaultApi#sendAdvMailById")
+    println("4xx response calling DefaultApi#sendAdvMail")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling DefaultApi#sendAdvMailById")
+    println("5xx response calling DefaultApi#sendAdvMail")
     e.printStackTrace()
 }
 ```
@@ -175,7 +175,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SendMail**](SendMail.md)|  |
+ **body** | [**SendMailAdv**](SendMailAdv.md)|  |
 
 ### Return type
 
@@ -187,12 +187,75 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
-<a name="sendMailById"></a>
-# **sendMailById**
-> GenericResponse sendMailById(body)
+<a name="sendAdvMail"></a>
+# **sendAdvMail**
+> GenericResponse sendAdvMail(subject, body, from, to, id, replyto, cc, bcc, attachments)
+
+Sends an Email with Advanced Options
+
+Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+
+### Example
+```kotlin
+// Import classes:
+//import io.swagger.client.infrastructure.*
+//import io.swagger.client.models.*;
+
+val apiInstance = DefaultApi()
+val subject : kotlin.String = subject_example // kotlin.String | 
+val body : kotlin.String = body_example // kotlin.String | 
+val from : kotlin.Array<SendMailAdvFrom> =  // kotlin.Array<SendMailAdvFrom> | 
+val to : kotlin.Array<MailContact> =  // kotlin.Array<MailContact> | 
+val id : kotlin.Long = 789 // kotlin.Long | 
+val replyto : kotlin.Array<MailContact> =  // kotlin.Array<MailContact> | 
+val cc : kotlin.Array<MailContact> =  // kotlin.Array<MailContact> | 
+val bcc : kotlin.Array<MailContact> =  // kotlin.Array<MailContact> | 
+val attachments : kotlin.Array<MailAttachment> =  // kotlin.Array<MailAttachment> | 
+try {
+    val result : GenericResponse = apiInstance.sendAdvMail(subject, body, from, to, id, replyto, cc, bcc, attachments)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#sendAdvMail")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#sendAdvMail")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subject** | **kotlin.String**|  |
+ **body** | **kotlin.String**|  |
+ **from** | [**kotlin.Array&lt;SendMailAdvFrom&gt;**](SendMailAdvFrom.md)|  |
+ **to** | [**kotlin.Array&lt;MailContact&gt;**](MailContact.md)|  |
+ **id** | **kotlin.Long**|  |
+ **replyto** | [**kotlin.Array&lt;MailContact&gt;**](MailContact.md)|  |
+ **cc** | [**kotlin.Array&lt;MailContact&gt;**](MailContact.md)|  |
+ **bcc** | [**kotlin.Array&lt;MailContact&gt;**](MailContact.md)|  |
+ **attachments** | [**kotlin.Array&lt;MailAttachment&gt;**](MailAttachment.md)|  |
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="sendMail"></a>
+# **sendMail**
+> GenericResponse sendMail(body)
 
 Sends an Email
 
@@ -207,13 +270,13 @@ Sends An email through one of your mail orders.
 val apiInstance = DefaultApi()
 val body : SendMail =  // SendMail | 
 try {
-    val result : GenericResponse = apiInstance.sendMailById(body)
+    val result : GenericResponse = apiInstance.sendMail(body)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling DefaultApi#sendMailById")
+    println("4xx response calling DefaultApi#sendMail")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling DefaultApi#sendMailById")
+    println("5xx response calling DefaultApi#sendMail")
     e.printStackTrace()
 }
 ```
@@ -237,9 +300,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
-<a name="sendMailById"></a>
-# **sendMailById**
-> GenericResponse sendMailById(subject, body, from, to, id, replyto, cc, bcc, attachments)
+<a name="sendMail"></a>
+# **sendMail**
+> GenericResponse sendMail(to, from, subject, body)
 
 Sends an Email
 
@@ -252,23 +315,18 @@ Sends An email through one of your mail orders.
 //import io.swagger.client.models.*;
 
 val apiInstance = DefaultApi()
+val to : kotlin.String = to_example // kotlin.String | 
+val from : kotlin.String = from_example // kotlin.String | 
 val subject : kotlin.String = subject_example // kotlin.String | 
 val body : kotlin.String = body_example // kotlin.String | 
-val from : kotlin.Array<SendMailFrom> =  // kotlin.Array<SendMailFrom> | 
-val to : kotlin.Array<MailContact> =  // kotlin.Array<MailContact> | 
-val id : kotlin.Long = 789 // kotlin.Long | 
-val replyto : kotlin.Array<MailContact> =  // kotlin.Array<MailContact> | 
-val cc : kotlin.Array<MailContact> =  // kotlin.Array<MailContact> | 
-val bcc : kotlin.Array<MailContact> =  // kotlin.Array<MailContact> | 
-val attachments : kotlin.Array<MailAttachment> =  // kotlin.Array<MailAttachment> | 
 try {
-    val result : GenericResponse = apiInstance.sendMailById(subject, body, from, to, id, replyto, cc, bcc, attachments)
+    val result : GenericResponse = apiInstance.sendMail(to, from, subject, body)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling DefaultApi#sendMailById")
+    println("4xx response calling DefaultApi#sendMail")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling DefaultApi#sendMailById")
+    println("5xx response calling DefaultApi#sendMail")
     e.printStackTrace()
 }
 ```
@@ -277,15 +335,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **to** | **kotlin.String**|  |
+ **from** | **kotlin.String**|  |
  **subject** | **kotlin.String**|  |
  **body** | **kotlin.String**|  |
- **from** | [**kotlin.Array&lt;SendMailFrom&gt;**](SendMailFrom.md)|  |
- **to** | [**kotlin.Array&lt;MailContact&gt;**](MailContact.md)|  |
- **id** | **kotlin.Long**|  |
- **replyto** | [**kotlin.Array&lt;MailContact&gt;**](MailContact.md)|  |
- **cc** | [**kotlin.Array&lt;MailContact&gt;**](MailContact.md)|  |
- **bcc** | [**kotlin.Array&lt;MailContact&gt;**](MailContact.md)|  |
- **attachments** | [**kotlin.Array&lt;MailAttachment&gt;**](MailAttachment.md)|  |
 
 ### Return type
 

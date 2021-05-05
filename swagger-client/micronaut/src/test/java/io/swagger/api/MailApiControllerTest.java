@@ -8,7 +8,8 @@ import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
 import io.swagger.model.SendMail;
-import io.swagger.model.SendMailFrom;
+import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailAdvFrom;
 
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
@@ -48,30 +49,20 @@ class MailApiControllerTest {
     }
 
     @Test
-    void sendAdvMailByIdTest() {
-        SendMail body = new SendMail();
+    void sendAdvMailTest() {
+        SendMailAdv body = new SendMailAdv();
         try {
-            api.sendAdvMailById(body).blockingGet();
+            api.sendAdvMail(body).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }
     }
 
     @Test
-    void sendMailByIdTest() {
-        SendMail body = new SendMail();
-        try {
-            api.sendMailById(body).blockingGet();
-        } catch (UnsupportedOperationException e) {
-            assumeTrue(false, "API is not yet implemented");
-        }
-    }
-
-    @Test
-    void sendMailByIdWithFormTest() {
+    void sendAdvMailWithFormTest() {
         String subject = "subject_example";
         String body = "body_example";
-        List<SendMailFrom> from = Arrays.asList(new SendMailFrom());
+        List<SendMailAdvFrom> from = Arrays.asList(new SendMailAdvFrom());
         List<MailContact> to = Arrays.asList(new MailContact());
         Long id = 789L;
         List<MailContact> replyto = Arrays.asList(new MailContact());
@@ -79,7 +70,30 @@ class MailApiControllerTest {
         List<MailContact> bcc = Arrays.asList(new MailContact());
         List<MailAttachment> attachments = Arrays.asList(new MailAttachment());
         try {
-            api.sendMailById(subject, body, from, to, id, replyto, cc, bcc, attachments).blockingGet();
+            api.sendAdvMail(subject, body, from, to, id, replyto, cc, bcc, attachments).blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
+    void sendMailTest() {
+        SendMail body = new SendMail();
+        try {
+            api.sendMail(body).blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
+    void sendMailWithFormTest() {
+        String to = "to_example";
+        String from = "from_example";
+        String subject = "subject_example";
+        String body = "body_example";
+        try {
+            api.sendMail(to, from, subject, body).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

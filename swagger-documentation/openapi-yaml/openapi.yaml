@@ -82,51 +82,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /mail/order:
-    get:
-      summary: validatess order details before placing an order
-      operationId: validateMailOrder
-      parameters: []
-      responses:
-        "200":
-          description: list of mail orders
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-      deprecated: true
-    post:
-      summary: places a mail order
-      description: Adds an item to the system
-      operationId: placeMailOrder
-      parameters: []
-      requestBody:
-        description: Inventory item to add
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MailOrder'
-      responses:
-        "200":
-          description: list of mail orders
-        "400":
-          description: "invalid input, object invalid"
-        "409":
-          description: an existing item already exists
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-      deprecated: true
   /mail/send:
     post:
       summary: Sends an Email
       description: Sends An email through one of your mail orders.
-      operationId: sendMailById
+      operationId: sendMail
       requestBody:
         content:
           application/json:
@@ -162,12 +122,15 @@ paths:
       summary: Sends an Email with Advanced Options
       description: "Sends An email through one of your mail orders allowing additional\
         \ options such as file attachments, cc, bcc, etc."
-      operationId: sendAdvMailById
+      operationId: sendAdvMail
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SendMail'
+              $ref: '#/components/schemas/SendMailAdv'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SendMailAdv'
         required: true
       responses:
         "200":
@@ -246,6 +209,46 @@ paths:
                   $ref: '#/components/schemas/MailLog'
         "400":
           description: bad input parameter
+  /mail/order:
+    get:
+      summary: validatess order details before placing an order
+      operationId: validateMailOrder
+      parameters: []
+      responses:
+        "200":
+          description: list of mail orders
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      deprecated: true
+    post:
+      summary: places a mail order
+      description: Adds an item to the system
+      operationId: placeMailOrder
+      parameters: []
+      requestBody:
+        description: Inventory item to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailOrder'
+      responses:
+        "200":
+          description: list of mail orders
+        "400":
+          description: "invalid input, object invalid"
+        "409":
+          description: an existing item already exists
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      deprecated: true
 components:
   schemas:
     ErrorResponse:
@@ -330,6 +333,28 @@ components:
       description: A File attachment for an email
     SendMail:
       title: Email details
+      type: object
+      properties:
+        to:
+          type: string
+          description: The Contact whom is the primary recipient of this email.
+          example: johndoe@company.com
+        from:
+          type: string
+          description: The contact whom is the this email is from.
+          example: johndoe@company.com
+        subject:
+          type: string
+          description: The subject or title of the email
+          example: Your Package has been Delivered!
+        body:
+          type: string
+          description: The main email contents.
+          example: "The package you ordered on 2021-01-23 has been delivered. If the\
+            \ package is broken into many pieces, please blaim someone else.\n"
+      description: Details for an Email
+    SendMailAdv:
+      title: Email details
       required:
       - body
       - from
@@ -351,7 +376,7 @@ components:
           type: array
           description: The contact whom is the this email is from.
           items:
-            $ref: '#/components/schemas/SendMail_from'
+            $ref: '#/components/schemas/SendMailAdv_from'
         to:
           type: array
           description: The Contact whom is the primary recipient of this email.
@@ -389,7 +414,7 @@ components:
           items:
             $ref: '#/components/schemas/MailAttachment'
       description: Details for an Email
-    SendMail_from:
+    SendMailAdv_from:
       required:
       - email
       type: object

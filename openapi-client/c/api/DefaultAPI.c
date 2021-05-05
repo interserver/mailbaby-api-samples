@@ -238,7 +238,7 @@ end:
 // Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 //
 generic_response_t*
-DefaultAPI_sendAdvMailById(apiClient_t *apiClient, send_mail_t * send_mail )
+DefaultAPI_sendAdvMail(apiClient_t *apiClient, send_mail_adv_t * send_mail_adv )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -256,15 +256,16 @@ DefaultAPI_sendAdvMailById(apiClient_t *apiClient, send_mail_t * send_mail )
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_send_mail = NULL;
-    if (send_mail != NULL)
+    cJSON *localVarSingleItemJSON_send_mail_adv = NULL;
+    if (send_mail_adv != NULL)
     {
         //string
-        localVarSingleItemJSON_send_mail = send_mail_convertToJSON(send_mail);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_send_mail);
+        localVarSingleItemJSON_send_mail_adv = send_mail_adv_convertToJSON(send_mail_adv);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_send_mail_adv);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
+    list_addElement(localVarContentType,"application/x-www-form-urlencoded"); //consumes
     apiClient_invoke(apiClient,
                     localVarPath,
                     localVarQueryParameters,
@@ -307,9 +308,9 @@ DefaultAPI_sendAdvMailById(apiClient_t *apiClient, send_mail_t * send_mail )
     list_free(localVarHeaderType);
     list_free(localVarContentType);
     free(localVarPath);
-    if (localVarSingleItemJSON_send_mail) {
-        cJSON_Delete(localVarSingleItemJSON_send_mail);
-        localVarSingleItemJSON_send_mail = NULL;
+    if (localVarSingleItemJSON_send_mail_adv) {
+        cJSON_Delete(localVarSingleItemJSON_send_mail_adv);
+        localVarSingleItemJSON_send_mail_adv = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;
@@ -324,7 +325,7 @@ end:
 // Sends An email through one of your mail orders.
 //
 generic_response_t*
-DefaultAPI_sendMailById(apiClient_t *apiClient, send_mail_t * send_mail )
+DefaultAPI_sendMail(apiClient_t *apiClient, send_mail_t * send_mail )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;

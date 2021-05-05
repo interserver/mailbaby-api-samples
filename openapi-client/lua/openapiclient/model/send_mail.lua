@@ -19,17 +19,12 @@ local function cast_send_mail(t)
 	return setmetatable(t, send_mail_mt)
 end
 
-local function new_send_mail(subject, body, from, to, id, replyto, cc, bcc, attachments)
+local function new_send_mail(to, from, subject, body)
 	return cast_send_mail({
+		["to"] = to;
+		["from"] = from;
 		["subject"] = subject;
 		["body"] = body;
-		["from"] = from;
-		["to"] = to;
-		["id"] = id;
-		["replyto"] = replyto;
-		["cc"] = cc;
-		["bcc"] = bcc;
-		["attachments"] = attachments;
 	})
 end
 

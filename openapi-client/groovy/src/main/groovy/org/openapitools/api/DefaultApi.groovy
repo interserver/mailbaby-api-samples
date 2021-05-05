@@ -6,6 +6,7 @@ import org.openapitools.model.GenericResponse
 import org.openapitools.model.MailLog
 import org.openapitools.model.MailOrder
 import org.openapitools.model.SendMail
+import org.openapitools.model.SendMailAdv
 
 class DefaultApi {
     String basePath = "https://api.mailbaby.net"
@@ -77,7 +78,7 @@ class DefaultApi {
 
     }
 
-    def sendAdvMailById ( SendMail sendMail, Closure onSuccess, Closure onFailure)  {
+    def sendAdvMail ( SendMailAdv sendMailAdv, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/advsend"
 
         // params
@@ -87,14 +88,14 @@ class DefaultApi {
         def contentType
 
         // verify required params are set
-        if (sendMail == null) {
-            throw new RuntimeException("missing required params sendMail")
+        if (sendMailAdv == null) {
+            throw new RuntimeException("missing required params sendMailAdv")
         }
 
 
 
         contentType = 'application/json';
-        bodyParams = sendMail
+        bodyParams = sendMailAdv
 
 
         apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
@@ -103,7 +104,7 @@ class DefaultApi {
 
     }
 
-    def sendMailById ( SendMail sendMail, Closure onSuccess, Closure onFailure)  {
+    def sendMail ( SendMail sendMail, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/send"
 
         // params

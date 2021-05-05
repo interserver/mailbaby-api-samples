@@ -20,6 +20,7 @@ import { GenericResponse } from '../model/genericResponse';
 import { MailLog } from '../model/mailLog';
 import { MailOrder } from '../model/mailOrder';
 import { SendMail } from '../model/sendMail';
+import { SendMailAdv } from '../model/sendMailAdv';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from '../model/models';
@@ -286,9 +287,9 @@ export class DefaultApi {
     /**
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * @summary Sends an Email with Advanced Options
-     * @param sendMail 
+     * @param sendMailAdv 
      */
-    public async sendAdvMailById (sendMail: SendMail, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
+    public async sendAdvMail (sendMailAdv: SendMailAdv, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
         const localVarPath = this.basePath + '/mail/advsend';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -301,9 +302,9 @@ export class DefaultApi {
         }
         let localVarFormParams: any = {};
 
-        // verify required parameter 'sendMail' is not null or undefined
-        if (sendMail === null || sendMail === undefined) {
-            throw new Error('Required parameter sendMail was null or undefined when calling sendAdvMailById.');
+        // verify required parameter 'sendMailAdv' is not null or undefined
+        if (sendMailAdv === null || sendMailAdv === undefined) {
+            throw new Error('Required parameter sendMailAdv was null or undefined when calling sendAdvMail.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -317,7 +318,7 @@ export class DefaultApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(sendMail, "SendMail")
+            body: ObjectSerializer.serialize(sendMailAdv, "SendMailAdv")
         };
 
         let authenticationPromise = Promise.resolve();
@@ -360,7 +361,7 @@ export class DefaultApi {
      * @summary Sends an Email
      * @param sendMail 
      */
-    public async sendMailById (sendMail: SendMail, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
+    public async sendMail (sendMail: SendMail, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
         const localVarPath = this.basePath + '/mail/send';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -375,7 +376,7 @@ export class DefaultApi {
 
         // verify required parameter 'sendMail' is not null or undefined
         if (sendMail === null || sendMail === undefined) {
-            throw new Error('Required parameter sendMail was null or undefined when calling sendMailById.');
+            throw new Error('Required parameter sendMail was null or undefined when calling sendMail.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);

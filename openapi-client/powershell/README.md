@@ -55,8 +55,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**Get-MailOrders**](docs/DefaultApi.md#Get-MailOrders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**Ping-Server**](docs/DefaultApi.md#Ping-Server) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**Invoke-PlaceMailOrder**](docs/DefaultApi.md#Invoke-PlaceMailOrder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**Send-AdvMailById**](docs/DefaultApi.md#Send-AdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**Send-MailById**](docs/DefaultApi.md#Send-MailById) | **POST** /mail/send | Sends an Email
+*DefaultApi* | [**Send-AdvMail**](docs/DefaultApi.md#Send-AdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**Send-Mail**](docs/DefaultApi.md#Send-Mail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**Confirm-MailOrder**](docs/DefaultApi.md#Confirm-MailOrder) | **GET** /mail/order | validatess order details before placing an order
 *DefaultApi* | [**Invoke-ViewMailLogById**](docs/DefaultApi.md#Invoke-ViewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -70,7 +70,8 @@ Class | Method | HTTP request | Description
  - [PSOpenAPITools/Model.MailLog](docs/MailLog.md)
  - [PSOpenAPITools/Model.MailOrder](docs/MailOrder.md)
  - [PSOpenAPITools/Model.SendMail](docs/SendMail.md)
- - [PSOpenAPITools/Model.SendMailFrom](docs/SendMailFrom.md)
+ - [PSOpenAPITools/Model.SendMailAdv](docs/SendMailAdv.md)
+ - [PSOpenAPITools/Model.SendMailAdvFrom](docs/SendMailAdvFrom.md)
 
 
 ## Documentation for Authorization

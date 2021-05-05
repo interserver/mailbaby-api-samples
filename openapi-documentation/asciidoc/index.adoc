@@ -292,8 +292,8 @@ ifdef::internal-generation[]
 endif::internal-generation[]
 
 
-[.sendAdvMailById]
-==== sendAdvMailById
+[.sendAdvMail]
+==== sendAdvMail
     
 `POST /mail/advsend`
 
@@ -317,8 +317,8 @@ Sends An email through one of your mail orders allowing additional options such 
 |===         
 |Name| Description| Required| Default| Pattern
 
-| SendMail 
-|  <<SendMail>> 
+| SendMailAdv 
+|  <<SendMailAdv>> 
 | X 
 |  
 |  
@@ -389,8 +389,8 @@ ifdef::internal-generation[]
 endif::internal-generation[]
 
 
-[.sendMailById]
-==== sendMailById
+[.sendMail]
+==== sendMail
     
 `POST /mail/send`
 
@@ -842,6 +842,43 @@ Details for an Email
 |===         
 | Field Name| Required| Type| Description| Format
 
+| to 
+|  
+| String  
+| The Contact whom is the primary recipient of this email.
+|  
+
+| from 
+|  
+| String  
+| The contact whom is the this email is from.
+|  
+
+| subject 
+|  
+| String  
+| The subject or title of the email
+|  
+
+| body 
+|  
+| String  
+| The main email contents.
+|  
+
+|===
+
+
+[#SendMailAdv]
+=== _SendMailAdv_ Email details
+
+Details for an Email
+
+[.fields-SendMailAdv]
+[cols="2,1,2,4,1"]
+|===         
+| Field Name| Required| Type| Description| Format
+
 | subject 
 | X 
 | String  
@@ -856,7 +893,7 @@ Details for an Email
 
 | from 
 | X 
-| List  of <<SendMail_from>> 
+| List  of <<SendMailAdv_from>> 
 | The contact whom is the this email is from.
 |  
 
@@ -899,12 +936,12 @@ Details for an Email
 |===
 
 
-[#SendMailFrom]
-=== _SendMailFrom_ 
+[#SendMailAdvFrom]
+=== _SendMailAdvFrom_ 
 
 An Email Contact
 
-[.fields-SendMailFrom]
+[.fields-SendMailAdvFrom]
 [cols="2,1,2,4,1"]
 |===         
 | Field Name| Required| Type| Description| Format

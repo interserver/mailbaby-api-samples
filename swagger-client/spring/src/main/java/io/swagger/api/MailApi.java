@@ -13,7 +13,8 @@ import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
 import io.swagger.model.SendMail;
-import io.swagger.model.SendMailFrom;
+import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailAdvFrom;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -40,7 +41,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-05T04:30:06.960211-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-05T06:29:40.734119-04:00[America/New_York]")
 @Validated
 public interface MailApi {
 
@@ -85,9 +86,9 @@ public interface MailApi {
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
     @RequestMapping(value = "/mail/advsend",
         produces = { "application/json" }, 
-        consumes = { "application/json" }, 
+        consumes = { "application/json", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.POST)
-    ResponseEntity<GenericResponse> sendAdvMailById(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody SendMail body);
+    ResponseEntity<GenericResponse> sendAdvMail(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody SendMailAdv body);
 
 
     @Operation(summary = "Sends an Email", description = "Sends An email through one of your mail orders.", security = {
@@ -104,7 +105,7 @@ public interface MailApi {
         produces = { "application/json" }, 
         consumes = { "application/json", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.POST)
-    ResponseEntity<GenericResponse> sendMailById(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody SendMail body);
+    ResponseEntity<GenericResponse> sendMail(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody SendMail body);
 
 
     @Operation(summary = "validatess order details before placing an order", description = "", security = {

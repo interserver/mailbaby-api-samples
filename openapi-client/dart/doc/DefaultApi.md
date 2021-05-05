@@ -12,8 +12,8 @@ Method | HTTP request | Description
 [**getMailOrders**](DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultApi.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultApi.md#sendmailbyid) | **POST** /mail/send | Sends an Email
+[**sendAdvMail**](DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMail**](DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
 [**viewMailLogById**](DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
@@ -145,8 +145,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **sendAdvMailById**
-> GenericResponse sendAdvMailById(sendMail)
+# **sendAdvMail**
+> GenericResponse sendAdvMail(sendMailAdv)
 
 Sends an Email with Advanced Options
 
@@ -161,13 +161,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
 final api_instance = DefaultApi();
-final sendMail = SendMail(); // SendMail | 
+final sendMailAdv = SendMailAdv(); // SendMailAdv | 
 
 try { 
-    final result = api_instance.sendAdvMailById(sendMail);
+    final result = api_instance.sendAdvMail(sendMailAdv);
     print(result);
 } catch (e) {
-    print('Exception when calling DefaultApi->sendAdvMailById: $e\n');
+    print('Exception when calling DefaultApi->sendAdvMail: $e\n');
 }
 ```
 
@@ -175,7 +175,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sendMail** | [**SendMail**](SendMail.md)|  | 
+ **sendMailAdv** | [**SendMailAdv**](SendMailAdv.md)|  | 
 
 ### Return type
 
@@ -187,13 +187,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **sendMailById**
-> GenericResponse sendMailById(sendMail)
+# **sendMail**
+> GenericResponse sendMail(sendMail)
 
 Sends an Email
 
@@ -211,10 +211,10 @@ final api_instance = DefaultApi();
 final sendMail = SendMail(); // SendMail | 
 
 try { 
-    final result = api_instance.sendMailById(sendMail);
+    final result = api_instance.sendMail(sendMail);
     print(result);
 } catch (e) {
-    print('Exception when calling DefaultApi->sendMailById: $e\n');
+    print('Exception when calling DefaultApi->sendMail: $e\n');
 }
 ```
 

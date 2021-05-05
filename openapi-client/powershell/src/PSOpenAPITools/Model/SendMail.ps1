@@ -15,24 +15,14 @@ No summary available.
 
 Details for an Email
 
+.PARAMETER To
+The Contact whom is the primary recipient of this email.
+.PARAMETER VarFrom
+The contact whom is the this email is from.
 .PARAMETER Subject
 The subject or title of the email
 .PARAMETER Body
 The main email contents.
-.PARAMETER VarFrom
-The contact whom is the this email is from.
-.PARAMETER To
-The Contact whom is the primary recipient of this email.
-.PARAMETER Id
-The ID of the Mail order within our system to use as the Mail Account.
-.PARAMETER Replyto
-Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-.PARAMETER Cc
-Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-.PARAMETER Bcc
-Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-.PARAMETER Attachments
-Optional file attachments to include in the email
 .OUTPUTS
 
 SendMail<PSCustomObject>
@@ -43,68 +33,28 @@ function Initialize-SendMail {
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Subject},
+        ${To},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Body},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
         ${VarFrom},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Subject},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${To},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
-        [Int64]
-        ${Id},
-        [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${Replyto},
-        [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${Cc},
-        [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${Bcc},
-        [Parameter(Position = 8, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
-        ${Attachments}
+        [String]
+        ${Body}
     )
 
     Process {
         'Creating PSCustomObject: PSOpenAPITools => SendMail' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
-        if ($Subject -eq $null) {
-            throw "invalid value for 'Subject', 'Subject' cannot be null."
-        }
-
-        if ($Body -eq $null) {
-            throw "invalid value for 'Body', 'Body' cannot be null."
-        }
-
-        if ($VarFrom -eq $null) {
-            throw "invalid value for 'VarFrom', 'VarFrom' cannot be null."
-        }
-
-        if ($To -eq $null) {
-            throw "invalid value for 'To', 'To' cannot be null."
-        }
-
-        if ($Id -eq $null) {
-            throw "invalid value for 'Id', 'Id' cannot be null."
-        }
-
 
         $PSO = [PSCustomObject]@{
+            "to" = ${To}
+            "from" = ${VarFrom}
             "subject" = ${Subject}
             "body" = ${Body}
-            "from" = ${VarFrom}
-            "to" = ${To}
-            "id" = ${Id}
-            "replyto" = ${Replyto}
-            "cc" = ${Cc}
-            "bcc" = ${Bcc}
-            "attachments" = ${Attachments}
         }
 
 
@@ -142,81 +92,42 @@ function ConvertFrom-JsonToSendMail {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in SendMail
-        $AllProperties = ("subject", "body", "from", "to", "id", "replyto", "cc", "bcc", "attachments")
+        $AllProperties = ("to", "from", "subject", "body")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
             }
         }
 
-        If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'subject' missing."
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "subject"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'subject' missing."
-        } else {
-            $Subject = $JsonParameters.PSobject.Properties["subject"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "body"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'body' missing."
-        } else {
-            $Body = $JsonParameters.PSobject.Properties["body"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "from"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'from' missing."
-        } else {
-            $VarFrom = $JsonParameters.PSobject.Properties["from"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "to"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'to' missing."
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "to"))) { #optional property not found
+            $To = $null
         } else {
             $To = $JsonParameters.PSobject.Properties["to"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'id' missing."
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "from"))) { #optional property not found
+            $VarFrom = $null
         } else {
-            $Id = $JsonParameters.PSobject.Properties["id"].value
+            $VarFrom = $JsonParameters.PSobject.Properties["from"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "replyto"))) { #optional property not found
-            $Replyto = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "subject"))) { #optional property not found
+            $Subject = $null
         } else {
-            $Replyto = $JsonParameters.PSobject.Properties["replyto"].value
+            $Subject = $JsonParameters.PSobject.Properties["subject"].value
         }
 
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "cc"))) { #optional property not found
-            $Cc = $null
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "body"))) { #optional property not found
+            $Body = $null
         } else {
-            $Cc = $JsonParameters.PSobject.Properties["cc"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "bcc"))) { #optional property not found
-            $Bcc = $null
-        } else {
-            $Bcc = $JsonParameters.PSobject.Properties["bcc"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "attachments"))) { #optional property not found
-            $Attachments = $null
-        } else {
-            $Attachments = $JsonParameters.PSobject.Properties["attachments"].value
+            $Body = $JsonParameters.PSobject.Properties["body"].value
         }
 
         $PSO = [PSCustomObject]@{
+            "to" = ${To}
+            "from" = ${VarFrom}
             "subject" = ${Subject}
             "body" = ${Body}
-            "from" = ${VarFrom}
-            "to" = ${To}
-            "id" = ${Id}
-            "replyto" = ${Replyto}
-            "cc" = ${Cc}
-            "bcc" = ${Bcc}
-            "attachments" = ${Attachments}
         }
 
         return $PSO

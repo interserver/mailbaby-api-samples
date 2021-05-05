@@ -19,6 +19,7 @@ goog.require('API.Client.GenericResponse');
 goog.require('API.Client.MailLog');
 goog.require('API.Client.MailOrder');
 goog.require('API.Client.SendMail');
+goog.require('API.Client.SendMailAdv');
 
 /**
  * @constructor
@@ -150,11 +151,11 @@ API.Client.DefaultApi.prototype.placeMailOrder = function(opt_mailOrder, opt_ext
 /**
  * Sends an Email with Advanced Options
  * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
- * @param {!SendMail} sendMail 
+ * @param {!SendMailAdv} sendMailAdv 
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.GenericResponse>}
  */
-API.Client.DefaultApi.prototype.sendAdvMailById = function(sendMail, opt_extraHttpRequestParams) {
+API.Client.DefaultApi.prototype.sendAdvMail = function(sendMailAdv, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/mail/advsend';
 
@@ -163,16 +164,16 @@ API.Client.DefaultApi.prototype.sendAdvMailById = function(sendMail, opt_extraHt
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'sendMail' is set
-  if (!sendMail) {
-    throw new Error('Missing required parameter sendMail when calling sendAdvMailById');
+  // verify required parameter 'sendMailAdv' is set
+  if (!sendMailAdv) {
+    throw new Error('Missing required parameter sendMailAdv when calling sendAdvMail');
   }
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'POST',
     url: path,
     json: true,
-    data: sendMail,
+    data: sendMailAdv,
         params: queryParameters,
     headers: headerParams
   };
@@ -191,7 +192,7 @@ API.Client.DefaultApi.prototype.sendAdvMailById = function(sendMail, opt_extraHt
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.GenericResponse>}
  */
-API.Client.DefaultApi.prototype.sendMailById = function(sendMail, opt_extraHttpRequestParams) {
+API.Client.DefaultApi.prototype.sendMail = function(sendMail, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/mail/send';
 
@@ -202,7 +203,7 @@ API.Client.DefaultApi.prototype.sendMailById = function(sendMail, opt_extraHttpR
   var headerParams = angular.extend({}, this.defaultHeaders_);
   // verify required parameter 'sendMail' is set
   if (!sendMail) {
-    throw new Error('Missing required parameter sendMail when calling sendMailById');
+    throw new Error('Missing required parameter sendMail when calling sendMail');
   }
   /** @type {!Object} */
   var httpRequestParams = {

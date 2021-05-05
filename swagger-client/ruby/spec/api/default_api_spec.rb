@@ -64,33 +64,21 @@ describe 'DefaultApi' do
     end
   end
 
-  # unit tests for send_adv_mail_by_id
+  # unit tests for send_adv_mail
   # Sends an Email with Advanced Options
   # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
   # @param body 
   # @param [Hash] opts the optional parameters
   # @return [GenericResponse]
-  describe 'send_adv_mail_by_id test' do
+  describe 'send_adv_mail test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for send_mail_by_id
-  # Sends an Email
-  # Sends An email through one of your mail orders.
-  # @param body 
-  # @param [Hash] opts the optional parameters
-  # @return [GenericResponse]
-  describe 'send_mail_by_id test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for send_mail_by_id
-  # Sends an Email
-  # Sends An email through one of your mail orders.
+  # unit tests for send_adv_mail
+  # Sends an Email with Advanced Options
+  # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
   # @param subject 
   # @param body 
   # @param from 
@@ -102,7 +90,34 @@ describe 'DefaultApi' do
   # @param attachments 
   # @param [Hash] opts the optional parameters
   # @return [GenericResponse]
-  describe 'send_mail_by_id test' do
+  describe 'send_adv_mail test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for send_mail
+  # Sends an Email
+  # Sends An email through one of your mail orders.
+  # @param body 
+  # @param [Hash] opts the optional parameters
+  # @return [GenericResponse]
+  describe 'send_mail test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for send_mail
+  # Sends an Email
+  # Sends An email through one of your mail orders.
+  # @param to 
+  # @param from 
+  # @param subject 
+  # @param body 
+  # @param [Hash] opts the optional parameters
+  # @return [GenericResponse]
+  describe 'send_mail test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

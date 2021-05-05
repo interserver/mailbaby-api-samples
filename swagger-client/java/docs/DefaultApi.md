@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
+[**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 [**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -157,9 +157,9 @@ null (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="sendAdvMailById"></a>
-# **sendAdvMailById**
-> GenericResponse sendAdvMailById(body)
+<a name="sendAdvMail"></a>
+# **sendAdvMail**
+> GenericResponse sendAdvMail(body)
 
 Sends an Email with Advanced Options
 
@@ -183,12 +183,12 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 //apiKeyAuth.setApiKeyPrefix("Token");
 
 DefaultApi apiInstance = new DefaultApi();
-SendMail body = new SendMail(); // SendMail | 
+SendMailAdv body = new SendMailAdv(); // SendMailAdv | 
 try {
-    GenericResponse result = apiInstance.sendAdvMailById(body);
+    GenericResponse result = apiInstance.sendAdvMail(body);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling DefaultApi#sendAdvMailById");
+    System.err.println("Exception when calling DefaultApi#sendAdvMail");
     e.printStackTrace();
 }
 ```
@@ -197,7 +197,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SendMail**](SendMail.md)|  |
+ **body** | [**SendMailAdv**](SendMailAdv.md)|  |
 
 ### Return type
 
@@ -209,12 +209,83 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
-<a name="sendMailById"></a>
-# **sendMailById**
-> GenericResponse sendMailById(body)
+<a name="sendAdvMail"></a>
+# **sendAdvMail**
+> GenericResponse sendAdvMail(subject, body, from, to, id, replyto, cc, bcc, attachments)
+
+Sends an Email with Advanced Options
+
+Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiClient;
+//import io.swagger.client.ApiException;
+//import io.swagger.client.Configuration;
+//import io.swagger.client.auth.*;
+//import io.swagger.client.api.DefaultApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: apiKeyAuth
+ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
+apiKeyAuth.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKeyAuth.setApiKeyPrefix("Token");
+
+DefaultApi apiInstance = new DefaultApi();
+String subject = "subject_example"; // String | 
+String body = "body_example"; // String | 
+List<SendMailAdvFrom> from = Arrays.asList(new SendMailAdvFrom()); // List<SendMailAdvFrom> | 
+List<MailContact> to = Arrays.asList(new MailContact()); // List<MailContact> | 
+Long id = 789L; // Long | 
+List<MailContact> replyto = Arrays.asList(new MailContact()); // List<MailContact> | 
+List<MailContact> cc = Arrays.asList(new MailContact()); // List<MailContact> | 
+List<MailContact> bcc = Arrays.asList(new MailContact()); // List<MailContact> | 
+List<MailAttachment> attachments = Arrays.asList(new MailAttachment()); // List<MailAttachment> | 
+try {
+    GenericResponse result = apiInstance.sendAdvMail(subject, body, from, to, id, replyto, cc, bcc, attachments);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling DefaultApi#sendAdvMail");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **subject** | **String**|  |
+ **body** | **String**|  |
+ **from** | [**List&lt;SendMailAdvFrom&gt;**](SendMailAdvFrom.md)|  |
+ **to** | [**List&lt;MailContact&gt;**](MailContact.md)|  |
+ **id** | **Long**|  |
+ **replyto** | [**List&lt;MailContact&gt;**](MailContact.md)|  |
+ **cc** | [**List&lt;MailContact&gt;**](MailContact.md)|  |
+ **bcc** | [**List&lt;MailContact&gt;**](MailContact.md)|  |
+ **attachments** | [**List&lt;MailAttachment&gt;**](MailAttachment.md)|  |
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="sendMail"></a>
+# **sendMail**
+> GenericResponse sendMail(body)
 
 Sends an Email
 
@@ -240,10 +311,10 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 DefaultApi apiInstance = new DefaultApi();
 SendMail body = new SendMail(); // SendMail | 
 try {
-    GenericResponse result = apiInstance.sendMailById(body);
+    GenericResponse result = apiInstance.sendMail(body);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling DefaultApi#sendMailById");
+    System.err.println("Exception when calling DefaultApi#sendMail");
     e.printStackTrace();
 }
 ```
@@ -267,9 +338,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
-<a name="sendMailById"></a>
-# **sendMailById**
-> GenericResponse sendMailById(subject, body, from, to, id, replyto, cc, bcc, attachments)
+<a name="sendMail"></a>
+# **sendMail**
+> GenericResponse sendMail(to, from, subject, body)
 
 Sends an Email
 
@@ -293,20 +364,15 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 //apiKeyAuth.setApiKeyPrefix("Token");
 
 DefaultApi apiInstance = new DefaultApi();
+String to = "to_example"; // String | 
+String from = "from_example"; // String | 
 String subject = "subject_example"; // String | 
 String body = "body_example"; // String | 
-List<SendMailFrom> from = Arrays.asList(new SendMailFrom()); // List<SendMailFrom> | 
-List<MailContact> to = Arrays.asList(new MailContact()); // List<MailContact> | 
-Long id = 789L; // Long | 
-List<MailContact> replyto = Arrays.asList(new MailContact()); // List<MailContact> | 
-List<MailContact> cc = Arrays.asList(new MailContact()); // List<MailContact> | 
-List<MailContact> bcc = Arrays.asList(new MailContact()); // List<MailContact> | 
-List<MailAttachment> attachments = Arrays.asList(new MailAttachment()); // List<MailAttachment> | 
 try {
-    GenericResponse result = apiInstance.sendMailById(subject, body, from, to, id, replyto, cc, bcc, attachments);
+    GenericResponse result = apiInstance.sendMail(to, from, subject, body);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling DefaultApi#sendMailById");
+    System.err.println("Exception when calling DefaultApi#sendMail");
     e.printStackTrace();
 }
 ```
@@ -315,15 +381,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **to** | **String**|  |
+ **from** | **String**|  |
  **subject** | **String**|  |
  **body** | **String**|  |
- **from** | [**List&lt;SendMailFrom&gt;**](SendMailFrom.md)|  |
- **to** | [**List&lt;MailContact&gt;**](MailContact.md)|  |
- **id** | **Long**|  |
- **replyto** | [**List&lt;MailContact&gt;**](MailContact.md)|  |
- **cc** | [**List&lt;MailContact&gt;**](MailContact.md)|  |
- **bcc** | [**List&lt;MailContact&gt;**](MailContact.md)|  |
- **attachments** | [**List&lt;MailAttachment&gt;**](MailAttachment.md)|  |
 
 ### Return type
 

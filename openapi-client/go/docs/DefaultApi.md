@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**GetMailOrders**](DefaultApi.md#GetMailOrders) | **Get** /mail | displays a list of mail service orders
 [**PingServer**](DefaultApi.md#PingServer) | **Get** /ping | Checks if the server is running
 [**PlaceMailOrder**](DefaultApi.md#PlaceMailOrder) | **Post** /mail/order | places a mail order
-[**SendAdvMailById**](DefaultApi.md#SendAdvMailById) | **Post** /mail/advsend | Sends an Email with Advanced Options
-[**SendMailById**](DefaultApi.md#SendMailById) | **Post** /mail/send | Sends an Email
+[**SendAdvMail**](DefaultApi.md#SendAdvMail) | **Post** /mail/advsend | Sends an Email with Advanced Options
+[**SendMail**](DefaultApi.md#SendMail) | **Post** /mail/send | Sends an Email
 [**ValidateMailOrder**](DefaultApi.md#ValidateMailOrder) | **Get** /mail/order | validatess order details before placing an order
 [**ViewMailLogById**](DefaultApi.md#ViewMailLogById) | **Get** /mail/log | displays the mail log
 
@@ -199,9 +199,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## SendAdvMailById
+## SendAdvMail
 
-> GenericResponse SendAdvMailById(ctx).SendMail(sendMail).Execute()
+> GenericResponse SendAdvMail(ctx).SendMailAdv(sendMailAdv).Execute()
 
 Sends an Email with Advanced Options
 
@@ -220,18 +220,18 @@ import (
 )
 
 func main() {
-    sendMail := *openapiclient.NewSendMail("Your Package has been Delivered!", "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-", []openapiclient.SendMailFrom{*openapiclient.NewSendMailFrom("johndoe@company.com")}, []openapiclient.MailContact{*openapiclient.NewMailContact("johndoe@company.com")}, int64(5000)) // SendMail | 
+    sendMailAdv := *openapiclient.NewSendMailAdv("Your Package has been Delivered!", "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
+", []openapiclient.SendMailAdvFrom{*openapiclient.NewSendMailAdvFrom("johndoe@company.com")}, []openapiclient.MailContact{*openapiclient.NewMailContact("johndoe@company.com")}, int64(5000)) // SendMailAdv | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.SendAdvMailById(context.Background()).SendMail(sendMail).Execute()
+    resp, r, err := api_client.DefaultApi.SendAdvMail(context.Background()).SendMailAdv(sendMailAdv).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SendAdvMailById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SendAdvMail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `SendAdvMailById`: GenericResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SendAdvMailById`: %v\n", resp)
+    // response from `SendAdvMail`: GenericResponse
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SendAdvMail`: %v\n", resp)
 }
 ```
 
@@ -241,12 +241,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSendAdvMailByIdRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiSendAdvMailRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sendMail** | [**SendMail**](SendMail.md) |  | 
+ **sendMailAdv** | [**SendMailAdv**](SendMailAdv.md) |  | 
 
 ### Return type
 
@@ -258,7 +258,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -266,9 +266,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## SendMailById
+## SendMail
 
-> GenericResponse SendMailById(ctx).SendMail(sendMail).Execute()
+> GenericResponse SendMail(ctx).SendMail(sendMail).Execute()
 
 Sends an Email
 
@@ -287,18 +287,17 @@ import (
 )
 
 func main() {
-    sendMail := *openapiclient.NewSendMail("Your Package has been Delivered!", "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-", []openapiclient.SendMailFrom{*openapiclient.NewSendMailFrom("johndoe@company.com")}, []openapiclient.MailContact{*openapiclient.NewMailContact("johndoe@company.com")}, int64(5000)) // SendMail | 
+    sendMail := *openapiclient.NewSendMail() // SendMail | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.SendMailById(context.Background()).SendMail(sendMail).Execute()
+    resp, r, err := api_client.DefaultApi.SendMail(context.Background()).SendMail(sendMail).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SendMailById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SendMail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `SendMailById`: GenericResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SendMailById`: %v\n", resp)
+    // response from `SendMail`: GenericResponse
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SendMail`: %v\n", resp)
 }
 ```
 
@@ -308,7 +307,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSendMailByIdRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiSendMailRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

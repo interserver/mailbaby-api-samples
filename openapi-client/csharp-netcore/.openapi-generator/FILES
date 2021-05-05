@@ -11,7 +11,8 @@ docs/MailContact.md
 docs/MailLog.md
 docs/MailOrder.md
 docs/SendMail.md
-docs/SendMailFrom.md
+docs/SendMailAdv.md
+docs/SendMailAdvFrom.md
 git_push.sh
 src/Org.OpenAPITools.Test/Api/DefaultApiTests.cs
 src/Org.OpenAPITools.Test/Model/ErrorResponseTests.cs
@@ -20,7 +21,8 @@ src/Org.OpenAPITools.Test/Model/MailAttachmentTests.cs
 src/Org.OpenAPITools.Test/Model/MailContactTests.cs
 src/Org.OpenAPITools.Test/Model/MailLogTests.cs
 src/Org.OpenAPITools.Test/Model/MailOrderTests.cs
-src/Org.OpenAPITools.Test/Model/SendMailFromTests.cs
+src/Org.OpenAPITools.Test/Model/SendMailAdvFromTests.cs
+src/Org.OpenAPITools.Test/Model/SendMailAdvTests.cs
 src/Org.OpenAPITools.Test/Model/SendMailTests.cs
 src/Org.OpenAPITools.Test/Org.OpenAPITools.Test.csproj
 src/Org.OpenAPITools/Api/DefaultApi.cs
@@ -48,5 +50,6 @@ src/Org.OpenAPITools/Model/MailContact.cs
 src/Org.OpenAPITools/Model/MailLog.cs
 src/Org.OpenAPITools/Model/MailOrder.cs
 src/Org.OpenAPITools/Model/SendMail.cs
-src/Org.OpenAPITools/Model/SendMailFrom.cs
+src/Org.OpenAPITools/Model/SendMailAdv.cs
+src/Org.OpenAPITools/Model/SendMailAdvFrom.cs
 src/Org.OpenAPITools/Org.OpenAPITools.csproj

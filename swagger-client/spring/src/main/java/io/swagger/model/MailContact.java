@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "An Email Contact")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-05T04:30:06.960211-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-05T06:29:40.734119-04:00[America/New_York]")
 
 
 public class MailContact   {

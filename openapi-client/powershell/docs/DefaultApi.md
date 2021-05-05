@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**Get-MailOrders**](DefaultApi.md#Get-MailOrders) | **GET** /mail | displays a list of mail service orders
 [**Ping-Server**](DefaultApi.md#Ping-Server) | **GET** /ping | Checks if the server is running
 [**Invoke-PlaceMailOrder**](DefaultApi.md#Invoke-PlaceMailOrder) | **POST** /mail/order | places a mail order
-[**Send-AdvMailById**](DefaultApi.md#Send-AdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**Send-MailById**](DefaultApi.md#Send-MailById) | **POST** /mail/send | Sends an Email
+[**Send-AdvMail**](DefaultApi.md#Send-AdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**Send-Mail**](DefaultApi.md#Send-Mail) | **POST** /mail/send | Sends an Email
 [**Confirm-MailOrder**](DefaultApi.md#Confirm-MailOrder) | **GET** /mail/order | validatess order details before placing an order
 [**Invoke-ViewMailLogById**](DefaultApi.md#Invoke-ViewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -147,10 +147,10 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Send-AdvMailById"></a>
-# **Send-AdvMailById**
-> GenericResponse Send-AdvMailById<br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-SendMail] <PSCustomObject><br>
+<a name="Send-AdvMail"></a>
+# **Send-AdvMail**
+> GenericResponse Send-AdvMail<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-SendMailAdv] <PSCustomObject><br>
 
 Sends an Email with Advanced Options
 
@@ -165,13 +165,13 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
-$SendMail = (Initialize-SendMail -Subject "Subject_example" -Body "Body_example" -VarFrom @((Initialize-SendMail_from -Email "Email_example" -Name "Name_example")) -To @((Initialize-MailContact -Email "Email_example" -Name "Name_example")) -Id 123 -Replyto @((Initialize-MailContact -Email "Email_example" -Name "Name_example")) -Cc @() -Bcc @() -Attachments @((Initialize-MailAttachment -Filename "Filename_example" -VarData 123))) # SendMail | 
+$SendMailAdv = (Initialize-SendMailAdv -Subject "Subject_example" -Body "Body_example" -VarFrom @((Initialize-SendMailAdv_from -Email "Email_example" -Name "Name_example")) -To @((Initialize-MailContact -Email "Email_example" -Name "Name_example")) -Id 123 -Replyto @((Initialize-MailContact -Email "Email_example" -Name "Name_example")) -Cc @() -Bcc @() -Attachments @((Initialize-MailAttachment -Filename "Filename_example" -VarData 123))) # SendMailAdv | 
 
 # Sends an Email with Advanced Options
 try {
-     $Result = Send-AdvMailById -SendMail $SendMail
+     $Result = Send-AdvMail -SendMailAdv $SendMailAdv
 } catch {
-    Write-Host ("Exception occured when calling Send-AdvMailById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Send-AdvMail: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -180,7 +180,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **SendMail** | [**SendMail**](SendMail.md)|  | 
+ **SendMailAdv** | [**SendMailAdv**](SendMailAdv.md)|  | 
 
 ### Return type
 
@@ -192,14 +192,14 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Send-MailById"></a>
-# **Send-MailById**
-> GenericResponse Send-MailById<br>
+<a name="Send-Mail"></a>
+# **Send-Mail**
+> GenericResponse Send-Mail<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-SendMail] <PSCustomObject><br>
 
 Sends an Email
@@ -215,13 +215,13 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
-$SendMail = (Initialize-SendMail -Subject "Subject_example" -Body "Body_example" -VarFrom @((Initialize-SendMail_from -Email "Email_example" -Name "Name_example")) -To @() -Id 123 -Replyto @() -Cc @() -Bcc @() -Attachments @((Initialize-MailAttachment -Filename "Filename_example" -VarData 123))) # SendMail | 
+$SendMail = (Initialize-SendMail -To "To_example" -VarFrom "VarFrom_example" -Subject "Subject_example" -Body "Body_example") # SendMail | 
 
 # Sends an Email
 try {
-     $Result = Send-MailById -SendMail $SendMail
+     $Result = Send-Mail -SendMail $SendMail
 } catch {
-    Write-Host ("Exception occured when calling Send-MailById: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occured when calling Send-Mail: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```

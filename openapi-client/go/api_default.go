@@ -370,29 +370,29 @@ func (a *DefaultApiService) PlaceMailOrderExecute(r ApiPlaceMailOrderRequest) (*
 	return localVarHTTPResponse, nil
 }
 
-type ApiSendAdvMailByIdRequest struct {
+type ApiSendAdvMailRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
-	sendMail *SendMail
+	sendMailAdv *SendMailAdv
 }
 
-func (r ApiSendAdvMailByIdRequest) SendMail(sendMail SendMail) ApiSendAdvMailByIdRequest {
-	r.sendMail = &sendMail
+func (r ApiSendAdvMailRequest) SendMailAdv(sendMailAdv SendMailAdv) ApiSendAdvMailRequest {
+	r.sendMailAdv = &sendMailAdv
 	return r
 }
 
-func (r ApiSendAdvMailByIdRequest) Execute() (GenericResponse, *_nethttp.Response, error) {
-	return r.ApiService.SendAdvMailByIdExecute(r)
+func (r ApiSendAdvMailRequest) Execute() (GenericResponse, *_nethttp.Response, error) {
+	return r.ApiService.SendAdvMailExecute(r)
 }
 
 /*
- * SendAdvMailById Sends an Email with Advanced Options
+ * SendAdvMail Sends an Email with Advanced Options
  * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiSendAdvMailByIdRequest
+ * @return ApiSendAdvMailRequest
  */
-func (a *DefaultApiService) SendAdvMailById(ctx _context.Context) ApiSendAdvMailByIdRequest {
-	return ApiSendAdvMailByIdRequest{
+func (a *DefaultApiService) SendAdvMail(ctx _context.Context) ApiSendAdvMailRequest {
+	return ApiSendAdvMailRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -402,7 +402,7 @@ func (a *DefaultApiService) SendAdvMailById(ctx _context.Context) ApiSendAdvMail
  * Execute executes the request
  * @return GenericResponse
  */
-func (a *DefaultApiService) SendAdvMailByIdExecute(r ApiSendAdvMailByIdRequest) (GenericResponse, *_nethttp.Response, error) {
+func (a *DefaultApiService) SendAdvMailExecute(r ApiSendAdvMailRequest) (GenericResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -412,7 +412,7 @@ func (a *DefaultApiService) SendAdvMailByIdExecute(r ApiSendAdvMailByIdRequest) 
 		localVarReturnValue  GenericResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.SendAdvMailById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.SendAdvMail")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -422,12 +422,12 @@ func (a *DefaultApiService) SendAdvMailByIdExecute(r ApiSendAdvMailByIdRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.sendMail == nil {
-		return localVarReturnValue, nil, reportError("sendMail is required and must be specified")
+	if r.sendMailAdv == nil {
+		return localVarReturnValue, nil, reportError("sendMailAdv is required and must be specified")
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -444,7 +444,7 @@ func (a *DefaultApiService) SendAdvMailByIdExecute(r ApiSendAdvMailByIdRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.sendMail
+	localVarPostBody = r.sendMailAdv
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -515,29 +515,29 @@ func (a *DefaultApiService) SendAdvMailByIdExecute(r ApiSendAdvMailByIdRequest) 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSendMailByIdRequest struct {
+type ApiSendMailRequest struct {
 	ctx _context.Context
 	ApiService *DefaultApiService
 	sendMail *SendMail
 }
 
-func (r ApiSendMailByIdRequest) SendMail(sendMail SendMail) ApiSendMailByIdRequest {
+func (r ApiSendMailRequest) SendMail(sendMail SendMail) ApiSendMailRequest {
 	r.sendMail = &sendMail
 	return r
 }
 
-func (r ApiSendMailByIdRequest) Execute() (GenericResponse, *_nethttp.Response, error) {
-	return r.ApiService.SendMailByIdExecute(r)
+func (r ApiSendMailRequest) Execute() (GenericResponse, *_nethttp.Response, error) {
+	return r.ApiService.SendMailExecute(r)
 }
 
 /*
- * SendMailById Sends an Email
+ * SendMail Sends an Email
  * Sends An email through one of your mail orders.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiSendMailByIdRequest
+ * @return ApiSendMailRequest
  */
-func (a *DefaultApiService) SendMailById(ctx _context.Context) ApiSendMailByIdRequest {
-	return ApiSendMailByIdRequest{
+func (a *DefaultApiService) SendMail(ctx _context.Context) ApiSendMailRequest {
+	return ApiSendMailRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -547,7 +547,7 @@ func (a *DefaultApiService) SendMailById(ctx _context.Context) ApiSendMailByIdRe
  * Execute executes the request
  * @return GenericResponse
  */
-func (a *DefaultApiService) SendMailByIdExecute(r ApiSendMailByIdRequest) (GenericResponse, *_nethttp.Response, error) {
+func (a *DefaultApiService) SendMailExecute(r ApiSendMailRequest) (GenericResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -557,7 +557,7 @@ func (a *DefaultApiService) SendMailByIdExecute(r ApiSendMailByIdRequest) (Gener
 		localVarReturnValue  GenericResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.SendMailById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.SendMail")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}

@@ -23,18 +23,21 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import org.openapitools.client.model.MailAttachment;
-import org.openapitools.client.model.MailContact;
-import org.openapitools.client.model.SendMailFrom;
 
 /**
  * Details for an Email
  */
 @ApiModel(description = "Details for an Email")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-05T04:27:36.900025-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-05T06:27:09.981485-04:00[America/New_York]")
 public class SendMail {
+  public static final String SERIALIZED_NAME_TO = "to";
+  @SerializedName(SERIALIZED_NAME_TO)
+  private String to;
+
+  public static final String SERIALIZED_NAME_FROM = "from";
+  @SerializedName(SERIALIZED_NAME_FROM)
+  private String from;
+
   public static final String SERIALIZED_NAME_SUBJECT = "subject";
   @SerializedName(SERIALIZED_NAME_SUBJECT)
   private String subject;
@@ -43,33 +46,51 @@ public class SendMail {
   @SerializedName(SERIALIZED_NAME_BODY)
   private String body;
 
-  public static final String SERIALIZED_NAME_FROM = "from";
-  @SerializedName(SERIALIZED_NAME_FROM)
-  private List<SendMailFrom> from = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_TO = "to";
-  @SerializedName(SERIALIZED_NAME_TO)
-  private List<MailContact> to = new ArrayList<>();
+  public SendMail to(String to) {
+    
+    this.to = to;
+    return this;
+  }
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private Long id;
+   /**
+   * The Contact whom is the primary recipient of this email.
+   * @return to
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "johndoe@company.com", value = "The Contact whom is the primary recipient of this email.")
 
-  public static final String SERIALIZED_NAME_REPLYTO = "replyto";
-  @SerializedName(SERIALIZED_NAME_REPLYTO)
-  private List<MailContact> replyto = null;
+  public String getTo() {
+    return to;
+  }
 
-  public static final String SERIALIZED_NAME_CC = "cc";
-  @SerializedName(SERIALIZED_NAME_CC)
-  private List<MailContact> cc = null;
 
-  public static final String SERIALIZED_NAME_BCC = "bcc";
-  @SerializedName(SERIALIZED_NAME_BCC)
-  private List<MailContact> bcc = null;
+  public void setTo(String to) {
+    this.to = to;
+  }
 
-  public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
-  @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
-  private List<MailAttachment> attachments = null;
+
+  public SendMail from(String from) {
+    
+    this.from = from;
+    return this;
+  }
+
+   /**
+   * The contact whom is the this email is from.
+   * @return from
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "johndoe@company.com", value = "The contact whom is the this email is from.")
+
+  public String getFrom() {
+    return from;
+  }
+
+
+  public void setFrom(String from) {
+    this.from = from;
+  }
 
 
   public SendMail subject(String subject) {
@@ -82,7 +103,8 @@ public class SendMail {
    * The subject or title of the email
    * @return subject
   **/
-  @ApiModelProperty(example = "Your Package has been Delivered!", required = true, value = "The subject or title of the email")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "Your Package has been Delivered!", value = "The subject or title of the email")
 
   public String getSubject() {
     return subject;
@@ -104,7 +126,8 @@ public class SendMail {
    * The main email contents.
    * @return body
   **/
-  @ApiModelProperty(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else. ", required = true, value = "The main email contents.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else. ", value = "The main email contents.")
 
   public String getBody() {
     return body;
@@ -113,206 +136,6 @@ public class SendMail {
 
   public void setBody(String body) {
     this.body = body;
-  }
-
-
-  public SendMail from(List<SendMailFrom> from) {
-    
-    this.from = from;
-    return this;
-  }
-
-  public SendMail addFromItem(SendMailFrom fromItem) {
-    this.from.add(fromItem);
-    return this;
-  }
-
-   /**
-   * The contact whom is the this email is from.
-   * @return from
-  **/
-  @ApiModelProperty(required = true, value = "The contact whom is the this email is from.")
-
-  public List<SendMailFrom> getFrom() {
-    return from;
-  }
-
-
-  public void setFrom(List<SendMailFrom> from) {
-    this.from = from;
-  }
-
-
-  public SendMail to(List<MailContact> to) {
-    
-    this.to = to;
-    return this;
-  }
-
-  public SendMail addToItem(MailContact toItem) {
-    this.to.add(toItem);
-    return this;
-  }
-
-   /**
-   * The Contact whom is the primary recipient of this email.
-   * @return to
-  **/
-  @ApiModelProperty(required = true, value = "The Contact whom is the primary recipient of this email.")
-
-  public List<MailContact> getTo() {
-    return to;
-  }
-
-
-  public void setTo(List<MailContact> to) {
-    this.to = to;
-  }
-
-
-  public SendMail id(Long id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * The ID of the Mail order within our system to use as the Mail Account.
-   * @return id
-  **/
-  @ApiModelProperty(example = "5000", required = true, value = "The ID of the Mail order within our system to use as the Mail Account.")
-
-  public Long getId() {
-    return id;
-  }
-
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-
-  public SendMail replyto(List<MailContact> replyto) {
-    
-    this.replyto = replyto;
-    return this;
-  }
-
-  public SendMail addReplytoItem(MailContact replytoItem) {
-    if (this.replyto == null) {
-      this.replyto = new ArrayList<>();
-    }
-    this.replyto.add(replytoItem);
-    return this;
-  }
-
-   /**
-   * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-   * @return replyto
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.")
-
-  public List<MailContact> getReplyto() {
-    return replyto;
-  }
-
-
-  public void setReplyto(List<MailContact> replyto) {
-    this.replyto = replyto;
-  }
-
-
-  public SendMail cc(List<MailContact> cc) {
-    
-    this.cc = cc;
-    return this;
-  }
-
-  public SendMail addCcItem(MailContact ccItem) {
-    if (this.cc == null) {
-      this.cc = new ArrayList<>();
-    }
-    this.cc.add(ccItem);
-    return this;
-  }
-
-   /**
-   * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-   * @return cc
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.")
-
-  public List<MailContact> getCc() {
-    return cc;
-  }
-
-
-  public void setCc(List<MailContact> cc) {
-    this.cc = cc;
-  }
-
-
-  public SendMail bcc(List<MailContact> bcc) {
-    
-    this.bcc = bcc;
-    return this;
-  }
-
-  public SendMail addBccItem(MailContact bccItem) {
-    if (this.bcc == null) {
-      this.bcc = new ArrayList<>();
-    }
-    this.bcc.add(bccItem);
-    return this;
-  }
-
-   /**
-   * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-   * @return bcc
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.")
-
-  public List<MailContact> getBcc() {
-    return bcc;
-  }
-
-
-  public void setBcc(List<MailContact> bcc) {
-    this.bcc = bcc;
-  }
-
-
-  public SendMail attachments(List<MailAttachment> attachments) {
-    
-    this.attachments = attachments;
-    return this;
-  }
-
-  public SendMail addAttachmentsItem(MailAttachment attachmentsItem) {
-    if (this.attachments == null) {
-      this.attachments = new ArrayList<>();
-    }
-    this.attachments.add(attachmentsItem);
-    return this;
-  }
-
-   /**
-   * Optional file attachments to include in the email
-   * @return attachments
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Optional file attachments to include in the email")
-
-  public List<MailAttachment> getAttachments() {
-    return attachments;
-  }
-
-
-  public void setAttachments(List<MailAttachment> attachments) {
-    this.attachments = attachments;
   }
 
 
@@ -325,35 +148,25 @@ public class SendMail {
       return false;
     }
     SendMail sendMail = (SendMail) o;
-    return Objects.equals(this.subject, sendMail.subject) &&
-        Objects.equals(this.body, sendMail.body) &&
+    return Objects.equals(this.to, sendMail.to) &&
         Objects.equals(this.from, sendMail.from) &&
-        Objects.equals(this.to, sendMail.to) &&
-        Objects.equals(this.id, sendMail.id) &&
-        Objects.equals(this.replyto, sendMail.replyto) &&
-        Objects.equals(this.cc, sendMail.cc) &&
-        Objects.equals(this.bcc, sendMail.bcc) &&
-        Objects.equals(this.attachments, sendMail.attachments);
+        Objects.equals(this.subject, sendMail.subject) &&
+        Objects.equals(this.body, sendMail.body);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subject, body, from, to, id, replyto, cc, bcc, attachments);
+    return Objects.hash(to, from, subject, body);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendMail {\n");
+    sb.append("    to: ").append(toIndentedString(to)).append("\n");
+    sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
-    sb.append("    from: ").append(toIndentedString(from)).append("\n");
-    sb.append("    to: ").append(toIndentedString(to)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    replyto: ").append(toIndentedString(replyto)).append("\n");
-    sb.append("    cc: ").append(toIndentedString(cc)).append("\n");
-    sb.append("    bcc: ").append(toIndentedString(bcc)).append("\n");
-    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("}");
     return sb.toString();
   }

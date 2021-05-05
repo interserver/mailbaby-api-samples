@@ -17,24 +17,14 @@ package org.openapitools.client.model
    * Details for an Email
    */
 case class SendMail(
-  /* The subject or title of the email */
-  subject: String,
-  /* The main email contents. */
-  body: String,
-  /* The contact whom is the this email is from. */
-  from: Seq[SendMailFrom],
   /* The Contact whom is the primary recipient of this email. */
-  to: Seq[MailContact],
-  /* The ID of the Mail order within our system to use as the Mail Account. */
-  id: Long,
-  /* Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. */
-  replyto: Option[Seq[MailContact]] = None,
-  /* Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */
-  cc: Option[Seq[MailContact]] = None,
-  /* Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. */
-  bcc: Option[Seq[MailContact]] = None,
-  /* Optional file attachments to include in the email */
-  attachments: Option[Seq[MailAttachment]] = None
+  to: Option[String] = None,
+  /* The contact whom is the this email is from. */
+  from: Option[String] = None,
+  /* The subject or title of the email */
+  subject: Option[String] = None,
+  /* The main email contents. */
+  body: Option[String] = None
 )
 
 

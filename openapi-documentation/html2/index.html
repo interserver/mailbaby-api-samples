@@ -943,6 +943,33 @@ ul.nav-tabs {
 };
     defs["SendMail"] = {
   "title" : "Email details",
+  "type" : "object",
+  "properties" : {
+    "to" : {
+      "type" : "string",
+      "description" : "The Contact whom is the primary recipient of this email.",
+      "example" : "johndoe@company.com"
+    },
+    "from" : {
+      "type" : "string",
+      "description" : "The contact whom is the this email is from.",
+      "example" : "johndoe@company.com"
+    },
+    "subject" : {
+      "type" : "string",
+      "description" : "The subject or title of the email",
+      "example" : "Your Package has been Delivered!"
+    },
+    "body" : {
+      "type" : "string",
+      "description" : "The main email contents.",
+      "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n"
+    }
+  },
+  "description" : "Details for an Email"
+};
+    defs["SendMailAdv"] = {
+  "title" : "Email details",
   "required" : [ "body", "from", "id", "subject", "to" ],
   "type" : "object",
   "properties" : {
@@ -960,7 +987,7 @@ ul.nav-tabs {
       "type" : "array",
       "description" : "The contact whom is the this email is from.",
       "items" : {
-        "$ref" : "#/components/schemas/SendMail_from"
+        "$ref" : "#/components/schemas/SendMailAdv_from"
       }
     },
     "to" : {
@@ -1007,7 +1034,7 @@ ul.nav-tabs {
   },
   "description" : "Details for an Email"
 };
-    defs["SendMail_from"] = {
+    defs["SendMailAdv_from"] = {
   "required" : [ "email" ],
   "type" : "object",
   "properties" : {
@@ -1052,11 +1079,11 @@ ul.nav-tabs {
                     <li data-group="Default" data-name="placeMailOrder" class="">
                       <a href="#api-Default-placeMailOrder">placeMailOrder</a>
                     </li>
-                    <li data-group="Default" data-name="sendAdvMailById" class="">
-                      <a href="#api-Default-sendAdvMailById">sendAdvMailById</a>
+                    <li data-group="Default" data-name="sendAdvMail" class="">
+                      <a href="#api-Default-sendAdvMail">sendAdvMail</a>
                     </li>
-                    <li data-group="Default" data-name="sendMailById" class="">
-                      <a href="#api-Default-sendMailById">sendMailById</a>
+                    <li data-group="Default" data-name="sendMail" class="">
+                      <a href="#api-Default-sendMail">sendMail</a>
                     </li>
                     <li data-group="Default" data-name="validateMailOrder" class="">
                       <a href="#api-Default-validateMailOrder">validateMailOrder</a>
@@ -2285,10 +2312,10 @@ $(document).ready(function() {
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-sendAdvMailById">
-                      <article id="api-Default-sendAdvMailById-0" data-group="User" data-name="sendAdvMailById" data-version="0">
+                    <div id="api-Default-sendAdvMail">
+                      <article id="api-Default-sendAdvMail-0" data-group="User" data-name="sendAdvMail" data-version="0">
                         <div class="pull-left">
-                          <h1>sendAdvMailById</h1>
+                          <h1>sendAdvMail</h1>
                           <p>Sends an Email with Advanced Options</p>
                         </div>
                         <div class="pull-right"></div>
@@ -2302,29 +2329,29 @@ $(document).ready(function() {
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-sendAdvMailById-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-sendAdvMailById-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-sendAdvMailById-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-python">Python</a></li>
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-rust">Rust</a></li>
+                          <li class="active"><a href="#examples-Default-sendAdvMail-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-sendAdvMail-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-sendAdvMail-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-rust">Rust</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-sendAdvMailById-0-curl">
+                          <div class="tab-pane active" id="examples-Default-sendAdvMail-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "X-API-KEY: [[apiKey]]"\
  -H "Accept: application/json"\
- -H "Content-Type: application/json"\
+ -H "Content-Type: application/json,application/x-www-form-urlencoded"\
  "https://api.mailbaby.net/mail/advsend"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-sendAdvMailById-0-java">
+                          <div class="tab-pane" id="examples-Default-sendAdvMail-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
 import MailBabyApi.auth.*;
 import MailBabyApi.model.*;
@@ -2345,13 +2372,13 @@ public class DefaultApiExample {
         
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
-        SendMail sendMail = ; // SendMail | 
+        SendMailAdv sendMailAdv = ; // SendMailAdv | 
         
         try {
-            GenericResponse result = apiInstance.sendAdvMailById(sendMail);
+            GenericResponse result = apiInstance.sendAdvMail(sendMailAdv);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#sendAdvMailById");
+            System.err.println("Exception when calling DefaultApi#sendAdvMail");
             e.printStackTrace();
         }
     }
@@ -2359,29 +2386,29 @@ public class DefaultApiExample {
 </code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-sendAdvMailById-0-android">
+                          <div class="tab-pane" id="examples-Default-sendAdvMail-0-android">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
 
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        SendMail sendMail = ; // SendMail | 
+        SendMailAdv sendMailAdv = ; // SendMailAdv | 
         
         try {
-            GenericResponse result = apiInstance.sendAdvMailById(sendMail);
+            GenericResponse result = apiInstance.sendAdvMail(sendMailAdv);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#sendAdvMailById");
+            System.err.println("Exception when calling DefaultApi#sendAdvMail");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-sendAdvMailById-0-groovy">
+  <div class="tab-pane" id="examples-Default-sendAdvMail-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-sendAdvMailById-0-objc">
+                            <div class="tab-pane" id="examples-Default-sendAdvMail-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 
 // Configure API key authorization: (authentication scheme: apiKeyAuth)
@@ -2392,10 +2419,10 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
-SendMail *sendMail = ; // 
+SendMailAdv *sendMailAdv = ; // 
 
 // Sends an Email with Advanced Options
-[apiInstance sendAdvMailByIdWith:sendMail
+[apiInstance sendAdvMailWith:sendMailAdv
               completionHandler: ^(GenericResponse output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -2407,7 +2434,7 @@ SendMail *sendMail = ; //
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendAdvMailById-0-javascript">
+                            <div class="tab-pane" id="examples-Default-sendAdvMail-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var MailBabyApi = require('mail_baby_api');
 var defaultClient = MailBabyApi.ApiClient.instance;
 
@@ -2419,7 +2446,7 @@ apiKeyAuth.apiKey = "YOUR API KEY";
 
 // Create an instance of the API class
 var api = new MailBabyApi.DefaultApi()
-var sendMail = ; // {SendMail} 
+var sendMailAdv = ; // {SendMailAdv} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -2428,14 +2455,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.sendAdvMailById(sendMail, callback);
+api.sendAdvMail(sendMailAdv, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-sendAdvMailById-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-sendAdvMail-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-sendAdvMailById-0-csharp">
+                            <div class="tab-pane" id="examples-Default-sendAdvMail-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using MailBabyApi.Api;
@@ -2444,7 +2471,7 @@ using MailBabyApi.Model;
 
 namespace Example
 {
-    public class sendAdvMailByIdExample
+    public class sendAdvMailExample
     {
         public void main()
         {
@@ -2455,14 +2482,14 @@ namespace Example
             
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
-            var sendMail = new SendMail(); // SendMail | 
+            var sendMailAdv = new SendMailAdv(); // SendMailAdv | 
 
             try {
                 // Sends an Email with Advanced Options
-                GenericResponse result = apiInstance.sendAdvMailById(sendMail);
+                GenericResponse result = apiInstance.sendAdvMail(sendMailAdv);
                 Debug.WriteLine(result);
             } catch (Exception e) {
-                Debug.Print("Exception when calling DefaultApi.sendAdvMailById: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.sendAdvMail: " + e.Message );
             }
         }
     }
@@ -2470,7 +2497,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendAdvMailById-0-php">
+                            <div class="tab-pane" id="examples-Default-sendAdvMail-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -2481,18 +2508,18 @@ interserver/mailbaby-client-php\Configuration::getDefaultConfiguration()->setApi
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
-$sendMail = ; // SendMail | 
+$sendMailAdv = ; // SendMailAdv | 
 
 try {
-    $result = $api_instance->sendAdvMailById($sendMail);
+    $result = $api_instance->sendAdvMail($sendMailAdv);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->sendAdvMailById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->sendAdvMail: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendAdvMailById-0-perl">
+                            <div class="tab-pane" id="examples-Default-sendAdvMail-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use MailBabyApi::Configuration;
 use MailBabyApi::DefaultApi;
@@ -2504,18 +2531,18 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = MailBabyApi::DefaultApi->new();
-my $sendMail = MailBabyApi::Object::SendMail->new(); # SendMail | 
+my $sendMailAdv = MailBabyApi::Object::SendMailAdv->new(); # SendMailAdv | 
 
 eval { 
-    my $result = $api_instance->sendAdvMailById(sendMail => $sendMail);
+    my $result = $api_instance->sendAdvMail(sendMailAdv => $sendMailAdv);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->sendAdvMailById: $@\n";
+    warn "Exception when calling DefaultApi->sendAdvMail: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendAdvMailById-0-python">
+                            <div class="tab-pane" id="examples-Default-sendAdvMail-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import MailBabyApi
@@ -2529,24 +2556,24 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
-sendMail =  # SendMail | 
+sendMailAdv =  # SendMailAdv | 
 
 try: 
     # Sends an Email with Advanced Options
-    api_response = api_instance.send_adv_mail_by_id(sendMail)
+    api_response = api_instance.send_adv_mail(sendMailAdv)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->sendAdvMailById: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->sendAdvMail: %s\n" % e)</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendAdvMailById-0-rust">
+                            <div class="tab-pane" id="examples-Default-sendAdvMail-0-rust">
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
-    let sendMail = ; // SendMail
+    let sendMailAdv = ; // SendMailAdv
 
     let mut context = DefaultApi::Context::default();
-    let result = client.sendAdvMailById(sendMail, &context).wait();
+    let result = client.sendAdvMail(sendMailAdv, &context).wait();
 
     println!("{:?}", result);
 }
@@ -2569,7 +2596,7 @@ pub fn main() {
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">sendMail <span style="color:red;">*</span></td>
+                                <tr><td style="width:150px;">sendMailAdv <span style="color:red;">*</span></td>
 <td>
 <p class="marked"></p>
 <script>
@@ -2578,7 +2605,12 @@ $(document).ready(function() {
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/SendMail"
+        "$ref" : "#/components/schemas/SendMailAdv"
+      }
+    },
+    "application/x-www-form-urlencoded" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/SendMailAdv"
       }
     }
   },
@@ -2599,12 +2631,12 @@ $(document).ready(function() {
   }
 
   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-  var result = $('#d2e199_sendAdvMailById_sendMail');
+  var result = $('#d2e199_sendAdvMail_sendMailAdv');
   result.empty();
   result.append(view.render());
 });
 </script>
-<div id="d2e199_sendAdvMailById_sendMail"></div>
+<div id="d2e199_sendAdvMail_sendMailAdv"></div>
 </td>
 </tr>
 
@@ -2613,23 +2645,23 @@ $(document).ready(function() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-Default-sendAdvMailById-title-200"></h3>
-                            <p id="examples-Default-sendAdvMailById-description-200" class="marked"></p>
+                            <h3 id="examples-Default-sendAdvMail-title-200"></h3>
+                            <p id="examples-Default-sendAdvMail-description-200" class="marked"></p>
                             <script>
                               var responseDefault200_description = `search results matching criteria`;
                               var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
                               if (responseDefault200_description_break == -1) {
-                                $("#examples-Default-sendAdvMailById-title-200").text("Status: 200 - " + responseDefault200_description);
+                                $("#examples-Default-sendAdvMail-title-200").text("Status: 200 - " + responseDefault200_description);
                               } else {
-                                $("#examples-Default-sendAdvMailById-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
-                                $("#examples-Default-sendAdvMailById-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                                $("#examples-Default-sendAdvMail-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-sendAdvMail-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-Default-sendAdvMailById-200" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Default-sendAdvMail-200" class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-Default-sendAdvMailById-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-Default-sendAdvMail-200-schema">Schema</a>
                                 </li>
 
 
@@ -2638,9 +2670,9 @@ $(document).ready(function() {
                             </ul>
 
 
-                            <div class="tab-content" id="responses-Default-sendAdvMailById-200-wrapper" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-Default-sendAdvMailById-200-schema">
-                                  <div id="responses-Default-sendAdvMailById-schema-200" class="exampleStyle">
+                            <div class="tab-content" id="responses-Default-sendAdvMail-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-sendAdvMail-200-schema">
+                                  <div id="responses-Default-sendAdvMail-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -2669,55 +2701,55 @@ $(document).ready(function() {
                                         }
 
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-Default-sendAdvMailById-200-schema-data').val(JSON.stringify(schema));
-                                        var result = $('#responses-Default-sendAdvMailById-schema-200');
+                                        $('#responses-Default-sendAdvMail-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-sendAdvMail-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-Default-sendAdvMailById-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-Default-sendAdvMail-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
-                            <h3 id="examples-Default-sendAdvMailById-title-400"></h3>
-                            <p id="examples-Default-sendAdvMailById-description-400" class="marked"></p>
+                            <h3 id="examples-Default-sendAdvMail-title-400"></h3>
+                            <p id="examples-Default-sendAdvMail-description-400" class="marked"></p>
                             <script>
                               var responseDefault400_description = `bad input parameter`;
                               var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
                               if (responseDefault400_description_break == -1) {
-                                $("#examples-Default-sendAdvMailById-title-400").text("Status: 400 - " + responseDefault400_description);
+                                $("#examples-Default-sendAdvMail-title-400").text("Status: 400 - " + responseDefault400_description);
                               } else {
-                                $("#examples-Default-sendAdvMailById-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
-                                $("#examples-Default-sendAdvMailById-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                                $("#examples-Default-sendAdvMail-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-sendAdvMail-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-Default-sendAdvMailById-400" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Default-sendAdvMail-400" class="nav nav-tabs nav-tabs-examples" >
 
 
                             </ul>
 
 
-                            <div class="tab-content" id="responses-Default-sendAdvMailById-400-wrapper" style='margin-bottom: 10px;'>
+                            <div class="tab-content" id="responses-Default-sendAdvMail-400-wrapper" style='margin-bottom: 10px;'>
                             </div>
-                            <h3 id="examples-Default-sendAdvMailById-title-401"></h3>
-                            <p id="examples-Default-sendAdvMailById-description-401" class="marked"></p>
+                            <h3 id="examples-Default-sendAdvMail-title-401"></h3>
+                            <p id="examples-Default-sendAdvMail-description-401" class="marked"></p>
                             <script>
                               var responseDefault401_description = `Unauthorized`;
                               var responseDefault401_description_break = responseDefault401_description.indexOf('\n');
                               if (responseDefault401_description_break == -1) {
-                                $("#examples-Default-sendAdvMailById-title-401").text("Status: 401 - " + responseDefault401_description);
+                                $("#examples-Default-sendAdvMail-title-401").text("Status: 401 - " + responseDefault401_description);
                               } else {
-                                $("#examples-Default-sendAdvMailById-title-401").text("Status: 401 - " + responseDefault401_description.substring(0, responseDefault401_description_break));
-                                $("#examples-Default-sendAdvMailById-description-401").html(responseDefault401_description.substring(responseDefault401_description_break));
+                                $("#examples-Default-sendAdvMail-title-401").text("Status: 401 - " + responseDefault401_description.substring(0, responseDefault401_description_break));
+                                $("#examples-Default-sendAdvMail-description-401").html(responseDefault401_description.substring(responseDefault401_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-Default-sendAdvMailById-401" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Default-sendAdvMail-401" class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-Default-sendAdvMailById-401-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-Default-sendAdvMail-401-schema">Schema</a>
                                 </li>
 
 
@@ -2726,9 +2758,9 @@ $(document).ready(function() {
                             </ul>
 
 
-                            <div class="tab-content" id="responses-Default-sendAdvMailById-401-wrapper" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-Default-sendAdvMailById-401-schema">
-                                  <div id="responses-Default-sendAdvMailById-schema-401" class="exampleStyle">
+                            <div class="tab-content" id="responses-Default-sendAdvMail-401-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-sendAdvMail-401-schema">
+                                  <div id="responses-Default-sendAdvMail-schema-401" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -2757,33 +2789,33 @@ $(document).ready(function() {
                                         }
 
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-Default-sendAdvMailById-401-schema-data').val(JSON.stringify(schema));
-                                        var result = $('#responses-Default-sendAdvMailById-schema-401');
+                                        $('#responses-Default-sendAdvMail-401-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-sendAdvMail-schema-401');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-Default-sendAdvMailById-401-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-Default-sendAdvMail-401-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
-                            <h3 id="examples-Default-sendAdvMailById-title-404"></h3>
-                            <p id="examples-Default-sendAdvMailById-description-404" class="marked"></p>
+                            <h3 id="examples-Default-sendAdvMail-title-404"></h3>
+                            <p id="examples-Default-sendAdvMail-description-404" class="marked"></p>
                             <script>
                               var responseDefault404_description = `The specified resource was not found`;
                               var responseDefault404_description_break = responseDefault404_description.indexOf('\n');
                               if (responseDefault404_description_break == -1) {
-                                $("#examples-Default-sendAdvMailById-title-404").text("Status: 404 - " + responseDefault404_description);
+                                $("#examples-Default-sendAdvMail-title-404").text("Status: 404 - " + responseDefault404_description);
                               } else {
-                                $("#examples-Default-sendAdvMailById-title-404").text("Status: 404 - " + responseDefault404_description.substring(0, responseDefault404_description_break));
-                                $("#examples-Default-sendAdvMailById-description-404").html(responseDefault404_description.substring(responseDefault404_description_break));
+                                $("#examples-Default-sendAdvMail-title-404").text("Status: 404 - " + responseDefault404_description.substring(0, responseDefault404_description_break));
+                                $("#examples-Default-sendAdvMail-description-404").html(responseDefault404_description.substring(responseDefault404_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-Default-sendAdvMailById-404" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Default-sendAdvMail-404" class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-Default-sendAdvMailById-404-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-Default-sendAdvMail-404-schema">Schema</a>
                                 </li>
 
 
@@ -2792,9 +2824,9 @@ $(document).ready(function() {
                             </ul>
 
 
-                            <div class="tab-content" id="responses-Default-sendAdvMailById-404-wrapper" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-Default-sendAdvMailById-404-schema">
-                                  <div id="responses-Default-sendAdvMailById-schema-404" class="exampleStyle">
+                            <div class="tab-content" id="responses-Default-sendAdvMail-404-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-sendAdvMail-404-schema">
+                                  <div id="responses-Default-sendAdvMail-schema-404" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -2823,23 +2855,23 @@ $(document).ready(function() {
                                         }
 
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-Default-sendAdvMailById-404-schema-data').val(JSON.stringify(schema));
-                                        var result = $('#responses-Default-sendAdvMailById-schema-404');
+                                        $('#responses-Default-sendAdvMail-404-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-sendAdvMail-schema-404');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-Default-sendAdvMailById-404-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-Default-sendAdvMail-404-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-sendMailById">
-                      <article id="api-Default-sendMailById-0" data-group="User" data-name="sendMailById" data-version="0">
+                    <div id="api-Default-sendMail">
+                      <article id="api-Default-sendMail-0" data-group="User" data-name="sendMail" data-version="0">
                         <div class="pull-left">
-                          <h1>sendMailById</h1>
+                          <h1>sendMail</h1>
                           <p>Sends an Email</p>
                         </div>
                         <div class="pull-right"></div>
@@ -2853,29 +2885,29 @@ $(document).ready(function() {
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-sendMailById-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-sendMailById-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-sendMailById-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-sendMailById-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-sendMailById-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-sendMailById-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-sendMailById-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-sendMailById-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-sendMailById-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-sendMailById-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-sendMailById-0-python">Python</a></li>
-                          <li class=""><a href="#examples-Default-sendMailById-0-rust">Rust</a></li>
+                          <li class="active"><a href="#examples-Default-sendMail-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-sendMail-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-sendMail-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-sendMail-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-sendMail-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-sendMail-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-sendMail-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-sendMail-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-sendMail-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-sendMail-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-sendMail-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-sendMail-0-rust">Rust</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-sendMailById-0-curl">
+                          <div class="tab-pane active" id="examples-Default-sendMail-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "X-API-KEY: [[apiKey]]"\
  -H "Accept: application/json"\
  -H "Content-Type: application/json,application/x-www-form-urlencoded"\
  "https://api.mailbaby.net/mail/send"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-sendMailById-0-java">
+                          <div class="tab-pane" id="examples-Default-sendMail-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
 import MailBabyApi.auth.*;
 import MailBabyApi.model.*;
@@ -2899,10 +2931,10 @@ public class DefaultApiExample {
         SendMail sendMail = ; // SendMail | 
         
         try {
-            GenericResponse result = apiInstance.sendMailById(sendMail);
+            GenericResponse result = apiInstance.sendMail(sendMail);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#sendMailById");
+            System.err.println("Exception when calling DefaultApi#sendMail");
             e.printStackTrace();
         }
     }
@@ -2910,7 +2942,7 @@ public class DefaultApiExample {
 </code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-sendMailById-0-android">
+                          <div class="tab-pane" id="examples-Default-sendMail-0-android">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -2919,20 +2951,20 @@ public class DefaultApiExample {
         SendMail sendMail = ; // SendMail | 
         
         try {
-            GenericResponse result = apiInstance.sendMailById(sendMail);
+            GenericResponse result = apiInstance.sendMail(sendMail);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#sendMailById");
+            System.err.println("Exception when calling DefaultApi#sendMail");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-sendMailById-0-groovy">
+  <div class="tab-pane" id="examples-Default-sendMail-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-sendMailById-0-objc">
+                            <div class="tab-pane" id="examples-Default-sendMail-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 
 // Configure API key authorization: (authentication scheme: apiKeyAuth)
@@ -2946,7 +2978,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 SendMail *sendMail = ; // 
 
 // Sends an Email
-[apiInstance sendMailByIdWith:sendMail
+[apiInstance sendMailWith:sendMail
               completionHandler: ^(GenericResponse output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -2958,7 +2990,7 @@ SendMail *sendMail = ; //
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendMailById-0-javascript">
+                            <div class="tab-pane" id="examples-Default-sendMail-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var MailBabyApi = require('mail_baby_api');
 var defaultClient = MailBabyApi.ApiClient.instance;
 
@@ -2979,14 +3011,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.sendMailById(sendMail, callback);
+api.sendMail(sendMail, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-sendMailById-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-sendMail-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-sendMailById-0-csharp">
+                            <div class="tab-pane" id="examples-Default-sendMail-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using MailBabyApi.Api;
@@ -2995,7 +3027,7 @@ using MailBabyApi.Model;
 
 namespace Example
 {
-    public class sendMailByIdExample
+    public class sendMailExample
     {
         public void main()
         {
@@ -3010,10 +3042,10 @@ namespace Example
 
             try {
                 // Sends an Email
-                GenericResponse result = apiInstance.sendMailById(sendMail);
+                GenericResponse result = apiInstance.sendMail(sendMail);
                 Debug.WriteLine(result);
             } catch (Exception e) {
-                Debug.Print("Exception when calling DefaultApi.sendMailById: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.sendMail: " + e.Message );
             }
         }
     }
@@ -3021,7 +3053,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendMailById-0-php">
+                            <div class="tab-pane" id="examples-Default-sendMail-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -3035,15 +3067,15 @@ $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $sendMail = ; // SendMail | 
 
 try {
-    $result = $api_instance->sendMailById($sendMail);
+    $result = $api_instance->sendMail($sendMail);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->sendMailById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->sendMail: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendMailById-0-perl">
+                            <div class="tab-pane" id="examples-Default-sendMail-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use MailBabyApi::Configuration;
 use MailBabyApi::DefaultApi;
@@ -3058,15 +3090,15 @@ my $api_instance = MailBabyApi::DefaultApi->new();
 my $sendMail = MailBabyApi::Object::SendMail->new(); # SendMail | 
 
 eval { 
-    my $result = $api_instance->sendMailById(sendMail => $sendMail);
+    my $result = $api_instance->sendMail(sendMail => $sendMail);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->sendMailById: $@\n";
+    warn "Exception when calling DefaultApi->sendMail: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendMailById-0-python">
+                            <div class="tab-pane" id="examples-Default-sendMail-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import MailBabyApi
@@ -3084,20 +3116,20 @@ sendMail =  # SendMail |
 
 try: 
     # Sends an Email
-    api_response = api_instance.send_mail_by_id(sendMail)
+    api_response = api_instance.send_mail(sendMail)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->sendMailById: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->sendMail: %s\n" % e)</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendMailById-0-rust">
+                            <div class="tab-pane" id="examples-Default-sendMail-0-rust">
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
     let sendMail = ; // SendMail
 
     let mut context = DefaultApi::Context::default();
-    let result = client.sendMailById(sendMail, &context).wait();
+    let result = client.sendMail(sendMail, &context).wait();
 
     println!("{:?}", result);
 }
@@ -3155,12 +3187,12 @@ $(document).ready(function() {
   }
 
   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-  var result = $('#d2e199_sendMailById_sendMail');
+  var result = $('#d2e199_sendMail_sendMail');
   result.empty();
   result.append(view.render());
 });
 </script>
-<div id="d2e199_sendMailById_sendMail"></div>
+<div id="d2e199_sendMail_sendMail"></div>
 </td>
 </tr>
 
@@ -3169,23 +3201,23 @@ $(document).ready(function() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-Default-sendMailById-title-200"></h3>
-                            <p id="examples-Default-sendMailById-description-200" class="marked"></p>
+                            <h3 id="examples-Default-sendMail-title-200"></h3>
+                            <p id="examples-Default-sendMail-description-200" class="marked"></p>
                             <script>
                               var responseDefault200_description = `search results matching criteria`;
                               var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
                               if (responseDefault200_description_break == -1) {
-                                $("#examples-Default-sendMailById-title-200").text("Status: 200 - " + responseDefault200_description);
+                                $("#examples-Default-sendMail-title-200").text("Status: 200 - " + responseDefault200_description);
                               } else {
-                                $("#examples-Default-sendMailById-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
-                                $("#examples-Default-sendMailById-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                                $("#examples-Default-sendMail-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-sendMail-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-Default-sendMailById-200" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Default-sendMail-200" class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-Default-sendMailById-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-Default-sendMail-200-schema">Schema</a>
                                 </li>
 
 
@@ -3194,9 +3226,9 @@ $(document).ready(function() {
                             </ul>
 
 
-                            <div class="tab-content" id="responses-Default-sendMailById-200-wrapper" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-Default-sendMailById-200-schema">
-                                  <div id="responses-Default-sendMailById-schema-200" class="exampleStyle">
+                            <div class="tab-content" id="responses-Default-sendMail-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-sendMail-200-schema">
+                                  <div id="responses-Default-sendMail-schema-200" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -3225,55 +3257,55 @@ $(document).ready(function() {
                                         }
 
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-Default-sendMailById-200-schema-data').val(JSON.stringify(schema));
-                                        var result = $('#responses-Default-sendMailById-schema-200');
+                                        $('#responses-Default-sendMail-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-sendMail-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-Default-sendMailById-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-Default-sendMail-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
-                            <h3 id="examples-Default-sendMailById-title-400"></h3>
-                            <p id="examples-Default-sendMailById-description-400" class="marked"></p>
+                            <h3 id="examples-Default-sendMail-title-400"></h3>
+                            <p id="examples-Default-sendMail-description-400" class="marked"></p>
                             <script>
                               var responseDefault400_description = `bad input parameter`;
                               var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
                               if (responseDefault400_description_break == -1) {
-                                $("#examples-Default-sendMailById-title-400").text("Status: 400 - " + responseDefault400_description);
+                                $("#examples-Default-sendMail-title-400").text("Status: 400 - " + responseDefault400_description);
                               } else {
-                                $("#examples-Default-sendMailById-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
-                                $("#examples-Default-sendMailById-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                                $("#examples-Default-sendMail-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-sendMail-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-Default-sendMailById-400" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Default-sendMail-400" class="nav nav-tabs nav-tabs-examples" >
 
 
                             </ul>
 
 
-                            <div class="tab-content" id="responses-Default-sendMailById-400-wrapper" style='margin-bottom: 10px;'>
+                            <div class="tab-content" id="responses-Default-sendMail-400-wrapper" style='margin-bottom: 10px;'>
                             </div>
-                            <h3 id="examples-Default-sendMailById-title-401"></h3>
-                            <p id="examples-Default-sendMailById-description-401" class="marked"></p>
+                            <h3 id="examples-Default-sendMail-title-401"></h3>
+                            <p id="examples-Default-sendMail-description-401" class="marked"></p>
                             <script>
                               var responseDefault401_description = `Unauthorized`;
                               var responseDefault401_description_break = responseDefault401_description.indexOf('\n');
                               if (responseDefault401_description_break == -1) {
-                                $("#examples-Default-sendMailById-title-401").text("Status: 401 - " + responseDefault401_description);
+                                $("#examples-Default-sendMail-title-401").text("Status: 401 - " + responseDefault401_description);
                               } else {
-                                $("#examples-Default-sendMailById-title-401").text("Status: 401 - " + responseDefault401_description.substring(0, responseDefault401_description_break));
-                                $("#examples-Default-sendMailById-description-401").html(responseDefault401_description.substring(responseDefault401_description_break));
+                                $("#examples-Default-sendMail-title-401").text("Status: 401 - " + responseDefault401_description.substring(0, responseDefault401_description_break));
+                                $("#examples-Default-sendMail-description-401").html(responseDefault401_description.substring(responseDefault401_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-Default-sendMailById-401" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Default-sendMail-401" class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-Default-sendMailById-401-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-Default-sendMail-401-schema">Schema</a>
                                 </li>
 
 
@@ -3282,9 +3314,9 @@ $(document).ready(function() {
                             </ul>
 
 
-                            <div class="tab-content" id="responses-Default-sendMailById-401-wrapper" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-Default-sendMailById-401-schema">
-                                  <div id="responses-Default-sendMailById-schema-401" class="exampleStyle">
+                            <div class="tab-content" id="responses-Default-sendMail-401-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-sendMail-401-schema">
+                                  <div id="responses-Default-sendMail-schema-401" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -3313,33 +3345,33 @@ $(document).ready(function() {
                                         }
 
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-Default-sendMailById-401-schema-data').val(JSON.stringify(schema));
-                                        var result = $('#responses-Default-sendMailById-schema-401');
+                                        $('#responses-Default-sendMail-401-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-sendMail-schema-401');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-Default-sendMailById-401-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-Default-sendMail-401-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
-                            <h3 id="examples-Default-sendMailById-title-404"></h3>
-                            <p id="examples-Default-sendMailById-description-404" class="marked"></p>
+                            <h3 id="examples-Default-sendMail-title-404"></h3>
+                            <p id="examples-Default-sendMail-description-404" class="marked"></p>
                             <script>
                               var responseDefault404_description = `The specified resource was not found`;
                               var responseDefault404_description_break = responseDefault404_description.indexOf('\n');
                               if (responseDefault404_description_break == -1) {
-                                $("#examples-Default-sendMailById-title-404").text("Status: 404 - " + responseDefault404_description);
+                                $("#examples-Default-sendMail-title-404").text("Status: 404 - " + responseDefault404_description);
                               } else {
-                                $("#examples-Default-sendMailById-title-404").text("Status: 404 - " + responseDefault404_description.substring(0, responseDefault404_description_break));
-                                $("#examples-Default-sendMailById-description-404").html(responseDefault404_description.substring(responseDefault404_description_break));
+                                $("#examples-Default-sendMail-title-404").text("Status: 404 - " + responseDefault404_description.substring(0, responseDefault404_description_break));
+                                $("#examples-Default-sendMail-description-404").html(responseDefault404_description.substring(responseDefault404_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-Default-sendMailById-404" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Default-sendMail-404" class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-Default-sendMailById-404-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-Default-sendMail-404-schema">Schema</a>
                                 </li>
 
 
@@ -3348,9 +3380,9 @@ $(document).ready(function() {
                             </ul>
 
 
-                            <div class="tab-content" id="responses-Default-sendMailById-404-wrapper" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-Default-sendMailById-404-schema">
-                                  <div id="responses-Default-sendMailById-schema-404" class="exampleStyle">
+                            <div class="tab-content" id="responses-Default-sendMail-404-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-sendMail-404-schema">
+                                  <div id="responses-Default-sendMail-schema-404" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -3379,14 +3411,14 @@ $(document).ready(function() {
                                         }
 
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-Default-sendMailById-404-schema-data').val(JSON.stringify(schema));
-                                        var result = $('#responses-Default-sendMailById-schema-404');
+                                        $('#responses-Default-sendMail-404-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-sendMail-schema-404');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-Default-sendMailById-404-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-Default-sendMail-404-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
                         </article>

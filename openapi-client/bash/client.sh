@@ -97,8 +97,8 @@ declare -a result_color_table=( "$WHITE" "$WHITE" "$GREEN" "$YELLOW" "$WHITE" "$
 declare -A operation_parameters_minimum_occurrences
 operation_parameters_minimum_occurrences["getMailOrders:::id"]=0
 operation_parameters_minimum_occurrences["placeMailOrder:::MailOrder"]=0
-operation_parameters_minimum_occurrences["sendAdvMailById:::SendMail"]=1
-operation_parameters_minimum_occurrences["sendMailById:::SendMail"]=1
+operation_parameters_minimum_occurrences["sendAdvMail:::SendMailAdv"]=1
+operation_parameters_minimum_occurrences["sendMail:::SendMail"]=1
 operation_parameters_minimum_occurrences["viewMailLogById:::id"]=0
 operation_parameters_minimum_occurrences["viewMailLogById:::searchString"]=0
 operation_parameters_minimum_occurrences["viewMailLogById:::skip"]=0
@@ -113,8 +113,8 @@ operation_parameters_minimum_occurrences["viewMailLogById:::limit"]=0
 declare -A operation_parameters_maximum_occurrences
 operation_parameters_maximum_occurrences["getMailOrders:::id"]=0
 operation_parameters_maximum_occurrences["placeMailOrder:::MailOrder"]=0
-operation_parameters_maximum_occurrences["sendAdvMailById:::SendMail"]=0
-operation_parameters_maximum_occurrences["sendMailById:::SendMail"]=0
+operation_parameters_maximum_occurrences["sendAdvMail:::SendMailAdv"]=0
+operation_parameters_maximum_occurrences["sendMail:::SendMail"]=0
 operation_parameters_maximum_occurrences["viewMailLogById:::id"]=0
 operation_parameters_maximum_occurrences["viewMailLogById:::searchString"]=0
 operation_parameters_maximum_occurrences["viewMailLogById:::skip"]=0
@@ -126,8 +126,8 @@ operation_parameters_maximum_occurrences["viewMailLogById:::limit"]=0
 declare -A operation_parameters_collection_type
 operation_parameters_collection_type["getMailOrders:::id"]=""
 operation_parameters_collection_type["placeMailOrder:::MailOrder"]=""
-operation_parameters_collection_type["sendAdvMailById:::SendMail"]=""
-operation_parameters_collection_type["sendMailById:::SendMail"]=""
+operation_parameters_collection_type["sendAdvMail:::SendMailAdv"]=""
+operation_parameters_collection_type["sendMail:::SendMail"]=""
 operation_parameters_collection_type["viewMailLogById:::id"]=""
 operation_parameters_collection_type["viewMailLogById:::searchString"]=""
 operation_parameters_collection_type["viewMailLogById:::skip"]=""
@@ -517,8 +517,8 @@ read -r -d '' ops <<EOF
   ${CYAN}getMailOrders${OFF};displays a list of mail service orders (AUTH)
   ${CYAN}pingServer${OFF};Checks if the server is running
   ${CYAN}placeMailOrder${OFF};places a mail order (AUTH)
-  ${CYAN}sendAdvMailById${OFF};Sends an Email with Advanced Options (AUTH)
-  ${CYAN}sendMailById${OFF};Sends an Email (AUTH)
+  ${CYAN}sendAdvMail${OFF};Sends an Email with Advanced Options (AUTH)
+  ${CYAN}sendMail${OFF};Sends an Email (AUTH)
   ${CYAN}validateMailOrder${OFF};validatess order details before placing an order (AUTH)
   ${CYAN}viewMailLogById${OFF};displays the mail log (AUTH)
 EOF
@@ -636,17 +636,17 @@ print_placeMailOrder_help() {
 }
 ##############################################################################
 #
-# Print help for sendAdvMailById operation
+# Print help for sendAdvMail operation
 #
 ##############################################################################
-print_sendAdvMailById_help() {
+print_sendAdvMail_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}sendAdvMailById - Sends an Email with Advanced Options${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}sendAdvMail - Sends an Email with Advanced Options${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc." | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json,application/x-www-form-urlencoded]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -661,12 +661,12 @@ print_sendAdvMailById_help() {
 }
 ##############################################################################
 #
-# Print help for sendMailById operation
+# Print help for sendMail operation
 #
 ##############################################################################
-print_sendMailById_help() {
+print_sendMail_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}sendMailById - Sends an Email${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}sendMail - Sends an Email${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "Sends An email through one of your mail orders." | paste -sd' ' | fold -sw 80
     echo -e ""
@@ -882,10 +882,10 @@ call_placeMailOrder() {
 
 ##############################################################################
 #
-# Call sendAdvMailById operation
+# Call sendAdvMail operation
 #
 ##############################################################################
-call_sendAdvMailById() {
+call_sendAdvMail() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
@@ -916,9 +916,6 @@ call_sendAdvMailById() {
     # command line. If not try to set them based on the OpenAPI specification
     # if values produces and consumes are defined unambigously
     #
-    if [[ -z $header_content_type ]]; then
-        header_content_type="application/json"
-    fi
 
 
     if [[ -z $header_content_type && "$force" = false ]]; then
@@ -926,6 +923,7 @@ call_sendAdvMailById() {
         echo "ERROR: Request's content-type not specified!!!"
         echo "This operation expects content-type in one of the following formats:"
         echo -e "\\t- application/json"
+        echo -e "\\t- application/x-www-form-urlencoded"
         echo ""
         echo "Use '--content-type' to set proper content type"
         exit 1
@@ -960,10 +958,10 @@ call_sendAdvMailById() {
 
 ##############################################################################
 #
-# Call sendMailById operation
+# Call sendMail operation
 #
 ##############################################################################
-call_sendMailById() {
+call_sendMail() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
@@ -1212,11 +1210,11 @@ case $key in
     placeMailOrder)
     operation="placeMailOrder"
     ;;
-    sendAdvMailById)
-    operation="sendAdvMailById"
+    sendAdvMail)
+    operation="sendAdvMail"
     ;;
-    sendMailById)
-    operation="sendMailById"
+    sendMail)
+    operation="sendMail"
     ;;
     validateMailOrder)
     operation="validateMailOrder"
@@ -1317,11 +1315,11 @@ case $operation in
     placeMailOrder)
     call_placeMailOrder
     ;;
-    sendAdvMailById)
-    call_sendAdvMailById
+    sendAdvMail)
+    call_sendAdvMail
     ;;
-    sendMailById)
-    call_sendMailById
+    sendMail)
+    call_sendMail
     ;;
     validateMailOrder)
     call_validateMailOrder

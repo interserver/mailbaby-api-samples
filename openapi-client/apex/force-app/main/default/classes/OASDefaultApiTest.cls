@@ -97,14 +97,14 @@ private class OASDefaultApiTest {
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      */
     @isTest
-    private static void sendAdvMailByIdTest() {
+    private static void sendAdvMailTest() {
         HttpResponse res = new HttpResponse();
         res.setStatusCode(200);
         res.setStatus('OK');
         Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
 
         Map<String, Object> params = new Map<String, Object>{
-            'oaSSendMail' => ''
+            'oaSSendMailAdv' => ''
         };
 
         OASClient client;
@@ -122,7 +122,7 @@ private class OASDefaultApiTest {
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
         expectedResponse = OASGenericResponse.getExample();
-        response = (OASGenericResponse) api.sendAdvMailById(params);
+        response = (OASGenericResponse) api.sendAdvMail(params);
         System.assertEquals(expectedResponse, response);
     }
 
@@ -132,7 +132,7 @@ private class OASDefaultApiTest {
      * Sends An email through one of your mail orders.
      */
     @isTest
-    private static void sendMailByIdTest() {
+    private static void sendMailTest() {
         HttpResponse res = new HttpResponse();
         res.setStatusCode(200);
         res.setStatus('OK');
@@ -157,7 +157,7 @@ private class OASDefaultApiTest {
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
         expectedResponse = OASGenericResponse.getExample();
-        response = (OASGenericResponse) api.sendMailById(params);
+        response = (OASGenericResponse) api.sendMail(params);
         System.assertEquals(expectedResponse, response);
     }
 

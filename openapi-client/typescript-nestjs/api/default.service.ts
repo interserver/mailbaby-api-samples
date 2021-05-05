@@ -19,6 +19,7 @@ import { GenericResponse } from '../model/genericResponse';
 import { MailLog } from '../model/mailLog';
 import { MailOrder } from '../model/mailOrder';
 import { SendMail } from '../model/sendMail';
+import { SendMailAdv } from '../model/sendMailAdv';
 import { Configuration } from '../configuration';
 
 
@@ -163,15 +164,15 @@ export class DefaultService {
     /**
      * Sends an Email with Advanced Options
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @param sendMail 
+     * @param sendMailAdv 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendAdvMailById(sendMail: SendMail, ): Observable<AxiosResponse<GenericResponse>>;
-    public sendAdvMailById(sendMail: SendMail, ): Observable<any> {
+    public sendAdvMail(sendMailAdv: SendMailAdv, ): Observable<AxiosResponse<GenericResponse>>;
+    public sendAdvMail(sendMailAdv: SendMailAdv, ): Observable<any> {
 
-        if (sendMail === null || sendMail === undefined) {
-            throw new Error('Required parameter sendMail was null or undefined when calling sendAdvMailById.');
+        if (sendMailAdv === null || sendMailAdv === undefined) {
+            throw new Error('Required parameter sendMailAdv was null or undefined when calling sendAdvMail.');
         }
 
         let headers = this.defaultHeaders;
@@ -192,14 +193,15 @@ export class DefaultService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/json'
+            'application/json',
+            'application/x-www-form-urlencoded'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
             headers['Content-Type'] = httpContentTypeSelected;
         }
         return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/advsend`,
-            sendMail,
+            sendMailAdv,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers
@@ -213,11 +215,11 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendMailById(sendMail: SendMail, ): Observable<AxiosResponse<GenericResponse>>;
-    public sendMailById(sendMail: SendMail, ): Observable<any> {
+    public sendMail(sendMail: SendMail, ): Observable<AxiosResponse<GenericResponse>>;
+    public sendMail(sendMail: SendMail, ): Observable<any> {
 
         if (sendMail === null || sendMail === undefined) {
-            throw new Error('Required parameter sendMail was null or undefined when calling sendMailById.');
+            throw new Error('Required parameter sendMail was null or undefined when calling sendMail.');
         }
 
         let headers = this.defaultHeaders;

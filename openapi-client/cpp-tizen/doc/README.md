@@ -48,10 +48,10 @@ Method | HTTP request | Description
 *pingServerASync* | *GET* /ping | Checks if the server is running.
 *placeMailOrderSync* | *POST* /mail/order | places a mail order.
 *placeMailOrderASync* | *POST* /mail/order | places a mail order.
-*sendAdvMailByIdSync* | *POST* /mail/advsend | Sends an Email with Advanced Options.
-*sendAdvMailByIdASync* | *POST* /mail/advsend | Sends an Email with Advanced Options.
-*sendMailByIdSync* | *POST* /mail/send | Sends an Email.
-*sendMailByIdASync* | *POST* /mail/send | Sends an Email.
+*sendAdvMailSync* | *POST* /mail/advsend | Sends an Email with Advanced Options.
+*sendAdvMailASync* | *POST* /mail/advsend | Sends an Email with Advanced Options.
+*sendMailSync* | *POST* /mail/send | Sends an Email.
+*sendMailASync* | *POST* /mail/send | Sends an Email.
 *validateMailOrderSync* | *GET* /mail/order | validatess order details before placing an order.
 *validateMailOrderASync* | *GET* /mail/order | validatess order details before placing an order.
 *viewMailLogByIdSync* | *GET* /mail/log | displays the mail log.
@@ -68,5 +68,6 @@ Class | Description
  *MailLog* | Mail Order Details
  *MailOrder* | 
  *SendMail* | Details for an Email
- *SendMail_from* | An Email Contact
+ *SendMailAdv* | Details for an Email
+ *SendMailAdv_from* | An Email Contact
 

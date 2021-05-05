@@ -107,19 +107,19 @@ defmodule MailBabyAPI.Api.Default do
   ## Parameters
 
   - connection (MailBabyAPI.Connection): Connection to server
-  - send_mail (SendMail): 
+  - send_mail_adv (SendMailAdv): 
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
   {:ok, MailBabyAPI.Model.GenericResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec send_adv_mail_by_id(Tesla.Env.client, MailBabyAPI.Model.SendMail.t, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
-  def send_adv_mail_by_id(connection, send_mail, _opts \\ []) do
+  @spec send_adv_mail(Tesla.Env.client, MailBabyAPI.Model.SendMailAdv.t, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
+  def send_adv_mail(connection, send_mail_adv, _opts \\ []) do
     %{}
     |> method(:post)
     |> url("/mail/advsend")
-    |> add_param(:body, :body, send_mail)
+    |> add_param(:body, :body, send_mail_adv)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
@@ -144,8 +144,8 @@ defmodule MailBabyAPI.Api.Default do
   {:ok, MailBabyAPI.Model.GenericResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec send_mail_by_id(Tesla.Env.client, MailBabyAPI.Model.SendMail.t, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
-  def send_mail_by_id(connection, send_mail, _opts \\ []) do
+  @spec send_mail(Tesla.Env.client, MailBabyAPI.Model.SendMail.t, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
+  def send_mail(connection, send_mail, _opts \\ []) do
     %{}
     |> method(:post)
     |> url("/mail/send")

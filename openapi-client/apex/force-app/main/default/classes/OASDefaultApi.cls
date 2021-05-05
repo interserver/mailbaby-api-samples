@@ -96,23 +96,23 @@ public class OASDefaultApi {
     /**
      * Sends an Email with Advanced Options
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @param oaSSendMail  (required)
+     * @param oaSSendMailAdv  (required)
      * @return OASGenericResponse
      * @throws OAS.ApiException if fails to make API call
      */
-    public OASGenericResponse sendAdvMailById(Map<String, Object> params) {
-        client.assertNotNull(params.get('oaSSendMail'), 'oaSSendMail');
+    public OASGenericResponse sendAdvMail(Map<String, Object> params) {
+        client.assertNotNull(params.get('oaSSendMailAdv'), 'oaSSendMailAdv');
         List<OAS.Param> query = new List<OAS.Param>();
         List<OAS.Param> form = new List<OAS.Param>();
 
         return (OASGenericResponse) client.invoke(
             'POST', '/mail/advsend',
-            (OASSendMail) params.get('oaSSendMail'),
+            (OASSendMailAdv) params.get('oaSSendMailAdv'),
             query, form,
             new Map<String, Object>(),
             new Map<String, Object>(),
             new List<String>{ 'application/json' },
-            new List<String>{ 'application/json' },
+            new List<String>{ 'application/json', 'application/x-www-form-urlencoded' },
             new List<String> { 'apiKeyAuth' },
             OASGenericResponse.class
         );
@@ -124,7 +124,7 @@ public class OASDefaultApi {
      * @return OASGenericResponse
      * @throws OAS.ApiException if fails to make API call
      */
-    public OASGenericResponse sendMailById(Map<String, Object> params) {
+    public OASGenericResponse sendMail(Map<String, Object> params) {
         client.assertNotNull(params.get('oaSSendMail'), 'oaSSendMail');
         List<OAS.Param> query = new List<OAS.Param>();
         List<OAS.Param> form = new List<OAS.Param>();

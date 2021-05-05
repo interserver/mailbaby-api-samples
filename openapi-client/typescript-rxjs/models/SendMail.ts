@@ -11,12 +11,6 @@
  * Do not edit the class manually.
  */
 
-import {
-    MailAttachment,
-    MailContact,
-    SendMailFrom,
-} from './';
-
 /**
  * Details for an Email
  * @export
@@ -24,57 +18,27 @@ import {
  */
 export interface SendMail {
     /**
+     * The Contact whom is the primary recipient of this email.
+     * @type {string}
+     * @memberof SendMail
+     */
+    to?: string;
+    /**
+     * The contact whom is the this email is from.
+     * @type {string}
+     * @memberof SendMail
+     */
+    from?: string;
+    /**
      * The subject or title of the email
      * @type {string}
      * @memberof SendMail
      */
-    subject: string;
+    subject?: string;
     /**
      * The main email contents.
      * @type {string}
      * @memberof SendMail
      */
-    body: string;
-    /**
-     * The contact whom is the this email is from.
-     * @type {Array<SendMailFrom>}
-     * @memberof SendMail
-     */
-    from: Array<SendMailFrom>;
-    /**
-     * The Contact whom is the primary recipient of this email.
-     * @type {Array<MailContact>}
-     * @memberof SendMail
-     */
-    to: Array<MailContact>;
-    /**
-     * The ID of the Mail order within our system to use as the Mail Account.
-     * @type {number}
-     * @memberof SendMail
-     */
-    id: number;
-    /**
-     * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-     * @type {Array<MailContact>}
-     * @memberof SendMail
-     */
-    replyto?: Array<MailContact>;
-    /**
-     * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @type {Array<MailContact>}
-     * @memberof SendMail
-     */
-    cc?: Array<MailContact>;
-    /**
-     * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-     * @type {Array<MailContact>}
-     * @memberof SendMail
-     */
-    bcc?: Array<MailContact>;
-    /**
-     * Optional file attachments to include in the email
-     * @type {Array<MailAttachment>}
-     * @memberof SendMail
-     */
-    attachments?: Array<MailAttachment>;
+    body?: string;
 }

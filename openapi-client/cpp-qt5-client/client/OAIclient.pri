@@ -9,7 +9,8 @@ HEADERS += \
     $${PWD}/OAIMailLog.h \
     $${PWD}/OAIMailOrder.h \
     $${PWD}/OAISendMail.h \
-    $${PWD}/OAISendMail_from.h \
+    $${PWD}/OAISendMailAdv.h \
+    $${PWD}/OAISendMailAdv_from.h \
 # APIs
     $${PWD}/OAIDefaultApi.h \
 # Others
@@ -30,7 +31,8 @@ SOURCES += \
     $${PWD}/OAIMailLog.cpp \
     $${PWD}/OAIMailOrder.cpp \
     $${PWD}/OAISendMail.cpp \
-    $${PWD}/OAISendMail_from.cpp \
+    $${PWD}/OAISendMailAdv.cpp \
+    $${PWD}/OAISendMailAdv_from.cpp \
 # APIs
     $${PWD}/OAIDefaultApi.cpp \
 # Others

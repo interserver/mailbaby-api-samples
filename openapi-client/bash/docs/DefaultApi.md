@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
+[**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 [**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## sendAdvMailById
+## sendAdvMail
 
 Sends an Email with Advanced Options
 
@@ -121,7 +121,7 @@ Sends An email through one of your mail orders allowing additional options such 
 ### Example
 
 ```bash
- sendAdvMailById
+ sendAdvMail
 ```
 
 ### Parameters
@@ -129,7 +129,7 @@ Sends An email through one of your mail orders allowing additional options such 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sendMail** | [**SendMail**](SendMail.md) |  |
+ **sendMailAdv** | [**SendMailAdv**](SendMailAdv.md) |  |
 
 ### Return type
 
@@ -141,13 +141,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## sendMailById
+## sendMail
 
 Sends an Email
 
@@ -156,7 +156,7 @@ Sends An email through one of your mail orders.
 ### Example
 
 ```bash
- sendMailById
+ sendMail
 ```
 
 ### Parameters

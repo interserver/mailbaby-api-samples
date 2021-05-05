@@ -237,9 +237,9 @@ export class DefaultApi {
     /**
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * @summary Sends an Email with Advanced Options
-     * @param sendMail 
+     * @param sendMailAdv 
      */
-    public sendAdvMailById(sendMail: models.SendMail, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public sendAdvMail(sendMailAdv: models.SendMailAdv, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: models.GenericResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
@@ -247,16 +247,17 @@ export class DefaultApi {
 
         let queryParameters: any = {};
         let headerParams: any = {};
-        // verify required parameter 'sendMail' is not null or undefined
-        if (sendMail === null || sendMail === undefined) {
-            throw new Error('Required parameter sendMail was null or undefined when calling sendAdvMailById.');
+        // verify required parameter 'sendMailAdv' is not null or undefined
+        if (sendMailAdv === null || sendMailAdv === undefined) {
+            throw new Error('Required parameter sendMailAdv was null or undefined when calling sendAdvMail.');
         }
 
 
         localVarPath = localVarPath + "?" + $.param(queryParameters);
         // to determine the Content-Type header
         let consumes: string[] = [
-            'application/json'
+            'application/json', 
+            'application/x-www-form-urlencoded'
         ];
 
         // to determine the Accept header
@@ -279,7 +280,7 @@ export class DefaultApi {
             processData: false
         };
 
-        requestOptions.data = JSON.stringify(sendMail);
+        requestOptions.data = JSON.stringify(sendMailAdv);
         if (headerParams['Content-Type']) {
             requestOptions.contentType = headerParams['Content-Type'];
         }
@@ -310,7 +311,7 @@ export class DefaultApi {
      * @summary Sends an Email
      * @param sendMail 
      */
-    public sendMailById(sendMail: models.SendMail, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public sendMail(sendMail: models.SendMail, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: models.GenericResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
@@ -320,7 +321,7 @@ export class DefaultApi {
         let headerParams: any = {};
         // verify required parameter 'sendMail' is not null or undefined
         if (sendMail === null || sendMail === undefined) {
-            throw new Error('Required parameter sendMail was null or undefined when calling sendMailById.');
+            throw new Error('Required parameter sendMail was null or undefined when calling sendMail.');
         }
 
 

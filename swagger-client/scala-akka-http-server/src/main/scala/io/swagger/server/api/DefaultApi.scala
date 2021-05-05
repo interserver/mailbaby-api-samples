@@ -13,7 +13,8 @@ import io.swagger.server.model.MailLog
 import io.swagger.server.model.MailOrder
 import io.swagger.server.model.MailOrders
 import io.swagger.server.model.SendMail
-import io.swagger.server.model.SendMail_from
+import io.swagger.server.model.SendMailAdv
+import io.swagger.server.model.SendMailAdv_from
 
 class DefaultApi(
     defaultService: DefaultApiService,
@@ -71,10 +72,10 @@ class DefaultApi(
       post {
         parameters() { () =>
           
-            formFields() { () =>
+            formFields("subject".as[String], "body".as[String], "from".as[String], "to".as[String], "id".as[Long], "replyto".as[String], "cc".as[String], "bcc".as[String], "attachments".as[String]) { (subject, body, from, to, id, replyto, cc, bcc, attachments) =>
               
-                entity(as[SendMail]){ body =>
-                  defaultService.sendAdvMailById(body = body)
+                entity(as[SendMailAdv]){ body =>
+                  defaultService.sendAdvMail(body = body, subject = subject, body = body, from = from, to = to, id = id, replyto = replyto, cc = cc, bcc = bcc, attachments = attachments)
                 }
              
             }
@@ -86,10 +87,10 @@ class DefaultApi(
       post {
         parameters() { () =>
           
-            formFields("subject".as[String], "body".as[String], "from".as[String], "to".as[String], "id".as[Long], "replyto".as[String], "cc".as[String], "bcc".as[String], "attachments".as[String]) { (subject, body, from, to, id, replyto, cc, bcc, attachments) =>
+            formFields("to".as[String], "from".as[String], "subject".as[String], "body".as[String]) { (to, from, subject, body) =>
               
                 entity(as[SendMail]){ body =>
-                  defaultService.sendMailById(body = body, subject = subject, body = body, from = from, to = to, id = id, replyto = replyto, cc = cc, bcc = bcc, attachments = attachments)
+                  defaultService.sendMail(body = body, to = to, from = from, subject = subject, body = body)
                 }
              
             }
@@ -170,13 +171,13 @@ trait DefaultApiService {
   def placeMailOrder(body: MailOrder)
       (implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
 
-  def sendAdvMailById200(responseGenericResponse: GenericResponse)(implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]): Route =
+  def sendAdvMail200(responseGenericResponse: GenericResponse)(implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]): Route =
     complete((200, responseGenericResponse))
-  def sendAdvMailById400: Route =
+  def sendAdvMail400: Route =
     complete((400, "bad input parameter"))
-  def sendAdvMailById401(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
+  def sendAdvMail401(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
     complete((401, responseErrorResponse))
-  def sendAdvMailById404(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
+  def sendAdvMail404(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
     complete((404, responseErrorResponse))
   /**
    * Code: 200, Message: search results matching criteria, DataType: GenericResponse
@@ -184,16 +185,16 @@ trait DefaultApiService {
    * Code: 401, Message: Unauthorized, DataType: ErrorResponse
    * Code: 404, Message: The specified resource was not found, DataType: ErrorResponse
    */
-  def sendAdvMailById(body: SendMail)
+  def sendAdvMail(body: String, subject: String, body: String, from: String, to: String, id: Long, replyto: String, cc: String, bcc: String, attachments: String)
       (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
 
-  def sendMailById200(responseGenericResponse: GenericResponse)(implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]): Route =
+  def sendMail200(responseGenericResponse: GenericResponse)(implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]): Route =
     complete((200, responseGenericResponse))
-  def sendMailById400: Route =
+  def sendMail400: Route =
     complete((400, "bad input parameter"))
-  def sendMailById401(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
+  def sendMail401(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
     complete((401, responseErrorResponse))
-  def sendMailById404(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
+  def sendMail404(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
     complete((404, responseErrorResponse))
   /**
    * Code: 200, Message: search results matching criteria, DataType: GenericResponse
@@ -201,7 +202,7 @@ trait DefaultApiService {
    * Code: 401, Message: Unauthorized, DataType: ErrorResponse
    * Code: 404, Message: The specified resource was not found, DataType: ErrorResponse
    */
-  def sendMailById(body: String, subject: String, body: String, from: String, to: String, id: Long, replyto: String, cc: String, bcc: String, attachments: String)
+  def sendMail(body: String, to: String, from: String, subject: String, body: String)
       (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
 
   def validateMailOrder200: Route =
@@ -230,6 +231,8 @@ trait DefaultApiService {
 
 trait DefaultApiMarshaller {
   implicit def fromRequestUnmarshallerMailOrder: FromRequestUnmarshaller[MailOrder]
+
+  implicit def fromRequestUnmarshallerSendMailAdv: FromRequestUnmarshaller[SendMailAdv]
 
   implicit def fromRequestUnmarshallerSendMail: FromRequestUnmarshaller[SendMail]
 

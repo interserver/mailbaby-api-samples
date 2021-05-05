@@ -18,4 +18,5 @@ export 'package:openapi/src/model/mail_contact.dart';
 export 'package:openapi/src/model/mail_log.dart';
 export 'package:openapi/src/model/mail_order.dart';
 export 'package:openapi/src/model/send_mail.dart';
-export 'package:openapi/src/model/send_mail_from.dart';
+export 'package:openapi/src/model/send_mail_adv.dart';
+export 'package:openapi/src/model/send_mail_adv_from.dart';

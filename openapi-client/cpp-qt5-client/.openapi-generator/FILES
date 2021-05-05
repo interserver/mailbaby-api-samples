@@ -25,8 +25,10 @@ client/OAIMailOrder.h
 client/OAIObject.h
 client/OAISendMail.cpp
 client/OAISendMail.h
-client/OAISendMail_from.cpp
-client/OAISendMail_from.h
+client/OAISendMailAdv.cpp
+client/OAISendMailAdv.h
+client/OAISendMailAdv_from.cpp
+client/OAISendMailAdv_from.h
 client/OAIServerConfiguration.h
 client/OAIServerVariable.h
 client/OAIclient.pri

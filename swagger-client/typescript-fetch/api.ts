@@ -215,76 +215,107 @@ export type MailOrders = Array<MailOrder>
  */
 export interface SendMail {
     /**
+     * The Contact whom is the primary recipient of this email.
+     * @type {string}
+     * @memberof SendMail
+     */
+    to?: string;
+    /**
+     * The contact whom is the this email is from.
+     * @type {string}
+     * @memberof SendMail
+     */
+    from?: string;
+    /**
      * The subject or title of the email
      * @type {string}
      * @memberof SendMail
      */
-    subject: string;
+    subject?: string;
     /**
      * The main email contents.
      * @type {string}
      * @memberof SendMail
      */
+    body?: string;
+}
+/**
+ * Details for an Email
+ * @export
+ * @interface SendMailAdv
+ */
+export interface SendMailAdv {
+    /**
+     * The subject or title of the email
+     * @type {string}
+     * @memberof SendMailAdv
+     */
+    subject: string;
+    /**
+     * The main email contents.
+     * @type {string}
+     * @memberof SendMailAdv
+     */
     body: string;
     /**
      * The contact whom is the this email is from.
-     * @type {Array<SendMailFrom>}
-     * @memberof SendMail
+     * @type {Array<SendMailAdvFrom>}
+     * @memberof SendMailAdv
      */
-    from: Array<SendMailFrom>;
+    from: Array<SendMailAdvFrom>;
     /**
      * The Contact whom is the primary recipient of this email.
      * @type {Array<MailContact>}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     to: Array<MailContact>;
     /**
      * The ID of the Mail order within our system to use as the Mail Account.
      * @type {number}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     id: number;
     /**
      * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
      * @type {Array<MailContact>}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     replyto?: Array<MailContact>;
     /**
      * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
      * @type {Array<MailContact>}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     cc?: Array<MailContact>;
     /**
      * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
      * @type {Array<MailContact>}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     bcc?: Array<MailContact>;
     /**
      * Optional file attachments to include in the email
      * @type {Array<MailAttachment>}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     attachments?: Array<MailAttachment>;
 }
 /**
  * An Email Contact
  * @export
- * @interface SendMailFrom
+ * @interface SendMailAdvFrom
  */
-export interface SendMailFrom {
+export interface SendMailAdvFrom {
     /**
      * The email address
      * @type {string}
-     * @memberof SendMailFrom
+     * @memberof SendMailAdvFrom
      */
     email: string;
     /**
      * Optional contact name
      * @type {string}
-     * @memberof SendMailFrom
+     * @memberof SendMailAdvFrom
      */
     name?: string;
 }
@@ -392,50 +423,10 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
         /**
          * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
          * @summary Sends an Email with Advanced Options
-         * @param {SendMail} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        sendAdvMailById(body: SendMail, options: any = {}): FetchArgs {
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling sendAdvMailById.');
-            }
-            const localVarPath = `/mail/advsend`;
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication apiKeyAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("X-API-KEY")
-					: configuration.apiKey;
-                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"SendMail" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Sends An email through one of your mail orders.
-         * @summary Sends an Email
-         * @param {SendMail} body 
+         * @param {SendMailAdv} body 
          * @param {string} subject 
          * @param {string} body 
-         * @param {Array<SendMailFrom>} from 
+         * @param {Array<SendMailAdvFrom>} from 
          * @param {Array<MailContact>} to 
          * @param {number} id 
          * @param {Array<MailContact>} replyto 
@@ -445,48 +436,48 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById(body: SendMail, subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options: any = {}): FetchArgs {
+        sendAdvMail(body: SendMailAdv, subject: string, body: string, from: Array<SendMailAdvFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options: any = {}): FetchArgs {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling sendMailById.');
+                throw new RequiredError('body','Required parameter body was null or undefined when calling sendAdvMail.');
             }
             // verify required parameter 'subject' is not null or undefined
             if (subject === null || subject === undefined) {
-                throw new RequiredError('subject','Required parameter subject was null or undefined when calling sendMailById.');
+                throw new RequiredError('subject','Required parameter subject was null or undefined when calling sendAdvMail.');
             }
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling sendMailById.');
+                throw new RequiredError('body','Required parameter body was null or undefined when calling sendAdvMail.');
             }
             // verify required parameter 'from' is not null or undefined
             if (from === null || from === undefined) {
-                throw new RequiredError('from','Required parameter from was null or undefined when calling sendMailById.');
+                throw new RequiredError('from','Required parameter from was null or undefined when calling sendAdvMail.');
             }
             // verify required parameter 'to' is not null or undefined
             if (to === null || to === undefined) {
-                throw new RequiredError('to','Required parameter to was null or undefined when calling sendMailById.');
+                throw new RequiredError('to','Required parameter to was null or undefined when calling sendAdvMail.');
             }
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling sendMailById.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling sendAdvMail.');
             }
             // verify required parameter 'replyto' is not null or undefined
             if (replyto === null || replyto === undefined) {
-                throw new RequiredError('replyto','Required parameter replyto was null or undefined when calling sendMailById.');
+                throw new RequiredError('replyto','Required parameter replyto was null or undefined when calling sendAdvMail.');
             }
             // verify required parameter 'cc' is not null or undefined
             if (cc === null || cc === undefined) {
-                throw new RequiredError('cc','Required parameter cc was null or undefined when calling sendMailById.');
+                throw new RequiredError('cc','Required parameter cc was null or undefined when calling sendAdvMail.');
             }
             // verify required parameter 'bcc' is not null or undefined
             if (bcc === null || bcc === undefined) {
-                throw new RequiredError('bcc','Required parameter bcc was null or undefined when calling sendMailById.');
+                throw new RequiredError('bcc','Required parameter bcc was null or undefined when calling sendAdvMail.');
             }
             // verify required parameter 'attachments' is not null or undefined
             if (attachments === null || attachments === undefined) {
-                throw new RequiredError('attachments','Required parameter attachments was null or undefined when calling sendMailById.');
+                throw new RequiredError('attachments','Required parameter attachments was null or undefined when calling sendAdvMail.');
             }
-            const localVarPath = `/mail/send`;
+            const localVarPath = `/mail/advsend`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {} as any;
@@ -547,6 +538,86 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 attachments.forEach((element) => {
                     localVarFormParams.append('attachments', element as any);
                 })
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            localVarRequestOptions.body = localVarFormParams.toString();
+            const needsSerialization = (<any>"SendMailAdv" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Sends An email through one of your mail orders.
+         * @summary Sends an Email
+         * @param {SendMail} body 
+         * @param {string} to 
+         * @param {string} from 
+         * @param {string} subject 
+         * @param {string} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sendMail(body: SendMail, to: string, from: string, subject: string, body: string, options: any = {}): FetchArgs {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling sendMail.');
+            }
+            // verify required parameter 'to' is not null or undefined
+            if (to === null || to === undefined) {
+                throw new RequiredError('to','Required parameter to was null or undefined when calling sendMail.');
+            }
+            // verify required parameter 'from' is not null or undefined
+            if (from === null || from === undefined) {
+                throw new RequiredError('from','Required parameter from was null or undefined when calling sendMail.');
+            }
+            // verify required parameter 'subject' is not null or undefined
+            if (subject === null || subject === undefined) {
+                throw new RequiredError('subject','Required parameter subject was null or undefined when calling sendMail.');
+            }
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling sendMail.');
+            }
+            const localVarPath = `/mail/send`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new url.URLSearchParams();
+
+            // authentication apiKeyAuth required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("X-API-KEY")
+					: configuration.apiKey;
+                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
+            }
+
+            if (to !== undefined) {
+                localVarFormParams.set('to', to as any);
+            }
+
+            if (from !== undefined) {
+                localVarFormParams.set('from', from as any);
+            }
+
+            if (subject !== undefined) {
+                localVarFormParams.set('subject', subject as any);
+            }
+
+            if (body !== undefined) {
+                localVarFormParams.set('body', body as any);
             }
 
             localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -716,12 +787,21 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
          * @summary Sends an Email with Advanced Options
-         * @param {SendMail} body 
+         * @param {SendMailAdv} body 
+         * @param {string} subject 
+         * @param {string} body 
+         * @param {Array<SendMailAdvFrom>} from 
+         * @param {Array<MailContact>} to 
+         * @param {number} id 
+         * @param {Array<MailContact>} replyto 
+         * @param {Array<MailContact>} cc 
+         * @param {Array<MailContact>} bcc 
+         * @param {Array<MailAttachment>} attachments 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendAdvMailById(body: SendMail, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendAdvMailById(body, options);
+        sendAdvMail(body: SendMailAdv, subject: string, body: string, from: Array<SendMailAdvFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendAdvMail(body, subject, body, from, to, id, replyto, cc, bcc, attachments, options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -736,20 +816,15 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * Sends An email through one of your mail orders.
          * @summary Sends an Email
          * @param {SendMail} body 
+         * @param {string} to 
+         * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
-         * @param {Array<SendMailFrom>} from 
-         * @param {Array<MailContact>} to 
-         * @param {number} id 
-         * @param {Array<MailContact>} replyto 
-         * @param {Array<MailContact>} cc 
-         * @param {Array<MailContact>} bcc 
-         * @param {Array<MailAttachment>} attachments 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById(body: SendMail, subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMailById(body, subject, body, from, to, id, replyto, cc, bcc, attachments, options);
+        sendMail(body: SendMail, to: string, from: string, subject: string, body: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMail(body, to, from, subject, body, options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -841,20 +916,10 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
         /**
          * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
          * @summary Sends an Email with Advanced Options
-         * @param {SendMail} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        sendAdvMailById(body: SendMail, options?: any) {
-            return DefaultApiFp(configuration).sendAdvMailById(body, options)(fetch, basePath);
-        },
-        /**
-         * Sends An email through one of your mail orders.
-         * @summary Sends an Email
-         * @param {SendMail} body 
+         * @param {SendMailAdv} body 
          * @param {string} subject 
          * @param {string} body 
-         * @param {Array<SendMailFrom>} from 
+         * @param {Array<SendMailAdvFrom>} from 
          * @param {Array<MailContact>} to 
          * @param {number} id 
          * @param {Array<MailContact>} replyto 
@@ -864,8 +929,22 @@ export const DefaultApiFactory = function (configuration?: Configuration, fetch?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById(body: SendMail, subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any) {
-            return DefaultApiFp(configuration).sendMailById(body, subject, body, from, to, id, replyto, cc, bcc, attachments, options)(fetch, basePath);
+        sendAdvMail(body: SendMailAdv, subject: string, body: string, from: Array<SendMailAdvFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any) {
+            return DefaultApiFp(configuration).sendAdvMail(body, subject, body, from, to, id, replyto, cc, bcc, attachments, options)(fetch, basePath);
+        },
+        /**
+         * Sends An email through one of your mail orders.
+         * @summary Sends an Email
+         * @param {SendMail} body 
+         * @param {string} to 
+         * @param {string} from 
+         * @param {string} subject 
+         * @param {string} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sendMail(body: SendMail, to: string, from: string, subject: string, body: string, options?: any) {
+            return DefaultApiFp(configuration).sendMail(body, to, from, subject, body, options)(fetch, basePath);
         },
         /**
          * 
@@ -937,22 +1016,10 @@ export class DefaultApi extends BaseAPI {
     /**
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * @summary Sends an Email with Advanced Options
-     * @param {SendMail} body 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public sendAdvMailById(body: SendMail, options?: any) {
-        return DefaultApiFp(this.configuration).sendAdvMailById(body, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Sends An email through one of your mail orders.
-     * @summary Sends an Email
-     * @param {SendMail} body 
+     * @param {SendMailAdv} body 
      * @param {string} subject 
      * @param {string} body 
-     * @param {Array<SendMailFrom>} from 
+     * @param {Array<SendMailAdvFrom>} from 
      * @param {Array<MailContact>} to 
      * @param {number} id 
      * @param {Array<MailContact>} replyto 
@@ -963,8 +1030,24 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public sendMailById(body: SendMail, subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any) {
-        return DefaultApiFp(this.configuration).sendMailById(body, subject, body, from, to, id, replyto, cc, bcc, attachments, options)(this.fetch, this.basePath);
+    public sendAdvMail(body: SendMailAdv, subject: string, body: string, from: Array<SendMailAdvFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, options?: any) {
+        return DefaultApiFp(this.configuration).sendAdvMail(body, subject, body, from, to, id, replyto, cc, bcc, attachments, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Sends An email through one of your mail orders.
+     * @summary Sends an Email
+     * @param {SendMail} body 
+     * @param {string} to 
+     * @param {string} from 
+     * @param {string} subject 
+     * @param {string} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public sendMail(body: SendMail, to: string, from: string, subject: string, body: string, options?: any) {
+        return DefaultApiFp(this.configuration).sendMail(body, to, from, subject, body, options)(this.fetch, this.basePath);
     }
 
     /**

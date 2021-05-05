@@ -120,13 +120,13 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Interserver\Mailbaby\Model\SendMail(); // \Interserver\Mailbaby\Model\SendMail | 
+$body = new \Interserver\Mailbaby\Model\SendMailAdv(); // \Interserver\Mailbaby\Model\SendMailAdv | 
 
 try {
-    $result = $apiInstance->sendAdvMailById($body);
+    $result = $apiInstance->sendAdvMail($body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->sendAdvMailById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->sendAdvMail: ', $e->getMessage(), PHP_EOL;
 }
 
 // Configure API key authorization: apiKeyAuth
@@ -143,10 +143,10 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
 $body = new \Interserver\Mailbaby\Model\SendMail(); // \Interserver\Mailbaby\Model\SendMail | 
 
 try {
-    $result = $apiInstance->sendMailById($body);
+    $result = $apiInstance->sendMail($body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->sendMailById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->sendMail: ', $e->getMessage(), PHP_EOL;
 }
 
 // Configure API key authorization: apiKeyAuth
@@ -201,8 +201,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getMailOrders**](docs/Api/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**pingServer**](docs/Api/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**placeMailOrder**](docs/Api/DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**sendAdvMailById**](docs/Api/DefaultApi.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMailById**](docs/Api/DefaultApi.md#sendmailbyid) | **POST** /mail/send | Sends an Email
+*DefaultApi* | [**sendAdvMail**](docs/Api/DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**sendMail**](docs/Api/DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](docs/Api/DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
 *DefaultApi* | [**viewMailLogById**](docs/Api/DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
@@ -216,7 +216,8 @@ Class | Method | HTTP request | Description
  - [MailOrder](docs/Model/MailOrder.md)
  - [MailOrders](docs/Model/MailOrders.md)
  - [SendMail](docs/Model/SendMail.md)
- - [SendMailFrom](docs/Model/SendMailFrom.md)
+ - [SendMailAdv](docs/Model/SendMailAdv.md)
+ - [SendMailAdvFrom](docs/Model/SendMailAdvFrom.md)
 
 ## Documentation For Authorization
 

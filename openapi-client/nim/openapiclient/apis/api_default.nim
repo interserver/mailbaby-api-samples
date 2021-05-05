@@ -23,6 +23,7 @@ import ../models/model_generic_response
 import ../models/model_mail_log
 import ../models/model_mail_order
 import ../models/model_send_mail
+import ../models/model_send_mail_adv
 
 const basepath = "https://api.mailbaby.net"
 
@@ -63,15 +64,15 @@ proc placeMailOrder*(httpClient: HttpClient, mailOrder: MailOrder): Response {.d
   httpClient.post(basepath & "/mail/order", $(%mailOrder))
 
 
-proc sendAdvMailById*(httpClient: HttpClient, sendMail: SendMail): (Option[GenericResponse], Response) =
+proc sendAdvMail*(httpClient: HttpClient, sendMailAdv: SendMailAdv): (Option[GenericResponse], Response) =
   ## Sends an Email with Advanced Options
   httpClient.headers["Content-Type"] = "application/json"
 
-  let response = httpClient.post(basepath & "/mail/advsend", $(%sendMail))
+  let response = httpClient.post(basepath & "/mail/advsend", $(%sendMailAdv))
   constructResult[GenericResponse](response)
 
 
-proc sendMailById*(httpClient: HttpClient, sendMail: SendMail): (Option[GenericResponse], Response) =
+proc sendMail*(httpClient: HttpClient, sendMail: SendMail): (Option[GenericResponse], Response) =
   ## Sends an Email
   httpClient.headers["Content-Type"] = "application/json"
 

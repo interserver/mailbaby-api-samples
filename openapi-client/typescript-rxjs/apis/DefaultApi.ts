@@ -19,6 +19,7 @@ import {
     MailLog,
     MailOrder,
     SendMail,
+    SendMailAdv,
 } from '../models';
 
 export interface GetMailOrdersRequest {
@@ -29,11 +30,11 @@ export interface PlaceMailOrderRequest {
     mailOrder?: MailOrder;
 }
 
-export interface SendAdvMailByIdRequest {
-    sendMail: SendMail;
+export interface SendAdvMailRequest {
+    sendMailAdv: SendMailAdv;
 }
 
-export interface SendMailByIdRequest {
+export interface SendMailRequest {
     sendMail: SendMail;
 }
 
@@ -109,10 +110,10 @@ export class DefaultApi extends BaseAPI {
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * Sends an Email with Advanced Options
      */
-    sendAdvMailById({ sendMail }: SendAdvMailByIdRequest): Observable<GenericResponse>
-    sendAdvMailById({ sendMail }: SendAdvMailByIdRequest, opts?: OperationOpts): Observable<RawAjaxResponse<GenericResponse>>
-    sendAdvMailById({ sendMail }: SendAdvMailByIdRequest, opts?: OperationOpts): Observable<GenericResponse | RawAjaxResponse<GenericResponse>> {
-        throwIfNullOrUndefined(sendMail, 'sendMail', 'sendAdvMailById');
+    sendAdvMail({ sendMailAdv }: SendAdvMailRequest): Observable<GenericResponse>
+    sendAdvMail({ sendMailAdv }: SendAdvMailRequest, opts?: OperationOpts): Observable<RawAjaxResponse<GenericResponse>>
+    sendAdvMail({ sendMailAdv }: SendAdvMailRequest, opts?: OperationOpts): Observable<GenericResponse | RawAjaxResponse<GenericResponse>> {
+        throwIfNullOrUndefined(sendMailAdv, 'sendMailAdv', 'sendAdvMail');
 
         const headers: HttpHeaders = {
             'Content-Type': 'application/json',
@@ -123,7 +124,7 @@ export class DefaultApi extends BaseAPI {
             url: '/mail/advsend',
             method: 'POST',
             headers,
-            body: sendMail,
+            body: sendMailAdv,
         }, opts?.responseOpts);
     };
 
@@ -131,10 +132,10 @@ export class DefaultApi extends BaseAPI {
      * Sends An email through one of your mail orders.
      * Sends an Email
      */
-    sendMailById({ sendMail }: SendMailByIdRequest): Observable<GenericResponse>
-    sendMailById({ sendMail }: SendMailByIdRequest, opts?: OperationOpts): Observable<RawAjaxResponse<GenericResponse>>
-    sendMailById({ sendMail }: SendMailByIdRequest, opts?: OperationOpts): Observable<GenericResponse | RawAjaxResponse<GenericResponse>> {
-        throwIfNullOrUndefined(sendMail, 'sendMail', 'sendMailById');
+    sendMail({ sendMail }: SendMailRequest): Observable<GenericResponse>
+    sendMail({ sendMail }: SendMailRequest, opts?: OperationOpts): Observable<RawAjaxResponse<GenericResponse>>
+    sendMail({ sendMail }: SendMailRequest, opts?: OperationOpts): Observable<GenericResponse | RawAjaxResponse<GenericResponse>> {
+        throwIfNullOrUndefined(sendMail, 'sendMail', 'sendMail');
 
         const headers: HttpHeaders = {
             'Content-Type': 'application/json',

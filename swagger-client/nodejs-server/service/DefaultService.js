@@ -62,10 +62,33 @@ exports.placeMailOrder = function(body) {
  * Sends an Email with Advanced Options
  * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
  *
- * body SendMail 
+ * body SendMailAdv 
  * returns GenericResponse
  **/
-exports.sendAdvMailById = function(body) {
+exports.sendAdvMail = function(body) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "status_text" : "The command completed successfully.",
+  "status" : "ok"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Sends an Email with Advanced Options
+ * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+ *
+ * body SendMailAdv 
+ * returns GenericResponse
+ **/
+exports.sendAdvMail = function(body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -88,7 +111,7 @@ exports.sendAdvMailById = function(body) {
  * body SendMail 
  * returns GenericResponse
  **/
-exports.sendMailById = function(body) {
+exports.sendMail = function(body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -111,7 +134,7 @@ exports.sendMailById = function(body) {
  * body SendMail 
  * returns GenericResponse
  **/
-exports.sendMailById = function(body) {
+exports.sendMail = function(body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {

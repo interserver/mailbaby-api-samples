@@ -2,7 +2,7 @@
 
 Mail Baby API
 - API version: 1.0.0
-  - Build date: 2021-05-05T04:29:36.011646-04:00[America/New_York]
+  - Build date: 2021-05-05T06:29:09.040569-04:00[America/New_York]
 
 This is an API defintion for accesssing the Mail.Baby mail service.
 
@@ -172,12 +172,21 @@ public class DefaultApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
-        SendMail body = new SendMail(); // SendMail | 
+        SendMailAdv body = new SendMailAdv(); // SendMailAdv | 
+        String subject = "subject_example"; // String | 
+        String body = "body_example"; // String | 
+        List<SendMailAdvFrom> from = Arrays.asList(new SendMailAdvFrom()); // List<SendMailAdvFrom> | 
+        List<MailContact> to = Arrays.asList(new MailContact()); // List<MailContact> | 
+        Long id = 789L; // Long | 
+        List<MailContact> replyto = Arrays.asList(new MailContact()); // List<MailContact> | 
+        List<MailContact> cc = Arrays.asList(new MailContact()); // List<MailContact> | 
+        List<MailContact> bcc = Arrays.asList(new MailContact()); // List<MailContact> | 
+        List<MailAttachment> attachments = Arrays.asList(new MailAttachment()); // List<MailAttachment> | 
         try {
-            GenericResponse result = apiInstance.sendAdvMailById(body);
+            GenericResponse result = apiInstance.sendAdvMail(body, subject, body, from, to, id, replyto, cc, bcc, attachments);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#sendAdvMailById");
+            System.err.println("Exception when calling DefaultApi#sendAdvMail");
             e.printStackTrace();
         }
     }
@@ -203,20 +212,15 @@ public class DefaultApiExample {
 
         DefaultApi apiInstance = new DefaultApi();
         SendMail body = new SendMail(); // SendMail | 
+        String to = "to_example"; // String | 
+        String from = "from_example"; // String | 
         String subject = "subject_example"; // String | 
         String body = "body_example"; // String | 
-        List<SendMailFrom> from = Arrays.asList(new SendMailFrom()); // List<SendMailFrom> | 
-        List<MailContact> to = Arrays.asList(new MailContact()); // List<MailContact> | 
-        Long id = 789L; // Long | 
-        List<MailContact> replyto = Arrays.asList(new MailContact()); // List<MailContact> | 
-        List<MailContact> cc = Arrays.asList(new MailContact()); // List<MailContact> | 
-        List<MailContact> bcc = Arrays.asList(new MailContact()); // List<MailContact> | 
-        List<MailAttachment> attachments = Arrays.asList(new MailAttachment()); // List<MailAttachment> | 
         try {
-            GenericResponse result = apiInstance.sendMailById(body, subject, body, from, to, id, replyto, cc, bcc, attachments);
+            GenericResponse result = apiInstance.sendMail(body, to, from, subject, body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#sendMailById");
+            System.err.println("Exception when calling DefaultApi#sendMail");
             e.printStackTrace();
         }
     }
@@ -293,8 +297,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getMailOrders**](docs/DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**pingServer**](docs/DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**placeMailOrder**](docs/DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**sendAdvMailById**](docs/DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMailById**](docs/DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
+*DefaultApi* | [**sendAdvMail**](docs/DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**sendMail**](docs/DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](docs/DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 *DefaultApi* | [**viewMailLogById**](docs/DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -308,7 +312,8 @@ Class | Method | HTTP request | Description
  - [MailOrder](docs/MailOrder.md)
  - [MailOrders](docs/MailOrders.md)
  - [SendMail](docs/SendMail.md)
- - [SendMailFrom](docs/SendMailFrom.md)
+ - [SendMailAdv](docs/SendMailAdv.md)
+ - [SendMailAdvFrom](docs/SendMailAdvFrom.md)
 
 ## Documentation for Authorization
 

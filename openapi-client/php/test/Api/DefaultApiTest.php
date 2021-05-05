@@ -109,24 +109,24 @@ class DefaultApiTest extends TestCase
     }
 
     /**
-     * Test case for sendAdvMailById
+     * Test case for sendAdvMail
      *
      * Sends an Email with Advanced Options.
      *
      */
-    public function testSendAdvMailById()
+    public function testSendAdvMail()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for sendMailById
+     * Test case for sendMail
      *
      * Sends an Email.
      *
      */
-    public function testSendMailById()
+    public function testSendMail()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

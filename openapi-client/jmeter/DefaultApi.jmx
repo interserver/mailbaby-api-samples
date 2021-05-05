@@ -58,14 +58,14 @@
             <stringProp name="Argument.value">${__P(testData.placeMailOrderFile,DefaultApi.csv)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="testData.sendAdvMailByIdFile" elementType="Argument">
-            <stringProp name="Argument.name">testData.sendAdvMailByIdFile</stringProp>
-            <stringProp name="Argument.value">${__P(testData.sendAdvMailByIdFile,DefaultApi.csv)}</stringProp>
+          <elementProp name="testData.sendAdvMailFile" elementType="Argument">
+            <stringProp name="Argument.name">testData.sendAdvMailFile</stringProp>
+            <stringProp name="Argument.value">${__P(testData.sendAdvMailFile,DefaultApi.csv)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="testData.sendMailByIdFile" elementType="Argument">
-            <stringProp name="Argument.name">testData.sendMailByIdFile</stringProp>
-            <stringProp name="Argument.value">${__P(testData.sendMailByIdFile,DefaultApi.csv)}</stringProp>
+          <elementProp name="testData.sendMailFile" elementType="Argument">
+            <stringProp name="Argument.name">testData.sendMailFile</stringProp>
+            <stringProp name="Argument.value">${__P(testData.sendMailFile,DefaultApi.csv)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="testData.validateMailOrderFile" elementType="Argument">
@@ -328,7 +328,7 @@
         </ResponseAssertion>
         <hashTree/>
       </hashTree>
-<ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - sendAdvMailById" enabled="true">
+<ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - sendAdvMail" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -360,13 +360,13 @@
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="sendAdvMailById - ${testCase}" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="sendAdvMail - ${testCase}" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments">
-              <elementProp name="sendMail" elementType="HTTPArgument">
+              <elementProp name="sendMailAdv" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">${__javaScript("${sendMail}".replace(/'/g\, '"'),)}</stringProp>
+                <stringProp name="Argument.value">${__javaScript("${sendMailAdv}".replace(/'/g\, '"'),)}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -389,10 +389,10 @@
           <stringProp name="TestPlan.comments">Sends an Email with Advanced Options Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.</stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - sendAdvMailById" enabled="true">
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - sendAdvMail" enabled="true">
             <stringProp name="delimiter">,</stringProp>
             <stringProp name="fileEncoding"></stringProp>
-            <stringProp name="filename">${testData.sendAdvMailByIdFile}</stringProp>
+            <stringProp name="filename">${testData.sendAdvMailFile}</stringProp>
             <boolProp name="quotedData">true</boolProp>
             <boolProp name="recycle">true</boolProp>
             <stringProp name="shareMode">shareMode.group</stringProp>
@@ -412,7 +412,7 @@
         </ResponseAssertion>
         <hashTree/>
       </hashTree>
-<ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - sendMailById" enabled="true">
+<ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - sendMail" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -444,7 +444,7 @@
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="sendMailById - ${testCase}" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="sendMail - ${testCase}" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments">
@@ -473,10 +473,10 @@
           <stringProp name="TestPlan.comments">Sends an Email Sends An email through one of your mail orders.</stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - sendMailById" enabled="true">
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - sendMail" enabled="true">
             <stringProp name="delimiter">,</stringProp>
             <stringProp name="fileEncoding"></stringProp>
-            <stringProp name="filename">${testData.sendMailByIdFile}</stringProp>
+            <stringProp name="filename">${testData.sendMailFile}</stringProp>
             <boolProp name="quotedData">true</boolProp>
             <boolProp name="recycle">true</boolProp>
             <stringProp name="shareMode">shareMode.group</stringProp>

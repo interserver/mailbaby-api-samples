@@ -8,7 +8,8 @@ import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
 import io.swagger.model.SendMail;
-import io.swagger.model.SendMailFrom;
+import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailAdvFrom;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -29,7 +30,7 @@ import javax.validation.Valid;
 
 @Path("/mail")
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-05-05T04:29:50.019974-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2021-05-05T06:29:23.606337-04:00[America/New_York]")
 public class MailApi {
 
     @GET
@@ -63,7 +64,7 @@ public class MailApi {
     }
     @POST
     @Path("/advsend")
-    @Consumes({ "application/json" })
+    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json" })
     @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
@@ -73,7 +74,22 @@ public class MailApi {
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
     })
-    public Response sendAdvMailById(@Valid SendMail body) {
+    public Response sendAdvMail(@Valid SendMailAdv body) {
+        return Response.ok().entity("magic!").build();
+    }
+    @POST
+    @Path("/advsend")
+    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Sends an Email with Advanced Options", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.", security = {
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        @ApiResponse(responseCode = "400", description = "bad input parameter"),
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
+    })
+    public Response sendAdvMail(@FormParam(value = "subject")  String subject,@FormParam(value = "body")  String body,@FormParam(value = "from")  List<SendMailAdvFrom> from,@FormParam(value = "to")  List<MailContact> to,@FormParam(value = "id")  Long id,@FormParam(value = "replyto")  List<MailContact> replyto,@FormParam(value = "cc")  List<MailContact> cc,@FormParam(value = "bcc")  List<MailContact> bcc,@FormParam(value = "attachments")  List<MailAttachment> attachments) {
         return Response.ok().entity("magic!").build();
     }
     @POST
@@ -88,7 +104,7 @@ public class MailApi {
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
     })
-    public Response sendMailById(@Valid SendMail body) {
+    public Response sendMail(@Valid SendMail body) {
         return Response.ok().entity("magic!").build();
     }
     @POST
@@ -103,7 +119,7 @@ public class MailApi {
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
     })
-    public Response sendMailById(@FormParam(value = "subject")  String subject,@FormParam(value = "body")  String body,@FormParam(value = "from")  List<SendMailFrom> from,@FormParam(value = "to")  List<MailContact> to,@FormParam(value = "id")  Long id,@FormParam(value = "replyto")  List<MailContact> replyto,@FormParam(value = "cc")  List<MailContact> cc,@FormParam(value = "bcc")  List<MailContact> bcc,@FormParam(value = "attachments")  List<MailAttachment> attachments) {
+    public Response sendMail(@FormParam(value = "to")  String to,@FormParam(value = "from")  String from,@FormParam(value = "subject")  String subject,@FormParam(value = "body")  String body) {
         return Response.ok().entity("magic!").build();
     }
     @GET

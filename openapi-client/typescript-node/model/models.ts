@@ -7,7 +7,8 @@ export * from './mailContact';
 export * from './mailLog';
 export * from './mailOrder';
 export * from './sendMail';
-export * from './sendMailFrom';
+export * from './sendMailAdv';
+export * from './sendMailAdvFrom';
 
 import * as fs from 'fs';
 
@@ -29,7 +30,8 @@ import { MailContact } from './mailContact';
 import { MailLog } from './mailLog';
 import { MailOrder } from './mailOrder';
 import { SendMail } from './sendMail';
-import { SendMailFrom } from './sendMailFrom';
+import { SendMailAdv } from './sendMailAdv';
+import { SendMailAdvFrom } from './sendMailAdvFrom';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -54,7 +56,8 @@ let typeMap: {[index: string]: any} = {
     "MailLog": MailLog,
     "MailOrder": MailOrder,
     "SendMail": SendMail,
-    "SendMailFrom": SendMailFrom,
+    "SendMailAdv": SendMailAdv,
+    "SendMailAdvFrom": SendMailAdvFrom,
 }
 
 export class ObjectSerializer {

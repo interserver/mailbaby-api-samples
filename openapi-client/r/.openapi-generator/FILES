@@ -14,7 +14,8 @@ R/mail_contact.R
 R/mail_log.R
 R/mail_order.R
 R/send_mail.R
-R/send_mail_from.R
+R/send_mail_adv.R
+R/send_mail_adv_from.R
 README.md
 docs/DefaultApi.md
 docs/ErrorResponse.md
@@ -24,7 +25,8 @@ docs/MailContact.md
 docs/MailLog.md
 docs/MailOrder.md
 docs/SendMail.md
-docs/SendMailFrom.md
+docs/SendMailAdv.md
+docs/SendMailAdvFrom.md
 git_push.sh
 tests/testthat.R
 tests/testthat/test_default_api.R
@@ -35,4 +37,5 @@ tests/testthat/test_mail_contact.R
 tests/testthat/test_mail_log.R
 tests/testthat/test_mail_order.R
 tests/testthat/test_send_mail.R
-tests/testthat/test_send_mail_from.R
+tests/testthat/test_send_mail_adv.R
+tests/testthat/test_send_mail_adv_from.R

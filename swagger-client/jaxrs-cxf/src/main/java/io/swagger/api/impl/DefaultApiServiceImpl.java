@@ -9,7 +9,8 @@ import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
 import io.swagger.model.SendMail;
-import io.swagger.model.SendMailFrom;
+import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailAdvFrom;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -68,7 +69,19 @@ public class DefaultApiServiceImpl implements DefaultApi {
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      *
      */
-    public GenericResponse sendAdvMailById(SendMail body) {
+    public GenericResponse sendAdvMail(SendMailAdv body) {
+        // TODO: Implement...
+        
+        return null;
+    }
+    
+    /**
+     * Sends an Email with Advanced Options
+     *
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+     *
+     */
+    public GenericResponse sendAdvMail(String subject, String body, List<SendMailAdvFrom> from, List<MailContact> to, Long id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments) {
         // TODO: Implement...
         
         return null;
@@ -80,7 +93,7 @@ public class DefaultApiServiceImpl implements DefaultApi {
      * Sends An email through one of your mail orders.
      *
      */
-    public GenericResponse sendMailById(SendMail body) {
+    public GenericResponse sendMail(SendMail body) {
         // TODO: Implement...
         
         return null;
@@ -92,7 +105,7 @@ public class DefaultApiServiceImpl implements DefaultApi {
      * Sends An email through one of your mail orders.
      *
      */
-    public GenericResponse sendMailById(String subject, String body, List<SendMailFrom> from, List<MailContact> to, Long id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments) {
+    public GenericResponse sendMail(String to, String from, String subject, String body) {
         // TODO: Implement...
         
         return null;

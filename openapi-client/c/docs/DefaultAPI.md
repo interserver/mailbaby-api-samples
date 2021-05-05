@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**DefaultAPI_getMailOrders**](DefaultAPI.md#DefaultAPI_getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**DefaultAPI_pingServer**](DefaultAPI.md#DefaultAPI_pingServer) | **GET** /ping | Checks if the server is running
 [**DefaultAPI_placeMailOrder**](DefaultAPI.md#DefaultAPI_placeMailOrder) | **POST** /mail/order | places a mail order
-[**DefaultAPI_sendAdvMailById**](DefaultAPI.md#DefaultAPI_sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**DefaultAPI_sendMailById**](DefaultAPI.md#DefaultAPI_sendMailById) | **POST** /mail/send | Sends an Email
+[**DefaultAPI_sendAdvMail**](DefaultAPI.md#DefaultAPI_sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**DefaultAPI_sendMail**](DefaultAPI.md#DefaultAPI_sendMail) | **POST** /mail/send | Sends an Email
 [**DefaultAPI_validateMailOrder**](DefaultAPI.md#DefaultAPI_validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 [**DefaultAPI_viewMailLogById**](DefaultAPI.md#DefaultAPI_viewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -99,20 +99,20 @@ void
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **DefaultAPI_sendAdvMailById**
+# **DefaultAPI_sendAdvMail**
 ```c
 // Sends an Email with Advanced Options
 //
 // Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 //
-generic_response_t* DefaultAPI_sendAdvMailById(apiClient_t *apiClient, send_mail_t * send_mail);
+generic_response_t* DefaultAPI_sendAdvMail(apiClient_t *apiClient, send_mail_adv_t * send_mail_adv);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration | 
-**send_mail** | **[send_mail_t](send_mail.md) \*** |  | 
+**send_mail_adv** | **[send_mail_adv_t](send_mail_adv.md) \*** |  | 
 
 ### Return type
 
@@ -125,18 +125,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **DefaultAPI_sendMailById**
+# **DefaultAPI_sendMail**
 ```c
 // Sends an Email
 //
 // Sends An email through one of your mail orders.
 //
-generic_response_t* DefaultAPI_sendMailById(apiClient_t *apiClient, send_mail_t * send_mail);
+generic_response_t* DefaultAPI_sendMail(apiClient_t *apiClient, send_mail_t * send_mail);
 ```
 
 ### Parameters

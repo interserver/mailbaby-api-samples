@@ -120,8 +120,8 @@ Class | Method | HTTP request | Description
 *OAIDefaultApi* | [**getMailOrders**](OAIDefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 *OAIDefaultApi* | [**pingServer**](OAIDefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 *OAIDefaultApi* | [**placeMailOrder**](OAIDefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-*OAIDefaultApi* | [**sendAdvMailById**](OAIDefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*OAIDefaultApi* | [**sendMailById**](OAIDefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
+*OAIDefaultApi* | [**sendAdvMail**](OAIDefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*OAIDefaultApi* | [**sendMail**](OAIDefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 *OAIDefaultApi* | [**validateMailOrder**](OAIDefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 *OAIDefaultApi* | [**viewMailLogById**](OAIDefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -135,7 +135,8 @@ Class | Method | HTTP request | Description
  - [OAIMailLog](OAIMailLog.md)
  - [OAIMailOrder](OAIMailOrder.md)
  - [OAISendMail](OAISendMail.md)
- - [OAISendMail_from](OAISendMail_from.md)
+ - [OAISendMailAdv](OAISendMailAdv.md)
+ - [OAISendMailAdv_from](OAISendMailAdv_from.md)
 
 
 ## Documentation for Servers

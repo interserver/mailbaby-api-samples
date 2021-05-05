@@ -19,7 +19,8 @@ import 'package:openapi/src/model/mail_contact.dart';
 import 'package:openapi/src/model/mail_log.dart';
 import 'package:openapi/src/model/mail_order.dart';
 import 'package:openapi/src/model/send_mail.dart';
-import 'package:openapi/src/model/send_mail_from.dart';
+import 'package:openapi/src/model/send_mail_adv.dart';
+import 'package:openapi/src/model/send_mail_adv_from.dart';
 
 part 'serializers.g.dart';
 
@@ -31,7 +32,8 @@ part 'serializers.g.dart';
   MailLog,
   MailOrder,
   SendMail,
-  SendMailFrom,
+  SendMailAdv,
+  SendMailAdvFrom,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(

@@ -69,8 +69,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | **getMailOrders** | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | **pingServer** | **GET** /ping | Checks if the server is running
 *DefaultApi* | **placeMailOrder** | **POST** /mail/order | places a mail order
-*DefaultApi* | **sendAdvMailById** | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | **sendMailById** | **POST** /mail/send | Sends an Email
+*DefaultApi* | **sendAdvMail** | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | **sendMail** | **POST** /mail/send | Sends an Email
 *DefaultApi* | **validateMailOrder** | **GET** /mail/order | validatess order details before placing an order
 *DefaultApi* | **viewMailLogById** | **GET** /mail/log | displays the mail log
 
@@ -84,7 +84,8 @@ Class | Method | HTTP request | Description
  - [MailLog](MailLog.md)
  - [MailOrder](MailOrder.md)
  - [SendMail](SendMail.md)
- - [SendMailFrom](SendMailFrom.md)
+ - [SendMailAdv](SendMailAdv.md)
+ - [SendMailAdvFrom](SendMailAdvFrom.md)
 
 
 ## Documentation for Authorization

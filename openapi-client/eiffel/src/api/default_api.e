@@ -118,11 +118,11 @@ feature -- API Access
 			end
 		end	
 
-	send_adv_mail_by_id (send_mail: SEND_MAIL): detachable GENERIC_RESPONSE
+	send_adv_mail (send_mail_adv: SEND_MAIL_ADV): detachable GENERIC_RESPONSE
 			-- Sends an Email with Advanced Options
 			-- Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 			-- 
-			-- argument: send_mail  (required)
+			-- argument: send_mail_adv  (required)
 			-- 
 			-- 
 			-- Result GENERIC_RESPONSE
@@ -134,14 +134,14 @@ feature -- API Access
 		do
 			reset_error
 			create l_request
-			l_request.set_body(send_mail)
+			l_request.set_body(send_mail_adv)
 			l_path := "/mail/advsend"
 
 
 			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"application/json">>)  as l_accept then
 				l_request.add_header(l_accept,"Accept");
 			end
-			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/json">>),"Content-Type")
+			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/json", "application/x-www-form-urlencoded">>),"Content-Type")
 			l_request.set_auth_names ({ARRAY [STRING]}<<"apiKeyAuth">>)
 			l_response := api_client.call_api (l_path, "Post", l_request, Void, agent deserializer)
 			if l_response.has_error then
@@ -153,7 +153,7 @@ feature -- API Access
 			end
 		end	
 
-	send_mail_by_id (send_mail: SEND_MAIL): detachable GENERIC_RESPONSE
+	send_mail (send_mail: SEND_MAIL): detachable GENERIC_RESPONSE
 			-- Sends an Email
 			-- Sends An email through one of your mail orders.
 			-- 

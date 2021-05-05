@@ -22,6 +22,7 @@ part 'model/mail_log.dart';
 part 'model/mail_order.dart';
 part 'model/mail_orders.dart';
 part 'model/send_mail.dart';
-part 'model/send_mail_from.dart';
+part 'model/send_mail_adv.dart';
+part 'model/send_mail_adv_from.dart';
 
 ApiClient defaultApiClient = new ApiClient();

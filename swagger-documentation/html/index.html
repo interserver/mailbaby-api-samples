@@ -201,8 +201,8 @@
   <li><a href="#getMailOrders"><code><span class="http-method">get</span> /mail</code></a></li>
   <li><a href="#pingServer"><code><span class="http-method">get</span> /ping</code></a></li>
   <li><a href="#placeMailOrder"><code><span class="http-method">post</span> /mail/order</code></a></li>
-  <li><a href="#sendAdvMailById"><code><span class="http-method">post</span> /mail/advsend</code></a></li>
-  <li><a href="#sendMailById"><code><span class="http-method">post</span> /mail/send</code></a></li>
+  <li><a href="#sendAdvMail"><code><span class="http-method">post</span> /mail/advsend</code></a></li>
+  <li><a href="#sendMail"><code><span class="http-method">post</span> /mail/send</code></a></li>
   <li><a href="#validateMailOrder"><code><span class="http-method">get</span> /mail/order</code></a></li>
   <li><a href="#viewMailLogById"><code><span class="http-method">get</span> /mail/log</code></a></li>
   </ul>
@@ -345,11 +345,11 @@
         <a href="#ErrorResponse">ErrorResponse</a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="sendAdvMailById"></a>
+  <div class="method"><a name="sendAdvMail"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/advsend</code></pre></div>
-    <div class="method-summary">Sends an Email with Advanced Options (<span class="nickname">sendAdvMailById</span>)</div>
+    <div class="method-summary">Sends an Email with Advanced Options (<span class="nickname">sendAdvMail</span>)</div>
     <div class="method-notes">Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.</div>
 
 
@@ -357,17 +357,39 @@
     This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
+      <li><code>application/x-www-form-urlencoded</code></li>
     </ul>
 
     <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">body <a href="#SendMail">SendMail</a> (required)</div>
+      <div class="param">body <a href="#SendMailAdv">SendMailAdv</a> (required)</div>
       
             <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
                 </div>  <!-- field-items -->
 
 
 
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">subject (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">body (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">from (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">to (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  format: int64</div>      <div class="param">replyto (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">cc (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">bcc (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">attachments (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
@@ -406,11 +428,11 @@
         <a href="#ErrorResponse">ErrorResponse</a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="sendMailById"></a>
+  <div class="method"><a name="sendMail"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/send</code></pre></div>
-    <div class="method-summary">Sends an Email (<span class="nickname">sendMailById</span>)</div>
+    <div class="method-summary">Sends an Email (<span class="nickname">sendMail</span>)</div>
     <div class="method-notes">Sends An email through one of your mail orders.</div>
 
 
@@ -432,23 +454,13 @@
 
     <h3 class="field-label">Form parameters</h3>
     <div class="field-items">
-      <div class="param">subject (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">body (required)</div>
+      <div class="param">to (required)</div>
       
             <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">from (required)</div>
       
-            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">to (required)</div>
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">subject (required)</div>
       
-            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">id (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  format: int64</div>      <div class="param">replyto (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">cc (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">bcc (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">attachments (required)</div>
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">body (required)</div>
       
             <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
 
@@ -593,7 +605,8 @@ available inventory in the system</div>
     <li><a href="#MailOrder"><code>MailOrder</code></a></li>
     <li><a href="#MailOrders"><code>MailOrders</code></a></li>
     <li><a href="#SendMail"><code>SendMail</code> - Email details</a></li>
-    <li><a href="#SendMail_from"><code>SendMail_from</code></a></li>
+    <li><a href="#SendMailAdv"><code>SendMailAdv</code> - Email details</a></li>
+    <li><a href="#SendMailAdv_from"><code>SendMailAdv_from</code></a></li>
   </ol>
 
   <div class="model">
@@ -666,12 +679,27 @@ available inventory in the system</div>
     <h3><a name="SendMail"><code>SendMail</code> - Email details</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Details for an Email</div>
     <div class="field-items">
+      <div class="param">to (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The Contact whom is the primary recipient of this email. </div>
+          <div class="param-desc"><span class="param-type">example: johndoe@company.com</span></div>
+<div class="param">from (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The contact whom is the this email is from. </div>
+          <div class="param-desc"><span class="param-type">example: johndoe@company.com</span></div>
+<div class="param">subject (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The subject or title of the email </div>
+          <div class="param-desc"><span class="param-type">example: Your Package has been Delivered!</span></div>
+<div class="param">body (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The main email contents. </div>
+          <div class="param-desc"><span class="param-type">example: The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
+</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="SendMailAdv"><code>SendMailAdv</code> - Email details</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Details for an Email</div>
+    <div class="field-items">
       <div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The subject or title of the email </div>
           <div class="param-desc"><span class="param-type">example: Your Package has been Delivered!</span></div>
 <div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The main email contents. </div>
           <div class="param-desc"><span class="param-type">example: The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
 </span></div>
-<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#SendMail_from">array[SendMail_from]</a></span> The contact whom is the this email is from. </div>
+<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#SendMailAdv_from">array[SendMailAdv_from]</a></span> The contact whom is the this email is from. </div>
 <div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#MailContact">array[MailContact]</a></span> The Contact whom is the primary recipient of this email. </div>
 <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span> The ID of the Mail order within our system to use as the Mail Account. format: int64</div>
           <div class="param-desc"><span class="param-type">example: 5000</span></div>
@@ -682,7 +710,7 @@ available inventory in the system</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="SendMail_from"><code>SendMail_from</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="SendMailAdv_from"><code>SendMailAdv_from</code></a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>An Email Contact</div>
     <div class="field-items">
       <div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The email address </div>

@@ -6,8 +6,9 @@
             [mail-baby-api.specs.mail-order :refer :all]
             [mail-baby-api.specs.mail-attachment :refer :all]
             [mail-baby-api.specs.error-response :refer :all]
+            [mail-baby-api.specs.send-mail-adv-from :refer :all]
             [mail-baby-api.specs.generic-response :refer :all]
-            [mail-baby-api.specs.send-mail-from :refer :all]
+            [mail-baby-api.specs.send-mail-adv :refer :all]
             [mail-baby-api.specs.mail-log :refer :all]
             [mail-baby-api.specs.mail-contact :refer :all]
             [mail-baby-api.specs.send-mail :refer :all]
@@ -85,32 +86,32 @@
         res))))
 
 
-(defn-spec send-adv-mail-by-id-with-http-info any?
+(defn-spec send-adv-mail-with-http-info any?
   "Sends an Email with Advanced Options
   Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc."
-  [send-mail send-mail]
-  (check-required-params send-mail)
+  [send-mail-adv send-mail-adv]
+  (check-required-params send-mail-adv)
   (call-api "/mail/advsend" :post
             {:path-params   {}
              :header-params {}
              :query-params  {}
              :form-params   {}
-             :body-param    send-mail
-             :content-types ["application/json"]
+             :body-param    send-mail-adv
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json"]
              :auth-names    ["apiKeyAuth"]}))
 
-(defn-spec send-adv-mail-by-id generic-response-spec
+(defn-spec send-adv-mail generic-response-spec
   "Sends an Email with Advanced Options
   Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc."
-  [send-mail send-mail]
-  (let [res (:data (send-adv-mail-by-id-with-http-info send-mail))]
+  [send-mail-adv send-mail-adv]
+  (let [res (:data (send-adv-mail-with-http-info send-mail-adv))]
     (if (:decode-models *api-context*)
        (st/decode generic-response-spec res st/string-transformer)
        res)))
 
 
-(defn-spec send-mail-by-id-with-http-info any?
+(defn-spec send-mail-with-http-info any?
   "Sends an Email
   Sends An email through one of your mail orders."
   [send-mail send-mail]
@@ -125,11 +126,11 @@
              :accepts       ["application/json"]
              :auth-names    ["apiKeyAuth"]}))
 
-(defn-spec send-mail-by-id generic-response-spec
+(defn-spec send-mail generic-response-spec
   "Sends an Email
   Sends An email through one of your mail orders."
   [send-mail send-mail]
-  (let [res (:data (send-mail-by-id-with-http-info send-mail))]
+  (let [res (:data (send-mail-with-http-info send-mail))]
     (if (:decode-models *api-context*)
        (st/decode generic-response-spec res st/string-transformer)
        res)))

@@ -9,15 +9,10 @@
 -export_type([openapi_send_mail/0]).
 
 -type openapi_send_mail() ::
-  [ {'subject', binary() }
+  [ {'to', binary() }
+  | {'from', binary() }
+  | {'subject', binary() }
   | {'body', binary() }
-  | {'from', list(openapi_send_mail_from:openapi_send_mail_from()) }
-  | {'to', list(openapi_mail_contact:openapi_mail_contact()) }
-  | {'id', integer() }
-  | {'replyto', list(openapi_mail_contact:openapi_mail_contact()) }
-  | {'cc', list(openapi_mail_contact:openapi_mail_contact()) }
-  | {'bcc', list(openapi_mail_contact:openapi_mail_contact()) }
-  | {'attachments', list(openapi_mail_attachment:openapi_mail_attachment()) }
   ].
 
 
@@ -25,15 +20,10 @@ openapi_send_mail() ->
     openapi_send_mail([]).
 
 openapi_send_mail(Fields) ->
-  Default = [ {'subject', binary() }
+  Default = [ {'to', binary() }
+            , {'from', binary() }
+            , {'subject', binary() }
             , {'body', binary() }
-            , {'from', list(openapi_send_mail_from:openapi_send_mail_from()) }
-            , {'to', list(openapi_mail_contact:openapi_mail_contact()) }
-            , {'id', integer() }
-            , {'replyto', list(openapi_mail_contact:openapi_mail_contact()) }
-            , {'cc', list(openapi_mail_contact:openapi_mail_contact()) }
-            , {'bcc', list(openapi_mail_contact:openapi_mail_contact()) }
-            , {'attachments', list(openapi_mail_attachment:openapi_mail_attachment()) }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

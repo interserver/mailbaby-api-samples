@@ -21,7 +21,8 @@ import io.swagger.client.model.MailLog;
 import io.swagger.client.model.MailOrder;
 import io.swagger.client.model.MailOrders;
 import io.swagger.client.model.SendMail;
-import io.swagger.client.model.SendMailFrom;
+import io.swagger.client.model.SendMailAdv;
+import io.swagger.client.model.SendMailAdvFrom;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -91,9 +92,9 @@ public class DefaultApiTest {
      *          if the Api call fails
      */
     @Test
-    public void sendAdvMailByIdTest() throws ApiException {
-        SendMail body = null;
-        GenericResponse response = api.sendAdvMailById(body);
+    public void sendAdvMailTest() throws ApiException {
+        SendMailAdv body = null;
+        GenericResponse response = api.sendAdvMail(body);
 
         // TODO: test validations
     }
@@ -106,9 +107,9 @@ public class DefaultApiTest {
      *          if the Api call fails
      */
     @Test
-    public void sendMailByIdTest() throws ApiException {
+    public void sendMailTest() throws ApiException {
         SendMail body = null;
-        GenericResponse response = api.sendMailById(body);
+        GenericResponse response = api.sendMail(body);
 
         // TODO: test validations
     }

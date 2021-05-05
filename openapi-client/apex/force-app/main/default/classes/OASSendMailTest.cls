@@ -75,18 +75,4 @@ private class OASSendMailTest {
         Map<String, String> x-property-mappings = sendMail.getx-property-mappings();
         System.assertEquals('r_from', x-property-mappings.get('from'));
     }
-
-    @isTest
-    private static void defaultValuesPopulated() {
-        OASSendMail sendMail = new OASSendMail();
-        System.assertEquals(new List<OASSendMailFrom>(), sendMail.r_from);
-        System.assertEquals(new List<OASMailContact>(), sendMail.to);
-        System.assertEquals(new List<OASMailContact>(), sendMail.replyto);
-        System.assertEquals(new List<OASMailContact>(), sendMail.cc);
-        System.assertEquals(new List<OASMailContact>(), sendMail.bcc);
-        System.assertEquals(new List<OASMailAttachment>(), sendMail.attachments);
-        System.assertEquals(null, sendMail.subject);
-        System.assertEquals(null, sendMail.body);
-        System.assertEquals(null, sendMail.id);
-    }
 }

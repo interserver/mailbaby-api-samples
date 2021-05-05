@@ -147,12 +147,12 @@ open class DefaultAPI {
     /**
      Sends an Email with Advanced Options
      
-     - parameter sendMail: (body)  
+     - parameter sendMailAdv: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendAdvMailById(sendMail: SendMail, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) {
-        sendAdvMailByIdWithRequestBuilder(sendMail: sendMail).execute(apiResponseQueue) { result -> Void in
+    open class func sendAdvMail(sendMailAdv: SendMailAdv, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) {
+        sendAdvMailWithRequestBuilder(sendMailAdv: sendMailAdv).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -169,13 +169,13 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - parameter sendMail: (body)  
+     - parameter sendMailAdv: (body)  
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendAdvMailByIdWithRequestBuilder(sendMail: SendMail) -> RequestBuilder<GenericResponse> {
+    open class func sendAdvMailWithRequestBuilder(sendMailAdv: SendMailAdv) -> RequestBuilder<GenericResponse> {
         let path = "/mail/advsend"
         let URLString = OpenAPIClientAPI.basePath + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: sendMail)
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: sendMailAdv)
 
         let urlComponents = URLComponents(string: URLString)
 
@@ -197,8 +197,8 @@ open class DefaultAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendMailById(sendMail: SendMail, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) {
-        sendMailByIdWithRequestBuilder(sendMail: sendMail).execute(apiResponseQueue) { result -> Void in
+    open class func sendMail(sendMail: SendMail, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) {
+        sendMailWithRequestBuilder(sendMail: sendMail).execute(apiResponseQueue) { result -> Void in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -218,7 +218,7 @@ open class DefaultAPI {
      - parameter sendMail: (body)  
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendMailByIdWithRequestBuilder(sendMail: SendMail) -> RequestBuilder<GenericResponse> {
+    open class func sendMailWithRequestBuilder(sendMail: SendMail) -> RequestBuilder<GenericResponse> {
         let path = "/mail/send"
         let URLString = OpenAPIClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: sendMail)

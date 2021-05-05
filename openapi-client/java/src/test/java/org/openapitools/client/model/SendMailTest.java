@@ -21,11 +21,6 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import org.openapitools.client.model.MailAttachment;
-import org.openapitools.client.model.MailContact;
-import org.openapitools.client.model.SendMailFrom;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -46,6 +41,22 @@ public class SendMailTest {
     }
 
     /**
+     * Test the property 'to'
+     */
+    @Test
+    public void toTest() {
+        // TODO: test to
+    }
+
+    /**
+     * Test the property 'from'
+     */
+    @Test
+    public void fromTest() {
+        // TODO: test from
+    }
+
+    /**
      * Test the property 'subject'
      */
     @Test
@@ -59,62 +70,6 @@ public class SendMailTest {
     @Test
     public void bodyTest() {
         // TODO: test body
-    }
-
-    /**
-     * Test the property 'from'
-     */
-    @Test
-    public void fromTest() {
-        // TODO: test from
-    }
-
-    /**
-     * Test the property 'to'
-     */
-    @Test
-    public void toTest() {
-        // TODO: test to
-    }
-
-    /**
-     * Test the property 'id'
-     */
-    @Test
-    public void idTest() {
-        // TODO: test id
-    }
-
-    /**
-     * Test the property 'replyto'
-     */
-    @Test
-    public void replytoTest() {
-        // TODO: test replyto
-    }
-
-    /**
-     * Test the property 'cc'
-     */
-    @Test
-    public void ccTest() {
-        // TODO: test cc
-    }
-
-    /**
-     * Test the property 'bcc'
-     */
-    @Test
-    public void bccTest() {
-        // TODO: test bcc
-    }
-
-    /**
-     * Test the property 'attachments'
-     */
-    @Test
-    public void attachmentsTest() {
-        // TODO: test attachments
     }
 
 }

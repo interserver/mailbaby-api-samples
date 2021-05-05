@@ -12,7 +12,8 @@ lib/mail_baby_api/model/mail_contact.ex
 lib/mail_baby_api/model/mail_log.ex
 lib/mail_baby_api/model/mail_order.ex
 lib/mail_baby_api/model/send_mail.ex
-lib/mail_baby_api/model/send_mail_from.ex
+lib/mail_baby_api/model/send_mail_adv.ex
+lib/mail_baby_api/model/send_mail_adv_from.ex
 lib/mail_baby_api/request_builder.ex
 mix.exs
 test/test_helper.exs

@@ -33,14 +33,14 @@ package .Clients is
 
    --  Sends an Email with Advanced Options
    --  Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-   procedure Send_Adv_Mail_By_Id
+   procedure Send_Adv_Mail
       (Client : in out Client_Type;
-       Send_Mail_Type : in .Models.SendMail_Type;
+       Send_Mail_Adv_Type : in .Models.SendMailAdv_Type;
        Result : out .Models.GenericResponse_Type);
 
    --  Sends an Email
    --  Sends An email through one of your mail orders.
-   procedure Send_Mail_By_Id
+   procedure Send_Mail
       (Client : in out Client_Type;
        Send_Mail_Type : in .Models.SendMail_Type;
        Result : out .Models.GenericResponse_Type);

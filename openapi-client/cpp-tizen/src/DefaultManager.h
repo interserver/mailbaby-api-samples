@@ -10,6 +10,7 @@
 #include "MailLog.h"
 #include "MailOrder.h"
 #include "SendMail.h"
+#include "SendMailAdv.h"
 #include "Error.h"
 
 /** \defgroup Operations API Endpoints
@@ -110,26 +111,26 @@ bool placeMailOrderAsync(char * accessToken,
 /*! \brief Sends an Email with Advanced Options. *Synchronous*
  *
  * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
- * \param sendMail  *Required*
+ * \param sendMailAdv  *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
-bool sendAdvMailByIdSync(char * accessToken,
-	SendMail sendMail, 
+bool sendAdvMailSync(char * accessToken,
+	SendMailAdv sendMailAdv, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 
 /*! \brief Sends an Email with Advanced Options. *Asynchronous*
  *
  * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
- * \param sendMail  *Required*
+ * \param sendMailAdv  *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
-bool sendAdvMailByIdAsync(char * accessToken,
-	SendMail sendMail, 
+bool sendAdvMailAsync(char * accessToken,
+	SendMailAdv sendMailAdv, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 
@@ -142,7 +143,7 @@ bool sendAdvMailByIdAsync(char * accessToken,
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
-bool sendMailByIdSync(char * accessToken,
+bool sendMailSync(char * accessToken,
 	SendMail sendMail, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
@@ -155,7 +156,7 @@ bool sendMailByIdSync(char * accessToken,
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
-bool sendMailByIdAsync(char * accessToken,
+bool sendMailAsync(char * accessToken,
 	SendMail sendMail, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);

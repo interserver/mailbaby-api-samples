@@ -42,8 +42,8 @@ void main() {
     //
     // Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
     //
-    //Future<GenericResponse> sendAdvMailById(SendMail sendMail) async
-    test('test sendAdvMailById', () async {
+    //Future<GenericResponse> sendAdvMail(SendMailAdv sendMailAdv) async
+    test('test sendAdvMail', () async {
       // TODO
     });
 
@@ -51,8 +51,8 @@ void main() {
     //
     // Sends An email through one of your mail orders.
     //
-    //Future<GenericResponse> sendMailById(SendMail sendMail) async
-    test('test sendMailById', () async {
+    //Future<GenericResponse> sendMail(SendMail sendMail) async
+    test('test sendMail', () async {
       // TODO
     });
 

@@ -13,7 +13,8 @@ from swagger_server.models.mail_log import MailLog  # noqa: E501
 from swagger_server.models.mail_order import MailOrder  # noqa: E501
 from swagger_server.models.mail_orders import MailOrders  # noqa: E501
 from swagger_server.models.send_mail import SendMail  # noqa: E501
-from swagger_server.models.send_mail_from import SendMailFrom  # noqa: E501
+from swagger_server.models.send_mail_adv import SendMailAdv  # noqa: E501
+from swagger_server.models.send_mail_adv_from import SendMailAdvFrom  # noqa: E501
 from swagger_server.test import BaseTestCase
 
 
@@ -58,35 +59,40 @@ class TestDefaultController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
-    def test_send_adv_mail_by_id(self):
-        """Test case for send_adv_mail_by_id
+    def test_send_adv_mail(self):
+        """Test case for send_adv_mail
 
         Sends an Email with Advanced Options
         """
-        body = SendMail()
-        response = self.client.open(
-            '/mail/advsend',
-            method='POST',
-            data=json.dumps(body),
-            content_type='application/json')
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
-
-    def test_send_mail_by_id(self):
-        """Test case for send_mail_by_id
-
-        Sends an Email
-        """
-        body = SendMail()
+        body = SendMailAdv()
         data = dict(subject='subject_example',
                     body='body_example',
-                    _from=SendMailFrom(),
+                    _from=SendMailAdvFrom(),
                     to=MailContact(),
                     id=789,
                     replyto=MailContact(),
                     cc=MailContact(),
                     bcc=MailContact(),
                     attachments=MailAttachment())
+        response = self.client.open(
+            '/mail/advsend',
+            method='POST',
+            data=json.dumps(body),
+            data=data,
+            content_type='application/json')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+    def test_send_mail(self):
+        """Test case for send_mail
+
+        Sends an Email
+        """
+        body = SendMail()
+        data = dict(to='to_example',
+                    _from='_from_example',
+                    subject='subject_example',
+                    body='body_example')
         response = self.client.open(
             '/mail/send',
             method='POST',

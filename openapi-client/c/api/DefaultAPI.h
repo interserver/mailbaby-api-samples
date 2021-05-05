@@ -10,6 +10,7 @@
 #include "../model/mail_log.h"
 #include "../model/mail_order.h"
 #include "../model/send_mail.h"
+#include "../model/send_mail_adv.h"
 
 
 // displays a list of mail service orders
@@ -37,7 +38,7 @@ DefaultAPI_placeMailOrder(apiClient_t *apiClient, mail_order_t * mail_order );
 // Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 //
 generic_response_t*
-DefaultAPI_sendAdvMailById(apiClient_t *apiClient, send_mail_t * send_mail );
+DefaultAPI_sendAdvMail(apiClient_t *apiClient, send_mail_adv_t * send_mail_adv );
 
 
 // Sends an Email
@@ -45,7 +46,7 @@ DefaultAPI_sendAdvMailById(apiClient_t *apiClient, send_mail_t * send_mail );
 // Sends An email through one of your mail orders.
 //
 generic_response_t*
-DefaultAPI_sendMailById(apiClient_t *apiClient, send_mail_t * send_mail );
+DefaultAPI_sendMail(apiClient_t *apiClient, send_mail_t * send_mail );
 
 
 // validatess order details before placing an order

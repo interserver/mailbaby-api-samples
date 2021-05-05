@@ -11,7 +11,8 @@ docs/mail_contact.md
 docs/mail_log.md
 docs/mail_order.md
 docs/send_mail.md
-docs/send_mail_from.md
+docs/send_mail_adv.md
+docs/send_mail_adv_from.md
 external/cJSON.c
 external/cJSON.h
 external/cJSON.licence
@@ -36,8 +37,10 @@ model/object.c
 model/object.h
 model/send_mail.c
 model/send_mail.h
-model/send_mail_from.c
-model/send_mail_from.h
+model/send_mail_adv.c
+model/send_mail_adv.h
+model/send_mail_adv_from.c
+model/send_mail_adv_from.h
 src/apiClient.c
 src/apiKey.c
 src/binary.c
@@ -50,4 +53,5 @@ unit-test/test_mail_contact.c
 unit-test/test_mail_log.c
 unit-test/test_mail_order.c
 unit-test/test_send_mail.c
-unit-test/test_send_mail_from.c
+unit-test/test_send_mail_adv.c
+unit-test/test_send_mail_adv_from.c

@@ -22,6 +22,7 @@
 #include "OAIMailLog.h"
 #include "OAIMailOrder.h"
 #include "OAISendMail.h"
+#include "OAISendMailAdv.h"
 #include <QString>
 
 #include <QObject>
@@ -74,14 +75,14 @@ public:
     Q_DECL_DEPRECATED void placeMailOrder(const ::OpenAPI::OptionalParam<OAIMailOrder> &oai_mail_order = ::OpenAPI::OptionalParam<OAIMailOrder>());
 
     /**
-    * @param[in]  oai_send_mail OAISendMail [required]
+    * @param[in]  oai_send_mail_adv OAISendMailAdv [required]
     */
-    void sendAdvMailById(const OAISendMail &oai_send_mail);
+    void sendAdvMail(const OAISendMailAdv &oai_send_mail_adv);
 
     /**
     * @param[in]  oai_send_mail OAISendMail [required]
     */
-    void sendMailById(const OAISendMail &oai_send_mail);
+    void sendMail(const OAISendMail &oai_send_mail);
 
 
     Q_DECL_DEPRECATED void validateMailOrder();
@@ -112,8 +113,8 @@ private:
     void getMailOrdersCallback(OAIHttpRequestWorker *worker);
     void pingServerCallback(OAIHttpRequestWorker *worker);
     void placeMailOrderCallback(OAIHttpRequestWorker *worker);
-    void sendAdvMailByIdCallback(OAIHttpRequestWorker *worker);
-    void sendMailByIdCallback(OAIHttpRequestWorker *worker);
+    void sendAdvMailCallback(OAIHttpRequestWorker *worker);
+    void sendMailCallback(OAIHttpRequestWorker *worker);
     void validateMailOrderCallback(OAIHttpRequestWorker *worker);
     void viewMailLogByIdCallback(OAIHttpRequestWorker *worker);
 
@@ -122,32 +123,32 @@ signals:
     void getMailOrdersSignal(QList<OAIMailOrder> summary);
     void pingServerSignal();
     void placeMailOrderSignal();
-    void sendAdvMailByIdSignal(OAIGenericResponse summary);
-    void sendMailByIdSignal(OAIGenericResponse summary);
+    void sendAdvMailSignal(OAIGenericResponse summary);
+    void sendMailSignal(OAIGenericResponse summary);
     void validateMailOrderSignal();
     void viewMailLogByIdSignal(QList<OAIMailLog> summary);
 
     void getMailOrdersSignalFull(OAIHttpRequestWorker *worker, QList<OAIMailOrder> summary);
     void pingServerSignalFull(OAIHttpRequestWorker *worker);
     void placeMailOrderSignalFull(OAIHttpRequestWorker *worker);
-    void sendAdvMailByIdSignalFull(OAIHttpRequestWorker *worker, OAIGenericResponse summary);
-    void sendMailByIdSignalFull(OAIHttpRequestWorker *worker, OAIGenericResponse summary);
+    void sendAdvMailSignalFull(OAIHttpRequestWorker *worker, OAIGenericResponse summary);
+    void sendMailSignalFull(OAIHttpRequestWorker *worker, OAIGenericResponse summary);
     void validateMailOrderSignalFull(OAIHttpRequestWorker *worker);
     void viewMailLogByIdSignalFull(OAIHttpRequestWorker *worker, QList<OAIMailLog> summary);
 
     void getMailOrdersSignalE(QList<OAIMailOrder> summary, QNetworkReply::NetworkError error_type, QString error_str);
     void pingServerSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void placeMailOrderSignalE(QNetworkReply::NetworkError error_type, QString error_str);
-    void sendAdvMailByIdSignalE(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void sendMailByIdSignalE(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void sendAdvMailSignalE(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void sendMailSignalE(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void validateMailOrderSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void viewMailLogByIdSignalE(QList<OAIMailLog> summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void getMailOrdersSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void pingServerSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void placeMailOrderSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void sendAdvMailByIdSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void sendMailByIdSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void sendAdvMailSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void sendMailSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void validateMailOrderSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void viewMailLogByIdSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 

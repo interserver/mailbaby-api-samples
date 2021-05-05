@@ -196,15 +196,15 @@ bool OpenAPIDefaultApi::PlaceMailOrderResponse::FromJson(const TSharedPtr<FJsonV
 	return true;
 }
 
-FString OpenAPIDefaultApi::SendAdvMailByIdRequest::ComputePath() const
+FString OpenAPIDefaultApi::SendAdvMailRequest::ComputePath() const
 {
 	FString Path(TEXT("/mail/advsend"));
 	return Path;
 }
 
-void OpenAPIDefaultApi::SendAdvMailByIdRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+void OpenAPIDefaultApi::SendAdvMailRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-	static const TArray<FString> Consumes = { TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/json"), TEXT("application/x-www-form-urlencoded") };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
 
 	HttpRequest->SetVerb(TEXT("POST"));
@@ -216,7 +216,7 @@ void OpenAPIDefaultApi::SendAdvMailByIdRequest::SetupHttpRequest(const FHttpRequ
 		FString JsonBody;
 		JsonWriter Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-		WriteJsonValue(Writer, OpenAPISendMail);
+		WriteJsonValue(Writer, OpenAPISendMailAdv);
 		Writer->Close();
 
 		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -224,11 +224,11 @@ void OpenAPIDefaultApi::SendAdvMailByIdRequest::SetupHttpRequest(const FHttpRequ
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
-		UE_LOG(LogOpenAPI, Error, TEXT("Body parameter (OpenAPISendMail) was ignored, not supported in multipart form"));
+		UE_LOG(LogOpenAPI, Error, TEXT("Body parameter (OpenAPISendMailAdv) was ignored, not supported in multipart form"));
 	}
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
-		UE_LOG(LogOpenAPI, Error, TEXT("Body parameter (OpenAPISendMail) was ignored, not supported in urlencoded requests"));
+		UE_LOG(LogOpenAPI, Error, TEXT("Body parameter (OpenAPISendMailAdv) was ignored, not supported in urlencoded requests"));
 	}
 	else
 	{
@@ -236,7 +236,7 @@ void OpenAPIDefaultApi::SendAdvMailByIdRequest::SetupHttpRequest(const FHttpRequ
 	}
 }
 
-void OpenAPIDefaultApi::SendAdvMailByIdResponse::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+void OpenAPIDefaultApi::SendAdvMailResponse::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
 	Response::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
@@ -256,18 +256,18 @@ void OpenAPIDefaultApi::SendAdvMailByIdResponse::SetHttpResponseCode(EHttpRespon
 	}
 }
 
-bool OpenAPIDefaultApi::SendAdvMailByIdResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool OpenAPIDefaultApi::SendAdvMailResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	return TryGetJsonValue(JsonValue, Content);
 }
 
-FString OpenAPIDefaultApi::SendMailByIdRequest::ComputePath() const
+FString OpenAPIDefaultApi::SendMailRequest::ComputePath() const
 {
 	FString Path(TEXT("/mail/send"));
 	return Path;
 }
 
-void OpenAPIDefaultApi::SendMailByIdRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+void OpenAPIDefaultApi::SendMailRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = { TEXT("application/json"), TEXT("application/x-www-form-urlencoded") };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
@@ -301,7 +301,7 @@ void OpenAPIDefaultApi::SendMailByIdRequest::SetupHttpRequest(const FHttpRequest
 	}
 }
 
-void OpenAPIDefaultApi::SendMailByIdResponse::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+void OpenAPIDefaultApi::SendMailResponse::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
 	Response::SetHttpResponseCode(InHttpResponseCode);
 	switch ((int)InHttpResponseCode)
@@ -321,7 +321,7 @@ void OpenAPIDefaultApi::SendMailByIdResponse::SetHttpResponseCode(EHttpResponseC
 	}
 }
 
-bool OpenAPIDefaultApi::SendMailByIdResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool OpenAPIDefaultApi::SendMailResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	return TryGetJsonValue(JsonValue, Content);
 }

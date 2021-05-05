@@ -68,8 +68,8 @@ Class | Method | HTTP request | Description
 *OASDefaultApi* | [**getMailOrders**](OASDefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 *OASDefaultApi* | [**pingServer**](OASDefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 *OASDefaultApi* | [**placeMailOrder**](OASDefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-*OASDefaultApi* | [**sendAdvMailById**](OASDefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*OASDefaultApi* | [**sendMailById**](OASDefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
+*OASDefaultApi* | [**sendAdvMail**](OASDefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*OASDefaultApi* | [**sendMail**](OASDefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 *OASDefaultApi* | [**validateMailOrder**](OASDefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 *OASDefaultApi* | [**viewMailLogById**](OASDefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -83,7 +83,8 @@ Class | Method | HTTP request | Description
  - [OASMailLog](OASMailLog.md)
  - [OASMailOrder](OASMailOrder.md)
  - [OASSendMail](OASSendMail.md)
- - [OASSendMailFrom](OASSendMailFrom.md)
+ - [OASSendMailAdv](OASSendMailAdv.md)
+ - [OASSendMailAdvFrom](OASSendMailAdvFrom.md)
 
 
 ## Documentation for Authorization

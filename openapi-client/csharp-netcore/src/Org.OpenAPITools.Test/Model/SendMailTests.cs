@@ -58,6 +58,22 @@ namespace Org.OpenAPITools.Test.Model
 
 
         /// <summary>
+        /// Test the property 'To'
+        /// </summary>
+        [Fact]
+        public void ToTest()
+        {
+            // TODO unit test for the property 'To'
+        }
+        /// <summary>
+        /// Test the property 'From'
+        /// </summary>
+        [Fact]
+        public void FromTest()
+        {
+            // TODO unit test for the property 'From'
+        }
+        /// <summary>
         /// Test the property 'Subject'
         /// </summary>
         [Fact]
@@ -72,62 +88,6 @@ namespace Org.OpenAPITools.Test.Model
         public void BodyTest()
         {
             // TODO unit test for the property 'Body'
-        }
-        /// <summary>
-        /// Test the property 'From'
-        /// </summary>
-        [Fact]
-        public void FromTest()
-        {
-            // TODO unit test for the property 'From'
-        }
-        /// <summary>
-        /// Test the property 'To'
-        /// </summary>
-        [Fact]
-        public void ToTest()
-        {
-            // TODO unit test for the property 'To'
-        }
-        /// <summary>
-        /// Test the property 'Id'
-        /// </summary>
-        [Fact]
-        public void IdTest()
-        {
-            // TODO unit test for the property 'Id'
-        }
-        /// <summary>
-        /// Test the property 'Replyto'
-        /// </summary>
-        [Fact]
-        public void ReplytoTest()
-        {
-            // TODO unit test for the property 'Replyto'
-        }
-        /// <summary>
-        /// Test the property 'Cc'
-        /// </summary>
-        [Fact]
-        public void CcTest()
-        {
-            // TODO unit test for the property 'Cc'
-        }
-        /// <summary>
-        /// Test the property 'Bcc'
-        /// </summary>
-        [Fact]
-        public void BccTest()
-        {
-            // TODO unit test for the property 'Bcc'
-        }
-        /// <summary>
-        /// Test the property 'Attachments'
-        /// </summary>
-        [Fact]
-        public void AttachmentsTest()
-        {
-            // TODO unit test for the property 'Attachments'
         }
 
     }

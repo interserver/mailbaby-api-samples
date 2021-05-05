@@ -5,34 +5,19 @@
 -export_type([openapi_send_mail/0]).
 
 -type openapi_send_mail() ::
-    #{ 'subject' := binary(),
-       'body' := binary(),
-       'from' := list(),
-       'to' := list(),
-       'id' := integer(),
-       'replyto' => list(),
-       'cc' => list(),
-       'bcc' => list(),
-       'attachments' => list()
+    #{ 'to' => binary(),
+       'from' => binary(),
+       'subject' => binary(),
+       'body' => binary()
      }.
 
-encode(#{ 'subject' := Subject,
-          'body' := Body,
+encode(#{ 'to' := To,
           'from' := From,
-          'to' := To,
-          'id' := Id,
-          'replyto' := Replyto,
-          'cc' := Cc,
-          'bcc' := Bcc,
-          'attachments' := Attachments
+          'subject' := Subject,
+          'body' := Body
         }) ->
-    #{ 'subject' => Subject,
-       'body' => Body,
+    #{ 'to' => To,
        'from' => From,
-       'to' => To,
-       'id' => Id,
-       'replyto' => Replyto,
-       'cc' => Cc,
-       'bcc' => Bcc,
-       'attachments' => Attachments
+       'subject' => Subject,
+       'body' => Body
      }.

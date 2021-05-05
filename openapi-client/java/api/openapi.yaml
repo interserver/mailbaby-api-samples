@@ -84,53 +84,10 @@ paths:
           description: Unauthorized
       summary: displays a list of mail service orders
       x-accepts: application/json
-  /mail/order:
-    get:
-      deprecated: true
-      operationId: validateMailOrder
-      parameters: []
-      responses:
-        "200":
-          description: list of mail orders
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: Unauthorized
-      summary: validatess order details before placing an order
-      x-accepts: application/json
-    post:
-      deprecated: true
-      description: Adds an item to the system
-      operationId: placeMailOrder
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MailOrder'
-        description: Inventory item to add
-      responses:
-        "200":
-          description: list of mail orders
-        "400":
-          description: invalid input, object invalid
-        "409":
-          description: an existing item already exists
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: Unauthorized
-      summary: places a mail order
-      x-contentType: application/json
-      x-accepts: application/json
   /mail/send:
     post:
       description: Sends An email through one of your mail orders.
-      operationId: sendMailById
+      operationId: sendMail
       requestBody:
         content:
           application/json:
@@ -168,12 +125,15 @@ paths:
     post:
       description: Sends An email through one of your mail orders allowing additional
         options such as file attachments, cc, bcc, etc.
-      operationId: sendAdvMailById
+      operationId: sendAdvMail
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SendMail'
+              $ref: '#/components/schemas/SendMailAdv'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SendMailAdv'
         required: true
       responses:
         "200":
@@ -256,6 +216,49 @@ paths:
         "400":
           description: bad input parameter
       summary: displays the mail log
+      x-accepts: application/json
+  /mail/order:
+    get:
+      deprecated: true
+      operationId: validateMailOrder
+      parameters: []
+      responses:
+        "200":
+          description: list of mail orders
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+      summary: validatess order details before placing an order
+      x-accepts: application/json
+    post:
+      deprecated: true
+      description: Adds an item to the system
+      operationId: placeMailOrder
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MailOrder'
+        description: Inventory item to add
+      responses:
+        "200":
+          description: list of mail orders
+        "400":
+          description: invalid input, object invalid
+        "409":
+          description: an existing item already exists
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+      summary: places a mail order
+      x-contentType: application/json
       x-accepts: application/json
 components:
   callbacks: {}
@@ -403,6 +406,34 @@ components:
     SendMail:
       description: Details for an Email
       example:
+        subject: Your Package has been Delivered!
+        from: johndoe@company.com
+        to: johndoe@company.com
+        body: |
+          The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
+      properties:
+        to:
+          description: The Contact whom is the primary recipient of this email.
+          example: johndoe@company.com
+          type: string
+        from:
+          description: The contact whom is the this email is from.
+          example: johndoe@company.com
+          type: string
+        subject:
+          description: The subject or title of the email
+          example: Your Package has been Delivered!
+          type: string
+        body:
+          description: The main email contents.
+          example: |
+            The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
+          type: string
+      title: Email details
+      type: object
+    SendMailAdv:
+      description: Details for an Email
+      example:
         cc:
         - name: John Doe
           email: johndoe@company.com
@@ -450,7 +481,7 @@ components:
         from:
           description: The contact whom is the this email is from.
           items:
-            $ref: '#/components/schemas/SendMail_from'
+            $ref: '#/components/schemas/SendMailAdv_from'
           type: array
         to:
           description: The Contact whom is the primary recipient of this email.
@@ -496,7 +527,7 @@ components:
       - to
       title: Email details
       type: object
-    SendMail_from:
+    SendMailAdv_from:
       description: An Email Contact
       example:
         name: John Doe

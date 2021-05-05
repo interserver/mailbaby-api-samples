@@ -17,37 +17,22 @@ import (
 
 // SendMail Details for an Email
 type SendMail struct {
-	// The subject or title of the email
-	Subject string `json:"subject"`
-	// The main email contents.
-	Body string `json:"body"`
-	// The contact whom is the this email is from.
-	From []SendMailFrom `json:"from"`
 	// The Contact whom is the primary recipient of this email.
-	To []MailContact `json:"to"`
-	// The ID of the Mail order within our system to use as the Mail Account.
-	Id int64 `json:"id"`
-	// Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-	Replyto *[]MailContact `json:"replyto,omitempty"`
-	// Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-	Cc *[]MailContact `json:"cc,omitempty"`
-	// Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-	Bcc *[]MailContact `json:"bcc,omitempty"`
-	// Optional file attachments to include in the email
-	Attachments *[]MailAttachment `json:"attachments,omitempty"`
+	To *string `json:"to,omitempty"`
+	// The contact whom is the this email is from.
+	From *string `json:"from,omitempty"`
+	// The subject or title of the email
+	Subject *string `json:"subject,omitempty"`
+	// The main email contents.
+	Body *string `json:"body,omitempty"`
 }
 
 // NewSendMail instantiates a new SendMail object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSendMail(subject string, body string, from []SendMailFrom, to []MailContact, id int64) *SendMail {
+func NewSendMail() *SendMail {
 	this := SendMail{}
-	this.Subject = subject
-	this.Body = body
-	this.From = from
-	this.To = to
-	this.Id = id
 	return &this
 }
 
@@ -59,282 +44,147 @@ func NewSendMailWithDefaults() *SendMail {
 	return &this
 }
 
-// GetSubject returns the Subject field value
-func (o *SendMail) GetSubject() string {
-	if o == nil {
+// GetTo returns the To field value if set, zero value otherwise.
+func (o *SendMail) GetTo() string {
+	if o == nil || o.To == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Subject
+	return *o.To
 }
 
-// GetSubjectOk returns a tuple with the Subject field value
+// GetToOk returns a tuple with the To field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SendMail) GetToOk() (*string, bool) {
+	if o == nil || o.To == nil {
+		return nil, false
+	}
+	return o.To, true
+}
+
+// HasTo returns a boolean if a field has been set.
+func (o *SendMail) HasTo() bool {
+	if o != nil && o.To != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTo gets a reference to the given string and assigns it to the To field.
+func (o *SendMail) SetTo(v string) {
+	o.To = &v
+}
+
+// GetFrom returns the From field value if set, zero value otherwise.
+func (o *SendMail) GetFrom() string {
+	if o == nil || o.From == nil {
+		var ret string
+		return ret
+	}
+	return *o.From
+}
+
+// GetFromOk returns a tuple with the From field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SendMail) GetFromOk() (*string, bool) {
+	if o == nil || o.From == nil {
+		return nil, false
+	}
+	return o.From, true
+}
+
+// HasFrom returns a boolean if a field has been set.
+func (o *SendMail) HasFrom() bool {
+	if o != nil && o.From != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFrom gets a reference to the given string and assigns it to the From field.
+func (o *SendMail) SetFrom(v string) {
+	o.From = &v
+}
+
+// GetSubject returns the Subject field value if set, zero value otherwise.
+func (o *SendMail) GetSubject() string {
+	if o == nil || o.Subject == nil {
+		var ret string
+		return ret
+	}
+	return *o.Subject
+}
+
+// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SendMail) GetSubjectOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Subject == nil {
 		return nil, false
 	}
-	return &o.Subject, true
+	return o.Subject, true
 }
 
-// SetSubject sets field value
+// HasSubject returns a boolean if a field has been set.
+func (o *SendMail) HasSubject() bool {
+	if o != nil && o.Subject != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubject gets a reference to the given string and assigns it to the Subject field.
 func (o *SendMail) SetSubject(v string) {
-	o.Subject = v
+	o.Subject = &v
 }
 
-// GetBody returns the Body field value
+// GetBody returns the Body field value if set, zero value otherwise.
 func (o *SendMail) GetBody() string {
-	if o == nil {
+	if o == nil || o.Body == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Body
+	return *o.Body
 }
 
-// GetBodyOk returns a tuple with the Body field value
+// GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SendMail) GetBodyOk() (*string, bool) {
-	if o == nil  {
+	if o == nil || o.Body == nil {
 		return nil, false
 	}
-	return &o.Body, true
+	return o.Body, true
 }
 
-// SetBody sets field value
+// HasBody returns a boolean if a field has been set.
+func (o *SendMail) HasBody() bool {
+	if o != nil && o.Body != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBody gets a reference to the given string and assigns it to the Body field.
 func (o *SendMail) SetBody(v string) {
-	o.Body = v
-}
-
-// GetFrom returns the From field value
-func (o *SendMail) GetFrom() []SendMailFrom {
-	if o == nil {
-		var ret []SendMailFrom
-		return ret
-	}
-
-	return o.From
-}
-
-// GetFromOk returns a tuple with the From field value
-// and a boolean to check if the value has been set.
-func (o *SendMail) GetFromOk() (*[]SendMailFrom, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.From, true
-}
-
-// SetFrom sets field value
-func (o *SendMail) SetFrom(v []SendMailFrom) {
-	o.From = v
-}
-
-// GetTo returns the To field value
-func (o *SendMail) GetTo() []MailContact {
-	if o == nil {
-		var ret []MailContact
-		return ret
-	}
-
-	return o.To
-}
-
-// GetToOk returns a tuple with the To field value
-// and a boolean to check if the value has been set.
-func (o *SendMail) GetToOk() (*[]MailContact, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.To, true
-}
-
-// SetTo sets field value
-func (o *SendMail) SetTo(v []MailContact) {
-	o.To = v
-}
-
-// GetId returns the Id field value
-func (o *SendMail) GetId() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *SendMail) GetIdOk() (*int64, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *SendMail) SetId(v int64) {
-	o.Id = v
-}
-
-// GetReplyto returns the Replyto field value if set, zero value otherwise.
-func (o *SendMail) GetReplyto() []MailContact {
-	if o == nil || o.Replyto == nil {
-		var ret []MailContact
-		return ret
-	}
-	return *o.Replyto
-}
-
-// GetReplytoOk returns a tuple with the Replyto field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SendMail) GetReplytoOk() (*[]MailContact, bool) {
-	if o == nil || o.Replyto == nil {
-		return nil, false
-	}
-	return o.Replyto, true
-}
-
-// HasReplyto returns a boolean if a field has been set.
-func (o *SendMail) HasReplyto() bool {
-	if o != nil && o.Replyto != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetReplyto gets a reference to the given []MailContact and assigns it to the Replyto field.
-func (o *SendMail) SetReplyto(v []MailContact) {
-	o.Replyto = &v
-}
-
-// GetCc returns the Cc field value if set, zero value otherwise.
-func (o *SendMail) GetCc() []MailContact {
-	if o == nil || o.Cc == nil {
-		var ret []MailContact
-		return ret
-	}
-	return *o.Cc
-}
-
-// GetCcOk returns a tuple with the Cc field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SendMail) GetCcOk() (*[]MailContact, bool) {
-	if o == nil || o.Cc == nil {
-		return nil, false
-	}
-	return o.Cc, true
-}
-
-// HasCc returns a boolean if a field has been set.
-func (o *SendMail) HasCc() bool {
-	if o != nil && o.Cc != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCc gets a reference to the given []MailContact and assigns it to the Cc field.
-func (o *SendMail) SetCc(v []MailContact) {
-	o.Cc = &v
-}
-
-// GetBcc returns the Bcc field value if set, zero value otherwise.
-func (o *SendMail) GetBcc() []MailContact {
-	if o == nil || o.Bcc == nil {
-		var ret []MailContact
-		return ret
-	}
-	return *o.Bcc
-}
-
-// GetBccOk returns a tuple with the Bcc field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SendMail) GetBccOk() (*[]MailContact, bool) {
-	if o == nil || o.Bcc == nil {
-		return nil, false
-	}
-	return o.Bcc, true
-}
-
-// HasBcc returns a boolean if a field has been set.
-func (o *SendMail) HasBcc() bool {
-	if o != nil && o.Bcc != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetBcc gets a reference to the given []MailContact and assigns it to the Bcc field.
-func (o *SendMail) SetBcc(v []MailContact) {
-	o.Bcc = &v
-}
-
-// GetAttachments returns the Attachments field value if set, zero value otherwise.
-func (o *SendMail) GetAttachments() []MailAttachment {
-	if o == nil || o.Attachments == nil {
-		var ret []MailAttachment
-		return ret
-	}
-	return *o.Attachments
-}
-
-// GetAttachmentsOk returns a tuple with the Attachments field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SendMail) GetAttachmentsOk() (*[]MailAttachment, bool) {
-	if o == nil || o.Attachments == nil {
-		return nil, false
-	}
-	return o.Attachments, true
-}
-
-// HasAttachments returns a boolean if a field has been set.
-func (o *SendMail) HasAttachments() bool {
-	if o != nil && o.Attachments != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAttachments gets a reference to the given []MailAttachment and assigns it to the Attachments field.
-func (o *SendMail) SetAttachments(v []MailAttachment) {
-	o.Attachments = &v
+	o.Body = &v
 }
 
 func (o SendMail) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["subject"] = o.Subject
-	}
-	if true {
-		toSerialize["body"] = o.Body
-	}
-	if true {
-		toSerialize["from"] = o.From
-	}
-	if true {
+	if o.To != nil {
 		toSerialize["to"] = o.To
 	}
-	if true {
-		toSerialize["id"] = o.Id
+	if o.From != nil {
+		toSerialize["from"] = o.From
 	}
-	if o.Replyto != nil {
-		toSerialize["replyto"] = o.Replyto
+	if o.Subject != nil {
+		toSerialize["subject"] = o.Subject
 	}
-	if o.Cc != nil {
-		toSerialize["cc"] = o.Cc
-	}
-	if o.Bcc != nil {
-		toSerialize["bcc"] = o.Bcc
-	}
-	if o.Attachments != nil {
-		toSerialize["attachments"] = o.Attachments
+	if o.Body != nil {
+		toSerialize["body"] = o.Body
 	}
 	return json.Marshal(toSerialize)
 }

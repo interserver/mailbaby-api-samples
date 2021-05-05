@@ -14,7 +14,8 @@ docs/models/MailContact.html
 docs/models/MailLog.html
 docs/models/MailOrder.html
 docs/models/SendMail.html
-docs/models/SendMailFrom.html
+docs/models/SendMailAdv.html
+docs/models/SendMailAdvFrom.html
 docs/operations/DefaultApi.html
 main.js
 package.json

@@ -32,13 +32,13 @@ describe("DefaultApi", () => {
     const body: api.MailOrder = undefined
     return expect(instance.placeMailOrder(body, {})).resolves.toBe(null)
   })
-  test("sendAdvMailById", () => {
-    const body: api.SendMail = undefined
-    return expect(instance.sendAdvMailById(body, {})).resolves.toBe(null)
+  test("sendAdvMail", () => {
+    const body: api.SendMailAdv = undefined
+    return expect(instance.sendAdvMail(body, {})).resolves.toBe(null)
   })
-  test("sendMailById", () => {
+  test("sendMail", () => {
     const body: api.SendMail = undefined
-    return expect(instance.sendMailById(body, {})).resolves.toBe(null)
+    return expect(instance.sendMail(body, {})).resolves.toBe(null)
   })
   test("validateMailOrder", () => {
     return expect(instance.validateMailOrder({})).resolves.toBe(null)

@@ -16,6 +16,7 @@ import org.openapitools.client.models.GenericResponse
 import org.openapitools.client.models.MailLog
 import org.openapitools.client.models.MailOrder
 import org.openapitools.client.models.SendMail
+import org.openapitools.client.models.SendMailAdv
 
 import org.openapitools.client.infrastructure.ApiClient
 import org.openapitools.client.infrastructure.ClientException
@@ -208,7 +209,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     /**
     * Sends an Email with Advanced Options
     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-    * @param sendMail  
+    * @param sendMailAdv  
     * @return GenericResponse
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -216,8 +217,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun sendAdvMailById(sendMail: SendMail) : GenericResponse {
-        val localVariableConfig = sendAdvMailByIdRequestConfig(sendMail = sendMail)
+    fun sendAdvMail(sendMailAdv: SendMailAdv) : GenericResponse {
+        val localVariableConfig = sendAdvMailRequestConfig(sendMailAdv = sendMailAdv)
 
         val localVarResponse = request<GenericResponse>(
             localVariableConfig
@@ -239,13 +240,13 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     }
 
     /**
-    * To obtain the request config of the operation sendAdvMailById
+    * To obtain the request config of the operation sendAdvMail
     *
-    * @param sendMail  
+    * @param sendMailAdv  
     * @return RequestConfig
     */
-    fun sendAdvMailByIdRequestConfig(sendMail: SendMail) : RequestConfig {
-        val localVariableBody: kotlin.Any? = sendMail
+    fun sendAdvMailRequestConfig(sendMailAdv: SendMailAdv) : RequestConfig {
+        val localVariableBody: kotlin.Any? = sendMailAdv
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
@@ -271,8 +272,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun sendMailById(sendMail: SendMail) : GenericResponse {
-        val localVariableConfig = sendMailByIdRequestConfig(sendMail = sendMail)
+    fun sendMail(sendMail: SendMail) : GenericResponse {
+        val localVariableConfig = sendMailRequestConfig(sendMail = sendMail)
 
         val localVarResponse = request<GenericResponse>(
             localVariableConfig
@@ -294,12 +295,12 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath
     }
 
     /**
-    * To obtain the request config of the operation sendMailById
+    * To obtain the request config of the operation sendMail
     *
     * @param sendMail  
     * @return RequestConfig
     */
-    fun sendMailByIdRequestConfig(sendMail: SendMail) : RequestConfig {
+    fun sendMailRequestConfig(sendMail: SendMail) : RequestConfig {
         val localVariableBody: kotlin.Any? = sendMail
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

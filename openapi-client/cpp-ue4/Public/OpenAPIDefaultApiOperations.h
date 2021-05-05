@@ -20,6 +20,7 @@
 #include "OpenAPIMailLog.h"
 #include "OpenAPIMailOrder.h"
 #include "OpenAPISendMail.h"
+#include "OpenAPISendMailAdv.h"
 
 namespace OpenAPI 
 {
@@ -99,20 +100,20 @@ public:
  *
  * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 */
-class OPENAPI_API OpenAPIDefaultApi::SendAdvMailByIdRequest : public Request
+class OPENAPI_API OpenAPIDefaultApi::SendAdvMailRequest : public Request
 {
 public:
-    virtual ~SendAdvMailByIdRequest() {}
+    virtual ~SendAdvMailRequest() {}
 	void SetupHttpRequest(const FHttpRequestRef& HttpRequest) const final;
 	FString ComputePath() const final;
     
-	OpenAPISendMail OpenAPISendMail;
+	OpenAPISendMailAdv OpenAPISendMailAdv;
 };
 
-class OPENAPI_API OpenAPIDefaultApi::SendAdvMailByIdResponse : public Response
+class OPENAPI_API OpenAPIDefaultApi::SendAdvMailResponse : public Response
 {
 public:
-    virtual ~SendAdvMailByIdResponse() {}
+    virtual ~SendAdvMailResponse() {}
 	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) final;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) final;
     
@@ -123,20 +124,20 @@ public:
  *
  * Sends An email through one of your mail orders.
 */
-class OPENAPI_API OpenAPIDefaultApi::SendMailByIdRequest : public Request
+class OPENAPI_API OpenAPIDefaultApi::SendMailRequest : public Request
 {
 public:
-    virtual ~SendMailByIdRequest() {}
+    virtual ~SendMailRequest() {}
 	void SetupHttpRequest(const FHttpRequestRef& HttpRequest) const final;
 	FString ComputePath() const final;
     
 	OpenAPISendMail OpenAPISendMail;
 };
 
-class OPENAPI_API OpenAPIDefaultApi::SendMailByIdResponse : public Response
+class OPENAPI_API OpenAPIDefaultApi::SendMailResponse : public Response
 {
 public:
-    virtual ~SendMailByIdResponse() {}
+    virtual ~SendMailResponse() {}
 	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) final;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) final;
     

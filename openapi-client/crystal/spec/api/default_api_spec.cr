@@ -56,25 +56,25 @@ describe "DefaultApi" do
     end
   end
 
-  # unit tests for send_adv_mail_by_id
+  # unit tests for send_adv_mail
   # Sends an Email with Advanced Options
   # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-  # @param send_mail 
+  # @param send_mail_adv 
   # @param [Hash] opts the optional parameters
   # @return [GenericResponse]
-  describe "send_adv_mail_by_id test" do
+  describe "send_adv_mail test" do
     it "should work" do
       # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
     end
   end
 
-  # unit tests for send_mail_by_id
+  # unit tests for send_mail
   # Sends an Email
   # Sends An email through one of your mail orders.
   # @param send_mail 
   # @param [Hash] opts the optional parameters
   # @return [GenericResponse]
-  describe "send_mail_by_id test" do
+  describe "send_mail test" do
     it "should work" do
       # assertion here. ref: https://crystal-lang.org/reference/guides/testing.html
     end

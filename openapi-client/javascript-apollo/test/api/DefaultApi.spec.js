@@ -69,20 +69,20 @@ describe('DefaultApi', function() {
         done();
       });
     });
-    describe('sendAdvMailById', function() {
-      it('should call sendAdvMailById successfully', function(done) {
-        //uncomment below and update the code to test sendAdvMailById
-        //instance.sendAdvMailById(function(error) {
+    describe('sendAdvMail', function() {
+      it('should call sendAdvMail successfully', function(done) {
+        //uncomment below and update the code to test sendAdvMail
+        //instance.sendAdvMail(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('sendMailById', function() {
-      it('should call sendMailById successfully', function(done) {
-        //uncomment below and update the code to test sendMailById
-        //instance.sendMailById(function(error) {
+    describe('sendMail', function() {
+      it('should call sendMail successfully', function(done) {
+        //uncomment below and update the code to test sendMail
+        //instance.sendMail(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

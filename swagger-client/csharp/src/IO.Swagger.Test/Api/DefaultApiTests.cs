@@ -95,25 +95,25 @@ namespace IO.Swagger.Test
             
         }
         /// <summary>
-        /// Test SendAdvMailById
+        /// Test SendAdvMail
         /// </summary>
         [Test]
-        public void SendAdvMailByIdTest()
+        public void SendAdvMailTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //SendMail body = null;
-            //var response = instance.SendAdvMailById(body);
+            //SendMailAdv body = null;
+            //var response = instance.SendAdvMail(body);
             //Assert.IsInstanceOf<GenericResponse> (response, "response is GenericResponse");
         }
         /// <summary>
-        /// Test SendMailById
+        /// Test SendMail
         /// </summary>
         [Test]
-        public void SendMailByIdTest()
+        public void SendMailTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //SendMail body = null;
-            //var response = instance.SendMailById(body);
+            //var response = instance.SendMail(body);
             //Assert.IsInstanceOf<GenericResponse> (response, "response is GenericResponse");
         }
         /// <summary>

@@ -5,16 +5,18 @@
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Environment variable JAVA_POST_PROCESS_FILE not defined so the Java code may not be properly formatted. To define it, try 'export JAVA_POST_PROCESS_FILE="/usr/local/bin/clang-format -i"' (Linux/Mac)
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation pingServer
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation getMailOrders
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation sendMail
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation sendAdvMail
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation viewMailLogById
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation validateMailOrder
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation placeMailOrder
-[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation sendMailById
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
-[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation sendAdvMailById
-[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation viewMailLogById
 [main] INFO  o.o.codegen.DefaultGenerator - Model MailOrders not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/ErrorResponse.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/GenericResponse.java
@@ -23,9 +25,12 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/MailLog.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/MailOrder.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/SendMail.java
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/SendMailFrom.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/SendMailAdv.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/SendMailAdvFrom.java
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.c.languages.AbstractJavaCodegen - Multiple MediaTypes found, using only the first one
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.c.languages.AbstractJavaCodegen - Multiple MediaTypes found, using only the first one
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/api/DefaultApi.java

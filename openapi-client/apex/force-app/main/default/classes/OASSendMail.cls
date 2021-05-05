@@ -15,6 +15,18 @@
  */
 public class OASSendMail implements OAS.MappedProperties {
     /**
+     * The Contact whom is the primary recipient of this email.
+     * @return to
+     */
+    public String to { get; set; }
+
+    /**
+     * The contact whom is the this email is from.
+     * @return r_from
+     */
+    public String r_from { get; set; }
+
+    /**
      * The subject or title of the email
      * @return subject
      */
@@ -26,48 +38,6 @@ public class OASSendMail implements OAS.MappedProperties {
      */
     public String body { get; set; }
 
-    /**
-     * The contact whom is the this email is from.
-     * @return r_from
-     */
-    public List<OASSendMailFrom> r_from { get; set; }
-
-    /**
-     * The Contact whom is the primary recipient of this email.
-     * @return to
-     */
-    public List<OASMailContact> to { get; set; }
-
-    /**
-     * The ID of the Mail order within our system to use as the Mail Account.
-     * @return id
-     */
-    public Long id { get; set; }
-
-    /**
-     * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-     * @return replyto
-     */
-    public List<OASMailContact> replyto { get; set; }
-
-    /**
-     * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @return cc
-     */
-    public List<OASMailContact> cc { get; set; }
-
-    /**
-     * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-     * @return bcc
-     */
-    public List<OASMailContact> bcc { get; set; }
-
-    /**
-     * Optional file attachments to include in the email
-     * @return attachments
-     */
-    public List<OASMailAttachment> attachments { get; set; }
-
     private static final Map<String, String> propertyMappings = new Map<String, String>{
         'from' => 'r_from'
     };
@@ -76,56 +46,32 @@ public class OASSendMail implements OAS.MappedProperties {
         return propertyMappings;
     }
 
-    public OASSendMail() {
-        r_from = new List<OASSendMailFrom>();
-        to = new List<OASMailContact>();
-        replyto = new List<OASMailContact>();
-        cc = new List<OASMailContact>();
-        bcc = new List<OASMailContact>();
-        attachments = new List<OASMailAttachment>();
-    }
-
     public static OASSendMail getExample() {
         OASSendMail sendMail = new OASSendMail();
+          sendMail.to = 'johndoe@company.com';
+          sendMail.r_from = 'johndoe@company.com';
           sendMail.subject = 'Your Package has been Delivered!';
           sendMail.body = 'The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n';
-          sendMail.r_from = new List<OASSendMailFrom>{OASSendMailFrom.getExample()};
-          sendMail.to = new List<OASMailContact>{OASMailContact.getExample()};
-          sendMail.id = 5000L;
-          sendMail.replyto = new List<OASMailContact>{OASMailContact.getExample()};
-          sendMail.cc = new List<OASMailContact>{OASMailContact.getExample()};
-          sendMail.bcc = new List<OASMailContact>{OASMailContact.getExample()};
-          sendMail.attachments = new List<OASMailAttachment>{OASMailAttachment.getExample()};
         return sendMail;
     }
 
     public Boolean equals(Object obj) {
         if (obj instanceof OASSendMail) {           
             OASSendMail sendMail = (OASSendMail) obj;
-            return this.subject == sendMail.subject
-                && this.body == sendMail.body
+            return this.to == sendMail.to
                 && this.r_from == sendMail.r_from
-                && this.to == sendMail.to
-                && this.id == sendMail.id
-                && this.replyto == sendMail.replyto
-                && this.cc == sendMail.cc
-                && this.bcc == sendMail.bcc
-                && this.attachments == sendMail.attachments;
+                && this.subject == sendMail.subject
+                && this.body == sendMail.body;
         }
         return false;
     }
 
     public Integer hashCode() {
         Integer hashCode = 43;
+        hashCode = (17 * hashCode) + (to == null ? 0 : System.hashCode(to));
+        hashCode = (17 * hashCode) + (r_from == null ? 0 : System.hashCode(r_from));
         hashCode = (17 * hashCode) + (subject == null ? 0 : System.hashCode(subject));
         hashCode = (17 * hashCode) + (body == null ? 0 : System.hashCode(body));
-        hashCode = (17 * hashCode) + (r_from == null ? 0 : System.hashCode(r_from));
-        hashCode = (17 * hashCode) + (to == null ? 0 : System.hashCode(to));
-        hashCode = (17 * hashCode) + (id == null ? 0 : System.hashCode(id));
-        hashCode = (17 * hashCode) + (replyto == null ? 0 : System.hashCode(replyto));
-        hashCode = (17 * hashCode) + (cc == null ? 0 : System.hashCode(cc));
-        hashCode = (17 * hashCode) + (bcc == null ? 0 : System.hashCode(bcc));
-        hashCode = (17 * hashCode) + (attachments == null ? 0 : System.hashCode(attachments));
         return hashCode;
     }
 }

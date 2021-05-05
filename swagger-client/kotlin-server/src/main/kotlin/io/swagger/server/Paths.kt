@@ -56,14 +56,14 @@ object Paths {
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * @param body  
      */
-    @Location("/mail/advsend") class sendAdvMailById(val body: SendMail)
+    @Location("/mail/advsend") class sendAdvMail(val body: SendMailAdv)
 
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
      * @param body  
      */
-    @Location("/mail/send") class sendMailById(val body: SendMail)
+    @Location("/mail/send") class sendMail(val body: SendMail)
 
     /**
      * validatess order details before placing an order

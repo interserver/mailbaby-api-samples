@@ -10,5 +10,6 @@ src/openapi_mail_contact.erl
 src/openapi_mail_log.erl
 src/openapi_mail_order.erl
 src/openapi_send_mail.erl
-src/openapi_send_mail_from.erl
+src/openapi_send_mail_adv.erl
+src/openapi_send_mail_adv_from.erl
 src/openapi_utils.erl

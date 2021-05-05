@@ -8,7 +8,8 @@ src/model/openapi_mail_contact.erl
 src/model/openapi_mail_log.erl
 src/model/openapi_mail_order.erl
 src/model/openapi_send_mail.erl
-src/model/openapi_send_mail_from.erl
+src/model/openapi_send_mail_adv.erl
+src/model/openapi_send_mail_adv_from.erl
 src/openapi.app.src
 src/openapi.hrl
 src/openapi_api.erl

@@ -15,7 +15,8 @@ import openapiclient/models/model_mail_contact
 import openapiclient/models/model_mail_log
 import openapiclient/models/model_mail_order
 import openapiclient/models/model_send_mail
-import openapiclient/models/model_send_mail_from
+import openapiclient/models/model_send_mail_adv
+import openapiclient/models/model_send_mail_adv_from
 
 export model_error_response
 export model_generic_response
@@ -24,7 +25,8 @@ export model_mail_contact
 export model_mail_log
 export model_mail_order
 export model_send_mail
-export model_send_mail_from
+export model_send_mail_adv
+export model_send_mail_adv_from
 
 # APIs
 import openapiclient/apis/api_default

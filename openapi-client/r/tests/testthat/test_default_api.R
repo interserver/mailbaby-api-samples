@@ -38,20 +38,20 @@ test_that("PlaceMailOrder", {
   #expect_equal(result, "EXPECTED_RESULT")
 })
 
-test_that("SendAdvMailById", {
-  # tests for SendAdvMailById
+test_that("SendAdvMail", {
+  # tests for SendAdvMail
   # base path: https://api.mailbaby.net
   # Sends an Email with Advanced Options
   # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-  # @param send.mail SendMail 
+  # @param send.mail.adv SendMailAdv 
   # @return [GenericResponse]
 
   # uncomment below to test the operation
   #expect_equal(result, "EXPECTED_RESULT")
 })
 
-test_that("SendMailById", {
-  # tests for SendMailById
+test_that("SendMail", {
+  # tests for SendMail
   # base path: https://api.mailbaby.net
   # Sends an Email
   # Sends An email through one of your mail orders.

@@ -6,6 +6,7 @@ import 'dart:async';
 
 import 'package:openapi/model/generic_response.dart';
 import 'package:openapi/model/mail_log.dart';
+import 'package:openapi/model/send_mail_adv.dart';
 import 'package:openapi/model/error_response.dart';
 import 'package:openapi/model/send_mail.dart';
 import 'package:openapi/model/mail_order.dart';
@@ -65,14 +66,14 @@ class DefaultApi extends ApiClient with _$DefaultApiClient {
     ///
     /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
     @PostReq(path: "/mail/advsend", metadata: {"auth": [ {"type": "apiKey", "name": "apiKeyAuth", "keyName": "X-API-KEY", "where": "header" }]})
-    Future<GenericResponse> sendAdvMailById(
+    Future<GenericResponse> sendAdvMail(
             
-             @AsJson() SendMail sendMail
+             @AsJson() SendMailAdv sendMailAdv
         ) {
-        return super.sendAdvMailById(
+        return super.sendAdvMail(
 
         
-        sendMail
+        sendMailAdv
         ).timeout(timeout);
     }
 
@@ -80,11 +81,11 @@ class DefaultApi extends ApiClient with _$DefaultApiClient {
     ///
     /// Sends An email through one of your mail orders.
     @PostReq(path: "/mail/send", metadata: {"auth": [ {"type": "apiKey", "name": "apiKeyAuth", "keyName": "X-API-KEY", "where": "header" }]})
-    Future<GenericResponse> sendMailById(
+    Future<GenericResponse> sendMail(
             
              @AsJson() SendMail sendMail
         ) {
-        return super.sendMailById(
+        return super.sendMail(
 
         
         sendMail

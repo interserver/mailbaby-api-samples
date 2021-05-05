@@ -12,7 +12,8 @@ docs/Model/MailContact.md
 docs/Model/MailLog.md
 docs/Model/MailOrder.md
 docs/Model/SendMail.md
-docs/Model/SendMailFrom.md
+docs/Model/SendMailAdv.md
+docs/Model/SendMailAdvFrom.md
 git_push.sh
 phpunit.xml.dist
 src/Api/DefaultApi.php
@@ -27,7 +28,8 @@ src/Model/MailLog.php
 src/Model/MailOrder.php
 src/Model/ModelInterface.php
 src/Model/SendMail.php
-src/Model/SendMailFrom.php
+src/Model/SendMailAdv.php
+src/Model/SendMailAdvFrom.php
 src/ObjectSerializer.php
 test/Api/DefaultApiTest.php
 test/Model/ErrorResponseTest.php
@@ -36,5 +38,6 @@ test/Model/MailAttachmentTest.php
 test/Model/MailContactTest.php
 test/Model/MailLogTest.php
 test/Model/MailOrderTest.php
-test/Model/SendMailFromTest.php
+test/Model/SendMailAdvFromTest.php
+test/Model/SendMailAdvTest.php
 test/Model/SendMailTest.php

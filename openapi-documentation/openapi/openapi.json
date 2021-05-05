@@ -115,71 +115,10 @@
         "summary" : "displays a list of mail service orders"
       }
     },
-    "/mail/order" : {
-      "get" : {
-        "deprecated" : true,
-        "operationId" : "validateMailOrder",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "list of mail orders"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "description" : "Unauthorized"
-          }
-        },
-        "summary" : "validatess order details before placing an order"
-      },
-      "post" : {
-        "deprecated" : true,
-        "description" : "Adds an item to the system",
-        "operationId" : "placeMailOrder",
-        "parameters" : [ ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/MailOrder"
-              }
-            }
-          },
-          "description" : "Inventory item to add"
-        },
-        "responses" : {
-          "200" : {
-            "description" : "list of mail orders"
-          },
-          "400" : {
-            "description" : "invalid input, object invalid"
-          },
-          "409" : {
-            "description" : "an existing item already exists"
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "description" : "Unauthorized"
-          }
-        },
-        "summary" : "places a mail order"
-      }
-    },
     "/mail/send" : {
       "post" : {
         "description" : "Sends An email through one of your mail orders.",
-        "operationId" : "sendMailById",
+        "operationId" : "sendMail",
         "requestBody" : {
           "content" : {
             "application/json" : {
@@ -236,12 +175,17 @@
     "/mail/advsend" : {
       "post" : {
         "description" : "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.",
-        "operationId" : "sendAdvMailById",
+        "operationId" : "sendAdvMail",
         "requestBody" : {
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/SendMail"
+                "$ref" : "#/components/schemas/SendMailAdv"
+              }
+            },
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SendMailAdv"
               }
             }
           },
@@ -355,6 +299,67 @@
           }
         },
         "summary" : "displays the mail log"
+      }
+    },
+    "/mail/order" : {
+      "get" : {
+        "deprecated" : true,
+        "operationId" : "validateMailOrder",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "list of mail orders"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description" : "Unauthorized"
+          }
+        },
+        "summary" : "validatess order details before placing an order"
+      },
+      "post" : {
+        "deprecated" : true,
+        "description" : "Adds an item to the system",
+        "operationId" : "placeMailOrder",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/MailOrder"
+              }
+            }
+          },
+          "description" : "Inventory item to add"
+        },
+        "responses" : {
+          "200" : {
+            "description" : "list of mail orders"
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description" : "Unauthorized"
+          }
+        },
+        "summary" : "places a mail order"
       }
     }
   },
@@ -522,6 +527,33 @@
       "SendMail" : {
         "description" : "Details for an Email",
         "properties" : {
+          "to" : {
+            "description" : "The Contact whom is the primary recipient of this email.",
+            "example" : "johndoe@company.com",
+            "type" : "string"
+          },
+          "from" : {
+            "description" : "The contact whom is the this email is from.",
+            "example" : "johndoe@company.com",
+            "type" : "string"
+          },
+          "subject" : {
+            "description" : "The subject or title of the email",
+            "example" : "Your Package has been Delivered!",
+            "type" : "string"
+          },
+          "body" : {
+            "description" : "The main email contents.",
+            "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n",
+            "type" : "string"
+          }
+        },
+        "title" : "Email details",
+        "type" : "object"
+      },
+      "SendMailAdv" : {
+        "description" : "Details for an Email",
+        "properties" : {
           "subject" : {
             "description" : "The subject or title of the email",
             "example" : "Your Package has been Delivered!",
@@ -535,7 +567,7 @@
           "from" : {
             "description" : "The contact whom is the this email is from.",
             "items" : {
-              "$ref" : "#/components/schemas/SendMail_from"
+              "$ref" : "#/components/schemas/SendMailAdv_from"
             },
             "type" : "array"
           },
@@ -585,7 +617,7 @@
         "title" : "Email details",
         "type" : "object"
       },
-      "SendMail_from" : {
+      "SendMailAdv_from" : {
         "description" : "An Email Contact",
         "properties" : {
           "email" : {

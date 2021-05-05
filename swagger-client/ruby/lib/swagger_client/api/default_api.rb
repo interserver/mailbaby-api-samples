@@ -172,8 +172,8 @@ module SwaggerClient
     # @param body 
     # @param [Hash] opts the optional parameters
     # @return [GenericResponse]
-    def send_adv_mail_by_id(body, opts = {})
-      data, _status_code, _headers = send_adv_mail_by_id_with_http_info(body, opts)
+    def send_adv_mail(body, opts = {})
+      data, _status_code, _headers = send_adv_mail_with_http_info(body, opts)
       data
     end
 
@@ -182,13 +182,13 @@ module SwaggerClient
     # @param body 
     # @param [Hash] opts the optional parameters
     # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_adv_mail_by_id_with_http_info(body, opts = {})
+    def send_adv_mail_with_http_info(body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: DefaultApi.send_adv_mail_by_id ...'
+        @api_client.config.logger.debug 'Calling API: DefaultApi.send_adv_mail ...'
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling DefaultApi.send_adv_mail_by_id"
+        fail ArgumentError, "Missing the required parameter 'body' when calling DefaultApi.send_adv_mail"
       end
       # resource path
       local_var_path = '/mail/advsend'
@@ -201,64 +201,6 @@ module SwaggerClient
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:body] || @api_client.object_to_http_body(body) 
-
-      return_type = opts[:return_type] || 'GenericResponse' 
-
-      auth_names = opts[:auth_names] || ['apiKeyAuth']
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type)
-
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: DefaultApi#send_adv_mail_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-    # Sends an Email
-    # Sends An email through one of your mail orders.
-    # @param body 
-    # @param [Hash] opts the optional parameters
-    # @return [GenericResponse]
-    def send_mail_by_id(body, opts = {})
-      data, _status_code, _headers = send_mail_by_id_with_http_info(body, opts)
-      data
-    end
-
-    # Sends an Email
-    # Sends An email through one of your mail orders.
-    # @param body 
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_mail_by_id_with_http_info(body, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: DefaultApi.send_mail_by_id ...'
-      end
-      # verify the required parameter 'body' is set
-      if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling DefaultApi.send_mail_by_id"
-      end
-      # resource path
-      local_var_path = '/mail/send'
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
 
       # form parameters
@@ -288,12 +230,12 @@ module SwaggerClient
         :return_type => return_type)
 
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: DefaultApi#send_mail_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: DefaultApi#send_adv_mail\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
-    # Sends an Email
-    # Sends An email through one of your mail orders.
+    # Sends an Email with Advanced Options
+    # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
     # @param subject 
     # @param body 
     # @param from 
@@ -305,13 +247,13 @@ module SwaggerClient
     # @param attachments 
     # @param [Hash] opts the optional parameters
     # @return [GenericResponse]
-    def send_mail_by_id(subject, body, from, to, id, replyto, cc, bcc, attachments, opts = {})
-      data, _status_code, _headers = send_mail_by_id_with_http_info(subject, body, from, to, id, replyto, cc, bcc, attachments, opts)
+    def send_adv_mail(subject, body, from, to, id, replyto, cc, bcc, attachments, opts = {})
+      data, _status_code, _headers = send_adv_mail_with_http_info(subject, body, from, to, id, replyto, cc, bcc, attachments, opts)
       data
     end
 
-    # Sends an Email
-    # Sends An email through one of your mail orders.
+    # Sends an Email with Advanced Options
+    # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
     # @param subject 
     # @param body 
     # @param from 
@@ -323,48 +265,48 @@ module SwaggerClient
     # @param attachments 
     # @param [Hash] opts the optional parameters
     # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_mail_by_id_with_http_info(subject, body, from, to, id, replyto, cc, bcc, attachments, opts = {})
+    def send_adv_mail_with_http_info(subject, body, from, to, id, replyto, cc, bcc, attachments, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: DefaultApi.send_mail_by_id ...'
+        @api_client.config.logger.debug 'Calling API: DefaultApi.send_adv_mail ...'
       end
       # verify the required parameter 'subject' is set
       if @api_client.config.client_side_validation && subject.nil?
-        fail ArgumentError, "Missing the required parameter 'subject' when calling DefaultApi.send_mail_by_id"
+        fail ArgumentError, "Missing the required parameter 'subject' when calling DefaultApi.send_adv_mail"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling DefaultApi.send_mail_by_id"
+        fail ArgumentError, "Missing the required parameter 'body' when calling DefaultApi.send_adv_mail"
       end
       # verify the required parameter 'from' is set
       if @api_client.config.client_side_validation && from.nil?
-        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.send_mail_by_id"
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.send_adv_mail"
       end
       # verify the required parameter 'to' is set
       if @api_client.config.client_side_validation && to.nil?
-        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.send_mail_by_id"
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.send_adv_mail"
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling DefaultApi.send_mail_by_id"
+        fail ArgumentError, "Missing the required parameter 'id' when calling DefaultApi.send_adv_mail"
       end
       # verify the required parameter 'replyto' is set
       if @api_client.config.client_side_validation && replyto.nil?
-        fail ArgumentError, "Missing the required parameter 'replyto' when calling DefaultApi.send_mail_by_id"
+        fail ArgumentError, "Missing the required parameter 'replyto' when calling DefaultApi.send_adv_mail"
       end
       # verify the required parameter 'cc' is set
       if @api_client.config.client_side_validation && cc.nil?
-        fail ArgumentError, "Missing the required parameter 'cc' when calling DefaultApi.send_mail_by_id"
+        fail ArgumentError, "Missing the required parameter 'cc' when calling DefaultApi.send_adv_mail"
       end
       # verify the required parameter 'bcc' is set
       if @api_client.config.client_side_validation && bcc.nil?
-        fail ArgumentError, "Missing the required parameter 'bcc' when calling DefaultApi.send_mail_by_id"
+        fail ArgumentError, "Missing the required parameter 'bcc' when calling DefaultApi.send_adv_mail"
       end
       # verify the required parameter 'attachments' is set
       if @api_client.config.client_side_validation && attachments.nil?
-        fail ArgumentError, "Missing the required parameter 'attachments' when calling DefaultApi.send_mail_by_id"
+        fail ArgumentError, "Missing the required parameter 'attachments' when calling DefaultApi.send_adv_mail"
       end
       # resource path
-      local_var_path = '/mail/send'
+      local_var_path = '/mail/advsend'
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -403,7 +345,149 @@ module SwaggerClient
         :return_type => return_type)
 
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: DefaultApi#send_mail_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: DefaultApi#send_adv_mail\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+    # Sends an Email
+    # Sends An email through one of your mail orders.
+    # @param body 
+    # @param [Hash] opts the optional parameters
+    # @return [GenericResponse]
+    def send_mail(body, opts = {})
+      data, _status_code, _headers = send_mail_with_http_info(body, opts)
+      data
+    end
+
+    # Sends an Email
+    # Sends An email through one of your mail orders.
+    # @param body 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
+    def send_mail_with_http_info(body, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.send_mail ...'
+      end
+      # verify the required parameter 'body' is set
+      if @api_client.config.client_side_validation && body.nil?
+        fail ArgumentError, "Missing the required parameter 'body' when calling DefaultApi.send_mail"
+      end
+      # resource path
+      local_var_path = '/mail/send'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+      form_params['to'] = to
+      form_params['from'] = from
+      form_params['subject'] = subject
+      form_params['body'] = body
+
+      # http body (model)
+      post_body = opts[:body] || @api_client.object_to_http_body(body) 
+
+      return_type = opts[:return_type] || 'GenericResponse' 
+
+      auth_names = opts[:auth_names] || ['apiKeyAuth']
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type)
+
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#send_mail\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+    # Sends an Email
+    # Sends An email through one of your mail orders.
+    # @param to 
+    # @param from 
+    # @param subject 
+    # @param body 
+    # @param [Hash] opts the optional parameters
+    # @return [GenericResponse]
+    def send_mail(to, from, subject, body, opts = {})
+      data, _status_code, _headers = send_mail_with_http_info(to, from, subject, body, opts)
+      data
+    end
+
+    # Sends an Email
+    # Sends An email through one of your mail orders.
+    # @param to 
+    # @param from 
+    # @param subject 
+    # @param body 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
+    def send_mail_with_http_info(to, from, subject, body, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: DefaultApi.send_mail ...'
+      end
+      # verify the required parameter 'to' is set
+      if @api_client.config.client_side_validation && to.nil?
+        fail ArgumentError, "Missing the required parameter 'to' when calling DefaultApi.send_mail"
+      end
+      # verify the required parameter 'from' is set
+      if @api_client.config.client_side_validation && from.nil?
+        fail ArgumentError, "Missing the required parameter 'from' when calling DefaultApi.send_mail"
+      end
+      # verify the required parameter 'subject' is set
+      if @api_client.config.client_side_validation && subject.nil?
+        fail ArgumentError, "Missing the required parameter 'subject' when calling DefaultApi.send_mail"
+      end
+      # verify the required parameter 'body' is set
+      if @api_client.config.client_side_validation && body.nil?
+        fail ArgumentError, "Missing the required parameter 'body' when calling DefaultApi.send_mail"
+      end
+      # resource path
+      local_var_path = '/mail/send'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+      form_params['to'] = to
+      form_params['from'] = from
+      form_params['subject'] = subject
+      form_params['body'] = body
+
+      # http body (model)
+      post_body = opts[:body] || @api_client.object_to_http_body(body) 
+
+      return_type = opts[:return_type] || 'GenericResponse' 
+
+      auth_names = opts[:auth_names] || ['apiKeyAuth']
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type)
+
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: DefaultApi#send_mail\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

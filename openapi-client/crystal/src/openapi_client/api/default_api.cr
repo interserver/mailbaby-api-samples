@@ -175,24 +175,24 @@ module
 
     # Sends an Email with Advanced Options
     # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-    # @param send_mail [SendMail] 
+    # @param send_mail_adv [SendMailAdv] 
     # @return [GenericResponse]
-    def send_adv_mail_by_id(send_mail : SendMail)
-      data, _status_code, _headers = send_adv_mail_by_id_with_http_info(send_mail)
+    def send_adv_mail(send_mail_adv : SendMailAdv)
+      data, _status_code, _headers = send_adv_mail_with_http_info(send_mail_adv)
       data
     end
 
     # Sends an Email with Advanced Options
     # Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-    # @param send_mail [SendMail] 
+    # @param send_mail_adv [SendMailAdv] 
     # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_adv_mail_by_id_with_http_info(send_mail : SendMail)
+    def send_adv_mail_with_http_info(send_mail_adv : SendMailAdv)
       if @api_client.config.debugging
-        Log.debug {"Calling API: DefaultApi.send_adv_mail_by_id ..."}
+        Log.debug {"Calling API: DefaultApi.send_adv_mail ..."}
       end
-      # verify the required parameter "send_mail" is set
-      if @api_client.config.client_side_validation && send_mail.nil?
-        raise ArgumentError.new("Missing the required parameter 'send_mail' when calling DefaultApi.send_adv_mail_by_id")
+      # verify the required parameter "send_mail_adv" is set
+      if @api_client.config.client_side_validation && send_mail_adv.nil?
+        raise ArgumentError.new("Missing the required parameter 'send_mail_adv' when calling DefaultApi.send_adv_mail")
       end
       # resource path
       local_var_path = "/mail/advsend"
@@ -205,13 +205,13 @@ module
       # HTTP header "Accept" (if needed)
       header_params["Accept"] = @api_client.select_header_accept(["application/json"])
       # HTTP header "Content-Type"
-      header_params["Content-Type"] = @api_client.select_header_content_type(["application/json"])
+      header_params["Content-Type"] = @api_client.select_header_content_type(["application/json", "application/x-www-form-urlencoded"])
 
       # form parameters
       form_params = Hash(Symbol, String).new
 
       # http body (model)
-      post_body = send_mail.to_json
+      post_body = send_mail_adv.to_json
 
       # return_type
       return_type = "GenericResponse"
@@ -221,7 +221,7 @@ module
 
       data, status_code, headers = @api_client.call_api(:POST,
                                                         local_var_path,
-                                                        :"DefaultApi.send_adv_mail_by_id",
+                                                        :"DefaultApi.send_adv_mail",
                                                         return_type,
                                                         post_body,
                                                         auth_names,
@@ -229,7 +229,7 @@ module
                                                         query_params,
                                                         form_params)
       if @api_client.config.debugging
-        Log.debug {"API called: DefaultApi#send_adv_mail_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"}
+        Log.debug {"API called: DefaultApi#send_adv_mail\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"}
       end
       return GenericResponse.from_json(data), status_code, headers
     end
@@ -238,8 +238,8 @@ module
     # Sends An email through one of your mail orders.
     # @param send_mail [SendMail] 
     # @return [GenericResponse]
-    def send_mail_by_id(send_mail : SendMail)
-      data, _status_code, _headers = send_mail_by_id_with_http_info(send_mail)
+    def send_mail(send_mail : SendMail)
+      data, _status_code, _headers = send_mail_with_http_info(send_mail)
       data
     end
 
@@ -247,13 +247,13 @@ module
     # Sends An email through one of your mail orders.
     # @param send_mail [SendMail] 
     # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_mail_by_id_with_http_info(send_mail : SendMail)
+    def send_mail_with_http_info(send_mail : SendMail)
       if @api_client.config.debugging
-        Log.debug {"Calling API: DefaultApi.send_mail_by_id ..."}
+        Log.debug {"Calling API: DefaultApi.send_mail ..."}
       end
       # verify the required parameter "send_mail" is set
       if @api_client.config.client_side_validation && send_mail.nil?
-        raise ArgumentError.new("Missing the required parameter 'send_mail' when calling DefaultApi.send_mail_by_id")
+        raise ArgumentError.new("Missing the required parameter 'send_mail' when calling DefaultApi.send_mail")
       end
       # resource path
       local_var_path = "/mail/send"
@@ -282,7 +282,7 @@ module
 
       data, status_code, headers = @api_client.call_api(:POST,
                                                         local_var_path,
-                                                        :"DefaultApi.send_mail_by_id",
+                                                        :"DefaultApi.send_mail",
                                                         return_type,
                                                         post_body,
                                                         auth_names,
@@ -290,7 +290,7 @@ module
                                                         query_params,
                                                         form_params)
       if @api_client.config.debugging
-        Log.debug {"API called: DefaultApi#send_mail_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"}
+        Log.debug {"API called: DefaultApi#send_mail\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"}
       end
       return GenericResponse.from_json(data), status_code, headers
     end

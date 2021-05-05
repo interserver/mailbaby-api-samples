@@ -10,17 +10,9 @@
 * Do not edit the class manually.
 */package io.swagger.server.models
 
-import io.swagger.server.models.MailAttachment
-import io.swagger.server.models.MailContact
-import io.swagger.server.models.SendMailFrom
 
 /**
- * Details for an Email * @param subject The subject or title of the email * @param body The main email contents. * @param from The contact whom is the this email is from. * @param to The Contact whom is the primary recipient of this email. * @param id The ID of the Mail order within our system to use as the Mail Account. * @param replyto Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. * @param cc Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. * @param bcc Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. * @param attachments Optional file attachments to include in the email*/
-data class SendMail (        /* The subject or title of the email */
-        val subject: kotlin.String,        /* The main email contents. */
-        val body: kotlin.String,        /* The contact whom is the this email is from. */
-        val from: kotlin.Array<SendMailFrom>,        /* The Contact whom is the primary recipient of this email. */
-        val to: kotlin.Array<MailContact>,        /* The ID of the Mail order within our system to use as the Mail Account. */
-        val id: kotlin.Long,    /* Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. */    val replyto: kotlin.Array<MailContact>? = null,    /* Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */    val cc: kotlin.Array<MailContact>? = null,    /* Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. */    val bcc: kotlin.Array<MailContact>? = null,    /* Optional file attachments to include in the email */    val attachments: kotlin.Array<MailAttachment>? = null
+ * Details for an Email * @param to The Contact whom is the primary recipient of this email. * @param from The contact whom is the this email is from. * @param subject The subject or title of the email * @param body The main email contents.*/
+data class SendMail (    /* The Contact whom is the primary recipient of this email. */    val to: kotlin.String? = null,    /* The contact whom is the this email is from. */    val from: kotlin.String? = null,    /* The subject or title of the email */    val subject: kotlin.String? = null,    /* The main email contents. */    val body: kotlin.String? = null
 ) {
 }

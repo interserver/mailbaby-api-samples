@@ -20,7 +20,8 @@ import MailContact from './model/MailContact';
 import MailLog from './model/MailLog';
 import MailOrder from './model/MailOrder';
 import SendMail from './model/SendMail';
-import SendMailFrom from './model/SendMailFrom';
+import SendMailAdv from './model/SendMailAdv';
+import SendMailAdvFrom from './model/SendMailAdvFrom';
 import DefaultApi from './api/DefaultApi';
 
 
@@ -105,10 +106,16 @@ export {
     SendMail,
 
     /**
-     * The SendMailFrom model constructor.
-     * @property {module:model/SendMailFrom}
+     * The SendMailAdv model constructor.
+     * @property {module:model/SendMailAdv}
      */
-    SendMailFrom,
+    SendMailAdv,
+
+    /**
+     * The SendMailAdvFrom model constructor.
+     * @property {module:model/SendMailAdvFrom}
+     */
+    SendMailAdvFrom,
 
     /**
     * The DefaultApi service constructor.

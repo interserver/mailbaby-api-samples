@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**GetMailOrders**](DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 [**PingServer**](DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
 [**PlaceMailOrder**](DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
-[**SendAdvMailById**](DefaultApi.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**SendMailById**](DefaultApi.md#sendmailbyid) | **POST** /mail/send | Sends an Email
+[**SendAdvMail**](DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**SendMail**](DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
 [**ValidateMailOrder**](DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
 [**ViewMailLogById**](DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
@@ -192,9 +192,9 @@ void (empty response body)
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-<a name="sendadvmailbyid"></a>
-# **SendAdvMailById**
-> GenericResponse SendAdvMailById (SendMail body)
+<a name="sendadvmail"></a>
+# **SendAdvMail**
+> GenericResponse SendAdvMail (SendMailAdv body)
 
 Sends an Email with Advanced Options
 
@@ -210,7 +210,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class SendAdvMailByIdExample
+    public class SendAdvMailExample
     {
         public void main()
         {
@@ -220,17 +220,17 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var body = new SendMail(); // SendMail | 
+            var body = new SendMailAdv(); // SendMailAdv | 
 
             try
             {
                 // Sends an Email with Advanced Options
-                GenericResponse result = apiInstance.SendAdvMailById(body);
+                GenericResponse result = apiInstance.SendAdvMail(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.SendAdvMailById: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.SendAdvMail: " + e.Message );
             }
         }
     }
@@ -241,7 +241,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SendMail**](SendMail.md)|  | 
+ **body** | [**SendMailAdv**](SendMailAdv.md)|  | 
 
 ### Return type
 
@@ -253,13 +253,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-<a name="sendmailbyid"></a>
-# **SendMailById**
-> GenericResponse SendMailById (SendMail body)
+<a name="sendmail"></a>
+# **SendMail**
+> GenericResponse SendMail (SendMail body)
 
 Sends an Email
 
@@ -275,7 +275,7 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class SendMailByIdExample
+    public class SendMailExample
     {
         public void main()
         {
@@ -290,12 +290,12 @@ namespace Example
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.SendMailById(body);
+                GenericResponse result = apiInstance.SendMail(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.SendMailById: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.SendMail: " + e.Message );
             }
         }
     }

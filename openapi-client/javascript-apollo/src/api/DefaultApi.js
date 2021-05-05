@@ -19,6 +19,7 @@ import GenericResponse from '../model/GenericResponse';
 import MailLog from '../model/MailLog';
 import MailOrder from '../model/MailOrder';
 import SendMail from '../model/SendMail';
+import SendMailAdv from '../model/SendMailAdv';
 
 /**
 * Default service.
@@ -136,14 +137,14 @@ export default class DefaultApi extends ApiClient {
     /**
      * Sends an Email with Advanced Options
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @param {SendMail} sendMail 
+     * @param {SendMailAdv} sendMailAdv 
      * @return {Promise<GenericResponse>}
      */
-    async sendAdvMailById(sendMail) {
-      let postBody = sendMail;
-      // verify the required parameter 'sendMail' is set
-      if (sendMail === undefined || sendMail === null) {
-        throw new Error("Missing the required parameter 'sendMail' when calling sendAdvMailById");
+    async sendAdvMail(sendMailAdv) {
+      let postBody = sendMailAdv;
+      // verify the required parameter 'sendMailAdv' is set
+      if (sendMailAdv === undefined || sendMailAdv === null) {
+        throw new Error("Missing the required parameter 'sendMailAdv' when calling sendAdvMail");
       }
 
       let pathParams = {
@@ -157,7 +158,7 @@ export default class DefaultApi extends ApiClient {
       };
 
       let authNames = ['apiKeyAuth'];
-      let contentTypes = ['application/json'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
       let accepts = ['application/json'];
       let returnType = GenericResponse;
 
@@ -174,11 +175,11 @@ export default class DefaultApi extends ApiClient {
      * @param {SendMail} sendMail 
      * @return {Promise<GenericResponse>}
      */
-    async sendMailById(sendMail) {
+    async sendMail(sendMail) {
       let postBody = sendMail;
       // verify the required parameter 'sendMail' is set
       if (sendMail === undefined || sendMail === null) {
-        throw new Error("Missing the required parameter 'sendMail' when calling sendMailById");
+        throw new Error("Missing the required parameter 'sendMail' when calling sendMail");
       }
 
       let pathParams = {

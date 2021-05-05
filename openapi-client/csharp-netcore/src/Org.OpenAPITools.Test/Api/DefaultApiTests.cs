@@ -89,26 +89,26 @@ namespace Org.OpenAPITools.Test.Api
         }
 
         /// <summary>
-        /// Test SendAdvMailById
+        /// Test SendAdvMail
         /// </summary>
         [Fact]
-        public void SendAdvMailByIdTest()
+        public void SendAdvMailTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //SendMail sendMail = null;
-            //var response = instance.SendAdvMailById(sendMail);
+            //SendMailAdv sendMailAdv = null;
+            //var response = instance.SendAdvMail(sendMailAdv);
             //Assert.IsType<GenericResponse>(response);
         }
 
         /// <summary>
-        /// Test SendMailById
+        /// Test SendMail
         /// </summary>
         [Fact]
-        public void SendMailByIdTest()
+        public void SendMailTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //SendMail sendMail = null;
-            //var response = instance.SendMailById(sendMail);
+            //var response = instance.SendMail(sendMail);
             //Assert.IsType<GenericResponse>(response);
         }
 

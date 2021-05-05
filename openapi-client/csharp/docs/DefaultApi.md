@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**GetMailOrders**](DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 [**PingServer**](DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
 [**PlaceMailOrder**](DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
-[**SendAdvMailById**](DefaultApi.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**SendMailById**](DefaultApi.md#sendmailbyid) | **POST** /mail/send | Sends an Email
+[**SendAdvMail**](DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**SendMail**](DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
 [**ValidateMailOrder**](DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
 [**ViewMailLogById**](DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
@@ -247,9 +247,9 @@ void (empty response body)
 [[Back to README]](../README.md)
 
 
-## SendAdvMailById
+## SendAdvMail
 
-> GenericResponse SendAdvMailById (SendMail sendMail)
+> GenericResponse SendAdvMail (SendMailAdv sendMailAdv)
 
 Sends an Email with Advanced Options
 
@@ -266,7 +266,7 @@ using Org.OpenAPITools.Model;
 
 namespace Example
 {
-    public class SendAdvMailByIdExample
+    public class SendAdvMailExample
     {
         public static void Main()
         {
@@ -277,17 +277,17 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi(Configuration.Default);
-            var sendMail = new SendMail(); // SendMail | 
+            var sendMailAdv = new SendMailAdv(); // SendMailAdv | 
 
             try
             {
                 // Sends an Email with Advanced Options
-                GenericResponse result = apiInstance.SendAdvMailById(sendMail);
+                GenericResponse result = apiInstance.SendAdvMail(sendMailAdv);
                 Debug.WriteLine(result);
             }
             catch (ApiException e)
             {
-                Debug.Print("Exception when calling DefaultApi.SendAdvMailById: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.SendAdvMail: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -301,7 +301,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sendMail** | [**SendMail**](SendMail.md)|  | 
+ **sendMailAdv** | [**SendMailAdv**](SendMailAdv.md)|  | 
 
 ### Return type
 
@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 
@@ -331,9 +331,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## SendMailById
+## SendMail
 
-> GenericResponse SendMailById (SendMail sendMail)
+> GenericResponse SendMail (SendMail sendMail)
 
 Sends an Email
 
@@ -350,7 +350,7 @@ using Org.OpenAPITools.Model;
 
 namespace Example
 {
-    public class SendMailByIdExample
+    public class SendMailExample
     {
         public static void Main()
         {
@@ -366,12 +366,12 @@ namespace Example
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.SendMailById(sendMail);
+                GenericResponse result = apiInstance.SendMail(sendMail);
                 Debug.WriteLine(result);
             }
             catch (ApiException e)
             {
-                Debug.Print("Exception when calling DefaultApi.SendMailById: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.SendMail: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }

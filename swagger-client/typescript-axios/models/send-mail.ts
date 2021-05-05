@@ -18,57 +18,27 @@
  */
 export interface SendMail {
     /**
+     * The Contact whom is the primary recipient of this email.
+     * @type {string}
+     * @memberof SendMail
+     */
+    to?: any;
+    /**
+     * The contact whom is the this email is from.
+     * @type {string}
+     * @memberof SendMail
+     */
+    from?: any;
+    /**
      * The subject or title of the email
      * @type {string}
      * @memberof SendMail
      */
-    subject: any;
+    subject?: any;
     /**
      * The main email contents.
      * @type {string}
      * @memberof SendMail
      */
-    body: any;
-    /**
-     * The contact whom is the this email is from.
-     * @type {Array&lt;SendMailFrom&gt;}
-     * @memberof SendMail
-     */
-    from: any;
-    /**
-     * The Contact whom is the primary recipient of this email.
-     * @type {Array&lt;MailContact&gt;}
-     * @memberof SendMail
-     */
-    to: any;
-    /**
-     * The ID of the Mail order within our system to use as the Mail Account.
-     * @type {number}
-     * @memberof SendMail
-     */
-    id: any;
-    /**
-     * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-     * @type {Array&lt;MailContact&gt;}
-     * @memberof SendMail
-     */
-    replyto?: any;
-    /**
-     * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @type {Array&lt;MailContact&gt;}
-     * @memberof SendMail
-     */
-    cc?: any;
-    /**
-     * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-     * @type {Array&lt;MailContact&gt;}
-     * @memberof SendMail
-     */
-    bcc?: any;
-    /**
-     * Optional file attachments to include in the email
-     * @type {Array&lt;MailAttachment&gt;}
-     * @memberof SendMail
-     */
-    attachments?: any;
+    body?: any;
 }

@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
+[**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 [**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -208,9 +208,9 @@ null (empty response body)
 **409** | an existing item already exists |  -  |
 **401** | Unauthorized |  -  |
 
-<a name="sendAdvMailById"></a>
-# **sendAdvMailById**
-> GenericResponse sendAdvMailById(sendMail)
+<a name="sendAdvMail"></a>
+# **sendAdvMail**
+> GenericResponse sendAdvMail(sendMailAdv)
 
 Sends an Email with Advanced Options
 
@@ -238,12 +238,12 @@ public class Example {
     //apiKeyAuth.setApiKeyPrefix("Token");
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
-    SendMail sendMail = new SendMail(); // SendMail | 
+    SendMailAdv sendMailAdv = new SendMailAdv(); // SendMailAdv | 
     try {
-      GenericResponse result = apiInstance.sendAdvMailById(sendMail);
+      GenericResponse result = apiInstance.sendAdvMail(sendMailAdv);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#sendAdvMailById");
+      System.err.println("Exception when calling DefaultApi#sendAdvMail");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -257,7 +257,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sendMail** | [**SendMail**](SendMail.md)|  |
+ **sendMailAdv** | [**SendMailAdv**](SendMailAdv.md)|  |
 
 ### Return type
 
@@ -269,7 +269,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 ### HTTP response details
@@ -280,9 +280,9 @@ Name | Type | Description  | Notes
 **401** | Unauthorized |  -  |
 **404** | The specified resource was not found |  -  |
 
-<a name="sendMailById"></a>
-# **sendMailById**
-> GenericResponse sendMailById(sendMail)
+<a name="sendMail"></a>
+# **sendMail**
+> GenericResponse sendMail(sendMail)
 
 Sends an Email
 
@@ -312,10 +312,10 @@ public class Example {
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     SendMail sendMail = new SendMail(); // SendMail | 
     try {
-      GenericResponse result = apiInstance.sendMailById(sendMail);
+      GenericResponse result = apiInstance.sendMail(sendMail);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#sendMailById");
+      System.err.println("Exception when calling DefaultApi#sendMail");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

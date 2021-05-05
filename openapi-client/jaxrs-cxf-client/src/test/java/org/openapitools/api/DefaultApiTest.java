@@ -18,6 +18,7 @@ import org.openapitools.model.GenericResponse;
 import org.openapitools.model.MailLog;
 import org.openapitools.model.MailOrder;
 import org.openapitools.model.SendMail;
+import org.openapitools.model.SendMailAdv;
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
@@ -121,9 +122,9 @@ public class DefaultApiTest {
      *          if the Api call fails
      */
     @Test
-    public void sendAdvMailByIdTest() {
-        SendMail sendMail = null;
-        //GenericResponse response = api.sendAdvMailById(sendMail);
+    public void sendAdvMailTest() {
+        SendMailAdv sendMailAdv = null;
+        //GenericResponse response = api.sendAdvMail(sendMailAdv);
         //assertNotNull(response);
         // TODO: test validations
         
@@ -139,9 +140,9 @@ public class DefaultApiTest {
      *          if the Api call fails
      */
     @Test
-    public void sendMailByIdTest() {
+    public void sendMailTest() {
         SendMail sendMail = null;
-        //GenericResponse response = api.sendMailById(sendMail);
+        //GenericResponse response = api.sendMail(sendMail);
         //assertNotNull(response);
         // TODO: test validations
         

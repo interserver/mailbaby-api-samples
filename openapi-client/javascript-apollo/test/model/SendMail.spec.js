@@ -54,14 +54,8 @@
       //expect(instance).to.be.a(MailBabyApi.SendMail);
     });
 
-    it('should have the property subject (base name: "subject")', function() {
-      // uncomment below and update the code to test the property subject
-      //var instane = new MailBabyApi.SendMail();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property body (base name: "body")', function() {
-      // uncomment below and update the code to test the property body
+    it('should have the property to (base name: "to")', function() {
+      // uncomment below and update the code to test the property to
       //var instane = new MailBabyApi.SendMail();
       //expect(instance).to.be();
     });
@@ -72,38 +66,14 @@
       //expect(instance).to.be();
     });
 
-    it('should have the property to (base name: "to")', function() {
-      // uncomment below and update the code to test the property to
+    it('should have the property subject (base name: "subject")', function() {
+      // uncomment below and update the code to test the property subject
       //var instane = new MailBabyApi.SendMail();
       //expect(instance).to.be();
     });
 
-    it('should have the property id (base name: "id")', function() {
-      // uncomment below and update the code to test the property id
-      //var instane = new MailBabyApi.SendMail();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property replyto (base name: "replyto")', function() {
-      // uncomment below and update the code to test the property replyto
-      //var instane = new MailBabyApi.SendMail();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property cc (base name: "cc")', function() {
-      // uncomment below and update the code to test the property cc
-      //var instane = new MailBabyApi.SendMail();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property bcc (base name: "bcc")', function() {
-      // uncomment below and update the code to test the property bcc
-      //var instane = new MailBabyApi.SendMail();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property attachments (base name: "attachments")', function() {
-      // uncomment below and update the code to test the property attachments
+    it('should have the property body (base name: "body")', function() {
+      // uncomment below and update the code to test the property body
       //var instane = new MailBabyApi.SendMail();
       //expect(instance).to.be();
     });

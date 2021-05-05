@@ -17,48 +17,23 @@ import * as models from './models';
  */
 export interface SendMail {
     /**
-     * The subject or title of the email
+     * The Contact whom is the primary recipient of this email.
      */
-    subject: string;
-
-    /**
-     * The main email contents.
-     */
-    body: string;
+    to?: string;
 
     /**
      * The contact whom is the this email is from.
      */
-    from: Array<models.SendMailFrom>;
+    from?: string;
 
     /**
-     * The Contact whom is the primary recipient of this email.
+     * The subject or title of the email
      */
-    to: Array<models.MailContact>;
+    subject?: string;
 
     /**
-     * The ID of the Mail order within our system to use as the Mail Account.
+     * The main email contents.
      */
-    id: number;
-
-    /**
-     * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-     */
-    replyto?: Array<models.MailContact>;
-
-    /**
-     * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     */
-    cc?: Array<models.MailContact>;
-
-    /**
-     * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-     */
-    bcc?: Array<models.MailContact>;
-
-    /**
-     * Optional file attachments to include in the email
-     */
-    attachments?: Array<models.MailAttachment>;
+    body?: string;
 
 }

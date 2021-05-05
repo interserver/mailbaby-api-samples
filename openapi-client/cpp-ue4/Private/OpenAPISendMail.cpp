@@ -23,26 +23,21 @@ namespace OpenAPI
 void OpenAPISendMail::WriteJson(JsonWriter& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("subject")); WriteJsonValue(Writer, Subject);
-	Writer->WriteIdentifierPrefix(TEXT("body")); WriteJsonValue(Writer, Body);
-	Writer->WriteIdentifierPrefix(TEXT("from")); WriteJsonValue(Writer, From);
-	Writer->WriteIdentifierPrefix(TEXT("to")); WriteJsonValue(Writer, To);
-	Writer->WriteIdentifierPrefix(TEXT("id")); WriteJsonValue(Writer, Id);
-	if (Replyto.IsSet())
+	if (To.IsSet())
 	{
-		Writer->WriteIdentifierPrefix(TEXT("replyto")); WriteJsonValue(Writer, Replyto.GetValue());	
+		Writer->WriteIdentifierPrefix(TEXT("to")); WriteJsonValue(Writer, To.GetValue());	
 	}
-	if (Cc.IsSet())
+	if (From.IsSet())
 	{
-		Writer->WriteIdentifierPrefix(TEXT("cc")); WriteJsonValue(Writer, Cc.GetValue());	
+		Writer->WriteIdentifierPrefix(TEXT("from")); WriteJsonValue(Writer, From.GetValue());	
 	}
-	if (Bcc.IsSet())
+	if (Subject.IsSet())
 	{
-		Writer->WriteIdentifierPrefix(TEXT("bcc")); WriteJsonValue(Writer, Bcc.GetValue());	
+		Writer->WriteIdentifierPrefix(TEXT("subject")); WriteJsonValue(Writer, Subject.GetValue());	
 	}
-	if (Attachments.IsSet())
+	if (Body.IsSet())
 	{
-		Writer->WriteIdentifierPrefix(TEXT("attachments")); WriteJsonValue(Writer, Attachments.GetValue());	
+		Writer->WriteIdentifierPrefix(TEXT("body")); WriteJsonValue(Writer, Body.GetValue());	
 	}
 	Writer->WriteObjectEnd();
 }
@@ -55,15 +50,10 @@ bool OpenAPISendMail::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
 	bool ParseSuccess = true;
 
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("to"), To);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("from"), From);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("subject"), Subject);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("body"), Body);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("from"), From);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("to"), To);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("id"), Id);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("replyto"), Replyto);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("cc"), Cc);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("bcc"), Bcc);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("attachments"), Attachments);
 
 	return ParseSuccess;
 }

@@ -10,7 +10,8 @@ src/models/MailContact.ts
 src/models/MailLog.ts
 src/models/MailOrder.ts
 src/models/SendMail.ts
-src/models/SendMailFrom.ts
+src/models/SendMailAdv.ts
+src/models/SendMailAdvFrom.ts
 src/models/index.ts
 src/runtime.ts
 tsconfig.json

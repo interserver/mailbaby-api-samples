@@ -11,61 +11,36 @@ import AnyCodable
 /** Details for an Email */
 public struct SendMail: Codable, Hashable {
 
-    /** The subject or title of the email */
-    public var subject: String
-    /** The main email contents. */
-    public var body: String
-    /** The contact whom is the this email is from. */
-    public var from: [SendMailFrom]
     /** The Contact whom is the primary recipient of this email. */
-    public var to: [MailContact]
-    /** The ID of the Mail order within our system to use as the Mail Account. */
-    public var id: Int64
-    /** Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. */
-    public var replyto: [MailContact]?
-    /** Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */
-    public var cc: [MailContact]?
-    /** Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. */
-    public var bcc: [MailContact]?
-    /** Optional file attachments to include in the email */
-    public var attachments: [MailAttachment]?
+    public var to: String?
+    /** The contact whom is the this email is from. */
+    public var from: String?
+    /** The subject or title of the email */
+    public var subject: String?
+    /** The main email contents. */
+    public var body: String?
 
-    public init(subject: String, body: String, from: [SendMailFrom], to: [MailContact], id: Int64, replyto: [MailContact]? = nil, cc: [MailContact]? = nil, bcc: [MailContact]? = nil, attachments: [MailAttachment]? = nil) {
+    public init(to: String? = nil, from: String? = nil, subject: String? = nil, body: String? = nil) {
+        self.to = to
+        self.from = from
         self.subject = subject
         self.body = body
-        self.from = from
-        self.to = to
-        self.id = id
-        self.replyto = replyto
-        self.cc = cc
-        self.bcc = bcc
-        self.attachments = attachments
     }
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case to
+        case from
         case subject
         case body
-        case from
-        case to
-        case id
-        case replyto
-        case cc
-        case bcc
-        case attachments
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(subject, forKey: .subject)
-        try container.encode(body, forKey: .body)
-        try container.encode(from, forKey: .from)
-        try container.encode(to, forKey: .to)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(replyto, forKey: .replyto)
-        try container.encodeIfPresent(cc, forKey: .cc)
-        try container.encodeIfPresent(bcc, forKey: .bcc)
-        try container.encodeIfPresent(attachments, forKey: .attachments)
+        try container.encodeIfPresent(to, forKey: .to)
+        try container.encodeIfPresent(from, forKey: .from)
+        try container.encodeIfPresent(subject, forKey: .subject)
+        try container.encodeIfPresent(body, forKey: .body)
     }
 
 

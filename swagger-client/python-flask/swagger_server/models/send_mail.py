@@ -6,9 +6,6 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model_ import Model
-from swagger_server.models.mail_attachment import MailAttachment  # noqa: F401,E501
-from swagger_server.models.mail_contact import MailContact  # noqa: F401,E501
-from swagger_server.models.send_mail_from import SendMailFrom  # noqa: F401,E501
 from swagger_server import util
 
 
@@ -17,60 +14,35 @@ class SendMail(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, subject: str=None, body: str=None, _from: List[SendMailFrom]=None, to: List[MailContact]=None, id: int=None, replyto: List[MailContact]=None, cc: List[MailContact]=None, bcc: List[MailContact]=None, attachments: List[MailAttachment]=None):  # noqa: E501
+    def __init__(self, to: str=None, _from: str=None, subject: str=None, body: str=None):  # noqa: E501
         """SendMail - a model defined in Swagger
 
+        :param to: The to of this SendMail.  # noqa: E501
+        :type to: str
+        :param _from: The _from of this SendMail.  # noqa: E501
+        :type _from: str
         :param subject: The subject of this SendMail.  # noqa: E501
         :type subject: str
         :param body: The body of this SendMail.  # noqa: E501
         :type body: str
-        :param _from: The _from of this SendMail.  # noqa: E501
-        :type _from: List[SendMailFrom]
-        :param to: The to of this SendMail.  # noqa: E501
-        :type to: List[MailContact]
-        :param id: The id of this SendMail.  # noqa: E501
-        :type id: int
-        :param replyto: The replyto of this SendMail.  # noqa: E501
-        :type replyto: List[MailContact]
-        :param cc: The cc of this SendMail.  # noqa: E501
-        :type cc: List[MailContact]
-        :param bcc: The bcc of this SendMail.  # noqa: E501
-        :type bcc: List[MailContact]
-        :param attachments: The attachments of this SendMail.  # noqa: E501
-        :type attachments: List[MailAttachment]
         """
         self.swagger_types = {
+            'to': str,
+            '_from': str,
             'subject': str,
-            'body': str,
-            '_from': List[SendMailFrom],
-            'to': List[MailContact],
-            'id': int,
-            'replyto': List[MailContact],
-            'cc': List[MailContact],
-            'bcc': List[MailContact],
-            'attachments': List[MailAttachment]
+            'body': str
         }
 
         self.attribute_map = {
-            'subject': 'subject',
-            'body': 'body',
-            '_from': 'from',
             'to': 'to',
-            'id': 'id',
-            'replyto': 'replyto',
-            'cc': 'cc',
-            'bcc': 'bcc',
-            'attachments': 'attachments'
+            '_from': 'from',
+            'subject': 'subject',
+            'body': 'body'
         }
+        self._to = to
+        self.__from = _from
         self._subject = subject
         self._body = body
-        self.__from = _from
-        self._to = to
-        self._id = id
-        self._replyto = replyto
-        self._cc = cc
-        self._bcc = bcc
-        self._attachments = attachments
 
     @classmethod
     def from_dict(cls, dikt) -> 'SendMail':
@@ -82,6 +54,52 @@ class SendMail(Model):
         :rtype: SendMail
         """
         return util.deserialize_model(dikt, cls)
+
+    @property
+    def to(self) -> str:
+        """Gets the to of this SendMail.
+
+        The Contact whom is the primary recipient of this email.  # noqa: E501
+
+        :return: The to of this SendMail.
+        :rtype: str
+        """
+        return self._to
+
+    @to.setter
+    def to(self, to: str):
+        """Sets the to of this SendMail.
+
+        The Contact whom is the primary recipient of this email.  # noqa: E501
+
+        :param to: The to of this SendMail.
+        :type to: str
+        """
+
+        self._to = to
+
+    @property
+    def _from(self) -> str:
+        """Gets the _from of this SendMail.
+
+        The contact whom is the this email is from.  # noqa: E501
+
+        :return: The _from of this SendMail.
+        :rtype: str
+        """
+        return self.__from
+
+    @_from.setter
+    def _from(self, _from: str):
+        """Sets the _from of this SendMail.
+
+        The contact whom is the this email is from.  # noqa: E501
+
+        :param _from: The _from of this SendMail.
+        :type _from: str
+        """
+
+        self.__from = _from
 
     @property
     def subject(self) -> str:
@@ -103,8 +121,6 @@ class SendMail(Model):
         :param subject: The subject of this SendMail.
         :type subject: str
         """
-        if subject is None:
-            raise ValueError("Invalid value for `subject`, must not be `None`")  # noqa: E501
 
         self._subject = subject
 
@@ -128,174 +144,5 @@ class SendMail(Model):
         :param body: The body of this SendMail.
         :type body: str
         """
-        if body is None:
-            raise ValueError("Invalid value for `body`, must not be `None`")  # noqa: E501
 
         self._body = body
-
-    @property
-    def _from(self) -> List[SendMailFrom]:
-        """Gets the _from of this SendMail.
-
-        The contact whom is the this email is from.  # noqa: E501
-
-        :return: The _from of this SendMail.
-        :rtype: List[SendMailFrom]
-        """
-        return self.__from
-
-    @_from.setter
-    def _from(self, _from: List[SendMailFrom]):
-        """Sets the _from of this SendMail.
-
-        The contact whom is the this email is from.  # noqa: E501
-
-        :param _from: The _from of this SendMail.
-        :type _from: List[SendMailFrom]
-        """
-        if _from is None:
-            raise ValueError("Invalid value for `_from`, must not be `None`")  # noqa: E501
-
-        self.__from = _from
-
-    @property
-    def to(self) -> List[MailContact]:
-        """Gets the to of this SendMail.
-
-        The Contact whom is the primary recipient of this email.  # noqa: E501
-
-        :return: The to of this SendMail.
-        :rtype: List[MailContact]
-        """
-        return self._to
-
-    @to.setter
-    def to(self, to: List[MailContact]):
-        """Sets the to of this SendMail.
-
-        The Contact whom is the primary recipient of this email.  # noqa: E501
-
-        :param to: The to of this SendMail.
-        :type to: List[MailContact]
-        """
-        if to is None:
-            raise ValueError("Invalid value for `to`, must not be `None`")  # noqa: E501
-
-        self._to = to
-
-    @property
-    def id(self) -> int:
-        """Gets the id of this SendMail.
-
-        The ID of the Mail order within our system to use as the Mail Account.  # noqa: E501
-
-        :return: The id of this SendMail.
-        :rtype: int
-        """
-        return self._id
-
-    @id.setter
-    def id(self, id: int):
-        """Sets the id of this SendMail.
-
-        The ID of the Mail order within our system to use as the Mail Account.  # noqa: E501
-
-        :param id: The id of this SendMail.
-        :type id: int
-        """
-        if id is None:
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
-
-        self._id = id
-
-    @property
-    def replyto(self) -> List[MailContact]:
-        """Gets the replyto of this SendMail.
-
-        Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.  # noqa: E501
-
-        :return: The replyto of this SendMail.
-        :rtype: List[MailContact]
-        """
-        return self._replyto
-
-    @replyto.setter
-    def replyto(self, replyto: List[MailContact]):
-        """Sets the replyto of this SendMail.
-
-        Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.  # noqa: E501
-
-        :param replyto: The replyto of this SendMail.
-        :type replyto: List[MailContact]
-        """
-
-        self._replyto = replyto
-
-    @property
-    def cc(self) -> List[MailContact]:
-        """Gets the cc of this SendMail.
-
-        Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.  # noqa: E501
-
-        :return: The cc of this SendMail.
-        :rtype: List[MailContact]
-        """
-        return self._cc
-
-    @cc.setter
-    def cc(self, cc: List[MailContact]):
-        """Sets the cc of this SendMail.
-
-        Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.  # noqa: E501
-
-        :param cc: The cc of this SendMail.
-        :type cc: List[MailContact]
-        """
-
-        self._cc = cc
-
-    @property
-    def bcc(self) -> List[MailContact]:
-        """Gets the bcc of this SendMail.
-
-        Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.  # noqa: E501
-
-        :return: The bcc of this SendMail.
-        :rtype: List[MailContact]
-        """
-        return self._bcc
-
-    @bcc.setter
-    def bcc(self, bcc: List[MailContact]):
-        """Sets the bcc of this SendMail.
-
-        Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.  # noqa: E501
-
-        :param bcc: The bcc of this SendMail.
-        :type bcc: List[MailContact]
-        """
-
-        self._bcc = bcc
-
-    @property
-    def attachments(self) -> List[MailAttachment]:
-        """Gets the attachments of this SendMail.
-
-        Optional file attachments to include in the email  # noqa: E501
-
-        :return: The attachments of this SendMail.
-        :rtype: List[MailAttachment]
-        """
-        return self._attachments
-
-    @attachments.setter
-    def attachments(self, attachments: List[MailAttachment]):
-        """Sets the attachments of this SendMail.
-
-        Optional file attachments to include in the email  # noqa: E501
-
-        :param attachments: The attachments of this SendMail.
-        :type attachments: List[MailAttachment]
-        """
-
-        self._attachments = attachments

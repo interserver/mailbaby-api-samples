@@ -33,8 +33,8 @@ module.exports.placeMailOrder = function placeMailOrder (req, res, next, body) {
     });
 };
 
-module.exports.sendAdvMailById = function sendAdvMailById (req, res, next, body) {
-  Default.sendAdvMailById(body)
+module.exports.sendAdvMail = function sendAdvMail (req, res, next, body) {
+  Default.sendAdvMail(body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -43,8 +43,8 @@ module.exports.sendAdvMailById = function sendAdvMailById (req, res, next, body)
     });
 };
 
-module.exports.sendMailById = function sendMailById (req, res, next, body) {
-  Default.sendMailById(body)
+module.exports.sendAdvMail = function sendAdvMail (req, res, next, body) {
+  Default.sendAdvMail(body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -53,8 +53,18 @@ module.exports.sendMailById = function sendMailById (req, res, next, body) {
     });
 };
 
-module.exports.sendMailById = function sendMailById (req, res, next, body) {
-  Default.sendMailById(body)
+module.exports.sendMail = function sendMail (req, res, next, body) {
+  Default.sendMail(body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.sendMail = function sendMail (req, res, next, body) {
+  Default.sendMail(body)
     .then(function (response) {
       utils.writeJson(res, response);
     })

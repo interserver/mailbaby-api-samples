@@ -52,22 +52,22 @@ feature -- Test routines
             assert ("not_implemented", False)
         end
     
-    test_send_adv_mail_by_id
+    test_send_adv_mail
             -- Sends an Email with Advanced Options
             -- 
             -- Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc. 
         local
             l_response: GENERIC_RESPONSE
-            l_send_mail: SEND_MAIL
+            l_send_mail_adv: SEND_MAIL_ADV
         do
             -- TODO: Initialize required params.
-            -- l_send_mail
+            -- l_send_mail_adv
                       
-            -- l_response := api.send_adv_mail_by_id(l_send_mail)
+            -- l_response := api.send_adv_mail(l_send_mail_adv)
             assert ("not_implemented", False)
         end
     
-    test_send_mail_by_id
+    test_send_mail
             -- Sends an Email
             -- 
             -- Sends An email through one of your mail orders. 
@@ -78,7 +78,7 @@ feature -- Test routines
             -- TODO: Initialize required params.
             -- l_send_mail
                       
-            -- l_response := api.send_mail_by_id(l_send_mail)
+            -- l_response := api.send_mail(l_send_mail)
             assert ("not_implemented", False)
         end
     

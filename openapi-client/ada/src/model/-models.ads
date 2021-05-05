@@ -15,117 +15,94 @@ package .Models is
 
 
 
-   type SendMailFrom_Type is
+   type SendMailAdvFrom_Type is
      record
        Email : Swagger.UString;
        Name : Swagger.Nullable_UString;
      end record;
 
-   package SendMailFrom_Type_Vectors is
+   package SendMailAdvFrom_Type_Vectors is
       new Ada.Containers.Vectors (Index_Type   => Positive,
-                                  Element_Type => SendMailFrom_Type);
+                                  Element_Type => SendMailAdvFrom_Type);
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in SendMailFrom_Type);
+                        Value : in SendMailAdvFrom_Type);
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in SendMailFrom_Type_Vectors.Vector);
+                        Value : in SendMailAdvFrom_Type_Vectors.Vector);
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out SendMailFrom_Type);
+                          Value : out SendMailAdvFrom_Type);
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out SendMailFrom_Type_Vectors.Vector);
+                          Value : out SendMailAdvFrom_Type_Vectors.Vector);
 
 
 
-
-   type MailLog_Type is
+   --  ------------------------------
+   --  Email details
+   --  Details for an Email
+   --  ------------------------------
+   type SendMail_Type is
      record
-       Id : Swagger.Nullable_Long;
+       To : Swagger.Nullable_UString;
+       From : Swagger.Nullable_UString;
+       Subject : Swagger.Nullable_UString;
+       P_Body : Swagger.Nullable_UString;
      end record;
 
-   package MailLog_Type_Vectors is
+   package SendMail_Type_Vectors is
       new Ada.Containers.Vectors (Index_Type   => Positive,
-                                  Element_Type => MailLog_Type);
+                                  Element_Type => SendMail_Type);
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in MailLog_Type);
+                        Value : in SendMail_Type);
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in MailLog_Type_Vectors.Vector);
+                        Value : in SendMail_Type_Vectors.Vector);
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out MailLog_Type);
+                          Value : out SendMail_Type);
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out MailLog_Type_Vectors.Vector);
+                          Value : out SendMail_Type_Vectors.Vector);
 
 
 
 
-   type GenericResponse_Type is
+   type MailContact_Type is
      record
-       Status : Swagger.Nullable_UString;
-       Status_Text : Swagger.Nullable_UString;
+       Email : Swagger.UString;
+       Name : Swagger.Nullable_UString;
      end record;
 
-   package GenericResponse_Type_Vectors is
+   package MailContact_Type_Vectors is
       new Ada.Containers.Vectors (Index_Type   => Positive,
-                                  Element_Type => GenericResponse_Type);
+                                  Element_Type => MailContact_Type);
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in GenericResponse_Type);
+                        Value : in MailContact_Type);
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in GenericResponse_Type_Vectors.Vector);
+                        Value : in MailContact_Type_Vectors.Vector);
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out GenericResponse_Type);
+                          Value : out MailContact_Type);
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out GenericResponse_Type_Vectors.Vector);
-
-
-
-
-   type ErrorResponse_Type is
-     record
-       Code : Swagger.UString;
-       Message : Swagger.UString;
-     end record;
-
-   package ErrorResponse_Type_Vectors is
-      new Ada.Containers.Vectors (Index_Type   => Positive,
-                                  Element_Type => ErrorResponse_Type);
-
-   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
-                        Name  : in String;
-                        Value : in ErrorResponse_Type);
-
-   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
-                        Name  : in String;
-                        Value : in ErrorResponse_Type_Vectors.Vector);
-
-   procedure Deserialize (From  : in Swagger.Value_Type;
-                          Name  : in String;
-                          Value : out ErrorResponse_Type);
-
-   procedure Deserialize (From  : in Swagger.Value_Type;
-                          Name  : in String;
-                          Value : out ErrorResponse_Type_Vectors.Vector);
+                          Value : out MailContact_Type_Vectors.Vector);
 
 
 
@@ -162,31 +139,88 @@ package .Models is
 
 
 
-   type MailContact_Type is
+   type ErrorResponse_Type is
      record
-       Email : Swagger.UString;
-       Name : Swagger.Nullable_UString;
+       Code : Swagger.UString;
+       Message : Swagger.UString;
      end record;
 
-   package MailContact_Type_Vectors is
+   package ErrorResponse_Type_Vectors is
       new Ada.Containers.Vectors (Index_Type   => Positive,
-                                  Element_Type => MailContact_Type);
+                                  Element_Type => ErrorResponse_Type);
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in MailContact_Type);
+                        Value : in ErrorResponse_Type);
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in MailContact_Type_Vectors.Vector);
+                        Value : in ErrorResponse_Type_Vectors.Vector);
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out MailContact_Type);
+                          Value : out ErrorResponse_Type);
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out MailContact_Type_Vectors.Vector);
+                          Value : out ErrorResponse_Type_Vectors.Vector);
+
+
+
+
+   type GenericResponse_Type is
+     record
+       Status : Swagger.Nullable_UString;
+       Status_Text : Swagger.Nullable_UString;
+     end record;
+
+   package GenericResponse_Type_Vectors is
+      new Ada.Containers.Vectors (Index_Type   => Positive,
+                                  Element_Type => GenericResponse_Type);
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in GenericResponse_Type);
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in GenericResponse_Type_Vectors.Vector);
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : out GenericResponse_Type);
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : out GenericResponse_Type_Vectors.Vector);
+
+
+
+
+   type MailLog_Type is
+     record
+       Id : Swagger.Nullable_Long;
+     end record;
+
+   package MailLog_Type_Vectors is
+      new Ada.Containers.Vectors (Index_Type   => Positive,
+                                  Element_Type => MailLog_Type);
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in MailLog_Type);
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in MailLog_Type_Vectors.Vector);
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : out MailLog_Type);
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : out MailLog_Type_Vectors.Vector);
 
 
 
@@ -223,11 +257,11 @@ package .Models is
    --  Email details
    --  Details for an Email
    --  ------------------------------
-   type SendMail_Type is
+   type SendMailAdv_Type is
      record
        Subject : Swagger.UString;
        P_Body : Swagger.UString;
-       From : .Models.SendMailFrom_Type_Vectors.Vector;
+       From : .Models.SendMailAdvFrom_Type_Vectors.Vector;
        To : .Models.MailContact_Type_Vectors.Vector;
        Id : Swagger.Long;
        Replyto : .Models.MailContact_Type_Vectors.Vector;
@@ -236,25 +270,25 @@ package .Models is
        Attachments : .Models.MailAttachment_Type_Vectors.Vector;
      end record;
 
-   package SendMail_Type_Vectors is
+   package SendMailAdv_Type_Vectors is
       new Ada.Containers.Vectors (Index_Type   => Positive,
-                                  Element_Type => SendMail_Type);
+                                  Element_Type => SendMailAdv_Type);
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in SendMail_Type);
+                        Value : in SendMailAdv_Type);
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in SendMail_Type_Vectors.Vector);
+                        Value : in SendMailAdv_Type_Vectors.Vector);
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out SendMail_Type);
+                          Value : out SendMailAdv_Type);
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out SendMail_Type_Vectors.Vector);
+                          Value : out SendMailAdv_Type_Vectors.Vector);
 
 
 

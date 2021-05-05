@@ -30,6 +30,9 @@ import {
     SendMail,
     SendMailFromJSON,
     SendMailToJSON,
+    SendMailAdv,
+    SendMailAdvFromJSON,
+    SendMailAdvToJSON,
 } from '../models';
 
 export interface GetMailOrdersRequest {
@@ -40,11 +43,11 @@ export interface PlaceMailOrderRequest {
     mailOrder?: MailOrder;
 }
 
-export interface SendAdvMailByIdRequest {
-    sendMail: SendMail;
+export interface SendAdvMailRequest {
+    sendMailAdv: SendMailAdv;
 }
 
-export interface SendMailByIdRequest {
+export interface SendMailRequest {
     sendMail: SendMail;
 }
 
@@ -196,9 +199,9 @@ export function placeMailOrder<T>(requestParameters: PlaceMailOrderRequest, requ
  * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
  * Sends an Email with Advanced Options
  */
-function sendAdvMailByIdRaw<T>(requestParameters: SendAdvMailByIdRequest, requestConfig: runtime.TypedQueryConfig<T, GenericResponse> = {}): QueryConfig<T> {
-    if (requestParameters.sendMail === null || requestParameters.sendMail === undefined) {
-        throw new runtime.RequiredError('sendMail','Required parameter requestParameters.sendMail was null or undefined when calling sendAdvMailById.');
+function sendAdvMailRaw<T>(requestParameters: SendAdvMailRequest, requestConfig: runtime.TypedQueryConfig<T, GenericResponse> = {}): QueryConfig<T> {
+    if (requestParameters.sendMailAdv === null || requestParameters.sendMailAdv === undefined) {
+        throw new runtime.RequiredError('sendMailAdv','Required parameter requestParameters.sendMailAdv was null or undefined when calling sendAdvMail.');
     }
 
     let queryParameters = null;
@@ -224,7 +227,7 @@ function sendAdvMailByIdRaw<T>(requestParameters: SendAdvMailByIdRequest, reques
             method: 'POST',
             headers: headerParameters,
         },
-        body: queryParameters || SendMailToJSON(requestParameters.sendMail),
+        body: queryParameters || SendMailAdvToJSON(requestParameters.sendMailAdv),
     };
 
     const { transform: requestTransform } = requestConfig;
@@ -239,17 +242,17 @@ function sendAdvMailByIdRaw<T>(requestParameters: SendAdvMailByIdRequest, reques
 * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 * Sends an Email with Advanced Options
 */
-export function sendAdvMailById<T>(requestParameters: SendAdvMailByIdRequest, requestConfig?: runtime.TypedQueryConfig<T, GenericResponse>): QueryConfig<T> {
-    return sendAdvMailByIdRaw(requestParameters, requestConfig);
+export function sendAdvMail<T>(requestParameters: SendAdvMailRequest, requestConfig?: runtime.TypedQueryConfig<T, GenericResponse>): QueryConfig<T> {
+    return sendAdvMailRaw(requestParameters, requestConfig);
 }
 
 /**
  * Sends An email through one of your mail orders.
  * Sends an Email
  */
-function sendMailByIdRaw<T>(requestParameters: SendMailByIdRequest, requestConfig: runtime.TypedQueryConfig<T, GenericResponse> = {}): QueryConfig<T> {
+function sendMailRaw<T>(requestParameters: SendMailRequest, requestConfig: runtime.TypedQueryConfig<T, GenericResponse> = {}): QueryConfig<T> {
     if (requestParameters.sendMail === null || requestParameters.sendMail === undefined) {
-        throw new runtime.RequiredError('sendMail','Required parameter requestParameters.sendMail was null or undefined when calling sendMailById.');
+        throw new runtime.RequiredError('sendMail','Required parameter requestParameters.sendMail was null or undefined when calling sendMail.');
     }
 
     let queryParameters = null;
@@ -290,8 +293,8 @@ function sendMailByIdRaw<T>(requestParameters: SendMailByIdRequest, requestConfi
 * Sends An email through one of your mail orders.
 * Sends an Email
 */
-export function sendMailById<T>(requestParameters: SendMailByIdRequest, requestConfig?: runtime.TypedQueryConfig<T, GenericResponse>): QueryConfig<T> {
-    return sendMailByIdRaw(requestParameters, requestConfig);
+export function sendMail<T>(requestParameters: SendMailRequest, requestConfig?: runtime.TypedQueryConfig<T, GenericResponse>): QueryConfig<T> {
+    return sendMailRaw(requestParameters, requestConfig);
 }
 
 /**

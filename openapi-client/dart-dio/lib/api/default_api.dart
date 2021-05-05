@@ -15,6 +15,7 @@ import 'package:openapi/model/generic_response.dart';
 import 'package:openapi/model/mail_log.dart';
 import 'package:openapi/model/mail_order.dart';
 import 'package:openapi/model/send_mail.dart';
+import 'package:openapi/model/send_mail_adv.dart';
 
 class DefaultApi {
 
@@ -187,8 +188,8 @@ class DefaultApi {
   /// Sends an Email with Advanced Options
   ///
   /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-  Future<Response<GenericResponse>> sendAdvMailById(
-    SendMail sendMail, { 
+  Future<Response<GenericResponse>> sendAdvMail(
+    SendMailAdv sendMailAdv, { 
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -216,6 +217,7 @@ class DefaultApi {
       validateStatus: validateStatus,
       contentType: [
         'application/json',
+        'application/x-www-form-urlencoded',
       ].first,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
@@ -224,8 +226,8 @@ class DefaultApi {
 
     dynamic _bodyData;
 
-    const _type = FullType(SendMail);
-    _bodyData = _serializers.serialize(sendMail, specifiedType: _type);
+    const _type = FullType(SendMailAdv);
+    _bodyData = _serializers.serialize(sendMailAdv, specifiedType: _type);
 
     final _response = await _dio.request<dynamic>(
       _request.path,
@@ -254,7 +256,7 @@ class DefaultApi {
   /// Sends an Email
   ///
   /// Sends An email through one of your mail orders.
-  Future<Response<GenericResponse>> sendMailById(
+  Future<Response<GenericResponse>> sendMail(
     SendMail sendMail, { 
     CancelToken cancelToken,
     Map<String, dynamic> headers,

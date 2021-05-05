@@ -51,10 +51,10 @@ void OAIDefaultApi::initializeServerConfigs(){
     _serverIndices.insert("pingServer", 0);
     _serverConfigs.insert("placeMailOrder", defaultConf);
     _serverIndices.insert("placeMailOrder", 0);
-    _serverConfigs.insert("sendAdvMailById", defaultConf);
-    _serverIndices.insert("sendAdvMailById", 0);
-    _serverConfigs.insert("sendMailById", defaultConf);
-    _serverIndices.insert("sendMailById", 0);
+    _serverConfigs.insert("sendAdvMail", defaultConf);
+    _serverIndices.insert("sendAdvMail", 0);
+    _serverConfigs.insert("sendMail", defaultConf);
+    _serverIndices.insert("sendMail", 0);
     _serverConfigs.insert("validateMailOrder", defaultConf);
     _serverIndices.insert("validateMailOrder", 0);
     _serverConfigs.insert("viewMailLogById", defaultConf);
@@ -397,8 +397,61 @@ void OAIDefaultApi::placeMailOrderCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIDefaultApi::sendAdvMailById(const OAISendMail &oai_send_mail) {
-    QString fullPath = QString(_serverConfigs["sendAdvMailById"][_serverIndices.value("sendAdvMailById")].URL()+"/mail/advsend");
+void OAIDefaultApi::sendAdvMail(const OAISendMailAdv &oai_send_mail_adv) {
+    QString fullPath = QString(_serverConfigs["sendAdvMail"][_serverIndices.value("sendAdvMail")].URL()+"/mail/advsend");
+    
+    if(_apiKeys.contains("apiKeyAuth")){
+        addHeaders("apiKeyAuth",_apiKeys.find("apiKeyAuth").value());
+    }
+    
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "POST");
+
+    {
+
+        QByteArray output = oai_send_mail_adv.asJson().toUtf8();
+        input.request_body.append(output);
+    }
+    foreach (QString key, this->defaultHeaders.keys()) { input.headers.insert(key, this->defaultHeaders.value(key)); }
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::sendAdvMailCallback);
+    connect(this, &OAIDefaultApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, [this](){
+        if(findChildren<OAIHttpRequestWorker*>().count() == 0){
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDefaultApi::sendAdvMailCallback(OAIHttpRequestWorker *worker) {
+    QString msg;
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        msg = QString("Success! %1 bytes").arg(worker->response.length());
+    } else {
+        msg = "Error: " + worker->error_str;
+        error_str = QString("%1, %2").arg(worker->error_str).arg(QString(worker->response));
+    }
+    OAIGenericResponse output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit sendAdvMailSignal(output);
+        emit sendAdvMailSignalFull(worker, output);
+    } else {
+        emit sendAdvMailSignalE(output, error_type, error_str);
+        emit sendAdvMailSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDefaultApi::sendMail(const OAISendMail &oai_send_mail) {
+    QString fullPath = QString(_serverConfigs["sendMail"][_serverIndices.value("sendMail")].URL()+"/mail/send");
     
     if(_apiKeys.contains("apiKeyAuth")){
         addHeaders("apiKeyAuth",_apiKeys.find("apiKeyAuth").value());
@@ -416,7 +469,7 @@ void OAIDefaultApi::sendAdvMailById(const OAISendMail &oai_send_mail) {
     }
     foreach (QString key, this->defaultHeaders.keys()) { input.headers.insert(key, this->defaultHeaders.value(key)); }
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::sendAdvMailByIdCallback);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::sendMailCallback);
     connect(this, &OAIDefaultApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, [this](){
         if(findChildren<OAIHttpRequestWorker*>().count() == 0){
@@ -427,7 +480,7 @@ void OAIDefaultApi::sendAdvMailById(const OAISendMail &oai_send_mail) {
     worker->execute(&input);
 }
 
-void OAIDefaultApi::sendAdvMailByIdCallback(OAIHttpRequestWorker *worker) {
+void OAIDefaultApi::sendMailCallback(OAIHttpRequestWorker *worker) {
     QString msg;
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
@@ -442,64 +495,11 @@ void OAIDefaultApi::sendAdvMailByIdCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit sendAdvMailByIdSignal(output);
-        emit sendAdvMailByIdSignalFull(worker, output);
+        emit sendMailSignal(output);
+        emit sendMailSignalFull(worker, output);
     } else {
-        emit sendAdvMailByIdSignalE(output, error_type, error_str);
-        emit sendAdvMailByIdSignalEFull(worker, error_type, error_str);
-    }
-}
-
-void OAIDefaultApi::sendMailById(const OAISendMail &oai_send_mail) {
-    QString fullPath = QString(_serverConfigs["sendMailById"][_serverIndices.value("sendMailById")].URL()+"/mail/send");
-    
-    if(_apiKeys.contains("apiKeyAuth")){
-        addHeaders("apiKeyAuth",_apiKeys.find("apiKeyAuth").value());
-    }
-    
-    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
-    worker->setTimeOut(_timeOut);
-    worker->setWorkingDirectory(_workingDirectory);
-    OAIHttpRequestInput input(fullPath, "POST");
-
-    {
-
-        QByteArray output = oai_send_mail.asJson().toUtf8();
-        input.request_body.append(output);
-    }
-    foreach (QString key, this->defaultHeaders.keys()) { input.headers.insert(key, this->defaultHeaders.value(key)); }
-
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::sendMailByIdCallback);
-    connect(this, &OAIDefaultApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, [this](){
-        if(findChildren<OAIHttpRequestWorker*>().count() == 0){
-            emit allPendingRequestsCompleted();
-        }
-    });
-
-    worker->execute(&input);
-}
-
-void OAIDefaultApi::sendMailByIdCallback(OAIHttpRequestWorker *worker) {
-    QString msg;
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        msg = QString("Success! %1 bytes").arg(worker->response.length());
-    } else {
-        msg = "Error: " + worker->error_str;
-        error_str = QString("%1, %2").arg(worker->error_str).arg(QString(worker->response));
-    }
-    OAIGenericResponse output(QString(worker->response));
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit sendMailByIdSignal(output);
-        emit sendMailByIdSignalFull(worker, output);
-    } else {
-        emit sendMailByIdSignalE(output, error_type, error_str);
-        emit sendMailByIdSignalEFull(worker, error_type, error_str);
+        emit sendMailSignalE(output, error_type, error_str);
+        emit sendMailSignalEFull(worker, error_type, error_str);
     }
 }
 

@@ -18,6 +18,7 @@ import GenericResponse from '../model/GenericResponse';
 import MailLog from '../model/MailLog';
 import MailOrder from '../model/MailOrder';
 import SendMail from '../model/SendMail';
+import SendMailAdv from '../model/SendMailAdv';
 
 /**
 * Default service.
@@ -153,8 +154,8 @@ export default class DefaultApi {
     }
 
     /**
-     * Callback function to receive the result of the sendAdvMailById operation.
-     * @callback module:api/DefaultApi~sendAdvMailByIdCallback
+     * Callback function to receive the result of the sendAdvMail operation.
+     * @callback module:api/DefaultApi~sendAdvMailCallback
      * @param {String} error Error message, if any.
      * @param {module:model/GenericResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -163,15 +164,15 @@ export default class DefaultApi {
     /**
      * Sends an Email with Advanced Options
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @param {module:model/SendMail} sendMail 
-     * @param {module:api/DefaultApi~sendAdvMailByIdCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:model/SendMailAdv} sendMailAdv 
+     * @param {module:api/DefaultApi~sendAdvMailCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    sendAdvMailById(sendMail, callback) {
-      let postBody = sendMail;
-      // verify the required parameter 'sendMail' is set
-      if (sendMail === undefined || sendMail === null) {
-        throw new Error("Missing the required parameter 'sendMail' when calling sendAdvMailById");
+    sendAdvMail(sendMailAdv, callback) {
+      let postBody = sendMailAdv;
+      // verify the required parameter 'sendMailAdv' is set
+      if (sendMailAdv === undefined || sendMailAdv === null) {
+        throw new Error("Missing the required parameter 'sendMailAdv' when calling sendAdvMail");
       }
 
       let pathParams = {
@@ -184,7 +185,7 @@ export default class DefaultApi {
       };
 
       let authNames = ['apiKeyAuth'];
-      let contentTypes = ['application/json'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
       let accepts = ['application/json'];
       let returnType = GenericResponse;
       return this.apiClient.callApi(
@@ -195,8 +196,8 @@ export default class DefaultApi {
     }
 
     /**
-     * Callback function to receive the result of the sendMailById operation.
-     * @callback module:api/DefaultApi~sendMailByIdCallback
+     * Callback function to receive the result of the sendMail operation.
+     * @callback module:api/DefaultApi~sendMailCallback
      * @param {String} error Error message, if any.
      * @param {module:model/GenericResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -206,14 +207,14 @@ export default class DefaultApi {
      * Sends an Email
      * Sends An email through one of your mail orders.
      * @param {module:model/SendMail} sendMail 
-     * @param {module:api/DefaultApi~sendMailByIdCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/DefaultApi~sendMailCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    sendMailById(sendMail, callback) {
+    sendMail(sendMail, callback) {
       let postBody = sendMail;
       // verify the required parameter 'sendMail' is set
       if (sendMail === undefined || sendMail === null) {
-        throw new Error("Missing the required parameter 'sendMail' when calling sendMailById");
+        throw new Error("Missing the required parameter 'sendMail' when calling sendMail");
       }
 
       let pathParams = {

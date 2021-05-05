@@ -20,7 +20,8 @@ import MailLog from '../model/MailLog';
 import MailOrder from '../model/MailOrder';
 import MailOrders from '../model/MailOrders';
 import SendMail from '../model/SendMail';
-import SendMailFrom from '../model/SendMailFrom';
+import SendMailAdv from '../model/SendMailAdv';
+import SendMailAdvFrom from '../model/SendMailAdvFrom';
 
 /**
 * Default service.
@@ -153,8 +154,8 @@ export default class DefaultApi {
       );
     }
     /**
-     * Callback function to receive the result of the sendAdvMailById operation.
-     * @callback module:api/DefaultApi~sendAdvMailByIdCallback
+     * Callback function to receive the result of the sendAdvMail operation.
+     * @callback module:api/DefaultApi~sendAdvMailCallback
      * @param {String} error Error message, if any.
      * @param {module:model/GenericResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -163,47 +164,10 @@ export default class DefaultApi {
     /**
      * Sends an Email with Advanced Options
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @param {module:api/DefaultApi~sendAdvMailByIdCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/DefaultApi~sendAdvMailCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    sendAdvMailById(body, callback) {
-      let postBody = body;
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = ['apiKeyAuth'];
-      let contentTypes = ['application/json'];
-      let accepts = ['application/json'];
-      let returnType = GenericResponse;
-
-      return this.apiClient.callApi(
-        '/mail/advsend', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-    /**
-     * Callback function to receive the result of the sendMailById operation.
-     * @callback module:api/DefaultApi~sendMailByIdCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GenericResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Sends an Email
-     * Sends An email through one of your mail orders.
-     * @param {module:api/DefaultApi~sendMailByIdCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GenericResponse}
-     */
-    sendMailById(body, subject, body, from, to, id, replyto, cc, bcc, attachments, callback) {
+    sendAdvMail(body, subject, body, from, to, id, replyto, cc, bcc, attachments, callback) {
       let postBody = body;
 
       let pathParams = {
@@ -222,6 +186,47 @@ export default class DefaultApi {
         'cc': this.apiClient.buildCollectionParam(cc, 'multi'),
         'bcc': this.apiClient.buildCollectionParam(bcc, 'multi'),
         'attachments': this.apiClient.buildCollectionParam(attachments, 'multi')
+      };
+
+      let authNames = ['apiKeyAuth'];
+      let contentTypes = ['application/json', 'application/x-www-form-urlencoded'];
+      let accepts = ['application/json'];
+      let returnType = GenericResponse;
+
+      return this.apiClient.callApi(
+        '/mail/advsend', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the sendMail operation.
+     * @callback module:api/DefaultApi~sendMailCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GenericResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Sends an Email
+     * Sends An email through one of your mail orders.
+     * @param {module:api/DefaultApi~sendMailCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/GenericResponse}
+     */
+    sendMail(body, to, from, subject, body, callback) {
+      let postBody = body;
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+        'to': to,
+        'from': from,
+        'subject': subject,
+        'body': body
       };
 
       let authNames = ['apiKeyAuth'];

@@ -59,8 +59,8 @@ class DefaultApiSimulation extends Simulation {
     val getMailOrdersPerSecond = config.getDouble("performance.operationsPerSecond.getMailOrders") * rateMultiplier * instanceMultiplier
     val pingServerPerSecond = config.getDouble("performance.operationsPerSecond.pingServer") * rateMultiplier * instanceMultiplier
     val placeMailOrderPerSecond = config.getDouble("performance.operationsPerSecond.placeMailOrder") * rateMultiplier * instanceMultiplier
-    val sendAdvMailByIdPerSecond = config.getDouble("performance.operationsPerSecond.sendAdvMailById") * rateMultiplier * instanceMultiplier
-    val sendMailByIdPerSecond = config.getDouble("performance.operationsPerSecond.sendMailById") * rateMultiplier * instanceMultiplier
+    val sendAdvMailPerSecond = config.getDouble("performance.operationsPerSecond.sendAdvMail") * rateMultiplier * instanceMultiplier
+    val sendMailPerSecond = config.getDouble("performance.operationsPerSecond.sendMail") * rateMultiplier * instanceMultiplier
     val validateMailOrderPerSecond = config.getDouble("performance.operationsPerSecond.validateMailOrder") * rateMultiplier * instanceMultiplier
     val viewMailLogByIdPerSecond = config.getDouble("performance.operationsPerSecond.viewMailLogById") * rateMultiplier * instanceMultiplier
 
@@ -114,29 +114,29 @@ class DefaultApiSimulation extends Simulation {
     )
 
     
-    val scnsendAdvMailById = scenario("sendAdvMailByIdSimulation")
-        .exec(http("sendAdvMailById")
+    val scnsendAdvMail = scenario("sendAdvMailSimulation")
+        .exec(http("sendAdvMail")
         .httpRequest("POST","/mail/advsend")
 )
 
-    // Run scnsendAdvMailById with warm up and reach a constant rate for entire duration
-    scenarioBuilders += scnsendAdvMailById.inject(
-        rampUsersPerSec(1) to(sendAdvMailByIdPerSecond) during(rampUpSeconds),
-        constantUsersPerSec(sendAdvMailByIdPerSecond) during(durationSeconds),
-        rampUsersPerSec(sendAdvMailByIdPerSecond) to(1) during(rampDownSeconds)
+    // Run scnsendAdvMail with warm up and reach a constant rate for entire duration
+    scenarioBuilders += scnsendAdvMail.inject(
+        rampUsersPerSec(1) to(sendAdvMailPerSecond) during(rampUpSeconds),
+        constantUsersPerSec(sendAdvMailPerSecond) during(durationSeconds),
+        rampUsersPerSec(sendAdvMailPerSecond) to(1) during(rampDownSeconds)
     )
 
     
-    val scnsendMailById = scenario("sendMailByIdSimulation")
-        .exec(http("sendMailById")
+    val scnsendMail = scenario("sendMailSimulation")
+        .exec(http("sendMail")
         .httpRequest("POST","/mail/send")
 )
 
-    // Run scnsendMailById with warm up and reach a constant rate for entire duration
-    scenarioBuilders += scnsendMailById.inject(
-        rampUsersPerSec(1) to(sendMailByIdPerSecond) during(rampUpSeconds),
-        constantUsersPerSec(sendMailByIdPerSecond) during(durationSeconds),
-        rampUsersPerSec(sendMailByIdPerSecond) to(1) during(rampDownSeconds)
+    // Run scnsendMail with warm up and reach a constant rate for entire duration
+    scenarioBuilders += scnsendMail.inject(
+        rampUsersPerSec(1) to(sendMailPerSecond) during(rampUpSeconds),
+        constantUsersPerSec(sendMailPerSecond) during(durationSeconds),
+        rampUsersPerSec(sendMailPerSecond) to(1) during(rampDownSeconds)
     )
 
     

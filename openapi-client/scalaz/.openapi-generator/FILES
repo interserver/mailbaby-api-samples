@@ -12,4 +12,5 @@ src/main/scala/org/openapitools/client/api/MailLog.scala
 src/main/scala/org/openapitools/client/api/MailOrder.scala
 src/main/scala/org/openapitools/client/api/QueryParamTypeclass.scala
 src/main/scala/org/openapitools/client/api/SendMail.scala
-src/main/scala/org/openapitools/client/api/SendMailFrom.scala
+src/main/scala/org/openapitools/client/api/SendMailAdv.scala
+src/main/scala/org/openapitools/client/api/SendMailAdvFrom.scala

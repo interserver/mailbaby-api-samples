@@ -97,11 +97,11 @@
 #' }
 #' }
 #'
-#' \strong{ SendAdvMailById } \emph{ Sends an Email with Advanced Options }
+#' \strong{ SendAdvMail } \emph{ Sends an Email with Advanced Options }
 #' Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 #'
 #' \itemize{
-#' \item \emph{ @param } send.mail \link{SendMail}
+#' \item \emph{ @param } send.mail.adv \link{SendMailAdv}
 #' \item \emph{ @returnType } \link{GenericResponse} \cr
 #'
 #'
@@ -135,7 +135,7 @@
 #' }
 #' }
 #'
-#' \strong{ SendMailById } \emph{ Sends an Email }
+#' \strong{ SendMail } \emph{ Sends an Email }
 #' Sends An email through one of your mail orders.
 #'
 #' \itemize{
@@ -265,10 +265,10 @@
 #' result <- api.instance$PlaceMailOrder(mail.order=var.mail.order)
 #'
 #'
-#' ####################  SendAdvMailById  ####################
+#' ####################  SendAdvMail  ####################
 #'
 #' library(openapi)
-#' var.send.mail <- SendMail$new() # SendMail | 
+#' var.send.mail.adv <- SendMailAdv$new() # SendMailAdv | 
 #'
 #' #Sends an Email with Advanced Options
 #' api.instance <- DefaultApi$new()
@@ -276,10 +276,10 @@
 #' #Configure API key authorization: apiKeyAuth
 #' api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
 #'
-#' result <- api.instance$SendAdvMailById(var.send.mail)
+#' result <- api.instance$SendAdvMail(var.send.mail.adv)
 #'
 #'
-#' ####################  SendMailById  ####################
+#' ####################  SendMail  ####################
 #'
 #' library(openapi)
 #' var.send.mail <- SendMail$new() # SendMail | 
@@ -290,7 +290,7 @@
 #' #Configure API key authorization: apiKeyAuth
 #' api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
 #'
-#' result <- api.instance$SendMailById(var.send.mail)
+#' result <- api.instance$SendMail(var.send.mail)
 #'
 #'
 #' ####################  ValidateMailOrder  ####################
@@ -477,8 +477,8 @@ DefaultApi <- R6::R6Class(
         ApiResponse$new("API server error", resp)
       }
     },
-    SendAdvMailById = function(send.mail, ...){
-      apiResponse <- self$SendAdvMailByIdWithHttpInfo(send.mail, ...)
+    SendAdvMail = function(send.mail.adv, ...){
+      apiResponse <- self$SendAdvMailWithHttpInfo(send.mail.adv, ...)
       resp <- apiResponse$response
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
         apiResponse$content
@@ -491,17 +491,17 @@ DefaultApi <- R6::R6Class(
       }
     },
 
-    SendAdvMailByIdWithHttpInfo = function(send.mail, ...){
+    SendAdvMailWithHttpInfo = function(send.mail.adv, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- c()
 
-      if (missing(`send.mail`)) {
-        stop("Missing required parameter `send.mail`.")
+      if (missing(`send.mail.adv`)) {
+        stop("Missing required parameter `send.mail.adv`.")
       }
 
-      if (!missing(`send.mail`)) {
-        body <- `send.mail`$toJSONString()
+      if (!missing(`send.mail.adv`)) {
+        body <- `send.mail.adv`$toJSONString()
       } else {
         body <- NULL
       }
@@ -535,8 +535,8 @@ DefaultApi <- R6::R6Class(
         ApiResponse$new("API server error", resp)
       }
     },
-    SendMailById = function(send.mail, ...){
-      apiResponse <- self$SendMailByIdWithHttpInfo(send.mail, ...)
+    SendMail = function(send.mail, ...){
+      apiResponse <- self$SendMailWithHttpInfo(send.mail, ...)
       resp <- apiResponse$response
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
         apiResponse$content
@@ -549,7 +549,7 @@ DefaultApi <- R6::R6Class(
       }
     },
 
-    SendMailByIdWithHttpInfo = function(send.mail, ...){
+    SendMailWithHttpInfo = function(send.mail, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- c()

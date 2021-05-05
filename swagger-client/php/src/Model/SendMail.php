@@ -57,15 +57,10 @@ class SendMail implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'subject' => 'string',
-'body' => 'string',
-'from' => '\Interserver\Mailbaby\Model\SendMailFrom[]',
-'to' => '\Interserver\Mailbaby\Model\MailContact[]',
-'id' => 'int',
-'replyto' => '\Interserver\Mailbaby\Model\MailContact[]',
-'cc' => '\Interserver\Mailbaby\Model\MailContact[]',
-'bcc' => '\Interserver\Mailbaby\Model\MailContact[]',
-'attachments' => '\Interserver\Mailbaby\Model\MailAttachment[]'    ];
+        'to' => 'string',
+'from' => 'string',
+'subject' => 'string',
+'body' => 'string'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -73,15 +68,10 @@ class SendMail implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'subject' => null,
-'body' => null,
+        'to' => null,
 'from' => null,
-'to' => null,
-'id' => 'int64',
-'replyto' => null,
-'cc' => null,
-'bcc' => null,
-'attachments' => null    ];
+'subject' => null,
+'body' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -110,15 +100,10 @@ class SendMail implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'subject' => 'subject',
-'body' => 'body',
+        'to' => 'to',
 'from' => 'from',
-'to' => 'to',
-'id' => 'id',
-'replyto' => 'replyto',
-'cc' => 'cc',
-'bcc' => 'bcc',
-'attachments' => 'attachments'    ];
+'subject' => 'subject',
+'body' => 'body'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -126,15 +111,10 @@ class SendMail implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'subject' => 'setSubject',
-'body' => 'setBody',
+        'to' => 'setTo',
 'from' => 'setFrom',
-'to' => 'setTo',
-'id' => 'setId',
-'replyto' => 'setReplyto',
-'cc' => 'setCc',
-'bcc' => 'setBcc',
-'attachments' => 'setAttachments'    ];
+'subject' => 'setSubject',
+'body' => 'setBody'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -142,15 +122,10 @@ class SendMail implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'subject' => 'getSubject',
-'body' => 'getBody',
+        'to' => 'getTo',
 'from' => 'getFrom',
-'to' => 'getTo',
-'id' => 'getId',
-'replyto' => 'getReplyto',
-'cc' => 'getCc',
-'bcc' => 'getBcc',
-'attachments' => 'getAttachments'    ];
+'subject' => 'getSubject',
+'body' => 'getBody'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -210,15 +185,10 @@ class SendMail implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['to'] = isset($data['to']) ? $data['to'] : null;
+        $this->container['from'] = isset($data['from']) ? $data['from'] : null;
         $this->container['subject'] = isset($data['subject']) ? $data['subject'] : null;
         $this->container['body'] = isset($data['body']) ? $data['body'] : null;
-        $this->container['from'] = isset($data['from']) ? $data['from'] : null;
-        $this->container['to'] = isset($data['to']) ? $data['to'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['replyto'] = isset($data['replyto']) ? $data['replyto'] : null;
-        $this->container['cc'] = isset($data['cc']) ? $data['cc'] : null;
-        $this->container['bcc'] = isset($data['bcc']) ? $data['bcc'] : null;
-        $this->container['attachments'] = isset($data['attachments']) ? $data['attachments'] : null;
     }
 
     /**
@@ -230,21 +200,6 @@ class SendMail implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['subject'] === null) {
-            $invalidProperties[] = "'subject' can't be null";
-        }
-        if ($this->container['body'] === null) {
-            $invalidProperties[] = "'body' can't be null";
-        }
-        if ($this->container['from'] === null) {
-            $invalidProperties[] = "'from' can't be null";
-        }
-        if ($this->container['to'] === null) {
-            $invalidProperties[] = "'to' can't be null";
-        }
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -259,6 +214,54 @@ class SendMail implements ModelInterface, ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets to
+     *
+     * @return string
+     */
+    public function getTo()
+    {
+        return $this->container['to'];
+    }
+
+    /**
+     * Sets to
+     *
+     * @param string $to The Contact whom is the primary recipient of this email.
+     *
+     * @return $this
+     */
+    public function setTo($to)
+    {
+        $this->container['to'] = $to;
+
+        return $this;
+    }
+
+    /**
+     * Gets from
+     *
+     * @return string
+     */
+    public function getFrom()
+    {
+        return $this->container['from'];
+    }
+
+    /**
+     * Sets from
+     *
+     * @param string $from The contact whom is the this email is from.
+     *
+     * @return $this
+     */
+    public function setFrom($from)
+    {
+        $this->container['from'] = $from;
+
+        return $this;
+    }
 
     /**
      * Gets subject
@@ -304,174 +307,6 @@ class SendMail implements ModelInterface, ArrayAccess
     public function setBody($body)
     {
         $this->container['body'] = $body;
-
-        return $this;
-    }
-
-    /**
-     * Gets from
-     *
-     * @return \Interserver\Mailbaby\Model\SendMailFrom[]
-     */
-    public function getFrom()
-    {
-        return $this->container['from'];
-    }
-
-    /**
-     * Sets from
-     *
-     * @param \Interserver\Mailbaby\Model\SendMailFrom[] $from The contact whom is the this email is from.
-     *
-     * @return $this
-     */
-    public function setFrom($from)
-    {
-        $this->container['from'] = $from;
-
-        return $this;
-    }
-
-    /**
-     * Gets to
-     *
-     * @return \Interserver\Mailbaby\Model\MailContact[]
-     */
-    public function getTo()
-    {
-        return $this->container['to'];
-    }
-
-    /**
-     * Sets to
-     *
-     * @param \Interserver\Mailbaby\Model\MailContact[] $to The Contact whom is the primary recipient of this email.
-     *
-     * @return $this
-     */
-    public function setTo($to)
-    {
-        $this->container['to'] = $to;
-
-        return $this;
-    }
-
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id The ID of the Mail order within our system to use as the Mail Account.
-     *
-     * @return $this
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets replyto
-     *
-     * @return \Interserver\Mailbaby\Model\MailContact[]
-     */
-    public function getReplyto()
-    {
-        return $this->container['replyto'];
-    }
-
-    /**
-     * Sets replyto
-     *
-     * @param \Interserver\Mailbaby\Model\MailContact[] $replyto Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-     *
-     * @return $this
-     */
-    public function setReplyto($replyto)
-    {
-        $this->container['replyto'] = $replyto;
-
-        return $this;
-    }
-
-    /**
-     * Gets cc
-     *
-     * @return \Interserver\Mailbaby\Model\MailContact[]
-     */
-    public function getCc()
-    {
-        return $this->container['cc'];
-    }
-
-    /**
-     * Sets cc
-     *
-     * @param \Interserver\Mailbaby\Model\MailContact[] $cc Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     *
-     * @return $this
-     */
-    public function setCc($cc)
-    {
-        $this->container['cc'] = $cc;
-
-        return $this;
-    }
-
-    /**
-     * Gets bcc
-     *
-     * @return \Interserver\Mailbaby\Model\MailContact[]
-     */
-    public function getBcc()
-    {
-        return $this->container['bcc'];
-    }
-
-    /**
-     * Sets bcc
-     *
-     * @param \Interserver\Mailbaby\Model\MailContact[] $bcc Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-     *
-     * @return $this
-     */
-    public function setBcc($bcc)
-    {
-        $this->container['bcc'] = $bcc;
-
-        return $this;
-    }
-
-    /**
-     * Gets attachments
-     *
-     * @return \Interserver\Mailbaby\Model\MailAttachment[]
-     */
-    public function getAttachments()
-    {
-        return $this->container['attachments'];
-    }
-
-    /**
-     * Sets attachments
-     *
-     * @param \Interserver\Mailbaby\Model\MailAttachment[] $attachments Optional file attachments to include in the email
-     *
-     * @return $this
-     */
-    public function setAttachments($attachments)
-    {
-        $this->container['attachments'] = $attachments;
 
         return $this;
     }

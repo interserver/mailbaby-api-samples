@@ -34,8 +34,8 @@ void main() {
     //
     // Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
     //
-    //Future<GenericResponse> sendAdvMailById(SendMail body) async
-    test('test sendAdvMailById', () async {
+    //Future<GenericResponse> sendAdvMail(SendMailAdv body, String subject, String body, List<SendMailAdvFrom> from, List<MailContact> to, int id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments) async
+    test('test sendAdvMail', () async {
       // TODO
     });
 
@@ -43,8 +43,8 @@ void main() {
     //
     // Sends An email through one of your mail orders.
     //
-    //Future<GenericResponse> sendMailById(SendMail body, String subject, String body, List<SendMailFrom> from, List<MailContact> to, int id, List<MailContact> replyto, List<MailContact> cc, List<MailContact> bcc, List<MailAttachment> attachments) async
-    test('test sendMailById', () async {
+    //Future<GenericResponse> sendMail(SendMail body, String to, String from, String subject, String body) async
+    test('test sendMail', () async {
       // TODO
     });
 

@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**GetMailOrders**](DefaultApi.md#GetMailOrders) | **Get** /mail | displays a list of mail service orders
 [**PingServer**](DefaultApi.md#PingServer) | **Get** /ping | Checks if the server is running
 [**PlaceMailOrder**](DefaultApi.md#PlaceMailOrder) | **Post** /mail/order | places a mail order
-[**SendAdvMailById**](DefaultApi.md#SendAdvMailById) | **Post** /mail/advsend | Sends an Email with Advanced Options
-[**SendMailById**](DefaultApi.md#SendMailById) | **Post** /mail/send | Sends an Email
+[**SendAdvMail**](DefaultApi.md#SendAdvMail) | **Post** /mail/advsend | Sends an Email with Advanced Options
+[**SendMail**](DefaultApi.md#SendMail) | **Post** /mail/send | Sends an Email
 [**ValidateMailOrder**](DefaultApi.md#ValidateMailOrder) | **Get** /mail/order | validatess order details before placing an order
 [**ViewMailLogById**](DefaultApi.md#ViewMailLogById) | **Get** /mail/log | displays the mail log
 
@@ -100,8 +100,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **SendAdvMailById**
-> GenericResponse SendAdvMailById(ctx, body)
+# **SendAdvMail**
+> GenericResponse SendAdvMail(ctx, body, subject, body, from, to, id, replyto, cc, bcc, attachments)
 Sends an Email with Advanced Options
 
 Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
@@ -111,7 +111,16 @@ Sends An email through one of your mail orders allowing additional options such 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**SendMail**](SendMail.md)|  | 
+  **body** | [**SendMailAdv**](SendMailAdv.md)|  | 
+  **subject** | **string**|  | 
+  **body** | **string**|  | 
+  **from** | [**[]SendMailAdvFrom**](SendMailAdvFrom.md)|  | 
+  **to** | [**[]MailContact**](MailContact.md)|  | 
+  **id** | **int64**|  | 
+  **replyto** | [**[]MailContact**](MailContact.md)|  | 
+  **cc** | [**[]MailContact**](MailContact.md)|  | 
+  **bcc** | [**[]MailContact**](MailContact.md)|  | 
+  **attachments** | [**[]MailAttachment**](MailAttachment.md)|  | 
 
 ### Return type
 
@@ -123,13 +132,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **SendMailById**
-> GenericResponse SendMailById(ctx, body, subject, body, from, to, id, replyto, cc, bcc, attachments)
+# **SendMail**
+> GenericResponse SendMail(ctx, body, to, from, subject, body)
 Sends an Email
 
 Sends An email through one of your mail orders.
@@ -140,15 +149,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **body** | [**SendMail**](SendMail.md)|  | 
+  **to** | **string**|  | 
+  **from** | **string**|  | 
   **subject** | **string**|  | 
   **body** | **string**|  | 
-  **from** | [**[]SendMailFrom**](SendMailFrom.md)|  | 
-  **to** | [**[]MailContact**](MailContact.md)|  | 
-  **id** | **int64**|  | 
-  **replyto** | [**[]MailContact**](MailContact.md)|  | 
-  **cc** | [**[]MailContact**](MailContact.md)|  | 
-  **bcc** | [**[]MailContact**](MailContact.md)|  | 
-  **attachments** | [**[]MailAttachment**](MailAttachment.md)|  | 
 
 ### Return type
 

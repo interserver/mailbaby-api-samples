@@ -244,7 +244,8 @@ use OpenAPIClient::Object::MailContact;
 use OpenAPIClient::Object::MailLog;
 use OpenAPIClient::Object::MailOrder;
 use OpenAPIClient::Object::SendMail;
-use OpenAPIClient::Object::SendMailFrom;
+use OpenAPIClient::Object::SendMailAdv;
+use OpenAPIClient::Object::SendMailAdvFrom;
 
 ````
 
@@ -266,7 +267,8 @@ use OpenAPIClient::Object::MailContact;
 use OpenAPIClient::Object::MailLog;
 use OpenAPIClient::Object::MailOrder;
 use OpenAPIClient::Object::SendMail;
-use OpenAPIClient::Object::SendMailFrom;
+use OpenAPIClient::Object::SendMailAdv;
+use OpenAPIClient::Object::SendMailAdvFrom;
 
 # for displaying the API response data
 use Data::Dumper;
@@ -300,8 +302,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_mail_orders**](docs/DefaultApi.md#get_mail_orders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**ping_server**](docs/DefaultApi.md#ping_server) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**place_mail_order**](docs/DefaultApi.md#place_mail_order) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**send_adv_mail_by_id**](docs/DefaultApi.md#send_adv_mail_by_id) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**send_mail_by_id**](docs/DefaultApi.md#send_mail_by_id) | **POST** /mail/send | Sends an Email
+*DefaultApi* | [**send_adv_mail**](docs/DefaultApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**send_mail**](docs/DefaultApi.md#send_mail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validate_mail_order**](docs/DefaultApi.md#validate_mail_order) | **GET** /mail/order | validatess order details before placing an order
 *DefaultApi* | [**view_mail_log_by_id**](docs/DefaultApi.md#view_mail_log_by_id) | **GET** /mail/log | displays the mail log
 
@@ -314,7 +316,8 @@ Class | Method | HTTP request | Description
  - [OpenAPIClient::Object::MailLog](docs/MailLog.md)
  - [OpenAPIClient::Object::MailOrder](docs/MailOrder.md)
  - [OpenAPIClient::Object::SendMail](docs/SendMail.md)
- - [OpenAPIClient::Object::SendMailFrom](docs/SendMailFrom.md)
+ - [OpenAPIClient::Object::SendMailAdv](docs/SendMailAdv.md)
+ - [OpenAPIClient::Object::SendMailAdvFrom](docs/SendMailAdvFrom.md)
 
 
 # DOCUMENTATION FOR AUTHORIZATION

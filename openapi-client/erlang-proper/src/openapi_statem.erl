@@ -88,23 +88,23 @@ place_mail_order_args(_S) ->
   [].
 
 %%==============================================================================
-%% send_adv_mail_by_id
+%% send_adv_mail
 %%==============================================================================
 
-send_adv_mail_by_id(OpenapiSendMail) ->
-  openapi_api:send_adv_mail_by_id(OpenapiSendMail).
+send_adv_mail(OpenapiSendMailAdv) ->
+  openapi_api:send_adv_mail(OpenapiSendMailAdv).
 
-send_adv_mail_by_id_args(_S) ->
-  [openapi_send_mail:openapi_send_mail()].
+send_adv_mail_args(_S) ->
+  [openapi_send_mail_adv:openapi_send_mail_adv()].
 
 %%==============================================================================
-%% send_mail_by_id
+%% send_mail
 %%==============================================================================
 
-send_mail_by_id(OpenapiSendMail) ->
-  openapi_api:send_mail_by_id(OpenapiSendMail).
+send_mail(OpenapiSendMail) ->
+  openapi_api:send_mail(OpenapiSendMail).
 
-send_mail_by_id_args(_S) ->
+send_mail_args(_S) ->
   [openapi_send_mail:openapi_send_mail()].
 
 %%==============================================================================

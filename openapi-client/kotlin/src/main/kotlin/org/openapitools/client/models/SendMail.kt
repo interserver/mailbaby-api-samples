@@ -11,52 +11,29 @@
 */
 package org.openapitools.client.models
 
-import org.openapitools.client.models.MailAttachment
-import org.openapitools.client.models.MailContact
-import org.openapitools.client.models.SendMailFrom
 
 import com.squareup.moshi.Json
 
 /**
  * Details for an Email
+ * @param to The Contact whom is the primary recipient of this email.
+ * @param from The contact whom is the this email is from.
  * @param subject The subject or title of the email
  * @param body The main email contents.
- * @param from The contact whom is the this email is from.
- * @param to The Contact whom is the primary recipient of this email.
- * @param id The ID of the Mail order within our system to use as the Mail Account.
- * @param replyto Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
- * @param cc Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
- * @param bcc Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
- * @param attachments Optional file attachments to include in the email
  */
 
 data class SendMail (
-    /* The subject or title of the email */
-    @Json(name = "subject")
-    val subject: kotlin.String,
-    /* The main email contents. */
-    @Json(name = "body")
-    val body: kotlin.String,
-    /* The contact whom is the this email is from. */
-    @Json(name = "from")
-    val from: kotlin.collections.List<SendMailFrom>,
     /* The Contact whom is the primary recipient of this email. */
     @Json(name = "to")
-    val to: kotlin.collections.List<MailContact>,
-    /* The ID of the Mail order within our system to use as the Mail Account. */
-    @Json(name = "id")
-    val id: kotlin.Long,
-    /* Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. */
-    @Json(name = "replyto")
-    val replyto: kotlin.collections.List<MailContact>? = null,
-    /* Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */
-    @Json(name = "cc")
-    val cc: kotlin.collections.List<MailContact>? = null,
-    /* Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. */
-    @Json(name = "bcc")
-    val bcc: kotlin.collections.List<MailContact>? = null,
-    /* Optional file attachments to include in the email */
-    @Json(name = "attachments")
-    val attachments: kotlin.collections.List<MailAttachment>? = null
+    val to: kotlin.String? = null,
+    /* The contact whom is the this email is from. */
+    @Json(name = "from")
+    val from: kotlin.String? = null,
+    /* The subject or title of the email */
+    @Json(name = "subject")
+    val subject: kotlin.String? = null,
+    /* The main email contents. */
+    @Json(name = "body")
+    val body: kotlin.String? = null
 )
 

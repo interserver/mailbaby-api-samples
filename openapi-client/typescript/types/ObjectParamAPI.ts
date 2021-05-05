@@ -9,7 +9,8 @@ import { MailContact } from '../models/MailContact';
 import { MailLog } from '../models/MailLog';
 import { MailOrder } from '../models/MailOrder';
 import { SendMail } from '../models/SendMail';
-import { SendMailFrom } from '../models/SendMailFrom';
+import { SendMailAdv } from '../models/SendMailAdv';
+import { SendMailAdvFrom } from '../models/SendMailAdvFrom';
 
 import { ObservableDefaultApi } from "./ObservableAPI";
 import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
@@ -35,20 +36,20 @@ export interface DefaultApiPlaceMailOrderRequest {
     mailOrder?: MailOrder
 }
 
-export interface DefaultApiSendAdvMailByIdRequest {
+export interface DefaultApiSendAdvMailRequest {
     /**
      * 
-     * @type SendMail
-     * @memberof DefaultApisendAdvMailById
+     * @type SendMailAdv
+     * @memberof DefaultApisendAdvMail
      */
-    sendMail: SendMail
+    sendMailAdv: SendMailAdv
 }
 
-export interface DefaultApiSendMailByIdRequest {
+export interface DefaultApiSendMailRequest {
     /**
      * 
      * @type SendMail
-     * @memberof DefaultApisendMailById
+     * @memberof DefaultApisendMail
      */
     sendMail: SendMail
 }
@@ -120,8 +121,8 @@ export class ObjectDefaultApi {
      * Sends an Email with Advanced Options
      * @param param the request object
      */
-    public sendAdvMailById(param: DefaultApiSendAdvMailByIdRequest, options?: Configuration): Promise<GenericResponse> {
-        return this.api.sendAdvMailById(param.sendMail,  options).toPromise();
+    public sendAdvMail(param: DefaultApiSendAdvMailRequest, options?: Configuration): Promise<GenericResponse> {
+        return this.api.sendAdvMail(param.sendMailAdv,  options).toPromise();
     }
 
     /**
@@ -129,8 +130,8 @@ export class ObjectDefaultApi {
      * Sends an Email
      * @param param the request object
      */
-    public sendMailById(param: DefaultApiSendMailByIdRequest, options?: Configuration): Promise<GenericResponse> {
-        return this.api.sendMailById(param.sendMail,  options).toPromise();
+    public sendMail(param: DefaultApiSendMailRequest, options?: Configuration): Promise<GenericResponse> {
+        return this.api.sendMail(param.sendMail,  options).toPromise();
     }
 
     /**

@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**GetMailOrders**](DefaultApi.md#GetMailOrders) | **GET** /mail | displays a list of mail service orders
 [**PingServer**](DefaultApi.md#PingServer) | **GET** /ping | Checks if the server is running
 [**PlaceMailOrder**](DefaultApi.md#PlaceMailOrder) | **POST** /mail/order | places a mail order
-[**SendAdvMailById**](DefaultApi.md#SendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**SendMailById**](DefaultApi.md#SendMailById) | **POST** /mail/send | Sends an Email
+[**SendAdvMail**](DefaultApi.md#SendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**SendMail**](DefaultApi.md#SendMail) | **POST** /mail/send | Sends an Email
 [**ValidateMailOrder**](DefaultApi.md#ValidateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 [**ViewMailLogById**](DefaultApi.md#ViewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -141,8 +141,8 @@ void (empty response body)
 | **409** | an existing item already exists |  -  |
 | **401** | Unauthorized |  -  |
 
-# **SendAdvMailById**
-> GenericResponse SendAdvMailById(send.mail)
+# **SendAdvMail**
+> GenericResponse SendAdvMail(send.mail.adv)
 
 Sends an Email with Advanced Options
 
@@ -152,13 +152,13 @@ Sends An email through one of your mail orders allowing additional options such 
 ```R
 library(openapi)
 
-var.send.mail <- SendMail$new("subject_example", "body_example", list(SendMail_from$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), 123, list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailAttachment$new(123, "filename_example"))) # SendMail | 
+var.send.mail.adv <- SendMailAdv$new("subject_example", "body_example", list(SendMailAdv_from$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), 123, list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailAttachment$new(123, "filename_example"))) # SendMailAdv | 
 
 #Sends an Email with Advanced Options
 api.instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
 api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$SendAdvMailById(var.send.mail)
+result <- api.instance$SendAdvMail(var.send.mail.adv)
 dput(result)
 ```
 
@@ -166,7 +166,7 @@ dput(result)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **send.mail** | [**SendMail**](SendMail.md)|  | 
+ **send.mail.adv** | [**SendMailAdv**](SendMailAdv.md)|  | 
 
 ### Return type
 
@@ -178,7 +178,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 ### HTTP response details
@@ -189,8 +189,8 @@ Name | Type | Description  | Notes
 | **401** | Unauthorized |  -  |
 | **404** | The specified resource was not found |  -  |
 
-# **SendMailById**
-> GenericResponse SendMailById(send.mail)
+# **SendMail**
+> GenericResponse SendMail(send.mail)
 
 Sends an Email
 
@@ -200,13 +200,13 @@ Sends An email through one of your mail orders.
 ```R
 library(openapi)
 
-var.send.mail <- SendMail$new("subject_example", "body_example", list(SendMail_from$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), 123, list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailContact$new("email_example", "name_example")), list(MailAttachment$new(123, "filename_example"))) # SendMail | 
+var.send.mail <- SendMail$new("to_example", "from_example", "subject_example", "body_example") # SendMail | 
 
 #Sends an Email
 api.instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
 api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$SendMailById(var.send.mail)
+result <- api.instance$SendMail(var.send.mail)
 dput(result)
 ```
 

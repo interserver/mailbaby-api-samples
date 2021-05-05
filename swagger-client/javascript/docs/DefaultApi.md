@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
+[**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 [**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -148,9 +148,9 @@ null (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="sendAdvMailById"></a>
-# **sendAdvMailById**
-> GenericResponse sendAdvMailById(body)
+<a name="sendAdvMail"></a>
+# **sendAdvMail**
+> GenericResponse sendAdvMail(body)
 
 Sends an Email with Advanced Options
 
@@ -168,9 +168,9 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyApi.DefaultApi();
-let body = new MailBabyApi.SendMail(); // SendMail | 
+let body = new MailBabyApi.SendMailAdv(); // SendMailAdv | 
 
-apiInstance.sendAdvMailById(body, (error, data, response) => {
+apiInstance.sendAdvMail(body, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -183,7 +183,7 @@ apiInstance.sendAdvMailById(body, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SendMail**](SendMail.md)|  | 
+ **body** | [**SendMailAdv**](SendMailAdv.md)|  | 
 
 ### Return type
 
@@ -195,12 +195,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
-<a name="sendMailById"></a>
-# **sendMailById**
-> GenericResponse sendMailById(body)
+<a name="sendMail"></a>
+# **sendMail**
+> GenericResponse sendMail(body)
 
 Sends an Email
 
@@ -220,7 +220,7 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 let apiInstance = new MailBabyApi.DefaultApi();
 let body = new MailBabyApi.SendMail(); // SendMail | 
 
-apiInstance.sendMailById(body, (error, data, response) => {
+apiInstance.sendMail(body, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {

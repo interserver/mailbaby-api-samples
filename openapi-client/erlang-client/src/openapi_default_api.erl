@@ -3,8 +3,8 @@
 -export([get_mail_orders/1, get_mail_orders/2,
          ping_server/1, ping_server/2,
          place_mail_order/2, place_mail_order/3,
-         send_adv_mail_by_id/2, send_adv_mail_by_id/3,
-         send_mail_by_id/2, send_mail_by_id/3,
+         send_adv_mail/2, send_adv_mail/3,
+         send_mail/2, send_mail/3,
          validate_mail_order/1, validate_mail_order/2,
          view_mail_log_by_id/1, view_mail_log_by_id/2]).
 
@@ -75,12 +75,12 @@ place_mail_order(Ctx, Optional) ->
 
 %% @doc Sends an Email with Advanced Options
 %% Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
--spec send_adv_mail_by_id(ctx:ctx(), openapi_send_mail:openapi_send_mail()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-send_adv_mail_by_id(Ctx, OpenapiSendMail) ->
-    send_adv_mail_by_id(Ctx, OpenapiSendMail, #{}).
+-spec send_adv_mail(ctx:ctx(), openapi_send_mail_adv:openapi_send_mail_adv()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+send_adv_mail(Ctx, OpenapiSendMailAdv) ->
+    send_adv_mail(Ctx, OpenapiSendMailAdv, #{}).
 
--spec send_adv_mail_by_id(ctx:ctx(), openapi_send_mail:openapi_send_mail(), maps:map()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-send_adv_mail_by_id(Ctx, OpenapiSendMail, Optional) ->
+-spec send_adv_mail(ctx:ctx(), openapi_send_mail_adv:openapi_send_mail_adv(), maps:map()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+send_adv_mail(Ctx, OpenapiSendMailAdv, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
@@ -88,20 +88,20 @@ send_adv_mail_by_id(Ctx, OpenapiSendMail, Optional) ->
     Path = ["/mail/advsend"],
     QS = [],
     Headers = [],
-    Body1 = OpenapiSendMail,
-    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>]),
+    Body1 = OpenapiSendMailAdv,
+    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>, <<"application/x-www-form-urlencoded">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 
     openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc Sends an Email
 %% Sends An email through one of your mail orders.
--spec send_mail_by_id(ctx:ctx(), openapi_send_mail:openapi_send_mail()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-send_mail_by_id(Ctx, OpenapiSendMail) ->
-    send_mail_by_id(Ctx, OpenapiSendMail, #{}).
+-spec send_mail(ctx:ctx(), openapi_send_mail:openapi_send_mail()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+send_mail(Ctx, OpenapiSendMail) ->
+    send_mail(Ctx, OpenapiSendMail, #{}).
 
--spec send_mail_by_id(ctx:ctx(), openapi_send_mail:openapi_send_mail(), maps:map()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-send_mail_by_id(Ctx, OpenapiSendMail, Optional) ->
+-spec send_mail(ctx:ctx(), openapi_send_mail:openapi_send_mail(), maps:map()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+send_mail(Ctx, OpenapiSendMail, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 

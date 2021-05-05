@@ -10,7 +10,8 @@ models/MailContact.ts
 models/MailLog.ts
 models/MailOrder.ts
 models/SendMail.ts
-models/SendMailFrom.ts
+models/SendMailAdv.ts
+models/SendMailAdvFrom.ts
 models/index.ts
 runtime.ts
 servers.ts

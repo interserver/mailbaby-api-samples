@@ -29,8 +29,8 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**getMailOrders**](docs/DefaultAPI.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 *DefaultAPI* | [**pingServer**](docs/DefaultAPI.md#pingserver) | **GET** /ping | Checks if the server is running
 *DefaultAPI* | [**placeMailOrder**](docs/DefaultAPI.md#placemailorder) | **POST** /mail/order | places a mail order
-*DefaultAPI* | [**sendAdvMailById**](docs/DefaultAPI.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultAPI* | [**sendMailById**](docs/DefaultAPI.md#sendmailbyid) | **POST** /mail/send | Sends an Email
+*DefaultAPI* | [**sendAdvMail**](docs/DefaultAPI.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultAPI* | [**sendMail**](docs/DefaultAPI.md#sendmail) | **POST** /mail/send | Sends an Email
 *DefaultAPI* | [**validateMailOrder**](docs/DefaultAPI.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
 *DefaultAPI* | [**viewMailLogById**](docs/DefaultAPI.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
@@ -44,7 +44,8 @@ Class | Method | HTTP request | Description
  - [MailOrder](docs/MailOrder.md)
  - [ModelErrorResponse](docs/ModelErrorResponse.md)
  - [SendMail](docs/SendMail.md)
- - [SendMailFrom](docs/SendMailFrom.md)
+ - [SendMailAdv](docs/SendMailAdv.md)
+ - [SendMailAdvFrom](docs/SendMailAdvFrom.md)
 
 
 ## Documentation For Authorization

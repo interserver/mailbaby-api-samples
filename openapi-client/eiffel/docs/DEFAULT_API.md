@@ -7,8 +7,8 @@ Feature | HTTP request | Description
 [**mail_orders**](DEFAULT_API.md#mail_orders) | **Get** /mail | displays a list of mail service orders
 [**ping_server**](DEFAULT_API.md#ping_server) | **Get** /ping | Checks if the server is running
 [**place_mail_order**](DEFAULT_API.md#place_mail_order) | **Post** /mail/order | places a mail order
-[**send_adv_mail_by_id**](DEFAULT_API.md#send_adv_mail_by_id) | **Post** /mail/advsend | Sends an Email with Advanced Options
-[**send_mail_by_id**](DEFAULT_API.md#send_mail_by_id) | **Post** /mail/send | Sends an Email
+[**send_adv_mail**](DEFAULT_API.md#send_adv_mail) | **Post** /mail/advsend | Sends an Email with Advanced Options
+[**send_mail**](DEFAULT_API.md#send_mail) | **Post** /mail/send | Sends an Email
 [**validate_mail_order**](DEFAULT_API.md#validate_mail_order) | **Get** /mail/order | validatess order details before placing an order
 [**view_mail_log_by_id**](DEFAULT_API.md#view_mail_log_by_id) | **Get** /mail/log | displays the mail log
 
@@ -96,8 +96,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **send_adv_mail_by_id**
-> send_adv_mail_by_id (send_mail: SEND_MAIL ): detachable GENERIC_RESPONSE
+# **send_adv_mail**
+> send_adv_mail (send_mail_adv: SEND_MAIL_ADV ): detachable GENERIC_RESPONSE
 	
 
 Sends an Email with Advanced Options
@@ -109,7 +109,7 @@ Sends An email through one of your mail orders allowing additional options such 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **send_mail** | [**SEND_MAIL**](SEND_MAIL.md)|  | 
+ **send_mail_adv** | [**SEND_MAIL_ADV**](SEND_MAIL_ADV.md)|  | 
 
 ### Return type
 
@@ -121,13 +121,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **send_mail_by_id**
-> send_mail_by_id (send_mail: SEND_MAIL ): detachable GENERIC_RESPONSE
+# **send_mail**
+> send_mail (send_mail: SEND_MAIL ): detachable GENERIC_RESPONSE
 	
 
 Sends an Email

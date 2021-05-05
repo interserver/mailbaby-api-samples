@@ -14,6 +14,16 @@ module
   # Details for an Email
   class SendMail include JSON::Serializable
    include JSON::Serializable 
+    # The Contact whom is the primary recipient of this email.
+    @[JSON::Field(key: to, type: String)]
+    property to : String
+
+
+    # The contact whom is the this email is from.
+    @[JSON::Field(key: from, type: String)]
+    property from : String
+
+
     # The subject or title of the email
     @[JSON::Field(key: subject, type: String)]
     property subject : String
@@ -23,81 +33,21 @@ module
     @[JSON::Field(key: body, type: String)]
     property body : String
 
-
-    # The contact whom is the this email is from.
-    @[JSON::Field(key: from, type: Array(SendMailFrom))]
-    property from : Array(SendMailFrom)
-
-
-    # The Contact whom is the primary recipient of this email.
-    @[JSON::Field(key: to, type: Array(MailContact))]
-    property to : Array(MailContact)
-
-
-    # The ID of the Mail order within our system to use as the Mail Account.
-    @[JSON::Field(key: id, type: Int64)]
-    property id : Int64
-
-
-    # Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-    @[JSON::Field(key: replyto, type: Array(MailContact))]
-    property replyto : Array(MailContact)
-
-
-    # Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-    @[JSON::Field(key: cc, type: Array(MailContact))]
-    property cc : Array(MailContact)
-
-
-    # Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-    @[JSON::Field(key: bcc, type: Array(MailContact))]
-    property bcc : Array(MailContact)
-
-
-    # Optional file attachments to include in the email
-    @[JSON::Field(key: attachments, type: Array(MailAttachment))]
-    property attachments : Array(MailAttachment)
-
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@subject : String, @body : String, @from : Array(SendMailFrom), @to : Array(MailContact), @id : Int64, @replyto : Array(MailContact) | Nil, @cc : Array(MailContact) | Nil, @bcc : Array(MailContact) | Nil, @attachments : Array(MailAttachment) | Nil)
+    def initialize(@to : String | Nil, @from : String | Nil, @subject : String | Nil, @body : String | Nil)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @subject.nil?
-        invalid_properties.push("invalid value for \"subject\", subject cannot be nil.")
-      end
-
-      if @body.nil?
-        invalid_properties.push("invalid value for \"body\", body cannot be nil.")
-      end
-
-      if @from.nil?
-        invalid_properties.push("invalid value for \"from\", from cannot be nil.")
-      end
-
-      if @to.nil?
-        invalid_properties.push("invalid value for \"to\", to cannot be nil.")
-      end
-
-      if @id.nil?
-        invalid_properties.push("invalid value for \"id\", id cannot be nil.")
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @subject.nil?
-      return false if @body.nil?
-      return false if @from.nil?
-      return false if @to.nil?
-      return false if @id.nil?
       true
     end
 
@@ -106,15 +56,10 @@ module
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          subject == o.subject &&
-          body == o.body &&
-          from == o.from &&
           to == o.to &&
-          id == o.id &&
-          replyto == o.replyto &&
-          cc == o.cc &&
-          bcc == o.bcc &&
-          attachments == o.attachments
+          from == o.from &&
+          subject == o.subject &&
+          body == o.body
     end
 
     # @see the `==` method
@@ -126,7 +71,7 @@ module
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [subject, body, from, to, id, replyto, cc, bcc, attachments].hash
+      [to, from, subject, body].hash
     end
 
     # Builds the object from hash

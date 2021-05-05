@@ -826,36 +826,36 @@ class DefaultApi
     }
 
     /**
-     * Operation sendAdvMailById
+     * Operation sendAdvMail
      *
      * Sends an Email with Advanced Options
      *
-     * @param  \Interserver\Mailbaby\Model\SendMail $sendMail sendMail (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailAdv $sendMailAdv sendMailAdv (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse
      */
-    public function sendAdvMailById($sendMail)
+    public function sendAdvMail($sendMailAdv)
     {
-        list($response) = $this->sendAdvMailByIdWithHttpInfo($sendMail);
+        list($response) = $this->sendAdvMailWithHttpInfo($sendMailAdv);
         return $response;
     }
 
     /**
-     * Operation sendAdvMailByIdWithHttpInfo
+     * Operation sendAdvMailWithHttpInfo
      *
      * Sends an Email with Advanced Options
      *
-     * @param  \Interserver\Mailbaby\Model\SendMail $sendMail (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailAdv $sendMailAdv (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sendAdvMailByIdWithHttpInfo($sendMail)
+    public function sendAdvMailWithHttpInfo($sendMailAdv)
     {
-        $request = $this->sendAdvMailByIdRequest($sendMail);
+        $request = $this->sendAdvMailRequest($sendMailAdv);
 
         try {
             $options = $this->createHttpClientOption();
@@ -969,18 +969,18 @@ class DefaultApi
     }
 
     /**
-     * Operation sendAdvMailByIdAsync
+     * Operation sendAdvMailAsync
      *
      * Sends an Email with Advanced Options
      *
-     * @param  \Interserver\Mailbaby\Model\SendMail $sendMail (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailAdv $sendMailAdv (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendAdvMailByIdAsync($sendMail)
+    public function sendAdvMailAsync($sendMailAdv)
     {
-        return $this->sendAdvMailByIdAsyncWithHttpInfo($sendMail)
+        return $this->sendAdvMailAsyncWithHttpInfo($sendMailAdv)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -989,19 +989,19 @@ class DefaultApi
     }
 
     /**
-     * Operation sendAdvMailByIdAsyncWithHttpInfo
+     * Operation sendAdvMailAsyncWithHttpInfo
      *
      * Sends an Email with Advanced Options
      *
-     * @param  \Interserver\Mailbaby\Model\SendMail $sendMail (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailAdv $sendMailAdv (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendAdvMailByIdAsyncWithHttpInfo($sendMail)
+    public function sendAdvMailAsyncWithHttpInfo($sendMailAdv)
     {
         $returnType = '\Interserver\Mailbaby\Model\GenericResponse';
-        $request = $this->sendAdvMailByIdRequest($sendMail);
+        $request = $this->sendAdvMailRequest($sendMailAdv);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1037,19 +1037,19 @@ class DefaultApi
     }
 
     /**
-     * Create request for operation 'sendAdvMailById'
+     * Create request for operation 'sendAdvMail'
      *
-     * @param  \Interserver\Mailbaby\Model\SendMail $sendMail (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailAdv $sendMailAdv (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function sendAdvMailByIdRequest($sendMail)
+    public function sendAdvMailRequest($sendMailAdv)
     {
-        // verify the required parameter 'sendMail' is set
-        if ($sendMail === null || (is_array($sendMail) && count($sendMail) === 0)) {
+        // verify the required parameter 'sendMailAdv' is set
+        if ($sendMailAdv === null || (is_array($sendMailAdv) && count($sendMailAdv) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $sendMail when calling sendAdvMailById'
+                'Missing the required parameter $sendMailAdv when calling sendAdvMail'
             );
         }
 
@@ -1071,16 +1071,16 @@ class DefaultApi
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 ['application/json'],
-                ['application/json']
+                ['application/json', 'application/x-www-form-urlencoded']
             );
         }
 
         // for model (json/xml)
-        if (isset($sendMail)) {
+        if (isset($sendMailAdv)) {
             if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sendMail));
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sendMailAdv));
             } else {
-                $httpBody = $sendMail;
+                $httpBody = $sendMailAdv;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1133,7 +1133,7 @@ class DefaultApi
     }
 
     /**
-     * Operation sendMailById
+     * Operation sendMail
      *
      * Sends an Email
      *
@@ -1143,14 +1143,14 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse
      */
-    public function sendMailById($sendMail)
+    public function sendMail($sendMail)
     {
-        list($response) = $this->sendMailByIdWithHttpInfo($sendMail);
+        list($response) = $this->sendMailWithHttpInfo($sendMail);
         return $response;
     }
 
     /**
-     * Operation sendMailByIdWithHttpInfo
+     * Operation sendMailWithHttpInfo
      *
      * Sends an Email
      *
@@ -1160,9 +1160,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sendMailByIdWithHttpInfo($sendMail)
+    public function sendMailWithHttpInfo($sendMail)
     {
-        $request = $this->sendMailByIdRequest($sendMail);
+        $request = $this->sendMailRequest($sendMail);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1276,7 +1276,7 @@ class DefaultApi
     }
 
     /**
-     * Operation sendMailByIdAsync
+     * Operation sendMailAsync
      *
      * Sends an Email
      *
@@ -1285,9 +1285,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailByIdAsync($sendMail)
+    public function sendMailAsync($sendMail)
     {
-        return $this->sendMailByIdAsyncWithHttpInfo($sendMail)
+        return $this->sendMailAsyncWithHttpInfo($sendMail)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1296,7 +1296,7 @@ class DefaultApi
     }
 
     /**
-     * Operation sendMailByIdAsyncWithHttpInfo
+     * Operation sendMailAsyncWithHttpInfo
      *
      * Sends an Email
      *
@@ -1305,10 +1305,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailByIdAsyncWithHttpInfo($sendMail)
+    public function sendMailAsyncWithHttpInfo($sendMail)
     {
         $returnType = '\Interserver\Mailbaby\Model\GenericResponse';
-        $request = $this->sendMailByIdRequest($sendMail);
+        $request = $this->sendMailRequest($sendMail);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1344,19 +1344,19 @@ class DefaultApi
     }
 
     /**
-     * Create request for operation 'sendMailById'
+     * Create request for operation 'sendMail'
      *
      * @param  \Interserver\Mailbaby\Model\SendMail $sendMail (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function sendMailByIdRequest($sendMail)
+    public function sendMailRequest($sendMail)
     {
         // verify the required parameter 'sendMail' is set
         if ($sendMail === null || (is_array($sendMail) && count($sendMail) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $sendMail when calling sendMailById'
+                'Missing the required parameter $sendMail when calling sendMail'
             );
         }
 

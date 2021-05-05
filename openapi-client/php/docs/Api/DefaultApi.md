@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**getMailOrders()**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer()**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 [**placeMailOrder()**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById()**](DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**sendMailById()**](DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
+[**sendAdvMail()**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMail()**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder()**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 [**viewMailLogById()**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -184,10 +184,10 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `sendAdvMailById()`
+## `sendAdvMail()`
 
 ```php
-sendAdvMailById($sendMail): \Interserver\Mailbaby\Model\GenericResponse
+sendAdvMail($sendMailAdv): \Interserver\Mailbaby\Model\GenericResponse
 ```
 
 Sends an Email with Advanced Options
@@ -213,13 +213,13 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     new GuzzleHttp\Client(),
     $config
 );
-$sendMail = new \Interserver\Mailbaby\Model\SendMail(); // \Interserver\Mailbaby\Model\SendMail
+$sendMailAdv = new \Interserver\Mailbaby\Model\SendMailAdv(); // \Interserver\Mailbaby\Model\SendMailAdv
 
 try {
-    $result = $apiInstance->sendAdvMailById($sendMail);
+    $result = $apiInstance->sendAdvMail($sendMailAdv);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->sendAdvMailById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->sendAdvMail: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -227,7 +227,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sendMail** | [**\Interserver\Mailbaby\Model\SendMail**](../Model/SendMail.md)|  |
+ **sendMailAdv** | [**\Interserver\Mailbaby\Model\SendMailAdv**](../Model/SendMailAdv.md)|  |
 
 ### Return type
 
@@ -239,17 +239,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `application/json`, `application/x-www-form-urlencoded`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `sendMailById()`
+## `sendMail()`
 
 ```php
-sendMailById($sendMail): \Interserver\Mailbaby\Model\GenericResponse
+sendMail($sendMail): \Interserver\Mailbaby\Model\GenericResponse
 ```
 
 Sends an Email
@@ -278,10 +278,10 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
 $sendMail = new \Interserver\Mailbaby\Model\SendMail(); // \Interserver\Mailbaby\Model\SendMail
 
 try {
-    $result = $apiInstance->sendMailById($sendMail);
+    $result = $apiInstance->sendMail($sendMail);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->sendMailById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->sendMail: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

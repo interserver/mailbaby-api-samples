@@ -4,21 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Subject** | **string** | The subject or title of the email | 
-**Body** | **string** | The main email contents. | 
-**From** | [**[]SendMailFrom**](SendMailFrom.md) | The contact whom is the this email is from. | 
-**To** | [**[]MailContact**](MailContact.md) | The Contact whom is the primary recipient of this email. | 
-**Id** | **int64** | The ID of the Mail order within our system to use as the Mail Account. | 
-**Replyto** | Pointer to [**[]MailContact**](MailContact.md) | Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. | [optional] 
-**Cc** | Pointer to [**[]MailContact**](MailContact.md) | Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. | [optional] 
-**Bcc** | Pointer to [**[]MailContact**](MailContact.md) | Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. | [optional] 
-**Attachments** | Pointer to [**[]MailAttachment**](MailAttachment.md) | Optional file attachments to include in the email | [optional] 
+**To** | Pointer to **string** | The Contact whom is the primary recipient of this email. | [optional] 
+**From** | Pointer to **string** | The contact whom is the this email is from. | [optional] 
+**Subject** | Pointer to **string** | The subject or title of the email | [optional] 
+**Body** | Pointer to **string** | The main email contents. | [optional] 
 
 ## Methods
 
 ### NewSendMail
 
-`func NewSendMail(subject string, body string, from []SendMailFrom, to []MailContact, id int64, ) *SendMail`
+`func NewSendMail() *SendMail`
 
 NewSendMail instantiates a new SendMail object
 This constructor will assign default values to properties that have it defined,
@@ -32,6 +27,56 @@ will change when the set of required properties is changed
 NewSendMailWithDefaults instantiates a new SendMail object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetTo
+
+`func (o *SendMail) GetTo() string`
+
+GetTo returns the To field if non-nil, zero value otherwise.
+
+### GetToOk
+
+`func (o *SendMail) GetToOk() (*string, bool)`
+
+GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTo
+
+`func (o *SendMail) SetTo(v string)`
+
+SetTo sets To field to given value.
+
+### HasTo
+
+`func (o *SendMail) HasTo() bool`
+
+HasTo returns a boolean if a field has been set.
+
+### GetFrom
+
+`func (o *SendMail) GetFrom() string`
+
+GetFrom returns the From field if non-nil, zero value otherwise.
+
+### GetFromOk
+
+`func (o *SendMail) GetFromOk() (*string, bool)`
+
+GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFrom
+
+`func (o *SendMail) SetFrom(v string)`
+
+SetFrom sets From field to given value.
+
+### HasFrom
+
+`func (o *SendMail) HasFrom() bool`
+
+HasFrom returns a boolean if a field has been set.
 
 ### GetSubject
 
@@ -52,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetSubject sets Subject field to given value.
 
+### HasSubject
+
+`func (o *SendMail) HasSubject() bool`
+
+HasSubject returns a boolean if a field has been set.
 
 ### GetBody
 
@@ -72,166 +122,11 @@ and a boolean to check if the value has been set.
 
 SetBody sets Body field to given value.
 
+### HasBody
 
-### GetFrom
+`func (o *SendMail) HasBody() bool`
 
-`func (o *SendMail) GetFrom() []SendMailFrom`
-
-GetFrom returns the From field if non-nil, zero value otherwise.
-
-### GetFromOk
-
-`func (o *SendMail) GetFromOk() (*[]SendMailFrom, bool)`
-
-GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFrom
-
-`func (o *SendMail) SetFrom(v []SendMailFrom)`
-
-SetFrom sets From field to given value.
-
-
-### GetTo
-
-`func (o *SendMail) GetTo() []MailContact`
-
-GetTo returns the To field if non-nil, zero value otherwise.
-
-### GetToOk
-
-`func (o *SendMail) GetToOk() (*[]MailContact, bool)`
-
-GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTo
-
-`func (o *SendMail) SetTo(v []MailContact)`
-
-SetTo sets To field to given value.
-
-
-### GetId
-
-`func (o *SendMail) GetId() int64`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *SendMail) GetIdOk() (*int64, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *SendMail) SetId(v int64)`
-
-SetId sets Id field to given value.
-
-
-### GetReplyto
-
-`func (o *SendMail) GetReplyto() []MailContact`
-
-GetReplyto returns the Replyto field if non-nil, zero value otherwise.
-
-### GetReplytoOk
-
-`func (o *SendMail) GetReplytoOk() (*[]MailContact, bool)`
-
-GetReplytoOk returns a tuple with the Replyto field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReplyto
-
-`func (o *SendMail) SetReplyto(v []MailContact)`
-
-SetReplyto sets Replyto field to given value.
-
-### HasReplyto
-
-`func (o *SendMail) HasReplyto() bool`
-
-HasReplyto returns a boolean if a field has been set.
-
-### GetCc
-
-`func (o *SendMail) GetCc() []MailContact`
-
-GetCc returns the Cc field if non-nil, zero value otherwise.
-
-### GetCcOk
-
-`func (o *SendMail) GetCcOk() (*[]MailContact, bool)`
-
-GetCcOk returns a tuple with the Cc field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCc
-
-`func (o *SendMail) SetCc(v []MailContact)`
-
-SetCc sets Cc field to given value.
-
-### HasCc
-
-`func (o *SendMail) HasCc() bool`
-
-HasCc returns a boolean if a field has been set.
-
-### GetBcc
-
-`func (o *SendMail) GetBcc() []MailContact`
-
-GetBcc returns the Bcc field if non-nil, zero value otherwise.
-
-### GetBccOk
-
-`func (o *SendMail) GetBccOk() (*[]MailContact, bool)`
-
-GetBccOk returns a tuple with the Bcc field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBcc
-
-`func (o *SendMail) SetBcc(v []MailContact)`
-
-SetBcc sets Bcc field to given value.
-
-### HasBcc
-
-`func (o *SendMail) HasBcc() bool`
-
-HasBcc returns a boolean if a field has been set.
-
-### GetAttachments
-
-`func (o *SendMail) GetAttachments() []MailAttachment`
-
-GetAttachments returns the Attachments field if non-nil, zero value otherwise.
-
-### GetAttachmentsOk
-
-`func (o *SendMail) GetAttachmentsOk() (*[]MailAttachment, bool)`
-
-GetAttachmentsOk returns a tuple with the Attachments field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAttachments
-
-`func (o *SendMail) SetAttachments(v []MailAttachment)`
-
-SetAttachments sets Attachments field to given value.
-
-### HasAttachments
-
-`func (o *SendMail) HasAttachments() bool`
-
-HasAttachments returns a boolean if a field has been set.
+HasBody returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

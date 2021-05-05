@@ -77,17 +77,17 @@ var routes = Routes{
 	},
 
 	Route{
-		"SendAdvMailById",
+		"SendAdvMail",
 		strings.ToUpper("Post"),
 		"/mail/advsend",
-		SendAdvMailById,
+		SendAdvMail,
 	},
 
 	Route{
-		"SendMailById",
+		"SendMail",
 		strings.ToUpper("Post"),
 		"/mail/send",
-		SendMailById,
+		SendMail,
 	},
 
 	Route{

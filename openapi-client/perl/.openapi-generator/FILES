@@ -11,7 +11,8 @@ docs/MailContact.md
 docs/MailLog.md
 docs/MailOrder.md
 docs/SendMail.md
-docs/SendMailFrom.md
+docs/SendMailAdv.md
+docs/SendMailAdvFrom.md
 git_push.sh
 lib/OpenAPIClient/ApiClient.pm
 lib/OpenAPIClient/ApiFactory.pm
@@ -24,7 +25,8 @@ lib/OpenAPIClient/Object/MailContact.pm
 lib/OpenAPIClient/Object/MailLog.pm
 lib/OpenAPIClient/Object/MailOrder.pm
 lib/OpenAPIClient/Object/SendMail.pm
-lib/OpenAPIClient/Object/SendMailFrom.pm
+lib/OpenAPIClient/Object/SendMailAdv.pm
+lib/OpenAPIClient/Object/SendMailAdvFrom.pm
 lib/OpenAPIClient/Role.pm
 lib/OpenAPIClient/Role/AutoDoc.pm
 t/DefaultApiTest.t
@@ -34,5 +36,6 @@ t/MailAttachmentTest.t
 t/MailContactTest.t
 t/MailLogTest.t
 t/MailOrderTest.t
-t/SendMailFromTest.t
+t/SendMailAdvFromTest.t
+t/SendMailAdvTest.t
 t/SendMailTest.t

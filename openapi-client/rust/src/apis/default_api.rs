@@ -41,20 +41,20 @@ pub enum PlaceMailOrderError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `send_adv_mail_by_id`
+/// struct for typed errors of method `send_adv_mail`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum SendAdvMailByIdError {
+pub enum SendAdvMailError {
     Status400(),
     Status401(crate::models::ErrorResponse),
     Status404(crate::models::ErrorResponse),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `send_mail_by_id`
+/// struct for typed errors of method `send_mail`
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum SendMailByIdError {
+pub enum SendMailError {
     Status400(),
     Status401(crate::models::ErrorResponse),
     Status404(crate::models::ErrorResponse),
@@ -178,7 +178,7 @@ pub async fn place_mail_order(configuration: &configuration::Configuration, mail
 }
 
 /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-pub async fn send_adv_mail_by_id(configuration: &configuration::Configuration, send_mail: crate::models::SendMail) -> Result<crate::models::GenericResponse, Error<SendAdvMailByIdError>> {
+pub async fn send_adv_mail(configuration: &configuration::Configuration, send_mail_adv: crate::models::SendMailAdv) -> Result<crate::models::GenericResponse, Error<SendAdvMailError>> {
 
     let local_var_client = &configuration.client;
 
@@ -196,7 +196,7 @@ pub async fn send_adv_mail_by_id(configuration: &configuration::Configuration, s
         };
         local_var_req_builder = local_var_req_builder.header("X-API-KEY", local_var_value);
     };
-    local_var_req_builder = local_var_req_builder.json(&send_mail);
+    local_var_req_builder = local_var_req_builder.json(&send_mail_adv);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -207,14 +207,14 @@ pub async fn send_adv_mail_by_id(configuration: &configuration::Configuration, s
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<SendAdvMailByIdError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<SendAdvMailError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
 /// Sends An email through one of your mail orders.
-pub async fn send_mail_by_id(configuration: &configuration::Configuration, send_mail: crate::models::SendMail) -> Result<crate::models::GenericResponse, Error<SendMailByIdError>> {
+pub async fn send_mail(configuration: &configuration::Configuration, send_mail: crate::models::SendMail) -> Result<crate::models::GenericResponse, Error<SendMailError>> {
 
     let local_var_client = &configuration.client;
 
@@ -243,7 +243,7 @@ pub async fn send_mail_by_id(configuration: &configuration::Configuration, send_
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<SendMailByIdError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<SendMailError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

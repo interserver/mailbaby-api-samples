@@ -9,7 +9,8 @@ import { MailContact } from '../models/MailContact';
 import { MailLog } from '../models/MailLog';
 import { MailOrder } from '../models/MailOrder';
 import { SendMail } from '../models/SendMail';
-import { SendMailFrom } from '../models/SendMailFrom';
+import { SendMailAdv } from '../models/SendMailAdv';
+import { SendMailAdvFrom } from '../models/SendMailAdvFrom';
 import { ObservableDefaultApi } from './ObservableAPI';
 
 import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
@@ -54,10 +55,10 @@ export class PromiseDefaultApi {
     /**
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * Sends an Email with Advanced Options
-     * @param sendMail 
+     * @param sendMailAdv 
      */
-    public sendAdvMailById(sendMail: SendMail, options?: Configuration): Promise<GenericResponse> {
-        const result = this.api.sendAdvMailById(sendMail, options);
+    public sendAdvMail(sendMailAdv: SendMailAdv, options?: Configuration): Promise<GenericResponse> {
+        const result = this.api.sendAdvMail(sendMailAdv, options);
         return result.toPromise();
     }
 
@@ -66,8 +67,8 @@ export class PromiseDefaultApi {
      * Sends an Email
      * @param sendMail 
      */
-    public sendMailById(sendMail: SendMail, options?: Configuration): Promise<GenericResponse> {
-        const result = this.api.sendMailById(sendMail, options);
+    public sendMail(sendMail: SendMail, options?: Configuration): Promise<GenericResponse> {
+        const result = this.api.sendMail(sendMail, options);
         return result.toPromise();
     }
 

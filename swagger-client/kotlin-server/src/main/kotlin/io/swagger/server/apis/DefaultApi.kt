@@ -41,7 +41,8 @@ import io.swagger.server.models.MailLog
 import io.swagger.server.models.MailOrder
 import io.swagger.server.models.MailOrders
 import io.swagger.server.models.SendMail
-import io.swagger.server.models.SendMailFrom
+import io.swagger.server.models.SendMailAdv
+import io.swagger.server.models.SendMailAdvFrom
 
 @KtorExperimentalLocationsAPI
 fun Route.DefaultApi() {
@@ -84,7 +85,7 @@ fun Route.DefaultApi() {
             call.respond(HttpStatusCode.NotImplemented)
         }
     }
-    post<Paths.sendAdvMailById> {  _: Paths.sendAdvMailById ->
+    post<Paths.sendAdvMail> {  _: Paths.sendAdvMail ->
         val principal = call.authentication.principal<ApiPrincipal>()
         if (principal == null) {
             call.respond(HttpStatusCode.Unauthorized)
@@ -101,7 +102,7 @@ fun Route.DefaultApi() {
                 else -> call.respondText(exampleContentString)
             }        }
     }
-    post<Paths.sendMailById> {  _: Paths.sendMailById ->
+    post<Paths.sendMail> {  _: Paths.sendMail ->
         val principal = call.authentication.principal<ApiPrincipal>()
         if (principal == null) {
             call.respond(HttpStatusCode.Unauthorized)

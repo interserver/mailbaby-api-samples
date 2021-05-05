@@ -121,11 +121,11 @@ namespace IO.Swagger.Controllers
         [Route("/mail/advsend")]
         [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
         [ValidateModelState]
-        [SwaggerOperation("SendAdvMailById")]
+        [SwaggerOperation("SendAdvMail")]
         [SwaggerResponse(statusCode: 200, type: typeof(GenericResponse), description: "search results matching criteria")]
         [SwaggerResponse(statusCode: 401, type: typeof(ErrorResponse), description: "Unauthorized")]
         [SwaggerResponse(statusCode: 404, type: typeof(ErrorResponse), description: "The specified resource was not found")]
-        public virtual IActionResult SendAdvMailById([FromBody]SendMail body)
+        public virtual IActionResult SendAdvMail([FromBody]SendMailAdv body)
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default(GenericResponse));
@@ -160,11 +160,11 @@ namespace IO.Swagger.Controllers
         [Route("/mail/send")]
         [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
         [ValidateModelState]
-        [SwaggerOperation("SendMailById")]
+        [SwaggerOperation("SendMail")]
         [SwaggerResponse(statusCode: 200, type: typeof(GenericResponse), description: "search results matching criteria")]
         [SwaggerResponse(statusCode: 401, type: typeof(ErrorResponse), description: "Unauthorized")]
         [SwaggerResponse(statusCode: 404, type: typeof(ErrorResponse), description: "The specified resource was not found")]
-        public virtual IActionResult SendMailById([FromBody]SendMail body)
+        public virtual IActionResult SendMail([FromBody]SendMail body)
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default(GenericResponse));

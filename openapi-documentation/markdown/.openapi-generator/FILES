@@ -7,5 +7,6 @@ Models/MailContact.md
 Models/MailLog.md
 Models/MailOrder.md
 Models/SendMail.md
-Models/SendMailFrom.md
+Models/SendMailAdv.md
+Models/SendMailAdvFrom.md
 README.md

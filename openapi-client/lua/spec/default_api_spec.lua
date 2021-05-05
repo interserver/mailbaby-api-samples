@@ -36,15 +36,15 @@ describe("default_api", function()
     end)
   end)
 
-  -- unit tests for send_adv_mail_by_id
-  describe("send_adv_mail_by_id test", function()
+  -- unit tests for send_adv_mail
+  describe("send_adv_mail test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for send_mail_by_id
-  describe("send_mail_by_id test", function()
+  -- unit tests for send_mail
+  describe("send_mail test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

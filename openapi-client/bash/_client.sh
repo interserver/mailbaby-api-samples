@@ -299,8 +299,8 @@ case $state in
             "getMailOrders[displays a list of mail service orders]" \
             "pingServer[Checks if the server is running]" \
             "placeMailOrder[places a mail order]" \
-            "sendAdvMailById[Sends an Email with Advanced Options]" \
-            "sendMailById[Sends an Email]" \
+            "sendAdvMail[Sends an Email with Advanced Options]" \
+            "sendMail[Sends an Email]" \
             "validateMailOrder[validatess order details before placing an order]" \
             "viewMailLogById[displays the mail log]" \
 
@@ -329,13 +329,13 @@ case $state in
                               )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      sendAdvMailById)
+      sendAdvMail)
         local -a _op_arguments
         _op_arguments=(
                               )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      sendMailById)
+      sendMail)
         local -a _op_arguments
         _op_arguments=(
                               )

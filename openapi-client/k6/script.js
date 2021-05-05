@@ -44,30 +44,11 @@ export default function() {
         });
         sleep(SLEEP_DURATION);
     });
-    group("/mail/order", () => {
-        let url = BASE_URL + `/mail/order`;
-        // Request No. 1
-        let request = http.get(url);
-        check(request, {
-            "list of mail orders": (r) => r.status === 200
-        });
-        sleep(SLEEP_DURATION);
-
-        // Request No. 2
-        // TODO: edit the parameters of the request body.
-        body = {"id": "integer", "status": "string", "username": "string", "password": "string", "comment": "string"};
-        params = {headers: {"Content-Type": "application/json"}};
-        request = http.post(url, body, params);
-        check(request, {
-            "list of mail orders": (r) => r.status === 200
-        });
-        sleep(SLEEP_DURATION);
-    });
     group("/mail/send", () => {
         let url = BASE_URL + `/mail/send`;
         // Request No. 1
         // TODO: edit the parameters of the request body.
-        let body = {"subject": "string", "body": "string", "from": [{"email": "string", "name": "string"}], "to": [{"email": "string", "name": "string"}], "id": "long", "replyto": [{"email": "string", "name": "string"}], "cc": [{"email": "string", "name": "string"}], "bcc": [{"email": "string", "name": "string"}], "attachments": [{"data": "file", "filename": "string"}]};
+        let body = {"to": "string", "from": "string", "subject": "string", "body": "string"};
         let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
         let request = http.post(url, body, params);
         check(request, {
@@ -97,6 +78,25 @@ export default function() {
         let request = http.get(url);
         check(request, {
             "search results matching criteria": (r) => r.status === 200
+        });
+        sleep(SLEEP_DURATION);
+    });
+    group("/mail/order", () => {
+        let url = BASE_URL + `/mail/order`;
+        // Request No. 1
+        let request = http.get(url);
+        check(request, {
+            "list of mail orders": (r) => r.status === 200
+        });
+        sleep(SLEEP_DURATION);
+
+        // Request No. 2
+        // TODO: edit the parameters of the request body.
+        body = {"id": "integer", "status": "string", "username": "string", "password": "string", "comment": "string"};
+        params = {headers: {"Content-Type": "application/json"}};
+        request = http.post(url, body, params);
+        check(request, {
+            "list of mail orders": (r) => r.status === 200
         });
         sleep(SLEEP_DURATION);
     });

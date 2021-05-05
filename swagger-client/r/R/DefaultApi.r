@@ -26,10 +26,10 @@
 #' place_mail_order places a mail order
 #'
 #'
-#' send_adv_mail_by_id Sends an Email with Advanced Options
+#' send_adv_mail Sends an Email with Advanced Options
 #'
 #'
-#' send_mail_by_id Sends an Email
+#' send_mail Sends an Email
 #'
 #'
 #' validate_mail_order validatess order details before placing an order
@@ -131,10 +131,22 @@ DefaultApi <- R6::R6Class(
       }
 
     }
-    send_adv_mail_by_id = function(body, ...){
+    send_adv_mail = function(body, subject, body, from, to, id, replyto, cc, bcc, attachments, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()
+
+      body <- list(
+          "subject" = subject,
+          "body" = body,
+          "from" = from,
+          "to" = to,
+          "id" = id,
+          "replyto" = replyto,
+          "cc" = cc,
+          "bcc" = bcc,
+          "attachments" = attachments
+      )
 
       if (!missing(`body`)) {
         body <- `body`$toJSONString()
@@ -161,21 +173,16 @@ DefaultApi <- R6::R6Class(
       }
 
     }
-    send_mail_by_id = function(body, subject, body, from, to, id, replyto, cc, bcc, attachments, ...){
+    send_mail = function(body, to, from, subject, body, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()
 
       body <- list(
-          "subject" = subject,
-          "body" = body,
-          "from" = from,
           "to" = to,
-          "id" = id,
-          "replyto" = replyto,
-          "cc" = cc,
-          "bcc" = bcc,
-          "attachments" = attachments
+          "from" = from,
+          "subject" = subject,
+          "body" = body
       )
 
       if (!missing(`body`)) {

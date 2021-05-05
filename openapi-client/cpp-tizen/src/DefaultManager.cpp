@@ -454,7 +454,7 @@ bool DefaultManager::placeMailOrderSync(char * accessToken,
 	handler, userData, false);
 }
 
-static bool sendAdvMailByIdProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
+static bool sendAdvMailProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
 	void(* handler)(GenericResponse, Error, void* )
@@ -519,8 +519,8 @@ static bool sendAdvMailByIdProcessor(MemoryStruct_s p_chunk, long code, char* er
 			}
 }
 
-static bool sendAdvMailByIdHelper(char * accessToken,
-	SendMail sendMail, 
+static bool sendAdvMailHelper(char * accessToken,
+	SendMailAdv sendMailAdv, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -533,6 +533,7 @@ static bool sendAdvMailByIdHelper(char * accessToken,
 	accessHeader.append(accessToken);
 	headerList = curl_slist_append(headerList, accessHeader.c_str());
 	headerList = curl_slist_append(headerList, "Content-Type: application/json");
+	headerList = curl_slist_append(headerList, "Content-Type: application/x-www-form-urlencoded");
 
 	map <string, string> queryParams;
 	string itemAtq;
@@ -541,11 +542,11 @@ static bool sendAdvMailByIdHelper(char * accessToken,
 	JsonNode* node;
 	JsonArray* json_array;
 
-	if (isprimitive("SendMail")) {
-		node = converttoJson(&sendMail, "SendMail", "");
+	if (isprimitive("SendMailAdv")) {
+		node = converttoJson(&sendMailAdv, "SendMailAdv", "");
 	}
 	
-	char *jsonStr =  sendMail.toJson();
+	char *jsonStr =  sendMailAdv.toJson();
 	node = json_from_string(jsonStr, NULL);
 	g_free(static_cast<gpointer>(jsonStr));
 	
@@ -573,7 +574,7 @@ static bool sendAdvMailByIdHelper(char * accessToken,
 	if(!isAsync){
 		NetClient::easycurl(DefaultManager::getBasePath(), url, myhttpmethod, queryParams,
 			mBody, headerList, p_chunk, &code, errormsg);
-		bool retval = sendAdvMailByIdProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
+		bool retval = sendAdvMailProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
 		curl_slist_free_all(headerList);
 		if (p_chunk) {
@@ -591,7 +592,7 @@ static bool sendAdvMailByIdHelper(char * accessToken,
 		RequestInfo *requestInfo = NULL;
 
 		requestInfo = new(nothrow) RequestInfo (DefaultManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg, userData, reinterpret_cast<void(*)()>(handler), sendAdvMailByIdProcessor);;
+			mBody, headerList, p_chunk, &code, errormsg, userData, reinterpret_cast<void(*)()>(handler), sendAdvMailProcessor);;
 		if(requestInfo == NULL)
 			return false;
 
@@ -603,27 +604,27 @@ static bool sendAdvMailByIdHelper(char * accessToken,
 
 
 
-bool DefaultManager::sendAdvMailByIdAsync(char * accessToken,
-	SendMail sendMail, 
+bool DefaultManager::sendAdvMailAsync(char * accessToken,
+	SendMailAdv sendMailAdv, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
-	return sendAdvMailByIdHelper(accessToken,
-	sendMail, 
+	return sendAdvMailHelper(accessToken,
+	sendMailAdv, 
 	handler, userData, true);
 }
 
-bool DefaultManager::sendAdvMailByIdSync(char * accessToken,
-	SendMail sendMail, 
+bool DefaultManager::sendAdvMailSync(char * accessToken,
+	SendMailAdv sendMailAdv, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
-	return sendAdvMailByIdHelper(accessToken,
-	sendMail, 
+	return sendAdvMailHelper(accessToken,
+	sendMailAdv, 
 	handler, userData, false);
 }
 
-static bool sendMailByIdProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
+static bool sendMailProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
 	void(* handler)(GenericResponse, Error, void* )
@@ -688,7 +689,7 @@ static bool sendMailByIdProcessor(MemoryStruct_s p_chunk, long code, char* error
 			}
 }
 
-static bool sendMailByIdHelper(char * accessToken,
+static bool sendMailHelper(char * accessToken,
 	SendMail sendMail, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData, bool isAsync)
@@ -743,7 +744,7 @@ static bool sendMailByIdHelper(char * accessToken,
 	if(!isAsync){
 		NetClient::easycurl(DefaultManager::getBasePath(), url, myhttpmethod, queryParams,
 			mBody, headerList, p_chunk, &code, errormsg);
-		bool retval = sendMailByIdProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
+		bool retval = sendMailProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
 		curl_slist_free_all(headerList);
 		if (p_chunk) {
@@ -761,7 +762,7 @@ static bool sendMailByIdHelper(char * accessToken,
 		RequestInfo *requestInfo = NULL;
 
 		requestInfo = new(nothrow) RequestInfo (DefaultManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg, userData, reinterpret_cast<void(*)()>(handler), sendMailByIdProcessor);;
+			mBody, headerList, p_chunk, &code, errormsg, userData, reinterpret_cast<void(*)()>(handler), sendMailProcessor);;
 		if(requestInfo == NULL)
 			return false;
 
@@ -773,22 +774,22 @@ static bool sendMailByIdHelper(char * accessToken,
 
 
 
-bool DefaultManager::sendMailByIdAsync(char * accessToken,
+bool DefaultManager::sendMailAsync(char * accessToken,
 	SendMail sendMail, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
-	return sendMailByIdHelper(accessToken,
+	return sendMailHelper(accessToken,
 	sendMail, 
 	handler, userData, true);
 }
 
-bool DefaultManager::sendMailByIdSync(char * accessToken,
+bool DefaultManager::sendMailSync(char * accessToken,
 	SendMail sendMail, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
-	return sendMailByIdHelper(accessToken,
+	return sendMailHelper(accessToken,
 	sendMail, 
 	handler, userData, false);
 }

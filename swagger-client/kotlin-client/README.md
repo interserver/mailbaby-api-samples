@@ -38,8 +38,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getMailOrders**](docs/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**pingServer**](docs/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**placeMailOrder**](docs/DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**sendAdvMailById**](docs/DefaultApi.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMailById**](docs/DefaultApi.md#sendmailbyid) | **POST** /mail/send | Sends an Email
+*DefaultApi* | [**sendAdvMail**](docs/DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**sendMail**](docs/DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](docs/DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
 *DefaultApi* | [**viewMailLogById**](docs/DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
@@ -54,7 +54,8 @@ Class | Method | HTTP request | Description
  - [io.swagger.client.models.MailOrder](docs/MailOrder.md)
  - [io.swagger.client.models.MailOrders](docs/MailOrders.md)
  - [io.swagger.client.models.SendMail](docs/SendMail.md)
- - [io.swagger.client.models.SendMailFrom](docs/SendMailFrom.md)
+ - [io.swagger.client.models.SendMailAdv](docs/SendMailAdv.md)
+ - [io.swagger.client.models.SendMailAdvFrom](docs/SendMailAdvFrom.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization

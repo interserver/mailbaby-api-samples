@@ -93,9 +93,9 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sendMail"></param>
+        /// <param name="sendMailAdv"></param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendAdvMailById (SendMail sendMail);
+        GenericResponse SendAdvMail (SendMailAdv sendMailAdv);
 
         /// <summary>
         /// Sends an Email with Advanced Options
@@ -104,9 +104,9 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sendMail"></param>
+        /// <param name="sendMailAdv"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        ApiResponse<GenericResponse> SendAdvMailByIdWithHttpInfo (SendMail sendMail);
+        ApiResponse<GenericResponse> SendAdvMailWithHttpInfo (SendMailAdv sendMailAdv);
         /// <summary>
         /// Sends an Email
         /// </summary>
@@ -116,7 +116,7 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendMail"></param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendMailById (SendMail sendMail);
+        GenericResponse SendMail (SendMail sendMail);
 
         /// <summary>
         /// Sends an Email
@@ -127,7 +127,7 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendMail"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        ApiResponse<GenericResponse> SendMailByIdWithHttpInfo (SendMail sendMail);
+        ApiResponse<GenericResponse> SendMailWithHttpInfo (SendMail sendMail);
         /// <summary>
         /// validatess order details before placing an order
         /// </summary>
@@ -250,10 +250,10 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sendMail"></param>
+        /// <param name="sendMailAdv"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of GenericResponse</returns>
-        System.Threading.Tasks.Task<GenericResponse> SendAdvMailByIdAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<GenericResponse> SendAdvMailAsync (SendMailAdv sendMailAdv, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Sends an Email with Advanced Options
@@ -262,10 +262,10 @@ namespace Org.OpenAPITools.Api
         /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sendMail"></param>
+        /// <param name="sendMailAdv"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendAdvMailByIdWithHttpInfoAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendAdvMailWithHttpInfoAsync (SendMailAdv sendMailAdv, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Sends an Email
         /// </summary>
@@ -276,7 +276,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="sendMail"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of GenericResponse</returns>
-        System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<GenericResponse> SendMailAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Sends an Email
@@ -288,7 +288,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="sendMail"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdWithHttpInfoAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailWithHttpInfoAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// validatess order details before placing an order
         /// </summary>
@@ -869,11 +869,11 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email with Advanced Options Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sendMail"></param>
+        /// <param name="sendMailAdv"></param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendAdvMailById (SendMail sendMail)
+        public GenericResponse SendAdvMail (SendMailAdv sendMailAdv)
         {
-             ApiResponse<GenericResponse> localVarResponse = SendAdvMailByIdWithHttpInfo(sendMail);
+             ApiResponse<GenericResponse> localVarResponse = SendAdvMailWithHttpInfo(sendMailAdv);
              return localVarResponse.Data;
         }
 
@@ -881,13 +881,13 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email with Advanced Options Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sendMail"></param>
+        /// <param name="sendMailAdv"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        public ApiResponse<GenericResponse> SendAdvMailByIdWithHttpInfo (SendMail sendMail)
+        public ApiResponse<GenericResponse> SendAdvMailWithHttpInfo (SendMailAdv sendMailAdv)
         {
-            // verify the required parameter 'sendMail' is set
-            if (sendMail == null)
-                throw new ApiException(400, "Missing required parameter 'sendMail' when calling DefaultApi->SendAdvMailById");
+            // verify the required parameter 'sendMailAdv' is set
+            if (sendMailAdv == null)
+                throw new ApiException(400, "Missing required parameter 'sendMailAdv' when calling DefaultApi->SendAdvMail");
 
             var localVarPath = "/mail/advsend";
             var localVarPathParams = new Dictionary<String, String>();
@@ -899,7 +899,8 @@ namespace Org.OpenAPITools.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
-                "application/json"
+                "application/json", 
+                "application/x-www-form-urlencoded"
             };
             String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -911,13 +912,13 @@ namespace Org.OpenAPITools.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (sendMail != null && sendMail.GetType() != typeof(byte[]))
+            if (sendMailAdv != null && sendMailAdv.GetType() != typeof(byte[]))
             {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(sendMail); // http body (model) parameter
+                localVarPostBody = this.Configuration.ApiClient.Serialize(sendMailAdv); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = sendMail; // byte array
+                localVarPostBody = sendMailAdv; // byte array
             }
 
             // authentication (apiKeyAuth) required
@@ -935,7 +936,7 @@ namespace Org.OpenAPITools.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SendAdvMailById", localVarResponse);
+                Exception exception = ExceptionFactory("SendAdvMail", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -948,12 +949,12 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email with Advanced Options Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sendMail"></param>
+        /// <param name="sendMailAdv"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of GenericResponse</returns>
-        public async System.Threading.Tasks.Task<GenericResponse> SendAdvMailByIdAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<GenericResponse> SendAdvMailAsync (SendMailAdv sendMailAdv, CancellationToken cancellationToken = default(CancellationToken))
         {
-             ApiResponse<GenericResponse> localVarResponse = await SendAdvMailByIdWithHttpInfoAsync(sendMail, cancellationToken);
+             ApiResponse<GenericResponse> localVarResponse = await SendAdvMailWithHttpInfoAsync(sendMailAdv, cancellationToken);
              return localVarResponse.Data;
 
         }
@@ -962,14 +963,14 @@ namespace Org.OpenAPITools.Api
         /// Sends an Email with Advanced Options Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="sendMail"></param>
+        /// <param name="sendMailAdv"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendAdvMailByIdWithHttpInfoAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendAdvMailWithHttpInfoAsync (SendMailAdv sendMailAdv, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // verify the required parameter 'sendMail' is set
-            if (sendMail == null)
-                throw new ApiException(400, "Missing required parameter 'sendMail' when calling DefaultApi->SendAdvMailById");
+            // verify the required parameter 'sendMailAdv' is set
+            if (sendMailAdv == null)
+                throw new ApiException(400, "Missing required parameter 'sendMailAdv' when calling DefaultApi->SendAdvMail");
 
             var localVarPath = "/mail/advsend";
             var localVarPathParams = new Dictionary<String, String>();
@@ -981,7 +982,8 @@ namespace Org.OpenAPITools.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
-                "application/json"
+                "application/json", 
+                "application/x-www-form-urlencoded"
             };
             String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -993,13 +995,13 @@ namespace Org.OpenAPITools.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
-            if (sendMail != null && sendMail.GetType() != typeof(byte[]))
+            if (sendMailAdv != null && sendMailAdv.GetType() != typeof(byte[]))
             {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(sendMail); // http body (model) parameter
+                localVarPostBody = this.Configuration.ApiClient.Serialize(sendMailAdv); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = sendMail; // byte array
+                localVarPostBody = sendMailAdv; // byte array
             }
 
             // authentication (apiKeyAuth) required
@@ -1017,7 +1019,7 @@ namespace Org.OpenAPITools.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SendAdvMailById", localVarResponse);
+                Exception exception = ExceptionFactory("SendAdvMail", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1032,9 +1034,9 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendMail"></param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendMailById (SendMail sendMail)
+        public GenericResponse SendMail (SendMail sendMail)
         {
-             ApiResponse<GenericResponse> localVarResponse = SendMailByIdWithHttpInfo(sendMail);
+             ApiResponse<GenericResponse> localVarResponse = SendMailWithHttpInfo(sendMail);
              return localVarResponse.Data;
         }
 
@@ -1044,11 +1046,11 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendMail"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        public ApiResponse<GenericResponse> SendMailByIdWithHttpInfo (SendMail sendMail)
+        public ApiResponse<GenericResponse> SendMailWithHttpInfo (SendMail sendMail)
         {
             // verify the required parameter 'sendMail' is set
             if (sendMail == null)
-                throw new ApiException(400, "Missing required parameter 'sendMail' when calling DefaultApi->SendMailById");
+                throw new ApiException(400, "Missing required parameter 'sendMail' when calling DefaultApi->SendMail");
 
             var localVarPath = "/mail/send";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1097,7 +1099,7 @@ namespace Org.OpenAPITools.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SendMailById", localVarResponse);
+                Exception exception = ExceptionFactory("SendMail", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -1113,9 +1115,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="sendMail"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of GenericResponse</returns>
-        public async System.Threading.Tasks.Task<GenericResponse> SendMailByIdAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<GenericResponse> SendMailAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken))
         {
-             ApiResponse<GenericResponse> localVarResponse = await SendMailByIdWithHttpInfoAsync(sendMail, cancellationToken);
+             ApiResponse<GenericResponse> localVarResponse = await SendMailWithHttpInfoAsync(sendMail, cancellationToken);
              return localVarResponse.Data;
 
         }
@@ -1127,11 +1129,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="sendMail"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailByIdWithHttpInfoAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailWithHttpInfoAsync (SendMail sendMail, CancellationToken cancellationToken = default(CancellationToken))
         {
             // verify the required parameter 'sendMail' is set
             if (sendMail == null)
-                throw new ApiException(400, "Missing required parameter 'sendMail' when calling DefaultApi->SendMailById");
+                throw new ApiException(400, "Missing required parameter 'sendMail' when calling DefaultApi->SendMail");
 
             var localVarPath = "/mail/send";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1180,7 +1182,7 @@ namespace Org.OpenAPITools.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("SendMailById", localVarResponse);
+                Exception exception = ExceptionFactory("SendMail", localVarResponse);
                 if (exception != null) throw exception;
             }
 

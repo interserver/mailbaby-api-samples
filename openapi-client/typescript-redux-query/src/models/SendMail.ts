@@ -12,18 +12,6 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import {
-    MailAttachment,
-    MailAttachmentFromJSON,
-    MailAttachmentToJSON,
-    MailContact,
-    MailContactFromJSON,
-    MailContactToJSON,
-    SendMailFrom,
-    SendMailFromFromJSON,
-    SendMailFromToJSON,
-} from './';
-
 /**
  * Details for an Email
  * @export
@@ -31,72 +19,37 @@ import {
  */
 export interface SendMail  {
     /**
+     * The Contact whom is the primary recipient of this email.
+     * @type {string}
+     * @memberof SendMail
+     */
+    to?: string;
+    /**
+     * The contact whom is the this email is from.
+     * @type {string}
+     * @memberof SendMail
+     */
+    from?: string;
+    /**
      * The subject or title of the email
      * @type {string}
      * @memberof SendMail
      */
-    subject: string;
+    subject?: string;
     /**
      * The main email contents.
      * @type {string}
      * @memberof SendMail
      */
-    body: string;
-    /**
-     * The contact whom is the this email is from.
-     * @type {Array<SendMailFrom>}
-     * @memberof SendMail
-     */
-    from: Array<SendMailFrom>;
-    /**
-     * The Contact whom is the primary recipient of this email.
-     * @type {Array<MailContact>}
-     * @memberof SendMail
-     */
-    to: Array<MailContact>;
-    /**
-     * The ID of the Mail order within our system to use as the Mail Account.
-     * @type {number}
-     * @memberof SendMail
-     */
-    id: number;
-    /**
-     * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-     * @type {Array<MailContact>}
-     * @memberof SendMail
-     */
-    replyto?: Array<MailContact>;
-    /**
-     * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @type {Array<MailContact>}
-     * @memberof SendMail
-     */
-    cc?: Array<MailContact>;
-    /**
-     * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-     * @type {Array<MailContact>}
-     * @memberof SendMail
-     */
-    bcc?: Array<MailContact>;
-    /**
-     * Optional file attachments to include in the email
-     * @type {Array<MailAttachment>}
-     * @memberof SendMail
-     */
-    attachments?: Array<MailAttachment>;
+    body?: string;
 }
 
 export function SendMailFromJSON(json: any): SendMail {
     return {
-        'subject': json['subject'],
-        'body': json['body'],
-        'from': (json['from'] as Array<any>).map(SendMailFromFromJSON),
-        'to': (json['to'] as Array<any>).map(MailContactFromJSON),
-        'id': json['id'],
-        'replyto': !exists(json, 'replyto') ? undefined : (json['replyto'] as Array<any>).map(MailContactFromJSON),
-        'cc': !exists(json, 'cc') ? undefined : (json['cc'] as Array<any>).map(MailContactFromJSON),
-        'bcc': !exists(json, 'bcc') ? undefined : (json['bcc'] as Array<any>).map(MailContactFromJSON),
-        'attachments': !exists(json, 'attachments') ? undefined : (json['attachments'] as Array<any>).map(MailAttachmentFromJSON),
+        'to': !exists(json, 'to') ? undefined : json['to'],
+        'from': !exists(json, 'from') ? undefined : json['from'],
+        'subject': !exists(json, 'subject') ? undefined : json['subject'],
+        'body': !exists(json, 'body') ? undefined : json['body'],
     };
 }
 
@@ -105,15 +58,10 @@ export function SendMailToJSON(value?: SendMail): any {
         return undefined;
     }
     return {
+        'to': value.to,
+        'from': value.from,
         'subject': value.subject,
         'body': value.body,
-        'from': (value.from as Array<any>).map(SendMailFromToJSON),
-        'to': (value.to as Array<any>).map(MailContactToJSON),
-        'id': value.id,
-        'replyto': value.replyto === undefined ? undefined : (value.replyto as Array<any>).map(MailContactToJSON),
-        'cc': value.cc === undefined ? undefined : (value.cc as Array<any>).map(MailContactToJSON),
-        'bcc': value.bcc === undefined ? undefined : (value.bcc as Array<any>).map(MailContactToJSON),
-        'attachments': value.attachments === undefined ? undefined : (value.attachments as Array<any>).map(MailAttachmentToJSON),
     };
 }
 

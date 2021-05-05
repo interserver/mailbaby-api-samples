@@ -21,10 +21,6 @@
 
 #include <QJsonObject>
 
-#include "OAIMailAttachment.h"
-#include "OAIMailContact.h"
-#include "OAISendMail_from.h"
-#include <QList>
 #include <QString>
 
 #include "OAIEnum.h"
@@ -43,6 +39,16 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
+    QString getTo() const;
+    void setTo(const QString &to);
+    bool is_to_Set() const;
+    bool is_to_Valid() const;
+
+    QString getFrom() const;
+    void setFrom(const QString &from);
+    bool is_from_Set() const;
+    bool is_from_Valid() const;
+
     QString getSubject() const;
     void setSubject(const QString &subject);
     bool is_subject_Set() const;
@@ -53,46 +59,19 @@ public:
     bool is_body_Set() const;
     bool is_body_Valid() const;
 
-    QList<OAISendMail_from> getFrom() const;
-    void setFrom(const QList<OAISendMail_from> &from);
-    bool is_from_Set() const;
-    bool is_from_Valid() const;
-
-    QList<OAIMailContact> getTo() const;
-    void setTo(const QList<OAIMailContact> &to);
-    bool is_to_Set() const;
-    bool is_to_Valid() const;
-
-    qint64 getId() const;
-    void setId(const qint64 &id);
-    bool is_id_Set() const;
-    bool is_id_Valid() const;
-
-    QList<OAIMailContact> getReplyto() const;
-    void setReplyto(const QList<OAIMailContact> &replyto);
-    bool is_replyto_Set() const;
-    bool is_replyto_Valid() const;
-
-    QList<OAIMailContact> getCc() const;
-    void setCc(const QList<OAIMailContact> &cc);
-    bool is_cc_Set() const;
-    bool is_cc_Valid() const;
-
-    QList<OAIMailContact> getBcc() const;
-    void setBcc(const QList<OAIMailContact> &bcc);
-    bool is_bcc_Set() const;
-    bool is_bcc_Valid() const;
-
-    QList<OAIMailAttachment> getAttachments() const;
-    void setAttachments(const QList<OAIMailAttachment> &attachments);
-    bool is_attachments_Set() const;
-    bool is_attachments_Valid() const;
-
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
 private:
     void initializeModel();
+
+    QString to;
+    bool m_to_isSet;
+    bool m_to_isValid;
+
+    QString from;
+    bool m_from_isSet;
+    bool m_from_isValid;
 
     QString subject;
     bool m_subject_isSet;
@@ -101,34 +80,6 @@ private:
     QString body;
     bool m_body_isSet;
     bool m_body_isValid;
-
-    QList<OAISendMail_from> from;
-    bool m_from_isSet;
-    bool m_from_isValid;
-
-    QList<OAIMailContact> to;
-    bool m_to_isSet;
-    bool m_to_isValid;
-
-    qint64 id;
-    bool m_id_isSet;
-    bool m_id_isValid;
-
-    QList<OAIMailContact> replyto;
-    bool m_replyto_isSet;
-    bool m_replyto_isValid;
-
-    QList<OAIMailContact> cc;
-    bool m_cc_isSet;
-    bool m_cc_isValid;
-
-    QList<OAIMailContact> bcc;
-    bool m_bcc_isSet;
-    bool m_bcc_isValid;
-
-    QList<OAIMailAttachment> attachments;
-    bool m_attachments_isSet;
-    bool m_attachments_isValid;
 };
 
 } // namespace OpenAPI

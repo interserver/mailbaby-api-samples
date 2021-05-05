@@ -1,11 +1,6 @@
 package io.swagger.model;
 
-import io.swagger.model.MailAttachment;
-import io.swagger.model.MailContact;
-import io.swagger.model.SendMailFrom;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.ArrayList;
-import java.util.List;
 import javax.validation.constraints.*;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -26,65 +21,70 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 @Schema(description="Details for an Email")
 public class SendMail   {
   
-  @Schema(example = "Your Package has been Delivered!", required = true, description = "The subject or title of the email")
+  @Schema(example = "johndoe@company.com", description = "The Contact whom is the primary recipient of this email.")
+ /**
+   * The Contact whom is the primary recipient of this email.  
+  **/
+  private String to = null;
+  
+  @Schema(example = "johndoe@company.com", description = "The contact whom is the this email is from.")
+ /**
+   * The contact whom is the this email is from.  
+  **/
+  private String from = null;
+  
+  @Schema(example = "Your Package has been Delivered!", description = "The subject or title of the email")
  /**
    * The subject or title of the email  
   **/
   private String subject = null;
   
-  @Schema(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else. ", required = true, description = "The main email contents.")
+  @Schema(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else. ", description = "The main email contents.")
  /**
    * The main email contents.  
   **/
   private String body = null;
-  
-  @Schema(required = true, description = "The contact whom is the this email is from.")
  /**
-   * The contact whom is the this email is from.  
+   * The Contact whom is the primary recipient of this email.
+   * @return to
   **/
-  private List<SendMailFrom> from = new ArrayList<SendMailFrom>();
-  
-  @Schema(required = true, description = "The Contact whom is the primary recipient of this email.")
+  @JsonProperty("to")
+  public String getTo() {
+    return to;
+  }
+
+  public void setTo(String to) {
+    this.to = to;
+  }
+
+  public SendMail to(String to) {
+    this.to = to;
+    return this;
+  }
+
  /**
-   * The Contact whom is the primary recipient of this email.  
+   * The contact whom is the this email is from.
+   * @return from
   **/
-  private List<MailContact> to = new ArrayList<MailContact>();
-  
-  @Schema(example = "5000", required = true, description = "The ID of the Mail order within our system to use as the Mail Account.")
- /**
-   * The ID of the Mail order within our system to use as the Mail Account.  
-  **/
-  private Long id = null;
-  
-  @Schema(description = "Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.")
- /**
-   * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.  
-  **/
-  private List<MailContact> replyto = null;
-  
-  @Schema(description = "Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.")
- /**
-   * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.  
-  **/
-  private List<MailContact> cc = null;
-  
-  @Schema(description = "Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.")
- /**
-   * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.  
-  **/
-  private List<MailContact> bcc = null;
-  
-  @Schema(description = "Optional file attachments to include in the email")
- /**
-   * Optional file attachments to include in the email  
-  **/
-  private List<MailAttachment> attachments = null;
+  @JsonProperty("from")
+  public String getFrom() {
+    return from;
+  }
+
+  public void setFrom(String from) {
+    this.from = from;
+  }
+
+  public SendMail from(String from) {
+    this.from = from;
+    return this;
+  }
+
  /**
    * The subject or title of the email
    * @return subject
   **/
   @JsonProperty("subject")
-  @NotNull
   public String getSubject() {
     return subject;
   }
@@ -103,7 +103,6 @@ public class SendMail   {
    * @return body
   **/
   @JsonProperty("body")
-  @NotNull
   public String getBody() {
     return body;
   }
@@ -117,180 +116,16 @@ public class SendMail   {
     return this;
   }
 
- /**
-   * The contact whom is the this email is from.
-   * @return from
-  **/
-  @JsonProperty("from")
-  @NotNull
-  public List<SendMailFrom> getFrom() {
-    return from;
-  }
-
-  public void setFrom(List<SendMailFrom> from) {
-    this.from = from;
-  }
-
-  public SendMail from(List<SendMailFrom> from) {
-    this.from = from;
-    return this;
-  }
-
-  public SendMail addFromItem(SendMailFrom fromItem) {
-    this.from.add(fromItem);
-    return this;
-  }
-
- /**
-   * The Contact whom is the primary recipient of this email.
-   * @return to
-  **/
-  @JsonProperty("to")
-  @NotNull
-  public List<MailContact> getTo() {
-    return to;
-  }
-
-  public void setTo(List<MailContact> to) {
-    this.to = to;
-  }
-
-  public SendMail to(List<MailContact> to) {
-    this.to = to;
-    return this;
-  }
-
-  public SendMail addToItem(MailContact toItem) {
-    this.to.add(toItem);
-    return this;
-  }
-
- /**
-   * The ID of the Mail order within our system to use as the Mail Account.
-   * @return id
-  **/
-  @JsonProperty("id")
-  @NotNull
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public SendMail id(Long id) {
-    this.id = id;
-    return this;
-  }
-
- /**
-   * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-   * @return replyto
-  **/
-  @JsonProperty("replyto")
-  public List<MailContact> getReplyto() {
-    return replyto;
-  }
-
-  public void setReplyto(List<MailContact> replyto) {
-    this.replyto = replyto;
-  }
-
-  public SendMail replyto(List<MailContact> replyto) {
-    this.replyto = replyto;
-    return this;
-  }
-
-  public SendMail addReplytoItem(MailContact replytoItem) {
-    this.replyto.add(replytoItem);
-    return this;
-  }
-
- /**
-   * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-   * @return cc
-  **/
-  @JsonProperty("cc")
-  public List<MailContact> getCc() {
-    return cc;
-  }
-
-  public void setCc(List<MailContact> cc) {
-    this.cc = cc;
-  }
-
-  public SendMail cc(List<MailContact> cc) {
-    this.cc = cc;
-    return this;
-  }
-
-  public SendMail addCcItem(MailContact ccItem) {
-    this.cc.add(ccItem);
-    return this;
-  }
-
- /**
-   * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-   * @return bcc
-  **/
-  @JsonProperty("bcc")
-  public List<MailContact> getBcc() {
-    return bcc;
-  }
-
-  public void setBcc(List<MailContact> bcc) {
-    this.bcc = bcc;
-  }
-
-  public SendMail bcc(List<MailContact> bcc) {
-    this.bcc = bcc;
-    return this;
-  }
-
-  public SendMail addBccItem(MailContact bccItem) {
-    this.bcc.add(bccItem);
-    return this;
-  }
-
- /**
-   * Optional file attachments to include in the email
-   * @return attachments
-  **/
-  @JsonProperty("attachments")
-  public List<MailAttachment> getAttachments() {
-    return attachments;
-  }
-
-  public void setAttachments(List<MailAttachment> attachments) {
-    this.attachments = attachments;
-  }
-
-  public SendMail attachments(List<MailAttachment> attachments) {
-    this.attachments = attachments;
-    return this;
-  }
-
-  public SendMail addAttachmentsItem(MailAttachment attachmentsItem) {
-    this.attachments.add(attachmentsItem);
-    return this;
-  }
-
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendMail {\n");
     
+    sb.append("    to: ").append(toIndentedString(to)).append("\n");
+    sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
-    sb.append("    from: ").append(toIndentedString(from)).append("\n");
-    sb.append("    to: ").append(toIndentedString(to)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    replyto: ").append(toIndentedString(replyto)).append("\n");
-    sb.append("    cc: ").append(toIndentedString(cc)).append("\n");
-    sb.append("    bcc: ").append(toIndentedString(bcc)).append("\n");
-    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("}");
     return sb.toString();
   }

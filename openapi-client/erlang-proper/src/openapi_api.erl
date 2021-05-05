@@ -3,8 +3,8 @@
 -export([ get_mail_orders/0
         , ping_server/0
         , place_mail_order/1
-        , send_adv_mail_by_id/1
-        , send_mail_by_id/1
+        , send_adv_mail/1
+        , send_mail/1
         , validate_mail_order/0
         , view_mail_log_by_id/0
         ]).
@@ -49,22 +49,22 @@ place_mail_order() ->
 
 %% @doc Sends an Email with Advanced Options
 %% Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
--spec send_adv_mail_by_id(openapi_send_mail:openapi_send_mail()) ->
+-spec send_adv_mail(openapi_send_mail_adv:openapi_send_mail_adv()) ->
   openapi_utils:response().
-send_adv_mail_by_id(OpenapiSendMail) ->
+send_adv_mail(OpenapiSendMailAdv) ->
   Method      = post,
   Host        = application:get_env(openapi, host, "http://localhost:8080"),
   Path        = ["/mail/advsend"],
-  Body        = OpenapiSendMail,
-  ContentType = hd(["application/json"]),
+  Body        = OpenapiSendMailAdv,
+  ContentType = hd(["application/json", "application/x-www-form-urlencoded"]),
 
   openapi_utils:request(Method, [Host, ?BASE_URL, Path], jsx:encode(Body), ContentType).
 
 %% @doc Sends an Email
 %% Sends An email through one of your mail orders.
--spec send_mail_by_id(openapi_send_mail:openapi_send_mail()) ->
+-spec send_mail(openapi_send_mail:openapi_send_mail()) ->
   openapi_utils:response().
-send_mail_by_id(OpenapiSendMail) ->
+send_mail(OpenapiSendMail) ->
   Method      = post,
   Host        = application:get_env(openapi, host, "http://localhost:8080"),
   Path        = ["/mail/send"],

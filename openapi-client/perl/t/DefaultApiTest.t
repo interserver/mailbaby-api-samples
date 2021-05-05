@@ -50,18 +50,18 @@ isa_ok($api, 'OpenAPIClient::DefaultApi');
 #my $place_mail_order_result = $api->place_mail_order(mail_order => $place_mail_order_mail_order);
 
 #
-# send_adv_mail_by_id test
+# send_adv_mail test
 #
 # uncomment below and update the test
-#my $send_adv_mail_by_id_send_mail = undef; # replace NULL with a proper value
-#my $send_adv_mail_by_id_result = $api->send_adv_mail_by_id(send_mail => $send_adv_mail_by_id_send_mail);
+#my $send_adv_mail_send_mail_adv = undef; # replace NULL with a proper value
+#my $send_adv_mail_result = $api->send_adv_mail(send_mail_adv => $send_adv_mail_send_mail_adv);
 
 #
-# send_mail_by_id test
+# send_mail test
 #
 # uncomment below and update the test
-#my $send_mail_by_id_send_mail = undef; # replace NULL with a proper value
-#my $send_mail_by_id_result = $api->send_mail_by_id(send_mail => $send_mail_by_id_send_mail);
+#my $send_mail_send_mail = undef; # replace NULL with a proper value
+#my $send_mail_result = $api->send_mail(send_mail => $send_mail_send_mail);
 
 #
 # validate_mail_order test

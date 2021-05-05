@@ -31,6 +31,7 @@ build = {
 		["openapiclient.model.mail_log"] = "openapiclient/model/mail_log.lua";
 		["openapiclient.model.mail_order"] = "openapiclient/model/mail_order.lua";
 		["openapiclient.model.send_mail"] = "openapiclient/model/send_mail.lua";
-		["openapiclient.model.send_mail_from"] = "openapiclient/model/send_mail_from.lua";
+		["openapiclient.model.send_mail_adv"] = "openapiclient/model/send_mail_adv.lua";
+		["openapiclient.model.send_mail_adv_from"] = "openapiclient/model/send_mail_adv_from.lua";
 	}
 }

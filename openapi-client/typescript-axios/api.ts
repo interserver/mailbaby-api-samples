@@ -154,76 +154,107 @@ export interface MailOrder {
  */
 export interface SendMail {
     /**
+     * The Contact whom is the primary recipient of this email.
+     * @type {string}
+     * @memberof SendMail
+     */
+    to?: string;
+    /**
+     * The contact whom is the this email is from.
+     * @type {string}
+     * @memberof SendMail
+     */
+    from?: string;
+    /**
      * The subject or title of the email
      * @type {string}
      * @memberof SendMail
      */
-    subject: string;
+    subject?: string;
     /**
      * The main email contents.
      * @type {string}
      * @memberof SendMail
      */
+    body?: string;
+}
+/**
+ * Details for an Email
+ * @export
+ * @interface SendMailAdv
+ */
+export interface SendMailAdv {
+    /**
+     * The subject or title of the email
+     * @type {string}
+     * @memberof SendMailAdv
+     */
+    subject: string;
+    /**
+     * The main email contents.
+     * @type {string}
+     * @memberof SendMailAdv
+     */
     body: string;
     /**
      * The contact whom is the this email is from.
-     * @type {Array<SendMailFrom>}
-     * @memberof SendMail
+     * @type {Array<SendMailAdvFrom>}
+     * @memberof SendMailAdv
      */
-    from: Array<SendMailFrom>;
+    from: Array<SendMailAdvFrom>;
     /**
      * The Contact whom is the primary recipient of this email.
      * @type {Array<MailContact>}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     to: Array<MailContact>;
     /**
      * The ID of the Mail order within our system to use as the Mail Account.
      * @type {number}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     id: number;
     /**
      * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
      * @type {Array<MailContact>}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     replyto?: Array<MailContact>;
     /**
      * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
      * @type {Array<MailContact>}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     cc?: Array<MailContact>;
     /**
      * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
      * @type {Array<MailContact>}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     bcc?: Array<MailContact>;
     /**
      * Optional file attachments to include in the email
      * @type {Array<MailAttachment>}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     attachments?: Array<MailAttachment>;
 }
 /**
  * An Email Contact
  * @export
- * @interface SendMailFrom
+ * @interface SendMailAdvFrom
  */
-export interface SendMailFrom {
+export interface SendMailAdvFrom {
     /**
      * The email address
      * @type {string}
-     * @memberof SendMailFrom
+     * @memberof SendMailAdvFrom
      */
     email: string;
     /**
      * Optional contact name
      * @type {string}
-     * @memberof SendMailFrom
+     * @memberof SendMailAdvFrom
      */
     name?: string;
 }
@@ -342,13 +373,13 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
          * @summary Sends an Email with Advanced Options
-         * @param {SendMail} sendMail 
+         * @param {SendMailAdv} sendMailAdv 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendAdvMailById: async (sendMail: SendMail, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'sendMail' is not null or undefined
-            assertParamExists('sendAdvMailById', 'sendMail', sendMail)
+        sendAdvMail: async (sendMailAdv: SendMailAdv, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'sendMailAdv' is not null or undefined
+            assertParamExists('sendAdvMail', 'sendMailAdv', sendMailAdv)
             const localVarPath = `/mail/advsend`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -371,7 +402,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(sendMail, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(sendMailAdv, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -385,9 +416,9 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById: async (sendMail: SendMail, options: any = {}): Promise<RequestArgs> => {
+        sendMail: async (sendMail: SendMail, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'sendMail' is not null or undefined
-            assertParamExists('sendMailById', 'sendMail', sendMail)
+            assertParamExists('sendMail', 'sendMail', sendMail)
             const localVarPath = `/mail/send`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -548,12 +579,12 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         /**
          * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
          * @summary Sends an Email with Advanced Options
-         * @param {SendMail} sendMail 
+         * @param {SendMailAdv} sendMailAdv 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendAdvMailById(sendMail: SendMail, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendAdvMailById(sendMail, options);
+        async sendAdvMail(sendMailAdv: SendMailAdv, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.sendAdvMail(sendMailAdv, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -563,8 +594,8 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendMailById(sendMail: SendMail, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendMailById(sendMail, options);
+        async sendMail(sendMail: SendMail, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.sendMail(sendMail, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -633,12 +664,12 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         /**
          * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
          * @summary Sends an Email with Advanced Options
-         * @param {SendMail} sendMail 
+         * @param {SendMailAdv} sendMailAdv 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendAdvMailById(sendMail: SendMail, options?: any): AxiosPromise<GenericResponse> {
-            return localVarFp.sendAdvMailById(sendMail, options).then((request) => request(axios, basePath));
+        sendAdvMail(sendMailAdv: SendMailAdv, options?: any): AxiosPromise<GenericResponse> {
+            return localVarFp.sendAdvMail(sendMailAdv, options).then((request) => request(axios, basePath));
         },
         /**
          * Sends An email through one of your mail orders.
@@ -647,8 +678,8 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailById(sendMail: SendMail, options?: any): AxiosPromise<GenericResponse> {
-            return localVarFp.sendMailById(sendMail, options).then((request) => request(axios, basePath));
+        sendMail(sendMail: SendMail, options?: any): AxiosPromise<GenericResponse> {
+            return localVarFp.sendMail(sendMail, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -720,13 +751,13 @@ export class DefaultApi extends BaseAPI {
     /**
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * @summary Sends an Email with Advanced Options
-     * @param {SendMail} sendMail 
+     * @param {SendMailAdv} sendMailAdv 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public sendAdvMailById(sendMail: SendMail, options?: any) {
-        return DefaultApiFp(this.configuration).sendAdvMailById(sendMail, options).then((request) => request(this.axios, this.basePath));
+    public sendAdvMail(sendMailAdv: SendMailAdv, options?: any) {
+        return DefaultApiFp(this.configuration).sendAdvMail(sendMailAdv, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -737,8 +768,8 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public sendMailById(sendMail: SendMail, options?: any) {
-        return DefaultApiFp(this.configuration).sendMailById(sendMail, options).then((request) => request(this.axios, this.basePath));
+    public sendMail(sendMail: SendMail, options?: any) {
+        return DefaultApiFp(this.configuration).sendMail(sendMail, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

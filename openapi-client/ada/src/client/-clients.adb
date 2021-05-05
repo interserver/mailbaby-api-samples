@@ -60,26 +60,27 @@ package body .Clients is
 
    --  Sends an Email with Advanced Options
    --  Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-   procedure Send_Adv_Mail_By_Id
+   procedure Send_Adv_Mail
       (Client : in out Client_Type;
-       Send_Mail_Type : in .Models.SendMail_Type;
+       Send_Mail_Adv_Type : in .Models.SendMailAdv_Type;
        Result : out .Models.GenericResponse_Type) is
       URI   : Swagger.Clients.URI_Type;
       Req   : Swagger.Clients.Request_Type;
       Reply : Swagger.Value_Type;
    begin
       Client.Set_Accept ((1 => Swagger.Clients.APPLICATION_JSON));
-      Client.Initialize (Req, (1 => Swagger.Clients.APPLICATION_JSON));
-      .Models.Serialize (Req.Stream, "", Send_Mail_Type);
+      Client.Initialize (Req, (Swagger.Clients.APPLICATION_JSON,
+                               Swagger.Clients.APPLICATION_X_WWW_FORM_URLENCODED));
+      .Models.Serialize (Req.Stream, "", Send_Mail_Adv_Type);
 
       URI.Set_Path ("/mail/advsend");
       Client.Call (Swagger.Clients.POST, URI, Req, Reply);
       .Models.Deserialize (Reply, "", Result);
-   end Send_Adv_Mail_By_Id;
+   end Send_Adv_Mail;
 
    --  Sends an Email
    --  Sends An email through one of your mail orders.
-   procedure Send_Mail_By_Id
+   procedure Send_Mail
       (Client : in out Client_Type;
        Send_Mail_Type : in .Models.SendMail_Type;
        Result : out .Models.GenericResponse_Type) is
@@ -95,7 +96,7 @@ package body .Clients is
       URI.Set_Path ("/mail/send");
       Client.Call (Swagger.Clients.POST, URI, Req, Reply);
       .Models.Deserialize (Reply, "", Result);
-   end Send_Mail_By_Id;
+   end Send_Mail;
 
    --  validatess order details before placing an order
    procedure Validate_Mail_Order

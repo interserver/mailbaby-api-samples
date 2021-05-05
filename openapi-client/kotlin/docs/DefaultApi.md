@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
+[**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 [**viewMailLogById**](DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -150,9 +150,9 @@ Configure apiKeyAuth:
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="sendAdvMailById"></a>
-# **sendAdvMailById**
-> GenericResponse sendAdvMailById(sendMail)
+<a name="sendAdvMail"></a>
+# **sendAdvMail**
+> GenericResponse sendAdvMail(sendMailAdv)
 
 Sends an Email with Advanced Options
 
@@ -165,15 +165,15 @@ Sends An email through one of your mail orders allowing additional options such 
 //import org.openapitools.client.models.*
 
 val apiInstance = DefaultApi()
-val sendMail : SendMail =  // SendMail | 
+val sendMailAdv : SendMailAdv =  // SendMailAdv | 
 try {
-    val result : GenericResponse = apiInstance.sendAdvMailById(sendMail)
+    val result : GenericResponse = apiInstance.sendAdvMail(sendMailAdv)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling DefaultApi#sendAdvMailById")
+    println("4xx response calling DefaultApi#sendAdvMail")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling DefaultApi#sendAdvMailById")
+    println("5xx response calling DefaultApi#sendAdvMail")
     e.printStackTrace()
 }
 ```
@@ -182,7 +182,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sendMail** | [**SendMail**](SendMail.md)|  |
+ **sendMailAdv** | [**SendMailAdv**](SendMailAdv.md)|  |
 
 ### Return type
 
@@ -197,12 +197,12 @@ Configure apiKeyAuth:
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
-<a name="sendMailById"></a>
-# **sendMailById**
-> GenericResponse sendMailById(sendMail)
+<a name="sendMail"></a>
+# **sendMail**
+> GenericResponse sendMail(sendMail)
 
 Sends an Email
 
@@ -217,13 +217,13 @@ Sends An email through one of your mail orders.
 val apiInstance = DefaultApi()
 val sendMail : SendMail =  // SendMail | 
 try {
-    val result : GenericResponse = apiInstance.sendMailById(sendMail)
+    val result : GenericResponse = apiInstance.sendMail(sendMail)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling DefaultApi#sendMailById")
+    println("4xx response calling DefaultApi#sendMail")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling DefaultApi#sendMailById")
+    println("5xx response calling DefaultApi#sendMail")
     e.printStackTrace()
 }
 ```

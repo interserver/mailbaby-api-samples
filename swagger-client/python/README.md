@@ -102,14 +102,14 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
-body = swagger_client.SendMail() # SendMail | 
+body = swagger_client.SendMailAdv() # SendMailAdv | 
 
 try:
     # Sends an Email with Advanced Options
-    api_response = api_instance.send_adv_mail_by_id(body)
+    api_response = api_instance.send_adv_mail(body)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->send_adv_mail_by_id: %s\n" % e)
+    print("Exception when calling DefaultApi->send_adv_mail: %s\n" % e)
 
 # Configure API key authorization: apiKeyAuth
 configuration = swagger_client.Configuration()
@@ -123,10 +123,10 @@ body = swagger_client.SendMail() # SendMail |
 
 try:
     # Sends an Email
-    api_response = api_instance.send_mail_by_id(body)
+    api_response = api_instance.send_mail(body)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->send_mail_by_id: %s\n" % e)
+    print("Exception when calling DefaultApi->send_mail: %s\n" % e)
 
 # Configure API key authorization: apiKeyAuth
 configuration = swagger_client.Configuration()
@@ -173,8 +173,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_mail_orders**](docs/DefaultApi.md#get_mail_orders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**ping_server**](docs/DefaultApi.md#ping_server) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**place_mail_order**](docs/DefaultApi.md#place_mail_order) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**send_adv_mail_by_id**](docs/DefaultApi.md#send_adv_mail_by_id) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**send_mail_by_id**](docs/DefaultApi.md#send_mail_by_id) | **POST** /mail/send | Sends an Email
+*DefaultApi* | [**send_adv_mail**](docs/DefaultApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**send_mail**](docs/DefaultApi.md#send_mail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validate_mail_order**](docs/DefaultApi.md#validate_mail_order) | **GET** /mail/order | validatess order details before placing an order
 *DefaultApi* | [**view_mail_log_by_id**](docs/DefaultApi.md#view_mail_log_by_id) | **GET** /mail/log | displays the mail log
 
@@ -188,7 +188,8 @@ Class | Method | HTTP request | Description
  - [MailOrder](docs/MailOrder.md)
  - [MailOrders](docs/MailOrders.md)
  - [SendMail](docs/SendMail.md)
- - [SendMailFrom](docs/SendMailFrom.md)
+ - [SendMailAdv](docs/SendMailAdv.md)
+ - [SendMailAdvFrom](docs/SendMailAdvFrom.md)
 
 ## Documentation For Authorization
 

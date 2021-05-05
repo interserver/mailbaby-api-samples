@@ -244,7 +244,7 @@ Sends an Email with Advanced Options
 
 No description available.
 
-.PARAMETER SendMail
+.PARAMETER SendMailAdv
 No description available.
 
 .PARAMETER WithHttpInfo
@@ -255,18 +255,18 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 GenericResponse
 #>
-function Send-AdvMailById {
+function Send-AdvMail {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
-        ${SendMail},
+        ${SendMailAdv},
         [Switch]
         $WithHttpInfo
     )
 
     Process {
-        'Calling method: Send-AdvMailById' | Write-Debug
+        'Calling method: Send-AdvMail' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -283,15 +283,15 @@ function Send-AdvMailById {
         $LocalVarAccepts = @('application/json')
 
         # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json')
+        $LocalVarContentTypes = @('application/json', 'application/x-www-form-urlencoded')
 
         $LocalVarUri = '/mail/advsend'
 
-        if (!$SendMail) {
-            throw "Error! The required parameter `SendMail` missing when calling sendAdvMailById."
+        if (!$SendMailAdv) {
+            throw "Error! The required parameter `SendMailAdv` missing when calling sendAdvMail."
         }
 
-        $LocalVarBodyParameter = $SendMail | ConvertTo-Json -Depth 100
+        $LocalVarBodyParameter = $SendMailAdv | ConvertTo-Json -Depth 100
 
         if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
             $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]
@@ -338,7 +338,7 @@ A switch when turned on will return a hash table of Response, StatusCode and Hea
 
 GenericResponse
 #>
-function Send-MailById {
+function Send-Mail {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -349,7 +349,7 @@ function Send-MailById {
     )
 
     Process {
-        'Calling method: Send-MailById' | Write-Debug
+        'Calling method: Send-Mail' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
 
         $LocalVarAccepts = @()
@@ -371,7 +371,7 @@ function Send-MailById {
         $LocalVarUri = '/mail/send'
 
         if (!$SendMail) {
-            throw "Error! The required parameter `SendMail` missing when calling sendMailById."
+            throw "Error! The required parameter `SendMail` missing when calling sendMail."
         }
 
         $LocalVarBodyParameter = $SendMail | ConvertTo-Json -Depth 100

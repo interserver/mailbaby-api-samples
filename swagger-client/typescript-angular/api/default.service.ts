@@ -25,7 +25,8 @@ import { MailLog } from '../model/mailLog';
 import { MailOrder } from '../model/mailOrder';
 import { MailOrders } from '../model/mailOrders';
 import { SendMail } from '../model/sendMail';
-import { SendMailFrom } from '../model/sendMailFrom';
+import { SendMailAdv } from '../model/sendMailAdv';
+import { SendMailAdvFrom } from '../model/sendMailAdvFrom';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -205,65 +206,13 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendAdvMailById(body: SendMail, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
-    public sendAdvMailById(body: SendMail, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
-    public sendAdvMailById(body: SendMail, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
-    public sendAdvMailById(body: SendMail, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public sendAdvMail(body: SendMailAdv, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
+    public sendAdvMail(body: SendMailAdv, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
+    public sendAdvMail(body: SendMailAdv, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
+    public sendAdvMail(body: SendMailAdv, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling sendAdvMailById.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (apiKeyAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-KEY"]) {
-            headers = headers.set('X-API-KEY', this.configuration.apiKeys["X-API-KEY"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
-
-        return this.httpClient.request<GenericResponse>('post',`${this.basePath}/mail/advsend`,
-            {
-                body: body,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Sends an Email
-     * Sends An email through one of your mail orders.
-     * @param body 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public sendMailById(body: SendMail, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
-    public sendMailById(body: SendMail, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
-    public sendMailById(body: SendMail, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
-    public sendMailById(body: SendMail, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling sendMailById.');
+            throw new Error('Required parameter body was null or undefined when calling sendAdvMail.');
         }
 
         let headers = this.defaultHeaders;
@@ -292,7 +241,7 @@ export class DefaultService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<GenericResponse>('post',`${this.basePath}/mail/send`,
+        return this.httpClient.request<GenericResponse>('post',`${this.basePath}/mail/advsend`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -304,8 +253,8 @@ export class DefaultService {
     }
 
     /**
-     * Sends an Email
-     * Sends An email through one of your mail orders.
+     * Sends an Email with Advanced Options
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * @param subject 
      * @param body 
      * @param from 
@@ -318,45 +267,45 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendMailByIdForm(subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
-    public sendMailByIdForm(subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
-    public sendMailByIdForm(subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
-    public sendMailByIdForm(subject: string, body: string, from: Array<SendMailFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public sendAdvMailForm(subject: string, body: string, from: Array<SendMailAdvFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
+    public sendAdvMailForm(subject: string, body: string, from: Array<SendMailAdvFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
+    public sendAdvMailForm(subject: string, body: string, from: Array<SendMailAdvFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
+    public sendAdvMailForm(subject: string, body: string, from: Array<SendMailAdvFrom>, to: Array<MailContact>, id: number, replyto: Array<MailContact>, cc: Array<MailContact>, bcc: Array<MailContact>, attachments: Array<MailAttachment>, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (subject === null || subject === undefined) {
-            throw new Error('Required parameter subject was null or undefined when calling sendMailById.');
+            throw new Error('Required parameter subject was null or undefined when calling sendAdvMail.');
         }
 
         if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling sendMailById.');
+            throw new Error('Required parameter body was null or undefined when calling sendAdvMail.');
         }
 
         if (from === null || from === undefined) {
-            throw new Error('Required parameter from was null or undefined when calling sendMailById.');
+            throw new Error('Required parameter from was null or undefined when calling sendAdvMail.');
         }
 
         if (to === null || to === undefined) {
-            throw new Error('Required parameter to was null or undefined when calling sendMailById.');
+            throw new Error('Required parameter to was null or undefined when calling sendAdvMail.');
         }
 
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling sendMailById.');
+            throw new Error('Required parameter id was null or undefined when calling sendAdvMail.');
         }
 
         if (replyto === null || replyto === undefined) {
-            throw new Error('Required parameter replyto was null or undefined when calling sendMailById.');
+            throw new Error('Required parameter replyto was null or undefined when calling sendAdvMail.');
         }
 
         if (cc === null || cc === undefined) {
-            throw new Error('Required parameter cc was null or undefined when calling sendMailById.');
+            throw new Error('Required parameter cc was null or undefined when calling sendAdvMail.');
         }
 
         if (bcc === null || bcc === undefined) {
-            throw new Error('Required parameter bcc was null or undefined when calling sendMailById.');
+            throw new Error('Required parameter bcc was null or undefined when calling sendAdvMail.');
         }
 
         if (attachments === null || attachments === undefined) {
-            throw new Error('Required parameter attachments was null or undefined when calling sendMailById.');
+            throw new Error('Required parameter attachments was null or undefined when calling sendAdvMail.');
         }
 
         let headers = this.defaultHeaders;
@@ -430,6 +379,147 @@ export class DefaultService {
             attachments.forEach((element) => {
                 formParams = formParams.append('attachments', <any>element) as any || formParams;
             })
+        }
+
+        return this.httpClient.request<GenericResponse>('post',`${this.basePath}/mail/advsend`,
+            {
+                body: convertFormParamsToString ? formParams.toString() : formParams,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Sends an Email
+     * Sends An email through one of your mail orders.
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public sendMail(body: SendMail, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
+    public sendMail(body: SendMail, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
+    public sendMail(body: SendMail, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
+    public sendMail(body: SendMail, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling sendMail.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (apiKeyAuth) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-KEY"]) {
+            headers = headers.set('X-API-KEY', this.configuration.apiKeys["X-API-KEY"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'application/x-www-form-urlencoded'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<GenericResponse>('post',`${this.basePath}/mail/send`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Sends an Email
+     * Sends An email through one of your mail orders.
+     * @param to 
+     * @param from 
+     * @param subject 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public sendMailForm(to: string, from: string, subject: string, body: string, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
+    public sendMailForm(to: string, from: string, subject: string, body: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
+    public sendMailForm(to: string, from: string, subject: string, body: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
+    public sendMailForm(to: string, from: string, subject: string, body: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (to === null || to === undefined) {
+            throw new Error('Required parameter to was null or undefined when calling sendMail.');
+        }
+
+        if (from === null || from === undefined) {
+            throw new Error('Required parameter from was null or undefined when calling sendMail.');
+        }
+
+        if (subject === null || subject === undefined) {
+            throw new Error('Required parameter subject was null or undefined when calling sendMail.');
+        }
+
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling sendMail.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (apiKeyAuth) required
+        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-KEY"]) {
+            headers = headers.set('X-API-KEY', this.configuration.apiKeys["X-API-KEY"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'application/x-www-form-urlencoded'
+        ];
+
+        const canConsumeForm = this.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): void; };
+        let useForm = false;
+        let convertFormParamsToString = false;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        }
+
+        if (to !== undefined) {
+            formParams = formParams.append('to', <any>to) as any || formParams;
+        }
+        if (from !== undefined) {
+            formParams = formParams.append('from', <any>from) as any || formParams;
+        }
+        if (subject !== undefined) {
+            formParams = formParams.append('subject', <any>subject) as any || formParams;
+        }
+        if (body !== undefined) {
+            formParams = formParams.append('body', <any>body) as any || formParams;
         }
 
         return this.httpClient.request<GenericResponse>('post',`${this.basePath}/mail/send`,

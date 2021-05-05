@@ -2,7 +2,7 @@
 
 Mail Baby API
 - API version: 1.0.0
-  - Build date: 2021-05-05T04:27:36.900025-04:00[America/New_York]
+  - Build date: 2021-05-05T06:27:09.981485-04:00[America/New_York]
 
 This is an API defintion for accesssing the Mail.Baby mail service.
 
@@ -118,8 +118,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getMailOrders**](docs/DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**pingServer**](docs/DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**placeMailOrder**](docs/DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**sendAdvMailById**](docs/DefaultApi.md#sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMailById**](docs/DefaultApi.md#sendMailById) | **POST** /mail/send | Sends an Email
+*DefaultApi* | [**sendAdvMail**](docs/DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**sendMail**](docs/DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](docs/DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 *DefaultApi* | [**viewMailLogById**](docs/DefaultApi.md#viewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -133,7 +133,8 @@ Class | Method | HTTP request | Description
  - [MailLog](docs/MailLog.md)
  - [MailOrder](docs/MailOrder.md)
  - [SendMail](docs/SendMail.md)
- - [SendMailFrom](docs/SendMailFrom.md)
+ - [SendMailAdv](docs/SendMailAdv.md)
+ - [SendMailAdvFrom](docs/SendMailAdvFrom.md)
 
 
 ## Documentation for Authorization

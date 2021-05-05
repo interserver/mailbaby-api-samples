@@ -208,57 +208,89 @@ export type MailOrder = {
  */
 export type SendMail = {
     /**
+     * The Contact whom is the primary recipient of this email.
+     * @type {string}
+     * @memberof SendMail
+     */
+    to?: string;
+    /**
+     * The contact whom is the this email is from.
+     * @type {string}
+     * @memberof SendMail
+     */
+    from?: string;
+    /**
      * The subject or title of the email
      * @type {string}
      * @memberof SendMail
      */
-    subject: string;
+    subject?: string;
     /**
      * The main email contents.
      * @type {string}
      * @memberof SendMail
      */
+    body?: string;
+}
+
+
+/**
+ * Details for an Email
+ * @export
+ */
+export type SendMailAdv = {
+    /**
+     * The subject or title of the email
+     * @type {string}
+     * @memberof SendMailAdv
+     */
+    subject: string;
+    /**
+     * The main email contents.
+     * @type {string}
+     * @memberof SendMailAdv
+     */
     body: string;
     /**
      * The contact whom is the this email is from.
-     * @type {Array<SendMailFrom>}
-     * @memberof SendMail
+     * @type {Array<SendMailAdvFrom>}
+     * @memberof SendMailAdv
      */
-    from: Array<SendMailFrom>;
+    from: Array<SendMailAdvFrom>;
     /**
      * The Contact whom is the primary recipient of this email.
      * @type {Array<MailContact>}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     to: Array<MailContact>;
     /**
      * The ID of the Mail order within our system to use as the Mail Account.
      * @type {number}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     id: number;
     /**
      * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
      * @type {Array<MailContact>}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     replyto?: Array<MailContact>;
     /**
      * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
      * @type {Array<MailContact>}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     cc?: Array<MailContact>;
     /**
      * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
      * @type {Array<MailContact>}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     bcc?: Array<MailContact>;
     /**
      * Optional file attachments to include in the email
      * @type {Array<MailAttachment>}
-     * @memberof SendMail
+     * @memberof SendMailAdv
      */
     attachments?: Array<MailAttachment>;
 }
@@ -268,17 +300,17 @@ export type SendMail = {
  * An Email Contact
  * @export
  */
-export type SendMailFrom = {
+export type SendMailAdvFrom = {
     /**
      * The email address
      * @type {string}
-     * @memberof SendMailFrom
+     * @memberof SendMailAdvFrom
      */
     email: string;
     /**
      * Optional contact name
      * @type {string}
-     * @memberof SendMailFrom
+     * @memberof SendMailAdvFrom
      */
     name?: string;
 }
@@ -387,10 +419,10 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * @summary Sends an Email with Advanced Options
          * @throws {RequiredError}
          */
-        sendAdvMailById(sendMail: SendMail, options: RequestOptions): FetchArgs {
-            // verify required parameter 'sendMail' is not null or undefined
-            if (sendMail === null || sendMail === undefined) {
-                throw new RequiredError('sendMail','Required parameter sendMail was null or undefined when calling sendAdvMailById.');
+        sendAdvMail(sendMailAdv: SendMailAdv, options: RequestOptions): FetchArgs {
+            // verify required parameter 'sendMailAdv' is not null or undefined
+            if (sendMailAdv === null || sendMailAdv === undefined) {
+                throw new RequiredError('sendMailAdv','Required parameter sendMailAdv was null or undefined when calling sendAdvMail.');
             }
             const localVarPath = `/mail/advsend`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -412,8 +444,8 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             localVarUrlObj.search = null;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (typeof sendMail !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(sendMail != null ? sendMail : {}) : (((sendMail:any):string) || "");
+            const needsSerialization = (typeof sendMailAdv !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(sendMailAdv != null ? sendMailAdv : {}) : (((sendMailAdv:any):string) || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -425,10 +457,10 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
          * @summary Sends an Email
          * @throws {RequiredError}
          */
-        sendMailById(sendMail: SendMail, options: RequestOptions): FetchArgs {
+        sendMail(sendMail: SendMail, options: RequestOptions): FetchArgs {
             // verify required parameter 'sendMail' is not null or undefined
             if (sendMail === null || sendMail === undefined) {
-                throw new RequiredError('sendMail','Required parameter sendMail was null or undefined when calling sendMailById.');
+                throw new RequiredError('sendMail','Required parameter sendMail was null or undefined when calling sendMail.');
             }
             const localVarPath = `/mail/send`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -544,9 +576,9 @@ export type DefaultApiType = {
 
     placeMailOrder(mailOrder?: MailOrder, options?: RequestOptions): Promise<Response>,
 
-    sendAdvMailById(sendMail: SendMail, options?: RequestOptions): Promise<GenericResponse>,
+    sendAdvMail(sendMailAdv: SendMailAdv, options?: RequestOptions): Promise<GenericResponse>,
 
-    sendMailById(sendMail: SendMail, options?: RequestOptions): Promise<GenericResponse>,
+    sendMail(sendMail: SendMail, options?: RequestOptions): Promise<GenericResponse>,
 
     validateMailOrder(options?: RequestOptions): Promise<Response>,
 
@@ -610,8 +642,8 @@ export const DefaultApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary Sends an Email with Advanced Options
          * @throws {RequiredError}
          */
-        sendAdvMailById(sendMail: SendMail, options?: RequestOptions = {}): Promise<GenericResponse> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendAdvMailById(sendMail, options);
+        sendAdvMail(sendMailAdv: SendMailAdv, options?: RequestOptions = {}): Promise<GenericResponse> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendAdvMail(sendMailAdv, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();
@@ -625,8 +657,8 @@ export const DefaultApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary Sends an Email
          * @throws {RequiredError}
          */
-        sendMailById(sendMail: SendMail, options?: RequestOptions = {}): Promise<GenericResponse> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMailById(sendMail, options);
+        sendMail(sendMail: SendMail, options?: RequestOptions = {}): Promise<GenericResponse> {
+            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMail(sendMail, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();

@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**get_mail_orders**](DefaultApi.md#get_mail_orders) | **get** /mail | displays a list of mail service orders
 [**ping_server**](DefaultApi.md#ping_server) | **get** /ping | Checks if the server is running
 [**place_mail_order**](DefaultApi.md#place_mail_order) | **post** /mail/order | places a mail order
-[**send_adv_mail_by_id**](DefaultApi.md#send_adv_mail_by_id) | **post** /mail/advsend | Sends an Email with Advanced Options
-[**send_mail_by_id**](DefaultApi.md#send_mail_by_id) | **post** /mail/send | Sends an Email
+[**send_adv_mail**](DefaultApi.md#send_adv_mail) | **post** /mail/advsend | Sends an Email with Advanced Options
+[**send_mail**](DefaultApi.md#send_mail) | **post** /mail/send | Sends an Email
 [**validate_mail_order**](DefaultApi.md#validate_mail_order) | **get** /mail/order | validatess order details before placing an order
 [**view_mail_log_by_id**](DefaultApi.md#view_mail_log_by_id) | **get** /mail/log | displays the mail log
 
@@ -97,9 +97,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## send_adv_mail_by_id
+## send_adv_mail
 
-> crate::models::GenericResponse send_adv_mail_by_id(send_mail)
+> crate::models::GenericResponse send_adv_mail(send_mail_adv)
 Sends an Email with Advanced Options
 
 Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
@@ -109,7 +109,7 @@ Sends An email through one of your mail orders allowing additional options such 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**send_mail** | [**SendMail**](SendMail.md) |  | [required] |
+**send_mail_adv** | [**SendMailAdv**](SendMailAdv.md) |  | [required] |
 
 ### Return type
 
@@ -121,15 +121,15 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/json, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## send_mail_by_id
+## send_mail
 
-> crate::models::GenericResponse send_mail_by_id(send_mail)
+> crate::models::GenericResponse send_mail(send_mail)
 Sends an Email
 
 Sends An email through one of your mail orders.

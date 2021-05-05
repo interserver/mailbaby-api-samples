@@ -68,8 +68,8 @@ Category | Method | HTTP request | Description
 *DefaultAPI* | [**DefaultAPI_getMailOrders**](docs/DefaultAPI.md#DefaultAPI_getMailOrders) | **GET** /mail | displays a list of mail service orders
 *DefaultAPI* | [**DefaultAPI_pingServer**](docs/DefaultAPI.md#DefaultAPI_pingServer) | **GET** /ping | Checks if the server is running
 *DefaultAPI* | [**DefaultAPI_placeMailOrder**](docs/DefaultAPI.md#DefaultAPI_placeMailOrder) | **POST** /mail/order | places a mail order
-*DefaultAPI* | [**DefaultAPI_sendAdvMailById**](docs/DefaultAPI.md#DefaultAPI_sendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultAPI* | [**DefaultAPI_sendMailById**](docs/DefaultAPI.md#DefaultAPI_sendMailById) | **POST** /mail/send | Sends an Email
+*DefaultAPI* | [**DefaultAPI_sendAdvMail**](docs/DefaultAPI.md#DefaultAPI_sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultAPI* | [**DefaultAPI_sendMail**](docs/DefaultAPI.md#DefaultAPI_sendMail) | **POST** /mail/send | Sends an Email
 *DefaultAPI* | [**DefaultAPI_validateMailOrder**](docs/DefaultAPI.md#DefaultAPI_validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 *DefaultAPI* | [**DefaultAPI_viewMailLogById**](docs/DefaultAPI.md#DefaultAPI_viewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -83,7 +83,8 @@ Category | Method | HTTP request | Description
  - [mail_log_t](docs/mail_log.md)
  - [mail_order_t](docs/mail_order.md)
  - [send_mail_t](docs/send_mail.md)
- - [send_mail_from_t](docs/send_mail_from.md)
+ - [send_mail_adv_t](docs/send_mail_adv.md)
+ - [send_mail_adv_from_t](docs/send_mail_adv_from.md)
 
 
 ## Documentation for Authorization

@@ -10,7 +10,8 @@ import { MailContact } from '../models/MailContact';
 import { MailLog } from '../models/MailLog';
 import { MailOrder } from '../models/MailOrder';
 import { SendMail } from '../models/SendMail';
-import { SendMailFrom } from '../models/SendMailFrom';
+import { SendMailAdv } from '../models/SendMailAdv';
+import { SendMailAdvFrom } from '../models/SendMailAdvFrom';
 
 import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
 export class ObservableDefaultApi {
@@ -100,10 +101,10 @@ export class ObservableDefaultApi {
     /**
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * Sends an Email with Advanced Options
-     * @param sendMail 
+     * @param sendMailAdv 
      */
-    public sendAdvMailById(sendMail: SendMail, options?: Configuration): Observable<GenericResponse> {
-        const requestContextPromise = this.requestFactory.sendAdvMailById(sendMail, options);
+    public sendAdvMail(sendMailAdv: SendMailAdv, options?: Configuration): Observable<GenericResponse> {
+        const requestContextPromise = this.requestFactory.sendAdvMail(sendMailAdv, options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -117,7 +118,7 @@ export class ObservableDefaultApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.sendAdvMailById(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.sendAdvMail(rsp)));
             }));
     }
  
@@ -126,8 +127,8 @@ export class ObservableDefaultApi {
      * Sends an Email
      * @param sendMail 
      */
-    public sendMailById(sendMail: SendMail, options?: Configuration): Observable<GenericResponse> {
-        const requestContextPromise = this.requestFactory.sendMailById(sendMail, options);
+    public sendMail(sendMail: SendMail, options?: Configuration): Observable<GenericResponse> {
+        const requestContextPromise = this.requestFactory.sendMail(sendMail, options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -141,7 +142,7 @@ export class ObservableDefaultApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.sendMailById(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.sendMail(rsp)));
             }));
     }
  

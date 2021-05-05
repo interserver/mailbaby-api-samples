@@ -76,16 +76,9 @@ class SendMailTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "subject"
+     * Test attribute "to"
      */
-    public function testPropertySubject()
-    {
-    }
-
-    /**
-     * Test attribute "body"
-     */
-    public function testPropertyBody()
+    public function testPropertyTo()
     {
     }
 
@@ -97,44 +90,16 @@ class SendMailTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "to"
+     * Test attribute "subject"
      */
-    public function testPropertyTo()
+    public function testPropertySubject()
     {
     }
 
     /**
-     * Test attribute "id"
+     * Test attribute "body"
      */
-    public function testPropertyId()
-    {
-    }
-
-    /**
-     * Test attribute "replyto"
-     */
-    public function testPropertyReplyto()
-    {
-    }
-
-    /**
-     * Test attribute "cc"
-     */
-    public function testPropertyCc()
-    {
-    }
-
-    /**
-     * Test attribute "bcc"
-     */
-    public function testPropertyBcc()
-    {
-    }
-
-    /**
-     * Test attribute "attachments"
-     */
-    public function testPropertyAttachments()
+    public function testPropertyBody()
     {
     }
 }

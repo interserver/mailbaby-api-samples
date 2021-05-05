@@ -22,29 +22,19 @@ send_mail_t* instantiate_send_mail(int include_optional) {
   send_mail_t* send_mail = NULL;
   if (include_optional) {
     send_mail = send_mail_create(
+      "johndoe@company.com",
+      "johndoe@company.com",
       "Your Package has been Delivered!",
       "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-",
-      list_create(),
-      list_create(),
-      5000,
-      list_create(),
-      list_create(),
-      list_create(),
-      list_create()
+"
     );
   } else {
     send_mail = send_mail_create(
+      "johndoe@company.com",
+      "johndoe@company.com",
       "Your Package has been Delivered!",
       "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-",
-      list_create(),
-      list_create(),
-      5000,
-      list_create(),
-      list_create(),
-      list_create(),
-      list_create()
+"
     );
   }
 

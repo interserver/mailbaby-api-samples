@@ -5,6 +5,7 @@ import org.openapitools.model.GenericResponse;
 import org.openapitools.model.MailLog;
 import org.openapitools.model.MailOrder;
 import org.openapitools.model.SendMail;
+import org.openapitools.model.SendMailAdv;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -82,7 +83,7 @@ public interface DefaultApi  {
      */
     @POST
     @Path("/mail/advsend")
-    @Consumes({ "application/json" })
+    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
     @Produces({ "application/json" })
     @ApiOperation(value = "Sends an Email with Advanced Options", tags={  })
     @ApiResponses(value = { 
@@ -90,7 +91,7 @@ public interface DefaultApi  {
         @ApiResponse(code = 400, message = "bad input parameter"),
         @ApiResponse(code = 401, message = "Unauthorized", response = ErrorResponse.class),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = ErrorResponse.class) })
-    public GenericResponse sendAdvMailById(SendMail sendMail);
+    public GenericResponse sendAdvMail(SendMailAdv sendMailAdv);
 
     /**
      * Sends an Email
@@ -108,7 +109,7 @@ public interface DefaultApi  {
         @ApiResponse(code = 400, message = "bad input parameter"),
         @ApiResponse(code = 401, message = "Unauthorized", response = ErrorResponse.class),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = ErrorResponse.class) })
-    public GenericResponse sendMailById(SendMail sendMail);
+    public GenericResponse sendMail(SendMail sendMail);
 
     /**
      * validatess order details before placing an order

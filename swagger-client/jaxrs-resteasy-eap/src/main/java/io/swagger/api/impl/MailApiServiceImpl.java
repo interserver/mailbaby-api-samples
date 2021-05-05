@@ -11,7 +11,8 @@ import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailOrders;
 import io.swagger.model.SendMail;
-import io.swagger.model.SendMailFrom;
+import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailAdvFrom;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T04:29:58.444271-04:00[America/New_York]")public class MailApiServiceImpl implements MailApi {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T06:29:32.227003-04:00[America/New_York]")public class MailApiServiceImpl implements MailApi {
       public Response getMailOrders(Long id,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
@@ -29,15 +30,19 @@ import javax.ws.rs.core.SecurityContext;
       // do some magic!
       return Response.ok().build();
   }
-      public Response sendAdvMailById(SendMail body,SecurityContext securityContext) {
+      public Response sendAdvMail(SendMailAdv body,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }
-      public Response sendMailById(SendMail body,SecurityContext securityContext) {
+      public Response sendAdvMail(String subject,String body,List<SendMailAdvFrom> from,List<MailContact> to,Long id,List<MailContact> replyto,List<MailContact> cc,List<MailContact> bcc,List<MailAttachment> attachments,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }
-      public Response sendMailById(String subject,String body,List<SendMailFrom> from,List<MailContact> to,Long id,List<MailContact> replyto,List<MailContact> cc,List<MailContact> bcc,List<MailAttachment> attachments,SecurityContext securityContext) {
+      public Response sendMail(SendMail body,SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().build();
+  }
+      public Response sendMail(String to,String from,String subject,String body,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }

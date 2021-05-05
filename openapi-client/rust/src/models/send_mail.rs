@@ -14,48 +14,28 @@
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SendMail {
-    /// The subject or title of the email
-    #[serde(rename = "subject")]
-    pub subject: String,
-    /// The main email contents.
-    #[serde(rename = "body")]
-    pub body: String,
-    /// The contact whom is the this email is from.
-    #[serde(rename = "from")]
-    pub from: Vec<crate::models::SendMailFrom>,
     /// The Contact whom is the primary recipient of this email.
-    #[serde(rename = "to")]
-    pub to: Vec<crate::models::MailContact>,
-    /// The ID of the Mail order within our system to use as the Mail Account.
-    #[serde(rename = "id")]
-    pub id: i64,
-    /// Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-    #[serde(rename = "replyto", skip_serializing_if = "Option::is_none")]
-    pub replyto: Option<Vec<crate::models::MailContact>>,
-    /// Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-    #[serde(rename = "cc", skip_serializing_if = "Option::is_none")]
-    pub cc: Option<Vec<crate::models::MailContact>>,
-    /// Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-    #[serde(rename = "bcc", skip_serializing_if = "Option::is_none")]
-    pub bcc: Option<Vec<crate::models::MailContact>>,
-    /// Optional file attachments to include in the email
-    #[serde(rename = "attachments", skip_serializing_if = "Option::is_none")]
-    pub attachments: Option<Vec<crate::models::MailAttachment>>,
+    #[serde(rename = "to", skip_serializing_if = "Option::is_none")]
+    pub to: Option<String>,
+    /// The contact whom is the this email is from.
+    #[serde(rename = "from", skip_serializing_if = "Option::is_none")]
+    pub from: Option<String>,
+    /// The subject or title of the email
+    #[serde(rename = "subject", skip_serializing_if = "Option::is_none")]
+    pub subject: Option<String>,
+    /// The main email contents.
+    #[serde(rename = "body", skip_serializing_if = "Option::is_none")]
+    pub body: Option<String>,
 }
 
 impl SendMail {
     /// Details for an Email
-    pub fn new(subject: String, body: String, from: Vec<crate::models::SendMailFrom>, to: Vec<crate::models::MailContact>, id: i64) -> SendMail {
+    pub fn new() -> SendMail {
         SendMail {
-            subject,
-            body,
-            from,
-            to,
-            id,
-            replyto: None,
-            cc: None,
-            bcc: None,
-            attachments: None,
+            to: None,
+            from: None,
+            subject: None,
+            body: None,
         }
     }
 }

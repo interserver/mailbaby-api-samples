@@ -12,16 +12,17 @@ part of openapi.api;
 class SendMail {
   /// Returns a new [SendMail] instance.
   SendMail({
-    @required this.subject,
-    @required this.body,
-    this.from = const [],
-    this.to = const [],
-    @required this.id,
-    this.replyto = const [],
-    this.cc = const [],
-    this.bcc = const [],
-    this.attachments = const [],
+    this.to,
+    this.from,
+    this.subject,
+    this.body,
   });
+
+  /// The Contact whom is the primary recipient of this email.
+  String to;
+
+  /// The contact whom is the this email is from.
+  String from;
 
   /// The subject or title of the email
   String subject;
@@ -29,72 +30,36 @@ class SendMail {
   /// The main email contents.
   String body;
 
-  /// The contact whom is the this email is from.
-  List<SendMailFrom> from;
-
-  /// The Contact whom is the primary recipient of this email.
-  List<MailContact> to;
-
-  /// The ID of the Mail order within our system to use as the Mail Account.
-  int id;
-
-  /// Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-  List<MailContact> replyto;
-
-  /// Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-  List<MailContact> cc;
-
-  /// Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-  List<MailContact> bcc;
-
-  /// Optional file attachments to include in the email
-  List<MailAttachment> attachments;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is SendMail &&
-     other.subject == subject &&
-     other.body == body &&
-     other.from == from &&
      other.to == to &&
-     other.id == id &&
-     other.replyto == replyto &&
-     other.cc == cc &&
-     other.bcc == bcc &&
-     other.attachments == attachments;
+     other.from == from &&
+     other.subject == subject &&
+     other.body == body;
 
   @override
   int get hashCode =>
-    (subject == null ? 0 : subject.hashCode) +
-    (body == null ? 0 : body.hashCode) +
-    (from == null ? 0 : from.hashCode) +
     (to == null ? 0 : to.hashCode) +
-    (id == null ? 0 : id.hashCode) +
-    (replyto == null ? 0 : replyto.hashCode) +
-    (cc == null ? 0 : cc.hashCode) +
-    (bcc == null ? 0 : bcc.hashCode) +
-    (attachments == null ? 0 : attachments.hashCode);
+    (from == null ? 0 : from.hashCode) +
+    (subject == null ? 0 : subject.hashCode) +
+    (body == null ? 0 : body.hashCode);
 
   @override
-  String toString() => 'SendMail[subject=$subject, body=$body, from=$from, to=$to, id=$id, replyto=$replyto, cc=$cc, bcc=$bcc, attachments=$attachments]';
+  String toString() => 'SendMail[to=$to, from=$from, subject=$subject, body=$body]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'subject'] = subject;
-      json[r'body'] = body;
-      json[r'from'] = from;
+    if (to != null) {
       json[r'to'] = to;
-      json[r'id'] = id;
-    if (replyto != null) {
-      json[r'replyto'] = replyto;
     }
-    if (cc != null) {
-      json[r'cc'] = cc;
+    if (from != null) {
+      json[r'from'] = from;
     }
-    if (bcc != null) {
-      json[r'bcc'] = bcc;
+    if (subject != null) {
+      json[r'subject'] = subject;
     }
-    if (attachments != null) {
-      json[r'attachments'] = attachments;
+    if (body != null) {
+      json[r'body'] = body;
     }
     return json;
   }
@@ -104,15 +69,10 @@ class SendMail {
   static SendMail fromJson(Map<String, dynamic> json) => json == null
     ? null
     : SendMail(
+        to: json[r'to'],
+        from: json[r'from'],
         subject: json[r'subject'],
         body: json[r'body'],
-        from: SendMailFrom.listFromJson(json[r'from']),
-        to: MailContact.listFromJson(json[r'to']),
-        id: json[r'id'],
-        replyto: MailContact.listFromJson(json[r'replyto']),
-        cc: MailContact.listFromJson(json[r'cc']),
-        bcc: MailContact.listFromJson(json[r'bcc']),
-        attachments: MailAttachment.listFromJson(json[r'attachments']),
     );
 
   static List<SendMail> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>

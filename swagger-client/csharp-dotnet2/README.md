@@ -111,17 +111,17 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var body = new SendMail(); // SendMail | 
+            var body = new SendMailAdv(); // SendMailAdv | 
 
             try
             {
                 // Sends an Email with Advanced Options
-                GenericResponse result = apiInstance.SendAdvMailById(body);
+                GenericResponse result = apiInstance.SendAdvMail(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.SendAdvMailById: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.SendAdvMail: " + e.Message );
             }
         }
     }
@@ -137,12 +137,12 @@ namespace Example
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.SendMailById(body);
+                GenericResponse result = apiInstance.SendMail(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.SendMailById: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.SendMail: " + e.Message );
             }
         }
     }
@@ -202,8 +202,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**GetMailOrders**](docs/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**PingServer**](docs/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**PlaceMailOrder**](docs/DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**SendAdvMailById**](docs/DefaultApi.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**SendMailById**](docs/DefaultApi.md#sendmailbyid) | **POST** /mail/send | Sends an Email
+*DefaultApi* | [**SendAdvMail**](docs/DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**SendMail**](docs/DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**ValidateMailOrder**](docs/DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
 *DefaultApi* | [**ViewMailLogById**](docs/DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
@@ -218,7 +218,8 @@ Class | Method | HTTP request | Description
  - [IO.Swagger.Model.MailOrder](docs/MailOrder.md)
  - [IO.Swagger.Model.MailOrders](docs/MailOrders.md)
  - [IO.Swagger.Model.SendMail](docs/SendMail.md)
- - [IO.Swagger.Model.SendMailFrom](docs/SendMailFrom.md)
+ - [IO.Swagger.Model.SendMailAdv](docs/SendMailAdv.md)
+ - [IO.Swagger.Model.SendMailAdvFrom](docs/SendMailAdvFrom.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization

@@ -27,10 +27,23 @@ namespace IO.Swagger.Models
     public partial class SendMail : IEquatable<SendMail>
     { 
         /// <summary>
+        /// The Contact whom is the primary recipient of this email.
+        /// </summary>
+        /// <value>The Contact whom is the primary recipient of this email.</value>
+        [DataMember(Name="to")]
+        public string To { get; set; }
+
+        /// <summary>
+        /// The contact whom is the this email is from.
+        /// </summary>
+        /// <value>The contact whom is the this email is from.</value>
+        [DataMember(Name="from")]
+        public string From { get; set; }
+
+        /// <summary>
         /// The subject or title of the email
         /// </summary>
         /// <value>The subject or title of the email</value>
-        [Required]
         [DataMember(Name="subject")]
         public string Subject { get; set; }
 
@@ -38,61 +51,8 @@ namespace IO.Swagger.Models
         /// The main email contents.
         /// </summary>
         /// <value>The main email contents.</value>
-        [Required]
         [DataMember(Name="body")]
         public string Body { get; set; }
-
-        /// <summary>
-        /// The contact whom is the this email is from.
-        /// </summary>
-        /// <value>The contact whom is the this email is from.</value>
-        [Required]
-        [DataMember(Name="from")]
-        public List<SendMailFrom> From { get; set; }
-
-        /// <summary>
-        /// The Contact whom is the primary recipient of this email.
-        /// </summary>
-        /// <value>The Contact whom is the primary recipient of this email.</value>
-        [Required]
-        [DataMember(Name="to")]
-        public List<MailContact> To { get; set; }
-
-        /// <summary>
-        /// The ID of the Mail order within our system to use as the Mail Account.
-        /// </summary>
-        /// <value>The ID of the Mail order within our system to use as the Mail Account.</value>
-        [Required]
-        [DataMember(Name="id")]
-        public long? Id { get; set; }
-
-        /// <summary>
-        /// Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-        /// </summary>
-        /// <value>Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.</value>
-        [DataMember(Name="replyto")]
-        public List<MailContact> Replyto { get; set; }
-
-        /// <summary>
-        /// Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-        /// </summary>
-        /// <value>Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.</value>
-        [DataMember(Name="cc")]
-        public List<MailContact> Cc { get; set; }
-
-        /// <summary>
-        /// Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-        /// </summary>
-        /// <value>Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.</value>
-        [DataMember(Name="bcc")]
-        public List<MailContact> Bcc { get; set; }
-
-        /// <summary>
-        /// Optional file attachments to include in the email
-        /// </summary>
-        /// <value>Optional file attachments to include in the email</value>
-        [DataMember(Name="attachments")]
-        public List<MailAttachment> Attachments { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,15 +62,10 @@ namespace IO.Swagger.Models
         {
             var sb = new StringBuilder();
             sb.Append("class SendMail {\n");
+            sb.Append("  To: ").Append(To).Append("\n");
+            sb.Append("  From: ").Append(From).Append("\n");
             sb.Append("  Subject: ").Append(Subject).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
-            sb.Append("  From: ").Append(From).Append("\n");
-            sb.Append("  To: ").Append(To).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Replyto: ").Append(Replyto).Append("\n");
-            sb.Append("  Cc: ").Append(Cc).Append("\n");
-            sb.Append("  Bcc: ").Append(Bcc).Append("\n");
-            sb.Append("  Attachments: ").Append(Attachments).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -148,6 +103,16 @@ namespace IO.Swagger.Models
 
             return 
                 (
+                    To == other.To ||
+                    To != null &&
+                    To.Equals(other.To)
+                ) && 
+                (
+                    From == other.From ||
+                    From != null &&
+                    From.Equals(other.From)
+                ) && 
+                (
                     Subject == other.Subject ||
                     Subject != null &&
                     Subject.Equals(other.Subject)
@@ -156,41 +121,6 @@ namespace IO.Swagger.Models
                     Body == other.Body ||
                     Body != null &&
                     Body.Equals(other.Body)
-                ) && 
-                (
-                    From == other.From ||
-                    From != null &&
-                    From.SequenceEqual(other.From)
-                ) && 
-                (
-                    To == other.To ||
-                    To != null &&
-                    To.SequenceEqual(other.To)
-                ) && 
-                (
-                    Id == other.Id ||
-                    Id != null &&
-                    Id.Equals(other.Id)
-                ) && 
-                (
-                    Replyto == other.Replyto ||
-                    Replyto != null &&
-                    Replyto.SequenceEqual(other.Replyto)
-                ) && 
-                (
-                    Cc == other.Cc ||
-                    Cc != null &&
-                    Cc.SequenceEqual(other.Cc)
-                ) && 
-                (
-                    Bcc == other.Bcc ||
-                    Bcc != null &&
-                    Bcc.SequenceEqual(other.Bcc)
-                ) && 
-                (
-                    Attachments == other.Attachments ||
-                    Attachments != null &&
-                    Attachments.SequenceEqual(other.Attachments)
                 );
         }
 
@@ -204,24 +134,14 @@ namespace IO.Swagger.Models
             {
                 var hashCode = 41;
                 // Suitable nullity checks etc, of course :)
+                    if (To != null)
+                    hashCode = hashCode * 59 + To.GetHashCode();
+                    if (From != null)
+                    hashCode = hashCode * 59 + From.GetHashCode();
                     if (Subject != null)
                     hashCode = hashCode * 59 + Subject.GetHashCode();
                     if (Body != null)
                     hashCode = hashCode * 59 + Body.GetHashCode();
-                    if (From != null)
-                    hashCode = hashCode * 59 + From.GetHashCode();
-                    if (To != null)
-                    hashCode = hashCode * 59 + To.GetHashCode();
-                    if (Id != null)
-                    hashCode = hashCode * 59 + Id.GetHashCode();
-                    if (Replyto != null)
-                    hashCode = hashCode * 59 + Replyto.GetHashCode();
-                    if (Cc != null)
-                    hashCode = hashCode * 59 + Cc.GetHashCode();
-                    if (Bcc != null)
-                    hashCode = hashCode * 59 + Bcc.GetHashCode();
-                    if (Attachments != null)
-                    hashCode = hashCode * 59 + Attachments.GetHashCode();
                 return hashCode;
             }
         }

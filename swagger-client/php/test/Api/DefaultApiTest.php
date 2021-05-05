@@ -101,22 +101,22 @@ class DefaultApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for sendAdvMailById
+     * Test case for sendAdvMail
      *
      * Sends an Email with Advanced Options.
      *
      */
-    public function testSendAdvMailById()
+    public function testSendAdvMail()
     {
     }
 
     /**
-     * Test case for sendMailById
+     * Test case for sendMail
      *
      * Sends an Email.
      *
      */
-    public function testSendMailById()
+    public function testSendMail()
     {
     }
 

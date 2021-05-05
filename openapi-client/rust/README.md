@@ -28,8 +28,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**get_mail_orders**](docs/DefaultApi.md#get_mail_orders) | **get** /mail | displays a list of mail service orders
 *DefaultApi* | [**ping_server**](docs/DefaultApi.md#ping_server) | **get** /ping | Checks if the server is running
 *DefaultApi* | [**place_mail_order**](docs/DefaultApi.md#place_mail_order) | **post** /mail/order | places a mail order
-*DefaultApi* | [**send_adv_mail_by_id**](docs/DefaultApi.md#send_adv_mail_by_id) | **post** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**send_mail_by_id**](docs/DefaultApi.md#send_mail_by_id) | **post** /mail/send | Sends an Email
+*DefaultApi* | [**send_adv_mail**](docs/DefaultApi.md#send_adv_mail) | **post** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**send_mail**](docs/DefaultApi.md#send_mail) | **post** /mail/send | Sends an Email
 *DefaultApi* | [**validate_mail_order**](docs/DefaultApi.md#validate_mail_order) | **get** /mail/order | validatess order details before placing an order
 *DefaultApi* | [**view_mail_log_by_id**](docs/DefaultApi.md#view_mail_log_by_id) | **get** /mail/log | displays the mail log
 
@@ -43,7 +43,8 @@ Class | Method | HTTP request | Description
  - [MailLog](docs/MailLog.md)
  - [MailOrder](docs/MailOrder.md)
  - [SendMail](docs/SendMail.md)
- - [SendMailFrom](docs/SendMailFrom.md)
+ - [SendMailAdv](docs/SendMailAdv.md)
+ - [SendMailAdvFrom](docs/SendMailAdvFrom.md)
 
 
 To get access to the crate's generated documentation, use:

@@ -5,6 +5,7 @@
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] INFO  o.o.c.l.PowerShellClientCodegen - Environment variable POWERSHELL_POST_PROCESS_FILE not defined so the PowerShell code may not be properly formatted. To define it, try 'export POWERSHELL_POST_PROCESS_FILE="Edit-DTWBeautifyScript"'
 [main] INFO  o.o.c.l.PowerShellClientCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
 [main] INFO  o.o.codegen.DefaultGenerator - Model MailOrders not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
@@ -13,6 +14,9 @@
 [main] WARN  o.o.c.l.PowerShellClientCodegen - Data (reserved word or special variable name) cannot be used in naming. Renamed to VarData
 [main] WARN  o.o.c.l.PowerShellClientCodegen - Data (reserved word or special variable name) cannot be used in naming. Renamed to VarData
 [main] WARN  o.o.c.l.PowerShellClientCodegen - Data (reserved word or special variable name) cannot be used in naming. Renamed to VarData
+[main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
+[main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
+[main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
@@ -39,21 +43,23 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Model/SendMail.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Model/SendMail.Tests.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/docs/SendMail.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Model/SendMailFrom.ps1
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Model/SendMailFrom.Tests.ps1
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/docs/SendMailFrom.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Model/SendMailAdv.ps1
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Model/SendMailAdv.Tests.ps1
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/docs/SendMailAdv.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Model/SendMailAdvFrom.ps1
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Model/SendMailAdvFrom.Tests.ps1
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/docs/SendMailAdvFrom.md
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
-[main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
-[main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
 [main] WARN  o.o.codegen.DefaultCodegen - Multiple MediaTypes found, using only the first one
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
 [main] INFO  o.o.c.l.PowerShellClientCodegen - Naming the method using the PowerShell verb: getMailOrders => Get-MailOrders
 [main] INFO  o.o.c.l.PowerShellClientCodegen - Naming the method using the PowerShell verb: pingServer => Ping-Server
-[main] INFO  o.o.c.l.PowerShellClientCodegen - Naming the method using the PowerShell verb: sendAdvMailById => Send-AdvMailById
-[main] INFO  o.o.c.l.PowerShellClientCodegen - Naming the method using the PowerShell verb: sendMailById => Send-MailById
+[main] INFO  o.o.c.l.PowerShellClientCodegen - Naming the method using the PowerShell verb: sendAdvMail => Send-AdvMail
+[main] INFO  o.o.c.l.PowerShellClientCodegen - Naming the method using the PowerShell verb: sendMail => Send-Mail
 [main] INFO  o.o.c.l.PowerShellClientCodegen - Naming the method by mapping the common verbs (e.g. Create, Change) to PS verbs: validateMailOrder => Confirm-MailOrder
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Api/DefaultApi.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Api/DefaultApi.Tests.ps1

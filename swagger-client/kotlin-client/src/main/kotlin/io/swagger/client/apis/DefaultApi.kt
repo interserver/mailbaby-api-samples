@@ -19,7 +19,8 @@ import io.swagger.client.models.MailLog
 import io.swagger.client.models.MailOrder
 import io.swagger.client.models.MailOrders
 import io.swagger.client.models.SendMail
-import io.swagger.client.models.SendMailFrom
+import io.swagger.client.models.SendMailAdv
+import io.swagger.client.models.SendMailAdvFrom
 
 import io.swagger.client.infrastructure.*
 
@@ -105,12 +106,48 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
      * @return GenericResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun sendAdvMailById(body: SendMail): GenericResponse {
+    fun sendAdvMail(body: SendMailAdv): GenericResponse {
         val localVariableBody: kotlin.Any? = body
         
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String, kotlin.String> = mapOf("Content-Type" to "multipart/form-data")
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
-                "/mail/advsend"
+                "/mail/advsend", headers = localVariableHeaders
+        )
+        val response = request<GenericResponse>(
+                localVariableConfig, localVariableBody
+        )
+
+        return when (response.responseType) {
+            ResponseType.Success -> (response as Success<*>).data as GenericResponse
+            ResponseType.Informational -> TODO()
+            ResponseType.Redirection -> TODO()
+            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String ?: "Client error")
+            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message ?: "Server error")
+        }
+    }
+    /**
+     * Sends an Email with Advanced Options
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+     * @param subject  
+     * @param body  
+     * @param from  
+     * @param to  
+     * @param id  
+     * @param replyto  
+     * @param cc  
+     * @param bcc  
+     * @param attachments  
+     * @return GenericResponse
+     */
+    @Suppress("UNCHECKED_CAST")
+    fun sendAdvMail(subject: kotlin.String, body: kotlin.String, from: kotlin.Array<SendMailAdvFrom>, to: kotlin.Array<MailContact>, id: kotlin.Long, replyto: kotlin.Array<MailContact>, cc: kotlin.Array<MailContact>, bcc: kotlin.Array<MailContact>, attachments: kotlin.Array<MailAttachment>): GenericResponse {
+        val localVariableBody: kotlin.Any? = mapOf("subject" to "$subject", "body" to "$body", "from" to "$from", "to" to "$to", "id" to "$id", "replyto" to "$replyto", "cc" to "$cc", "bcc" to "$bcc", "attachments" to "$attachments")
+        
+        val localVariableHeaders: kotlin.collections.Map<kotlin.String, kotlin.String> = mapOf("Content-Type" to "multipart/form-data")
+        val localVariableConfig = RequestConfig(
+                RequestMethod.POST,
+                "/mail/advsend", headers = localVariableHeaders
         )
         val response = request<GenericResponse>(
                 localVariableConfig, localVariableBody
@@ -131,7 +168,7 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
      * @return GenericResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun sendMailById(body: SendMail): GenericResponse {
+    fun sendMail(body: SendMail): GenericResponse {
         val localVariableBody: kotlin.Any? = body
         
         val localVariableHeaders: kotlin.collections.Map<kotlin.String, kotlin.String> = mapOf("Content-Type" to "multipart/form-data")
@@ -154,20 +191,15 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
     /**
      * Sends an Email
      * Sends An email through one of your mail orders.
+     * @param to  
+     * @param from  
      * @param subject  
      * @param body  
-     * @param from  
-     * @param to  
-     * @param id  
-     * @param replyto  
-     * @param cc  
-     * @param bcc  
-     * @param attachments  
      * @return GenericResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun sendMailById(subject: kotlin.String, body: kotlin.String, from: kotlin.Array<SendMailFrom>, to: kotlin.Array<MailContact>, id: kotlin.Long, replyto: kotlin.Array<MailContact>, cc: kotlin.Array<MailContact>, bcc: kotlin.Array<MailContact>, attachments: kotlin.Array<MailAttachment>): GenericResponse {
-        val localVariableBody: kotlin.Any? = mapOf("subject" to "$subject", "body" to "$body", "from" to "$from", "to" to "$to", "id" to "$id", "replyto" to "$replyto", "cc" to "$cc", "bcc" to "$bcc", "attachments" to "$attachments")
+    fun sendMail(to: kotlin.String, from: kotlin.String, subject: kotlin.String, body: kotlin.String): GenericResponse {
+        val localVariableBody: kotlin.Any? = mapOf("to" to "$to", "from" to "$from", "subject" to "$subject", "body" to "$body")
         
         val localVariableHeaders: kotlin.collections.Map<kotlin.String, kotlin.String> = mapOf("Content-Type" to "multipart/form-data")
         val localVariableConfig = RequestConfig(

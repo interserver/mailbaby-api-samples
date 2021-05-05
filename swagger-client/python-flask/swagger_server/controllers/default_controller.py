@@ -9,7 +9,8 @@ from swagger_server.models.mail_log import MailLog  # noqa: E501
 from swagger_server.models.mail_order import MailOrder  # noqa: E501
 from swagger_server.models.mail_orders import MailOrders  # noqa: E501
 from swagger_server.models.send_mail import SendMail  # noqa: E501
-from swagger_server.models.send_mail_from import SendMailFrom  # noqa: E501
+from swagger_server.models.send_mail_adv import SendMailAdv  # noqa: E501
+from swagger_server.models.send_mail_adv_from import SendMailAdvFrom  # noqa: E501
 from swagger_server import util
 
 
@@ -52,7 +53,7 @@ def place_mail_order(body=None):  # noqa: E501
     return 'do some magic!'
 
 
-def send_adv_mail_by_id(body):  # noqa: E501
+def send_adv_mail(body):  # noqa: E501
     """Sends an Email with Advanced Options
 
     Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc. # noqa: E501
@@ -63,29 +64,14 @@ def send_adv_mail_by_id(body):  # noqa: E501
     :rtype: GenericResponse
     """
     if connexion.request.is_json:
-        body = SendMail.from_dict(connexion.request.get_json())  # noqa: E501
+        body = SendMailAdv.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
-def send_mail_by_id(body):  # noqa: E501
-    """Sends an Email
+def send_adv_mail(subject, body, _from, to, id, replyto, cc, bcc, attachments):  # noqa: E501
+    """Sends an Email with Advanced Options
 
-    Sends An email through one of your mail orders. # noqa: E501
-
-    :param body: 
-    :type body: dict | bytes
-
-    :rtype: GenericResponse
-    """
-    if connexion.request.is_json:
-        body = SendMail.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
-
-
-def send_mail_by_id(subject, body, _from, to, id, replyto, cc, bcc, attachments):  # noqa: E501
-    """Sends an Email
-
-    Sends An email through one of your mail orders. # noqa: E501
+    Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc. # noqa: E501
 
     :param subject: 
     :type subject: str
@@ -109,7 +95,7 @@ def send_mail_by_id(subject, body, _from, to, id, replyto, cc, bcc, attachments)
     :rtype: GenericResponse
     """
     if connexion.request.is_json:
-        _from = [SendMailFrom.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
+        _from = [SendMailAdvFrom.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
     if connexion.request.is_json:
         to = [MailContact.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
     if connexion.request.is_json:
@@ -120,6 +106,40 @@ def send_mail_by_id(subject, body, _from, to, id, replyto, cc, bcc, attachments)
         bcc = [MailContact.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
     if connexion.request.is_json:
         attachments = [MailAttachment.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
+    return 'do some magic!'
+
+
+def send_mail(body):  # noqa: E501
+    """Sends an Email
+
+    Sends An email through one of your mail orders. # noqa: E501
+
+    :param body: 
+    :type body: dict | bytes
+
+    :rtype: GenericResponse
+    """
+    if connexion.request.is_json:
+        body = SendMail.from_dict(connexion.request.get_json())  # noqa: E501
+    return 'do some magic!'
+
+
+def send_mail(to, _from, subject, body):  # noqa: E501
+    """Sends an Email
+
+    Sends An email through one of your mail orders. # noqa: E501
+
+    :param to: 
+    :type to: str
+    :param _from: 
+    :type _from: str
+    :param subject: 
+    :type subject: str
+    :param body: 
+    :type body: str
+
+    :rtype: GenericResponse
+    """
     return 'do some magic!'
 
 

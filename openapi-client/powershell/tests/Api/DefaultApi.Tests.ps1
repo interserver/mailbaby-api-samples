@@ -31,17 +31,17 @@ Describe -tag 'PSOpenAPITools' -name 'DefaultApi' {
         }
     }
 
-    Context 'Send-AdvMailById' {
-        It 'Test Send-AdvMailById' {
-            #$TestResult = Send-AdvMailById -SendMail "TEST_VALUE"
+    Context 'Send-AdvMail' {
+        It 'Test Send-AdvMail' {
+            #$TestResult = Send-AdvMail -SendMailAdv "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
     }
 
-    Context 'Send-MailById' {
-        It 'Test Send-MailById' {
-            #$TestResult = Send-MailById -SendMail "TEST_VALUE"
+    Context 'Send-Mail' {
+        It 'Test Send-Mail' {
+            #$TestResult = Send-Mail -SendMail "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }

@@ -30,6 +30,9 @@ import {
     SendMail,
     SendMailFromJSON,
     SendMailToJSON,
+    SendMailAdv,
+    SendMailAdvFromJSON,
+    SendMailAdvToJSON,
 } from '../models';
 
 export interface GetMailOrdersRequest {
@@ -40,11 +43,11 @@ export interface PlaceMailOrderRequest {
     mailOrder?: MailOrder;
 }
 
-export interface SendAdvMailByIdRequest {
-    sendMail: SendMail;
+export interface SendAdvMailRequest {
+    sendMailAdv: SendMailAdv;
 }
 
-export interface SendMailByIdRequest {
+export interface SendMailRequest {
     sendMail: SendMail;
 }
 
@@ -157,9 +160,9 @@ export class DefaultApi extends runtime.BaseAPI {
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * Sends an Email with Advanced Options
      */
-    async sendAdvMailByIdRaw(requestParameters: SendAdvMailByIdRequest): Promise<runtime.ApiResponse<GenericResponse>> {
-        if (requestParameters.sendMail === null || requestParameters.sendMail === undefined) {
-            throw new runtime.RequiredError('sendMail','Required parameter requestParameters.sendMail was null or undefined when calling sendAdvMailById.');
+    async sendAdvMailRaw(requestParameters: SendAdvMailRequest): Promise<runtime.ApiResponse<GenericResponse>> {
+        if (requestParameters.sendMailAdv === null || requestParameters.sendMailAdv === undefined) {
+            throw new runtime.RequiredError('sendMailAdv','Required parameter requestParameters.sendMailAdv was null or undefined when calling sendAdvMail.');
         }
 
         const queryParameters: any = {};
@@ -177,7 +180,7 @@ export class DefaultApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SendMailToJSON(requestParameters.sendMail),
+            body: SendMailAdvToJSON(requestParameters.sendMailAdv),
         });
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GenericResponseFromJSON(jsonValue));
@@ -187,8 +190,8 @@ export class DefaultApi extends runtime.BaseAPI {
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * Sends an Email with Advanced Options
      */
-    async sendAdvMailById(requestParameters: SendAdvMailByIdRequest): Promise<GenericResponse> {
-        const response = await this.sendAdvMailByIdRaw(requestParameters);
+    async sendAdvMail(requestParameters: SendAdvMailRequest): Promise<GenericResponse> {
+        const response = await this.sendAdvMailRaw(requestParameters);
         return await response.value();
     }
 
@@ -196,9 +199,9 @@ export class DefaultApi extends runtime.BaseAPI {
      * Sends An email through one of your mail orders.
      * Sends an Email
      */
-    async sendMailByIdRaw(requestParameters: SendMailByIdRequest): Promise<runtime.ApiResponse<GenericResponse>> {
+    async sendMailRaw(requestParameters: SendMailRequest): Promise<runtime.ApiResponse<GenericResponse>> {
         if (requestParameters.sendMail === null || requestParameters.sendMail === undefined) {
-            throw new runtime.RequiredError('sendMail','Required parameter requestParameters.sendMail was null or undefined when calling sendMailById.');
+            throw new runtime.RequiredError('sendMail','Required parameter requestParameters.sendMail was null or undefined when calling sendMail.');
         }
 
         const queryParameters: any = {};
@@ -226,8 +229,8 @@ export class DefaultApi extends runtime.BaseAPI {
      * Sends An email through one of your mail orders.
      * Sends an Email
      */
-    async sendMailById(requestParameters: SendMailByIdRequest): Promise<GenericResponse> {
-        const response = await this.sendMailByIdRaw(requestParameters);
+    async sendMail(requestParameters: SendMailRequest): Promise<GenericResponse> {
+        const response = await this.sendMailRaw(requestParameters);
         return await response.value();
     }
 

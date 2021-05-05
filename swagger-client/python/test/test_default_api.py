@@ -49,15 +49,15 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
-    def test_send_adv_mail_by_id(self):
-        """Test case for send_adv_mail_by_id
+    def test_send_adv_mail(self):
+        """Test case for send_adv_mail
 
         Sends an Email with Advanced Options  # noqa: E501
         """
         pass
 
-    def test_send_mail_by_id(self):
-        """Test case for send_mail_by_id
+    def test_send_mail(self):
+        """Test case for send_mail
 
         Sends an Email  # noqa: E501
         """

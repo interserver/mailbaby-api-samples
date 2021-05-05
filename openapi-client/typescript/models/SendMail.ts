@@ -10,9 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { MailAttachment } from './MailAttachment';
-import { MailContact } from './MailContact';
-import { SendMailFrom } from './SendMailFrom';
 import { HttpFile } from '../http/http';
 
 /**
@@ -20,45 +17,37 @@ import { HttpFile } from '../http/http';
 */
 export class SendMail {
     /**
-    * The subject or title of the email
+    * The Contact whom is the primary recipient of this email.
     */
-    'subject': string;
-    /**
-    * The main email contents.
-    */
-    'body': string;
+    'to'?: string;
     /**
     * The contact whom is the this email is from.
     */
-    'from': Array<SendMailFrom>;
+    'from'?: string;
     /**
-    * The Contact whom is the primary recipient of this email.
+    * The subject or title of the email
     */
-    'to': Array<MailContact>;
+    'subject'?: string;
     /**
-    * The ID of the Mail order within our system to use as the Mail Account.
+    * The main email contents.
     */
-    'id': number;
-    /**
-    * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-    */
-    'replyto'?: Array<MailContact>;
-    /**
-    * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-    */
-    'cc'?: Array<MailContact>;
-    /**
-    * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-    */
-    'bcc'?: Array<MailContact>;
-    /**
-    * Optional file attachments to include in the email
-    */
-    'attachments'?: Array<MailAttachment>;
+    'body'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "to",
+            "baseName": "to",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "from",
+            "baseName": "from",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "subject",
             "baseName": "subject",
@@ -69,48 +58,6 @@ export class SendMail {
             "name": "body",
             "baseName": "body",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "from",
-            "baseName": "from",
-            "type": "Array<SendMailFrom>",
-            "format": ""
-        },
-        {
-            "name": "to",
-            "baseName": "to",
-            "type": "Array<MailContact>",
-            "format": ""
-        },
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "number",
-            "format": "int64"
-        },
-        {
-            "name": "replyto",
-            "baseName": "replyto",
-            "type": "Array<MailContact>",
-            "format": ""
-        },
-        {
-            "name": "cc",
-            "baseName": "cc",
-            "type": "Array<MailContact>",
-            "format": ""
-        },
-        {
-            "name": "bcc",
-            "baseName": "bcc",
-            "type": "Array<MailContact>",
-            "format": ""
-        },
-        {
-            "name": "attachments",
-            "baseName": "attachments",
-            "type": "Array<MailAttachment>",
             "format": ""
         }    ];
 

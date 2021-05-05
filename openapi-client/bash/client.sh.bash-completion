@@ -71,8 +71,8 @@ _()
     operations["getMailOrders"]=1
     operations["pingServer"]=1
     operations["placeMailOrder"]=1
-    operations["sendAdvMailById"]=1
-    operations["sendMailById"]=1
+    operations["sendAdvMail"]=1
+    operations["sendMail"]=1
     operations["validateMailOrder"]=1
     operations["viewMailLogById"]=1
 
@@ -82,8 +82,8 @@ _()
     operation_parameters["getMailOrders"]="id= "
     operation_parameters["pingServer"]=""
     operation_parameters["placeMailOrder"]=""
-    operation_parameters["sendAdvMailById"]=""
-    operation_parameters["sendMailById"]=""
+    operation_parameters["sendAdvMail"]=""
+    operation_parameters["sendMail"]=""
     operation_parameters["validateMailOrder"]=""
     operation_parameters["viewMailLogById"]="id= searchString= skip= limit= "
 

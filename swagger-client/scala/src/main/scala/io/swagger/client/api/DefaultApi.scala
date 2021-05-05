@@ -21,7 +21,8 @@ import io.swagger.client.model.MailLog
 import io.swagger.client.model.MailOrder
 import io.swagger.client.model.MailOrders
 import io.swagger.client.model.SendMail
-import io.swagger.client.model.SendMail_from
+import io.swagger.client.model.SendMailAdv
+import io.swagger.client.model.SendMailAdv_from
 import io.swagger.client.{ApiInvoker, ApiException}
 
 import com.sun.jersey.multipart.FormDataMultiPart
@@ -167,10 +168,19 @@ class DefaultApi(
    * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
    *
    * @param body  
+   * @param subject  
+   * @param body  
+   * @param from  
+   * @param to  
+   * @param id  
+   * @param replyto  
+   * @param cc  
+   * @param bcc  
+   * @param attachments  
    * @return GenericResponse
    */
-  def sendAdvMailById(body: SendMail): Option[GenericResponse] = {
-    val await = Try(Await.result(sendAdvMailByIdAsync(body), Duration.Inf))
+  def sendAdvMail(body: SendMailAdv, subject: String, body: String, from: List[SendMailAdv_from], to: List[MailContact], id: Long, replyto: List[MailContact], cc: List[MailContact], bcc: List[MailContact], attachments: List[MailAttachment]): Option[GenericResponse] = {
+    val await = Try(Await.result(sendAdvMailAsync(body, subject, body, from, to, id, replyto, cc, bcc, attachments), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -182,17 +192,6 @@ class DefaultApi(
    * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
    *
    * @param body  
-   * @return Future(GenericResponse)
-   */
-  def sendAdvMailByIdAsync(body: SendMail): Future[GenericResponse] = {
-      helper.sendAdvMailById(body)
-  }
-
-  /**
-   * Sends an Email
-   * Sends An email through one of your mail orders.
-   *
-   * @param body  
    * @param subject  
    * @param body  
    * @param from  
@@ -202,10 +201,25 @@ class DefaultApi(
    * @param cc  
    * @param bcc  
    * @param attachments  
+   * @return Future(GenericResponse)
+   */
+  def sendAdvMailAsync(body: SendMailAdv, subject: String, body: String, from: List[SendMailAdv_from], to: List[MailContact], id: Long, replyto: List[MailContact], cc: List[MailContact], bcc: List[MailContact], attachments: List[MailAttachment]): Future[GenericResponse] = {
+      helper.sendAdvMail(body, subject, body, from, to, id, replyto, cc, bcc, attachments)
+  }
+
+  /**
+   * Sends an Email
+   * Sends An email through one of your mail orders.
+   *
+   * @param body  
+   * @param to  
+   * @param from  
+   * @param subject  
+   * @param body  
    * @return GenericResponse
    */
-  def sendMailById(body: SendMail, subject: String, body: String, from: List[SendMail_from], to: List[MailContact], id: Long, replyto: List[MailContact], cc: List[MailContact], bcc: List[MailContact], attachments: List[MailAttachment]): Option[GenericResponse] = {
-    val await = Try(Await.result(sendMailByIdAsync(body, subject, body, from, to, id, replyto, cc, bcc, attachments), Duration.Inf))
+  def sendMail(body: SendMail, to: String, from: String, subject: String, body: String): Option[GenericResponse] = {
+    val await = Try(Await.result(sendMailAsync(body, to, from, subject, body), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -217,19 +231,14 @@ class DefaultApi(
    * Sends An email through one of your mail orders.
    *
    * @param body  
+   * @param to  
+   * @param from  
    * @param subject  
    * @param body  
-   * @param from  
-   * @param to  
-   * @param id  
-   * @param replyto  
-   * @param cc  
-   * @param bcc  
-   * @param attachments  
    * @return Future(GenericResponse)
    */
-  def sendMailByIdAsync(body: SendMail, subject: String, body: String, from: List[SendMail_from], to: List[MailContact], id: Long, replyto: List[MailContact], cc: List[MailContact], bcc: List[MailContact], attachments: List[MailAttachment]): Future[GenericResponse] = {
-      helper.sendMailById(body, subject, body, from, to, id, replyto, cc, bcc, attachments)
+  def sendMailAsync(body: SendMail, to: String, from: String, subject: String, body: String): Future[GenericResponse] = {
+      helper.sendMail(body, to, from, subject, body)
   }
 
   /**
@@ -343,7 +352,16 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
-  def sendAdvMailById(body: SendMail)(implicit reader: ClientResponseReader[GenericResponse], writer: RequestWriter[SendMail]): Future[GenericResponse] = {
+  def sendAdvMail(body: SendMailAdv,
+    subject: String,
+    body: String,
+    from: List[SendMailAdv_from],
+    to: List[MailContact],
+    id: Long,
+    replyto: List[MailContact],
+    cc: List[MailContact],
+    bcc: List[MailContact],
+    attachments: List[MailAttachment])(implicit reader: ClientResponseReader[GenericResponse], writer: RequestWriter[SendMailAdv]): Future[GenericResponse] = {
     // create path and map variables
     val path = (addFmt("/mail/advsend"))
 
@@ -351,7 +369,17 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling DefaultApi->sendAdvMailById")
+    if (body == null) throw new Exception("Missing required parameter 'body' when calling DefaultApi->sendAdvMail")
+    if (subject == null) throw new Exception("Missing required parameter 'subject' when calling DefaultApi->sendAdvMail")
+
+    if (body == null) throw new Exception("Missing required parameter 'body' when calling DefaultApi->sendAdvMail")
+
+    if (from == null) throw new Exception("Missing required parameter 'from' when calling DefaultApi->sendAdvMail")
+    if (to == null) throw new Exception("Missing required parameter 'to' when calling DefaultApi->sendAdvMail")
+    if (replyto == null) throw new Exception("Missing required parameter 'replyto' when calling DefaultApi->sendAdvMail")
+    if (cc == null) throw new Exception("Missing required parameter 'cc' when calling DefaultApi->sendAdvMail")
+    if (bcc == null) throw new Exception("Missing required parameter 'bcc' when calling DefaultApi->sendAdvMail")
+    if (attachments == null) throw new Exception("Missing required parameter 'attachments' when calling DefaultApi->sendAdvMail")
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(body))
     resFuture flatMap { resp =>
@@ -359,16 +387,11 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
-  def sendMailById(body: SendMail,
+  def sendMail(body: SendMail,
+    to: String,
+    from: String,
     subject: String,
-    body: String,
-    from: List[SendMail_from],
-    to: List[MailContact],
-    id: Long,
-    replyto: List[MailContact],
-    cc: List[MailContact],
-    bcc: List[MailContact],
-    attachments: List[MailAttachment])(implicit reader: ClientResponseReader[GenericResponse], writer: RequestWriter[SendMail]): Future[GenericResponse] = {
+    body: String)(implicit reader: ClientResponseReader[GenericResponse], writer: RequestWriter[SendMail]): Future[GenericResponse] = {
     // create path and map variables
     val path = (addFmt("/mail/send"))
 
@@ -376,17 +399,15 @@ class DefaultApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     val queryParams = new mutable.HashMap[String, String]
     val headerParams = new mutable.HashMap[String, String]
 
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling DefaultApi->sendMailById")
-    if (subject == null) throw new Exception("Missing required parameter 'subject' when calling DefaultApi->sendMailById")
+    if (body == null) throw new Exception("Missing required parameter 'body' when calling DefaultApi->sendMail")
+    if (to == null) throw new Exception("Missing required parameter 'to' when calling DefaultApi->sendMail")
 
-    if (body == null) throw new Exception("Missing required parameter 'body' when calling DefaultApi->sendMailById")
+    if (from == null) throw new Exception("Missing required parameter 'from' when calling DefaultApi->sendMail")
 
-    if (from == null) throw new Exception("Missing required parameter 'from' when calling DefaultApi->sendMailById")
-    if (to == null) throw new Exception("Missing required parameter 'to' when calling DefaultApi->sendMailById")
-    if (replyto == null) throw new Exception("Missing required parameter 'replyto' when calling DefaultApi->sendMailById")
-    if (cc == null) throw new Exception("Missing required parameter 'cc' when calling DefaultApi->sendMailById")
-    if (bcc == null) throw new Exception("Missing required parameter 'bcc' when calling DefaultApi->sendMailById")
-    if (attachments == null) throw new Exception("Missing required parameter 'attachments' when calling DefaultApi->sendMailById")
+    if (subject == null) throw new Exception("Missing required parameter 'subject' when calling DefaultApi->sendMail")
+
+    if (body == null) throw new Exception("Missing required parameter 'body' when calling DefaultApi->sendMail")
+
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(body))
     resFuture flatMap { resp =>

@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**getMailOrders**](DefaultAPI.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultAPI.md#pingserver) | **GET** /ping | Checks if the server is running
 [**placeMailOrder**](DefaultAPI.md#placemailorder) | **POST** /mail/order | places a mail order
-[**sendAdvMailById**](DefaultAPI.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**sendMailById**](DefaultAPI.md#sendmailbyid) | **POST** /mail/send | Sends an Email
+[**sendAdvMail**](DefaultAPI.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**sendMail**](DefaultAPI.md#sendmail) | **POST** /mail/send | Sends an Email
 [**validateMailOrder**](DefaultAPI.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
 [**viewMailLogById**](DefaultAPI.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
@@ -155,9 +155,9 @@ Void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **sendAdvMailById**
+# **sendAdvMail**
 ```swift
-    open class func sendAdvMailById(sendMail: SendMail, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
+    open class func sendAdvMail(sendMailAdv: SendMailAdv, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
 ```
 
 Sends an Email with Advanced Options
@@ -169,10 +169,10 @@ Sends An email through one of your mail orders allowing additional options such 
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let sendMail = SendMail(subject: "subject_example", body: "body_example", from: [SendMail_from(email: "email_example", name: "name_example")], to: [MailContact(email: "email_example", name: "name_example")], id: 123, replyto: [nil], cc: [nil], bcc: [nil], attachments: [MailAttachment(data: URL(string: "https://example.com")!, filename: "filename_example")]) // SendMail | 
+let sendMailAdv = SendMailAdv(subject: "subject_example", body: "body_example", from: [SendMailAdv_from(email: "email_example", name: "name_example")], to: [MailContact(email: "email_example", name: "name_example")], id: 123, replyto: [nil], cc: [nil], bcc: [nil], attachments: [MailAttachment(data: URL(string: "https://example.com")!, filename: "filename_example")]) // SendMailAdv | 
 
 // Sends an Email with Advanced Options
-DefaultAPI.sendAdvMailById(sendMail: sendMail) { (response, error) in
+DefaultAPI.sendAdvMail(sendMailAdv: sendMailAdv) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -188,7 +188,7 @@ DefaultAPI.sendAdvMailById(sendMail: sendMail) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sendMail** | [**SendMail**](SendMail.md) |  | 
+ **sendMailAdv** | [**SendMailAdv**](SendMailAdv.md) |  | 
 
 ### Return type
 
@@ -200,14 +200,14 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **sendMailById**
+# **sendMail**
 ```swift
-    open class func sendMailById(sendMail: SendMail, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
+    open class func sendMail(sendMail: SendMail, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
 ```
 
 Sends an Email
@@ -219,10 +219,10 @@ Sends An email through one of your mail orders.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let sendMail = SendMail(subject: "subject_example", body: "body_example", from: [SendMail_from(email: "email_example", name: "name_example")], to: [MailContact(email: "email_example", name: "name_example")], id: 123, replyto: [nil], cc: [nil], bcc: [nil], attachments: [MailAttachment(data: URL(string: "https://example.com")!, filename: "filename_example")]) // SendMail | 
+let sendMail = SendMail(to: "to_example", from: "from_example", subject: "subject_example", body: "body_example") // SendMail | 
 
 // Sends an Email
-DefaultAPI.sendMailById(sendMail: sendMail) { (response, error) in
+DefaultAPI.sendMail(sendMail: sendMail) { (response, error) in
     guard error == nil else {
         print(error)
         return

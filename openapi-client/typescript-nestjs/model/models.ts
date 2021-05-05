@@ -5,4 +5,5 @@ export * from './mailContact';
 export * from './mailLog';
 export * from './mailOrder';
 export * from './sendMail';
-export * from './sendMailFrom';
+export * from './sendMailAdv';
+export * from './sendMailAdvFrom';

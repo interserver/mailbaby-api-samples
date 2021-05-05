@@ -9,7 +9,8 @@ docs/MailContact.md
 docs/MailLog.md
 docs/MailOrder.md
 docs/SendMail.md
-docs/SendMailFrom.md
+docs/SendMailAdv.md
+docs/SendMailAdvFrom.md
 gradle/wrapper/gradle-wrapper.jar
 gradle/wrapper/gradle-wrapper.properties
 gradlew
@@ -39,4 +40,5 @@ src/main/kotlin/org/openapitools/client/models/MailContact.kt
 src/main/kotlin/org/openapitools/client/models/MailLog.kt
 src/main/kotlin/org/openapitools/client/models/MailOrder.kt
 src/main/kotlin/org/openapitools/client/models/SendMail.kt
-src/main/kotlin/org/openapitools/client/models/SendMailFrom.kt
+src/main/kotlin/org/openapitools/client/models/SendMailAdv.kt
+src/main/kotlin/org/openapitools/client/models/SendMailAdvFrom.kt

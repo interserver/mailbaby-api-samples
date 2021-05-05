@@ -34,10 +34,10 @@ public:
 	class PingServerResponse;
 	class PlaceMailOrderRequest;
 	class PlaceMailOrderResponse;
-	class SendAdvMailByIdRequest;
-	class SendAdvMailByIdResponse;
-	class SendMailByIdRequest;
-	class SendMailByIdResponse;
+	class SendAdvMailRequest;
+	class SendAdvMailResponse;
+	class SendMailRequest;
+	class SendMailResponse;
 	class ValidateMailOrderRequest;
 	class ValidateMailOrderResponse;
 	class ViewMailLogByIdRequest;
@@ -46,16 +46,16 @@ public:
     DECLARE_DELEGATE_OneParam(FGetMailOrdersDelegate, const GetMailOrdersResponse&);
     DECLARE_DELEGATE_OneParam(FPingServerDelegate, const PingServerResponse&);
     DECLARE_DELEGATE_OneParam(FPlaceMailOrderDelegate, const PlaceMailOrderResponse&);
-    DECLARE_DELEGATE_OneParam(FSendAdvMailByIdDelegate, const SendAdvMailByIdResponse&);
-    DECLARE_DELEGATE_OneParam(FSendMailByIdDelegate, const SendMailByIdResponse&);
+    DECLARE_DELEGATE_OneParam(FSendAdvMailDelegate, const SendAdvMailResponse&);
+    DECLARE_DELEGATE_OneParam(FSendMailDelegate, const SendMailResponse&);
     DECLARE_DELEGATE_OneParam(FValidateMailOrderDelegate, const ValidateMailOrderResponse&);
     DECLARE_DELEGATE_OneParam(FViewMailLogByIdDelegate, const ViewMailLogByIdResponse&);
     
     bool GetMailOrders(const GetMailOrdersRequest& Request, const FGetMailOrdersDelegate& Delegate = FGetMailOrdersDelegate()) const;
     bool PingServer(const PingServerRequest& Request, const FPingServerDelegate& Delegate = FPingServerDelegate()) const;
     bool PlaceMailOrder(const PlaceMailOrderRequest& Request, const FPlaceMailOrderDelegate& Delegate = FPlaceMailOrderDelegate()) const;
-    bool SendAdvMailById(const SendAdvMailByIdRequest& Request, const FSendAdvMailByIdDelegate& Delegate = FSendAdvMailByIdDelegate()) const;
-    bool SendMailById(const SendMailByIdRequest& Request, const FSendMailByIdDelegate& Delegate = FSendMailByIdDelegate()) const;
+    bool SendAdvMail(const SendAdvMailRequest& Request, const FSendAdvMailDelegate& Delegate = FSendAdvMailDelegate()) const;
+    bool SendMail(const SendMailRequest& Request, const FSendMailDelegate& Delegate = FSendMailDelegate()) const;
     bool ValidateMailOrder(const ValidateMailOrderRequest& Request, const FValidateMailOrderDelegate& Delegate = FValidateMailOrderDelegate()) const;
     bool ViewMailLogById(const ViewMailLogByIdRequest& Request, const FViewMailLogByIdDelegate& Delegate = FViewMailLogByIdDelegate()) const;
     
@@ -64,8 +64,8 @@ private:
     void OnGetMailOrdersResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FGetMailOrdersDelegate Delegate, int AutoRetryCount) const;
     void OnPingServerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FPingServerDelegate Delegate, int AutoRetryCount) const;
     void OnPlaceMailOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FPlaceMailOrderDelegate Delegate, int AutoRetryCount) const;
-    void OnSendAdvMailByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FSendAdvMailByIdDelegate Delegate, int AutoRetryCount) const;
-    void OnSendMailByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FSendMailByIdDelegate Delegate, int AutoRetryCount) const;
+    void OnSendAdvMailResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FSendAdvMailDelegate Delegate, int AutoRetryCount) const;
+    void OnSendMailResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FSendMailDelegate Delegate, int AutoRetryCount) const;
     void OnValidateMailOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FValidateMailOrderDelegate Delegate, int AutoRetryCount) const;
     void OnViewMailLogByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FViewMailLogByIdDelegate Delegate, int AutoRetryCount) const;
     

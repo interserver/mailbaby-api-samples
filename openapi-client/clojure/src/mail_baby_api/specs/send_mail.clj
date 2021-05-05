@@ -1,27 +1,16 @@
 (ns mail-baby-api.specs.send-mail
   (:require [clojure.spec.alpha :as s]
             [spec-tools.data-spec :as ds]
-            [mail-baby-api.specs.send-mail-from :refer :all]
-            [mail-baby-api.specs.mail-contact :refer :all]
-            [mail-baby-api.specs.mail-contact :refer :all]
-            [mail-baby-api.specs.mail-contact :refer :all]
-            [mail-baby-api.specs.mail-contact :refer :all]
-            [mail-baby-api.specs.mail-attachment :refer :all]
             )
   (:import (java.io File)))
 
 
 (def send-mail-data
   {
-   (ds/req :subject) string?
-   (ds/req :body) string?
-   (ds/req :from) (s/coll-of send-mail-from-spec)
-   (ds/req :to) (s/coll-of mail-contact-spec)
-   (ds/req :id) int?
-   (ds/opt :replyto) (s/coll-of mail-contact-spec)
-   (ds/opt :cc) (s/coll-of mail-contact-spec)
-   (ds/opt :bcc) (s/coll-of mail-contact-spec)
-   (ds/opt :attachments) (s/coll-of mail-attachment-spec)
+   (ds/opt :to) string?
+   (ds/opt :from) string?
+   (ds/opt :subject) string?
+   (ds/opt :body) string?
    })
 
 (def send-mail-spec

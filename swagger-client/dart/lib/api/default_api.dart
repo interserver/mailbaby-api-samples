@@ -158,7 +158,7 @@ class DefaultApi {
   /// Sends an Email with Advanced Options
   ///
   /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-  Future<GenericResponse> sendAdvMailById(SendMail body) async {
+  Future<GenericResponse> sendAdvMail(SendMailAdv body) async {
     Object postBody = body;
 
     // verify required params are set
@@ -168,57 +168,6 @@ class DefaultApi {
 
     // create path and map variables
     String path = "/mail/advsend".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["apiKeyAuth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-          }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return
-          apiClient.deserialize(response.body, 'GenericResponse') as GenericResponse ;
-    } else {
-      return null;
-    }
-  }
-  /// Sends an Email
-  ///
-  /// Sends An email through one of your mail orders.
-  Future<GenericResponse> sendMailById(SendMail body) async {
-    Object postBody = body;
-
-    // verify required params are set
-    if(body == null) {
-     throw new ApiException(400, "Missing required param: body");
-    }
-
-    // create path and map variables
-    String path = "/mail/send".replaceAll("{format}","json");
 
     // query params
     List<QueryParam> queryParams = [];
@@ -291,6 +240,81 @@ if (bcc != null)
         formParams['bcc'] = parameterToString(bcc);
 if (attachments != null)
         formParams['attachments'] = parameterToString(attachments);
+    }
+
+    var response = await apiClient.invokeAPI(path,
+                                             'POST',
+                                             queryParams,
+                                             postBody,
+                                             headerParams,
+                                             formParams,
+                                             contentType,
+                                             authNames);
+
+    if(response.statusCode >= 400) {
+      throw new ApiException(response.statusCode, response.body);
+    } else if(response.body != null) {
+      return
+          apiClient.deserialize(response.body, 'GenericResponse') as GenericResponse ;
+    } else {
+      return null;
+    }
+  }
+  /// Sends an Email
+  ///
+  /// Sends An email through one of your mail orders.
+  Future<GenericResponse> sendMail(SendMail body) async {
+    Object postBody = body;
+
+    // verify required params are set
+    if(body == null) {
+     throw new ApiException(400, "Missing required param: body");
+    }
+
+    // create path and map variables
+    String path = "/mail/send".replaceAll("{format}","json");
+
+    // query params
+    List<QueryParam> queryParams = [];
+    Map<String, String> headerParams = {};
+    Map<String, String> formParams = {};
+    
+    List<String> contentTypes = ["application/json","application/x-www-form-urlencoded"];
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    List<String> authNames = ["apiKeyAuth"];
+
+    if(contentType.startsWith("multipart/form-data")) {
+      bool hasFields = false;
+      MultipartRequest mp = new MultipartRequest(null, null);
+      if (to != null) {
+        hasFields = true;
+        mp.fields['to'] = parameterToString(to);
+      }
+      if (from != null) {
+        hasFields = true;
+        mp.fields['from'] = parameterToString(from);
+      }
+      if (subject != null) {
+        hasFields = true;
+        mp.fields['subject'] = parameterToString(subject);
+      }
+      if (body != null) {
+        hasFields = true;
+        mp.fields['body'] = parameterToString(body);
+      }
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      if (to != null)
+        formParams['to'] = parameterToString(to);
+if (from != null)
+        formParams['from'] = parameterToString(from);
+if (subject != null)
+        formParams['subject'] = parameterToString(subject);
+if (body != null)
+        formParams['body'] = parameterToString(body);
     }
 
     var response = await apiClient.invokeAPI(path,

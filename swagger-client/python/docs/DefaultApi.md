@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**get_mail_orders**](DefaultApi.md#get_mail_orders) | **GET** /mail | displays a list of mail service orders
 [**ping_server**](DefaultApi.md#ping_server) | **GET** /ping | Checks if the server is running
 [**place_mail_order**](DefaultApi.md#place_mail_order) | **POST** /mail/order | places a mail order
-[**send_adv_mail_by_id**](DefaultApi.md#send_adv_mail_by_id) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**send_mail_by_id**](DefaultApi.md#send_mail_by_id) | **POST** /mail/send | Sends an Email
+[**send_adv_mail**](DefaultApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+[**send_mail**](DefaultApi.md#send_mail) | **POST** /mail/send | Sends an Email
 [**validate_mail_order**](DefaultApi.md#validate_mail_order) | **GET** /mail/order | validatess order details before placing an order
 [**view_mail_log_by_id**](DefaultApi.md#view_mail_log_by_id) | **GET** /mail/log | displays the mail log
 
@@ -158,8 +158,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **send_adv_mail_by_id**
-> GenericResponse send_adv_mail_by_id(body)
+# **send_adv_mail**
+> GenericResponse send_adv_mail(body)
 
 Sends an Email with Advanced Options
 
@@ -181,21 +181,21 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
-body = swagger_client.SendMail() # SendMail | 
+body = swagger_client.SendMailAdv() # SendMailAdv | 
 
 try:
     # Sends an Email with Advanced Options
-    api_response = api_instance.send_adv_mail_by_id(body)
+    api_response = api_instance.send_adv_mail(body)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->send_adv_mail_by_id: %s\n" % e)
+    print("Exception when calling DefaultApi->send_adv_mail: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SendMail**](SendMail.md)|  | 
+ **body** | [**SendMailAdv**](SendMailAdv.md)|  | 
 
 ### Return type
 
@@ -207,13 +207,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **send_mail_by_id**
-> GenericResponse send_mail_by_id(body)
+# **send_mail**
+> GenericResponse send_mail(body)
 
 Sends an Email
 
@@ -239,10 +239,10 @@ body = swagger_client.SendMail() # SendMail |
 
 try:
     # Sends an Email
-    api_response = api_instance.send_mail_by_id(body)
+    api_response = api_instance.send_mail(body)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->send_mail_by_id: %s\n" % e)
+    print("Exception when calling DefaultApi->send_mail: %s\n" % e)
 ```
 
 ### Parameters

@@ -18,6 +18,7 @@ import {
   MailLog,
   GenericResponse,
   MailOrder,
+  SendMailAdv,
   SendMail,
 } from './models';
 
@@ -42,16 +43,16 @@ export interface IPlaceMailOrderParams {
 }
 
 /**
- * sendAdvMailById - parameters interface
+ * sendAdvMail - parameters interface
  */
-export interface ISendAdvMailByIdParams {
-  sendMail: SendMail;
+export interface ISendAdvMailParams {
+  sendMailAdv: SendMailAdv;
 }
 
 /**
- * sendMailById - parameters interface
+ * sendMail - parameters interface
  */
-export interface ISendMailByIdParams {
+export interface ISendMailParams {
   sendMail: SendMail;
 }
 
@@ -176,11 +177,11 @@ export class DefaultApi extends Api {
   /**
    * Sends an Email with Advanced Options
    * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-   * @param params.sendMail 
+   * @param params.sendMailAdv 
    */
-  async sendAdvMailById(params: ISendAdvMailByIdParams): Promise<GenericResponse> {
+  async sendAdvMail(params: ISendAdvMailParams): Promise<GenericResponse> {
     // Verify required parameters are set
-    this.ensureParamIsSet('sendAdvMailById', params, 'sendMail');
+    this.ensureParamIsSet('sendAdvMail', params, 'sendMailAdv');
 
     // Create URL to call
     const url = `${this.basePath}/mail/advsend`;
@@ -190,7 +191,7 @@ export class DefaultApi extends Api {
       .asPost()
       // Encode body parameter
       .withHeader('content-type', 'application/json')
-      .withContent(JSON.stringify(params['sendMail'] || {}))
+      .withContent(JSON.stringify(params['sendMailAdv'] || {}))
 
       // Authentication 'apiKeyAuth' required
       .withHeader('X-API-KEY', this.authStorage.getapiKeyAuth())
@@ -210,9 +211,9 @@ export class DefaultApi extends Api {
    * Sends An email through one of your mail orders.
    * @param params.sendMail 
    */
-  async sendMailById(params: ISendMailByIdParams): Promise<GenericResponse> {
+  async sendMail(params: ISendMailParams): Promise<GenericResponse> {
     // Verify required parameters are set
-    this.ensureParamIsSet('sendMailById', params, 'sendMail');
+    this.ensureParamIsSet('sendMail', params, 'sendMail');
 
     // Create URL to call
     const url = `${this.basePath}/mail/send`;

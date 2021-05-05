@@ -60,8 +60,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**GetMailOrders**](docs/DefaultApi.md#GetMailOrders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**PingServer**](docs/DefaultApi.md#PingServer) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**PlaceMailOrder**](docs/DefaultApi.md#PlaceMailOrder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**SendAdvMailById**](docs/DefaultApi.md#SendAdvMailById) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**SendMailById**](docs/DefaultApi.md#SendMailById) | **POST** /mail/send | Sends an Email
+*DefaultApi* | [**SendAdvMail**](docs/DefaultApi.md#SendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**SendMail**](docs/DefaultApi.md#SendMail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**ValidateMailOrder**](docs/DefaultApi.md#ValidateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 *DefaultApi* | [**ViewMailLogById**](docs/DefaultApi.md#ViewMailLogById) | **GET** /mail/log | displays the mail log
 
@@ -75,7 +75,8 @@ Class | Method | HTTP request | Description
  - [MailLog](docs/MailLog.md)
  - [MailOrder](docs/MailOrder.md)
  - [SendMail](docs/SendMail.md)
- - [SendMailFrom](docs/SendMailFrom.md)
+ - [SendMailAdv](docs/SendMailAdv.md)
+ - [SendMailAdvFrom](docs/SendMailAdvFrom.md)
 
 
 ## Documentation for Authorization

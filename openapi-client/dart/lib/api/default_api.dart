@@ -208,22 +208,22 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [SendMail] sendMail (required):
-  Future<Response> sendAdvMailByIdWithHttpInfo(SendMail sendMail) async {
+  /// * [SendMailAdv] sendMailAdv (required):
+  Future<Response> sendAdvMailWithHttpInfo(SendMailAdv sendMailAdv) async {
     // Verify required params are set.
-    if (sendMail == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: sendMail');
+    if (sendMailAdv == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: sendMailAdv');
     }
 
     final path = r'/mail/advsend';
 
-    Object postBody = sendMail;
+    Object postBody = sendMailAdv;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    final contentTypes = <String>['application/json'];
+    final contentTypes = <String>['application/json', 'application/x-www-form-urlencoded'];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
     final authNames = <String>['apiKeyAuth'];
 
@@ -257,9 +257,9 @@ class DefaultApi {
   ///
   /// Parameters:
   ///
-  /// * [SendMail] sendMail (required):
-  Future<GenericResponse> sendAdvMailById(SendMail sendMail) async {
-    final response = await sendAdvMailByIdWithHttpInfo(sendMail);
+  /// * [SendMailAdv] sendMailAdv (required):
+  Future<GenericResponse> sendAdvMail(SendMailAdv sendMailAdv) async {
+    final response = await sendAdvMailWithHttpInfo(sendMailAdv);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -281,7 +281,7 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [SendMail] sendMail (required):
-  Future<Response> sendMailByIdWithHttpInfo(SendMail sendMail) async {
+  Future<Response> sendMailWithHttpInfo(SendMail sendMail) async {
     // Verify required params are set.
     if (sendMail == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: sendMail');
@@ -330,8 +330,8 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [SendMail] sendMail (required):
-  Future<GenericResponse> sendMailById(SendMail sendMail) async {
-    final response = await sendMailByIdWithHttpInfo(sendMail);
+  Future<GenericResponse> sendMail(SendMail sendMail) async {
+    final response = await sendMailWithHttpInfo(sendMail);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

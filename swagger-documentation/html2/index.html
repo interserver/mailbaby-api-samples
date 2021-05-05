@@ -792,6 +792,33 @@
 };
             defs["SendMail"] = {
   "title" : "Email details",
+  "type" : "object",
+  "properties" : {
+    "to" : {
+      "type" : "string",
+      "description" : "The Contact whom is the primary recipient of this email.",
+      "example" : "johndoe@company.com"
+    },
+    "from" : {
+      "type" : "string",
+      "description" : "The contact whom is the this email is from.",
+      "example" : "johndoe@company.com"
+    },
+    "subject" : {
+      "type" : "string",
+      "description" : "The subject or title of the email",
+      "example" : "Your Package has been Delivered!"
+    },
+    "body" : {
+      "type" : "string",
+      "description" : "The main email contents.",
+      "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n"
+    }
+  },
+  "description" : "Details for an Email"
+};
+            defs["SendMailAdv"] = {
+  "title" : "Email details",
   "required" : [ "body", "from", "id", "subject", "to" ],
   "type" : "object",
   "properties" : {
@@ -809,7 +836,7 @@
       "type" : "array",
       "description" : "The contact whom is the this email is from.",
       "items" : {
-        "$ref" : "#/components/schemas/SendMail_from"
+        "$ref" : "#/components/schemas/SendMailAdv_from"
       }
     },
     "to" : {
@@ -856,7 +883,7 @@
   },
   "description" : "Details for an Email"
 };
-            defs["SendMail_from"] = {
+            defs["SendMailAdv_from"] = {
   "required" : [ "email" ],
   "type" : "object",
   "properties" : {
@@ -899,11 +926,11 @@
                     <li data-group="Default" data-name="placeMailOrder" class="">
                       <a href="#api-Default-placeMailOrder">placeMailOrder</a>
                     </li>
-                    <li data-group="Default" data-name="sendAdvMailById" class="">
-                      <a href="#api-Default-sendAdvMailById">sendAdvMailById</a>
+                    <li data-group="Default" data-name="sendAdvMail" class="">
+                      <a href="#api-Default-sendAdvMail">sendAdvMail</a>
                     </li>
-                    <li data-group="Default" data-name="sendMailById" class="">
-                      <a href="#api-Default-sendMailById">sendMailById</a>
+                    <li data-group="Default" data-name="sendMail" class="">
+                      <a href="#api-Default-sendMail">sendMail</a>
                     </li>
                     <li data-group="Default" data-name="validateMailOrder" class="">
                       <a href="#api-Default-validateMailOrder">validateMailOrder</a>
@@ -1926,10 +1953,10 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-sendAdvMailById">
-                      <article id="api-Default-sendAdvMailById-0" data-group="User" data-name="sendAdvMailById" data-version="0">
+                    <div id="api-Default-sendAdvMail">
+                      <article id="api-Default-sendAdvMail-0" data-group="User" data-name="sendAdvMail" data-version="0">
                         <div class="pull-left">
-                          <h1>sendAdvMailById</h1>
+                          <h1>sendAdvMail</h1>
                           <p>Sends an Email with Advanced Options</p>
                         </div>
                         <div class="pull-right"></div>
@@ -1943,28 +1970,28 @@ except ApiException as e:
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-sendAdvMailById-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-sendAdvMailById-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-sendAdvMailById-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-sendAdvMailById-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-sendAdvMail-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-sendAdvMail-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-sendAdvMail-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-sendAdvMail-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-sendAdvMailById-0-curl">
+                          <div class="tab-pane active" id="examples-Default-sendAdvMail-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
--H "Content-Type: application/json"\
+-H "Content-Type: application/json,application/x-www-form-urlencoded"\
 "https://api.mailbaby.net/mail/advsend"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-sendAdvMailById-0-java">
+                          <div class="tab-pane" id="examples-Default-sendAdvMail-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
 import MailBabyApi.auth.*;
 import MailBabyApi.model.*;
@@ -1985,52 +2012,52 @@ public class DefaultApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         DefaultApi apiInstance = new DefaultApi();
-        SendMail body = ; // SendMail | 
+        SendMailAdv body = ; // SendMailAdv | 
         try {
-            GenericResponse result = apiInstance.sendAdvMailById(body);
+            GenericResponse result = apiInstance.sendAdvMail(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#sendAdvMailById");
+            System.err.println("Exception when calling DefaultApi#sendAdvMail");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-sendAdvMailById-0-android">
+                          <div class="tab-pane" id="examples-Default-sendAdvMail-0-android">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
 
 public class DefaultApiExample {
 
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        SendMail body = ; // SendMail | 
+        SendMailAdv body = ; // SendMailAdv | 
         try {
-            GenericResponse result = apiInstance.sendAdvMailById(body);
+            GenericResponse result = apiInstance.sendAdvMail(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#sendAdvMailById");
+            System.err.println("Exception when calling DefaultApi#sendAdvMail");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-sendAdvMailById-0-groovy">
+  <div class="tab-pane" id="examples-Default-sendAdvMail-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-sendAdvMailById-0-objc">
+                            <div class="tab-pane" id="examples-Default-sendAdvMail-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 // Configure API key authorization: (authentication scheme: apiKeyAuth)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-SendMail *body = ; // 
+SendMailAdv *body = ; // 
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Sends an Email with Advanced Options
-[apiInstance sendAdvMailByIdWith:body
+[apiInstance sendAdvMailWith:body
               completionHandler: ^(GenericResponse output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -2042,7 +2069,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendAdvMailById-0-javascript">
+                            <div class="tab-pane" id="examples-Default-sendAdvMail-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var MailBabyApi = require('mail_baby_api');
 var defaultClient = MailBabyApi.ApiClient.instance;
 
@@ -2053,7 +2080,7 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
 
 var api = new MailBabyApi.DefaultApi()
-var body = ; // {{SendMail}} 
+var body = ; // {{SendMailAdv}} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -2062,14 +2089,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.sendAdvMailById(body, callback);
+api.sendAdvMail(body, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-sendAdvMailById-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-sendAdvMail-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-sendAdvMailById-0-csharp">
+                            <div class="tab-pane" id="examples-Default-sendAdvMail-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using MailBabyApi.Api;
@@ -2078,7 +2105,7 @@ using MailBabyApi.Model;
 
 namespace Example
 {
-    public class sendAdvMailByIdExample
+    public class sendAdvMailExample
     {
         public void main()
         {
@@ -2089,17 +2116,17 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi();
-            var body = new SendMail(); // SendMail | 
+            var body = new SendMailAdv(); // SendMailAdv | 
 
             try
             {
                 // Sends an Email with Advanced Options
-                GenericResponse result = apiInstance.sendAdvMailById(body);
+                GenericResponse result = apiInstance.sendAdvMail(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.sendAdvMailById: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.sendAdvMail: " + e.Message );
             }
         }
     }
@@ -2107,7 +2134,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendAdvMailById-0-php">
+                            <div class="tab-pane" id="examples-Default-sendAdvMail-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -2117,18 +2144,18 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 // Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
-$body = ; // SendMail | 
+$body = ; // SendMailAdv | 
 
 try {
-    $result = $api_instance->sendAdvMailById($body);
+    $result = $api_instance->sendAdvMail($body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->sendAdvMailById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->sendAdvMail: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendAdvMailById-0-perl">
+                            <div class="tab-pane" id="examples-Default-sendAdvMail-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use MailBabyApi::Configuration;
 use MailBabyApi::DefaultApi;
@@ -2139,18 +2166,18 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 my $api_instance = MailBabyApi::DefaultApi->new();
-my $body = MailBabyApi::Object::SendMail->new(); # SendMail | 
+my $body = MailBabyApi::Object::SendMailAdv->new(); # SendMailAdv | 
 
 eval { 
-    my $result = $api_instance->sendAdvMailById(body => $body);
+    my $result = $api_instance->sendAdvMail(body => $body);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->sendAdvMailById: $@\n";
+    warn "Exception when calling DefaultApi->sendAdvMail: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendAdvMailById-0-python">
+                            <div class="tab-pane" id="examples-Default-sendAdvMail-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import MailBabyApi
@@ -2164,14 +2191,14 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
-body =  # SendMail | 
+body =  # SendMailAdv | 
 
 try: 
     # Sends an Email with Advanced Options
-    api_response = api_instance.send_adv_mail_by_id(body)
+    api_response = api_instance.send_adv_mail(body)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->sendAdvMailById: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->sendAdvMail: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -2195,7 +2222,12 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/SendMail"
+        "$ref" : "#/components/schemas/SendMailAdv"
+      }
+    },
+    "application/x-www-form-urlencoded" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/SendMailAdv"
       }
     }
   },
@@ -2213,16 +2245,197 @@ except ApiException as e:
                                   }
                                 
                                   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_sendAdvMailById_body');
+                                  var result = $('#d2e199_sendAdvMail_body');
                                   result.empty();
                                   result.append(view.render());
                                 });
                                 </script>
-                                <div id="d2e199_sendAdvMailById_body"></div>
+                                <div id="d2e199_sendAdvMail_body"></div>
                                 </td>
                                 </tr>
                             </table>
 
+                            <div class="methodsubtabletitle">Form parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">subject*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendAdvMail_subject">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">body*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendAdvMail_body">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">from*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendAdvMail_from">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      array[SendMailAdv_from]
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">to*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendAdvMail_to">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      array[MailContact]
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">id*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendAdvMail_id">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      Long
+                                                  </span>
+                                                      <span class="format">
+                                                          (int64)
+                                                      </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">replyto*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendAdvMail_replyto">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      array[MailContact]
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">cc*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendAdvMail_cc">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      array[MailContact]
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">bcc*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendAdvMail_bcc">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      array[MailContact]
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">attachments*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendAdvMail_attachments">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      array[MailAttachment]
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
 
 
                           <h2>Responses</h2>
@@ -2230,14 +2443,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-sendAdvMailById-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-sendAdvMail-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-sendAdvMailById-200-schema">
-                                  <div id='responses-sendAdvMailById-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-sendAdvMail-200-schema">
+                                  <div id='responses-sendAdvMail-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -2263,14 +2476,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-sendAdvMailById-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-sendAdvMailById-200-schema-200');
+                                        $('#responses-sendAdvMail-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-sendAdvMail-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-sendAdvMailById-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-sendAdvMail-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -2286,14 +2499,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-sendAdvMailById-401-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-sendAdvMail-401-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-sendAdvMailById-401-schema">
-                                  <div id='responses-sendAdvMailById-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-sendAdvMail-401-schema">
+                                  <div id='responses-sendAdvMail-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -2319,14 +2532,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-sendAdvMailById-401-schema-data').val(stringify(schema));
-                                        var result = $('#responses-sendAdvMailById-401-schema-401');
+                                        $('#responses-sendAdvMail-401-schema-data').val(stringify(schema));
+                                        var result = $('#responses-sendAdvMail-401-schema-401');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-sendAdvMailById-401-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-sendAdvMail-401-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -2334,14 +2547,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-sendAdvMailById-404-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-sendAdvMail-404-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-sendAdvMailById-404-schema">
-                                  <div id='responses-sendAdvMailById-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-sendAdvMail-404-schema">
+                                  <div id='responses-sendAdvMail-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -2367,24 +2580,24 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-sendAdvMailById-404-schema-data').val(stringify(schema));
-                                        var result = $('#responses-sendAdvMailById-404-schema-404');
+                                        $('#responses-sendAdvMail-404-schema-data').val(stringify(schema));
+                                        var result = $('#responses-sendAdvMail-404-schema-404');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-sendAdvMailById-404-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-sendAdvMail-404-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-sendMailById">
-                      <article id="api-Default-sendMailById-0" data-group="User" data-name="sendMailById" data-version="0">
+                    <div id="api-Default-sendMail">
+                      <article id="api-Default-sendMail-0" data-group="User" data-name="sendMail" data-version="0">
                         <div class="pull-left">
-                          <h1>sendMailById</h1>
+                          <h1>sendMail</h1>
                           <p>Sends an Email</p>
                         </div>
                         <div class="pull-right"></div>
@@ -2398,28 +2611,28 @@ except ApiException as e:
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-sendMailById-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-sendMailById-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-sendMailById-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-sendMailById-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-sendMailById-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-sendMailById-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-sendMailById-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-sendMailById-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-sendMailById-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-sendMailById-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-sendMailById-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Default-sendMail-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-sendMail-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-sendMail-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-sendMail-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-sendMail-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-sendMail-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-sendMail-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-sendMail-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-sendMail-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-sendMail-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-sendMail-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-sendMailById-0-curl">
+                          <div class="tab-pane active" id="examples-Default-sendMail-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
 -H "Content-Type: application/json,application/x-www-form-urlencoded"\
 "https://api.mailbaby.net/mail/send"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-sendMailById-0-java">
+                          <div class="tab-pane" id="examples-Default-sendMail-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
 import MailBabyApi.auth.*;
 import MailBabyApi.model.*;
@@ -2442,17 +2655,17 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         SendMail body = ; // SendMail | 
         try {
-            GenericResponse result = apiInstance.sendMailById(body);
+            GenericResponse result = apiInstance.sendMail(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#sendMailById");
+            System.err.println("Exception when calling DefaultApi#sendMail");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-sendMailById-0-android">
+                          <div class="tab-pane" id="examples-Default-sendMail-0-android">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -2461,20 +2674,20 @@ public class DefaultApiExample {
         DefaultApi apiInstance = new DefaultApi();
         SendMail body = ; // SendMail | 
         try {
-            GenericResponse result = apiInstance.sendMailById(body);
+            GenericResponse result = apiInstance.sendMail(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#sendMailById");
+            System.err.println("Exception when calling DefaultApi#sendMail");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-sendMailById-0-groovy">
+  <div class="tab-pane" id="examples-Default-sendMail-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-sendMailById-0-objc">
+                            <div class="tab-pane" id="examples-Default-sendMail-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
 // Configure API key authorization: (authentication scheme: apiKeyAuth)
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
@@ -2485,7 +2698,7 @@ SendMail *body = ; //
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // Sends an Email
-[apiInstance sendMailByIdWith:body
+[apiInstance sendMailWith:body
               completionHandler: ^(GenericResponse output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -2497,7 +2710,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendMailById-0-javascript">
+                            <div class="tab-pane" id="examples-Default-sendMail-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var MailBabyApi = require('mail_baby_api');
 var defaultClient = MailBabyApi.ApiClient.instance;
 
@@ -2517,14 +2730,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.sendMailById(body, callback);
+api.sendMail(body, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-sendMailById-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-sendMail-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-sendMailById-0-csharp">
+                            <div class="tab-pane" id="examples-Default-sendMail-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using MailBabyApi.Api;
@@ -2533,7 +2746,7 @@ using MailBabyApi.Model;
 
 namespace Example
 {
-    public class sendMailByIdExample
+    public class sendMailExample
     {
         public void main()
         {
@@ -2549,12 +2762,12 @@ namespace Example
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.sendMailById(body);
+                GenericResponse result = apiInstance.sendMail(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.sendMailById: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.sendMail: " + e.Message );
             }
         }
     }
@@ -2562,7 +2775,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendMailById-0-php">
+                            <div class="tab-pane" id="examples-Default-sendMail-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -2575,15 +2788,15 @@ $api_instance = new Swagger\Client\ApiDefaultApi();
 $body = ; // SendMail | 
 
 try {
-    $result = $api_instance->sendMailById($body);
+    $result = $api_instance->sendMail($body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->sendMailById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->sendMail: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendMailById-0-perl">
+                            <div class="tab-pane" id="examples-Default-sendMail-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use MailBabyApi::Configuration;
 use MailBabyApi::DefaultApi;
@@ -2597,15 +2810,15 @@ my $api_instance = MailBabyApi::DefaultApi->new();
 my $body = MailBabyApi::Object::SendMail->new(); # SendMail | 
 
 eval { 
-    my $result = $api_instance->sendMailById(body => $body);
+    my $result = $api_instance->sendMail(body => $body);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->sendMailById: $@\n";
+    warn "Exception when calling DefaultApi->sendMail: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-sendMailById-0-python">
+                            <div class="tab-pane" id="examples-Default-sendMail-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import MailBabyApi
@@ -2623,10 +2836,10 @@ body =  # SendMail |
 
 try: 
     # Sends an Email
-    api_response = api_instance.send_mail_by_id(body)
+    api_response = api_instance.send_mail(body)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->sendMailById: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->sendMail: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -2673,12 +2886,12 @@ except ApiException as e:
                                   }
                                 
                                   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_sendMailById_body');
+                                  var result = $('#d2e199_sendMail_body');
                                   result.empty();
                                   result.append(view.render());
                                 });
                                 </script>
-                                <div id="d2e199_sendMailById_body"></div>
+                                <div id="d2e199_sendMail_body"></div>
                                 </td>
                                 </tr>
                             </table>
@@ -2689,30 +2902,11 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                  <tr><td style="width:150px;">subject*</td>
+                                  <tr><td style="width:150px;">to*</td>
                                   <td>
                                   
                                   
-                                      <div id="d2e199_sendMailById_subject">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">body*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_sendMailById_body">
+                                      <div id="d2e199_sendMail_to">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
@@ -2731,11 +2925,11 @@ except ApiException as e:
                                   <td>
                                   
                                   
-                                      <div id="d2e199_sendMailById_from">
+                                      <div id="d2e199_sendMail_from">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      array[SendMail_from]
+                                                      String
                                                   </span>
                                   
                                               </div>
@@ -2746,15 +2940,15 @@ except ApiException as e:
                                       </div>
                                   </td>
                                   </tr>
-                                  <tr><td style="width:150px;">to*</td>
+                                  <tr><td style="width:150px;">subject*</td>
                                   <td>
                                   
                                   
-                                      <div id="d2e199_sendMailById_to">
+                                      <div id="d2e199_sendMail_subject">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      array[MailContact]
+                                                      String
                                                   </span>
                                   
                                               </div>
@@ -2765,94 +2959,15 @@ except ApiException as e:
                                       </div>
                                   </td>
                                   </tr>
-                                  <tr><td style="width:150px;">id*</td>
+                                  <tr><td style="width:150px;">body*</td>
                                   <td>
                                   
                                   
-                                      <div id="d2e199_sendMailById_id">
+                                      <div id="d2e199_sendMail_body">
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      Long
-                                                  </span>
-                                                      <span class="format">
-                                                          (int64)
-                                                      </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">replyto*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_sendMailById_replyto">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      array[MailContact]
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">cc*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_sendMailById_cc">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      array[MailContact]
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">bcc*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_sendMailById_bcc">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      array[MailContact]
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">attachments*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_sendMailById_attachments">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      array[MailAttachment]
+                                                      String
                                                   </span>
                                   
                                               </div>
@@ -2871,14 +2986,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-sendMailById-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-sendMail-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-sendMailById-200-schema">
-                                  <div id='responses-sendMailById-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-sendMail-200-schema">
+                                  <div id='responses-sendMail-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -2904,14 +3019,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-sendMailById-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-sendMailById-200-schema-200');
+                                        $('#responses-sendMail-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-sendMail-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-sendMailById-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-sendMail-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -2927,14 +3042,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-sendMailById-401-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-sendMail-401-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-sendMailById-401-schema">
-                                  <div id='responses-sendMailById-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-sendMail-401-schema">
+                                  <div id='responses-sendMail-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -2960,14 +3075,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-sendMailById-401-schema-data').val(stringify(schema));
-                                        var result = $('#responses-sendMailById-401-schema-401');
+                                        $('#responses-sendMail-401-schema-data').val(stringify(schema));
+                                        var result = $('#responses-sendMail-401-schema-401');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-sendMailById-401-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-sendMail-401-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -2975,14 +3090,14 @@ except ApiException as e:
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-sendMailById-404-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-sendMail-404-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-sendMailById-404-schema">
-                                  <div id='responses-sendMailById-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-sendMail-404-schema">
+                                  <div id='responses-sendMail-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -3008,14 +3123,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-sendMailById-404-schema-data').val(stringify(schema));
-                                        var result = $('#responses-sendMailById-404-schema-404');
+                                        $('#responses-sendMail-404-schema-data').val(stringify(schema));
+                                        var result = $('#responses-sendMail-404-schema-404');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-sendMailById-404-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-sendMail-404-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 

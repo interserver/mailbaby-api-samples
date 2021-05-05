@@ -10,4 +10,5 @@ src/main/groovy/org/openapitools/model/MailContact.groovy
 src/main/groovy/org/openapitools/model/MailLog.groovy
 src/main/groovy/org/openapitools/model/MailOrder.groovy
 src/main/groovy/org/openapitools/model/SendMail.groovy
-src/main/groovy/org/openapitools/model/SendMailFrom.groovy
+src/main/groovy/org/openapitools/model/SendMailAdv.groovy
+src/main/groovy/org/openapitools/model/SendMailAdvFrom.groovy

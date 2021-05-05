@@ -75,6 +75,29 @@ export interface MailOrder {
  */
 export interface SendMail {
   /**
+   * The Contact whom is the primary recipient of this email.
+   */
+  to?: string;
+  /**
+   * The contact whom is the this email is from.
+   */
+  from?: string;
+  /**
+   * The subject or title of the email
+   */
+  subject?: string;
+  /**
+   * The main email contents.
+   */
+  body?: string;
+}
+
+
+/**
+ * Details for an Email
+ */
+export interface SendMailAdv {
+  /**
    * The subject or title of the email
    */
   subject: string;
@@ -85,7 +108,7 @@ export interface SendMail {
   /**
    * The contact whom is the this email is from.
    */
-  from: Array<SendMailFrom>;
+  from: Array<SendMailAdvFrom>;
   /**
    * The Contact whom is the primary recipient of this email.
    */
@@ -116,7 +139,7 @@ export interface SendMail {
 /**
  * An Email Contact
  */
-export interface SendMailFrom {
+export interface SendMailAdvFrom {
   /**
    * The email address
    */

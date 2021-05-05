@@ -11,6 +11,7 @@ import { GenericResponse } from '../models/GenericResponse';
 import { MailLog } from '../models/MailLog';
 import { MailOrder } from '../models/MailOrder';
 import { SendMail } from '../models/SendMail';
+import { SendMailAdv } from '../models/SendMailAdv';
 
 /**
  * no description
@@ -128,14 +129,14 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * Sends an Email with Advanced Options
-     * @param sendMail 
+     * @param sendMailAdv 
      */
-    public async sendAdvMailById(sendMail: SendMail, options?: Configuration): Promise<RequestContext> {
+    public async sendAdvMail(sendMailAdv: SendMailAdv, options?: Configuration): Promise<RequestContext> {
         let config = options || this.configuration;
 
-        // verify required parameter 'sendMail' is not null or undefined
-        if (sendMail === null || sendMail === undefined) {
-            throw new RequiredError('Required parameter sendMail was null or undefined when calling sendAdvMailById.');
+        // verify required parameter 'sendMailAdv' is not null or undefined
+        if (sendMailAdv === null || sendMailAdv === undefined) {
+            throw new RequiredError('Required parameter sendMailAdv was null or undefined when calling sendAdvMail.');
         }
 
 
@@ -155,11 +156,13 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
 
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([
-            "application/json"
+            "application/json",
+        
+            "application/x-www-form-urlencoded"
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(sendMail, "SendMail", ""),
+            ObjectSerializer.serialize(sendMailAdv, "SendMailAdv", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -179,12 +182,12 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
      * Sends an Email
      * @param sendMail 
      */
-    public async sendMailById(sendMail: SendMail, options?: Configuration): Promise<RequestContext> {
+    public async sendMail(sendMail: SendMail, options?: Configuration): Promise<RequestContext> {
         let config = options || this.configuration;
 
         // verify required parameter 'sendMail' is not null or undefined
         if (sendMail === null || sendMail === undefined) {
-            throw new RequiredError('Required parameter sendMail was null or undefined when calling sendMailById.');
+            throw new RequiredError('Required parameter sendMail was null or undefined when calling sendMail.');
         }
 
 
@@ -423,10 +426,10 @@ export class DefaultApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to sendAdvMailById
+     * @params response Response returned by the server for a request to sendAdvMail
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async sendAdvMailById(response: ResponseContext): Promise<GenericResponse > {
+     public async sendAdvMail(response: ResponseContext): Promise<GenericResponse > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: GenericResponse = ObjectSerializer.deserialize(
@@ -470,10 +473,10 @@ export class DefaultApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to sendMailById
+     * @params response Response returned by the server for a request to sendMail
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async sendMailById(response: ResponseContext): Promise<GenericResponse > {
+     public async sendMail(response: ResponseContext): Promise<GenericResponse > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: GenericResponse = ObjectSerializer.deserialize(

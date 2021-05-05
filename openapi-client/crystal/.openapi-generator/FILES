@@ -11,7 +11,8 @@ spec/models/mail_attachment_spec.cr
 spec/models/mail_contact_spec.cr
 spec/models/mail_log_spec.cr
 spec/models/mail_order_spec.cr
-spec/models/send_mail_from_spec.cr
+spec/models/send_mail_adv_from_spec.cr
+spec/models/send_mail_adv_spec.cr
 spec/models/send_mail_spec.cr
 spec/spec_helper.cr
 src/openapi_client.cr
@@ -26,4 +27,5 @@ src/openapi_client/models/mail_contact.cr
 src/openapi_client/models/mail_log.cr
 src/openapi_client/models/mail_order.cr
 src/openapi_client/models/send_mail.cr
-src/openapi_client/models/send_mail_from.cr
+src/openapi_client/models/send_mail_adv.cr
+src/openapi_client/models/send_mail_adv_from.cr

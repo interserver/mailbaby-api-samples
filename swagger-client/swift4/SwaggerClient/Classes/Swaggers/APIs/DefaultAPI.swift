@@ -138,8 +138,8 @@ open class DefaultAPI {
      - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendAdvMailById(body: SendMail, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
-        sendAdvMailByIdWithRequestBuilder(body: body).execute { (response, error) -> Void in
+    open class func sendAdvMail(body: SendMailAdv, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
+        sendAdvMailWithRequestBuilder(body: body).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -160,7 +160,46 @@ open class DefaultAPI {
 
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendAdvMailByIdWithRequestBuilder(body: SendMail) -> RequestBuilder<GenericResponse> {
+    open class func sendAdvMailWithRequestBuilder(body: SendMailAdv) -> RequestBuilder<GenericResponse> {
+        let path = "/mail/advsend"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
+
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<GenericResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
+    }
+
+    /**
+     Sends an Email with Advanced Options
+     - parameter subject: (form)       - parameter body: (form)       - parameter from: (form)       - parameter to: (form)       - parameter _id: (form)       - parameter replyto: (form)       - parameter cc: (form)       - parameter bcc: (form)       - parameter attachments: (form)  
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func sendAdvMail(subject: String, body: String, from: [SendMailAdvFrom], to: [MailContact], _id: Int64, replyto: [MailContact], cc: [MailContact], bcc: [MailContact], attachments: [MailAttachment], completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
+        sendAdvMailWithRequestBuilder(subject: subject, body: body, from: from, to: to, _id: _id, replyto: replyto, cc: cc, bcc: bcc, attachments: attachments).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Sends an Email with Advanced Options
+     - POST /mail/advsend
+     - Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+     - API Key:
+       - type: apiKey X-API-KEY 
+       - name: apiKeyAuth
+     - examples: [{contentType=application/json, example={
+  "status_text" : "The command completed successfully.",
+  "status" : "ok"
+}}]
+     - parameter subject: (form)       - parameter body: (form)       - parameter from: (form)       - parameter to: (form)       - parameter _id: (form)       - parameter replyto: (form)       - parameter cc: (form)       - parameter bcc: (form)       - parameter attachments: (form)  
+
+     - returns: RequestBuilder<GenericResponse> 
+     */
+    open class func sendAdvMailWithRequestBuilder(subject: String, body: String, from: [SendMailAdvFrom], to: [MailContact], _id: Int64, replyto: [MailContact], cc: [MailContact], bcc: [MailContact], attachments: [MailAttachment]) -> RequestBuilder<GenericResponse> {
         let path = "/mail/advsend"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
@@ -177,8 +216,8 @@ open class DefaultAPI {
      - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendMailById(body: SendMail, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
-        sendMailByIdWithRequestBuilder(body: body).execute { (response, error) -> Void in
+    open class func sendMail(body: SendMail, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
+        sendMailWithRequestBuilder(body: body).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -199,7 +238,7 @@ open class DefaultAPI {
 
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendMailByIdWithRequestBuilder(body: SendMail) -> RequestBuilder<GenericResponse> {
+    open class func sendMailWithRequestBuilder(body: SendMail) -> RequestBuilder<GenericResponse> {
         let path = "/mail/send"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
@@ -213,11 +252,11 @@ open class DefaultAPI {
 
     /**
      Sends an Email
-     - parameter subject: (form)       - parameter body: (form)       - parameter from: (form)       - parameter to: (form)       - parameter _id: (form)       - parameter replyto: (form)       - parameter cc: (form)       - parameter bcc: (form)       - parameter attachments: (form)  
+     - parameter to: (form)       - parameter from: (form)       - parameter subject: (form)       - parameter body: (form)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendMailById(subject: String, body: String, from: [SendMailFrom], to: [MailContact], _id: Int64, replyto: [MailContact], cc: [MailContact], bcc: [MailContact], attachments: [MailAttachment], completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
-        sendMailByIdWithRequestBuilder(subject: subject, body: body, from: from, to: to, _id: _id, replyto: replyto, cc: cc, bcc: bcc, attachments: attachments).execute { (response, error) -> Void in
+    open class func sendMail(to: String, from: String, subject: String, body: String, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
+        sendMailWithRequestBuilder(to: to, from: from, subject: subject, body: body).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -234,11 +273,11 @@ open class DefaultAPI {
   "status_text" : "The command completed successfully.",
   "status" : "ok"
 }}]
-     - parameter subject: (form)       - parameter body: (form)       - parameter from: (form)       - parameter to: (form)       - parameter _id: (form)       - parameter replyto: (form)       - parameter cc: (form)       - parameter bcc: (form)       - parameter attachments: (form)  
+     - parameter to: (form)       - parameter from: (form)       - parameter subject: (form)       - parameter body: (form)  
 
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendMailByIdWithRequestBuilder(subject: String, body: String, from: [SendMailFrom], to: [MailContact], _id: Int64, replyto: [MailContact], cc: [MailContact], bcc: [MailContact], attachments: [MailAttachment]) -> RequestBuilder<GenericResponse> {
+    open class func sendMailWithRequestBuilder(to: String, from: String, subject: String, body: String) -> RequestBuilder<GenericResponse> {
         let path = "/mail/send"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)

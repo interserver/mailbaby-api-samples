@@ -314,7 +314,7 @@ Sends An email through one of your mail orders allowing additional options such 
  * @param body
 @return GenericResponse
 */
-func (a *DefaultApiService) SendAdvMailById(ctx context.Context, body SendMail) (GenericResponse, *http.Response, error) {
+func (a *DefaultApiService) SendAdvMail(ctx context.Context, body SendMailAdv) (GenericResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -331,7 +331,7 @@ func (a *DefaultApiService) SendAdvMailById(ctx context.Context, body SendMail) 
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{"application/json"}
+	localVarHttpContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
 
 	// set Content-Type header
 	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
@@ -433,7 +433,7 @@ Sends An email through one of your mail orders.
  * @param body
 @return GenericResponse
 */
-func (a *DefaultApiService) SendMailById(ctx context.Context, body SendMail) (GenericResponse, *http.Response, error) {
+func (a *DefaultApiService) SendMail(ctx context.Context, body SendMail) (GenericResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}

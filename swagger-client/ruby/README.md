@@ -111,15 +111,24 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::DefaultApi.new
-body = SwaggerClient::SendMail.new # SendMail | 
+body = SwaggerClient::SendMailAdv.new # SendMailAdv | 
+subject = 'subject_example' # String | 
+body = 'body_example' # String | 
+from = [SwaggerClient::SendMailAdvFrom.new] # Array<SendMailAdvFrom> | 
+to = [SwaggerClient::MailContact.new] # Array<MailContact> | 
+id = 789 # Integer | 
+replyto = [SwaggerClient::MailContact.new] # Array<MailContact> | 
+cc = [SwaggerClient::MailContact.new] # Array<MailContact> | 
+bcc = [SwaggerClient::MailContact.new] # Array<MailContact> | 
+attachments = [SwaggerClient::MailAttachment.new] # Array<MailAttachment> | 
 
 
 begin
   #Sends an Email with Advanced Options
-  result = api_instance.send_adv_mail_by_id(body)
+  result = api_instance.send_adv_mail(body, subject, body, from, to, id, replyto, cc, bcc, attachments)
   p result
 rescue SwaggerClient::ApiError => e
-  puts "Exception when calling DefaultApi->send_adv_mail_by_id: #{e}"
+  puts "Exception when calling DefaultApi->send_adv_mail: #{e}"
 end
 # Setup authorization
 SwaggerClient.configure do |config|
@@ -131,23 +140,18 @@ end
 
 api_instance = SwaggerClient::DefaultApi.new
 body = SwaggerClient::SendMail.new # SendMail | 
+to = 'to_example' # String | 
+from = 'from_example' # String | 
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
-from = [SwaggerClient::SendMailFrom.new] # Array<SendMailFrom> | 
-to = [SwaggerClient::MailContact.new] # Array<MailContact> | 
-id = 789 # Integer | 
-replyto = [SwaggerClient::MailContact.new] # Array<MailContact> | 
-cc = [SwaggerClient::MailContact.new] # Array<MailContact> | 
-bcc = [SwaggerClient::MailContact.new] # Array<MailContact> | 
-attachments = [SwaggerClient::MailAttachment.new] # Array<MailAttachment> | 
 
 
 begin
   #Sends an Email
-  result = api_instance.send_mail_by_id(body, subject, body, from, to, id, replyto, cc, bcc, attachments)
+  result = api_instance.send_mail(body, to, from, subject, body)
   p result
 rescue SwaggerClient::ApiError => e
-  puts "Exception when calling DefaultApi->send_mail_by_id: #{e}"
+  puts "Exception when calling DefaultApi->send_mail: #{e}"
 end
 # Setup authorization
 SwaggerClient.configure do |config|
@@ -199,8 +203,8 @@ Class | Method | HTTP request | Description
 *SwaggerClient::DefaultApi* | [**get_mail_orders**](docs/DefaultApi.md#get_mail_orders) | **GET** /mail | displays a list of mail service orders
 *SwaggerClient::DefaultApi* | [**ping_server**](docs/DefaultApi.md#ping_server) | **GET** /ping | Checks if the server is running
 *SwaggerClient::DefaultApi* | [**place_mail_order**](docs/DefaultApi.md#place_mail_order) | **POST** /mail/order | places a mail order
-*SwaggerClient::DefaultApi* | [**send_adv_mail_by_id**](docs/DefaultApi.md#send_adv_mail_by_id) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*SwaggerClient::DefaultApi* | [**send_mail_by_id**](docs/DefaultApi.md#send_mail_by_id) | **POST** /mail/send | Sends an Email
+*SwaggerClient::DefaultApi* | [**send_adv_mail**](docs/DefaultApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*SwaggerClient::DefaultApi* | [**send_mail**](docs/DefaultApi.md#send_mail) | **POST** /mail/send | Sends an Email
 *SwaggerClient::DefaultApi* | [**validate_mail_order**](docs/DefaultApi.md#validate_mail_order) | **GET** /mail/order | validatess order details before placing an order
 *SwaggerClient::DefaultApi* | [**view_mail_log_by_id**](docs/DefaultApi.md#view_mail_log_by_id) | **GET** /mail/log | displays the mail log
 
@@ -214,7 +218,8 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::MailOrder](docs/MailOrder.md)
  - [SwaggerClient::MailOrders](docs/MailOrders.md)
  - [SwaggerClient::SendMail](docs/SendMail.md)
- - [SwaggerClient::SendMailFrom](docs/SendMailFrom.md)
+ - [SwaggerClient::SendMailAdv](docs/SendMailAdv.md)
+ - [SwaggerClient::SendMailAdvFrom](docs/SendMailAdvFrom.md)
 
 ## Documentation for Authorization
 

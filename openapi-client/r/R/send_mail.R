@@ -13,23 +13,13 @@
 #'
 #' @format An \code{R6Class} generator object
 #'
-#' @field subject  character 
+#' @field to  character [optional]
 #'
-#' @field body  character 
+#' @field from  character [optional]
 #'
-#' @field from  list( \link{SendMailFrom} ) 
+#' @field subject  character [optional]
 #'
-#' @field to  list( \link{MailContact} ) 
-#'
-#' @field id  integer 
-#'
-#' @field replyto  list( \link{MailContact} ) [optional]
-#'
-#' @field cc  list( \link{MailContact} ) [optional]
-#'
-#' @field bcc  list( \link{MailContact} ) [optional]
-#'
-#' @field attachments  list( \link{MailAttachment} ) [optional]
+#' @field body  character [optional]
 #'
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -37,64 +27,41 @@
 SendMail <- R6::R6Class(
   'SendMail',
   public = list(
+    `to` = NULL,
+    `from` = NULL,
     `subject` = NULL,
     `body` = NULL,
-    `from` = NULL,
-    `to` = NULL,
-    `id` = NULL,
-    `replyto` = NULL,
-    `cc` = NULL,
-    `bcc` = NULL,
-    `attachments` = NULL,
     initialize = function(
-        `subject`, `body`, `from`, `to`, `id`, `replyto`=NULL, `cc`=NULL, `bcc`=NULL, `attachments`=NULL, ...
+        `to`=NULL, `from`=NULL, `subject`=NULL, `body`=NULL, ...
     ) {
       local.optional.var <- list(...)
-      if (!missing(`subject`)) {
+      if (!is.null(`to`)) {
+        stopifnot(is.character(`to`), length(`to`) == 1)
+        self$`to` <- `to`
+      }
+      if (!is.null(`from`)) {
+        stopifnot(is.character(`from`), length(`from`) == 1)
+        self$`from` <- `from`
+      }
+      if (!is.null(`subject`)) {
         stopifnot(is.character(`subject`), length(`subject`) == 1)
         self$`subject` <- `subject`
       }
-      if (!missing(`body`)) {
+      if (!is.null(`body`)) {
         stopifnot(is.character(`body`), length(`body`) == 1)
         self$`body` <- `body`
-      }
-      if (!missing(`from`)) {
-        stopifnot(is.vector(`from`), length(`from`) != 0)
-        sapply(`from`, function(x) stopifnot(R6::is.R6(x)))
-        self$`from` <- `from`
-      }
-      if (!missing(`to`)) {
-        stopifnot(is.vector(`to`), length(`to`) != 0)
-        sapply(`to`, function(x) stopifnot(R6::is.R6(x)))
-        self$`to` <- `to`
-      }
-      if (!missing(`id`)) {
-        stopifnot(is.numeric(`id`), length(`id`) == 1)
-        self$`id` <- `id`
-      }
-      if (!is.null(`replyto`)) {
-        stopifnot(is.vector(`replyto`), length(`replyto`) != 0)
-        sapply(`replyto`, function(x) stopifnot(R6::is.R6(x)))
-        self$`replyto` <- `replyto`
-      }
-      if (!is.null(`cc`)) {
-        stopifnot(is.vector(`cc`), length(`cc`) != 0)
-        sapply(`cc`, function(x) stopifnot(R6::is.R6(x)))
-        self$`cc` <- `cc`
-      }
-      if (!is.null(`bcc`)) {
-        stopifnot(is.vector(`bcc`), length(`bcc`) != 0)
-        sapply(`bcc`, function(x) stopifnot(R6::is.R6(x)))
-        self$`bcc` <- `bcc`
-      }
-      if (!is.null(`attachments`)) {
-        stopifnot(is.vector(`attachments`), length(`attachments`) != 0)
-        sapply(`attachments`, function(x) stopifnot(R6::is.R6(x)))
-        self$`attachments` <- `attachments`
       }
     },
     toJSON = function() {
       SendMailObject <- list()
+      if (!is.null(self$`to`)) {
+        SendMailObject[['to']] <-
+          self$`to`
+      }
+      if (!is.null(self$`from`)) {
+        SendMailObject[['from']] <-
+          self$`from`
+      }
       if (!is.null(self$`subject`)) {
         SendMailObject[['subject']] <-
           self$`subject`
@@ -103,70 +70,41 @@ SendMail <- R6::R6Class(
         SendMailObject[['body']] <-
           self$`body`
       }
-      if (!is.null(self$`from`)) {
-        SendMailObject[['from']] <-
-          lapply(self$`from`, function(x) x$toJSON())
-      }
-      if (!is.null(self$`to`)) {
-        SendMailObject[['to']] <-
-          lapply(self$`to`, function(x) x$toJSON())
-      }
-      if (!is.null(self$`id`)) {
-        SendMailObject[['id']] <-
-          self$`id`
-      }
-      if (!is.null(self$`replyto`)) {
-        SendMailObject[['replyto']] <-
-          lapply(self$`replyto`, function(x) x$toJSON())
-      }
-      if (!is.null(self$`cc`)) {
-        SendMailObject[['cc']] <-
-          lapply(self$`cc`, function(x) x$toJSON())
-      }
-      if (!is.null(self$`bcc`)) {
-        SendMailObject[['bcc']] <-
-          lapply(self$`bcc`, function(x) x$toJSON())
-      }
-      if (!is.null(self$`attachments`)) {
-        SendMailObject[['attachments']] <-
-          lapply(self$`attachments`, function(x) x$toJSON())
-      }
 
       SendMailObject
     },
     fromJSON = function(SendMailJson) {
       SendMailObject <- jsonlite::fromJSON(SendMailJson)
+      if (!is.null(SendMailObject$`to`)) {
+        self$`to` <- SendMailObject$`to`
+      }
+      if (!is.null(SendMailObject$`from`)) {
+        self$`from` <- SendMailObject$`from`
+      }
       if (!is.null(SendMailObject$`subject`)) {
         self$`subject` <- SendMailObject$`subject`
       }
       if (!is.null(SendMailObject$`body`)) {
         self$`body` <- SendMailObject$`body`
       }
-      if (!is.null(SendMailObject$`from`)) {
-        self$`from` <- ApiClient$new()$deserializeObj(SendMailObject$`from`, "array[SendMailFrom]", loadNamespace("openapi"))
-      }
-      if (!is.null(SendMailObject$`to`)) {
-        self$`to` <- ApiClient$new()$deserializeObj(SendMailObject$`to`, "array[MailContact]", loadNamespace("openapi"))
-      }
-      if (!is.null(SendMailObject$`id`)) {
-        self$`id` <- SendMailObject$`id`
-      }
-      if (!is.null(SendMailObject$`replyto`)) {
-        self$`replyto` <- ApiClient$new()$deserializeObj(SendMailObject$`replyto`, "array[MailContact]", loadNamespace("openapi"))
-      }
-      if (!is.null(SendMailObject$`cc`)) {
-        self$`cc` <- ApiClient$new()$deserializeObj(SendMailObject$`cc`, "array[MailContact]", loadNamespace("openapi"))
-      }
-      if (!is.null(SendMailObject$`bcc`)) {
-        self$`bcc` <- ApiClient$new()$deserializeObj(SendMailObject$`bcc`, "array[MailContact]", loadNamespace("openapi"))
-      }
-      if (!is.null(SendMailObject$`attachments`)) {
-        self$`attachments` <- ApiClient$new()$deserializeObj(SendMailObject$`attachments`, "array[MailAttachment]", loadNamespace("openapi"))
-      }
       self
     },
     toJSONString = function() {
       jsoncontent <- c(
+        if (!is.null(self$`to`)) {
+        sprintf(
+        '"to":
+          "%s"
+                ',
+        self$`to`
+        )},
+        if (!is.null(self$`from`)) {
+        sprintf(
+        '"from":
+          "%s"
+                ',
+        self$`from`
+        )},
         if (!is.null(self$`subject`)) {
         sprintf(
         '"subject":
@@ -180,55 +118,6 @@ SendMail <- R6::R6Class(
           "%s"
                 ',
         self$`body`
-        )},
-        if (!is.null(self$`from`)) {
-        sprintf(
-        '"from":
-        [%s]
-',
-        paste(sapply(self$`from`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox=TRUE, digits = NA)), collapse=",")
-        )},
-        if (!is.null(self$`to`)) {
-        sprintf(
-        '"to":
-        [%s]
-',
-        paste(sapply(self$`to`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox=TRUE, digits = NA)), collapse=",")
-        )},
-        if (!is.null(self$`id`)) {
-        sprintf(
-        '"id":
-          %d
-                ',
-        self$`id`
-        )},
-        if (!is.null(self$`replyto`)) {
-        sprintf(
-        '"replyto":
-        [%s]
-',
-        paste(sapply(self$`replyto`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox=TRUE, digits = NA)), collapse=",")
-        )},
-        if (!is.null(self$`cc`)) {
-        sprintf(
-        '"cc":
-        [%s]
-',
-        paste(sapply(self$`cc`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox=TRUE, digits = NA)), collapse=",")
-        )},
-        if (!is.null(self$`bcc`)) {
-        sprintf(
-        '"bcc":
-        [%s]
-',
-        paste(sapply(self$`bcc`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox=TRUE, digits = NA)), collapse=",")
-        )},
-        if (!is.null(self$`attachments`)) {
-        sprintf(
-        '"attachments":
-        [%s]
-',
-        paste(sapply(self$`attachments`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox=TRUE, digits = NA)), collapse=",")
         )}
       )
       jsoncontent <- paste(jsoncontent, collapse = ",")
@@ -236,15 +125,10 @@ SendMail <- R6::R6Class(
     },
     fromJSONString = function(SendMailJson) {
       SendMailObject <- jsonlite::fromJSON(SendMailJson)
+      self$`to` <- SendMailObject$`to`
+      self$`from` <- SendMailObject$`from`
       self$`subject` <- SendMailObject$`subject`
       self$`body` <- SendMailObject$`body`
-      self$`from` <- ApiClient$new()$deserializeObj(SendMailObject$`from`, "array[SendMailFrom]", loadNamespace("openapi"))
-      self$`to` <- ApiClient$new()$deserializeObj(SendMailObject$`to`, "array[MailContact]", loadNamespace("openapi"))
-      self$`id` <- SendMailObject$`id`
-      self$`replyto` <- ApiClient$new()$deserializeObj(SendMailObject$`replyto`, "array[MailContact]", loadNamespace("openapi"))
-      self$`cc` <- ApiClient$new()$deserializeObj(SendMailObject$`cc`, "array[MailContact]", loadNamespace("openapi"))
-      self$`bcc` <- ApiClient$new()$deserializeObj(SendMailObject$`bcc`, "array[MailContact]", loadNamespace("openapi"))
-      self$`attachments` <- ApiClient$new()$deserializeObj(SendMailObject$`attachments`, "array[MailAttachment]", loadNamespace("openapi"))
       self
     }
   )

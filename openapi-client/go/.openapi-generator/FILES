@@ -14,7 +14,8 @@ docs/MailContact.md
 docs/MailLog.md
 docs/MailOrder.md
 docs/SendMail.md
-docs/SendMailFrom.md
+docs/SendMailAdv.md
+docs/SendMailAdvFrom.md
 git_push.sh
 go.mod
 go.sum
@@ -25,6 +26,7 @@ model_mail_contact.go
 model_mail_log.go
 model_mail_order.go
 model_send_mail.go
-model_send_mail_from.go
+model_send_mail_adv.go
+model_send_mail_adv_from.go
 response.go
 utils.go

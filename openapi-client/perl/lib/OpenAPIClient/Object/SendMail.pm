@@ -30,9 +30,6 @@ use Log::Any qw($log);
 use Date::Parse;
 use DateTime;
 
-use OpenAPIClient::Object::MailAttachment;
-use OpenAPIClient::Object::MailContact;
-use OpenAPIClient::Object::SendMailFrom;
 
 use base ("Class::Accessor", "Class::Data::Inheritable");
 
@@ -164,6 +161,20 @@ __PACKAGE__->class_documentation({description => 'Details for an Email',
 }                                 );
 
 __PACKAGE__->method_documentation({
+    'to' => {
+        datatype => 'string',
+        base_name => 'to',
+        description => 'The Contact whom is the primary recipient of this email.',
+        format => '',
+        read_only => '',
+            },
+    'from' => {
+        datatype => 'string',
+        base_name => 'from',
+        description => 'The contact whom is the this email is from.',
+        format => '',
+        read_only => '',
+            },
     'subject' => {
         datatype => 'string',
         base_name => 'subject',
@@ -178,79 +189,20 @@ __PACKAGE__->method_documentation({
         format => '',
         read_only => '',
             },
-    'from' => {
-        datatype => 'ARRAY[SendMailFrom]',
-        base_name => 'from',
-        description => 'The contact whom is the this email is from.',
-        format => '',
-        read_only => '',
-            },
-    'to' => {
-        datatype => 'ARRAY[MailContact]',
-        base_name => 'to',
-        description => 'The Contact whom is the primary recipient of this email.',
-        format => '',
-        read_only => '',
-            },
-    'id' => {
-        datatype => 'int',
-        base_name => 'id',
-        description => 'The ID of the Mail order within our system to use as the Mail Account.',
-        format => '',
-        read_only => '',
-            },
-    'replyto' => {
-        datatype => 'ARRAY[MailContact]',
-        base_name => 'replyto',
-        description => 'Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.',
-        format => '',
-        read_only => '',
-            },
-    'cc' => {
-        datatype => 'ARRAY[MailContact]',
-        base_name => 'cc',
-        description => 'Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.',
-        format => '',
-        read_only => '',
-            },
-    'bcc' => {
-        datatype => 'ARRAY[MailContact]',
-        base_name => 'bcc',
-        description => 'Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.',
-        format => '',
-        read_only => '',
-            },
-    'attachments' => {
-        datatype => 'ARRAY[MailAttachment]',
-        base_name => 'attachments',
-        description => 'Optional file attachments to include in the email',
-        format => '',
-        read_only => '',
-            },
 });
 
 __PACKAGE__->openapi_types( {
+    'to' => 'string',
+    'from' => 'string',
     'subject' => 'string',
-    'body' => 'string',
-    'from' => 'ARRAY[SendMailFrom]',
-    'to' => 'ARRAY[MailContact]',
-    'id' => 'int',
-    'replyto' => 'ARRAY[MailContact]',
-    'cc' => 'ARRAY[MailContact]',
-    'bcc' => 'ARRAY[MailContact]',
-    'attachments' => 'ARRAY[MailAttachment]'
+    'body' => 'string'
 } );
 
 __PACKAGE__->attribute_map( {
-    'subject' => 'subject',
-    'body' => 'body',
-    'from' => 'from',
     'to' => 'to',
-    'id' => 'id',
-    'replyto' => 'replyto',
-    'cc' => 'cc',
-    'bcc' => 'bcc',
-    'attachments' => 'attachments'
+    'from' => 'from',
+    'subject' => 'subject',
+    'body' => 'body'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

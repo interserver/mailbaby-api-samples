@@ -16,6 +16,7 @@ import org.openapitools.client.model.GenericResponse
 import org.openapitools.client.model.MailLog
 import org.openapitools.client.model.MailOrder
 import org.openapitools.client.model.SendMail
+import org.openapitools.client.model.SendMailAdv
 import org.openapitools.client.core.JsonSupport._
 import sttp.client._
 import sttp.model.Method
@@ -92,15 +93,15 @@ class DefaultApi(baseUrl: String) {
    * Available security schemes:
    *   apiKeyAuth (apiKey)
    * 
-   * @param sendMail 
+   * @param sendMailAdv 
    */
-  def sendAdvMailById(apiKey: String)(sendMail: SendMail
+  def sendAdvMail(apiKey: String)(sendMailAdv: SendMailAdv
 ): Request[Either[ResponseError[Exception], GenericResponse], Nothing] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/advsend")
       .contentType("application/json")
       .header("X-API-KEY", apiKey)
-      .body(sendMail)
+      .body(sendMailAdv)
       .response(asJson[GenericResponse])
 
   /**
@@ -117,7 +118,7 @@ class DefaultApi(baseUrl: String) {
    * 
    * @param sendMail 
    */
-  def sendMailById(apiKey: String)(sendMail: SendMail
+  def sendMail(apiKey: String)(sendMail: SendMail
 ): Request[Either[ResponseError[Exception], GenericResponse], Nothing] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/send")

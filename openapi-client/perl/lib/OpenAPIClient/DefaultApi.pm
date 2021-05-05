@@ -210,20 +210,20 @@ sub place_mail_order {
 }
 
 #
-# send_adv_mail_by_id
+# send_adv_mail
 #
 # Sends an Email with Advanced Options
 # 
-# @param SendMail $send_mail  (required)
+# @param SendMailAdv $send_mail_adv  (required)
 {
     my $params = {
-    'send_mail' => {
-        data_type => 'SendMail',
+    'send_mail_adv' => {
+        data_type => 'SendMailAdv',
         description => '',
         required => '1',
     },
     };
-    __PACKAGE__->method_documentation->{ 'send_adv_mail_by_id' } = { 
+    __PACKAGE__->method_documentation->{ 'send_adv_mail' } = { 
         summary => 'Sends an Email with Advanced Options',
         params => $params,
         returns => 'GenericResponse',
@@ -231,12 +231,12 @@ sub place_mail_order {
 }
 # @return GenericResponse
 #
-sub send_adv_mail_by_id {
+sub send_adv_mail {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'send_mail' is set
-    unless (exists $args{'send_mail'}) {
-      croak("Missing the required parameter 'send_mail' when calling send_adv_mail_by_id");
+    # verify the required parameter 'send_mail_adv' is set
+    unless (exists $args{'send_mail_adv'}) {
+      croak("Missing the required parameter 'send_mail_adv' when calling send_adv_mail");
     }
 
     # parse inputs
@@ -252,12 +252,12 @@ sub send_adv_mail_by_id {
     if ($_header_accept) {
         $header_params->{'Accept'} = $_header_accept;
     }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json', 'application/x-www-form-urlencoded');
 
     my $_body_data;
     # body params
-    if ( exists $args{'send_mail'}) {
-        $_body_data = $args{'send_mail'};
+    if ( exists $args{'send_mail_adv'}) {
+        $_body_data = $args{'send_mail_adv'};
     }
 
     # authentication setting, if any
@@ -275,7 +275,7 @@ sub send_adv_mail_by_id {
 }
 
 #
-# send_mail_by_id
+# send_mail
 #
 # Sends an Email
 # 
@@ -288,7 +288,7 @@ sub send_adv_mail_by_id {
         required => '1',
     },
     };
-    __PACKAGE__->method_documentation->{ 'send_mail_by_id' } = { 
+    __PACKAGE__->method_documentation->{ 'send_mail' } = { 
         summary => 'Sends an Email',
         params => $params,
         returns => 'GenericResponse',
@@ -296,12 +296,12 @@ sub send_adv_mail_by_id {
 }
 # @return GenericResponse
 #
-sub send_mail_by_id {
+sub send_mail {
     my ($self, %args) = @_;
 
     # verify the required parameter 'send_mail' is set
     unless (exists $args{'send_mail'}) {
-      croak("Missing the required parameter 'send_mail' when calling send_mail_by_id");
+      croak("Missing the required parameter 'send_mail' when calling send_mail");
     }
 
     # parse inputs

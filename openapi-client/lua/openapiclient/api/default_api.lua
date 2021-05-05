@@ -21,6 +21,7 @@ local openapiclient_generic_response = require "openapiclient.model.generic_resp
 local openapiclient_mail_log = require "openapiclient.model.mail_log"
 local openapiclient_mail_order = require "openapiclient.model.mail_order"
 local openapiclient_send_mail = require "openapiclient.model.send_mail"
+local openapiclient_send_mail_adv = require "openapiclient.model.send_mail_adv"
 
 local default_api = {}
 local default_api_mt = {
@@ -177,7 +178,7 @@ function default_api:place_mail_order(mail_order)
 	end
 end
 
-function default_api:send_adv_mail_by_id(send_mail)
+function default_api:send_adv_mail(send_mail_adv)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -189,14 +190,14 @@ function default_api:send_adv_mail_by_id(send_mail)
 	-- set HTTP verb
 	req.headers:upsert(":method", "POST")
 	-- TODO: create a function to select proper accept
-	--local var_content_type = { "application/json" }
+	--local var_content_type = { "application/json", "application/x-www-form-urlencoded" }
 	req.headers:upsert("accept", "application/json")
 
 	-- TODO: create a function to select proper content-type
 	--local var_accept = { "application/json" }
 	req.headers:upsert("content-type", "application/json")
 
-	req:set_body(dkjson.encode(send_mail))
+	req:set_body(dkjson.encode(send_mail_adv))
 
 	-- api key in headers 'X-API-KEY'
 	if self.api_key['X-API-KEY'] then
@@ -233,7 +234,7 @@ function default_api:send_adv_mail_by_id(send_mail)
 	end
 end
 
-function default_api:send_mail_by_id(send_mail)
+function default_api:send_mail(send_mail)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;

@@ -10,18 +10,10 @@
 import json
 import tables
 
-import model_mail_attachment
-import model_mail_contact
-import model_send_mail_from
 
 type SendMail* = object
   ## Details for an Email
+  to*: string ## The Contact whom is the primary recipient of this email.
+  `from`*: string ## The contact whom is the this email is from.
   subject*: string ## The subject or title of the email
   body*: string ## The main email contents.
-  `from`*: seq[SendMail_from] ## The contact whom is the this email is from.
-  to*: seq[MailContact] ## The Contact whom is the primary recipient of this email.
-  id*: int64 ## The ID of the Mail order within our system to use as the Mail Account.
-  replyto*: seq[MailContact] ## Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-  cc*: seq[MailContact] ## Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-  bcc*: seq[MailContact] ## Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-  attachments*: seq[MailAttachment] ## Optional file attachments to include in the email

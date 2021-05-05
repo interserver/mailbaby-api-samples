@@ -19,6 +19,7 @@ import org.openapitools.client.model.GenericResponse;
 import org.openapitools.client.model.MailLog;
 import org.openapitools.client.model.MailOrder;
 import org.openapitools.client.model.SendMail;
+import org.openapitools.client.model.SendMailAdv;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -92,9 +93,9 @@ public class DefaultApiTest {
      *          if the Api call fails
      */
     @Test
-    public void sendAdvMailByIdTest() throws ApiException {
-        SendMail sendMail = null;
-        GenericResponse response = api.sendAdvMailById(sendMail);
+    public void sendAdvMailTest() throws ApiException {
+        SendMailAdv sendMailAdv = null;
+        GenericResponse response = api.sendAdvMail(sendMailAdv);
 
         // TODO: test validations
     }
@@ -108,9 +109,9 @@ public class DefaultApiTest {
      *          if the Api call fails
      */
     @Test
-    public void sendMailByIdTest() throws ApiException {
+    public void sendMailTest() throws ApiException {
         SendMail sendMail = null;
-        GenericResponse response = api.sendMailById(sendMail);
+        GenericResponse response = api.sendMail(sendMail);
 
         // TODO: test validations
     }

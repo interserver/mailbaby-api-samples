@@ -22,6 +22,7 @@ import { GenericResponse } from '../model/models';
 import { MailLog } from '../model/models';
 import { MailOrder } from '../model/models';
 import { SendMail } from '../model/models';
+import { SendMailAdv } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -250,16 +251,16 @@ export class DefaultService {
     /**
      * Sends an Email with Advanced Options
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @param sendMail 
+     * @param sendMailAdv 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendAdvMailById(sendMail: SendMail, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<GenericResponse>;
-    public sendAdvMailById(sendMail: SendMail, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<GenericResponse>>;
-    public sendAdvMailById(sendMail: SendMail, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<GenericResponse>>;
-    public sendAdvMailById(sendMail: SendMail, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (sendMail === null || sendMail === undefined) {
-            throw new Error('Required parameter sendMail was null or undefined when calling sendAdvMailById.');
+    public sendAdvMail(sendMailAdv: SendMailAdv, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<GenericResponse>;
+    public sendAdvMail(sendMailAdv: SendMailAdv, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<GenericResponse>>;
+    public sendAdvMail(sendMailAdv: SendMailAdv, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<GenericResponse>>;
+    public sendAdvMail(sendMailAdv: SendMailAdv, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (sendMailAdv === null || sendMailAdv === undefined) {
+            throw new Error('Required parameter sendMailAdv was null or undefined when calling sendAdvMail.');
         }
 
         let headers = this.defaultHeaders;
@@ -286,7 +287,8 @@ export class DefaultService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/json'
+            'application/json',
+            'application/x-www-form-urlencoded'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected !== undefined) {
@@ -299,7 +301,7 @@ export class DefaultService {
         }
 
         return this.httpClient.post<GenericResponse>(`${this.configuration.basePath}/mail/advsend`,
-            sendMail,
+            sendMailAdv,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -317,12 +319,12 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendMailById(sendMail: SendMail, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<GenericResponse>;
-    public sendMailById(sendMail: SendMail, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<GenericResponse>>;
-    public sendMailById(sendMail: SendMail, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<GenericResponse>>;
-    public sendMailById(sendMail: SendMail, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public sendMail(sendMail: SendMail, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<GenericResponse>;
+    public sendMail(sendMail: SendMail, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<GenericResponse>>;
+    public sendMail(sendMail: SendMail, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<GenericResponse>>;
+    public sendMail(sendMail: SendMail, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
         if (sendMail === null || sendMail === undefined) {
-            throw new Error('Required parameter sendMail was null or undefined when calling sendMailById.');
+            throw new Error('Required parameter sendMail was null or undefined when calling sendMail.');
         }
 
         let headers = this.defaultHeaders;

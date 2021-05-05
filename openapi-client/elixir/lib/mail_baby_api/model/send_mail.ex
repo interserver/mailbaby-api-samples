@@ -9,40 +9,23 @@ defmodule MailBabyAPI.Model.SendMail do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"subject",
-    :"body",
-    :"from",
     :"to",
-    :"id",
-    :"replyto",
-    :"cc",
-    :"bcc",
-    :"attachments"
+    :"from",
+    :"subject",
+    :"body"
   ]
 
   @type t :: %__MODULE__{
-    :"subject" => String.t,
-    :"body" => String.t,
-    :"from" => [MailBabyAPI.Model.SendMailFrom.t],
-    :"to" => [MailBabyAPI.Model.MailContact.t],
-    :"id" => integer(),
-    :"replyto" => [MailBabyAPI.Model.MailContact.t] | nil,
-    :"cc" => [MailBabyAPI.Model.MailContact.t] | nil,
-    :"bcc" => [MailBabyAPI.Model.MailContact.t] | nil,
-    :"attachments" => [MailBabyAPI.Model.MailAttachment.t] | nil
+    :"to" => String.t | nil,
+    :"from" => String.t | nil,
+    :"subject" => String.t | nil,
+    :"body" => String.t | nil
   }
 end
 
 defimpl Poison.Decoder, for: MailBabyAPI.Model.SendMail do
-  import MailBabyAPI.Deserializer
-  def decode(value, options) do
+  def decode(value, _options) do
     value
-    |> deserialize(:"from", :list, MailBabyAPI.Model.SendMailFrom, options)
-    |> deserialize(:"to", :list, MailBabyAPI.Model.MailContact, options)
-    |> deserialize(:"replyto", :list, MailBabyAPI.Model.MailContact, options)
-    |> deserialize(:"cc", :list, MailBabyAPI.Model.MailContact, options)
-    |> deserialize(:"bcc", :list, MailBabyAPI.Model.MailContact, options)
-    |> deserialize(:"attachments", :list, MailBabyAPI.Model.MailAttachment, options)
   end
 end
 

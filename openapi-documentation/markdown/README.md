@@ -10,8 +10,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getMailOrders**](Apis/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**pingServer**](Apis/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
 *DefaultApi* | [**placeMailOrder**](Apis/DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**sendAdvMailById**](Apis/DefaultApi.md#sendadvmailbyid) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMailById**](Apis/DefaultApi.md#sendmailbyid) | **POST** /mail/send | Sends an Email
+*DefaultApi* | [**sendAdvMail**](Apis/DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*DefaultApi* | [**sendMail**](Apis/DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
 *DefaultApi* | [**validateMailOrder**](Apis/DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
 *DefaultApi* | [**viewMailLogById**](Apis/DefaultApi.md#viewmaillogbyid) | **GET** /mail/log | displays the mail log
 
@@ -26,7 +26,8 @@ Class | Method | HTTP request | Description
  - [MailLog](./Models/MailLog.md)
  - [MailOrder](./Models/MailOrder.md)
  - [SendMail](./Models/SendMail.md)
- - [SendMailFrom](./Models/SendMailFrom.md)
+ - [SendMailAdv](./Models/SendMailAdv.md)
+ - [SendMailAdvFrom](./Models/SendMailAdvFrom.md)
 
 
 <a name="documentation-for-authorization"></a>

@@ -28,8 +28,8 @@ Module | Proc | HTTP request | Description
 api_default | getMailOrders | **GET** /mail | displays a list of mail service orders
 api_default | pingServer | **GET** /ping | Checks if the server is running
 api_default | placeMailOrder | **POST** /mail/order | places a mail order
-api_default | sendAdvMailById | **POST** /mail/advsend | Sends an Email with Advanced Options
-api_default | sendMailById | **POST** /mail/send | Sends an Email
+api_default | sendAdvMail | **POST** /mail/advsend | Sends an Email with Advanced Options
+api_default | sendMail | **POST** /mail/send | Sends an Email
 api_default | validateMailOrder | **GET** /mail/order | validatess order details before placing an order
 api_default | viewMailLogById | **GET** /mail/log | displays the mail log
 

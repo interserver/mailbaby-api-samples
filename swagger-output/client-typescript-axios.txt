@@ -1,30 +1,30 @@
-15:41:38.660 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
+14:43:41.566 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by com.github.jknack.handlebars.context.MemberValueResolver (file:/home/sites/mailbaby-mail-api/swagger-codegen-cli.jar) to method java.util.Collections$EmptyMap.isEmpty()
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-15:41:39.106 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/error-response.ts
-15:41:39.125 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/generic-response.ts
-15:41:39.147 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/mail-attachment.ts
-15:41:39.164 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/mail-contact.ts
-15:41:39.181 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/mail-log.ts
-15:41:39.197 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/mail-order.ts
-15:41:39.212 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/mail-orders.ts
-15:41:39.228 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/send-mail.ts
-15:41:39.241 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/send-mail-adv.ts
-15:41:39.252 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/send-mail-adv-from.ts
-15:41:39.494 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/apis/default-api.ts
-15:41:39.509 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/index.ts
-15:41:39.525 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/base.ts
-15:41:39.534 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/api.ts
-15:41:39.553 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/configuration.ts
-15:41:39.583 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/git_push.sh
-15:41:39.586 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/.gitignore
-15:41:39.590 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/.npmignore
-15:41:39.592 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/index.ts
-15:41:39.598 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/README.md
-15:41:39.600 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/package.json
-15:41:39.603 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/tsconfig.json
-15:41:39.609 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/.swagger-codegen-ignore
-15:41:39.610 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/.swagger-codegen/VERSION
+14:43:41.957 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/error-response.ts
+14:43:41.984 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/generic-response.ts
+14:43:42.011 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/mail-attachment.ts
+14:43:42.032 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/mail-contact.ts
+14:43:42.056 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/mail-log.ts
+14:43:42.077 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/mail-order.ts
+14:43:42.098 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/mail-orders.ts
+14:43:42.117 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/send-mail.ts
+14:43:42.135 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/send-mail-adv.ts
+14:43:42.152 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/send-mail-adv-from.ts
+14:43:42.356 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/apis/default-api.ts
+14:43:42.366 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/index.ts
+14:43:42.376 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/base.ts
+14:43:42.381 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/api.ts
+14:43:42.392 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/configuration.ts
+14:43:42.401 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/git_push.sh
+14:43:42.402 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/.gitignore
+14:43:42.406 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/.npmignore
+14:43:42.408 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/models/index.ts
+14:43:42.423 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/README.md
+14:43:42.427 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/package.json
+14:43:42.430 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/tsconfig.json
+14:43:42.436 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/.swagger-codegen-ignore
+14:43:42.436 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-axios/.swagger-codegen/VERSION

@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 @Path("/ping")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-05T15:40:47.017621-04:00[America/New_York]")public interface PingApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-06T14:42:50.526454-04:00[America/New_York]")public interface PingApi  {
    
     @GET
     

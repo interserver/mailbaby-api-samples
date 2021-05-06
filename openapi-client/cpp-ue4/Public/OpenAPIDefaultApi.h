@@ -24,9 +24,19 @@ public:
 	OpenAPIDefaultApi();
 	~OpenAPIDefaultApi();
 
+	/* Sets the URL Endpoint. 
+	* Note: several fallback endpoints can be configured in request retry policies, see Request::SetShouldRetry */
 	void SetURL(const FString& Url);
+
+	/* Adds global header params to all requests */
 	void AddHeaderParam(const FString& Key, const FString& Value);
 	void ClearHeaderParams();
+	
+	/* Sets the retry manager to the user-defined retry manager. User must manage the lifetime of the retry manager.
+	* If no retry manager is specified and a request needs retries, a default retry manager will be used. 
+	* See also: Request::SetShouldRetry */
+	void SetHttpRetryManager(FHttpRetrySystem::FManager& RetryManager);
+	FHttpRetrySystem::FManager& GetHttpRetryManager();
 
 	class GetMailOrdersRequest;
 	class GetMailOrdersResponse;
@@ -59,21 +69,23 @@ public:
     bool ValidateMailOrder(const ValidateMailOrderRequest& Request, const FValidateMailOrderDelegate& Delegate = FValidateMailOrderDelegate()) const;
     bool ViewMailLog(const ViewMailLogRequest& Request, const FViewMailLogDelegate& Delegate = FViewMailLogDelegate()) const;
     
-
 private:
-    void OnGetMailOrdersResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FGetMailOrdersDelegate Delegate, int AutoRetryCount) const;
-    void OnPingServerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FPingServerDelegate Delegate, int AutoRetryCount) const;
-    void OnPlaceMailOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FPlaceMailOrderDelegate Delegate, int AutoRetryCount) const;
-    void OnSendAdvMailResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FSendAdvMailDelegate Delegate, int AutoRetryCount) const;
-    void OnSendMailResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FSendMailDelegate Delegate, int AutoRetryCount) const;
-    void OnValidateMailOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FValidateMailOrderDelegate Delegate, int AutoRetryCount) const;
-    void OnViewMailLogResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FViewMailLogDelegate Delegate, int AutoRetryCount) const;
+    void OnGetMailOrdersResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FGetMailOrdersDelegate Delegate) const;
+    void OnPingServerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FPingServerDelegate Delegate) const;
+    void OnPlaceMailOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FPlaceMailOrderDelegate Delegate) const;
+    void OnSendAdvMailResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FSendAdvMailDelegate Delegate) const;
+    void OnSendMailResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FSendMailDelegate Delegate) const;
+    void OnValidateMailOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FValidateMailOrderDelegate Delegate) const;
+    void OnViewMailLogResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FViewMailLogDelegate Delegate) const;
     
+	FHttpRequestRef CreateHttpRequest(const Request& Request) const;
 	bool IsValid() const;
 	void HandleResponse(FHttpResponsePtr HttpResponse, bool bSucceeded, Response& InOutResponse) const;
 
 	FString Url;
 	TMap<FString,FString> AdditionalHeaderParams;
+	mutable FHttpRetrySystem::FManager* RetryManager = nullptr;
+	mutable TUniquePtr<HttpRetryManager> DefaultRetryManager;
 };
 	
 }

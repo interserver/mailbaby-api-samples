@@ -1,24 +1,24 @@
-15:40:13.296 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
+14:42:17.173 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by com.github.jknack.handlebars.context.MemberValueResolver (file:/home/sites/mailbaby-mail-api/swagger-codegen-cli.jar) to method java.util.Collections$EmptyMap.isEmpty()
 WARNING: Please consider reporting this to the maintainers of com.github.jknack.handlebars.context.MemberValueResolver
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-15:40:13.754 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_error_response.go
-15:40:13.777 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_generic_response.go
-15:40:13.798 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_mail_attachment.go
-15:40:13.818 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_mail_contact.go
-15:40:13.837 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_mail_log.go
-15:40:13.867 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_mail_order.go
-15:40:13.883 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_send_mail.go
-15:40:13.903 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_send_mail_adv.go
-15:40:13.922 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_send_mail_adv_from.go
-15:40:14.017 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/api_default.go
-15:40:14.098 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/api/swagger.yaml
-15:40:14.100 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/Dockerfile
-15:40:14.112 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/main.go
-15:40:14.126 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/routers.go
-15:40:14.135 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/logger.go
-15:40:14.143 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/README.md
-15:40:14.149 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/.swagger-codegen-ignore
-15:40:14.149 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/.swagger-codegen/VERSION
+14:42:17.606 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_error_response.go
+14:42:17.634 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_generic_response.go
+14:42:17.657 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_mail_attachment.go
+14:42:17.676 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_mail_contact.go
+14:42:17.694 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_mail_log.go
+14:42:17.713 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_mail_order.go
+14:42:17.735 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_send_mail.go
+14:42:17.750 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_send_mail_adv.go
+14:42:17.761 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/model_send_mail_adv_from.go
+14:42:17.851 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/api_default.go
+14:42:17.930 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/api/swagger.yaml
+14:42:17.932 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/Dockerfile
+14:42:17.940 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/main.go
+14:42:17.949 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/routers.go
+14:42:17.954 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/logger.go
+14:42:17.960 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/go/README.md
+14:42:17.966 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/.swagger-codegen-ignore
+14:42:17.967 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/go-server/.swagger-codegen/VERSION

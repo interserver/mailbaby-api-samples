@@ -20,7 +20,7 @@ displays a list of mail service orders
 
 ### Example
 ```javascript
-import MailBabyApi from 'mail_baby_api';
+import {MailBabyApi} from 'mail_baby_api';
 let defaultClient = MailBabyApi.ApiClient.instance;
 
 // Configure API key authorization: apiKeyAuth
@@ -63,7 +63,7 @@ Checks if the server is running
 
 ### Example
 ```javascript
-import MailBabyApi from 'mail_baby_api';
+import {MailBabyApi} from 'mail_baby_api';
 
 let apiInstance = new MailBabyApi.DefaultApi();
 apiInstance.pingServer((error, data, response) => {
@@ -101,7 +101,7 @@ Adds an item to the system
 
 ### Example
 ```javascript
-import MailBabyApi from 'mail_baby_api';
+import {MailBabyApi} from 'mail_baby_api';
 let defaultClient = MailBabyApi.ApiClient.instance;
 
 // Configure API key authorization: apiKeyAuth
@@ -144,7 +144,7 @@ null (empty response body)
 
 <a name="sendAdvMail"></a>
 # **sendAdvMail**
-> GenericResponse sendAdvMail(body)
+> GenericResponse sendAdvMail(body, subject, body, from, to, id, replyto, cc, bcc, attachments)
 
 Sends an Email with Advanced Options
 
@@ -152,7 +152,7 @@ Sends An email through one of your mail orders allowing additional options such 
 
 ### Example
 ```javascript
-import MailBabyApi from 'mail_baby_api';
+import {MailBabyApi} from 'mail_baby_api';
 let defaultClient = MailBabyApi.ApiClient.instance;
 
 // Configure API key authorization: apiKeyAuth
@@ -163,8 +163,17 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 
 let apiInstance = new MailBabyApi.DefaultApi();
 let body = new MailBabyApi.SendMailAdv(); // SendMailAdv | 
+let subject = "subject_example"; // String | 
+let body = "body_example"; // String | 
+let from = [new MailBabyApi.SendMailAdvFrom()]; // [SendMailAdvFrom] | 
+let to = [new MailBabyApi.MailContact()]; // [MailContact] | 
+let id = 789; // Number | 
+let replyto = [new MailBabyApi.MailContact()]; // [MailContact] | 
+let cc = [new MailBabyApi.MailContact()]; // [MailContact] | 
+let bcc = [new MailBabyApi.MailContact()]; // [MailContact] | 
+let attachments = [new MailBabyApi.MailAttachment()]; // [MailAttachment] | 
 
-apiInstance.sendAdvMail(body, (error, data, response) => {
+apiInstance.sendAdvMail(body, subject, body, from, to, id, replyto, cc, bcc, attachments, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -178,6 +187,15 @@ apiInstance.sendAdvMail(body, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**SendMailAdv**](SendMailAdv.md)|  | 
+ **subject** | **String**|  | 
+ **body** | **String**|  | 
+ **from** | [**[SendMailAdvFrom]**](SendMailAdvFrom.md)|  | 
+ **to** | [**[MailContact]**](MailContact.md)|  | 
+ **id** | **Number**|  | 
+ **replyto** | [**[MailContact]**](MailContact.md)|  | 
+ **cc** | [**[MailContact]**](MailContact.md)|  | 
+ **bcc** | [**[MailContact]**](MailContact.md)|  | 
+ **attachments** | [**[MailAttachment]**](MailAttachment.md)|  | 
 
 ### Return type
 
@@ -194,7 +212,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMail"></a>
 # **sendMail**
-> GenericResponse sendMail(tofromsubjectbody)
+> GenericResponse sendMail(to, from, subject, body, body)
 
 Sends an Email
 
@@ -202,7 +220,7 @@ Sends An email through one of your mail orders.
 
 ### Example
 ```javascript
-import MailBabyApi from 'mail_baby_api';
+import {MailBabyApi} from 'mail_baby_api';
 let defaultClient = MailBabyApi.ApiClient.instance;
 
 // Configure API key authorization: apiKeyAuth
@@ -216,8 +234,9 @@ let to = "to_example"; // String |
 let from = "from_example"; // String | 
 let subject = "subject_example"; // String | 
 let body = "body_example"; // String | 
+let body = new MailBabyApi.SendMail(); // SendMail | 
 
-apiInstance.sendMail(tofromsubjectbody, (error, data, response) => {
+apiInstance.sendMail(to, from, subject, body, body, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -234,6 +253,7 @@ Name | Type | Description  | Notes
  **from** | **String**|  | 
  **subject** | **String**|  | 
  **body** | **String**|  | 
+ **body** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type
 
@@ -256,7 +276,7 @@ validatess order details before placing an order
 
 ### Example
 ```javascript
-import MailBabyApi from 'mail_baby_api';
+import {MailBabyApi} from 'mail_baby_api';
 let defaultClient = MailBabyApi.ApiClient.instance;
 
 // Configure API key authorization: apiKeyAuth
@@ -301,7 +321,7 @@ By passing in the appropriate options, you can search for available inventory in
 
 ### Example
 ```javascript
-import MailBabyApi from 'mail_baby_api';
+import {MailBabyApi} from 'mail_baby_api';
 let defaultClient = MailBabyApi.ApiClient.instance;
 
 // Configure API key authorization: apiKeyAuth

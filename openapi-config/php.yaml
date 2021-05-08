@@ -16,3 +16,4 @@ srcBasePath: src
 artifactVersion: 1.0.0 
 hideGenerationTimestamp: true
 classname: Api
+className: Api

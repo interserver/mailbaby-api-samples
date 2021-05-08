@@ -1,4 +1,4 @@
-# MailBaby
+# MailbabyApi
 
 This is an API defintion for accesssing the Mail.Baby mail service.
 
@@ -36,7 +36,7 @@ Download the files and include `autoload.php`:
 
 ```php
 <?php
-require_once('/path/to/MailBaby/vendor/autoload.php');
+require_once('/path/to/MailbabyApi/vendor/autoload.php');
 ```
 
 ## Getting Started

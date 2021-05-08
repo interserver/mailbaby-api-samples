@@ -5,7 +5,7 @@ sortModelPropertiesByRequiredFlag: true
 ensureUniqueParams: true
 allowUnicodeIdentifiers: true
 prependFormOrBodyParameters: false
-legacyDiscriminatorBehavior: true
+legacyDiscriminatorBehavior: false
 disallowAdditionalPropertiesIfNotPresent: false
 modelPackage: Model 
 apiPackage: Api 

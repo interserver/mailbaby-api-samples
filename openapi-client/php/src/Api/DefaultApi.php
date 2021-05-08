@@ -123,7 +123,7 @@ class DefaultApi
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Interserver\Mailbaby\Model\MailOrder[]|\Interserver\Mailbaby\Model\ErrorResponse
+     * @return \Interserver\Mailbaby\Model\MailOrder[]|\Interserver\Mailbaby\Model\InlineResponse401|\Interserver\Mailbaby\Model\InlineResponse401
      */
     public function getMailOrders()
     {
@@ -139,7 +139,7 @@ class DefaultApi
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Interserver\Mailbaby\Model\MailOrder[]|\Interserver\Mailbaby\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Interserver\Mailbaby\Model\MailOrder[]|\Interserver\Mailbaby\Model\InlineResponse401|\Interserver\Mailbaby\Model\InlineResponse401, HTTP status code, HTTP response headers (array of strings)
      */
     public function getMailOrdersWithHttpInfo()
     {
@@ -187,14 +187,26 @@ class DefaultApi
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\Interserver\Mailbaby\Model\ErrorResponse' === '\SplFileObject') {
+                    if ('\Interserver\Mailbaby\Model\InlineResponse401' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Interserver\Mailbaby\Model\ErrorResponse', []),
+                        ObjectSerializer::deserialize($content, '\Interserver\Mailbaby\Model\InlineResponse401', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Interserver\Mailbaby\Model\InlineResponse401' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Interserver\Mailbaby\Model\InlineResponse401', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -226,7 +238,15 @@ class DefaultApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -648,10 +668,26 @@ class DefaultApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -818,7 +854,7 @@ class DefaultApi
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse
+     * @return \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\InlineResponse401|\Interserver\Mailbaby\Model\InlineResponse401|\Interserver\Mailbaby\Model\InlineResponse401
      */
     public function sendAdvMail($sendMailAdv)
     {
@@ -835,7 +871,7 @@ class DefaultApi
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\InlineResponse401|\Interserver\Mailbaby\Model\InlineResponse401|\Interserver\Mailbaby\Model\InlineResponse401, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendAdvMailWithHttpInfo($sendMailAdv)
     {
@@ -882,27 +918,39 @@ class DefaultApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
-                    if ('\Interserver\Mailbaby\Model\ErrorResponse' === '\SplFileObject') {
+                case 400:
+                    if ('\Interserver\Mailbaby\Model\InlineResponse401' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Interserver\Mailbaby\Model\ErrorResponse', []),
+                        ObjectSerializer::deserialize($content, '\Interserver\Mailbaby\Model\InlineResponse401', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Interserver\Mailbaby\Model\InlineResponse401' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Interserver\Mailbaby\Model\InlineResponse401', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 404:
-                    if ('\Interserver\Mailbaby\Model\ErrorResponse' === '\SplFileObject') {
+                    if ('\Interserver\Mailbaby\Model\InlineResponse401' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Interserver\Mailbaby\Model\ErrorResponse', []),
+                        ObjectSerializer::deserialize($content, '\Interserver\Mailbaby\Model\InlineResponse401', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -931,10 +979,18 @@ class DefaultApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -942,7 +998,7 @@ class DefaultApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1128,7 +1184,7 @@ class DefaultApi
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse
+     * @return \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\InlineResponse401|\Interserver\Mailbaby\Model\InlineResponse401|\Interserver\Mailbaby\Model\InlineResponse401
      */
     public function sendMail($to, $from, $subject, $body)
     {
@@ -1148,7 +1204,7 @@ class DefaultApi
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorResponse|\Interserver\Mailbaby\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\InlineResponse401|\Interserver\Mailbaby\Model\InlineResponse401|\Interserver\Mailbaby\Model\InlineResponse401, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendMailWithHttpInfo($to, $from, $subject, $body)
     {
@@ -1195,27 +1251,39 @@ class DefaultApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 401:
-                    if ('\Interserver\Mailbaby\Model\ErrorResponse' === '\SplFileObject') {
+                case 400:
+                    if ('\Interserver\Mailbaby\Model\InlineResponse401' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Interserver\Mailbaby\Model\ErrorResponse', []),
+                        ObjectSerializer::deserialize($content, '\Interserver\Mailbaby\Model\InlineResponse401', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Interserver\Mailbaby\Model\InlineResponse401' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Interserver\Mailbaby\Model\InlineResponse401', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 404:
-                    if ('\Interserver\Mailbaby\Model\ErrorResponse' === '\SplFileObject') {
+                    if ('\Interserver\Mailbaby\Model\InlineResponse401' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Interserver\Mailbaby\Model\ErrorResponse', []),
+                        ObjectSerializer::deserialize($content, '\Interserver\Mailbaby\Model\InlineResponse401', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1244,10 +1312,18 @@ class DefaultApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1255,7 +1331,7 @@ class DefaultApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1530,7 +1606,7 @@ class DefaultApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

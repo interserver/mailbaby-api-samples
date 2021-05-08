@@ -7,6 +7,7 @@ composer.json
 docs/Api/DefaultApi.md
 docs/Model/ErrorResponse.md
 docs/Model/GenericResponse.md
+docs/Model/InlineResponse401.md
 docs/Model/MailAttachment.md
 docs/Model/MailContact.md
 docs/Model/MailLog.md
@@ -22,6 +23,7 @@ src/Configuration.php
 src/HeaderSelector.php
 src/Model/ErrorResponse.php
 src/Model/GenericResponse.php
+src/Model/InlineResponse401.php
 src/Model/MailAttachment.php
 src/Model/MailContact.php
 src/Model/MailLog.php
@@ -34,6 +36,7 @@ src/ObjectSerializer.php
 test/Api/DefaultApiTest.php
 test/Model/ErrorResponseTest.php
 test/Model/GenericResponseTest.php
+test/Model/InlineResponse401Test.php
 test/Model/MailAttachmentTest.php
 test/Model/MailContactTest.php
 test/Model/MailLogTest.php

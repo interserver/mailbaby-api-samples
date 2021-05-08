@@ -871,6 +871,18 @@ ul.nav-tabs {
     }
   }
 };
+    defs["inline_response_401"] = {
+  "required" : [ "code", "message" ],
+  "type" : "object",
+  "properties" : {
+    "code" : {
+      "type" : "string"
+    },
+    "message" : {
+      "type" : "string"
+    }
+  }
+};
     defs["MailAttachment"] = {
   "required" : [ "data" ],
   "type" : "object",
@@ -1505,7 +1517,7 @@ pub fn main() {
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/ErrorResponse"
+        "$ref" : "#/components/schemas/inline_response_401"
       }
     }
   }
@@ -1534,6 +1546,72 @@ pub fn main() {
                                     </script>
                                   </div>
                                   <input id='responses-Default-getMailOrders-401-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                            <h3 id="examples-Default-getMailOrders-title-404"></h3>
+                            <p id="examples-Default-getMailOrders-description-404" class="marked"></p>
+                            <script>
+                              var responseDefault404_description = `Unauthorized`;
+                              var responseDefault404_description_break = responseDefault404_description.indexOf('\n');
+                              if (responseDefault404_description_break == -1) {
+                                $("#examples-Default-getMailOrders-title-404").text("Status: 404 - " + responseDefault404_description);
+                              } else {
+                                $("#examples-Default-getMailOrders-title-404").text("Status: 404 - " + responseDefault404_description.substring(0, responseDefault404_description_break));
+                                $("#examples-Default-getMailOrders-description-404").html(responseDefault404_description.substring(responseDefault404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-getMailOrders-404" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-getMailOrders-404-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-getMailOrders-404-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-getMailOrders-404-schema">
+                                  <div id="responses-Default-getMailOrders-schema-404" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_401"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-getMailOrders-404-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-getMailOrders-schema-404');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-getMailOrders-404-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
                         </article>
@@ -2153,7 +2231,7 @@ $(document).ready(function() {
                             <h3 id="examples-Default-placeMailOrder-title-400"></h3>
                             <p id="examples-Default-placeMailOrder-description-400" class="marked"></p>
                             <script>
-                              var responseDefault400_description = `invalid input, object invalid`;
+                              var responseDefault400_description = `The specified resource was not found`;
                               var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
                               if (responseDefault400_description_break == -1) {
                                 $("#examples-Default-placeMailOrder-title-400").text("Status: 400 - " + responseDefault400_description);
@@ -2165,17 +2243,61 @@ $(document).ready(function() {
 
 
                             <ul id="responses-detail-Default-placeMailOrder-400" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-placeMailOrder-400-schema">Schema</a>
+                                </li>
+
+
 
 
                             </ul>
 
 
                             <div class="tab-content" id="responses-Default-placeMailOrder-400-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-placeMailOrder-400-schema">
+                                  <div id="responses-Default-placeMailOrder-schema-400" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_401"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-placeMailOrder-400-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-placeMailOrder-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-placeMailOrder-400-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
                             <h3 id="examples-Default-placeMailOrder-title-409"></h3>
                             <p id="examples-Default-placeMailOrder-description-409" class="marked"></p>
                             <script>
-                              var responseDefault409_description = `an existing item already exists`;
+                              var responseDefault409_description = `The specified resource was not found`;
                               var responseDefault409_description_break = responseDefault409_description.indexOf('\n');
                               if (responseDefault409_description_break == -1) {
                                 $("#examples-Default-placeMailOrder-title-409").text("Status: 409 - " + responseDefault409_description);
@@ -2187,12 +2309,56 @@ $(document).ready(function() {
 
 
                             <ul id="responses-detail-Default-placeMailOrder-409" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-placeMailOrder-409-schema">Schema</a>
+                                </li>
+
+
 
 
                             </ul>
 
 
                             <div class="tab-content" id="responses-Default-placeMailOrder-409-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-placeMailOrder-409-schema">
+                                  <div id="responses-Default-placeMailOrder-schema-409" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_401"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-placeMailOrder-409-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-placeMailOrder-schema-409');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-placeMailOrder-409-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
                             <h3 id="examples-Default-placeMailOrder-title-401"></h3>
                             <p id="examples-Default-placeMailOrder-description-401" class="marked"></p>
@@ -2229,7 +2395,7 @@ $(document).ready(function() {
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/ErrorResponse"
+        "$ref" : "#/components/schemas/inline_response_401"
       }
     }
   }
@@ -2665,7 +2831,7 @@ $(document).ready(function() {
                             <h3 id="examples-Default-sendAdvMail-title-400"></h3>
                             <p id="examples-Default-sendAdvMail-description-400" class="marked"></p>
                             <script>
-                              var responseDefault400_description = `bad input parameter`;
+                              var responseDefault400_description = `The specified resource was not found`;
                               var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
                               if (responseDefault400_description_break == -1) {
                                 $("#examples-Default-sendAdvMail-title-400").text("Status: 400 - " + responseDefault400_description);
@@ -2677,12 +2843,56 @@ $(document).ready(function() {
 
 
                             <ul id="responses-detail-Default-sendAdvMail-400" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-sendAdvMail-400-schema">Schema</a>
+                                </li>
+
+
 
 
                             </ul>
 
 
                             <div class="tab-content" id="responses-Default-sendAdvMail-400-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-sendAdvMail-400-schema">
+                                  <div id="responses-Default-sendAdvMail-schema-400" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_401"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-sendAdvMail-400-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-sendAdvMail-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-sendAdvMail-400-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
                             <h3 id="examples-Default-sendAdvMail-title-401"></h3>
                             <p id="examples-Default-sendAdvMail-description-401" class="marked"></p>
@@ -2719,7 +2929,7 @@ $(document).ready(function() {
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/ErrorResponse"
+        "$ref" : "#/components/schemas/inline_response_401"
       }
     }
   }
@@ -2785,7 +2995,7 @@ $(document).ready(function() {
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/ErrorResponse"
+        "$ref" : "#/components/schemas/inline_response_401"
       }
     }
   }
@@ -3299,7 +3509,7 @@ The main email contents.
                             <h3 id="examples-Default-sendMail-title-400"></h3>
                             <p id="examples-Default-sendMail-description-400" class="marked"></p>
                             <script>
-                              var responseDefault400_description = `bad input parameter`;
+                              var responseDefault400_description = `The specified resource was not found`;
                               var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
                               if (responseDefault400_description_break == -1) {
                                 $("#examples-Default-sendMail-title-400").text("Status: 400 - " + responseDefault400_description);
@@ -3311,12 +3521,56 @@ The main email contents.
 
 
                             <ul id="responses-detail-Default-sendMail-400" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-sendMail-400-schema">Schema</a>
+                                </li>
+
+
 
 
                             </ul>
 
 
                             <div class="tab-content" id="responses-Default-sendMail-400-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-sendMail-400-schema">
+                                  <div id="responses-Default-sendMail-schema-400" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_401"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-sendMail-400-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-sendMail-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-sendMail-400-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
                             <h3 id="examples-Default-sendMail-title-401"></h3>
                             <p id="examples-Default-sendMail-description-401" class="marked"></p>
@@ -3353,7 +3607,7 @@ The main email contents.
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/ErrorResponse"
+        "$ref" : "#/components/schemas/inline_response_401"
       }
     }
   }
@@ -3419,7 +3673,7 @@ The main email contents.
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/ErrorResponse"
+        "$ref" : "#/components/schemas/inline_response_401"
       }
     }
   }
@@ -3772,7 +4026,7 @@ pub fn main() {
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/ErrorResponse"
+        "$ref" : "#/components/schemas/inline_response_401"
       }
     }
   }

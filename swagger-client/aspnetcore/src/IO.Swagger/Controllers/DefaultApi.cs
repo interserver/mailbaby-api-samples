@@ -32,20 +32,25 @@ namespace IO.Swagger.Controllers
         /// </summary>
         /// <response code="200">OK</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="404">Unauthorized</response>
         [HttpGet]
         [Route("/mail")]
         [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
         [ValidateModelState]
         [SwaggerOperation("GetMailOrders")]
         [SwaggerResponse(statusCode: 200, type: typeof(MailOrders), description: "OK")]
-        [SwaggerResponse(statusCode: 401, type: typeof(ErrorResponse), description: "Unauthorized")]
+        [SwaggerResponse(statusCode: 401, type: typeof(InlineResponse401), description: "Unauthorized")]
+        [SwaggerResponse(statusCode: 404, type: typeof(InlineResponse401), description: "Unauthorized")]
         public virtual IActionResult GetMailOrders()
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default(MailOrders));
 
             //TODO: Uncomment the next line to return response 401 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(401, default(ErrorResponse));
+            // return StatusCode(401, default(InlineResponse401));
+
+            //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(404, default(InlineResponse401));
             string exampleJson = null;
             exampleJson = "[ {\n  \"password\" : \"guest123\",\n  \"comment\" : \"main mail account\",\n  \"id\" : 1234,\n  \"status\" : \"active\",\n  \"username\" : \"mb1234\"\n}, {\n  \"password\" : \"guest123\",\n  \"comment\" : \"main mail account\",\n  \"id\" : 1234,\n  \"status\" : \"active\",\n  \"username\" : \"mb1234\"\n} ]";
             
@@ -81,28 +86,30 @@ namespace IO.Swagger.Controllers
         /// <remarks>Adds an item to the system</remarks>
         /// <param name="body">Inventory item to add</param>
         /// <response code="200">list of mail orders</response>
-        /// <response code="400">invalid input, object invalid</response>
-        /// <response code="409">an existing item already exists</response>
+        /// <response code="400">The specified resource was not found</response>
+        /// <response code="409">The specified resource was not found</response>
         /// <response code="401">Unauthorized</response>
         [HttpPost]
         [Route("/mail/order")]
         [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
         [ValidateModelState]
         [SwaggerOperation("PlaceMailOrder")]
-        [SwaggerResponse(statusCode: 401, type: typeof(ErrorResponse), description: "Unauthorized")]
+        [SwaggerResponse(statusCode: 400, type: typeof(InlineResponse401), description: "The specified resource was not found")]
+        [SwaggerResponse(statusCode: 409, type: typeof(InlineResponse401), description: "The specified resource was not found")]
+        [SwaggerResponse(statusCode: 401, type: typeof(InlineResponse401), description: "Unauthorized")]
         public virtual IActionResult PlaceMailOrder([FromBody]MailOrder body)
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200);
 
             //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(400);
+            // return StatusCode(400, default(InlineResponse401));
 
             //TODO: Uncomment the next line to return response 409 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(409);
+            // return StatusCode(409, default(InlineResponse401));
 
             //TODO: Uncomment the next line to return response 401 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(401, default(ErrorResponse));
+            // return StatusCode(401, default(InlineResponse401));
 
             throw new NotImplementedException();
         }
@@ -113,7 +120,7 @@ namespace IO.Swagger.Controllers
         /// <remarks>Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.</remarks>
         /// <param name="body"></param>
         /// <response code="200">search results matching criteria</response>
-        /// <response code="400">bad input parameter</response>
+        /// <response code="400">The specified resource was not found</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="404">The specified resource was not found</response>
         [HttpPost]
@@ -122,21 +129,22 @@ namespace IO.Swagger.Controllers
         [ValidateModelState]
         [SwaggerOperation("SendAdvMail")]
         [SwaggerResponse(statusCode: 200, type: typeof(GenericResponse), description: "search results matching criteria")]
-        [SwaggerResponse(statusCode: 401, type: typeof(ErrorResponse), description: "Unauthorized")]
-        [SwaggerResponse(statusCode: 404, type: typeof(ErrorResponse), description: "The specified resource was not found")]
+        [SwaggerResponse(statusCode: 400, type: typeof(InlineResponse401), description: "The specified resource was not found")]
+        [SwaggerResponse(statusCode: 401, type: typeof(InlineResponse401), description: "Unauthorized")]
+        [SwaggerResponse(statusCode: 404, type: typeof(InlineResponse401), description: "The specified resource was not found")]
         public virtual IActionResult SendAdvMail([FromBody]SendMailAdv body)
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default(GenericResponse));
 
             //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(400);
+            // return StatusCode(400, default(InlineResponse401));
 
             //TODO: Uncomment the next line to return response 401 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(401, default(ErrorResponse));
+            // return StatusCode(401, default(InlineResponse401));
 
             //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(404, default(ErrorResponse));
+            // return StatusCode(404, default(InlineResponse401));
             string exampleJson = null;
             exampleJson = "{\n  \"text\" : \"The command completed successfully.\",\n  \"status\" : \"ok\"\n}";
             
@@ -152,7 +160,7 @@ namespace IO.Swagger.Controllers
         /// <remarks>Sends An email through one of your mail orders.</remarks>
         /// <param name="body"></param>
         /// <response code="200">search results matching criteria</response>
-        /// <response code="400">bad input parameter</response>
+        /// <response code="400">The specified resource was not found</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="404">The specified resource was not found</response>
         [HttpPost]
@@ -161,21 +169,22 @@ namespace IO.Swagger.Controllers
         [ValidateModelState]
         [SwaggerOperation("SendMail")]
         [SwaggerResponse(statusCode: 200, type: typeof(GenericResponse), description: "search results matching criteria")]
-        [SwaggerResponse(statusCode: 401, type: typeof(ErrorResponse), description: "Unauthorized")]
-        [SwaggerResponse(statusCode: 404, type: typeof(ErrorResponse), description: "The specified resource was not found")]
+        [SwaggerResponse(statusCode: 400, type: typeof(InlineResponse401), description: "The specified resource was not found")]
+        [SwaggerResponse(statusCode: 401, type: typeof(InlineResponse401), description: "Unauthorized")]
+        [SwaggerResponse(statusCode: 404, type: typeof(InlineResponse401), description: "The specified resource was not found")]
         public virtual IActionResult SendMail([FromBody]SendMail body)
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default(GenericResponse));
 
             //TODO: Uncomment the next line to return response 400 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(400);
+            // return StatusCode(400, default(InlineResponse401));
 
             //TODO: Uncomment the next line to return response 401 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(401, default(ErrorResponse));
+            // return StatusCode(401, default(InlineResponse401));
 
             //TODO: Uncomment the next line to return response 404 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(404, default(ErrorResponse));
+            // return StatusCode(404, default(InlineResponse401));
             string exampleJson = null;
             exampleJson = "{\n  \"text\" : \"The command completed successfully.\",\n  \"status\" : \"ok\"\n}";
             
@@ -195,14 +204,14 @@ namespace IO.Swagger.Controllers
         [Authorize(AuthenticationSchemes = ApiKeyAuthenticationHandler.SchemeName)]
         [ValidateModelState]
         [SwaggerOperation("ValidateMailOrder")]
-        [SwaggerResponse(statusCode: 401, type: typeof(ErrorResponse), description: "Unauthorized")]
+        [SwaggerResponse(statusCode: 401, type: typeof(InlineResponse401), description: "Unauthorized")]
         public virtual IActionResult ValidateMailOrder()
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200);
 
             //TODO: Uncomment the next line to return response 401 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(401, default(ErrorResponse));
+            // return StatusCode(401, default(InlineResponse401));
 
             throw new NotImplementedException();
         }

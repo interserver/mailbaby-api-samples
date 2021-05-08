@@ -5,6 +5,7 @@ src/openapi.app.src
 src/openapi_default_api.erl
 src/openapi_error_response.erl
 src/openapi_generic_response.erl
+src/openapi_inline_response_401.erl
 src/openapi_mail_attachment.erl
 src/openapi_mail_contact.erl
 src/openapi_mail_log.erl

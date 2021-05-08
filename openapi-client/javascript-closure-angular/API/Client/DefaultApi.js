@@ -14,11 +14,11 @@
 
 goog.provide('API.Client.DefaultApi');
 
-goog.require('API.Client.ErrorResponse');
 goog.require('API.Client.GenericResponse');
 goog.require('API.Client.MailLog');
 goog.require('API.Client.MailOrder');
 goog.require('API.Client.SendMailAdv');
+goog.require('API.Client.inline_response_401');
 
 /**
  * @constructor

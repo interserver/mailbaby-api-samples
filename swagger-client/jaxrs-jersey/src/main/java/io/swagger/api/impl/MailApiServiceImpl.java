@@ -3,8 +3,8 @@ package io.swagger.api.impl;
 import io.swagger.api.*;
 import io.swagger.model.*;
 
-import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
+import io.swagger.model.InlineResponse401;
 import io.swagger.model.MailAttachment;
 import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
@@ -25,7 +25,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-07T20:02:06.777341-04:00[America/New_York]")public class MailApiServiceImpl extends MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2021-05-08T00:57:45.145912-04:00[America/New_York]")public class MailApiServiceImpl extends MailApiService {
     @Override
     public Response getMailOrders(SecurityContext securityContext) throws NotFoundException {
         // do some magic!

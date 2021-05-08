@@ -260,7 +260,10 @@
         <a href="#MailOrders">MailOrders</a>
     <h4 class="field-label">401</h4>
     Unauthorized
-        <a href="#ErrorResponse">ErrorResponse</a>
+        <a href="#inline_response_401">inline_response_401</a>
+    <h4 class="field-label">404</h4>
+    Unauthorized
+        <a href="#inline_response_401">inline_response_401</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="pingServer"></a>
@@ -330,14 +333,14 @@
     list of mail orders
         <a href="#"></a>
     <h4 class="field-label">400</h4>
-    invalid input, object invalid
-        <a href="#"></a>
+    The specified resource was not found
+        <a href="#inline_response_401">inline_response_401</a>
     <h4 class="field-label">409</h4>
-    an existing item already exists
-        <a href="#"></a>
+    The specified resource was not found
+        <a href="#inline_response_401">inline_response_401</a>
     <h4 class="field-label">401</h4>
     Unauthorized
-        <a href="#ErrorResponse">ErrorResponse</a>
+        <a href="#inline_response_401">inline_response_401</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="sendAdvMail"></a>
@@ -413,14 +416,14 @@
     search results matching criteria
         <a href="#GenericResponse">GenericResponse</a>
     <h4 class="field-label">400</h4>
-    bad input parameter
-        <a href="#"></a>
+    The specified resource was not found
+        <a href="#inline_response_401">inline_response_401</a>
     <h4 class="field-label">401</h4>
     Unauthorized
-        <a href="#ErrorResponse">ErrorResponse</a>
+        <a href="#inline_response_401">inline_response_401</a>
     <h4 class="field-label">404</h4>
     The specified resource was not found
-        <a href="#ErrorResponse">ErrorResponse</a>
+        <a href="#inline_response_401">inline_response_401</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="sendMail"></a>
@@ -486,14 +489,14 @@
     search results matching criteria
         <a href="#GenericResponse">GenericResponse</a>
     <h4 class="field-label">400</h4>
-    bad input parameter
-        <a href="#"></a>
+    The specified resource was not found
+        <a href="#inline_response_401">inline_response_401</a>
     <h4 class="field-label">401</h4>
     Unauthorized
-        <a href="#ErrorResponse">ErrorResponse</a>
+        <a href="#inline_response_401">inline_response_401</a>
     <h4 class="field-label">404</h4>
     The specified resource was not found
-        <a href="#ErrorResponse">ErrorResponse</a>
+        <a href="#inline_response_401">inline_response_401</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="validateMailOrder"></a>
@@ -526,7 +529,7 @@
         <a href="#"></a>
     <h4 class="field-label">401</h4>
     Unauthorized
-        <a href="#ErrorResponse">ErrorResponse</a>
+        <a href="#inline_response_401">inline_response_401</a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="viewMailLog"></a>
@@ -602,6 +605,7 @@ available inventory in the system</div>
     <li><a href="#SendMail"><code>SendMail</code></a></li>
     <li><a href="#SendMailAdv"><code>SendMailAdv</code> - Email details</a></li>
     <li><a href="#SendMailAdv_from"><code>SendMailAdv_from</code></a></li>
+    <li><a href="#inline_response_401"><code>inline_response_401</code></a></li>
   </ol>
 
   <div class="model">
@@ -711,6 +715,14 @@ available inventory in the system</div>
           <div class="param-desc"><span class="param-type">example: johndoe@company.com</span></div>
 <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional contact name </div>
           <div class="param-desc"><span class="param-type">example: John Doe</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_401"><code>inline_response_401</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">code </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">message </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   </body>

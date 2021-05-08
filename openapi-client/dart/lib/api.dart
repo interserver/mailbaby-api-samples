@@ -30,6 +30,7 @@ part 'api/default_api.dart';
 
 part 'model/error_response.dart';
 part 'model/generic_response.dart';
+part 'model/inline_response401.dart';
 part 'model/mail_attachment.dart';
 part 'model/mail_contact.dart';
 part 'model/mail_log.dart';

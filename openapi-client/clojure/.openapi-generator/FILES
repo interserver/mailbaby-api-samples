@@ -6,6 +6,7 @@ src/mail_baby_api/api/default.clj
 src/mail_baby_api/core.clj
 src/mail_baby_api/specs/error_response.clj
 src/mail_baby_api/specs/generic_response.clj
+src/mail_baby_api/specs/inline_response_401.clj
 src/mail_baby_api/specs/mail_attachment.clj
 src/mail_baby_api/specs/mail_contact.clj
 src/mail_baby_api/specs/mail_log.clj

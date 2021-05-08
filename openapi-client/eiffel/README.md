@@ -35,6 +35,7 @@ Class | Method | HTTP request | Description
 
  - [ERROR_RESPONSE](docs/ERROR_RESPONSE.md)
  - [GENERIC_RESPONSE](docs/GENERIC_RESPONSE.md)
+ - [INLINE_RESPONSE_401](docs/INLINE_RESPONSE_401.md)
  - [MAIL_ATTACHMENT](docs/MAIL_ATTACHMENT.md)
  - [MAIL_CONTACT](docs/MAIL_CONTACT.md)
  - [MAIL_LOG](docs/MAIL_LOG.md)

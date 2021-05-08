@@ -17,8 +17,8 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { ErrorResponse } from '../model/models';
 import { GenericResponse } from '../model/models';
+import { InlineResponse401 } from '../model/models';
 import { MailLog } from '../model/models';
 import { MailOrder } from '../model/models';
 import { SendMailAdv } from '../model/models';

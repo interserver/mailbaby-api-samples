@@ -123,6 +123,7 @@ Class | Method | HTTP request | Description
 
  - [Model.ErrorResponse](docs/ErrorResponse.md)
  - [Model.GenericResponse](docs/GenericResponse.md)
+ - [Model.InlineResponse401](docs/InlineResponse401.md)
  - [Model.MailAttachment](docs/MailAttachment.md)
  - [Model.MailContact](docs/MailContact.md)
  - [Model.MailLog](docs/MailLog.md)

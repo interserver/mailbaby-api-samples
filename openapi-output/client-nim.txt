@@ -19,6 +19,7 @@
 [main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_error_response.nim
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_generic_response.nim
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_inline_response_401.nim
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_mail_attachment.nim
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_mail_contact.nim
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_mail_log.nim

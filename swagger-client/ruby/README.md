@@ -209,6 +209,7 @@ Class | Method | HTTP request | Description
 
  - [SwaggerClient::ErrorResponse](docs/ErrorResponse.md)
  - [SwaggerClient::GenericResponse](docs/GenericResponse.md)
+ - [SwaggerClient::InlineResponse401](docs/InlineResponse401.md)
  - [SwaggerClient::MailAttachment](docs/MailAttachment.md)
  - [SwaggerClient::MailContact](docs/MailContact.md)
  - [SwaggerClient::MailLog](docs/MailLog.md)

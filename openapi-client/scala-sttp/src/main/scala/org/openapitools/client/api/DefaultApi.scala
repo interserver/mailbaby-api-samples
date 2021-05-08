@@ -11,8 +11,8 @@
  */
 package org.openapitools.client.api
 
-import org.openapitools.client.model.ErrorResponse
 import org.openapitools.client.model.GenericResponse
+import org.openapitools.client.model.InlineResponse401
 import org.openapitools.client.model.MailLog
 import org.openapitools.client.model.MailOrder
 import org.openapitools.client.model.SendMailAdv
@@ -30,7 +30,8 @@ class DefaultApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 : Seq[MailOrder] (OK)
-   *   code 401 : ErrorResponse (Unauthorized)
+   *   code 401 : InlineResponse401 (Unauthorized)
+   *   code 404 : InlineResponse401 (Unauthorized)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
@@ -60,9 +61,9 @@ class DefaultApi(baseUrl: String) {
    * 
    * Expected answers:
    *   code 200 :  (list of mail orders)
-   *   code 400 :  (invalid input, object invalid)
-   *   code 409 :  (an existing item already exists)
-   *   code 401 : ErrorResponse (Unauthorized)
+   *   code 400 : InlineResponse401 (The specified resource was not found)
+   *   code 409 : InlineResponse401 (The specified resource was not found)
+   *   code 401 : InlineResponse401 (Unauthorized)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
@@ -83,9 +84,9 @@ class DefaultApi(baseUrl: String) {
    * 
    * Expected answers:
    *   code 200 : GenericResponse (search results matching criteria)
-   *   code 400 :  (bad input parameter)
-   *   code 401 : ErrorResponse (Unauthorized)
-   *   code 404 : ErrorResponse (The specified resource was not found)
+   *   code 400 : InlineResponse401 (The specified resource was not found)
+   *   code 401 : InlineResponse401 (Unauthorized)
+   *   code 404 : InlineResponse401 (The specified resource was not found)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
@@ -106,9 +107,9 @@ class DefaultApi(baseUrl: String) {
    * 
    * Expected answers:
    *   code 200 : GenericResponse (search results matching criteria)
-   *   code 400 :  (bad input parameter)
-   *   code 401 : ErrorResponse (Unauthorized)
-   *   code 404 : ErrorResponse (The specified resource was not found)
+   *   code 400 : InlineResponse401 (The specified resource was not found)
+   *   code 401 : InlineResponse401 (Unauthorized)
+   *   code 404 : InlineResponse401 (The specified resource was not found)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
@@ -135,7 +136,7 @@ class DefaultApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 :  (list of mail orders)
-   *   code 401 : ErrorResponse (Unauthorized)
+   *   code 401 : InlineResponse401 (Unauthorized)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)

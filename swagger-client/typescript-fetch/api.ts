@@ -116,6 +116,25 @@ export interface GenericResponse {
     text?: string;
 }
 /**
+ * 
+ * @export
+ * @interface InlineResponse401
+ */
+export interface InlineResponse401 {
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse401
+     */
+    code: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse401
+     */
+    message: string;
+}
+/**
  * A File attachment for an email
  * @export
  * @interface MailAttachment

@@ -69,14 +69,31 @@ h4. Responses
 
     	|| Status Code | {status:colour=Green|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | ErrorResponse |
-    	|| Response Model | [ErrorResponse Model|#ErrorResponseModelAnchor|Jump to model] |
+    	|| Response Type | inline_response_401 |
+    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/ErrorResponse"
+        "$ref" : "#/components/schemas/inline_response_401"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | inline_response_401 |
+    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_401"
       }
     }
   }
@@ -160,35 +177,49 @@ h4. Responses
 
 
     	|| Status Code | {status:colour=Green|title=400|subtle=false} |
-    	|| Message | invalid input, object invalid |
-    	|| Response Type |  |
-    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Message | The specified resource was not found |
+    	|| Response Type | inline_response_401 |
+    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
-  "description" : "invalid input, object invalid"
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_401"
+      }
+    }
+  }
 }{code} |
        
 
 
     	|| Status Code | {status:colour=Green|title=409|subtle=false} |
-    	|| Message | an existing item already exists |
-    	|| Response Type |  |
-    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Message | The specified resource was not found |
+    	|| Response Type | inline_response_401 |
+    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
-  "description" : "an existing item already exists"
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_401"
+      }
+    }
+  }
 }{code} |
        
 
 
     	|| Status Code | {status:colour=Green|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | ErrorResponse |
-    	|| Response Model | [ErrorResponse Model|#ErrorResponseModelAnchor|Jump to model] |
+    	|| Response Type | inline_response_401 |
+    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/ErrorResponse"
+        "$ref" : "#/components/schemas/inline_response_401"
       }
     }
   }
@@ -238,25 +269,32 @@ h4. Responses
 
 
     	|| Status Code | {status:colour=Green|title=400|subtle=false} |
-    	|| Message | bad input parameter |
-    	|| Response Type |  |
-    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Message | The specified resource was not found |
+    	|| Response Type | inline_response_401 |
+    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
-  "description" : "bad input parameter"
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_401"
+      }
+    }
+  }
 }{code} |
        
 
 
     	|| Status Code | {status:colour=Green|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | ErrorResponse |
-    	|| Response Model | [ErrorResponse Model|#ErrorResponseModelAnchor|Jump to model] |
+    	|| Response Type | inline_response_401 |
+    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/ErrorResponse"
+        "$ref" : "#/components/schemas/inline_response_401"
       }
     }
   }
@@ -266,14 +304,14 @@ h4. Responses
 
     	|| Status Code | {status:colour=Green|title=404|subtle=false} |
     	|| Message | The specified resource was not found |
-    	|| Response Type | ErrorResponse |
-    	|| Response Model | [ErrorResponse Model|#ErrorResponseModelAnchor|Jump to model] |
+    	|| Response Type | inline_response_401 |
+    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "The specified resource was not found",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/ErrorResponse"
+        "$ref" : "#/components/schemas/inline_response_401"
       }
     }
   }
@@ -320,25 +358,32 @@ h4. Responses
 
 
     	|| Status Code | {status:colour=Green|title=400|subtle=false} |
-    	|| Message | bad input parameter |
-    	|| Response Type |  |
-    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Message | The specified resource was not found |
+    	|| Response Type | inline_response_401 |
+    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
-  "description" : "bad input parameter"
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/inline_response_401"
+      }
+    }
+  }
 }{code} |
        
 
 
     	|| Status Code | {status:colour=Green|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | ErrorResponse |
-    	|| Response Model | [ErrorResponse Model|#ErrorResponseModelAnchor|Jump to model] |
+    	|| Response Type | inline_response_401 |
+    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/ErrorResponse"
+        "$ref" : "#/components/schemas/inline_response_401"
       }
     }
   }
@@ -348,14 +393,14 @@ h4. Responses
 
     	|| Status Code | {status:colour=Green|title=404|subtle=false} |
     	|| Message | The specified resource was not found |
-    	|| Response Type | ErrorResponse |
-    	|| Response Model | [ErrorResponse Model|#ErrorResponseModelAnchor|Jump to model] |
+    	|| Response Type | inline_response_401 |
+    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "The specified resource was not found",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/ErrorResponse"
+        "$ref" : "#/components/schemas/inline_response_401"
       }
     }
   }
@@ -396,14 +441,14 @@ h4. Responses
 
     	|| Status Code | {status:colour=Green|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | ErrorResponse |
-    	|| Response Model | [ErrorResponse Model|#ErrorResponseModelAnchor|Jump to model] |
+    	|| Response Type | inline_response_401 |
+    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/ErrorResponse"
+        "$ref" : "#/components/schemas/inline_response_401"
       }
     }
   }
@@ -490,6 +535,16 @@ h2. Models
         ||Field Name||Required||Type||Description||Enum||
          |status |(x) |{noformat:nopanel=true}String{noformat} | |  |
          |text |(x) |{noformat:nopanel=true}String{noformat} | |  |
+         
+        {anchor:InlineResponse401ModelAnchor}
+        h3. InlineResponse401
+
+        
+        
+        
+        ||Field Name||Required||Type||Description||Enum||
+         |code |(/) |{noformat:nopanel=true}String{noformat} | |  |
+         |message |(/) |{noformat:nopanel=true}String{noformat} | |  |
          
         {anchor:MailAttachmentModelAnchor}
         h3. MailAttachment

@@ -2,6 +2,7 @@
 Apis/DefaultApi.md
 Models/ErrorResponse.md
 Models/GenericResponse.md
+Models/InlineResponse401.md
 Models/MailAttachment.md
 Models/MailContact.md
 Models/MailLog.md

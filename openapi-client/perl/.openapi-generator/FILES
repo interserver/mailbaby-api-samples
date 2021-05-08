@@ -6,6 +6,7 @@ bin/autodoc
 docs/DefaultApi.md
 docs/ErrorResponse.md
 docs/GenericResponse.md
+docs/InlineResponse401.md
 docs/MailAttachment.md
 docs/MailContact.md
 docs/MailLog.md
@@ -20,6 +21,7 @@ lib/OpenAPIClient/Configuration.pm
 lib/OpenAPIClient/DefaultApi.pm
 lib/OpenAPIClient/Object/ErrorResponse.pm
 lib/OpenAPIClient/Object/GenericResponse.pm
+lib/OpenAPIClient/Object/InlineResponse401.pm
 lib/OpenAPIClient/Object/MailAttachment.pm
 lib/OpenAPIClient/Object/MailContact.pm
 lib/OpenAPIClient/Object/MailLog.pm
@@ -32,6 +34,7 @@ lib/OpenAPIClient/Role/AutoDoc.pm
 t/DefaultApiTest.t
 t/ErrorResponseTest.t
 t/GenericResponseTest.t
+t/InlineResponse401Test.t
 t/MailAttachmentTest.t
 t/MailContactTest.t
 t/MailLogTest.t

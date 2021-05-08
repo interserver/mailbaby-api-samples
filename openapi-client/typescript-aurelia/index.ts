@@ -16,6 +16,7 @@ export { DefaultApi } from './DefaultApi';
 export {
   ErrorResponse,
   GenericResponse,
+  InlineResponse401,
   MailAttachment,
   MailContact,
   MailLog,

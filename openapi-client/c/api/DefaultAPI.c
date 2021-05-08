@@ -50,6 +50,9 @@ DefaultAPI_getMailOrders(apiClient_t *apiClient)
     if (apiClient->response_code == 401) {
         printf("%s\n","Unauthorized");
     }
+    if (apiClient->response_code == 404) {
+        printf("%s\n","Unauthorized");
+    }
     cJSON *DefaultAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     if(!cJSON_IsArray(DefaultAPIlocalVarJSON)) {
         return 0;//nonprimitive container
@@ -184,10 +187,10 @@ DefaultAPI_placeMailOrder(apiClient_t *apiClient, mail_order_t * mail_order )
         printf("%s\n","list of mail orders");
     }
     if (apiClient->response_code == 400) {
-        printf("%s\n","invalid input, object invalid");
+        printf("%s\n","The specified resource was not found");
     }
     if (apiClient->response_code == 409) {
-        printf("%s\n","an existing item already exists");
+        printf("%s\n","The specified resource was not found");
     }
     if (apiClient->response_code == 401) {
         printf("%s\n","Unauthorized");
@@ -260,7 +263,7 @@ DefaultAPI_sendAdvMail(apiClient_t *apiClient, send_mail_adv_t * send_mail_adv )
         printf("%s\n","search results matching criteria");
     }
     if (apiClient->response_code == 400) {
-        printf("%s\n","bad input parameter");
+        printf("%s\n","The specified resource was not found");
     }
     if (apiClient->response_code == 401) {
         printf("%s\n","Unauthorized");
@@ -386,7 +389,7 @@ DefaultAPI_sendMail(apiClient_t *apiClient, char * to , char * from , char * sub
         printf("%s\n","search results matching criteria");
     }
     if (apiClient->response_code == 400) {
-        printf("%s\n","bad input parameter");
+        printf("%s\n","The specified resource was not found");
     }
     if (apiClient->response_code == 401) {
         printf("%s\n","Unauthorized");

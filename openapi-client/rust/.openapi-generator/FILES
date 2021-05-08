@@ -6,6 +6,7 @@ README.md
 docs/DefaultApi.md
 docs/ErrorResponse.md
 docs/GenericResponse.md
+docs/InlineResponse401.md
 docs/MailAttachment.md
 docs/MailContact.md
 docs/MailLog.md
@@ -20,6 +21,7 @@ src/apis/mod.rs
 src/lib.rs
 src/models/error_response.rs
 src/models/generic_response.rs
+src/models/inline_response_401.rs
 src/models/mail_attachment.rs
 src/models/mail_contact.rs
 src/models/mail_log.rs

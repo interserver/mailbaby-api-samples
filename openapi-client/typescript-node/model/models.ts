@@ -2,6 +2,7 @@ import localVarRequest from 'request';
 
 export * from './errorResponse';
 export * from './genericResponse';
+export * from './inlineResponse401';
 export * from './mailAttachment';
 export * from './mailContact';
 export * from './mailLog';
@@ -25,6 +26,7 @@ export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 import { ErrorResponse } from './errorResponse';
 import { GenericResponse } from './genericResponse';
+import { InlineResponse401 } from './inlineResponse401';
 import { MailAttachment } from './mailAttachment';
 import { MailContact } from './mailContact';
 import { MailLog } from './mailLog';
@@ -51,6 +53,7 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "ErrorResponse": ErrorResponse,
     "GenericResponse": GenericResponse,
+    "InlineResponse401": InlineResponse401,
     "MailAttachment": MailAttachment,
     "MailContact": MailContact,
     "MailLog": MailLog,

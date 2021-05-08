@@ -17,8 +17,8 @@
 #include "OAIHttpRequest.h"
 #include "OAIServerConfiguration.h"
 
-#include "OAIErrorResponse.h"
 #include "OAIGenericResponse.h"
+#include "OAIInline_response_401.h"
 #include "OAIMailLog.h"
 #include "OAIMailOrder.h"
 #include "OAISendMailAdv.h"

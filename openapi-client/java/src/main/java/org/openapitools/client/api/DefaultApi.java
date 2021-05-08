@@ -27,8 +27,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import org.openapitools.client.model.ErrorResponse;
 import org.openapitools.client.model.GenericResponse;
+import org.openapitools.client.model.InlineResponse401;
 import org.openapitools.client.model.MailLog;
 import org.openapitools.client.model.MailOrder;
 import org.openapitools.client.model.SendMailAdv;
@@ -68,6 +68,7 @@ public class DefaultApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getMailOrdersCall(final ApiCallback _callback) throws ApiException {
@@ -119,6 +120,7 @@ public class DefaultApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
     public List<MailOrder> getMailOrders() throws ApiException {
@@ -136,6 +138,7 @@ public class DefaultApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<List<MailOrder>> getMailOrdersWithHttpInfo() throws ApiException {
@@ -155,6 +158,7 @@ public class DefaultApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call getMailOrdersAsync(final ApiCallback<List<MailOrder>> _callback) throws ApiException {
@@ -276,8 +280,8 @@ public class DefaultApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> list of mail orders </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> invalid input, object invalid </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> an existing item already exists </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The specified resource was not found </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The specified resource was not found </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      * @deprecated
@@ -332,8 +336,8 @@ public class DefaultApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> list of mail orders </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> invalid input, object invalid </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> an existing item already exists </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The specified resource was not found </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The specified resource was not found </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      * @deprecated
@@ -353,8 +357,8 @@ public class DefaultApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> list of mail orders </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> invalid input, object invalid </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> an existing item already exists </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The specified resource was not found </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The specified resource was not found </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      * @deprecated
@@ -376,8 +380,8 @@ public class DefaultApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> list of mail orders </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> invalid input, object invalid </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> an existing item already exists </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The specified resource was not found </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> The specified resource was not found </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      * @deprecated
@@ -399,7 +403,7 @@ public class DefaultApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> search results matching criteria </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The specified resource was not found </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
@@ -458,7 +462,7 @@ public class DefaultApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> search results matching criteria </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The specified resource was not found </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
@@ -478,7 +482,7 @@ public class DefaultApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> search results matching criteria </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The specified resource was not found </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
@@ -500,7 +504,7 @@ public class DefaultApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> search results matching criteria </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The specified resource was not found </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
@@ -525,7 +529,7 @@ public class DefaultApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> search results matching criteria </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The specified resource was not found </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
@@ -618,7 +622,7 @@ public class DefaultApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> search results matching criteria </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The specified resource was not found </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
@@ -641,7 +645,7 @@ public class DefaultApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> search results matching criteria </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The specified resource was not found </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
@@ -666,7 +670,7 @@ public class DefaultApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> search results matching criteria </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> The specified resource was not found </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>

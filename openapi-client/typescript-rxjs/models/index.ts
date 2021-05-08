@@ -1,5 +1,6 @@
 export * from './ErrorResponse';
 export * from './GenericResponse';
+export * from './InlineResponse401';
 export * from './MailAttachment';
 export * from './MailContact';
 export * from './MailLog';

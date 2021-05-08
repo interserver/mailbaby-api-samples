@@ -6,6 +6,7 @@ src/main/scala/org/openapitools/client/api/DefaultApi.scala
 src/main/scala/org/openapitools/client/api/ErrorResponse.scala
 src/main/scala/org/openapitools/client/api/GenericResponse.scala
 src/main/scala/org/openapitools/client/api/HelperCodecs.scala
+src/main/scala/org/openapitools/client/api/InlineResponse401.scala
 src/main/scala/org/openapitools/client/api/MailAttachment.scala
 src/main/scala/org/openapitools/client/api/MailContact.scala
 src/main/scala/org/openapitools/client/api/MailLog.scala

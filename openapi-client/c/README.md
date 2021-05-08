@@ -78,6 +78,7 @@ Category | Method | HTTP request | Description
 
  - [error_response_t](docs/error_response.md)
  - [generic_response_t](docs/generic_response.md)
+ - [inline_response_401_t](docs/inline_response_401.md)
  - [mail_attachment_t](docs/mail_attachment.md)
  - [mail_contact_t](docs/mail_contact.md)
  - [mail_log_t](docs/mail_log.md)

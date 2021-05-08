@@ -493,6 +493,11 @@ static bool sendAdvMailProcessor(MemoryStruct_s p_chunk, long code, char* errorm
 			printf("\n%s\n", jsonStr);
 			g_free(static_cast<gpointer>(jsonStr));
 			
+			out.fromJson(data);
+			char *jsonStr =  out.toJson();
+			printf("\n%s\n", jsonStr);
+			g_free(static_cast<gpointer>(jsonStr));
+			
 		}
 		handler(out, error, userData);
 		return true;
@@ -647,6 +652,11 @@ static bool sendMailProcessor(MemoryStruct_s p_chunk, long code, char* errormsg,
 				}
 			}
 		} else {
+			
+			out.fromJson(data);
+			char *jsonStr =  out.toJson();
+			printf("\n%s\n", jsonStr);
+			g_free(static_cast<gpointer>(jsonStr));
 			
 			out.fromJson(data);
 			char *jsonStr =  out.toJson();

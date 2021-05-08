@@ -7,6 +7,7 @@ src/apis/default_api.ml
 src/apis/default_api.mli
 src/models/error_response.ml
 src/models/generic_response.ml
+src/models/inline_response_401.ml
 src/models/mail_attachment.ml
 src/models/mail_contact.ml
 src/models/mail_log.ml

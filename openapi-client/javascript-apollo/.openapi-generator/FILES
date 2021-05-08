@@ -4,6 +4,7 @@ README.md
 docs/DefaultApi.md
 docs/ErrorResponse.md
 docs/GenericResponse.md
+docs/InlineResponse401.md
 docs/MailAttachment.md
 docs/MailContact.md
 docs/MailLog.md
@@ -19,6 +20,7 @@ src/api/DefaultApi.js
 src/index.js
 src/model/ErrorResponse.js
 src/model/GenericResponse.js
+src/model/InlineResponse401.js
 src/model/MailAttachment.js
 src/model/MailContact.js
 src/model/MailLog.js
@@ -29,6 +31,7 @@ src/model/SendMailAdvFrom.js
 test/api/DefaultApi.spec.js
 test/model/ErrorResponse.spec.js
 test/model/GenericResponse.spec.js
+test/model/InlineResponse401.spec.js
 test/model/MailAttachment.spec.js
 test/model/MailContact.spec.js
 test/model/MailLog.spec.js

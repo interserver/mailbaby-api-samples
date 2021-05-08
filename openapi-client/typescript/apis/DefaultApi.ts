@@ -6,8 +6,8 @@ import {ObjectSerializer} from '../models/ObjectSerializer';
 import {ApiException} from './exception';
 import {isCodeInRange} from '../util';
 
-import { ErrorResponse } from '../models/ErrorResponse';
 import { GenericResponse } from '../models/GenericResponse';
+import { InlineResponse401 } from '../models/InlineResponse401';
 import { MailLog } from '../models/MailLog';
 import { MailOrder } from '../models/MailOrder';
 import { SendMailAdv } from '../models/SendMailAdv';
@@ -356,11 +356,18 @@ export class DefaultApiResponseProcessor {
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: ErrorResponse = ObjectSerializer.deserialize(
+            const body: InlineResponse401 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ErrorResponse", ""
-            ) as ErrorResponse;
-            throw new ApiException<ErrorResponse>(401, body);
+                "InlineResponse401", ""
+            ) as InlineResponse401;
+            throw new ApiException<InlineResponse401>(401, body);
+        }
+        if (isCodeInRange("404", response.httpStatusCode)) {
+            const body: InlineResponse401 = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "InlineResponse401", ""
+            ) as InlineResponse401;
+            throw new ApiException<InlineResponse401>(404, body);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -418,17 +425,25 @@ export class DefaultApiResponseProcessor {
             return;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
-            throw new ApiException<string>(response.httpStatusCode, "invalid input, object invalid");
+            const body: InlineResponse401 = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "InlineResponse401", ""
+            ) as InlineResponse401;
+            throw new ApiException<InlineResponse401>(400, body);
         }
         if (isCodeInRange("409", response.httpStatusCode)) {
-            throw new ApiException<string>(response.httpStatusCode, "an existing item already exists");
+            const body: InlineResponse401 = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "InlineResponse401", ""
+            ) as InlineResponse401;
+            throw new ApiException<InlineResponse401>(409, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: ErrorResponse = ObjectSerializer.deserialize(
+            const body: InlineResponse401 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ErrorResponse", ""
-            ) as ErrorResponse;
-            throw new ApiException<ErrorResponse>(401, body);
+                "InlineResponse401", ""
+            ) as InlineResponse401;
+            throw new ApiException<InlineResponse401>(401, body);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -461,21 +476,25 @@ export class DefaultApiResponseProcessor {
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
-            throw new ApiException<string>(response.httpStatusCode, "bad input parameter");
+            const body: InlineResponse401 = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "InlineResponse401", ""
+            ) as InlineResponse401;
+            throw new ApiException<InlineResponse401>(400, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: ErrorResponse = ObjectSerializer.deserialize(
+            const body: InlineResponse401 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ErrorResponse", ""
-            ) as ErrorResponse;
-            throw new ApiException<ErrorResponse>(401, body);
+                "InlineResponse401", ""
+            ) as InlineResponse401;
+            throw new ApiException<InlineResponse401>(401, body);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
-            const body: ErrorResponse = ObjectSerializer.deserialize(
+            const body: InlineResponse401 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ErrorResponse", ""
-            ) as ErrorResponse;
-            throw new ApiException<ErrorResponse>(404, body);
+                "InlineResponse401", ""
+            ) as InlineResponse401;
+            throw new ApiException<InlineResponse401>(404, body);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -508,21 +527,25 @@ export class DefaultApiResponseProcessor {
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
-            throw new ApiException<string>(response.httpStatusCode, "bad input parameter");
+            const body: InlineResponse401 = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "InlineResponse401", ""
+            ) as InlineResponse401;
+            throw new ApiException<InlineResponse401>(400, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: ErrorResponse = ObjectSerializer.deserialize(
+            const body: InlineResponse401 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ErrorResponse", ""
-            ) as ErrorResponse;
-            throw new ApiException<ErrorResponse>(401, body);
+                "InlineResponse401", ""
+            ) as InlineResponse401;
+            throw new ApiException<InlineResponse401>(401, body);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
-            const body: ErrorResponse = ObjectSerializer.deserialize(
+            const body: InlineResponse401 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ErrorResponse", ""
-            ) as ErrorResponse;
-            throw new ApiException<ErrorResponse>(404, body);
+                "InlineResponse401", ""
+            ) as InlineResponse401;
+            throw new ApiException<InlineResponse401>(404, body);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -551,11 +574,11 @@ export class DefaultApiResponseProcessor {
             return;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: ErrorResponse = ObjectSerializer.deserialize(
+            const body: InlineResponse401 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ErrorResponse", ""
-            ) as ErrorResponse;
-            throw new ApiException<ErrorResponse>(401, body);
+                "InlineResponse401", ""
+            ) as InlineResponse401;
+            throw new ApiException<InlineResponse401>(401, body);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml

@@ -4,6 +4,7 @@ build.gradle
 docs/DefaultApi.md
 docs/ErrorResponse.md
 docs/GenericResponse.md
+docs/InlineResponse401.md
 docs/MailAttachment.md
 docs/MailContact.md
 docs/MailLog.md
@@ -35,6 +36,7 @@ src/main/kotlin/org/openapitools/client/infrastructure/Serializer.kt
 src/main/kotlin/org/openapitools/client/infrastructure/UUIDAdapter.kt
 src/main/kotlin/org/openapitools/client/models/ErrorResponse.kt
 src/main/kotlin/org/openapitools/client/models/GenericResponse.kt
+src/main/kotlin/org/openapitools/client/models/InlineResponse401.kt
 src/main/kotlin/org/openapitools/client/models/MailAttachment.kt
 src/main/kotlin/org/openapitools/client/models/MailContact.kt
 src/main/kotlin/org/openapitools/client/models/MailLog.kt

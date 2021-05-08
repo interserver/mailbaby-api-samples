@@ -5,6 +5,7 @@ src/main/groovy/org/openapitools/api/ApiUtils.groovy
 src/main/groovy/org/openapitools/api/DefaultApi.groovy
 src/main/groovy/org/openapitools/model/ErrorResponse.groovy
 src/main/groovy/org/openapitools/model/GenericResponse.groovy
+src/main/groovy/org/openapitools/model/InlineResponse401.groovy
 src/main/groovy/org/openapitools/model/MailAttachment.groovy
 src/main/groovy/org/openapitools/model/MailContact.groovy
 src/main/groovy/org/openapitools/model/MailLog.groovy

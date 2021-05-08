@@ -5,6 +5,7 @@ import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
 import { ErrorResponse } from '../models/ErrorResponse';
 import { GenericResponse } from '../models/GenericResponse';
+import { InlineResponse401 } from '../models/InlineResponse401';
 import { MailAttachment } from '../models/MailAttachment';
 import { MailContact } from '../models/MailContact';
 import { MailLog } from '../models/MailLog';

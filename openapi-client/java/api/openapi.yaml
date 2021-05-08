@@ -64,7 +64,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/inline_response_401'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
           description: Unauthorized
       summary: displays a list of mail service orders
       x-accepts: application/json
@@ -89,18 +95,22 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
           description: search results matching criteria
         "400":
-          description: bad input parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+          description: The specified resource was not found
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/inline_response_401'
           description: Unauthorized
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/inline_response_401'
           description: The specified resource was not found
       summary: Sends an Email
       x-contentType: application/x-www-form-urlencoded
@@ -127,18 +137,22 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
           description: search results matching criteria
         "400":
-          description: bad input parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+          description: The specified resource was not found
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/inline_response_401'
           description: Unauthorized
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/inline_response_401'
           description: The specified resource was not found
       summary: Sends an Email with Advanced Options
       x-contentType: application/json
@@ -213,7 +227,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/inline_response_401'
           description: Unauthorized
       summary: validatess order details before placing an order
       x-accepts: application/json
@@ -232,14 +246,22 @@ paths:
         "200":
           description: list of mail orders
         "400":
-          description: invalid input, object invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+          description: The specified resource was not found
         "409":
-          description: an existing item already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+          description: The specified resource was not found
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/inline_response_401'
           description: Unauthorized
       summary: places a mail order
       x-contentType: application/json
@@ -277,17 +299,29 @@ components:
       style: form
   requestBodies: {}
   responses:
+    BadInput:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_401'
+      description: The specified resource was not found
+    AlreadyExists:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_401'
+      description: The specified resource was not found
     NotFound:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorResponse'
+            $ref: '#/components/schemas/inline_response_401'
       description: The specified resource was not found
     Unauthorized:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorResponse'
+            $ref: '#/components/schemas/inline_response_401'
       description: Unauthorized
   schemas:
     ErrorResponse:
@@ -507,6 +541,16 @@ components:
       - subject
       - to
       title: Email details
+      type: object
+    inline_response_401:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+      - code
+      - message
       type: object
     SendMailAdv_from:
       description: An Email Contact

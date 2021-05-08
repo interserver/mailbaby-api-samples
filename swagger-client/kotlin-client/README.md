@@ -48,6 +48,7 @@ Class | Method | HTTP request | Description
 
  - [io.swagger.client.models.ErrorResponse](docs/ErrorResponse.md)
  - [io.swagger.client.models.GenericResponse](docs/GenericResponse.md)
+ - [io.swagger.client.models.InlineResponse401](docs/InlineResponse401.md)
  - [io.swagger.client.models.MailAttachment](docs/MailAttachment.md)
  - [io.swagger.client.models.MailContact](docs/MailContact.md)
  - [io.swagger.client.models.MailLog](docs/MailLog.md)

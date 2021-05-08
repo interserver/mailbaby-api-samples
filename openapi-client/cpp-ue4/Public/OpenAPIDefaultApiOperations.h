@@ -15,8 +15,8 @@
 #include "OpenAPIBaseModel.h"
 #include "OpenAPIDefaultApi.h"
 
-#include "OpenAPIErrorResponse.h"
 #include "OpenAPIGenericResponse.h"
+#include "OpenAPIInlineResponse401.h"
 #include "OpenAPIMailLog.h"
 #include "OpenAPIMailOrder.h"
 #include "OpenAPISendMailAdv.h"

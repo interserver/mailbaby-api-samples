@@ -13,6 +13,7 @@ export 'package:openapi/src/api/default_api.dart';
 
 export 'package:openapi/src/model/error_response.dart';
 export 'package:openapi/src/model/generic_response.dart';
+export 'package:openapi/src/model/inline_response401.dart';
 export 'package:openapi/src/model/mail_attachment.dart';
 export 'package:openapi/src/model/mail_contact.dart';
 export 'package:openapi/src/model/mail_log.dart';

@@ -13,7 +13,6 @@ package io.swagger.client.api
 
 import java.text.SimpleDateFormat
 
-import io.swagger.client.model.ErrorResponse
 import io.swagger.client.model.GenericResponse
 import io.swagger.client.model.MailAttachment
 import io.swagger.client.model.MailContact
@@ -23,6 +22,7 @@ import io.swagger.client.model.MailOrders
 import io.swagger.client.model.SendMail
 import io.swagger.client.model.SendMailAdv
 import io.swagger.client.model.SendMailAdv_from
+import io.swagger.client.model.inline_response_401
 import io.swagger.client.{ApiInvoker, ApiException}
 
 import com.sun.jersey.multipart.FormDataMultiPart

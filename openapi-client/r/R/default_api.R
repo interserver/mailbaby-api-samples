@@ -30,7 +30,14 @@
 #' }
 #' \item status code : 401 | Unauthorized
 #'
-#' \item return type : ErrorResponse 
+#' \item return type : InlineResponse401 
+#' \item response headers :
+#'
+#' \tabular{ll}{
+#' }
+#' \item status code : 404 | Unauthorized
+#'
+#' \item return type : InlineResponse401 
 #' \item response headers :
 #'
 #' \tabular{ll}{
@@ -73,23 +80,23 @@
 #'
 #' \tabular{ll}{
 #' }
-#' \item status code : 400 | invalid input, object invalid
+#' \item status code : 400 | The specified resource was not found
 #'
-#'
+#' \item return type : InlineResponse401 
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
-#' \item status code : 409 | an existing item already exists
+#' \item status code : 409 | The specified resource was not found
 #'
-#'
+#' \item return type : InlineResponse401 
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
 #' \item status code : 401 | Unauthorized
 #'
-#' \item return type : ErrorResponse 
+#' \item return type : InlineResponse401 
 #' \item response headers :
 #'
 #' \tabular{ll}{
@@ -111,23 +118,23 @@
 #'
 #' \tabular{ll}{
 #' }
-#' \item status code : 400 | bad input parameter
+#' \item status code : 400 | The specified resource was not found
 #'
-#'
+#' \item return type : InlineResponse401 
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
 #' \item status code : 401 | Unauthorized
 #'
-#' \item return type : ErrorResponse 
+#' \item return type : InlineResponse401 
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
 #' \item status code : 404 | The specified resource was not found
 #'
-#' \item return type : ErrorResponse 
+#' \item return type : InlineResponse401 
 #' \item response headers :
 #'
 #' \tabular{ll}{
@@ -152,23 +159,23 @@
 #'
 #' \tabular{ll}{
 #' }
-#' \item status code : 400 | bad input parameter
+#' \item status code : 400 | The specified resource was not found
 #'
-#'
+#' \item return type : InlineResponse401 
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
 #' \item status code : 401 | Unauthorized
 #'
-#' \item return type : ErrorResponse 
+#' \item return type : InlineResponse401 
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
 #' \item status code : 404 | The specified resource was not found
 #'
-#' \item return type : ErrorResponse 
+#' \item return type : InlineResponse401 
 #' \item response headers :
 #'
 #' \tabular{ll}{
@@ -190,7 +197,7 @@
 #' }
 #' \item status code : 401 | Unauthorized
 #'
-#' \item return type : ErrorResponse 
+#' \item return type : InlineResponse401 
 #' \item response headers :
 #'
 #' \tabular{ll}{

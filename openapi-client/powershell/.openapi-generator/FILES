@@ -5,6 +5,7 @@ appveyor.yml
 docs/DefaultApi.md
 docs/ErrorResponse.md
 docs/GenericResponse.md
+docs/InlineResponse401.md
 docs/MailAttachment.md
 docs/MailContact.md
 docs/MailLog.md
@@ -16,6 +17,7 @@ src/PSOpenAPITools/Api/DefaultApi.ps1
 src/PSOpenAPITools/Client/Configuration.ps1
 src/PSOpenAPITools/Model/ErrorResponse.ps1
 src/PSOpenAPITools/Model/GenericResponse.ps1
+src/PSOpenAPITools/Model/InlineResponse401.ps1
 src/PSOpenAPITools/Model/MailAttachment.ps1
 src/PSOpenAPITools/Model/MailContact.ps1
 src/PSOpenAPITools/Model/MailLog.ps1
@@ -33,6 +35,7 @@ src/PSOpenAPITools/en-US/about_PSOpenAPITools.help.txt
 tests/Api/DefaultApi.Tests.ps1
 tests/Model/ErrorResponse.Tests.ps1
 tests/Model/GenericResponse.Tests.ps1
+tests/Model/InlineResponse401.Tests.ps1
 tests/Model/MailAttachment.Tests.ps1
 tests/Model/MailContact.Tests.ps1
 tests/Model/MailLog.Tests.ps1

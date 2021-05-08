@@ -14,8 +14,8 @@
 import { Observable } from 'rxjs';
 import { BaseAPI, HttpHeaders, HttpQuery, throwIfNullOrUndefined, OperationOpts, RawAjaxResponse } from '../runtime';
 import {
-    ErrorResponse,
     GenericResponse,
+    InlineResponse401,
     MailLog,
     MailOrder,
     SendMailAdv,

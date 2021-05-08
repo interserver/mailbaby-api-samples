@@ -23,7 +23,7 @@ defmodule MailBabyAPI.Api.Default do
   {:ok, [%MailOrder{}, ...]} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec get_mail_orders(Tesla.Env.client, keyword()) :: {:ok, list(MailBabyAPI.Model.MailOrder.t)} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:error, Tesla.Env.t}
+  @spec get_mail_orders(Tesla.Env.client, keyword()) :: {:ok, MailBabyAPI.Model.InlineResponse401.t} | {:ok, list(MailBabyAPI.Model.MailOrder.t)} | {:error, Tesla.Env.t}
   def get_mail_orders(connection, _opts \\ []) do
     %{}
     |> method(:get)
@@ -32,7 +32,8 @@ defmodule MailBabyAPI.Api.Default do
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       { 200, [%MailBabyAPI.Model.MailOrder{}]},
-      { 401, %MailBabyAPI.Model.ErrorResponse{}}
+      { 401, %MailBabyAPI.Model.InlineResponse401{}},
+      { 404, %MailBabyAPI.Model.InlineResponse401{}}
     ])
   end
 
@@ -75,7 +76,7 @@ defmodule MailBabyAPI.Api.Default do
   {:ok, nil} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec place_mail_order(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:error, Tesla.Env.t}
+  @spec place_mail_order(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.InlineResponse401.t} | {:error, Tesla.Env.t}
   def place_mail_order(connection, opts \\ []) do
     optional_params = %{
       :body => :body
@@ -89,9 +90,9 @@ defmodule MailBabyAPI.Api.Default do
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       { 200, false},
-      { 400, false},
-      { 409, false},
-      { 401, %MailBabyAPI.Model.ErrorResponse{}}
+      { 400, %MailBabyAPI.Model.InlineResponse401{}},
+      { 409, %MailBabyAPI.Model.InlineResponse401{}},
+      { 401, %MailBabyAPI.Model.InlineResponse401{}}
     ])
   end
 
@@ -109,7 +110,7 @@ defmodule MailBabyAPI.Api.Default do
   {:ok, MailBabyAPI.Model.GenericResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec send_adv_mail(Tesla.Env.client, MailBabyAPI.Model.SendMailAdv.t, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
+  @spec send_adv_mail(Tesla.Env.client, MailBabyAPI.Model.SendMailAdv.t, keyword()) :: {:ok, MailBabyAPI.Model.InlineResponse401.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
   def send_adv_mail(connection, send_mail_adv, _opts \\ []) do
     %{}
     |> method(:post)
@@ -119,9 +120,9 @@ defmodule MailBabyAPI.Api.Default do
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       { 200, %MailBabyAPI.Model.GenericResponse{}},
-      { 400, false},
-      { 401, %MailBabyAPI.Model.ErrorResponse{}},
-      { 404, %MailBabyAPI.Model.ErrorResponse{}}
+      { 400, %MailBabyAPI.Model.InlineResponse401{}},
+      { 401, %MailBabyAPI.Model.InlineResponse401{}},
+      { 404, %MailBabyAPI.Model.InlineResponse401{}}
     ])
   end
 
@@ -142,7 +143,7 @@ defmodule MailBabyAPI.Api.Default do
   {:ok, MailBabyAPI.Model.GenericResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec send_mail(Tesla.Env.client, String.t, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
+  @spec send_mail(Tesla.Env.client, String.t, String.t, String.t, String.t, keyword()) :: {:ok, MailBabyAPI.Model.InlineResponse401.t} | {:ok, MailBabyAPI.Model.GenericResponse.t} | {:error, Tesla.Env.t}
   def send_mail(connection, to, from, subject, body, _opts \\ []) do
     %{}
     |> method(:post)
@@ -155,9 +156,9 @@ defmodule MailBabyAPI.Api.Default do
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       { 200, %MailBabyAPI.Model.GenericResponse{}},
-      { 400, false},
-      { 401, %MailBabyAPI.Model.ErrorResponse{}},
-      { 404, %MailBabyAPI.Model.ErrorResponse{}}
+      { 400, %MailBabyAPI.Model.InlineResponse401{}},
+      { 401, %MailBabyAPI.Model.InlineResponse401{}},
+      { 404, %MailBabyAPI.Model.InlineResponse401{}}
     ])
   end
 
@@ -173,7 +174,7 @@ defmodule MailBabyAPI.Api.Default do
   {:ok, nil} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec validate_mail_order(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.ErrorResponse.t} | {:error, Tesla.Env.t}
+  @spec validate_mail_order(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, MailBabyAPI.Model.InlineResponse401.t} | {:error, Tesla.Env.t}
   def validate_mail_order(connection, _opts \\ []) do
     %{}
     |> method(:get)
@@ -182,7 +183,7 @@ defmodule MailBabyAPI.Api.Default do
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       { 200, false},
-      { 401, %MailBabyAPI.Model.ErrorResponse{}}
+      { 401, %MailBabyAPI.Model.InlineResponse401{}}
     ])
   end
 

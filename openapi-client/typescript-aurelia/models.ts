@@ -23,6 +23,12 @@ export interface GenericResponse {
 }
 
 
+export interface InlineResponse401 {
+  code: string;
+  message: string;
+}
+
+
 /**
  * A File attachment for an email
  */

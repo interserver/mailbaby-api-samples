@@ -239,6 +239,7 @@ To load the models:
 ```perl
 use OpenAPIClient::Object::ErrorResponse;
 use OpenAPIClient::Object::GenericResponse;
+use OpenAPIClient::Object::InlineResponse401;
 use OpenAPIClient::Object::MailAttachment;
 use OpenAPIClient::Object::MailContact;
 use OpenAPIClient::Object::MailLog;
@@ -262,6 +263,7 @@ use OpenAPIClient::DefaultApi;
 # load the models
 use OpenAPIClient::Object::ErrorResponse;
 use OpenAPIClient::Object::GenericResponse;
+use OpenAPIClient::Object::InlineResponse401;
 use OpenAPIClient::Object::MailAttachment;
 use OpenAPIClient::Object::MailContact;
 use OpenAPIClient::Object::MailLog;
@@ -310,6 +312,7 @@ Class | Method | HTTP request | Description
 # DOCUMENTATION FOR MODELS
  - [OpenAPIClient::Object::ErrorResponse](docs/ErrorResponse.md)
  - [OpenAPIClient::Object::GenericResponse](docs/GenericResponse.md)
+ - [OpenAPIClient::Object::InlineResponse401](docs/InlineResponse401.md)
  - [OpenAPIClient::Object::MailAttachment](docs/MailAttachment.md)
  - [OpenAPIClient::Object::MailContact](docs/MailContact.md)
  - [OpenAPIClient::Object::MailLog](docs/MailLog.md)

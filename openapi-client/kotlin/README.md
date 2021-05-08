@@ -49,6 +49,7 @@ Class | Method | HTTP request | Description
 
  - [org.openapitools.client.models.ErrorResponse](docs/ErrorResponse.md)
  - [org.openapitools.client.models.GenericResponse](docs/GenericResponse.md)
+ - [org.openapitools.client.models.InlineResponse401](docs/InlineResponse401.md)
  - [org.openapitools.client.models.MailAttachment](docs/MailAttachment.md)
  - [org.openapitools.client.models.MailContact](docs/MailContact.md)
  - [org.openapitools.client.models.MailLog](docs/MailLog.md)

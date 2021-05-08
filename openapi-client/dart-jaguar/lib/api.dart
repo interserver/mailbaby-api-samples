@@ -12,6 +12,7 @@ import 'package:openapi/api/default_api.dart';
 
 import 'package:openapi/model/error_response.dart';
 import 'package:openapi/model/generic_response.dart';
+import 'package:openapi/model/inline_response401.dart';
 import 'package:openapi/model/mail_attachment.dart';
 import 'package:openapi/model/mail_contact.dart';
 import 'package:openapi/model/mail_log.dart';
@@ -25,6 +26,7 @@ import 'package:openapi/model/send_mail_adv_from.dart';
 final _jsonJaguarRepo = JsonRepo()
 ..add(ErrorResponseSerializer())
 ..add(GenericResponseSerializer())
+..add(InlineResponse401Serializer())
 ..add(MailAttachmentSerializer())
 ..add(MailContactSerializer())
 ..add(MailLogSerializer())

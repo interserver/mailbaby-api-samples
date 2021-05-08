@@ -5,6 +5,7 @@ openapiclient-1.0.0-1.rockspec
 openapiclient/api/default_api.lua
 openapiclient/model/error_response.lua
 openapiclient/model/generic_response.lua
+openapiclient/model/inline_response_401.lua
 openapiclient/model/mail_attachment.lua
 openapiclient/model/mail_contact.lua
 openapiclient/model/mail_log.lua
@@ -15,6 +16,7 @@ openapiclient/model/send_mail_adv_from.lua
 spec/default_api_spec.lua
 spec/error_response_spec.lua
 spec/generic_response_spec.lua
+spec/inline_response_401_spec.lua
 spec/mail_attachment_spec.lua
 spec/mail_contact_spec.lua
 spec/mail_log_spec.lua

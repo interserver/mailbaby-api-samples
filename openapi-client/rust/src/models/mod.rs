@@ -2,6 +2,8 @@ pub mod error_response;
 pub use self::error_response::ErrorResponse;
 pub mod generic_response;
 pub use self::generic_response::GenericResponse;
+pub mod inline_response_401;
+pub use self::inline_response_401::InlineResponse401;
 pub mod mail_attachment;
 pub use self::mail_attachment::MailAttachment;
 pub mod mail_contact;

@@ -9,6 +9,7 @@ git_push.sh
 index.ts
 model/errorResponse.ts
 model/genericResponse.ts
+model/inlineResponse401.ts
 model/mailAttachment.ts
 model/mailContact.ts
 model/mailLog.ts

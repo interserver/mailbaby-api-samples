@@ -13,6 +13,7 @@ src/main/scala/org/openapitools/client/core/Serializers.scala
 src/main/scala/org/openapitools/client/core/requests.scala
 src/main/scala/org/openapitools/client/model/ErrorResponse.scala
 src/main/scala/org/openapitools/client/model/GenericResponse.scala
+src/main/scala/org/openapitools/client/model/InlineResponse401.scala
 src/main/scala/org/openapitools/client/model/MailAttachment.scala
 src/main/scala/org/openapitools/client/model/MailContact.scala
 src/main/scala/org/openapitools/client/model/MailLog.scala

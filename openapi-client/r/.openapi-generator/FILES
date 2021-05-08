@@ -9,6 +9,7 @@ R/api_response.R
 R/default_api.R
 R/error_response.R
 R/generic_response.R
+R/inline_response401.R
 R/mail_attachment.R
 R/mail_contact.R
 R/mail_log.R
@@ -20,6 +21,7 @@ README.md
 docs/DefaultApi.md
 docs/ErrorResponse.md
 docs/GenericResponse.md
+docs/InlineResponse401.md
 docs/MailAttachment.md
 docs/MailContact.md
 docs/MailLog.md
@@ -32,6 +34,7 @@ tests/testthat.R
 tests/testthat/test_default_api.R
 tests/testthat/test_error_response.R
 tests/testthat/test_generic_response.R
+tests/testthat/test_inline_response401.R
 tests/testthat/test_mail_attachment.R
 tests/testthat/test_mail_contact.R
 tests/testthat/test_mail_log.R

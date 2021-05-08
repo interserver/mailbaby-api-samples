@@ -63,6 +63,9 @@ void OpenAPIDefaultApi::GetMailOrdersResponse::SetHttpResponseCode(EHttpResponse
 	case 401:
 		SetResponseString(TEXT("Unauthorized"));
 		break;
+	case 404:
+		SetResponseString(TEXT("Unauthorized"));
+		break;
 	}
 }
 
@@ -172,10 +175,10 @@ void OpenAPIDefaultApi::PlaceMailOrderResponse::SetHttpResponseCode(EHttpRespons
 		SetResponseString(TEXT("list of mail orders"));
 		break;
 	case 400:
-		SetResponseString(TEXT("invalid input, object invalid"));
+		SetResponseString(TEXT("The specified resource was not found"));
 		break;
 	case 409:
-		SetResponseString(TEXT("an existing item already exists"));
+		SetResponseString(TEXT("The specified resource was not found"));
 		break;
 	case 401:
 		SetResponseString(TEXT("Unauthorized"));
@@ -237,7 +240,7 @@ void OpenAPIDefaultApi::SendAdvMailResponse::SetHttpResponseCode(EHttpResponseCo
 		SetResponseString(TEXT("search results matching criteria"));
 		break;
 	case 400:
-		SetResponseString(TEXT("bad input parameter"));
+		SetResponseString(TEXT("The specified resource was not found"));
 		break;
 	case 401:
 		SetResponseString(TEXT("Unauthorized"));
@@ -310,7 +313,7 @@ void OpenAPIDefaultApi::SendMailResponse::SetHttpResponseCode(EHttpResponseCodes
 		SetResponseString(TEXT("search results matching criteria"));
 		break;
 	case 400:
-		SetResponseString(TEXT("bad input parameter"));
+		SetResponseString(TEXT("The specified resource was not found"));
 		break;
 	case 401:
 		SetResponseString(TEXT("Unauthorized"));

@@ -116,6 +116,7 @@ Class | Method | HTTP request | Description
 
  - [OAIErrorResponse](OAIErrorResponse.md)
  - [OAIGenericResponse](OAIGenericResponse.md)
+ - [OAIInline_response_401](OAIInline_response_401.md)
  - [OAIMailAttachment](OAIMailAttachment.md)
  - [OAIMailContact](OAIMailContact.md)
  - [OAIMailLog](OAIMailLog.md)

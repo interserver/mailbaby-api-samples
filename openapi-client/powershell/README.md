@@ -65,6 +65,7 @@ Class | Method | HTTP request | Description
 
  - [PSOpenAPITools/Model.ErrorResponse](docs/ErrorResponse.md)
  - [PSOpenAPITools/Model.GenericResponse](docs/GenericResponse.md)
+ - [PSOpenAPITools/Model.InlineResponse401](docs/InlineResponse401.md)
  - [PSOpenAPITools/Model.MailAttachment](docs/MailAttachment.md)
  - [PSOpenAPITools/Model.MailContact](docs/MailContact.md)
  - [PSOpenAPITools/Model.MailLog](docs/MailLog.md)

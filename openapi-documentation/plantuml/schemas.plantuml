@@ -12,6 +12,11 @@ entity GenericResponse {
     text: String
 }
 
+entity InlineResponse401 { 
+    * code: String
+    * message: String
+}
+
 entity MailAttachment { 
     * data: File
     filename: String

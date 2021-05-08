@@ -309,6 +309,28 @@ class Decoders {
                 return .failure(.typeMismatch(expected: "GenericResponse", actual: "\(source)"))
             }
         }
+        // Decoder for [InlineResponse401]
+        Decoders.addDecoder(clazz: [InlineResponse401].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[InlineResponse401]> in
+            return Decoders.decode(clazz: [InlineResponse401].self, source: source)
+        }
+
+        // Decoder for InlineResponse401
+        Decoders.addDecoder(clazz: InlineResponse401.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<InlineResponse401> in
+            if let sourceDictionary = source as? [AnyHashable: Any] {
+                let _result = instance == nil ? InlineResponse401() : instance as! InlineResponse401
+                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["code"] as AnyObject?) {
+                case let .success(value): _result.code = value
+                case let .failure(error): break
+                }
+                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["message"] as AnyObject?) {
+                case let .success(value): _result.message = value
+                case let .failure(error): break
+                }
+                return .success(_result)
+            } else {
+                return .failure(.typeMismatch(expected: "InlineResponse401", actual: "\(source)"))
+            }
+        }
         // Decoder for [MailAttachment]
         Decoders.addDecoder(clazz: [MailAttachment].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[MailAttachment]> in
             return Decoders.decode(clazz: [MailAttachment].self, source: source)

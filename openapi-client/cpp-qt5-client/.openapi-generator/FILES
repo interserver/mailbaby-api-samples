@@ -14,6 +14,8 @@ client/OAIHttpFileElement.cpp
 client/OAIHttpFileElement.h
 client/OAIHttpRequest.cpp
 client/OAIHttpRequest.h
+client/OAIInline_response_401.cpp
+client/OAIInline_response_401.h
 client/OAIMailAttachment.cpp
 client/OAIMailAttachment.h
 client/OAIMailContact.cpp

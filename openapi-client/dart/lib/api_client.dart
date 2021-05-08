@@ -196,6 +196,8 @@ class ApiClient {
           return ErrorResponse.fromJson(value);
         case 'GenericResponse':
           return GenericResponse.fromJson(value);
+        case 'InlineResponse401':
+          return InlineResponse401.fromJson(value);
         case 'MailAttachment':
           return MailAttachment.fromJson(value);
         case 'MailContact':

@@ -7,6 +7,7 @@ lib/mail_baby_api/connection.ex
 lib/mail_baby_api/deserializer.ex
 lib/mail_baby_api/model/error_response.ex
 lib/mail_baby_api/model/generic_response.ex
+lib/mail_baby_api/model/inline_response_401.ex
 lib/mail_baby_api/model/mail_attachment.ex
 lib/mail_baby_api/model/mail_contact.ex
 lib/mail_baby_api/model/mail_log.ex

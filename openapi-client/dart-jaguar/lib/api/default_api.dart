@@ -7,7 +7,7 @@ import 'dart:async';
 import 'package:openapi/model/generic_response.dart';
 import 'package:openapi/model/mail_log.dart';
 import 'package:openapi/model/send_mail_adv.dart';
-import 'package:openapi/model/error_response.dart';
+import 'package:openapi/model/inline_response401.dart';
 import 'package:openapi/model/mail_order.dart';
 
 part 'default_api.jretro.dart';

@@ -5,8 +5,8 @@ from __future__ import absolute_import
 from flask import json
 from six import BytesIO
 
-from swagger_server.models.error_response import ErrorResponse  # noqa: E501
 from swagger_server.models.generic_response import GenericResponse  # noqa: E501
+from swagger_server.models.inline_response401 import InlineResponse401  # noqa: E501
 from swagger_server.models.mail_attachment import MailAttachment  # noqa: E501
 from swagger_server.models.mail_contact import MailContact  # noqa: E501
 from swagger_server.models.mail_log import MailLog  # noqa: E501

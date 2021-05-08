@@ -11,8 +11,8 @@
  */
 package io.swagger.client.apis
 
-import io.swagger.client.models.ErrorResponse
 import io.swagger.client.models.GenericResponse
+import io.swagger.client.models.InlineResponse401
 import io.swagger.client.models.MailAttachment
 import io.swagger.client.models.MailContact
 import io.swagger.client.models.MailLog

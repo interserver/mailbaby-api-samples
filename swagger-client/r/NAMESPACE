@@ -3,6 +3,7 @@
 
 export(ErrorResponse)
 export(GenericResponse)
+export(InlineResponse401)
 export(MailAttachment)
 export(MailContact)
 export(MailLog)

@@ -14,8 +14,8 @@
 package org.openapitools.client.api;
 
 import org.openapitools.client.ApiException;
-import org.openapitools.client.model.ErrorResponse;
 import org.openapitools.client.model.GenericResponse;
+import org.openapitools.client.model.InlineResponse401;
 import org.openapitools.client.model.MailLog;
 import org.openapitools.client.model.MailOrder;
 import org.openapitools.client.model.SendMailAdv;

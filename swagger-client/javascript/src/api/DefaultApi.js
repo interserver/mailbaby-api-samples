@@ -14,8 +14,8 @@
  *
  */
 import {ApiClient} from "../ApiClient";
-import {ErrorResponse} from '../model/ErrorResponse';
 import {GenericResponse} from '../model/GenericResponse';
+import {InlineResponse401} from '../model/InlineResponse401';
 import {MailAttachment} from '../model/MailAttachment';
 import {MailContact} from '../model/MailContact';
 import {MailLog} from '../model/MailLog';

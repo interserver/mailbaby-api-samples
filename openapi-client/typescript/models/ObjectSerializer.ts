@@ -1,5 +1,6 @@
 export * from './ErrorResponse';
 export * from './GenericResponse';
+export * from './InlineResponse401';
 export * from './MailAttachment';
 export * from './MailContact';
 export * from './MailLog';
@@ -10,6 +11,7 @@ export * from './SendMailAdvFrom';
 
 import { ErrorResponse } from './ErrorResponse';
 import { GenericResponse } from './GenericResponse';
+import { InlineResponse401 } from './InlineResponse401';
 import { MailAttachment } from './MailAttachment';
 import { MailContact } from './MailContact';
 import { MailLog } from './MailLog';
@@ -42,6 +44,7 @@ let enumsMap: Set<string> = new Set<string>([
 let typeMap: {[index: string]: any} = {
     "ErrorResponse": ErrorResponse,
     "GenericResponse": GenericResponse,
+    "InlineResponse401": InlineResponse401,
     "MailAttachment": MailAttachment,
     "MailContact": MailContact,
     "MailLog": MailLog,

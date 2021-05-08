@@ -5,6 +5,7 @@ analysis_options.yaml
 doc/DefaultApi.md
 doc/ErrorResponse.md
 doc/GenericResponse.md
+doc/InlineResponse401.md
 doc/MailAttachment.md
 doc/MailContact.md
 doc/MailLog.md
@@ -24,6 +25,7 @@ lib/src/date_serializer.dart
 lib/src/model/date.dart
 lib/src/model/error_response.dart
 lib/src/model/generic_response.dart
+lib/src/model/inline_response401.dart
 lib/src/model/mail_attachment.dart
 lib/src/model/mail_contact.dart
 lib/src/model/mail_log.dart
@@ -36,6 +38,7 @@ pubspec.yaml
 test/default_api_test.dart
 test/error_response_test.dart
 test/generic_response_test.dart
+test/inline_response401_test.dart
 test/mail_attachment_test.dart
 test/mail_contact_test.dart
 test/mail_log_test.dart

@@ -5,8 +5,8 @@ import io.swagger.model.*;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
-import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
+import io.swagger.model.InlineResponse401;
 import io.swagger.model.MailAttachment;
 import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
@@ -24,7 +24,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-07T20:02:10.170904-04:00[America/New_York]")public interface MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2021-05-08T00:57:47.864057-04:00[America/New_York]")public interface MailApiService {
     public Response getMailOrders(SecurityContext securityContext);
     public Response placeMailOrder(MailOrder body,SecurityContext securityContext);
     public Response sendAdvMail(SendMailAdv body,SecurityContext securityContext);

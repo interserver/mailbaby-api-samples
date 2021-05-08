@@ -18,6 +18,7 @@ require 'swagger_client/configuration'
 # Models
 require 'swagger_client/models/error_response'
 require 'swagger_client/models/generic_response'
+require 'swagger_client/models/inline_response_401'
 require 'swagger_client/models/mail_attachment'
 require 'swagger_client/models/mail_contact'
 require 'swagger_client/models/mail_log'

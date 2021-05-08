@@ -20,8 +20,8 @@ import { IAPIConfiguration } from '../IAPIConfiguration';
 import { Headers } from '../Headers';
 import HttpResponse from '../HttpResponse';
 
-import { ErrorResponse } from '../model/errorResponse';
 import { GenericResponse } from '../model/genericResponse';
+import { InlineResponse401 } from '../model/inlineResponse401';
 import { MailLog } from '../model/mailLog';
 import { MailOrder } from '../model/mailOrder';
 import { SendMailAdv } from '../model/sendMailAdv';

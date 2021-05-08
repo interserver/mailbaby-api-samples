@@ -1,8 +1,8 @@
 package org.openapitools.api;
 
 import org.openapitools.api.ApiUtils
-import org.openapitools.model.ErrorResponse
 import org.openapitools.model.GenericResponse
+import org.openapitools.model.InlineResponse401
 import org.openapitools.model.MailLog
 import org.openapitools.model.MailOrder
 import org.openapitools.model.SendMailAdv

@@ -15,12 +15,12 @@
 import { HttpMethods, QueryConfig, ResponseBody, ResponseText } from 'redux-query';
 import * as runtime from '../runtime';
 import {
-    ErrorResponse,
-    ErrorResponseFromJSON,
-    ErrorResponseToJSON,
     GenericResponse,
     GenericResponseFromJSON,
     GenericResponseToJSON,
+    InlineResponse401,
+    InlineResponse401FromJSON,
+    InlineResponse401ToJSON,
     MailLog,
     MailLogFromJSON,
     MailLogToJSON,

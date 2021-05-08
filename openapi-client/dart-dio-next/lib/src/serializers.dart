@@ -14,6 +14,7 @@ import 'package:openapi/src/model/date.dart';
 
 import 'package:openapi/src/model/error_response.dart';
 import 'package:openapi/src/model/generic_response.dart';
+import 'package:openapi/src/model/inline_response401.dart';
 import 'package:openapi/src/model/mail_attachment.dart';
 import 'package:openapi/src/model/mail_contact.dart';
 import 'package:openapi/src/model/mail_log.dart';
@@ -27,6 +28,7 @@ part 'serializers.g.dart';
 @SerializersFor([
   ErrorResponse,
   GenericResponse,
+  InlineResponse401,
   MailAttachment,
   MailContact,
   MailLog,

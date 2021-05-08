@@ -8,6 +8,7 @@ build.sbt
 docs/DefaultApi.md
 docs/ErrorResponse.md
 docs/GenericResponse.md
+docs/InlineResponse401.md
 docs/MailAttachment.md
 docs/MailContact.md
 docs/MailLog.md
@@ -44,6 +45,7 @@ src/main/java/org/openapitools/client/auth/HttpBasicAuth.java
 src/main/java/org/openapitools/client/auth/HttpBearerAuth.java
 src/main/java/org/openapitools/client/model/ErrorResponse.java
 src/main/java/org/openapitools/client/model/GenericResponse.java
+src/main/java/org/openapitools/client/model/InlineResponse401.java
 src/main/java/org/openapitools/client/model/MailAttachment.java
 src/main/java/org/openapitools/client/model/MailContact.java
 src/main/java/org/openapitools/client/model/MailLog.java
@@ -54,6 +56,7 @@ src/main/java/org/openapitools/client/model/SendMailAdvFrom.java
 src/test/java/org/openapitools/client/api/DefaultApiTest.java
 src/test/java/org/openapitools/client/model/ErrorResponseTest.java
 src/test/java/org/openapitools/client/model/GenericResponseTest.java
+src/test/java/org/openapitools/client/model/InlineResponse401Test.java
 src/test/java/org/openapitools/client/model/MailAttachmentTest.java
 src/test/java/org/openapitools/client/model/MailContactTest.java
 src/test/java/org/openapitools/client/model/MailLogTest.java

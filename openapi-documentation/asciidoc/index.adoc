@@ -83,7 +83,12 @@ array[<<MailOrder>>]
 
 | 401
 | Unauthorized
-|  <<ErrorResponse>>
+|  <<inline_response_401>>
+
+
+| 404
+| Unauthorized
+|  <<inline_response_401>>
 
 |===         
 
@@ -242,18 +247,18 @@ Adds an item to the system
 
 
 | 400
-| invalid input, object invalid
-|  <<>>
+| The specified resource was not found
+|  <<inline_response_401>>
 
 
 | 409
-| an existing item already exists
-|  <<>>
+| The specified resource was not found
+|  <<inline_response_401>>
 
 
 | 401
 | Unauthorized
-|  <<ErrorResponse>>
+|  <<inline_response_401>>
 
 |===         
 
@@ -339,18 +344,18 @@ Sends An email through one of your mail orders allowing additional options such 
 
 
 | 400
-| bad input parameter
-|  <<>>
+| The specified resource was not found
+|  <<inline_response_401>>
 
 
 | 401
 | Unauthorized
-|  <<ErrorResponse>>
+|  <<inline_response_401>>
 
 
 | 404
 | The specified resource was not found
-|  <<ErrorResponse>>
+|  <<inline_response_401>>
 
 |===         
 
@@ -454,18 +459,18 @@ Sends An email through one of your mail orders.
 
 
 | 400
-| bad input parameter
-|  <<>>
+| The specified resource was not found
+|  <<inline_response_401>>
 
 
 | 401
 | Unauthorized
-|  <<ErrorResponse>>
+|  <<inline_response_401>>
 
 
 | 404
 | The specified resource was not found
-|  <<ErrorResponse>>
+|  <<inline_response_401>>
 
 |===         
 
@@ -540,7 +545,7 @@ validatess order details before placing an order
 
 | 401
 | Unauthorized
-|  <<ErrorResponse>>
+|  <<inline_response_401>>
 
 |===         
 
@@ -718,6 +723,31 @@ endif::internal-generation[]
 
 | text 
 |  
+| String  
+| 
+|  
+
+|===
+
+
+[#InlineResponse401]
+=== _InlineResponse401_ 
+
+
+
+[.fields-InlineResponse401]
+[cols="2,1,2,4,1"]
+|===         
+| Field Name| Required| Type| Description| Format
+
+| code 
+| X 
+| String  
+| 
+|  
+
+| message 
+| X 
 | String  
 | 
 |  

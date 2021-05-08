@@ -3,6 +3,7 @@ README.md
 rebar.config
 src/model/openapi_error_response.erl
 src/model/openapi_generic_response.erl
+src/model/openapi_inline_response_401.erl
 src/model/openapi_mail_attachment.erl
 src/model/openapi_mail_contact.erl
 src/model/openapi_mail_log.erl

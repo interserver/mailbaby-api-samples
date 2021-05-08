@@ -12,6 +12,7 @@ OpenAPIClient/Classes/OpenAPIs/JSONDataEncoding.swift
 OpenAPIClient/Classes/OpenAPIs/JSONEncodingHelper.swift
 OpenAPIClient/Classes/OpenAPIs/Models.swift
 OpenAPIClient/Classes/OpenAPIs/Models/GenericResponse.swift
+OpenAPIClient/Classes/OpenAPIs/Models/InlineResponse401.swift
 OpenAPIClient/Classes/OpenAPIs/Models/MailAttachment.swift
 OpenAPIClient/Classes/OpenAPIs/Models/MailContact.swift
 OpenAPIClient/Classes/OpenAPIs/Models/MailLog.swift
@@ -27,6 +28,7 @@ Package.swift
 README.md
 docs/DefaultAPI.md
 docs/GenericResponse.md
+docs/InlineResponse401.md
 docs/MailAttachment.md
 docs/MailContact.md
 docs/MailLog.md

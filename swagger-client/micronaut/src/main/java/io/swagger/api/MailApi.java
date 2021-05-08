@@ -5,8 +5,8 @@
  */
 package io.swagger.api;
 
-import io.swagger.model.ErrorResponse;
 import io.swagger.model.GenericResponse;
+import io.swagger.model.InlineResponse401;
 import io.swagger.model.MailAttachment;
 import io.swagger.model.MailContact;
 import io.swagger.model.MailLog;
@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-07T20:02:18.977060-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2021-05-08T00:57:56.594294-04:00[America/New_York]")
 @Controller
 public interface MailApi {
 
@@ -40,6 +40,7 @@ public interface MailApi {
     @Operation(summary = "displays a list of mail service orders", operationId = "getMailOrders", description = "" )
     @ApiResponse(responseCode = "200", description = "OK")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
+    @ApiResponse(responseCode = "404", description = "Unauthorized")
     @Get(value = "/mail", produces = { "application/json", "application/xml", "text/plain" })
     default Single<HttpResponse<MailOrders>> getMailOrders() {
         return Single.fromCallable(() -> {
@@ -50,8 +51,8 @@ public interface MailApi {
 
     @Operation(summary = "places a mail order", operationId = "placeMailOrder", description = "Adds an item to the system" )
     @ApiResponse(responseCode = "200", description = "list of mail orders")
-    @ApiResponse(responseCode = "400", description = "invalid input, object invalid")
-    @ApiResponse(responseCode = "409", description = "an existing item already exists")
+    @ApiResponse(responseCode = "400", description = "The specified resource was not found")
+    @ApiResponse(responseCode = "409", description = "The specified resource was not found")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @Post(value = "/mail/order", produces = { "application/json" }, consumes = {"application/json"})
     default Single<HttpResponse<Void>> placeMailOrder(@Parameter(description = "Inventory item to add") @Valid @Body MailOrder body
@@ -64,7 +65,7 @@ public interface MailApi {
 
     @Operation(summary = "Sends an Email with Advanced Options", operationId = "sendAdvMail", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc." )
     @ApiResponse(responseCode = "200", description = "search results matching criteria")
-    @ApiResponse(responseCode = "400", description = "bad input parameter")
+    @ApiResponse(responseCode = "400", description = "The specified resource was not found")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "404", description = "The specified resource was not found")
     @Post(value = "/mail/advsend", produces = { "application/json" }, consumes = {"application/json", "application/x-www-form-urlencoded"})
@@ -78,7 +79,7 @@ public interface MailApi {
 
     @Operation(summary = "Sends an Email with Advanced Options", operationId = "sendAdvMail", description = "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc." )
     @ApiResponse(responseCode = "200", description = "search results matching criteria")
-    @ApiResponse(responseCode = "400", description = "bad input parameter")
+    @ApiResponse(responseCode = "400", description = "The specified resource was not found")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "404", description = "The specified resource was not found")
     @Post(value = "/mail/advsend", produces = { "application/json" }, consumes = {"application/json", "application/x-www-form-urlencoded"})
@@ -100,7 +101,7 @@ public interface MailApi {
 
     @Operation(summary = "Sends an Email", operationId = "sendMail", description = "Sends An email through one of your mail orders." )
     @ApiResponse(responseCode = "200", description = "search results matching criteria")
-    @ApiResponse(responseCode = "400", description = "bad input parameter")
+    @ApiResponse(responseCode = "400", description = "The specified resource was not found")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "404", description = "The specified resource was not found")
     @Post(value = "/mail/send", produces = { "application/json" }, consumes = {"application/x-www-form-urlencoded", "application/json"})
@@ -117,7 +118,7 @@ public interface MailApi {
 
     @Operation(summary = "Sends an Email", operationId = "sendMail", description = "Sends An email through one of your mail orders." )
     @ApiResponse(responseCode = "200", description = "search results matching criteria")
-    @ApiResponse(responseCode = "400", description = "bad input parameter")
+    @ApiResponse(responseCode = "400", description = "The specified resource was not found")
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "404", description = "The specified resource was not found")
     @Post(value = "/mail/send", produces = { "application/json" }, consumes = {"application/x-www-form-urlencoded", "application/json"})

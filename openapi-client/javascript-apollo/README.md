@@ -139,6 +139,7 @@ Class | Method | HTTP request | Description
 
  - [MailBabyApi.ErrorResponse](docs/ErrorResponse.md)
  - [MailBabyApi.GenericResponse](docs/GenericResponse.md)
+ - [MailBabyApi.InlineResponse401](docs/InlineResponse401.md)
  - [MailBabyApi.MailAttachment](docs/MailAttachment.md)
  - [MailBabyApi.MailContact](docs/MailContact.md)
  - [MailBabyApi.MailLog](docs/MailLog.md)

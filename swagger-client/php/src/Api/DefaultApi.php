@@ -174,7 +174,15 @@ class DefaultApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -612,10 +620,26 @@ class DefaultApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -862,10 +886,18 @@ class DefaultApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -873,7 +905,7 @@ class DefaultApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1192,10 +1224,18 @@ class DefaultApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1203,7 +1243,7 @@ class DefaultApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1584,10 +1624,18 @@ class DefaultApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1595,7 +1643,7 @@ class DefaultApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1905,10 +1953,18 @@ class DefaultApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1916,7 +1972,7 @@ class DefaultApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2177,7 +2233,7 @@ class DefaultApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Interserver\Mailbaby\Model\ErrorResponse',
+                        '\Interserver\Mailbaby\Model\InlineResponse401',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

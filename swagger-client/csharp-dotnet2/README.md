@@ -214,6 +214,7 @@ Class | Method | HTTP request | Description
 
  - [IO.Swagger.Model.ErrorResponse](docs/ErrorResponse.md)
  - [IO.Swagger.Model.GenericResponse](docs/GenericResponse.md)
+ - [IO.Swagger.Model.InlineResponse401](docs/InlineResponse401.md)
  - [IO.Swagger.Model.MailAttachment](docs/MailAttachment.md)
  - [IO.Swagger.Model.MailContact](docs/MailContact.md)
  - [IO.Swagger.Model.MailLog](docs/MailLog.md)

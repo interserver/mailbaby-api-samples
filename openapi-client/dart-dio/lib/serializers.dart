@@ -15,6 +15,7 @@ import 'package:built_value/standard_json_plugin.dart';
 
 import 'package:openapi/model/error_response.dart';
 import 'package:openapi/model/generic_response.dart';
+import 'package:openapi/model/inline_response401.dart';
 import 'package:openapi/model/mail_attachment.dart';
 import 'package:openapi/model/mail_contact.dart';
 import 'package:openapi/model/mail_log.dart';
@@ -28,6 +29,7 @@ part 'serializers.g.dart';
 @SerializersFor(const [
   ErrorResponse,
   GenericResponse,
+  InlineResponse401,
   MailAttachment,
   MailContact,
   MailLog,

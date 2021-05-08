@@ -88,7 +88,17 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ErrorResponse"
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
                 }
               }
             }
@@ -128,14 +138,21 @@
             }
           },
           "400" : {
-            "description" : "bad input parameter"
+            "description" : "The specified resource was not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
           },
           "401" : {
             "description" : "Unauthorized",
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ErrorResponse"
+                  "$ref" : "#/components/schemas/inline_response_401"
                 }
               }
             }
@@ -145,7 +162,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ErrorResponse"
+                  "$ref" : "#/components/schemas/inline_response_401"
                 }
               }
             }
@@ -185,14 +202,21 @@
             }
           },
           "400" : {
-            "description" : "bad input parameter"
+            "description" : "The specified resource was not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
           },
           "401" : {
             "description" : "Unauthorized",
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ErrorResponse"
+                  "$ref" : "#/components/schemas/inline_response_401"
                 }
               }
             }
@@ -202,7 +226,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ErrorResponse"
+                  "$ref" : "#/components/schemas/inline_response_401"
                 }
               }
             }
@@ -296,7 +320,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ErrorResponse"
+                  "$ref" : "#/components/schemas/inline_response_401"
                 }
               }
             }
@@ -324,17 +348,31 @@
             "description" : "list of mail orders"
           },
           "400" : {
-            "description" : "invalid input, object invalid"
+            "description" : "The specified resource was not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
           },
           "409" : {
-            "description" : "an existing item already exists"
+            "description" : "The specified resource was not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_401"
+                }
+              }
+            }
           },
           "401" : {
             "description" : "Unauthorized",
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/ErrorResponse"
+                  "$ref" : "#/components/schemas/inline_response_401"
                 }
               }
             }
@@ -540,6 +578,18 @@
         },
         "description" : "Details for an Email"
       },
+      "inline_response_401" : {
+        "required" : [ "code", "message" ],
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          }
+        }
+      },
       "SendMailAdv_from" : {
         "required" : [ "email" ],
         "type" : "object",
@@ -559,12 +609,32 @@
       }
     },
     "responses" : {
+      "BadInput" : {
+        "description" : "The specified resource was not found",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_401"
+            }
+          }
+        }
+      },
+      "AlreadyExists" : {
+        "description" : "The specified resource was not found",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_response_401"
+            }
+          }
+        }
+      },
       "NotFound" : {
         "description" : "The specified resource was not found",
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/ErrorResponse"
+              "$ref" : "#/components/schemas/inline_response_401"
             }
           }
         }
@@ -574,7 +644,7 @@
         "content" : {
           "application/json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/ErrorResponse"
+              "$ref" : "#/components/schemas/inline_response_401"
             }
           }
         }

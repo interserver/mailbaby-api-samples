@@ -1,5 +1,6 @@
 export * from './error-response';
 export * from './generic-response';
+export * from './inline-response401';
 export * from './mail-attachment';
 export * from './mail-contact';
 export * from './mail-log';

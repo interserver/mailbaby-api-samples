@@ -9,6 +9,7 @@ docs/assets/js/main.js
 docs/index.html
 docs/models/ErrorResponse.html
 docs/models/GenericResponse.html
+docs/models/InlineResponse401.html
 docs/models/MailAttachment.html
 docs/models/MailContact.html
 docs/models/MailLog.html

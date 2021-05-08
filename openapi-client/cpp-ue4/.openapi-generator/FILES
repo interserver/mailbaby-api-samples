@@ -6,6 +6,7 @@ Private/OpenAPIDefaultApiOperations.cpp
 Private/OpenAPIErrorResponse.cpp
 Private/OpenAPIGenericResponse.cpp
 Private/OpenAPIHelpers.cpp
+Private/OpenAPIInlineResponse401.cpp
 Private/OpenAPIMailAttachment.cpp
 Private/OpenAPIMailContact.cpp
 Private/OpenAPIMailLog.cpp
@@ -21,6 +22,7 @@ Public/OpenAPIDefaultApiOperations.h
 Public/OpenAPIErrorResponse.h
 Public/OpenAPIGenericResponse.h
 Public/OpenAPIHelpers.h
+Public/OpenAPIInlineResponse401.h
 Public/OpenAPIMailAttachment.h
 Public/OpenAPIMailContact.h
 Public/OpenAPIMailLog.h

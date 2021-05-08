@@ -26,6 +26,7 @@ build = {
 		["openapiclient.api.default_api"] = "openapiclient/api/default_api.lua";
 		["openapiclient.model.error_response"] = "openapiclient/model/error_response.lua";
 		["openapiclient.model.generic_response"] = "openapiclient/model/generic_response.lua";
+		["openapiclient.model.inline_response_401"] = "openapiclient/model/inline_response_401.lua";
 		["openapiclient.model.mail_attachment"] = "openapiclient/model/mail_attachment.lua";
 		["openapiclient.model.mail_contact"] = "openapiclient/model/mail_contact.lua";
 		["openapiclient.model.mail_log"] = "openapiclient/model/mail_log.lua";

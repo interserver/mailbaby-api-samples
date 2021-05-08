@@ -21,8 +21,8 @@ import scalaz.concurrent.Task
 
 import HelperCodecs._
 
-import org.openapitools.client.api.ErrorResponse
 import org.openapitools.client.api.GenericResponse
+import org.openapitools.client.api.InlineResponse401
 import org.openapitools.client.api.MailLog
 import org.openapitools.client.api.MailOrder
 import org.openapitools.client.api.SendMailAdv

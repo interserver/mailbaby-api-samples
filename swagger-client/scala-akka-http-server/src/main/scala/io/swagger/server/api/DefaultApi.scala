@@ -5,7 +5,6 @@ import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.unmarshalling.FromRequestUnmarshaller
 import akka.http.scaladsl.marshalling.ToEntityMarshaller
 import io.swagger.server.AkkaHttpHelper._
-import io.swagger.server.model.ErrorResponse
 import io.swagger.server.model.GenericResponse
 import io.swagger.server.model.MailAttachment
 import io.swagger.server.model.MailContact
@@ -15,6 +14,7 @@ import io.swagger.server.model.MailOrders
 import io.swagger.server.model.SendMail
 import io.swagger.server.model.SendMailAdv
 import io.swagger.server.model.SendMailAdv_from
+import io.swagger.server.model.inline_response_401
 
 class DefaultApi(
     defaultService: DefaultApiService,
@@ -134,14 +134,17 @@ trait DefaultApiService {
 
   def getMailOrders200(responseMailOrders: MailOrders)(implicit toEntityMarshallerMailOrders: ToEntityMarshaller[MailOrders]): Route =
     complete((200, responseMailOrders))
-  def getMailOrders401(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
-    complete((401, responseErrorResponse))
+  def getMailOrders401(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
+    complete((401, responseinline_response_401))
+  def getMailOrders404(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
+    complete((404, responseinline_response_401))
   /**
    * Code: 200, Message: OK, DataType: MailOrders
-   * Code: 401, Message: Unauthorized, DataType: ErrorResponse
+   * Code: 401, Message: Unauthorized, DataType: inline_response_401
+   * Code: 404, Message: Unauthorized, DataType: inline_response_401
    */
   def getMailOrders()
-      (implicit toEntityMarshallerMailOrders: ToEntityMarshaller[MailOrders], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
+      (implicit toEntityMarshallerMailOrders: ToEntityMarshaller[MailOrders], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route
 
   def pingServer200: Route =
     complete((200, "Server is up and running"))
@@ -156,65 +159,65 @@ trait DefaultApiService {
 
   def placeMailOrder200: Route =
     complete((200, "list of mail orders"))
-  def placeMailOrder400: Route =
-    complete((400, "invalid input, object invalid"))
-  def placeMailOrder409: Route =
-    complete((409, "an existing item already exists"))
-  def placeMailOrder401(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
-    complete((401, responseErrorResponse))
+  def placeMailOrder400(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
+    complete((400, responseinline_response_401))
+  def placeMailOrder409(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
+    complete((409, responseinline_response_401))
+  def placeMailOrder401(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
+    complete((401, responseinline_response_401))
   /**
    * Code: 200, Message: list of mail orders
-   * Code: 400, Message: invalid input, object invalid
-   * Code: 409, Message: an existing item already exists
-   * Code: 401, Message: Unauthorized, DataType: ErrorResponse
+   * Code: 400, Message: The specified resource was not found, DataType: inline_response_401
+   * Code: 409, Message: The specified resource was not found, DataType: inline_response_401
+   * Code: 401, Message: Unauthorized, DataType: inline_response_401
    */
   def placeMailOrder(body: MailOrder)
-      (implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
+      (implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route
 
   def sendAdvMail200(responseGenericResponse: GenericResponse)(implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]): Route =
     complete((200, responseGenericResponse))
-  def sendAdvMail400: Route =
-    complete((400, "bad input parameter"))
-  def sendAdvMail401(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
-    complete((401, responseErrorResponse))
-  def sendAdvMail404(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
-    complete((404, responseErrorResponse))
+  def sendAdvMail400(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
+    complete((400, responseinline_response_401))
+  def sendAdvMail401(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
+    complete((401, responseinline_response_401))
+  def sendAdvMail404(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
+    complete((404, responseinline_response_401))
   /**
    * Code: 200, Message: search results matching criteria, DataType: GenericResponse
-   * Code: 400, Message: bad input parameter
-   * Code: 401, Message: Unauthorized, DataType: ErrorResponse
-   * Code: 404, Message: The specified resource was not found, DataType: ErrorResponse
+   * Code: 400, Message: The specified resource was not found, DataType: inline_response_401
+   * Code: 401, Message: Unauthorized, DataType: inline_response_401
+   * Code: 404, Message: The specified resource was not found, DataType: inline_response_401
    */
   def sendAdvMail(body: String, subject: String, body: String, from: String, to: String, id: Long, replyto: String, cc: String, bcc: String, attachments: String)
-      (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
+      (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route
 
   def sendMail200(responseGenericResponse: GenericResponse)(implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]): Route =
     complete((200, responseGenericResponse))
-  def sendMail400: Route =
-    complete((400, "bad input parameter"))
-  def sendMail401(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
-    complete((401, responseErrorResponse))
-  def sendMail404(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
-    complete((404, responseErrorResponse))
+  def sendMail400(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
+    complete((400, responseinline_response_401))
+  def sendMail401(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
+    complete((401, responseinline_response_401))
+  def sendMail404(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
+    complete((404, responseinline_response_401))
   /**
    * Code: 200, Message: search results matching criteria, DataType: GenericResponse
-   * Code: 400, Message: bad input parameter
-   * Code: 401, Message: Unauthorized, DataType: ErrorResponse
-   * Code: 404, Message: The specified resource was not found, DataType: ErrorResponse
+   * Code: 400, Message: The specified resource was not found, DataType: inline_response_401
+   * Code: 401, Message: Unauthorized, DataType: inline_response_401
+   * Code: 404, Message: The specified resource was not found, DataType: inline_response_401
    */
   def sendMail(to: String, from: String, subject: String, body: String, body: String)
-      (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse], toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
+      (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route
 
   def validateMailOrder200: Route =
     complete((200, "list of mail orders"))
-  def validateMailOrder401(responseErrorResponse: ErrorResponse)(implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route =
-    complete((401, responseErrorResponse))
+  def validateMailOrder401(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
+    complete((401, responseinline_response_401))
   /**
    * Code: 200, Message: list of mail orders
-   * Code: 401, Message: Unauthorized, DataType: ErrorResponse
+   * Code: 401, Message: Unauthorized, DataType: inline_response_401
    */
   def validateMailOrder()
-      (implicit toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]): Route
+      (implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route
 
   def viewMailLog200(responseMailLogarray: List[MailLog])(implicit toEntityMarshallerMailLogarray: ToEntityMarshaller[List[MailLog]]): Route =
     complete((200, responseMailLogarray))
@@ -239,23 +242,33 @@ trait DefaultApiMarshaller {
 
   implicit def toEntityMarshallerMailOrders: ToEntityMarshaller[MailOrders]
 
-  implicit def toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]
+  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
 
-  implicit def toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]
+  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+
+  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+
+  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+
+  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
 
   implicit def toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]
 
-  implicit def toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]
+  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
 
-  implicit def toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]
+  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+
+  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
 
   implicit def toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]
 
-  implicit def toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]
+  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
 
-  implicit def toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]
+  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
 
-  implicit def toEntityMarshallerErrorResponse: ToEntityMarshaller[ErrorResponse]
+  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+
+  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
 
   implicit def toEntityMarshallerMailLogarray: ToEntityMarshaller[List[MailLog]]
 

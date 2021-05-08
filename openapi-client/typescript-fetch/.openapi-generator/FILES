@@ -4,6 +4,7 @@ apis/index.ts
 index.ts
 models/ErrorResponse.ts
 models/GenericResponse.ts
+models/InlineResponse401.ts
 models/MailAttachment.ts
 models/MailContact.ts
 models/MailLog.ts

@@ -5,6 +5,7 @@ api_client.ecf
 docs/DEFAULT_API.md
 docs/ERROR_RESPONSE.md
 docs/GENERIC_RESPONSE.md
+docs/INLINE_RESPONSE_401.md
 docs/MAIL_ATTACHMENT.md
 docs/MAIL_CONTACT.md
 docs/MAIL_LOG.md
@@ -16,6 +17,7 @@ src/api/default_api.e
 src/api_client.e
 src/domain/error_response.e
 src/domain/generic_response.e
+src/domain/inline_response_401.e
 src/domain/mail_attachment.e
 src/domain/mail_contact.e
 src/domain/mail_log.e

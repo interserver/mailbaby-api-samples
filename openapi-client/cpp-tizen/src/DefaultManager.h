@@ -5,8 +5,8 @@
 #include <cstring>
 #include <list>
 #include <glib.h>
-#include "ErrorResponse.h"
 #include "GenericResponse.h"
+#include "Inline_response_401.h"
 #include "MailLog.h"
 #include "MailOrder.h"
 #include "SendMailAdv.h"

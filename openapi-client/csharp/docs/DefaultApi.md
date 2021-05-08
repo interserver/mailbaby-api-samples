@@ -83,6 +83,7 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | Unauthorized |  -  |
 
 [[Back to top]](#)
 [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -233,8 +234,8 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | list of mail orders |  -  |
-| **400** | invalid input, object invalid |  -  |
-| **409** | an existing item already exists |  -  |
+| **400** | The specified resource was not found |  -  |
+| **409** | The specified resource was not found |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#)
@@ -317,7 +318,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | search results matching criteria |  -  |
-| **400** | bad input parameter |  -  |
+| **400** | The specified resource was not found |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | The specified resource was not found |  -  |
 
@@ -407,7 +408,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | search results matching criteria |  -  |
-| **400** | bad input parameter |  -  |
+| **400** | The specified resource was not found |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | The specified resource was not found |  -  |
 

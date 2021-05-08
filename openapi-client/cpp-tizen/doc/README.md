@@ -63,6 +63,7 @@ Class | Description
 ------------- | -------------
  *ErrorResponse* | 
  *GenericResponse* | 
+ *Inline_response_401* | 
  *MailAttachment* | A File attachment for an email
  *MailContact* | An Email Contact
  *MailLog* | Mail Order Details

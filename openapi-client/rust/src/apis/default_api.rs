@@ -19,7 +19,8 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetMailOrdersError {
-    Status401(crate::models::ErrorResponse),
+    Status401(crate::models::InlineResponse401),
+    Status404(crate::models::InlineResponse401),
     UnknownValue(serde_json::Value),
 }
 
@@ -35,9 +36,9 @@ pub enum PingServerError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PlaceMailOrderError {
-    Status400(),
-    Status409(),
-    Status401(crate::models::ErrorResponse),
+    Status400(crate::models::InlineResponse401),
+    Status409(crate::models::InlineResponse401),
+    Status401(crate::models::InlineResponse401),
     UnknownValue(serde_json::Value),
 }
 
@@ -45,9 +46,9 @@ pub enum PlaceMailOrderError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SendAdvMailError {
-    Status400(),
-    Status401(crate::models::ErrorResponse),
-    Status404(crate::models::ErrorResponse),
+    Status400(crate::models::InlineResponse401),
+    Status401(crate::models::InlineResponse401),
+    Status404(crate::models::InlineResponse401),
     UnknownValue(serde_json::Value),
 }
 
@@ -55,9 +56,9 @@ pub enum SendAdvMailError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SendMailError {
-    Status400(),
-    Status401(crate::models::ErrorResponse),
-    Status404(crate::models::ErrorResponse),
+    Status400(crate::models::InlineResponse401),
+    Status401(crate::models::InlineResponse401),
+    Status404(crate::models::InlineResponse401),
     UnknownValue(serde_json::Value),
 }
 
@@ -65,7 +66,7 @@ pub enum SendMailError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ValidateMailOrderError {
-    Status401(crate::models::ErrorResponse),
+    Status401(crate::models::InlineResponse401),
     UnknownValue(serde_json::Value),
 }
 

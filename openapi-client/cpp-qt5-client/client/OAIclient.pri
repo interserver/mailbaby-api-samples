@@ -4,6 +4,7 @@ HEADERS += \
 # Models
     $${PWD}/OAIErrorResponse.h \
     $${PWD}/OAIGenericResponse.h \
+    $${PWD}/OAIInline_response_401.h \
     $${PWD}/OAIMailAttachment.h \
     $${PWD}/OAIMailContact.h \
     $${PWD}/OAIMailLog.h \
@@ -26,6 +27,7 @@ SOURCES += \
 # Models
     $${PWD}/OAIErrorResponse.cpp \
     $${PWD}/OAIGenericResponse.cpp \
+    $${PWD}/OAIInline_response_401.cpp \
     $${PWD}/OAIMailAttachment.cpp \
     $${PWD}/OAIMailContact.cpp \
     $${PWD}/OAIMailLog.cpp \

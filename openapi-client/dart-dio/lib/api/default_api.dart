@@ -11,8 +11,8 @@ import 'package:built_value/serializer.dart';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/api_util.dart';
-import 'package:openapi/model/error_response.dart';
 import 'package:openapi/model/generic_response.dart';
+import 'package:openapi/model/inline_response401.dart';
 import 'package:openapi/model/mail_log.dart';
 import 'package:openapi/model/mail_order.dart';
 import 'package:openapi/model/send_mail_adv.dart';

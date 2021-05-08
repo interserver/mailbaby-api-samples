@@ -18,11 +18,11 @@ import tables
 import typetraits
 import uri
 
-import ../models/model_error_response
 import ../models/model_generic_response
 import ../models/model_mail_log
 import ../models/model_mail_order
 import ../models/model_send_mail_adv
+import ../models/model_inline_response_401
 
 const basepath = "https://api.mailbaby.net"
 

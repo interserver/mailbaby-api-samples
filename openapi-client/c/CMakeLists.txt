@@ -40,6 +40,7 @@ set(SRCS
     model/object.c
     model/error_response.c
     model/generic_response.c
+    model/inline_response_401.c
     model/mail_attachment.c
     model/mail_contact.c
     model/mail_log.c
@@ -60,6 +61,7 @@ set(HDRS
     model/object.h
     model/error_response.h
     model/generic_response.h
+    model/inline_response_401.h
     model/mail_attachment.h
     model/mail_contact.h
     model/mail_log.h

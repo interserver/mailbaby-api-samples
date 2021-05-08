@@ -78,6 +78,7 @@ Class | Method | HTTP request | Description
 
  - [ErrorResponse](ErrorResponse.md)
  - [GenericResponse](GenericResponse.md)
+ - [InlineResponse401](InlineResponse401.md)
  - [MailAttachment](MailAttachment.md)
  - [MailContact](MailContact.md)
  - [MailLog](MailLog.md)

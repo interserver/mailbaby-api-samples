@@ -38,6 +38,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [GenericResponse](docs/GenericResponse.md)
+ - [InlineResponse401](docs/InlineResponse401.md)
  - [MailAttachment](docs/MailAttachment.md)
  - [MailContact](docs/MailContact.md)
  - [MailLog](docs/MailLog.md)

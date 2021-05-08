@@ -6,6 +6,7 @@ modelMappings:
   DefinitionFromSwaggerSpecification: fully.qualified.path.to.Model
   ErrorResponse : io.swagger.model.ErrorResponse
 GenericResponse : io.swagger.model.GenericResponse
+InlineResponse401 : io.swagger.model.InlineResponse401
 MailAttachment : io.swagger.model.MailAttachment
 MailContact : io.swagger.model.MailContact
 MailLog : io.swagger.model.MailLog

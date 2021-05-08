@@ -74,6 +74,7 @@ Class | Method | HTTP request | Description
 
  - [OASErrorResponse](OASErrorResponse.md)
  - [OASGenericResponse](OASGenericResponse.md)
+ - [OASInlineResponse401](OASInlineResponse401.md)
  - [OASMailAttachment](OASMailAttachment.md)
  - [OASMailContact](OASMailContact.md)
  - [OASMailLog](OASMailLog.md)

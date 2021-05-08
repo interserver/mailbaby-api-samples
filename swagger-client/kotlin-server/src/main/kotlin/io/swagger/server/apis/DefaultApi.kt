@@ -33,8 +33,8 @@ import io.swagger.server.Paths
 import io.swagger.server.infrastructure.ApiPrincipal
 
 
-import io.swagger.server.models.ErrorResponse
 import io.swagger.server.models.GenericResponse
+import io.swagger.server.models.InlineResponse401
 import io.swagger.server.models.MailAttachment
 import io.swagger.server.models.MailContact
 import io.swagger.server.models.MailLog

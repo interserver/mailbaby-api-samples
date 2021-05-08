@@ -1,0 +1,574 @@
+h1. Mail Baby API
+
+This is an API defintion for accesssing the Mail.Baby mail service.
+
+*Version:* 1.0.0
+
+----
+
+{expand:Table of Contents - Click to expand}
+{toc:printable=true|style=square|minLevel=2|maxLevel=3|type=list|outline=false|include=.*}
+{expand}
+
+h2. Endpoints
+
+
+h3. getMailOrders
+{panel:title=getMailOrders|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* displays a list of mail service orders
+    *Description:* *No Description*
+
+	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
+    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Path | {noformat:nopanel=true}/mail{noformat} |
+    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Produces | {noformat:nopanel=true}application/jsonapplication/xmltext/plain{noformat} |
+----
+h4. Parameters
+
+
+
+----
+h4. Responses
+
+    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
+    	|| Message | OK |
+    	|| Response Type | array[MailOrder] |
+    	|| Response Model | [array[MailOrder] Model|#array[MailOrder]ModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "OK",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/MailOrders"
+      }
+    },
+    "application/xml" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/MailOrders"
+      }
+    },
+    "text/plain" : {
+      "schema" : {
+        "type" : "string"
+      }
+    }
+  },
+  "links" : {
+    "sendMailByIdLink" : {
+      "operationId" : "sendMail",
+      "parameters" : {
+        "id" : "$response.body#/0/id"
+      },
+      "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/advsend`."
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | ErrorResponse |
+    	|| Response Model | [ErrorResponse Model|#ErrorResponseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorResponse"
+      }
+    }
+  }
+}{code} |
+       
+
+{panel}
+
+
+
+h3. pingServer
+{panel:title=pingServer|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* Checks if the server is running
+    *Description:* *No Description*
+
+	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
+    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Path | {noformat:nopanel=true}/ping{noformat} |
+    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    
+----
+h4. Parameters
+
+
+
+----
+h4. Responses
+
+    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
+    	|| Message | Server is up and running |
+    	|| Response Type |  |
+    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Server is up and running"
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Green|title=0|subtle=false} |
+    	|| Message | Something is wrong |
+    	|| Response Type |  |
+    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Something is wrong"
+}{code} |
+       
+
+{panel}
+
+
+
+h3. placeMailOrder
+{panel:title=placeMailOrder|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* places a mail order
+    *Description:* Adds an item to the system
+
+	|| HttpMethod | {status:colour=Yellow|title=post|subtle=false} |
+    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Path | {noformat:nopanel=true}/mail/order{noformat} |
+    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Produces | {noformat:nopanel=true}application/json{noformat} |
+----
+h4. Parameters
+
+h5. Body Parameter
+        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        |MailOrder |Inventory item to add | MailOrder | (x) | |  |  |
+
+
+----
+h4. Responses
+
+    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
+    	|| Message | list of mail orders |
+    	|| Response Type |  |
+    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "list of mail orders"
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Green|title=400|subtle=false} |
+    	|| Message | invalid input, object invalid |
+    	|| Response Type |  |
+    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "invalid input, object invalid"
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Green|title=409|subtle=false} |
+    	|| Message | an existing item already exists |
+    	|| Response Type |  |
+    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "an existing item already exists"
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | ErrorResponse |
+    	|| Response Model | [ErrorResponse Model|#ErrorResponseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorResponse"
+      }
+    }
+  }
+}{code} |
+       
+
+{panel}
+
+
+
+h3. sendAdvMail
+{panel:title=sendAdvMail|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* Sends an Email with Advanced Options
+    *Description:* Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+
+	|| HttpMethod | {status:colour=Yellow|title=post|subtle=false} |
+    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Path | {noformat:nopanel=true}/mail/advsend{noformat} |
+    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Produces | {noformat:nopanel=true}application/json{noformat} |
+----
+h4. Parameters
+
+h5. Body Parameter
+        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        |SendMailAdv | | SendMailAdv | (/) | |  |  |
+
+
+----
+h4. Responses
+
+    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
+    	|| Message | search results matching criteria |
+    	|| Response Type | GenericResponse |
+    	|| Response Model | [GenericResponse Model|#GenericResponseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "search results matching criteria",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/GenericResponse"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Green|title=400|subtle=false} |
+    	|| Message | bad input parameter |
+    	|| Response Type |  |
+    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "bad input parameter"
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | ErrorResponse |
+    	|| Response Model | [ErrorResponse Model|#ErrorResponseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorResponse"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Message | The specified resource was not found |
+    	|| Response Type | ErrorResponse |
+    	|| Response Model | [ErrorResponse Model|#ErrorResponseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorResponse"
+      }
+    }
+  }
+}{code} |
+       
+
+{panel}
+
+
+
+h3. sendMail
+{panel:title=sendMail|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* Sends an Email
+    *Description:* Sends An email through one of your mail orders.
+
+	|| HttpMethod | {status:colour=Yellow|title=post|subtle=false} |
+    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Path | {noformat:nopanel=true}/mail/send{noformat} |
+    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Produces | {noformat:nopanel=true}application/json{noformat} |
+----
+h4. Parameters
+
+
+
+----
+h4. Responses
+
+    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
+    	|| Message | search results matching criteria |
+    	|| Response Type | GenericResponse |
+    	|| Response Model | [GenericResponse Model|#GenericResponseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "search results matching criteria",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/GenericResponse"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Green|title=400|subtle=false} |
+    	|| Message | bad input parameter |
+    	|| Response Type |  |
+    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "bad input parameter"
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | ErrorResponse |
+    	|| Response Model | [ErrorResponse Model|#ErrorResponseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorResponse"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Message | The specified resource was not found |
+    	|| Response Type | ErrorResponse |
+    	|| Response Model | [ErrorResponse Model|#ErrorResponseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorResponse"
+      }
+    }
+  }
+}{code} |
+       
+
+{panel}
+
+
+
+h3. validateMailOrder
+{panel:title=validateMailOrder|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* validatess order details before placing an order
+    *Description:* *No Description*
+
+	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
+    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Path | {noformat:nopanel=true}/mail/order{noformat} |
+    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Produces | {noformat:nopanel=true}application/json{noformat} |
+----
+h4. Parameters
+
+
+
+----
+h4. Responses
+
+    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
+    	|| Message | list of mail orders |
+    	|| Response Type |  |
+    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "list of mail orders"
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | ErrorResponse |
+    	|| Response Model | [ErrorResponse Model|#ErrorResponseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorResponse"
+      }
+    }
+  }
+}{code} |
+       
+
+{panel}
+
+
+
+h3. viewMailLog
+{panel:title=viewMailLog|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* displays the mail log
+    *Description:* By passing in the appropriate options, you can search for
+available inventory in the system
+
+	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
+    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Path | {noformat:nopanel=true}/mail/log{noformat} |
+    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Produces | {noformat:nopanel=true}application/json{noformat} |
+----
+h4. Parameters
+
+
+
+h5. Query Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |id |The ID of your mail order this will be sent through. | Long | (x) |null |  |  ||searchString |pass an optional search string for looking up inventory | String | (x) |null |  |  ||skip |number of records to skip for pagination | Integer | (x) |null |  |  ||limit |maximum number of records to return | Integer | (x) |null |  |  |
+----
+h4. Responses
+
+    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
+    	|| Message | search results matching criteria |
+    	|| Response Type | array[MailLog] |
+    	|| Response Model | [array[MailLog] Model|#array[MailLog]ModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "search results matching criteria",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/MailLog"
+        }
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Green|title=400|subtle=false} |
+    	|| Message | bad input parameter |
+    	|| Response Type |  |
+    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "bad input parameter"
+}{code} |
+       
+
+{panel}
+
+
+{anchor:models}
+h2. Models
+
+        {anchor:ErrorResponseModelAnchor}
+        h3. ErrorResponse
+
+        
+        
+        
+        ||Field Name||Required||Type||Description||Enum||
+         |code |(/) |{noformat:nopanel=true}String{noformat} | |  |
+         |message |(/) |{noformat:nopanel=true}String{noformat} | |  |
+         
+        {anchor:GenericResponseModelAnchor}
+        h3. GenericResponse
+
+        
+        
+        
+        ||Field Name||Required||Type||Description||Enum||
+         |status |(x) |{noformat:nopanel=true}String{noformat} | |  |
+         |text |(x) |{noformat:nopanel=true}String{noformat} | |  |
+         
+        {anchor:MailAttachmentModelAnchor}
+        h3. MailAttachment
+
+        A File attachment for an email
+        
+        
+        ||Field Name||Required||Type||Description||Enum||
+         |data |(/) |{noformat:nopanel=true}File{noformat} |Contents of the attached file |  |
+         |filename |(x) |{noformat:nopanel=true}String{noformat} |Optional filename to specify for the attachment. |  |
+         
+        {anchor:MailContactModelAnchor}
+        h3. MailContact
+
+        An Email Contact
+        
+        
+        ||Field Name||Required||Type||Description||Enum||
+         |email |(/) |{noformat:nopanel=true}String{noformat} |The email address |  |
+         |name |(x) |{noformat:nopanel=true}String{noformat} |Optional contact name |  |
+         
+        {anchor:MailLogModelAnchor}
+        h3. MailLog
+
+        Mail Order Details
+        
+        
+        ||Field Name||Required||Type||Description||Enum||
+         |id |(x) |{noformat:nopanel=true}Long{noformat} | |  |
+         
+        {anchor:MailOrderModelAnchor}
+        h3. MailOrder
+
+        
+        
+        
+        ||Field Name||Required||Type||Description||Enum||
+         |id |(/) |{noformat:nopanel=true}Integer{noformat} | |  |
+         |status |(/) |{noformat:nopanel=true}String{noformat} | |  |
+         |username |(/) |{noformat:nopanel=true}String{noformat} | |  |
+         |password |(x) |{noformat:nopanel=true}String{noformat} | |  |
+         |comment |(x) |{noformat:nopanel=true}String{noformat} | |  |
+         
+        {anchor:SendMailModelAnchor}
+        h3. SendMail
+
+        Details for an Email
+        
+        
+        ||Field Name||Required||Type||Description||Enum||
+         |to |(/) |{noformat:nopanel=true}String{noformat} |The Contact whom is the primary recipient of this email. |  |
+         |from |(/) |{noformat:nopanel=true}String{noformat} |The contact whom is the this email is from. |  |
+         |subject |(/) |{noformat:nopanel=true}String{noformat} |The subject or title of the email |  |
+         |body |(/) |{noformat:nopanel=true}String{noformat} |The main email contents. |  |
+         
+        {anchor:SendMailAdvModelAnchor}
+        h3. SendMailAdv
+
+        Details for an Email
+        
+        
+        ||Field Name||Required||Type||Description||Enum||
+         |subject |(/) |{noformat:nopanel=true}String{noformat} |The subject or title of the email |  |
+         |body |(/) |{noformat:nopanel=true}String{noformat} |The main email contents. |  |
+         |from |(/) |{noformat:nopanel=true}array[SendMailAdv_from]{noformat} |The contact whom is the this email is from. |  |
+         |to |(/) |{noformat:nopanel=true}array[MailContact]{noformat} |The Contact whom is the primary recipient of this email. |  |
+         |id |(/) |{noformat:nopanel=true}Long{noformat} |The ID of the Mail order within our system to use as the Mail Account. |  |
+         |replyto |(x) |{noformat:nopanel=true}array[MailContact]{noformat} |Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. |  |
+         |cc |(x) |{noformat:nopanel=true}array[MailContact]{noformat} |Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. |  |
+         |bcc |(x) |{noformat:nopanel=true}array[MailContact]{noformat} |Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. |  |
+         |attachments |(x) |{noformat:nopanel=true}array[MailAttachment]{noformat} |Optional file attachments to include in the email |  |
+         
+        {anchor:SendMailAdvFromModelAnchor}
+        h3. SendMailAdvFrom
+
+        An Email Contact
+        
+        
+        ||Field Name||Required||Type||Description||Enum||
+         |email |(/) |{noformat:nopanel=true}String{noformat} |The email address |  |
+         |name |(x) |{noformat:nopanel=true}String{noformat} |Optional contact name |  |
+         

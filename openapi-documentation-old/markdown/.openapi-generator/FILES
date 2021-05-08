@@ -1,0 +1,12 @@
+.openapi-generator-ignore
+Apis/DefaultApi.md
+Models/ErrorResponse.md
+Models/GenericResponse.md
+Models/MailAttachment.md
+Models/MailContact.md
+Models/MailLog.md
+Models/MailOrder.md
+Models/SendMail.md
+Models/SendMailAdv.md
+Models/SendMailAdvFrom.md
+README.md

@@ -1,0 +1,15 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/ErrorResponse.ts
+models/GenericResponse.ts
+models/MailAttachment.ts
+models/MailContact.ts
+models/MailLog.ts
+models/MailOrder.ts
+models/SendMail.ts
+models/SendMailAdv.ts
+models/SendMailAdvFrom.ts
+models/index.ts
+runtime.ts

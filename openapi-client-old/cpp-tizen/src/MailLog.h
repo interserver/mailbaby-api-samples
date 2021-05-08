@@ -1,0 +1,65 @@
+/*
+ * MailLog.h
+ *
+ * Mail Order Details
+ */
+
+#ifndef _MailLog_H_
+#define _MailLog_H_
+
+
+#include <string>
+#include "Object.h"
+
+/** \defgroup Models Data Structures for API
+ *  Classes containing all the Data Structures needed for calling/returned by API endpoints
+ *
+ */
+
+namespace Tizen {
+namespace ArtikCloud {
+
+
+/*! \brief Mail Order Details
+ *
+ *  \ingroup Models
+ *
+ */
+
+class MailLog : public Object {
+public:
+	/*! \brief Constructor.
+	 */
+	MailLog();
+	MailLog(char* str);
+
+	/*! \brief Destructor.
+	 */
+	virtual ~MailLog();
+
+	/*! \brief Retrieve a string JSON representation of this class.
+	 */
+	char* toJson();
+
+	/*! \brief Fills in members of this class from JSON string representing it.
+	 */
+	void fromJson(char* jsonStr);
+
+	/*! \brief Get 
+	 */
+	long long getId();
+
+	/*! \brief Set 
+	 */
+	void setId(long long  id);
+
+private:
+	long long id;
+	void __init();
+	void __cleanup();
+
+};
+}
+}
+
+#endif /* _MailLog_H_ */

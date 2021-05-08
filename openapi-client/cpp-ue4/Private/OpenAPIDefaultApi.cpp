@@ -54,40 +54,6 @@ bool OpenAPIDefaultApi::IsValid() const
 	return true;
 }
 
-void OpenAPIDefaultApi::SetHttpRetryManager(FHttpRetrySystem::FManager& InRetryManager)
-{
-	if(RetryManager != &GetHttpRetryManager())
-	{
-		DefaultRetryManager.Reset();
-		RetryManager = &InRetryManager;
-	}
-}
-
-FHttpRetrySystem::FManager& OpenAPIDefaultApi::GetHttpRetryManager()
-{
-	return *RetryManager;
-}
-
-FHttpRequestRef OpenAPIDefaultApi::CreateHttpRequest(const Request& Request) const
-{
-	if (!Request.GetRetryParams().IsSet())
-	{
-		return FHttpModule::Get().CreateRequest();
-	}
-	else
-	{
-		if (!RetryManager)
-		{
-			// Create default retry manager if none was specified
-			DefaultRetryManager = MakeUnique<HttpRetryManager>(6, 60);
-			RetryManager = DefaultRetryManager.Get();
-		}
-
-		const HttpRetryParams& Params = Request.GetRetryParams().GetValue();
-		return RetryManager->CreateRequest(Params.RetryLimitCountOverride, Params.RetryTimeoutRelativeSecondsOverride, Params.RetryResponseCodes, Params.RetryVerbs, Params.RetryDomains);
-	}
-}
-
 void OpenAPIDefaultApi::HandleResponse(FHttpResponsePtr HttpResponse, bool bSucceeded, Response& InOutResponse) const
 {
 	InOutResponse.SetHttpResponse(HttpResponse);
@@ -137,7 +103,7 @@ bool OpenAPIDefaultApi::GetMailOrders(const GetMailOrdersRequest& Request, const
 	if (!IsValid())
 		return false;
 
-	FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
+	FHttpRequestRef HttpRequest = FHttpModule::Get().CreateRequest();
 	HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -147,15 +113,26 @@ bool OpenAPIDefaultApi::GetMailOrders(const GetMailOrdersRequest& Request, const
 
 	Request.SetupHttpRequest(HttpRequest);
 	
-	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnGetMailOrdersResponse, Delegate);
+	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnGetMailOrdersResponse, Delegate, Request.GetAutoRetryCount());
 	return HttpRequest->ProcessRequest();
 }
 
-void OpenAPIDefaultApi::OnGetMailOrdersResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FGetMailOrdersDelegate Delegate) const
+void OpenAPIDefaultApi::OnGetMailOrdersResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FGetMailOrdersDelegate Delegate, int AutoRetryCount) const
 {
 	GetMailOrdersResponse Response;
+	Response.SetHttpRequest(HttpRequest);
+
 	HandleResponse(HttpResponse, bSucceeded, Response);
-	Delegate.ExecuteIfBound(Response);
+
+	if(!Response.IsSuccessful() && AutoRetryCount > 0)
+	{
+		HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnGetMailOrdersResponse, Delegate, AutoRetryCount - 1);
+		Response.AsyncRetry();
+	}
+	else
+	{
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 bool OpenAPIDefaultApi::PingServer(const PingServerRequest& Request, const FPingServerDelegate& Delegate /*= FPingServerDelegate()*/) const
@@ -163,7 +140,7 @@ bool OpenAPIDefaultApi::PingServer(const PingServerRequest& Request, const FPing
 	if (!IsValid())
 		return false;
 
-	FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
+	FHttpRequestRef HttpRequest = FHttpModule::Get().CreateRequest();
 	HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -173,15 +150,26 @@ bool OpenAPIDefaultApi::PingServer(const PingServerRequest& Request, const FPing
 
 	Request.SetupHttpRequest(HttpRequest);
 	
-	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnPingServerResponse, Delegate);
+	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnPingServerResponse, Delegate, Request.GetAutoRetryCount());
 	return HttpRequest->ProcessRequest();
 }
 
-void OpenAPIDefaultApi::OnPingServerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FPingServerDelegate Delegate) const
+void OpenAPIDefaultApi::OnPingServerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FPingServerDelegate Delegate, int AutoRetryCount) const
 {
 	PingServerResponse Response;
+	Response.SetHttpRequest(HttpRequest);
+
 	HandleResponse(HttpResponse, bSucceeded, Response);
-	Delegate.ExecuteIfBound(Response);
+
+	if(!Response.IsSuccessful() && AutoRetryCount > 0)
+	{
+		HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnPingServerResponse, Delegate, AutoRetryCount - 1);
+		Response.AsyncRetry();
+	}
+	else
+	{
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 bool OpenAPIDefaultApi::PlaceMailOrder(const PlaceMailOrderRequest& Request, const FPlaceMailOrderDelegate& Delegate /*= FPlaceMailOrderDelegate()*/) const
@@ -189,7 +177,7 @@ bool OpenAPIDefaultApi::PlaceMailOrder(const PlaceMailOrderRequest& Request, con
 	if (!IsValid())
 		return false;
 
-	FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
+	FHttpRequestRef HttpRequest = FHttpModule::Get().CreateRequest();
 	HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -199,15 +187,26 @@ bool OpenAPIDefaultApi::PlaceMailOrder(const PlaceMailOrderRequest& Request, con
 
 	Request.SetupHttpRequest(HttpRequest);
 	
-	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnPlaceMailOrderResponse, Delegate);
+	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnPlaceMailOrderResponse, Delegate, Request.GetAutoRetryCount());
 	return HttpRequest->ProcessRequest();
 }
 
-void OpenAPIDefaultApi::OnPlaceMailOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FPlaceMailOrderDelegate Delegate) const
+void OpenAPIDefaultApi::OnPlaceMailOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FPlaceMailOrderDelegate Delegate, int AutoRetryCount) const
 {
 	PlaceMailOrderResponse Response;
+	Response.SetHttpRequest(HttpRequest);
+
 	HandleResponse(HttpResponse, bSucceeded, Response);
-	Delegate.ExecuteIfBound(Response);
+
+	if(!Response.IsSuccessful() && AutoRetryCount > 0)
+	{
+		HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnPlaceMailOrderResponse, Delegate, AutoRetryCount - 1);
+		Response.AsyncRetry();
+	}
+	else
+	{
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 bool OpenAPIDefaultApi::SendAdvMail(const SendAdvMailRequest& Request, const FSendAdvMailDelegate& Delegate /*= FSendAdvMailDelegate()*/) const
@@ -215,7 +214,7 @@ bool OpenAPIDefaultApi::SendAdvMail(const SendAdvMailRequest& Request, const FSe
 	if (!IsValid())
 		return false;
 
-	FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
+	FHttpRequestRef HttpRequest = FHttpModule::Get().CreateRequest();
 	HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -225,15 +224,26 @@ bool OpenAPIDefaultApi::SendAdvMail(const SendAdvMailRequest& Request, const FSe
 
 	Request.SetupHttpRequest(HttpRequest);
 	
-	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnSendAdvMailResponse, Delegate);
+	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnSendAdvMailResponse, Delegate, Request.GetAutoRetryCount());
 	return HttpRequest->ProcessRequest();
 }
 
-void OpenAPIDefaultApi::OnSendAdvMailResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FSendAdvMailDelegate Delegate) const
+void OpenAPIDefaultApi::OnSendAdvMailResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FSendAdvMailDelegate Delegate, int AutoRetryCount) const
 {
 	SendAdvMailResponse Response;
+	Response.SetHttpRequest(HttpRequest);
+
 	HandleResponse(HttpResponse, bSucceeded, Response);
-	Delegate.ExecuteIfBound(Response);
+
+	if(!Response.IsSuccessful() && AutoRetryCount > 0)
+	{
+		HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnSendAdvMailResponse, Delegate, AutoRetryCount - 1);
+		Response.AsyncRetry();
+	}
+	else
+	{
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 bool OpenAPIDefaultApi::SendMail(const SendMailRequest& Request, const FSendMailDelegate& Delegate /*= FSendMailDelegate()*/) const
@@ -241,7 +251,7 @@ bool OpenAPIDefaultApi::SendMail(const SendMailRequest& Request, const FSendMail
 	if (!IsValid())
 		return false;
 
-	FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
+	FHttpRequestRef HttpRequest = FHttpModule::Get().CreateRequest();
 	HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -251,15 +261,26 @@ bool OpenAPIDefaultApi::SendMail(const SendMailRequest& Request, const FSendMail
 
 	Request.SetupHttpRequest(HttpRequest);
 	
-	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnSendMailResponse, Delegate);
+	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnSendMailResponse, Delegate, Request.GetAutoRetryCount());
 	return HttpRequest->ProcessRequest();
 }
 
-void OpenAPIDefaultApi::OnSendMailResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FSendMailDelegate Delegate) const
+void OpenAPIDefaultApi::OnSendMailResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FSendMailDelegate Delegate, int AutoRetryCount) const
 {
 	SendMailResponse Response;
+	Response.SetHttpRequest(HttpRequest);
+
 	HandleResponse(HttpResponse, bSucceeded, Response);
-	Delegate.ExecuteIfBound(Response);
+
+	if(!Response.IsSuccessful() && AutoRetryCount > 0)
+	{
+		HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnSendMailResponse, Delegate, AutoRetryCount - 1);
+		Response.AsyncRetry();
+	}
+	else
+	{
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 bool OpenAPIDefaultApi::ValidateMailOrder(const ValidateMailOrderRequest& Request, const FValidateMailOrderDelegate& Delegate /*= FValidateMailOrderDelegate()*/) const
@@ -267,7 +288,7 @@ bool OpenAPIDefaultApi::ValidateMailOrder(const ValidateMailOrderRequest& Reques
 	if (!IsValid())
 		return false;
 
-	FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
+	FHttpRequestRef HttpRequest = FHttpModule::Get().CreateRequest();
 	HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -277,15 +298,26 @@ bool OpenAPIDefaultApi::ValidateMailOrder(const ValidateMailOrderRequest& Reques
 
 	Request.SetupHttpRequest(HttpRequest);
 	
-	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnValidateMailOrderResponse, Delegate);
+	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnValidateMailOrderResponse, Delegate, Request.GetAutoRetryCount());
 	return HttpRequest->ProcessRequest();
 }
 
-void OpenAPIDefaultApi::OnValidateMailOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FValidateMailOrderDelegate Delegate) const
+void OpenAPIDefaultApi::OnValidateMailOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FValidateMailOrderDelegate Delegate, int AutoRetryCount) const
 {
 	ValidateMailOrderResponse Response;
+	Response.SetHttpRequest(HttpRequest);
+
 	HandleResponse(HttpResponse, bSucceeded, Response);
-	Delegate.ExecuteIfBound(Response);
+
+	if(!Response.IsSuccessful() && AutoRetryCount > 0)
+	{
+		HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnValidateMailOrderResponse, Delegate, AutoRetryCount - 1);
+		Response.AsyncRetry();
+	}
+	else
+	{
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 bool OpenAPIDefaultApi::ViewMailLog(const ViewMailLogRequest& Request, const FViewMailLogDelegate& Delegate /*= FViewMailLogDelegate()*/) const
@@ -293,7 +325,7 @@ bool OpenAPIDefaultApi::ViewMailLog(const ViewMailLogRequest& Request, const FVi
 	if (!IsValid())
 		return false;
 
-	FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
+	FHttpRequestRef HttpRequest = FHttpModule::Get().CreateRequest();
 	HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
 	for(const auto& It : AdditionalHeaderParams)
@@ -303,15 +335,26 @@ bool OpenAPIDefaultApi::ViewMailLog(const ViewMailLogRequest& Request, const FVi
 
 	Request.SetupHttpRequest(HttpRequest);
 	
-	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnViewMailLogResponse, Delegate);
+	HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnViewMailLogResponse, Delegate, Request.GetAutoRetryCount());
 	return HttpRequest->ProcessRequest();
 }
 
-void OpenAPIDefaultApi::OnViewMailLogResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FViewMailLogDelegate Delegate) const
+void OpenAPIDefaultApi::OnViewMailLogResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FViewMailLogDelegate Delegate, int AutoRetryCount) const
 {
 	ViewMailLogResponse Response;
+	Response.SetHttpRequest(HttpRequest);
+
 	HandleResponse(HttpResponse, bSucceeded, Response);
-	Delegate.ExecuteIfBound(Response);
+
+	if(!Response.IsSuccessful() && AutoRetryCount > 0)
+	{
+		HttpRequest->OnProcessRequestComplete().BindRaw(this, &OpenAPIDefaultApi::OnViewMailLogResponse, Delegate, AutoRetryCount - 1);
+		Response.AsyncRetry();
+	}
+	else
+	{
+		Delegate.ExecuteIfBound(Response);
+	}
 }
 
 }

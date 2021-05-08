@@ -1,0 +1,18 @@
+{application, openapi,
+ [{description, "This is an API defintion for accesssing the Mail.Baby mail service."},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {applications,
+    [kernel,
+     stdlib,
+     ssl,
+     hackney,
+     ctx
+    ]},
+  {env, [{host, "api.mailbaby.net"}]},
+  {modules, []},
+
+  {maintainers, []},
+  {licenses, ["Apache 2.0"]},
+  {links, ["https://www.interserver.net/contact-information.html"]}
+]}.

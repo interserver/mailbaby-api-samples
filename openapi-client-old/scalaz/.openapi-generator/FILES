@@ -1,0 +1,17 @@
+.openapi-generator-ignore
+build.sbt
+project/build.properties
+src/main/scala/org/openapitools/client/api/DateTimeCodecs.scala
+src/main/scala/org/openapitools/client/api/DefaultApi.scala
+src/main/scala/org/openapitools/client/api/ErrorResponse.scala
+src/main/scala/org/openapitools/client/api/GenericResponse.scala
+src/main/scala/org/openapitools/client/api/HelperCodecs.scala
+src/main/scala/org/openapitools/client/api/InlineResponse401.scala
+src/main/scala/org/openapitools/client/api/MailAttachment.scala
+src/main/scala/org/openapitools/client/api/MailContact.scala
+src/main/scala/org/openapitools/client/api/MailLog.scala
+src/main/scala/org/openapitools/client/api/MailOrder.scala
+src/main/scala/org/openapitools/client/api/QueryParamTypeclass.scala
+src/main/scala/org/openapitools/client/api/SendMail.scala
+src/main/scala/org/openapitools/client/api/SendMailAdv.scala
+src/main/scala/org/openapitools/client/api/SendMailAdvFrom.scala

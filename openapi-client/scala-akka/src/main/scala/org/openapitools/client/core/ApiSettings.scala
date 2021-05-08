@@ -13,12 +13,12 @@ package org.openapitools.client.core
 
 import java.util.concurrent.TimeUnit
 
-import akka.actor.{ActorSystem, ExtendedActorSystem, Extension, ExtensionId, ExtensionIdProvider}
+import akka.actor.{ ExtendedActorSystem, Extension, ExtensionKey }
 import akka.http.scaladsl.model.StatusCodes.CustomStatusCode
 import akka.http.scaladsl.model.headers.RawHeader
 import com.typesafe.config.Config
 
-import scala.jdk.CollectionConverters._
+import scala.collection.JavaConverters._
 import scala.concurrent.duration.FiniteDuration
 
 class ApiSettings(config: Config) extends Extension {
@@ -42,13 +42,4 @@ class ApiSettings(config: Config) extends Extension {
   }
 }
 
-object ApiSettings extends ExtensionId[ApiSettings] with ExtensionIdProvider {
-
-  override def lookup = ApiSettings
-
-  override def createExtension(system: ExtendedActorSystem): ApiSettings =
-    new ApiSettings(system)
-
-  // needed to get the type right when used from Java
-  override def get(system: ActorSystem): ApiSettings = super.get(system)
-}
+object ApiSettings extends ExtensionKey[ApiSettings]

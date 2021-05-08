@@ -2,7 +2,7 @@
 
 Mail Baby API
 - API version: 1.0.0
-  - Build date: 2021-05-08T00:55:27.021713-04:00[America/New_York]
+  - Build date: 2021-05-08T01:01:43.645300-04:00[America/New_York]
 
 This is an API defintion for accesssing the Mail.Baby mail service.
 

@@ -1,0 +1,83 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.7
+
+// ignore_for_file: unused_import
+
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'generic_response.g.dart';
+
+abstract class GenericResponse implements Built<GenericResponse, GenericResponseBuilder> {
+
+    @nullable
+    @BuiltValueField(wireName: r'status')
+    String get status;
+
+    @nullable
+    @BuiltValueField(wireName: r'text')
+    String get text;
+
+    GenericResponse._();
+
+    static void _initializeBuilder(GenericResponseBuilder b) => b;
+
+    factory GenericResponse([void updates(GenericResponseBuilder b)]) = _$GenericResponse;
+
+    @BuiltValueSerializer(custom: true)
+    static Serializer<GenericResponse> get serializer => _$GenericResponseSerializer();
+}
+
+class _$GenericResponseSerializer implements StructuredSerializer<GenericResponse> {
+
+    @override
+    final Iterable<Type> types = const [GenericResponse, _$GenericResponse];
+    @override
+    final String wireName = r'GenericResponse';
+
+    @override
+    Iterable<Object> serialize(Serializers serializers, GenericResponse object,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = <Object>[];
+        if (object.status != null) {
+            result
+                ..add(r'status')
+                ..add(serializers.serialize(object.status,
+                    specifiedType: const FullType(String)));
+        }
+        if (object.text != null) {
+            result
+                ..add(r'text')
+                ..add(serializers.serialize(object.text,
+                    specifiedType: const FullType(String)));
+        }
+        return result;
+    }
+
+    @override
+    GenericResponse deserialize(Serializers serializers, Iterable<Object> serialized,
+        {FullType specifiedType = FullType.unspecified}) {
+        final result = GenericResponseBuilder();
+
+        final iterator = serialized.iterator;
+        while (iterator.moveNext()) {
+            final key = iterator.current as String;
+            iterator.moveNext();
+            final dynamic value = iterator.current;
+            switch (key) {
+                case r'status':
+                    result.status = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+                case r'text':
+                    result.text = serializers.deserialize(value,
+                        specifiedType: const FullType(String)) as String;
+                    break;
+            }
+        }
+        return result.build();
+    }
+}
+

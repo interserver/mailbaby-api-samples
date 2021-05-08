@@ -12,8 +12,7 @@ apiPackage: Api
 variableNamingConvention: camelCase
 invokerPackage: Interserver\Mailbaby 
 packageName: MailBaby 
-srcBasePath: src 
+srcBasePath: src
+artifactId: Api 
 artifactVersion: 1.0.0 
 hideGenerationTimestamp: true
-classname: Api
-className: Api

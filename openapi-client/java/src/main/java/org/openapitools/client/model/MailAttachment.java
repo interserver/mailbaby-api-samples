@@ -29,7 +29,7 @@ import java.io.IOException;
  * A File attachment for an email
  */
 @ApiModel(description = "A File attachment for an email")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-08T01:08:02.297709-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-05-10T11:14:52.929790-04:00[America/New_York]")
 public class MailAttachment {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)

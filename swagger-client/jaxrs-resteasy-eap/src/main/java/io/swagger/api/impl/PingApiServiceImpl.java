@@ -11,7 +11,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-08T01:10:26.010576-04:00[America/New_York]")public class PingApiServiceImpl implements PingApi {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2021-05-10T11:17:17.920413-04:00[America/New_York]")public class PingApiServiceImpl implements PingApi {
       public Response pingServer(SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();

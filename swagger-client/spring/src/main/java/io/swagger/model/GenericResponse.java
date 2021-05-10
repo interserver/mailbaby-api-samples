@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
  * GenericResponse
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-08T01:10:34.039884-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2021-05-10T11:17:26.614285-04:00[America/New_York]")
 
 
 public class GenericResponse   {

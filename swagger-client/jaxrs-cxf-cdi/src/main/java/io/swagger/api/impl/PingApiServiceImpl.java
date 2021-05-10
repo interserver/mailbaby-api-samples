@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-08T01:10:14.523083-04:00[America/New_York]")public class PingApiServiceImpl implements PingApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2021-05-10T11:17:05.922126-04:00[America/New_York]")public class PingApiServiceImpl implements PingApiService {
       @Override
       public Response pingServer(SecurityContext securityContext) {
       // do some magic!

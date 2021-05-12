@@ -1,2 +1,223 @@
 # mailbaby-api-samples
 API Samples for MailBaby
+
+## API Client Samples
+
+I went with setting up several generators to build out API client code in various languages.   For now you will most likely find several alternative code samples for performing the same API call in the same language.  I will work on pruning and filtering down the clients but I wanted to be sure we had a good solid set of languages supported and some variations to ensure we are able to suit everyones needs.
+
+### created with [Swagger codegen](https://github.com/swagger-api/swagger-codegen)
+
+- **ActionScript**
+- **Ada**
+- **Apex**
+- **Bash**
+- **C#** 
+  - .net 2.0
+  - 3.5 or later
+- **C++** 
+  - cpprest
+  - Qt5
+  - Tizen
+- **Clojure**
+- **Dart**
+- **Elixir**
+- **Elm**
+- **Eiffel**
+- **Erlang**
+- **Go**
+- **Groovy**
+- **Haskell** 
+  - http-client
+  - Servant
+- **Java** 
+  - Jersey1.x
+  - Jersey2.x
+  - OkHttp
+  - Retrofit1.x
+  - Retrofit2.x
+  - Feign
+  - RestTemplate
+  - RESTEasy
+  - Vertx
+  - Google API Client Library for Java
+  - Rest-assured
+- **Kotlin**
+- **Lua**
+- **Node.js** 
+  - ES5
+  - ES6
+  - AngularJS with Google Closure Compiler annotations
+- **Objective-C**
+- **Perl**
+- **PHP**
+- **PowerShell**
+- **Python**
+- **R**
+- **Ruby**
+- **Rust** 
+  - rust
+  - rust-server
+- **Scala** 
+  - akka
+  - http4s
+  - swagger-async-httpclient
+- **Swift** 
+  - 2.x
+  - 3.x
+  - 4.x
+  - 5.x
+- **Typescript** 
+  - Angular1.x
+  - Angular2.x
+  - Fetch
+  - jQuery
+  - Node
+
+
+### created with [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator/)
+- **ActionScript**
+- **Ada**
+- **Apex**
+- **Bash**
+- **C**
+- **C#** 
+  - .net 2.0
+  - 3.5 or later
+  - .NET Standard 1.3 - 2.0
+  - .NET Core 2.0
+  - .NET 5.0. Libraries: RestSharp
+  - HttpClient
+- **C++** 
+  - cpp-restsdk
+  - Qt5
+  - Tizen
+  - Unreal Engine 4
+- **Clojure**
+- **Crystal**
+- **Dart**
+- **Elixir**
+- **Elm**
+- **Eiffel**
+- **Erlang**
+- **Go**
+- **Groovy**
+- **Haskell** 
+  - http-client
+  - Servant
+- **Java** 
+  - Jersey1.x
+  - Jersey2.x
+  - OkHttp
+  - Retrofit1.x
+  - Retrofit2.x
+  - Feign
+  - RestTemplate
+  - RESTEasy
+  - Vertx
+  - Google API Client Library for Java
+  - Rest-assured
+  - Spring 5 Web Client
+  - MicroProfile Rest Client
+- **k6**
+- **Kotlin**
+- **Lua**
+- **Nim**
+- **Node.js/JavaScript** 
+  - ES5
+  - ES6
+  - AngularJS with Google Closure Compiler annotations
+  - Flow types
+  - Apollo GraphQL DataStore
+- **Objective-C**
+- **OCaml**
+- **Perl**
+- **PHP**
+- **PowerShell**
+- **Python**
+- **R**
+- **Ruby**
+- **Rust** 
+  - hyper
+  - reqwest
+  - rust-server
+- **Scala** 
+  - akka
+  - http4s
+  - scalaz
+  - sttp
+  - swagger-async-httpclient
+- **Swift** 
+  - 2.x
+  - 3.x
+  - 4.x
+  - 5.x
+- **Typescript** 
+  - AngularJS
+  - Angular 
+  - 2.x - 11.x
+  - Aurelia
+  - Axios
+  - Fetch
+  - Inversify
+  - jQuery
+  - Nestjs
+  - Node
+  - redux-query
+  - Rxjs
+
+
+### created with [HTTPsnippet](https://github.com/Kong/httpsnippet)
+
+- **Shell**
+  - cURL
+  - HTTPie
+  - Wget
+- **Node.js**
+  - HTTP
+  - Request
+  - Unirest
+  - Axios
+  - Fetch
+- **JavaScript**
+  - jQuery
+  - fetch
+  - XMLHttpRequest
+  - Axios
+- **OCaml**
+  - CoHTTP
+- **PHP**
+  - cURL
+  - HTTP v1
+  - HTTP v2
+- **Python**
+  - http.client
+  - Requests
+- **Objective-C**
+  - NSURLSession
+- **Swift**
+  - NSURLSession
+- **Go**
+  - NewRequest
+- **Java**
+  - OkHttp
+  - Unirest
+  - AsyncHttp
+  - java.net.http
+- **Ruby**
+  - net::http
+- **C#**
+  - RestSharp
+  - HttpClient
+- **Clojure**
+  - clj-http
+- **C**
+  - Libcurl
+- **R**
+  - httr
+- **Powershell**
+  - Invoke-WebRequest
+  - Invoke-RestMethod
+- **HTTP**
+  - HTTP/1.1
+- **Kotlin**
+  - OkHttp

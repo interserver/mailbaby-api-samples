@@ -1,4 +1,4 @@
-# Documentation for Mail Baby API 1.0.0 Tizen Client SDK
+# Documentation for MailBaby Email Delivery API 1.0.0 Tizen Client SDK
 
 ## How do I get the doc files?
 First generate source code by running `openapi-generator`
@@ -16,7 +16,7 @@ This is the structure of the doc folder:
 ├── Doxyfile                  \\Doxygen config files
 ├── generateDocumentation.sh  \\Script to run to generate documentation
 ├── README.md                 \\This file
-├── SDK                       \\Documentation for all classes in Mail Baby API Tizen Client SDK. See ./html/index.html
+├── SDK                       \\Documentation for all classes in MailBaby Email Delivery API Tizen Client SDK. See ./html/index.html
 │   └── html
 
 ```
@@ -46,14 +46,10 @@ Method | HTTP request | Description
 *getMailOrdersASync* | *GET* /mail | displays a list of mail service orders.
 *pingServerSync* | *GET* /ping | Checks if the server is running.
 *pingServerASync* | *GET* /ping | Checks if the server is running.
-*placeMailOrderSync* | *POST* /mail/order | places a mail order.
-*placeMailOrderASync* | *POST* /mail/order | places a mail order.
 *sendAdvMailSync* | *POST* /mail/advsend | Sends an Email with Advanced Options.
 *sendAdvMailASync* | *POST* /mail/advsend | Sends an Email with Advanced Options.
 *sendMailSync* | *POST* /mail/send | Sends an Email.
 *sendMailASync* | *POST* /mail/send | Sends an Email.
-*validateMailOrderSync* | *GET* /mail/order | validatess order details before placing an order.
-*validateMailOrderASync* | *GET* /mail/order | validatess order details before placing an order.
 *viewMailLogSync* | *GET* /mail/log | displays the mail log.
 *viewMailLogASync* | *GET* /mail/log | displays the mail log.
 
@@ -61,14 +57,17 @@ Method | HTTP request | Description
 ## What are the Model files for the data structures/objects?
 Class | Description
 ------------- | -------------
- *ErrorResponse* | 
  *GenericResponse* | 
- *Inline_response_401* | 
- *MailAttachment* | A File attachment for an email
- *MailContact* | An Email Contact
- *MailLog* | Mail Order Details
- *MailOrder* | 
+ *GetMailOrders_200_response_inner* | 
+ *GetMailOrders_401_response* | 
+ *MailLog* | Mail log records
+ *MailLogEntry* | An email record
  *SendMail* | Details for an Email
  *SendMailAdv* | Details for an Email
- *SendMailAdv_from* | An Email Contact
+ *SendMailAdv_attachments_inner* | A File attachment for an email
+ *SendMailAdv_bcc_inner* | An Email Contact
+ *SendMailAdv_cc_inner* | An Email Contact
+ *SendMailAdv_from* | The information to use for the From address in the email. from.
+ *SendMailAdv_replyto_inner* | An Email Contact
+ *SendMailAdv_to_inner* | An Email Contact
 

@@ -1,4 +1,4 @@
-# MailBabyApi.SendMail
+# MailBabyEmailDeliveryApi.SendMail
 
 ## Properties
 

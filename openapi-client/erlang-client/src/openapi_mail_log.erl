@@ -5,10 +5,19 @@
 -export_type([openapi_mail_log/0]).
 
 -type openapi_mail_log() ::
-    #{ 'id' => integer()
+    #{ 'total' := integer(),
+       'skip' := integer(),
+       'limit' := integer(),
+       'emails' := list()
      }.
 
-encode(#{ 'id' := Id
+encode(#{ 'total' := Total,
+          'skip' := Skip,
+          'limit' := Limit,
+          'emails' := Emails
         }) ->
-    #{ 'id' => Id
+    #{ 'total' => Total,
+       'skip' => Skip,
+       'limit' => Limit,
+       'emails' => Emails
      }.

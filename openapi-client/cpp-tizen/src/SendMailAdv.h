@@ -9,9 +9,12 @@
 
 
 #include <string>
-#include "MailAttachment.h"
-#include "MailContact.h"
+#include "SendMailAdv_attachments_inner.h"
+#include "SendMailAdv_bcc_inner.h"
+#include "SendMailAdv_cc_inner.h"
 #include "SendMailAdv_from.h"
+#include "SendMailAdv_replyto_inner.h"
+#include "SendMailAdv_to_inner.h"
 #include <list>
 #include "Object.h"
 
@@ -63,66 +66,66 @@ public:
 	/*! \brief Set The main email contents.
 	 */
 	void setBody(std::string  body);
-	/*! \brief Get The contact whom is the this email is from.
+	/*! \brief Get 
 	 */
-	std::list<SendMailAdv_from> getFrom();
+	SendMailAdv_from getFrom();
 
-	/*! \brief Set The contact whom is the this email is from.
+	/*! \brief Set 
 	 */
-	void setFrom(std::list <SendMailAdv_from> from);
-	/*! \brief Get The Contact whom is the primary recipient of this email.
+	void setFrom(SendMailAdv_from  from);
+	/*! \brief Get A list of destionation email addresses to send this to
 	 */
-	std::list<MailContact> getTo();
+	std::list<SendMailAdv_to_inner> getTo();
 
-	/*! \brief Set The Contact whom is the primary recipient of this email.
+	/*! \brief Set A list of destionation email addresses to send this to
 	 */
-	void setTo(std::list <MailContact> to);
-	/*! \brief Get The ID of the Mail order within our system to use as the Mail Account.
+	void setTo(std::list <SendMailAdv_to_inner> to);
+	/*! \brief Get (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+	 */
+	std::list<SendMailAdv_replyto_inner> getReplyto();
+
+	/*! \brief Set (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+	 */
+	void setReplyto(std::list <SendMailAdv_replyto_inner> replyto);
+	/*! \brief Get (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+	 */
+	std::list<SendMailAdv_cc_inner> getCc();
+
+	/*! \brief Set (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+	 */
+	void setCc(std::list <SendMailAdv_cc_inner> cc);
+	/*! \brief Get (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+	 */
+	std::list<SendMailAdv_bcc_inner> getBcc();
+
+	/*! \brief Set (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+	 */
+	void setBcc(std::list <SendMailAdv_bcc_inner> bcc);
+	/*! \brief Get (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+	 */
+	std::list<SendMailAdv_attachments_inner> getAttachments();
+
+	/*! \brief Set (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+	 */
+	void setAttachments(std::list <SendMailAdv_attachments_inner> attachments);
+	/*! \brief Get (optional)  ID of the Mail order within our system to use as the Mail Account.
 	 */
 	long long getId();
 
-	/*! \brief Set The ID of the Mail order within our system to use as the Mail Account.
+	/*! \brief Set (optional)  ID of the Mail order within our system to use as the Mail Account.
 	 */
 	void setId(long long  id);
-	/*! \brief Get Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-	 */
-	std::list<MailContact> getReplyto();
-
-	/*! \brief Set Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-	 */
-	void setReplyto(std::list <MailContact> replyto);
-	/*! \brief Get Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-	 */
-	std::list<MailContact> getCc();
-
-	/*! \brief Set Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-	 */
-	void setCc(std::list <MailContact> cc);
-	/*! \brief Get Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-	 */
-	std::list<MailContact> getBcc();
-
-	/*! \brief Set Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-	 */
-	void setBcc(std::list <MailContact> bcc);
-	/*! \brief Get Optional file attachments to include in the email
-	 */
-	std::list<MailAttachment> getAttachments();
-
-	/*! \brief Set Optional file attachments to include in the email
-	 */
-	void setAttachments(std::list <MailAttachment> attachments);
 
 private:
 	std::string subject;
 	std::string body;
-	std::list <SendMailAdv_from>from;
-	std::list <MailContact>to;
+	SendMailAdv_from from;
+	std::list <SendMailAdv_to_inner>to;
+	std::list <SendMailAdv_replyto_inner>replyto;
+	std::list <SendMailAdv_cc_inner>cc;
+	std::list <SendMailAdv_bcc_inner>bcc;
+	std::list <SendMailAdv_attachments_inner>attachments;
 	long long id;
-	std::list <MailContact>replyto;
-	std::list <MailContact>cc;
-	std::list <MailContact>bcc;
-	std::list <MailAttachment>attachments;
 	void __init();
 	void __cleanup();
 

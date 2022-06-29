@@ -11,19 +11,17 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getMailOrders**](DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
-[**placeMailOrder**](DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
 [**sendAdvMail**](DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
-[**validateMailOrder**](DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
 [**viewMailLog**](DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 
 # **getMailOrders**
-> List<MailOrder> getMailOrders()
+> List<GetMailOrders200ResponseInner> getMailOrders()
 
 displays a list of mail service orders
 
-### Example 
+### Example
 ```dart
 import 'package:openapi/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
@@ -33,7 +31,7 @@ import 'package:openapi/api.dart';
 
 final api_instance = DefaultApi();
 
-try { 
+try {
     final result = api_instance.getMailOrders();
     print(result);
 } catch (e) {
@@ -46,7 +44,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List<MailOrder>**](MailOrder.md)
+[**List<GetMailOrders200ResponseInner>**](GetMailOrders200ResponseInner.md)
 
 ### Authorization
 
@@ -55,7 +53,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, text/plain
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -64,13 +62,13 @@ This endpoint does not need any parameter.
 
 Checks if the server is running
 
-### Example 
+### Example
 ```dart
 import 'package:openapi/api.dart';
 
 final api_instance = DefaultApi();
 
-try { 
+try {
     api_instance.pingServer();
 } catch (e) {
     print('Exception when calling DefaultApi->pingServer: $e\n');
@@ -95,52 +93,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **placeMailOrder**
-> placeMailOrder(mailOrder)
-
-places a mail order
-
-Adds an item to the system
-
-### Example 
-```dart
-import 'package:openapi/api.dart';
-// TODO Configure API key authorization: apiKeyAuth
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
-
-final api_instance = DefaultApi();
-final mailOrder = MailOrder(); // MailOrder | Inventory item to add
-
-try { 
-    api_instance.placeMailOrder(mailOrder);
-} catch (e) {
-    print('Exception when calling DefaultApi->placeMailOrder: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **mailOrder** | [**MailOrder**](MailOrder.md)| Inventory item to add | [optional] 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **sendAdvMail**
 > GenericResponse sendAdvMail(sendMailAdv)
 
@@ -148,7 +100,7 @@ Sends an Email with Advanced Options
 
 Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 
-### Example 
+### Example
 ```dart
 import 'package:openapi/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
@@ -159,7 +111,7 @@ import 'package:openapi/api.dart';
 final api_instance = DefaultApi();
 final sendMailAdv = SendMailAdv(); // SendMailAdv | 
 
-try { 
+try {
     final result = api_instance.sendAdvMail(sendMailAdv);
     print(result);
 } catch (e) {
@@ -193,9 +145,9 @@ Name | Type | Description  | Notes
 
 Sends an Email
 
-Sends An email through one of your mail orders.
+Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
 
-### Example 
+### Example
 ```dart
 import 'package:openapi/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
@@ -209,7 +161,7 @@ final from = from_example; // String | The contact whom is the this email is fro
 final subject = subject_example; // String | The subject or title of the email
 final body = body_example; // String | The main email contents.
 
-try { 
+try {
     final result = api_instance.sendMail(to, from, subject, body);
     print(result);
 } catch (e) {
@@ -241,54 +193,14 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **validateMailOrder**
-> validateMailOrder()
-
-validatess order details before placing an order
-
-### Example 
-```dart
-import 'package:openapi/api.dart';
-// TODO Configure API key authorization: apiKeyAuth
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
-// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
-
-final api_instance = DefaultApi();
-
-try { 
-    api_instance.validateMailOrder();
-} catch (e) {
-    print('Exception when calling DefaultApi->validateMailOrder: $e\n');
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **viewMailLog**
-> List<MailLog> viewMailLog(id, searchString, skip, limit)
+> MailLog viewMailLog(id, search, skip, limit)
 
 displays the mail log
 
 By passing in the appropriate options, you can search for available inventory in the system 
 
-### Example 
+### Example
 ```dart
 import 'package:openapi/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
@@ -298,12 +210,12 @@ import 'package:openapi/api.dart';
 
 final api_instance = DefaultApi();
 final id = 789; // int | The ID of your mail order this will be sent through.
-final searchString = searchString_example; // String | pass an optional search string for looking up inventory
+final search = search_example; // String | pass an optional search string for looking up inventory
 final skip = 56; // int | number of records to skip for pagination
 final limit = 56; // int | maximum number of records to return
 
-try { 
-    final result = api_instance.viewMailLog(id, searchString, skip, limit);
+try {
+    final result = api_instance.viewMailLog(id, search, skip, limit);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->viewMailLog: $e\n');
@@ -315,13 +227,13 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
- **searchString** | **String**| pass an optional search string for looking up inventory | [optional] 
- **skip** | **int**| number of records to skip for pagination | [optional] 
- **limit** | **int**| maximum number of records to return | [optional] 
+ **search** | **String**| pass an optional search string for looking up inventory | [optional] 
+ **skip** | **int**| number of records to skip for pagination | [optional] [default to 0]
+ **limit** | **int**| maximum number of records to return | [optional] [default to 100]
 
 ### Return type
 
-[**List<MailLog>**](MailLog.md)
+[**MailLog**](MailLog.md)
 
 ### Authorization
 

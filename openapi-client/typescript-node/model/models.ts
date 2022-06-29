@@ -1,15 +1,18 @@
 import localVarRequest from 'request';
 
-export * from './errorResponse';
 export * from './genericResponse';
-export * from './inlineResponse401';
-export * from './mailAttachment';
-export * from './mailContact';
+export * from './getMailOrders200ResponseInner';
+export * from './getMailOrders401Response';
 export * from './mailLog';
-export * from './mailOrder';
+export * from './mailLogEntry';
 export * from './sendMail';
 export * from './sendMailAdv';
+export * from './sendMailAdvAttachmentsInner';
+export * from './sendMailAdvBccInner';
+export * from './sendMailAdvCcInner';
 export * from './sendMailAdvFrom';
+export * from './sendMailAdvReplytoInner';
+export * from './sendMailAdvToInner';
 
 import * as fs from 'fs';
 
@@ -24,16 +27,19 @@ export interface RequestDetailedFile {
 export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 
-import { ErrorResponse } from './errorResponse';
 import { GenericResponse } from './genericResponse';
-import { InlineResponse401 } from './inlineResponse401';
-import { MailAttachment } from './mailAttachment';
-import { MailContact } from './mailContact';
+import { GetMailOrders200ResponseInner } from './getMailOrders200ResponseInner';
+import { GetMailOrders401Response } from './getMailOrders401Response';
 import { MailLog } from './mailLog';
-import { MailOrder } from './mailOrder';
+import { MailLogEntry } from './mailLogEntry';
 import { SendMail } from './sendMail';
 import { SendMailAdv } from './sendMailAdv';
+import { SendMailAdvAttachmentsInner } from './sendMailAdvAttachmentsInner';
+import { SendMailAdvBccInner } from './sendMailAdvBccInner';
+import { SendMailAdvCcInner } from './sendMailAdvCcInner';
 import { SendMailAdvFrom } from './sendMailAdvFrom';
+import { SendMailAdvReplytoInner } from './sendMailAdvReplytoInner';
+import { SendMailAdvToInner } from './sendMailAdvToInner';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -51,16 +57,19 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
-    "ErrorResponse": ErrorResponse,
     "GenericResponse": GenericResponse,
-    "InlineResponse401": InlineResponse401,
-    "MailAttachment": MailAttachment,
-    "MailContact": MailContact,
+    "GetMailOrders200ResponseInner": GetMailOrders200ResponseInner,
+    "GetMailOrders401Response": GetMailOrders401Response,
     "MailLog": MailLog,
-    "MailOrder": MailOrder,
+    "MailLogEntry": MailLogEntry,
     "SendMail": SendMail,
     "SendMailAdv": SendMailAdv,
+    "SendMailAdvAttachmentsInner": SendMailAdvAttachmentsInner,
+    "SendMailAdvBccInner": SendMailAdvBccInner,
+    "SendMailAdvCcInner": SendMailAdvCcInner,
     "SendMailAdvFrom": SendMailAdvFrom,
+    "SendMailAdvReplytoInner": SendMailAdvReplytoInner,
+    "SendMailAdvToInner": SendMailAdvToInner,
 }
 
 export class ObjectSerializer {

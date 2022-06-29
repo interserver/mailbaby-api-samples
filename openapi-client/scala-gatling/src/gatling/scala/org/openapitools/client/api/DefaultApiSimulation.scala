@@ -58,10 +58,8 @@ class DefaultApiSimulation extends Simulation {
     // Setup all the operations per second for the test to ultimately be generated from configs
     val getMailOrdersPerSecond = config.getDouble("performance.operationsPerSecond.getMailOrders") * rateMultiplier * instanceMultiplier
     val pingServerPerSecond = config.getDouble("performance.operationsPerSecond.pingServer") * rateMultiplier * instanceMultiplier
-    val placeMailOrderPerSecond = config.getDouble("performance.operationsPerSecond.placeMailOrder") * rateMultiplier * instanceMultiplier
     val sendAdvMailPerSecond = config.getDouble("performance.operationsPerSecond.sendAdvMail") * rateMultiplier * instanceMultiplier
     val sendMailPerSecond = config.getDouble("performance.operationsPerSecond.sendMail") * rateMultiplier * instanceMultiplier
-    val validateMailOrderPerSecond = config.getDouble("performance.operationsPerSecond.validateMailOrder") * rateMultiplier * instanceMultiplier
     val viewMailLogPerSecond = config.getDouble("performance.operationsPerSecond.viewMailLog") * rateMultiplier * instanceMultiplier
 
     val scenarioBuilders: mutable.MutableList[PopulationBuilder] = new mutable.MutableList[PopulationBuilder]()
@@ -98,19 +96,6 @@ class DefaultApiSimulation extends Simulation {
     )
 
     
-    val scnplaceMailOrder = scenario("placeMailOrderSimulation")
-        .exec(http("placeMailOrder")
-        .httpRequest("POST","/mail/order")
-)
-
-    // Run scnplaceMailOrder with warm up and reach a constant rate for entire duration
-    scenarioBuilders += scnplaceMailOrder.inject(
-        rampUsersPerSec(1) to(placeMailOrderPerSecond) during(rampUpSeconds),
-        constantUsersPerSec(placeMailOrderPerSecond) during(durationSeconds),
-        rampUsersPerSec(placeMailOrderPerSecond) to(1) during(rampDownSeconds)
-    )
-
-    
     val scnsendAdvMail = scenario("sendAdvMailSimulation")
         .exec(http("sendAdvMail")
         .httpRequest("POST","/mail/advsend")
@@ -137,27 +122,14 @@ class DefaultApiSimulation extends Simulation {
     )
 
     
-    val scnvalidateMailOrder = scenario("validateMailOrderSimulation")
-        .exec(http("validateMailOrder")
-        .httpRequest("GET","/mail/order")
-)
-
-    // Run scnvalidateMailOrder with warm up and reach a constant rate for entire duration
-    scenarioBuilders += scnvalidateMailOrder.inject(
-        rampUsersPerSec(1) to(validateMailOrderPerSecond) during(rampUpSeconds),
-        constantUsersPerSec(validateMailOrderPerSecond) during(durationSeconds),
-        rampUsersPerSec(validateMailOrderPerSecond) to(1) during(rampDownSeconds)
-    )
-
-    
     val scnviewMailLog = scenario("viewMailLogSimulation")
         .feed(viewMailLogQUERYFeeder)
         .exec(http("viewMailLog")
         .httpRequest("GET","/mail/log")
-        .queryParam("id","${id}")
-        .queryParam("searchString","${searchString}")
-        .queryParam("limit","${limit}")
+        .queryParam("search","${search}")
         .queryParam("skip","${skip}")
+        .queryParam("id","${id}")
+        .queryParam("limit","${limit}")
 )
 
     // Run scnviewMailLog with warm up and reach a constant rate for entire duration

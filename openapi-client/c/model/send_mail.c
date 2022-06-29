@@ -55,7 +55,6 @@ cJSON *send_mail_convertToJSON(send_mail_t *send_mail) {
     if (!send_mail->to) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "to", send_mail->to) == NULL) {
     goto fail; //String
     }
@@ -65,7 +64,6 @@ cJSON *send_mail_convertToJSON(send_mail_t *send_mail) {
     if (!send_mail->from) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "from", send_mail->from) == NULL) {
     goto fail; //String
     }
@@ -75,7 +73,6 @@ cJSON *send_mail_convertToJSON(send_mail_t *send_mail) {
     if (!send_mail->subject) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "subject", send_mail->subject) == NULL) {
     goto fail; //String
     }
@@ -85,7 +82,6 @@ cJSON *send_mail_convertToJSON(send_mail_t *send_mail) {
     if (!send_mail->body) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "body", send_mail->body) == NULL) {
     goto fail; //String
     }

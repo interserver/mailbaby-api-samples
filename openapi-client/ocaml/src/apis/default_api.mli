@@ -5,10 +5,8 @@
  *
  *)
 
-val get_mail_orders : unit -> Mail_order.t list Lwt.t
+val get_mail_orders : unit -> Get_mail_orders_200_response_inner.t list Lwt.t
 val ping_server : unit -> unit Lwt.t
-val place_mail_order : mail_order_t:Mail_order.t -> unit -> unit Lwt.t
 val send_adv_mail : send_mail_adv_t:Send_mail_adv.t -> Generic_response.t Lwt.t
 val send_mail : _to:string -> from:string -> subject:string -> body:string -> Generic_response.t Lwt.t
-val validate_mail_order : unit -> unit Lwt.t
-val view_mail_log : ?id:int64 -> ?search_string:string -> ?skip:int32 -> ?limit:int32 -> unit -> Mail_log.t list Lwt.t
+val view_mail_log : ?id:int64 -> ?search:string -> ?skip:int32 -> ?limit:int32 -> unit -> Mail_log.t Lwt.t

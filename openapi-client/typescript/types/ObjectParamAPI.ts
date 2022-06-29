@@ -2,16 +2,19 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
-import { ErrorResponse } from '../models/ErrorResponse';
 import { GenericResponse } from '../models/GenericResponse';
-import { InlineResponse401 } from '../models/InlineResponse401';
-import { MailAttachment } from '../models/MailAttachment';
-import { MailContact } from '../models/MailContact';
+import { GetMailOrders200ResponseInner } from '../models/GetMailOrders200ResponseInner';
+import { GetMailOrders401Response } from '../models/GetMailOrders401Response';
 import { MailLog } from '../models/MailLog';
-import { MailOrder } from '../models/MailOrder';
+import { MailLogEntry } from '../models/MailLogEntry';
 import { SendMail } from '../models/SendMail';
 import { SendMailAdv } from '../models/SendMailAdv';
+import { SendMailAdvAttachmentsInner } from '../models/SendMailAdvAttachmentsInner';
+import { SendMailAdvBccInner } from '../models/SendMailAdvBccInner';
+import { SendMailAdvCcInner } from '../models/SendMailAdvCcInner';
 import { SendMailAdvFrom } from '../models/SendMailAdvFrom';
+import { SendMailAdvReplytoInner } from '../models/SendMailAdvReplytoInner';
+import { SendMailAdvToInner } from '../models/SendMailAdvToInner';
 
 import { ObservableDefaultApi } from "./ObservableAPI";
 import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
@@ -20,15 +23,6 @@ export interface DefaultApiGetMailOrdersRequest {
 }
 
 export interface DefaultApiPingServerRequest {
-}
-
-export interface DefaultApiPlaceMailOrderRequest {
-    /**
-     * Inventory item to add
-     * @type MailOrder
-     * @memberof DefaultApiplaceMailOrder
-     */
-    mailOrder?: MailOrder
 }
 
 export interface DefaultApiSendAdvMailRequest {
@@ -52,7 +46,7 @@ export interface DefaultApiSendMailRequest {
      * @type string
      * @memberof DefaultApisendMail
      */
-    from: string
+    _from: string
     /**
      * The subject or title of the email
      * @type string
@@ -67,9 +61,6 @@ export interface DefaultApiSendMailRequest {
     body: string
 }
 
-export interface DefaultApiValidateMailOrderRequest {
-}
-
 export interface DefaultApiViewMailLogRequest {
     /**
      * The ID of your mail order this will be sent through.
@@ -82,7 +73,7 @@ export interface DefaultApiViewMailLogRequest {
      * @type string
      * @memberof DefaultApiviewMailLog
      */
-    searchString?: string
+    search?: string
     /**
      * number of records to skip for pagination
      * @type number
@@ -108,7 +99,7 @@ export class ObjectDefaultApi {
      * displays a list of mail service orders
      * @param param the request object
      */
-    public getMailOrders(param: DefaultApiGetMailOrdersRequest, options?: Configuration): Promise<Array<MailOrder>> {
+    public getMailOrders(param: DefaultApiGetMailOrdersRequest = {}, options?: Configuration): Promise<Array<GetMailOrders200ResponseInner>> {
         return this.api.getMailOrders( options).toPromise();
     }
 
@@ -116,17 +107,8 @@ export class ObjectDefaultApi {
      * Checks if the server is running
      * @param param the request object
      */
-    public pingServer(param: DefaultApiPingServerRequest, options?: Configuration): Promise<void> {
+    public pingServer(param: DefaultApiPingServerRequest = {}, options?: Configuration): Promise<void> {
         return this.api.pingServer( options).toPromise();
-    }
-
-    /**
-     * Adds an item to the system
-     * places a mail order
-     * @param param the request object
-     */
-    public placeMailOrder(param: DefaultApiPlaceMailOrderRequest, options?: Configuration): Promise<void> {
-        return this.api.placeMailOrder(param.mailOrder,  options).toPromise();
     }
 
     /**
@@ -139,20 +121,12 @@ export class ObjectDefaultApi {
     }
 
     /**
-     * Sends An email through one of your mail orders.
+     * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
      * Sends an Email
      * @param param the request object
      */
     public sendMail(param: DefaultApiSendMailRequest, options?: Configuration): Promise<GenericResponse> {
-        return this.api.sendMail(param.to, param.from, param.subject, param.body,  options).toPromise();
-    }
-
-    /**
-     * validatess order details before placing an order
-     * @param param the request object
-     */
-    public validateMailOrder(param: DefaultApiValidateMailOrderRequest, options?: Configuration): Promise<void> {
-        return this.api.validateMailOrder( options).toPromise();
+        return this.api.sendMail(param.to, param._from, param.subject, param.body,  options).toPromise();
     }
 
     /**
@@ -160,8 +134,8 @@ export class ObjectDefaultApi {
      * displays the mail log
      * @param param the request object
      */
-    public viewMailLog(param: DefaultApiViewMailLogRequest, options?: Configuration): Promise<Array<MailLog>> {
-        return this.api.viewMailLog(param.id, param.searchString, param.skip, param.limit,  options).toPromise();
+    public viewMailLog(param: DefaultApiViewMailLogRequest = {}, options?: Configuration): Promise<MailLog> {
+        return this.api.viewMailLog(param.id, param.search, param.skip, param.limit,  options).toPromise();
     }
 
 }

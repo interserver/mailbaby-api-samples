@@ -3,21 +3,20 @@
 
 context("Test SendMailAdvFrom")
 
-model.instance <- SendMailAdvFrom$new()
+model_instance <- SendMailAdvFrom$new()
 
 test_that("email", {
   # tests for the property `email` (character)
   # The email address
 
-  # uncomment below to test the property 
+  # uncomment below to test the property
   #expect_equal(model.instance$`email`, "EXPECTED_RESULT")
 })
 
 test_that("name", {
   # tests for the property `name` (character)
-  # Optional contact name
+  # (optional) Name to use for the sending contact.
 
-  # uncomment below to test the property 
+  # uncomment below to test the property
   #expect_equal(model.instance$`name`, "EXPECTED_RESULT")
 })
-

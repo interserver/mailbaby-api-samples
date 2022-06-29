@@ -68,4 +68,20 @@ private class OASMailLogTest {
         System.assertEquals(mailLog1.hashCode(), mailLog2.hashCode());
         System.assertEquals(mailLog3.hashCode(), mailLog4.hashCode());
     }
+
+    @isTest
+    private static void maintainRenamedProperties() {
+        OASMailLog mailLog = new OASMailLog();
+        Map<String, String> x-property-mappings = mailLog.getx-property-mappings();
+        System.assertEquals('r_limit', x-property-mappings.get('limit'));
+    }
+
+    @isTest
+    private static void defaultValuesPopulated() {
+        OASMailLog mailLog = new OASMailLog();
+        System.assertEquals(new List<OASMailLogEntry>(), mailLog.emails);
+        System.assertEquals(null, mailLog.total);
+        System.assertEquals(null, mailLog.skip);
+        System.assertEquals(null, mailLog.r_limit);
+    }
 }

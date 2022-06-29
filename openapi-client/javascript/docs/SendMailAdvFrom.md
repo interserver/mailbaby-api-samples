@@ -1,10 +1,10 @@
-# MailBabyApi.SendMailAdvFrom
+# MailBabyEmailDeliveryApi.SendMailAdvFrom
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **email** | **String** | The email address | 
-**name** | **String** | Optional contact name | [optional] 
+**name** | **String** | (optional) Name to use for the sending contact. | [optional] 
 
 

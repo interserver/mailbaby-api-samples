@@ -1,10 +1,11 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
 part of openapi.api;
@@ -12,10 +13,10 @@ part of openapi.api;
 class SendMail {
   /// Returns a new [SendMail] instance.
   SendMail({
-    @required this.to,
-    @required this.from,
-    @required this.subject,
-    @required this.body,
+    required this.to,
+    required this.from,
+    required this.subject,
+    required this.body,
   });
 
   /// The Contact whom is the primary recipient of this email.
@@ -39,56 +40,100 @@ class SendMail {
 
   @override
   int get hashCode =>
-    (to == null ? 0 : to.hashCode) +
-    (from == null ? 0 : from.hashCode) +
-    (subject == null ? 0 : subject.hashCode) +
-    (body == null ? 0 : body.hashCode);
+    // ignore: unnecessary_parenthesis
+    (to.hashCode) +
+    (from.hashCode) +
+    (subject.hashCode) +
+    (body.hashCode);
 
   @override
   String toString() => 'SendMail[to=$to, from=$from, subject=$subject, body=$body]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'to'] = to;
-      json[r'from'] = from;
-      json[r'subject'] = subject;
-      json[r'body'] = body;
-    return json;
+    final _json = <String, dynamic>{};
+      _json[r'to'] = to;
+      _json[r'from'] = from;
+      _json[r'subject'] = subject;
+      _json[r'body'] = body;
+    return _json;
   }
 
   /// Returns a new [SendMail] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SendMail fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SendMail(
-        to: json[r'to'],
-        from: json[r'from'],
-        subject: json[r'subject'],
-        body: json[r'body'],
-    );
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static SendMail? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-  static List<SendMail> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SendMail>[]
-      : json.map((v) => SendMail.fromJson(v)).toList(growable: true == growable);
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SendMail[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SendMail[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-  static Map<String, SendMail> mapFromJson(Map<String, dynamic> json) {
+      return SendMail(
+        to: mapValueOfType<String>(json, r'to')!,
+        from: mapValueOfType<String>(json, r'from')!,
+        subject: mapValueOfType<String>(json, r'subject')!,
+        body: mapValueOfType<String>(json, r'body')!,
+      );
+    }
+    return null;
+  }
+
+  static List<SendMail>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SendMail>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SendMail.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, SendMail> mapFromJson(dynamic json) {
     final map = <String, SendMail>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SendMail.fromJson(v));
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SendMail.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of SendMail-objects as value to a dart map
-  static Map<String, List<SendMail>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<SendMail>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<SendMail>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SendMail.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
-      });
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SendMail.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'to',
+    'from',
+    'subject',
+    'body',
+  };
 }
 

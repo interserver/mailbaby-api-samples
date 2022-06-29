@@ -2,9 +2,9 @@ package org.openapitools.api;
 
 import org.openapitools.api.ApiUtils
 import org.openapitools.model.GenericResponse
-import org.openapitools.model.InlineResponse401
+import org.openapitools.model.GetMailOrders200ResponseInner
+import org.openapitools.model.GetMailOrders401Response
 import org.openapitools.model.MailLog
-import org.openapitools.model.MailOrder
 import org.openapitools.model.SendMailAdv
 
 class DefaultApi {
@@ -28,7 +28,7 @@ class DefaultApi {
 
         apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "array",
-                    MailOrder.class )
+                    GetMailOrders200ResponseInner.class )
 
     }
 
@@ -48,28 +48,6 @@ class DefaultApi {
 
         apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
-                    null )
-
-    }
-
-    def placeMailOrder ( MailOrder mailOrder, Closure onSuccess, Closure onFailure)  {
-        String resourcePath = "/mail/order"
-
-        // params
-        def queryParams = [:]
-        def headerParams = [:]
-        def bodyParams
-        def contentType
-
-
-
-
-        contentType = 'application/json';
-        bodyParams = mailOrder
-
-
-        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
-                    "POST", "",
                     null )
 
     }
@@ -142,27 +120,7 @@ class DefaultApi {
 
     }
 
-    def validateMailOrder ( Closure onSuccess, Closure onFailure)  {
-        String resourcePath = "/mail/order"
-
-        // params
-        def queryParams = [:]
-        def headerParams = [:]
-        def bodyParams
-        def contentType
-
-
-
-
-
-
-        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
-                    "GET", "",
-                    null )
-
-    }
-
-    def viewMailLog ( Long id, String searchString, Integer skip, Integer limit, Closure onSuccess, Closure onFailure)  {
+    def viewMailLog ( Long id, String search, Integer skip, Integer limit, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/log"
 
         // params
@@ -175,8 +133,8 @@ class DefaultApi {
         if (id != null) {
             queryParams.put("id", id)
         }
-        if (searchString != null) {
-            queryParams.put("searchString", searchString)
+        if (search != null) {
+            queryParams.put("search", search)
         }
         if (skip != null) {
             queryParams.put("skip", skip)
@@ -189,7 +147,7 @@ class DefaultApi {
 
 
         apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
-                    "GET", "array",
+                    "GET", "",
                     MailLog.class )
 
     }

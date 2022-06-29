@@ -1,34 +1,35 @@
-# Documentation for Mail Baby API
+# Documentation for MailBaby Email Delivery API
 
 <a name="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
 
 All URIs are relative to *https://api.mailbaby.net*
 
-Class | Method | HTTP request | Description
------------- | ------------- | ------------- | -------------
-*DefaultApi* | [**getMailOrders**](Apis/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
-*DefaultApi* | [**pingServer**](Apis/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
-*DefaultApi* | [**placeMailOrder**](Apis/DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
-*DefaultApi* | [**sendAdvMail**](Apis/DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMail**](Apis/DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
-*DefaultApi* | [**validateMailOrder**](Apis/DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
-*DefaultApi* | [**viewMailLog**](Apis/DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
+| Class | Method | HTTP request | Description |
+|------------ | ------------- | ------------- | -------------|
+| *DefaultApi* | [**getMailOrders**](Apis/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders |
+*DefaultApi* | [**pingServer**](Apis/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running |
+*DefaultApi* | [**sendAdvMail**](Apis/DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options |
+*DefaultApi* | [**sendMail**](Apis/DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email |
+*DefaultApi* | [**viewMailLog**](Apis/DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log |
 
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [ErrorResponse](./Models/ErrorResponse.md)
  - [GenericResponse](./Models/GenericResponse.md)
- - [InlineResponse401](./Models/InlineResponse401.md)
- - [MailAttachment](./Models/MailAttachment.md)
- - [MailContact](./Models/MailContact.md)
  - [MailLog](./Models/MailLog.md)
- - [MailOrder](./Models/MailOrder.md)
+ - [MailLogEntry](./Models/MailLogEntry.md)
  - [SendMail](./Models/SendMail.md)
  - [SendMailAdv](./Models/SendMailAdv.md)
- - [SendMailAdvFrom](./Models/SendMailAdvFrom.md)
+ - [SendMailAdv_attachments_inner](./Models/SendMailAdv_attachments_inner.md)
+ - [SendMailAdv_bcc_inner](./Models/SendMailAdv_bcc_inner.md)
+ - [SendMailAdv_cc_inner](./Models/SendMailAdv_cc_inner.md)
+ - [SendMailAdv_from](./Models/SendMailAdv_from.md)
+ - [SendMailAdv_replyto_inner](./Models/SendMailAdv_replyto_inner.md)
+ - [SendMailAdv_to_inner](./Models/SendMailAdv_to_inner.md)
+ - [getMailOrders_200_response_inner](./Models/getMailOrders_200_response_inner.md)
+ - [getMailOrders_401_response](./Models/getMailOrders_401_response.md)
 
 
 <a name="documentation-for-authorization"></a>

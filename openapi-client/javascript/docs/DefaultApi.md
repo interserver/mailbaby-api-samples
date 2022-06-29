@@ -1,4 +1,4 @@
-# MailBabyApi.DefaultApi
+# MailBabyEmailDeliveryApi.DefaultApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -6,32 +6,30 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
-[**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
 [**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
-[**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 [**viewMailLog**](DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 
 
 
 ## getMailOrders
 
-> [MailOrder] getMailOrders()
+> [GetMailOrders200ResponseInner] getMailOrders()
 
 displays a list of mail service orders
 
 ### Example
 
 ```javascript
-import MailBabyApi from 'mail_baby_api';
-let defaultClient = MailBabyApi.ApiClient.instance;
+import MailBabyEmailDeliveryApi from 'mail_baby_email_delivery_api';
+let defaultClient = MailBabyEmailDeliveryApi.ApiClient.instance;
 // Configure API key authorization: apiKeyAuth
 let apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
 apiKeyAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new MailBabyApi.DefaultApi();
+let apiInstance = new MailBabyEmailDeliveryApi.DefaultApi();
 apiInstance.getMailOrders((error, data, response) => {
   if (error) {
     console.error(error);
@@ -47,7 +45,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**[MailOrder]**](MailOrder.md)
+[**[GetMailOrders200ResponseInner]**](GetMailOrders200ResponseInner.md)
 
 ### Authorization
 
@@ -56,7 +54,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/xml, text/plain
+- **Accept**: application/json
 
 
 ## pingServer
@@ -68,9 +66,9 @@ Checks if the server is running
 ### Example
 
 ```javascript
-import MailBabyApi from 'mail_baby_api';
+import MailBabyEmailDeliveryApi from 'mail_baby_email_delivery_api';
 
-let apiInstance = new MailBabyApi.DefaultApi();
+let apiInstance = new MailBabyEmailDeliveryApi.DefaultApi();
 apiInstance.pingServer((error, data, response) => {
   if (error) {
     console.error(error);
@@ -98,59 +96,6 @@ No authorization required
 - **Accept**: Not defined
 
 
-## placeMailOrder
-
-> placeMailOrder(opts)
-
-places a mail order
-
-Adds an item to the system
-
-### Example
-
-```javascript
-import MailBabyApi from 'mail_baby_api';
-let defaultClient = MailBabyApi.ApiClient.instance;
-// Configure API key authorization: apiKeyAuth
-let apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
-apiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyAuth.apiKeyPrefix = 'Token';
-
-let apiInstance = new MailBabyApi.DefaultApi();
-let opts = {
-  'mailOrder': new MailBabyApi.MailOrder() // MailOrder | Inventory item to add
-};
-apiInstance.placeMailOrder(opts, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-});
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **mailOrder** | [**MailOrder**](MailOrder.md)| Inventory item to add | [optional] 
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-
 ## sendAdvMail
 
 > GenericResponse sendAdvMail(sendMailAdv)
@@ -162,16 +107,16 @@ Sends An email through one of your mail orders allowing additional options such 
 ### Example
 
 ```javascript
-import MailBabyApi from 'mail_baby_api';
-let defaultClient = MailBabyApi.ApiClient.instance;
+import MailBabyEmailDeliveryApi from 'mail_baby_email_delivery_api';
+let defaultClient = MailBabyEmailDeliveryApi.ApiClient.instance;
 // Configure API key authorization: apiKeyAuth
 let apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
 apiKeyAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new MailBabyApi.DefaultApi();
-let sendMailAdv = new MailBabyApi.SendMailAdv(); // SendMailAdv | 
+let apiInstance = new MailBabyEmailDeliveryApi.DefaultApi();
+let sendMailAdv = new MailBabyEmailDeliveryApi.SendMailAdv(); // SendMailAdv | 
 apiInstance.sendAdvMail(sendMailAdv, (error, data, response) => {
   if (error) {
     console.error(error);
@@ -208,20 +153,20 @@ Name | Type | Description  | Notes
 
 Sends an Email
 
-Sends An email through one of your mail orders.
+Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
 
 ### Example
 
 ```javascript
-import MailBabyApi from 'mail_baby_api';
-let defaultClient = MailBabyApi.ApiClient.instance;
+import MailBabyEmailDeliveryApi from 'mail_baby_email_delivery_api';
+let defaultClient = MailBabyEmailDeliveryApi.ApiClient.instance;
 // Configure API key authorization: apiKeyAuth
 let apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
 apiKeyAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new MailBabyApi.DefaultApi();
+let apiInstance = new MailBabyEmailDeliveryApi.DefaultApi();
 let to = "to_example"; // String | The Contact whom is the primary recipient of this email.
 let from = "from_example"; // String | The contact whom is the this email is from.
 let subject = "subject_example"; // String | The subject or title of the email
@@ -259,54 +204,9 @@ Name | Type | Description  | Notes
 - **Accept**: application/json
 
 
-## validateMailOrder
-
-> validateMailOrder()
-
-validatess order details before placing an order
-
-### Example
-
-```javascript
-import MailBabyApi from 'mail_baby_api';
-let defaultClient = MailBabyApi.ApiClient.instance;
-// Configure API key authorization: apiKeyAuth
-let apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
-apiKeyAuth.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyAuth.apiKeyPrefix = 'Token';
-
-let apiInstance = new MailBabyApi.DefaultApi();
-apiInstance.validateMailOrder((error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-});
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
 ## viewMailLog
 
-> [MailLog] viewMailLog(opts)
+> MailLog viewMailLog(opts)
 
 displays the mail log
 
@@ -315,20 +215,20 @@ By passing in the appropriate options, you can search for available inventory in
 ### Example
 
 ```javascript
-import MailBabyApi from 'mail_baby_api';
-let defaultClient = MailBabyApi.ApiClient.instance;
+import MailBabyEmailDeliveryApi from 'mail_baby_email_delivery_api';
+let defaultClient = MailBabyEmailDeliveryApi.ApiClient.instance;
 // Configure API key authorization: apiKeyAuth
 let apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
 apiKeyAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new MailBabyApi.DefaultApi();
+let apiInstance = new MailBabyEmailDeliveryApi.DefaultApi();
 let opts = {
   'id': 789, // Number | The ID of your mail order this will be sent through.
-  'searchString': "searchString_example", // String | pass an optional search string for looking up inventory
-  'skip': 56, // Number | number of records to skip for pagination
-  'limit': 56 // Number | maximum number of records to return
+  'search': "search_example", // String | pass an optional search string for looking up inventory
+  'skip': 0, // Number | number of records to skip for pagination
+  'limit': 100 // Number | maximum number of records to return
 };
 apiInstance.viewMailLog(opts, (error, data, response) => {
   if (error) {
@@ -345,13 +245,13 @@ apiInstance.viewMailLog(opts, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Number**| The ID of your mail order this will be sent through. | [optional] 
- **searchString** | **String**| pass an optional search string for looking up inventory | [optional] 
- **skip** | **Number**| number of records to skip for pagination | [optional] 
- **limit** | **Number**| maximum number of records to return | [optional] 
+ **search** | **String**| pass an optional search string for looking up inventory | [optional] 
+ **skip** | **Number**| number of records to skip for pagination | [optional] [default to 0]
+ **limit** | **Number**| maximum number of records to return | [optional] [default to 100]
 
 ### Return type
 
-[**[MailLog]**](MailLog.md)
+[**MailLog**](MailLog.md)
 
 ### Authorization
 

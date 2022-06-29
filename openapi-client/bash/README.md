@@ -1,8 +1,8 @@
-# Mail Baby API Bash client
+# MailBaby Email Delivery API Bash client
 
 ## Overview
 
-This is a Bash client script for accessing Mail Baby API service.
+This is a Bash client script for accessing MailBaby Email Delivery API service.
 
 The script uses cURL underneath for making all REST calls.
 
@@ -37,6 +37,9 @@ $ echo '<body_content>' |  --host <hostname> --content-type json <operationId> -
 #   "key3": 23
 # }
 $ echo '<body_content>' |  --host <hostname> --content-type json <operationId> key1==value1 key2=value2 key3:=23 -
+
+# Make POST request with form data
+$  --host <hostname> <operationId> key1:=value1 key2:=value2 key3:=23
 
 # Preview the cURL command without actually executing it
 $  --host http://<hostname>:<port> --dry-run <operationid>
@@ -102,25 +105,26 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**getMailOrders**](docs/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**pingServer**](docs/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
-*DefaultApi* | [**placeMailOrder**](docs/DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
 *DefaultApi* | [**sendAdvMail**](docs/DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *DefaultApi* | [**sendMail**](docs/DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
-*DefaultApi* | [**validateMailOrder**](docs/DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
 *DefaultApi* | [**viewMailLog**](docs/DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 
 ## Documentation For Models
 
- - [ErrorResponse](docs/ErrorResponse.md)
  - [GenericResponse](docs/GenericResponse.md)
- - [InlineResponse401](docs/InlineResponse401.md)
- - [MailAttachment](docs/MailAttachment.md)
- - [MailContact](docs/MailContact.md)
+ - [GetMailOrders200ResponseInner](docs/GetMailOrders200ResponseInner.md)
+ - [GetMailOrders401Response](docs/GetMailOrders401Response.md)
  - [MailLog](docs/MailLog.md)
- - [MailOrder](docs/MailOrder.md)
+ - [MailLogEntry](docs/MailLogEntry.md)
  - [SendMail](docs/SendMail.md)
  - [SendMailAdv](docs/SendMailAdv.md)
+ - [SendMailAdvAttachmentsInner](docs/SendMailAdvAttachmentsInner.md)
+ - [SendMailAdvBccInner](docs/SendMailAdvBccInner.md)
+ - [SendMailAdvCcInner](docs/SendMailAdvCcInner.md)
  - [SendMailAdvFrom](docs/SendMailAdvFrom.md)
+ - [SendMailAdvReplytoInner](docs/SendMailAdvReplytoInner.md)
+ - [SendMailAdvToInner](docs/SendMailAdvToInner.md)
 
 
 ## Documentation For Authorization

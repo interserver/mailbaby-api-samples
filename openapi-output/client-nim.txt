@@ -2,11 +2,24 @@
 [main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
 [main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: nim (client)
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'nim' is considered beta.
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
-[main] INFO  o.o.codegen.DefaultGenerator - Model MailOrders not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getMailOrders_200_response_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getMailOrders_401_response. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_from. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_to_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_replyto_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_cc_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_bcc_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_attachments_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
+[main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
+[main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
+[main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
+[main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "interface" is used. Consider renaming the field name
+[main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "interface" is used. Consider renaming the field name
+[main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "interface" is used. Consider renaming the field name
+[main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
+[main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "interface" is used. Consider renaming the field name
+[main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
+[main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "interface" is used. Consider renaming the field name
 [main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
 [main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
 [main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
@@ -17,18 +30,19 @@
 [main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
 [main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
 [main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_error_response.nim
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_generic_response.nim
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_inline_response_401.nim
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_mail_attachment.nim
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_mail_contact.nim
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_get_mail_orders_200_response_inner.nim
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_get_mail_orders_401_response.nim
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_mail_log.nim
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_mail_order.nim
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_mail_log_entry.nim
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_send_mail.nim
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_send_mail_adv.nim
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_send_mail_adv_attachments_inner.nim
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_send_mail_adv_bcc_inner.nim
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_send_mail_adv_cc_inner.nim
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_send_mail_adv_from.nim
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_send_mail_adv_replyto_inner.nim
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/models/model_send_mail_adv_to_inner.nim
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)
 [main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)

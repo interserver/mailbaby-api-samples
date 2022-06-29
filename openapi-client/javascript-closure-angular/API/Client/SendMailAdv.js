@@ -21,51 +21,50 @@ API.Client.SendMailAdv.prototype.subject;
 API.Client.SendMailAdv.prototype.body;
 
 /**
- * The contact whom is the this email is from.
- * @type {!Array<!API.Client.SendMailAdv_from>}
+ * @type {!API.Client.SendMailAdv_from}
  * @export
  */
 API.Client.SendMailAdv.prototype.from;
 
 /**
- * The Contact whom is the primary recipient of this email.
- * @type {!Array<!API.Client.MailContact>}
+ * A list of destionation email addresses to send this to
+ * @type {!Array<!API.Client.SendMailAdv_to_inner>}
  * @export
  */
 API.Client.SendMailAdv.prototype.to;
 
 /**
- * The ID of the Mail order within our system to use as the Mail Account.
- * @type {!number}
- * @export
- */
-API.Client.SendMailAdv.prototype.id;
-
-/**
- * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
- * @type {!Array<!API.Client.MailContact>}
+ * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+ * @type {!Array<!API.Client.SendMailAdv_replyto_inner>}
  * @export
  */
 API.Client.SendMailAdv.prototype.replyto;
 
 /**
- * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
- * @type {!Array<!API.Client.MailContact>}
+ * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+ * @type {!Array<!API.Client.SendMailAdv_cc_inner>}
  * @export
  */
 API.Client.SendMailAdv.prototype.cc;
 
 /**
- * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
- * @type {!Array<!API.Client.MailContact>}
+ * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+ * @type {!Array<!API.Client.SendMailAdv_bcc_inner>}
  * @export
  */
 API.Client.SendMailAdv.prototype.bcc;
 
 /**
- * Optional file attachments to include in the email
- * @type {!Array<!API.Client.MailAttachment>}
+ * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+ * @type {!Array<!API.Client.SendMailAdv_attachments_inner>}
  * @export
  */
 API.Client.SendMailAdv.prototype.attachments;
+
+/**
+ * (optional)  ID of the Mail order within our system to use as the Mail Account.
+ * @type {!number}
+ * @export
+ */
+API.Client.SendMailAdv.prototype.id;
 

@@ -6,9 +6,9 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/generic_response.h"
-#include "../model/inline_response_401.h"
+#include "../model/get_mail_orders_200_response_inner.h"
+#include "../model/get_mail_orders_401_response.h"
 #include "../model/mail_log.h"
-#include "../model/mail_order.h"
 #include "../model/send_mail_adv.h"
 
 
@@ -24,14 +24,6 @@ void
 DefaultAPI_pingServer(apiClient_t *apiClient);
 
 
-// places a mail order
-//
-// Adds an item to the system
-//
-void
-DefaultAPI_placeMailOrder(apiClient_t *apiClient, mail_order_t * mail_order );
-
-
 // Sends an Email with Advanced Options
 //
 // Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
@@ -42,23 +34,17 @@ DefaultAPI_sendAdvMail(apiClient_t *apiClient, send_mail_adv_t * send_mail_adv )
 
 // Sends an Email
 //
-// Sends An email through one of your mail orders.
+// Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
 //
 generic_response_t*
 DefaultAPI_sendMail(apiClient_t *apiClient, char * to , char * from , char * subject , char * body );
-
-
-// validatess order details before placing an order
-//
-void
-DefaultAPI_validateMailOrder(apiClient_t *apiClient);
 
 
 // displays the mail log
 //
 // By passing in the appropriate options, you can search for available inventory in the system 
 //
-list_t*
-DefaultAPI_viewMailLog(apiClient_t *apiClient, long id , char * searchString , int skip , int limit );
+mail_log_t*
+DefaultAPI_viewMailLog(apiClient_t *apiClient, long id , char * search , int skip , int limit );
 
 

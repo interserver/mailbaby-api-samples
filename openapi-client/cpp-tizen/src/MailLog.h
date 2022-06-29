@@ -1,7 +1,7 @@
 /*
  * MailLog.h
  *
- * Mail Order Details
+ * Mail log records
  */
 
 #ifndef _MailLog_H_
@@ -9,6 +9,8 @@
 
 
 #include <string>
+#include "MailLogEntry.h"
+#include <list>
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API
@@ -20,7 +22,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief Mail Order Details
+/*! \brief Mail log records
  *
  *  \ingroup Models
  *
@@ -45,16 +47,40 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
+	/*! \brief Get total number of mail log entries
+	 */
+	int getTotal();
+
+	/*! \brief Set total number of mail log entries
+	 */
+	void setTotal(int  total);
+	/*! \brief Get number of emails skipped in listing
+	 */
+	int getSkip();
+
+	/*! \brief Set number of emails skipped in listing
+	 */
+	void setSkip(int  skip);
+	/*! \brief Get number of emails to return
+	 */
+	int getLimit();
+
+	/*! \brief Set number of emails to return
+	 */
+	void setLimit(int  limit);
 	/*! \brief Get 
 	 */
-	long long getId();
+	std::list<MailLogEntry> getEmails();
 
 	/*! \brief Set 
 	 */
-	void setId(long long  id);
+	void setEmails(std::list <MailLogEntry> emails);
 
 private:
-	long long id;
+	int total;
+	int skip;
+	int limit;
+	std::list <MailLogEntry>emails;
 	void __init();
 	void __cleanup();
 

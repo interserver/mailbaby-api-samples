@@ -2,27 +2,25 @@
 
 -export([get_mail_orders/1, get_mail_orders/2,
          ping_server/1, ping_server/2,
-         place_mail_order/2, place_mail_order/3,
          send_adv_mail/2, send_adv_mail/3,
          send_mail/5, send_mail/6,
-         validate_mail_order/1, validate_mail_order/2,
          view_mail_log/1, view_mail_log/2]).
 
--define(BASE_URL, "").
+-define(BASE_URL, <<"">>).
 
 %% @doc displays a list of mail service orders
 %% 
--spec get_mail_orders(ctx:ctx()) -> {ok, [openapi_mail_order:openapi_mail_order()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_mail_orders(ctx:ctx()) -> {ok, [openapi_get_mail_orders_200_response_inner:openapi_get_mail_orders_200_response_inner()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_mail_orders(Ctx) ->
     get_mail_orders(Ctx, #{}).
 
--spec get_mail_orders(ctx:ctx(), maps:map()) -> {ok, [openapi_mail_order:openapi_mail_order()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_mail_orders(ctx:ctx(), maps:map()) -> {ok, [openapi_get_mail_orders_200_response_inner:openapi_get_mail_orders_200_response_inner()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_mail_orders(Ctx, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/mail"],
+    Path = [<<"/mail">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -43,32 +41,11 @@ ping_server(Ctx, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/ping"],
+    Path = [<<"/ping">>],
     QS = [],
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
-    Opts = maps:get(hackney_opts, Optional, []),
-
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
-
-%% @doc places a mail order
-%% Adds an item to the system
--spec place_mail_order(ctx:ctx()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-place_mail_order(Ctx) ->
-    place_mail_order(Ctx, #{}).
-
--spec place_mail_order(ctx:ctx(), maps:map()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-place_mail_order(Ctx, Optional) ->
-    _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
-
-    Method = post,
-    Path = ["/mail/order"],
-    QS = [],
-    Headers = [],
-    Body1 = OpenapiMailOrder,
-    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 
     openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
@@ -85,7 +62,7 @@ send_adv_mail(Ctx, OpenapiSendMailAdv, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = post,
-    Path = ["/mail/advsend"],
+    Path = [<<"/mail/advsend">>],
     QS = [],
     Headers = [],
     Body1 = OpenapiSendMailAdv,
@@ -95,7 +72,7 @@ send_adv_mail(Ctx, OpenapiSendMailAdv, Optional) ->
     openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc Sends an Email
-%% Sends An email through one of your mail orders.
+%% Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
 -spec send_mail(ctx:ctx(), binary(), binary(), binary(), binary()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 send_mail(Ctx, To, From, Subject, Body) ->
     send_mail(Ctx, To, From, Subject, Body, #{}).
@@ -106,7 +83,7 @@ send_mail(Ctx, To, From, Subject, Body, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = post,
-    Path = ["/mail/send"],
+    Path = [<<"/mail/send">>],
     QS = [],
     Headers = [],
     Body1 = {form, [{<<"to">>, To}, {<<"from">>, From}, {<<"subject">>, Subject}, {<<"body">>, Body}]++openapi_utils:optional_params([], _OptionalParams)},
@@ -115,41 +92,20 @@ send_mail(Ctx, To, From, Subject, Body, Optional) ->
 
     openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
-%% @doc validatess order details before placing an order
-%% 
--spec validate_mail_order(ctx:ctx()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-validate_mail_order(Ctx) ->
-    validate_mail_order(Ctx, #{}).
-
--spec validate_mail_order(ctx:ctx(), maps:map()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-validate_mail_order(Ctx, Optional) ->
-    _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
-
-    Method = get,
-    Path = ["/mail/order"],
-    QS = [],
-    Headers = [],
-    Body1 = [],
-    ContentTypeHeader = openapi_utils:select_header_content_type([]),
-    Opts = maps:get(hackney_opts, Optional, []),
-
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
-
 %% @doc displays the mail log
 %% By passing in the appropriate options, you can search for available inventory in the system 
--spec view_mail_log(ctx:ctx()) -> {ok, [openapi_mail_log:openapi_mail_log()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec view_mail_log(ctx:ctx()) -> {ok, openapi_mail_log:openapi_mail_log(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 view_mail_log(Ctx) ->
     view_mail_log(Ctx, #{}).
 
--spec view_mail_log(ctx:ctx(), maps:map()) -> {ok, [openapi_mail_log:openapi_mail_log()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec view_mail_log(ctx:ctx(), maps:map()) -> {ok, openapi_mail_log:openapi_mail_log(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 view_mail_log(Ctx, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/mail/log"],
-    QS = lists:flatten([])++openapi_utils:optional_params(['id', 'searchString', 'skip', 'limit'], _OptionalParams),
+    Path = [<<"/mail/log">>],
+    QS = lists:flatten([])++openapi_utils:optional_params(['id', 'search', 'skip', 'limit'], _OptionalParams),
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),

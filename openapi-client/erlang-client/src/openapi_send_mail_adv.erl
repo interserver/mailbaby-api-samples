@@ -7,32 +7,32 @@
 -type openapi_send_mail_adv() ::
     #{ 'subject' := binary(),
        'body' := binary(),
-       'from' := list(),
+       'from' := openapi_send_mail_adv_from:openapi_send_mail_adv_from(),
        'to' := list(),
-       'id' := integer(),
        'replyto' => list(),
        'cc' => list(),
        'bcc' => list(),
-       'attachments' => list()
+       'attachments' => list(),
+       'id' => integer()
      }.
 
 encode(#{ 'subject' := Subject,
           'body' := Body,
           'from' := From,
           'to' := To,
-          'id' := Id,
           'replyto' := Replyto,
           'cc' := Cc,
           'bcc' := Bcc,
-          'attachments' := Attachments
+          'attachments' := Attachments,
+          'id' := Id
         }) ->
     #{ 'subject' => Subject,
        'body' => Body,
        'from' => From,
        'to' => To,
-       'id' => Id,
        'replyto' => Replyto,
        'cc' => Cc,
        'bcc' => Bcc,
-       'attachments' => Attachments
+       'attachments' => Attachments,
+       'id' => Id
      }.

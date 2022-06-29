@@ -2,20 +2,18 @@
 
 All URIs are relative to *https://api.mailbaby.net*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
-[**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
-[**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
-[**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLog**](DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders |
+| [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running |
+| [**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options |
+| [**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email |
+| [**viewMailLog**](DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log |
 
 
 <a name="getMailOrders"></a>
 # **getMailOrders**
-> List&lt;MailOrder&gt; getMailOrders()
+> List&lt;GetMailOrders200ResponseInner&gt; getMailOrders()
 
 displays a list of mail service orders
 
@@ -42,7 +40,7 @@ public class Example {
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     try {
-      List<MailOrder> result = apiInstance.getMailOrders();
+      List<GetMailOrders200ResponseInner> result = apiInstance.getMailOrders();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#getMailOrders");
@@ -60,7 +58,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List&lt;MailOrder&gt;**](MailOrder.md)
+[**List&lt;GetMailOrders200ResponseInner&gt;**](GetMailOrders200ResponseInner.md)
 
 ### Authorization
 
@@ -69,14 +67,14 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, text/plain
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**401** | Unauthorized |  -  |
-**404** | Unauthorized |  -  |
+| **200** | OK |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Unauthorized |  -  |
 
 <a name="pingServer"></a>
 # **pingServer**
@@ -131,79 +129,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Server is up and running |  -  |
-**0** | Something is wrong |  -  |
-
-<a name="placeMailOrder"></a>
-# **placeMailOrder**
-> placeMailOrder(mailOrder)
-
-places a mail order
-
-Adds an item to the system
-
-### Example
-```java
-// Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.DefaultApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.mailbaby.net");
-    
-    // Configure API key authorization: apiKeyAuth
-    ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
-    apiKeyAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiKeyAuth.setApiKeyPrefix("Token");
-
-    DefaultApi apiInstance = new DefaultApi(defaultClient);
-    MailOrder mailOrder = new MailOrder(); // MailOrder | Inventory item to add
-    try {
-      apiInstance.placeMailOrder(mailOrder);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#placeMailOrder");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **mailOrder** | [**MailOrder**](MailOrder.md)| Inventory item to add | [optional]
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | list of mail orders |  -  |
-**400** | The specified resource was not found |  -  |
-**409** | The specified resource was not found |  -  |
-**401** | Unauthorized |  -  |
+| **200** | Server is up and running |  -  |
+| **0** | Something is wrong |  -  |
 
 <a name="sendAdvMail"></a>
 # **sendAdvMail**
@@ -252,9 +179,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **sendMailAdv** | [**SendMailAdv**](SendMailAdv.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **sendMailAdv** | [**SendMailAdv**](SendMailAdv.md)|  | |
 
 ### Return type
 
@@ -272,10 +199,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | search results matching criteria |  -  |
-**400** | The specified resource was not found |  -  |
-**401** | Unauthorized |  -  |
-**404** | The specified resource was not found |  -  |
+| **200** | search results matching criteria |  -  |
+| **400** | The specified resource was not found |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The specified resource was not found |  -  |
 
 <a name="sendMail"></a>
 # **sendMail**
@@ -283,7 +210,7 @@ Name | Type | Description  | Notes
 
 Sends an Email
 
-Sends An email through one of your mail orders.
+Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
 
 ### Example
 ```java
@@ -327,12 +254,12 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **to** | **String**| The Contact whom is the primary recipient of this email. |
- **from** | **String**| The contact whom is the this email is from. |
- **subject** | **String**| The subject or title of the email |
- **body** | **String**| The main email contents. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **to** | **String**| The Contact whom is the primary recipient of this email. | |
+| **from** | **String**| The contact whom is the this email is from. | |
+| **subject** | **String**| The subject or title of the email | |
+| **body** | **String**| The main email contents. | |
 
 ### Return type
 
@@ -350,77 +277,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | search results matching criteria |  -  |
-**400** | The specified resource was not found |  -  |
-**401** | Unauthorized |  -  |
-**404** | The specified resource was not found |  -  |
-
-<a name="validateMailOrder"></a>
-# **validateMailOrder**
-> validateMailOrder()
-
-validatess order details before placing an order
-
-### Example
-```java
-// Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.DefaultApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.mailbaby.net");
-    
-    // Configure API key authorization: apiKeyAuth
-    ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
-    apiKeyAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //apiKeyAuth.setApiKeyPrefix("Token");
-
-    DefaultApi apiInstance = new DefaultApi(defaultClient);
-    try {
-      apiInstance.validateMailOrder();
-    } catch (ApiException e) {
-      System.err.println("Exception when calling DefaultApi#validateMailOrder");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | list of mail orders |  -  |
-**401** | Unauthorized |  -  |
+| **200** | search results matching criteria |  -  |
+| **400** | The specified resource was not found |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The specified resource was not found |  -  |
 
 <a name="viewMailLog"></a>
 # **viewMailLog**
-> List&lt;MailLog&gt; viewMailLog(id, searchString, skip, limit)
+> MailLog viewMailLog(id, search, skip, limit)
 
 displays the mail log
 
@@ -449,11 +313,11 @@ public class Example {
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
     Long id = 56L; // Long | The ID of your mail order this will be sent through.
-    String searchString = "searchString_example"; // String | pass an optional search string for looking up inventory
-    Integer skip = 56; // Integer | number of records to skip for pagination
-    Integer limit = 56; // Integer | maximum number of records to return
+    String search = "search_example"; // String | pass an optional search string for looking up inventory
+    Integer skip = 0; // Integer | number of records to skip for pagination
+    Integer limit = 100; // Integer | maximum number of records to return
     try {
-      List<MailLog> result = apiInstance.viewMailLog(id, searchString, skip, limit);
+      MailLog result = apiInstance.viewMailLog(id, search, skip, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#viewMailLog");
@@ -468,16 +332,16 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Long**| The ID of your mail order this will be sent through. | [optional]
- **searchString** | **String**| pass an optional search string for looking up inventory | [optional]
- **skip** | **Integer**| number of records to skip for pagination | [optional]
- **limit** | **Integer**| maximum number of records to return | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **Long**| The ID of your mail order this will be sent through. | [optional] |
+| **search** | **String**| pass an optional search string for looking up inventory | [optional] |
+| **skip** | **Integer**| number of records to skip for pagination | [optional] [default to 0] |
+| **limit** | **Integer**| maximum number of records to return | [optional] [default to 100] |
 
 ### Return type
 
-[**List&lt;MailLog&gt;**](MailLog.md)
+[**MailLog**](MailLog.md)
 
 ### Authorization
 
@@ -491,6 +355,6 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | search results matching criteria |  -  |
-**400** | bad input parameter |  -  |
+| **200** | search results matching criteria |  -  |
+| **400** | bad input parameter |  -  |
 

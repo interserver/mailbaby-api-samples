@@ -1,14 +1,28 @@
 # MailBaby
 
-This is an API defintion for accesssing the Mail.Baby mail service.
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
-For more information, please visit [https://www.interserver.net/contact-information.html](https://www.interserver.net/contact-information.html).
+
+# 📌 Overview
+
+This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).
+
+
+# 🔐 Authentication
+
+In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  
+
+We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
+
+
+For more information, please visit [https://www.mail.baby/contact/](https://www.mail.baby/contact/).
 
 ## Installation & Usage
 
 ### Requirements
 
-PHP 7.2 and later.
+PHP 7.4 and later.
+Should also work with PHP 8.0.
 
 ### Composer
 
@@ -79,24 +93,25 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**getMailOrders**](docs/Api/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**pingServer**](docs/Api/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
-*DefaultApi* | [**placeMailOrder**](docs/Api/DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
 *DefaultApi* | [**sendAdvMail**](docs/Api/DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *DefaultApi* | [**sendMail**](docs/Api/DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
-*DefaultApi* | [**validateMailOrder**](docs/Api/DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
 *DefaultApi* | [**viewMailLog**](docs/Api/DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 ## Models
 
-- [ErrorResponse](docs/Model/ErrorResponse.md)
 - [GenericResponse](docs/Model/GenericResponse.md)
-- [InlineResponse401](docs/Model/InlineResponse401.md)
-- [MailAttachment](docs/Model/MailAttachment.md)
-- [MailContact](docs/Model/MailContact.md)
+- [GetMailOrders200ResponseInner](docs/Model/GetMailOrders200ResponseInner.md)
+- [GetMailOrders401Response](docs/Model/GetMailOrders401Response.md)
 - [MailLog](docs/Model/MailLog.md)
-- [MailOrder](docs/Model/MailOrder.md)
+- [MailLogEntry](docs/Model/MailLogEntry.md)
 - [SendMail](docs/Model/SendMail.md)
 - [SendMailAdv](docs/Model/SendMailAdv.md)
+- [SendMailAdvAttachmentsInner](docs/Model/SendMailAdvAttachmentsInner.md)
+- [SendMailAdvBccInner](docs/Model/SendMailAdvBccInner.md)
+- [SendMailAdvCcInner](docs/Model/SendMailAdvCcInner.md)
 - [SendMailAdvFrom](docs/Model/SendMailAdvFrom.md)
+- [SendMailAdvReplytoInner](docs/Model/SendMailAdvReplytoInner.md)
+- [SendMailAdvToInner](docs/Model/SendMailAdvToInner.md)
 
 ## Authorization
 
@@ -118,7 +133,7 @@ vendor/bin/phpunit
 
 ## Author
 
-detain@interserver.net
+support@interserver.net
 
 ## About this package
 

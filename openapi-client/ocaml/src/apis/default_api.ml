@@ -11,22 +11,13 @@ let get_mail_orders () =
     let headers = Request.default_headers in
     let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
-    Request.read_json_body_as_list_of (JsonSupport.unwrap Mail_order.of_yojson) resp body
+    Request.read_json_body_as_list_of (JsonSupport.unwrap Get_mail_orders_200_response_inner.of_yojson) resp body
 
 let ping_server () =
     let open Lwt in
     let uri = Request.build_uri "/ping" in
     let headers = Request.default_headers in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
-    Request.handle_unit_response resp
-
-let place_mail_order ~mail_order_t () =
-    let open Lwt in
-    let uri = Request.build_uri "/mail/order" in
-    let headers = Request.default_headers in
-    let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
-    let body = Request.write_as_json_body Mail_order.to_yojson mail_order_t in
-    Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
     Request.handle_unit_response resp
 
 let send_adv_mail ~send_mail_adv_t =
@@ -52,23 +43,15 @@ let send_mail ~_to ~from ~subject ~body =
     Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body
 
-let validate_mail_order () =
-    let open Lwt in
-    let uri = Request.build_uri "/mail/order" in
-    let headers = Request.default_headers in
-    let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
-    Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
-    Request.handle_unit_response resp
-
-let view_mail_log ?id ?search_string ?skip ?limit () =
+let view_mail_log ?id ?search ?(skip = 00l) ?(limit = 100100l) () =
     let open Lwt in
     let uri = Request.build_uri "/mail/log" in
     let headers = Request.default_headers in
     let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
     let uri = Request.maybe_add_query_param uri "id" Int64.to_string id in
-    let uri = Request.maybe_add_query_param uri "searchString" (fun x -> x) search_string in
-    let uri = Request.maybe_add_query_param uri "skip" Int32.to_string skip in
-    let uri = Request.maybe_add_query_param uri "limit" Int32.to_string limit in
+    let uri = Request.maybe_add_query_param uri "search" (fun x -> x) search in
+    let uri = Request.add_query_param uri "skip" Int32.to_string skip in
+    let uri = Request.add_query_param uri "limit" Int32.to_string limit in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
-    Request.read_json_body_as_list_of (JsonSupport.unwrap Mail_log.of_yojson) resp body
+    Request.read_json_body_as (JsonSupport.unwrap Mail_log.of_yojson) resp body
 

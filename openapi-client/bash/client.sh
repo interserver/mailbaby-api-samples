@@ -12,19 +12,19 @@
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 #
-# This is a Bash client for Mail Baby API.
+# This is a Bash client for MailBaby Email Delivery API.
 #
 # LICENSE:
 # http://www.apache.org/licenses/LICENSE-2.0.html
 #
 # CONTACT:
-# detain@interserver.net
+# support@interserver.net
 #
 # MORE INFORMATION:
-# https://interserver.net/tips/
+# https://www.mail.baby/tips/
 #
 
-# For improved pattern matching in case statemets
+# For improved pattern matching in case statements
 shopt -s extglob
 
 ###############################################################################
@@ -65,7 +65,7 @@ declare -A header_arguments
 declare -A operation_parameters
 
 ##
-# Declare colors with autodection if output is terminal
+# Declare colors with autodetection if output is terminal
 if [ -t 1 ]; then
     RED="$(tput setaf 1)"
     GREEN="$(tput setaf 2)"
@@ -95,14 +95,13 @@ declare -a result_color_table=( "$WHITE" "$WHITE" "$GREEN" "$YELLOW" "$WHITE" "$
 # 0 - optional
 # 1 - required
 declare -A operation_parameters_minimum_occurrences
-operation_parameters_minimum_occurrences["placeMailOrder:::MailOrder"]=0
 operation_parameters_minimum_occurrences["sendAdvMail:::SendMailAdv"]=1
 operation_parameters_minimum_occurrences["sendMail:::to"]=1
 operation_parameters_minimum_occurrences["sendMail:::from"]=1
 operation_parameters_minimum_occurrences["sendMail:::subject"]=1
 operation_parameters_minimum_occurrences["sendMail:::body"]=1
 operation_parameters_minimum_occurrences["viewMailLog:::id"]=0
-operation_parameters_minimum_occurrences["viewMailLog:::searchString"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::search"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::skip"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::limit"]=0
 
@@ -113,14 +112,13 @@ operation_parameters_minimum_occurrences["viewMailLog:::limit"]=0
 # N - N values
 # 0 - unlimited
 declare -A operation_parameters_maximum_occurrences
-operation_parameters_maximum_occurrences["placeMailOrder:::MailOrder"]=0
 operation_parameters_maximum_occurrences["sendAdvMail:::SendMailAdv"]=0
 operation_parameters_maximum_occurrences["sendMail:::to"]=0
 operation_parameters_maximum_occurrences["sendMail:::from"]=0
 operation_parameters_maximum_occurrences["sendMail:::subject"]=0
 operation_parameters_maximum_occurrences["sendMail:::body"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::id"]=0
-operation_parameters_maximum_occurrences["viewMailLog:::searchString"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::search"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::skip"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::limit"]=0
 
@@ -128,14 +126,13 @@ operation_parameters_maximum_occurrences["viewMailLog:::limit"]=0
 # The type of collection for specifying multiple values for parameter:
 # - multi, csv, ssv, tsv
 declare -A operation_parameters_collection_type
-operation_parameters_collection_type["placeMailOrder:::MailOrder"]=""
 operation_parameters_collection_type["sendAdvMail:::SendMailAdv"]=""
 operation_parameters_collection_type["sendMail:::to"]=""
 operation_parameters_collection_type["sendMail:::from"]=""
 operation_parameters_collection_type["sendMail:::subject"]=""
 operation_parameters_collection_type["sendMail:::body"]=""
 operation_parameters_collection_type["viewMailLog:::id"]=""
-operation_parameters_collection_type["viewMailLog:::searchString"]=""
+operation_parameters_collection_type["viewMailLog:::search"]=""
 operation_parameters_collection_type["viewMailLog:::skip"]=""
 operation_parameters_collection_type["viewMailLog:::limit"]=""
 
@@ -313,6 +310,29 @@ body_parameters_to_json() {
 
 ##############################################################################
 #
+# Converts an associative array into form urlencoded string
+#
+##############################################################################
+body_parameters_to_form_urlencoded() {
+    local body_form_urlencoded="-d '"
+    local count=0
+    for key in "${!body_parameters[@]}"; do
+        if [[ $((count++)) -gt 0 ]]; then
+            body_form_urlencoded+="&"
+        fi
+        body_form_urlencoded+="${key}=${body_parameters[${key}]}"
+    done
+    body_form_urlencoded+="'"
+
+    if [[ "${#body_parameters[@]}" -eq 0 ]]; then
+        echo ""
+    else
+        echo "${body_form_urlencoded}"
+    fi
+}
+
+##############################################################################
+#
 # Helper method for showing error because for example echo in
 # build_request_path() is evaluated as part of command line not printed on
 # output. Anyway better idea for resource clean up ;-).
@@ -405,7 +425,7 @@ build_request_path() {
                 parameter_value+="${qparam}=${qvalue}"
             done
         #
-        # Append parameters specified as 'mutli' collections i.e. param=value1&param=value2&...
+        # Append parameters specified as 'multi' collections i.e. param=value1&param=value2&...
         #
         elif [[ "${collection_type}" == "multi" ]]; then
             local vcount=0
@@ -484,7 +504,7 @@ build_request_path() {
 print_help() {
 cat <<EOF
 
-${BOLD}${WHITE}Mail Baby API command line client (API version 1.0.0)${OFF}
+${BOLD}${WHITE}MailBaby Email Delivery API command line client (API version 1.0.0)${OFF}
 
 ${BOLD}${WHITE}Usage${OFF}
 
@@ -522,10 +542,8 @@ EOF
 read -r -d '' ops <<EOF
   ${CYAN}getMailOrders${OFF};displays a list of mail service orders (AUTH)
   ${CYAN}pingServer${OFF};Checks if the server is running
-  ${CYAN}placeMailOrder${OFF};places a mail order (AUTH)
   ${CYAN}sendAdvMail${OFF};Sends an Email with Advanced Options (AUTH)
   ${CYAN}sendMail${OFF};Sends an Email (AUTH)
-  ${CYAN}validateMailOrder${OFF};validatess order details before placing an order (AUTH)
   ${CYAN}viewMailLog${OFF};displays the mail log (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
@@ -541,7 +559,7 @@ echo -e "              \\t\\t\\t\\t(e.g. 'https://api.mailbaby.net')"
     echo -e "         \\t\\t\\t\\trequired parameters or wrong content type"
     echo -e "  --dry-run\\t\\t\\t\\tPrint out the cURL command without"
     echo -e "           \\t\\t\\t\\texecuting it"
-    echo -e "  -nc,--no-colors\\t\\t\\tEnforce print without colors, otherwise autodected"
+    echo -e "  -nc,--no-colors\\t\\t\\tEnforce print without colors, otherwise autodetected"
     echo -e "  -ac,--accept ${YELLOW}<mime-type>${OFF}\\t\\tSet the 'Accept' header in the request"
     echo -e "  -ct,--content-type ${YELLOW}<mime-type>${OFF}\\tSet the 'Content-type' header in "
     echo -e "                                \\tthe request"
@@ -556,14 +574,26 @@ echo -e "              \\t\\t\\t\\t(e.g. 'https://api.mailbaby.net')"
 ##############################################################################
 print_about() {
     echo ""
-    echo -e "${BOLD}${WHITE}Mail Baby API command line client (API version 1.0.0)${OFF}"
+    echo -e "${BOLD}${WHITE}MailBaby Email Delivery API command line client (API version 1.0.0)${OFF}"
     echo ""
     echo -e "License: Apache 2.0"
-    echo -e "Contact: detain@interserver.net"
+    echo -e "Contact: support@interserver.net"
     echo ""
 read -r -d '' appdescription <<EOF
 
-This is an API defintion for accesssing the Mail.Baby mail service.
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
+
+
+# 📌 Overview
+
+This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).
+
+
+# 🔐 Authentication
+
+In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  
+
+We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 EOF
 echo "$appdescription" | paste -sd' ' | fold -sw 80
 }
@@ -576,7 +606,7 @@ echo "$appdescription" | paste -sd' ' | fold -sw 80
 ##############################################################################
 print_version() {
     echo ""
-    echo -e "${BOLD}Mail Baby API command line client (API version 1.0.0)${OFF}"
+    echo -e "${BOLD}MailBaby Email Delivery API command line client (API version 1.0.0)${OFF}"
     echo ""
 }
 
@@ -616,31 +646,6 @@ print_pingServer_help() {
 }
 ##############################################################################
 #
-# Print help for placeMailOrder operation
-#
-##############################################################################
-print_placeMailOrder_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}placeMailOrder - places a mail order${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "Adds an item to the system" | paste -sd' ' | fold -sw 80
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF}${OFF} - Inventory item to add" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;list of mail orders${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=409
-    echo -e "${result_color_table[${code:0:1}]}  409;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=401
-    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
 # Print help for sendAdvMail operation
 #
 ##############################################################################
@@ -673,7 +678,9 @@ print_sendMail_help() {
     echo ""
     echo -e "${BOLD}${WHITE}sendMail - Sends an Email${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Sends An email through one of your mail orders." | paste -sd' ' | fold -sw 80
+    echo -e "Sends an email through one of your mail orders.
+
+*Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead." | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo ""
@@ -686,22 +693,6 @@ print_sendMail_help() {
     echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
     echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for validateMailOrder operation
-#
-##############################################################################
-print_validateMailOrder_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}validateMailOrder - validatess order details before placing an order${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;list of mail orders${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=401
-    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -718,11 +709,11 @@ available inventory in the system" | paste -sd' ' | fold -sw 80
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}id${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - The ID of your mail order this will be sent through.${YELLOW} Specify as: id=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}searchString${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - pass an optional search string for looking up inventory${YELLOW} Specify as: searchString=value${OFF}" \
+    echo -e "  * ${GREEN}search${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - pass an optional search string for looking up inventory${YELLOW} Specify as: search=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}skip${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - number of records to skip for pagination${YELLOW} Specify as: skip=value${OFF}" \
+    echo -e "  * ${GREEN}skip${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 0)${OFF} - number of records to skip for pagination${YELLOW} Specify as: skip=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}limit${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - maximum number of records to return${YELLOW} Specify as: limit=value${OFF}" \
+    echo -e "  * ${GREEN}limit${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 100)${OFF} - maximum number of records to return${YELLOW} Specify as: limit=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -763,9 +754,9 @@ call_getMailOrders() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -799,87 +790,9 @@ call_pingServer() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call placeMailOrder operation
-#
-##############################################################################
-call_placeMailOrder() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=()
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=(  )
-    local path
-
-    if ! path=$(build_request_path "/mail/order" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="POST"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    local body_json_curl=""
-
-    #
-    # Check if the user provided 'Content-type' headers in the
-    # command line. If not try to set them based on the OpenAPI specification
-    # if values produces and consumes are defined unambigously
-    #
-    if [[ -z $header_content_type ]]; then
-        header_content_type="application/json"
-    fi
-
-
-    if [[ -z $header_content_type && "$force" = false ]]; then
-        :
-        echo "ERROR: Request's content-type not specified!!!"
-        echo "This operation expects content-type in one of the following formats:"
-        echo -e "\\t- application/json"
-        echo ""
-        echo "Use '--content-type' to set proper content type"
-        exit 1
-    else
-        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
-    fi
-
-
-    #
-    # If we have received some body content over pipe, pass it from the
-    # temporary file to cURL
-    #
-    if [[ -n $body_content_temp_file ]]; then
-        if [[ "$print_curl" = true ]]; then
-            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
-        else
-            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
-        fi
-        rm "${body_content_temp_file}"
-    #
-    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
-    #
-    else
-        body_json_curl=$(body_parameters_to_json)
-        if [[ "$print_curl" = true ]]; then
-            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
-        else
-            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
-        fi
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -917,7 +830,7 @@ call_sendAdvMail() {
     #
     # Check if the user provided 'Content-type' headers in the
     # command line. If not try to set them based on the OpenAPI specification
-    # if values produces and consumes are defined unambigously
+    # if values produces and consumes are defined unambiguously
     #
 
 
@@ -988,46 +901,11 @@ call_sendMail() {
     if [[ -n $basic_auth_credential ]]; then
         basic_auth_option="-u ${basic_auth_credential}"
     fi
+    body_form_urlencoded=$(body_parameters_to_form_urlencoded)
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl ${body_form_urlencoded} ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    fi
-}
-
-##############################################################################
-#
-# Call validateMailOrder operation
-#
-##############################################################################
-call_validateMailOrder() {
-    # ignore error about 'path_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local path_parameter_names=()
-    # ignore error about 'query_parameter_names' being unused; passed by reference
-    # shellcheck disable=SC2034
-    local query_parameter_names=(  )
-    local path
-
-    if ! path=$(build_request_path "/mail/order" path_parameter_names query_parameter_names); then
-        ERROR_MSG=$path
-        exit 1
-    fi
-    local method="GET"
-    local headers_curl
-    headers_curl=$(header_arguments_to_curl)
-    if [[ -n $header_accept ]]; then
-        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
-    fi
-
-    local basic_auth_option=""
-    if [[ -n $basic_auth_credential ]]; then
-        basic_auth_option="-u ${basic_auth_credential}"
-    fi
-    if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
-    else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl ${body_form_urlencoded} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -1042,7 +920,7 @@ call_viewMailLog() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(id searchString skip limit  )
+    local query_parameter_names=(id search skip limit  )
     local path
 
     if ! path=$(build_request_path "/mail/log" path_parameter_names query_parameter_names); then
@@ -1061,9 +939,9 @@ call_viewMailLog() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -1170,17 +1048,11 @@ case $key in
     pingServer)
     operation="pingServer"
     ;;
-    placeMailOrder)
-    operation="placeMailOrder"
-    ;;
     sendAdvMail)
     operation="sendAdvMail"
     ;;
     sendMail)
     operation="sendMail"
-    ;;
-    validateMailOrder)
-    operation="validateMailOrder"
     ;;
     viewMailLog)
     operation="viewMailLog"
@@ -1195,7 +1067,7 @@ case $key in
     ;;
     *:=*)
     # Parse body arguments and convert them into top level
-    # JSON properties passed in the body content without qoutes
+    # JSON properties passed in the body content without quotes
     if [[ "$operation" ]]; then
         # ignore error about 'sep' being unused
         # shellcheck disable=SC2034
@@ -1203,7 +1075,7 @@ case $key in
         body_parameters[${body_key}]=${body_value}
     fi
     ;;
-    +\([^=]\):*)
+    +([^=]):*)
     # Parse header arguments and convert them into curl
     # only after the operation argument
     if [[ "$operation" ]]; then
@@ -1275,17 +1147,11 @@ case $operation in
     pingServer)
     call_pingServer
     ;;
-    placeMailOrder)
-    call_placeMailOrder
-    ;;
     sendAdvMail)
     call_sendAdvMail
     ;;
     sendMail)
     call_sendMail
-    ;;
-    validateMailOrder)
-    call_validateMailOrder
     ;;
     viewMailLog)
     call_viewMailLog

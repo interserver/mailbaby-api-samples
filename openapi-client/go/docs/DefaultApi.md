@@ -6,17 +6,15 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetMailOrders**](DefaultApi.md#GetMailOrders) | **Get** /mail | displays a list of mail service orders
 [**PingServer**](DefaultApi.md#PingServer) | **Get** /ping | Checks if the server is running
-[**PlaceMailOrder**](DefaultApi.md#PlaceMailOrder) | **Post** /mail/order | places a mail order
 [**SendAdvMail**](DefaultApi.md#SendAdvMail) | **Post** /mail/advsend | Sends an Email with Advanced Options
 [**SendMail**](DefaultApi.md#SendMail) | **Post** /mail/send | Sends an Email
-[**ValidateMailOrder**](DefaultApi.md#ValidateMailOrder) | **Get** /mail/order | validatess order details before placing an order
 [**ViewMailLog**](DefaultApi.md#ViewMailLog) | **Get** /mail/log | displays the mail log
 
 
 
 ## GetMailOrders
 
-> []MailOrder GetMailOrders(ctx).Execute()
+> []GetMailOrders200ResponseInner GetMailOrders(ctx).Execute()
 
 displays a list of mail service orders
 
@@ -35,13 +33,13 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetMailOrders(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetMailOrders(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetMailOrders``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetMailOrders`: []MailOrder
+    // response from `GetMailOrders`: []GetMailOrders200ResponseInner
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetMailOrders`: %v\n", resp)
 }
 ```
@@ -57,7 +55,7 @@ Other parameters are passed through a pointer to a apiGetMailOrdersRequest struc
 
 ### Return type
 
-[**[]MailOrder**](MailOrder.md)
+[**[]GetMailOrders200ResponseInner**](GetMailOrders200ResponseInner.md)
 
 ### Authorization
 
@@ -66,7 +64,7 @@ Other parameters are passed through a pointer to a apiGetMailOrdersRequest struc
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/xml, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -94,8 +92,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.PingServer(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.PingServer(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.PingServer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,70 +128,6 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## PlaceMailOrder
-
-> PlaceMailOrder(ctx).MailOrder(mailOrder).Execute()
-
-places a mail order
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    mailOrder := *openapiclient.NewMailOrder(int32(1234), "active", "mb1234") // MailOrder | Inventory item to add (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.PlaceMailOrder(context.Background()).MailOrder(mailOrder).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.PlaceMailOrder``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPlaceMailOrderRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **mailOrder** | [**MailOrder**](MailOrder.md) | Inventory item to add | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## SendAdvMail
 
 > GenericResponse SendAdvMail(ctx).SendMailAdv(sendMailAdv).Execute()
@@ -215,12 +149,11 @@ import (
 )
 
 func main() {
-    sendMailAdv := *openapiclient.NewSendMailAdv("Your Package has been Delivered!", "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-", []openapiclient.SendMailAdvFrom{*openapiclient.NewSendMailAdvFrom("johndoe@company.com")}, []openapiclient.MailContact{*openapiclient.NewMailContact("johndoe@company.com")}, int64(5000)) // SendMailAdv | 
+    sendMailAdv := *openapiclient.NewSendMailAdv("Your Package has been Delivered!", "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.", *openapiclient.NewSendMailAdvFrom("business@company.com"), []openapiclient.SendMailAdvToInner{*openapiclient.NewSendMailAdvToInner("johndoe@isp.com")}) // SendMailAdv | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.SendAdvMail(context.Background()).SendMailAdv(sendMailAdv).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.SendAdvMail(context.Background()).SendMailAdv(sendMailAdv).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SendAdvMail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -288,8 +221,8 @@ func main() {
     body := "body_example" // string | The main email contents.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.SendMail(context.Background()).To(to).From(from).Subject(subject).Body(body).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.SendMail(context.Background()).To(to).From(from).Subject(subject).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SendMail``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -333,66 +266,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ValidateMailOrder
-
-> ValidateMailOrder(ctx).Execute()
-
-validatess order details before placing an order
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.ValidateMailOrder(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ValidateMailOrder``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiValidateMailOrderRequest struct via the builder pattern
-
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## ViewMailLog
 
-> []MailLog ViewMailLog(ctx).Id(id).SearchString(searchString).Skip(skip).Limit(limit).Execute()
+> MailLog ViewMailLog(ctx).Id(id).Search(search).Skip(skip).Limit(limit).Execute()
 
 displays the mail log
 
@@ -412,18 +288,18 @@ import (
 
 func main() {
     id := int64(789) // int64 | The ID of your mail order this will be sent through. (optional)
-    searchString := "searchString_example" // string | pass an optional search string for looking up inventory (optional)
-    skip := int32(56) // int32 | number of records to skip for pagination (optional)
-    limit := int32(56) // int32 | maximum number of records to return (optional)
+    search := "search_example" // string | pass an optional search string for looking up inventory (optional)
+    skip := int32(56) // int32 | number of records to skip for pagination (optional) (default to 0)
+    limit := int32(56) // int32 | maximum number of records to return (optional) (default to 100)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DefaultApi.ViewMailLog(context.Background()).Id(id).SearchString(searchString).Skip(skip).Limit(limit).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.ViewMailLog(context.Background()).Id(id).Search(search).Skip(skip).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ViewMailLog``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ViewMailLog`: []MailLog
+    // response from `ViewMailLog`: MailLog
     fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ViewMailLog`: %v\n", resp)
 }
 ```
@@ -440,13 +316,13 @@ Other parameters are passed through a pointer to a apiViewMailLogRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int64** | The ID of your mail order this will be sent through. | 
- **searchString** | **string** | pass an optional search string for looking up inventory | 
- **skip** | **int32** | number of records to skip for pagination | 
- **limit** | **int32** | maximum number of records to return | 
+ **search** | **string** | pass an optional search string for looking up inventory | 
+ **skip** | **int32** | number of records to skip for pagination | [default to 0]
+ **limit** | **int32** | maximum number of records to return | [default to 100]
 
 ### Return type
 
-[**[]MailLog**](MailLog.md)
+[**MailLog**](MailLog.md)
 
 ### Authorization
 

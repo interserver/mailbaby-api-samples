@@ -2,18 +2,22 @@
 [main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
 [main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: python-legacy (client)
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'python-legacy' is considered stable.
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getMailOrders_200_response_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getMailOrders_401_response. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_from. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_to_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_replyto_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_cc_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_bcc_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_attachments_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
 [main] INFO  o.o.c.l.AbstractPythonCodegen - Environment variable PYTHON_POST_PROCESS_FILE not defined so the Python code may not be properly formatted. To define it, try 'export PYTHON_POST_PROCESS_FILE="/usr/local/bin/yapf -i"' (Linux/Mac)
 [main] INFO  o.o.c.l.AbstractPythonCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
 [main] INFO  o.o.c.l.PythonLegacyClientCodegen - Environment variable PYTHON_POST_PROCESS_FILE not defined so the Python code may not be properly formatted. To define it, try 'export PYTHON_POST_PROCESS_FILE="/usr/local/bin/yapf -i"' (Linux/Mac)
 [main] INFO  o.o.c.l.PythonLegacyClientCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
 Exception in thread "main" java.lang.ClassCastException: class java.lang.Boolean cannot be cast to class java.lang.String (java.lang.Boolean and java.lang.String are in module java.base of loader 'bootstrap')
 	at org.openapitools.codegen.languages.PythonLegacyClientCodegen.processOpts(PythonLegacyClientCodegen.java:206)
-	at org.openapitools.codegen.DefaultGenerator.configureGeneratorProperties(DefaultGenerator.java:250)
-	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:864)
-	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:441)
+	at org.openapitools.codegen.DefaultGenerator.configureGeneratorProperties(DefaultGenerator.java:256)
+	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:881)
+	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:449)
 	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
 	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)

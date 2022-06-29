@@ -6,21 +6,19 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getMailOrders**](DefaultAPI.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultAPI.md#pingserver) | **GET** /ping | Checks if the server is running
-[**placeMailOrder**](DefaultAPI.md#placemailorder) | **POST** /mail/order | places a mail order
 [**sendAdvMail**](DefaultAPI.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](DefaultAPI.md#sendmail) | **POST** /mail/send | Sends an Email
-[**validateMailOrder**](DefaultAPI.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
 [**viewMailLog**](DefaultAPI.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 
 # **getMailOrders**
 ```swift
-    open class func getMailOrders(completion: @escaping (_ data: [MailOrder]?, _ error: Error?) -> Void)
+    open class func getMailOrders(completion: @escaping (_ data: [GetMailOrders200ResponseInner]?, _ error: Error?) -> Void)
 ```
 
 displays a list of mail service orders
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
@@ -44,7 +42,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**[MailOrder]**](MailOrder.md)
+[**[GetMailOrders200ResponseInner]**](GetMailOrders200ResponseInner.md)
 
 ### Authorization
 
@@ -53,7 +51,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, text/plain
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -64,7 +62,7 @@ This endpoint does not need any parameter.
 
 Checks if the server is running
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
@@ -101,56 +99,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **placeMailOrder**
-```swift
-    open class func placeMailOrder(mailOrder: MailOrder? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
-```
-
-places a mail order
-
-Adds an item to the system
-
-### Example 
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
-
-let mailOrder = MailOrder(id: 123, status: "status_example", username: "username_example", password: "password_example", comment: "comment_example") // MailOrder | Inventory item to add (optional)
-
-// places a mail order
-DefaultAPI.placeMailOrder(mailOrder: mailOrder) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **mailOrder** | [**MailOrder**](MailOrder.md) | Inventory item to add | [optional] 
-
-### Return type
-
-Void (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **sendAdvMail**
 ```swift
     open class func sendAdvMail(sendMailAdv: SendMailAdv, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
@@ -160,12 +108,12 @@ Sends an Email with Advanced Options
 
 Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let sendMailAdv = SendMailAdv(subject: "subject_example", body: "body_example", from: [SendMailAdv_from(email: "email_example", name: "name_example")], to: [MailContact(email: "email_example", name: "name_example")], id: 123, replyto: [nil], cc: [nil], bcc: [nil], attachments: [MailAttachment(data: URL(string: "https://example.com")!, filename: "filename_example")]) // SendMailAdv | 
+let sendMailAdv = SendMailAdv(subject: "subject_example", body: "body_example", from: SendMailAdv_from(email: "email_example", name: "name_example"), to: [SendMailAdv_to_inner(email: "email_example", name: "name_example")], replyto: [SendMailAdv_replyto_inner(email: "email_example", name: "name_example")], cc: [SendMailAdv_cc_inner(email: "email_example", name: "name_example")], bcc: [SendMailAdv_bcc_inner(email: "email_example", name: "name_example")], attachments: [SendMailAdv_attachments_inner(data: URL(string: "https://example.com")!, filename: "filename_example")], id: 123) // SendMailAdv | 
 
 // Sends an Email with Advanced Options
 DefaultAPI.sendAdvMail(sendMailAdv: sendMailAdv) { (response, error) in
@@ -208,9 +156,9 @@ Name | Type | Description  | Notes
 
 Sends an Email
 
-Sends An email through one of your mail orders.
+Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
@@ -257,71 +205,27 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **validateMailOrder**
-```swift
-    open class func validateMailOrder(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
-```
-
-validatess order details before placing an order
-
-### Example 
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
-
-
-// validatess order details before placing an order
-DefaultAPI.validateMailOrder() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-Void (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **viewMailLog**
 ```swift
-    open class func viewMailLog(id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil, completion: @escaping (_ data: [MailLog]?, _ error: Error?) -> Void)
+    open class func viewMailLog(id: Int64? = nil, search: String? = nil, skip: Int? = nil, limit: Int? = nil, completion: @escaping (_ data: MailLog?, _ error: Error?) -> Void)
 ```
 
 displays the mail log
 
 By passing in the appropriate options, you can search for available inventory in the system 
 
-### Example 
+### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
 let id = 987 // Int64 | The ID of your mail order this will be sent through. (optional)
-let searchString = "searchString_example" // String | pass an optional search string for looking up inventory (optional)
-let skip = 987 // Int | number of records to skip for pagination (optional)
-let limit = 987 // Int | maximum number of records to return (optional)
+let search = "search_example" // String | pass an optional search string for looking up inventory (optional)
+let skip = 987 // Int | number of records to skip for pagination (optional) (default to 0)
+let limit = 987 // Int | maximum number of records to return (optional) (default to 100)
 
 // displays the mail log
-DefaultAPI.viewMailLog(id: id, searchString: searchString, skip: skip, limit: limit) { (response, error) in
+DefaultAPI.viewMailLog(id: id, search: search, skip: skip, limit: limit) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -338,13 +242,13 @@ DefaultAPI.viewMailLog(id: id, searchString: searchString, skip: skip, limit: li
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Int64** | The ID of your mail order this will be sent through. | [optional] 
- **searchString** | **String** | pass an optional search string for looking up inventory | [optional] 
- **skip** | **Int** | number of records to skip for pagination | [optional] 
- **limit** | **Int** | maximum number of records to return | [optional] 
+ **search** | **String** | pass an optional search string for looking up inventory | [optional] 
+ **skip** | **Int** | number of records to skip for pagination | [optional] [default to 0]
+ **limit** | **Int** | maximum number of records to return | [optional] [default to 100]
 
 ### Return type
 
-[**[MailLog]**](MailLog.md)
+[**MailLog**](MailLog.md)
 
 ### Authorization
 

@@ -12,7 +12,13 @@ import org.joda.time.DateTime
 import MailLog._
 
 case class MailLog (
-  id: Option[Long])
+  /* total number of mail log entries */
+  total: Integer,
+/* number of emails skipped in listing */
+  skip: Integer,
+/* number of emails to return */
+  limit: Integer,
+emails: List[MailLogEntry])
 
 object MailLog {
   import DateTimeCodecs._

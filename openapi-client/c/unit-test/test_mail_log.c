@@ -22,11 +22,17 @@ mail_log_t* instantiate_mail_log(int include_optional) {
   mail_log_t* mail_log = NULL;
   if (include_optional) {
     mail_log = mail_log_create(
-      56
+      10234,
+      0,
+      100,
+      list_createList()
     );
   } else {
     mail_log = mail_log_create(
-      56
+      10234,
+      0,
+      100,
+      list_createList()
     );
   }
 

@@ -8,6 +8,6 @@ import io.swagger.annotations.ApiModelProperty;
 class SendMailAdvFrom {
     /* The email address */
     String email
-    /* Optional contact name */
+    /* (optional) Name to use for the sending contact. */
     String name
 }

@@ -1,6 +1,18 @@
-h1. Mail Baby API
+h1. MailBaby Email Delivery API
 
-This is an API defintion for accesssing the Mail.Baby mail service.
+**Send emails fast and with confidence through our easy to use [REST\](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
+
+
+# 📌 Overview
+
+This is the API interface to the [Mail Baby\](https//mail.baby/) Mail services provided by [InterServer\](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net\](https://my.interserver.net).
+
+
+# 🔐 Authentication
+
+In order to use most of the API calls you must pass credentials from the [my.interserver.net\](https://my.interserver.net/) site.  
+
+We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security\](https://my.interserver.net/account_security) page.
 
 *Version:* 1.0.0
 
@@ -22,7 +34,7 @@ h3. getMailOrders
     || Protocol | {noformat:nopanel=true}https{noformat} |
     || Path | {noformat:nopanel=true}/mail{noformat} |
     || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
-    || Produces | {noformat:nopanel=true}application/jsonapplication/xmltext/plain{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 
@@ -33,24 +45,17 @@ h4. Responses
 
     	|| Status Code | {status:colour=Green|title=200|subtle=false} |
     	|| Message | OK |
-    	|| Response Type | array[MailOrder] |
-    	|| Response Model | [array[MailOrder] Model|#array[MailOrder]ModelAnchor|Jump to model] |
+    	|| Response Type | array[getMailOrders_200_response_inner] |
+    	|| Response Model | [array[getMailOrders_200_response_inner] Model|#array[getMailOrders_200_response_inner]ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "OK",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/MailOrders"
-      }
-    },
-    "application/xml" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/MailOrders"
-      }
-    },
-    "text/plain" : {
-      "schema" : {
-        "type" : "string"
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/getMailOrders_200_response_inner"
+        }
       }
     }
   },
@@ -67,16 +72,16 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | inline_response_401 |
-    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
       }
     }
   }
@@ -84,16 +89,16 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | inline_response_401 |
-    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
       }
     }
   }
@@ -132,97 +137,12 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=0|subtle=false} |
+    	|| Status Code | {status:colour=Red|title=0|subtle=false} |
     	|| Message | Something is wrong |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Something is wrong"
-}{code} |
-       
-
-{panel}
-
-
-
-h3. placeMailOrder
-{panel:title=placeMailOrder|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
-    *Summary:* places a mail order
-    *Description:* Adds an item to the system
-
-	|| HttpMethod | {status:colour=Yellow|title=post|subtle=false} |
-    || Protocol | {noformat:nopanel=true}https{noformat} |
-    || Path | {noformat:nopanel=true}/mail/order{noformat} |
-    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
-----
-h4. Parameters
-
-h5. Body Parameter
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
-        |MailOrder |Inventory item to add | MailOrder | (x) | |  |  |
-
-
-----
-h4. Responses
-
-    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
-    	|| Message | list of mail orders |
-    	|| Response Type |  |
-    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
-    	|| Response Schema | {code:collapse=true}{
-  "description" : "list of mail orders"
-}{code} |
-       
-
-
-    	|| Status Code | {status:colour=Green|title=400|subtle=false} |
-    	|| Message | The specified resource was not found |
-    	|| Response Type | inline_response_401 |
-    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
-    	|| Response Schema | {code:collapse=true}{
-  "description" : "The specified resource was not found",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
-      }
-    }
-  }
-}{code} |
-       
-
-
-    	|| Status Code | {status:colour=Green|title=409|subtle=false} |
-    	|| Message | The specified resource was not found |
-    	|| Response Type | inline_response_401 |
-    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
-    	|| Response Schema | {code:collapse=true}{
-  "description" : "The specified resource was not found",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
-      }
-    }
-  }
-}{code} |
-       
-
-
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
-    	|| Message | Unauthorized |
-    	|| Response Type | inline_response_401 |
-    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
-    	|| Response Schema | {code:collapse=true}{
-  "description" : "Unauthorized",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
-      }
-    }
-  }
 }{code} |
        
 
@@ -239,12 +159,12 @@ h3. sendAdvMail
     || Protocol | {noformat:nopanel=true}https{noformat} |
     || Path | {noformat:nopanel=true}/mail/advsend{noformat} |
     || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 
 h5. Body Parameter
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |SendMailAdv | | SendMailAdv | (/) | |  |  |
 
 
@@ -268,16 +188,16 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=400|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
     	|| Message | The specified resource was not found |
-    	|| Response Type | inline_response_401 |
-    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "The specified resource was not found",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
       }
     }
   }
@@ -285,16 +205,16 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | inline_response_401 |
-    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
       }
     }
   }
@@ -302,16 +222,16 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | The specified resource was not found |
-    	|| Response Type | inline_response_401 |
-    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "The specified resource was not found",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
       }
     }
   }
@@ -325,13 +245,15 @@ h4. Responses
 h3. sendMail
 {panel:title=sendMail|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
     *Summary:* Sends an Email
-    *Description:* Sends An email through one of your mail orders.
+    *Description:* Sends an email through one of your mail orders.
+
+*Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead.
 
 	|| HttpMethod | {status:colour=Yellow|title=post|subtle=false} |
     || Protocol | {noformat:nopanel=true}https{noformat} |
     || Path | {noformat:nopanel=true}/mail/send{noformat} |
     || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 
@@ -357,16 +279,16 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=400|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
     	|| Message | The specified resource was not found |
-    	|| Response Type | inline_response_401 |
-    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "The specified resource was not found",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
       }
     }
   }
@@ -374,16 +296,16 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | inline_response_401 |
-    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
       }
     }
   }
@@ -391,64 +313,16 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | The specified resource was not found |
-    	|| Response Type | inline_response_401 |
-    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "The specified resource was not found",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
-      }
-    }
-  }
-}{code} |
-       
-
-{panel}
-
-
-
-h3. validateMailOrder
-{panel:title=validateMailOrder|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
-    *Summary:* validatess order details before placing an order
-    *Description:* *No Description*
-
-	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
-    || Protocol | {noformat:nopanel=true}https{noformat} |
-    || Path | {noformat:nopanel=true}/mail/order{noformat} |
-    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
-----
-h4. Parameters
-
-
-
-----
-h4. Responses
-
-    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
-    	|| Message | list of mail orders |
-    	|| Response Type |  |
-    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
-    	|| Response Schema | {code:collapse=true}{
-  "description" : "list of mail orders"
-}{code} |
-       
-
-
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
-    	|| Message | Unauthorized |
-    	|| Response Type | inline_response_401 |
-    	|| Response Model | [inline_response_401 Model|#inline_response_401ModelAnchor|Jump to model] |
-    	|| Response Schema | {code:collapse=true}{
-  "description" : "Unauthorized",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
       }
     }
   }
@@ -469,31 +343,28 @@ available inventory in the system
     || Protocol | {noformat:nopanel=true}https{noformat} |
     || Path | {noformat:nopanel=true}/mail/log{noformat} |
     || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 
 
 
 h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
-        |id |The ID of your mail order this will be sent through. | Long | (x) |null |  |  ||searchString |pass an optional search string for looking up inventory | String | (x) |null |  |  ||skip |number of records to skip for pagination | Integer | (x) |null |  |  ||limit |maximum number of records to return | Integer | (x) |null |  |  |
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
+        |id |The ID of your mail order this will be sent through. | Long | (x) |null |  |  ||search |pass an optional search string for looking up inventory | String | (x) |null |  |  ||skip |number of records to skip for pagination | Integer | (x) |0 |  |  ||limit |maximum number of records to return | Integer | (x) |100 |  |  |
 ----
 h4. Responses
 
     	|| Status Code | {status:colour=Green|title=200|subtle=false} |
     	|| Message | search results matching criteria |
-    	|| Response Type | array[MailLog] |
-    	|| Response Model | [array[MailLog] Model|#array[MailLog]ModelAnchor|Jump to model] |
+    	|| Response Type | MailLog |
+    	|| Response Model | [MailLog Model|#MailLogModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "search results matching criteria",
   "content" : {
     "application/json" : {
       "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/MailLog"
-        }
+        "$ref" : "#/components/schemas/MailLog"
       }
     }
   }
@@ -501,7 +372,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=400|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
     	|| Message | bad input parameter |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -516,114 +387,178 @@ h4. Responses
 {anchor:models}
 h2. Models
 
-        {anchor:ErrorResponseModelAnchor}
-        h3. ErrorResponse
-
-        
-        
-        
-        ||Field Name||Required||Type||Description||Enum||
-         |code |(/) |{noformat:nopanel=true}String{noformat} | |  |
-         |message |(/) |{noformat:nopanel=true}String{noformat} | |  |
-         
         {anchor:GenericResponseModelAnchor}
         h3. GenericResponse
 
         
-        
-        
-        ||Field Name||Required||Type||Description||Enum||
-         |status |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |text |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         
-        {anchor:InlineResponse401ModelAnchor}
-        h3. InlineResponse401
 
         
-        
-        
-        ||Field Name||Required||Type||Description||Enum||
-         |code |(/) |{noformat:nopanel=true}String{noformat} | |  |
-         |message |(/) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |status |(x) |{noformat:nopanel=true}String{noformat} |  |  | ok
+         |text |(x) |{noformat:nopanel=true}String{noformat} |  |  | The command completed successfully.
          
-        {anchor:MailAttachmentModelAnchor}
-        h3. MailAttachment
+        {anchor:GetMailOrders200ResponseInnerModelAnchor}
+        h3. GetMailOrders200ResponseInner
 
-        A File attachment for an email
         
+
         
-        ||Field Name||Required||Type||Description||Enum||
-         |data |(/) |{noformat:nopanel=true}File{noformat} |Contents of the attached file |  |
-         |filename |(x) |{noformat:nopanel=true}String{noformat} |Optional filename to specify for the attachment. |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |id |(/) |{noformat:nopanel=true}Integer{noformat} |  |  | 1234
+         |status |(/) |{noformat:nopanel=true}String{noformat} |  |  | active
+         |username |(/) |{noformat:nopanel=true}String{noformat} |  |  | mb1234
+         |password |(x) |{noformat:nopanel=true}String{noformat} |  |  | guest123
+         |comment |(x) |{noformat:nopanel=true}String{noformat} |  |  | main mail account
          
-        {anchor:MailContactModelAnchor}
-        h3. MailContact
+        {anchor:GetMailOrders401ResponseModelAnchor}
+        h3. GetMailOrders401Response
 
-        An Email Contact
         
+
         
-        ||Field Name||Required||Type||Description||Enum||
-         |email |(/) |{noformat:nopanel=true}String{noformat} |The email address |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} |Optional contact name |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |code |(/) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |message |(/) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:MailLogModelAnchor}
         h3. MailLog
 
-        Mail Order Details
-        
-        
-        ||Field Name||Required||Type||Description||Enum||
-         |id |(x) |{noformat:nopanel=true}Long{noformat} | |  |
-         
-        {anchor:MailOrderModelAnchor}
-        h3. MailOrder
+        Mail log records
 
         
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |total |(/) |{noformat:nopanel=true}Integer{noformat} | total number of mail log entries |  | 10234
+         |skip |(/) |{noformat:nopanel=true}Integer{noformat} | number of emails skipped in listing |  | 0
+         |limit |(/) |{noformat:nopanel=true}Integer{noformat} | number of emails to return |  | 100
+         |emails |(/) |{noformat:nopanel=true}array[MailLogEntry]{noformat} |  |  | null
+         
+        {anchor:MailLogEntryModelAnchor}
+        h3. MailLogEntry
+
+        An email record
+
         
-        
-        ||Field Name||Required||Type||Description||Enum||
-         |id |(/) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |status |(/) |{noformat:nopanel=true}String{noformat} | |  |
-         |username |(/) |{noformat:nopanel=true}String{noformat} | |  |
-         |password |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |comment |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_id |(/) |{noformat:nopanel=true}Integer{noformat} | internal db id |  | 103172
+         |id |(/) |{noformat:nopanel=true}String{noformat} | mail id |  | 17c7eda538e0005d03
+         |from |(/) |{noformat:nopanel=true}String{noformat} | from address |  | person@mysite.com
+         |to |(/) |{noformat:nopanel=true}String{noformat} | to address |  | client@isp.com
+         |subject |(/) |{noformat:nopanel=true}String{noformat} | email subject |  | sell 0.005 shares
+         |messageId |(/) |{noformat:nopanel=true}String{noformat} | message id |  | &lt;vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net&gt;
+         |created |(/) |{noformat:nopanel=true}String{noformat} | creation date |  | 2021-10-14 08:50:10
+         |time |(/) |{noformat:nopanel=true}Integer{noformat} | creation timestamp |  | 1634215809
+         |user |(/) |{noformat:nopanel=true}String{noformat} | user account |  | mb5658
+         |transtype |(/) |{noformat:nopanel=true}String{noformat} | transaction type |  | ESMTPSA
+         |transhost |(/) |{noformat:nopanel=true}String{noformat} | transaction host |  | relay0.mailbaby.net
+         |originhost |(/) |{noformat:nopanel=true}String{noformat} | origin host |  | 199.231.189.154
+         |origin |(/) |{noformat:nopanel=true}String{noformat} | origin ip |  | 199.231.189.154
+         |interface |(/) |{noformat:nopanel=true}String{noformat} | interface name |  | feeder
+         |date |(/) |{noformat:nopanel=true}String{noformat} | date processed |  | Thu, 14 Oct 2021 08:50:09 -0400
+         |sendingZone |(/) |{noformat:nopanel=true}String{noformat} | sending zone |  | interserver
+         |bodySize |(/) |{noformat:nopanel=true}Integer{noformat} | email body size in bytes |  | 63
+         |sourceMd5 |(/) |{noformat:nopanel=true}String{noformat} | md5 sum of the email |  | 1d7058e6a30369f200b0c34fab2fac92
+         |seq |(/) |{noformat:nopanel=true}Integer{noformat} | delivery sequency |  | 1
+         |domain |(/) |{noformat:nopanel=true}String{noformat} | to address domain |  | interserver.net
+         |recipient |(/) |{noformat:nopanel=true}String{noformat} | email receiver address |  | client@isp.com
+         |locked |(/) |{noformat:nopanel=true}Integer{noformat} | locked status |  | 1
+         |lockTime |(/) |{noformat:nopanel=true}Integer{noformat} | lock timestamp |  | 1634215818533
+         |assigned |(/) |{noformat:nopanel=true}String{noformat} | assigned server |  | relay1
+         |queued |(/) |{noformat:nopanel=true}String{noformat} | queued timestamp |  | 2021-10-14T12:50:15.487Z
+         |_lock |(/) |{noformat:nopanel=true}String{noformat} | lock id |  | lock 17c7eda538e0005d03 001
+         |logger |(/) |{noformat:nopanel=true}String{noformat} | logger |  | null
+         |mxPort |(/) |{noformat:nopanel=true}Integer{noformat} | mx port number |  | 25
+         |connectionKey |(/) |{noformat:nopanel=true}String{noformat} | connection key |  | 206.72.200.46:interserver.net:25
+         |mxHostname |(/) |{noformat:nopanel=true}String{noformat} | mx hostname |  | mx.j.is.cc
+         |sentBodyHash |(/) |{noformat:nopanel=true}String{noformat} | body hash |  | 1d7058e6a30369f200b0c34fab2fac92
+         |sentBodySize |(/) |{noformat:nopanel=true}Integer{noformat} | sent body size in bytes |  | 63
+         |md5Match |(/) |{noformat:nopanel=true}Integer{noformat} | md5 checksum matching result |  | 1
          
         {anchor:SendMailModelAnchor}
         h3. SendMail
 
         Details for an Email
+
         
-        
-        ||Field Name||Required||Type||Description||Enum||
-         |to |(/) |{noformat:nopanel=true}String{noformat} |The Contact whom is the primary recipient of this email. |  |
-         |from |(/) |{noformat:nopanel=true}String{noformat} |The contact whom is the this email is from. |  |
-         |subject |(/) |{noformat:nopanel=true}String{noformat} |The subject or title of the email |  |
-         |body |(/) |{noformat:nopanel=true}String{noformat} |The main email contents. |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |to |(/) |{noformat:nopanel=true}String{noformat} | The Contact whom is the primary recipient of this email. |  | johndoe@company.com
+         |from |(/) |{noformat:nopanel=true}String{noformat} | The contact whom is the this email is from. |  | janedoe@company.com
+         |subject |(/) |{noformat:nopanel=true}String{noformat} | The subject or title of the email |  | Attention Client
+         |body |(/) |{noformat:nopanel=true}String{noformat} | The main email contents. |  | This is an email to inform you that something noteworthy happened.
          
         {anchor:SendMailAdvModelAnchor}
         h3. SendMailAdv
 
         Details for an Email
+
         
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |subject |(/) |{noformat:nopanel=true}String{noformat} | The subject or title of the email |  | Your Package has been Delivered!
+         |body |(/) |{noformat:nopanel=true}String{noformat} | The main email contents. |  | The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
+         |from |(/) |{noformat:nopanel=true}SendMailAdv_from{noformat} |  |  | null
+         |to |(/) |{noformat:nopanel=true}array[SendMailAdv_to_inner]{noformat} | A list of destionation email addresses to send this to |  | null
+         |replyto |(x) |{noformat:nopanel=true}array[SendMailAdv_replyto_inner]{noformat} | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. |  | null
+         |cc |(x) |{noformat:nopanel=true}array[SendMailAdv_cc_inner]{noformat} | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. |  | null
+         |bcc |(x) |{noformat:nopanel=true}array[SendMailAdv_bcc_inner]{noformat} | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. |  | null
+         |attachments |(x) |{noformat:nopanel=true}array[SendMailAdv_attachments_inner]{noformat} | (optional) File attachments to include in the email.  The file contents must be base64 encoded\! |  | null
+         |id |(x) |{noformat:nopanel=true}Long{noformat} | (optional)  ID of the Mail order within our system to use as the Mail Account. |  | 5000
+         
+        {anchor:SendMailAdvAttachmentsInnerModelAnchor}
+        h3. SendMailAdvAttachmentsInner
+
+        A File attachment for an email
+
         
-        ||Field Name||Required||Type||Description||Enum||
-         |subject |(/) |{noformat:nopanel=true}String{noformat} |The subject or title of the email |  |
-         |body |(/) |{noformat:nopanel=true}String{noformat} |The main email contents. |  |
-         |from |(/) |{noformat:nopanel=true}array[SendMailAdv_from]{noformat} |The contact whom is the this email is from. |  |
-         |to |(/) |{noformat:nopanel=true}array[MailContact]{noformat} |The Contact whom is the primary recipient of this email. |  |
-         |id |(/) |{noformat:nopanel=true}Long{noformat} |The ID of the Mail order within our system to use as the Mail Account. |  |
-         |replyto |(x) |{noformat:nopanel=true}array[MailContact]{noformat} |Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. |  |
-         |cc |(x) |{noformat:nopanel=true}array[MailContact]{noformat} |Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. |  |
-         |bcc |(x) |{noformat:nopanel=true}array[MailContact]{noformat} |Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. |  |
-         |attachments |(x) |{noformat:nopanel=true}array[MailAttachment]{noformat} |Optional file attachments to include in the email |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |data |(/) |{noformat:nopanel=true}File{noformat} | Contents of the attached file (must be base64 encoded) |  | null
+         |filename |(x) |{noformat:nopanel=true}String{noformat} | (optional) Filename to specify for the attachment. |  | company_logo.png
+         
+        {anchor:SendMailAdvBccInnerModelAnchor}
+        h3. SendMailAdvBccInner
+
+        An Email Contact
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |email |(/) |{noformat:nopanel=true}String{noformat} | The email address |  | records@company.com
+         |name |(x) |{noformat:nopanel=true}String{noformat} | (optional) Name to use for the BCC contact. |  | Records Department
+         
+        {anchor:SendMailAdvCcInnerModelAnchor}
+        h3. SendMailAdvCcInner
+
+        An Email Contact
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |email |(/) |{noformat:nopanel=true}String{noformat} | The email address |  | janedoe@isp.com
+         |name |(x) |{noformat:nopanel=true}String{noformat} | (optional) Name to use for the CC contact. |  | Jane Doe
          
         {anchor:SendMailAdvFromModelAnchor}
         h3. SendMailAdvFrom
 
+        The information to use for the From address in the email. from.
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |email |(/) |{noformat:nopanel=true}String{noformat} | The email address |  | business@company.com
+         |name |(x) |{noformat:nopanel=true}String{noformat} | (optional) Name to use for the sending contact. |  | The Man
+         
+        {anchor:SendMailAdvReplytoInnerModelAnchor}
+        h3. SendMailAdvReplytoInner
+
         An Email Contact
+
         
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |email |(/) |{noformat:nopanel=true}String{noformat} | The email address |  | support@company.com
+         |name |(x) |{noformat:nopanel=true}String{noformat} | (optional) Name to use for the sending contact. |  | Support Staff
+         
+        {anchor:SendMailAdvToInnerModelAnchor}
+        h3. SendMailAdvToInner
+
+        An Email Contact
+
         
-        ||Field Name||Required||Type||Description||Enum||
-         |email |(/) |{noformat:nopanel=true}String{noformat} |The email address |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} |Optional contact name |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |email |(/) |{noformat:nopanel=true}String{noformat} | The email address |  | johndoe@isp.com
+         |name |(x) |{noformat:nopanel=true}String{noformat} | (optional) Name to use for the destination contact. |  | John Doe
          

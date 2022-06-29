@@ -298,10 +298,8 @@ case $state in
     _values "Operations" \
             "getMailOrders[displays a list of mail service orders]" \
             "pingServer[Checks if the server is running]" \
-            "placeMailOrder[places a mail order]" \
             "sendAdvMail[Sends an Email with Advanced Options]" \
             "sendMail[Sends an Email]" \
-            "validateMailOrder[validatess order details before placing an order]" \
             "viewMailLog[displays the mail log]" \
 
     _arguments "(--help)--help[Print information about operation]"
@@ -322,12 +320,6 @@ case $state in
                               )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      placeMailOrder)
-        local -a _op_arguments
-        _op_arguments=(
-                              )
-        _describe -t actions 'operations' _op_arguments -S '' && ret=0
-        ;;
       sendAdvMail)
         local -a _op_arguments
         _op_arguments=(
@@ -340,17 +332,11 @@ case $state in
                               )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      validateMailOrder)
-        local -a _op_arguments
-        _op_arguments=(
-                              )
-        _describe -t actions 'operations' _op_arguments -S '' && ret=0
-        ;;
       viewMailLog)
         local -a _op_arguments
         _op_arguments=(
                     "id=:[QUERY] The ID of your mail order this will be sent through."
-"searchString=:[QUERY] pass an optional search string for looking up inventory"
+"search=:[QUERY] pass an optional search string for looking up inventory"
 "skip=:[QUERY] number of records to skip for pagination"
 "limit=:[QUERY] maximum number of records to return"
           )

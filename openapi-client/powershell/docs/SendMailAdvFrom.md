@@ -4,14 +4,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | **String** | The email address | 
-**Name** | **String** | Optional contact name | [optional] 
+**Name** | **String** | (optional) Name to use for the sending contact. | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$SendMailAdvFrom = Initialize-PSOpenAPIToolsSendMailAdvFrom  -Email johndoe@company.com `
- -Name John Doe
+$SendMailAdvFrom = Initialize-PSOpenAPIToolsSendMailAdvFrom  -Email business@company.com `
+ -Name The Man
 ```
 
 - Convert the resource to JSON

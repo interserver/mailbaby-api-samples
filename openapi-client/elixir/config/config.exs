@@ -10,16 +10,18 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :mail_baby_api, key: :value
+#     config :mail_baby_email_delivery_api, key: :value
 #
 # And access this configuration in your application as:
 #
-#     Application.get_env(:mail_baby_api, :key)
+#     Application.get_env(:mail_baby_email_delivery_api, :key)
 #
 # Or configure a 3rd-party app:
 #
 #     config :logger, level: :info
 #
+
+config :mail_baby_email_delivery_api, base_url: "https://api.mailbaby.net"
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment

@@ -43,18 +43,17 @@ cJSON *send_mail_adv_from_convertToJSON(send_mail_adv_from_t *send_mail_adv_from
     if (!send_mail_adv_from->email) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "email", send_mail_adv_from->email) == NULL) {
     goto fail; //String
     }
 
 
     // send_mail_adv_from->name
-    if(send_mail_adv_from->name) { 
+    if(send_mail_adv_from->name) {
     if(cJSON_AddStringToObject(item, "name", send_mail_adv_from->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

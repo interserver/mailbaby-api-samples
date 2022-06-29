@@ -1,15 +1,17 @@
 // TODO: better import syntax?
-import { BaseAPIRequestFactory, RequiredError } from './baseapi';
+import {BaseAPIRequestFactory, RequiredError} from './baseapi';
 import {Configuration} from '../configuration';
-import { RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
 import {ObjectSerializer} from '../models/ObjectSerializer';
 import {ApiException} from './exception';
-import {isCodeInRange} from '../util';
+import {canConsumeForm, isCodeInRange} from '../util';
+import {SecurityAuthentication} from '../auth/auth';
+
 
 import { GenericResponse } from '../models/GenericResponse';
-import { InlineResponse401 } from '../models/InlineResponse401';
+import { GetMailOrders200ResponseInner } from '../models/GetMailOrders200ResponseInner';
+import { GetMailOrders401Response } from '../models/GetMailOrders401Response';
 import { MailLog } from '../models/MailLog';
-import { MailOrder } from '../models/MailOrder';
 import { SendMailAdv } from '../models/SendMailAdv';
 
 /**
@@ -20,30 +22,27 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * displays a list of mail service orders
      */
-    public async getMailOrders(options?: Configuration): Promise<RequestContext> {
-        let config = options || this.configuration;
+    public async getMailOrders(_options?: Configuration): Promise<RequestContext> {
+        let _config = _options || this.configuration;
 
         // Path Params
         const localVarPath = '/mail';
 
         // Make Request Context
-        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
 
-        // Query Params
 
-        // Header Params
-
-        // Form Params
-
-
-        // Body Params
-
-        let authMethod = null;
+        let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
-        authMethod = config.authMethods["apiKeyAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
+        authMethod = _config.authMethods["apiKeyAuth"]
+        if (authMethod?.applySecurityAuthentication) {
+            await authMethod?.applySecurityAuthentication(requestContext);
+        }
+        
+        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
+        if (defaultAuth?.applySecurityAuthentication) {
+            await defaultAuth?.applySecurityAuthentication(requestContext);
         }
 
         return requestContext;
@@ -52,69 +51,21 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Checks if the server is running
      */
-    public async pingServer(options?: Configuration): Promise<RequestContext> {
-        let config = options || this.configuration;
+    public async pingServer(_options?: Configuration): Promise<RequestContext> {
+        let _config = _options || this.configuration;
 
         // Path Params
         const localVarPath = '/ping';
 
         // Make Request Context
-        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
 
-        // Query Params
 
-        // Header Params
-
-        // Form Params
-
-
-        // Body Params
-
-        // Apply auth methods
-
-        return requestContext;
-    }
-
-    /**
-     * Adds an item to the system
-     * places a mail order
-     * @param mailOrder Inventory item to add
-     */
-    public async placeMailOrder(mailOrder?: MailOrder, options?: Configuration): Promise<RequestContext> {
-        let config = options || this.configuration;
-
-
-        // Path Params
-        const localVarPath = '/mail/order';
-
-        // Make Request Context
-        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
-
-        // Query Params
-
-        // Header Params
-
-        // Form Params
-
-
-        // Body Params
-        const contentType = ObjectSerializer.getPreferredMediaType([
-            "application/json"
-        ]);
-        requestContext.setHeaderParam("Content-Type", contentType);
-        const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(mailOrder, "MailOrder", ""),
-            contentType
-        );
-        requestContext.setBody(serializedBody);
-
-        let authMethod = null;
-        // Apply auth methods
-        authMethod = config.authMethods["apiKeyAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
+        
+        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
+        if (defaultAuth?.applySecurityAuthentication) {
+            await defaultAuth?.applySecurityAuthentication(requestContext);
         }
 
         return requestContext;
@@ -125,12 +76,12 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
      * Sends an Email with Advanced Options
      * @param sendMailAdv 
      */
-    public async sendAdvMail(sendMailAdv: SendMailAdv, options?: Configuration): Promise<RequestContext> {
-        let config = options || this.configuration;
+    public async sendAdvMail(sendMailAdv: SendMailAdv, _options?: Configuration): Promise<RequestContext> {
+        let _config = _options || this.configuration;
 
         // verify required parameter 'sendMailAdv' is not null or undefined
         if (sendMailAdv === null || sendMailAdv === undefined) {
-            throw new RequiredError('Required parameter sendMailAdv was null or undefined when calling sendAdvMail.');
+            throw new RequiredError("DefaultApi", "sendAdvMail", "sendMailAdv");
         }
 
 
@@ -138,14 +89,8 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         const localVarPath = '/mail/advsend';
 
         // Make Request Context
-        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
+        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
-
-        // Query Params
-
-        // Header Params
-
-        // Form Params
 
 
         // Body Params
@@ -161,48 +106,53 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         );
         requestContext.setBody(serializedBody);
 
-        let authMethod = null;
+        let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
-        authMethod = config.authMethods["apiKeyAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
+        authMethod = _config.authMethods["apiKeyAuth"]
+        if (authMethod?.applySecurityAuthentication) {
+            await authMethod?.applySecurityAuthentication(requestContext);
+        }
+        
+        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
+        if (defaultAuth?.applySecurityAuthentication) {
+            await defaultAuth?.applySecurityAuthentication(requestContext);
         }
 
         return requestContext;
     }
 
     /**
-     * Sends An email through one of your mail orders.
+     * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
      * Sends an Email
      * @param to The Contact whom is the primary recipient of this email.
-     * @param from The contact whom is the this email is from.
+     * @param _from The contact whom is the this email is from.
      * @param subject The subject or title of the email
      * @param body The main email contents.
      */
-    public async sendMail(to: string, from: string, subject: string, body: string, options?: Configuration): Promise<RequestContext> {
-        let config = options || this.configuration;
+    public async sendMail(to: string, _from: string, subject: string, body: string, _options?: Configuration): Promise<RequestContext> {
+        let _config = _options || this.configuration;
 
         // verify required parameter 'to' is not null or undefined
         if (to === null || to === undefined) {
-            throw new RequiredError('Required parameter to was null or undefined when calling sendMail.');
+            throw new RequiredError("DefaultApi", "sendMail", "to");
         }
 
 
-        // verify required parameter 'from' is not null or undefined
-        if (from === null || from === undefined) {
-            throw new RequiredError('Required parameter from was null or undefined when calling sendMail.');
+        // verify required parameter '_from' is not null or undefined
+        if (_from === null || _from === undefined) {
+            throw new RequiredError("DefaultApi", "sendMail", "_from");
         }
 
 
         // verify required parameter 'subject' is not null or undefined
         if (subject === null || subject === undefined) {
-            throw new RequiredError('Required parameter subject was null or undefined when calling sendMail.');
+            throw new RequiredError("DefaultApi", "sendMail", "subject");
         }
 
 
         // verify required parameter 'body' is not null or undefined
         if (body === null || body === undefined) {
-            throw new RequiredError('Required parameter body was null or undefined when calling sendMail.');
+            throw new RequiredError("DefaultApi", "sendMail", "body");
         }
 
 
@@ -210,23 +160,29 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         const localVarPath = '/mail/send';
 
         // Make Request Context
-        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
+        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
 
-        // Query Params
-
-        // Header Params
-
         // Form Params
-        let localVarFormParams = new FormData();
+        const useForm = canConsumeForm([
+            'application/x-www-form-urlencoded',
+            'application/json',
+        ]);
+
+        let localVarFormParams
+        if (useForm) {
+            localVarFormParams = new FormData();
+        } else {
+            localVarFormParams = new URLSearchParams();
+        }
 
         if (to !== undefined) {
              // TODO: replace .append with .set
              localVarFormParams.append('to', to as any);
         }
-        if (from !== undefined) {
+        if (_from !== undefined) {
              // TODO: replace .append with .set
-             localVarFormParams.append('from', from as any);
+             localVarFormParams.append('from', _from as any);
         }
         if (subject !== undefined) {
              // TODO: replace .append with .set
@@ -236,47 +192,28 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
              // TODO: replace .append with .set
              localVarFormParams.append('body', body as any);
         }
+
         requestContext.setBody(localVarFormParams);
 
-        // Body Params
-
-        let authMethod = null;
-        // Apply auth methods
-        authMethod = config.authMethods["apiKeyAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
+        if(!useForm) {
+            const contentType = ObjectSerializer.getPreferredMediaType([
+                "application/x-www-form-urlencoded",
+            
+                "application/json"
+            ]);
+            requestContext.setHeaderParam("Content-Type", contentType);
         }
 
-        return requestContext;
-    }
-
-    /**
-     * validatess order details before placing an order
-     */
-    public async validateMailOrder(options?: Configuration): Promise<RequestContext> {
-        let config = options || this.configuration;
-
-        // Path Params
-        const localVarPath = '/mail/order';
-
-        // Make Request Context
-        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
-
-        // Query Params
-
-        // Header Params
-
-        // Form Params
-
-
-        // Body Params
-
-        let authMethod = null;
+        let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
-        authMethod = config.authMethods["apiKeyAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
+        authMethod = _config.authMethods["apiKeyAuth"]
+        if (authMethod?.applySecurityAuthentication) {
+            await authMethod?.applySecurityAuthentication(requestContext);
+        }
+        
+        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
+        if (defaultAuth?.applySecurityAuthentication) {
+            await defaultAuth?.applySecurityAuthentication(requestContext);
         }
 
         return requestContext;
@@ -286,12 +223,12 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
      * By passing in the appropriate options, you can search for available inventory in the system 
      * displays the mail log
      * @param id The ID of your mail order this will be sent through.
-     * @param searchString pass an optional search string for looking up inventory
+     * @param search pass an optional search string for looking up inventory
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      */
-    public async viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options?: Configuration): Promise<RequestContext> {
-        let config = options || this.configuration;
+    public async viewMailLog(id?: number, search?: string, skip?: number, limit?: number, _options?: Configuration): Promise<RequestContext> {
+        let _config = _options || this.configuration;
 
 
 
@@ -301,35 +238,40 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         const localVarPath = '/mail/log';
 
         // Make Request Context
-        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
 
         // Query Params
         if (id !== undefined) {
             requestContext.setQueryParam("id", ObjectSerializer.serialize(id, "number", "int64"));
         }
-        if (searchString !== undefined) {
-            requestContext.setQueryParam("searchString", ObjectSerializer.serialize(searchString, "string", ""));
+
+        // Query Params
+        if (search !== undefined) {
+            requestContext.setQueryParam("search", ObjectSerializer.serialize(search, "string", ""));
         }
+
+        // Query Params
         if (skip !== undefined) {
             requestContext.setQueryParam("skip", ObjectSerializer.serialize(skip, "number", "int32"));
         }
+
+        // Query Params
         if (limit !== undefined) {
             requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", "int32"));
         }
 
-        // Header Params
 
-        // Form Params
-
-
-        // Body Params
-
-        let authMethod = null;
+        let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
-        authMethod = config.authMethods["apiKeyAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
+        authMethod = _config.authMethods["apiKeyAuth"]
+        if (authMethod?.applySecurityAuthentication) {
+            await authMethod?.applySecurityAuthentication(requestContext);
+        }
+        
+        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
+        if (defaultAuth?.applySecurityAuthentication) {
+            await defaultAuth?.applySecurityAuthentication(requestContext);
         }
 
         return requestContext;
@@ -346,41 +288,40 @@ export class DefaultApiResponseProcessor {
      * @params response Response returned by the server for a request to getMailOrders
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getMailOrders(response: ResponseContext): Promise<Array<MailOrder> > {
+     public async getMailOrders(response: ResponseContext): Promise<Array<GetMailOrders200ResponseInner> > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: Array<MailOrder> = ObjectSerializer.deserialize(
+            const body: Array<GetMailOrders200ResponseInner> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<MailOrder>", ""
-            ) as Array<MailOrder>;
+                "Array<GetMailOrders200ResponseInner>", ""
+            ) as Array<GetMailOrders200ResponseInner>;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: InlineResponse401 = ObjectSerializer.deserialize(
+            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "InlineResponse401", ""
-            ) as InlineResponse401;
-            throw new ApiException<InlineResponse401>(401, body);
+                "GetMailOrders401Response", ""
+            ) as GetMailOrders401Response;
+            throw new ApiException<GetMailOrders401Response>(401, "Unauthorized", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
-            const body: InlineResponse401 = ObjectSerializer.deserialize(
+            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "InlineResponse401", ""
-            ) as InlineResponse401;
-            throw new ApiException<InlineResponse401>(404, body);
+                "GetMailOrders401Response", ""
+            ) as GetMailOrders401Response;
+            throw new ApiException<GetMailOrders401Response>(404, "Unauthorized", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Array<MailOrder> = ObjectSerializer.deserialize(
+            const body: Array<GetMailOrders200ResponseInner> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<MailOrder>", ""
-            ) as Array<MailOrder>;
+                "Array<GetMailOrders200ResponseInner>", ""
+            ) as Array<GetMailOrders200ResponseInner>;
             return body;
         }
 
-        let body = response.body || "";
-        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+        throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
     }
 
     /**
@@ -396,7 +337,7 @@ export class DefaultApiResponseProcessor {
             return;
         }
         if (isCodeInRange("0", response.httpStatusCode)) {
-            throw new ApiException<string>(response.httpStatusCode, "Something is wrong");
+            throw new ApiException<undefined>(response.httpStatusCode, "Something is wrong", undefined, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -408,55 +349,7 @@ export class DefaultApiResponseProcessor {
             return body;
         }
 
-        let body = response.body || "";
-        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
-    }
-
-    /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to placeMailOrder
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-     public async placeMailOrder(response: ResponseContext): Promise<void > {
-        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
-        if (isCodeInRange("200", response.httpStatusCode)) {
-            return;
-        }
-        if (isCodeInRange("400", response.httpStatusCode)) {
-            const body: InlineResponse401 = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "InlineResponse401", ""
-            ) as InlineResponse401;
-            throw new ApiException<InlineResponse401>(400, body);
-        }
-        if (isCodeInRange("409", response.httpStatusCode)) {
-            const body: InlineResponse401 = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "InlineResponse401", ""
-            ) as InlineResponse401;
-            throw new ApiException<InlineResponse401>(409, body);
-        }
-        if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: InlineResponse401 = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "InlineResponse401", ""
-            ) as InlineResponse401;
-            throw new ApiException<InlineResponse401>(401, body);
-        }
-
-        // Work around for missing responses in specification, e.g. for petstore.yaml
-        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: void = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "void", ""
-            ) as void;
-            return body;
-        }
-
-        let body = response.body || "";
-        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+        throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
     }
 
     /**
@@ -476,25 +369,25 @@ export class DefaultApiResponseProcessor {
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
-            const body: InlineResponse401 = ObjectSerializer.deserialize(
+            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "InlineResponse401", ""
-            ) as InlineResponse401;
-            throw new ApiException<InlineResponse401>(400, body);
+                "GetMailOrders401Response", ""
+            ) as GetMailOrders401Response;
+            throw new ApiException<GetMailOrders401Response>(400, "The specified resource was not found", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: InlineResponse401 = ObjectSerializer.deserialize(
+            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "InlineResponse401", ""
-            ) as InlineResponse401;
-            throw new ApiException<InlineResponse401>(401, body);
+                "GetMailOrders401Response", ""
+            ) as GetMailOrders401Response;
+            throw new ApiException<GetMailOrders401Response>(401, "Unauthorized", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
-            const body: InlineResponse401 = ObjectSerializer.deserialize(
+            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "InlineResponse401", ""
-            ) as InlineResponse401;
-            throw new ApiException<InlineResponse401>(404, body);
+                "GetMailOrders401Response", ""
+            ) as GetMailOrders401Response;
+            throw new ApiException<GetMailOrders401Response>(404, "The specified resource was not found", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -506,8 +399,7 @@ export class DefaultApiResponseProcessor {
             return body;
         }
 
-        let body = response.body || "";
-        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+        throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
     }
 
     /**
@@ -527,25 +419,25 @@ export class DefaultApiResponseProcessor {
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
-            const body: InlineResponse401 = ObjectSerializer.deserialize(
+            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "InlineResponse401", ""
-            ) as InlineResponse401;
-            throw new ApiException<InlineResponse401>(400, body);
+                "GetMailOrders401Response", ""
+            ) as GetMailOrders401Response;
+            throw new ApiException<GetMailOrders401Response>(400, "The specified resource was not found", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: InlineResponse401 = ObjectSerializer.deserialize(
+            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "InlineResponse401", ""
-            ) as InlineResponse401;
-            throw new ApiException<InlineResponse401>(401, body);
+                "GetMailOrders401Response", ""
+            ) as GetMailOrders401Response;
+            throw new ApiException<GetMailOrders401Response>(401, "Unauthorized", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
-            const body: InlineResponse401 = ObjectSerializer.deserialize(
+            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "InlineResponse401", ""
-            ) as InlineResponse401;
-            throw new ApiException<InlineResponse401>(404, body);
+                "GetMailOrders401Response", ""
+            ) as GetMailOrders401Response;
+            throw new ApiException<GetMailOrders401Response>(404, "The specified resource was not found", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -557,41 +449,7 @@ export class DefaultApiResponseProcessor {
             return body;
         }
 
-        let body = response.body || "";
-        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
-    }
-
-    /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to validateMailOrder
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-     public async validateMailOrder(response: ResponseContext): Promise<void > {
-        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
-        if (isCodeInRange("200", response.httpStatusCode)) {
-            return;
-        }
-        if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: InlineResponse401 = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "InlineResponse401", ""
-            ) as InlineResponse401;
-            throw new ApiException<InlineResponse401>(401, body);
-        }
-
-        // Work around for missing responses in specification, e.g. for petstore.yaml
-        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: void = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "void", ""
-            ) as void;
-            return body;
-        }
-
-        let body = response.body || "";
-        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+        throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
     }
 
     /**
@@ -601,30 +459,29 @@ export class DefaultApiResponseProcessor {
      * @params response Response returned by the server for a request to viewMailLog
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async viewMailLog(response: ResponseContext): Promise<Array<MailLog> > {
+     public async viewMailLog(response: ResponseContext): Promise<MailLog > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: Array<MailLog> = ObjectSerializer.deserialize(
+            const body: MailLog = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<MailLog>", ""
-            ) as Array<MailLog>;
+                "MailLog", ""
+            ) as MailLog;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
-            throw new ApiException<string>(response.httpStatusCode, "bad input parameter");
+            throw new ApiException<undefined>(response.httpStatusCode, "bad input parameter", undefined, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Array<MailLog> = ObjectSerializer.deserialize(
+            const body: MailLog = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<MailLog>", ""
-            ) as Array<MailLog>;
+                "MailLog", ""
+            ) as MailLog;
             return body;
         }
 
-        let body = response.body || "";
-        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+        throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
     }
 
 }

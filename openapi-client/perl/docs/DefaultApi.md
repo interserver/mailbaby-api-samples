@@ -11,19 +11,17 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_mail_orders**](DefaultApi.md#get_mail_orders) | **GET** /mail | displays a list of mail service orders
 [**ping_server**](DefaultApi.md#ping_server) | **GET** /ping | Checks if the server is running
-[**place_mail_order**](DefaultApi.md#place_mail_order) | **POST** /mail/order | places a mail order
 [**send_adv_mail**](DefaultApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**send_mail**](DefaultApi.md#send_mail) | **POST** /mail/send | Sends an Email
-[**validate_mail_order**](DefaultApi.md#validate_mail_order) | **GET** /mail/order | validatess order details before placing an order
 [**view_mail_log**](DefaultApi.md#view_mail_log) | **GET** /mail/log | displays the mail log
 
 
 # **get_mail_orders**
-> ARRAY[MailOrder] get_mail_orders()
+> ARRAY[GetMailOrders200ResponseInner] get_mail_orders()
 
 displays a list of mail service orders
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use OpenAPIClient::DefaultApi;
@@ -36,7 +34,7 @@ my $api_instance = OpenAPIClient::DefaultApi->new(
 );
 
 
-eval { 
+eval {
     my $result = $api_instance->get_mail_orders();
     print Dumper($result);
 };
@@ -50,7 +48,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ARRAY[MailOrder]**](MailOrder.md)
+[**ARRAY[GetMailOrders200ResponseInner]**](GetMailOrders200ResponseInner.md)
 
 ### Authorization
 
@@ -59,7 +57,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, text/plain
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -68,7 +66,7 @@ This endpoint does not need any parameter.
 
 Checks if the server is running
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use OpenAPIClient::DefaultApi;
@@ -76,7 +74,7 @@ my $api_instance = OpenAPIClient::DefaultApi->new(
 );
 
 
-eval { 
+eval {
     $api_instance->ping_server();
 };
 if ($@) {
@@ -102,56 +100,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **place_mail_order**
-> place_mail_order(mail_order => $mail_order)
-
-places a mail order
-
-Adds an item to the system
-
-### Example 
-```perl
-use Data::Dumper;
-use OpenAPIClient::DefaultApi;
-my $api_instance = OpenAPIClient::DefaultApi->new(
-
-    # Configure API key authorization: apiKeyAuth
-    api_key => {'X-API-KEY' => 'YOUR_API_KEY'},
-    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-    #api_key_prefix => {'X-API-KEY' => 'Bearer'},
-);
-
-my $mail_order = OpenAPIClient::Object::MailOrder->new(); # MailOrder | Inventory item to add
-
-eval { 
-    $api_instance->place_mail_order(mail_order => $mail_order);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->place_mail_order: $@\n";
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **mail_order** | [**MailOrder**](MailOrder.md)| Inventory item to add | [optional] 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **send_adv_mail**
 > GenericResponse send_adv_mail(send_mail_adv => $send_mail_adv)
 
@@ -159,7 +107,7 @@ Sends an Email with Advanced Options
 
 Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use OpenAPIClient::DefaultApi;
@@ -173,7 +121,7 @@ my $api_instance = OpenAPIClient::DefaultApi->new(
 
 my $send_mail_adv = OpenAPIClient::Object::SendMailAdv->new(); # SendMailAdv | 
 
-eval { 
+eval {
     my $result = $api_instance->send_adv_mail(send_mail_adv => $send_mail_adv);
     print Dumper($result);
 };
@@ -208,9 +156,9 @@ Name | Type | Description  | Notes
 
 Sends an Email
 
-Sends An email through one of your mail orders.
+Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use OpenAPIClient::DefaultApi;
@@ -227,7 +175,7 @@ my $from = "from_example"; # string | The contact whom is the this email is from
 my $subject = "subject_example"; # string | The subject or title of the email
 my $body = "body_example"; # string | The main email contents.
 
-eval { 
+eval {
     my $result = $api_instance->send_mail(to => $to, from => $from, subject => $subject, body => $body);
     print Dumper($result);
 };
@@ -260,58 +208,14 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **validate_mail_order**
-> validate_mail_order()
-
-validatess order details before placing an order
-
-### Example 
-```perl
-use Data::Dumper;
-use OpenAPIClient::DefaultApi;
-my $api_instance = OpenAPIClient::DefaultApi->new(
-
-    # Configure API key authorization: apiKeyAuth
-    api_key => {'X-API-KEY' => 'YOUR_API_KEY'},
-    # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-    #api_key_prefix => {'X-API-KEY' => 'Bearer'},
-);
-
-
-eval { 
-    $api_instance->validate_mail_order();
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->validate_mail_order: $@\n";
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **view_mail_log**
-> ARRAY[MailLog] view_mail_log(id => $id, search_string => $search_string, skip => $skip, limit => $limit)
+> MailLog view_mail_log(id => $id, search => $search, skip => $skip, limit => $limit)
 
 displays the mail log
 
 By passing in the appropriate options, you can search for available inventory in the system 
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use OpenAPIClient::DefaultApi;
@@ -324,12 +228,12 @@ my $api_instance = OpenAPIClient::DefaultApi->new(
 );
 
 my $id = 789; # int | The ID of your mail order this will be sent through.
-my $search_string = "search_string_example"; # string | pass an optional search string for looking up inventory
-my $skip = 56; # int | number of records to skip for pagination
-my $limit = 56; # int | maximum number of records to return
+my $search = "search_example"; # string | pass an optional search string for looking up inventory
+my $skip = 0; # int | number of records to skip for pagination
+my $limit = 100; # int | maximum number of records to return
 
-eval { 
-    my $result = $api_instance->view_mail_log(id => $id, search_string => $search_string, skip => $skip, limit => $limit);
+eval {
+    my $result = $api_instance->view_mail_log(id => $id, search => $search, skip => $skip, limit => $limit);
     print Dumper($result);
 };
 if ($@) {
@@ -342,13 +246,13 @@ if ($@) {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
- **search_string** | **string**| pass an optional search string for looking up inventory | [optional] 
- **skip** | **int**| number of records to skip for pagination | [optional] 
- **limit** | **int**| maximum number of records to return | [optional] 
+ **search** | **string**| pass an optional search string for looking up inventory | [optional] 
+ **skip** | **int**| number of records to skip for pagination | [optional] [default to 0]
+ **limit** | **int**| maximum number of records to return | [optional] [default to 100]
 
 ### Return type
 
-[**ARRAY[MailLog]**](MailLog.md)
+[**MailLog**](MailLog.md)
 
 ### Authorization
 

@@ -1,7 +1,7 @@
 /*
  * send_mail_adv_from.h
  *
- * An Email Contact
+ * The information to use for the From address in the email. from.
  */
 
 #ifndef _send_mail_adv_from_H_

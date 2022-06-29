@@ -10,13 +10,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **subject** | **String** | The subject or title of the email | 
 **body** | **String** | The main email contents. | 
-**from** | [**List<SendMailAdvFrom>**](SendMailAdvFrom.md) | The contact whom is the this email is from. | [default to const []]
-**to** | [**List<MailContact>**](MailContact.md) | The Contact whom is the primary recipient of this email. | [default to const []]
-**id** | **int** | The ID of the Mail order within our system to use as the Mail Account. | 
-**replyto** | [**List<MailContact>**](MailContact.md) | Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. | [optional] [default to const []]
-**cc** | [**List<MailContact>**](MailContact.md) | Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. | [optional] [default to const []]
-**bcc** | [**List<MailContact>**](MailContact.md) | Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. | [optional] [default to const []]
-**attachments** | [**List<MailAttachment>**](MailAttachment.md) | Optional file attachments to include in the email | [optional] [default to const []]
+**from** | [**SendMailAdvFrom**](SendMailAdvFrom.md) |  | 
+**to** | [**List<SendMailAdvToInner>**](SendMailAdvToInner.md) | A list of destionation email addresses to send this to | [default to const []]
+**replyto** | [**List<SendMailAdvReplytoInner>**](SendMailAdvReplytoInner.md) | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. | [optional] [default to const []]
+**cc** | [**List<SendMailAdvCcInner>**](SendMailAdvCcInner.md) | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. | [optional] [default to const []]
+**bcc** | [**List<SendMailAdvBccInner>**](SendMailAdvBccInner.md) | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. | [optional] [default to const []]
+**attachments** | [**List<SendMailAdvAttachmentsInner>**](SendMailAdvAttachmentsInner.md) | (optional) File attachments to include in the email.  The file contents must be base64 encoded! | [optional] [default to const []]
+**id** | **int** | (optional)  ID of the Mail order within our system to use as the Mail Account. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

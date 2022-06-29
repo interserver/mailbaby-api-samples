@@ -14,8 +14,8 @@ private class OASDefaultApiTest {
 
         OASClient client;
         OASDefaultApi api;
-        List<OASMailOrder> response;
-        List<OASMailOrder> expectedResponse;
+        List<OASGetMailOrders200ResponseInner> response;
+        List<OASGetMailOrders200ResponseInner> expectedResponse;
         String js = '';
 
         client = new OASClient();
@@ -23,19 +23,11 @@ private class OASDefaultApiTest {
         ((OAS.ApiKeyAuth)client.getAuthentication('apiKeyAuth')).setApiKey('foo-bar-api-key');
 
 
-        js = JSON.serialize(List.getExample());
+        js = JSON.serialize(new List<OASGetMailOrders200ResponseInner>{OASGetMailOrders200ResponseInner.getExample()});
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
-        expectedResponse = List.getExample();
-        response = (List<OASMailOrder>) api.getMailOrders();
-        System.assertEquals(expectedResponse, response);
-
-
-        js = JSON.serialize(List.getExample());
-        res.setHeader('Content-Type', 'application/xml');
-        res.setBody(js);
-        expectedResponse = List.getExample();
-        response = (List<OASMailOrder>) api.getMailOrders();
+        expectedResponse = new List<OASGetMailOrders200ResponseInner>{OASGetMailOrders200ResponseInner.getExample()};
+        response = (List<OASGetMailOrders200ResponseInner>) api.getMailOrders();
         System.assertEquals(expectedResponse, response);
     }
 
@@ -58,33 +50,6 @@ private class OASDefaultApiTest {
         api = new OASDefaultApi(new OASClient());
 
         api.pingServer();
-    }
-
-    /**
-     * places a mail order
-     *
-     * Adds an item to the system
-     */
-    @isTest
-    private static void placeMailOrderTest() {
-        HttpResponse res = new HttpResponse();
-        res.setStatusCode(200);
-        res.setStatus('OK');
-        Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
-
-        Map<String, Object> params = new Map<String, Object>{
-            'oaSMailOrder' => ''
-        };
-
-        OASClient client;
-        OASDefaultApi api;
-        String js = '';
-
-        client = new OASClient();
-        api = new OASDefaultApi(client);
-        ((OAS.ApiKeyAuth)client.getAuthentication('apiKeyAuth')).setApiKey('foo-bar-api-key');
-
-        api.placeMailOrder(params);
     }
 
     /**
@@ -125,7 +90,7 @@ private class OASDefaultApiTest {
     /**
      * Sends an Email
      *
-     * Sends An email through one of your mail orders.
+     * Sends an email through one of your mail orders.\n\n*Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead.\n
      */
     @isTest
     private static void sendMailTest() {
@@ -161,29 +126,6 @@ private class OASDefaultApiTest {
     }
 
     /**
-     * validatess order details before placing an order
-     *
-     * 
-     */
-    @isTest
-    private static void validateMailOrderTest() {
-        HttpResponse res = new HttpResponse();
-        res.setStatusCode(200);
-        res.setStatus('OK');
-        Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
-
-        OASClient client;
-        OASDefaultApi api;
-        String js = '';
-
-        client = new OASClient();
-        api = new OASDefaultApi(client);
-        ((OAS.ApiKeyAuth)client.getAuthentication('apiKeyAuth')).setApiKey('foo-bar-api-key');
-
-        api.validateMailOrder();
-    }
-
-    /**
      * displays the mail log
      *
      * By passing in the appropriate options, you can search for\navailable inventory in the system\n
@@ -197,15 +139,15 @@ private class OASDefaultApiTest {
 
         Map<String, Object> params = new Map<String, Object>{
             'id' => 2147483648L,
-            'searchString' => 'null',
+            'search' => 'null',
             'skip' => '',
             'r_limit' => ''
         };
 
         OASClient client;
         OASDefaultApi api;
-        List<OASMailLog> response;
-        List<OASMailLog> expectedResponse;
+        OASMailLog response;
+        OASMailLog expectedResponse;
         String js = '';
 
         client = new OASClient();
@@ -213,11 +155,11 @@ private class OASDefaultApiTest {
         ((OAS.ApiKeyAuth)client.getAuthentication('apiKeyAuth')).setApiKey('foo-bar-api-key');
 
 
-        js = JSON.serialize(new List<OASMailLog>{OASMailLog.getExample()});
+        js = JSON.serialize(OASMailLog.getExample());
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
-        expectedResponse = new List<OASMailLog>{OASMailLog.getExample()};
-        response = (List<OASMailLog>) api.viewMailLog(params);
+        expectedResponse = OASMailLog.getExample();
+        response = (OASMailLog) api.viewMailLog(params);
         System.assertEquals(expectedResponse, response);
     }
 }

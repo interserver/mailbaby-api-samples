@@ -12,64 +12,51 @@ inherit
 
 feature -- Test routines
 
-    
+
     test_mail_orders
             -- displays a list of mail service orders
+            --
             -- 
-            --  
         local
-            l_response: LIST [MAIL_ORDER]
+            l_response: LIST [GET_MAIL_ORDERS_200_RESPONSE_INNER]
         do
             -- TODO: Initialize required params.
-                      
+
             -- l_response := api.mail_orders
             assert ("not_implemented", False)
         end
-    
+
     test_ping_server
             -- Checks if the server is running
+            --
             -- 
-            --  
         local
         do
             -- TODO: Initialize required params.
-                      
+
             -- api.ping_server
             assert ("not_implemented", False)
         end
-    
-    test_place_mail_order
-            -- places a mail order
-            -- 
-            -- Adds an item to the system 
-        local
-            l_mail_order: MAIL_ORDER
-        do
-            -- TODO: Initialize required params.
-                      
-            -- api.place_mail_order(l_mail_order)
-            assert ("not_implemented", False)
-        end
-    
+
     test_send_adv_mail
             -- Sends an Email with Advanced Options
-            -- 
-            -- Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc. 
+            --
+            -- Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
         local
             l_response: GENERIC_RESPONSE
             l_send_mail_adv: SEND_MAIL_ADV
         do
             -- TODO: Initialize required params.
             -- l_send_mail_adv
-                      
+
             -- l_response := api.send_adv_mail(l_send_mail_adv)
             assert ("not_implemented", False)
         end
-    
+
     test_send_mail
             -- Sends an Email
-            -- 
-            -- Sends An email through one of your mail orders. 
+            --
+            -- Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
         local
             l_response: GENERIC_RESPONSE
             l_to: STRING_32
@@ -82,37 +69,25 @@ feature -- Test routines
             -- l_var_from
             -- l_subject
             -- l_body
-                      
+
             -- l_response := api.send_mail(l_to, l_var_from, l_subject, l_body)
             assert ("not_implemented", False)
         end
-    
-    test_validate_mail_order
-            -- validatess order details before placing an order
-            -- 
-            --  
-        local
-        do
-            -- TODO: Initialize required params.
-                      
-            -- api.validate_mail_order
-            assert ("not_implemented", False)
-        end
-    
+
     test_view_mail_log
             -- displays the mail log
-            -- 
-            -- By passing in the appropriate options, you can search for available inventory in the system  
+            --
+            -- By passing in the appropriate options, you can search for available inventory in the system 
         local
-            l_response: LIST [MAIL_LOG]
+            l_response: MAIL_LOG
             l_id: INTEGER_64
-            l_search_string: STRING_32
+            l_search: STRING_32
             l_skip: INTEGER_32
             l_limit: INTEGER_32
         do
             -- TODO: Initialize required params.
-                      
-            -- l_response := api.view_mail_log(l_id, l_search_string, l_skip, l_limit)
+
+            -- l_response := api.view_mail_log(l_id, l_search, l_skip, l_limit)
             assert ("not_implemented", False)
         end
 
@@ -120,7 +95,7 @@ feature {NONE} -- Implementation
 
     api: DEFAULT_API
             -- Create an object instance of `DEFAULT_API'.
-        once            
+        once
             create { DEFAULT_API } Result
         end
 

@@ -6,10 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
-[**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
 [**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
-[**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 [**viewMailLog**](DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 
 
@@ -30,7 +28,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**array[MailOrder]**](MailOrder.md)
+[**array[GetMailOrders200ResponseInner]**](GetMailOrders200ResponseInner.md)
 
 ### Authorization
 
@@ -39,7 +37,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not Applicable
-- **Accept**: application/json, application/xml, text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -70,41 +68,6 @@ No authorization required
 
 - **Content-Type**: Not Applicable
 - **Accept**: Not Applicable
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## placeMailOrder
-
-places a mail order
-
-Adds an item to the system
-
-### Example
-
-```bash
- placeMailOrder
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **mailOrder** | [**MailOrder**](MailOrder.md) | Inventory item to add | [optional]
-
-### Return type
-
-(empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -148,7 +111,9 @@ Name | Type | Description  | Notes
 
 Sends an Email
 
-Sends An email through one of your mail orders.
+Sends an email through one of your mail orders.
+
+*Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead.
 
 ### Example
 
@@ -182,36 +147,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## validateMailOrder
-
-validatess order details before placing an order
-
-### Example
-
-```bash
- validateMailOrder
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-(empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not Applicable
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## viewMailLog
 
 displays the mail log
@@ -222,7 +157,7 @@ available inventory in the system
 ### Example
 
 ```bash
- viewMailLog  id=value  searchString=value  skip=value  limit=value
+ viewMailLog  id=value  search=value  skip=value  limit=value
 ```
 
 ### Parameters
@@ -231,13 +166,13 @@ available inventory in the system
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **integer** | The ID of your mail order this will be sent through. | [optional] [default to null]
- **searchString** | **string** | pass an optional search string for looking up inventory | [optional] [default to null]
- **skip** | **integer** | number of records to skip for pagination | [optional] [default to null]
- **limit** | **integer** | maximum number of records to return | [optional] [default to null]
+ **search** | **string** | pass an optional search string for looking up inventory | [optional] [default to null]
+ **skip** | **integer** | number of records to skip for pagination | [optional] [default to 0]
+ **limit** | **integer** | maximum number of records to return | [optional] [default to 100]
 
 ### Return type
 
-[**array[MailLog]**](MailLog.md)
+[**MailLog**](MailLog.md)
 
 ### Authorization
 

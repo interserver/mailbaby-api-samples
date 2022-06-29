@@ -11,32 +11,31 @@ type t = {
     subject: string;
     (* The main email contents. *)
     body: string;
-    (* The contact whom is the this email is from. *)
-    from: Send_mail_adv_from.t list;
-    (* The Contact whom is the primary recipient of this email. *)
-    _to: Mail_contact.t list;
-    (* The ID of the Mail order within our system to use as the Mail Account. *)
-    id: int64;
-    (* Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. *)
-    replyto: Mail_contact.t list;
-    (* Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. *)
-    cc: Mail_contact.t list;
-    (* Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. *)
-    bcc: Mail_contact.t list;
-    (* Optional file attachments to include in the email *)
-    attachments: Mail_attachment.t list;
+    from: Send_mail_adv_from.t;
+    (* A list of destionation email addresses to send this to *)
+    _to: Send_mail_adv_to_inner.t list;
+    (* (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. *)
+    replyto: Send_mail_adv_replyto_inner.t list;
+    (* (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. *)
+    cc: Send_mail_adv_cc_inner.t list;
+    (* (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. *)
+    bcc: Send_mail_adv_bcc_inner.t list;
+    (* (optional) File attachments to include in the email.  The file contents must be base64 encoded! *)
+    attachments: Send_mail_adv_attachments_inner.t list;
+    (* (optional)  ID of the Mail order within our system to use as the Mail Account. *)
+    id: int64 option [@default None];
 } [@@deriving yojson { strict = false }, show ];;
 
 (** Details for an Email *)
-let create (subject : string) (body : string) (from : Send_mail_adv_from.t list) (_to : Mail_contact.t list) (id : int64) : t = {
+let create (subject : string) (body : string) (from : Send_mail_adv_from.t) (_to : Send_mail_adv_to_inner.t list) : t = {
     subject = subject;
     body = body;
     from = from;
     _to = _to;
-    id = id;
     replyto = [];
     cc = [];
     bcc = [];
     attachments = [];
+    id = None;
 }
 

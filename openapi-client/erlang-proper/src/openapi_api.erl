@@ -2,10 +2,8 @@
 
 -export([ get_mail_orders/0
         , ping_server/0
-        , place_mail_order/1
         , send_adv_mail/1
         , send_mail/4
-        , validate_mail_order/0
         , view_mail_log/0
         ]).
 
@@ -33,19 +31,6 @@ ping_server() ->
 
   openapi_utils:request(Method, [Host, ?BASE_URL, Path]).
 
-%% @doc places a mail order
-%% Adds an item to the system
--spec place_mail_order() ->
-  openapi_utils:response().
-place_mail_order() ->
-  Method      = post,
-  Host        = application:get_env(openapi, host, "http://localhost:8080"),
-  Path        = ["/mail/order"],
-  Body        = OpenapiMailOrder,
-  ContentType = hd(["application/json"]),
-
-  openapi_utils:request(Method, [Host, ?BASE_URL, Path], jsx:encode(Body), ContentType).
-
 %% @doc Sends an Email with Advanced Options
 %% Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 -spec send_adv_mail(openapi_send_mail_adv:openapi_send_mail_adv()) ->
@@ -60,7 +45,7 @@ send_adv_mail(OpenapiSendMailAdv) ->
   openapi_utils:request(Method, [Host, ?BASE_URL, Path], jsx:encode(Body), ContentType).
 
 %% @doc Sends an Email
-%% Sends An email through one of your mail orders.
+%% Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
 -spec send_mail(binary(), binary(), binary(), binary()) ->
   openapi_utils:response().
 send_mail(To, From, Subject, Body) ->
@@ -72,17 +57,6 @@ send_mail(To, From, Subject, Body) ->
 
   openapi_utils:request(Method, [Host, ?BASE_URL, Path], jsx:encode(Body), ContentType).
 
-%% @doc validatess order details before placing an order
-%% 
--spec validate_mail_order() ->
-  openapi_utils:response().
-validate_mail_order() ->
-  Method      = get,
-  Host        = application:get_env(openapi, host, "http://localhost:8080"),
-  Path        = ["/mail/order"],
-
-  openapi_utils:request(Method, [Host, ?BASE_URL, Path]).
-
 %% @doc displays the mail log
 %% By passing in the appropriate options, you can search for available inventory in the system 
 -spec view_mail_log() ->
@@ -91,7 +65,7 @@ view_mail_log() ->
   Method      = get,
   Host        = application:get_env(openapi, host, "http://localhost:8080"),
   Path        = ["/mail/log"],
-  QueryString = [<<"id=">>, Id, <<"&">>, <<"searchString=">>, SearchString, <<"&">>, <<"skip=">>, Skip, <<"&">>, <<"limit=">>, Limit, <<"&">>],
+  QueryString = [<<"id=">>, Id, <<"&">>, <<"search=">>, Search, <<"&">>, <<"skip=">>, Skip, <<"&">>, <<"limit=">>, Limit, <<"&">>],
 
   openapi_utils:request(Method, [Host, ?BASE_URL, Path, <<"?">>, QueryString]).
 

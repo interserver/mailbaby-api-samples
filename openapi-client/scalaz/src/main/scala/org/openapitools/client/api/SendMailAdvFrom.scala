@@ -14,7 +14,7 @@ import SendMailAdvFrom._
 case class SendMailAdvFrom (
   /* The email address */
   email: String,
-/* Optional contact name */
+/* (optional) Name to use for the sending contact. */
   name: Option[String])
 
 object SendMailAdvFrom {

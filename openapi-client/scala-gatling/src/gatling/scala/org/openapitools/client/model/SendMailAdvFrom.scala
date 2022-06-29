@@ -5,7 +5,7 @@ package org.openapitools.client.model
 case class SendMailAdvFrom (
     /* The email address */
     _email: String,
-    /* Optional contact name */
+    /* (optional) Name to use for the sending contact. */
     _name: Option[String]
 )
 object SendMailAdvFrom {

@@ -3,13 +3,13 @@
 
 context("Test SendMail")
 
-model.instance <- SendMail$new()
+model_instance <- SendMail$new()
 
 test_that("to", {
   # tests for the property `to` (character)
   # The Contact whom is the primary recipient of this email.
 
-  # uncomment below to test the property 
+  # uncomment below to test the property
   #expect_equal(model.instance$`to`, "EXPECTED_RESULT")
 })
 
@@ -17,7 +17,7 @@ test_that("from", {
   # tests for the property `from` (character)
   # The contact whom is the this email is from.
 
-  # uncomment below to test the property 
+  # uncomment below to test the property
   #expect_equal(model.instance$`from`, "EXPECTED_RESULT")
 })
 
@@ -25,7 +25,7 @@ test_that("subject", {
   # tests for the property `subject` (character)
   # The subject or title of the email
 
-  # uncomment below to test the property 
+  # uncomment below to test the property
   #expect_equal(model.instance$`subject`, "EXPECTED_RESULT")
 })
 
@@ -33,7 +33,6 @@ test_that("body", {
   # tests for the property `body` (character)
   # The main email contents.
 
-  # uncomment below to test the property 
+  # uncomment below to test the property
   #expect_equal(model.instance$`body`, "EXPECTED_RESULT")
 })
-

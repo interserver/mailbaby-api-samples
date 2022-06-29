@@ -22,9 +22,9 @@ import scalaz.concurrent.Task
 import HelperCodecs._
 
 import org.openapitools.client.api.GenericResponse
-import org.openapitools.client.api.InlineResponse401
+import org.openapitools.client.api.GetMailOrders200ResponseInner
+import org.openapitools.client.api.GetMailOrders401Response
 import org.openapitools.client.api.MailLog
-import org.openapitools.client.api.MailOrder
 import org.openapitools.client.api.SendMailAdv
 
 object DefaultApi {
@@ -33,11 +33,11 @@ object DefaultApi {
 
   def escape(value: String): String = URLEncoder.encode(value, "utf-8").replaceAll("\\+", "%20")
 
-  def getMailOrders(host: String): Task[List[MailOrder]] = {
-    implicit val returnTypeDecoder: EntityDecoder[List[MailOrder]] = jsonOf[List[MailOrder]]
+  def getMailOrders(host: String): Task[List[GetMailOrders200ResponseInner]] = {
+    implicit val returnTypeDecoder: EntityDecoder[List[GetMailOrders200ResponseInner]] = jsonOf[List[GetMailOrders200ResponseInner]]
 
     val path = "/mail"
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -49,14 +49,14 @@ object DefaultApi {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
       uriWithParams =  uri.copy(query = queryParams)
       req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[List[MailOrder]](req)
+      resp          <- client.expect[List[GetMailOrders200ResponseInner]](req)
 
     } yield resp
   }
-  
+
   def pingServer(host: String): Task[Unit] = {
     val path = "/ping"
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -72,31 +72,12 @@ object DefaultApi {
 
     } yield resp
   }
-  
-  def placeMailOrder(host: String, mailOrder: MailOrder): Task[Unit] = {
-    val path = "/mail/order"
-    
-    val httpMethod = Method.POST
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      )
 
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(host + path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(mailOrder)
-      resp          <- client.fetch[Unit](req)(_ => Task.now(()))
-
-    } yield resp
-  }
-  
   def sendAdvMail(host: String, sendMailAdv: SendMailAdv): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/advsend"
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -112,12 +93,12 @@ object DefaultApi {
 
     } yield resp
   }
-  
+
   def sendMail(host: String, to: String, from: String, subject: String, body: String): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/send"
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -133,47 +114,28 @@ object DefaultApi {
 
     } yield resp
   }
-  
-  def validateMailOrder(host: String): Task[Unit] = {
-    val path = "/mail/order"
-    
-    val httpMethod = Method.GET
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      )
 
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(host + path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.fetch[Unit](req)(_ => Task.now(()))
-
-    } yield resp
-  }
-  
-  def viewMailLog(host: String, id: Long, searchString: String, skip: Integer, limit: Integer)(implicit idQuery: QueryParam[Long], searchStringQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer]): Task[List[MailLog]] = {
-    implicit val returnTypeDecoder: EntityDecoder[List[MailLog]] = jsonOf[List[MailLog]]
+  def viewMailLog(host: String, id: Long, search: String, skip: Integer = 0, limit: Integer = 100)(implicit idQuery: QueryParam[Long], searchQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer]): Task[MailLog] = {
+    implicit val returnTypeDecoder: EntityDecoder[MailLog] = jsonOf[MailLog]
 
     val path = "/mail/log"
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
       )
     val queryParams = Query(
-      ("id", Some(idQuery.toParamString(id))), ("searchString", Some(searchStringQuery.toParamString(searchString))), ("skip", Some(skipQuery.toParamString(skip))), ("limit", Some(limitQuery.toParamString(limit))))
+      ("id", Some(idQuery.toParamString(id))), ("search", Some(searchQuery.toParamString(search))), ("skip", Some(skipQuery.toParamString(skip))), ("limit", Some(limitQuery.toParamString(limit))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
       uriWithParams =  uri.copy(query = queryParams)
       req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[List[MailLog]](req)
+      resp          <- client.expect[MailLog](req)
 
     } yield resp
   }
-  
+
 }
 
 class HttpServiceDefaultApi(service: HttpService) {
@@ -181,11 +143,11 @@ class HttpServiceDefaultApi(service: HttpService) {
 
   def escape(value: String): String = URLEncoder.encode(value, "utf-8").replaceAll("\\+", "%20")
 
-  def getMailOrders(): Task[List[MailOrder]] = {
-    implicit val returnTypeDecoder: EntityDecoder[List[MailOrder]] = jsonOf[List[MailOrder]]
+  def getMailOrders(): Task[List[GetMailOrders200ResponseInner]] = {
+    implicit val returnTypeDecoder: EntityDecoder[List[GetMailOrders200ResponseInner]] = jsonOf[List[GetMailOrders200ResponseInner]]
 
     val path = "/mail"
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -197,14 +159,14 @@ class HttpServiceDefaultApi(service: HttpService) {
       uri           <- Task.fromDisjunction(Uri.fromString(path))
       uriWithParams =  uri.copy(query = queryParams)
       req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[List[MailOrder]](req)
+      resp          <- client.expect[List[GetMailOrders200ResponseInner]](req)
 
     } yield resp
   }
-  
+
   def pingServer(): Task[Unit] = {
     val path = "/ping"
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -220,31 +182,12 @@ class HttpServiceDefaultApi(service: HttpService) {
 
     } yield resp
   }
-  
-  def placeMailOrder(mailOrder: MailOrder): Task[Unit] = {
-    val path = "/mail/order"
-    
-    val httpMethod = Method.POST
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      )
 
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(mailOrder)
-      resp          <- client.fetch[Unit](req)(_ => Task.now(()))
-
-    } yield resp
-  }
-  
   def sendAdvMail(sendMailAdv: SendMailAdv): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/advsend"
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -260,12 +203,12 @@ class HttpServiceDefaultApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def sendMail(to: String, from: String, subject: String, body: String): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/send"
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -281,45 +224,26 @@ class HttpServiceDefaultApi(service: HttpService) {
 
     } yield resp
   }
-  
-  def validateMailOrder(): Task[Unit] = {
-    val path = "/mail/order"
-    
-    val httpMethod = Method.GET
-    val contentType = `Content-Type`(MediaType.`application/json`)
-    val headers = Headers(
-      )
-    val queryParams = Query(
-      )
 
-    for {
-      uri           <- Task.fromDisjunction(Uri.fromString(path))
-      uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.fetch[Unit](req)(_ => Task.now(()))
-
-    } yield resp
-  }
-  
-  def viewMailLog(id: Long, searchString: String, skip: Integer, limit: Integer)(implicit idQuery: QueryParam[Long], searchStringQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer]): Task[List[MailLog]] = {
-    implicit val returnTypeDecoder: EntityDecoder[List[MailLog]] = jsonOf[List[MailLog]]
+  def viewMailLog(id: Long, search: String, skip: Integer = 0, limit: Integer = 100)(implicit idQuery: QueryParam[Long], searchQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer]): Task[MailLog] = {
+    implicit val returnTypeDecoder: EntityDecoder[MailLog] = jsonOf[MailLog]
 
     val path = "/mail/log"
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
       )
     val queryParams = Query(
-      ("id", Some(idQuery.toParamString(id))), ("searchString", Some(searchStringQuery.toParamString(searchString))), ("skip", Some(skipQuery.toParamString(skip))), ("limit", Some(limitQuery.toParamString(limit))))
+      ("id", Some(idQuery.toParamString(id))), ("search", Some(searchQuery.toParamString(search))), ("skip", Some(skipQuery.toParamString(skip))), ("limit", Some(limitQuery.toParamString(limit))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))
       uriWithParams =  uri.copy(query = queryParams)
       req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[List[MailLog]](req)
+      resp          <- client.expect[MailLog](req)
 
     } yield resp
   }
-  
+
 }

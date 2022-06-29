@@ -2,16 +2,19 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
-import { ErrorResponse } from '../models/ErrorResponse';
 import { GenericResponse } from '../models/GenericResponse';
-import { InlineResponse401 } from '../models/InlineResponse401';
-import { MailAttachment } from '../models/MailAttachment';
-import { MailContact } from '../models/MailContact';
+import { GetMailOrders200ResponseInner } from '../models/GetMailOrders200ResponseInner';
+import { GetMailOrders401Response } from '../models/GetMailOrders401Response';
 import { MailLog } from '../models/MailLog';
-import { MailOrder } from '../models/MailOrder';
+import { MailLogEntry } from '../models/MailLogEntry';
 import { SendMail } from '../models/SendMail';
 import { SendMailAdv } from '../models/SendMailAdv';
+import { SendMailAdvAttachmentsInner } from '../models/SendMailAdvAttachmentsInner';
+import { SendMailAdvBccInner } from '../models/SendMailAdvBccInner';
+import { SendMailAdvCcInner } from '../models/SendMailAdvCcInner';
 import { SendMailAdvFrom } from '../models/SendMailAdvFrom';
+import { SendMailAdvReplytoInner } from '../models/SendMailAdvReplytoInner';
+import { SendMailAdvToInner } from '../models/SendMailAdvToInner';
 import { ObservableDefaultApi } from './ObservableAPI';
 
 import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
@@ -29,26 +32,16 @@ export class PromiseDefaultApi {
     /**
      * displays a list of mail service orders
      */
-    public getMailOrders(options?: Configuration): Promise<Array<MailOrder>> {
-        const result = this.api.getMailOrders(options);
+    public getMailOrders(_options?: Configuration): Promise<Array<GetMailOrders200ResponseInner>> {
+        const result = this.api.getMailOrders(_options);
         return result.toPromise();
     }
 
     /**
      * Checks if the server is running
      */
-    public pingServer(options?: Configuration): Promise<void> {
-        const result = this.api.pingServer(options);
-        return result.toPromise();
-    }
-
-    /**
-     * Adds an item to the system
-     * places a mail order
-     * @param mailOrder Inventory item to add
-     */
-    public placeMailOrder(mailOrder?: MailOrder, options?: Configuration): Promise<void> {
-        const result = this.api.placeMailOrder(mailOrder, options);
+    public pingServer(_options?: Configuration): Promise<void> {
+        const result = this.api.pingServer(_options);
         return result.toPromise();
     }
 
@@ -57,29 +50,21 @@ export class PromiseDefaultApi {
      * Sends an Email with Advanced Options
      * @param sendMailAdv 
      */
-    public sendAdvMail(sendMailAdv: SendMailAdv, options?: Configuration): Promise<GenericResponse> {
-        const result = this.api.sendAdvMail(sendMailAdv, options);
+    public sendAdvMail(sendMailAdv: SendMailAdv, _options?: Configuration): Promise<GenericResponse> {
+        const result = this.api.sendAdvMail(sendMailAdv, _options);
         return result.toPromise();
     }
 
     /**
-     * Sends An email through one of your mail orders.
+     * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
      * Sends an Email
      * @param to The Contact whom is the primary recipient of this email.
-     * @param from The contact whom is the this email is from.
+     * @param _from The contact whom is the this email is from.
      * @param subject The subject or title of the email
      * @param body The main email contents.
      */
-    public sendMail(to: string, from: string, subject: string, body: string, options?: Configuration): Promise<GenericResponse> {
-        const result = this.api.sendMail(to, from, subject, body, options);
-        return result.toPromise();
-    }
-
-    /**
-     * validatess order details before placing an order
-     */
-    public validateMailOrder(options?: Configuration): Promise<void> {
-        const result = this.api.validateMailOrder(options);
+    public sendMail(to: string, _from: string, subject: string, body: string, _options?: Configuration): Promise<GenericResponse> {
+        const result = this.api.sendMail(to, _from, subject, body, _options);
         return result.toPromise();
     }
 
@@ -87,12 +72,12 @@ export class PromiseDefaultApi {
      * By passing in the appropriate options, you can search for available inventory in the system 
      * displays the mail log
      * @param id The ID of your mail order this will be sent through.
-     * @param searchString pass an optional search string for looking up inventory
+     * @param search pass an optional search string for looking up inventory
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      */
-    public viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options?: Configuration): Promise<Array<MailLog>> {
-        const result = this.api.viewMailLog(id, searchString, skip, limit, options);
+    public viewMailLog(id?: number, search?: string, skip?: number, limit?: number, _options?: Configuration): Promise<MailLog> {
+        const result = this.api.viewMailLog(id, search, skip, limit, _options);
         return result.toPromise();
     }
 

@@ -1,10 +1,11 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
 import 'package:openapi/api.dart';
@@ -12,7 +13,7 @@ import 'package:test/test.dart';
 
 // tests for SendMailAdv
 void main() {
-  final instance = SendMailAdv();
+  // final instance = SendMailAdv();
 
   group('test SendMailAdv', () {
     // The subject or title of the email
@@ -27,45 +28,44 @@ void main() {
       // TODO
     });
 
-    // The contact whom is the this email is from.
-    // List<SendMailAdvFrom> from (default value: const [])
+    // SendMailAdvFrom from
     test('to test the property `from`', () async {
       // TODO
     });
 
-    // The Contact whom is the primary recipient of this email.
-    // List<MailContact> to (default value: const [])
+    // A list of destionation email addresses to send this to
+    // List<SendMailAdvToInner> to (default value: const [])
     test('to test the property `to`', () async {
       // TODO
     });
 
-    // The ID of the Mail order within our system to use as the Mail Account.
-    // int id
-    test('to test the property `id`', () async {
-      // TODO
-    });
-
-    // Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-    // List<MailContact> replyto (default value: const [])
+    // (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+    // List<SendMailAdvReplytoInner> replyto (default value: const [])
     test('to test the property `replyto`', () async {
       // TODO
     });
 
-    // Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-    // List<MailContact> cc (default value: const [])
+    // (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+    // List<SendMailAdvCcInner> cc (default value: const [])
     test('to test the property `cc`', () async {
       // TODO
     });
 
-    // Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-    // List<MailContact> bcc (default value: const [])
+    // (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+    // List<SendMailAdvBccInner> bcc (default value: const [])
     test('to test the property `bcc`', () async {
       // TODO
     });
 
-    // Optional file attachments to include in the email
-    // List<MailAttachment> attachments (default value: const [])
+    // (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+    // List<SendMailAdvAttachmentsInner> attachments (default value: const [])
     test('to test the property `attachments`', () async {
+      // TODO
+    });
+
+    // (optional)  ID of the Mail order within our system to use as the Mail Account.
+    // int id
+    test('to test the property `id`', () async {
       // TODO
     });
 

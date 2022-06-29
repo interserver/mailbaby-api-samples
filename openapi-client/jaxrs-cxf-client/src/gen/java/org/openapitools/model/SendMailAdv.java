@@ -3,24 +3,21 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import java.util.ArrayList;
 import java.util.List;
-import org.openapitools.model.MailAttachment;
-import org.openapitools.model.MailContact;
+import org.openapitools.model.SendMailAdvAttachmentsInner;
+import org.openapitools.model.SendMailAdvBccInner;
+import org.openapitools.model.SendMailAdvCcInner;
 import org.openapitools.model.SendMailAdvFrom;
+import org.openapitools.model.SendMailAdvReplytoInner;
+import org.openapitools.model.SendMailAdvToInner;
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
   * Details for an Email
  **/
 @ApiModel(description="Details for an Email")
+
 public class SendMailAdv  {
   
   @ApiModelProperty(example = "Your Package has been Delivered!", required = true, value = "The subject or title of the email")
@@ -29,53 +26,50 @@ public class SendMailAdv  {
   **/
   private String subject;
 
-  @ApiModelProperty(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else. ", required = true, value = "The main email contents.")
+  @ApiModelProperty(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.", required = true, value = "The main email contents.")
  /**
    * The main email contents.
   **/
   private String body;
 
-  @ApiModelProperty(required = true, value = "The contact whom is the this email is from.")
- /**
-   * The contact whom is the this email is from.
-  **/
-  private List<SendMailAdvFrom> from = new ArrayList<>();
+  @ApiModelProperty(required = true, value = "")
+  private SendMailAdvFrom from;
 
-  @ApiModelProperty(required = true, value = "The Contact whom is the primary recipient of this email.")
+  @ApiModelProperty(required = true, value = "A list of destionation email addresses to send this to")
  /**
-   * The Contact whom is the primary recipient of this email.
+   * A list of destionation email addresses to send this to
   **/
-  private List<MailContact> to = new ArrayList<>();
+  private List<SendMailAdvToInner> to = new ArrayList<>();
 
-  @ApiModelProperty(example = "5000", required = true, value = "The ID of the Mail order within our system to use as the Mail Account.")
+  @ApiModelProperty(value = "(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.")
  /**
-   * The ID of the Mail order within our system to use as the Mail Account.
+   * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+  **/
+  private List<SendMailAdvReplytoInner> replyto = null;
+
+  @ApiModelProperty(value = "(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.")
+ /**
+   * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+  **/
+  private List<SendMailAdvCcInner> cc = null;
+
+  @ApiModelProperty(value = "(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.")
+ /**
+   * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+  **/
+  private List<SendMailAdvBccInner> bcc = null;
+
+  @ApiModelProperty(value = "(optional) File attachments to include in the email.  The file contents must be base64 encoded!")
+ /**
+   * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+  **/
+  private List<SendMailAdvAttachmentsInner> attachments = null;
+
+  @ApiModelProperty(example = "5000", value = "(optional)  ID of the Mail order within our system to use as the Mail Account.")
+ /**
+   * (optional)  ID of the Mail order within our system to use as the Mail Account.
   **/
   private Long id;
-
-  @ApiModelProperty(value = "Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.")
- /**
-   * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-  **/
-  private List<MailContact> replyto = null;
-
-  @ApiModelProperty(value = "Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.")
- /**
-   * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-  **/
-  private List<MailContact> cc = null;
-
-  @ApiModelProperty(value = "Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.")
- /**
-   * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-  **/
-  private List<MailContact> bcc = null;
-
-  @ApiModelProperty(value = "Optional file attachments to include in the email")
- /**
-   * Optional file attachments to include in the email
-  **/
-  private List<MailAttachment> attachments = null;
  /**
    * The subject or title of the email
    * @return subject
@@ -113,53 +107,140 @@ public class SendMailAdv  {
   }
 
  /**
-   * The contact whom is the this email is from.
+   * Get from
    * @return from
   **/
   @JsonProperty("from")
-  public List<SendMailAdvFrom> getFrom() {
+  public SendMailAdvFrom getFrom() {
     return from;
   }
 
-  public void setFrom(List<SendMailAdvFrom> from) {
+  public void setFrom(SendMailAdvFrom from) {
     this.from = from;
   }
 
-  public SendMailAdv from(List<SendMailAdvFrom> from) {
+  public SendMailAdv from(SendMailAdvFrom from) {
     this.from = from;
-    return this;
-  }
-
-  public SendMailAdv addFromItem(SendMailAdvFrom fromItem) {
-    this.from.add(fromItem);
     return this;
   }
 
  /**
-   * The Contact whom is the primary recipient of this email.
+   * A list of destionation email addresses to send this to
    * @return to
   **/
   @JsonProperty("to")
-  public List<MailContact> getTo() {
+  public List<SendMailAdvToInner> getTo() {
     return to;
   }
 
-  public void setTo(List<MailContact> to) {
+  public void setTo(List<SendMailAdvToInner> to) {
     this.to = to;
   }
 
-  public SendMailAdv to(List<MailContact> to) {
+  public SendMailAdv to(List<SendMailAdvToInner> to) {
     this.to = to;
     return this;
   }
 
-  public SendMailAdv addToItem(MailContact toItem) {
+  public SendMailAdv addToItem(SendMailAdvToInner toItem) {
     this.to.add(toItem);
     return this;
   }
 
  /**
-   * The ID of the Mail order within our system to use as the Mail Account.
+   * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+   * @return replyto
+  **/
+  @JsonProperty("replyto")
+  public List<SendMailAdvReplytoInner> getReplyto() {
+    return replyto;
+  }
+
+  public void setReplyto(List<SendMailAdvReplytoInner> replyto) {
+    this.replyto = replyto;
+  }
+
+  public SendMailAdv replyto(List<SendMailAdvReplytoInner> replyto) {
+    this.replyto = replyto;
+    return this;
+  }
+
+  public SendMailAdv addReplytoItem(SendMailAdvReplytoInner replytoItem) {
+    this.replyto.add(replytoItem);
+    return this;
+  }
+
+ /**
+   * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+   * @return cc
+  **/
+  @JsonProperty("cc")
+  public List<SendMailAdvCcInner> getCc() {
+    return cc;
+  }
+
+  public void setCc(List<SendMailAdvCcInner> cc) {
+    this.cc = cc;
+  }
+
+  public SendMailAdv cc(List<SendMailAdvCcInner> cc) {
+    this.cc = cc;
+    return this;
+  }
+
+  public SendMailAdv addCcItem(SendMailAdvCcInner ccItem) {
+    this.cc.add(ccItem);
+    return this;
+  }
+
+ /**
+   * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+   * @return bcc
+  **/
+  @JsonProperty("bcc")
+  public List<SendMailAdvBccInner> getBcc() {
+    return bcc;
+  }
+
+  public void setBcc(List<SendMailAdvBccInner> bcc) {
+    this.bcc = bcc;
+  }
+
+  public SendMailAdv bcc(List<SendMailAdvBccInner> bcc) {
+    this.bcc = bcc;
+    return this;
+  }
+
+  public SendMailAdv addBccItem(SendMailAdvBccInner bccItem) {
+    this.bcc.add(bccItem);
+    return this;
+  }
+
+ /**
+   * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+   * @return attachments
+  **/
+  @JsonProperty("attachments")
+  public List<SendMailAdvAttachmentsInner> getAttachments() {
+    return attachments;
+  }
+
+  public void setAttachments(List<SendMailAdvAttachmentsInner> attachments) {
+    this.attachments = attachments;
+  }
+
+  public SendMailAdv attachments(List<SendMailAdvAttachmentsInner> attachments) {
+    this.attachments = attachments;
+    return this;
+  }
+
+  public SendMailAdv addAttachmentsItem(SendMailAdvAttachmentsInner attachmentsItem) {
+    this.attachments.add(attachmentsItem);
+    return this;
+  }
+
+ /**
+   * (optional)  ID of the Mail order within our system to use as the Mail Account.
    * @return id
   **/
   @JsonProperty("id")
@@ -176,98 +257,6 @@ public class SendMailAdv  {
     return this;
   }
 
- /**
-   * Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.
-   * @return replyto
-  **/
-  @JsonProperty("replyto")
-  public List<MailContact> getReplyto() {
-    return replyto;
-  }
-
-  public void setReplyto(List<MailContact> replyto) {
-    this.replyto = replyto;
-  }
-
-  public SendMailAdv replyto(List<MailContact> replyto) {
-    this.replyto = replyto;
-    return this;
-  }
-
-  public SendMailAdv addReplytoItem(MailContact replytoItem) {
-    this.replyto.add(replytoItem);
-    return this;
-  }
-
- /**
-   * Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-   * @return cc
-  **/
-  @JsonProperty("cc")
-  public List<MailContact> getCc() {
-    return cc;
-  }
-
-  public void setCc(List<MailContact> cc) {
-    this.cc = cc;
-  }
-
-  public SendMailAdv cc(List<MailContact> cc) {
-    this.cc = cc;
-    return this;
-  }
-
-  public SendMailAdv addCcItem(MailContact ccItem) {
-    this.cc.add(ccItem);
-    return this;
-  }
-
- /**
-   * Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-   * @return bcc
-  **/
-  @JsonProperty("bcc")
-  public List<MailContact> getBcc() {
-    return bcc;
-  }
-
-  public void setBcc(List<MailContact> bcc) {
-    this.bcc = bcc;
-  }
-
-  public SendMailAdv bcc(List<MailContact> bcc) {
-    this.bcc = bcc;
-    return this;
-  }
-
-  public SendMailAdv addBccItem(MailContact bccItem) {
-    this.bcc.add(bccItem);
-    return this;
-  }
-
- /**
-   * Optional file attachments to include in the email
-   * @return attachments
-  **/
-  @JsonProperty("attachments")
-  public List<MailAttachment> getAttachments() {
-    return attachments;
-  }
-
-  public void setAttachments(List<MailAttachment> attachments) {
-    this.attachments = attachments;
-  }
-
-  public SendMailAdv attachments(List<MailAttachment> attachments) {
-    this.attachments = attachments;
-    return this;
-  }
-
-  public SendMailAdv addAttachmentsItem(MailAttachment attachmentsItem) {
-    this.attachments.add(attachmentsItem);
-    return this;
-  }
-
 
   @Override
   public String toString() {
@@ -278,11 +267,11 @@ public class SendMailAdv  {
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    replyto: ").append(toIndentedString(replyto)).append("\n");
     sb.append("    cc: ").append(toIndentedString(cc)).append("\n");
     sb.append("    bcc: ").append(toIndentedString(bcc)).append("\n");
     sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,4 +1,4 @@
-# org.openapitools.client - Kotlin client library for Mail Baby API
+# org.openapitools.client - Kotlin client library for MailBaby Email Delivery API
 
 ## Requires
 
@@ -37,26 +37,27 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**getMailOrders**](docs/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 *DefaultApi* | [**pingServer**](docs/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
-*DefaultApi* | [**placeMailOrder**](docs/DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
 *DefaultApi* | [**sendAdvMail**](docs/DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *DefaultApi* | [**sendMail**](docs/DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
-*DefaultApi* | [**validateMailOrder**](docs/DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
 *DefaultApi* | [**viewMailLog**](docs/DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [org.openapitools.client.models.ErrorResponse](docs/ErrorResponse.md)
  - [org.openapitools.client.models.GenericResponse](docs/GenericResponse.md)
- - [org.openapitools.client.models.InlineResponse401](docs/InlineResponse401.md)
- - [org.openapitools.client.models.MailAttachment](docs/MailAttachment.md)
- - [org.openapitools.client.models.MailContact](docs/MailContact.md)
+ - [org.openapitools.client.models.GetMailOrders200ResponseInner](docs/GetMailOrders200ResponseInner.md)
+ - [org.openapitools.client.models.GetMailOrders401Response](docs/GetMailOrders401Response.md)
  - [org.openapitools.client.models.MailLog](docs/MailLog.md)
- - [org.openapitools.client.models.MailOrder](docs/MailOrder.md)
+ - [org.openapitools.client.models.MailLogEntry](docs/MailLogEntry.md)
  - [org.openapitools.client.models.SendMail](docs/SendMail.md)
  - [org.openapitools.client.models.SendMailAdv](docs/SendMailAdv.md)
+ - [org.openapitools.client.models.SendMailAdvAttachmentsInner](docs/SendMailAdvAttachmentsInner.md)
+ - [org.openapitools.client.models.SendMailAdvBccInner](docs/SendMailAdvBccInner.md)
+ - [org.openapitools.client.models.SendMailAdvCcInner](docs/SendMailAdvCcInner.md)
  - [org.openapitools.client.models.SendMailAdvFrom](docs/SendMailAdvFrom.md)
+ - [org.openapitools.client.models.SendMailAdvReplytoInner](docs/SendMailAdvReplytoInner.md)
+ - [org.openapitools.client.models.SendMailAdvToInner](docs/SendMailAdvToInner.md)
 
 
 <a name="documentation-for-authorization"></a>

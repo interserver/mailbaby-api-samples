@@ -1,7 +1,7 @@
 /*
  * SendMailAdv_from.h
  *
- * An Email Contact
+ * The information to use for the From address in the email. from.
  */
 
 #ifndef _SendMailAdv_from_H_
@@ -20,7 +20,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief An Email Contact
+/*! \brief The information to use for the From address in the email. from.
  *
  *  \ingroup Models
  *
@@ -52,11 +52,11 @@ public:
 	/*! \brief Set The email address
 	 */
 	void setEmail(std::string  email);
-	/*! \brief Get Optional contact name
+	/*! \brief Get (optional) Name to use for the sending contact.
 	 */
 	std::string getName();
 
-	/*! \brief Set Optional contact name
+	/*! \brief Set (optional) Name to use for the sending contact.
 	 */
 	void setName(std::string  name);
 

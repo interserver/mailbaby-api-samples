@@ -1,11 +1,14 @@
 # Org.OpenAPITools.Model.MailLog
-Mail Order Details
+Mail log records
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **long** |  | [optional] 
+**Total** | **int** | total number of mail log entries | 
+**Skip** | **int** | number of emails skipped in listing | 
+**Limit** | **int** | number of emails to return | 
+**Emails** | [**List&lt;MailLogEntry&gt;**](MailLogEntry.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,10 +1,11 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
 library openapi.api;
@@ -28,16 +29,19 @@ part 'auth/http_bearer_auth.dart';
 
 part 'api/default_api.dart';
 
-part 'model/error_response.dart';
 part 'model/generic_response.dart';
-part 'model/inline_response401.dart';
-part 'model/mail_attachment.dart';
-part 'model/mail_contact.dart';
+part 'model/get_mail_orders200_response_inner.dart';
+part 'model/get_mail_orders401_response.dart';
 part 'model/mail_log.dart';
-part 'model/mail_order.dart';
+part 'model/mail_log_entry.dart';
 part 'model/send_mail.dart';
 part 'model/send_mail_adv.dart';
+part 'model/send_mail_adv_attachments_inner.dart';
+part 'model/send_mail_adv_bcc_inner.dart';
+part 'model/send_mail_adv_cc_inner.dart';
 part 'model/send_mail_adv_from.dart';
+part 'model/send_mail_adv_replyto_inner.dart';
+part 'model/send_mail_adv_to_inner.dart';
 
 
 const _delimiters = {'csv': ',', 'ssv': ' ', 'tsv': '\t', 'pipes': '|'};

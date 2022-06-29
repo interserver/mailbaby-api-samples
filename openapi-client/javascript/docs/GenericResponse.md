@@ -1,4 +1,4 @@
-# MailBabyApi.GenericResponse
+# MailBabyEmailDeliveryApi.GenericResponse
 
 ## Properties
 

@@ -1,0 +1,1 @@
+Error: Invalid or corrupt jarfile /home/sites/mailbaby-mail-api/swagger-codegen-cli.jar

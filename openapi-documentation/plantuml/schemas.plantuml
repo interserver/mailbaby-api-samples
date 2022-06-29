@@ -1,37 +1,13 @@
 @startuml
 
-title Mail Baby API Schemas Diagram
+title MailBaby Email Delivery API Schemas Diagram
 
-entity ErrorResponse { 
-    * code: String
-    * message: String
-}
-
-entity GenericResponse { 
+entity GenericResponse {
     status: String
     text: String
 }
 
-entity InlineResponse401 { 
-    * code: String
-    * message: String
-}
-
-entity MailAttachment { 
-    * data: File
-    filename: String
-}
-
-entity MailContact { 
-    * email: String
-    name: String
-}
-
-entity MailLog { 
-    id: Long
-}
-
-entity MailOrder { 
+entity GetMailOrders200ResponseInner {
     * id: Integer
     * status: String
     * username: String
@@ -39,36 +15,110 @@ entity MailOrder {
     comment: String
 }
 
-entity SendMail { 
+entity GetMailOrders401Response {
+    * code: String
+    * message: String
+}
+
+entity MailLog {
+    * total: Integer
+    * skip: Integer
+    * limit: Integer
+    * emails: List<MailLogEntry>
+}
+
+entity MailLogEntry {
+    * _id: Integer
+    * id: String
+    * from: String
+    * to: String
+    * subject: String
+    * messageId: String
+    * created: String
+    * time: Integer
+    * user: String
+    * transtype: String
+    * transhost: String
+    * originhost: String
+    * origin: String
+    * interface: String
+    * date: String
+    * sendingZone: String
+    * bodySize: Integer
+    * sourceMd5: String
+    * seq: Integer
+    * domain: String
+    * recipient: String
+    * locked: Integer
+    * lockTime: Integer
+    * assigned: String
+    * queued: String
+    * _lock: String
+    * logger: String
+    * mxPort: Integer
+    * connectionKey: String
+    * mxHostname: String
+    * sentBodyHash: String
+    * sentBodySize: Integer
+    * md5Match: Integer
+}
+
+entity SendMail {
     * to: String
     * from: String
     * subject: String
     * body: String
 }
 
-entity SendMailAdv { 
+entity SendMailAdv {
     * subject: String
     * body: String
-    * from: List<SendMailAdvFrom>
-    * to: List<MailContact>
-    * id: Long
-    replyto: List<MailContact>
-    cc: List<MailContact>
-    bcc: List<MailContact>
-    attachments: List<MailAttachment>
+    * from: SendMailAdvFrom
+    * to: List<SendMailAdvToInner>
+    replyto: List<SendMailAdvReplytoInner>
+    cc: List<SendMailAdvCcInner>
+    bcc: List<SendMailAdvBccInner>
+    attachments: List<SendMailAdvAttachmentsInner>
+    id: Long
 }
 
-entity SendMailAdvFrom { 
+entity SendMailAdvAttachmentsInner {
+    * data: File
+    filename: String
+}
+
+entity SendMailAdvBccInner {
+    * email: String
+    name: String
+}
+
+entity SendMailAdvCcInner {
+    * email: String
+    name: String
+}
+
+entity SendMailAdvFrom {
+    * email: String
+    name: String
+}
+
+entity SendMailAdvReplytoInner {
+    * email: String
+    name: String
+}
+
+entity SendMailAdvToInner {
     * email: String
     name: String
 }
 
 
-SendMailAdv -- "0..*" SendMailAdvFrom : from
-SendMailAdv -- "0..*" MailContact : to
-SendMailAdv -- "0..*" MailContact : replyto
-SendMailAdv -- "0..*" MailContact : cc
-SendMailAdv -- "0..*" MailContact : bcc
-SendMailAdv -- "0..*" MailAttachment : attachments
+SendMailAdv -- SendMailAdvFrom : from
+SendMailAdv -- "0..*" SendMailAdvToInner : to
+SendMailAdv -- "0..*" SendMailAdvReplytoInner : replyto
+SendMailAdv -- "0..*" SendMailAdvCcInner : cc
+SendMailAdv -- "0..*" SendMailAdvBccInner : bcc
+SendMailAdv -- "0..*" SendMailAdvAttachmentsInner : attachments
+MailLog -- "0..*" MailLogEntry : emails
 
 @enduml

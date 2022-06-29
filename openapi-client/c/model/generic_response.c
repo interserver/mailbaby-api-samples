@@ -40,19 +40,19 @@ cJSON *generic_response_convertToJSON(generic_response_t *generic_response) {
     cJSON *item = cJSON_CreateObject();
 
     // generic_response->status
-    if(generic_response->status) { 
+    if(generic_response->status) {
     if(cJSON_AddStringToObject(item, "status", generic_response->status) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // generic_response->text
-    if(generic_response->text) { 
+    if(generic_response->text) {
     if(cJSON_AddStringToObject(item, "text", generic_response->text) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

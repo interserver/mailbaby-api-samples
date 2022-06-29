@@ -1,7 +1,7 @@
 /*
  * mail_log.h
  *
- * Mail Order Details
+ * Mail log records
  */
 
 #ifndef _mail_log_H_
@@ -15,16 +15,23 @@
 
 typedef struct mail_log_t mail_log_t;
 
+#include "mail_log_entry.h"
 
 
 
 typedef struct mail_log_t {
-    long id; //numeric
+    int total; //numeric
+    int skip; //numeric
+    int limit; //numeric
+    list_t *emails; //nonprimitive container
 
 } mail_log_t;
 
 mail_log_t *mail_log_create(
-    long id
+    int total,
+    int skip,
+    int limit,
+    list_t *emails
 );
 
 void mail_log_free(mail_log_t *mail_log);

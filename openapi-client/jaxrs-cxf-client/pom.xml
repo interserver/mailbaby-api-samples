@@ -4,8 +4,10 @@
   <artifactId>openapi-jaxrs-client</artifactId>
   <packaging>jar</packaging>
   <name>openapi-jaxrs-client</name>
-  <description>This is an API defintion for accesssing the Mail.Baby mail service.</description>
+  <description>**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.    We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. </description>
   <version>1.0.0</version>
+
+
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
@@ -111,7 +113,7 @@
         <version>${cxf-version}</version>
         <scope>test</scope>
     </dependency>
-    
+
      <!-- CXF server -->
     <dependency>
         <groupId>org.apache.cxf</groupId>
@@ -149,10 +151,15 @@
         <version>${jackson-jaxrs-version}</version>
     </dependency>
     <dependency>
-        <groupId>javax.annotation</groupId>
-        <artifactId>javax.annotation-api</artifactId>
-        <version>${javax-annotation-version}</version>
+        <groupId>jakarta.annotation</groupId>
+        <artifactId>jakarta.annotation-api</artifactId>
+        <version>${jakarta-annotation-version}</version>
         <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>joda-time</groupId>
+        <artifactId>joda-time</artifactId>
+        <version>2.10.13</version>
     </dependency>
   </dependencies>
   <repositories>
@@ -170,12 +177,11 @@
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <swagger-core-version>1.5.18</swagger-core-version>
     <jetty-version>9.2.9.v20150224</jetty-version>
-    <junit-version>4.13.1</junit-version>
-    <logback-version>1.1.7</logback-version>
-    <servlet-api-version>2.5</servlet-api-version>
+    <junit-version>4.13.2</junit-version>
+    <logback-version>1.2.10</logback-version>
     <cxf-version>3.3.0</cxf-version>
     <jackson-jaxrs-version>2.9.9</jackson-jaxrs-version>
-    <javax-annotation-version>1.3.2</javax-annotation-version>
+    <jakarta-annotation-version>1.3.5</jakarta-annotation-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>

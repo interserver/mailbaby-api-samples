@@ -6,16 +6,14 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetMailOrders**](DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
 [**PingServer**](DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
-[**PlaceMailOrder**](DefaultApi.md#placemailorder) | **POST** /mail/order | places a mail order
 [**SendAdvMail**](DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**SendMail**](DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
-[**ValidateMailOrder**](DefaultApi.md#validatemailorder) | **GET** /mail/order | validatess order details before placing an order
 [**ViewMailLog**](DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 
 <a name="getmailorders"></a>
 # **GetMailOrders**
-> List&lt;MailOrder&gt; GetMailOrders ()
+> List&lt;GetMailOrders200ResponseInner&gt; GetMailOrders ()
 
 displays a list of mail service orders
 
@@ -45,7 +43,7 @@ namespace Example
             try
             {
                 // displays a list of mail service orders
-                List<MailOrder> result = apiInstance.GetMailOrders();
+                List<GetMailOrders200ResponseInner> result = apiInstance.GetMailOrders();
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -64,7 +62,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List&lt;MailOrder&gt;**](MailOrder.md)
+[**List&lt;GetMailOrders200ResponseInner&gt;**](GetMailOrders200ResponseInner.md)
 
 ### Authorization
 
@@ -73,7 +71,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, text/plain
+ - **Accept**: application/json
 
 
 ### HTTP response details
@@ -147,84 +145,6 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Server is up and running |  -  |
 | **0** | Something is wrong |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="placemailorder"></a>
-# **PlaceMailOrder**
-> void PlaceMailOrder (MailOrder mailOrder = null)
-
-places a mail order
-
-Adds an item to the system
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class PlaceMailOrderExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.mailbaby.net";
-            // Configure API key authorization: apiKeyAuth
-            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
-
-            var apiInstance = new DefaultApi(config);
-            var mailOrder = new MailOrder(); // MailOrder | Inventory item to add (optional) 
-
-            try
-            {
-                // places a mail order
-                apiInstance.PlaceMailOrder(mailOrder);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling DefaultApi.PlaceMailOrder: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **mailOrder** | [**MailOrder**](MailOrder.md)| Inventory item to add | [optional] 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | list of mail orders |  -  |
-| **400** | The specified resource was not found |  -  |
-| **409** | The specified resource was not found |  -  |
-| **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -313,7 +233,7 @@ Name | Type | Description  | Notes
 
 Sends an Email
 
-Sends An email through one of your mail orders.
+Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
 
 ### Example
 ```csharp
@@ -337,10 +257,10 @@ namespace Example
             // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi(config);
-            var to = to_example;  // string | The Contact whom is the primary recipient of this email.
-            var from = from_example;  // string | The contact whom is the this email is from.
-            var subject = subject_example;  // string | The subject or title of the email
-            var body = body_example;  // string | The main email contents.
+            var to = "to_example";  // string | The Contact whom is the primary recipient of this email.
+            var from = "from_example";  // string | The contact whom is the this email is from.
+            var subject = "subject_example";  // string | The subject or title of the email
+            var body = "body_example";  // string | The main email contents.
 
             try
             {
@@ -392,79 +312,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="validatemailorder"></a>
-# **ValidateMailOrder**
-> void ValidateMailOrder ()
-
-validatess order details before placing an order
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class ValidateMailOrderExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://api.mailbaby.net";
-            // Configure API key authorization: apiKeyAuth
-            config.AddApiKey("X-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
-
-            var apiInstance = new DefaultApi(config);
-
-            try
-            {
-                // validatess order details before placing an order
-                apiInstance.ValidateMailOrder();
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling DefaultApi.ValidateMailOrder: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | list of mail orders |  -  |
-| **401** | Unauthorized |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a name="viewmaillog"></a>
 # **ViewMailLog**
-> List&lt;MailLog&gt; ViewMailLog (long? id = null, string searchString = null, int? skip = null, int? limit = null)
+> MailLog ViewMailLog (long? id = null, string search = null, int? skip = null, int? limit = null)
 
 displays the mail log
 
@@ -492,15 +342,15 @@ namespace Example
             // config.AddApiKeyPrefix("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi(config);
-            var id = 789;  // long? | The ID of your mail order this will be sent through. (optional) 
-            var searchString = searchString_example;  // string | pass an optional search string for looking up inventory (optional) 
-            var skip = 56;  // int? | number of records to skip for pagination (optional) 
-            var limit = 56;  // int? | maximum number of records to return (optional) 
+            var id = 789L;  // long? | The ID of your mail order this will be sent through. (optional) 
+            var search = "search_example";  // string | pass an optional search string for looking up inventory (optional) 
+            var skip = 0;  // int? | number of records to skip for pagination (optional)  (default to 0)
+            var limit = 100;  // int? | maximum number of records to return (optional)  (default to 100)
 
             try
             {
                 // displays the mail log
-                List<MailLog> result = apiInstance.ViewMailLog(id, searchString, skip, limit);
+                MailLog result = apiInstance.ViewMailLog(id, search, skip, limit);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -519,13 +369,13 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **long?**| The ID of your mail order this will be sent through. | [optional] 
- **searchString** | **string**| pass an optional search string for looking up inventory | [optional] 
- **skip** | **int?**| number of records to skip for pagination | [optional] 
- **limit** | **int?**| maximum number of records to return | [optional] 
+ **search** | **string**| pass an optional search string for looking up inventory | [optional] 
+ **skip** | **int?**| number of records to skip for pagination | [optional] [default to 0]
+ **limit** | **int?**| maximum number of records to return | [optional] [default to 100]
 
 ### Return type
 
-[**List&lt;MailLog&gt;**](MailLog.md)
+[**MailLog**](MailLog.md)
 
 ### Authorization
 

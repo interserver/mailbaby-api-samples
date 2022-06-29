@@ -22,13 +22,13 @@ send_mail_adv_from_t* instantiate_send_mail_adv_from(int include_optional) {
   send_mail_adv_from_t* send_mail_adv_from = NULL;
   if (include_optional) {
     send_mail_adv_from = send_mail_adv_from_create(
-      "johndoe@company.com",
-      "John Doe"
+      "business@company.com",
+      "The Man"
     );
   } else {
     send_mail_adv_from = send_mail_adv_from_create(
-      "johndoe@company.com",
-      "John Doe"
+      "business@company.com",
+      "The Man"
     );
   }
 

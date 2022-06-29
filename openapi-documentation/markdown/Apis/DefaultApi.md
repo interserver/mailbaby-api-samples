@@ -2,15 +2,13 @@
 
 All URIs are relative to *https://api.mailbaby.net*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
-[**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
-[**placeMailOrder**](DefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
-[**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
-[**validateMailOrder**](DefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
-[**viewMailLog**](DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**getMailOrders**](DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders |
+| [**pingServer**](DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running |
+| [**sendAdvMail**](DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options |
+| [**sendMail**](DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email |
+| [**viewMailLog**](DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log |
 
 
 <a name="getMailOrders"></a>
@@ -24,7 +22,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List**](../Models/MailOrder.md)
+[**List**](../Models/getMailOrders_200_response_inner.md)
 
 ### Authorization
 
@@ -33,7 +31,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/xml, text/plain
+- **Accept**: application/json
 
 <a name="pingServer"></a>
 # **pingServer**
@@ -57,33 +55,6 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: Not defined
 
-<a name="placeMailOrder"></a>
-# **placeMailOrder**
-> placeMailOrder(MailOrder)
-
-places a mail order
-
-    Adds an item to the system
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **MailOrder** | [**MailOrder**](../Models/MailOrder.md)| Inventory item to add | [optional]
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
 <a name="sendAdvMail"></a>
 # **sendAdvMail**
 > GenericResponse sendAdvMail(SendMailAdv)
@@ -94,9 +65,9 @@ Sends an Email with Advanced Options
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **SendMailAdv** | [**SendMailAdv**](../Models/SendMailAdv.md)|  |
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **SendMailAdv** | [**SendMailAdv**](../Models/SendMailAdv.md)|  | |
 
 ### Return type
 
@@ -117,16 +88,16 @@ Name | Type | Description  | Notes
 
 Sends an Email
 
-    Sends An email through one of your mail orders.
+    Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **to** | **String**| The Contact whom is the primary recipient of this email. | [default to null]
- **from** | **String**| The contact whom is the this email is from. | [default to null]
- **subject** | **String**| The subject or title of the email | [default to null]
- **body** | **String**| The main email contents. | [default to null]
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **to** | **String**| The Contact whom is the primary recipient of this email. | [default to null] |
+| **from** | **String**| The contact whom is the this email is from. | [default to null] |
+| **subject** | **String**| The subject or title of the email | [default to null] |
+| **body** | **String**| The main email contents. | [default to null] |
 
 ### Return type
 
@@ -141,31 +112,9 @@ Name | Type | Description  | Notes
 - **Content-Type**: application/x-www-form-urlencoded, application/json
 - **Accept**: application/json
 
-<a name="validateMailOrder"></a>
-# **validateMailOrder**
-> validateMailOrder()
-
-validatess order details before placing an order
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
 <a name="viewMailLog"></a>
 # **viewMailLog**
-> List viewMailLog(id, searchString, skip, limit)
+> MailLog viewMailLog(id, search, skip, limit)
 
 displays the mail log
 
@@ -173,16 +122,16 @@ displays the mail log
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Long**| The ID of your mail order this will be sent through. | [optional] [default to null]
- **searchString** | **String**| pass an optional search string for looking up inventory | [optional] [default to null]
- **skip** | **Integer**| number of records to skip for pagination | [optional] [default to null]
- **limit** | **Integer**| maximum number of records to return | [optional] [default to null]
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **Long**| The ID of your mail order this will be sent through. | [optional] [default to null] |
+| **search** | **String**| pass an optional search string for looking up inventory | [optional] [default to null] |
+| **skip** | **Integer**| number of records to skip for pagination | [optional] [default to 0] |
+| **limit** | **Integer**| maximum number of records to return | [optional] [default to 100] |
 
 ### Return type
 
-[**List**](../Models/MailLog.md)
+[**MailLog**](../Models/MailLog.md)
 
 ### Authorization
 

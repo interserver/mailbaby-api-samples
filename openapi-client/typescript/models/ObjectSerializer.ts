@@ -1,24 +1,30 @@
-export * from './ErrorResponse';
 export * from './GenericResponse';
-export * from './InlineResponse401';
-export * from './MailAttachment';
-export * from './MailContact';
+export * from './GetMailOrders200ResponseInner';
+export * from './GetMailOrders401Response';
 export * from './MailLog';
-export * from './MailOrder';
+export * from './MailLogEntry';
 export * from './SendMail';
 export * from './SendMailAdv';
+export * from './SendMailAdvAttachmentsInner';
+export * from './SendMailAdvBccInner';
+export * from './SendMailAdvCcInner';
 export * from './SendMailAdvFrom';
+export * from './SendMailAdvReplytoInner';
+export * from './SendMailAdvToInner';
 
-import { ErrorResponse } from './ErrorResponse';
 import { GenericResponse } from './GenericResponse';
-import { InlineResponse401 } from './InlineResponse401';
-import { MailAttachment } from './MailAttachment';
-import { MailContact } from './MailContact';
+import { GetMailOrders200ResponseInner } from './GetMailOrders200ResponseInner';
+import { GetMailOrders401Response } from './GetMailOrders401Response';
 import { MailLog } from './MailLog';
-import { MailOrder } from './MailOrder';
+import { MailLogEntry } from './MailLogEntry';
 import { SendMail } from './SendMail';
 import { SendMailAdv } from './SendMailAdv';
+import { SendMailAdvAttachmentsInner } from './SendMailAdvAttachmentsInner';
+import { SendMailAdvBccInner } from './SendMailAdvBccInner';
+import { SendMailAdvCcInner } from './SendMailAdvCcInner';
 import { SendMailAdvFrom } from './SendMailAdvFrom';
+import { SendMailAdvReplytoInner } from './SendMailAdvReplytoInner';
+import { SendMailAdvToInner } from './SendMailAdvToInner';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -34,24 +40,28 @@ let primitives = [
 
 const supportedMediaTypes: { [mediaType: string]: number } = {
   "application/json": Infinity,
-  "application/octet-stream": 0
+  "application/octet-stream": 0,
+  "application/x-www-form-urlencoded": 0
 }
 
-                 
+
 let enumsMap: Set<string> = new Set<string>([
 ]);
 
 let typeMap: {[index: string]: any} = {
-    "ErrorResponse": ErrorResponse,
     "GenericResponse": GenericResponse,
-    "InlineResponse401": InlineResponse401,
-    "MailAttachment": MailAttachment,
-    "MailContact": MailContact,
+    "GetMailOrders200ResponseInner": GetMailOrders200ResponseInner,
+    "GetMailOrders401Response": GetMailOrders401Response,
     "MailLog": MailLog,
-    "MailOrder": MailOrder,
+    "MailLogEntry": MailLogEntry,
     "SendMail": SendMail,
     "SendMailAdv": SendMailAdv,
+    "SendMailAdvAttachmentsInner": SendMailAdvAttachmentsInner,
+    "SendMailAdvBccInner": SendMailAdvBccInner,
+    "SendMailAdvCcInner": SendMailAdvCcInner,
     "SendMailAdvFrom": SendMailAdvFrom,
+    "SendMailAdvReplytoInner": SendMailAdvReplytoInner,
+    "SendMailAdvToInner": SendMailAdvToInner,
 }
 
 export class ObjectSerializer {
@@ -122,7 +132,7 @@ export class ObjectSerializer {
             if (!typeMap[type]) { // in case we dont know the type
                 return data;
             }
-            
+
             // Get the actual type of this object
             type = this.findCorrectType(data, type);
 
@@ -167,7 +177,10 @@ export class ObjectSerializer {
             let attributeTypes = typeMap[type].getAttributeTypeMap();
             for (let index in attributeTypes) {
                 let attributeType = attributeTypes[index];
-                instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type, attributeType.format);
+                let value = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type, attributeType.format);
+                if (value !== undefined) {
+                    instance[attributeType.name] = value;
+                }
             }
             return instance;
         }

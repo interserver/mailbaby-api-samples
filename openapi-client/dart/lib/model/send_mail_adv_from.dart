@@ -1,10 +1,11 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
 part of openapi.api;
@@ -12,15 +13,21 @@ part of openapi.api;
 class SendMailAdvFrom {
   /// Returns a new [SendMailAdvFrom] instance.
   SendMailAdvFrom({
-    @required this.email,
+    required this.email,
     this.name,
   });
 
   /// The email address
   String email;
 
-  /// Optional contact name
-  String name;
+  /// (optional) Name to use for the sending contact.
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? name;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is SendMailAdvFrom &&
@@ -29,52 +36,93 @@ class SendMailAdvFrom {
 
   @override
   int get hashCode =>
-    (email == null ? 0 : email.hashCode) +
-    (name == null ? 0 : name.hashCode);
+    // ignore: unnecessary_parenthesis
+    (email.hashCode) +
+    (name == null ? 0 : name!.hashCode);
 
   @override
   String toString() => 'SendMailAdvFrom[email=$email, name=$name]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-      json[r'email'] = email;
+    final _json = <String, dynamic>{};
+      _json[r'email'] = email;
     if (name != null) {
-      json[r'name'] = name;
+      _json[r'name'] = name;
     }
-    return json;
+    return _json;
   }
 
   /// Returns a new [SendMailAdvFrom] instance and imports its values from
-  /// [json] if it's non-null, null if [json] is null.
-  static SendMailAdvFrom fromJson(Map<String, dynamic> json) => json == null
-    ? null
-    : SendMailAdvFrom(
-        email: json[r'email'],
-        name: json[r'name'],
-    );
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static SendMailAdvFrom? fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
 
-  static List<SendMailAdvFrom> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
-    json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <SendMailAdvFrom>[]
-      : json.map((v) => SendMailAdvFrom.fromJson(v)).toList(growable: true == growable);
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SendMailAdvFrom[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SendMailAdvFrom[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
 
-  static Map<String, SendMailAdvFrom> mapFromJson(Map<String, dynamic> json) {
+      return SendMailAdvFrom(
+        email: mapValueOfType<String>(json, r'email')!,
+        name: mapValueOfType<String>(json, r'name'),
+      );
+    }
+    return null;
+  }
+
+  static List<SendMailAdvFrom>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SendMailAdvFrom>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SendMailAdvFrom.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+
+  static Map<String, SendMailAdvFrom> mapFromJson(dynamic json) {
     final map = <String, SendMailAdvFrom>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) => map[key] = SendMailAdvFrom.fromJson(v));
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SendMailAdvFrom.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of SendMailAdvFrom-objects as value to a dart map
-  static Map<String, List<SendMailAdvFrom>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<SendMailAdvFrom>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<SendMailAdvFrom>>{};
-    if (json != null && json.isNotEmpty) {
-      json.forEach((String key, dynamic v) {
-        map[key] = SendMailAdvFrom.listFromJson(v, emptyIsNull: emptyIsNull, growable: growable);
-      });
+    if (json is Map && json.isNotEmpty) {
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SendMailAdvFrom.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+    'email',
+  };
 }
 

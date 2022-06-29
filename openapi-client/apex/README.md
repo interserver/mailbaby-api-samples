@@ -1,7 +1,7 @@
-# Mail Baby API API Client
+# MailBaby Email Delivery API API Client
 
 
-This is an API defintion for accesssing the Mail.Baby mail service.
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**\n\n\n# 📌 Overview\n\nThis is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).\n\n\n# 🔐 Authentication\n\nIn order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  \n\nWe support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.\n
 
 ## Requirements
 
@@ -48,7 +48,7 @@ OASClient client = api.getClient();
 
 try {
     // cross your fingers
-    List<OASMailOrder> result = api.getMailOrders();
+    List<OASGetMailOrders200ResponseInner> result = api.getMailOrders();
     System.debug(result);
 } catch (OAS.ApiException e) {
     // ...handle your exceptions
@@ -63,25 +63,26 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *OASDefaultApi* | [**getMailOrders**](OASDefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
 *OASDefaultApi* | [**pingServer**](OASDefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
-*OASDefaultApi* | [**placeMailOrder**](OASDefaultApi.md#placeMailOrder) | **POST** /mail/order | places a mail order
 *OASDefaultApi* | [**sendAdvMail**](OASDefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *OASDefaultApi* | [**sendMail**](OASDefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
-*OASDefaultApi* | [**validateMailOrder**](OASDefaultApi.md#validateMailOrder) | **GET** /mail/order | validatess order details before placing an order
 *OASDefaultApi* | [**viewMailLog**](OASDefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 
 
 ## Documentation for Models
 
- - [OASErrorResponse](OASErrorResponse.md)
  - [OASGenericResponse](OASGenericResponse.md)
- - [OASInlineResponse401](OASInlineResponse401.md)
- - [OASMailAttachment](OASMailAttachment.md)
- - [OASMailContact](OASMailContact.md)
+ - [OASGetMailOrders200ResponseInner](OASGetMailOrders200ResponseInner.md)
+ - [OASGetMailOrders401Response](OASGetMailOrders401Response.md)
  - [OASMailLog](OASMailLog.md)
- - [OASMailOrder](OASMailOrder.md)
+ - [OASMailLogEntry](OASMailLogEntry.md)
  - [OASSendMail](OASSendMail.md)
  - [OASSendMailAdv](OASSendMailAdv.md)
+ - [OASSendMailAdvAttachmentsInner](OASSendMailAdvAttachmentsInner.md)
+ - [OASSendMailAdvBccInner](OASSendMailAdvBccInner.md)
+ - [OASSendMailAdvCcInner](OASSendMailAdvCcInner.md)
  - [OASSendMailAdvFrom](OASSendMailAdvFrom.md)
+ - [OASSendMailAdvReplytoInner](OASSendMailAdvReplytoInner.md)
+ - [OASSendMailAdvToInner](OASSendMailAdvToInner.md)
 
 
 ## Documentation for Authorization
@@ -97,5 +98,5 @@ Authentication schemes defined for the API:
 
 ## Author
 
-detain@interserver.net
+support@interserver.net
 

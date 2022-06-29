@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:openapi/model/mail_log.dart';
 import 'package:test/test.dart';
+import 'package:openapi/openapi.dart';
 
 // tests for MailLog
 void main() {
@@ -14,12 +7,28 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(MailLog, () {
-    // int id
-    test('to test the property `id`', () async {
+    // total number of mail log entries
+    // int total
+    test('to test the property `total`', () async {
       // TODO
     });
 
+    // number of emails skipped in listing
+    // int skip
+    test('to test the property `skip`', () async {
+      // TODO
+    });
+
+    // number of emails to return
+    // int limit
+    test('to test the property `limit`', () async {
+      // TODO
+    });
+
+    // BuiltList<MailLogEntry> emails
+    test('to test the property `emails`', () async {
+      // TODO
+    });
 
   });
-
 }

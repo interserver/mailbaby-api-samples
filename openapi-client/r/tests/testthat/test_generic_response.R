@@ -3,19 +3,18 @@
 
 context("Test GenericResponse")
 
-model.instance <- GenericResponse$new()
+model_instance <- GenericResponse$new()
 
 test_that("status", {
   # tests for the property `status` (character)
 
-  # uncomment below to test the property 
+  # uncomment below to test the property
   #expect_equal(model.instance$`status`, "EXPECTED_RESULT")
 })
 
 test_that("text", {
   # tests for the property `text` (character)
 
-  # uncomment below to test the property 
+  # uncomment below to test the property
   #expect_equal(model.instance$`text`, "EXPECTED_RESULT")
 })
-

@@ -1,7 +1,7 @@
 goog.provide('API.Client.SendMailAdv_from');
 
 /**
- * An Email Contact
+ * The information to use for the From address in the email. from.
  * @record
  */
 API.Client.SendMailAdvFrom = function() {}
@@ -14,7 +14,7 @@ API.Client.SendMailAdvFrom = function() {}
 API.Client.SendMailAdvFrom.prototype.email;
 
 /**
- * Optional contact name
+ * (optional) Name to use for the sending contact.
  * @type {!string}
  * @export
  */

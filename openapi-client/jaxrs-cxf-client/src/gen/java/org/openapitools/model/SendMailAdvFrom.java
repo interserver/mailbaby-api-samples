@@ -3,30 +3,24 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * An Email Contact
+  * The information to use for the From address in the email. from.
  **/
-@ApiModel(description="An Email Contact")
+@ApiModel(description="The information to use for the From address in the email. from.")
+
 public class SendMailAdvFrom  {
   
-  @ApiModelProperty(example = "johndoe@company.com", required = true, value = "The email address")
+  @ApiModelProperty(example = "business@company.com", required = true, value = "The email address")
  /**
    * The email address
   **/
   private String email;
 
-  @ApiModelProperty(example = "John Doe", value = "Optional contact name")
+  @ApiModelProperty(example = "The Man", value = "(optional) Name to use for the sending contact.")
  /**
-   * Optional contact name
+   * (optional) Name to use for the sending contact.
   **/
   private String name;
  /**
@@ -48,7 +42,7 @@ public class SendMailAdvFrom  {
   }
 
  /**
-   * Optional contact name
+   * (optional) Name to use for the sending contact.
    * @return name
   **/
   @JsonProperty("name")

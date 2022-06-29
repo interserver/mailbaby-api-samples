@@ -1,17 +1,18 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
 part of openapi.api;
 
 
 class DefaultApi {
-  DefaultApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  DefaultApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -19,44 +20,32 @@ class DefaultApi {
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> getMailOrdersWithHttpInfo() async {
+    // ignore: prefer_const_declarations
     final path = r'/mail';
 
-    Object postBody;
+    // ignore: prefer_final_locals
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    final contentTypes = <String>[];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['apiKeyAuth'];
+    const contentTypes = <String>[];
 
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
 
-    return await apiClient.invokeAPI(
+    return apiClient.invokeAPI(
       path,
       'GET',
       queryParams,
       postBody,
       headerParams,
       formParams,
-      nullableContentType,
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
   /// displays a list of mail service orders
-  Future<List<MailOrder>> getMailOrders() async {
+  Future<List<GetMailOrders200ResponseInner>?> getMailOrders() async {
     final response = await getMailOrdersWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -64,51 +53,41 @@ class DefaultApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return (await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'List<MailOrder>') as List)
-        .cast<MailOrder>()
-        .toList(growable: false);
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      final responseBody = await _decodeBodyBytes(response);
+      return (await apiClient.deserializeAsync(responseBody, 'List<GetMailOrders200ResponseInner>') as List)
+        .cast<GetMailOrders200ResponseInner>()
+        .toList();
+
     }
-    return Future<List<MailOrder>>.value(null);
+    return null;
   }
 
   /// Checks if the server is running
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> pingServerWithHttpInfo() async {
+    // ignore: prefer_const_declarations
     final path = r'/ping';
 
-    Object postBody;
+    // ignore: prefer_final_locals
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    final contentTypes = <String>[];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>[];
+    const contentTypes = <String>[];
 
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
 
-    return await apiClient.invokeAPI(
+    return apiClient.invokeAPI(
       path,
       'GET',
       queryParams,
       postBody,
       headerParams,
       formParams,
-      nullableContentType,
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -120,70 +99,6 @@ class DefaultApi {
     }
   }
 
-  /// places a mail order
-  ///
-  /// Adds an item to the system
-  ///
-  /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [MailOrder] mailOrder:
-  ///   Inventory item to add
-  Future<Response> placeMailOrderWithHttpInfo({ MailOrder mailOrder }) async {
-    // Verify required params are set.
-
-    final path = r'/mail/order';
-
-    Object postBody = mailOrder;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    final contentTypes = <String>['application/json'];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['apiKeyAuth'];
-
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
-
-    return await apiClient.invokeAPI(
-      path,
-      'POST',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      nullableContentType,
-      authNames,
-    );
-  }
-
-  /// places a mail order
-  ///
-  /// Adds an item to the system
-  ///
-  /// Parameters:
-  ///
-  /// * [MailOrder] mailOrder:
-  ///   Inventory item to add
-  Future<void> placeMailOrder({ MailOrder mailOrder }) async {
-    final response = await placeMailOrderWithHttpInfo( mailOrder: mailOrder );
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
-  }
-
   /// Sends an Email with Advanced Options
   ///
   /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
@@ -193,45 +108,28 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [SendMailAdv] sendMailAdv (required):
-  Future<Response> sendAdvMailWithHttpInfo(SendMailAdv sendMailAdv) async {
-    // Verify required params are set.
-    if (sendMailAdv == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: sendMailAdv');
-    }
-
+  Future<Response> sendAdvMailWithHttpInfo(SendMailAdv sendMailAdv,) async {
+    // ignore: prefer_const_declarations
     final path = r'/mail/advsend';
 
-    Object postBody = sendMailAdv;
+    // ignore: prefer_final_locals
+    Object? postBody = sendMailAdv;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    final contentTypes = <String>['application/json', 'application/x-www-form-urlencoded'];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['apiKeyAuth'];
+    const contentTypes = <String>['application/json', 'application/x-www-form-urlencoded'];
 
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
 
-    return await apiClient.invokeAPI(
+    return apiClient.invokeAPI(
       path,
       'POST',
       queryParams,
       postBody,
       headerParams,
       formParams,
-      nullableContentType,
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -242,23 +140,24 @@ class DefaultApi {
   /// Parameters:
   ///
   /// * [SendMailAdv] sendMailAdv (required):
-  Future<GenericResponse> sendAdvMail(SendMailAdv sendMailAdv) async {
-    final response = await sendAdvMailWithHttpInfo(sendMailAdv);
+  Future<GenericResponse?> sendAdvMail(SendMailAdv sendMailAdv,) async {
+    final response = await sendAdvMailWithHttpInfo(sendMailAdv,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericResponse',) as GenericResponse;
-        }
-    return Future<GenericResponse>.value(null);
+    
+    }
+    return null;
   }
 
   /// Sends an Email
   ///
-  /// Sends An email through one of your mail orders.
+  /// Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -275,88 +174,46 @@ class DefaultApi {
   ///
   /// * [String] body (required):
   ///   The main email contents.
-  Future<Response> sendMailWithHttpInfo(String to, String from, String subject, String body) async {
-    // Verify required params are set.
-    if (to == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: to');
-    }
-    if (from == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: from');
-    }
-    if (subject == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: subject');
-    }
-    if (body == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: body');
-    }
-
+  Future<Response> sendMailWithHttpInfo(String to, String from, String subject, String body,) async {
+    // ignore: prefer_const_declarations
     final path = r'/mail/send';
 
-    Object postBody;
+    // ignore: prefer_final_locals
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    final contentTypes = <String>['application/x-www-form-urlencoded', 'application/json'];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['apiKeyAuth'];
+    const contentTypes = <String>['application/x-www-form-urlencoded', 'application/json'];
 
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (to != null) {
-        hasFields = true;
-        mp.fields[r'to'] = parameterToString(to);
-      }
-      if (from != null) {
-        hasFields = true;
-        mp.fields[r'from'] = parameterToString(from);
-      }
-      if (subject != null) {
-        hasFields = true;
-        mp.fields[r'subject'] = parameterToString(subject);
-      }
-      if (body != null) {
-        hasFields = true;
-        mp.fields[r'body'] = parameterToString(body);
-      }
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-      if (to != null) {
-        formParams[r'to'] = parameterToString(to);
-      }
-      if (from != null) {
-        formParams[r'from'] = parameterToString(from);
-      }
-      if (subject != null) {
-        formParams[r'subject'] = parameterToString(subject);
-      }
-      if (body != null) {
-        formParams[r'body'] = parameterToString(body);
-      }
+    if (to != null) {
+      formParams[r'to'] = parameterToString(to);
+    }
+    if (from != null) {
+      formParams[r'from'] = parameterToString(from);
+    }
+    if (subject != null) {
+      formParams[r'subject'] = parameterToString(subject);
+    }
+    if (body != null) {
+      formParams[r'body'] = parameterToString(body);
     }
 
-    return await apiClient.invokeAPI(
+    return apiClient.invokeAPI(
       path,
       'POST',
       queryParams,
       postBody,
       headerParams,
       formParams,
-      nullableContentType,
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
   /// Sends an Email
   ///
-  /// Sends An email through one of your mail orders.
+  /// Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
   ///
   /// Parameters:
   ///
@@ -371,66 +228,19 @@ class DefaultApi {
   ///
   /// * [String] body (required):
   ///   The main email contents.
-  Future<GenericResponse> sendMail(String to, String from, String subject, String body) async {
-    final response = await sendMailWithHttpInfo(to, from, subject, body);
+  Future<GenericResponse?> sendMail(String to, String from, String subject, String body,) async {
+    final response = await sendMailWithHttpInfo(to, from, subject, body,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GenericResponse',) as GenericResponse;
-        }
-    return Future<GenericResponse>.value(null);
-  }
-
-  /// validatess order details before placing an order
-  ///
-  /// Note: This method returns the HTTP [Response].
-  Future<Response> validateMailOrderWithHttpInfo() async {
-    final path = r'/mail/order';
-
-    Object postBody;
-
-    final queryParams = <QueryParam>[];
-    final headerParams = <String, String>{};
-    final formParams = <String, String>{};
-
-    final contentTypes = <String>[];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['apiKeyAuth'];
-
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
+    
     }
-
-    return await apiClient.invokeAPI(
-      path,
-      'GET',
-      queryParams,
-      postBody,
-      headerParams,
-      formParams,
-      nullableContentType,
-      authNames,
-    );
-  }
-
-  /// validatess order details before placing an order
-  Future<void> validateMailOrder() async {
-    final response = await validateMailOrderWithHttpInfo();
-    if (response.statusCode >= HttpStatus.badRequest) {
-      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
-    }
+    return null;
   }
 
   /// displays the mail log
@@ -444,7 +254,7 @@ class DefaultApi {
   /// * [int] id:
   ///   The ID of your mail order this will be sent through.
   ///
-  /// * [String] searchString:
+  /// * [String] search:
   ///   pass an optional search string for looking up inventory
   ///
   /// * [int] skip:
@@ -452,55 +262,41 @@ class DefaultApi {
   ///
   /// * [int] limit:
   ///   maximum number of records to return
-  Future<Response> viewMailLogWithHttpInfo({ int id, String searchString, int skip, int limit }) async {
-    // Verify required params are set.
-
+  Future<Response> viewMailLogWithHttpInfo({ int? id, String? search, int? skip, int? limit, }) async {
+    // ignore: prefer_const_declarations
     final path = r'/mail/log';
 
-    Object postBody;
+    // ignore: prefer_final_locals
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
     if (id != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'id', id));
+      queryParams.addAll(_queryParams('', 'id', id));
     }
-    if (searchString != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'searchString', searchString));
+    if (search != null) {
+      queryParams.addAll(_queryParams('', 'search', search));
     }
     if (skip != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'skip', skip));
+      queryParams.addAll(_queryParams('', 'skip', skip));
     }
     if (limit != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'limit', limit));
+      queryParams.addAll(_queryParams('', 'limit', limit));
     }
 
-    final contentTypes = <String>[];
-    final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
-    final authNames = <String>['apiKeyAuth'];
+    const contentTypes = <String>[];
 
-    if (
-      nullableContentType != null &&
-      nullableContentType.toLowerCase().startsWith('multipart/form-data')
-    ) {
-      bool hasFields = false;
-      final mp = MultipartRequest(null, null);
-      if (hasFields) {
-        postBody = mp;
-      }
-    } else {
-    }
 
-    return await apiClient.invokeAPI(
+    return apiClient.invokeAPI(
       path,
       'GET',
       queryParams,
       postBody,
       headerParams,
       formParams,
-      nullableContentType,
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -513,7 +309,7 @@ class DefaultApi {
   /// * [int] id:
   ///   The ID of your mail order this will be sent through.
   ///
-  /// * [String] searchString:
+  /// * [String] search:
   ///   pass an optional search string for looking up inventory
   ///
   /// * [int] skip:
@@ -521,19 +317,18 @@ class DefaultApi {
   ///
   /// * [int] limit:
   ///   maximum number of records to return
-  Future<List<MailLog>> viewMailLog({ int id, String searchString, int skip, int limit }) async {
-    final response = await viewMailLogWithHttpInfo( id: id, searchString: searchString, skip: skip, limit: limit );
+  Future<MailLog?> viewMailLog({ int? id, String? search, int? skip, int? limit, }) async {
+    final response = await viewMailLogWithHttpInfo( id: id, search: search, skip: skip, limit: limit, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return (await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'List<MailLog>') as List)
-        .cast<MailLog>()
-        .toList(growable: false);
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'MailLog',) as MailLog;
+    
     }
-    return Future<List<MailLog>>.value(null);
+    return null;
   }
 }

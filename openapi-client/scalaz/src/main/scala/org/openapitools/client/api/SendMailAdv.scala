@@ -16,20 +16,19 @@ case class SendMailAdv (
   subject: String,
 /* The main email contents. */
   body: String,
-/* The contact whom is the this email is from. */
-  from: List[SendMailAdvFrom],
-/* The Contact whom is the primary recipient of this email. */
-  to: List[MailContact],
-/* The ID of the Mail order within our system to use as the Mail Account. */
-  id: Long,
-/* Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. */
-  replyto: Option[List[MailContact]],
-/* Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */
-  cc: Option[List[MailContact]],
-/* Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. */
-  bcc: Option[List[MailContact]],
-/* Optional file attachments to include in the email */
-  attachments: Option[List[MailAttachment]])
+from: SendMailAdvFrom,
+/* A list of destionation email addresses to send this to */
+  to: List[SendMailAdvToInner],
+/* (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. */
+  replyto: Option[List[SendMailAdvReplytoInner]],
+/* (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */
+  cc: Option[List[SendMailAdvCcInner]],
+/* (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. */
+  bcc: Option[List[SendMailAdvBccInner]],
+/* (optional) File attachments to include in the email.  The file contents must be base64 encoded! */
+  attachments: Option[List[SendMailAdvAttachmentsInner]],
+/* (optional)  ID of the Mail order within our system to use as the Mail Account. */
+  id: Option[Long])
 
 object SendMailAdv {
   import DateTimeCodecs._

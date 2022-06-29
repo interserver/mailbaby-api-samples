@@ -16,6 +16,7 @@
 #include "../model/send_mail_adv.h"
 send_mail_adv_t* instantiate_send_mail_adv(int include_optional);
 
+#include "test_send_mail_adv_from.c"
 
 
 send_mail_adv_t* instantiate_send_mail_adv(int include_optional) {
@@ -23,28 +24,27 @@ send_mail_adv_t* instantiate_send_mail_adv(int include_optional) {
   if (include_optional) {
     send_mail_adv = send_mail_adv_create(
       "Your Package has been Delivered!",
-      "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-",
-      list_create(),
-      list_create(),
-      5000,
-      list_create(),
-      list_create(),
-      list_create(),
-      list_create()
+      "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.",
+       // false, not to have infinite recursion
+      instantiate_send_mail_adv_from(0),
+      list_createList(),
+      list_createList(),
+      list_createList(),
+      list_createList(),
+      list_createList(),
+      5000
     );
   } else {
     send_mail_adv = send_mail_adv_create(
       "Your Package has been Delivered!",
-      "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-",
-      list_create(),
-      list_create(),
-      5000,
-      list_create(),
-      list_create(),
-      list_create(),
-      list_create()
+      "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.",
+      NULL,
+      list_createList(),
+      list_createList(),
+      list_createList(),
+      list_createList(),
+      list_createList(),
+      5000
     );
   }
 

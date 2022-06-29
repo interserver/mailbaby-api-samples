@@ -1,13 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:openapi/api.dart';
-import 'package:openapi/api/default_api.dart';
 import 'package:test/test.dart';
+import 'package:openapi/openapi.dart';
 
 
 /// tests for DefaultApi
@@ -17,7 +9,7 @@ void main() {
   group(DefaultApi, () {
     // displays a list of mail service orders
     //
-    //Future<BuiltList<MailOrder>> getMailOrders() async
+    //Future<BuiltList<GetMailOrders200ResponseInner>> getMailOrders() async
     test('test getMailOrders', () async {
       // TODO
     });
@@ -26,15 +18,6 @@ void main() {
     //
     //Future pingServer() async
     test('test pingServer', () async {
-      // TODO
-    });
-
-    // places a mail order
-    //
-    // Adds an item to the system
-    //
-    //Future placeMailOrder({ MailOrder mailOrder }) async
-    test('test placeMailOrder', () async {
       // TODO
     });
 
@@ -49,17 +32,10 @@ void main() {
 
     // Sends an Email
     //
-    // Sends An email through one of your mail orders.
+    // Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
     //
     //Future<GenericResponse> sendMail(String to, String from, String subject, String body) async
     test('test sendMail', () async {
-      // TODO
-    });
-
-    // validatess order details before placing an order
-    //
-    //Future validateMailOrder() async
-    test('test validateMailOrder', () async {
       // TODO
     });
 
@@ -67,7 +43,7 @@ void main() {
     //
     // By passing in the appropriate options, you can search for available inventory in the system 
     //
-    //Future<BuiltList<MailLog>> viewMailLog({ int id, String searchString, int skip, int limit }) async
+    //Future<MailLog> viewMailLog({ int id, String search, int skip, int limit }) async
     test('test viewMailLog', () async {
       // TODO
     });

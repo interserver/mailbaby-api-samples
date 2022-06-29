@@ -6,27 +6,43 @@
 //
 
 import Foundation
+#if canImport(AnyCodable)
 import AnyCodable
+#endif
 
-/** Mail Order Details */
-public struct MailLog: Codable, Hashable {
+/** Mail log records */
+public struct MailLog: Codable, JSONEncodable, Hashable {
 
-    public var id: Int64?
+    /** total number of mail log entries */
+    public var total: Int
+    /** number of emails skipped in listing */
+    public var skip: Int
+    /** number of emails to return */
+    public var limit: Int
+    public var emails: [MailLogEntry]
 
-    public init(id: Int64? = nil) {
-        self.id = id
+    public init(total: Int, skip: Int, limit: Int, emails: [MailLogEntry]) {
+        self.total = total
+        self.skip = skip
+        self.limit = limit
+        self.emails = emails
     }
+
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case id
+        case total
+        case skip
+        case limit
+        case emails
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(id, forKey: .id)
+        try container.encode(total, forKey: .total)
+        try container.encode(skip, forKey: .skip)
+        try container.encode(limit, forKey: .limit)
+        try container.encode(emails, forKey: .emails)
     }
-
-
-
 }
+

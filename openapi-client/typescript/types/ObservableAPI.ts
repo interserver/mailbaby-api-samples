@@ -3,16 +3,19 @@ import * as models from '../models/all';
 import { Configuration} from '../configuration'
 import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
-import { ErrorResponse } from '../models/ErrorResponse';
 import { GenericResponse } from '../models/GenericResponse';
-import { InlineResponse401 } from '../models/InlineResponse401';
-import { MailAttachment } from '../models/MailAttachment';
-import { MailContact } from '../models/MailContact';
+import { GetMailOrders200ResponseInner } from '../models/GetMailOrders200ResponseInner';
+import { GetMailOrders401Response } from '../models/GetMailOrders401Response';
 import { MailLog } from '../models/MailLog';
-import { MailOrder } from '../models/MailOrder';
+import { MailLogEntry } from '../models/MailLogEntry';
 import { SendMail } from '../models/SendMail';
 import { SendMailAdv } from '../models/SendMailAdv';
+import { SendMailAdvAttachmentsInner } from '../models/SendMailAdvAttachmentsInner';
+import { SendMailAdvBccInner } from '../models/SendMailAdvBccInner';
+import { SendMailAdvCcInner } from '../models/SendMailAdvCcInner';
 import { SendMailAdvFrom } from '../models/SendMailAdvFrom';
+import { SendMailAdvReplytoInner } from '../models/SendMailAdvReplytoInner';
+import { SendMailAdvToInner } from '../models/SendMailAdvToInner';
 
 import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
 export class ObservableDefaultApi {
@@ -33,8 +36,8 @@ export class ObservableDefaultApi {
     /**
      * displays a list of mail service orders
      */
-    public getMailOrders(options?: Configuration): Observable<Array<MailOrder>> {
-        const requestContextPromise = this.requestFactory.getMailOrders(options);
+    public getMailOrders(_options?: Configuration): Observable<Array<GetMailOrders200ResponseInner>> {
+        const requestContextPromise = this.requestFactory.getMailOrders(_options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -51,12 +54,12 @@ export class ObservableDefaultApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getMailOrders(rsp)));
             }));
     }
- 
+
     /**
      * Checks if the server is running
      */
-    public pingServer(options?: Configuration): Observable<void> {
-        const requestContextPromise = this.requestFactory.pingServer(options);
+    public pingServer(_options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.pingServer(_options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -73,38 +76,14 @@ export class ObservableDefaultApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.pingServer(rsp)));
             }));
     }
- 
-    /**
-     * Adds an item to the system
-     * places a mail order
-     * @param mailOrder Inventory item to add
-     */
-    public placeMailOrder(mailOrder?: MailOrder, options?: Configuration): Observable<void> {
-        const requestContextPromise = this.requestFactory.placeMailOrder(mailOrder, options);
 
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.placeMailOrder(rsp)));
-            }));
-    }
- 
     /**
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * Sends an Email with Advanced Options
      * @param sendMailAdv 
      */
-    public sendAdvMail(sendMailAdv: SendMailAdv, options?: Configuration): Observable<GenericResponse> {
-        const requestContextPromise = this.requestFactory.sendAdvMail(sendMailAdv, options);
+    public sendAdvMail(sendMailAdv: SendMailAdv, _options?: Configuration): Observable<GenericResponse> {
+        const requestContextPromise = this.requestFactory.sendAdvMail(sendMailAdv, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -121,17 +100,17 @@ export class ObservableDefaultApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.sendAdvMail(rsp)));
             }));
     }
- 
+
     /**
-     * Sends An email through one of your mail orders.
+     * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
      * Sends an Email
      * @param to The Contact whom is the primary recipient of this email.
-     * @param from The contact whom is the this email is from.
+     * @param _from The contact whom is the this email is from.
      * @param subject The subject or title of the email
      * @param body The main email contents.
      */
-    public sendMail(to: string, from: string, subject: string, body: string, options?: Configuration): Observable<GenericResponse> {
-        const requestContextPromise = this.requestFactory.sendMail(to, from, subject, body, options);
+    public sendMail(to: string, _from: string, subject: string, body: string, _options?: Configuration): Observable<GenericResponse> {
+        const requestContextPromise = this.requestFactory.sendMail(to, _from, subject, body, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -148,39 +127,17 @@ export class ObservableDefaultApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.sendMail(rsp)));
             }));
     }
- 
-    /**
-     * validatess order details before placing an order
-     */
-    public validateMailOrder(options?: Configuration): Observable<void> {
-        const requestContextPromise = this.requestFactory.validateMailOrder(options);
 
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.validateMailOrder(rsp)));
-            }));
-    }
- 
     /**
      * By passing in the appropriate options, you can search for available inventory in the system 
      * displays the mail log
      * @param id The ID of your mail order this will be sent through.
-     * @param searchString pass an optional search string for looking up inventory
+     * @param search pass an optional search string for looking up inventory
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      */
-    public viewMailLog(id?: number, searchString?: string, skip?: number, limit?: number, options?: Configuration): Observable<Array<MailLog>> {
-        const requestContextPromise = this.requestFactory.viewMailLog(id, searchString, skip, limit, options);
+    public viewMailLog(id?: number, search?: string, skip?: number, limit?: number, _options?: Configuration): Observable<MailLog> {
+        const requestContextPromise = this.requestFactory.viewMailLog(id, search, skip, limit, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -197,5 +154,5 @@ export class ObservableDefaultApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.viewMailLog(rsp)));
             }));
     }
- 
+
 }

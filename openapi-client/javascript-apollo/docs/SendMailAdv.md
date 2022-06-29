@@ -1,4 +1,4 @@
-# MailBabyApi.SendMailAdv
+# MailBabyEmailDeliveryApi.SendMailAdv
 
 ## Properties
 
@@ -6,12 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **subject** | **String** | The subject or title of the email | 
 **body** | **String** | The main email contents. | 
-**from** | [**[SendMailAdvFrom]**](SendMailAdvFrom.md) | The contact whom is the this email is from. | 
-**to** | [**[MailContact]**](MailContact.md) | The Contact whom is the primary recipient of this email. | 
-**id** | **Number** | The ID of the Mail order within our system to use as the Mail Account. | 
-**replyto** | [**[MailContact]**](MailContact.md) | Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address. | [optional] 
-**cc** | [**[MailContact]**](MailContact.md) | Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. | [optional] 
-**bcc** | [**[MailContact]**](MailContact.md) | Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. | [optional] 
-**attachments** | [**[MailAttachment]**](MailAttachment.md) | Optional file attachments to include in the email | [optional] 
+**from** | [**SendMailAdvFrom**](SendMailAdvFrom.md) |  | 
+**to** | [**[SendMailAdvToInner]**](SendMailAdvToInner.md) | A list of destionation email addresses to send this to | 
+**replyto** | [**[SendMailAdvReplytoInner]**](SendMailAdvReplytoInner.md) | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. | [optional] 
+**cc** | [**[SendMailAdvCcInner]**](SendMailAdvCcInner.md) | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. | [optional] 
+**bcc** | [**[SendMailAdvBccInner]**](SendMailAdvBccInner.md) | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. | [optional] 
+**attachments** | [**[SendMailAdvAttachmentsInner]**](SendMailAdvAttachmentsInner.md) | (optional) File attachments to include in the email.  The file contents must be base64 encoded! | [optional] 
+**id** | **Number** | (optional)  ID of the Mail order within our system to use as the Mail Account. | [optional] 
 
 

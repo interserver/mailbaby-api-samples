@@ -70,10 +70,8 @@ _()
     declare -A operations
     operations["getMailOrders"]=1
     operations["pingServer"]=1
-    operations["placeMailOrder"]=1
     operations["sendAdvMail"]=1
     operations["sendMail"]=1
-    operations["validateMailOrder"]=1
     operations["viewMailLog"]=1
 
     # An associative array of operations to their parameters
@@ -81,11 +79,9 @@ _()
     declare -A operation_parameters
     operation_parameters["getMailOrders"]=""
     operation_parameters["pingServer"]=""
-    operation_parameters["placeMailOrder"]=""
     operation_parameters["sendAdvMail"]=""
     operation_parameters["sendMail"]=""
-    operation_parameters["validateMailOrder"]=""
-    operation_parameters["viewMailLog"]="id= searchString= skip= limit= "
+    operation_parameters["viewMailLog"]="id= search= skip= limit= "
 
     # An associative array of possible values for enum parameters
     declare -A operation_parameters_enum_values

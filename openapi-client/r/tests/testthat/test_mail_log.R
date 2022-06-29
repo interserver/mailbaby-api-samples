@@ -3,12 +3,35 @@
 
 context("Test MailLog")
 
-model.instance <- MailLog$new()
+model_instance <- MailLog$new()
 
-test_that("id", {
-  # tests for the property `id` (integer)
+test_that("total", {
+  # tests for the property `total` (integer)
+  # total number of mail log entries
 
-  # uncomment below to test the property 
-  #expect_equal(model.instance$`id`, "EXPECTED_RESULT")
+  # uncomment below to test the property
+  #expect_equal(model.instance$`total`, "EXPECTED_RESULT")
 })
 
+test_that("skip", {
+  # tests for the property `skip` (integer)
+  # number of emails skipped in listing
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`skip`, "EXPECTED_RESULT")
+})
+
+test_that("limit", {
+  # tests for the property `limit` (integer)
+  # number of emails to return
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`limit`, "EXPECTED_RESULT")
+})
+
+test_that("emails", {
+  # tests for the property `emails` (array[MailLogEntry])
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`emails`, "EXPECTED_RESULT")
+})

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | **string** | The email address | 
-**Name** | Pointer to **string** | Optional contact name | [optional] 
+**Name** | Pointer to **string** | (optional) Name to use for the sending contact. | [optional] 
 
 ## Methods
 

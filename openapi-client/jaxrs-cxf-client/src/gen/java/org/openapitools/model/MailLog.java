@@ -1,40 +1,114 @@
 package org.openapitools.model;
 
 import io.swagger.annotations.ApiModel;
+import java.util.ArrayList;
+import java.util.List;
+import org.openapitools.model.MailLogEntry;
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * Mail Order Details
+  * Mail log records
  **/
-@ApiModel(description="Mail Order Details")
+@ApiModel(description="Mail log records")
+
 public class MailLog  {
   
-  @ApiModelProperty(value = "")
-  private Long id;
+  @ApiModelProperty(example = "10234", required = true, value = "total number of mail log entries")
  /**
-   * Get id
-   * @return id
+   * total number of mail log entries
   **/
-  @JsonProperty("id")
-  public Long getId() {
-    return id;
+  private Integer total;
+
+  @ApiModelProperty(example = "0", required = true, value = "number of emails skipped in listing")
+ /**
+   * number of emails skipped in listing
+  **/
+  private Integer skip;
+
+  @ApiModelProperty(example = "100", required = true, value = "number of emails to return")
+ /**
+   * number of emails to return
+  **/
+  private Integer limit;
+
+  @ApiModelProperty(required = true, value = "")
+  private List<MailLogEntry> emails = new ArrayList<>();
+ /**
+   * total number of mail log entries
+   * @return total
+  **/
+  @JsonProperty("total")
+  public Integer getTotal() {
+    return total;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setTotal(Integer total) {
+    this.total = total;
   }
 
-  public MailLog id(Long id) {
-    this.id = id;
+  public MailLog total(Integer total) {
+    this.total = total;
+    return this;
+  }
+
+ /**
+   * number of emails skipped in listing
+   * @return skip
+  **/
+  @JsonProperty("skip")
+  public Integer getSkip() {
+    return skip;
+  }
+
+  public void setSkip(Integer skip) {
+    this.skip = skip;
+  }
+
+  public MailLog skip(Integer skip) {
+    this.skip = skip;
+    return this;
+  }
+
+ /**
+   * number of emails to return
+   * @return limit
+  **/
+  @JsonProperty("limit")
+  public Integer getLimit() {
+    return limit;
+  }
+
+  public void setLimit(Integer limit) {
+    this.limit = limit;
+  }
+
+  public MailLog limit(Integer limit) {
+    this.limit = limit;
+    return this;
+  }
+
+ /**
+   * Get emails
+   * @return emails
+  **/
+  @JsonProperty("emails")
+  public List<MailLogEntry> getEmails() {
+    return emails;
+  }
+
+  public void setEmails(List<MailLogEntry> emails) {
+    this.emails = emails;
+  }
+
+  public MailLog emails(List<MailLogEntry> emails) {
+    this.emails = emails;
+    return this;
+  }
+
+  public MailLog addEmailsItem(MailLogEntry emailsItem) {
+    this.emails.add(emailsItem);
     return this;
   }
 
@@ -44,7 +118,10 @@ public class MailLog  {
     StringBuilder sb = new StringBuilder();
     sb.append("class MailLog {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("    skip: ").append(toIndentedString(skip)).append("\n");
+    sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
+    sb.append("    emails: ").append(toIndentedString(emails)).append("\n");
     sb.append("}");
     return sb.toString();
   }

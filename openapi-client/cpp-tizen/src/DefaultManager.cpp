@@ -51,13 +51,13 @@ static gpointer __DefaultManagerthreadFunc(gpointer data)
 static bool getMailOrdersProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
-	void(* handler)(std::list<MailOrder>, Error, void* )
-	= reinterpret_cast<void(*)(std::list<MailOrder>, Error, void* )> (voidHandler);
+	void(* handler)(std::list<GetMailOrders_200_response_inner>, Error, void* )
+	= reinterpret_cast<void(*)(std::list<GetMailOrders_200_response_inner>, Error, void* )> (voidHandler);
 	
 	JsonNode* pJson;
 	char * data = p_chunk.memory;
 
-	std::list<MailOrder> out;
+	std::list<GetMailOrders_200_response_inner> out;
 	
 
 	if (code >= 200 && code < 300) {
@@ -71,7 +71,7 @@ static bool getMailOrdersProcessor(MemoryStruct_s p_chunk, long code, char* erro
 		for(guint i = 0; i < length; i++){
 			JsonNode* myJson = json_array_get_element (jsonarray, i);
 			char * singlenodestr = json_to_string(myJson, false);
-			MailOrder singlemodel;
+			GetMailOrders_200_response_inner singlemodel;
 			singlemodel.fromJson(singlenodestr);
 			out.push_front(singlemodel);
 			g_free(static_cast<gpointer>(singlenodestr));
@@ -97,7 +97,7 @@ static bool getMailOrdersProcessor(MemoryStruct_s p_chunk, long code, char* erro
 
 static bool getMailOrdersHelper(char * accessToken,
 	
-	void(* handler)(std::list<MailOrder>, Error, void* )
+	void(* handler)(std::list<GetMailOrders_200_response_inner>, Error, void* )
 	, void* userData, bool isAsync)
 {
 
@@ -168,7 +168,7 @@ static bool getMailOrdersHelper(char * accessToken,
 
 bool DefaultManager::getMailOrdersAsync(char * accessToken,
 	
-	void(* handler)(std::list<MailOrder>, Error, void* )
+	void(* handler)(std::list<GetMailOrders_200_response_inner>, Error, void* )
 	, void* userData)
 {
 	return getMailOrdersHelper(accessToken,
@@ -178,7 +178,7 @@ bool DefaultManager::getMailOrdersAsync(char * accessToken,
 
 bool DefaultManager::getMailOrdersSync(char * accessToken,
 	
-	void(* handler)(std::list<MailOrder>, Error, void* )
+	void(* handler)(std::list<GetMailOrders_200_response_inner>, Error, void* )
 	, void* userData)
 {
 	return getMailOrdersHelper(accessToken,
@@ -310,143 +310,6 @@ bool DefaultManager::pingServerSync(char * accessToken,
 	handler, userData, false);
 }
 
-static bool placeMailOrderProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
-	void(* voidHandler)())
-{
-	
-	void(* handler)(Error, void* ) = reinterpret_cast<void(*)(Error, void* )> (voidHandler);
-	JsonNode* pJson;
-	char * data = p_chunk.memory;
-
-	
-
-	if (code >= 200 && code < 300) {
-		Error error(code, string("No Error"));
-
-
-		handler(error, userData);
-		return true;
-
-
-
-	} else {
-		Error error;
-		if (errormsg != NULL) {
-			error = Error(code, string(errormsg));
-		} else if (p_chunk.memory != NULL) {
-			error = Error(code, string(p_chunk.memory));
-		} else {
-			error = Error(code, string("Unknown Error"));
-		}
-		handler(error, userData);
-		return false;
-	}
-}
-
-static bool placeMailOrderHelper(char * accessToken,
-	MailOrder mailOrder, 
-	
-	void(* handler)(Error, void* ) , void* userData, bool isAsync)
-{
-
-	//TODO: maybe delete headerList after its used to free up space?
-	struct curl_slist *headerList = NULL;
-
-	
-	string accessHeader = "Authorization: Bearer ";
-	accessHeader.append(accessToken);
-	headerList = curl_slist_append(headerList, accessHeader.c_str());
-	headerList = curl_slist_append(headerList, "Content-Type: application/json");
-
-	map <string, string> queryParams;
-	string itemAtq;
-	
-	string mBody = "";
-	JsonNode* node;
-	JsonArray* json_array;
-
-	if (isprimitive("MailOrder")) {
-		node = converttoJson(&mailOrder, "MailOrder", "");
-	}
-	
-	char *jsonStr =  mailOrder.toJson();
-	node = json_from_string(jsonStr, NULL);
-	g_free(static_cast<gpointer>(jsonStr));
-	
-
-	char *jsonStr1 =  json_to_string(node, false);
-	mBody.append(jsonStr1);
-	g_free(static_cast<gpointer>(jsonStr1));
-
-	string url("/mail/order");
-	int pos;
-
-
-	//TODO: free memory of errormsg, memorystruct
-	MemoryStruct_s* p_chunk = new MemoryStruct_s();
-	long code;
-	char* errormsg = NULL;
-	string myhttpmethod("POST");
-
-	if(strcmp("PUT", "POST") == 0){
-		if(strcmp("", mBody.c_str()) == 0){
-			mBody.append("{}");
-		}
-	}
-
-	if(!isAsync){
-		NetClient::easycurl(DefaultManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg);
-		bool retval = placeMailOrderProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
-
-		curl_slist_free_all(headerList);
-		if (p_chunk) {
-			if(p_chunk->memory) {
-				free(p_chunk->memory);
-			}
-			delete (p_chunk);
-		}
-		if (errormsg) {
-			free(errormsg);
-		}
-		return retval;
-	} else{
-		GThread *thread = NULL;
-		RequestInfo *requestInfo = NULL;
-
-		requestInfo = new(nothrow) RequestInfo (DefaultManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg, userData, reinterpret_cast<void(*)()>(handler), placeMailOrderProcessor);;
-		if(requestInfo == NULL)
-			return false;
-
-		thread = g_thread_new(NULL, __DefaultManagerthreadFunc, static_cast<gpointer>(requestInfo));
-		return true;
-	}
-}
-
-
-
-
-bool DefaultManager::placeMailOrderAsync(char * accessToken,
-	MailOrder mailOrder, 
-	
-	void(* handler)(Error, void* ) , void* userData)
-{
-	return placeMailOrderHelper(accessToken,
-	mailOrder, 
-	handler, userData, true);
-}
-
-bool DefaultManager::placeMailOrderSync(char * accessToken,
-	MailOrder mailOrder, 
-	
-	void(* handler)(Error, void* ) , void* userData)
-{
-	return placeMailOrderHelper(accessToken,
-	mailOrder, 
-	handler, userData, false);
-}
-
 static bool sendAdvMailProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
@@ -518,7 +381,7 @@ static bool sendAdvMailProcessor(MemoryStruct_s p_chunk, long code, char* errorm
 }
 
 static bool sendAdvMailHelper(char * accessToken,
-	SendMailAdv sendMailAdv, 
+	std::shared_ptr<SendMailAdv> sendMailAdv, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -603,7 +466,7 @@ static bool sendAdvMailHelper(char * accessToken,
 
 
 bool DefaultManager::sendAdvMailAsync(char * accessToken,
-	SendMailAdv sendMailAdv, 
+	std::shared_ptr<SendMailAdv> sendMailAdv, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
@@ -613,7 +476,7 @@ bool DefaultManager::sendAdvMailAsync(char * accessToken,
 }
 
 bool DefaultManager::sendAdvMailSync(char * accessToken,
-	SendMailAdv sendMailAdv, 
+	std::shared_ptr<SendMailAdv> sendMailAdv, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
@@ -784,162 +647,46 @@ bool DefaultManager::sendMailSync(char * accessToken,
 	handler, userData, false);
 }
 
-static bool validateMailOrderProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
-	void(* voidHandler)())
-{
-	
-	void(* handler)(Error, void* ) = reinterpret_cast<void(*)(Error, void* )> (voidHandler);
-	JsonNode* pJson;
-	char * data = p_chunk.memory;
-
-	
-
-	if (code >= 200 && code < 300) {
-		Error error(code, string("No Error"));
-
-
-		handler(error, userData);
-		return true;
-
-
-
-	} else {
-		Error error;
-		if (errormsg != NULL) {
-			error = Error(code, string(errormsg));
-		} else if (p_chunk.memory != NULL) {
-			error = Error(code, string(p_chunk.memory));
-		} else {
-			error = Error(code, string("Unknown Error"));
-		}
-		handler(error, userData);
-		return false;
-	}
-}
-
-static bool validateMailOrderHelper(char * accessToken,
-	
-	
-	void(* handler)(Error, void* ) , void* userData, bool isAsync)
-{
-
-	//TODO: maybe delete headerList after its used to free up space?
-	struct curl_slist *headerList = NULL;
-
-	
-	string accessHeader = "Authorization: Bearer ";
-	accessHeader.append(accessToken);
-	headerList = curl_slist_append(headerList, accessHeader.c_str());
-	headerList = curl_slist_append(headerList, "Content-Type: application/json");
-
-	map <string, string> queryParams;
-	string itemAtq;
-	
-	string mBody = "";
-	JsonNode* node;
-	JsonArray* json_array;
-
-	string url("/mail/order");
-	int pos;
-
-
-	//TODO: free memory of errormsg, memorystruct
-	MemoryStruct_s* p_chunk = new MemoryStruct_s();
-	long code;
-	char* errormsg = NULL;
-	string myhttpmethod("GET");
-
-	if(strcmp("PUT", "GET") == 0){
-		if(strcmp("", mBody.c_str()) == 0){
-			mBody.append("{}");
-		}
-	}
-
-	if(!isAsync){
-		NetClient::easycurl(DefaultManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg);
-		bool retval = validateMailOrderProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
-
-		curl_slist_free_all(headerList);
-		if (p_chunk) {
-			if(p_chunk->memory) {
-				free(p_chunk->memory);
-			}
-			delete (p_chunk);
-		}
-		if (errormsg) {
-			free(errormsg);
-		}
-		return retval;
-	} else{
-		GThread *thread = NULL;
-		RequestInfo *requestInfo = NULL;
-
-		requestInfo = new(nothrow) RequestInfo (DefaultManager::getBasePath(), url, myhttpmethod, queryParams,
-			mBody, headerList, p_chunk, &code, errormsg, userData, reinterpret_cast<void(*)()>(handler), validateMailOrderProcessor);;
-		if(requestInfo == NULL)
-			return false;
-
-		thread = g_thread_new(NULL, __DefaultManagerthreadFunc, static_cast<gpointer>(requestInfo));
-		return true;
-	}
-}
-
-
-
-
-bool DefaultManager::validateMailOrderAsync(char * accessToken,
-	
-	
-	void(* handler)(Error, void* ) , void* userData)
-{
-	return validateMailOrderHelper(accessToken,
-	
-	handler, userData, true);
-}
-
-bool DefaultManager::validateMailOrderSync(char * accessToken,
-	
-	
-	void(* handler)(Error, void* ) , void* userData)
-{
-	return validateMailOrderHelper(accessToken,
-	
-	handler, userData, false);
-}
-
 static bool viewMailLogProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
-	void(* handler)(std::list<MailLog>, Error, void* )
-	= reinterpret_cast<void(*)(std::list<MailLog>, Error, void* )> (voidHandler);
+	void(* handler)(MailLog, Error, void* )
+	= reinterpret_cast<void(*)(MailLog, Error, void* )> (voidHandler);
 	
 	JsonNode* pJson;
 	char * data = p_chunk.memory;
 
-	std::list<MailLog> out;
 	
+	MailLog out;
 
 	if (code >= 200 && code < 300) {
 		Error error(code, string("No Error"));
 
 
 
-		pJson = json_from_string(data, NULL);
-		JsonArray * jsonarray = json_node_get_array (pJson);
-		guint length = json_array_get_length (jsonarray);
-		for(guint i = 0; i < length; i++){
-			JsonNode* myJson = json_array_get_element (jsonarray, i);
-			char * singlenodestr = json_to_string(myJson, false);
-			MailLog singlemodel;
-			singlemodel.fromJson(singlenodestr);
-			out.push_front(singlemodel);
-			g_free(static_cast<gpointer>(singlenodestr));
-			json_node_free(myJson);
-		}
-		json_array_unref (jsonarray);
-		json_node_free(pJson);
 
+		if (isprimitive("MailLog")) {
+			pJson = json_from_string(data, NULL);
+			jsonToValue(&out, pJson, "MailLog", "MailLog");
+			json_node_free(pJson);
+
+			if ("MailLog" == "std::string") {
+				string* val = (std::string*)(&out);
+				if (val->empty() && p_chunk.size>4) {
+					*val = string(p_chunk.memory, p_chunk.size);
+				}
+			}
+		} else {
+			
+			out.fromJson(data);
+			char *jsonStr =  out.toJson();
+			printf("\n%s\n", jsonStr);
+			g_free(static_cast<gpointer>(jsonStr));
+			
+		}
+		handler(out, error, userData);
+		return true;
+		//TODO: handle case where json parsing has an error
 
 	} else {
 		Error error;
@@ -956,8 +703,8 @@ static bool viewMailLogProcessor(MemoryStruct_s p_chunk, long code, char* errorm
 }
 
 static bool viewMailLogHelper(char * accessToken,
-	long long id, std::string searchString, int skip, int limit, 
-	void(* handler)(std::list<MailLog>, Error, void* )
+	long long id, std::string search, int skip, int limit, 
+	void(* handler)(MailLog, Error, void* )
 	, void* userData, bool isAsync)
 {
 
@@ -981,10 +728,10 @@ static bool viewMailLogHelper(char * accessToken,
 	}
 
 
-	itemAtq = stringify(&searchString, "std::string");
-	queryParams.insert(pair<string, string>("searchString", itemAtq));
+	itemAtq = stringify(&search, "std::string");
+	queryParams.insert(pair<string, string>("search", itemAtq));
 	if( itemAtq.empty()==true){
-		queryParams.erase("searchString");
+		queryParams.erase("search");
 	}
 
 
@@ -1055,22 +802,22 @@ static bool viewMailLogHelper(char * accessToken,
 
 
 bool DefaultManager::viewMailLogAsync(char * accessToken,
-	long long id, std::string searchString, int skip, int limit, 
-	void(* handler)(std::list<MailLog>, Error, void* )
+	long long id, std::string search, int skip, int limit, 
+	void(* handler)(MailLog, Error, void* )
 	, void* userData)
 {
 	return viewMailLogHelper(accessToken,
-	id, searchString, skip, limit, 
+	id, search, skip, limit, 
 	handler, userData, true);
 }
 
 bool DefaultManager::viewMailLogSync(char * accessToken,
-	long long id, std::string searchString, int skip, int limit, 
-	void(* handler)(std::list<MailLog>, Error, void* )
+	long long id, std::string search, int skip, int limit, 
+	void(* handler)(MailLog, Error, void* )
 	, void* userData)
 {
 	return viewMailLogHelper(accessToken,
-	id, searchString, skip, limit, 
+	id, search, skip, limit, 
 	handler, userData, false);
 }
 

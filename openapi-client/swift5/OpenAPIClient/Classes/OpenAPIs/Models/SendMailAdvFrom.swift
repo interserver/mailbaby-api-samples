@@ -6,20 +6,23 @@
 //
 
 import Foundation
+#if canImport(AnyCodable)
 import AnyCodable
+#endif
 
-/** An Email Contact */
-public struct SendMailAdvFrom: Codable, Hashable {
+/** The information to use for the From address in the email. from. */
+public struct SendMailAdvFrom: Codable, JSONEncodable, Hashable {
 
     /** The email address */
     public var email: String
-    /** Optional contact name */
+    /** (optional) Name to use for the sending contact. */
     public var name: String?
 
     public init(email: String, name: String? = nil) {
         self.email = email
         self.name = name
     }
+
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case email
         case name
@@ -32,7 +35,5 @@ public struct SendMailAdvFrom: Codable, Hashable {
         try container.encode(email, forKey: .email)
         try container.encodeIfPresent(name, forKey: .name)
     }
-
-
-
 }
+

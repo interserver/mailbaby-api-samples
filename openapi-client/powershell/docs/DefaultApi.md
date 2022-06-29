@@ -6,16 +6,14 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Get-MailOrders**](DefaultApi.md#Get-MailOrders) | **GET** /mail | displays a list of mail service orders
 [**Ping-Server**](DefaultApi.md#Ping-Server) | **GET** /ping | Checks if the server is running
-[**Invoke-PlaceMailOrder**](DefaultApi.md#Invoke-PlaceMailOrder) | **POST** /mail/order | places a mail order
 [**Send-AdvMail**](DefaultApi.md#Send-AdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**Send-Mail**](DefaultApi.md#Send-Mail) | **POST** /mail/send | Sends an Email
-[**Confirm-MailOrder**](DefaultApi.md#Confirm-MailOrder) | **GET** /mail/order | validatess order details before placing an order
 [**Invoke-ViewMailLog**](DefaultApi.md#Invoke-ViewMailLog) | **GET** /mail/log | displays the mail log
 
 
 <a name="Get-MailOrders"></a>
 # **Get-MailOrders**
-> MailOrder[] Get-MailOrders<br>
+> GetMailOrders200ResponseInner[] Get-MailOrders<br>
 
 displays a list of mail service orders
 
@@ -31,9 +29,9 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 
 # displays a list of mail service orders
 try {
-     $Result = Get-MailOrders
+    $Result = Get-MailOrders
 } catch {
-    Write-Host ("Exception occured when calling Get-MailOrders: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occurred when calling Get-MailOrders: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -43,7 +41,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**MailOrder[]**](MailOrder.md) (PSCustomObject)
+[**GetMailOrders200ResponseInner[]**](GetMailOrders200ResponseInner.md) (PSCustomObject)
 
 ### Authorization
 
@@ -52,7 +50,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/xml, text/plain
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -67,9 +65,9 @@ Checks if the server is running
 
 # Checks if the server is running
 try {
-     $Result = Ping-Server
+    $Result = Ping-Server
 } catch {
-    Write-Host ("Exception occured when calling Ping-Server: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occurred when calling Ping-Server: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -92,56 +90,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-PlaceMailOrder"></a>
-# **Invoke-PlaceMailOrder**
-> void Invoke-PlaceMailOrder<br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-MailOrder] <PSCustomObject><br>
-
-places a mail order
-
-Adds an item to the system
-
-### Example
-```powershell
-# general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-Configuration
-# Configure API key authorization: apiKeyAuth
-$Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
-
-$MailOrder = (Initialize-MailOrder -Id 123 -Status "Status_example" -Username "Username_example" -Password "Password_example" -Comment "Comment_example") # MailOrder | Inventory item to add (optional)
-
-# places a mail order
-try {
-     $Result = Invoke-PlaceMailOrder -MailOrder $MailOrder
-} catch {
-    Write-Host ("Exception occured when calling Invoke-PlaceMailOrder: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
-    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **MailOrder** | [**MailOrder**](MailOrder.md)| Inventory item to add | [optional] 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a name="Send-AdvMail"></a>
 # **Send-AdvMail**
 > GenericResponse Send-AdvMail<br>
@@ -160,13 +108,19 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
-$SendMailAdv = (Initialize-SendMailAdv -Subject "Subject_example" -Body "Body_example" -VarFrom @((Initialize-SendMailAdv_from -Email "Email_example" -Name "Name_example")) -To @((Initialize-MailContact -Email "Email_example" -Name "Name_example")) -Id 123 -Replyto @((Initialize-MailContact -Email "Email_example" -Name "Name_example")) -Cc @() -Bcc @() -Attachments @((Initialize-MailAttachment -Filename "Filename_example" -VarData 123))) # SendMailAdv | 
+$SendMailAdvFrom = Initialize-SendMailAdvFrom -Email "business@company.com" -Name "The Man"
+$SendMailAdvToInner = Initialize-SendMailAdvToInner -Email "johndoe@isp.com" -Name "John Doe"
+$SendMailAdvReplytoInner = Initialize-SendMailAdvReplytoInner -Email "support@company.com" -Name "Support Staff"
+$SendMailAdvCcInner = Initialize-SendMailAdvCcInner -Email "janedoe@isp.com" -Name "Jane Doe"
+$SendMailAdvBccInner = Initialize-SendMailAdvBccInner -Email "records@company.com" -Name "Records Department"
+$SendMailAdvAttachmentsInner = Initialize-SendMailAdvAttachmentsInner -Filename "company_logo.png" -VarData 
+$SendMailAdv = Initialize-SendMailAdv -Subject "Your Package has been Delivered!" -Body "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else." -VarFrom $SendMailAdvFrom -To $SendMailAdvToInner -Replyto $SendMailAdvReplytoInner -Cc $SendMailAdvCcInner -Bcc $SendMailAdvBccInner -Attachments $SendMailAdvAttachmentsInner -Id 5000 # SendMailAdv | 
 
 # Sends an Email with Advanced Options
 try {
-     $Result = Send-AdvMail -SendMailAdv $SendMailAdv
+    $Result = Send-AdvMail -SendMailAdv $SendMailAdv
 } catch {
-    Write-Host ("Exception occured when calling Send-AdvMail: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occurred when calling Send-AdvMail: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -202,7 +156,7 @@ Name | Type | Description  | Notes
 
 Sends an Email
 
-Sends An email through one of your mail orders.
+Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
 
 ### Example
 ```powershell
@@ -213,16 +167,16 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
-$To = "To_example" # String | The Contact whom is the primary recipient of this email.
-$From = "From_example" # String | The contact whom is the this email is from.
-$Subject = "Subject_example" # String | The subject or title of the email
-$Body = "Body_example" # String | The main email contents.
+$To = "MyTo" # String | The Contact whom is the primary recipient of this email.
+$From = "MyFrom" # String | The contact whom is the this email is from.
+$Subject = "MySubject" # String | The subject or title of the email
+$Body = "MyBody" # String | The main email contents.
 
 # Sends an Email
 try {
-     $Result = Send-Mail -To $To -From $From -Subject $Subject -Body $Body
+    $Result = Send-Mail -To $To -From $From -Subject $Subject -Body $Body
 } catch {
-    Write-Host ("Exception occured when calling Send-Mail: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occurred when calling Send-Mail: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -251,54 +205,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Confirm-MailOrder"></a>
-# **Confirm-MailOrder**
-> void Confirm-MailOrder<br>
-
-validatess order details before placing an order
-
-### Example
-```powershell
-# general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-Configuration
-# Configure API key authorization: apiKeyAuth
-$Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
-
-
-# validatess order details before placing an order
-try {
-     $Result = Confirm-MailOrder
-} catch {
-    Write-Host ("Exception occured when calling Confirm-MailOrder: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
-    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[apiKeyAuth](../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a name="Invoke-ViewMailLog"></a>
 # **Invoke-ViewMailLog**
-> MailLog[] Invoke-ViewMailLog<br>
+> MailLog Invoke-ViewMailLog<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <System.Nullable[Int64]><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-SearchString] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Search] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Skip] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Limit] <System.Nullable[Int32]><br>
 
@@ -315,16 +226,16 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
-$Id = 987 # Int64 | The ID of your mail order this will be sent through. (optional)
-$SearchString = "SearchString_example" # String | pass an optional search string for looking up inventory (optional)
-$Skip = 987 # Int32 | number of records to skip for pagination (optional)
-$Limit = 987 # Int32 | maximum number of records to return (optional)
+$Id = 789 # Int64 | The ID of your mail order this will be sent through. (optional)
+$Search = "MySearch" # String | pass an optional search string for looking up inventory (optional)
+$Skip = 56 # Int32 | number of records to skip for pagination (optional) (default to 0)
+$Limit = 56 # Int32 | maximum number of records to return (optional) (default to 100)
 
 # displays the mail log
 try {
-     $Result = Invoke-ViewMailLog -Id $Id -SearchString $SearchString -Skip $Skip -Limit $Limit
+    $Result = Invoke-ViewMailLog -Id $Id -Search $Search -Skip $Skip -Limit $Limit
 } catch {
-    Write-Host ("Exception occured when calling Invoke-ViewMailLog: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Exception occurred when calling Invoke-ViewMailLog: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
 }
 ```
@@ -334,13 +245,13 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **Id** | **Int64**| The ID of your mail order this will be sent through. | [optional] 
- **SearchString** | **String**| pass an optional search string for looking up inventory | [optional] 
- **Skip** | **Int32**| number of records to skip for pagination | [optional] 
- **Limit** | **Int32**| maximum number of records to return | [optional] 
+ **Search** | **String**| pass an optional search string for looking up inventory | [optional] 
+ **Skip** | **Int32**| number of records to skip for pagination | [optional] [default to 0]
+ **Limit** | **Int32**| maximum number of records to return | [optional] [default to 100]
 
 ### Return type
 
-[**MailLog[]**](MailLog.md) (PSCustomObject)
+[**MailLog**](MailLog.md) (PSCustomObject)
 
 ### Authorization
 

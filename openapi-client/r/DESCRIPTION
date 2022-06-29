@@ -1,8 +1,9 @@
 Package: openapi
-Title: R Package Client for Mail Baby API
+Title: R Package Client for MailBaby Email Delivery API
 Version: 1.0.0
-Authors@R: person("Joe Huss", email = "detain@interserver.net", role = c("aut", "cre"))
-Description: This is an API defintion for accesssing the Mail.Baby mail service.
+Author: person("Mail Baby", email = "support@interserver.net", role = c("aut", "cre"))
+Maintainer: Mail Baby <support@interserver.net>
+Description: **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.    We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 URL: https://github.com/GIT_USER_ID/GIT_REPO_ID
 BugReports: https://github.com/GIT_USER_ID/GIT_REPO_ID/issues
 Depends: R (>= 3.3)

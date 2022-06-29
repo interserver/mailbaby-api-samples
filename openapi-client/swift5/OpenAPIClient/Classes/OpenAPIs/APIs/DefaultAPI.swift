@@ -6,16 +6,21 @@
 //
 
 import Foundation
+#if canImport(AnyCodable)
+import AnyCodable
+#endif
 
 open class DefaultAPI {
+
     /**
      displays a list of mail service orders
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getMailOrders(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [MailOrder]?, _ error: Error?) -> Void)) {
-        getMailOrdersWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+    @discardableResult
+    open class func getMailOrders(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [GetMailOrders200ResponseInner]?, _ error: Error?) -> Void)) -> RequestTask {
+        return getMailOrdersWithRequestBuilder().execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -31,24 +36,24 @@ open class DefaultAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - returns: RequestBuilder<[MailOrder]> 
+     - returns: RequestBuilder<[GetMailOrders200ResponseInner]> 
      */
-    open class func getMailOrdersWithRequestBuilder() -> RequestBuilder<[MailOrder]> {
-        let path = "/mail"
-        let URLString = OpenAPIClientAPI.basePath + path
-        let parameters: [String: Any]? = nil
+    open class func getMailOrdersWithRequestBuilder() -> RequestBuilder<[GetMailOrders200ResponseInner]> {
+        let localVariablePath = "/mail"
+        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
 
-        let urlComponents = URLComponents(string: URLString)
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let nillableHeaders: [String: Any?] = [
+        let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let requestBuilder: RequestBuilder<[MailOrder]>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<[GetMailOrders200ResponseInner]>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "GET", URLString: (urlComponents?.string ?? URLString), parameters: parameters, headers: headerParameters)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
 
     /**
@@ -57,8 +62,9 @@ open class DefaultAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func pingServer(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) {
-        pingServerWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+    @discardableResult
+    open class func pingServer(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
+        return pingServerWithRequestBuilder().execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion((), nil)
@@ -74,69 +80,21 @@ open class DefaultAPI {
      - returns: RequestBuilder<Void> 
      */
     open class func pingServerWithRequestBuilder() -> RequestBuilder<Void> {
-        let path = "/ping"
-        let URLString = OpenAPIClientAPI.basePath + path
-        let parameters: [String: Any]? = nil
+        let localVariablePath = "/ping"
+        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
 
-        let urlComponents = URLComponents(string: URLString)
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let nillableHeaders: [String: Any?] = [
+        let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let requestBuilder: RequestBuilder<Void>.Type = OpenAPIClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = OpenAPIClientAPI.requestBuilderFactory.getNonDecodableBuilder()
 
-        return requestBuilder.init(method: "GET", URLString: (urlComponents?.string ?? URLString), parameters: parameters, headers: headerParameters)
-    }
-
-    /**
-     places a mail order
-     
-     - parameter mailOrder: (body) Inventory item to add (optional)
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func placeMailOrder(mailOrder: MailOrder? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) {
-        placeMailOrderWithRequestBuilder(mailOrder: mailOrder).execute(apiResponseQueue) { result -> Void in
-            switch result {
-            case .success:
-                completion((), nil)
-            case let .failure(error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     places a mail order
-     - POST /mail/order
-     - Adds an item to the system
-     - API Key:
-       - type: apiKey X-API-KEY 
-       - name: apiKeyAuth
-     - parameter mailOrder: (body) Inventory item to add (optional)
-     - returns: RequestBuilder<Void> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func placeMailOrderWithRequestBuilder(mailOrder: MailOrder? = nil) -> RequestBuilder<Void> {
-        let path = "/mail/order"
-        let URLString = OpenAPIClientAPI.basePath + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: mailOrder)
-
-        let urlComponents = URLComponents(string: URLString)
-
-        let nillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Void>.Type = OpenAPIClientAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (urlComponents?.string ?? URLString), parameters: parameters, headers: headerParameters)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
 
     /**
@@ -146,8 +104,9 @@ open class DefaultAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendAdvMail(sendMailAdv: SendMailAdv, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) {
-        sendAdvMailWithRequestBuilder(sendMailAdv: sendMailAdv).execute(apiResponseQueue) { result -> Void in
+    @discardableResult
+    open class func sendAdvMail(sendMailAdv: SendMailAdv, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) -> RequestTask {
+        return sendAdvMailWithRequestBuilder(sendMailAdv: sendMailAdv).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -168,21 +127,21 @@ open class DefaultAPI {
      - returns: RequestBuilder<GenericResponse> 
      */
     open class func sendAdvMailWithRequestBuilder(sendMailAdv: SendMailAdv) -> RequestBuilder<GenericResponse> {
-        let path = "/mail/advsend"
-        let URLString = OpenAPIClientAPI.basePath + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: sendMailAdv)
+        let localVariablePath = "/mail/advsend"
+        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: sendMailAdv)
 
-        let urlComponents = URLComponents(string: URLString)
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let nillableHeaders: [String: Any?] = [
+        let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let requestBuilder: RequestBuilder<GenericResponse>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GenericResponse>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (urlComponents?.string ?? URLString), parameters: parameters, headers: headerParameters)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
 
     /**
@@ -195,8 +154,9 @@ open class DefaultAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendMail(to: String, from: String, subject: String, body: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) {
-        sendMailWithRequestBuilder(to: to, from: from, subject: subject, body: body).execute(apiResponseQueue) { result -> Void in
+    @discardableResult
+    open class func sendMail(to: String, from: String, subject: String, body: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) -> RequestTask {
+        return sendMailWithRequestBuilder(to: to, from: from, subject: subject, body: body).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -209,7 +169,7 @@ open class DefaultAPI {
     /**
      Sends an Email
      - POST /mail/send
-     - Sends An email through one of your mail orders.
+     - Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
@@ -220,88 +180,44 @@ open class DefaultAPI {
      - returns: RequestBuilder<GenericResponse> 
      */
     open class func sendMailWithRequestBuilder(to: String, from: String, subject: String, body: String) -> RequestBuilder<GenericResponse> {
-        let path = "/mail/send"
-        let URLString = OpenAPIClientAPI.basePath + path
-        let formParams: [String: Any?] = [
+        let localVariablePath = "/mail/send"
+        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
+        let localVariableFormParams: [String: Any?] = [
             "to": to.encodeToJSON(),
             "from": from.encodeToJSON(),
             "subject": subject.encodeToJSON(),
             "body": body.encodeToJSON(),
         ]
 
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
+        let localVariableParameters = APIHelper.convertBoolToString(localVariableNonNullParameters)
 
-        let urlComponents = URLComponents(string: URLString)
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let nillableHeaders: [String: Any?] = [
+        let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/x-www-form-urlencoded",
         ]
 
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let requestBuilder: RequestBuilder<GenericResponse>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GenericResponse>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (urlComponents?.string ?? URLString), parameters: parameters, headers: headerParameters)
-    }
-
-    /**
-     validatess order details before placing an order
-     
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func validateMailOrder(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) {
-        validateMailOrderWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-            switch result {
-            case .success:
-                completion((), nil)
-            case let .failure(error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     validatess order details before placing an order
-     - GET /mail/order
-     - API Key:
-       - type: apiKey X-API-KEY 
-       - name: apiKeyAuth
-     - returns: RequestBuilder<Void> 
-     */
-    @available(*, deprecated, message: "This operation is deprecated.")
-    open class func validateMailOrderWithRequestBuilder() -> RequestBuilder<Void> {
-        let path = "/mail/order"
-        let URLString = OpenAPIClientAPI.basePath + path
-        let parameters: [String: Any]? = nil
-
-        let urlComponents = URLComponents(string: URLString)
-
-        let nillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Void>.Type = OpenAPIClientAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (urlComponents?.string ?? URLString), parameters: parameters, headers: headerParameters)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
 
     /**
      displays the mail log
      
      - parameter id: (query) The ID of your mail order this will be sent through. (optional)
-     - parameter searchString: (query) pass an optional search string for looking up inventory (optional)
-     - parameter skip: (query) number of records to skip for pagination (optional)
-     - parameter limit: (query) maximum number of records to return (optional)
+     - parameter search: (query) pass an optional search string for looking up inventory (optional)
+     - parameter skip: (query) number of records to skip for pagination (optional, default to 0)
+     - parameter limit: (query) maximum number of records to return (optional, default to 100)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func viewMailLog(id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [MailLog]?, _ error: Error?) -> Void)) {
-        viewMailLogWithRequestBuilder(id: id, searchString: searchString, skip: skip, limit: limit).execute(apiResponseQueue) { result -> Void in
+    @discardableResult
+    open class func viewMailLog(id: Int64? = nil, search: String? = nil, skip: Int? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: MailLog?, _ error: Error?) -> Void)) -> RequestTask {
+        return viewMailLogWithRequestBuilder(id: id, search: search, skip: skip, limit: limit).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -319,33 +235,32 @@ open class DefaultAPI {
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
      - parameter id: (query) The ID of your mail order this will be sent through. (optional)
-     - parameter searchString: (query) pass an optional search string for looking up inventory (optional)
-     - parameter skip: (query) number of records to skip for pagination (optional)
-     - parameter limit: (query) maximum number of records to return (optional)
-     - returns: RequestBuilder<[MailLog]> 
+     - parameter search: (query) pass an optional search string for looking up inventory (optional)
+     - parameter skip: (query) number of records to skip for pagination (optional, default to 0)
+     - parameter limit: (query) maximum number of records to return (optional, default to 100)
+     - returns: RequestBuilder<MailLog> 
      */
-    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, searchString: String? = nil, skip: Int? = nil, limit: Int? = nil) -> RequestBuilder<[MailLog]> {
-        let path = "/mail/log"
-        let URLString = OpenAPIClientAPI.basePath + path
-        let parameters: [String: Any]? = nil
+    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, search: String? = nil, skip: Int? = nil, limit: Int? = nil) -> RequestBuilder<MailLog> {
+        let localVariablePath = "/mail/log"
+        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
 
-        var urlComponents = URLComponents(string: URLString)
-        urlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "id": id?.encodeToJSON(),
-            "searchString": searchString?.encodeToJSON(),
+            "search": search?.encodeToJSON(),
             "skip": skip?.encodeToJSON(),
             "limit": limit?.encodeToJSON(),
         ])
 
-        let nillableHeaders: [String: Any?] = [
+        let localVariableNillableHeaders: [String: Any?] = [
             :
         ]
 
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let requestBuilder: RequestBuilder<[MailLog]>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<MailLog>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "GET", URLString: (urlComponents?.string ?? URLString), parameters: parameters, headers: headerParameters)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }
-
 }

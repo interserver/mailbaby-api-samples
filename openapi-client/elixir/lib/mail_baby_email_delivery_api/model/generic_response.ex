@@ -9,13 +9,13 @@ defmodule MailBabyEmailDeliveryAPI.Model.GenericResponse do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"status",
-    :"text"
+    :status,
+    :text
   ]
 
   @type t :: %__MODULE__{
-    :"status" => String.t | nil,
-    :"text" => String.t | nil
+    :status => String.t | nil,
+    :text => String.t | nil
   }
 end
 

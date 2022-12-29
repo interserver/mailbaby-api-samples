@@ -33,6 +33,15 @@ export interface GenericResponse {
     text?: string;
 }
 
+/**
+ * Check if a given object implements the GenericResponse interface.
+ */
+export function instanceOfGenericResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function GenericResponseFromJSON(json: any): GenericResponse {
     return GenericResponseFromJSONTyped(json, false);
 }

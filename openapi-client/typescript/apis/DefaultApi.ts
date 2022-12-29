@@ -302,14 +302,14 @@ export class DefaultApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GetMailOrders401Response", ""
             ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(401, "Unauthorized", body, response.headers);
+            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "Unauthorized", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: GetMailOrders401Response = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GetMailOrders401Response", ""
             ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(404, "Unauthorized", body, response.headers);
+            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "Unauthorized", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -373,21 +373,21 @@ export class DefaultApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GetMailOrders401Response", ""
             ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(400, "The specified resource was not found", body, response.headers);
+            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "The specified resource was not found", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: GetMailOrders401Response = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GetMailOrders401Response", ""
             ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(401, "Unauthorized", body, response.headers);
+            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "Unauthorized", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: GetMailOrders401Response = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GetMailOrders401Response", ""
             ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(404, "The specified resource was not found", body, response.headers);
+            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "The specified resource was not found", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -423,21 +423,21 @@ export class DefaultApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GetMailOrders401Response", ""
             ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(400, "The specified resource was not found", body, response.headers);
+            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "The specified resource was not found", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             const body: GetMailOrders401Response = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GetMailOrders401Response", ""
             ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(401, "Unauthorized", body, response.headers);
+            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "Unauthorized", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
             const body: GetMailOrders401Response = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GetMailOrders401Response", ""
             ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(404, "The specified resource was not found", body, response.headers);
+            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "The specified resource was not found", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml

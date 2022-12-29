@@ -9,13 +9,13 @@ defmodule MailBabyEmailDeliveryAPI.Model.GetMailOrders401Response do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"code",
-    :"message"
+    :code,
+    :message
   ]
 
   @type t :: %__MODULE__{
-    :"code" => String.t,
-    :"message" => String.t
+    :code => String.t,
+    :message => String.t
   }
 end
 

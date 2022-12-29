@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -59,6 +60,23 @@ public class SendMailAdvFrom  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    SendMailAdvFrom sendMailAdvFrom = (SendMailAdvFrom) o;
+    return Objects.equals(email, sendMailAdvFrom.email) &&
+        Objects.equals(name, sendMailAdvFrom.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(email, name);
+  }
 
   @Override
   public String toString() {

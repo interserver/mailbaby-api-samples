@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -48,6 +49,23 @@ public class GenericResponse  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GenericResponse genericResponse = (GenericResponse) o;
+    return Objects.equals(status, genericResponse.status) &&
+        Objects.equals(text, genericResponse.text);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(status, text);
+  }
 
   @Override
   public String toString() {

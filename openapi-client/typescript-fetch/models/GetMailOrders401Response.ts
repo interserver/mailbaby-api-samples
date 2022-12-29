@@ -33,6 +33,17 @@ export interface GetMailOrders401Response {
     message: string;
 }
 
+/**
+ * Check if a given object implements the GetMailOrders401Response interface.
+ */
+export function instanceOfGetMailOrders401Response(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "code" in value;
+    isInstance = isInstance && "message" in value;
+
+    return isInstance;
+}
+
 export function GetMailOrders401ResponseFromJSON(json: any): GetMailOrders401Response {
     return GetMailOrders401ResponseFromJSONTyped(json, false);
 }

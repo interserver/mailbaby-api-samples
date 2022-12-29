@@ -33,6 +33,16 @@ export interface SendMailAdvCcInner {
     name?: string;
 }
 
+/**
+ * Check if a given object implements the SendMailAdvCcInner interface.
+ */
+export function instanceOfSendMailAdvCcInner(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "email" in value;
+
+    return isInstance;
+}
+
 export function SendMailAdvCcInnerFromJSON(json: any): SendMailAdvCcInner {
     return SendMailAdvCcInnerFromJSONTyped(json, false);
 }

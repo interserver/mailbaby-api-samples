@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -111,6 +112,26 @@ public class GetMailOrders200ResponseInner  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GetMailOrders200ResponseInner getMailOrders200ResponseInner = (GetMailOrders200ResponseInner) o;
+    return Objects.equals(id, getMailOrders200ResponseInner.id) &&
+        Objects.equals(status, getMailOrders200ResponseInner.status) &&
+        Objects.equals(username, getMailOrders200ResponseInner.username) &&
+        Objects.equals(password, getMailOrders200ResponseInner.password) &&
+        Objects.equals(comment, getMailOrders200ResponseInner.comment);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, status, username, password, comment);
+  }
 
   @Override
   public String toString() {

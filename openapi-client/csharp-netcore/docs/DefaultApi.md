@@ -2,14 +2,13 @@
 
 All URIs are relative to *https://api.mailbaby.net*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**GetMailOrders**](DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
-[**PingServer**](DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
-[**SendAdvMail**](DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**SendMail**](DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
-[**ViewMailLog**](DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
-
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**GetMailOrders**](DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders |
+| [**PingServer**](DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running |
+| [**SendAdvMail**](DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options |
+| [**SendMail**](DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email |
+| [**ViewMailLog**](DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log |
 
 <a name="getmailorders"></a>
 # **GetMailOrders**
@@ -48,8 +47,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DefaultApi.GetMailOrders: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling DefaultApi.GetMailOrders: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -57,9 +56,28 @@ namespace Example
 }
 ```
 
+#### Using the GetMailOrdersWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // displays a list of mail service orders
+    ApiResponse<List<GetMailOrders200ResponseInner>> response = apiInstance.GetMailOrdersWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DefaultApi.GetMailOrdersWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 This endpoint does not need any parameter.
-
 ### Return type
 
 [**List&lt;GetMailOrders200ResponseInner&gt;**](GetMailOrders200ResponseInner.md)
@@ -114,8 +132,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DefaultApi.PingServer: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling DefaultApi.PingServer: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -123,9 +141,25 @@ namespace Example
 }
 ```
 
+#### Using the PingServerWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Checks if the server is running
+    apiInstance.PingServerWithHttpInfo();
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DefaultApi.PingServerWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 This endpoint does not need any parameter.
-
 ### Return type
 
 void (empty response body)
@@ -188,8 +222,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DefaultApi.SendAdvMail: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling DefaultApi.SendAdvMail: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -197,11 +231,31 @@ namespace Example
 }
 ```
 
+#### Using the SendAdvMailWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Sends an Email with Advanced Options
+    ApiResponse<GenericResponse> response = apiInstance.SendAdvMailWithHttpInfo(sendMailAdv);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DefaultApi.SendAdvMailWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **sendMailAdv** | [**SendMailAdv**](SendMailAdv.md)|  | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **sendMailAdv** | [**SendMailAdv**](SendMailAdv.md) |  |  |
 
 ### Return type
 
@@ -270,8 +324,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DefaultApi.SendMail: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling DefaultApi.SendMail: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -279,14 +333,34 @@ namespace Example
 }
 ```
 
+#### Using the SendMailWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Sends an Email
+    ApiResponse<GenericResponse> response = apiInstance.SendMailWithHttpInfo(to, from, subject, body);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DefaultApi.SendMailWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **to** | **string**| The Contact whom is the primary recipient of this email. | 
- **from** | **string**| The contact whom is the this email is from. | 
- **subject** | **string**| The subject or title of the email | 
- **body** | **string**| The main email contents. | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **to** | **string** | The Contact whom is the primary recipient of this email. |  |
+| **from** | **string** | The contact whom is the this email is from. |  |
+| **subject** | **string** | The subject or title of the email |  |
+| **body** | **string** | The main email contents. |  |
 
 ### Return type
 
@@ -355,8 +429,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DefaultApi.ViewMailLog: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling DefaultApi.ViewMailLog: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -364,14 +438,34 @@ namespace Example
 }
 ```
 
+#### Using the ViewMailLogWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // displays the mail log
+    ApiResponse<MailLog> response = apiInstance.ViewMailLogWithHttpInfo(id, search, skip, limit);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DefaultApi.ViewMailLogWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **long?**| The ID of your mail order this will be sent through. | [optional] 
- **search** | **string**| pass an optional search string for looking up inventory | [optional] 
- **skip** | **int?**| number of records to skip for pagination | [optional] [default to 0]
- **limit** | **int?**| maximum number of records to return | [optional] [default to 100]
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **long?** | The ID of your mail order this will be sent through. | [optional]  |
+| **search** | **string** | pass an optional search string for looking up inventory | [optional]  |
+| **skip** | **int?** | number of records to skip for pagination | [optional] [default to 0] |
+| **limit** | **int?** | maximum number of records to return | [optional] [default to 100] |
 
 ### Return type
 

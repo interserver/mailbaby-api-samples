@@ -22,10 +22,12 @@ library(openapi)
 
 
 #displays a list of mail service orders
-api.instance <- DefaultApi$new()
+api_instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
-api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$GetMailOrders()
+api_instance$api_client$api_keys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetMailOrders(data_file = "result.txt")
+result <- api_instance$GetMailOrders()
 dput(result)
 ```
 
@@ -63,8 +65,8 @@ library(openapi)
 
 
 #Checks if the server is running
-api.instance <- DefaultApi$new()
-api.instance$PingServer()
+api_instance <- DefaultApi$new()
+api_instance$PingServer()
 ```
 
 ### Parameters
@@ -100,13 +102,15 @@ Sends An email through one of your mail orders allowing additional options such 
 ```R
 library(openapi)
 
-var.send_mail_adv <- SendMailAdv$new("subject_example", "body_example", SendMailAdv_from$new("email_example", "name_example"), list(SendMailAdv_to_inner$new("email_example", "name_example")), list(SendMailAdv_replyto_inner$new("email_example", "name_example")), list(SendMailAdv_cc_inner$new("email_example", "name_example")), list(SendMailAdv_bcc_inner$new("email_example", "name_example")), list(SendMailAdv_attachments_inner$new(123, "filename_example")), 123) # SendMailAdv | 
+var_send_mail_adv <- SendMailAdv$new("subject_example", "body_example", SendMailAdv_from$new("email_example", "name_example"), list(SendMailAdv_to_inner$new("email_example", "name_example")), list(SendMailAdv_replyto_inner$new("email_example", "name_example")), list(SendMailAdv_cc_inner$new("email_example", "name_example")), list(SendMailAdv_bcc_inner$new("email_example", "name_example")), list(SendMailAdv_attachments_inner$new(123, "filename_example")), 123) # SendMailAdv | 
 
 #Sends an Email with Advanced Options
-api.instance <- DefaultApi$new()
+api_instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
-api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$SendAdvMail(var.send_mail_adv)
+api_instance$api_client$api_keys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$SendAdvMail(var_send_mail_advdata_file = "result.txt")
+result <- api_instance$SendAdvMail(var_send_mail_adv)
 dput(result)
 ```
 
@@ -148,16 +152,18 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 ```R
 library(openapi)
 
-var.to <- 'to_example' # character | The Contact whom is the primary recipient of this email.
-var.from <- 'from_example' # character | The contact whom is the this email is from.
-var.subject <- 'subject_example' # character | The subject or title of the email
-var.body <- 'body_example' # character | The main email contents.
+var_to <- "to_example" # character | The Contact whom is the primary recipient of this email.
+var_from <- "from_example" # character | The contact whom is the this email is from.
+var_subject <- "subject_example" # character | The subject or title of the email
+var_body <- "body_example" # character | The main email contents.
 
 #Sends an Email
-api.instance <- DefaultApi$new()
+api_instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
-api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$SendMail(var.to, var.from, var.subject, var.body)
+api_instance$api_client$api_keys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$SendMail(var_to, var_from, var_subject, var_bodydata_file = "result.txt")
+result <- api_instance$SendMail(var_to, var_from, var_subject, var_body)
 dput(result)
 ```
 
@@ -192,7 +198,7 @@ Name | Type | Description  | Notes
 | **404** | The specified resource was not found |  -  |
 
 # **ViewMailLog**
-> MailLog ViewMailLog(id=var.id, search=var.search, skip=0, limit=100)
+> MailLog ViewMailLog(id = var.id, search = var.search, skip = 0, limit = 100)
 
 displays the mail log
 
@@ -202,16 +208,18 @@ By passing in the appropriate options, you can search for available inventory in
 ```R
 library(openapi)
 
-var.id <- 56 # integer | The ID of your mail order this will be sent through.
-var.search <- 'search_example' # character | pass an optional search string for looking up inventory
-var.skip <- 0 # integer | number of records to skip for pagination
-var.limit <- 100 # integer | maximum number of records to return
+var_id <- 56 # integer | The ID of your mail order this will be sent through.
+var_search <- "search_example" # character | pass an optional search string for looking up inventory
+var_skip <- 0 # integer | number of records to skip for pagination
+var_limit <- 100 # integer | maximum number of records to return
 
 #displays the mail log
-api.instance <- DefaultApi$new()
+api_instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
-api.instance$apiClient$apiKeys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
-result <- api.instance$ViewMailLog(id=var.id, search=var.search, skip=var.skip, limit=var.limit)
+api_instance$api_client$api_keys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$ViewMailLog(id = var_id, search = var_search, skip = var_skip, limit = var_limitdata_file = "result.txt")
+result <- api_instance$ViewMailLog(id = var_id, search = var_search, skip = var_skip, limit = var_limit)
 dput(result)
 ```
 

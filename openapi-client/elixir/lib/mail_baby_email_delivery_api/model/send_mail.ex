@@ -9,17 +9,17 @@ defmodule MailBabyEmailDeliveryAPI.Model.SendMail do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"to",
-    :"from",
-    :"subject",
-    :"body"
+    :to,
+    :from,
+    :subject,
+    :body
   ]
 
   @type t :: %__MODULE__{
-    :"to" => String.t,
-    :"from" => String.t,
-    :"subject" => String.t,
-    :"body" => String.t
+    :to => String.t,
+    :from => String.t,
+    :subject => String.t,
+    :body => String.t
   }
 end
 

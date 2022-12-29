@@ -219,6 +219,48 @@ export interface MailLogEntry {
     md5Match: number;
 }
 
+/**
+ * Check if a given object implements the MailLogEntry interface.
+ */
+export function instanceOfMailLogEntry(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "from" in value;
+    isInstance = isInstance && "to" in value;
+    isInstance = isInstance && "subject" in value;
+    isInstance = isInstance && "messageId" in value;
+    isInstance = isInstance && "created" in value;
+    isInstance = isInstance && "time" in value;
+    isInstance = isInstance && "user" in value;
+    isInstance = isInstance && "transtype" in value;
+    isInstance = isInstance && "transhost" in value;
+    isInstance = isInstance && "originhost" in value;
+    isInstance = isInstance && "origin" in value;
+    isInstance = isInstance && "_interface" in value;
+    isInstance = isInstance && "date" in value;
+    isInstance = isInstance && "sendingZone" in value;
+    isInstance = isInstance && "bodySize" in value;
+    isInstance = isInstance && "sourceMd5" in value;
+    isInstance = isInstance && "seq" in value;
+    isInstance = isInstance && "domain" in value;
+    isInstance = isInstance && "recipient" in value;
+    isInstance = isInstance && "locked" in value;
+    isInstance = isInstance && "lockTime" in value;
+    isInstance = isInstance && "assigned" in value;
+    isInstance = isInstance && "queued" in value;
+    isInstance = isInstance && "lock" in value;
+    isInstance = isInstance && "logger" in value;
+    isInstance = isInstance && "mxPort" in value;
+    isInstance = isInstance && "connectionKey" in value;
+    isInstance = isInstance && "mxHostname" in value;
+    isInstance = isInstance && "sentBodyHash" in value;
+    isInstance = isInstance && "sentBodySize" in value;
+    isInstance = isInstance && "md5Match" in value;
+
+    return isInstance;
+}
+
 export function MailLogEntryFromJSON(json: any): MailLogEntry {
     return MailLogEntryFromJSONTyped(json, false);
 }

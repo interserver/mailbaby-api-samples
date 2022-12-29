@@ -4,7 +4,7 @@ defmodule MailBabyEmailDeliveryAPI.Mixfile do
   def project do
     [app: :mail_baby_email_delivery_api,
      version: "1.0.0",
-     elixir: "~> 1.6",
+     elixir: "~> 1.10",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      package: package(),
@@ -31,15 +31,16 @@ defmodule MailBabyEmailDeliveryAPI.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:tesla, "~> 1.2"},
-      {:poison, "~> 3.0"}
+      {:tesla, "~> 1.4"},
+      {:poison, "~> 3.0"},
+      {:ex_doc, "~> 0.28", only: :dev, runtime: false}
     ]
   end
 
    defp package() do
     [
       name: "mail_baby_email_delivery_api",
-      files: ~w(lib mix.exs README* LICENSE*),
+      files: ~w(.formatter.exs config lib mix.exs README* LICENSE*),
       licenses: [""]
     ]
   end

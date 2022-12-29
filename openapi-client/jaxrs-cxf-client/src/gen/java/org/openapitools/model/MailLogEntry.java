@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -803,6 +804,54 @@ public class MailLogEntry  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    MailLogEntry mailLogEntry = (MailLogEntry) o;
+    return Objects.equals(id, mailLogEntry.id) &&
+        Objects.equals(id, mailLogEntry.id) &&
+        Objects.equals(from, mailLogEntry.from) &&
+        Objects.equals(to, mailLogEntry.to) &&
+        Objects.equals(subject, mailLogEntry.subject) &&
+        Objects.equals(messageId, mailLogEntry.messageId) &&
+        Objects.equals(created, mailLogEntry.created) &&
+        Objects.equals(time, mailLogEntry.time) &&
+        Objects.equals(user, mailLogEntry.user) &&
+        Objects.equals(transtype, mailLogEntry.transtype) &&
+        Objects.equals(transhost, mailLogEntry.transhost) &&
+        Objects.equals(originhost, mailLogEntry.originhost) &&
+        Objects.equals(origin, mailLogEntry.origin) &&
+        Objects.equals(_interface, mailLogEntry._interface) &&
+        Objects.equals(date, mailLogEntry.date) &&
+        Objects.equals(sendingZone, mailLogEntry.sendingZone) &&
+        Objects.equals(bodySize, mailLogEntry.bodySize) &&
+        Objects.equals(sourceMd5, mailLogEntry.sourceMd5) &&
+        Objects.equals(seq, mailLogEntry.seq) &&
+        Objects.equals(domain, mailLogEntry.domain) &&
+        Objects.equals(recipient, mailLogEntry.recipient) &&
+        Objects.equals(locked, mailLogEntry.locked) &&
+        Objects.equals(lockTime, mailLogEntry.lockTime) &&
+        Objects.equals(assigned, mailLogEntry.assigned) &&
+        Objects.equals(queued, mailLogEntry.queued) &&
+        Objects.equals(lock, mailLogEntry.lock) &&
+        Objects.equals(logger, mailLogEntry.logger) &&
+        Objects.equals(mxPort, mailLogEntry.mxPort) &&
+        Objects.equals(connectionKey, mailLogEntry.connectionKey) &&
+        Objects.equals(mxHostname, mailLogEntry.mxHostname) &&
+        Objects.equals(sentBodyHash, mailLogEntry.sentBodyHash) &&
+        Objects.equals(sentBodySize, mailLogEntry.sentBodySize) &&
+        Objects.equals(md5Match, mailLogEntry.md5Match);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, id, from, to, subject, messageId, created, time, user, transtype, transhost, originhost, origin, _interface, date, sendingZone, bodySize, sourceMd5, seq, domain, recipient, locked, lockTime, assigned, queued, lock, logger, mxPort, connectionKey, mxHostname, sentBodyHash, sentBodySize, md5Match);
+  }
 
   @Override
   public String toString() {

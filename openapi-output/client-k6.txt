@@ -18,16 +18,16 @@
 java.lang.NullPointerException: null
 	at org.openapitools.codegen.languages.K6ClientCodegen.preprocessOpenAPI(K6ClientCodegen.java:596)
 	at org.openapitools.codegen.DefaultGenerator.configureGeneratorProperties(DefaultGenerator.java:257)
-	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:881)
-	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:449)
+	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:900)
+	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:465)
 	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
 	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)
 [main] ERROR o.o.c.languages.K6ClientCodegen - null
 java.lang.NullPointerException: null
 	at org.openapitools.codegen.languages.K6ClientCodegen.preprocessOpenAPI(K6ClientCodegen.java:596)
 	at org.openapitools.codegen.DefaultGenerator.configureGeneratorProperties(DefaultGenerator.java:257)
-	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:881)
-	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:449)
+	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:900)
+	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:465)
 	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
 	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)
@@ -37,16 +37,16 @@ java.lang.NullPointerException: null
 java.lang.NullPointerException: null
 	at org.openapitools.codegen.languages.K6ClientCodegen.preprocessOpenAPI(K6ClientCodegen.java:596)
 	at org.openapitools.codegen.DefaultGenerator.configureGeneratorProperties(DefaultGenerator.java:257)
-	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:881)
-	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:449)
+	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:900)
+	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:465)
 	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
 	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)
 [main] ERROR o.o.c.languages.K6ClientCodegen - null
 java.lang.NullPointerException: null
 	at org.openapitools.codegen.languages.K6ClientCodegen.preprocessOpenAPI(K6ClientCodegen.java:596)
 	at org.openapitools.codegen.DefaultGenerator.configureGeneratorProperties(DefaultGenerator.java:257)
-	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:881)
-	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:449)
+	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:900)
+	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:465)
 	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
 	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
@@ -61,16 +61,16 @@ java.lang.NullPointerException: null
 java.lang.NullPointerException: null
 	at org.openapitools.codegen.languages.K6ClientCodegen.preprocessOpenAPI(K6ClientCodegen.java:596)
 	at org.openapitools.codegen.DefaultGenerator.configureGeneratorProperties(DefaultGenerator.java:257)
-	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:881)
-	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:449)
+	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:900)
+	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:465)
 	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
 	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)
 [main] ERROR o.o.c.languages.K6ClientCodegen - null
 java.lang.NullPointerException: null
 	at org.openapitools.codegen.languages.K6ClientCodegen.preprocessOpenAPI(K6ClientCodegen.java:596)
 	at org.openapitools.codegen.DefaultGenerator.configureGeneratorProperties(DefaultGenerator.java:257)
-	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:881)
-	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:449)
+	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:900)
+	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:465)
 	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
 	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)
 [main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)

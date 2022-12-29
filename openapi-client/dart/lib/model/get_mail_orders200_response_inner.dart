@@ -69,9 +69,13 @@ class GetMailOrders200ResponseInner {
       _json[r'username'] = username;
     if (password != null) {
       _json[r'password'] = password;
+    } else {
+      _json[r'password'] = null;
     }
     if (comment != null) {
       _json[r'comment'] = comment;
+    } else {
+      _json[r'comment'] = null;
     }
     return _json;
   }

@@ -9,19 +9,19 @@ defmodule MailBabyEmailDeliveryAPI.Model.GetMailOrders200ResponseInner do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"id",
-    :"status",
-    :"username",
-    :"password",
-    :"comment"
+    :id,
+    :status,
+    :username,
+    :password,
+    :comment
   ]
 
   @type t :: %__MODULE__{
-    :"id" => integer(),
-    :"status" => String.t,
-    :"username" => String.t,
-    :"password" => String.t | nil,
-    :"comment" => String.t | nil
+    :id => integer(),
+    :status => String.t,
+    :username => String.t,
+    :password => String.t | nil,
+    :comment => String.t | nil
   }
 end
 

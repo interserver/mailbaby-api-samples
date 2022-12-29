@@ -51,9 +51,13 @@ class GenericResponse {
     final _json = <String, dynamic>{};
     if (status != null) {
       _json[r'status'] = status;
+    } else {
+      _json[r'status'] = null;
     }
     if (text != null) {
       _json[r'text'] = text;
+    } else {
+      _json[r'text'] = null;
     }
     return _json;
   }

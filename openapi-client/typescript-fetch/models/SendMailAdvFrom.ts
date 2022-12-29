@@ -33,6 +33,16 @@ export interface SendMailAdvFrom {
     name?: string;
 }
 
+/**
+ * Check if a given object implements the SendMailAdvFrom interface.
+ */
+export function instanceOfSendMailAdvFrom(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "email" in value;
+
+    return isInstance;
+}
+
 export function SendMailAdvFromFromJSON(json: any): SendMailAdvFrom {
     return SendMailAdvFromFromJSONTyped(json, false);
 }

@@ -96,6 +96,8 @@ class SendMailAdv {
       _json[r'attachments'] = attachments;
     if (id != null) {
       _json[r'id'] = id;
+    } else {
+      _json[r'id'] = null;
     }
     return _json;
   }

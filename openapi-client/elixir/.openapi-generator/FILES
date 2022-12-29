@@ -1,7 +1,9 @@
+.formatter.exs
 .gitignore
 .openapi-generator-ignore
 README.md
 config/config.exs
+config/runtime.exs
 lib/mail_baby_email_delivery_api/api/default.ex
 lib/mail_baby_email_delivery_api/connection.ex
 lib/mail_baby_email_delivery_api/deserializer.ex

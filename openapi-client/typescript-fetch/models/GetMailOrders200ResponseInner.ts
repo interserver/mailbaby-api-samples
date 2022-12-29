@@ -51,6 +51,18 @@ export interface GetMailOrders200ResponseInner {
     comment?: string;
 }
 
+/**
+ * Check if a given object implements the GetMailOrders200ResponseInner interface.
+ */
+export function instanceOfGetMailOrders200ResponseInner(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "status" in value;
+    isInstance = isInstance && "username" in value;
+
+    return isInstance;
+}
+
 export function GetMailOrders200ResponseInnerFromJSON(json: any): GetMailOrders200ResponseInner {
     return GetMailOrders200ResponseInnerFromJSONTyped(json, false);
 }

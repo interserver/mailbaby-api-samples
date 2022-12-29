@@ -11,6 +11,7 @@ import org.openapitools.model.SendMailAdvReplytoInner;
 import org.openapitools.model.SendMailAdvToInner;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -257,6 +258,30 @@ public class SendMailAdv  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    SendMailAdv sendMailAdv = (SendMailAdv) o;
+    return Objects.equals(subject, sendMailAdv.subject) &&
+        Objects.equals(body, sendMailAdv.body) &&
+        Objects.equals(from, sendMailAdv.from) &&
+        Objects.equals(to, sendMailAdv.to) &&
+        Objects.equals(replyto, sendMailAdv.replyto) &&
+        Objects.equals(cc, sendMailAdv.cc) &&
+        Objects.equals(bcc, sendMailAdv.bcc) &&
+        Objects.equals(attachments, sendMailAdv.attachments) &&
+        Objects.equals(id, sendMailAdv.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(subject, body, from, to, replyto, cc, bcc, attachments, id);
+  }
 
   @Override
   public String toString() {

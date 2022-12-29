@@ -9,17 +9,17 @@ defmodule MailBabyEmailDeliveryAPI.Model.MailLog do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"total",
-    :"skip",
-    :"limit",
-    :"emails"
+    :total,
+    :skip,
+    :limit,
+    :emails
   ]
 
   @type t :: %__MODULE__{
-    :"total" => integer(),
-    :"skip" => integer(),
-    :"limit" => integer(),
-    :"emails" => [MailBabyEmailDeliveryAPI.Model.MailLogEntry.t]
+    :total => integer(),
+    :skip => integer(),
+    :limit => integer(),
+    :emails => [MailBabyEmailDeliveryAPI.Model.MailLogEntry.t]
   }
 end
 
@@ -27,7 +27,7 @@ defimpl Poison.Decoder, for: MailBabyEmailDeliveryAPI.Model.MailLog do
   import MailBabyEmailDeliveryAPI.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"emails", :list, MailBabyEmailDeliveryAPI.Model.MailLogEntry, options)
+    |> deserialize(:emails, :list, MailBabyEmailDeliveryAPI.Model.MailLogEntry, options)
   end
 end
 

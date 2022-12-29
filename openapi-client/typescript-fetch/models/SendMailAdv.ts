@@ -13,38 +13,38 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { SendMailAdvAttachmentsInner } from './SendMailAdvAttachmentsInner';
 import {
-    SendMailAdvAttachmentsInner,
     SendMailAdvAttachmentsInnerFromJSON,
     SendMailAdvAttachmentsInnerFromJSONTyped,
     SendMailAdvAttachmentsInnerToJSON,
 } from './SendMailAdvAttachmentsInner';
+import type { SendMailAdvBccInner } from './SendMailAdvBccInner';
 import {
-    SendMailAdvBccInner,
     SendMailAdvBccInnerFromJSON,
     SendMailAdvBccInnerFromJSONTyped,
     SendMailAdvBccInnerToJSON,
 } from './SendMailAdvBccInner';
+import type { SendMailAdvCcInner } from './SendMailAdvCcInner';
 import {
-    SendMailAdvCcInner,
     SendMailAdvCcInnerFromJSON,
     SendMailAdvCcInnerFromJSONTyped,
     SendMailAdvCcInnerToJSON,
 } from './SendMailAdvCcInner';
+import type { SendMailAdvFrom } from './SendMailAdvFrom';
 import {
-    SendMailAdvFrom,
     SendMailAdvFromFromJSON,
     SendMailAdvFromFromJSONTyped,
     SendMailAdvFromToJSON,
 } from './SendMailAdvFrom';
+import type { SendMailAdvReplytoInner } from './SendMailAdvReplytoInner';
 import {
-    SendMailAdvReplytoInner,
     SendMailAdvReplytoInnerFromJSON,
     SendMailAdvReplytoInnerFromJSONTyped,
     SendMailAdvReplytoInnerToJSON,
 } from './SendMailAdvReplytoInner';
+import type { SendMailAdvToInner } from './SendMailAdvToInner';
 import {
-    SendMailAdvToInner,
     SendMailAdvToInnerFromJSON,
     SendMailAdvToInnerFromJSONTyped,
     SendMailAdvToInnerToJSON,
@@ -110,6 +110,19 @@ export interface SendMailAdv {
      * @memberof SendMailAdv
      */
     id?: number;
+}
+
+/**
+ * Check if a given object implements the SendMailAdv interface.
+ */
+export function instanceOfSendMailAdv(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "subject" in value;
+    isInstance = isInstance && "body" in value;
+    isInstance = isInstance && "from" in value;
+    isInstance = isInstance && "to" in value;
+
+    return isInstance;
 }
 
 export function SendMailAdvFromJSON(json: any): SendMailAdv {

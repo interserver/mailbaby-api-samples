@@ -9,13 +9,13 @@ defmodule MailBabyEmailDeliveryAPI.Model.SendMailAdvAttachmentsInner do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"data",
-    :"filename"
+    :data,
+    :filename
   ]
 
   @type t :: %__MODULE__{
-    :"data" => String.t,
-    :"filename" => String.t | nil
+    :data => String.t,
+    :filename => String.t | nil
   }
 end
 

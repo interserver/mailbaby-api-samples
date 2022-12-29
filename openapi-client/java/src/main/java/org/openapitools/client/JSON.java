@@ -85,24 +85,24 @@ public class JSON {
     }
 
     {
-        gson = createGson()
-            .registerTypeAdapter(Date.class, dateTypeAdapter)
-            .registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter)
-            .registerTypeAdapter(byte[].class, byteArrayAdapter)
-            .registerTypeAdapterFactory(new org.openapitools.client.model.GenericResponse.CustomTypeAdapterFactory())
-            .registerTypeAdapterFactory(new org.openapitools.client.model.GetMailOrders200ResponseInner.CustomTypeAdapterFactory())
-            .registerTypeAdapterFactory(new org.openapitools.client.model.GetMailOrders401Response.CustomTypeAdapterFactory())
-            .registerTypeAdapterFactory(new org.openapitools.client.model.MailLog.CustomTypeAdapterFactory())
-            .registerTypeAdapterFactory(new org.openapitools.client.model.MailLogEntry.CustomTypeAdapterFactory())
-            .registerTypeAdapterFactory(new org.openapitools.client.model.SendMail.CustomTypeAdapterFactory())
-            .registerTypeAdapterFactory(new org.openapitools.client.model.SendMailAdv.CustomTypeAdapterFactory())
-            .registerTypeAdapterFactory(new org.openapitools.client.model.SendMailAdvAttachmentsInner.CustomTypeAdapterFactory())
-            .registerTypeAdapterFactory(new org.openapitools.client.model.SendMailAdvBccInner.CustomTypeAdapterFactory())
-            .registerTypeAdapterFactory(new org.openapitools.client.model.SendMailAdvCcInner.CustomTypeAdapterFactory())
-            .registerTypeAdapterFactory(new org.openapitools.client.model.SendMailAdvFrom.CustomTypeAdapterFactory())
-            .registerTypeAdapterFactory(new org.openapitools.client.model.SendMailAdvReplytoInner.CustomTypeAdapterFactory())
-            .registerTypeAdapterFactory(new org.openapitools.client.model.SendMailAdvToInner.CustomTypeAdapterFactory())
-            .create();
+        GsonBuilder gsonBuilder = createGson();
+        gsonBuilder.registerTypeAdapter(Date.class, dateTypeAdapter);
+        gsonBuilder.registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter);
+        gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.GenericResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.GetMailOrders200ResponseInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.GetMailOrders401Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.MailLog.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.MailLogEntry.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.SendMail.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.SendMailAdv.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.SendMailAdvAttachmentsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.SendMailAdvBccInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.SendMailAdvCcInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.SendMailAdvFrom.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.SendMailAdvReplytoInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.SendMailAdvToInner.CustomTypeAdapterFactory());
+        gson = gsonBuilder.create();
     }
 
     /**

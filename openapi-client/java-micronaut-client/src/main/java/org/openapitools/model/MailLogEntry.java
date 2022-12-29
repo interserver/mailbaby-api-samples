@@ -60,7 +60,7 @@ import javax.annotation.Generated;
   MailLogEntry.JSON_PROPERTY_MD5_MATCH
 })
 @JsonTypeName("MailLogEntry")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2022-06-28T22:22:40.110742-04:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2022-12-29T00:30:49.002573-05:00[America/New_York]")
 @Introspected
 public class MailLogEntry {
     public static final String JSON_PROPERTY_ID = "_id";

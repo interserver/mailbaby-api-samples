@@ -114,10 +114,10 @@ defmodule MailBabyEmailDeliveryAPI.Api.Default do
     %{}
     |> method(:post)
     |> url("/mail/send")
-    |> add_param(:form, :"to", to)
-    |> add_param(:form, :"from", from)
-    |> add_param(:form, :"subject", subject)
-    |> add_param(:form, :"body", body)
+    |> add_param(:form, :to, to)
+    |> add_param(:form, :from, from)
+    |> add_param(:form, :subject, subject)
+    |> add_param(:form, :body, body)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
@@ -148,10 +148,10 @@ defmodule MailBabyEmailDeliveryAPI.Api.Default do
   @spec view_mail_log(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, MailBabyEmailDeliveryAPI.Model.MailLog.t} | {:error, Tesla.Env.t}
   def view_mail_log(connection, opts \\ []) do
     optional_params = %{
-      :"id" => :query,
-      :"search" => :query,
-      :"skip" => :query,
-      :"limit" => :query
+      :id => :query,
+      :search => :query,
+      :skip => :query,
+      :limit => :query
     }
     %{}
     |> method(:get)

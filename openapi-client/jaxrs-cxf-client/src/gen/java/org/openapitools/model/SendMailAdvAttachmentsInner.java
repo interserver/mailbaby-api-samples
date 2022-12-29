@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import java.io.File;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -60,6 +61,23 @@ public class SendMailAdvAttachmentsInner  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    SendMailAdvAttachmentsInner sendMailAdvAttachmentsInner = (SendMailAdvAttachmentsInner) o;
+    return Objects.equals(data, sendMailAdvAttachmentsInner.data) &&
+        Objects.equals(filename, sendMailAdvAttachmentsInner.filename);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(data, filename);
+  }
 
   @Override
   public String toString() {

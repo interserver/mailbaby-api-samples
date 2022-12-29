@@ -13,8 +13,8 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { MailLogEntry } from './MailLogEntry';
 import {
-    MailLogEntry,
     MailLogEntryFromJSON,
     MailLogEntryFromJSONTyped,
     MailLogEntryToJSON,
@@ -50,6 +50,19 @@ export interface MailLog {
      * @memberof MailLog
      */
     emails: Array<MailLogEntry>;
+}
+
+/**
+ * Check if a given object implements the MailLog interface.
+ */
+export function instanceOfMailLog(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "total" in value;
+    isInstance = isInstance && "skip" in value;
+    isInstance = isInstance && "limit" in value;
+    isInstance = isInstance && "emails" in value;
+
+    return isInstance;
 }
 
 export function MailLogFromJSON(json: any): MailLog {

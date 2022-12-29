@@ -9,27 +9,27 @@ defmodule MailBabyEmailDeliveryAPI.Model.SendMailAdv do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"subject",
-    :"body",
-    :"from",
-    :"to",
-    :"replyto",
-    :"cc",
-    :"bcc",
-    :"attachments",
-    :"id"
+    :subject,
+    :body,
+    :from,
+    :to,
+    :replyto,
+    :cc,
+    :bcc,
+    :attachments,
+    :id
   ]
 
   @type t :: %__MODULE__{
-    :"subject" => String.t,
-    :"body" => String.t,
-    :"from" => MailBabyEmailDeliveryAPI.Model.SendMailAdvFrom.t,
-    :"to" => [MailBabyEmailDeliveryAPI.Model.SendMailAdvToInner.t],
-    :"replyto" => [MailBabyEmailDeliveryAPI.Model.SendMailAdvReplytoInner.t] | nil,
-    :"cc" => [MailBabyEmailDeliveryAPI.Model.SendMailAdvCcInner.t] | nil,
-    :"bcc" => [MailBabyEmailDeliveryAPI.Model.SendMailAdvBccInner.t] | nil,
-    :"attachments" => [MailBabyEmailDeliveryAPI.Model.SendMailAdvAttachmentsInner.t] | nil,
-    :"id" => integer() | nil
+    :subject => String.t,
+    :body => String.t,
+    :from => MailBabyEmailDeliveryAPI.Model.SendMailAdvFrom.t,
+    :to => [MailBabyEmailDeliveryAPI.Model.SendMailAdvToInner.t],
+    :replyto => [MailBabyEmailDeliveryAPI.Model.SendMailAdvReplytoInner.t] | nil,
+    :cc => [MailBabyEmailDeliveryAPI.Model.SendMailAdvCcInner.t] | nil,
+    :bcc => [MailBabyEmailDeliveryAPI.Model.SendMailAdvBccInner.t] | nil,
+    :attachments => [MailBabyEmailDeliveryAPI.Model.SendMailAdvAttachmentsInner.t] | nil,
+    :id => integer() | nil
   }
 end
 
@@ -37,12 +37,12 @@ defimpl Poison.Decoder, for: MailBabyEmailDeliveryAPI.Model.SendMailAdv do
   import MailBabyEmailDeliveryAPI.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"from", :struct, MailBabyEmailDeliveryAPI.Model.SendMailAdvFrom, options)
-    |> deserialize(:"to", :list, MailBabyEmailDeliveryAPI.Model.SendMailAdvToInner, options)
-    |> deserialize(:"replyto", :list, MailBabyEmailDeliveryAPI.Model.SendMailAdvReplytoInner, options)
-    |> deserialize(:"cc", :list, MailBabyEmailDeliveryAPI.Model.SendMailAdvCcInner, options)
-    |> deserialize(:"bcc", :list, MailBabyEmailDeliveryAPI.Model.SendMailAdvBccInner, options)
-    |> deserialize(:"attachments", :list, MailBabyEmailDeliveryAPI.Model.SendMailAdvAttachmentsInner, options)
+    |> deserialize(:from, :struct, MailBabyEmailDeliveryAPI.Model.SendMailAdvFrom, options)
+    |> deserialize(:to, :list, MailBabyEmailDeliveryAPI.Model.SendMailAdvToInner, options)
+    |> deserialize(:replyto, :list, MailBabyEmailDeliveryAPI.Model.SendMailAdvReplytoInner, options)
+    |> deserialize(:cc, :list, MailBabyEmailDeliveryAPI.Model.SendMailAdvCcInner, options)
+    |> deserialize(:bcc, :list, MailBabyEmailDeliveryAPI.Model.SendMailAdvBccInner, options)
+    |> deserialize(:attachments, :list, MailBabyEmailDeliveryAPI.Model.SendMailAdvAttachmentsInner, options)
   end
 end
 

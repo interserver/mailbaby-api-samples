@@ -14,20 +14,22 @@
 
 
 import * as runtime from '../runtime';
+import type {
+  GenericResponse,
+  GetMailOrders200ResponseInner,
+  GetMailOrders401Response,
+  MailLog,
+  SendMailAdv,
+} from '../models';
 import {
-    GenericResponse,
     GenericResponseFromJSON,
     GenericResponseToJSON,
-    GetMailOrders200ResponseInner,
     GetMailOrders200ResponseInnerFromJSON,
     GetMailOrders200ResponseInnerToJSON,
-    GetMailOrders401Response,
     GetMailOrders401ResponseFromJSON,
     GetMailOrders401ResponseToJSON,
-    MailLog,
     MailLogFromJSON,
     MailLogToJSON,
-    SendMailAdv,
     SendMailAdvFromJSON,
     SendMailAdvToJSON,
 } from '../models';
@@ -58,7 +60,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * displays a list of mail service orders
      */
-    async getMailOrdersRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<GetMailOrders200ResponseInner>>> {
+    async getMailOrdersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GetMailOrders200ResponseInner>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -80,7 +82,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * displays a list of mail service orders
      */
-    async getMailOrders(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<GetMailOrders200ResponseInner>> {
+    async getMailOrders(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<GetMailOrders200ResponseInner>> {
         const response = await this.getMailOrdersRaw(initOverrides);
         return await response.value();
     }
@@ -88,7 +90,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Checks if the server is running
      */
-    async pingServerRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<void>> {
+    async pingServerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -106,7 +108,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Checks if the server is running
      */
-    async pingServer(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<void> {
+    async pingServer(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.pingServerRaw(initOverrides);
     }
 
@@ -114,7 +116,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * Sends an Email with Advanced Options
      */
-    async sendAdvMailRaw(requestParameters: SendAdvMailRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
+    async sendAdvMailRaw(requestParameters: SendAdvMailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
         if (requestParameters.sendMailAdv === null || requestParameters.sendMailAdv === undefined) {
             throw new runtime.RequiredError('sendMailAdv','Required parameter requestParameters.sendMailAdv was null or undefined when calling sendAdvMail.');
         }
@@ -144,7 +146,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
      * Sends an Email with Advanced Options
      */
-    async sendAdvMail(requestParameters: SendAdvMailRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<GenericResponse> {
+    async sendAdvMail(requestParameters: SendAdvMailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GenericResponse> {
         const response = await this.sendAdvMailRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -153,7 +155,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
      * Sends an Email
      */
-    async sendMailRaw(requestParameters: SendMailRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
+    async sendMailRaw(requestParameters: SendMailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
         if (requestParameters.to === null || requestParameters.to === undefined) {
             throw new runtime.RequiredError('to','Required parameter requestParameters.to was null or undefined when calling sendMail.');
         }
@@ -224,7 +226,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
      * Sends an Email
      */
-    async sendMail(requestParameters: SendMailRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<GenericResponse> {
+    async sendMail(requestParameters: SendMailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GenericResponse> {
         const response = await this.sendMailRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -233,7 +235,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * By passing in the appropriate options, you can search for available inventory in the system 
      * displays the mail log
      */
-    async viewMailLogRaw(requestParameters: ViewMailLogRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<MailLog>> {
+    async viewMailLogRaw(requestParameters: ViewMailLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MailLog>> {
         const queryParameters: any = {};
 
         if (requestParameters.id !== undefined) {
@@ -272,7 +274,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * By passing in the appropriate options, you can search for available inventory in the system 
      * displays the mail log
      */
-    async viewMailLog(requestParameters: ViewMailLogRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<MailLog> {
+    async viewMailLog(requestParameters: ViewMailLogRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MailLog> {
         const response = await this.viewMailLogRaw(requestParameters, initOverrides);
         return await response.value();
     }

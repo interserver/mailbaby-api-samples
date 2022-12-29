@@ -33,6 +33,16 @@ export interface SendMailAdvReplytoInner {
     name?: string;
 }
 
+/**
+ * Check if a given object implements the SendMailAdvReplytoInner interface.
+ */
+export function instanceOfSendMailAdvReplytoInner(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "email" in value;
+
+    return isInstance;
+}
+
 export function SendMailAdvReplytoInnerFromJSON(json: any): SendMailAdvReplytoInner {
     return SendMailAdvReplytoInnerFromJSONTyped(json, false);
 }

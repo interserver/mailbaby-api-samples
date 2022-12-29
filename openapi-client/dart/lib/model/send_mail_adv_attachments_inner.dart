@@ -48,6 +48,8 @@ class SendMailAdvAttachmentsInner {
       _json[r'data'] = data;
     if (filename != null) {
       _json[r'filename'] = filename;
+    } else {
+      _json[r'filename'] = null;
     }
     return _json;
   }

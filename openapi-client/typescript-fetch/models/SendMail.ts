@@ -45,6 +45,19 @@ export interface SendMail {
     body: string;
 }
 
+/**
+ * Check if a given object implements the SendMail interface.
+ */
+export function instanceOfSendMail(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "to" in value;
+    isInstance = isInstance && "from" in value;
+    isInstance = isInstance && "subject" in value;
+    isInstance = isInstance && "body" in value;
+
+    return isInstance;
+}
+
 export function SendMailFromJSON(json: any): SendMail {
     return SendMailFromJSONTyped(json, false);
 }

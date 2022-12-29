@@ -33,6 +33,16 @@ export interface SendMailAdvAttachmentsInner {
     filename?: string;
 }
 
+/**
+ * Check if a given object implements the SendMailAdvAttachmentsInner interface.
+ */
+export function instanceOfSendMailAdvAttachmentsInner(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "data" in value;
+
+    return isInstance;
+}
+
 export function SendMailAdvAttachmentsInnerFromJSON(json: any): SendMailAdvAttachmentsInner {
     return SendMailAdvAttachmentsInnerFromJSONTyped(json, false);
 }

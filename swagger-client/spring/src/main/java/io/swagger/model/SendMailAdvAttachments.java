@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "A File attachment for an email")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-01-03T15:01:31.972382-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-01-03T15:08:04.551073-05:00[America/New_York]")
 
 
 public class SendMailAdvAttachments   {

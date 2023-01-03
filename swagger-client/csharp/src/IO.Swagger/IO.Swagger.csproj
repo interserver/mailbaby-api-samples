@@ -12,7 +12,7 @@ Contact: support@interserver.net
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7E7C700E-AE80-4B31-A0CB-960CF9BD9948}</ProjectGuid>
+    <ProjectGuid>{BAA12831-036E-40DD-BA32-DF7E086E6B88}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IO.Swagger</RootNamespace>

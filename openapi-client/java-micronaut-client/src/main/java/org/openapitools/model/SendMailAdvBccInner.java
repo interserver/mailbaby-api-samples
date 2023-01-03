@@ -30,7 +30,7 @@ import javax.annotation.Generated;
   SendMailAdvBccInner.JSON_PROPERTY_NAME
 })
 @JsonTypeName("SendMailAdv_bcc_inner")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2023-01-03T14:46:20.091342-05:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2023-01-03T15:05:55.262261-05:00[America/New_York]")
 @Introspected
 public class SendMailAdvBccInner {
     public static final String JSON_PROPERTY_EMAIL = "email";

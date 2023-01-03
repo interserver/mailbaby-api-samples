@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
  * A File attachment for an email
  */
 @ApiModel(description = "A File attachment for an email")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-03T14:46:18.075628-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-03T15:05:53.211318-05:00[America/New_York]")
 public class SendMailAdvAttachmentsInner {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)

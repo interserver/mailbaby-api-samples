@@ -27,7 +27,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-01-03T15:01:19.997115-05:00[America/New_York]")public abstract class MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-01-03T15:07:52.361557-05:00[America/New_York]")public abstract class MailApiService {
     public abstract Response getMailOrders(SecurityContext securityContext) throws NotFoundException;
     public abstract Response sendAdvMail(SendMailAdv body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response sendAdvMail(String subject,String body,SendMailAdvFrom from,List<SendMailAdvTo> to,List<SendMailAdvReplyto> replyto,List<SendMailAdvCc> cc,List<SendMailAdvBcc> bcc,List<SendMailAdvAttachments> attachments,Long id,SecurityContext securityContext) throws NotFoundException;

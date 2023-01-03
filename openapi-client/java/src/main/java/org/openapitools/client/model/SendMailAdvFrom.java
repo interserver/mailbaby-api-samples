@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
  * The information to use for the From address in the email. from.
  */
 @ApiModel(description = "The information to use for the From address in the email. from.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-03T14:46:18.075628-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-03T15:05:53.211318-05:00[America/New_York]")
 public class SendMailAdvFrom {
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)

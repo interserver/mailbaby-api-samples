@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2023-01-03T15:01:25.018300-05:00[America/New_York]")public class SendMailAdv   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2023-01-03T15:07:57.417984-05:00[America/New_York]")public class SendMailAdv   {
   private String subject = null;
   private String body = null;
   private SendMailAdvFrom from = null;

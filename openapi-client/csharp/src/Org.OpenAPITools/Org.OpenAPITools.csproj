@@ -12,7 +12,7 @@ Contact: support@interserver.net
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{01EF62B6-6153-4384-9A83-5BDB9EABB1D7}</ProjectGuid>
+    <ProjectGuid>{40972DCE-9687-4842-8A0F-4DA5E2A68598}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Org.OpenAPITools</RootNamespace>

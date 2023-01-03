@@ -15,7 +15,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-01-03T15:01:19.997115-05:00[America/New_York]")public class PingApiServiceImpl extends PingApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-01-03T15:07:52.361557-05:00[America/New_York]")public class PingApiServiceImpl extends PingApiService {
     @Override
     public Response pingServer(SecurityContext securityContext) throws NotFoundException {
         // do some magic!

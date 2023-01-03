@@ -23,7 +23,7 @@ import javax.validation.Valid;
  * An email record
  */
 @Schema(description = "An email record")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-01-03T15:01:19.997115-05:00[America/New_York]")public class MailLogEntry   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-01-03T15:07:52.361557-05:00[America/New_York]")public class MailLogEntry   {
   @JsonProperty("_id")
   private Integer _id = null;
 

@@ -30,7 +30,7 @@ import javax.annotation.Generated;
   GetMailOrders401Response.JSON_PROPERTY_MESSAGE
 })
 @JsonTypeName("getMailOrders_401_response")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2023-01-03T14:46:20.091342-05:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2023-01-03T15:05:55.262261-05:00[America/New_York]")
 @Introspected
 public class GetMailOrders401Response {
     public static final String JSON_PROPERTY_CODE = "code";

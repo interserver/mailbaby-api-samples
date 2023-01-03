@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Mail Baby API</title>
+  <title>MailBaby Email Delivery API</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8" />
@@ -689,18 +689,6 @@
   <script>
     // Script section to load models into a JS Var
     var defs = {}
-            defs["ErrorResponse"] = {
-  "required" : [ "code", "message" ],
-  "type" : "object",
-  "properties" : {
-    "code" : {
-      "type" : "string"
-    },
-    "message" : {
-      "type" : "string"
-    }
-  }
-};
             defs["GenericResponse"] = {
   "type" : "object",
   "properties" : {
@@ -714,63 +702,7 @@
     }
   }
 };
-            defs["inline_response_401"] = {
-  "required" : [ "code", "message" ],
-  "type" : "object",
-  "properties" : {
-    "code" : {
-      "type" : "string"
-    },
-    "message" : {
-      "type" : "string"
-    }
-  }
-};
-            defs["MailAttachment"] = {
-  "required" : [ "data" ],
-  "type" : "object",
-  "properties" : {
-    "filename" : {
-      "type" : "string",
-      "description" : "Optional filename to specify for the attachment.",
-      "example" : "company_logo.png"
-    },
-    "data" : {
-      "type" : "string",
-      "description" : "Contents of the attached file",
-      "format" : "binary"
-    }
-  },
-  "description" : "A File attachment for an email"
-};
-            defs["MailContact"] = {
-  "required" : [ "email" ],
-  "type" : "object",
-  "properties" : {
-    "email" : {
-      "type" : "string",
-      "description" : "The email address",
-      "example" : "johndoe@company.com"
-    },
-    "name" : {
-      "type" : "string",
-      "description" : "Optional contact name",
-      "example" : "John Doe"
-    }
-  },
-  "description" : "An Email Contact"
-};
-            defs["MailLog"] = {
-  "type" : "object",
-  "properties" : {
-    "id" : {
-      "type" : "integer",
-      "format" : "int64"
-    }
-  },
-  "description" : "Mail Order Details"
-};
-            defs["MailOrder"] = {
+            defs["inline_response_200"] = {
   "required" : [ "id", "status", "username" ],
   "type" : "object",
   "properties" : {
@@ -796,11 +728,217 @@
     }
   }
 };
-            defs["MailOrders"] = {
-  "type" : "array",
-  "items" : {
-    "$ref" : "#/components/schemas/MailOrder"
+            defs["inline_response_401"] = {
+  "required" : [ "code", "message" ],
+  "type" : "object",
+  "properties" : {
+    "code" : {
+      "type" : "string"
+    },
+    "message" : {
+      "type" : "string"
+    }
   }
+};
+            defs["MailLog"] = {
+  "required" : [ "emails", "limit", "skip", "total" ],
+  "type" : "object",
+  "properties" : {
+    "total" : {
+      "type" : "integer",
+      "description" : "total number of mail log entries",
+      "example" : 10234
+    },
+    "skip" : {
+      "type" : "integer",
+      "description" : "number of emails skipped in listing",
+      "example" : 0
+    },
+    "limit" : {
+      "type" : "integer",
+      "description" : "number of emails to return",
+      "example" : 100
+    },
+    "emails" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/MailLogEntry"
+      }
+    }
+  },
+  "description" : "Mail log records"
+};
+            defs["MailLogEntry"] = {
+  "required" : [ "_id", "_lock", "assigned", "bodySize", "connectionKey", "created", "date", "domain", "from", "id", "interface", "lockTime", "locked", "logger", "md5Match", "messageId", "mxHostname", "mxPort", "origin", "originhost", "queued", "recipient", "sendingZone", "sentBodyHash", "sentBodySize", "seq", "sourceMd5", "subject", "time", "to", "transhost", "transtype", "user" ],
+  "type" : "object",
+  "properties" : {
+    "_id" : {
+      "type" : "integer",
+      "description" : "internal db id",
+      "example" : 103172
+    },
+    "id" : {
+      "type" : "string",
+      "description" : "mail id",
+      "example" : "17c7eda538e0005d03"
+    },
+    "from" : {
+      "type" : "string",
+      "description" : "from address",
+      "example" : "person@mysite.com"
+    },
+    "to" : {
+      "type" : "string",
+      "description" : "to address",
+      "example" : "client@isp.com"
+    },
+    "subject" : {
+      "type" : "string",
+      "description" : "email subject",
+      "example" : "sell 0.005 shares"
+    },
+    "messageId" : {
+      "type" : "string",
+      "description" : "message id",
+      "example" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>"
+    },
+    "created" : {
+      "type" : "string",
+      "description" : "creation date",
+      "example" : "2021-10-14 08:50:10"
+    },
+    "time" : {
+      "type" : "integer",
+      "description" : "creation timestamp",
+      "example" : 1634215809
+    },
+    "user" : {
+      "type" : "string",
+      "description" : "user account",
+      "example" : "mb5658"
+    },
+    "transtype" : {
+      "type" : "string",
+      "description" : "transaction type",
+      "example" : "ESMTPSA"
+    },
+    "transhost" : {
+      "type" : "string",
+      "description" : "transaction host",
+      "example" : "relay0.mailbaby.net"
+    },
+    "originhost" : {
+      "type" : "string",
+      "description" : "origin host",
+      "example" : "199.231.189.154"
+    },
+    "origin" : {
+      "type" : "string",
+      "description" : "origin ip",
+      "example" : "199.231.189.154"
+    },
+    "interface" : {
+      "type" : "string",
+      "description" : "interface name",
+      "example" : "feeder"
+    },
+    "date" : {
+      "type" : "string",
+      "description" : "date processed",
+      "example" : "Thu, 14 Oct 2021 08:50:09 -0400"
+    },
+    "sendingZone" : {
+      "type" : "string",
+      "description" : "sending zone",
+      "example" : "interserver"
+    },
+    "bodySize" : {
+      "type" : "integer",
+      "description" : "email body size in bytes",
+      "example" : 63
+    },
+    "sourceMd5" : {
+      "type" : "string",
+      "description" : "md5 sum of the email",
+      "example" : "1d7058e6a30369f200b0c34fab2fac92"
+    },
+    "seq" : {
+      "type" : "integer",
+      "description" : "delivery sequency",
+      "example" : 1
+    },
+    "domain" : {
+      "type" : "string",
+      "description" : "to address domain",
+      "example" : "interserver.net"
+    },
+    "recipient" : {
+      "type" : "string",
+      "description" : "email receiver address",
+      "example" : "client@isp.com"
+    },
+    "locked" : {
+      "type" : "integer",
+      "description" : "locked status",
+      "example" : 1
+    },
+    "lockTime" : {
+      "type" : "integer",
+      "description" : "lock timestamp",
+      "example" : 1634215818533
+    },
+    "assigned" : {
+      "type" : "string",
+      "description" : "assigned server",
+      "example" : "relay1"
+    },
+    "queued" : {
+      "type" : "string",
+      "description" : "queued timestamp",
+      "example" : "2021-10-14T12:50:15.487Z"
+    },
+    "_lock" : {
+      "type" : "string",
+      "description" : "lock id",
+      "example" : "lock 17c7eda538e0005d03 001"
+    },
+    "logger" : {
+      "type" : "string",
+      "description" : "logger",
+      "example" : null
+    },
+    "mxPort" : {
+      "type" : "integer",
+      "description" : "mx port number",
+      "example" : 25
+    },
+    "connectionKey" : {
+      "type" : "string",
+      "description" : "connection key",
+      "example" : "206.72.200.46:interserver.net:25"
+    },
+    "mxHostname" : {
+      "type" : "string",
+      "description" : "mx hostname",
+      "example" : "mx.j.is.cc"
+    },
+    "sentBodyHash" : {
+      "type" : "string",
+      "description" : "body hash",
+      "example" : "1d7058e6a30369f200b0c34fab2fac92"
+    },
+    "sentBodySize" : {
+      "type" : "integer",
+      "description" : "sent body size in bytes",
+      "example" : 63
+    },
+    "md5Match" : {
+      "type" : "integer",
+      "description" : "md5 checksum matching result",
+      "example" : 1
+    }
+  },
+  "description" : "An email record"
 };
             defs["SendMail"] = {
   "required" : [ "body", "from", "subject", "to" ],
@@ -831,7 +969,7 @@
 };
             defs["SendMailAdv"] = {
   "title" : "Email details",
-  "required" : [ "body", "from", "id", "subject", "to" ],
+  "required" : [ "body", "from", "subject", "to" ],
   "type" : "object",
   "properties" : {
     "subject" : {
@@ -842,58 +980,105 @@
     "body" : {
       "type" : "string",
       "description" : "The main email contents.",
-      "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.\n"
+      "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else."
     },
     "from" : {
-      "type" : "array",
-      "description" : "The contact whom is the this email is from.",
-      "items" : {
-        "$ref" : "#/components/schemas/SendMailAdv_from"
-      }
+      "$ref" : "#/components/schemas/SendMailAdv_from"
     },
     "to" : {
       "type" : "array",
-      "description" : "The Contact whom is the primary recipient of this email.",
+      "description" : "A list of destionation email addresses to send this to",
       "items" : {
-        "$ref" : "#/components/schemas/MailContact"
+        "$ref" : "#/components/schemas/SendMailAdv_to"
       }
-    },
-    "id" : {
-      "type" : "integer",
-      "description" : "The ID of the Mail order within our system to use as the Mail Account.",
-      "format" : "int64",
-      "example" : 5000
     },
     "replyto" : {
       "type" : "array",
-      "description" : "Optional list of Contacts that specify where replies to the email should be sent instead of the _from_ address.",
+      "description" : "(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.",
       "items" : {
-        "$ref" : "#/components/schemas/MailContact"
+        "$ref" : "#/components/schemas/SendMailAdv_replyto"
       }
     },
     "cc" : {
       "type" : "array",
-      "description" : "Optional list of Contacts that should receive copies of the email.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.",
+      "description" : "(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.",
       "items" : {
-        "$ref" : "#/components/schemas/MailContact"
+        "$ref" : "#/components/schemas/SendMailAdv_cc"
       }
     },
     "bcc" : {
       "type" : "array",
-      "description" : "Optional list of Contacts that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.",
+      "description" : "(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.",
       "items" : {
-        "$ref" : "#/components/schemas/MailContact"
+        "$ref" : "#/components/schemas/SendMailAdv_bcc"
       }
     },
     "attachments" : {
       "type" : "array",
-      "description" : "Optional file attachments to include in the email",
+      "description" : "(optional) File attachments to include in the email.  The file contents must be base64 encoded!",
       "items" : {
-        "$ref" : "#/components/schemas/MailAttachment"
+        "$ref" : "#/components/schemas/SendMailAdv_attachments"
       }
+    },
+    "id" : {
+      "type" : "integer",
+      "description" : "(optional)  ID of the Mail order within our system to use as the Mail Account.",
+      "format" : "int64",
+      "example" : 5000
     }
   },
   "description" : "Details for an Email"
+};
+            defs["SendMailAdv_attachments"] = {
+  "required" : [ "data" ],
+  "type" : "object",
+  "properties" : {
+    "filename" : {
+      "type" : "string",
+      "description" : "(optional) Filename to specify for the attachment.",
+      "example" : "company_logo.png"
+    },
+    "data" : {
+      "type" : "string",
+      "description" : "Contents of the attached file (must be base64 encoded)",
+      "format" : "binary"
+    }
+  },
+  "description" : "A File attachment for an email"
+};
+            defs["SendMailAdv_bcc"] = {
+  "required" : [ "email" ],
+  "type" : "object",
+  "properties" : {
+    "email" : {
+      "type" : "string",
+      "description" : "The email address",
+      "example" : "records@company.com"
+    },
+    "name" : {
+      "type" : "string",
+      "description" : "(optional) Name to use for the BCC contact.",
+      "example" : "Records Department"
+    }
+  },
+  "description" : "An Email Contact"
+};
+            defs["SendMailAdv_cc"] = {
+  "required" : [ "email" ],
+  "type" : "object",
+  "properties" : {
+    "email" : {
+      "type" : "string",
+      "description" : "The email address",
+      "example" : "janedoe@isp.com"
+    },
+    "name" : {
+      "type" : "string",
+      "description" : "(optional) Name to use for the CC contact.",
+      "example" : "Jane Doe"
+    }
+  },
+  "description" : "An Email Contact"
 };
             defs["SendMailAdv_from"] = {
   "required" : [ "email" ],
@@ -902,11 +1087,45 @@
     "email" : {
       "type" : "string",
       "description" : "The email address",
-      "example" : "johndoe@company.com"
+      "example" : "business@company.com"
     },
     "name" : {
       "type" : "string",
-      "description" : "Optional contact name",
+      "description" : "(optional) Name to use for the sending contact.",
+      "example" : "The Man"
+    }
+  },
+  "description" : "The information to use for the From address in the email. from."
+};
+            defs["SendMailAdv_replyto"] = {
+  "required" : [ "email" ],
+  "type" : "object",
+  "properties" : {
+    "email" : {
+      "type" : "string",
+      "description" : "The email address",
+      "example" : "support@company.com"
+    },
+    "name" : {
+      "type" : "string",
+      "description" : "(optional) Name to use for the sending contact.",
+      "example" : "Support Staff"
+    }
+  },
+  "description" : "An Email Contact"
+};
+            defs["SendMailAdv_to"] = {
+  "required" : [ "email" ],
+  "type" : "object",
+  "properties" : {
+    "email" : {
+      "type" : "string",
+      "description" : "The email address",
+      "example" : "johndoe@isp.com"
+    },
+    "name" : {
+      "type" : "string",
+      "description" : "(optional) Name to use for the destination contact.",
       "example" : "John Doe"
     }
   },
@@ -935,17 +1154,11 @@
                     <li data-group="Default" data-name="pingServer" class="">
                       <a href="#api-Default-pingServer">pingServer</a>
                     </li>
-                    <li data-group="Default" data-name="placeMailOrder" class="">
-                      <a href="#api-Default-placeMailOrder">placeMailOrder</a>
-                    </li>
                     <li data-group="Default" data-name="sendAdvMail" class="">
                       <a href="#api-Default-sendAdvMail">sendAdvMail</a>
                     </li>
                     <li data-group="Default" data-name="sendMail" class="">
                       <a href="#api-Default-sendMail">sendMail</a>
-                    </li>
-                    <li data-group="Default" data-name="validateMailOrder" class="">
-                      <a href="#api-Default-validateMailOrder">validateMailOrder</a>
                     </li>
                     <li data-group="Default" data-name="viewMailLog" class="">
                       <a href="#api-Default-viewMailLog">viewMailLog</a>
@@ -956,16 +1169,22 @@
       <div id="content">
         <div id="project">
           <div class="pull-left">
-            <h1>Mail Baby API</h1>
+            <h1>MailBaby Email Delivery API</h1>
           </div>
           <div class="clearfix"></div>
         </div>
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 1.0.0</div>
+              <div class="app-desc">Version: 1.0.1</div>
             <hr>
-            <div>This is an API defintion for accesssing the Mail.Baby mail service.</div>
+            <div><p><strong>Send emails fast and with confidence through our easy to use <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> API interface.</strong></p>
+<h1>📌 Overview</h1>
+<p>This is the API interface to the <a href="https//mail.baby/">Mail Baby</a> Mail services provided by <a href="https://www.interserver.net">InterServer</a>. To use this service you must have an account with us at <a href="https://my.interserver.net">my.interserver.net</a>.</p>
+<h1>🔐 Authentication</h1>
+<p>In order to use most of the API calls you must pass credentials from the <a href="https://my.interserver.net/">my.interserver.net</a> site.</p>
+<p>We support several different authentication methods but the preferred method is to use the <strong>API Key</strong> which you can get from the <a href="https://my.interserver.net/account_security">Account Security</a> page.</p>
+</div>
           </div>
         </div>
         <div id="sections">
@@ -1005,7 +1224,7 @@
                           <div class="tab-pane active" id="examples-Default-getMailOrders-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
--H "Accept: application/json,application/xml,text/plain"\
+-H "Accept: application/json"\
 "https://api.mailbaby.net/mail"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-getMailOrders-0-java">
@@ -1030,7 +1249,7 @@ public class DefaultApiExample {
 
         DefaultApi apiInstance = new DefaultApi();
         try {
-            MailOrders result = apiInstance.getMailOrders();
+            array[inline_response_200] result = apiInstance.getMailOrders();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#getMailOrders");
@@ -1048,7 +1267,7 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         try {
-            MailOrders result = apiInstance.getMailOrders();
+            array[inline_response_200] result = apiInstance.getMailOrders();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#getMailOrders");
@@ -1072,7 +1291,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // displays a list of mail service orders
 [apiInstance getMailOrdersWithCompletionHandler: 
-              ^(MailOrders output, NSError* error) {
+              ^(array[inline_response_200] output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -1084,8 +1303,8 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
                             </div>
 
                             <div class="tab-pane" id="examples-Default-getMailOrders-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var MailBabyApi = require('mail_baby_api');
-var defaultClient = MailBabyApi.ApiClient.instance;
+                              <pre class="prettyprint"><code class="language-js">var MailBabyEmailDeliveryApi = require('mail_baby_email_delivery_api');
+var defaultClient = MailBabyEmailDeliveryApi.ApiClient.instance;
 
 // Configure API key authorization: apiKeyAuth
 var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
@@ -1093,7 +1312,7 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
 
-var api = new MailBabyApi.DefaultApi()
+var api = new MailBabyEmailDeliveryApi.DefaultApi()
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1132,7 +1351,7 @@ namespace Example
             try
             {
                 // displays a list of mail service orders
-                MailOrders result = apiInstance.getMailOrders();
+                array[inline_response_200] result = apiInstance.getMailOrders();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1237,17 +1456,11 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/MailOrders"
-      }
-    },
-    "application/xml" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/MailOrders"
-      }
-    },
-    "text/plain" : {
-      "schema" : {
-        "type" : "string"
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/inline_response_200"
+        },
+        "x-content-type" : "application/json"
       }
     }
   },
@@ -1478,9 +1691,9 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
                             </div>
 
                             <div class="tab-pane" id="examples-Default-pingServer-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var MailBabyApi = require('mail_baby_api');
+                              <pre class="prettyprint"><code class="language-js">var MailBabyEmailDeliveryApi = require('mail_baby_email_delivery_api');
 
-var api = new MailBabyApi.DefaultApi()
+var api = new MailBabyEmailDeliveryApi.DefaultApi()
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -1595,453 +1808,6 @@ except ApiException as e:
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
-                    <div id="api-Default-placeMailOrder">
-                      <article id="api-Default-placeMailOrder-0" data-group="User" data-name="placeMailOrder" data-version="0">
-                        <div class="pull-left">
-                          <h1>placeMailOrder</h1>
-                          <p>places a mail order</p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked">Adds an item to the system</p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/mail/order</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-placeMailOrder-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-placeMailOrder-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-placeMailOrder-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-placeMailOrder-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-placeMailOrder-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-placeMailOrder-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-placeMailOrder-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-placeMailOrder-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-placeMailOrder-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-placeMailOrder-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-placeMailOrder-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-placeMailOrder-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
--H "X-API-KEY: [[apiKey]]"\
--H "Accept: application/json"\
--H "Content-Type: application/json"\
-"https://api.mailbaby.net/mail/order"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-placeMailOrder-0-java">
-                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
-import MailBabyApi.auth.*;
-import MailBabyApi.model.*;
-import MailBabyApi.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-        // Configure API key authorization: apiKeyAuth
-        ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
-        apiKeyAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiKeyAuth.setApiKeyPrefix("Token");
-
-        DefaultApi apiInstance = new DefaultApi();
-        MailOrder body = ; // MailOrder | Inventory item to add
-        try {
-            apiInstance.placeMailOrder(body);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#placeMailOrder");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-placeMailOrder-0-android">
-                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-        MailOrder body = ; // MailOrder | Inventory item to add
-        try {
-            apiInstance.placeMailOrder(body);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#placeMailOrder");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-placeMailOrder-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-placeMailOrder-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-// Configure API key authorization: (authentication scheme: apiKeyAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-MailOrder *body = ; // Inventory item to add (optional)
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-// places a mail order
-[apiInstance placeMailOrderWith:body
-              completionHandler: ^(NSError* error) {
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-placeMailOrder-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var MailBabyApi = require('mail_baby_api');
-var defaultClient = MailBabyApi.ApiClient.instance;
-
-// Configure API key authorization: apiKeyAuth
-var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
-apiKeyAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
-
-var api = new MailBabyApi.DefaultApi()
-var opts = { 
-  'body':  // {{MailOrder}} Inventory item to add
-};
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-api.placeMailOrder(opts, callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-placeMailOrder-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-placeMailOrder-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using MailBabyApi.Api;
-using MailBabyApi.Client;
-using MailBabyApi.Model;
-
-namespace Example
-{
-    public class placeMailOrderExample
-    {
-        public void main()
-        {
-
-            // Configure API key authorization: apiKeyAuth
-            Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
-
-            var apiInstance = new DefaultApi();
-            var body = new MailOrder(); // MailOrder | Inventory item to add (optional) 
-
-            try
-            {
-                // places a mail order
-                apiInstance.placeMailOrder(body);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.placeMailOrder: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-placeMailOrder-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-// Configure API key authorization: apiKeyAuth
-Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-$api_instance = new Swagger\Client\ApiDefaultApi();
-$body = ; // MailOrder | Inventory item to add
-
-try {
-    $api_instance->placeMailOrder($body);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->placeMailOrder: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-placeMailOrder-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use MailBabyApi::Configuration;
-use MailBabyApi::DefaultApi;
-
-# Configure API key authorization: apiKeyAuth
-$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
-
-my $api_instance = MailBabyApi::DefaultApi->new();
-my $body = MailBabyApi::Object::MailOrder->new(); # MailOrder | Inventory item to add
-
-eval { 
-    $api_instance->placeMailOrder(body => $body);
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->placeMailOrder: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-placeMailOrder-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import MailBabyApi
-from MailBabyApi.rest import ApiException
-from pprint import pprint
-
-# Configure API key authorization: apiKeyAuth
-MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
-
-# create an instance of the API class
-api_instance = MailBabyApi.DefaultApi()
-body =  # MailOrder | Inventory item to add (optional)
-
-try: 
-    # places a mail order
-    api_instance.place_mail_order(body=body)
-except ApiException as e:
-    print("Exception when calling DefaultApi->placeMailOrder: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-
-
-                            <div class="methodsubtabletitle">Body parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                <tr><td style="width:150px;">body </td>
-                                <td>
-                                
-                                
-                                <script>
-                                $(document).ready(function() {
-                                  var schemaWrapper = {
-  "description" : "Inventory item to add",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/MailOrder"
-      }
-    }
-  }
-};
-                                  var schema = schemaWrapper.content["application/json"].schema;
-                                  if (schema.$ref != null) {
-                                    schema = defsParser.$refs.get(schema.$ref);
-                                  } else {
-                                    schemaWrapper.components = {};
-                                    schemaWrapper.components.schemas = Object.assign({}, defs);
-                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                      console.log(err);
-                                    });
-                                  }
-                                
-                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-                                  var result = $('#d2e199_placeMailOrder_body');
-                                  result.empty();
-                                  result.append(view.render());
-                                });
-                                </script>
-                                <div id="d2e199_placeMailOrder_body"></div>
-                                </td>
-                                </tr>
-                            </table>
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - list of mail orders </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
-                            <h3> Status: 400 - The specified resource was not found </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-placeMailOrder-400-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-placeMailOrder-400-schema">
-                                  <div id='responses-placeMailOrder-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "The specified resource was not found",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-placeMailOrder-400-schema-data').val(stringify(schema));
-                                        var result = $('#responses-placeMailOrder-400-schema-400');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-placeMailOrder-400-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                            <h3> Status: 409 - The specified resource was not found </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-placeMailOrder-409-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-placeMailOrder-409-schema">
-                                  <div id='responses-placeMailOrder-409-schema-409' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "The specified resource was not found",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-placeMailOrder-409-schema-data').val(stringify(schema));
-                                        var result = $('#responses-placeMailOrder-409-schema-409');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-placeMailOrder-409-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                            <h3> Status: 401 - Unauthorized </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-placeMailOrder-401-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-placeMailOrder-401-schema">
-                                  <div id='responses-placeMailOrder-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Unauthorized",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-placeMailOrder-401-schema-data').val(stringify(schema));
-                                        var result = $('#responses-placeMailOrder-401-schema-401');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-placeMailOrder-401-schema-data' type='hidden' value=''></input>
-                                </div>
                             </div>
 
                         </article>
@@ -2164,8 +1930,8 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
                             </div>
 
                             <div class="tab-pane" id="examples-Default-sendAdvMail-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var MailBabyApi = require('mail_baby_api');
-var defaultClient = MailBabyApi.ApiClient.instance;
+                              <pre class="prettyprint"><code class="language-js">var MailBabyEmailDeliveryApi = require('mail_baby_email_delivery_api');
+var defaultClient = MailBabyEmailDeliveryApi.ApiClient.instance;
 
 // Configure API key authorization: apiKeyAuth
 var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
@@ -2173,7 +1939,7 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
 
-var api = new MailBabyApi.DefaultApi()
+var api = new MailBabyEmailDeliveryApi.DefaultApi()
 var body = ; // {{SendMailAdv}} 
 
 var callback = function(error, data, response) {
@@ -2401,7 +2167,7 @@ except ApiException as e:
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      array[SendMailAdv_from]
+                                                      SendMailAdv_from
                                                   </span>
                                   
                                               </div>
@@ -2420,7 +2186,83 @@ except ApiException as e:
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      array[MailContact]
+                                                      array[SendMailAdv_to]
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">replyto*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendAdvMail_replyto">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      array[SendMailAdv_replyto]
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">cc*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendAdvMail_cc">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      array[SendMailAdv_cc]
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">bcc*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendAdvMail_bcc">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      array[SendMailAdv_bcc]
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">attachments*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendAdvMail_attachments">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      array[SendMailAdv_attachments]
                                                   </span>
                                   
                                               </div>
@@ -2444,82 +2286,6 @@ except ApiException as e:
                                                       <span class="format">
                                                           (int64)
                                                       </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">replyto*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_sendAdvMail_replyto">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      array[MailContact]
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">cc*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_sendAdvMail_cc">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      array[MailContact]
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">bcc*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_sendAdvMail_bcc">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      array[MailContact]
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <tr><td style="width:150px;">attachments*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_sendAdvMail_attachments">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      array[MailAttachment]
-                                                  </span>
                                   
                                               </div>
                                                   <div class="inner required">
@@ -2737,7 +2503,10 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Sends An email through one of your mail orders.</p>
+                        <p class="marked">Sends an email through one of your mail orders.
+
+*Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead.
+</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/mail/send</span></code></pre>
@@ -2857,8 +2626,8 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
                             </div>
 
                             <div class="tab-pane" id="examples-Default-sendMail-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var MailBabyApi = require('mail_baby_api');
-var defaultClient = MailBabyApi.ApiClient.instance;
+                              <pre class="prettyprint"><code class="language-js">var MailBabyEmailDeliveryApi = require('mail_baby_email_delivery_api');
+var defaultClient = MailBabyEmailDeliveryApi.ApiClient.instance;
 
 // Configure API key authorization: apiKeyAuth
 var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
@@ -2866,7 +2635,7 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
 
-var api = new MailBabyApi.DefaultApi()
+var api = new MailBabyEmailDeliveryApi.DefaultApi()
 var to = to_example; // {{String}} 
 var from = from_example; // {{String}} 
 var subject = subject_example; // {{String}} 
@@ -3338,303 +3107,6 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
-                    <div id="api-Default-validateMailOrder">
-                      <article id="api-Default-validateMailOrder-0" data-group="User" data-name="validateMailOrder" data-version="0">
-                        <div class="pull-left">
-                          <h1>validateMailOrder</h1>
-                          <p>validatess order details before placing an order</p>
-                        </div>
-                        <div class="pull-right"></div>
-                        <div class="clearfix"></div>
-                        <p></p>
-                        <p class="marked"></p>
-                        <p></p>
-                        <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/mail/order</span></code></pre>
-                        <p>
-                          <h3>Usage and SDK Samples</h3>
-                        </p>
-                        <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-validateMailOrder-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-validateMailOrder-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-validateMailOrder-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-validateMailOrder-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-validateMailOrder-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-validateMailOrder-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-validateMailOrder-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-validateMailOrder-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-validateMailOrder-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-validateMailOrder-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-validateMailOrder-0-python">Python</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-validateMailOrder-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
--H "X-API-KEY: [[apiKey]]"\
--H "Accept: application/json"\
-"https://api.mailbaby.net/mail/order"</code></pre>
-                          </div>
-                          <div class="tab-pane" id="examples-Default-validateMailOrder-0-java">
-                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
-import MailBabyApi.auth.*;
-import MailBabyApi.model.*;
-import MailBabyApi.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-        // Configure API key authorization: apiKeyAuth
-        ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
-        apiKeyAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiKeyAuth.setApiKeyPrefix("Token");
-
-        DefaultApi apiInstance = new DefaultApi();
-        try {
-            apiInstance.validateMailOrder();
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#validateMailOrder");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-
-                          <div class="tab-pane" id="examples-Default-validateMailOrder-0-android">
-                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.DefaultApi;
-
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
-        try {
-            apiInstance.validateMailOrder();
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#validateMailOrder");
-            e.printStackTrace();
-        }
-    }
-}</code></pre>
-                          </div>
-  <!--
-  <div class="tab-pane" id="examples-Default-validateMailOrder-0-groovy">
-  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-  </div> -->
-                            <div class="tab-pane" id="examples-Default-validateMailOrder-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-// Configure API key authorization: (authentication scheme: apiKeyAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
-
-// validatess order details before placing an order
-[apiInstance validateMailOrderWithCompletionHandler: 
-              ^(NSError* error) {
-                            if (error) {
-                                NSLog(@"Error: %@", error);
-                            }
-                        }];
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-validateMailOrder-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var MailBabyApi = require('mail_baby_api');
-var defaultClient = MailBabyApi.ApiClient.instance;
-
-// Configure API key authorization: apiKeyAuth
-var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
-apiKeyAuth.apiKey = "YOUR API KEY"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
-
-var api = new MailBabyApi.DefaultApi()
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-api.validateMailOrder(callback);
-</code></pre>
-                            </div>
-
-                            <!--<div class="tab-pane" id="examples-Default-validateMailOrder-0-angular">
-              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
-            </div>-->
-                            <div class="tab-pane" id="examples-Default-validateMailOrder-0-csharp">
-                              <pre class="prettyprint"><code class="language-cs">using System;
-using System.Diagnostics;
-using MailBabyApi.Api;
-using MailBabyApi.Client;
-using MailBabyApi.Model;
-
-namespace Example
-{
-    public class validateMailOrderExample
-    {
-        public void main()
-        {
-
-            // Configure API key authorization: apiKeyAuth
-            Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
-
-            var apiInstance = new DefaultApi();
-
-            try
-            {
-                // validatess order details before placing an order
-                apiInstance.validateMailOrder();
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling DefaultApi.validateMailOrder: " + e.Message );
-            }
-        }
-    }
-}
-</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-validateMailOrder-0-php">
-                              <pre class="prettyprint"><code class="language-php"><&#63;php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-// Configure API key authorization: apiKeyAuth
-Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-$api_instance = new Swagger\Client\ApiDefaultApi();
-
-try {
-    $api_instance->validateMailOrder();
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->validateMailOrder: ', $e->getMessage(), PHP_EOL;
-}
-?></code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-validateMailOrder-0-perl">
-                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use MailBabyApi::Configuration;
-use MailBabyApi::DefaultApi;
-
-# Configure API key authorization: apiKeyAuth
-$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
-
-my $api_instance = MailBabyApi::DefaultApi->new();
-
-eval { 
-    $api_instance->validateMailOrder();
-};
-if ($@) {
-    warn "Exception when calling DefaultApi->validateMailOrder: $@\n";
-}</code></pre>
-                            </div>
-
-                            <div class="tab-pane" id="examples-Default-validateMailOrder-0-python">
-                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
-import time
-import MailBabyApi
-from MailBabyApi.rest import ApiException
-from pprint import pprint
-
-# Configure API key authorization: apiKeyAuth
-MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
-
-# create an instance of the API class
-api_instance = MailBabyApi.DefaultApi()
-
-try: 
-    # validatess order details before placing an order
-    api_instance.validate_mail_order()
-except ApiException as e:
-    print("Exception when calling DefaultApi->validateMailOrder: %s\n" % e)</code></pre>
-                            </div>
-                          </div>
-
-                          <h2>Parameters</h2>
-
-
-
-
-
-
-                          <h2>Responses</h2>
-                            <h3> Status: 200 - list of mail orders </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                            </div>
-
-                            <h3> Status: 401 - Unauthorized </h3>
-
-                            <ul class="nav nav-tabs nav-tabs-examples" >
-                                <li class="active">
-                                  <a data-toggle="tab" href="#responses-validateMailOrder-401-schema">Schema</a>
-                                </li>
-
-                            </ul>
-
-                            <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-validateMailOrder-401-schema">
-                                  <div id='responses-validateMailOrder-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
-                                    <script>
-                                      $(document).ready(function() {
-                                        var schemaWrapper = {
-  "description" : "Unauthorized",
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
-      }
-    }
-  }
-};
-                                        var schema = schemaWrapper.content["application/json"].schema;
-                                        if (schema.$ref != null) {
-                                          schema = defsParser.$refs.get(schema.$ref);
-                                        } else {
-                                          schemaWrapper.components = {};
-                                          schemaWrapper.components.schemas = Object.assign({}, defs);
-                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
-                                            console.log(err);
-                                          });
-                                        }
-
-                                        //console.log(JSON.stringify(schema));
-                                        var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-validateMailOrder-401-schema-data').val(stringify(schema));
-                                        var result = $('#responses-validateMailOrder-401-schema-401');
-                                        result.empty();
-                                        result.append(view.render());
-                                      });
-                                    </script>
-                                  </div>
-                                  <input id='responses-validateMailOrder-401-schema-data' type='hidden' value=''></input>
-                                </div>
-                            </div>
-
-                        </article>
-                      </div>
-                      <hr>
                     <div id="api-Default-viewMailLog">
                       <article id="api-Default-viewMailLog-0" data-group="User" data-name="viewMailLog" data-version="0">
                         <div class="pull-left">
@@ -3672,7 +3144,7 @@ available inventory in the system
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
-"https://api.mailbaby.net/mail/log?id=&searchString=&skip=&limit="</code></pre>
+"https://api.mailbaby.net/mail/log?id=&search=&skip=&limit=&startDate=&endDate="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-viewMailLog-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -3696,11 +3168,13 @@ public class DefaultApiExample {
 
         DefaultApi apiInstance = new DefaultApi();
         Long id = 789; // Long | The ID of your mail order this will be sent through.
-        String searchString = searchString_example; // String | pass an optional search string for looking up inventory
+        String search = search_example; // String | pass an optional search string for looking up inventory
         Integer skip = 56; // Integer | number of records to skip for pagination
         Integer limit = 56; // Integer | maximum number of records to return
+        Long startDate = 789; // Long | earliest date to get emails in unix timestamp format
+        Long endDate = 789; // Long | earliest date to get emails in unix timestamp format
         try {
-            array[MailLog] result = apiInstance.viewMailLog(id, searchString, skip, limit);
+            MailLog result = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#viewMailLog");
@@ -3718,11 +3192,13 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         Long id = 789; // Long | The ID of your mail order this will be sent through.
-        String searchString = searchString_example; // String | pass an optional search string for looking up inventory
+        String search = search_example; // String | pass an optional search string for looking up inventory
         Integer skip = 56; // Integer | number of records to skip for pagination
         Integer limit = 56; // Integer | maximum number of records to return
+        Long startDate = 789; // Long | earliest date to get emails in unix timestamp format
+        Long endDate = 789; // Long | earliest date to get emails in unix timestamp format
         try {
-            array[MailLog] result = apiInstance.viewMailLog(id, searchString, skip, limit);
+            MailLog result = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#viewMailLog");
@@ -3742,18 +3218,22 @@ public class DefaultApiExample {
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
 Long *id = 789; // The ID of your mail order this will be sent through. (optional)
-String *searchString = searchString_example; // pass an optional search string for looking up inventory (optional)
-Integer *skip = 56; // number of records to skip for pagination (optional)
-Integer *limit = 56; // maximum number of records to return (optional)
+String *search = search_example; // pass an optional search string for looking up inventory (optional)
+Integer *skip = 56; // number of records to skip for pagination (optional) (default to 0)
+Integer *limit = 56; // maximum number of records to return (optional) (default to 100)
+Long *startDate = 789; // earliest date to get emails in unix timestamp format (optional)
+Long *endDate = 789; // earliest date to get emails in unix timestamp format (optional)
 
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // displays the mail log
 [apiInstance viewMailLogWith:id
-    searchString:searchString
+    search:search
     skip:skip
     limit:limit
-              completionHandler: ^(array[MailLog] output, NSError* error) {
+    startDate:startDate
+    endDate:endDate
+              completionHandler: ^(MailLog output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -3765,8 +3245,8 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
                             </div>
 
                             <div class="tab-pane" id="examples-Default-viewMailLog-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var MailBabyApi = require('mail_baby_api');
-var defaultClient = MailBabyApi.ApiClient.instance;
+                              <pre class="prettyprint"><code class="language-js">var MailBabyEmailDeliveryApi = require('mail_baby_email_delivery_api');
+var defaultClient = MailBabyEmailDeliveryApi.ApiClient.instance;
 
 // Configure API key authorization: apiKeyAuth
 var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
@@ -3774,12 +3254,14 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
 
-var api = new MailBabyApi.DefaultApi()
+var api = new MailBabyEmailDeliveryApi.DefaultApi()
 var opts = { 
   'id': 789, // {{Long}} The ID of your mail order this will be sent through.
-  'searchString': searchString_example, // {{String}} pass an optional search string for looking up inventory
+  'search': search_example, // {{String}} pass an optional search string for looking up inventory
   'skip': 56, // {{Integer}} number of records to skip for pagination
-  'limit': 56 // {{Integer}} maximum number of records to return
+  'limit': 56, // {{Integer}} maximum number of records to return
+  'startDate': 789, // {{Long}} earliest date to get emails in unix timestamp format
+  'endDate': 789 // {{Long}} earliest date to get emails in unix timestamp format
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -3816,14 +3298,16 @@ namespace Example
 
             var apiInstance = new DefaultApi();
             var id = 789;  // Long | The ID of your mail order this will be sent through. (optional) 
-            var searchString = searchString_example;  // String | pass an optional search string for looking up inventory (optional) 
-            var skip = 56;  // Integer | number of records to skip for pagination (optional) 
-            var limit = 56;  // Integer | maximum number of records to return (optional) 
+            var search = search_example;  // String | pass an optional search string for looking up inventory (optional) 
+            var skip = 56;  // Integer | number of records to skip for pagination (optional)  (default to 0)
+            var limit = 56;  // Integer | maximum number of records to return (optional)  (default to 100)
+            var startDate = 789;  // Long | earliest date to get emails in unix timestamp format (optional) 
+            var endDate = 789;  // Long | earliest date to get emails in unix timestamp format (optional) 
 
             try
             {
                 // displays the mail log
-                array[MailLog] result = apiInstance.viewMailLog(id, searchString, skip, limit);
+                MailLog result = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -3847,12 +3331,14 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 $id = 789; // Long | The ID of your mail order this will be sent through.
-$searchString = searchString_example; // String | pass an optional search string for looking up inventory
+$search = search_example; // String | pass an optional search string for looking up inventory
 $skip = 56; // Integer | number of records to skip for pagination
 $limit = 56; // Integer | maximum number of records to return
+$startDate = 789; // Long | earliest date to get emails in unix timestamp format
+$endDate = 789; // Long | earliest date to get emails in unix timestamp format
 
 try {
-    $result = $api_instance->viewMailLog($id, $searchString, $skip, $limit);
+    $result = $api_instance->viewMailLog($id, $search, $skip, $limit, $startDate, $endDate);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
@@ -3872,12 +3358,14 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 
 my $api_instance = MailBabyApi::DefaultApi->new();
 my $id = 789; # Long | The ID of your mail order this will be sent through.
-my $searchString = searchString_example; # String | pass an optional search string for looking up inventory
+my $search = search_example; # String | pass an optional search string for looking up inventory
 my $skip = 56; # Integer | number of records to skip for pagination
 my $limit = 56; # Integer | maximum number of records to return
+my $startDate = 789; # Long | earliest date to get emails in unix timestamp format
+my $endDate = 789; # Long | earliest date to get emails in unix timestamp format
 
 eval { 
-    my $result = $api_instance->viewMailLog(id => $id, searchString => $searchString, skip => $skip, limit => $limit);
+    my $result = $api_instance->viewMailLog(id => $id, search => $search, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate);
     print Dumper($result);
 };
 if ($@) {
@@ -3900,13 +3388,15 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
 id = 789 # Long | The ID of your mail order this will be sent through. (optional)
-searchString = searchString_example # String | pass an optional search string for looking up inventory (optional)
-skip = 56 # Integer | number of records to skip for pagination (optional)
-limit = 56 # Integer | maximum number of records to return (optional)
+search = search_example # String | pass an optional search string for looking up inventory (optional)
+skip = 56 # Integer | number of records to skip for pagination (optional) (default to 0)
+limit = 56 # Integer | maximum number of records to return (optional) (default to 100)
+startDate = 789 # Long | earliest date to get emails in unix timestamp format (optional)
+endDate = 789 # Long | earliest date to get emails in unix timestamp format (optional)
 
 try: 
     # displays the mail log
-    api_response = api_instance.view_mail_log(id=id, searchString=searchString, skip=skip, limit=limit)
+    api_response = api_instance.view_mail_log(id=id, search=search, skip=skip, limit=limit, startDate=startDate, endDate=endDate)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->viewMailLog: %s\n" % e)</code></pre>
@@ -3947,11 +3437,11 @@ except ApiException as e:
                                     </div>
                                 </td>
                                 </tr>
-                                <tr><td style="width:150px;">searchString</td>
+                                <tr><td style="width:150px;">search</td>
                                 <td>
                                 
                                 
-                                    <div id="d2e199_viewMailLog_searchString">
+                                    <div id="d2e199_viewMailLog_search">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -4010,6 +3500,50 @@ except ApiException as e:
                                     </div>
                                 </td>
                                 </tr>
+                                <tr><td style="width:150px;">startDate</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_startDate">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Long
+                                                </span>
+                                                    <span class="format">
+                                                        (int64)
+                                                    </span>
+                                
+                                                    <div class="inner description">
+                                                        earliest date to get emails in unix timestamp format
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">endDate</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_endDate">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    Long
+                                                </span>
+                                                    <span class="format">
+                                                        (int64)
+                                                    </span>
+                                
+                                                    <div class="inner description">
+                                                        earliest date to get emails in unix timestamp format
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
                             </table>
 
                           <h2>Responses</h2>
@@ -4032,11 +3566,7 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/MailLog"
-        },
-        "x-content-type" : "application/json"
+        "$ref" : "#/components/schemas/MailLog"
       }
     }
   }
@@ -4081,8 +3611,8 @@ except ApiException as e:
           <div id="footer">
             <div id="api-_footer">
               <p>Suggestions, contact, support and error reporting;
-                  <div class="app-desc">Information URL: <a href="https://www.interserver.net/contact-information.html">https://www.interserver.net/contact-information.html</a></div>
-                  <div class="app-desc">Contact Info: <a href="detain@interserver.net">detain@interserver.net</a></div>
+                  <div class="app-desc">Information URL: <a href="https://www.mail.baby/contact/">https://www.mail.baby/contact/</a></div>
+                  <div class="app-desc">Contact Info: <a href="support@interserver.net">support@interserver.net</a></div>
               </p>
                 <div class="license-info">Apache 2.0</div>
                 <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
@@ -5177,6 +4707,11 @@ except ApiException as e:
       this.open = open;
       this.options = options;
       this.isCollapsed = open <= 0;
+  
+      if (this.schema.type == undefined && this.schema.$ref) {
+        const elements = this.schema.$ref.split('/');
+        this.schema = defs[elements.pop()];
+      }
   
       // if schema is an empty object which means any JOSN
       this.isAny = typeof schema === 'object' && !Array.isArray(schema) && !Object.keys(schema).filter(function (k) {

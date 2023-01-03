@@ -104,6 +104,8 @@ operation_parameters_minimum_occurrences["viewMailLog:::id"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::search"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::skip"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::limit"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::startDate"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::endDate"]=0
 
 ##
 # This array stores the maximum number of allowed occurrences for parameter
@@ -121,6 +123,8 @@ operation_parameters_maximum_occurrences["viewMailLog:::id"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::search"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::skip"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::limit"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::startDate"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::endDate"]=0
 
 ##
 # The type of collection for specifying multiple values for parameter:
@@ -135,6 +139,8 @@ operation_parameters_collection_type["viewMailLog:::id"]=""
 operation_parameters_collection_type["viewMailLog:::search"]=""
 operation_parameters_collection_type["viewMailLog:::skip"]=""
 operation_parameters_collection_type["viewMailLog:::limit"]=""
+operation_parameters_collection_type["viewMailLog:::startDate"]=""
+operation_parameters_collection_type["viewMailLog:::endDate"]=""
 
 
 ##
@@ -504,7 +510,7 @@ build_request_path() {
 print_help() {
 cat <<EOF
 
-${BOLD}${WHITE}MailBaby Email Delivery API command line client (API version 1.0.0)${OFF}
+${BOLD}${WHITE}MailBaby Email Delivery API command line client (API version 1.0.1)${OFF}
 
 ${BOLD}${WHITE}Usage${OFF}
 
@@ -574,7 +580,7 @@ echo -e "              \\t\\t\\t\\t(e.g. 'https://api.mailbaby.net')"
 ##############################################################################
 print_about() {
     echo ""
-    echo -e "${BOLD}${WHITE}MailBaby Email Delivery API command line client (API version 1.0.0)${OFF}"
+    echo -e "${BOLD}${WHITE}MailBaby Email Delivery API command line client (API version 1.0.1)${OFF}"
     echo ""
     echo -e "License: Apache 2.0"
     echo -e "Contact: support@interserver.net"
@@ -591,7 +597,7 @@ This is the API interface to the [Mail Baby](https//mail.baby/) Mail services pr
 
 # 🔐 Authentication
 
-In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  
+In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.
 
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 EOF
@@ -606,7 +612,7 @@ echo "$appdescription" | paste -sd' ' | fold -sw 80
 ##############################################################################
 print_version() {
     echo ""
-    echo -e "${BOLD}MailBaby Email Delivery API command line client (API version 1.0.0)${OFF}"
+    echo -e "${BOLD}MailBaby Email Delivery API command line client (API version 1.0.1)${OFF}"
     echo ""
 }
 
@@ -714,6 +720,10 @@ available inventory in the system" | paste -sd' ' | fold -sw 80
     echo -e "  * ${GREEN}skip${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 0)${OFF} - number of records to skip for pagination${YELLOW} Specify as: skip=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}limit${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 100)${OFF} - maximum number of records to return${YELLOW} Specify as: limit=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}startDate${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - earliest date to get emails in unix timestamp format${YELLOW} Specify as: startDate=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}endDate${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - earliest date to get emails in unix timestamp format${YELLOW} Specify as: endDate=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -920,7 +930,7 @@ call_viewMailLog() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(id search skip limit  )
+    local query_parameter_names=(id search skip limit startDate endDate  )
     local path
 
     if ! path=$(build_request_path "/mail/log" path_parameter_names query_parameter_names); then

@@ -65,7 +65,7 @@ view_mail_log() ->
   Method      = get,
   Host        = application:get_env(openapi, host, "http://localhost:8080"),
   Path        = ["/mail/log"],
-  QueryString = [<<"id=">>, Id, <<"&">>, <<"search=">>, Search, <<"&">>, <<"skip=">>, Skip, <<"&">>, <<"limit=">>, Limit, <<"&">>],
+  QueryString = [<<"id=">>, Id, <<"&">>, <<"search=">>, Search, <<"&">>, <<"skip=">>, Skip, <<"&">>, <<"limit=">>, Limit, <<"&">>, <<"startDate=">>, StartDate, <<"&">>, <<"endDate=">>, EndDate, <<"&">>],
 
   openapi_utils:request(Method, [Host, ?BASE_URL, Path, <<"?">>, QueryString]).
 

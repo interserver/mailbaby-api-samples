@@ -251,7 +251,7 @@ Name | Type | Description  | Notes
 ## `viewMailLog()`
 
 ```php
-viewMailLog($id, $search, $skip, $limit): \Interserver\Mailbaby\Model\MailLog
+viewMailLog($id, $search, $skip, $limit, $startDate, $endDate): \Interserver\Mailbaby\Model\MailLog
 ```
 
 displays the mail log
@@ -281,9 +281,11 @@ $id = 56; // int | The ID of your mail order this will be sent through.
 $search = 'search_example'; // string | pass an optional search string for looking up inventory
 $skip = 0; // int | number of records to skip for pagination
 $limit = 100; // int | maximum number of records to return
+$startDate = 56; // int | earliest date to get emails in unix timestamp format
+$endDate = 56; // int | earliest date to get emails in unix timestamp format
 
 try {
-    $result = $apiInstance->viewMailLog($id, $search, $skip, $limit);
+    $result = $apiInstance->viewMailLog($id, $search, $skip, $limit, $startDate, $endDate);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
@@ -298,6 +300,8 @@ Name | Type | Description  | Notes
  **search** | **string**| pass an optional search string for looking up inventory | [optional]
  **skip** | **int**| number of records to skip for pagination | [optional] [default to 0]
  **limit** | **int**| maximum number of records to return | [optional] [default to 100]
+ **startDate** | **int**| earliest date to get emails in unix timestamp format | [optional]
+ **endDate** | **int**| earliest date to get emails in unix timestamp format | [optional]
 
 ### Return type
 

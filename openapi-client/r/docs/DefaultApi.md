@@ -198,7 +198,7 @@ Name | Type | Description  | Notes
 | **404** | The specified resource was not found |  -  |
 
 # **ViewMailLog**
-> MailLog ViewMailLog(id = var.id, search = var.search, skip = 0, limit = 100)
+> MailLog ViewMailLog(id = var.id, search = var.search, skip = 0, limit = 100, start_date = var.start_date, end_date = var.end_date)
 
 displays the mail log
 
@@ -212,14 +212,16 @@ var_id <- 56 # integer | The ID of your mail order this will be sent through.
 var_search <- "search_example" # character | pass an optional search string for looking up inventory
 var_skip <- 0 # integer | number of records to skip for pagination
 var_limit <- 100 # integer | maximum number of records to return
+var_start_date <- 56 # integer | earliest date to get emails in unix timestamp format
+var_end_date <- 56 # integer | earliest date to get emails in unix timestamp format
 
 #displays the mail log
 api_instance <- DefaultApi$new()
 # Configure API key authorization: apiKeyAuth
 api_instance$api_client$api_keys['X-API-KEY'] <- 'TODO_YOUR_API_KEY';
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$ViewMailLog(id = var_id, search = var_search, skip = var_skip, limit = var_limitdata_file = "result.txt")
-result <- api_instance$ViewMailLog(id = var_id, search = var_search, skip = var_skip, limit = var_limit)
+# result <- api_instance$ViewMailLog(id = var_id, search = var_search, skip = var_skip, limit = var_limit, start_date = var_start_date, end_date = var_end_datedata_file = "result.txt")
+result <- api_instance$ViewMailLog(id = var_id, search = var_search, skip = var_skip, limit = var_limit, start_date = var_start_date, end_date = var_end_date)
 dput(result)
 ```
 
@@ -231,6 +233,8 @@ Name | Type | Description  | Notes
  **search** | **character**| pass an optional search string for looking up inventory | [optional] 
  **skip** | **integer**| number of records to skip for pagination | [optional] [default to 0]
  **limit** | **integer**| maximum number of records to return | [optional] [default to 100]
+ **start_date** | **integer**| earliest date to get emails in unix timestamp format | [optional] 
+ **end_date** | **integer**| earliest date to get emails in unix timestamp format | [optional] 
 
 ### Return type
 

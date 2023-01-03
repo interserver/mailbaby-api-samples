@@ -75,9 +75,11 @@ export class PromiseDefaultApi {
      * @param search pass an optional search string for looking up inventory
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
+     * @param startDate earliest date to get emails in unix timestamp format
+     * @param endDate earliest date to get emails in unix timestamp format
      */
-    public viewMailLog(id?: number, search?: string, skip?: number, limit?: number, _options?: Configuration): Promise<MailLog> {
-        const result = this.api.viewMailLog(id, search, skip, limit, _options);
+    public viewMailLog(id?: number, search?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, _options?: Configuration): Promise<MailLog> {
+        const result = this.api.viewMailLog(id, search, skip, limit, startDate, endDate, _options);
         return result.toPromise();
     }
 

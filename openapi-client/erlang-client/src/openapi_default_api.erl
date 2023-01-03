@@ -105,7 +105,7 @@ view_mail_log(Ctx, Optional) ->
 
     Method = get,
     Path = [<<"/mail/log">>],
-    QS = lists:flatten([])++openapi_utils:optional_params(['id', 'search', 'skip', 'limit'], _OptionalParams),
+    QS = lists:flatten([])++openapi_utils:optional_params(['id', 'search', 'skip', 'limit', 'startDate', 'endDate'], _OptionalParams),
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),

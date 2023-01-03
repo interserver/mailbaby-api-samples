@@ -145,12 +145,14 @@ bool sendMailAsync(char * accessToken,
  * \param search pass an optional search string for looking up inventory
  * \param skip number of records to skip for pagination
  * \param limit maximum number of records to return
+ * \param startDate earliest date to get emails in unix timestamp format
+ * \param endDate earliest date to get emails in unix timestamp format
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool viewMailLogSync(char * accessToken,
-	long long id, std::string search, int skip, int limit, 
+	long long id, std::string search, int skip, int limit, long long startDate, long long endDate, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData);
 
@@ -161,12 +163,14 @@ bool viewMailLogSync(char * accessToken,
  * \param search pass an optional search string for looking up inventory
  * \param skip number of records to skip for pagination
  * \param limit maximum number of records to return
+ * \param startDate earliest date to get emails in unix timestamp format
+ * \param endDate earliest date to get emails in unix timestamp format
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool viewMailLogAsync(char * accessToken,
-	long long id, std::string search, int skip, int limit, 
+	long long id, std::string search, int skip, int limit, long long startDate, long long endDate, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData);
 

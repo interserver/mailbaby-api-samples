@@ -45,6 +45,6 @@ DefaultAPI_sendMail(apiClient_t *apiClient, char * to , char * from , char * sub
 // By passing in the appropriate options, you can search for available inventory in the system 
 //
 mail_log_t*
-DefaultAPI_viewMailLog(apiClient_t *apiClient, long id , char * search , int skip , int limit );
+DefaultAPI_viewMailLog(apiClient_t *apiClient, long id , char * search , int skip , int limit , long startDate , long endDate );
 
 

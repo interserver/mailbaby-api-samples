@@ -135,7 +135,7 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 <a name="viewMailLog"></a>
 # **viewMailLog**
 ```java
-Mono<MailLog> DefaultApi.viewMailLog(idsearchskiplimit)
+Mono<MailLog> DefaultApi.viewMailLog(idsearchskiplimitstartDateendDate)
 ```
 
 displays the mail log
@@ -149,6 +149,8 @@ By passing in the appropriate options, you can search for available inventory in
 | **search** | `String`| pass an optional search string for looking up inventory | [optional parameter] |
 | **skip** | `Integer`| number of records to skip for pagination | [optional parameter] [default to `0`] |
 | **limit** | `Integer`| maximum number of records to return | [optional parameter] [default to `100`] |
+| **startDate** | `Long`| earliest date to get emails in unix timestamp format | [optional parameter] |
+| **endDate** | `Long`| earliest date to get emails in unix timestamp format | [optional parameter] |
 
 
 ### Return type

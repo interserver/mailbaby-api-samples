@@ -157,7 +157,7 @@ available inventory in the system
 ### Example
 
 ```bash
- viewMailLog  id=value  search=value  skip=value  limit=value
+ viewMailLog  id=value  search=value  skip=value  limit=value  startDate=value  endDate=value
 ```
 
 ### Parameters
@@ -169,6 +169,8 @@ Name | Type | Description  | Notes
  **search** | **string** | pass an optional search string for looking up inventory | [optional] [default to null]
  **skip** | **integer** | number of records to skip for pagination | [optional] [default to 0]
  **limit** | **integer** | maximum number of records to return | [optional] [default to 100]
+ **startDate** | **integer** | earliest date to get emails in unix timestamp format | [optional] [default to null]
+ **endDate** | **integer** | earliest date to get emails in unix timestamp format | [optional] [default to null]
 
 ### Return type
 

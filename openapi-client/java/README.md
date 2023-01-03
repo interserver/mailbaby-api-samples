@@ -1,8 +1,8 @@
 # openapi-java-client
 
 MailBaby Email Delivery API
-- API version: 1.0.0
-  - Build date: 2022-12-29T00:30:46.952270-05:00[America/New_York]
+- API version: 1.0.1
+  - Build date: 2023-01-03T14:46:18.075628-05:00[America/New_York]
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
@@ -14,7 +14,7 @@ This is the API interface to the [Mail Baby](https//mail.baby/) Mail services pr
 
 # 🔐 Authentication
 
-In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  
+In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.
 
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 

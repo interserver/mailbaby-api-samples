@@ -293,6 +293,10 @@ let body:.DefaultApiViewMailLogRequest = {
   skip: 0,
   // number | maximum number of records to return (optional)
   limit: 100,
+  // number | earliest date to get emails in unix timestamp format (optional)
+  startDate: 0,
+  // number | earliest date to get emails in unix timestamp format (optional)
+  endDate: 0,
 };
 
 apiInstance.viewMailLog(body).then((data:any) => {
@@ -309,6 +313,8 @@ Name | Type | Description  | Notes
  **search** | [**string**] | pass an optional search string for looking up inventory | (optional) defaults to undefined
  **skip** | [**number**] | number of records to skip for pagination | (optional) defaults to 0
  **limit** | [**number**] | maximum number of records to return | (optional) defaults to 100
+ **startDate** | [**number**] | earliest date to get emails in unix timestamp format | (optional) defaults to undefined
+ **endDate** | [**number**] | earliest date to get emails in unix timestamp format | (optional) defaults to undefined
 
 
 ### Return type

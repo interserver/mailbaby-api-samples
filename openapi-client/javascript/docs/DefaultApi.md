@@ -228,7 +228,9 @@ let opts = {
   'id': 789, // Number | The ID of your mail order this will be sent through.
   'search': "search_example", // String | pass an optional search string for looking up inventory
   'skip': 0, // Number | number of records to skip for pagination
-  'limit': 100 // Number | maximum number of records to return
+  'limit': 100, // Number | maximum number of records to return
+  'startDate': 789, // Number | earliest date to get emails in unix timestamp format
+  'endDate': 789 // Number | earliest date to get emails in unix timestamp format
 };
 apiInstance.viewMailLog(opts, (error, data, response) => {
   if (error) {
@@ -248,6 +250,8 @@ Name | Type | Description  | Notes
  **search** | **String**| pass an optional search string for looking up inventory | [optional] 
  **skip** | **Number**| number of records to skip for pagination | [optional] [default to 0]
  **limit** | **Number**| maximum number of records to return | [optional] [default to 100]
+ **startDate** | **Number**| earliest date to get emails in unix timestamp format | [optional] 
+ **endDate** | **Number**| earliest date to get emails in unix timestamp format | [optional] 
 
 ### Return type
 

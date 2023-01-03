@@ -226,9 +226,13 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
      * @param search pass an optional search string for looking up inventory
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
+     * @param startDate earliest date to get emails in unix timestamp format
+     * @param endDate earliest date to get emails in unix timestamp format
      */
-    public async viewMailLog(id?: number, search?: string, skip?: number, limit?: number, _options?: Configuration): Promise<RequestContext> {
+    public async viewMailLog(id?: number, search?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
+
 
 
 
@@ -259,6 +263,16 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (limit !== undefined) {
             requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", "int32"));
+        }
+
+        // Query Params
+        if (startDate !== undefined) {
+            requestContext.setQueryParam("startDate", ObjectSerializer.serialize(startDate, "number", "int64"));
+        }
+
+        // Query Params
+        if (endDate !== undefined) {
+            requestContext.setQueryParam("endDate", ObjectSerializer.serialize(endDate, "number", "int64"));
         }
 
 

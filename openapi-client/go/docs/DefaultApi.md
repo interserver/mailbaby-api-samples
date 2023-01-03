@@ -268,7 +268,7 @@ Name | Type | Description  | Notes
 
 ## ViewMailLog
 
-> MailLog ViewMailLog(ctx).Id(id).Search(search).Skip(skip).Limit(limit).Execute()
+> MailLog ViewMailLog(ctx).Id(id).Search(search).Skip(skip).Limit(limit).StartDate(startDate).EndDate(endDate).Execute()
 
 displays the mail log
 
@@ -291,10 +291,12 @@ func main() {
     search := "search_example" // string | pass an optional search string for looking up inventory (optional)
     skip := int32(56) // int32 | number of records to skip for pagination (optional) (default to 0)
     limit := int32(56) // int32 | maximum number of records to return (optional) (default to 100)
+    startDate := int64(789) // int64 | earliest date to get emails in unix timestamp format (optional)
+    endDate := int64(789) // int64 | earliest date to get emails in unix timestamp format (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ViewMailLog(context.Background()).Id(id).Search(search).Skip(skip).Limit(limit).Execute()
+    resp, r, err := apiClient.DefaultApi.ViewMailLog(context.Background()).Id(id).Search(search).Skip(skip).Limit(limit).StartDate(startDate).EndDate(endDate).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ViewMailLog``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -319,6 +321,8 @@ Name | Type | Description  | Notes
  **search** | **string** | pass an optional search string for looking up inventory | 
  **skip** | **int32** | number of records to skip for pagination | [default to 0]
  **limit** | **int32** | maximum number of records to return | [default to 100]
+ **startDate** | **int64** | earliest date to get emails in unix timestamp format | 
+ **endDate** | **int64** | earliest date to get emails in unix timestamp format | 
 
 ### Return type
 

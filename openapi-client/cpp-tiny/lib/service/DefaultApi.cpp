@@ -221,6 +221,12 @@ using namespace Tiny;
             , 
             
             int limit
+            , 
+            
+            long startDate
+            , 
+            
+            long endDate
             
         )
         {
@@ -229,11 +235,13 @@ using namespace Tiny;
 
             // Headers  | 
 
-            // Query    | id search skip limit 
+            // Query    | id search skip limit startDate endDate 
             addQueryParam("id",id);
             addQueryParam("search",search);
             addQueryParam("skip",skip);
             addQueryParam("limit",limit);
+            addQueryParam("startDate",startDate);
+            addQueryParam("endDate",endDate);
 
             // Form     | 
 

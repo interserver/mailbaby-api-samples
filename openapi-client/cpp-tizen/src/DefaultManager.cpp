@@ -703,7 +703,7 @@ static bool viewMailLogProcessor(MemoryStruct_s p_chunk, long code, char* errorm
 }
 
 static bool viewMailLogHelper(char * accessToken,
-	long long id, std::string search, int skip, int limit, 
+	long long id, std::string search, int skip, int limit, long long startDate, long long endDate, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -746,6 +746,20 @@ static bool viewMailLogHelper(char * accessToken,
 	queryParams.insert(pair<string, string>("limit", itemAtq));
 	if( itemAtq.empty()==true){
 		queryParams.erase("limit");
+	}
+
+
+	itemAtq = stringify(&startDate, "long long");
+	queryParams.insert(pair<string, string>("startDate", itemAtq));
+	if( itemAtq.empty()==true){
+		queryParams.erase("startDate");
+	}
+
+
+	itemAtq = stringify(&endDate, "long long");
+	queryParams.insert(pair<string, string>("endDate", itemAtq));
+	if( itemAtq.empty()==true){
+		queryParams.erase("endDate");
 	}
 
 	string mBody = "";
@@ -802,22 +816,22 @@ static bool viewMailLogHelper(char * accessToken,
 
 
 bool DefaultManager::viewMailLogAsync(char * accessToken,
-	long long id, std::string search, int skip, int limit, 
+	long long id, std::string search, int skip, int limit, long long startDate, long long endDate, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData)
 {
 	return viewMailLogHelper(accessToken,
-	id, search, skip, limit, 
+	id, search, skip, limit, startDate, endDate, 
 	handler, userData, true);
 }
 
 bool DefaultManager::viewMailLogSync(char * accessToken,
-	long long id, std::string search, int skip, int limit, 
+	long long id, std::string search, int skip, int limit, long long startDate, long long endDate, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData)
 {
 	return viewMailLogHelper(accessToken,
-	id, search, skip, limit, 
+	id, search, skip, limit, startDate, endDate, 
 	handler, userData, false);
 }
 

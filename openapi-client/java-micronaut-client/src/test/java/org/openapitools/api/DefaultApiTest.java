@@ -114,9 +114,11 @@ public class DefaultApiTest {
         String search = "example";
         Integer skip = 0;
         Integer limit = 100;
+        Long startDate = 56L;
+        Long endDate = 56L;
 
         // when
-        MailLog body = api.viewMailLog(id, search, skip, limit).block();
+        MailLog body = api.viewMailLog(id, search, skip, limit, startDate, endDate).block();
 
         // then
         // TODO implement the viewMailLogTest()

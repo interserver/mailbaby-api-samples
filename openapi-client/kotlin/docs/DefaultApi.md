@@ -203,7 +203,7 @@ Configure apiKeyAuth:
 
 <a name="viewMailLog"></a>
 # **viewMailLog**
-> MailLog viewMailLog(id, search, skip, limit)
+> MailLog viewMailLog(id, search, skip, limit, startDate, endDate)
 
 displays the mail log
 
@@ -220,8 +220,10 @@ val id : kotlin.Long = 789 // kotlin.Long | The ID of your mail order this will 
 val search : kotlin.String = search_example // kotlin.String | pass an optional search string for looking up inventory
 val skip : kotlin.Int = 56 // kotlin.Int | number of records to skip for pagination
 val limit : kotlin.Int = 56 // kotlin.Int | maximum number of records to return
+val startDate : kotlin.Long = 789 // kotlin.Long | earliest date to get emails in unix timestamp format
+val endDate : kotlin.Long = 789 // kotlin.Long | earliest date to get emails in unix timestamp format
 try {
-    val result : MailLog = apiInstance.viewMailLog(id, search, skip, limit)
+    val result : MailLog = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#viewMailLog")
@@ -240,6 +242,8 @@ Name | Type | Description  | Notes
  **search** | **kotlin.String**| pass an optional search string for looking up inventory | [optional]
  **skip** | **kotlin.Int**| number of records to skip for pagination | [optional] [default to 0]
  **limit** | **kotlin.Int**| maximum number of records to return | [optional] [default to 100]
+ **startDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional]
+ **endDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional]
 
 ### Return type
 

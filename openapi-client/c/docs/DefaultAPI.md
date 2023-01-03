@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 //
 // By passing in the appropriate options, you can search for available inventory in the system 
 //
-mail_log_t* DefaultAPI_viewMailLog(apiClient_t *apiClient, long id, char * search, int skip, int limit);
+mail_log_t* DefaultAPI_viewMailLog(apiClient_t *apiClient, long id, char * search, int skip, int limit, long startDate, long endDate);
 ```
 
 ### Parameters
@@ -148,6 +148,8 @@ Name | Type | Description  | Notes
 **search** | **char \*** | pass an optional search string for looking up inventory | [optional] 
 **skip** | **int** | number of records to skip for pagination | [optional] [default to 0]
 **limit** | **int** | maximum number of records to return | [optional] [default to 100]
+**startDate** | **long** | earliest date to get emails in unix timestamp format | [optional] 
+**endDate** | **long** | earliest date to get emails in unix timestamp format | [optional] 
 
 ### Return type
 

@@ -1,9 +1,9 @@
 /**
  * MailBaby Email Delivery API
  *
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.    We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
- * The version of the OpenAPI document: 1.0.0
+ * The version of the OpenAPI document: 1.0.1
  * Contact: support@interserver.net
  *
  * Please note:
@@ -345,6 +345,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      * @param search pass an optional search string for looking up inventory (optional)
      * @param skip number of records to skip for pagination (optional, default to 0)
      * @param limit maximum number of records to return (optional, default to 100)
+     * @param startDate earliest date to get emails in unix timestamp format (optional)
+     * @param endDate earliest date to get emails in unix timestamp format (optional)
      * @return MailLog
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -354,8 +356,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun viewMailLog(id: kotlin.Long? = null, search: kotlin.String? = null, skip: kotlin.Int? = 0, limit: kotlin.Int? = 100) : MailLog {
-        val localVarResponse = viewMailLogWithHttpInfo(id = id, search = search, skip = skip, limit = limit)
+    fun viewMailLog(id: kotlin.Long? = null, search: kotlin.String? = null, skip: kotlin.Int? = 0, limit: kotlin.Int? = 100, startDate: kotlin.Long? = null, endDate: kotlin.Long? = null) : MailLog {
+        val localVarResponse = viewMailLogWithHttpInfo(id = id, search = search, skip = skip, limit = limit, startDate = startDate, endDate = endDate)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as MailLog
@@ -379,14 +381,16 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      * @param search pass an optional search string for looking up inventory (optional)
      * @param skip number of records to skip for pagination (optional, default to 0)
      * @param limit maximum number of records to return (optional, default to 100)
+     * @param startDate earliest date to get emails in unix timestamp format (optional)
+     * @param endDate earliest date to get emails in unix timestamp format (optional)
      * @return ApiResponse<MailLog?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun viewMailLogWithHttpInfo(id: kotlin.Long?, search: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?) : ApiResponse<MailLog?> {
-        val localVariableConfig = viewMailLogRequestConfig(id = id, search = search, skip = skip, limit = limit)
+    fun viewMailLogWithHttpInfo(id: kotlin.Long?, search: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.Long?, endDate: kotlin.Long?) : ApiResponse<MailLog?> {
+        val localVariableConfig = viewMailLogRequestConfig(id = id, search = search, skip = skip, limit = limit, startDate = startDate, endDate = endDate)
 
         return request<Unit, MailLog>(
             localVariableConfig
@@ -400,9 +404,11 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      * @param search pass an optional search string for looking up inventory (optional)
      * @param skip number of records to skip for pagination (optional, default to 0)
      * @param limit maximum number of records to return (optional, default to 100)
+     * @param startDate earliest date to get emails in unix timestamp format (optional)
+     * @param endDate earliest date to get emails in unix timestamp format (optional)
      * @return RequestConfig
      */
-    fun viewMailLogRequestConfig(id: kotlin.Long?, search: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?) : RequestConfig<Unit> {
+    fun viewMailLogRequestConfig(id: kotlin.Long?, search: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.Long?, endDate: kotlin.Long?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -417,6 +423,12 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
+                }
+                if (startDate != null) {
+                    put("startDate", listOf(startDate.toString()))
+                }
+                if (endDate != null) {
+                    put("endDate", listOf(endDate.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

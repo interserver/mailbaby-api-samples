@@ -19,6 +19,16 @@ class ViewMailLogParameterData
     public string|null $search = null;
 
     /**
+     * earliest date to get emails in unix timestamp format
+     */
+    #[DTA\Data(subset: "query", field: "endDate", nullable: true)]
+    #[DTA\Strategy("QueryStringScalar", ["type" => "int"], "query")]
+    #[DTA\Validator("QueryStringScalar", ["type" => "int"], subset: "query")]
+    #[DTA\Validator("GreaterThan", ["min" => 0, "inclusive" => true], subset: "query")]
+    #[DTA\Validator("LessThan", ["max" => 9999999999, "inclusive" => true], subset: "query")]
+    public int|null $end_date = null;
+
+    /**
      * maximum number of records to return
      */
     #[DTA\Data(subset: "query", field: "limit", nullable: true)]
@@ -44,5 +54,15 @@ class ViewMailLogParameterData
     #[DTA\Strategy("QueryStringScalar", ["type" => "int"], "query")]
     #[DTA\Validator("QueryStringScalar", ["type" => "int"], subset: "query")]
     public int|null $id = null;
+
+    /**
+     * earliest date to get emails in unix timestamp format
+     */
+    #[DTA\Data(subset: "query", field: "startDate", nullable: true)]
+    #[DTA\Strategy("QueryStringScalar", ["type" => "int"], "query")]
+    #[DTA\Validator("QueryStringScalar", ["type" => "int"], subset: "query")]
+    #[DTA\Validator("GreaterThan", ["min" => 0, "inclusive" => true], subset: "query")]
+    #[DTA\Validator("LessThan", ["max" => 9999999999, "inclusive" => true], subset: "query")]
+    public int|null $start_date = null;
 
 }

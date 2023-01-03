@@ -388,7 +388,7 @@ catch (ApiException e)
 
 <a name="viewmaillog"></a>
 # **ViewMailLog**
-> MailLog ViewMailLog (long? id = null, string search = null, int? skip = null, int? limit = null)
+> MailLog ViewMailLog (long? id = null, string search = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null)
 
 displays the mail log
 
@@ -420,11 +420,13 @@ namespace Example
             var search = "search_example";  // string | pass an optional search string for looking up inventory (optional) 
             var skip = 0;  // int? | number of records to skip for pagination (optional)  (default to 0)
             var limit = 100;  // int? | maximum number of records to return (optional)  (default to 100)
+            var startDate = 789L;  // long? | earliest date to get emails in unix timestamp format (optional) 
+            var endDate = 789L;  // long? | earliest date to get emails in unix timestamp format (optional) 
 
             try
             {
                 // displays the mail log
-                MailLog result = apiInstance.ViewMailLog(id, search, skip, limit);
+                MailLog result = apiInstance.ViewMailLog(id, search, skip, limit, startDate, endDate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -445,7 +447,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // displays the mail log
-    ApiResponse<MailLog> response = apiInstance.ViewMailLogWithHttpInfo(id, search, skip, limit);
+    ApiResponse<MailLog> response = apiInstance.ViewMailLogWithHttpInfo(id, search, skip, limit, startDate, endDate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -466,6 +468,8 @@ catch (ApiException e)
 | **search** | **string** | pass an optional search string for looking up inventory | [optional]  |
 | **skip** | **int?** | number of records to skip for pagination | [optional] [default to 0] |
 | **limit** | **int?** | maximum number of records to return | [optional] [default to 100] |
+| **startDate** | **long?** | earliest date to get emails in unix timestamp format | [optional]  |
+| **endDate** | **long?** | earliest date to get emails in unix timestamp format | [optional]  |
 
 ### Return type
 

@@ -141,7 +141,9 @@ private class OASDefaultApiTest {
             'id' => 2147483648L,
             'search' => 'null',
             'skip' => '',
-            'r_limit' => ''
+            'r_limit' => '',
+            'startDate' => 2147483648L,
+            'endDate' => 2147483648L
         };
 
         OASClient client;

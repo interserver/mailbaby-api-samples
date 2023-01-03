@@ -284,7 +284,7 @@ public class Example {
 
 <a name="viewMailLog"></a>
 # **viewMailLog**
-> MailLog viewMailLog(id, search, skip, limit)
+> MailLog viewMailLog(id, search, skip, limit, startDate, endDate)
 
 displays the mail log
 
@@ -316,8 +316,10 @@ public class Example {
     String search = "search_example"; // String | pass an optional search string for looking up inventory
     Integer skip = 0; // Integer | number of records to skip for pagination
     Integer limit = 100; // Integer | maximum number of records to return
+    Long startDate = 56L; // Long | earliest date to get emails in unix timestamp format
+    Long endDate = 56L; // Long | earliest date to get emails in unix timestamp format
     try {
-      MailLog result = apiInstance.viewMailLog(id, search, skip, limit);
+      MailLog result = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#viewMailLog");
@@ -338,6 +340,8 @@ public class Example {
 | **search** | **String**| pass an optional search string for looking up inventory | [optional] |
 | **skip** | **Integer**| number of records to skip for pagination | [optional] [default to 0] |
 | **limit** | **Integer**| maximum number of records to return | [optional] [default to 100] |
+| **startDate** | **Long**| earliest date to get emails in unix timestamp format | [optional] |
+| **endDate** | **Long**| earliest date to get emails in unix timestamp format | [optional] |
 
 ### Return type
 

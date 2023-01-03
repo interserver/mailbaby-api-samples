@@ -1334,7 +1334,7 @@ ul.nav-tabs {
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 1.0.0</div>
+              <div class="app-desc">Version: 1.0.1</div>
             <hr>
             <div id="app-description" class="app-desc">
                 <p><strong>Send emails fast and with confidence through our easy to use <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> API interface.</strong></p>
@@ -3514,7 +3514,7 @@ available inventory in the system
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
 -H "X-API-KEY: [[apiKey]]" \
  -H "Accept: application/json" \
- "https://api.mailbaby.net/mail/log?id=789&search=search_example&skip=56&limit=56"
+ "https://api.mailbaby.net/mail/log?id=789&search=search_example&skip=56&limit=56&startDate=789&endDate=789"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-viewMailLog-0-java">
@@ -3542,9 +3542,11 @@ public class DefaultApiExample {
         String search = search_example; // String | pass an optional search string for looking up inventory
         Integer skip = 56; // Integer | number of records to skip for pagination
         Integer limit = 56; // Integer | maximum number of records to return
+        Long startDate = 789; // Long | earliest date to get emails in unix timestamp format
+        Long endDate = 789; // Long | earliest date to get emails in unix timestamp format
 
         try {
-            MailLog result = apiInstance.viewMailLog(id, search, skip, limit);
+            MailLog result = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#viewMailLog");
@@ -3565,9 +3567,11 @@ public class DefaultApiExample {
         String search = search_example; // String | pass an optional search string for looking up inventory
         Integer skip = 56; // Integer | number of records to skip for pagination
         Integer limit = 56; // Integer | maximum number of records to return
+        Long startDate = 789; // Long | earliest date to get emails in unix timestamp format
+        Long endDate = 789; // Long | earliest date to get emails in unix timestamp format
 
         try {
-            MailLog result = apiInstance.viewMailLog(id, search, skip, limit);
+            MailLog result = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#viewMailLog");
@@ -3595,12 +3599,16 @@ Long *id = 789; // The ID of your mail order this will be sent through. (optiona
 String *search = search_example; // pass an optional search string for looking up inventory (optional) (default to null)
 Integer *skip = 56; // number of records to skip for pagination (optional) (default to 0)
 Integer *limit = 56; // maximum number of records to return (optional) (default to 100)
+Long *startDate = 789; // earliest date to get emails in unix timestamp format (optional) (default to null)
+Long *endDate = 789; // earliest date to get emails in unix timestamp format (optional) (default to null)
 
 // displays the mail log
 [apiInstance viewMailLogWith:id
     search:search
     skip:skip
     limit:limit
+    startDate:startDate
+    endDate:endDate
               completionHandler: ^(MailLog output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -3628,7 +3636,9 @@ var opts = {
   'id': 789, // {Long} The ID of your mail order this will be sent through.
   'search': search_example, // {String} pass an optional search string for looking up inventory
   'skip': 56, // {Integer} number of records to skip for pagination
-  'limit': 56 // {Integer} maximum number of records to return
+  'limit': 56, // {Integer} maximum number of records to return
+  'startDate': 789, // {Long} earliest date to get emails in unix timestamp format
+  'endDate': 789 // {Long} earliest date to get emails in unix timestamp format
 };
 
 var callback = function(error, data, response) {
@@ -3669,10 +3679,12 @@ namespace Example
             var search = search_example;  // String | pass an optional search string for looking up inventory (optional)  (default to null)
             var skip = 56;  // Integer | number of records to skip for pagination (optional)  (default to 0)
             var limit = 56;  // Integer | maximum number of records to return (optional)  (default to 100)
+            var startDate = 789;  // Long | earliest date to get emails in unix timestamp format (optional)  (default to null)
+            var endDate = 789;  // Long | earliest date to get emails in unix timestamp format (optional)  (default to null)
 
             try {
                 // displays the mail log
-                MailLog result = apiInstance.viewMailLog(id, search, skip, limit);
+                MailLog result = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.viewMailLog: " + e.Message );
@@ -3698,9 +3710,11 @@ $id = 789; // Long | The ID of your mail order this will be sent through.
 $search = search_example; // String | pass an optional search string for looking up inventory
 $skip = 56; // Integer | number of records to skip for pagination
 $limit = 56; // Integer | maximum number of records to return
+$startDate = 789; // Long | earliest date to get emails in unix timestamp format
+$endDate = 789; // Long | earliest date to get emails in unix timestamp format
 
 try {
-    $result = $api_instance->viewMailLog($id, $search, $skip, $limit);
+    $result = $api_instance->viewMailLog($id, $search, $skip, $limit, $startDate, $endDate);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
@@ -3724,9 +3738,11 @@ my $id = 789; # Long | The ID of your mail order this will be sent through.
 my $search = search_example; # String | pass an optional search string for looking up inventory
 my $skip = 56; # Integer | number of records to skip for pagination
 my $limit = 56; # Integer | maximum number of records to return
+my $startDate = 789; # Long | earliest date to get emails in unix timestamp format
+my $endDate = 789; # Long | earliest date to get emails in unix timestamp format
 
 eval {
-    my $result = $api_instance->viewMailLog(id => $id, search => $search, skip => $skip, limit => $limit);
+    my $result = $api_instance->viewMailLog(id => $id, search => $search, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate);
     print Dumper($result);
 };
 if ($@) {
@@ -3752,10 +3768,12 @@ id = 789 # Long | The ID of your mail order this will be sent through. (optional
 search = search_example # String | pass an optional search string for looking up inventory (optional) (default to null)
 skip = 56 # Integer | number of records to skip for pagination (optional) (default to 0)
 limit = 56 # Integer | maximum number of records to return (optional) (default to 100)
+startDate = 789 # Long | earliest date to get emails in unix timestamp format (optional) (default to null)
+endDate = 789 # Long | earliest date to get emails in unix timestamp format (optional) (default to null)
 
 try:
     # displays the mail log
-    api_response = api_instance.view_mail_log(id=id, search=search, skip=skip, limit=limit)
+    api_response = api_instance.view_mail_log(id=id, search=search, skip=skip, limit=limit, startDate=startDate, endDate=endDate)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->viewMailLog: %s\n" % e)</code></pre>
@@ -3769,9 +3787,11 @@ pub fn main() {
     let search = search_example; // String
     let skip = 56; // Integer
     let limit = 56; // Integer
+    let startDate = 789; // Long
+    let endDate = 789; // Long
 
     let mut context = DefaultApi::Context::default();
-    let result = client.viewMailLog(id, search, skip, limit, &context).wait();
+    let result = client.viewMailLog(id, search, skip, limit, startDate, endDate, &context).wait();
 
     println!("{:?}", result);
 }
@@ -3878,6 +3898,52 @@ number of records to skip for pagination
 
                     <div class="inner description marked">
 maximum number of records to return
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">startDate</td>
+<td>
+
+
+    <div id="d2e199_viewMailLog_startDate">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+earliest date to get emails in unix timestamp format
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">endDate</td>
+<td>
+
+
+    <div id="d2e199_viewMailLog_endDate">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+                    <div class="inner description marked">
+earliest date to get emails in unix timestamp format
                     </div>
             </div>
         </div>

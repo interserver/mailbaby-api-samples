@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **viewMailLog**
-> MailLog viewMailLog(id, search, skip, limit)
+> MailLog viewMailLog(id, search, skip, limit, startDate, endDate)
 
 displays the mail log
 
@@ -213,9 +213,11 @@ final int id = 789; // int | The ID of your mail order this will be sent through
 final String search = search_example; // String | pass an optional search string for looking up inventory
 final int skip = 56; // int | number of records to skip for pagination
 final int limit = 56; // int | maximum number of records to return
+final int startDate = 789; // int | earliest date to get emails in unix timestamp format
+final int endDate = 789; // int | earliest date to get emails in unix timestamp format
 
 try {
-    final response = api.viewMailLog(id, search, skip, limit);
+    final response = api.viewMailLog(id, search, skip, limit, startDate, endDate);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling DefaultApi->viewMailLog: $e\n');
@@ -230,6 +232,8 @@ Name | Type | Description  | Notes
  **search** | **String**| pass an optional search string for looking up inventory | [optional] 
  **skip** | **int**| number of records to skip for pagination | [optional] [default to 0]
  **limit** | **int**| maximum number of records to return | [optional] [default to 100]
+ **startDate** | **int**| earliest date to get emails in unix timestamp format | [optional] 
+ **endDate** | **int**| earliest date to get emails in unix timestamp format | [optional] 
 
 ### Return type
 

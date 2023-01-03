@@ -1,2 +1,2 @@
-testCase,httpStatusCode,sendMailAdv,to,from,subject,body,id,search,skip,limit
-Success,200,0,0,0,0,0,0,0,0,0
+testCase,httpStatusCode,sendMailAdv,to,from,subject,body,id,search,skip,limit,startDate,endDate
+Success,200,0,0,0,0,0,0,0,0,0,0,0

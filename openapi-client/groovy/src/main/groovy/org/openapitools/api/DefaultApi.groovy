@@ -120,7 +120,7 @@ class DefaultApi {
 
     }
 
-    def viewMailLog ( Long id, String search, Integer skip, Integer limit, Closure onSuccess, Closure onFailure)  {
+    def viewMailLog ( Long id, String search, Integer skip, Integer limit, Long startDate, Long endDate, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/log"
 
         // params
@@ -141,6 +141,12 @@ class DefaultApi {
         }
         if (limit != null) {
             queryParams.put("limit", limit)
+        }
+        if (startDate != null) {
+            queryParams.put("startDate", startDate)
+        }
+        if (endDate != null) {
+            queryParams.put("endDate", endDate)
         }
 
 

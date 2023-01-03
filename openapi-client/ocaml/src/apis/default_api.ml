@@ -43,7 +43,7 @@ let send_mail ~_to ~from ~subject ~body =
     Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body
 
-let view_mail_log ?id ?search ?(skip = 00l) ?(limit = 100100l) () =
+let view_mail_log ?id ?search ?(skip = 00l) ?(limit = 100100l) ?start_date ?end_date () =
     let open Lwt.Infix in
     let uri = Request.build_uri "/mail/log" in
     let headers = Request.default_headers in
@@ -52,6 +52,8 @@ let view_mail_log ?id ?search ?(skip = 00l) ?(limit = 100100l) () =
     let uri = Request.maybe_add_query_param uri "search" (fun x -> x) search in
     let uri = Request.add_query_param uri "skip" Int32.to_string skip in
     let uri = Request.add_query_param uri "limit" Int32.to_string limit in
+    let uri = Request.maybe_add_query_param uri "startDate" Int64.to_string start_date in
+    let uri = Request.maybe_add_query_param uri "endDate" Int64.to_string end_date in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Mail_log.of_yojson) resp body
 

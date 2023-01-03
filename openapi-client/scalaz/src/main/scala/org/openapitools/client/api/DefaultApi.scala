@@ -115,7 +115,7 @@ object DefaultApi {
     } yield resp
   }
 
-  def viewMailLog(host: String, id: Long, search: String, skip: Integer = 0, limit: Integer = 100)(implicit idQuery: QueryParam[Long], searchQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer]): Task[MailLog] = {
+  def viewMailLog(host: String, id: Long, search: String, skip: Integer = 0, limit: Integer = 100, startDate: Long, endDate: Long)(implicit idQuery: QueryParam[Long], searchQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer], startDateQuery: QueryParam[Long], endDateQuery: QueryParam[Long]): Task[MailLog] = {
     implicit val returnTypeDecoder: EntityDecoder[MailLog] = jsonOf[MailLog]
 
     val path = "/mail/log"
@@ -125,7 +125,7 @@ object DefaultApi {
     val headers = Headers(
       )
     val queryParams = Query(
-      ("id", Some(idQuery.toParamString(id))), ("search", Some(searchQuery.toParamString(search))), ("skip", Some(skipQuery.toParamString(skip))), ("limit", Some(limitQuery.toParamString(limit))))
+      ("id", Some(idQuery.toParamString(id))), ("search", Some(searchQuery.toParamString(search))), ("skip", Some(skipQuery.toParamString(skip))), ("limit", Some(limitQuery.toParamString(limit))), ("startDate", Some(startDateQuery.toParamString(startDate))), ("endDate", Some(endDateQuery.toParamString(endDate))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
@@ -225,7 +225,7 @@ class HttpServiceDefaultApi(service: HttpService) {
     } yield resp
   }
 
-  def viewMailLog(id: Long, search: String, skip: Integer = 0, limit: Integer = 100)(implicit idQuery: QueryParam[Long], searchQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer]): Task[MailLog] = {
+  def viewMailLog(id: Long, search: String, skip: Integer = 0, limit: Integer = 100, startDate: Long, endDate: Long)(implicit idQuery: QueryParam[Long], searchQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer], startDateQuery: QueryParam[Long], endDateQuery: QueryParam[Long]): Task[MailLog] = {
     implicit val returnTypeDecoder: EntityDecoder[MailLog] = jsonOf[MailLog]
 
     val path = "/mail/log"
@@ -235,7 +235,7 @@ class HttpServiceDefaultApi(service: HttpService) {
     val headers = Headers(
       )
     val queryParams = Query(
-      ("id", Some(idQuery.toParamString(id))), ("search", Some(searchQuery.toParamString(search))), ("skip", Some(skipQuery.toParamString(skip))), ("limit", Some(limitQuery.toParamString(limit))))
+      ("id", Some(idQuery.toParamString(id))), ("search", Some(searchQuery.toParamString(search))), ("skip", Some(skipQuery.toParamString(skip))), ("limit", Some(limitQuery.toParamString(limit))), ("startDate", Some(startDateQuery.toParamString(startDate))), ("endDate", Some(endDateQuery.toParamString(endDate))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))

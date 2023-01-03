@@ -114,7 +114,7 @@ Sends an Email
 
 <a name="viewMailLog"></a>
 # **viewMailLog**
-> MailLog viewMailLog(id, search, skip, limit)
+> MailLog viewMailLog(id, search, skip, limit, startDate, endDate)
 
 displays the mail log
 
@@ -128,6 +128,8 @@ displays the mail log
 | **search** | **String**| pass an optional search string for looking up inventory | [optional] [default to null] |
 | **skip** | **Integer**| number of records to skip for pagination | [optional] [default to 0] |
 | **limit** | **Integer**| maximum number of records to return | [optional] [default to 100] |
+| **startDate** | **Long**| earliest date to get emails in unix timestamp format | [optional] [default to null] |
+| **endDate** | **Long**| earliest date to get emails in unix timestamp format | [optional] [default to null] |
 
 ### Return type
 

@@ -207,7 +207,7 @@ Name | Type | Description  | Notes
 
 # **viewMailLog**
 ```swift
-    open class func viewMailLog(id: Int64? = nil, search: String? = nil, skip: Int? = nil, limit: Int? = nil, completion: @escaping (_ data: MailLog?, _ error: Error?) -> Void)
+    open class func viewMailLog(id: Int64? = nil, search: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, completion: @escaping (_ data: MailLog?, _ error: Error?) -> Void)
 ```
 
 displays the mail log
@@ -223,9 +223,11 @@ let id = 987 // Int64 | The ID of your mail order this will be sent through. (op
 let search = "search_example" // String | pass an optional search string for looking up inventory (optional)
 let skip = 987 // Int | number of records to skip for pagination (optional) (default to 0)
 let limit = 987 // Int | maximum number of records to return (optional) (default to 100)
+let startDate = 987 // Int64 | earliest date to get emails in unix timestamp format (optional)
+let endDate = 987 // Int64 | earliest date to get emails in unix timestamp format (optional)
 
 // displays the mail log
-DefaultAPI.viewMailLog(id: id, search: search, skip: skip, limit: limit) { (response, error) in
+DefaultAPI.viewMailLog(id: id, search: search, skip: skip, limit: limit, startDate: startDate, endDate: endDate) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -245,6 +247,8 @@ Name | Type | Description  | Notes
  **search** | **String** | pass an optional search string for looking up inventory | [optional] 
  **skip** | **Int** | number of records to skip for pagination | [optional] [default to 0]
  **limit** | **Int** | maximum number of records to return | [optional] [default to 100]
+ **startDate** | **Int64** | earliest date to get emails in unix timestamp format | [optional] 
+ **endDate** | **Int64** | earliest date to get emails in unix timestamp format | [optional] 
 
 ### Return type
 

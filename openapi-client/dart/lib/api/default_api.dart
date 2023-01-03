@@ -262,7 +262,13 @@ class DefaultApi {
   ///
   /// * [int] limit:
   ///   maximum number of records to return
-  Future<Response> viewMailLogWithHttpInfo({ int? id, String? search, int? skip, int? limit, }) async {
+  ///
+  /// * [int] startDate:
+  ///   earliest date to get emails in unix timestamp format
+  ///
+  /// * [int] endDate:
+  ///   earliest date to get emails in unix timestamp format
+  Future<Response> viewMailLogWithHttpInfo({ int? id, String? search, int? skip, int? limit, int? startDate, int? endDate, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/log';
 
@@ -284,6 +290,12 @@ class DefaultApi {
     }
     if (limit != null) {
       queryParams.addAll(_queryParams('', 'limit', limit));
+    }
+    if (startDate != null) {
+      queryParams.addAll(_queryParams('', 'startDate', startDate));
+    }
+    if (endDate != null) {
+      queryParams.addAll(_queryParams('', 'endDate', endDate));
     }
 
     const contentTypes = <String>[];
@@ -317,8 +329,14 @@ class DefaultApi {
   ///
   /// * [int] limit:
   ///   maximum number of records to return
-  Future<MailLog?> viewMailLog({ int? id, String? search, int? skip, int? limit, }) async {
-    final response = await viewMailLogWithHttpInfo( id: id, search: search, skip: skip, limit: limit, );
+  ///
+  /// * [int] startDate:
+  ///   earliest date to get emails in unix timestamp format
+  ///
+  /// * [int] endDate:
+  ///   earliest date to get emails in unix timestamp format
+  Future<MailLog?> viewMailLog({ int? id, String? search, int? skip, int? limit, int? startDate, int? endDate, }) async {
+    final response = await viewMailLogWithHttpInfo( id: id, search: search, skip: skip, limit: limit, startDate: startDate, endDate: endDate, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

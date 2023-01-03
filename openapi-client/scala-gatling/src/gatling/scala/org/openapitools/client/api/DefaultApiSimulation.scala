@@ -126,10 +126,12 @@ class DefaultApiSimulation extends Simulation {
         .feed(viewMailLogQUERYFeeder)
         .exec(http("viewMailLog")
         .httpRequest("GET","/mail/log")
-        .queryParam("skip","${skip}")
         .queryParam("id","${id}")
         .queryParam("limit","${limit}")
         .queryParam("search","${search}")
+        .queryParam("startDate","${startDate}")
+        .queryParam("skip","${skip}")
+        .queryParam("endDate","${endDate}")
 )
 
     // Run scnviewMailLog with warm up and reach a constant rate for entire duration

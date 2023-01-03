@@ -390,8 +390,12 @@ object Example extends App {
     val skip: Int = 56 // Int | number of records to skip for pagination
 
     val limit: Int = 56 // Int | maximum number of records to return
+
+    val startDate: Long = 789 // Long | earliest date to get emails in unix timestamp format
+
+    val endDate: Long = 789 // Long | earliest date to get emails in unix timestamp format
     
-    val request = apiInstance.viewMailLog(id, search, skip, limit)
+    val request = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate)
     val response = apiInvoker.execute(request)
 
     response.onComplete {
@@ -423,6 +427,8 @@ Name | Type | Description  | Notes
  **search** | **String**| pass an optional search string for looking up inventory | [optional]
  **skip** | **Int**| number of records to skip for pagination | [optional]
  **limit** | **Int**| maximum number of records to return | [optional]
+ **startDate** | **Long**| earliest date to get emails in unix timestamp format | [optional]
+ **endDate** | **Long**| earliest date to get emails in unix timestamp format | [optional]
 
 ### Return type
 

@@ -84,10 +84,12 @@ feature -- Test routines
             l_search: STRING_32
             l_skip: INTEGER_32
             l_limit: INTEGER_32
+            l_start_date: INTEGER_64
+            l_end_date: INTEGER_64
         do
             -- TODO: Initialize required params.
 
-            -- l_response := api.view_mail_log(l_id, l_search, l_skip, l_limit)
+            -- l_response := api.view_mail_log(l_id, l_search, l_skip, l_limit, l_start_date, l_end_date)
             assert ("not_implemented", False)
         end
 

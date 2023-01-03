@@ -120,11 +120,11 @@
   By passing in the appropriate options, you can search for
 available inventory in the system"
   ([] (view-mail-log-with-http-info nil))
-  ([{:keys [id search skip limit]} (s/map-of keyword? any?)]
+  ([{:keys [id search skip limit startDate endDate]} (s/map-of keyword? any?)]
    (call-api "/mail/log" :get
              {:path-params   {}
               :header-params {}
-              :query-params  {"id" id "search" search "skip" skip "limit" limit }
+              :query-params  {"id" id "search" search "skip" skip "limit" limit "startDate" startDate "endDate" endDate }
               :form-params   {}
               :content-types []
               :accepts       ["application/json"]

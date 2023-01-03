@@ -86,6 +86,18 @@ export interface DefaultApiViewMailLogRequest {
      * @memberof DefaultApiviewMailLog
      */
     limit?: number
+    /**
+     * earliest date to get emails in unix timestamp format
+     * @type number
+     * @memberof DefaultApiviewMailLog
+     */
+    startDate?: number
+    /**
+     * earliest date to get emails in unix timestamp format
+     * @type number
+     * @memberof DefaultApiviewMailLog
+     */
+    endDate?: number
 }
 
 export class ObjectDefaultApi {
@@ -135,7 +147,7 @@ export class ObjectDefaultApi {
      * @param param the request object
      */
     public viewMailLog(param: DefaultApiViewMailLogRequest = {}, options?: Configuration): Promise<MailLog> {
-        return this.api.viewMailLog(param.id, param.search, param.skip, param.limit,  options).toPromise();
+        return this.api.viewMailLog(param.id, param.search, param.skip, param.limit, param.startDate, param.endDate,  options).toPromise();
     }
 
 }

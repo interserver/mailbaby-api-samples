@@ -140,6 +140,8 @@ defmodule MailBabyEmailDeliveryAPI.Api.Default do
     - :search (String.t): pass an optional search string for looking up inventory
     - :skip (integer()): number of records to skip for pagination
     - :limit (integer()): maximum number of records to return
+    - :start_date (integer()): earliest date to get emails in unix timestamp format
+    - :end_date (integer()): earliest date to get emails in unix timestamp format
   ## Returns
 
   {:ok, MailBabyEmailDeliveryAPI.Model.MailLog.t} on success
@@ -151,7 +153,9 @@ defmodule MailBabyEmailDeliveryAPI.Api.Default do
       :id => :query,
       :search => :query,
       :skip => :query,
-      :limit => :query
+      :limit => :query,
+      :startDate => :query,
+      :endDate => :query
     }
     %{}
     |> method(:get)

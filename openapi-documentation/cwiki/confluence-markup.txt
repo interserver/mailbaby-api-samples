@@ -10,11 +10,11 @@ This is the API interface to the [Mail Baby\](https//mail.baby/) Mail services p
 
 # 🔐 Authentication
 
-In order to use most of the API calls you must pass credentials from the [my.interserver.net\](https://my.interserver.net/) site.  
+In order to use most of the API calls you must pass credentials from the [my.interserver.net\](https://my.interserver.net/) site.
 
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security\](https://my.interserver.net/account_security) page.
 
-*Version:* 1.0.0
+*Version:* 1.0.1
 
 ----
 
@@ -351,7 +351,7 @@ h4. Parameters
 
 h5. Query Parameters
         ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
-        |id |The ID of your mail order this will be sent through. | Long | (x) |null |  |  ||search |pass an optional search string for looking up inventory | String | (x) |null |  |  ||skip |number of records to skip for pagination | Integer | (x) |0 |  |  ||limit |maximum number of records to return | Integer | (x) |100 |  |  |
+        |id |The ID of your mail order this will be sent through. | Long | (x) |null |  |  ||search |pass an optional search string for looking up inventory | String | (x) |null |  |  ||skip |number of records to skip for pagination | Integer | (x) |0 |  |  ||limit |maximum number of records to return | Integer | (x) |100 |  |  ||startDate |earliest date to get emails in unix timestamp format | Long | (x) |null |  |  ||endDate |earliest date to get emails in unix timestamp format | Long | (x) |null |  |  |
 ----
 h4. Responses
 

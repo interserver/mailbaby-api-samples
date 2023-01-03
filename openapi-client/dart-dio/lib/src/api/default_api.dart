@@ -365,6 +365,8 @@ class DefaultApi {
   /// * [search] - pass an optional search string for looking up inventory
   /// * [skip] - number of records to skip for pagination
   /// * [limit] - maximum number of records to return
+  /// * [startDate] - earliest date to get emails in unix timestamp format
+  /// * [endDate] - earliest date to get emails in unix timestamp format
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -379,6 +381,8 @@ class DefaultApi {
     String? search,
     int? skip = 0,
     int? limit = 100,
+    int? startDate,
+    int? endDate,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -411,6 +415,8 @@ class DefaultApi {
       if (search != null) r'search': encodeQueryParameter(_serializers, search, const FullType(String)),
       if (skip != null) r'skip': encodeQueryParameter(_serializers, skip, const FullType(int)),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
+      if (startDate != null) r'startDate': encodeQueryParameter(_serializers, startDate, const FullType(int)),
+      if (endDate != null) r'endDate': encodeQueryParameter(_serializers, endDate, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(

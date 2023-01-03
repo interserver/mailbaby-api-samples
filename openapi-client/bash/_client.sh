@@ -339,6 +339,8 @@ case $state in
 "search=:[QUERY] pass an optional search string for looking up inventory"
 "skip=:[QUERY] number of records to skip for pagination"
 "limit=:[QUERY] maximum number of records to return"
+"startDate=:[QUERY] earliest date to get emails in unix timestamp format"
+"endDate=:[QUERY] earliest date to get emails in unix timestamp format"
           )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;

@@ -95,6 +95,8 @@ public:
     * \param search pass an optional search string for looking up inventory
     * \param skip number of records to skip for pagination
     * \param limit maximum number of records to return
+    * \param startDate earliest date to get emails in unix timestamp format
+    * \param endDate earliest date to get emails in unix timestamp format
     */
     Response<
                 MailLog
@@ -111,6 +113,12 @@ public:
             , 
             
             int limit
+            , 
+            
+            long startDate
+            , 
+            
+            long endDate
             
     );
 }; 

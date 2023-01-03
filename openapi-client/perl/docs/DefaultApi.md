@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **view_mail_log**
-> MailLog view_mail_log(id => $id, search => $search, skip => $skip, limit => $limit)
+> MailLog view_mail_log(id => $id, search => $search, skip => $skip, limit => $limit, start_date => $start_date, end_date => $end_date)
 
 displays the mail log
 
@@ -231,9 +231,11 @@ my $id = 789; # int | The ID of your mail order this will be sent through.
 my $search = "search_example"; # string | pass an optional search string for looking up inventory
 my $skip = 0; # int | number of records to skip for pagination
 my $limit = 100; # int | maximum number of records to return
+my $start_date = 789; # int | earliest date to get emails in unix timestamp format
+my $end_date = 789; # int | earliest date to get emails in unix timestamp format
 
 eval {
-    my $result = $api_instance->view_mail_log(id => $id, search => $search, skip => $skip, limit => $limit);
+    my $result = $api_instance->view_mail_log(id => $id, search => $search, skip => $skip, limit => $limit, start_date => $start_date, end_date => $end_date);
     print Dumper($result);
 };
 if ($@) {
@@ -249,6 +251,8 @@ Name | Type | Description  | Notes
  **search** | **string**| pass an optional search string for looking up inventory | [optional] 
  **skip** | **int**| number of records to skip for pagination | [optional] [default to 0]
  **limit** | **int**| maximum number of records to return | [optional] [default to 100]
+ **start_date** | **int**| earliest date to get emails in unix timestamp format | [optional] 
+ **end_date** | **int**| earliest date to get emails in unix timestamp format | [optional] 
 
 ### Return type
 

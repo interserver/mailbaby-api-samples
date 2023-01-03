@@ -212,12 +212,14 @@ open class DefaultAPI {
      - parameter search: (query) pass an optional search string for looking up inventory (optional)
      - parameter skip: (query) number of records to skip for pagination (optional, default to 0)
      - parameter limit: (query) maximum number of records to return (optional, default to 100)
+     - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
+     - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func viewMailLog(id: Int64? = nil, search: String? = nil, skip: Int? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: MailLog?, _ error: Error?) -> Void)) -> RequestTask {
-        return viewMailLogWithRequestBuilder(id: id, search: search, skip: skip, limit: limit).execute(apiResponseQueue) { result in
+    open class func viewMailLog(id: Int64? = nil, search: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: MailLog?, _ error: Error?) -> Void)) -> RequestTask {
+        return viewMailLogWithRequestBuilder(id: id, search: search, skip: skip, limit: limit, startDate: startDate, endDate: endDate).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -238,9 +240,11 @@ open class DefaultAPI {
      - parameter search: (query) pass an optional search string for looking up inventory (optional)
      - parameter skip: (query) number of records to skip for pagination (optional, default to 0)
      - parameter limit: (query) maximum number of records to return (optional, default to 100)
+     - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
+     - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
      - returns: RequestBuilder<MailLog> 
      */
-    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, search: String? = nil, skip: Int? = nil, limit: Int? = nil) -> RequestBuilder<MailLog> {
+    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, search: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil) -> RequestBuilder<MailLog> {
         let localVariablePath = "/mail/log"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -251,6 +255,8 @@ open class DefaultAPI {
             "search": search?.encodeToJSON(),
             "skip": skip?.encodeToJSON(),
             "limit": limit?.encodeToJSON(),
+            "startDate": startDate?.encodeToJSON(),
+            "endDate": endDate?.encodeToJSON(),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

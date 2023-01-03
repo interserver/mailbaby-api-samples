@@ -10,7 +10,7 @@ info:
     \ To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).\n\
     \n\n# \U0001f510 Authentication\n\nIn order to use most of the API calls you must\
     \ pass credentials from the [my.interserver.net](https://my.interserver.net/)\
-    \ site.  \n\nWe support several different authentication methods but the preferred\
+    \ site.\n\nWe support several different authentication methods but the preferred\
     \ method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security)\
     \ page.\n"
   license:
@@ -18,7 +18,7 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://www.interserver.net/terms-of-service.html
   title: MailBaby Email Delivery API
-  version: 1.0.0
+  version: 1.0.1
 externalDocs:
   description: FAQ
   url: https://www.mail.baby/tips/
@@ -194,6 +194,28 @@ paths:
           format: int32
           maximum: 10000
           minimum: 1
+          type: integer
+        style: form
+      - description: earliest date to get emails in unix timestamp format
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          format: int64
+          maximum: 9999999999
+          minimum: 0
+          type: integer
+        style: form
+      - description: earliest date to get emails in unix timestamp format
+        explode: true
+        in: query
+        name: endDate
+        required: false
+        schema:
+          format: int64
+          maximum: 9999999999
+          minimum: 0
           type: integer
         style: form
       responses:

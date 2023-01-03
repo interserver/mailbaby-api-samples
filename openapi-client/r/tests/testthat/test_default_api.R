@@ -61,6 +61,8 @@ test_that("ViewMailLog", {
   # @param search character pass an optional search string for looking up inventory (optional)
   # @param skip integer number of records to skip for pagination (optional)
   # @param limit integer maximum number of records to return (optional)
+  # @param start_date integer earliest date to get emails in unix timestamp format (optional)
+  # @param end_date integer earliest date to get emails in unix timestamp format (optional)
   # @return [MailLog]
 
   # uncomment below to test the operation

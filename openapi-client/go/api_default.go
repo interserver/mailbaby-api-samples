@@ -1,9 +1,9 @@
 /*
 MailBaby Email Delivery API
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.    We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
-API version: 1.0.0
+API version: 1.0.1
 Contact: support@interserver.net
 */
 
@@ -588,6 +588,8 @@ type ApiViewMailLogRequest struct {
 	search *string
 	skip *int32
 	limit *int32
+	startDate *int64
+	endDate *int64
 }
 
 // The ID of your mail order this will be sent through.
@@ -611,6 +613,18 @@ func (r ApiViewMailLogRequest) Skip(skip int32) ApiViewMailLogRequest {
 // maximum number of records to return
 func (r ApiViewMailLogRequest) Limit(limit int32) ApiViewMailLogRequest {
 	r.limit = &limit
+	return r
+}
+
+// earliest date to get emails in unix timestamp format
+func (r ApiViewMailLogRequest) StartDate(startDate int64) ApiViewMailLogRequest {
+	r.startDate = &startDate
+	return r
+}
+
+// earliest date to get emails in unix timestamp format
+func (r ApiViewMailLogRequest) EndDate(endDate int64) ApiViewMailLogRequest {
+	r.endDate = &endDate
 	return r
 }
 
@@ -667,6 +681,12 @@ func (a *DefaultApiService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLo
 	}
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.startDate != nil {
+		localVarQueryParams.Add("startDate", parameterToString(*r.startDate, ""))
+	}
+	if r.endDate != nil {
+		localVarQueryParams.Add("endDate", parameterToString(*r.endDate, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

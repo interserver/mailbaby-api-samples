@@ -127,7 +127,7 @@ Name | Type | Description  | Required | Notes
 
 ## view_mail_log
 
-> crate::models::MailLog view_mail_log(id, search, skip, limit)
+> crate::models::MailLog view_mail_log(id, search, skip, limit, start_date, end_date)
 displays the mail log
 
 By passing in the appropriate options, you can search for available inventory in the system 
@@ -141,6 +141,8 @@ Name | Type | Description  | Required | Notes
 **search** | Option<**String**> | pass an optional search string for looking up inventory |  |
 **skip** | Option<**i32**> | number of records to skip for pagination |  |[default to 0]
 **limit** | Option<**i32**> | maximum number of records to return |  |[default to 100]
+**start_date** | Option<**i64**> | earliest date to get emails in unix timestamp format |  |
+**end_date** | Option<**i64**> | earliest date to get emails in unix timestamp format |  |
 
 ### Return type
 

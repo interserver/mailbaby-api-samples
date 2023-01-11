@@ -268,7 +268,7 @@ Name | Type | Description  | Notes
 
 ## ViewMailLog
 
-> MailLog ViewMailLog(ctx).Id(id).Search(search).Skip(skip).Limit(limit).StartDate(startDate).EndDate(endDate).Execute()
+> MailLog ViewMailLog(ctx).Id(id).Origin(origin).Mx(mx).From(from).To(to).Subject(subject).Mailid(mailid).Skip(skip).Limit(limit).StartDate(startDate).EndDate(endDate).Execute()
 
 displays the mail log
 
@@ -287,16 +287,21 @@ import (
 )
 
 func main() {
-    id := int64(789) // int64 | The ID of your mail order this will be sent through. (optional)
-    search := "search_example" // string | pass an optional search string for looking up inventory (optional)
-    skip := int32(56) // int32 | number of records to skip for pagination (optional) (default to 0)
-    limit := int32(56) // int32 | maximum number of records to return (optional) (default to 100)
-    startDate := int64(789) // int64 | earliest date to get emails in unix timestamp format (optional)
-    endDate := int64(789) // int64 | earliest date to get emails in unix timestamp format (optional)
+    id := int64(2604) // int64 | The ID of your mail order this will be sent through. (optional)
+    origin := "1.2.3.4" // string | originating ip address sending mail (optional)
+    mx := "mx.google.com" // string | mx record mail was sent to (optional)
+    from := "me@sender.com" // string | from email address (optional)
+    to := "you@receiver.com" // string | to/destination email address (optional)
+    subject := "Support" // string | subject containing this string (optional)
+    mailid := "185997065c60008840" // string | mail id (optional)
+    skip := int32(1000) // int32 | number of records to skip for pagination (optional) (default to 0)
+    limit := int32(1000) // int32 | maximum number of records to return (optional) (default to 100)
+    startDate := int64(1641781008) // int64 | earliest date to get emails in unix timestamp format (optional)
+    endDate := int64(1673317008) // int64 | earliest date to get emails in unix timestamp format (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ViewMailLog(context.Background()).Id(id).Search(search).Skip(skip).Limit(limit).StartDate(startDate).EndDate(endDate).Execute()
+    resp, r, err := apiClient.DefaultApi.ViewMailLog(context.Background()).Id(id).Origin(origin).Mx(mx).From(from).To(to).Subject(subject).Mailid(mailid).Skip(skip).Limit(limit).StartDate(startDate).EndDate(endDate).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ViewMailLog``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -318,7 +323,12 @@ Other parameters are passed through a pointer to a apiViewMailLogRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int64** | The ID of your mail order this will be sent through. | 
- **search** | **string** | pass an optional search string for looking up inventory | 
+ **origin** | **string** | originating ip address sending mail | 
+ **mx** | **string** | mx record mail was sent to | 
+ **from** | **string** | from email address | 
+ **to** | **string** | to/destination email address | 
+ **subject** | **string** | subject containing this string | 
+ **mailid** | **string** | mail id | 
  **skip** | **int32** | number of records to skip for pagination | [default to 0]
  **limit** | **int32** | maximum number of records to return | [default to 100]
  **startDate** | **int64** | earliest date to get emails in unix timestamp format | 

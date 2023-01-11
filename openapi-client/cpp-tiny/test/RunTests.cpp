@@ -90,9 +90,6 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_subject_is_assigned_from_json);
     
     
-    RUN_TEST(test_MailLogEntry_messageId_is_assigned_from_json);
-    
-    
     RUN_TEST(test_MailLogEntry_created_is_assigned_from_json);
     
     
@@ -105,19 +102,10 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_transtype_is_assigned_from_json);
     
     
-    RUN_TEST(test_MailLogEntry_transhost_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_MailLogEntry_originhost_is_assigned_from_json);
-    
-    
     RUN_TEST(test_MailLogEntry_origin_is_assigned_from_json);
     
     
     RUN_TEST(test_MailLogEntry_interface_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_MailLogEntry_date_is_assigned_from_json);
     
     
     RUN_TEST(test_MailLogEntry_sendingZone_is_assigned_from_json);
@@ -126,16 +114,13 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_bodySize_is_assigned_from_json);
     
     
-    RUN_TEST(test_MailLogEntry_sourceMd5_is_assigned_from_json);
-    
-    
     RUN_TEST(test_MailLogEntry_seq_is_assigned_from_json);
     
     
-    RUN_TEST(test_MailLogEntry_domain_is_assigned_from_json);
-    
-    
     RUN_TEST(test_MailLogEntry_recipient_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailLogEntry_domain_is_assigned_from_json);
     
     
     RUN_TEST(test_MailLogEntry_locked_is_assigned_from_json);
@@ -150,28 +135,13 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_queued_is_assigned_from_json);
     
     
-    RUN_TEST(test_MailLogEntry__lock_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_MailLogEntry_logger_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_MailLogEntry_mxPort_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_MailLogEntry_connectionKey_is_assigned_from_json);
-    
-    
     RUN_TEST(test_MailLogEntry_mxHostname_is_assigned_from_json);
     
     
-    RUN_TEST(test_MailLogEntry_sentBodyHash_is_assigned_from_json);
+    RUN_TEST(test_MailLogEntry_response_is_assigned_from_json);
     
     
-    RUN_TEST(test_MailLogEntry_sentBodySize_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_MailLogEntry_md5Match_is_assigned_from_json);
+    RUN_TEST(test_MailLogEntry_messageId_is_assigned_from_json);
     
     
     
@@ -304,9 +274,6 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_subject_is_converted_to_json);
     
     
-    RUN_TEST(test_MailLogEntry_messageId_is_converted_to_json);
-    
-    
     RUN_TEST(test_MailLogEntry_created_is_converted_to_json);
     
     
@@ -319,19 +286,10 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_transtype_is_converted_to_json);
     
     
-    RUN_TEST(test_MailLogEntry_transhost_is_converted_to_json);
-    
-    
-    RUN_TEST(test_MailLogEntry_originhost_is_converted_to_json);
-    
-    
     RUN_TEST(test_MailLogEntry_origin_is_converted_to_json);
     
     
     RUN_TEST(test_MailLogEntry_interface_is_converted_to_json);
-    
-    
-    RUN_TEST(test_MailLogEntry_date_is_converted_to_json);
     
     
     RUN_TEST(test_MailLogEntry_sendingZone_is_converted_to_json);
@@ -340,16 +298,13 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_bodySize_is_converted_to_json);
     
     
-    RUN_TEST(test_MailLogEntry_sourceMd5_is_converted_to_json);
-    
-    
     RUN_TEST(test_MailLogEntry_seq_is_converted_to_json);
     
     
-    RUN_TEST(test_MailLogEntry_domain_is_converted_to_json);
-    
-    
     RUN_TEST(test_MailLogEntry_recipient_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailLogEntry_domain_is_converted_to_json);
     
     
     RUN_TEST(test_MailLogEntry_locked_is_converted_to_json);
@@ -364,28 +319,13 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_queued_is_converted_to_json);
     
     
-    RUN_TEST(test_MailLogEntry__lock_is_converted_to_json);
-    
-    
-    RUN_TEST(test_MailLogEntry_logger_is_converted_to_json);
-    
-    
-    RUN_TEST(test_MailLogEntry_mxPort_is_converted_to_json);
-    
-    
-    RUN_TEST(test_MailLogEntry_connectionKey_is_converted_to_json);
-    
-    
     RUN_TEST(test_MailLogEntry_mxHostname_is_converted_to_json);
     
     
-    RUN_TEST(test_MailLogEntry_sentBodyHash_is_converted_to_json);
+    RUN_TEST(test_MailLogEntry_response_is_converted_to_json);
     
     
-    RUN_TEST(test_MailLogEntry_sentBodySize_is_converted_to_json);
-    
-    
-    RUN_TEST(test_MailLogEntry_md5Match_is_converted_to_json);
+    RUN_TEST(test_MailLogEntry_messageId_is_converted_to_json);
     
     
     

@@ -128,7 +128,7 @@ private class OASDefaultApiTest {
     /**
      * displays the mail log
      *
-     * By passing in the appropriate options, you can search for\navailable inventory in the system\n
+     * Get a listing of the emails sent through this system\n
      */
     @isTest
     private static void viewMailLogTest() {
@@ -138,12 +138,17 @@ private class OASDefaultApiTest {
         Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
 
         Map<String, Object> params = new Map<String, Object>{
-            'id' => 2147483648L,
-            'search' => 'null',
-            'skip' => '',
-            'r_limit' => '',
-            'startDate' => 2147483648L,
-            'endDate' => 2147483648L
+            'id' => 2604,
+            'origin' => 1.2.3.4,
+            'mx' => mx.google.com,
+            'r_from' => me@sender.com,
+            'to' => you@receiver.com,
+            'subject' => Support,
+            'mailid' => 185997065c60008840,
+            'skip' => 1000,
+            'r_limit' => 1000,
+            'startDate' => 1641781008,
+            'endDate' => 1673317008
         };
 
         OASClient client;

@@ -3,7 +3,7 @@
  *
  * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
- * The version of the OpenAPI document: 1.0.1
+ * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
  *
  * Please note:
@@ -31,34 +31,24 @@ import com.squareup.moshi.Json
  * @param from from address
  * @param to to address
  * @param subject email subject
- * @param messageId message id
  * @param created creation date
  * @param time creation timestamp
  * @param user user account
  * @param transtype transaction type
- * @param transhost transaction host
- * @param originhost origin host
  * @param origin origin ip
  * @param `interface` interface name
- * @param date date processed
  * @param sendingZone sending zone
  * @param bodySize email body size in bytes
- * @param sourceMd5 md5 sum of the email
- * @param seq delivery sequency
+ * @param seq index of email in the to adderess list
+ * @param recipient to address this email is being sent to
  * @param domain to address domain
- * @param recipient email receiver address
  * @param locked locked status
  * @param lockTime lock timestamp
  * @param assigned assigned server
  * @param queued queued timestamp
- * @param lock lock id
- * @param logger logger
- * @param mxPort mx port number
- * @param connectionKey connection key
  * @param mxHostname mx hostname
- * @param sentBodyHash body hash
- * @param sentBodySize sent body size in bytes
- * @param md5Match md5 checksum matching result
+ * @param response mail delivery response
+ * @param messageId message id
  */
 
 data class MailLogEntry (
@@ -83,10 +73,6 @@ data class MailLogEntry (
     @Json(name = "subject")
     val subject: kotlin.String,
 
-    /* message id */
-    @Json(name = "messageId")
-    val messageId: kotlin.String,
-
     /* creation date */
     @Json(name = "created")
     val created: kotlin.String,
@@ -103,14 +89,6 @@ data class MailLogEntry (
     @Json(name = "transtype")
     val transtype: kotlin.String,
 
-    /* transaction host */
-    @Json(name = "transhost")
-    val transhost: kotlin.String,
-
-    /* origin host */
-    @Json(name = "originhost")
-    val originhost: kotlin.String,
-
     /* origin ip */
     @Json(name = "origin")
     val origin: kotlin.String,
@@ -118,10 +96,6 @@ data class MailLogEntry (
     /* interface name */
     @Json(name = "interface")
     val `interface`: kotlin.String,
-
-    /* date processed */
-    @Json(name = "date")
-    val date: kotlin.String,
 
     /* sending zone */
     @Json(name = "sendingZone")
@@ -131,21 +105,17 @@ data class MailLogEntry (
     @Json(name = "bodySize")
     val bodySize: kotlin.Int,
 
-    /* md5 sum of the email */
-    @Json(name = "sourceMd5")
-    val sourceMd5: kotlin.String,
-
-    /* delivery sequency */
+    /* index of email in the to adderess list */
     @Json(name = "seq")
     val seq: kotlin.Int,
+
+    /* to address this email is being sent to */
+    @Json(name = "recipient")
+    val recipient: kotlin.String,
 
     /* to address domain */
     @Json(name = "domain")
     val domain: kotlin.String,
-
-    /* email receiver address */
-    @Json(name = "recipient")
-    val recipient: kotlin.String,
 
     /* locked status */
     @Json(name = "locked")
@@ -163,37 +133,17 @@ data class MailLogEntry (
     @Json(name = "queued")
     val queued: kotlin.String,
 
-    /* lock id */
-    @Json(name = "_lock")
-    val lock: kotlin.String,
-
-    /* logger */
-    @Json(name = "logger")
-    val logger: kotlin.String,
-
-    /* mx port number */
-    @Json(name = "mxPort")
-    val mxPort: kotlin.Int,
-
-    /* connection key */
-    @Json(name = "connectionKey")
-    val connectionKey: kotlin.String,
-
     /* mx hostname */
     @Json(name = "mxHostname")
     val mxHostname: kotlin.String,
 
-    /* body hash */
-    @Json(name = "sentBodyHash")
-    val sentBodyHash: kotlin.String,
+    /* mail delivery response */
+    @Json(name = "response")
+    val response: kotlin.String,
 
-    /* sent body size in bytes */
-    @Json(name = "sentBodySize")
-    val sentBodySize: kotlin.Int,
-
-    /* md5 checksum matching result */
-    @Json(name = "md5Match")
-    val md5Match: kotlin.Int
+    /* message id */
+    @Json(name = "messageId")
+    val messageId: kotlin.String? = null
 
 )
 

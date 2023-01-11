@@ -115,27 +115,6 @@ void test_MailLogEntry_subject_is_assigned_from_json()
 }
 
 
-void test_MailLogEntry_messageId_is_assigned_from_json()
-{
-
-
-    bourne::json input =
-    {
-        "messageId", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    TEST_ASSERT_EQUAL_STRING("hello", obj.getMessageId().c_str());
-
-
-
-
-
-
-}
-
-
 void test_MailLogEntry_created_is_assigned_from_json()
 {
 
@@ -220,48 +199,6 @@ void test_MailLogEntry_transtype_is_assigned_from_json()
 }
 
 
-void test_MailLogEntry_transhost_is_assigned_from_json()
-{
-
-
-    bourne::json input =
-    {
-        "transhost", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    TEST_ASSERT_EQUAL_STRING("hello", obj.getTranshost().c_str());
-
-
-
-
-
-
-}
-
-
-void test_MailLogEntry_originhost_is_assigned_from_json()
-{
-
-
-    bourne::json input =
-    {
-        "originhost", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    TEST_ASSERT_EQUAL_STRING("hello", obj.getOriginhost().c_str());
-
-
-
-
-
-
-}
-
-
 void test_MailLogEntry_origin_is_assigned_from_json()
 {
 
@@ -295,27 +232,6 @@ void test_MailLogEntry_interface_is_assigned_from_json()
     MailLogEntry obj(input.dump());
 
     TEST_ASSERT_EQUAL_STRING("hello", obj.getInterface().c_str());
-
-
-
-
-
-
-}
-
-
-void test_MailLogEntry_date_is_assigned_from_json()
-{
-
-
-    bourne::json input =
-    {
-        "date", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    TEST_ASSERT_EQUAL_STRING("hello", obj.getDate().c_str());
 
 
 
@@ -367,27 +283,6 @@ void test_MailLogEntry_bodySize_is_assigned_from_json()
 }
 
 
-void test_MailLogEntry_sourceMd5_is_assigned_from_json()
-{
-
-
-    bourne::json input =
-    {
-        "sourceMd5", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    TEST_ASSERT_EQUAL_STRING("hello", obj.getSourceMd5().c_str());
-
-
-
-
-
-
-}
-
-
 void test_MailLogEntry_seq_is_assigned_from_json()
 {
     bourne::json input =
@@ -409,27 +304,6 @@ void test_MailLogEntry_seq_is_assigned_from_json()
 }
 
 
-void test_MailLogEntry_domain_is_assigned_from_json()
-{
-
-
-    bourne::json input =
-    {
-        "domain", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    TEST_ASSERT_EQUAL_STRING("hello", obj.getDomain().c_str());
-
-
-
-
-
-
-}
-
-
 void test_MailLogEntry_recipient_is_assigned_from_json()
 {
 
@@ -442,6 +316,27 @@ void test_MailLogEntry_recipient_is_assigned_from_json()
     MailLogEntry obj(input.dump());
 
     TEST_ASSERT_EQUAL_STRING("hello", obj.getRecipient().c_str());
+
+
+
+
+
+
+}
+
+
+void test_MailLogEntry_domain_is_assigned_from_json()
+{
+
+
+    bourne::json input =
+    {
+        "domain", "hello"
+    };
+
+    MailLogEntry obj(input.dump());
+
+    TEST_ASSERT_EQUAL_STRING("hello", obj.getDomain().c_str());
 
 
 
@@ -535,90 +430,6 @@ void test_MailLogEntry_queued_is_assigned_from_json()
 }
 
 
-void test_MailLogEntry__lock_is_assigned_from_json()
-{
-
-
-    bourne::json input =
-    {
-        "_lock", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    TEST_ASSERT_EQUAL_STRING("hello", obj.getLock().c_str());
-
-
-
-
-
-
-}
-
-
-void test_MailLogEntry_logger_is_assigned_from_json()
-{
-
-
-    bourne::json input =
-    {
-        "logger", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    TEST_ASSERT_EQUAL_STRING("hello", obj.getLogger().c_str());
-
-
-
-
-
-
-}
-
-
-void test_MailLogEntry_mxPort_is_assigned_from_json()
-{
-    bourne::json input =
-    {
-        "mxPort", 1
-    };
-
-    MailLogEntry obj(input.dump());
-
-    TEST_ASSERT_EQUAL_INT(1, obj.getMxPort());
-
-
-
-
-
-
-
-
-}
-
-
-void test_MailLogEntry_connectionKey_is_assigned_from_json()
-{
-
-
-    bourne::json input =
-    {
-        "connectionKey", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    TEST_ASSERT_EQUAL_STRING("hello", obj.getConnectionKey().c_str());
-
-
-
-
-
-
-}
-
-
 void test_MailLogEntry_mxHostname_is_assigned_from_json()
 {
 
@@ -640,18 +451,18 @@ void test_MailLogEntry_mxHostname_is_assigned_from_json()
 }
 
 
-void test_MailLogEntry_sentBodyHash_is_assigned_from_json()
+void test_MailLogEntry_response_is_assigned_from_json()
 {
 
 
     bourne::json input =
     {
-        "sentBodyHash", "hello"
+        "response", "hello"
     };
 
     MailLogEntry obj(input.dump());
 
-    TEST_ASSERT_EQUAL_STRING("hello", obj.getSentBodyHash().c_str());
+    TEST_ASSERT_EQUAL_STRING("hello", obj.getResponse().c_str());
 
 
 
@@ -661,39 +472,18 @@ void test_MailLogEntry_sentBodyHash_is_assigned_from_json()
 }
 
 
-void test_MailLogEntry_sentBodySize_is_assigned_from_json()
+void test_MailLogEntry_messageId_is_assigned_from_json()
 {
+
+
     bourne::json input =
     {
-        "sentBodySize", 1
+        "messageId", "hello"
     };
 
     MailLogEntry obj(input.dump());
 
-    TEST_ASSERT_EQUAL_INT(1, obj.getSentBodySize());
-
-
-
-
-
-
-
-
-}
-
-
-void test_MailLogEntry_md5Match_is_assigned_from_json()
-{
-    bourne::json input =
-    {
-        "md5Match", 1
-    };
-
-    MailLogEntry obj(input.dump());
-
-    TEST_ASSERT_EQUAL_INT(1, obj.getMd5Match());
-
-
+    TEST_ASSERT_EQUAL_STRING("hello", obj.getMessageId().c_str());
 
 
 
@@ -809,27 +599,6 @@ void test_MailLogEntry_subject_is_converted_to_json()
 }
 
 
-void test_MailLogEntry_messageId_is_converted_to_json()
-{
-
-    bourne::json input =
-    {
-        "messageId", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    bourne::json output = bourne::json::object();
-
-    output = obj.toJson();
-
-    TEST_ASSERT(input["messageId"] == output["messageId"]);
-
-
-
-}
-
-
 void test_MailLogEntry_created_is_converted_to_json()
 {
 
@@ -914,48 +683,6 @@ void test_MailLogEntry_transtype_is_converted_to_json()
 }
 
 
-void test_MailLogEntry_transhost_is_converted_to_json()
-{
-
-    bourne::json input =
-    {
-        "transhost", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    bourne::json output = bourne::json::object();
-
-    output = obj.toJson();
-
-    TEST_ASSERT(input["transhost"] == output["transhost"]);
-
-
-
-}
-
-
-void test_MailLogEntry_originhost_is_converted_to_json()
-{
-
-    bourne::json input =
-    {
-        "originhost", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    bourne::json output = bourne::json::object();
-
-    output = obj.toJson();
-
-    TEST_ASSERT(input["originhost"] == output["originhost"]);
-
-
-
-}
-
-
 void test_MailLogEntry_origin_is_converted_to_json()
 {
 
@@ -992,27 +719,6 @@ void test_MailLogEntry_interface_is_converted_to_json()
     output = obj.toJson();
 
     TEST_ASSERT(input["interface"] == output["interface"]);
-
-
-
-}
-
-
-void test_MailLogEntry_date_is_converted_to_json()
-{
-
-    bourne::json input =
-    {
-        "date", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    bourne::json output = bourne::json::object();
-
-    output = obj.toJson();
-
-    TEST_ASSERT(input["date"] == output["date"]);
 
 
 
@@ -1061,27 +767,6 @@ void test_MailLogEntry_bodySize_is_converted_to_json()
 }
 
 
-void test_MailLogEntry_sourceMd5_is_converted_to_json()
-{
-
-    bourne::json input =
-    {
-        "sourceMd5", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    bourne::json output = bourne::json::object();
-
-    output = obj.toJson();
-
-    TEST_ASSERT(input["sourceMd5"] == output["sourceMd5"]);
-
-
-
-}
-
-
 void test_MailLogEntry_seq_is_converted_to_json()
 {
     bourne::json input =
@@ -1103,27 +788,6 @@ void test_MailLogEntry_seq_is_converted_to_json()
 }
 
 
-void test_MailLogEntry_domain_is_converted_to_json()
-{
-
-    bourne::json input =
-    {
-        "domain", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    bourne::json output = bourne::json::object();
-
-    output = obj.toJson();
-
-    TEST_ASSERT(input["domain"] == output["domain"]);
-
-
-
-}
-
-
 void test_MailLogEntry_recipient_is_converted_to_json()
 {
 
@@ -1139,6 +803,27 @@ void test_MailLogEntry_recipient_is_converted_to_json()
     output = obj.toJson();
 
     TEST_ASSERT(input["recipient"] == output["recipient"]);
+
+
+
+}
+
+
+void test_MailLogEntry_domain_is_converted_to_json()
+{
+
+    bourne::json input =
+    {
+        "domain", "hello"
+    };
+
+    MailLogEntry obj(input.dump());
+
+    bourne::json output = bourne::json::object();
+
+    output = obj.toJson();
+
+    TEST_ASSERT(input["domain"] == output["domain"]);
 
 
 
@@ -1229,90 +914,6 @@ void test_MailLogEntry_queued_is_converted_to_json()
 }
 
 
-void test_MailLogEntry__lock_is_converted_to_json()
-{
-
-    bourne::json input =
-    {
-        "_lock", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    bourne::json output = bourne::json::object();
-
-    output = obj.toJson();
-
-    TEST_ASSERT(input["_lock"] == output["_lock"]);
-
-
-
-}
-
-
-void test_MailLogEntry_logger_is_converted_to_json()
-{
-
-    bourne::json input =
-    {
-        "logger", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    bourne::json output = bourne::json::object();
-
-    output = obj.toJson();
-
-    TEST_ASSERT(input["logger"] == output["logger"]);
-
-
-
-}
-
-
-void test_MailLogEntry_mxPort_is_converted_to_json()
-{
-    bourne::json input =
-    {
-        "mxPort", 1
-    };
-
-    MailLogEntry obj(input.dump());
-
-    bourne::json output = bourne::json::object();
-
-    output = obj.toJson();
-
-    TEST_ASSERT(input["mxPort"] == output["mxPort"]);
-
-
-
-
-}
-
-
-void test_MailLogEntry_connectionKey_is_converted_to_json()
-{
-
-    bourne::json input =
-    {
-        "connectionKey", "hello"
-    };
-
-    MailLogEntry obj(input.dump());
-
-    bourne::json output = bourne::json::object();
-
-    output = obj.toJson();
-
-    TEST_ASSERT(input["connectionKey"] == output["connectionKey"]);
-
-
-
-}
-
-
 void test_MailLogEntry_mxHostname_is_converted_to_json()
 {
 
@@ -1334,12 +935,12 @@ void test_MailLogEntry_mxHostname_is_converted_to_json()
 }
 
 
-void test_MailLogEntry_sentBodyHash_is_converted_to_json()
+void test_MailLogEntry_response_is_converted_to_json()
 {
 
     bourne::json input =
     {
-        "sentBodyHash", "hello"
+        "response", "hello"
     };
 
     MailLogEntry obj(input.dump());
@@ -1348,18 +949,19 @@ void test_MailLogEntry_sentBodyHash_is_converted_to_json()
 
     output = obj.toJson();
 
-    TEST_ASSERT(input["sentBodyHash"] == output["sentBodyHash"]);
+    TEST_ASSERT(input["response"] == output["response"]);
 
 
 
 }
 
 
-void test_MailLogEntry_sentBodySize_is_converted_to_json()
+void test_MailLogEntry_messageId_is_converted_to_json()
 {
+
     bourne::json input =
     {
-        "sentBodySize", 1
+        "messageId", "hello"
     };
 
     MailLogEntry obj(input.dump());
@@ -1368,29 +970,7 @@ void test_MailLogEntry_sentBodySize_is_converted_to_json()
 
     output = obj.toJson();
 
-    TEST_ASSERT(input["sentBodySize"] == output["sentBodySize"]);
-
-
-
-
-}
-
-
-void test_MailLogEntry_md5Match_is_converted_to_json()
-{
-    bourne::json input =
-    {
-        "md5Match", 1
-    };
-
-    MailLogEntry obj(input.dump());
-
-    bourne::json output = bourne::json::object();
-
-    output = obj.toJson();
-
-    TEST_ASSERT(input["md5Match"] == output["md5Match"]);
-
+    TEST_ASSERT(input["messageId"] == output["messageId"]);
 
 
 

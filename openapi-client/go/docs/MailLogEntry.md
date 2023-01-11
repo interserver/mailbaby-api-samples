@@ -9,40 +9,30 @@ Name | Type | Description | Notes
 **From** | **string** | from address | 
 **To** | **string** | to address | 
 **Subject** | **string** | email subject | 
-**MessageId** | **string** | message id | 
+**MessageId** | Pointer to **string** | message id | [optional] 
 **Created** | **string** | creation date | 
 **Time** | **int32** | creation timestamp | 
 **User** | **string** | user account | 
 **Transtype** | **string** | transaction type | 
-**Transhost** | **string** | transaction host | 
-**Originhost** | **string** | origin host | 
 **Origin** | **string** | origin ip | 
 **Interface** | **string** | interface name | 
-**Date** | **string** | date processed | 
 **SendingZone** | **string** | sending zone | 
 **BodySize** | **int32** | email body size in bytes | 
-**SourceMd5** | **string** | md5 sum of the email | 
-**Seq** | **int32** | delivery sequency | 
+**Seq** | **int32** | index of email in the to adderess list | 
+**Recipient** | **string** | to address this email is being sent to | 
 **Domain** | **string** | to address domain | 
-**Recipient** | **string** | email receiver address | 
 **Locked** | **int32** | locked status | 
 **LockTime** | **int32** | lock timestamp | 
 **Assigned** | **string** | assigned server | 
 **Queued** | **string** | queued timestamp | 
-**Lock** | **string** | lock id | 
-**Logger** | **string** | logger | 
-**MxPort** | **int32** | mx port number | 
-**ConnectionKey** | **string** | connection key | 
 **MxHostname** | **string** | mx hostname | 
-**SentBodyHash** | **string** | body hash | 
-**SentBodySize** | **int32** | sent body size in bytes | 
-**Md5Match** | **int32** | md5 checksum matching result | 
+**Response** | **string** | mail delivery response | 
 
 ## Methods
 
 ### NewMailLogEntry
 
-`func NewMailLogEntry(id int32, id string, from string, to string, subject string, messageId string, created string, time int32, user string, transtype string, transhost string, originhost string, origin string, interface_ string, date string, sendingZone string, bodySize int32, sourceMd5 string, seq int32, domain string, recipient string, locked int32, lockTime int32, assigned string, queued string, lock string, logger string, mxPort int32, connectionKey string, mxHostname string, sentBodyHash string, sentBodySize int32, md5Match int32, ) *MailLogEntry`
+`func NewMailLogEntry(id int32, id string, from string, to string, subject string, created string, time int32, user string, transtype string, origin string, interface_ string, sendingZone string, bodySize int32, seq int32, recipient string, domain string, locked int32, lockTime int32, assigned string, queued string, mxHostname string, response string, ) *MailLogEntry`
 
 NewMailLogEntry instantiates a new MailLogEntry object
 This constructor will assign default values to properties that have it defined,
@@ -176,6 +166,11 @@ and a boolean to check if the value has been set.
 
 SetMessageId sets MessageId field to given value.
 
+### HasMessageId
+
+`func (o *MailLogEntry) HasMessageId() bool`
+
+HasMessageId returns a boolean if a field has been set.
 
 ### GetCreated
 
@@ -257,46 +252,6 @@ and a boolean to check if the value has been set.
 SetTranstype sets Transtype field to given value.
 
 
-### GetTranshost
-
-`func (o *MailLogEntry) GetTranshost() string`
-
-GetTranshost returns the Transhost field if non-nil, zero value otherwise.
-
-### GetTranshostOk
-
-`func (o *MailLogEntry) GetTranshostOk() (*string, bool)`
-
-GetTranshostOk returns a tuple with the Transhost field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTranshost
-
-`func (o *MailLogEntry) SetTranshost(v string)`
-
-SetTranshost sets Transhost field to given value.
-
-
-### GetOriginhost
-
-`func (o *MailLogEntry) GetOriginhost() string`
-
-GetOriginhost returns the Originhost field if non-nil, zero value otherwise.
-
-### GetOriginhostOk
-
-`func (o *MailLogEntry) GetOriginhostOk() (*string, bool)`
-
-GetOriginhostOk returns a tuple with the Originhost field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOriginhost
-
-`func (o *MailLogEntry) SetOriginhost(v string)`
-
-SetOriginhost sets Originhost field to given value.
-
-
 ### GetOrigin
 
 `func (o *MailLogEntry) GetOrigin() string`
@@ -335,26 +290,6 @@ and a boolean to check if the value has been set.
 `func (o *MailLogEntry) SetInterface(v string)`
 
 SetInterface sets Interface field to given value.
-
-
-### GetDate
-
-`func (o *MailLogEntry) GetDate() string`
-
-GetDate returns the Date field if non-nil, zero value otherwise.
-
-### GetDateOk
-
-`func (o *MailLogEntry) GetDateOk() (*string, bool)`
-
-GetDateOk returns a tuple with the Date field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDate
-
-`func (o *MailLogEntry) SetDate(v string)`
-
-SetDate sets Date field to given value.
 
 
 ### GetSendingZone
@@ -397,26 +332,6 @@ and a boolean to check if the value has been set.
 SetBodySize sets BodySize field to given value.
 
 
-### GetSourceMd5
-
-`func (o *MailLogEntry) GetSourceMd5() string`
-
-GetSourceMd5 returns the SourceMd5 field if non-nil, zero value otherwise.
-
-### GetSourceMd5Ok
-
-`func (o *MailLogEntry) GetSourceMd5Ok() (*string, bool)`
-
-GetSourceMd5Ok returns a tuple with the SourceMd5 field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSourceMd5
-
-`func (o *MailLogEntry) SetSourceMd5(v string)`
-
-SetSourceMd5 sets SourceMd5 field to given value.
-
-
 ### GetSeq
 
 `func (o *MailLogEntry) GetSeq() int32`
@@ -437,26 +352,6 @@ and a boolean to check if the value has been set.
 SetSeq sets Seq field to given value.
 
 
-### GetDomain
-
-`func (o *MailLogEntry) GetDomain() string`
-
-GetDomain returns the Domain field if non-nil, zero value otherwise.
-
-### GetDomainOk
-
-`func (o *MailLogEntry) GetDomainOk() (*string, bool)`
-
-GetDomainOk returns a tuple with the Domain field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDomain
-
-`func (o *MailLogEntry) SetDomain(v string)`
-
-SetDomain sets Domain field to given value.
-
-
 ### GetRecipient
 
 `func (o *MailLogEntry) GetRecipient() string`
@@ -475,6 +370,26 @@ and a boolean to check if the value has been set.
 `func (o *MailLogEntry) SetRecipient(v string)`
 
 SetRecipient sets Recipient field to given value.
+
+
+### GetDomain
+
+`func (o *MailLogEntry) GetDomain() string`
+
+GetDomain returns the Domain field if non-nil, zero value otherwise.
+
+### GetDomainOk
+
+`func (o *MailLogEntry) GetDomainOk() (*string, bool)`
+
+GetDomainOk returns a tuple with the Domain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomain
+
+`func (o *MailLogEntry) SetDomain(v string)`
+
+SetDomain sets Domain field to given value.
 
 
 ### GetLocked
@@ -557,86 +472,6 @@ and a boolean to check if the value has been set.
 SetQueued sets Queued field to given value.
 
 
-### GetLock
-
-`func (o *MailLogEntry) GetLock() string`
-
-GetLock returns the Lock field if non-nil, zero value otherwise.
-
-### GetLockOk
-
-`func (o *MailLogEntry) GetLockOk() (*string, bool)`
-
-GetLockOk returns a tuple with the Lock field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLock
-
-`func (o *MailLogEntry) SetLock(v string)`
-
-SetLock sets Lock field to given value.
-
-
-### GetLogger
-
-`func (o *MailLogEntry) GetLogger() string`
-
-GetLogger returns the Logger field if non-nil, zero value otherwise.
-
-### GetLoggerOk
-
-`func (o *MailLogEntry) GetLoggerOk() (*string, bool)`
-
-GetLoggerOk returns a tuple with the Logger field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLogger
-
-`func (o *MailLogEntry) SetLogger(v string)`
-
-SetLogger sets Logger field to given value.
-
-
-### GetMxPort
-
-`func (o *MailLogEntry) GetMxPort() int32`
-
-GetMxPort returns the MxPort field if non-nil, zero value otherwise.
-
-### GetMxPortOk
-
-`func (o *MailLogEntry) GetMxPortOk() (*int32, bool)`
-
-GetMxPortOk returns a tuple with the MxPort field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMxPort
-
-`func (o *MailLogEntry) SetMxPort(v int32)`
-
-SetMxPort sets MxPort field to given value.
-
-
-### GetConnectionKey
-
-`func (o *MailLogEntry) GetConnectionKey() string`
-
-GetConnectionKey returns the ConnectionKey field if non-nil, zero value otherwise.
-
-### GetConnectionKeyOk
-
-`func (o *MailLogEntry) GetConnectionKeyOk() (*string, bool)`
-
-GetConnectionKeyOk returns a tuple with the ConnectionKey field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetConnectionKey
-
-`func (o *MailLogEntry) SetConnectionKey(v string)`
-
-SetConnectionKey sets ConnectionKey field to given value.
-
-
 ### GetMxHostname
 
 `func (o *MailLogEntry) GetMxHostname() string`
@@ -657,64 +492,24 @@ and a boolean to check if the value has been set.
 SetMxHostname sets MxHostname field to given value.
 
 
-### GetSentBodyHash
+### GetResponse
 
-`func (o *MailLogEntry) GetSentBodyHash() string`
+`func (o *MailLogEntry) GetResponse() string`
 
-GetSentBodyHash returns the SentBodyHash field if non-nil, zero value otherwise.
+GetResponse returns the Response field if non-nil, zero value otherwise.
 
-### GetSentBodyHashOk
+### GetResponseOk
 
-`func (o *MailLogEntry) GetSentBodyHashOk() (*string, bool)`
+`func (o *MailLogEntry) GetResponseOk() (*string, bool)`
 
-GetSentBodyHashOk returns a tuple with the SentBodyHash field if it's non-nil, zero value otherwise
+GetResponseOk returns a tuple with the Response field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSentBodyHash
+### SetResponse
 
-`func (o *MailLogEntry) SetSentBodyHash(v string)`
+`func (o *MailLogEntry) SetResponse(v string)`
 
-SetSentBodyHash sets SentBodyHash field to given value.
-
-
-### GetSentBodySize
-
-`func (o *MailLogEntry) GetSentBodySize() int32`
-
-GetSentBodySize returns the SentBodySize field if non-nil, zero value otherwise.
-
-### GetSentBodySizeOk
-
-`func (o *MailLogEntry) GetSentBodySizeOk() (*int32, bool)`
-
-GetSentBodySizeOk returns a tuple with the SentBodySize field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSentBodySize
-
-`func (o *MailLogEntry) SetSentBodySize(v int32)`
-
-SetSentBodySize sets SentBodySize field to given value.
-
-
-### GetMd5Match
-
-`func (o *MailLogEntry) GetMd5Match() int32`
-
-GetMd5Match returns the Md5Match field if non-nil, zero value otherwise.
-
-### GetMd5MatchOk
-
-`func (o *MailLogEntry) GetMd5MatchOk() (*int32, bool)`
-
-GetMd5MatchOk returns a tuple with the Md5Match field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMd5Match
-
-`func (o *MailLogEntry) SetMd5Match(v int32)`
-
-SetMd5Match sets Md5Match field to given value.
+SetResponse sets Response field to given value.
 
 
 

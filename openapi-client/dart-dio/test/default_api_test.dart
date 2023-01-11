@@ -41,9 +41,9 @@ void main() {
 
     // displays the mail log
     //
-    // By passing in the appropriate options, you can search for available inventory in the system 
+    // Get a listing of the emails sent through this system 
     //
-    //Future<MailLog> viewMailLog({ int id, String search, int skip, int limit, int startDate, int endDate }) async
+    //Future<MailLog> viewMailLog({ int id, String origin, String mx, String from, String to, String subject, String mailid, int skip, int limit, int startDate, int endDate }) async
     test('test viewMailLog', () async {
       // TODO
     });

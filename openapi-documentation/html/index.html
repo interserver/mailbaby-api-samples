@@ -189,7 +189,7 @@ font-style: italic;
 </div>
     <div class="app-desc">More information: <a href="https://www.mail.baby/contact/">https://www.mail.baby/contact/</a></div>
     <div class="app-desc">Contact Info: <a href="support@interserver.net">support@interserver.net</a></div>
-    <div class="app-desc">Version: 1.0.1</div>
+    <div class="app-desc">Version: 1.1.0</div>
     <div class="app-desc">BasePath:</div>
     <div class="license-info">Apache 2.0</div>
     <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
@@ -428,8 +428,7 @@ font-style: italic;
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/log</code></pre></div>
     <div class="method-summary">displays the mail log (<span class="nickname">viewMailLog</span>)</div>
-    <div class="method-notes">By passing in the appropriate options, you can search for
-available inventory in the system</div>
+    <div class="method-notes">Get a listing of the emails sent through this system</div>
 
 
 
@@ -439,9 +438,19 @@ available inventory in the system</div>
     <div class="field-items">
       <div class="param">id (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The ID of your mail order this will be sent through. default: null format: int64</div><div class="param">search (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The ID of your mail order this will be sent through. default: null format: int64</div><div class="param">origin (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass an optional search string for looking up inventory default: null </div><div class="param">skip (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; originating ip address sending mail default: null </div><div class="param">mx (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; mx record mail was sent to default: null </div><div class="param">from (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; from email address default: null </div><div class="param">to (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; to/destination email address default: null </div><div class="param">subject (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; subject containing this string default: null </div><div class="param">mailid (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; mail id default: null </div><div class="param">skip (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; number of records to skip for pagination default: 0 format: int32</div><div class="param">limit (optional)</div>
 
@@ -465,73 +474,53 @@ available inventory in the system</div>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
   "emails" : [ {
-    "date" : "Thu, 14 Oct 2021 08:50:09 -0400",
     "subject" : "sell 0.005 shares",
-    "origin" : "199.231.189.154",
-    "queued" : "2021-10-14T12:50:15.487Z",
-    "logger" : "logger",
-    "connectionKey" : "206.72.200.46:interserver.net:25",
-    "interface" : "feeder",
-    "md5Match" : 1,
-    "mxPort" : 25,
-    "sentBodySize" : 63,
-    "lockTime" : 1634215818533,
-    "from" : "person@mysite.com",
-    "id" : "17c7eda538e0005d03",
-    "locked" : 1,
-    "seq" : 1,
-    "sentBodyHash" : "1d7058e6a30369f200b0c34fab2fac92",
     "created" : "2021-10-14 08:50:10",
     "transtype" : "ESMTPSA",
-    "sourceMd5" : "1d7058e6a30369f200b0c34fab2fac92",
-    "_lock" : "lock 17c7eda538e0005d03 001",
+    "origin" : "199.231.189.154",
+    "queued" : "2021-10-14T12:50:15.487Z",
     "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
     "sendingZone" : "interserver",
     "mxHostname" : "mx.j.is.cc",
-    "transhost" : "relay0.mailbaby.net",
-    "originhost" : "199.231.189.154",
+    "interface" : "feeder",
+    "lockTime" : 1634215818533,
+    "response" : "250 2.0.0 Ok queued as C91D83E128C",
     "domain" : "interserver.net",
     "bodySize" : 63,
     "recipient" : "client@isp.com",
+    "from" : "person@mysite.com",
     "assigned" : "relay1",
     "_id" : 103172,
+    "id" : "17c7eda538e0005d03",
     "to" : "client@isp.com",
     "time" : 1634215809,
-    "user" : "mb5658"
+    "locked" : 1,
+    "user" : "mb5658",
+    "seq" : 1
   }, {
-    "date" : "Thu, 14 Oct 2021 08:50:09 -0400",
     "subject" : "sell 0.005 shares",
-    "origin" : "199.231.189.154",
-    "queued" : "2021-10-14T12:50:15.487Z",
-    "logger" : "logger",
-    "connectionKey" : "206.72.200.46:interserver.net:25",
-    "interface" : "feeder",
-    "md5Match" : 1,
-    "mxPort" : 25,
-    "sentBodySize" : 63,
-    "lockTime" : 1634215818533,
-    "from" : "person@mysite.com",
-    "id" : "17c7eda538e0005d03",
-    "locked" : 1,
-    "seq" : 1,
-    "sentBodyHash" : "1d7058e6a30369f200b0c34fab2fac92",
     "created" : "2021-10-14 08:50:10",
     "transtype" : "ESMTPSA",
-    "sourceMd5" : "1d7058e6a30369f200b0c34fab2fac92",
-    "_lock" : "lock 17c7eda538e0005d03 001",
+    "origin" : "199.231.189.154",
+    "queued" : "2021-10-14T12:50:15.487Z",
     "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
     "sendingZone" : "interserver",
     "mxHostname" : "mx.j.is.cc",
-    "transhost" : "relay0.mailbaby.net",
-    "originhost" : "199.231.189.154",
+    "interface" : "feeder",
+    "lockTime" : 1634215818533,
+    "response" : "250 2.0.0 Ok queued as C91D83E128C",
     "domain" : "interserver.net",
     "bodySize" : 63,
     "recipient" : "client@isp.com",
+    "from" : "person@mysite.com",
     "assigned" : "relay1",
     "_id" : 103172,
+    "id" : "17c7eda538e0005d03",
     "to" : "client@isp.com",
     "time" : 1634215809,
-    "user" : "mb5658"
+    "locked" : 1,
+    "user" : "mb5658",
+    "seq" : 1
   } ],
   "total" : 10234,
   "limit" : 100,
@@ -602,34 +591,24 @@ available inventory in the system</div>
 <div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> from address </div>
 <div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> to address </div>
 <div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> email subject </div>
-<div class="param">messageId </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> message id </div>
 <div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> creation date </div>
 <div class="param">time </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> creation timestamp </div>
 <div class="param">user </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> user account </div>
 <div class="param">transtype </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> transaction type </div>
-<div class="param">transhost </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> transaction host </div>
-<div class="param">originhost </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> origin host </div>
 <div class="param">origin </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> origin ip </div>
 <div class="param">interface </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> interface name </div>
-<div class="param">date </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> date processed </div>
 <div class="param">sendingZone </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> sending zone </div>
 <div class="param">bodySize </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> email body size in bytes </div>
-<div class="param">sourceMd5 </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> md5 sum of the email </div>
-<div class="param">seq </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> delivery sequency </div>
+<div class="param">seq </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> index of email in the to adderess list </div>
+<div class="param">recipient </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> to address this email is being sent to </div>
 <div class="param">domain </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> to address domain </div>
-<div class="param">recipient </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> email receiver address </div>
 <div class="param">locked </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> locked status </div>
 <div class="param">lockTime </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> lock timestamp </div>
 <div class="param">assigned </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> assigned server </div>
 <div class="param">queued </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> queued timestamp </div>
-<div class="param">_lock </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> lock id </div>
-<div class="param">logger </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> logger </div>
-<div class="param">mxPort </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> mx port number </div>
-<div class="param">connectionKey </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> connection key </div>
 <div class="param">mxHostname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> mx hostname </div>
-<div class="param">sentBodyHash </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> body hash </div>
-<div class="param">sentBodySize </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> sent body size in bytes </div>
-<div class="param">md5Match </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> md5 checksum matching result </div>
+<div class="param">response </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> mail delivery response </div>
+<div class="param">messageId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> message id </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">

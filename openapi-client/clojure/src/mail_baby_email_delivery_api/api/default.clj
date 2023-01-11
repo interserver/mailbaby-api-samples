@@ -117,14 +117,13 @@
 
 (defn-spec view-mail-log-with-http-info any?
   "displays the mail log
-  By passing in the appropriate options, you can search for
-available inventory in the system"
+  Get a listing of the emails sent through this system"
   ([] (view-mail-log-with-http-info nil))
-  ([{:keys [id search skip limit startDate endDate]} (s/map-of keyword? any?)]
+  ([{:keys [id origin mx from to subject mailid skip limit startDate endDate]} (s/map-of keyword? any?)]
    (call-api "/mail/log" :get
              {:path-params   {}
               :header-params {}
-              :query-params  {"id" id "search" search "skip" skip "limit" limit "startDate" startDate "endDate" endDate }
+              :query-params  {"id" id "origin" origin "mx" mx "from" from "to" to "subject" subject "mailid" mailid "skip" skip "limit" limit "startDate" startDate "endDate" endDate }
               :form-params   {}
               :content-types []
               :accepts       ["application/json"]
@@ -132,8 +131,7 @@ available inventory in the system"
 
 (defn-spec view-mail-log mail-log-spec
   "displays the mail log
-  By passing in the appropriate options, you can search for
-available inventory in the system"
+  Get a listing of the emails sent through this system"
   ([] (view-mail-log nil))
   ([optional-params any?]
    (let [res (:data (view-mail-log-with-http-info optional-params))]

@@ -30,28 +30,20 @@ open class MailLogEntry: JSONEncodable {
     public var user: String?
     /** transaction type */
     public var transtype: String?
-    /** transaction host */
-    public var transhost: String?
-    /** origin host */
-    public var originhost: String?
     /** origin ip */
     public var origin: String?
     /** interface name */
     public var interface: String?
-    /** date processed */
-    public var date: String?
     /** sending zone */
     public var sendingZone: String?
     /** email body size in bytes */
     public var bodySize: Int32?
-    /** md5 sum of the email */
-    public var sourceMd5: String?
-    /** delivery sequency */
+    /** index of email in the to adderess list */
     public var seq: Int32?
+    /** to address this email is being sent to */
+    public var recipient: String?
     /** to address domain */
     public var domain: String?
-    /** email receiver address */
-    public var recipient: String?
     /** locked status */
     public var locked: Int32?
     /** lock timestamp */
@@ -60,22 +52,10 @@ open class MailLogEntry: JSONEncodable {
     public var assigned: String?
     /** queued timestamp */
     public var queued: String?
-    /** lock id */
-    public var lock: String?
-    /** logger */
-    public var logger: String?
-    /** mx port number */
-    public var mxPort: Int32?
-    /** connection key */
-    public var connectionKey: String?
     /** mx hostname */
     public var mxHostname: String?
-    /** body hash */
-    public var sentBodyHash: String?
-    /** sent body size in bytes */
-    public var sentBodySize: Int32?
-    /** md5 checksum matching result */
-    public var md5Match: Int32?
+    /** mail delivery response */
+    public var response: String?
 
     public init() {}
 
@@ -92,29 +72,19 @@ open class MailLogEntry: JSONEncodable {
         nillableDictionary["time"] = self.time?.encodeToJSON()
         nillableDictionary["user"] = self.user
         nillableDictionary["transtype"] = self.transtype
-        nillableDictionary["transhost"] = self.transhost
-        nillableDictionary["originhost"] = self.originhost
         nillableDictionary["origin"] = self.origin
         nillableDictionary["interface"] = self.interface
-        nillableDictionary["date"] = self.date
         nillableDictionary["sendingZone"] = self.sendingZone
         nillableDictionary["bodySize"] = self.bodySize?.encodeToJSON()
-        nillableDictionary["sourceMd5"] = self.sourceMd5
         nillableDictionary["seq"] = self.seq?.encodeToJSON()
-        nillableDictionary["domain"] = self.domain
         nillableDictionary["recipient"] = self.recipient
+        nillableDictionary["domain"] = self.domain
         nillableDictionary["locked"] = self.locked?.encodeToJSON()
         nillableDictionary["lockTime"] = self.lockTime?.encodeToJSON()
         nillableDictionary["assigned"] = self.assigned
         nillableDictionary["queued"] = self.queued
-        nillableDictionary["_lock"] = self.lock
-        nillableDictionary["logger"] = self.logger
-        nillableDictionary["mxPort"] = self.mxPort?.encodeToJSON()
-        nillableDictionary["connectionKey"] = self.connectionKey
         nillableDictionary["mxHostname"] = self.mxHostname
-        nillableDictionary["sentBodyHash"] = self.sentBodyHash
-        nillableDictionary["sentBodySize"] = self.sentBodySize?.encodeToJSON()
-        nillableDictionary["md5Match"] = self.md5Match?.encodeToJSON()
+        nillableDictionary["response"] = self.response
 
         let dictionary: [String:Any] = APIHelper.rejectNil(nillableDictionary) ?? [:]
         return dictionary

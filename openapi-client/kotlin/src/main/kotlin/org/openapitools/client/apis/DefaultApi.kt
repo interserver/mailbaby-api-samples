@@ -3,7 +3,7 @@
  *
  * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
- * The version of the OpenAPI document: 1.0.1
+ * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
  *
  * Please note:
@@ -340,9 +340,14 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
 
     /**
      * displays the mail log
-     * By passing in the appropriate options, you can search for available inventory in the system 
+     * Get a listing of the emails sent through this system 
      * @param id The ID of your mail order this will be sent through. (optional)
-     * @param search pass an optional search string for looking up inventory (optional)
+     * @param origin originating ip address sending mail (optional)
+     * @param mx mx record mail was sent to (optional)
+     * @param from from email address (optional)
+     * @param to to/destination email address (optional)
+     * @param subject subject containing this string (optional)
+     * @param mailid mail id (optional)
      * @param skip number of records to skip for pagination (optional, default to 0)
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
@@ -356,8 +361,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun viewMailLog(id: kotlin.Long? = null, search: kotlin.String? = null, skip: kotlin.Int? = 0, limit: kotlin.Int? = 100, startDate: kotlin.Long? = null, endDate: kotlin.Long? = null) : MailLog {
-        val localVarResponse = viewMailLogWithHttpInfo(id = id, search = search, skip = skip, limit = limit, startDate = startDate, endDate = endDate)
+    fun viewMailLog(id: kotlin.Long? = null, origin: kotlin.String? = null, mx: kotlin.String? = null, from: kotlin.String? = null, to: kotlin.String? = null, subject: kotlin.String? = null, mailid: kotlin.String? = null, skip: kotlin.Int? = 0, limit: kotlin.Int? = 100, startDate: kotlin.Long? = null, endDate: kotlin.Long? = null) : MailLog {
+        val localVarResponse = viewMailLogWithHttpInfo(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, skip = skip, limit = limit, startDate = startDate, endDate = endDate)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as MailLog
@@ -376,9 +381,14 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
 
     /**
      * displays the mail log
-     * By passing in the appropriate options, you can search for available inventory in the system 
+     * Get a listing of the emails sent through this system 
      * @param id The ID of your mail order this will be sent through. (optional)
-     * @param search pass an optional search string for looking up inventory (optional)
+     * @param origin originating ip address sending mail (optional)
+     * @param mx mx record mail was sent to (optional)
+     * @param from from email address (optional)
+     * @param to to/destination email address (optional)
+     * @param subject subject containing this string (optional)
+     * @param mailid mail id (optional)
      * @param skip number of records to skip for pagination (optional, default to 0)
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
@@ -389,8 +399,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun viewMailLogWithHttpInfo(id: kotlin.Long?, search: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.Long?, endDate: kotlin.Long?) : ApiResponse<MailLog?> {
-        val localVariableConfig = viewMailLogRequestConfig(id = id, search = search, skip = skip, limit = limit, startDate = startDate, endDate = endDate)
+    fun viewMailLogWithHttpInfo(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.Long?, endDate: kotlin.Long?) : ApiResponse<MailLog?> {
+        val localVariableConfig = viewMailLogRequestConfig(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, skip = skip, limit = limit, startDate = startDate, endDate = endDate)
 
         return request<Unit, MailLog>(
             localVariableConfig
@@ -401,22 +411,42 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      * To obtain the request config of the operation viewMailLog
      *
      * @param id The ID of your mail order this will be sent through. (optional)
-     * @param search pass an optional search string for looking up inventory (optional)
+     * @param origin originating ip address sending mail (optional)
+     * @param mx mx record mail was sent to (optional)
+     * @param from from email address (optional)
+     * @param to to/destination email address (optional)
+     * @param subject subject containing this string (optional)
+     * @param mailid mail id (optional)
      * @param skip number of records to skip for pagination (optional, default to 0)
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
      * @return RequestConfig
      */
-    fun viewMailLogRequestConfig(id: kotlin.Long?, search: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.Long?, endDate: kotlin.Long?) : RequestConfig<Unit> {
+    fun viewMailLogRequestConfig(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.Long?, endDate: kotlin.Long?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (id != null) {
                     put("id", listOf(id.toString()))
                 }
-                if (search != null) {
-                    put("search", listOf(search.toString()))
+                if (origin != null) {
+                    put("origin", listOf(origin.toString()))
+                }
+                if (mx != null) {
+                    put("mx", listOf(mx.toString()))
+                }
+                if (from != null) {
+                    put("from", listOf(from.toString()))
+                }
+                if (to != null) {
+                    put("to", listOf(to.toString()))
+                }
+                if (subject != null) {
+                    put("subject", listOf(subject.toString()))
+                }
+                if (mailid != null) {
+                    put("mailid", listOf(mailid.toString()))
                 }
                 if (skip != null) {
                     put("skip", listOf(skip.toString()))

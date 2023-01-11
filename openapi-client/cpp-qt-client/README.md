@@ -4,7 +4,7 @@
 
 MailBaby Email Delivery API
 
-- API version: 1.0.1
+- API version: 1.1.0
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 

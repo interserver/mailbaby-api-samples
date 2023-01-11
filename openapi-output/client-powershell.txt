@@ -79,6 +79,10 @@
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
 [main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
 [main] WARN  o.o.codegen.DefaultCodegen - Multiple MediaTypes found, using only the first one
+[main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
+[main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
+[main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used in naming. Renamed to VarFrom
+[main] WARN  o.o.c.l.PowerShellClientCodegen - From (reserved word or special variable name) cannot be used as model name. Renamed to ModelFrom
 [main] INFO  o.o.c.l.PowerShellClientCodegen - Naming the method using the PowerShell verb: getMailOrders => Get-MailOrders
 [main] INFO  o.o.c.l.PowerShellClientCodegen - Naming the method using the PowerShell verb: pingServer => Ping-Server
 [main] INFO  o.o.c.l.PowerShellClientCodegen - Naming the method using the PowerShell verb: sendAdvMail => Send-AdvMail

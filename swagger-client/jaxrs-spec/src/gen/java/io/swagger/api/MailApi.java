@@ -32,7 +32,7 @@ import javax.validation.Valid;
 
 @Path("/mail")
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2023-01-03T15:07:50.052311-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2023-01-10T22:49:57.045648-05:00[America/New_York]")
 public class MailApi {
 
     @GET
@@ -110,7 +110,7 @@ public class MailApi {
     @GET
     @Path("/log")
     @Produces({ "application/json" })
-    @Operation(summary = "displays the mail log", description = "By passing in the appropriate options, you can search for available inventory in the system ", security = {
+    @Operation(summary = "displays the mail log", description = "Get a listing of the emails sent through this system ", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailLog.class))),
@@ -119,9 +119,24 @@ public class MailApi {
     public Response viewMailLog(  @QueryParam("id") 
 
  @Parameter(description = "The ID of your mail order this will be sent through.")  Long id
-,  @QueryParam("search") 
+,  @QueryParam("origin") 
 
- @Parameter(description = "pass an optional search string for looking up inventory")  String search
+ @Parameter(description = "originating ip address sending mail")  String origin
+,  @QueryParam("mx") 
+
+ @Parameter(description = "mx record mail was sent to")  String mx
+,  @QueryParam("from") 
+
+ @Parameter(description = "from email address")  String from
+,  @QueryParam("to") 
+
+ @Parameter(description = "to/destination email address")  String to
+,  @QueryParam("subject") 
+
+ @Parameter(description = "subject containing this string")  String subject
+,  @QueryParam("mailid") 
+
+ @Parameter(description = "mail id")  String mailid
 , @Min(0)  @QueryParam("skip") @DefaultValue("0") 
 
  @Parameter(description = "number of records to skip for pagination")  Integer skip

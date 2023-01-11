@@ -21,28 +21,20 @@ class MailLogEntry {
   String user = null;
 /* transaction type */
   String transtype = null;
-/* transaction host */
-  String transhost = null;
-/* origin host */
-  String originhost = null;
 /* origin ip */
   String origin = null;
 /* interface name */
   String interface = null;
-/* date processed */
-  String date = null;
 /* sending zone */
   String sendingZone = null;
 /* email body size in bytes */
   int bodySize = null;
-/* md5 sum of the email */
-  String sourceMd5 = null;
-/* delivery sequency */
+/* index of email in the to adderess list */
   int seq = null;
+/* to address this email is being sent to */
+  String recipient = null;
 /* to address domain */
   String domain = null;
-/* email receiver address */
-  String recipient = null;
 /* locked status */
   int locked = null;
 /* lock timestamp */
@@ -51,28 +43,16 @@ class MailLogEntry {
   String assigned = null;
 /* queued timestamp */
   String queued = null;
-/* lock id */
-  String lock = null;
-/* logger */
-  String logger = null;
-/* mx port number */
-  int mxPort = null;
-/* connection key */
-  String connectionKey = null;
 /* mx hostname */
   String mxHostname = null;
-/* body hash */
-  String sentBodyHash = null;
-/* sent body size in bytes */
-  int sentBodySize = null;
-/* md5 checksum matching result */
-  int md5Match = null;
+/* mail delivery response */
+  String response = null;
 
   MailLogEntry();
 
   @override
   String toString() {
-    return 'MailLogEntry[id=$id, id=$id, from=$from, to=$to, subject=$subject, messageId=$messageId, created=$created, time=$time, user=$user, transtype=$transtype, transhost=$transhost, originhost=$originhost, origin=$origin, interface=$interface, date=$date, sendingZone=$sendingZone, bodySize=$bodySize, sourceMd5=$sourceMd5, seq=$seq, domain=$domain, recipient=$recipient, locked=$locked, lockTime=$lockTime, assigned=$assigned, queued=$queued, lock=$lock, logger=$logger, mxPort=$mxPort, connectionKey=$connectionKey, mxHostname=$mxHostname, sentBodyHash=$sentBodyHash, sentBodySize=$sentBodySize, md5Match=$md5Match, ]';
+    return 'MailLogEntry[id=$id, id=$id, from=$from, to=$to, subject=$subject, messageId=$messageId, created=$created, time=$time, user=$user, transtype=$transtype, origin=$origin, interface=$interface, sendingZone=$sendingZone, bodySize=$bodySize, seq=$seq, recipient=$recipient, domain=$domain, locked=$locked, lockTime=$lockTime, assigned=$assigned, queued=$queued, mxHostname=$mxHostname, response=$response, ]';
   }
 
   MailLogEntry.fromJson(Map<String, dynamic> json) {
@@ -87,29 +67,19 @@ class MailLogEntry {
     time = json['time'];
     user = json['user'];
     transtype = json['transtype'];
-    transhost = json['transhost'];
-    originhost = json['originhost'];
     origin = json['origin'];
     interface = json['interface'];
-    date = json['date'];
     sendingZone = json['sendingZone'];
     bodySize = json['bodySize'];
-    sourceMd5 = json['sourceMd5'];
     seq = json['seq'];
-    domain = json['domain'];
     recipient = json['recipient'];
+    domain = json['domain'];
     locked = json['locked'];
     lockTime = json['lockTime'];
     assigned = json['assigned'];
     queued = json['queued'];
-    lock = json['_lock'];
-    logger = json['logger'];
-    mxPort = json['mxPort'];
-    connectionKey = json['connectionKey'];
     mxHostname = json['mxHostname'];
-    sentBodyHash = json['sentBodyHash'];
-    sentBodySize = json['sentBodySize'];
-    md5Match = json['md5Match'];
+    response = json['response'];
   }
 
   Map<String, dynamic> toJson() {
@@ -124,29 +94,19 @@ class MailLogEntry {
       'time': time,
       'user': user,
       'transtype': transtype,
-      'transhost': transhost,
-      'originhost': originhost,
       'origin': origin,
       'interface': interface,
-      'date': date,
       'sendingZone': sendingZone,
       'bodySize': bodySize,
-      'sourceMd5': sourceMd5,
       'seq': seq,
-      'domain': domain,
       'recipient': recipient,
+      'domain': domain,
       'locked': locked,
       'lockTime': lockTime,
       'assigned': assigned,
       'queued': queued,
-      '_lock': lock,
-      'logger': logger,
-      'mxPort': mxPort,
-      'connectionKey': connectionKey,
       'mxHostname': mxHostname,
-      'sentBodyHash': sentBodyHash,
-      'sentBodySize': sentBodySize,
-      'md5Match': md5Match
+      'response': response
      };
   }
 

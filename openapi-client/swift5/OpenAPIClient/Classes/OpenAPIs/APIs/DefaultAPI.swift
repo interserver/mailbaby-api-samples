@@ -209,7 +209,12 @@ open class DefaultAPI {
      displays the mail log
      
      - parameter id: (query) The ID of your mail order this will be sent through. (optional)
-     - parameter search: (query) pass an optional search string for looking up inventory (optional)
+     - parameter origin: (query) originating ip address sending mail (optional)
+     - parameter mx: (query) mx record mail was sent to (optional)
+     - parameter from: (query) from email address (optional)
+     - parameter to: (query) to/destination email address (optional)
+     - parameter subject: (query) subject containing this string (optional)
+     - parameter mailid: (query) mail id (optional)
      - parameter skip: (query) number of records to skip for pagination (optional, default to 0)
      - parameter limit: (query) maximum number of records to return (optional, default to 100)
      - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
@@ -218,8 +223,8 @@ open class DefaultAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func viewMailLog(id: Int64? = nil, search: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: MailLog?, _ error: Error?) -> Void)) -> RequestTask {
-        return viewMailLogWithRequestBuilder(id: id, search: search, skip: skip, limit: limit, startDate: startDate, endDate: endDate).execute(apiResponseQueue) { result in
+    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: MailLog?, _ error: Error?) -> Void)) -> RequestTask {
+        return viewMailLogWithRequestBuilder(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -232,19 +237,24 @@ open class DefaultAPI {
     /**
      displays the mail log
      - GET /mail/log
-     - By passing in the appropriate options, you can search for available inventory in the system 
+     - Get a listing of the emails sent through this system 
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
      - parameter id: (query) The ID of your mail order this will be sent through. (optional)
-     - parameter search: (query) pass an optional search string for looking up inventory (optional)
+     - parameter origin: (query) originating ip address sending mail (optional)
+     - parameter mx: (query) mx record mail was sent to (optional)
+     - parameter from: (query) from email address (optional)
+     - parameter to: (query) to/destination email address (optional)
+     - parameter subject: (query) subject containing this string (optional)
+     - parameter mailid: (query) mail id (optional)
      - parameter skip: (query) number of records to skip for pagination (optional, default to 0)
      - parameter limit: (query) maximum number of records to return (optional, default to 100)
      - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
      - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
      - returns: RequestBuilder<MailLog> 
      */
-    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, search: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil) -> RequestBuilder<MailLog> {
+    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil) -> RequestBuilder<MailLog> {
         let localVariablePath = "/mail/log"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -252,7 +262,12 @@ open class DefaultAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "id": id?.encodeToJSON(),
-            "search": search?.encodeToJSON(),
+            "origin": origin?.encodeToJSON(),
+            "mx": mx?.encodeToJSON(),
+            "from": from?.encodeToJSON(),
+            "to": to?.encodeToJSON(),
+            "subject": subject?.encodeToJSON(),
+            "mailid": mailid?.encodeToJSON(),
             "skip": skip?.encodeToJSON(),
             "limit": limit?.encodeToJSON(),
             "startDate": startDate?.encodeToJSON(),

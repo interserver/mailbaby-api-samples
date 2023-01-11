@@ -213,11 +213,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **viewMailLog**
-> MailLog viewMailLog(id, search, skip, limit, startDate, endDate)
+> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
 
 displays the mail log
 
-By passing in the appropriate options, you can search for available inventory in the system 
+Get a listing of the emails sent through this system 
 
 ### Example
 ```dart
@@ -229,14 +229,19 @@ import 'package:swagger/api.dart';
 
 var api_instance = new DefaultApi();
 var id = 789; // int | The ID of your mail order this will be sent through.
-var search = search_example; // String | pass an optional search string for looking up inventory
+var origin = origin_example; // String | originating ip address sending mail
+var mx = mx_example; // String | mx record mail was sent to
+var from = from_example; // String | from email address
+var to = to_example; // String | to/destination email address
+var subject = subject_example; // String | subject containing this string
+var mailid = mailid_example; // String | mail id
 var skip = 56; // int | number of records to skip for pagination
 var limit = 56; // int | maximum number of records to return
 var startDate = 789; // int | earliest date to get emails in unix timestamp format
 var endDate = 789; // int | earliest date to get emails in unix timestamp format
 
 try {
-    var result = api_instance.viewMailLog(id, search, skip, limit, startDate, endDate);
+    var result = api_instance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
     print(result);
 } catch (e) {
     print("Exception when calling DefaultApi->viewMailLog: $e\n");
@@ -248,7 +253,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
- **search** | **String**| pass an optional search string for looking up inventory | [optional] 
+ **origin** | **String**| originating ip address sending mail | [optional] 
+ **mx** | **String**| mx record mail was sent to | [optional] 
+ **from** | **String**| from email address | [optional] 
+ **to** | **String**| to/destination email address | [optional] 
+ **subject** | **String**| subject containing this string | [optional] 
+ **mailid** | **String**| mail id | [optional] 
  **skip** | **int**| number of records to skip for pagination | [optional] [default to 0]
  **limit** | **int**| maximum number of records to return | [optional] [default to 100]
  **startDate** | **int**| earliest date to get emails in unix timestamp format | [optional] 

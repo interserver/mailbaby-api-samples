@@ -19,29 +19,19 @@
   | {'time', integer() }
   | {'user', binary() }
   | {'transtype', binary() }
-  | {'transhost', binary() }
-  | {'originhost', binary() }
   | {'origin', binary() }
   | {'interface', binary() }
-  | {'date', binary() }
   | {'sendingZone', binary() }
   | {'bodySize', integer() }
-  | {'sourceMd5', binary() }
   | {'seq', integer() }
-  | {'domain', binary() }
   | {'recipient', binary() }
+  | {'domain', binary() }
   | {'locked', integer() }
   | {'lockTime', integer() }
   | {'assigned', binary() }
   | {'queued', binary() }
-  | {'_lock', binary() }
-  | {'logger', binary() }
-  | {'mxPort', integer() }
-  | {'connectionKey', binary() }
   | {'mxHostname', binary() }
-  | {'sentBodyHash', binary() }
-  | {'sentBodySize', integer() }
-  | {'md5Match', integer() }
+  | {'response', binary() }
   ].
 
 
@@ -59,29 +49,19 @@ openapi_mail_log_entry(Fields) ->
             , {'time', integer() }
             , {'user', binary() }
             , {'transtype', binary() }
-            , {'transhost', binary() }
-            , {'originhost', binary() }
             , {'origin', binary() }
             , {'interface', binary() }
-            , {'date', binary() }
             , {'sendingZone', binary() }
             , {'bodySize', integer() }
-            , {'sourceMd5', binary() }
             , {'seq', integer() }
-            , {'domain', binary() }
             , {'recipient', binary() }
+            , {'domain', binary() }
             , {'locked', integer() }
             , {'lockTime', integer() }
             , {'assigned', binary() }
             , {'queued', binary() }
-            , {'_lock', binary() }
-            , {'logger', binary() }
-            , {'mxPort', integer() }
-            , {'connectionKey', binary() }
             , {'mxHostname', binary() }
-            , {'sentBodyHash', binary() }
-            , {'sentBodySize', integer() }
-            , {'md5Match', integer() }
+            , {'response', binary() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

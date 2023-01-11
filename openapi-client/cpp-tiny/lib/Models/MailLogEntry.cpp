@@ -11,34 +11,24 @@ MailLogEntry::MailLogEntry()
 	from = std::string();
 	to = std::string();
 	subject = std::string();
-	messageId = std::string();
 	created = std::string();
 	time = int(0);
 	user = std::string();
 	transtype = std::string();
-	transhost = std::string();
-	originhost = std::string();
 	origin = std::string();
 	interface = std::string();
-	date = std::string();
 	sendingZone = std::string();
 	bodySize = int(0);
-	sourceMd5 = std::string();
 	seq = int(0);
-	domain = std::string();
 	recipient = std::string();
+	domain = std::string();
 	locked = int(0);
 	lockTime = int(0);
 	assigned = std::string();
 	queued = std::string();
-	_lock = std::string();
-	logger = std::string();
-	mxPort = int(0);
-	connectionKey = std::string();
 	mxHostname = std::string();
-	sentBodyHash = std::string();
-	sentBodySize = int(0);
-	md5Match = int(0);
+	response = std::string();
+	messageId = std::string();
 }
 
 MailLogEntry::MailLogEntry(std::string jsonString)
@@ -121,19 +111,6 @@ MailLogEntry::fromJson(std::string jsonObj)
 
     }
 
-    const char *messageIdKey = "messageId";
-
-    if(object.has_key(messageIdKey))
-    {
-        bourne::json value = object[messageIdKey];
-
-
-
-        jsonToValue(&messageId, value, "std::string");
-
-
-    }
-
     const char *createdKey = "created";
 
     if(object.has_key(createdKey))
@@ -186,32 +163,6 @@ MailLogEntry::fromJson(std::string jsonObj)
 
     }
 
-    const char *transhostKey = "transhost";
-
-    if(object.has_key(transhostKey))
-    {
-        bourne::json value = object[transhostKey];
-
-
-
-        jsonToValue(&transhost, value, "std::string");
-
-
-    }
-
-    const char *originhostKey = "originhost";
-
-    if(object.has_key(originhostKey))
-    {
-        bourne::json value = object[originhostKey];
-
-
-
-        jsonToValue(&originhost, value, "std::string");
-
-
-    }
-
     const char *originKey = "origin";
 
     if(object.has_key(originKey))
@@ -234,19 +185,6 @@ MailLogEntry::fromJson(std::string jsonObj)
 
 
         jsonToValue(&interface, value, "std::string");
-
-
-    }
-
-    const char *dateKey = "date";
-
-    if(object.has_key(dateKey))
-    {
-        bourne::json value = object[dateKey];
-
-
-
-        jsonToValue(&date, value, "std::string");
 
 
     }
@@ -277,19 +215,6 @@ MailLogEntry::fromJson(std::string jsonObj)
 
     }
 
-    const char *sourceMd5Key = "sourceMd5";
-
-    if(object.has_key(sourceMd5Key))
-    {
-        bourne::json value = object[sourceMd5Key];
-
-
-
-        jsonToValue(&sourceMd5, value, "std::string");
-
-
-    }
-
     const char *seqKey = "seq";
 
     if(object.has_key(seqKey))
@@ -303,19 +228,6 @@ MailLogEntry::fromJson(std::string jsonObj)
 
     }
 
-    const char *domainKey = "domain";
-
-    if(object.has_key(domainKey))
-    {
-        bourne::json value = object[domainKey];
-
-
-
-        jsonToValue(&domain, value, "std::string");
-
-
-    }
-
     const char *recipientKey = "recipient";
 
     if(object.has_key(recipientKey))
@@ -325,6 +237,19 @@ MailLogEntry::fromJson(std::string jsonObj)
 
 
         jsonToValue(&recipient, value, "std::string");
+
+
+    }
+
+    const char *domainKey = "domain";
+
+    if(object.has_key(domainKey))
+    {
+        bourne::json value = object[domainKey];
+
+
+
+        jsonToValue(&domain, value, "std::string");
 
 
     }
@@ -381,58 +306,6 @@ MailLogEntry::fromJson(std::string jsonObj)
 
     }
 
-    const char *_lockKey = "_lock";
-
-    if(object.has_key(_lockKey))
-    {
-        bourne::json value = object[_lockKey];
-
-
-
-        jsonToValue(&_lock, value, "std::string");
-
-
-    }
-
-    const char *loggerKey = "logger";
-
-    if(object.has_key(loggerKey))
-    {
-        bourne::json value = object[loggerKey];
-
-
-
-        jsonToValue(&logger, value, "std::string");
-
-
-    }
-
-    const char *mxPortKey = "mxPort";
-
-    if(object.has_key(mxPortKey))
-    {
-        bourne::json value = object[mxPortKey];
-
-
-
-        jsonToValue(&mxPort, value, "int");
-
-
-    }
-
-    const char *connectionKeyKey = "connectionKey";
-
-    if(object.has_key(connectionKeyKey))
-    {
-        bourne::json value = object[connectionKeyKey];
-
-
-
-        jsonToValue(&connectionKey, value, "std::string");
-
-
-    }
-
     const char *mxHostnameKey = "mxHostname";
 
     if(object.has_key(mxHostnameKey))
@@ -446,41 +319,28 @@ MailLogEntry::fromJson(std::string jsonObj)
 
     }
 
-    const char *sentBodyHashKey = "sentBodyHash";
+    const char *responseKey = "response";
 
-    if(object.has_key(sentBodyHashKey))
+    if(object.has_key(responseKey))
     {
-        bourne::json value = object[sentBodyHashKey];
+        bourne::json value = object[responseKey];
 
 
 
-        jsonToValue(&sentBodyHash, value, "std::string");
+        jsonToValue(&response, value, "std::string");
 
 
     }
 
-    const char *sentBodySizeKey = "sentBodySize";
+    const char *messageIdKey = "messageId";
 
-    if(object.has_key(sentBodySizeKey))
+    if(object.has_key(messageIdKey))
     {
-        bourne::json value = object[sentBodySizeKey];
+        bourne::json value = object[messageIdKey];
 
 
 
-        jsonToValue(&sentBodySize, value, "int");
-
-
-    }
-
-    const char *md5MatchKey = "md5Match";
-
-    if(object.has_key(md5MatchKey))
-    {
-        bourne::json value = object[md5MatchKey];
-
-
-
-        jsonToValue(&md5Match, value, "int");
+        jsonToValue(&messageId, value, "std::string");
 
 
     }
@@ -532,13 +392,6 @@ MailLogEntry::toJson()
 
 
 
-    object["messageId"] = getMessageId();
-
-
-
-
-
-
     object["created"] = getCreated();
 
 
@@ -567,20 +420,6 @@ MailLogEntry::toJson()
 
 
 
-    object["transhost"] = getTranshost();
-
-
-
-
-
-
-    object["originhost"] = getOriginhost();
-
-
-
-
-
-
     object["origin"] = getOrigin();
 
 
@@ -589,13 +428,6 @@ MailLogEntry::toJson()
 
 
     object["interface"] = getInterface();
-
-
-
-
-
-
-    object["date"] = getDate();
 
 
 
@@ -616,13 +448,6 @@ MailLogEntry::toJson()
 
 
 
-    object["sourceMd5"] = getSourceMd5();
-
-
-
-
-
-
     object["seq"] = getSeq();
 
 
@@ -630,14 +455,14 @@ MailLogEntry::toJson()
 
 
 
-    object["domain"] = getDomain();
-
-
-
-
-
-
     object["recipient"] = getRecipient();
+
+
+
+
+
+
+    object["domain"] = getDomain();
 
 
 
@@ -672,34 +497,6 @@ MailLogEntry::toJson()
 
 
 
-    object["_lock"] = getLock();
-
-
-
-
-
-
-    object["logger"] = getLogger();
-
-
-
-
-
-
-    object["mxPort"] = getMxPort();
-
-
-
-
-
-
-    object["connectionKey"] = getConnectionKey();
-
-
-
-
-
-
     object["mxHostname"] = getMxHostname();
 
 
@@ -707,21 +504,14 @@ MailLogEntry::toJson()
 
 
 
-    object["sentBodyHash"] = getSentBodyHash();
+    object["response"] = getResponse();
 
 
 
 
 
 
-    object["sentBodySize"] = getSentBodySize();
-
-
-
-
-
-
-    object["md5Match"] = getMd5Match();
+    object["messageId"] = getMessageId();
 
 
 
@@ -790,18 +580,6 @@ MailLogEntry::setSubject(std::string  subject)
 }
 
 std::string
-MailLogEntry::getMessageId()
-{
-	return messageId;
-}
-
-void
-MailLogEntry::setMessageId(std::string  messageId)
-{
-	this->messageId = messageId;
-}
-
-std::string
 MailLogEntry::getCreated()
 {
 	return created;
@@ -850,30 +628,6 @@ MailLogEntry::setTranstype(std::string  transtype)
 }
 
 std::string
-MailLogEntry::getTranshost()
-{
-	return transhost;
-}
-
-void
-MailLogEntry::setTranshost(std::string  transhost)
-{
-	this->transhost = transhost;
-}
-
-std::string
-MailLogEntry::getOriginhost()
-{
-	return originhost;
-}
-
-void
-MailLogEntry::setOriginhost(std::string  originhost)
-{
-	this->originhost = originhost;
-}
-
-std::string
 MailLogEntry::getOrigin()
 {
 	return origin;
@@ -895,18 +649,6 @@ void
 MailLogEntry::setInterface(std::string  interface)
 {
 	this->interface = interface;
-}
-
-std::string
-MailLogEntry::getDate()
-{
-	return date;
-}
-
-void
-MailLogEntry::setDate(std::string  date)
-{
-	this->date = date;
 }
 
 std::string
@@ -933,18 +675,6 @@ MailLogEntry::setBodySize(int  bodySize)
 	this->bodySize = bodySize;
 }
 
-std::string
-MailLogEntry::getSourceMd5()
-{
-	return sourceMd5;
-}
-
-void
-MailLogEntry::setSourceMd5(std::string  sourceMd5)
-{
-	this->sourceMd5 = sourceMd5;
-}
-
 int
 MailLogEntry::getSeq()
 {
@@ -958,18 +688,6 @@ MailLogEntry::setSeq(int  seq)
 }
 
 std::string
-MailLogEntry::getDomain()
-{
-	return domain;
-}
-
-void
-MailLogEntry::setDomain(std::string  domain)
-{
-	this->domain = domain;
-}
-
-std::string
 MailLogEntry::getRecipient()
 {
 	return recipient;
@@ -979,6 +697,18 @@ void
 MailLogEntry::setRecipient(std::string  recipient)
 {
 	this->recipient = recipient;
+}
+
+std::string
+MailLogEntry::getDomain()
+{
+	return domain;
+}
+
+void
+MailLogEntry::setDomain(std::string  domain)
+{
+	this->domain = domain;
 }
 
 int
@@ -1030,54 +760,6 @@ MailLogEntry::setQueued(std::string  queued)
 }
 
 std::string
-MailLogEntry::getLock()
-{
-	return _lock;
-}
-
-void
-MailLogEntry::setLock(std::string  _lock)
-{
-	this->_lock = _lock;
-}
-
-std::string
-MailLogEntry::getLogger()
-{
-	return logger;
-}
-
-void
-MailLogEntry::setLogger(std::string  logger)
-{
-	this->logger = logger;
-}
-
-int
-MailLogEntry::getMxPort()
-{
-	return mxPort;
-}
-
-void
-MailLogEntry::setMxPort(int  mxPort)
-{
-	this->mxPort = mxPort;
-}
-
-std::string
-MailLogEntry::getConnectionKey()
-{
-	return connectionKey;
-}
-
-void
-MailLogEntry::setConnectionKey(std::string  connectionKey)
-{
-	this->connectionKey = connectionKey;
-}
-
-std::string
 MailLogEntry::getMxHostname()
 {
 	return mxHostname;
@@ -1090,39 +772,27 @@ MailLogEntry::setMxHostname(std::string  mxHostname)
 }
 
 std::string
-MailLogEntry::getSentBodyHash()
+MailLogEntry::getResponse()
 {
-	return sentBodyHash;
+	return response;
 }
 
 void
-MailLogEntry::setSentBodyHash(std::string  sentBodyHash)
+MailLogEntry::setResponse(std::string  response)
 {
-	this->sentBodyHash = sentBodyHash;
+	this->response = response;
 }
 
-int
-MailLogEntry::getSentBodySize()
+std::string
+MailLogEntry::getMessageId()
 {
-	return sentBodySize;
-}
-
-void
-MailLogEntry::setSentBodySize(int  sentBodySize)
-{
-	this->sentBodySize = sentBodySize;
-}
-
-int
-MailLogEntry::getMd5Match()
-{
-	return md5Match;
+	return messageId;
 }
 
 void
-MailLogEntry::setMd5Match(int  md5Match)
+MailLogEntry::setMessageId(std::string  messageId)
 {
-	this->md5Match = md5Match;
+	this->messageId = messageId;
 }
 
 

@@ -93,13 +93,18 @@ class MailApiControllerTest {
     @Test
     void viewMailLogTest() {
         Long id = 789L;
-        String search = "search_example";
+        String origin = "origin_example";
+        String mx = "mx_example";
+        String from = "from_example";
+        String to = "to_example";
+        String subject = "subject_example";
+        String mailid = "mailid_example";
         Integer skip = 0;
         Integer limit = 100;
         Long startDate = 789L;
         Long endDate = 789L;
         try {
-            api.viewMailLog(id, search, skip, limit, startDate, endDate).blockingGet();
+            api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

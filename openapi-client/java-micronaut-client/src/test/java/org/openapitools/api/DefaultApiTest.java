@@ -104,21 +104,26 @@ public class DefaultApiTest {
     /**
      * displays the mail log
      *
-     * By passing in the appropriate options, you can search for available inventory in the system 
+     * Get a listing of the emails sent through this system 
      */
     @Test
     @Disabled("Not Implemented")
     public void viewMailLogTest() {
         // given
-        Long id = 56L;
-        String search = "example";
+        Long id = 2604L;
+        String origin = "1.2.3.4";
+        String mx = "mx.google.com";
+        String from = "me@sender.com";
+        String to = "you@receiver.com";
+        String subject = "Support";
+        String mailid = "185997065c60008840";
         Integer skip = 0;
         Integer limit = 100;
-        Long startDate = 56L;
-        Long endDate = 56L;
+        Long startDate = 1641781008L;
+        Long endDate = 1673317008L;
 
         // when
-        MailLog body = api.viewMailLog(id, search, skip, limit, startDate, endDate).block();
+        MailLog body = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate).block();
 
         // then
         // TODO implement the viewMailLogTest()

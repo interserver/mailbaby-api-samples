@@ -94,7 +94,12 @@ class TestDefaultController(BaseTestCase):
         displays the mail log
         """
         query_string = [('id', 789),
-                        ('search', 'search_example'),
+                        ('origin', 'origin_example'),
+                        ('mx', 'mx_example'),
+                        ('_from', '_from_example'),
+                        ('to', 'to_example'),
+                        ('subject', 'subject_example'),
+                        ('mailid', 'mailid_example'),
                         ('skip', 1),
                         ('limit', 10000),
                         ('start_date', 9999999999),

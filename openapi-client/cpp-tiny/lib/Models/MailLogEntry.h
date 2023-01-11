@@ -80,13 +80,6 @@ public:
 	/*! \brief Set email subject
 	 */
 	void setSubject(std::string  subject);
-	/*! \brief Get message id
-	 */
-	std::string getMessageId();
-
-	/*! \brief Set message id
-	 */
-	void setMessageId(std::string  messageId);
 	/*! \brief Get creation date
 	 */
 	std::string getCreated();
@@ -115,20 +108,6 @@ public:
 	/*! \brief Set transaction type
 	 */
 	void setTranstype(std::string  transtype);
-	/*! \brief Get transaction host
-	 */
-	std::string getTranshost();
-
-	/*! \brief Set transaction host
-	 */
-	void setTranshost(std::string  transhost);
-	/*! \brief Get origin host
-	 */
-	std::string getOriginhost();
-
-	/*! \brief Set origin host
-	 */
-	void setOriginhost(std::string  originhost);
 	/*! \brief Get origin ip
 	 */
 	std::string getOrigin();
@@ -143,13 +122,6 @@ public:
 	/*! \brief Set interface name
 	 */
 	void setInterface(std::string  interface);
-	/*! \brief Get date processed
-	 */
-	std::string getDate();
-
-	/*! \brief Set date processed
-	 */
-	void setDate(std::string  date);
 	/*! \brief Get sending zone
 	 */
 	std::string getSendingZone();
@@ -164,20 +136,20 @@ public:
 	/*! \brief Set email body size in bytes
 	 */
 	void setBodySize(int  bodySize);
-	/*! \brief Get md5 sum of the email
-	 */
-	std::string getSourceMd5();
-
-	/*! \brief Set md5 sum of the email
-	 */
-	void setSourceMd5(std::string  sourceMd5);
-	/*! \brief Get delivery sequency
+	/*! \brief Get index of email in the to adderess list
 	 */
 	int getSeq();
 
-	/*! \brief Set delivery sequency
+	/*! \brief Set index of email in the to adderess list
 	 */
 	void setSeq(int  seq);
+	/*! \brief Get to address this email is being sent to
+	 */
+	std::string getRecipient();
+
+	/*! \brief Set to address this email is being sent to
+	 */
+	void setRecipient(std::string  recipient);
 	/*! \brief Get to address domain
 	 */
 	std::string getDomain();
@@ -185,13 +157,6 @@ public:
 	/*! \brief Set to address domain
 	 */
 	void setDomain(std::string  domain);
-	/*! \brief Get email receiver address
-	 */
-	std::string getRecipient();
-
-	/*! \brief Set email receiver address
-	 */
-	void setRecipient(std::string  recipient);
 	/*! \brief Get locked status
 	 */
 	int getLocked();
@@ -220,34 +185,6 @@ public:
 	/*! \brief Set queued timestamp
 	 */
 	void setQueued(std::string  queued);
-	/*! \brief Get lock id
-	 */
-	std::string getLock();
-
-	/*! \brief Set lock id
-	 */
-	void setLock(std::string  _lock);
-	/*! \brief Get logger
-	 */
-	std::string getLogger();
-
-	/*! \brief Set logger
-	 */
-	void setLogger(std::string  logger);
-	/*! \brief Get mx port number
-	 */
-	int getMxPort();
-
-	/*! \brief Set mx port number
-	 */
-	void setMxPort(int  mxPort);
-	/*! \brief Get connection key
-	 */
-	std::string getConnectionKey();
-
-	/*! \brief Set connection key
-	 */
-	void setConnectionKey(std::string  connectionKey);
 	/*! \brief Get mx hostname
 	 */
 	std::string getMxHostname();
@@ -255,27 +192,20 @@ public:
 	/*! \brief Set mx hostname
 	 */
 	void setMxHostname(std::string  mxHostname);
-	/*! \brief Get body hash
+	/*! \brief Get mail delivery response
 	 */
-	std::string getSentBodyHash();
+	std::string getResponse();
 
-	/*! \brief Set body hash
+	/*! \brief Set mail delivery response
 	 */
-	void setSentBodyHash(std::string  sentBodyHash);
-	/*! \brief Get sent body size in bytes
+	void setResponse(std::string  response);
+	/*! \brief Get message id
 	 */
-	int getSentBodySize();
+	std::string getMessageId();
 
-	/*! \brief Set sent body size in bytes
+	/*! \brief Set message id
 	 */
-	void setSentBodySize(int  sentBodySize);
-	/*! \brief Get md5 checksum matching result
-	 */
-	int getMd5Match();
-
-	/*! \brief Set md5 checksum matching result
-	 */
-	void setMd5Match(int  md5Match);
+	void setMessageId(std::string  messageId);
 
 
     private:
@@ -284,34 +214,24 @@ public:
     std::string from{};
     std::string to{};
     std::string subject{};
-    std::string messageId{};
     std::string created{};
     int time{};
     std::string user{};
     std::string transtype{};
-    std::string transhost{};
-    std::string originhost{};
     std::string origin{};
     std::string interface{};
-    std::string date{};
     std::string sendingZone{};
     int bodySize{};
-    std::string sourceMd5{};
     int seq{};
-    std::string domain{};
     std::string recipient{};
+    std::string domain{};
     int locked{};
     int lockTime{};
     std::string assigned{};
     std::string queued{};
-    std::string _lock{};
-    std::string logger{};
-    int mxPort{};
-    std::string connectionKey{};
     std::string mxHostname{};
-    std::string sentBodyHash{};
-    int sentBodySize{};
-    int md5Match{};
+    std::string response{};
+    std::string messageId{};
 };
 }
 

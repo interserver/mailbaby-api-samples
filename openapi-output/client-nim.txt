@@ -52,6 +52,10 @@
 [main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
 [main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
 [main] WARN  o.o.codegen.DefaultCodegen - Multiple MediaTypes found, using only the first one
+[main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
+[main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
+[main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
+[main] WARN  o.o.c.languages.NimClientCodegen - A reserved word "from" is used. Consider renaming the field name
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/openapiclient/apis/api_default.nim
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/README.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/nim/sample_client.nim

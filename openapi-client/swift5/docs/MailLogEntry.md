@@ -8,34 +8,24 @@ Name | Type | Description | Notes
 **from** | **String** | from address | 
 **to** | **String** | to address | 
 **subject** | **String** | email subject | 
-**messageId** | **String** | message id | 
 **created** | **String** | creation date | 
 **time** | **Int** | creation timestamp | 
 **user** | **String** | user account | 
 **transtype** | **String** | transaction type | 
-**transhost** | **String** | transaction host | 
-**originhost** | **String** | origin host | 
 **origin** | **String** | origin ip | 
 **interface** | **String** | interface name | 
-**date** | **String** | date processed | 
 **sendingZone** | **String** | sending zone | 
 **bodySize** | **Int** | email body size in bytes | 
-**sourceMd5** | **String** | md5 sum of the email | 
-**seq** | **Int** | delivery sequency | 
+**seq** | **Int** | index of email in the to adderess list | 
+**recipient** | **String** | to address this email is being sent to | 
 **domain** | **String** | to address domain | 
-**recipient** | **String** | email receiver address | 
 **locked** | **Int** | locked status | 
 **lockTime** | **Int** | lock timestamp | 
 **assigned** | **String** | assigned server | 
 **queued** | **String** | queued timestamp | 
-**lock** | **String** | lock id | 
-**logger** | **String** | logger | 
-**mxPort** | **Int** | mx port number | 
-**connectionKey** | **String** | connection key | 
 **mxHostname** | **String** | mx hostname | 
-**sentBodyHash** | **String** | body hash | 
-**sentBodySize** | **Int** | sent body size in bytes | 
-**md5Match** | **Int** | md5 checksum matching result | 
+**response** | **String** | mail delivery response | 
+**messageId** | **String** | message id | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

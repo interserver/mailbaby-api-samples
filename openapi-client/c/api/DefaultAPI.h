@@ -42,9 +42,9 @@ DefaultAPI_sendMail(apiClient_t *apiClient, char * to , char * from , char * sub
 
 // displays the mail log
 //
-// By passing in the appropriate options, you can search for available inventory in the system 
+// Get a listing of the emails sent through this system 
 //
 mail_log_t*
-DefaultAPI_viewMailLog(apiClient_t *apiClient, long id , char * search , int skip , int limit , long startDate , long endDate );
+DefaultAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * mx , char * from , char * to , char * subject , char * mailid , int skip , int limit , long startDate , long endDate );
 
 

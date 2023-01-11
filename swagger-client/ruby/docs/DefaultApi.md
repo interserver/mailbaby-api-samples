@@ -335,7 +335,7 @@ Name | Type | Description  | Notes
 
 displays the mail log
 
-By passing in the appropriate options, you can search for available inventory in the system 
+Get a listing of the emails sent through this system 
 
 ### Example
 ```ruby
@@ -352,7 +352,12 @@ end
 api_instance = SwaggerClient::DefaultApi.new
 opts = { 
   id: 789, # Integer | The ID of your mail order this will be sent through.
-  search: 'search_example', # String | pass an optional search string for looking up inventory
+  origin: 'origin_example', # String | originating ip address sending mail
+  mx: 'mx_example', # String | mx record mail was sent to
+  from: 'from_example', # String | from email address
+  to: 'to_example', # String | to/destination email address
+  subject: 'subject_example', # String | subject containing this string
+  mailid: 'mailid_example', # String | mail id
   skip: 0, # Integer | number of records to skip for pagination
   limit: 100, # Integer | maximum number of records to return
   start_date: 789, # Integer | earliest date to get emails in unix timestamp format
@@ -373,7 +378,12 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| The ID of your mail order this will be sent through. | [optional] 
- **search** | **String**| pass an optional search string for looking up inventory | [optional] 
+ **origin** | **String**| originating ip address sending mail | [optional] 
+ **mx** | **String**| mx record mail was sent to | [optional] 
+ **from** | **String**| from email address | [optional] 
+ **to** | **String**| to/destination email address | [optional] 
+ **subject** | **String**| subject containing this string | [optional] 
+ **mailid** | **String**| mail id | [optional] 
  **skip** | **Integer**| number of records to skip for pagination | [optional] [default to 0]
  **limit** | **Integer**| maximum number of records to return | [optional] [default to 100]
  **start_date** | **Integer**| earliest date to get emails in unix timestamp format | [optional] 

@@ -41,7 +41,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2023-01-03T15:07:59.787807-05:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2023-01-10T22:50:10.186355-05:00[America/New_York]")public class MailApi  {
 
     @Inject MailApiService service;
 
@@ -142,15 +142,15 @@ import javax.validation.constraints.*;
     @Path("/log")
     
     @Produces({ "application/json" })
-    @Operation(summary = "displays the mail log", description = "By passing in the appropriate options, you can search for available inventory in the system ", security = {
+    @Operation(summary = "displays the mail log", description = "Get a listing of the emails sent through this system ", security = {
         @SecurityRequirement(name = "apiKeyAuth")
     }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailLog.class))),
         
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
-    public Response viewMailLog(  @QueryParam("id") Long id,  @QueryParam("search") String search, @Min(0)  @DefaultValue("0") @QueryParam("skip") Integer skip, @Min(1) @Max(10000)  @DefaultValue("100") @QueryParam("limit") Integer limit, @Min(0L) @Max(9999999999L)  @QueryParam("startDate") Long startDate, @Min(0L) @Max(9999999999L)  @QueryParam("endDate") Long endDate,@Context SecurityContext securityContext)
+    public Response viewMailLog(  @QueryParam("id") Long id,  @QueryParam("origin") String origin,  @QueryParam("mx") String mx,  @QueryParam("from") String from,  @QueryParam("to") String to,  @QueryParam("subject") String subject,  @QueryParam("mailid") String mailid, @Min(0)  @DefaultValue("0") @QueryParam("skip") Integer skip, @Min(1) @Max(10000)  @DefaultValue("100") @QueryParam("limit") Integer limit, @Min(0L) @Max(9999999999L)  @QueryParam("startDate") Long startDate, @Min(0L) @Max(9999999999L)  @QueryParam("endDate") Long endDate,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return service.viewMailLog(id,search,skip,limit,startDate,endDate,securityContext);
+        return service.viewMailLog(id,origin,mx,from,to,subject,mailid,skip,limit,startDate,endDate,securityContext);
     }
 }

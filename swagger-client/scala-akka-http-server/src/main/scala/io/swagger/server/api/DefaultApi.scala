@@ -87,12 +87,12 @@ class DefaultApi(
     } ~
     path() { () => 
       get {
-        parameters("id".as[Long].?, "search".as[String].?, "skip".as[Int].?, "limit".as[Int].?, "startDate".as[Long].?, "endDate".as[Long].?) { (id, search, skip, limit, startDate, endDate) =>
+        parameters("id".as[Long].?, "origin".as[String].?, "mx".as[String].?, "from".as[String].?, "to".as[String].?, "subject".as[String].?, "mailid".as[String].?, "skip".as[Int].?, "limit".as[Int].?, "startDate".as[Long].?, "endDate".as[Long].?) { (id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate) =>
           
             formFields() { () =>
               
                 
-                  defaultService.viewMailLog(id = id, search = search, skip = skip, limit = limit, startDate = startDate, endDate = endDate)
+                  defaultService.viewMailLog(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, skip = skip, limit = limit, startDate = startDate, endDate = endDate)
                
              
             }
@@ -171,7 +171,7 @@ trait DefaultApiService {
    * Code: 200, Message: search results matching criteria, DataType: MailLog
    * Code: 400, Message: bad input parameter
    */
-  def viewMailLog(id: Option[Long], search: Option[String], skip: Option[Int], limit: Option[Int], startDate: Option[Long], endDate: Option[Long])
+  def viewMailLog(id: Option[Long], origin: Option[String], mx: Option[String], from: Option[String], to: Option[String], subject: Option[String], mailid: Option[String], skip: Option[Int], limit: Option[Int], startDate: Option[Long], endDate: Option[Long])
       (implicit toEntityMarshallerMailLog: ToEntityMarshaller[MailLog]): Route
 
 }

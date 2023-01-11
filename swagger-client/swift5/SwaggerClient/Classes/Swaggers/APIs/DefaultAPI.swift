@@ -274,15 +274,20 @@ open class DefaultAPI {
      displays the mail log
 
      - parameter _id: (query) The ID of your mail order this will be sent through. (optional)
-     - parameter search: (query) pass an optional search string for looking up inventory (optional)
+     - parameter origin: (query) originating ip address sending mail (optional)
+     - parameter mx: (query) mx record mail was sent to (optional)
+     - parameter from: (query) from email address (optional)
+     - parameter to: (query) to/destination email address (optional)
+     - parameter subject: (query) subject containing this string (optional)
+     - parameter mailid: (query) mail id (optional)
      - parameter skip: (query) number of records to skip for pagination (optional, default to 0)
      - parameter limit: (query) maximum number of records to return (optional, default to 100)
      - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
      - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func viewMailLog(_id: Int64? = nil, search: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, completion: @escaping ((_ data: MailLog?,_ error: Error?) -> Void)) {
-        viewMailLogWithRequestBuilder(_id: _id, search: search, skip: skip, limit: limit, startDate: startDate, endDate: endDate).execute { (response, error) -> Void in
+    open class func viewMailLog(_id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, completion: @escaping ((_ data: MailLog?,_ error: Error?) -> Void)) {
+        viewMailLogWithRequestBuilder(_id: _id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -297,80 +302,65 @@ open class DefaultAPI {
        - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
   "emails" : [ {
-    "date" : "Thu, 14 Oct 2021 08:50:09 -0400",
     "subject" : "sell 0.005 shares",
-    "origin" : "199.231.189.154",
-    "queued" : "2021-10-14T12:50:15.487Z",
-    "logger" : "logger",
-    "connectionKey" : "206.72.200.46:interserver.net:25",
-    "interface" : "feeder",
-    "md5Match" : 1,
-    "mxPort" : 25,
-    "sentBodySize" : 63,
-    "lockTime" : 1634215818533,
-    "from" : "person@mysite.com",
-    "id" : "17c7eda538e0005d03",
-    "locked" : 1,
-    "seq" : 1,
-    "sentBodyHash" : "1d7058e6a30369f200b0c34fab2fac92",
     "created" : "2021-10-14 08:50:10",
     "transtype" : "ESMTPSA",
-    "sourceMd5" : "1d7058e6a30369f200b0c34fab2fac92",
-    "_lock" : "lock 17c7eda538e0005d03 001",
+    "origin" : "199.231.189.154",
+    "queued" : "2021-10-14T12:50:15.487Z",
     "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
     "sendingZone" : "interserver",
     "mxHostname" : "mx.j.is.cc",
-    "transhost" : "relay0.mailbaby.net",
-    "originhost" : "199.231.189.154",
+    "interface" : "feeder",
+    "lockTime" : 1634215818533,
+    "response" : "250 2.0.0 Ok queued as C91D83E128C",
     "domain" : "interserver.net",
     "bodySize" : 63,
     "recipient" : "client@isp.com",
+    "from" : "person@mysite.com",
     "assigned" : "relay1",
     "_id" : 103172,
+    "id" : "17c7eda538e0005d03",
     "to" : "client@isp.com",
     "time" : 1634215809,
-    "user" : "mb5658"
+    "locked" : 1,
+    "user" : "mb5658",
+    "seq" : 1
   }, {
-    "date" : "Thu, 14 Oct 2021 08:50:09 -0400",
     "subject" : "sell 0.005 shares",
-    "origin" : "199.231.189.154",
-    "queued" : "2021-10-14T12:50:15.487Z",
-    "logger" : "logger",
-    "connectionKey" : "206.72.200.46:interserver.net:25",
-    "interface" : "feeder",
-    "md5Match" : 1,
-    "mxPort" : 25,
-    "sentBodySize" : 63,
-    "lockTime" : 1634215818533,
-    "from" : "person@mysite.com",
-    "id" : "17c7eda538e0005d03",
-    "locked" : 1,
-    "seq" : 1,
-    "sentBodyHash" : "1d7058e6a30369f200b0c34fab2fac92",
     "created" : "2021-10-14 08:50:10",
     "transtype" : "ESMTPSA",
-    "sourceMd5" : "1d7058e6a30369f200b0c34fab2fac92",
-    "_lock" : "lock 17c7eda538e0005d03 001",
+    "origin" : "199.231.189.154",
+    "queued" : "2021-10-14T12:50:15.487Z",
     "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
     "sendingZone" : "interserver",
     "mxHostname" : "mx.j.is.cc",
-    "transhost" : "relay0.mailbaby.net",
-    "originhost" : "199.231.189.154",
+    "interface" : "feeder",
+    "lockTime" : 1634215818533,
+    "response" : "250 2.0.0 Ok queued as C91D83E128C",
     "domain" : "interserver.net",
     "bodySize" : 63,
     "recipient" : "client@isp.com",
+    "from" : "person@mysite.com",
     "assigned" : "relay1",
     "_id" : 103172,
+    "id" : "17c7eda538e0005d03",
     "to" : "client@isp.com",
     "time" : 1634215809,
-    "user" : "mb5658"
+    "locked" : 1,
+    "user" : "mb5658",
+    "seq" : 1
   } ],
   "total" : 10234,
   "limit" : 100,
   "skip" : 0
 }}]
      - parameter _id: (query) The ID of your mail order this will be sent through. (optional)
-     - parameter search: (query) pass an optional search string for looking up inventory (optional)
+     - parameter origin: (query) originating ip address sending mail (optional)
+     - parameter mx: (query) mx record mail was sent to (optional)
+     - parameter from: (query) from email address (optional)
+     - parameter to: (query) to/destination email address (optional)
+     - parameter subject: (query) subject containing this string (optional)
+     - parameter mailid: (query) mail id (optional)
      - parameter skip: (query) number of records to skip for pagination (optional, default to 0)
      - parameter limit: (query) maximum number of records to return (optional, default to 100)
      - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
@@ -378,14 +368,19 @@ open class DefaultAPI {
 
      - returns: RequestBuilder<MailLog> 
      */
-    open class func viewMailLogWithRequestBuilder(_id: Int64? = nil, search: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil) -> RequestBuilder<MailLog> {
+    open class func viewMailLogWithRequestBuilder(_id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil) -> RequestBuilder<MailLog> {
         let path = "/mail/log"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
                         "id": _id?.encodeToJSON(), 
-                        "search": search, 
+                        "origin": origin, 
+                        "mx": mx, 
+                        "from": from, 
+                        "to": to, 
+                        "subject": subject, 
+                        "mailid": mailid, 
                         "skip": skip?.encodeToJSON(), 
                         "limit": limit?.encodeToJSON(), 
                         "startDate": startDate?.encodeToJSON(), 

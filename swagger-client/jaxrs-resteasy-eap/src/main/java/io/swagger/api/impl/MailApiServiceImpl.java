@@ -23,7 +23,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2023-01-03T15:07:57.417984-05:00[America/New_York]")public class MailApiServiceImpl implements MailApi {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2023-01-10T22:50:06.966286-05:00[America/New_York]")public class MailApiServiceImpl implements MailApi {
       public Response getMailOrders(SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
@@ -44,7 +44,7 @@ import javax.ws.rs.core.SecurityContext;
       // do some magic!
       return Response.ok().build();
   }
-      public Response viewMailLog(Long id,String search,Integer skip,Integer limit,Long startDate,Long endDate,SecurityContext securityContext) {
+      public Response viewMailLog(Long id,String origin,String mx,String from,String to,String subject,String mailid,Integer skip,Integer limit,Long startDate,Long endDate,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }

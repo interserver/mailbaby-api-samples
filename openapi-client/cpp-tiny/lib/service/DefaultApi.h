@@ -90,9 +90,14 @@ public:
     /**
     * displays the mail log.
     *
-    * By passing in the appropriate options, you can search for available inventory in the system 
+    * Get a listing of the emails sent through this system 
     * \param id The ID of your mail order this will be sent through.
-    * \param search pass an optional search string for looking up inventory
+    * \param origin originating ip address sending mail
+    * \param mx mx record mail was sent to
+    * \param from from email address
+    * \param to to/destination email address
+    * \param subject subject containing this string
+    * \param mailid mail id
     * \param skip number of records to skip for pagination
     * \param limit maximum number of records to return
     * \param startDate earliest date to get emails in unix timestamp format
@@ -106,7 +111,22 @@ public:
             long id
             , 
             
-            std::string search
+            std::string origin
+            , 
+            
+            std::string mx
+            , 
+            
+            std::string from
+            , 
+            
+            std::string to
+            , 
+            
+            std::string subject
+            , 
+            
+            std::string mailid
             , 
             
             int skip

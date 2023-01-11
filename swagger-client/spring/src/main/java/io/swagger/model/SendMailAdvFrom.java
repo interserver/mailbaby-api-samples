@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "The information to use for the From address in the email. from.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-01-03T15:08:04.551073-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-01-10T22:50:15.286052-05:00[America/New_York]")
 
 
 public class SendMailAdvFrom   {

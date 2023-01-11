@@ -69,11 +69,41 @@ export interface DefaultApiViewMailLogRequest {
      */
     id?: number
     /**
-     * pass an optional search string for looking up inventory
+     * originating ip address sending mail
      * @type string
      * @memberof DefaultApiviewMailLog
      */
-    search?: string
+    origin?: string
+    /**
+     * mx record mail was sent to
+     * @type string
+     * @memberof DefaultApiviewMailLog
+     */
+    mx?: string
+    /**
+     * from email address
+     * @type string
+     * @memberof DefaultApiviewMailLog
+     */
+    _from?: string
+    /**
+     * to/destination email address
+     * @type string
+     * @memberof DefaultApiviewMailLog
+     */
+    to?: string
+    /**
+     * subject containing this string
+     * @type string
+     * @memberof DefaultApiviewMailLog
+     */
+    subject?: string
+    /**
+     * mail id
+     * @type string
+     * @memberof DefaultApiviewMailLog
+     */
+    mailid?: string
     /**
      * number of records to skip for pagination
      * @type number
@@ -142,12 +172,12 @@ export class ObjectDefaultApi {
     }
 
     /**
-     * By passing in the appropriate options, you can search for available inventory in the system 
+     * Get a listing of the emails sent through this system 
      * displays the mail log
      * @param param the request object
      */
     public viewMailLog(param: DefaultApiViewMailLogRequest = {}, options?: Configuration): Promise<MailLog> {
-        return this.api.viewMailLog(param.id, param.search, param.skip, param.limit, param.startDate, param.endDate,  options).toPromise();
+        return this.api.viewMailLog(param.id, param.origin, param.mx, param._from, param.to, param.subject, param.mailid, param.skip, param.limit, param.startDate, param.endDate,  options).toPromise();
     }
 
 }

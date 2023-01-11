@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 
 displays the mail log
 
-By passing in the appropriate options, you can search for available inventory in the system 
+Get a listing of the emails sent through this system 
 
 ### Example
 
@@ -225,12 +225,17 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 
 let apiInstance = new MailBabyEmailDeliveryApi.DefaultApi();
 let opts = {
-  'id': 789, // Number | The ID of your mail order this will be sent through.
-  'search': "search_example", // String | pass an optional search string for looking up inventory
-  'skip': 0, // Number | number of records to skip for pagination
-  'limit': 100, // Number | maximum number of records to return
-  'startDate': 789, // Number | earliest date to get emails in unix timestamp format
-  'endDate': 789 // Number | earliest date to get emails in unix timestamp format
+  'id': 2604, // Number | The ID of your mail order this will be sent through.
+  'origin': 1.2.3.4, // String | originating ip address sending mail
+  'mx': mx.google.com, // String | mx record mail was sent to
+  'from': me@sender.com, // String | from email address
+  'to': you@receiver.com, // String | to/destination email address
+  'subject': Support, // String | subject containing this string
+  'mailid': 185997065c60008840, // String | mail id
+  'skip': 1000, // Number | number of records to skip for pagination
+  'limit': 1000, // Number | maximum number of records to return
+  'startDate': 1641781008, // Number | earliest date to get emails in unix timestamp format
+  'endDate': 1673317008 // Number | earliest date to get emails in unix timestamp format
 };
 apiInstance.viewMailLog(opts, (error, data, response) => {
   if (error) {
@@ -247,7 +252,12 @@ apiInstance.viewMailLog(opts, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Number**| The ID of your mail order this will be sent through. | [optional] 
- **search** | **String**| pass an optional search string for looking up inventory | [optional] 
+ **origin** | **String**| originating ip address sending mail | [optional] 
+ **mx** | **String**| mx record mail was sent to | [optional] 
+ **from** | **String**| from email address | [optional] 
+ **to** | **String**| to/destination email address | [optional] 
+ **subject** | **String**| subject containing this string | [optional] 
+ **mailid** | **String**| mail id | [optional] 
  **skip** | **Number**| number of records to skip for pagination | [optional] [default to 0]
  **limit** | **Number**| maximum number of records to return | [optional] [default to 100]
  **startDate** | **Number**| earliest date to get emails in unix timestamp format | [optional] 

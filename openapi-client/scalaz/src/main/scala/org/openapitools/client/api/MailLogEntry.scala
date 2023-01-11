@@ -22,8 +22,6 @@ case class MailLogEntry (
   to: String,
 /* email subject */
   subject: String,
-/* message id */
-  messageId: String,
 /* creation date */
   created: String,
 /* creation timestamp */
@@ -32,28 +30,20 @@ case class MailLogEntry (
   user: String,
 /* transaction type */
   transtype: String,
-/* transaction host */
-  transhost: String,
-/* origin host */
-  originhost: String,
 /* origin ip */
   origin: String,
 /* interface name */
   interface: String,
-/* date processed */
-  date: String,
 /* sending zone */
   sendingZone: String,
 /* email body size in bytes */
   bodySize: Integer,
-/* md5 sum of the email */
-  sourceMd5: String,
-/* delivery sequency */
+/* index of email in the to adderess list */
   seq: Integer,
+/* to address this email is being sent to */
+  recipient: String,
 /* to address domain */
   domain: String,
-/* email receiver address */
-  recipient: String,
 /* locked status */
   locked: Integer,
 /* lock timestamp */
@@ -62,22 +52,12 @@ case class MailLogEntry (
   assigned: String,
 /* queued timestamp */
   queued: String,
-/* lock id */
-  lock: String,
-/* logger */
-  logger: String,
-/* mx port number */
-  mxPort: Integer,
-/* connection key */
-  connectionKey: String,
 /* mx hostname */
   mxHostname: String,
-/* body hash */
-  sentBodyHash: String,
-/* sent body size in bytes */
-  sentBodySize: Integer,
-/* md5 checksum matching result */
-  md5Match: Integer)
+/* mail delivery response */
+  response: String,
+/* message id */
+  messageId: Option[String])
 
 object MailLogEntry {
   import DateTimeCodecs._

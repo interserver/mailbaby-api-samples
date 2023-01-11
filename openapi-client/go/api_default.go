@@ -3,7 +3,7 @@ MailBaby Email Delivery API
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
-API version: 1.0.1
+API version: 1.1.0
 Contact: support@interserver.net
 */
 
@@ -585,7 +585,12 @@ type ApiViewMailLogRequest struct {
 	ctx context.Context
 	ApiService *DefaultApiService
 	id *int64
-	search *string
+	origin *string
+	mx *string
+	from *string
+	to *string
+	subject *string
+	mailid *string
 	skip *int32
 	limit *int32
 	startDate *int64
@@ -598,9 +603,39 @@ func (r ApiViewMailLogRequest) Id(id int64) ApiViewMailLogRequest {
 	return r
 }
 
-// pass an optional search string for looking up inventory
-func (r ApiViewMailLogRequest) Search(search string) ApiViewMailLogRequest {
-	r.search = &search
+// originating ip address sending mail
+func (r ApiViewMailLogRequest) Origin(origin string) ApiViewMailLogRequest {
+	r.origin = &origin
+	return r
+}
+
+// mx record mail was sent to
+func (r ApiViewMailLogRequest) Mx(mx string) ApiViewMailLogRequest {
+	r.mx = &mx
+	return r
+}
+
+// from email address
+func (r ApiViewMailLogRequest) From(from string) ApiViewMailLogRequest {
+	r.from = &from
+	return r
+}
+
+// to/destination email address
+func (r ApiViewMailLogRequest) To(to string) ApiViewMailLogRequest {
+	r.to = &to
+	return r
+}
+
+// subject containing this string
+func (r ApiViewMailLogRequest) Subject(subject string) ApiViewMailLogRequest {
+	r.subject = &subject
+	return r
+}
+
+// mail id
+func (r ApiViewMailLogRequest) Mailid(mailid string) ApiViewMailLogRequest {
+	r.mailid = &mailid
 	return r
 }
 
@@ -635,8 +670,7 @@ func (r ApiViewMailLogRequest) Execute() (*MailLog, *http.Response, error) {
 /*
 ViewMailLog displays the mail log
 
-By passing in the appropriate options, you can search for
-available inventory in the system
+Get a listing of the emails sent through this system
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -673,8 +707,23 @@ func (a *DefaultApiService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLo
 	if r.id != nil {
 		localVarQueryParams.Add("id", parameterToString(*r.id, ""))
 	}
-	if r.search != nil {
-		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
+	if r.origin != nil {
+		localVarQueryParams.Add("origin", parameterToString(*r.origin, ""))
+	}
+	if r.mx != nil {
+		localVarQueryParams.Add("mx", parameterToString(*r.mx, ""))
+	}
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
+	if r.subject != nil {
+		localVarQueryParams.Add("subject", parameterToString(*r.subject, ""))
+	}
+	if r.mailid != nil {
+		localVarQueryParams.Add("mailid", parameterToString(*r.mailid, ""))
 	}
 	if r.skip != nil {
 		localVarQueryParams.Add("skip", parameterToString(*r.skip, ""))

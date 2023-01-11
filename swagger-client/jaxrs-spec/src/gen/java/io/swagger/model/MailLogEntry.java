@@ -34,27 +34,19 @@ public class MailLogEntry   {
 
   private @Valid String transtype = null;
 
-  private @Valid String transhost = null;
-
-  private @Valid String originhost = null;
-
   private @Valid String origin = null;
 
   private @Valid String _interface = null;
-
-  private @Valid String date = null;
 
   private @Valid String sendingZone = null;
 
   private @Valid Integer bodySize = null;
 
-  private @Valid String sourceMd5 = null;
-
   private @Valid Integer seq = null;
 
-  private @Valid String domain = null;
-
   private @Valid String recipient = null;
+
+  private @Valid String domain = null;
 
   private @Valid Integer locked = null;
 
@@ -64,21 +56,9 @@ public class MailLogEntry   {
 
   private @Valid String queued = null;
 
-  private @Valid String _lock = null;
-
-  private @Valid String logger = null;
-
-  private @Valid Integer mxPort = null;
-
-  private @Valid String connectionKey = null;
-
   private @Valid String mxHostname = null;
 
-  private @Valid String sentBodyHash = null;
-
-  private @Valid Integer sentBodySize = null;
-
-  private @Valid Integer md5Match = null;
+  private @Valid String response = null;
 
   /**
    * internal db id
@@ -189,9 +169,8 @@ public class MailLogEntry   {
   }
 
   
-  @ApiModelProperty(example = "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>", required = true, value = "message id")
+  @ApiModelProperty(example = "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>", value = "message id")
   @JsonProperty("messageId")
-  @NotNull
 
   public String getMessageId() {
     return messageId;
@@ -281,46 +260,6 @@ public class MailLogEntry   {
   }
 
   /**
-   * transaction host
-   **/
-  public MailLogEntry transhost(String transhost) {
-    this.transhost = transhost;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "relay0.mailbaby.net", required = true, value = "transaction host")
-  @JsonProperty("transhost")
-  @NotNull
-
-  public String getTranshost() {
-    return transhost;
-  }
-  public void setTranshost(String transhost) {
-    this.transhost = transhost;
-  }
-
-  /**
-   * origin host
-   **/
-  public MailLogEntry originhost(String originhost) {
-    this.originhost = originhost;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "199.231.189.154", required = true, value = "origin host")
-  @JsonProperty("originhost")
-  @NotNull
-
-  public String getOriginhost() {
-    return originhost;
-  }
-  public void setOriginhost(String originhost) {
-    this.originhost = originhost;
-  }
-
-  /**
    * origin ip
    **/
   public MailLogEntry origin(String origin) {
@@ -358,26 +297,6 @@ public class MailLogEntry   {
   }
   public void setInterface(String _interface) {
     this._interface = _interface;
-  }
-
-  /**
-   * date processed
-   **/
-  public MailLogEntry date(String date) {
-    this.date = date;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "Thu, 14 Oct 2021 08:50:09 -0400", required = true, value = "date processed")
-  @JsonProperty("date")
-  @NotNull
-
-  public String getDate() {
-    return date;
-  }
-  public void setDate(String date) {
-    this.date = date;
   }
 
   /**
@@ -421,27 +340,7 @@ public class MailLogEntry   {
   }
 
   /**
-   * md5 sum of the email
-   **/
-  public MailLogEntry sourceMd5(String sourceMd5) {
-    this.sourceMd5 = sourceMd5;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "1d7058e6a30369f200b0c34fab2fac92", required = true, value = "md5 sum of the email")
-  @JsonProperty("sourceMd5")
-  @NotNull
-
-  public String getSourceMd5() {
-    return sourceMd5;
-  }
-  public void setSourceMd5(String sourceMd5) {
-    this.sourceMd5 = sourceMd5;
-  }
-
-  /**
-   * delivery sequency
+   * index of email in the to adderess list
    **/
   public MailLogEntry seq(Integer seq) {
     this.seq = seq;
@@ -449,7 +348,7 @@ public class MailLogEntry   {
   }
 
   
-  @ApiModelProperty(example = "1", required = true, value = "delivery sequency")
+  @ApiModelProperty(example = "1", required = true, value = "index of email in the to adderess list")
   @JsonProperty("seq")
   @NotNull
 
@@ -458,6 +357,26 @@ public class MailLogEntry   {
   }
   public void setSeq(Integer seq) {
     this.seq = seq;
+  }
+
+  /**
+   * to address this email is being sent to
+   **/
+  public MailLogEntry recipient(String recipient) {
+    this.recipient = recipient;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "client@isp.com", required = true, value = "to address this email is being sent to")
+  @JsonProperty("recipient")
+  @NotNull
+
+  public String getRecipient() {
+    return recipient;
+  }
+  public void setRecipient(String recipient) {
+    this.recipient = recipient;
   }
 
   /**
@@ -478,26 +397,6 @@ public class MailLogEntry   {
   }
   public void setDomain(String domain) {
     this.domain = domain;
-  }
-
-  /**
-   * email receiver address
-   **/
-  public MailLogEntry recipient(String recipient) {
-    this.recipient = recipient;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "client@isp.com", required = true, value = "email receiver address")
-  @JsonProperty("recipient")
-  @NotNull
-
-  public String getRecipient() {
-    return recipient;
-  }
-  public void setRecipient(String recipient) {
-    this.recipient = recipient;
   }
 
   /**
@@ -581,86 +480,6 @@ public class MailLogEntry   {
   }
 
   /**
-   * lock id
-   **/
-  public MailLogEntry _lock(String _lock) {
-    this._lock = _lock;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "lock 17c7eda538e0005d03 001", required = true, value = "lock id")
-  @JsonProperty("_lock")
-  @NotNull
-
-  public String getLock() {
-    return _lock;
-  }
-  public void setLock(String _lock) {
-    this._lock = _lock;
-  }
-
-  /**
-   * logger
-   **/
-  public MailLogEntry logger(String logger) {
-    this.logger = logger;
-    return this;
-  }
-
-  
-  @ApiModelProperty(required = true, value = "logger")
-  @JsonProperty("logger")
-  @NotNull
-
-  public String getLogger() {
-    return logger;
-  }
-  public void setLogger(String logger) {
-    this.logger = logger;
-  }
-
-  /**
-   * mx port number
-   **/
-  public MailLogEntry mxPort(Integer mxPort) {
-    this.mxPort = mxPort;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "25", required = true, value = "mx port number")
-  @JsonProperty("mxPort")
-  @NotNull
-
-  public Integer getMxPort() {
-    return mxPort;
-  }
-  public void setMxPort(Integer mxPort) {
-    this.mxPort = mxPort;
-  }
-
-  /**
-   * connection key
-   **/
-  public MailLogEntry connectionKey(String connectionKey) {
-    this.connectionKey = connectionKey;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "206.72.200.46:interserver.net:25", required = true, value = "connection key")
-  @JsonProperty("connectionKey")
-  @NotNull
-
-  public String getConnectionKey() {
-    return connectionKey;
-  }
-  public void setConnectionKey(String connectionKey) {
-    this.connectionKey = connectionKey;
-  }
-
-  /**
    * mx hostname
    **/
   public MailLogEntry mxHostname(String mxHostname) {
@@ -681,63 +500,23 @@ public class MailLogEntry   {
   }
 
   /**
-   * body hash
+   * mail delivery response
    **/
-  public MailLogEntry sentBodyHash(String sentBodyHash) {
-    this.sentBodyHash = sentBodyHash;
+  public MailLogEntry response(String response) {
+    this.response = response;
     return this;
   }
 
   
-  @ApiModelProperty(example = "1d7058e6a30369f200b0c34fab2fac92", required = true, value = "body hash")
-  @JsonProperty("sentBodyHash")
+  @ApiModelProperty(example = "250 2.0.0 Ok queued as C91D83E128C", required = true, value = "mail delivery response")
+  @JsonProperty("response")
   @NotNull
 
-  public String getSentBodyHash() {
-    return sentBodyHash;
+  public String getResponse() {
+    return response;
   }
-  public void setSentBodyHash(String sentBodyHash) {
-    this.sentBodyHash = sentBodyHash;
-  }
-
-  /**
-   * sent body size in bytes
-   **/
-  public MailLogEntry sentBodySize(Integer sentBodySize) {
-    this.sentBodySize = sentBodySize;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "63", required = true, value = "sent body size in bytes")
-  @JsonProperty("sentBodySize")
-  @NotNull
-
-  public Integer getSentBodySize() {
-    return sentBodySize;
-  }
-  public void setSentBodySize(Integer sentBodySize) {
-    this.sentBodySize = sentBodySize;
-  }
-
-  /**
-   * md5 checksum matching result
-   **/
-  public MailLogEntry md5Match(Integer md5Match) {
-    this.md5Match = md5Match;
-    return this;
-  }
-
-  
-  @ApiModelProperty(example = "1", required = true, value = "md5 checksum matching result")
-  @JsonProperty("md5Match")
-  @NotNull
-
-  public Integer getMd5Match() {
-    return md5Match;
-  }
-  public void setMd5Match(Integer md5Match) {
-    this.md5Match = md5Match;
+  public void setResponse(String response) {
+    this.response = response;
   }
 
 
@@ -760,34 +539,24 @@ public class MailLogEntry   {
         Objects.equals(time, mailLogEntry.time) &&
         Objects.equals(user, mailLogEntry.user) &&
         Objects.equals(transtype, mailLogEntry.transtype) &&
-        Objects.equals(transhost, mailLogEntry.transhost) &&
-        Objects.equals(originhost, mailLogEntry.originhost) &&
         Objects.equals(origin, mailLogEntry.origin) &&
         Objects.equals(_interface, mailLogEntry._interface) &&
-        Objects.equals(date, mailLogEntry.date) &&
         Objects.equals(sendingZone, mailLogEntry.sendingZone) &&
         Objects.equals(bodySize, mailLogEntry.bodySize) &&
-        Objects.equals(sourceMd5, mailLogEntry.sourceMd5) &&
         Objects.equals(seq, mailLogEntry.seq) &&
-        Objects.equals(domain, mailLogEntry.domain) &&
         Objects.equals(recipient, mailLogEntry.recipient) &&
+        Objects.equals(domain, mailLogEntry.domain) &&
         Objects.equals(locked, mailLogEntry.locked) &&
         Objects.equals(lockTime, mailLogEntry.lockTime) &&
         Objects.equals(assigned, mailLogEntry.assigned) &&
         Objects.equals(queued, mailLogEntry.queued) &&
-        Objects.equals(_lock, mailLogEntry._lock) &&
-        Objects.equals(logger, mailLogEntry.logger) &&
-        Objects.equals(mxPort, mailLogEntry.mxPort) &&
-        Objects.equals(connectionKey, mailLogEntry.connectionKey) &&
         Objects.equals(mxHostname, mailLogEntry.mxHostname) &&
-        Objects.equals(sentBodyHash, mailLogEntry.sentBodyHash) &&
-        Objects.equals(sentBodySize, mailLogEntry.sentBodySize) &&
-        Objects.equals(md5Match, mailLogEntry.md5Match);
+        Objects.equals(response, mailLogEntry.response);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_id, id, from, to, subject, messageId, created, time, user, transtype, transhost, originhost, origin, _interface, date, sendingZone, bodySize, sourceMd5, seq, domain, recipient, locked, lockTime, assigned, queued, _lock, logger, mxPort, connectionKey, mxHostname, sentBodyHash, sentBodySize, md5Match);
+    return Objects.hash(_id, id, from, to, subject, messageId, created, time, user, transtype, origin, _interface, sendingZone, bodySize, seq, recipient, domain, locked, lockTime, assigned, queued, mxHostname, response);
   }
 
   @Override
@@ -805,29 +574,19 @@ public class MailLogEntry   {
     sb.append("    time: ").append(toIndentedString(time)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("    transtype: ").append(toIndentedString(transtype)).append("\n");
-    sb.append("    transhost: ").append(toIndentedString(transhost)).append("\n");
-    sb.append("    originhost: ").append(toIndentedString(originhost)).append("\n");
     sb.append("    origin: ").append(toIndentedString(origin)).append("\n");
     sb.append("    _interface: ").append(toIndentedString(_interface)).append("\n");
-    sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("    sendingZone: ").append(toIndentedString(sendingZone)).append("\n");
     sb.append("    bodySize: ").append(toIndentedString(bodySize)).append("\n");
-    sb.append("    sourceMd5: ").append(toIndentedString(sourceMd5)).append("\n");
     sb.append("    seq: ").append(toIndentedString(seq)).append("\n");
-    sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
     sb.append("    recipient: ").append(toIndentedString(recipient)).append("\n");
+    sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
     sb.append("    locked: ").append(toIndentedString(locked)).append("\n");
     sb.append("    lockTime: ").append(toIndentedString(lockTime)).append("\n");
     sb.append("    assigned: ").append(toIndentedString(assigned)).append("\n");
     sb.append("    queued: ").append(toIndentedString(queued)).append("\n");
-    sb.append("    _lock: ").append(toIndentedString(_lock)).append("\n");
-    sb.append("    logger: ").append(toIndentedString(logger)).append("\n");
-    sb.append("    mxPort: ").append(toIndentedString(mxPort)).append("\n");
-    sb.append("    connectionKey: ").append(toIndentedString(connectionKey)).append("\n");
     sb.append("    mxHostname: ").append(toIndentedString(mxHostname)).append("\n");
-    sb.append("    sentBodyHash: ").append(toIndentedString(sentBodyHash)).append("\n");
-    sb.append("    sentBodySize: ").append(toIndentedString(sentBodySize)).append("\n");
-    sb.append("    md5Match: ").append(toIndentedString(md5Match)).append("\n");
+    sb.append("    response: ").append(toIndentedString(response)).append("\n");
     sb.append("}");
     return sb.toString();
   }

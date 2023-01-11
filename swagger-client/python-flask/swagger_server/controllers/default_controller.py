@@ -128,15 +128,25 @@ def send_mail(body):  # noqa: E501
     return 'do some magic!'
 
 
-def view_mail_log(id=None, search=None, skip=None, limit=None, start_date=None, end_date=None):  # noqa: E501
+def view_mail_log(id=None, origin=None, mx=None, _from=None, to=None, subject=None, mailid=None, skip=None, limit=None, start_date=None, end_date=None):  # noqa: E501
     """displays the mail log
 
-    By passing in the appropriate options, you can search for available inventory in the system  # noqa: E501
+    Get a listing of the emails sent through this system  # noqa: E501
 
     :param id: The ID of your mail order this will be sent through.
     :type id: int
-    :param search: pass an optional search string for looking up inventory
-    :type search: str
+    :param origin: originating ip address sending mail
+    :type origin: str
+    :param mx: mx record mail was sent to
+    :type mx: str
+    :param _from: from email address
+    :type _from: str
+    :param to: to/destination email address
+    :type to: str
+    :param subject: subject containing this string
+    :type subject: str
+    :param mailid: mail id
+    :type mailid: str
     :param skip: number of records to skip for pagination
     :type skip: int
     :param limit: maximum number of records to return

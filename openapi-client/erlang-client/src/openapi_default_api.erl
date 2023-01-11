@@ -93,7 +93,7 @@ send_mail(Ctx, To, From, Subject, Body, Optional) ->
     openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc displays the mail log
-%% By passing in the appropriate options, you can search for available inventory in the system 
+%% Get a listing of the emails sent through this system 
 -spec view_mail_log(ctx:ctx()) -> {ok, openapi_mail_log:openapi_mail_log(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 view_mail_log(Ctx) ->
     view_mail_log(Ctx, #{}).
@@ -105,7 +105,7 @@ view_mail_log(Ctx, Optional) ->
 
     Method = get,
     Path = [<<"/mail/log">>],
-    QS = lists:flatten([])++openapi_utils:optional_params(['id', 'search', 'skip', 'limit', 'startDate', 'endDate'], _OptionalParams),
+    QS = lists:flatten([])++openapi_utils:optional_params(['id', 'origin', 'mx', 'from', 'to', 'subject', 'mailid', 'skip', 'limit', 'startDate', 'endDate'], _OptionalParams),
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),

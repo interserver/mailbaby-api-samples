@@ -1,6 +1,6 @@
 {
   "name": "mail_baby_email_delivery_api",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Send_emails_fast_and_with_confidence_through_our_easy_to_use__REST_httpsen_wikipedia_orgwikiRepresentational_state_transfer_API_interface___OverviewThis_is_the_API_interface_to_the__Mail_Baby_httpsmail_baby_Mail_services_provided_by__InterServer_httpswww_interserver_net__To_use_this_service_you_must_have_an_account_with_us_at__my_interserver_net_httpsmy_interserver_net___AuthenticationIn_order_to_use_most_of_the_API_calls_you_must_pass_credentials_from_the__my_interserver_net_httpsmy_interserver_net_site_We_support_several_different_authentication_methods_but_the_preferred_method_is_to_use_the_API_Key_which_you_can_get_from_the__Account_Security_httpsmy_interserver_netaccount_security_page_",
   "license": "Apache 2.0",
   "main": "src/index.js",

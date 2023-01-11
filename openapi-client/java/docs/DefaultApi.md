@@ -284,11 +284,11 @@ public class Example {
 
 <a name="viewMailLog"></a>
 # **viewMailLog**
-> MailLog viewMailLog(id, search, skip, limit, startDate, endDate)
+> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
 
 displays the mail log
 
-By passing in the appropriate options, you can search for available inventory in the system 
+Get a listing of the emails sent through this system 
 
 ### Example
 ```java
@@ -312,14 +312,19 @@ public class Example {
     //apiKeyAuth.setApiKeyPrefix("Token");
 
     DefaultApi apiInstance = new DefaultApi(defaultClient);
-    Long id = 56L; // Long | The ID of your mail order this will be sent through.
-    String search = "search_example"; // String | pass an optional search string for looking up inventory
+    Long id = 2604L; // Long | The ID of your mail order this will be sent through.
+    String origin = "1.2.3.4"; // String | originating ip address sending mail
+    String mx = "mx.google.com"; // String | mx record mail was sent to
+    String from = "me@sender.com"; // String | from email address
+    String to = "you@receiver.com"; // String | to/destination email address
+    String subject = "Support"; // String | subject containing this string
+    String mailid = "185997065c60008840"; // String | mail id
     Integer skip = 0; // Integer | number of records to skip for pagination
     Integer limit = 100; // Integer | maximum number of records to return
-    Long startDate = 56L; // Long | earliest date to get emails in unix timestamp format
-    Long endDate = 56L; // Long | earliest date to get emails in unix timestamp format
+    Long startDate = 1641781008L; // Long | earliest date to get emails in unix timestamp format
+    Long endDate = 1673317008L; // Long | earliest date to get emails in unix timestamp format
     try {
-      MailLog result = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate);
+      MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DefaultApi#viewMailLog");
@@ -337,7 +342,12 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **Long**| The ID of your mail order this will be sent through. | [optional] |
-| **search** | **String**| pass an optional search string for looking up inventory | [optional] |
+| **origin** | **String**| originating ip address sending mail | [optional] |
+| **mx** | **String**| mx record mail was sent to | [optional] |
+| **from** | **String**| from email address | [optional] |
+| **to** | **String**| to/destination email address | [optional] |
+| **subject** | **String**| subject containing this string | [optional] |
+| **mailid** | **String**| mail id | [optional] |
 | **skip** | **Integer**| number of records to skip for pagination | [optional] [default to 0] |
 | **limit** | **Integer**| maximum number of records to return | [optional] [default to 100] |
 | **startDate** | **Long**| earliest date to get emails in unix timestamp format | [optional] |

@@ -358,7 +358,7 @@ ApiRequest[[**GenericResponse**](GenericResponse.md)]
 
 displays the mail log
 
-By passing in the appropriate options, you can search for available inventory in the system 
+Get a listing of the emails sent through this system 
 
 ### Example
 
@@ -383,19 +383,29 @@ object Example extends App {
 
     val apiInvoker = ApiInvoker()
     val apiInstance = DefaultApi("https://api.mailbaby.net")
-    val id: Long = 789 // Long | The ID of your mail order this will be sent through.
+    val id: Long = 2604 // Long | The ID of your mail order this will be sent through.
 
-    val search: String = search_example // String | pass an optional search string for looking up inventory
+    val origin: String = 1.2.3.4 // String | originating ip address sending mail
 
-    val skip: Int = 56 // Int | number of records to skip for pagination
+    val mx: String = mx.google.com // String | mx record mail was sent to
 
-    val limit: Int = 56 // Int | maximum number of records to return
+    val from: String = me@sender.com // String | from email address
 
-    val startDate: Long = 789 // Long | earliest date to get emails in unix timestamp format
+    val to: String = you@receiver.com // String | to/destination email address
 
-    val endDate: Long = 789 // Long | earliest date to get emails in unix timestamp format
+    val subject: String = Support // String | subject containing this string
+
+    val mailid: String = 185997065c60008840 // String | mail id
+
+    val skip: Int = 1000 // Int | number of records to skip for pagination
+
+    val limit: Int = 1000 // Int | maximum number of records to return
+
+    val startDate: Long = 1641781008 // Long | earliest date to get emails in unix timestamp format
+
+    val endDate: Long = 1673317008 // Long | earliest date to get emails in unix timestamp format
     
-    val request = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate)
+    val request = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
     val response = apiInvoker.execute(request)
 
     response.onComplete {
@@ -424,7 +434,12 @@ object Example extends App {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Long**| The ID of your mail order this will be sent through. | [optional]
- **search** | **String**| pass an optional search string for looking up inventory | [optional]
+ **origin** | **String**| originating ip address sending mail | [optional]
+ **mx** | **String**| mx record mail was sent to | [optional]
+ **from** | **String**| from email address | [optional]
+ **to** | **String**| to/destination email address | [optional]
+ **subject** | **String**| subject containing this string | [optional]
+ **mailid** | **String**| mail id | [optional]
  **skip** | **Int**| number of records to skip for pagination | [optional]
  **limit** | **Int**| maximum number of records to return | [optional]
  **startDate** | **Long**| earliest date to get emails in unix timestamp format | [optional]

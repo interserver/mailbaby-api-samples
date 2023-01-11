@@ -104,10 +104,10 @@ public class DefaultApiServiceImpl implements DefaultApi {
     /**
      * displays the mail log
      *
-     * By passing in the appropriate options, you can search for available inventory in the system 
+     * Get a listing of the emails sent through this system 
      *
      */
-    public MailLog viewMailLog(Long id, String search, Integer skip, Integer limit, Long startDate, Long endDate) {
+    public MailLog viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate) {
         // TODO: Implement...
         
         return null;

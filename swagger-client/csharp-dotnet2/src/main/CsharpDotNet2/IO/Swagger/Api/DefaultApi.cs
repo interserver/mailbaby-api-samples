@@ -57,16 +57,21 @@ namespace IO.Swagger.Api
         /// <returns>GenericResponse</returns>
         GenericResponse SendMail (SendMail body);
         /// <summary>
-        /// displays the mail log By passing in the appropriate options, you can search for available inventory in the system 
+        /// displays the mail log Get a listing of the emails sent through this system 
         /// </summary>
         /// <param name="id">The ID of your mail order this will be sent through.</param>
-        /// <param name="search">pass an optional search string for looking up inventory</param>
+        /// <param name="origin">originating ip address sending mail</param>
+        /// <param name="mx">mx record mail was sent to</param>
+        /// <param name="from">from email address</param>
+        /// <param name="to">to/destination email address</param>
+        /// <param name="subject">subject containing this string</param>
+        /// <param name="mailid">mail id</param>
         /// <param name="skip">number of records to skip for pagination</param>
         /// <param name="limit">maximum number of records to return</param>
         /// <param name="startDate">earliest date to get emails in unix timestamp format</param>
         /// <param name="endDate">earliest date to get emails in unix timestamp format</param>
         /// <returns>MailLog</returns>
-        MailLog ViewMailLog (long? id, string search, int? skip, int? limit, long? startDate, long? endDate);
+        MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, int? skip, int? limit, long? startDate, long? endDate);
     }
   
     /// <summary>
@@ -369,16 +374,21 @@ if (body != null) formParams.Add("body", ApiClient.ParameterToString(body)); // 
         }
     
         /// <summary>
-        /// displays the mail log By passing in the appropriate options, you can search for available inventory in the system 
+        /// displays the mail log Get a listing of the emails sent through this system 
         /// </summary>
         /// <param name="id">The ID of your mail order this will be sent through.</param>
-        /// <param name="search">pass an optional search string for looking up inventory</param>
+        /// <param name="origin">originating ip address sending mail</param>
+        /// <param name="mx">mx record mail was sent to</param>
+        /// <param name="from">from email address</param>
+        /// <param name="to">to/destination email address</param>
+        /// <param name="subject">subject containing this string</param>
+        /// <param name="mailid">mail id</param>
         /// <param name="skip">number of records to skip for pagination</param>
         /// <param name="limit">maximum number of records to return</param>
         /// <param name="startDate">earliest date to get emails in unix timestamp format</param>
         /// <param name="endDate">earliest date to get emails in unix timestamp format</param>
         /// <returns>MailLog</returns>
-        public MailLog ViewMailLog (long? id, string search, int? skip, int? limit, long? startDate, long? endDate)
+        public MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, int? skip, int? limit, long? startDate, long? endDate)
         {
     
             var path = "/mail/log";
@@ -391,7 +401,12 @@ if (body != null) formParams.Add("body", ApiClient.ParameterToString(body)); // 
             String postBody = null;
     
              if (id != null) queryParams.Add("id", ApiClient.ParameterToString(id)); // query parameter
- if (search != null) queryParams.Add("search", ApiClient.ParameterToString(search)); // query parameter
+ if (origin != null) queryParams.Add("origin", ApiClient.ParameterToString(origin)); // query parameter
+ if (mx != null) queryParams.Add("mx", ApiClient.ParameterToString(mx)); // query parameter
+ if (from != null) queryParams.Add("from", ApiClient.ParameterToString(from)); // query parameter
+ if (to != null) queryParams.Add("to", ApiClient.ParameterToString(to)); // query parameter
+ if (subject != null) queryParams.Add("subject", ApiClient.ParameterToString(subject)); // query parameter
+ if (mailid != null) queryParams.Add("mailid", ApiClient.ParameterToString(mailid)); // query parameter
  if (skip != null) queryParams.Add("skip", ApiClient.ParameterToString(skip)); // query parameter
  if (limit != null) queryParams.Add("limit", ApiClient.ParameterToString(limit)); // query parameter
  if (startDate != null) queryParams.Add("startDate", ApiClient.ParameterToString(startDate)); // query parameter

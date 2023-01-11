@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "An email record")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2023-01-03T15:08:02.135406-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2023-01-10T22:50:12.847902-05:00[America/New_York]")
 public class MailLogEntry   {
   @JsonProperty("_id")
   private Integer _id = null;
@@ -45,20 +45,11 @@ public class MailLogEntry   {
   @JsonProperty("transtype")
   private String transtype = null;
 
-  @JsonProperty("transhost")
-  private String transhost = null;
-
-  @JsonProperty("originhost")
-  private String originhost = null;
-
   @JsonProperty("origin")
   private String origin = null;
 
   @JsonProperty("interface")
   private String _interface = null;
-
-  @JsonProperty("date")
-  private String date = null;
 
   @JsonProperty("sendingZone")
   private String sendingZone = null;
@@ -66,17 +57,14 @@ public class MailLogEntry   {
   @JsonProperty("bodySize")
   private Integer bodySize = null;
 
-  @JsonProperty("sourceMd5")
-  private String sourceMd5 = null;
-
   @JsonProperty("seq")
   private Integer seq = null;
 
-  @JsonProperty("domain")
-  private String domain = null;
-
   @JsonProperty("recipient")
   private String recipient = null;
+
+  @JsonProperty("domain")
+  private String domain = null;
 
   @JsonProperty("locked")
   private Integer locked = null;
@@ -90,29 +78,11 @@ public class MailLogEntry   {
   @JsonProperty("queued")
   private String queued = null;
 
-  @JsonProperty("_lock")
-  private String _lock = null;
-
-  @JsonProperty("logger")
-  private String logger = null;
-
-  @JsonProperty("mxPort")
-  private Integer mxPort = null;
-
-  @JsonProperty("connectionKey")
-  private String connectionKey = null;
-
   @JsonProperty("mxHostname")
   private String mxHostname = null;
 
-  @JsonProperty("sentBodyHash")
-  private String sentBodyHash = null;
-
-  @JsonProperty("sentBodySize")
-  private Integer sentBodySize = null;
-
-  @JsonProperty("md5Match")
-  private Integer md5Match = null;
+  @JsonProperty("response")
+  private String response = null;
 
   public MailLogEntry _id(Integer _id) {
     this._id = _id;
@@ -223,8 +193,7 @@ public class MailLogEntry   {
    * message id
    * @return messageId
   **/
-  @Schema(example = "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>", required = true, description = "message id")
-  @NotNull
+  @Schema(example = "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>", description = "message id")
 
   public String getMessageId() {
     return messageId;
@@ -314,46 +283,6 @@ public class MailLogEntry   {
     this.transtype = transtype;
   }
 
-  public MailLogEntry transhost(String transhost) {
-    this.transhost = transhost;
-    return this;
-  }
-
-  /**
-   * transaction host
-   * @return transhost
-  **/
-  @Schema(example = "relay0.mailbaby.net", required = true, description = "transaction host")
-  @NotNull
-
-  public String getTranshost() {
-    return transhost;
-  }
-
-  public void setTranshost(String transhost) {
-    this.transhost = transhost;
-  }
-
-  public MailLogEntry originhost(String originhost) {
-    this.originhost = originhost;
-    return this;
-  }
-
-  /**
-   * origin host
-   * @return originhost
-  **/
-  @Schema(example = "199.231.189.154", required = true, description = "origin host")
-  @NotNull
-
-  public String getOriginhost() {
-    return originhost;
-  }
-
-  public void setOriginhost(String originhost) {
-    this.originhost = originhost;
-  }
-
   public MailLogEntry origin(String origin) {
     this.origin = origin;
     return this;
@@ -392,26 +321,6 @@ public class MailLogEntry   {
 
   public void setInterface(String _interface) {
     this._interface = _interface;
-  }
-
-  public MailLogEntry date(String date) {
-    this.date = date;
-    return this;
-  }
-
-  /**
-   * date processed
-   * @return date
-  **/
-  @Schema(example = "Thu, 14 Oct 2021 08:50:09 -0400", required = true, description = "date processed")
-  @NotNull
-
-  public String getDate() {
-    return date;
-  }
-
-  public void setDate(String date) {
-    this.date = date;
   }
 
   public MailLogEntry sendingZone(String sendingZone) {
@@ -454,36 +363,16 @@ public class MailLogEntry   {
     this.bodySize = bodySize;
   }
 
-  public MailLogEntry sourceMd5(String sourceMd5) {
-    this.sourceMd5 = sourceMd5;
-    return this;
-  }
-
-  /**
-   * md5 sum of the email
-   * @return sourceMd5
-  **/
-  @Schema(example = "1d7058e6a30369f200b0c34fab2fac92", required = true, description = "md5 sum of the email")
-  @NotNull
-
-  public String getSourceMd5() {
-    return sourceMd5;
-  }
-
-  public void setSourceMd5(String sourceMd5) {
-    this.sourceMd5 = sourceMd5;
-  }
-
   public MailLogEntry seq(Integer seq) {
     this.seq = seq;
     return this;
   }
 
   /**
-   * delivery sequency
+   * index of email in the to adderess list
    * @return seq
   **/
-  @Schema(example = "1", required = true, description = "delivery sequency")
+  @Schema(example = "1", required = true, description = "index of email in the to adderess list")
   @NotNull
 
   public Integer getSeq() {
@@ -492,6 +381,26 @@ public class MailLogEntry   {
 
   public void setSeq(Integer seq) {
     this.seq = seq;
+  }
+
+  public MailLogEntry recipient(String recipient) {
+    this.recipient = recipient;
+    return this;
+  }
+
+  /**
+   * to address this email is being sent to
+   * @return recipient
+  **/
+  @Schema(example = "client@isp.com", required = true, description = "to address this email is being sent to")
+  @NotNull
+
+  public String getRecipient() {
+    return recipient;
+  }
+
+  public void setRecipient(String recipient) {
+    this.recipient = recipient;
   }
 
   public MailLogEntry domain(String domain) {
@@ -512,26 +421,6 @@ public class MailLogEntry   {
 
   public void setDomain(String domain) {
     this.domain = domain;
-  }
-
-  public MailLogEntry recipient(String recipient) {
-    this.recipient = recipient;
-    return this;
-  }
-
-  /**
-   * email receiver address
-   * @return recipient
-  **/
-  @Schema(example = "client@isp.com", required = true, description = "email receiver address")
-  @NotNull
-
-  public String getRecipient() {
-    return recipient;
-  }
-
-  public void setRecipient(String recipient) {
-    this.recipient = recipient;
   }
 
   public MailLogEntry locked(Integer locked) {
@@ -614,86 +503,6 @@ public class MailLogEntry   {
     this.queued = queued;
   }
 
-  public MailLogEntry _lock(String _lock) {
-    this._lock = _lock;
-    return this;
-  }
-
-  /**
-   * lock id
-   * @return _lock
-  **/
-  @Schema(example = "lock 17c7eda538e0005d03 001", required = true, description = "lock id")
-  @NotNull
-
-  public String getLock() {
-    return _lock;
-  }
-
-  public void setLock(String _lock) {
-    this._lock = _lock;
-  }
-
-  public MailLogEntry logger(String logger) {
-    this.logger = logger;
-    return this;
-  }
-
-  /**
-   * logger
-   * @return logger
-  **/
-  @Schema(required = true, description = "logger")
-  @NotNull
-
-  public String getLogger() {
-    return logger;
-  }
-
-  public void setLogger(String logger) {
-    this.logger = logger;
-  }
-
-  public MailLogEntry mxPort(Integer mxPort) {
-    this.mxPort = mxPort;
-    return this;
-  }
-
-  /**
-   * mx port number
-   * @return mxPort
-  **/
-  @Schema(example = "25", required = true, description = "mx port number")
-  @NotNull
-
-  public Integer getMxPort() {
-    return mxPort;
-  }
-
-  public void setMxPort(Integer mxPort) {
-    this.mxPort = mxPort;
-  }
-
-  public MailLogEntry connectionKey(String connectionKey) {
-    this.connectionKey = connectionKey;
-    return this;
-  }
-
-  /**
-   * connection key
-   * @return connectionKey
-  **/
-  @Schema(example = "206.72.200.46:interserver.net:25", required = true, description = "connection key")
-  @NotNull
-
-  public String getConnectionKey() {
-    return connectionKey;
-  }
-
-  public void setConnectionKey(String connectionKey) {
-    this.connectionKey = connectionKey;
-  }
-
   public MailLogEntry mxHostname(String mxHostname) {
     this.mxHostname = mxHostname;
     return this;
@@ -714,64 +523,24 @@ public class MailLogEntry   {
     this.mxHostname = mxHostname;
   }
 
-  public MailLogEntry sentBodyHash(String sentBodyHash) {
-    this.sentBodyHash = sentBodyHash;
+  public MailLogEntry response(String response) {
+    this.response = response;
     return this;
   }
 
   /**
-   * body hash
-   * @return sentBodyHash
+   * mail delivery response
+   * @return response
   **/
-  @Schema(example = "1d7058e6a30369f200b0c34fab2fac92", required = true, description = "body hash")
+  @Schema(example = "250 2.0.0 Ok queued as C91D83E128C", required = true, description = "mail delivery response")
   @NotNull
 
-  public String getSentBodyHash() {
-    return sentBodyHash;
+  public String getResponse() {
+    return response;
   }
 
-  public void setSentBodyHash(String sentBodyHash) {
-    this.sentBodyHash = sentBodyHash;
-  }
-
-  public MailLogEntry sentBodySize(Integer sentBodySize) {
-    this.sentBodySize = sentBodySize;
-    return this;
-  }
-
-  /**
-   * sent body size in bytes
-   * @return sentBodySize
-  **/
-  @Schema(example = "63", required = true, description = "sent body size in bytes")
-  @NotNull
-
-  public Integer getSentBodySize() {
-    return sentBodySize;
-  }
-
-  public void setSentBodySize(Integer sentBodySize) {
-    this.sentBodySize = sentBodySize;
-  }
-
-  public MailLogEntry md5Match(Integer md5Match) {
-    this.md5Match = md5Match;
-    return this;
-  }
-
-  /**
-   * md5 checksum matching result
-   * @return md5Match
-  **/
-  @Schema(example = "1", required = true, description = "md5 checksum matching result")
-  @NotNull
-
-  public Integer getMd5Match() {
-    return md5Match;
-  }
-
-  public void setMd5Match(Integer md5Match) {
-    this.md5Match = md5Match;
+  public void setResponse(String response) {
+    this.response = response;
   }
 
 
@@ -794,34 +563,24 @@ public class MailLogEntry   {
         Objects.equals(this.time, mailLogEntry.time) &&
         Objects.equals(this.user, mailLogEntry.user) &&
         Objects.equals(this.transtype, mailLogEntry.transtype) &&
-        Objects.equals(this.transhost, mailLogEntry.transhost) &&
-        Objects.equals(this.originhost, mailLogEntry.originhost) &&
         Objects.equals(this.origin, mailLogEntry.origin) &&
         Objects.equals(this._interface, mailLogEntry._interface) &&
-        Objects.equals(this.date, mailLogEntry.date) &&
         Objects.equals(this.sendingZone, mailLogEntry.sendingZone) &&
         Objects.equals(this.bodySize, mailLogEntry.bodySize) &&
-        Objects.equals(this.sourceMd5, mailLogEntry.sourceMd5) &&
         Objects.equals(this.seq, mailLogEntry.seq) &&
-        Objects.equals(this.domain, mailLogEntry.domain) &&
         Objects.equals(this.recipient, mailLogEntry.recipient) &&
+        Objects.equals(this.domain, mailLogEntry.domain) &&
         Objects.equals(this.locked, mailLogEntry.locked) &&
         Objects.equals(this.lockTime, mailLogEntry.lockTime) &&
         Objects.equals(this.assigned, mailLogEntry.assigned) &&
         Objects.equals(this.queued, mailLogEntry.queued) &&
-        Objects.equals(this._lock, mailLogEntry._lock) &&
-        Objects.equals(this.logger, mailLogEntry.logger) &&
-        Objects.equals(this.mxPort, mailLogEntry.mxPort) &&
-        Objects.equals(this.connectionKey, mailLogEntry.connectionKey) &&
         Objects.equals(this.mxHostname, mailLogEntry.mxHostname) &&
-        Objects.equals(this.sentBodyHash, mailLogEntry.sentBodyHash) &&
-        Objects.equals(this.sentBodySize, mailLogEntry.sentBodySize) &&
-        Objects.equals(this.md5Match, mailLogEntry.md5Match);
+        Objects.equals(this.response, mailLogEntry.response);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_id, id, from, to, subject, messageId, created, time, user, transtype, transhost, originhost, origin, _interface, date, sendingZone, bodySize, sourceMd5, seq, domain, recipient, locked, lockTime, assigned, queued, _lock, logger, mxPort, connectionKey, mxHostname, sentBodyHash, sentBodySize, md5Match);
+    return Objects.hash(_id, id, from, to, subject, messageId, created, time, user, transtype, origin, _interface, sendingZone, bodySize, seq, recipient, domain, locked, lockTime, assigned, queued, mxHostname, response);
   }
 
   @Override
@@ -839,29 +598,19 @@ public class MailLogEntry   {
     sb.append("    time: ").append(toIndentedString(time)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("    transtype: ").append(toIndentedString(transtype)).append("\n");
-    sb.append("    transhost: ").append(toIndentedString(transhost)).append("\n");
-    sb.append("    originhost: ").append(toIndentedString(originhost)).append("\n");
     sb.append("    origin: ").append(toIndentedString(origin)).append("\n");
     sb.append("    _interface: ").append(toIndentedString(_interface)).append("\n");
-    sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("    sendingZone: ").append(toIndentedString(sendingZone)).append("\n");
     sb.append("    bodySize: ").append(toIndentedString(bodySize)).append("\n");
-    sb.append("    sourceMd5: ").append(toIndentedString(sourceMd5)).append("\n");
     sb.append("    seq: ").append(toIndentedString(seq)).append("\n");
-    sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
     sb.append("    recipient: ").append(toIndentedString(recipient)).append("\n");
+    sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
     sb.append("    locked: ").append(toIndentedString(locked)).append("\n");
     sb.append("    lockTime: ").append(toIndentedString(lockTime)).append("\n");
     sb.append("    assigned: ").append(toIndentedString(assigned)).append("\n");
     sb.append("    queued: ").append(toIndentedString(queued)).append("\n");
-    sb.append("    _lock: ").append(toIndentedString(_lock)).append("\n");
-    sb.append("    logger: ").append(toIndentedString(logger)).append("\n");
-    sb.append("    mxPort: ").append(toIndentedString(mxPort)).append("\n");
-    sb.append("    connectionKey: ").append(toIndentedString(connectionKey)).append("\n");
     sb.append("    mxHostname: ").append(toIndentedString(mxHostname)).append("\n");
-    sb.append("    sentBodyHash: ").append(toIndentedString(sentBodyHash)).append("\n");
-    sb.append("    sentBodySize: ").append(toIndentedString(sentBodySize)).append("\n");
-    sb.append("    md5Match: ").append(toIndentedString(md5Match)).append("\n");
+    sb.append("    response: ").append(toIndentedString(response)).append("\n");
     sb.append("}");
     return sb.toString();
   }

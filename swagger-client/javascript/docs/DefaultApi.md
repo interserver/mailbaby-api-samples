@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 displays the mail log
 
-By passing in the appropriate options, you can search for available inventory in the system 
+Get a listing of the emails sent through this system 
 
 ### Example
 ```javascript
@@ -237,7 +237,12 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 let apiInstance = new MailBabyEmailDeliveryApi.DefaultApi();
 let opts = { 
   'id': 789, // Number | The ID of your mail order this will be sent through.
-  'search': "search_example", // String | pass an optional search string for looking up inventory
+  'origin': "origin_example", // String | originating ip address sending mail
+  'mx': "mx_example", // String | mx record mail was sent to
+  'from': "from_example", // String | from email address
+  'to': "to_example", // String | to/destination email address
+  'subject': "subject_example", // String | subject containing this string
+  'mailid': "mailid_example", // String | mail id
   'skip': 0, // Number | number of records to skip for pagination
   'limit': 100, // Number | maximum number of records to return
   'startDate': 789, // Number | earliest date to get emails in unix timestamp format
@@ -257,7 +262,12 @@ apiInstance.viewMailLog(opts, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Number**| The ID of your mail order this will be sent through. | [optional] 
- **search** | **String**| pass an optional search string for looking up inventory | [optional] 
+ **origin** | **String**| originating ip address sending mail | [optional] 
+ **mx** | **String**| mx record mail was sent to | [optional] 
+ **from** | **String**| from email address | [optional] 
+ **to** | **String**| to/destination email address | [optional] 
+ **subject** | **String**| subject containing this string | [optional] 
+ **mailid** | **String**| mail id | [optional] 
  **skip** | **Number**| number of records to skip for pagination | [optional] [default to 0]
  **limit** | **Number**| maximum number of records to return | [optional] [default to 100]
  **startDate** | **Number**| earliest date to get emails in unix timestamp format | [optional] 

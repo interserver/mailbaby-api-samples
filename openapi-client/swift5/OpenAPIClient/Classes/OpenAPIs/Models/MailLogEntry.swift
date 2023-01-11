@@ -23,8 +23,6 @@ public struct MailLogEntry: Codable, JSONEncodable, Hashable {
     public var to: String
     /** email subject */
     public var subject: String
-    /** message id */
-    public var messageId: String
     /** creation date */
     public var created: String
     /** creation timestamp */
@@ -33,28 +31,20 @@ public struct MailLogEntry: Codable, JSONEncodable, Hashable {
     public var user: String
     /** transaction type */
     public var transtype: String
-    /** transaction host */
-    public var transhost: String
-    /** origin host */
-    public var originhost: String
     /** origin ip */
     public var origin: String
     /** interface name */
     public var interface: String
-    /** date processed */
-    public var date: String
     /** sending zone */
     public var sendingZone: String
     /** email body size in bytes */
     public var bodySize: Int
-    /** md5 sum of the email */
-    public var sourceMd5: String
-    /** delivery sequency */
+    /** index of email in the to adderess list */
     public var seq: Int
+    /** to address this email is being sent to */
+    public var recipient: String
     /** to address domain */
     public var domain: String
-    /** email receiver address */
-    public var recipient: String
     /** locked status */
     public var locked: Int
     /** lock timestamp */
@@ -63,57 +53,37 @@ public struct MailLogEntry: Codable, JSONEncodable, Hashable {
     public var assigned: String
     /** queued timestamp */
     public var queued: String
-    /** lock id */
-    public var lock: String
-    /** logger */
-    public var logger: String
-    /** mx port number */
-    public var mxPort: Int
-    /** connection key */
-    public var connectionKey: String
     /** mx hostname */
     public var mxHostname: String
-    /** body hash */
-    public var sentBodyHash: String
-    /** sent body size in bytes */
-    public var sentBodySize: Int
-    /** md5 checksum matching result */
-    public var md5Match: Int
+    /** mail delivery response */
+    public var response: String
+    /** message id */
+    public var messageId: String?
 
-    public init(id: Int, id: String, from: String, to: String, subject: String, messageId: String, created: String, time: Int, user: String, transtype: String, transhost: String, originhost: String, origin: String, interface: String, date: String, sendingZone: String, bodySize: Int, sourceMd5: String, seq: Int, domain: String, recipient: String, locked: Int, lockTime: Int, assigned: String, queued: String, lock: String, logger: String, mxPort: Int, connectionKey: String, mxHostname: String, sentBodyHash: String, sentBodySize: Int, md5Match: Int) {
+    public init(id: Int, id: String, from: String, to: String, subject: String, created: String, time: Int, user: String, transtype: String, origin: String, interface: String, sendingZone: String, bodySize: Int, seq: Int, recipient: String, domain: String, locked: Int, lockTime: Int, assigned: String, queued: String, mxHostname: String, response: String, messageId: String? = nil) {
         self.id = id
         self.id = id
         self.from = from
         self.to = to
         self.subject = subject
-        self.messageId = messageId
         self.created = created
         self.time = time
         self.user = user
         self.transtype = transtype
-        self.transhost = transhost
-        self.originhost = originhost
         self.origin = origin
         self.interface = interface
-        self.date = date
         self.sendingZone = sendingZone
         self.bodySize = bodySize
-        self.sourceMd5 = sourceMd5
         self.seq = seq
-        self.domain = domain
         self.recipient = recipient
+        self.domain = domain
         self.locked = locked
         self.lockTime = lockTime
         self.assigned = assigned
         self.queued = queued
-        self.lock = lock
-        self.logger = logger
-        self.mxPort = mxPort
-        self.connectionKey = connectionKey
         self.mxHostname = mxHostname
-        self.sentBodyHash = sentBodyHash
-        self.sentBodySize = sentBodySize
-        self.md5Match = md5Match
+        self.response = response
+        self.messageId = messageId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -122,34 +92,24 @@ public struct MailLogEntry: Codable, JSONEncodable, Hashable {
         case from
         case to
         case subject
-        case messageId
         case created
         case time
         case user
         case transtype
-        case transhost
-        case originhost
         case origin
         case interface
-        case date
         case sendingZone
         case bodySize
-        case sourceMd5
         case seq
-        case domain
         case recipient
+        case domain
         case locked
         case lockTime
         case assigned
         case queued
-        case lock = "_lock"
-        case logger
-        case mxPort
-        case connectionKey
         case mxHostname
-        case sentBodyHash
-        case sentBodySize
-        case md5Match
+        case response
+        case messageId
     }
 
     // Encodable protocol methods
@@ -161,34 +121,24 @@ public struct MailLogEntry: Codable, JSONEncodable, Hashable {
         try container.encode(from, forKey: .from)
         try container.encode(to, forKey: .to)
         try container.encode(subject, forKey: .subject)
-        try container.encode(messageId, forKey: .messageId)
         try container.encode(created, forKey: .created)
         try container.encode(time, forKey: .time)
         try container.encode(user, forKey: .user)
         try container.encode(transtype, forKey: .transtype)
-        try container.encode(transhost, forKey: .transhost)
-        try container.encode(originhost, forKey: .originhost)
         try container.encode(origin, forKey: .origin)
         try container.encode(interface, forKey: .interface)
-        try container.encode(date, forKey: .date)
         try container.encode(sendingZone, forKey: .sendingZone)
         try container.encode(bodySize, forKey: .bodySize)
-        try container.encode(sourceMd5, forKey: .sourceMd5)
         try container.encode(seq, forKey: .seq)
-        try container.encode(domain, forKey: .domain)
         try container.encode(recipient, forKey: .recipient)
+        try container.encode(domain, forKey: .domain)
         try container.encode(locked, forKey: .locked)
         try container.encode(lockTime, forKey: .lockTime)
         try container.encode(assigned, forKey: .assigned)
         try container.encode(queued, forKey: .queued)
-        try container.encode(lock, forKey: .lock)
-        try container.encode(logger, forKey: .logger)
-        try container.encode(mxPort, forKey: .mxPort)
-        try container.encode(connectionKey, forKey: .connectionKey)
         try container.encode(mxHostname, forKey: .mxHostname)
-        try container.encode(sentBodyHash, forKey: .sentBodyHash)
-        try container.encode(sentBodySize, forKey: .sentBodySize)
-        try container.encode(md5Match, forKey: .md5Match)
+        try container.encode(response, forKey: .response)
+        try container.encodeIfPresent(messageId, forKey: .messageId)
     }
 }
 

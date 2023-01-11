@@ -43,7 +43,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-01-03T15:08:04.551073-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-01-10T22:50:15.286052-05:00[America/New_York]")
 @Validated
 public interface MailApi {
 
@@ -95,7 +95,7 @@ public interface MailApi {
     ResponseEntity<GenericResponse> sendMail(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="to", required=true)  String to, @Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="from", required=true)  String from, @Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="subject", required=true)  String subject, @Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="body", required=true)  String body);
 
 
-    @Operation(summary = "displays the mail log", description = "By passing in the appropriate options, you can search for available inventory in the system ", security = {
+    @Operation(summary = "displays the mail log", description = "Get a listing of the emails sent through this system ", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailLog.class))),
@@ -104,7 +104,7 @@ public interface MailApi {
     @RequestMapping(value = "/mail/log",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<MailLog> viewMailLog(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through." ,schema=@Schema()) @Valid @RequestParam(value = "id", required = false) Long id, @Parameter(in = ParameterIn.QUERY, description = "pass an optional search string for looking up inventory" ,schema=@Schema()) @Valid @RequestParam(value = "search", required = false) String search, @Min(0)@Parameter(in = ParameterIn.QUERY, description = "number of records to skip for pagination" ,schema=@Schema(allowableValues={  }
+    ResponseEntity<MailLog> viewMailLog(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through." ,schema=@Schema()) @Valid @RequestParam(value = "id", required = false) Long id, @Parameter(in = ParameterIn.QUERY, description = "originating ip address sending mail" ,schema=@Schema()) @Valid @RequestParam(value = "origin", required = false) String origin, @Parameter(in = ParameterIn.QUERY, description = "mx record mail was sent to" ,schema=@Schema()) @Valid @RequestParam(value = "mx", required = false) String mx, @Parameter(in = ParameterIn.QUERY, description = "from email address" ,schema=@Schema()) @Valid @RequestParam(value = "from", required = false) String from, @Parameter(in = ParameterIn.QUERY, description = "to/destination email address" ,schema=@Schema()) @Valid @RequestParam(value = "to", required = false) String to, @Parameter(in = ParameterIn.QUERY, description = "subject containing this string" ,schema=@Schema()) @Valid @RequestParam(value = "subject", required = false) String subject, @Parameter(in = ParameterIn.QUERY, description = "mail id" ,schema=@Schema()) @Valid @RequestParam(value = "mailid", required = false) String mailid, @Min(0)@Parameter(in = ParameterIn.QUERY, description = "number of records to skip for pagination" ,schema=@Schema(allowableValues={  }
 , defaultValue="0")) @Valid @RequestParam(value = "skip", required = false, defaultValue="0") Integer skip, @Min(1) @Max(10000) @Parameter(in = ParameterIn.QUERY, description = "maximum number of records to return" ,schema=@Schema(allowableValues={  }, minimum="1", maximum="10000"
 , defaultValue="100")) @Valid @RequestParam(value = "limit", required = false, defaultValue="100") Integer limit, @Min(0L) @Max(9999999999L) @Parameter(in = ParameterIn.QUERY, description = "earliest date to get emails in unix timestamp format" ,schema=@Schema(allowableValues={  }, maximum="9999999999"
 )) @Valid @RequestParam(value = "startDate", required = false) Long startDate, @Min(0L) @Max(9999999999L) @Parameter(in = ParameterIn.QUERY, description = "earliest date to get emails in unix timestamp format" ,schema=@Schema(allowableValues={  }, maximum="9999999999"

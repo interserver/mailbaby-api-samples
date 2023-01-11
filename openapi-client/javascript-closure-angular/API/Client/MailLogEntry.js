@@ -42,13 +42,6 @@ API.Client.MailLogEntry.prototype.to;
 API.Client.MailLogEntry.prototype.subject;
 
 /**
- * message id
- * @type {!string}
- * @export
- */
-API.Client.MailLogEntry.prototype.messageId;
-
-/**
  * creation date
  * @type {!string}
  * @export
@@ -77,20 +70,6 @@ API.Client.MailLogEntry.prototype.user;
 API.Client.MailLogEntry.prototype.transtype;
 
 /**
- * transaction host
- * @type {!string}
- * @export
- */
-API.Client.MailLogEntry.prototype.transhost;
-
-/**
- * origin host
- * @type {!string}
- * @export
- */
-API.Client.MailLogEntry.prototype.originhost;
-
-/**
  * origin ip
  * @type {!string}
  * @export
@@ -103,13 +82,6 @@ API.Client.MailLogEntry.prototype.origin;
  * @export
  */
 API.Client.MailLogEntry.prototype._interface;
-
-/**
- * date processed
- * @type {!string}
- * @export
- */
-API.Client.MailLogEntry.prototype.date;
 
 /**
  * sending zone
@@ -126,18 +98,18 @@ API.Client.MailLogEntry.prototype.sendingZone;
 API.Client.MailLogEntry.prototype.bodySize;
 
 /**
- * md5 sum of the email
- * @type {!string}
- * @export
- */
-API.Client.MailLogEntry.prototype.sourceMd5;
-
-/**
- * delivery sequency
+ * index of email in the to adderess list
  * @type {!number}
  * @export
  */
 API.Client.MailLogEntry.prototype.seq;
+
+/**
+ * to address this email is being sent to
+ * @type {!string}
+ * @export
+ */
+API.Client.MailLogEntry.prototype.recipient;
 
 /**
  * to address domain
@@ -145,13 +117,6 @@ API.Client.MailLogEntry.prototype.seq;
  * @export
  */
 API.Client.MailLogEntry.prototype.domain;
-
-/**
- * email receiver address
- * @type {!string}
- * @export
- */
-API.Client.MailLogEntry.prototype.recipient;
 
 /**
  * locked status
@@ -182,34 +147,6 @@ API.Client.MailLogEntry.prototype.assigned;
 API.Client.MailLogEntry.prototype.queued;
 
 /**
- * lock id
- * @type {!string}
- * @export
- */
-API.Client.MailLogEntry.prototype.lock;
-
-/**
- * logger
- * @type {!string}
- * @export
- */
-API.Client.MailLogEntry.prototype.logger;
-
-/**
- * mx port number
- * @type {!number}
- * @export
- */
-API.Client.MailLogEntry.prototype.mxPort;
-
-/**
- * connection key
- * @type {!string}
- * @export
- */
-API.Client.MailLogEntry.prototype.connectionKey;
-
-/**
  * mx hostname
  * @type {!string}
  * @export
@@ -217,23 +154,16 @@ API.Client.MailLogEntry.prototype.connectionKey;
 API.Client.MailLogEntry.prototype.mxHostname;
 
 /**
- * body hash
+ * mail delivery response
  * @type {!string}
  * @export
  */
-API.Client.MailLogEntry.prototype.sentBodyHash;
+API.Client.MailLogEntry.prototype.response;
 
 /**
- * sent body size in bytes
- * @type {!number}
+ * message id
+ * @type {!string}
  * @export
  */
-API.Client.MailLogEntry.prototype.sentBodySize;
-
-/**
- * md5 checksum matching result
- * @type {!number}
- * @export
- */
-API.Client.MailLogEntry.prototype.md5Match;
+API.Client.MailLogEntry.prototype.messageId;
 

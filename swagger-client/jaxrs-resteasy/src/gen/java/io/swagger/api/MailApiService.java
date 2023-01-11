@@ -24,7 +24,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2023-01-03T15:07:59.787807-05:00[America/New_York]")public interface MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2023-01-10T22:50:10.186355-05:00[America/New_York]")public interface MailApiService {
       Response getMailOrders(SecurityContext securityContext)
       throws NotFoundException;
       Response sendAdvMail(SendMailAdv body,SecurityContext securityContext)
@@ -35,6 +35,6 @@ import javax.ws.rs.core.SecurityContext;
       throws NotFoundException;
       Response sendMail(SendMail body,SecurityContext securityContext)
       throws NotFoundException;
-      Response viewMailLog(Long id,String search,Integer skip,Integer limit,Long startDate,Long endDate,SecurityContext securityContext)
+      Response viewMailLog(Long id,String origin,String mx,String from,String to,String subject,String mailid,Integer skip,Integer limit,Long startDate,Long endDate,SecurityContext securityContext)
       throws NotFoundException;
 }

@@ -339,11 +339,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **viewMailLog**
-> \Interserver\Mailbaby\Model\MailLog viewMailLog($id, $search, $skip, $limit, $startDate, $endDate)
+> \Interserver\Mailbaby\Model\MailLog viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate)
 
 displays the mail log
 
-By passing in the appropriate options, you can search for available inventory in the system
+Get a listing of the emails sent through this system
 
 ### Example
 ```php
@@ -361,14 +361,19 @@ $apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
     $config
 );
 $id = 789; // int | The ID of your mail order this will be sent through.
-$search = "search_example"; // string | pass an optional search string for looking up inventory
+$origin = "origin_example"; // string | originating ip address sending mail
+$mx = "mx_example"; // string | mx record mail was sent to
+$from = "from_example"; // string | from email address
+$to = "to_example"; // string | to/destination email address
+$subject = "subject_example"; // string | subject containing this string
+$mailid = "mailid_example"; // string | mail id
 $skip = 0; // int | number of records to skip for pagination
 $limit = 100; // int | maximum number of records to return
 $startDate = 789; // int | earliest date to get emails in unix timestamp format
 $endDate = 789; // int | earliest date to get emails in unix timestamp format
 
 try {
-    $result = $apiInstance->viewMailLog($id, $search, $skip, $limit, $startDate, $endDate);
+    $result = $apiInstance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
@@ -381,7 +386,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| The ID of your mail order this will be sent through. | [optional]
- **search** | **string**| pass an optional search string for looking up inventory | [optional]
+ **origin** | **string**| originating ip address sending mail | [optional]
+ **mx** | **string**| mx record mail was sent to | [optional]
+ **from** | **string**| from email address | [optional]
+ **to** | **string**| to/destination email address | [optional]
+ **subject** | **string**| subject containing this string | [optional]
+ **mailid** | **string**| mail id | [optional]
  **skip** | **int**| number of records to skip for pagination | [optional] [default to 0]
  **limit** | **int**| maximum number of records to return | [optional] [default to 100]
  **startDate** | **int**| earliest date to get emails in unix timestamp format | [optional]

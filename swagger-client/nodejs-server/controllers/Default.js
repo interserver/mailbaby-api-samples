@@ -63,8 +63,8 @@ module.exports.sendMail = function sendMail (req, res, next, body) {
     });
 };
 
-module.exports.viewMailLog = function viewMailLog (req, res, next, id, search, skip, limit, startDate, endDate) {
-  Default.viewMailLog(id, search, skip, limit, startDate, endDate)
+module.exports.viewMailLog = function viewMailLog (req, res, next, id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate) {
+  Default.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
     .then(function (response) {
       utils.writeJson(res, response);
     })

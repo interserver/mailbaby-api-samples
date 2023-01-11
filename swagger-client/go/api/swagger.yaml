@@ -23,16 +23,14 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 1.0.1
+  version: 1.1.0
 externalDocs:
   description: FAQ
   url: https://www.mail.baby/tips/
 servers:
 - url: https://api.mailbaby.net
   description: Live API Endpoint
-- url: http://mystage.interserver.net:8787
-  description: Temporary API Endpoint
-- url: https://virtserver.swaggerhub.com/InterServer/Mail-Baby/1.0.0
+- url: https://virtserver.swaggerhub.com/InterServer/Mail-Baby/1.1.0
   description: SwaggerHub API Auto Mocking
 security:
 - apiKeyAuth: []
@@ -156,8 +154,7 @@ paths:
     get:
       summary: displays the mail log
       description: |
-        By passing in the appropriate options, you can search for
-        available inventory in the system
+        Get a listing of the emails sent through this system
       operationId: viewMailLog
       parameters:
       - name: id
@@ -169,14 +166,61 @@ paths:
         schema:
           type: integer
           format: int64
-      - name: search
+        example: 2604
+      - name: origin
         in: query
-        description: pass an optional search string for looking up inventory
+        description: originating ip address sending mail
         required: false
         style: form
         explode: true
         schema:
           type: string
+        example: 1.2.3.4
+      - name: mx
+        in: query
+        description: mx record mail was sent to
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: mx.google.com
+      - name: from
+        in: query
+        description: from email address
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: me@sender.com
+      - name: to
+        in: query
+        description: to/destination email address
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: you@receiver.com
+      - name: subject
+        in: query
+        description: subject containing this string
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: Support
+      - name: mailid
+        in: query
+        description: mail id
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: 185997065c60008840
       - name: skip
         in: query
         description: number of records to skip for pagination
@@ -188,6 +232,7 @@ paths:
           type: integer
           format: int32
           default: 0
+        example: 1000
       - name: limit
         in: query
         description: maximum number of records to return
@@ -200,6 +245,7 @@ paths:
           type: integer
           format: int32
           default: 100
+        example: 1000
       - name: startDate
         in: query
         description: earliest date to get emails in unix timestamp format
@@ -211,6 +257,7 @@ paths:
           minimum: 0
           type: integer
           format: int64
+        example: 1641781008
       - name: endDate
         in: query
         description: earliest date to get emails in unix timestamp format
@@ -222,6 +269,7 @@ paths:
           minimum: 0
           type: integer
           format: int64
+        example: 1673317008
       responses:
         "200":
           description: search results matching criteria
@@ -283,108 +331,77 @@ components:
       description: Mail log records
       example:
         emails:
-        - date: "Thu, 14 Oct 2021 08:50:09 -0400"
-          subject: sell 0.005 shares
-          origin: 199.231.189.154
-          queued: 2021-10-14T12:50:15.487Z
-          logger: logger
-          connectionKey: 206.72.200.46:interserver.net:25
-          interface: feeder
-          md5Match: 1
-          mxPort: 25
-          sentBodySize: 63
-          lockTime: 1634215818533
-          from: person@mysite.com
-          id: 17c7eda538e0005d03
-          locked: 1
-          seq: 1
-          sentBodyHash: 1d7058e6a30369f200b0c34fab2fac92
+        - subject: sell 0.005 shares
           created: 2021-10-14 08:50:10
           transtype: ESMTPSA
-          sourceMd5: 1d7058e6a30369f200b0c34fab2fac92
-          _lock: lock 17c7eda538e0005d03 001
+          origin: 199.231.189.154
+          queued: 2021-10-14T12:50:15.487Z
           messageId: <vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>
           sendingZone: interserver
           mxHostname: mx.j.is.cc
-          transhost: relay0.mailbaby.net
-          originhost: 199.231.189.154
+          interface: feeder
+          lockTime: 1634215818533
+          response: 250 2.0.0 Ok queued as C91D83E128C
           domain: interserver.net
           bodySize: 63
           recipient: client@isp.com
+          from: person@mysite.com
           assigned: relay1
           _id: 103172
+          id: 17c7eda538e0005d03
           to: client@isp.com
           time: 1634215809
-          user: mb5658
-        - date: "Thu, 14 Oct 2021 08:50:09 -0400"
-          subject: sell 0.005 shares
-          origin: 199.231.189.154
-          queued: 2021-10-14T12:50:15.487Z
-          logger: logger
-          connectionKey: 206.72.200.46:interserver.net:25
-          interface: feeder
-          md5Match: 1
-          mxPort: 25
-          sentBodySize: 63
-          lockTime: 1634215818533
-          from: person@mysite.com
-          id: 17c7eda538e0005d03
           locked: 1
+          user: mb5658
           seq: 1
-          sentBodyHash: 1d7058e6a30369f200b0c34fab2fac92
+        - subject: sell 0.005 shares
           created: 2021-10-14 08:50:10
           transtype: ESMTPSA
-          sourceMd5: 1d7058e6a30369f200b0c34fab2fac92
-          _lock: lock 17c7eda538e0005d03 001
+          origin: 199.231.189.154
+          queued: 2021-10-14T12:50:15.487Z
           messageId: <vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>
           sendingZone: interserver
           mxHostname: mx.j.is.cc
-          transhost: relay0.mailbaby.net
-          originhost: 199.231.189.154
+          interface: feeder
+          lockTime: 1634215818533
+          response: 250 2.0.0 Ok queued as C91D83E128C
           domain: interserver.net
           bodySize: 63
           recipient: client@isp.com
+          from: person@mysite.com
           assigned: relay1
           _id: 103172
+          id: 17c7eda538e0005d03
           to: client@isp.com
           time: 1634215809
+          locked: 1
           user: mb5658
+          seq: 1
         total: 10234
         limit: 100
         skip: 0
     MailLogEntry:
       required:
       - _id
-      - _lock
       - assigned
       - bodySize
-      - connectionKey
       - created
-      - date
       - domain
       - from
       - id
       - interface
       - lockTime
       - locked
-      - logger
-      - md5Match
-      - messageId
       - mxHostname
-      - mxPort
       - origin
-      - originhost
       - queued
       - recipient
+      - response
       - sendingZone
-      - sentBodyHash
-      - sentBodySize
       - seq
-      - sourceMd5
       - subject
       - time
       - to
-      - transhost
       - transtype
       - user
       type: object
@@ -429,14 +446,6 @@ components:
           type: string
           description: transaction type
           example: ESMTPSA
-        transhost:
-          type: string
-          description: transaction host
-          example: relay0.mailbaby.net
-        originhost:
-          type: string
-          description: origin host
-          example: 199.231.189.154
         origin:
           type: string
           description: origin ip
@@ -445,10 +454,6 @@ components:
           type: string
           description: interface name
           example: feeder
-        date:
-          type: string
-          description: date processed
-          example: "Thu, 14 Oct 2021 08:50:09 -0400"
         sendingZone:
           type: string
           description: sending zone
@@ -457,22 +462,18 @@ components:
           type: integer
           description: email body size in bytes
           example: 63
-        sourceMd5:
-          type: string
-          description: md5 sum of the email
-          example: 1d7058e6a30369f200b0c34fab2fac92
         seq:
           type: integer
-          description: delivery sequency
+          description: index of email in the to adderess list
           example: 1
+        recipient:
+          type: string
+          description: to address this email is being sent to
+          example: client@isp.com
         domain:
           type: string
           description: to address domain
           example: interserver.net
-        recipient:
-          type: string
-          description: email receiver address
-          example: client@isp.com
         locked:
           type: integer
           description: locked status
@@ -489,73 +490,39 @@ components:
           type: string
           description: queued timestamp
           example: 2021-10-14T12:50:15.487Z
-        _lock:
-          type: string
-          description: lock id
-          example: lock 17c7eda538e0005d03 001
-        logger:
-          type: string
-          description: logger
-          example: null
-        mxPort:
-          type: integer
-          description: mx port number
-          example: 25
-        connectionKey:
-          type: string
-          description: connection key
-          example: 206.72.200.46:interserver.net:25
         mxHostname:
           type: string
           description: mx hostname
           example: mx.j.is.cc
-        sentBodyHash:
+        response:
           type: string
-          description: body hash
-          example: 1d7058e6a30369f200b0c34fab2fac92
-        sentBodySize:
-          type: integer
-          description: sent body size in bytes
-          example: 63
-        md5Match:
-          type: integer
-          description: md5 checksum matching result
-          example: 1
+          description: mail delivery response
+          example: 250 2.0.0 Ok queued as C91D83E128C
       description: An email record
       example:
-        date: "Thu, 14 Oct 2021 08:50:09 -0400"
         subject: sell 0.005 shares
-        origin: 199.231.189.154
-        queued: 2021-10-14T12:50:15.487Z
-        logger: logger
-        connectionKey: 206.72.200.46:interserver.net:25
-        interface: feeder
-        md5Match: 1
-        mxPort: 25
-        sentBodySize: 63
-        lockTime: 1634215818533
-        from: person@mysite.com
-        id: 17c7eda538e0005d03
-        locked: 1
-        seq: 1
-        sentBodyHash: 1d7058e6a30369f200b0c34fab2fac92
         created: 2021-10-14 08:50:10
         transtype: ESMTPSA
-        sourceMd5: 1d7058e6a30369f200b0c34fab2fac92
-        _lock: lock 17c7eda538e0005d03 001
+        origin: 199.231.189.154
+        queued: 2021-10-14T12:50:15.487Z
         messageId: <vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>
         sendingZone: interserver
         mxHostname: mx.j.is.cc
-        transhost: relay0.mailbaby.net
-        originhost: 199.231.189.154
+        interface: feeder
+        lockTime: 1634215818533
+        response: 250 2.0.0 Ok queued as C91D83E128C
         domain: interserver.net
         bodySize: 63
         recipient: client@isp.com
+        from: person@mysite.com
         assigned: relay1
         _id: 103172
+        id: 17c7eda538e0005d03
         to: client@isp.com
         time: 1634215809
+        locked: 1
         user: mb5658
+        seq: 1
     SendMail:
       required:
       - body

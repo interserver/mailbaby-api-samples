@@ -11,14 +11,6 @@ use Articus\DataTransfer\PhpAttribute as DTA;
 class ViewMailLogParameterData
 {
     /**
-     * pass an optional search string for looking up inventory
-     */
-    #[DTA\Data(subset: "query", field: "search", nullable: true)]
-    #[DTA\Strategy("QueryStringScalar", ["type" => "string"], "query")]
-    #[DTA\Validator("QueryStringScalar", ["type" => "string"], subset: "query")]
-    public string|null $search = null;
-
-    /**
      * earliest date to get emails in unix timestamp format
      */
     #[DTA\Data(subset: "query", field: "endDate", nullable: true)]
@@ -29,6 +21,22 @@ class ViewMailLogParameterData
     public int|null $end_date = null;
 
     /**
+     * subject containing this string
+     */
+    #[DTA\Data(subset: "query", field: "subject", nullable: true)]
+    #[DTA\Strategy("QueryStringScalar", ["type" => "string"], "query")]
+    #[DTA\Validator("QueryStringScalar", ["type" => "string"], subset: "query")]
+    public string|null $subject = null;
+
+    /**
+     * originating ip address sending mail
+     */
+    #[DTA\Data(subset: "query", field: "origin", nullable: true)]
+    #[DTA\Strategy("QueryStringScalar", ["type" => "string"], "query")]
+    #[DTA\Validator("QueryStringScalar", ["type" => "string"], subset: "query")]
+    public string|null $origin = null;
+
+    /**
      * maximum number of records to return
      */
     #[DTA\Data(subset: "query", field: "limit", nullable: true)]
@@ -37,6 +45,22 @@ class ViewMailLogParameterData
     #[DTA\Validator("GreaterThan", ["min" => 1, "inclusive" => true], subset: "query")]
     #[DTA\Validator("LessThan", ["max" => 10000, "inclusive" => true], subset: "query")]
     public int|null $limit = null;
+
+    /**
+     * from email address
+     */
+    #[DTA\Data(subset: "query", field: "from", nullable: true)]
+    #[DTA\Strategy("QueryStringScalar", ["type" => "string"], "query")]
+    #[DTA\Validator("QueryStringScalar", ["type" => "string"], subset: "query")]
+    public string|null $from = null;
+
+    /**
+     * mail id
+     */
+    #[DTA\Data(subset: "query", field: "mailid", nullable: true)]
+    #[DTA\Strategy("QueryStringScalar", ["type" => "string"], "query")]
+    #[DTA\Validator("QueryStringScalar", ["type" => "string"], subset: "query")]
+    public string|null $mailid = null;
 
     /**
      * number of records to skip for pagination
@@ -54,6 +78,22 @@ class ViewMailLogParameterData
     #[DTA\Strategy("QueryStringScalar", ["type" => "int"], "query")]
     #[DTA\Validator("QueryStringScalar", ["type" => "int"], subset: "query")]
     public int|null $id = null;
+
+    /**
+     * mx record mail was sent to
+     */
+    #[DTA\Data(subset: "query", field: "mx", nullable: true)]
+    #[DTA\Strategy("QueryStringScalar", ["type" => "string"], "query")]
+    #[DTA\Validator("QueryStringScalar", ["type" => "string"], subset: "query")]
+    public string|null $mx = null;
+
+    /**
+     * to/destination email address
+     */
+    #[DTA\Data(subset: "query", field: "to", nullable: true)]
+    #[DTA\Strategy("QueryStringScalar", ["type" => "string"], "query")]
+    #[DTA\Validator("QueryStringScalar", ["type" => "string"], subset: "query")]
+    public string|null $to = null;
 
     /**
      * earliest date to get emails in unix timestamp format

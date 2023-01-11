@@ -220,17 +220,27 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * By passing in the appropriate options, you can search for available inventory in the system 
+     * Get a listing of the emails sent through this system 
      * displays the mail log
      * @param id The ID of your mail order this will be sent through.
-     * @param search pass an optional search string for looking up inventory
+     * @param origin originating ip address sending mail
+     * @param mx mx record mail was sent to
+     * @param _from from email address
+     * @param to to/destination email address
+     * @param subject subject containing this string
+     * @param mailid mail id
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      * @param startDate earliest date to get emails in unix timestamp format
      * @param endDate earliest date to get emails in unix timestamp format
      */
-    public async viewMailLog(id?: number, search?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, _options?: Configuration): Promise<RequestContext> {
+    public async viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
+
+
+
+
 
 
 
@@ -251,8 +261,33 @@ export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
-        if (search !== undefined) {
-            requestContext.setQueryParam("search", ObjectSerializer.serialize(search, "string", ""));
+        if (origin !== undefined) {
+            requestContext.setQueryParam("origin", ObjectSerializer.serialize(origin, "string", ""));
+        }
+
+        // Query Params
+        if (mx !== undefined) {
+            requestContext.setQueryParam("mx", ObjectSerializer.serialize(mx, "string", ""));
+        }
+
+        // Query Params
+        if (_from !== undefined) {
+            requestContext.setQueryParam("from", ObjectSerializer.serialize(_from, "string", ""));
+        }
+
+        // Query Params
+        if (to !== undefined) {
+            requestContext.setQueryParam("to", ObjectSerializer.serialize(to, "string", ""));
+        }
+
+        // Query Params
+        if (subject !== undefined) {
+            requestContext.setQueryParam("subject", ObjectSerializer.serialize(subject, "string", ""));
+        }
+
+        // Query Params
+        if (mailid !== undefined) {
+            requestContext.setQueryParam("mailid", ObjectSerializer.serialize(mailid, "string", ""));
         }
 
         // Query Params

@@ -151,13 +151,12 @@ Name | Type | Description  | Notes
 
 displays the mail log
 
-By passing in the appropriate options, you can search for
-available inventory in the system
+Get a listing of the emails sent through this system
 
 ### Example
 
 ```bash
- viewMailLog  id=value  search=value  skip=value  limit=value  startDate=value  endDate=value
+ viewMailLog  id=value  origin=value  mx=value  from=value  to=value  subject=value  mailid=value  skip=value  limit=value  startDate=value  endDate=value
 ```
 
 ### Parameters
@@ -166,7 +165,12 @@ available inventory in the system
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **integer** | The ID of your mail order this will be sent through. | [optional] [default to null]
- **search** | **string** | pass an optional search string for looking up inventory | [optional] [default to null]
+ **origin** | **string** | originating ip address sending mail | [optional] [default to null]
+ **mx** | **string** | mx record mail was sent to | [optional] [default to null]
+ **from** | **string** | from email address | [optional] [default to null]
+ **to** | **string** | to/destination email address | [optional] [default to null]
+ **subject** | **string** | subject containing this string | [optional] [default to null]
+ **mailid** | **string** | mail id | [optional] [default to null]
  **skip** | **integer** | number of records to skip for pagination | [optional] [default to 0]
  **limit** | **integer** | maximum number of records to return | [optional] [default to 100]
  **startDate** | **integer** | earliest date to get emails in unix timestamp format | [optional] [default to null]

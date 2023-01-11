@@ -85,22 +85,6 @@ test_that("transtype", {
   #expect_equal(model.instance$`transtype`, "EXPECTED_RESULT")
 })
 
-test_that("transhost", {
-  # tests for the property `transhost` (character)
-  # transaction host
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`transhost`, "EXPECTED_RESULT")
-})
-
-test_that("originhost", {
-  # tests for the property `originhost` (character)
-  # origin host
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`originhost`, "EXPECTED_RESULT")
-})
-
 test_that("origin", {
   # tests for the property `origin` (character)
   # origin ip
@@ -115,14 +99,6 @@ test_that("interface", {
 
   # uncomment below to test the property
   #expect_equal(model.instance$`interface`, "EXPECTED_RESULT")
-})
-
-test_that("date", {
-  # tests for the property `date` (character)
-  # date processed
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`date`, "EXPECTED_RESULT")
 })
 
 test_that("sendingZone", {
@@ -141,20 +117,20 @@ test_that("bodySize", {
   #expect_equal(model.instance$`bodySize`, "EXPECTED_RESULT")
 })
 
-test_that("sourceMd5", {
-  # tests for the property `sourceMd5` (character)
-  # md5 sum of the email
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`sourceMd5`, "EXPECTED_RESULT")
-})
-
 test_that("seq", {
   # tests for the property `seq` (integer)
-  # delivery sequency
+  # index of email in the to adderess list
 
   # uncomment below to test the property
   #expect_equal(model.instance$`seq`, "EXPECTED_RESULT")
+})
+
+test_that("recipient", {
+  # tests for the property `recipient` (character)
+  # to address this email is being sent to
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`recipient`, "EXPECTED_RESULT")
 })
 
 test_that("domain", {
@@ -163,14 +139,6 @@ test_that("domain", {
 
   # uncomment below to test the property
   #expect_equal(model.instance$`domain`, "EXPECTED_RESULT")
-})
-
-test_that("recipient", {
-  # tests for the property `recipient` (character)
-  # email receiver address
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`recipient`, "EXPECTED_RESULT")
 })
 
 test_that("locked", {
@@ -205,38 +173,6 @@ test_that("queued", {
   #expect_equal(model.instance$`queued`, "EXPECTED_RESULT")
 })
 
-test_that("_lock", {
-  # tests for the property `_lock` (character)
-  # lock id
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`_lock`, "EXPECTED_RESULT")
-})
-
-test_that("logger", {
-  # tests for the property `logger` (character)
-  # logger
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`logger`, "EXPECTED_RESULT")
-})
-
-test_that("mxPort", {
-  # tests for the property `mxPort` (integer)
-  # mx port number
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`mxPort`, "EXPECTED_RESULT")
-})
-
-test_that("connectionKey", {
-  # tests for the property `connectionKey` (character)
-  # connection key
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`connectionKey`, "EXPECTED_RESULT")
-})
-
 test_that("mxHostname", {
   # tests for the property `mxHostname` (character)
   # mx hostname
@@ -245,26 +181,10 @@ test_that("mxHostname", {
   #expect_equal(model.instance$`mxHostname`, "EXPECTED_RESULT")
 })
 
-test_that("sentBodyHash", {
-  # tests for the property `sentBodyHash` (character)
-  # body hash
+test_that("response", {
+  # tests for the property `response` (character)
+  # mail delivery response
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`sentBodyHash`, "EXPECTED_RESULT")
-})
-
-test_that("sentBodySize", {
-  # tests for the property `sentBodySize` (integer)
-  # sent body size in bytes
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`sentBodySize`, "EXPECTED_RESULT")
-})
-
-test_that("md5Match", {
-  # tests for the property `md5Match` (integer)
-  # md5 checksum matching result
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`md5Match`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`response`, "EXPECTED_RESULT")
 })

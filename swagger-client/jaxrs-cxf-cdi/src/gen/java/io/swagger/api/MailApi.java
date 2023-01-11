@@ -43,7 +43,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2023-01-03T15:07:47.583636-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2023-01-10T22:49:54.716593-05:00[America/New_York]")
 public class MailApi  {
 
   @Context SecurityContext securityContext;
@@ -133,7 +133,7 @@ public class MailApi  {
     @Path("/log")
     
     @Produces({ "application/json" })
-    @Operation(summary = "displays the mail log", description = "By passing in the appropriate options, you can search for available inventory in the system ", security = {
+    @Operation(summary = "displays the mail log", description = "Get a listing of the emails sent through this system ", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailLog.class))),
@@ -141,7 +141,17 @@ public class MailApi  {
     public Response viewMailLog( 
 @Parameter(description = "The ID of your mail order this will be sent through.")  @QueryParam("id") Long id
 ,  
-@Parameter(description = "pass an optional search string for looking up inventory")  @QueryParam("search") String search
+@Parameter(description = "originating ip address sending mail")  @QueryParam("origin") String origin
+,  
+@Parameter(description = "mx record mail was sent to")  @QueryParam("mx") String mx
+,  
+@Parameter(description = "from email address")  @QueryParam("from") String from
+,  
+@Parameter(description = "to/destination email address")  @QueryParam("to") String to
+,  
+@Parameter(description = "subject containing this string")  @QueryParam("subject") String subject
+,  
+@Parameter(description = "mail id")  @QueryParam("mailid") String mailid
 ,  @Min(0) 
 @Parameter(description = "number of records to skip for pagination", schema=@Schema(allowableValues={  })
 ) @DefaultValue("0") @QueryParam("skip") Integer skip
@@ -155,6 +165,6 @@ public class MailApi  {
 @Parameter(description = "earliest date to get emails in unix timestamp format", schema=@Schema(allowableValues={  }, maximum="9999999999")
 )  @QueryParam("endDate") Long endDate
 ) {
-        return delegate.viewMailLog(id, search, skip, limit, startDate, endDate, securityContext);
+        return delegate.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, securityContext);
     }
 }

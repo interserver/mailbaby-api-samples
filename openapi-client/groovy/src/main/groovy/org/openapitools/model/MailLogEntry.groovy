@@ -16,8 +16,6 @@ class MailLogEntry {
     String to
     /* email subject */
     String subject
-    /* message id */
-    String messageId
     /* creation date */
     String created
     /* creation timestamp */
@@ -26,28 +24,20 @@ class MailLogEntry {
     String user
     /* transaction type */
     String transtype
-    /* transaction host */
-    String transhost
-    /* origin host */
-    String originhost
     /* origin ip */
     String origin
     /* interface name */
     String _interface
-    /* date processed */
-    String date
     /* sending zone */
     String sendingZone
     /* email body size in bytes */
     Integer bodySize
-    /* md5 sum of the email */
-    String sourceMd5
-    /* delivery sequency */
+    /* index of email in the to adderess list */
     Integer seq
+    /* to address this email is being sent to */
+    String recipient
     /* to address domain */
     String domain
-    /* email receiver address */
-    String recipient
     /* locked status */
     Integer locked
     /* lock timestamp */
@@ -56,20 +46,10 @@ class MailLogEntry {
     String assigned
     /* queued timestamp */
     String queued
-    /* lock id */
-    String lock
-    /* logger */
-    String logger
-    /* mx port number */
-    Integer mxPort
-    /* connection key */
-    String connectionKey
     /* mx hostname */
     String mxHostname
-    /* body hash */
-    String sentBodyHash
-    /* sent body size in bytes */
-    Integer sentBodySize
-    /* md5 checksum matching result */
-    Integer md5Match
+    /* mail delivery response */
+    String response
+    /* message id */
+    String messageId
 }

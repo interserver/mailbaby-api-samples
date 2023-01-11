@@ -17,8 +17,6 @@ type t = {
     _to: string;
     (* email subject *)
     subject: string;
-    (* message id *)
-    message_id: string;
     (* creation date *)
     created: string;
     (* creation timestamp *)
@@ -27,28 +25,20 @@ type t = {
     user: string;
     (* transaction type *)
     transtype: string;
-    (* transaction host *)
-    transhost: string;
-    (* origin host *)
-    originhost: string;
     (* origin ip *)
     origin: string;
     (* interface name *)
     interface: string;
-    (* date processed *)
-    date: string;
     (* sending zone *)
     sending_zone: string;
     (* email body size in bytes *)
     body_size: int32;
-    (* md5 sum of the email *)
-    source_md5: string;
-    (* delivery sequency *)
+    (* index of email in the to adderess list *)
     seq: int32;
+    (* to address this email is being sent to *)
+    recipient: string;
     (* to address domain *)
     domain: string;
-    (* email receiver address *)
-    recipient: string;
     (* locked status *)
     locked: int32;
     (* lock timestamp *)
@@ -57,58 +47,38 @@ type t = {
     assigned: string;
     (* queued timestamp *)
     queued: string;
-    (* lock id *)
-    _lock: string;
-    (* logger *)
-    logger: string;
-    (* mx port number *)
-    mx_port: int32;
-    (* connection key *)
-    connection_key: string;
     (* mx hostname *)
     mx_hostname: string;
-    (* body hash *)
-    sent_body_hash: string;
-    (* sent body size in bytes *)
-    sent_body_size: int32;
-    (* md5 checksum matching result *)
-    md5_match: int32;
+    (* mail delivery response *)
+    response: string;
+    (* message id *)
+    message_id: string option [@default None];
 } [@@deriving yojson { strict = false }, show ];;
 
 (** An email record *)
-let create (_id : int32) (id : string) (from : string) (_to : string) (subject : string) (message_id : string) (created : string) (time : int32) (user : string) (transtype : string) (transhost : string) (originhost : string) (origin : string) (interface : string) (date : string) (sending_zone : string) (body_size : int32) (source_md5 : string) (seq : int32) (domain : string) (recipient : string) (locked : int32) (lock_time : int32) (assigned : string) (queued : string) (_lock : string) (logger : string) (mx_port : int32) (connection_key : string) (mx_hostname : string) (sent_body_hash : string) (sent_body_size : int32) (md5_match : int32) : t = {
+let create (_id : int32) (id : string) (from : string) (_to : string) (subject : string) (created : string) (time : int32) (user : string) (transtype : string) (origin : string) (interface : string) (sending_zone : string) (body_size : int32) (seq : int32) (recipient : string) (domain : string) (locked : int32) (lock_time : int32) (assigned : string) (queued : string) (mx_hostname : string) (response : string) : t = {
     _id = _id;
     id = id;
     from = from;
     _to = _to;
     subject = subject;
-    message_id = message_id;
     created = created;
     time = time;
     user = user;
     transtype = transtype;
-    transhost = transhost;
-    originhost = originhost;
     origin = origin;
     interface = interface;
-    date = date;
     sending_zone = sending_zone;
     body_size = body_size;
-    source_md5 = source_md5;
     seq = seq;
-    domain = domain;
     recipient = recipient;
+    domain = domain;
     locked = locked;
     lock_time = lock_time;
     assigned = assigned;
     queued = queued;
-    _lock = _lock;
-    logger = logger;
-    mx_port = mx_port;
-    connection_key = connection_key;
     mx_hostname = mx_hostname;
-    sent_body_hash = sent_body_hash;
-    sent_body_size = sent_body_size;
-    md5_match = md5_match;
+    response = response;
+    message_id = None;
 }
 

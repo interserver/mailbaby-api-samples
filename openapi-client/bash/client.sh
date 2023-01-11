@@ -101,7 +101,12 @@ operation_parameters_minimum_occurrences["sendMail:::from"]=1
 operation_parameters_minimum_occurrences["sendMail:::subject"]=1
 operation_parameters_minimum_occurrences["sendMail:::body"]=1
 operation_parameters_minimum_occurrences["viewMailLog:::id"]=0
-operation_parameters_minimum_occurrences["viewMailLog:::search"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::origin"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::mx"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::from"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::to"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::subject"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::mailid"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::skip"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::limit"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::startDate"]=0
@@ -120,7 +125,12 @@ operation_parameters_maximum_occurrences["sendMail:::from"]=0
 operation_parameters_maximum_occurrences["sendMail:::subject"]=0
 operation_parameters_maximum_occurrences["sendMail:::body"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::id"]=0
-operation_parameters_maximum_occurrences["viewMailLog:::search"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::origin"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::mx"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::from"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::to"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::subject"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::mailid"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::skip"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::limit"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::startDate"]=0
@@ -136,7 +146,12 @@ operation_parameters_collection_type["sendMail:::from"]=""
 operation_parameters_collection_type["sendMail:::subject"]=""
 operation_parameters_collection_type["sendMail:::body"]=""
 operation_parameters_collection_type["viewMailLog:::id"]=""
-operation_parameters_collection_type["viewMailLog:::search"]=""
+operation_parameters_collection_type["viewMailLog:::origin"]=""
+operation_parameters_collection_type["viewMailLog:::mx"]=""
+operation_parameters_collection_type["viewMailLog:::from"]=""
+operation_parameters_collection_type["viewMailLog:::to"]=""
+operation_parameters_collection_type["viewMailLog:::subject"]=""
+operation_parameters_collection_type["viewMailLog:::mailid"]=""
 operation_parameters_collection_type["viewMailLog:::skip"]=""
 operation_parameters_collection_type["viewMailLog:::limit"]=""
 operation_parameters_collection_type["viewMailLog:::startDate"]=""
@@ -510,7 +525,7 @@ build_request_path() {
 print_help() {
 cat <<EOF
 
-${BOLD}${WHITE}MailBaby Email Delivery API command line client (API version 1.0.1)${OFF}
+${BOLD}${WHITE}MailBaby Email Delivery API command line client (API version 1.1.0)${OFF}
 
 ${BOLD}${WHITE}Usage${OFF}
 
@@ -580,7 +595,7 @@ echo -e "              \\t\\t\\t\\t(e.g. 'https://api.mailbaby.net')"
 ##############################################################################
 print_about() {
     echo ""
-    echo -e "${BOLD}${WHITE}MailBaby Email Delivery API command line client (API version 1.0.1)${OFF}"
+    echo -e "${BOLD}${WHITE}MailBaby Email Delivery API command line client (API version 1.1.0)${OFF}"
     echo ""
     echo -e "License: Apache 2.0"
     echo -e "Contact: support@interserver.net"
@@ -612,7 +627,7 @@ echo "$appdescription" | paste -sd' ' | fold -sw 80
 ##############################################################################
 print_version() {
     echo ""
-    echo -e "${BOLD}MailBaby Email Delivery API command line client (API version 1.0.1)${OFF}"
+    echo -e "${BOLD}MailBaby Email Delivery API command line client (API version 1.1.0)${OFF}"
     echo ""
 }
 
@@ -709,13 +724,22 @@ print_viewMailLog_help() {
     echo ""
     echo -e "${BOLD}${WHITE}viewMailLog - displays the mail log${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "By passing in the appropriate options, you can search for
-available inventory in the system" | paste -sd' ' | fold -sw 80
+    echo -e "Get a listing of the emails sent through this system" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}id${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - The ID of your mail order this will be sent through.${YELLOW} Specify as: id=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}search${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - pass an optional search string for looking up inventory${YELLOW} Specify as: search=value${OFF}" \
+    echo -e "  * ${GREEN}origin${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - originating ip address sending mail${YELLOW} Specify as: origin=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}mx${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - mx record mail was sent to${YELLOW} Specify as: mx=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}from${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - from email address${YELLOW} Specify as: from=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}to${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - to/destination email address${YELLOW} Specify as: to=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}subject${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - subject containing this string${YELLOW} Specify as: subject=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}mailid${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - mail id${YELLOW} Specify as: mailid=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}skip${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 0)${OFF} - number of records to skip for pagination${YELLOW} Specify as: skip=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
@@ -930,7 +954,7 @@ call_viewMailLog() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(id search skip limit startDate endDate  )
+    local query_parameter_names=(id origin mx from to subject mailid skip limit startDate endDate  )
     local path
 
     if ! path=$(build_request_path "/mail/log" path_parameter_names query_parameter_names); then

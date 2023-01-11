@@ -81,7 +81,7 @@ _()
     operation_parameters["pingServer"]=""
     operation_parameters["sendAdvMail"]=""
     operation_parameters["sendMail"]=""
-    operation_parameters["viewMailLog"]="id= search= skip= limit= startDate= endDate= "
+    operation_parameters["viewMailLog"]="id= origin= mx= from= to= subject= mailid= skip= limit= startDate= endDate= "
 
     # An associative array of possible values for enum parameters
     declare -A operation_parameters_enum_values

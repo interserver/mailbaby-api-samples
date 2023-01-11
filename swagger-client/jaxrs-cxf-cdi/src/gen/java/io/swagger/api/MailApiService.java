@@ -26,11 +26,11 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2023-01-03T15:07:47.583636-05:00[America/New_York]")public interface MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2023-01-10T22:49:54.716593-05:00[America/New_York]")public interface MailApiService {
       public Response getMailOrders(SecurityContext securityContext);
       public Response sendAdvMail(SendMailAdv body, SecurityContext securityContext);
       public Response sendAdvMail(String subject, String body, SendMailAdvFrom from, List<SendMailAdvTo> to, List<SendMailAdvReplyto> replyto, List<SendMailAdvCc> cc, List<SendMailAdvBcc> bcc, List<SendMailAdvAttachments> attachments, Long id, SecurityContext securityContext);
       public Response sendMail(String to, String from, String subject, String body, SecurityContext securityContext);
       public Response sendMail(SendMail body, SecurityContext securityContext);
-      public Response viewMailLog(Long id, String search, Integer skip, Integer limit, Long startDate, Long endDate, SecurityContext securityContext);
+      public Response viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, SecurityContext securityContext);
 }

@@ -398,10 +398,10 @@ end:
 
 // displays the mail log
 //
-// By passing in the appropriate options, you can search for available inventory in the system 
+// Get a listing of the emails sent through this system 
 //
 mail_log_t*
-DefaultAPI_viewMailLog(apiClient_t *apiClient, long id , char * search , int skip , int limit , long startDate , long endDate )
+DefaultAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * mx , char * from , char * to , char * subject , char * mailid , int skip , int limit , long startDate , long endDate )
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -431,15 +431,75 @@ DefaultAPI_viewMailLog(apiClient_t *apiClient, long id , char * search , int ski
     }
 
     // query parameters
-    char *keyQuery_search = NULL;
-    char * valueQuery_search = NULL;
-    keyValuePair_t *keyPairQuery_search = 0;
-    if (search)
+    char *keyQuery_origin = NULL;
+    char * valueQuery_origin = NULL;
+    keyValuePair_t *keyPairQuery_origin = 0;
+    if (origin)
     {
-        keyQuery_search = strdup("search");
-        valueQuery_search = strdup((search));
-        keyPairQuery_search = keyValuePair_create(keyQuery_search, valueQuery_search);
-        list_addElement(localVarQueryParameters,keyPairQuery_search);
+        keyQuery_origin = strdup("origin");
+        valueQuery_origin = strdup((origin));
+        keyPairQuery_origin = keyValuePair_create(keyQuery_origin, valueQuery_origin);
+        list_addElement(localVarQueryParameters,keyPairQuery_origin);
+    }
+
+    // query parameters
+    char *keyQuery_mx = NULL;
+    char * valueQuery_mx = NULL;
+    keyValuePair_t *keyPairQuery_mx = 0;
+    if (mx)
+    {
+        keyQuery_mx = strdup("mx");
+        valueQuery_mx = strdup((mx));
+        keyPairQuery_mx = keyValuePair_create(keyQuery_mx, valueQuery_mx);
+        list_addElement(localVarQueryParameters,keyPairQuery_mx);
+    }
+
+    // query parameters
+    char *keyQuery_from = NULL;
+    char * valueQuery_from = NULL;
+    keyValuePair_t *keyPairQuery_from = 0;
+    if (from)
+    {
+        keyQuery_from = strdup("from");
+        valueQuery_from = strdup((from));
+        keyPairQuery_from = keyValuePair_create(keyQuery_from, valueQuery_from);
+        list_addElement(localVarQueryParameters,keyPairQuery_from);
+    }
+
+    // query parameters
+    char *keyQuery_to = NULL;
+    char * valueQuery_to = NULL;
+    keyValuePair_t *keyPairQuery_to = 0;
+    if (to)
+    {
+        keyQuery_to = strdup("to");
+        valueQuery_to = strdup((to));
+        keyPairQuery_to = keyValuePair_create(keyQuery_to, valueQuery_to);
+        list_addElement(localVarQueryParameters,keyPairQuery_to);
+    }
+
+    // query parameters
+    char *keyQuery_subject = NULL;
+    char * valueQuery_subject = NULL;
+    keyValuePair_t *keyPairQuery_subject = 0;
+    if (subject)
+    {
+        keyQuery_subject = strdup("subject");
+        valueQuery_subject = strdup((subject));
+        keyPairQuery_subject = keyValuePair_create(keyQuery_subject, valueQuery_subject);
+        list_addElement(localVarQueryParameters,keyPairQuery_subject);
+    }
+
+    // query parameters
+    char *keyQuery_mailid = NULL;
+    char * valueQuery_mailid = NULL;
+    keyValuePair_t *keyPairQuery_mailid = 0;
+    if (mailid)
+    {
+        keyQuery_mailid = strdup("mailid");
+        valueQuery_mailid = strdup((mailid));
+        keyPairQuery_mailid = keyValuePair_create(keyQuery_mailid, valueQuery_mailid);
+        list_addElement(localVarQueryParameters,keyPairQuery_mailid);
     }
 
     // query parameters
@@ -538,17 +598,77 @@ DefaultAPI_viewMailLog(apiClient_t *apiClient, long id , char * search , int ski
         keyValuePair_free(keyPairQuery_id);
         keyPairQuery_id = NULL;
     }
-    if(keyQuery_search){
-        free(keyQuery_search);
-        keyQuery_search = NULL;
+    if(keyQuery_origin){
+        free(keyQuery_origin);
+        keyQuery_origin = NULL;
     }
-    if(valueQuery_search){
-        free(valueQuery_search);
-        valueQuery_search = NULL;
+    if(valueQuery_origin){
+        free(valueQuery_origin);
+        valueQuery_origin = NULL;
     }
-    if(keyPairQuery_search){
-        keyValuePair_free(keyPairQuery_search);
-        keyPairQuery_search = NULL;
+    if(keyPairQuery_origin){
+        keyValuePair_free(keyPairQuery_origin);
+        keyPairQuery_origin = NULL;
+    }
+    if(keyQuery_mx){
+        free(keyQuery_mx);
+        keyQuery_mx = NULL;
+    }
+    if(valueQuery_mx){
+        free(valueQuery_mx);
+        valueQuery_mx = NULL;
+    }
+    if(keyPairQuery_mx){
+        keyValuePair_free(keyPairQuery_mx);
+        keyPairQuery_mx = NULL;
+    }
+    if(keyQuery_from){
+        free(keyQuery_from);
+        keyQuery_from = NULL;
+    }
+    if(valueQuery_from){
+        free(valueQuery_from);
+        valueQuery_from = NULL;
+    }
+    if(keyPairQuery_from){
+        keyValuePair_free(keyPairQuery_from);
+        keyPairQuery_from = NULL;
+    }
+    if(keyQuery_to){
+        free(keyQuery_to);
+        keyQuery_to = NULL;
+    }
+    if(valueQuery_to){
+        free(valueQuery_to);
+        valueQuery_to = NULL;
+    }
+    if(keyPairQuery_to){
+        keyValuePair_free(keyPairQuery_to);
+        keyPairQuery_to = NULL;
+    }
+    if(keyQuery_subject){
+        free(keyQuery_subject);
+        keyQuery_subject = NULL;
+    }
+    if(valueQuery_subject){
+        free(valueQuery_subject);
+        valueQuery_subject = NULL;
+    }
+    if(keyPairQuery_subject){
+        keyValuePair_free(keyPairQuery_subject);
+        keyPairQuery_subject = NULL;
+    }
+    if(keyQuery_mailid){
+        free(keyQuery_mailid);
+        keyQuery_mailid = NULL;
+    }
+    if(valueQuery_mailid){
+        free(valueQuery_mailid);
+        valueQuery_mailid = NULL;
+    }
+    if(keyPairQuery_mailid){
+        keyValuePair_free(keyPairQuery_mailid);
+        keyPairQuery_mailid = NULL;
     }
     if(keyQuery_skip){
         free(keyQuery_skip);

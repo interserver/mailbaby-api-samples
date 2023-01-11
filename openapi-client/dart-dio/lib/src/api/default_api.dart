@@ -358,11 +358,16 @@ class DefaultApi {
   }
 
   /// displays the mail log
-  /// By passing in the appropriate options, you can search for available inventory in the system 
+  /// Get a listing of the emails sent through this system 
   ///
   /// Parameters:
   /// * [id] - The ID of your mail order this will be sent through.
-  /// * [search] - pass an optional search string for looking up inventory
+  /// * [origin] - originating ip address sending mail
+  /// * [mx] - mx record mail was sent to
+  /// * [from] - from email address
+  /// * [to] - to/destination email address
+  /// * [subject] - subject containing this string
+  /// * [mailid] - mail id
   /// * [skip] - number of records to skip for pagination
   /// * [limit] - maximum number of records to return
   /// * [startDate] - earliest date to get emails in unix timestamp format
@@ -378,7 +383,12 @@ class DefaultApi {
   /// Throws [DioError] if API call or serialization fails
   Future<Response<MailLog>> viewMailLog({ 
     int? id,
-    String? search,
+    String? origin,
+    String? mx,
+    String? from,
+    String? to,
+    String? subject,
+    String? mailid,
     int? skip = 0,
     int? limit = 100,
     int? startDate,
@@ -412,7 +422,12 @@ class DefaultApi {
 
     final _queryParameters = <String, dynamic>{
       if (id != null) r'id': encodeQueryParameter(_serializers, id, const FullType(int)),
-      if (search != null) r'search': encodeQueryParameter(_serializers, search, const FullType(String)),
+      if (origin != null) r'origin': encodeQueryParameter(_serializers, origin, const FullType(String)),
+      if (mx != null) r'mx': encodeQueryParameter(_serializers, mx, const FullType(String)),
+      if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(String)),
+      if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(String)),
+      if (subject != null) r'subject': encodeQueryParameter(_serializers, subject, const FullType(String)),
+      if (mailid != null) r'mailid': encodeQueryParameter(_serializers, mailid, const FullType(String)),
       if (skip != null) r'skip': encodeQueryParameter(_serializers, skip, const FullType(int)),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (startDate != null) r'startDate': encodeQueryParameter(_serializers, startDate, const FullType(int)),

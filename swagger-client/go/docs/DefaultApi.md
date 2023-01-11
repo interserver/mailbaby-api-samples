@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 > MailLog ViewMailLog(ctx, optional)
 displays the mail log
 
-By passing in the appropriate options, you can search for available inventory in the system 
+Get a listing of the emails sent through this system 
 
 ### Required Parameters
 
@@ -141,7 +141,12 @@ Optional parameters are passed through a pointer to a DefaultApiViewMailLogOpts 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **optional.Int64**| The ID of your mail order this will be sent through. | 
- **search** | **optional.String**| pass an optional search string for looking up inventory | 
+ **origin** | **optional.String**| originating ip address sending mail | 
+ **mx** | **optional.String**| mx record mail was sent to | 
+ **from** | **optional.String**| from email address | 
+ **to** | **optional.String**| to/destination email address | 
+ **subject** | **optional.String**| subject containing this string | 
+ **mailid** | **optional.String**| mail id | 
  **skip** | **optional.Int32**| number of records to skip for pagination | [default to 0]
  **limit** | **optional.Int32**| maximum number of records to return | [default to 100]
  **startDate** | **optional.Int64**| earliest date to get emails in unix timestamp format | 

@@ -1,8 +1,8 @@
 # swagger-java-client
 
 MailBaby Email Delivery API
-- API version: 1.0.1
-  - Build date: 2023-01-03T15:07:38.900072-05:00[America/New_York]
+- API version: 1.1.0
+  - Build date: 2023-01-10T22:49:46.204804-05:00[America/New_York]
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
@@ -216,13 +216,18 @@ public class DefaultApiExample {
 
         DefaultApi apiInstance = new DefaultApi();
         Long id = 789L; // Long | The ID of your mail order this will be sent through.
-        String search = "search_example"; // String | pass an optional search string for looking up inventory
+        String origin = "origin_example"; // String | originating ip address sending mail
+        String mx = "mx_example"; // String | mx record mail was sent to
+        String from = "from_example"; // String | from email address
+        String to = "to_example"; // String | to/destination email address
+        String subject = "subject_example"; // String | subject containing this string
+        String mailid = "mailid_example"; // String | mail id
         Integer skip = 0; // Integer | number of records to skip for pagination
         Integer limit = 100; // Integer | maximum number of records to return
         Long startDate = 789L; // Long | earliest date to get emails in unix timestamp format
         Long endDate = 789L; // Long | earliest date to get emails in unix timestamp format
         try {
-            MailLog result = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate);
+            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#viewMailLog");

@@ -46,13 +46,6 @@ class MailLogEntry
     public string|null $subject = null;
 
     /**
-     * message id
-     */
-    #[DTA\Data(field: "messageId")]
-    #[DTA\Validator("Scalar", ["type" => "string"])]
-    public string|null $message_id = null;
-
-    /**
      * creation date
      */
     #[DTA\Data(field: "created")]
@@ -81,20 +74,6 @@ class MailLogEntry
     public string|null $transtype = null;
 
     /**
-     * transaction host
-     */
-    #[DTA\Data(field: "transhost")]
-    #[DTA\Validator("Scalar", ["type" => "string"])]
-    public string|null $transhost = null;
-
-    /**
-     * origin host
-     */
-    #[DTA\Data(field: "originhost")]
-    #[DTA\Validator("Scalar", ["type" => "string"])]
-    public string|null $originhost = null;
-
-    /**
      * origin ip
      */
     #[DTA\Data(field: "origin")]
@@ -107,13 +86,6 @@ class MailLogEntry
     #[DTA\Data(field: "interface")]
     #[DTA\Validator("Scalar", ["type" => "string"])]
     public string|null $interface = null;
-
-    /**
-     * date processed
-     */
-    #[DTA\Data(field: "date")]
-    #[DTA\Validator("Scalar", ["type" => "string"])]
-    public string|null $date = null;
 
     /**
      * sending zone
@@ -130,18 +102,18 @@ class MailLogEntry
     public int|null $body_size = null;
 
     /**
-     * md5 sum of the email
-     */
-    #[DTA\Data(field: "sourceMd5")]
-    #[DTA\Validator("Scalar", ["type" => "string"])]
-    public string|null $source_md5 = null;
-
-    /**
-     * delivery sequency
+     * index of email in the to adderess list
      */
     #[DTA\Data(field: "seq")]
     #[DTA\Validator("Scalar", ["type" => "int"])]
     public int|null $seq = null;
+
+    /**
+     * to address this email is being sent to
+     */
+    #[DTA\Data(field: "recipient")]
+    #[DTA\Validator("Scalar", ["type" => "string"])]
+    public string|null $recipient = null;
 
     /**
      * to address domain
@@ -149,13 +121,6 @@ class MailLogEntry
     #[DTA\Data(field: "domain")]
     #[DTA\Validator("Scalar", ["type" => "string"])]
     public string|null $domain = null;
-
-    /**
-     * email receiver address
-     */
-    #[DTA\Data(field: "recipient")]
-    #[DTA\Validator("Scalar", ["type" => "string"])]
-    public string|null $recipient = null;
 
     /**
      * locked status
@@ -186,34 +151,6 @@ class MailLogEntry
     public string|null $queued = null;
 
     /**
-     * lock id
-     */
-    #[DTA\Data(field: "_lock")]
-    #[DTA\Validator("Scalar", ["type" => "string"])]
-    public string|null $_lock = null;
-
-    /**
-     * logger
-     */
-    #[DTA\Data(field: "logger")]
-    #[DTA\Validator("Scalar", ["type" => "string"])]
-    public string|null $logger = null;
-
-    /**
-     * mx port number
-     */
-    #[DTA\Data(field: "mxPort")]
-    #[DTA\Validator("Scalar", ["type" => "int"])]
-    public int|null $mx_port = null;
-
-    /**
-     * connection key
-     */
-    #[DTA\Data(field: "connectionKey")]
-    #[DTA\Validator("Scalar", ["type" => "string"])]
-    public string|null $connection_key = null;
-
-    /**
      * mx hostname
      */
     #[DTA\Data(field: "mxHostname")]
@@ -221,24 +158,17 @@ class MailLogEntry
     public string|null $mx_hostname = null;
 
     /**
-     * body hash
+     * mail delivery response
      */
-    #[DTA\Data(field: "sentBodyHash")]
+    #[DTA\Data(field: "response")]
     #[DTA\Validator("Scalar", ["type" => "string"])]
-    public string|null $sent_body_hash = null;
+    public string|null $response = null;
 
     /**
-     * sent body size in bytes
+     * message id
      */
-    #[DTA\Data(field: "sentBodySize")]
-    #[DTA\Validator("Scalar", ["type" => "int"])]
-    public int|null $sent_body_size = null;
-
-    /**
-     * md5 checksum matching result
-     */
-    #[DTA\Data(field: "md5Match")]
-    #[DTA\Validator("Scalar", ["type" => "int"])]
-    public int|null $md5_match = null;
+    #[DTA\Data(field: "messageId", nullable: true)]
+    #[DTA\Validator("Scalar", ["type" => "string"])]
+    public string|null $message_id = null;
 
 }

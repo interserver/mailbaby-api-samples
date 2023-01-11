@@ -27,7 +27,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-01-03T15:07:52.361557-05:00[America/New_York]")public class MailApiServiceImpl extends MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-01-10T22:49:59.262341-05:00[America/New_York]")public class MailApiServiceImpl extends MailApiService {
     @Override
     public Response getMailOrders(SecurityContext securityContext) throws NotFoundException {
         // do some magic!
@@ -54,7 +54,7 @@ import javax.validation.constraints.*;
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
-    public Response viewMailLog( Long id,  String search,  @Min(0) Integer skip,  @Min(1) @Max(10000) Integer limit,  @Min(0L) @Max(9999999999L) Long startDate,  @Min(0L) @Max(9999999999L) Long endDate, SecurityContext securityContext) throws NotFoundException {
+    public Response viewMailLog( Long id,  String origin,  String mx,  String from,  String to,  String subject,  String mailid,  @Min(0) Integer skip,  @Min(1) @Max(10000) Integer limit,  @Min(0L) @Max(9999999999L) Long startDate,  @Min(0L) @Max(9999999999L) Long endDate, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }

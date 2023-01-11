@@ -214,7 +214,22 @@ using namespace Tiny;
             long id
             , 
             
-            std::string search
+            std::string origin
+            , 
+            
+            std::string mx
+            , 
+            
+            std::string from
+            , 
+            
+            std::string to
+            , 
+            
+            std::string subject
+            , 
+            
+            std::string mailid
             , 
             
             int skip
@@ -235,9 +250,14 @@ using namespace Tiny;
 
             // Headers  | 
 
-            // Query    | id search skip limit startDate endDate 
+            // Query    | id origin mx from to subject mailid skip limit startDate endDate 
             addQueryParam("id",id);
-            addQueryParam("search",search);
+            addQueryParam("origin",origin);
+            addQueryParam("mx",mx);
+            addQueryParam("from",from);
+            addQueryParam("to",to);
+            addQueryParam("subject",subject);
+            addQueryParam("mailid",mailid);
             addQueryParam("skip",skip);
             addQueryParam("limit",limit);
             addQueryParam("startDate",startDate);

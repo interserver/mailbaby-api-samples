@@ -926,7 +926,7 @@ ul.nav-tabs {
   "description" : "Mail log records"
 };
     defs["MailLogEntry"] = {
-  "required" : [ "_id", "_lock", "assigned", "bodySize", "connectionKey", "created", "date", "domain", "from", "id", "interface", "lockTime", "locked", "logger", "md5Match", "messageId", "mxHostname", "mxPort", "origin", "originhost", "queued", "recipient", "sendingZone", "sentBodyHash", "sentBodySize", "seq", "sourceMd5", "subject", "time", "to", "transhost", "transtype", "user" ],
+  "required" : [ "_id", "assigned", "bodySize", "created", "domain", "from", "id", "interface", "lockTime", "locked", "mxHostname", "origin", "queued", "recipient", "response", "sendingZone", "seq", "subject", "time", "to", "transtype", "user" ],
   "type" : "object",
   "properties" : {
     "_id" : {
@@ -979,16 +979,6 @@ ul.nav-tabs {
       "description" : "transaction type",
       "example" : "ESMTPSA"
     },
-    "transhost" : {
-      "type" : "string",
-      "description" : "transaction host",
-      "example" : "relay0.mailbaby.net"
-    },
-    "originhost" : {
-      "type" : "string",
-      "description" : "origin host",
-      "example" : "199.231.189.154"
-    },
     "origin" : {
       "type" : "string",
       "description" : "origin ip",
@@ -998,11 +988,6 @@ ul.nav-tabs {
       "type" : "string",
       "description" : "interface name",
       "example" : "feeder"
-    },
-    "date" : {
-      "type" : "string",
-      "description" : "date processed",
-      "example" : "Thu, 14 Oct 2021 08:50:09 -0400"
     },
     "sendingZone" : {
       "type" : "string",
@@ -1014,25 +999,20 @@ ul.nav-tabs {
       "description" : "email body size in bytes",
       "example" : 63
     },
-    "sourceMd5" : {
-      "type" : "string",
-      "description" : "md5 sum of the email",
-      "example" : "1d7058e6a30369f200b0c34fab2fac92"
-    },
     "seq" : {
       "type" : "integer",
-      "description" : "delivery sequency",
+      "description" : "index of email in the to adderess list",
       "example" : 1
+    },
+    "recipient" : {
+      "type" : "string",
+      "description" : "to address this email is being sent to",
+      "example" : "client@isp.com"
     },
     "domain" : {
       "type" : "string",
       "description" : "to address domain",
       "example" : "interserver.net"
-    },
-    "recipient" : {
-      "type" : "string",
-      "description" : "email receiver address",
-      "example" : "client@isp.com"
     },
     "locked" : {
       "type" : "integer",
@@ -1054,44 +1034,15 @@ ul.nav-tabs {
       "description" : "queued timestamp",
       "example" : "2021-10-14T12:50:15.487Z"
     },
-    "_lock" : {
-      "type" : "string",
-      "description" : "lock id",
-      "example" : "lock 17c7eda538e0005d03 001"
-    },
-    "logger" : {
-      "type" : "string",
-      "description" : "logger"
-    },
-    "mxPort" : {
-      "type" : "integer",
-      "description" : "mx port number",
-      "example" : 25
-    },
-    "connectionKey" : {
-      "type" : "string",
-      "description" : "connection key",
-      "example" : "206.72.200.46:interserver.net:25"
-    },
     "mxHostname" : {
       "type" : "string",
       "description" : "mx hostname",
       "example" : "mx.j.is.cc"
     },
-    "sentBodyHash" : {
+    "response" : {
       "type" : "string",
-      "description" : "body hash",
-      "example" : "1d7058e6a30369f200b0c34fab2fac92"
-    },
-    "sentBodySize" : {
-      "type" : "integer",
-      "description" : "sent body size in bytes",
-      "example" : 63
-    },
-    "md5Match" : {
-      "type" : "integer",
-      "description" : "md5 checksum matching result",
-      "example" : 1
+      "description" : "mail delivery response",
+      "example" : "250 2.0.0 Ok queued as C91D83E128C"
     }
   },
   "description" : "An email record"
@@ -1334,7 +1285,7 @@ ul.nav-tabs {
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 1.0.1</div>
+              <div class="app-desc">Version: 1.1.0</div>
             <hr>
             <div id="app-description" class="app-desc">
                 <p><strong>Send emails fast and with confidence through our easy to use <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> API interface.</strong></p>
@@ -3485,8 +3436,7 @@ The main email contents.
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">By passing in the appropriate options, you can search for
-available inventory in the system
+                        <p class="marked">Get a listing of the emails sent through this system
 </p>
                         <p></p>
                         <br />
@@ -3514,7 +3464,7 @@ available inventory in the system
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
 -H "X-API-KEY: [[apiKey]]" \
  -H "Accept: application/json" \
- "https://api.mailbaby.net/mail/log?id=789&search=search_example&skip=56&limit=56&startDate=789&endDate=789"
+ "https://api.mailbaby.net/mail/log?id=2604&origin=1.2.3.4&mx=mx.google.com&from=me@sender.com&to=you@receiver.com&subject=Support&mailid=185997065c60008840&skip=1000&limit=1000&startDate=1641781008&endDate=1673317008"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-viewMailLog-0-java">
@@ -3538,15 +3488,20 @@ public class DefaultApiExample {
 
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
-        Long id = 789; // Long | The ID of your mail order this will be sent through.
-        String search = search_example; // String | pass an optional search string for looking up inventory
-        Integer skip = 56; // Integer | number of records to skip for pagination
-        Integer limit = 56; // Integer | maximum number of records to return
-        Long startDate = 789; // Long | earliest date to get emails in unix timestamp format
-        Long endDate = 789; // Long | earliest date to get emails in unix timestamp format
+        Long id = 2604; // Long | The ID of your mail order this will be sent through.
+        String origin = 1.2.3.4; // String | originating ip address sending mail
+        String mx = mx.google.com; // String | mx record mail was sent to
+        String from = me@sender.com; // String | from email address
+        String to = you@receiver.com; // String | to/destination email address
+        String subject = Support; // String | subject containing this string
+        String mailid = 185997065c60008840; // String | mail id
+        Integer skip = 1000; // Integer | number of records to skip for pagination
+        Integer limit = 1000; // Integer | maximum number of records to return
+        Long startDate = 1641781008; // Long | earliest date to get emails in unix timestamp format
+        Long endDate = 1673317008; // Long | earliest date to get emails in unix timestamp format
 
         try {
-            MailLog result = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate);
+            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#viewMailLog");
@@ -3563,15 +3518,20 @@ public class DefaultApiExample {
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        Long id = 789; // Long | The ID of your mail order this will be sent through.
-        String search = search_example; // String | pass an optional search string for looking up inventory
-        Integer skip = 56; // Integer | number of records to skip for pagination
-        Integer limit = 56; // Integer | maximum number of records to return
-        Long startDate = 789; // Long | earliest date to get emails in unix timestamp format
-        Long endDate = 789; // Long | earliest date to get emails in unix timestamp format
+        Long id = 2604; // Long | The ID of your mail order this will be sent through.
+        String origin = 1.2.3.4; // String | originating ip address sending mail
+        String mx = mx.google.com; // String | mx record mail was sent to
+        String from = me@sender.com; // String | from email address
+        String to = you@receiver.com; // String | to/destination email address
+        String subject = Support; // String | subject containing this string
+        String mailid = 185997065c60008840; // String | mail id
+        Integer skip = 1000; // Integer | number of records to skip for pagination
+        Integer limit = 1000; // Integer | maximum number of records to return
+        Long startDate = 1641781008; // Long | earliest date to get emails in unix timestamp format
+        Long endDate = 1673317008; // Long | earliest date to get emails in unix timestamp format
 
         try {
-            MailLog result = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate);
+            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#viewMailLog");
@@ -3595,16 +3555,26 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
-Long *id = 789; // The ID of your mail order this will be sent through. (optional) (default to null)
-String *search = search_example; // pass an optional search string for looking up inventory (optional) (default to null)
-Integer *skip = 56; // number of records to skip for pagination (optional) (default to 0)
-Integer *limit = 56; // maximum number of records to return (optional) (default to 100)
-Long *startDate = 789; // earliest date to get emails in unix timestamp format (optional) (default to null)
-Long *endDate = 789; // earliest date to get emails in unix timestamp format (optional) (default to null)
+Long *id = 2604; // The ID of your mail order this will be sent through. (optional) (default to null)
+String *origin = 1.2.3.4; // originating ip address sending mail (optional) (default to null)
+String *mx = mx.google.com; // mx record mail was sent to (optional) (default to null)
+String *from = me@sender.com; // from email address (optional) (default to null)
+String *to = you@receiver.com; // to/destination email address (optional) (default to null)
+String *subject = Support; // subject containing this string (optional) (default to null)
+String *mailid = 185997065c60008840; // mail id (optional) (default to null)
+Integer *skip = 1000; // number of records to skip for pagination (optional) (default to 0)
+Integer *limit = 1000; // maximum number of records to return (optional) (default to 100)
+Long *startDate = 1641781008; // earliest date to get emails in unix timestamp format (optional) (default to null)
+Long *endDate = 1673317008; // earliest date to get emails in unix timestamp format (optional) (default to null)
 
 // displays the mail log
 [apiInstance viewMailLogWith:id
-    search:search
+    origin:origin
+    mx:mx
+    from:from
+    to:to
+    subject:subject
+    mailid:mailid
     skip:skip
     limit:limit
     startDate:startDate
@@ -3633,12 +3603,17 @@ apiKeyAuth.apiKey = "YOUR API KEY";
 // Create an instance of the API class
 var api = new MailBabyEmailDeliveryApi.DefaultApi()
 var opts = {
-  'id': 789, // {Long} The ID of your mail order this will be sent through.
-  'search': search_example, // {String} pass an optional search string for looking up inventory
-  'skip': 56, // {Integer} number of records to skip for pagination
-  'limit': 56, // {Integer} maximum number of records to return
-  'startDate': 789, // {Long} earliest date to get emails in unix timestamp format
-  'endDate': 789 // {Long} earliest date to get emails in unix timestamp format
+  'id': 2604, // {Long} The ID of your mail order this will be sent through.
+  'origin': 1.2.3.4, // {String} originating ip address sending mail
+  'mx': mx.google.com, // {String} mx record mail was sent to
+  'from': me@sender.com, // {String} from email address
+  'to': you@receiver.com, // {String} to/destination email address
+  'subject': Support, // {String} subject containing this string
+  'mailid': 185997065c60008840, // {String} mail id
+  'skip': 1000, // {Integer} number of records to skip for pagination
+  'limit': 1000, // {Integer} maximum number of records to return
+  'startDate': 1641781008, // {Long} earliest date to get emails in unix timestamp format
+  'endDate': 1673317008 // {Long} earliest date to get emails in unix timestamp format
 };
 
 var callback = function(error, data, response) {
@@ -3675,16 +3650,21 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
-            var id = 789;  // Long | The ID of your mail order this will be sent through. (optional)  (default to null)
-            var search = search_example;  // String | pass an optional search string for looking up inventory (optional)  (default to null)
-            var skip = 56;  // Integer | number of records to skip for pagination (optional)  (default to 0)
-            var limit = 56;  // Integer | maximum number of records to return (optional)  (default to 100)
-            var startDate = 789;  // Long | earliest date to get emails in unix timestamp format (optional)  (default to null)
-            var endDate = 789;  // Long | earliest date to get emails in unix timestamp format (optional)  (default to null)
+            var id = 2604;  // Long | The ID of your mail order this will be sent through. (optional)  (default to null)
+            var origin = 1.2.3.4;  // String | originating ip address sending mail (optional)  (default to null)
+            var mx = mx.google.com;  // String | mx record mail was sent to (optional)  (default to null)
+            var from = me@sender.com;  // String | from email address (optional)  (default to null)
+            var to = you@receiver.com;  // String | to/destination email address (optional)  (default to null)
+            var subject = Support;  // String | subject containing this string (optional)  (default to null)
+            var mailid = 185997065c60008840;  // String | mail id (optional)  (default to null)
+            var skip = 1000;  // Integer | number of records to skip for pagination (optional)  (default to 0)
+            var limit = 1000;  // Integer | maximum number of records to return (optional)  (default to 100)
+            var startDate = 1641781008;  // Long | earliest date to get emails in unix timestamp format (optional)  (default to null)
+            var endDate = 1673317008;  // Long | earliest date to get emails in unix timestamp format (optional)  (default to null)
 
             try {
                 // displays the mail log
-                MailLog result = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate);
+                MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.viewMailLog: " + e.Message );
@@ -3706,15 +3686,20 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
-$id = 789; // Long | The ID of your mail order this will be sent through.
-$search = search_example; // String | pass an optional search string for looking up inventory
-$skip = 56; // Integer | number of records to skip for pagination
-$limit = 56; // Integer | maximum number of records to return
-$startDate = 789; // Long | earliest date to get emails in unix timestamp format
-$endDate = 789; // Long | earliest date to get emails in unix timestamp format
+$id = 2604; // Long | The ID of your mail order this will be sent through.
+$origin = 1.2.3.4; // String | originating ip address sending mail
+$mx = mx.google.com; // String | mx record mail was sent to
+$from = me@sender.com; // String | from email address
+$to = you@receiver.com; // String | to/destination email address
+$subject = Support; // String | subject containing this string
+$mailid = 185997065c60008840; // String | mail id
+$skip = 1000; // Integer | number of records to skip for pagination
+$limit = 1000; // Integer | maximum number of records to return
+$startDate = 1641781008; // Long | earliest date to get emails in unix timestamp format
+$endDate = 1673317008; // Long | earliest date to get emails in unix timestamp format
 
 try {
-    $result = $api_instance->viewMailLog($id, $search, $skip, $limit, $startDate, $endDate);
+    $result = $api_instance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
@@ -3734,15 +3719,20 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = MailBabyApi::DefaultApi->new();
-my $id = 789; # Long | The ID of your mail order this will be sent through.
-my $search = search_example; # String | pass an optional search string for looking up inventory
-my $skip = 56; # Integer | number of records to skip for pagination
-my $limit = 56; # Integer | maximum number of records to return
-my $startDate = 789; # Long | earliest date to get emails in unix timestamp format
-my $endDate = 789; # Long | earliest date to get emails in unix timestamp format
+my $id = 2604; # Long | The ID of your mail order this will be sent through.
+my $origin = 1.2.3.4; # String | originating ip address sending mail
+my $mx = mx.google.com; # String | mx record mail was sent to
+my $from = me@sender.com; # String | from email address
+my $to = you@receiver.com; # String | to/destination email address
+my $subject = Support; # String | subject containing this string
+my $mailid = 185997065c60008840; # String | mail id
+my $skip = 1000; # Integer | number of records to skip for pagination
+my $limit = 1000; # Integer | maximum number of records to return
+my $startDate = 1641781008; # Long | earliest date to get emails in unix timestamp format
+my $endDate = 1673317008; # Long | earliest date to get emails in unix timestamp format
 
 eval {
-    my $result = $api_instance->viewMailLog(id => $id, search => $search, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate);
+    my $result = $api_instance->viewMailLog(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate);
     print Dumper($result);
 };
 if ($@) {
@@ -3764,16 +3754,21 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
-id = 789 # Long | The ID of your mail order this will be sent through. (optional) (default to null)
-search = search_example # String | pass an optional search string for looking up inventory (optional) (default to null)
-skip = 56 # Integer | number of records to skip for pagination (optional) (default to 0)
-limit = 56 # Integer | maximum number of records to return (optional) (default to 100)
-startDate = 789 # Long | earliest date to get emails in unix timestamp format (optional) (default to null)
-endDate = 789 # Long | earliest date to get emails in unix timestamp format (optional) (default to null)
+id = 2604 # Long | The ID of your mail order this will be sent through. (optional) (default to null)
+origin = 1.2.3.4 # String | originating ip address sending mail (optional) (default to null)
+mx = mx.google.com # String | mx record mail was sent to (optional) (default to null)
+from = me@sender.com # String | from email address (optional) (default to null)
+to = you@receiver.com # String | to/destination email address (optional) (default to null)
+subject = Support # String | subject containing this string (optional) (default to null)
+mailid = 185997065c60008840 # String | mail id (optional) (default to null)
+skip = 1000 # Integer | number of records to skip for pagination (optional) (default to 0)
+limit = 1000 # Integer | maximum number of records to return (optional) (default to 100)
+startDate = 1641781008 # Long | earliest date to get emails in unix timestamp format (optional) (default to null)
+endDate = 1673317008 # Long | earliest date to get emails in unix timestamp format (optional) (default to null)
 
 try:
     # displays the mail log
-    api_response = api_instance.view_mail_log(id=id, search=search, skip=skip, limit=limit, startDate=startDate, endDate=endDate)
+    api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, from=from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, startDate=startDate, endDate=endDate)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->viewMailLog: %s\n" % e)</code></pre>
@@ -3783,15 +3778,20 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
-    let id = 789; // Long
-    let search = search_example; // String
-    let skip = 56; // Integer
-    let limit = 56; // Integer
-    let startDate = 789; // Long
-    let endDate = 789; // Long
+    let id = 2604; // Long
+    let origin = 1.2.3.4; // String
+    let mx = mx.google.com; // String
+    let from = me@sender.com; // String
+    let to = you@receiver.com; // String
+    let subject = Support; // String
+    let mailid = 185997065c60008840; // String
+    let skip = 1000; // Integer
+    let limit = 1000; // Integer
+    let startDate = 1641781008; // Long
+    let endDate = 1673317008; // Long
 
     let mut context = DefaultApi::Context::default();
-    let result = client.viewMailLog(id, search, skip, limit, startDate, endDate, &context).wait();
+    let result = client.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, &context).wait();
 
     println!("{:?}", result);
 }
@@ -3839,11 +3839,11 @@ The ID of your mail order this will be sent through.
 </td>
 </tr>
 
-                                <tr><td style="width:150px;">search</td>
+                                <tr><td style="width:150px;">origin</td>
 <td>
 
 
-    <div id="d2e199_viewMailLog_search">
+    <div id="d2e199_viewMailLog_origin">
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
@@ -3851,7 +3851,107 @@ The ID of your mail order this will be sent through.
                 </span>
 
                     <div class="inner description marked">
-pass an optional search string for looking up inventory
+originating ip address sending mail
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">mx</td>
+<td>
+
+
+    <div id="d2e199_viewMailLog_mx">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+mx record mail was sent to
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">from</td>
+<td>
+
+
+    <div id="d2e199_viewMailLog_from">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+from email address
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">to</td>
+<td>
+
+
+    <div id="d2e199_viewMailLog_to">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+to/destination email address
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">subject</td>
+<td>
+
+
+    <div id="d2e199_viewMailLog_subject">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+subject containing this string
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">mailid</td>
+<td>
+
+
+    <div id="d2e199_viewMailLog_mailid">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+mail id
                     </div>
             </div>
         </div>

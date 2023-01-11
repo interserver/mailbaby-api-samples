@@ -47,7 +47,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-01-03T15:07:52.361557-05:00[America/New_York]")public class MailApi  {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-01-10T22:49:59.262341-05:00[America/New_York]")public class MailApi  {
    private final MailApiService delegate;
 
    public MailApi(@Context ServletConfig servletContext) {
@@ -133,14 +133,19 @@ import javax.validation.constraints.*;
     @Path("/log")
     
     @Produces({ "application/json" })
-    @Operation(summary = "displays the mail log", description = "By passing in the appropriate options, you can search for available inventory in the system ", security = {
+    @Operation(summary = "displays the mail log", description = "Get a listing of the emails sent through this system ", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailLog.class))),
         
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
     public Response viewMailLog(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through.") @QueryParam("id") Long id
-,@Parameter(in = ParameterIn.QUERY, description = "pass an optional search string for looking up inventory") @QueryParam("search") String search
+,@Parameter(in = ParameterIn.QUERY, description = "originating ip address sending mail") @QueryParam("origin") String origin
+,@Parameter(in = ParameterIn.QUERY, description = "mx record mail was sent to") @QueryParam("mx") String mx
+,@Parameter(in = ParameterIn.QUERY, description = "from email address") @QueryParam("from") String from
+,@Parameter(in = ParameterIn.QUERY, description = "to/destination email address") @QueryParam("to") String to
+,@Parameter(in = ParameterIn.QUERY, description = "subject containing this string") @QueryParam("subject") String subject
+,@Parameter(in = ParameterIn.QUERY, description = "mail id") @QueryParam("mailid") String mailid
 ,@Parameter(in = ParameterIn.QUERY, description = "number of records to skip for pagination", schema=@Schema(allowableValues={  })
 ) @DefaultValue("0") @QueryParam("skip") Integer skip
 ,@Parameter(in = ParameterIn.QUERY, description = "maximum number of records to return", schema=@Schema(allowableValues={  }, minimum="1", maximum="10000")
@@ -151,6 +156,6 @@ import javax.validation.constraints.*;
 ) @QueryParam("endDate") Long endDate
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.viewMailLog(id,search,skip,limit,startDate,endDate,securityContext);
+        return delegate.viewMailLog(id,origin,mx,from,to,subject,mailid,skip,limit,startDate,endDate,securityContext);
     }
 }

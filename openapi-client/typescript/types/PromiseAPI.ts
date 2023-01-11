@@ -69,17 +69,22 @@ export class PromiseDefaultApi {
     }
 
     /**
-     * By passing in the appropriate options, you can search for available inventory in the system 
+     * Get a listing of the emails sent through this system 
      * displays the mail log
      * @param id The ID of your mail order this will be sent through.
-     * @param search pass an optional search string for looking up inventory
+     * @param origin originating ip address sending mail
+     * @param mx mx record mail was sent to
+     * @param _from from email address
+     * @param to to/destination email address
+     * @param subject subject containing this string
+     * @param mailid mail id
      * @param skip number of records to skip for pagination
      * @param limit maximum number of records to return
      * @param startDate earliest date to get emails in unix timestamp format
      * @param endDate earliest date to get emails in unix timestamp format
      */
-    public viewMailLog(id?: number, search?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, _options?: Configuration): Promise<MailLog> {
-        const result = this.api.viewMailLog(id, search, skip, limit, startDate, endDate, _options);
+    public viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, _options?: Configuration): Promise<MailLog> {
+        const result = this.api.viewMailLog(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, _options);
         return result.toPromise();
     }
 

@@ -61,14 +61,6 @@ public class MailLogEntryTest {
     }
 
     /**
-     * Test the property 'messageId'
-     */
-    @Test
-    public void messageIdTest() {
-        // TODO: test messageId
-    }
-
-    /**
      * Test the property 'created'
      */
     @Test
@@ -101,22 +93,6 @@ public class MailLogEntryTest {
     }
 
     /**
-     * Test the property 'transhost'
-     */
-    @Test
-    public void transhostTest() {
-        // TODO: test transhost
-    }
-
-    /**
-     * Test the property 'originhost'
-     */
-    @Test
-    public void originhostTest() {
-        // TODO: test originhost
-    }
-
-    /**
      * Test the property 'origin'
      */
     @Test
@@ -130,14 +106,6 @@ public class MailLogEntryTest {
     @Test
     public void _interfaceTest() {
         // TODO: test _interface
-    }
-
-    /**
-     * Test the property 'date'
-     */
-    @Test
-    public void dateTest() {
-        // TODO: test date
     }
 
     /**
@@ -157,14 +125,6 @@ public class MailLogEntryTest {
     }
 
     /**
-     * Test the property 'sourceMd5'
-     */
-    @Test
-    public void sourceMd5Test() {
-        // TODO: test sourceMd5
-    }
-
-    /**
      * Test the property 'seq'
      */
     @Test
@@ -173,19 +133,19 @@ public class MailLogEntryTest {
     }
 
     /**
-     * Test the property 'domain'
-     */
-    @Test
-    public void domainTest() {
-        // TODO: test domain
-    }
-
-    /**
      * Test the property 'recipient'
      */
     @Test
     public void recipientTest() {
         // TODO: test recipient
+    }
+
+    /**
+     * Test the property 'domain'
+     */
+    @Test
+    public void domainTest() {
+        // TODO: test domain
     }
 
     /**
@@ -221,38 +181,6 @@ public class MailLogEntryTest {
     }
 
     /**
-     * Test the property 'lock'
-     */
-    @Test
-    public void lockTest() {
-        // TODO: test lock
-    }
-
-    /**
-     * Test the property 'logger'
-     */
-    @Test
-    public void loggerTest() {
-        // TODO: test logger
-    }
-
-    /**
-     * Test the property 'mxPort'
-     */
-    @Test
-    public void mxPortTest() {
-        // TODO: test mxPort
-    }
-
-    /**
-     * Test the property 'connectionKey'
-     */
-    @Test
-    public void connectionKeyTest() {
-        // TODO: test connectionKey
-    }
-
-    /**
      * Test the property 'mxHostname'
      */
     @Test
@@ -261,27 +189,19 @@ public class MailLogEntryTest {
     }
 
     /**
-     * Test the property 'sentBodyHash'
+     * Test the property 'response'
      */
     @Test
-    public void sentBodyHashTest() {
-        // TODO: test sentBodyHash
+    public void responseTest() {
+        // TODO: test response
     }
 
     /**
-     * Test the property 'sentBodySize'
+     * Test the property 'messageId'
      */
     @Test
-    public void sentBodySizeTest() {
-        // TODO: test sentBodySize
-    }
-
-    /**
-     * Test the property 'md5Match'
-     */
-    @Test
-    public void md5MatchTest() {
-        // TODO: test md5Match
+    public void messageIdTest() {
+        // TODO: test messageId
     }
 
 }

@@ -336,7 +336,12 @@ case $state in
         local -a _op_arguments
         _op_arguments=(
                     "id=:[QUERY] The ID of your mail order this will be sent through."
-"search=:[QUERY] pass an optional search string for looking up inventory"
+"origin=:[QUERY] originating ip address sending mail"
+"mx=:[QUERY] mx record mail was sent to"
+"from=:[QUERY] from email address"
+"to=:[QUERY] to/destination email address"
+"subject=:[QUERY] subject containing this string"
+"mailid=:[QUERY] mail id"
 "skip=:[QUERY] number of records to skip for pagination"
 "limit=:[QUERY] maximum number of records to return"
 "startDate=:[QUERY] earliest date to get emails in unix timestamp format"

@@ -135,9 +135,9 @@ Name | Type | Description  | Notes
 ```c
 // displays the mail log
 //
-// By passing in the appropriate options, you can search for available inventory in the system 
+// Get a listing of the emails sent through this system 
 //
-mail_log_t* DefaultAPI_viewMailLog(apiClient_t *apiClient, long id, char * search, int skip, int limit, long startDate, long endDate);
+mail_log_t* DefaultAPI_viewMailLog(apiClient_t *apiClient, long id, char * origin, char * mx, char * from, char * to, char * subject, char * mailid, int skip, int limit, long startDate, long endDate);
 ```
 
 ### Parameters
@@ -145,7 +145,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **id** | **long** | The ID of your mail order this will be sent through. | [optional] 
-**search** | **char \*** | pass an optional search string for looking up inventory | [optional] 
+**origin** | **char \*** | originating ip address sending mail | [optional] 
+**mx** | **char \*** | mx record mail was sent to | [optional] 
+**from** | **char \*** | from email address | [optional] 
+**to** | **char \*** | to/destination email address | [optional] 
+**subject** | **char \*** | subject containing this string | [optional] 
+**mailid** | **char \*** | mail id | [optional] 
 **skip** | **int** | number of records to skip for pagination | [optional] [default to 0]
 **limit** | **int** | maximum number of records to return | [optional] [default to 100]
 **startDate** | **long** | earliest date to get emails in unix timestamp format | [optional] 

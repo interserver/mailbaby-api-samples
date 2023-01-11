@@ -58,14 +58,14 @@ send_mail(To, From, Subject, Body) ->
   openapi_utils:request(Method, [Host, ?BASE_URL, Path], jsx:encode(Body), ContentType).
 
 %% @doc displays the mail log
-%% By passing in the appropriate options, you can search for available inventory in the system 
+%% Get a listing of the emails sent through this system 
 -spec view_mail_log() ->
   openapi_utils:response().
 view_mail_log() ->
   Method      = get,
   Host        = application:get_env(openapi, host, "http://localhost:8080"),
   Path        = ["/mail/log"],
-  QueryString = [<<"id=">>, Id, <<"&">>, <<"search=">>, Search, <<"&">>, <<"skip=">>, Skip, <<"&">>, <<"limit=">>, Limit, <<"&">>, <<"startDate=">>, StartDate, <<"&">>, <<"endDate=">>, EndDate, <<"&">>],
+  QueryString = [<<"id=">>, Id, <<"&">>, <<"origin=">>, Origin, <<"&">>, <<"mx=">>, Mx, <<"&">>, <<"from=">>, From, <<"&">>, <<"to=">>, To, <<"&">>, <<"subject=">>, Subject, <<"&">>, <<"mailid=">>, Mailid, <<"&">>, <<"skip=">>, Skip, <<"&">>, <<"limit=">>, Limit, <<"&">>, <<"startDate=">>, StartDate, <<"&">>, <<"endDate=">>, EndDate, <<"&">>],
 
   openapi_utils:request(Method, [Host, ?BASE_URL, Path, <<"?">>, QueryString]).
 

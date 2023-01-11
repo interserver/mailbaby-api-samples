@@ -444,24 +444,12 @@ class Decoders {
                 case let .success(value): _result.transtype = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["transhost"] as AnyObject?) {
-                case let .success(value): _result.transhost = value
-                case let .failure(error): break
-                }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["originhost"] as AnyObject?) {
-                case let .success(value): _result.originhost = value
-                case let .failure(error): break
-                }
                 switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["origin"] as AnyObject?) {
                 case let .success(value): _result.origin = value
                 case let .failure(error): break
                 }
                 switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["interface"] as AnyObject?) {
                 case let .success(value): _result.interface = value
-                case let .failure(error): break
-                }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["date"] as AnyObject?) {
-                case let .success(value): _result.date = value
                 case let .failure(error): break
                 }
                 switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["sendingZone"] as AnyObject?) {
@@ -472,20 +460,16 @@ class Decoders {
                 case let .success(value): _result.bodySize = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["sourceMd5"] as AnyObject?) {
-                case let .success(value): _result.sourceMd5 = value
-                case let .failure(error): break
-                }
                 switch Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["seq"] as AnyObject?) {
                 case let .success(value): _result.seq = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["domain"] as AnyObject?) {
-                case let .success(value): _result.domain = value
-                case let .failure(error): break
-                }
                 switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["recipient"] as AnyObject?) {
                 case let .success(value): _result.recipient = value
+                case let .failure(error): break
+                }
+                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["domain"] as AnyObject?) {
+                case let .success(value): _result.domain = value
                 case let .failure(error): break
                 }
                 switch Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["locked"] as AnyObject?) {
@@ -504,36 +488,12 @@ class Decoders {
                 case let .success(value): _result.queued = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["_lock"] as AnyObject?) {
-                case let .success(value): _result.lock = value
-                case let .failure(error): break
-                }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["logger"] as AnyObject?) {
-                case let .success(value): _result.logger = value
-                case let .failure(error): break
-                }
-                switch Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["mxPort"] as AnyObject?) {
-                case let .success(value): _result.mxPort = value
-                case let .failure(error): break
-                }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["connectionKey"] as AnyObject?) {
-                case let .success(value): _result.connectionKey = value
-                case let .failure(error): break
-                }
                 switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["mxHostname"] as AnyObject?) {
                 case let .success(value): _result.mxHostname = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["sentBodyHash"] as AnyObject?) {
-                case let .success(value): _result.sentBodyHash = value
-                case let .failure(error): break
-                }
-                switch Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["sentBodySize"] as AnyObject?) {
-                case let .success(value): _result.sentBodySize = value
-                case let .failure(error): break
-                }
-                switch Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["md5Match"] as AnyObject?) {
-                case let .success(value): _result.md5Match = value
+                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["response"] as AnyObject?) {
+                case let .success(value): _result.response = value
                 case let .failure(error): break
                 }
                 return .success(_result)

@@ -120,7 +120,7 @@ class DefaultApi {
 
     }
 
-    def viewMailLog ( Long id, String search, Integer skip, Integer limit, Long startDate, Long endDate, Closure onSuccess, Closure onFailure)  {
+    def viewMailLog ( Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/log"
 
         // params
@@ -133,8 +133,23 @@ class DefaultApi {
         if (id != null) {
             queryParams.put("id", id)
         }
-        if (search != null) {
-            queryParams.put("search", search)
+        if (origin != null) {
+            queryParams.put("origin", origin)
+        }
+        if (mx != null) {
+            queryParams.put("mx", mx)
+        }
+        if (from != null) {
+            queryParams.put("from", from)
+        }
+        if (to != null) {
+            queryParams.put("to", to)
+        }
+        if (subject != null) {
+            queryParams.put("subject", subject)
+        }
+        if (mailid != null) {
+            queryParams.put("mailid", mailid)
         }
         if (skip != null) {
             queryParams.put("skip", skip)

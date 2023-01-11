@@ -46,12 +46,6 @@ void main() {
       // TODO
     });
 
-    // message id
-    // String messageId
-    test('to test the property `messageId`', () async {
-      // TODO
-    });
-
     // creation date
     // String created
     test('to test the property `created`', () async {
@@ -76,18 +70,6 @@ void main() {
       // TODO
     });
 
-    // transaction host
-    // String transhost
-    test('to test the property `transhost`', () async {
-      // TODO
-    });
-
-    // origin host
-    // String originhost
-    test('to test the property `originhost`', () async {
-      // TODO
-    });
-
     // origin ip
     // String origin
     test('to test the property `origin`', () async {
@@ -97,12 +79,6 @@ void main() {
     // interface name
     // String interface_
     test('to test the property `interface_`', () async {
-      // TODO
-    });
-
-    // date processed
-    // String date
-    test('to test the property `date`', () async {
       // TODO
     });
 
@@ -118,27 +94,21 @@ void main() {
       // TODO
     });
 
-    // md5 sum of the email
-    // String sourceMd5
-    test('to test the property `sourceMd5`', () async {
+    // index of email in the to adderess list
+    // int seq
+    test('to test the property `seq`', () async {
       // TODO
     });
 
-    // delivery sequency
-    // int seq
-    test('to test the property `seq`', () async {
+    // to address this email is being sent to
+    // String recipient
+    test('to test the property `recipient`', () async {
       // TODO
     });
 
     // to address domain
     // String domain
     test('to test the property `domain`', () async {
-      // TODO
-    });
-
-    // email receiver address
-    // String recipient
-    test('to test the property `recipient`', () async {
       // TODO
     });
 
@@ -166,51 +136,21 @@ void main() {
       // TODO
     });
 
-    // lock id
-    // String lock
-    test('to test the property `lock`', () async {
-      // TODO
-    });
-
-    // logger
-    // String logger
-    test('to test the property `logger`', () async {
-      // TODO
-    });
-
-    // mx port number
-    // int mxPort
-    test('to test the property `mxPort`', () async {
-      // TODO
-    });
-
-    // connection key
-    // String connectionKey
-    test('to test the property `connectionKey`', () async {
-      // TODO
-    });
-
     // mx hostname
     // String mxHostname
     test('to test the property `mxHostname`', () async {
       // TODO
     });
 
-    // body hash
-    // String sentBodyHash
-    test('to test the property `sentBodyHash`', () async {
+    // mail delivery response
+    // String response
+    test('to test the property `response`', () async {
       // TODO
     });
 
-    // sent body size in bytes
-    // int sentBodySize
-    test('to test the property `sentBodySize`', () async {
-      // TODO
-    });
-
-    // md5 checksum matching result
-    // int md5Match
-    test('to test the property `md5Match`', () async {
+    // message id
+    // String messageId
+    test('to test the property `messageId`', () async {
       // TODO
     });
 

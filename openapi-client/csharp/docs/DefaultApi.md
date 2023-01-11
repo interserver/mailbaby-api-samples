@@ -335,11 +335,11 @@ Name | Type | Description  | Notes
 
 ## ViewMailLog
 
-> MailLog ViewMailLog (long? id = null, string search = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null)
+> MailLog ViewMailLog (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null)
 
 displays the mail log
 
-By passing in the appropriate options, you can search for available inventory in the system 
+Get a listing of the emails sent through this system 
 
 ### Example
 
@@ -363,17 +363,22 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-API-KEY", "Bearer");
 
             var apiInstance = new DefaultApi(Configuration.Default);
-            var id = 789L;  // long? | The ID of your mail order this will be sent through. (optional) 
-            var search = "search_example";  // string | pass an optional search string for looking up inventory (optional) 
-            var skip = 0;  // int? | number of records to skip for pagination (optional)  (default to 0)
-            var limit = 100;  // int? | maximum number of records to return (optional)  (default to 100)
-            var startDate = 789L;  // long? | earliest date to get emails in unix timestamp format (optional) 
-            var endDate = 789L;  // long? | earliest date to get emails in unix timestamp format (optional) 
+            var id = 2604;  // long? | The ID of your mail order this will be sent through. (optional) 
+            var origin = 1.2.3.4;  // string | originating ip address sending mail (optional) 
+            var mx = mx.google.com;  // string | mx record mail was sent to (optional) 
+            var from = me@sender.com;  // string | from email address (optional) 
+            var to = you@receiver.com;  // string | to/destination email address (optional) 
+            var subject = Support;  // string | subject containing this string (optional) 
+            var mailid = 185997065c60008840;  // string | mail id (optional) 
+            var skip = 1000;  // int? | number of records to skip for pagination (optional)  (default to 0)
+            var limit = 1000;  // int? | maximum number of records to return (optional)  (default to 100)
+            var startDate = 1641781008;  // long? | earliest date to get emails in unix timestamp format (optional) 
+            var endDate = 1673317008;  // long? | earliest date to get emails in unix timestamp format (optional) 
 
             try
             {
                 // displays the mail log
-                MailLog result = apiInstance.ViewMailLog(id, search, skip, limit, startDate, endDate);
+                MailLog result = apiInstance.ViewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
                 Debug.WriteLine(result);
             }
             catch (ApiException e)
@@ -393,7 +398,12 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **long?**| The ID of your mail order this will be sent through. | [optional] 
- **search** | **string**| pass an optional search string for looking up inventory | [optional] 
+ **origin** | **string**| originating ip address sending mail | [optional] 
+ **mx** | **string**| mx record mail was sent to | [optional] 
+ **from** | **string**| from email address | [optional] 
+ **to** | **string**| to/destination email address | [optional] 
+ **subject** | **string**| subject containing this string | [optional] 
+ **mailid** | **string**| mail id | [optional] 
  **skip** | **int?**| number of records to skip for pagination | [optional] [default to 0]
  **limit** | **int?**| maximum number of records to return | [optional] [default to 100]
  **startDate** | **long?**| earliest date to get emails in unix timestamp format | [optional] 

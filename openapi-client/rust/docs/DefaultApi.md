@@ -127,10 +127,10 @@ Name | Type | Description  | Required | Notes
 
 ## view_mail_log
 
-> crate::models::MailLog view_mail_log(id, search, skip, limit, start_date, end_date)
+> crate::models::MailLog view_mail_log(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date)
 displays the mail log
 
-By passing in the appropriate options, you can search for available inventory in the system 
+Get a listing of the emails sent through this system 
 
 ### Parameters
 
@@ -138,7 +138,12 @@ By passing in the appropriate options, you can search for available inventory in
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | Option<**i64**> | The ID of your mail order this will be sent through. |  |
-**search** | Option<**String**> | pass an optional search string for looking up inventory |  |
+**origin** | Option<**String**> | originating ip address sending mail |  |
+**mx** | Option<**String**> | mx record mail was sent to |  |
+**from** | Option<**String**> | from email address |  |
+**to** | Option<**String**> | to/destination email address |  |
+**subject** | Option<**String**> | subject containing this string |  |
+**mailid** | Option<**String**> | mail id |  |
 **skip** | Option<**i32**> | number of records to skip for pagination |  |[default to 0]
 **limit** | Option<**i32**> | maximum number of records to return |  |[default to 100]
 **start_date** | Option<**i64**> | earliest date to get emails in unix timestamp format |  |

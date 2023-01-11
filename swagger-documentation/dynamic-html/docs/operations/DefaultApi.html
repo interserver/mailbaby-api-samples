@@ -248,7 +248,7 @@
   <h2><a name="viewMailLog"></a>viewMailLog</h2>
   <hr>
   <p></p>
-  <p>By passing in the appropriate options, you can search for available inventory in the system </p>
+  <p>Get a listing of the emails sent through this system </p>
   <h3 class="section">URL</h3>
   <code>https://api.mailbaby.net/mail/log</code>
   <h3 class="section">HTTP Method</h3>
@@ -274,10 +274,65 @@
       
       
       
-      <span class="param-name">search</span>
+      <span class="param-name">origin</span>
       <span class="param-type">String</span>
       
-      <p class="param-description">pass an optional search string for looking up inventory</p>
+      <p class="param-description">originating ip address sending mail</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">mx</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">mx record mail was sent to</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">from</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">from email address</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">to</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">to/destination email address</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">subject</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">subject containing this string</p>
+	  </li>
+	  <li class="parameter">
+      
+      <span class="param-in">Query: </span>
+      
+      
+      
+      <span class="param-name">mailid</span>
+      <span class="param-type">String</span>
+      
+      <p class="param-description">mail id</p>
 	  </li>
 	  <li class="parameter">
       

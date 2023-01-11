@@ -1,6 +1,6 @@
 = MailBaby Email Delivery API
 support@interserver.net
-1.0.1
+1.1.0
 :toc: left
 :numbered:
 :toclevels: 3
@@ -405,7 +405,7 @@ displays the mail log
 
 ===== Description
 
-By passing in the appropriate options, you can search for available inventory in the system 
+Get a listing of the emails sent through this system 
 
 
 // markup not found, no include::{specDir}mail/log/GET/spec.adoc[opts=optional]
@@ -430,8 +430,38 @@ By passing in the appropriate options, you can search for available inventory in
 | null
 | 
 
-| search
-| pass an optional search string for looking up inventory 
+| origin
+| originating ip address sending mail 
+| -
+| null
+| 
+
+| mx
+| mx record mail was sent to 
+| -
+| null
+| 
+
+| from
+| from email address 
+| -
+| null
+| 
+
+| to
+| to/destination email address 
+| -
+| null
+| 
+
+| subject
+| subject containing this string 
+| -
+| null
+| 
+
+| mailid
+| mail id 
 | -
 | null
 | 
@@ -687,12 +717,6 @@ An email record
 | email subject
 |  
 
-| messageId
-| X
-| String 
-| message id
-|  
-
 | created
 | X
 | String 
@@ -717,18 +741,6 @@ An email record
 | transaction type
 |  
 
-| transhost
-| X
-| String 
-| transaction host
-|  
-
-| originhost
-| X
-| String 
-| origin host
-|  
-
 | origin
 | X
 | String 
@@ -739,12 +751,6 @@ An email record
 | X
 | String 
 | interface name
-|  
-
-| date
-| X
-| String 
-| date processed
 |  
 
 | sendingZone
@@ -759,28 +765,22 @@ An email record
 | email body size in bytes
 |  
 
-| sourceMd5
-| X
-| String 
-| md5 sum of the email
-|  
-
 | seq
 | X
 | Integer 
-| delivery sequency
+| index of email in the to adderess list
+|  
+
+| recipient
+| X
+| String 
+| to address this email is being sent to
 |  
 
 | domain
 | X
 | String 
 | to address domain
-|  
-
-| recipient
-| X
-| String 
-| email receiver address
 |  
 
 | locked
@@ -807,52 +807,22 @@ An email record
 | queued timestamp
 |  
 
-| _lock
-| X
-| String 
-| lock id
-|  
-
-| logger
-| X
-| String 
-| logger
-|  
-
-| mxPort
-| X
-| Integer 
-| mx port number
-|  
-
-| connectionKey
-| X
-| String 
-| connection key
-|  
-
 | mxHostname
 | X
 | String 
 | mx hostname
 |  
 
-| sentBodyHash
+| response
 | X
 | String 
-| body hash
+| mail delivery response
 |  
 
-| sentBodySize
-| X
-| Integer 
-| sent body size in bytes
-|  
-
-| md5Match
-| X
-| Integer 
-| md5 checksum matching result
+| messageId
+| 
+| String 
+| message id
 |  
 
 |===

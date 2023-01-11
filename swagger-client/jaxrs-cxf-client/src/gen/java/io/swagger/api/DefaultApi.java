@@ -139,7 +139,7 @@ public interface DefaultApi  {
     /**
      * displays the mail log
      *
-     * By passing in the appropriate options, you can search for available inventory in the system 
+     * Get a listing of the emails sent through this system 
      *
      */
     @GET
@@ -149,5 +149,5 @@ public interface DefaultApi  {
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailLog.class))),
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
-    public MailLog viewMailLog(@QueryParam("id")Long id, @QueryParam("search")String search, @QueryParam("skip")@DefaultValue("0") Integer skip, @QueryParam("limit")@DefaultValue("100") Integer limit, @QueryParam("startDate")Long startDate, @QueryParam("endDate")Long endDate);
+    public MailLog viewMailLog(@QueryParam("id")Long id, @QueryParam("origin")String origin, @QueryParam("mx")String mx, @QueryParam("from")String from, @QueryParam("to")String to, @QueryParam("subject")String subject, @QueryParam("mailid")String mailid, @QueryParam("skip")@DefaultValue("0") Integer skip, @QueryParam("limit")@DefaultValue("100") Integer limit, @QueryParam("startDate")Long startDate, @QueryParam("endDate")Long endDate);
 }

@@ -135,18 +135,23 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 <a name="viewMailLog"></a>
 # **viewMailLog**
 ```java
-Mono<MailLog> DefaultApi.viewMailLog(idsearchskiplimitstartDateendDate)
+Mono<MailLog> DefaultApi.viewMailLog(idoriginmxfromtosubjectmailidskiplimitstartDateendDate)
 ```
 
 displays the mail log
 
-By passing in the appropriate options, you can search for available inventory in the system 
+Get a listing of the emails sent through this system 
 
 ### Parameters
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | `Long`| The ID of your mail order this will be sent through. | [optional parameter] |
-| **search** | `String`| pass an optional search string for looking up inventory | [optional parameter] |
+| **origin** | `String`| originating ip address sending mail | [optional parameter] |
+| **mx** | `String`| mx record mail was sent to | [optional parameter] |
+| **from** | `String`| from email address | [optional parameter] |
+| **to** | `String`| to/destination email address | [optional parameter] |
+| **subject** | `String`| subject containing this string | [optional parameter] |
+| **mailid** | `String`| mail id | [optional parameter] |
 | **skip** | `Integer`| number of records to skip for pagination | [optional parameter] [default to `0`] |
 | **limit** | `Integer`| maximum number of records to return | [optional parameter] [default to `100`] |
 | **startDate** | `Long`| earliest date to get emails in unix timestamp format | [optional parameter] |

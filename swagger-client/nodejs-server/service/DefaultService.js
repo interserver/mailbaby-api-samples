@@ -137,88 +137,73 @@ exports.sendMail = function(body) {
 
 /**
  * displays the mail log
- * By passing in the appropriate options, you can search for available inventory in the system 
+ * Get a listing of the emails sent through this system 
  *
  * id Long The ID of your mail order this will be sent through. (optional)
- * search String pass an optional search string for looking up inventory (optional)
+ * origin String originating ip address sending mail (optional)
+ * mx String mx record mail was sent to (optional)
+ * from String from email address (optional)
+ * to String to/destination email address (optional)
+ * subject String subject containing this string (optional)
+ * mailid String mail id (optional)
  * skip Integer number of records to skip for pagination (optional)
  * limit Integer maximum number of records to return (optional)
  * startDate Long earliest date to get emails in unix timestamp format (optional)
  * endDate Long earliest date to get emails in unix timestamp format (optional)
  * returns MailLog
  **/
-exports.viewMailLog = function(id,search,skip,limit,startDate,endDate) {
+exports.viewMailLog = function(id,origin,mx,from,to,subject,mailid,skip,limit,startDate,endDate) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
   "emails" : [ {
-    "date" : "Thu, 14 Oct 2021 08:50:09 -0400",
     "subject" : "sell 0.005 shares",
-    "origin" : "199.231.189.154",
-    "queued" : "2021-10-14T12:50:15.487Z",
-    "logger" : "logger",
-    "connectionKey" : "206.72.200.46:interserver.net:25",
-    "interface" : "feeder",
-    "md5Match" : 1,
-    "mxPort" : 25,
-    "sentBodySize" : 63,
-    "lockTime" : 1634215818533,
-    "from" : "person@mysite.com",
-    "id" : "17c7eda538e0005d03",
-    "locked" : 1,
-    "seq" : 1,
-    "sentBodyHash" : "1d7058e6a30369f200b0c34fab2fac92",
     "created" : "2021-10-14 08:50:10",
     "transtype" : "ESMTPSA",
-    "sourceMd5" : "1d7058e6a30369f200b0c34fab2fac92",
-    "_lock" : "lock 17c7eda538e0005d03 001",
+    "origin" : "199.231.189.154",
+    "queued" : "2021-10-14T12:50:15.487Z",
     "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
     "sendingZone" : "interserver",
     "mxHostname" : "mx.j.is.cc",
-    "transhost" : "relay0.mailbaby.net",
-    "originhost" : "199.231.189.154",
+    "interface" : "feeder",
+    "lockTime" : 1634215818533,
+    "response" : "250 2.0.0 Ok queued as C91D83E128C",
     "domain" : "interserver.net",
     "bodySize" : 63,
     "recipient" : "client@isp.com",
+    "from" : "person@mysite.com",
     "assigned" : "relay1",
     "_id" : 103172,
+    "id" : "17c7eda538e0005d03",
     "to" : "client@isp.com",
     "time" : 1634215809,
-    "user" : "mb5658"
+    "locked" : 1,
+    "user" : "mb5658",
+    "seq" : 1
   }, {
-    "date" : "Thu, 14 Oct 2021 08:50:09 -0400",
     "subject" : "sell 0.005 shares",
-    "origin" : "199.231.189.154",
-    "queued" : "2021-10-14T12:50:15.487Z",
-    "logger" : "logger",
-    "connectionKey" : "206.72.200.46:interserver.net:25",
-    "interface" : "feeder",
-    "md5Match" : 1,
-    "mxPort" : 25,
-    "sentBodySize" : 63,
-    "lockTime" : 1634215818533,
-    "from" : "person@mysite.com",
-    "id" : "17c7eda538e0005d03",
-    "locked" : 1,
-    "seq" : 1,
-    "sentBodyHash" : "1d7058e6a30369f200b0c34fab2fac92",
     "created" : "2021-10-14 08:50:10",
     "transtype" : "ESMTPSA",
-    "sourceMd5" : "1d7058e6a30369f200b0c34fab2fac92",
-    "_lock" : "lock 17c7eda538e0005d03 001",
+    "origin" : "199.231.189.154",
+    "queued" : "2021-10-14T12:50:15.487Z",
     "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
     "sendingZone" : "interserver",
     "mxHostname" : "mx.j.is.cc",
-    "transhost" : "relay0.mailbaby.net",
-    "originhost" : "199.231.189.154",
+    "interface" : "feeder",
+    "lockTime" : 1634215818533,
+    "response" : "250 2.0.0 Ok queued as C91D83E128C",
     "domain" : "interserver.net",
     "bodySize" : 63,
     "recipient" : "client@isp.com",
+    "from" : "person@mysite.com",
     "assigned" : "relay1",
     "_id" : 103172,
+    "id" : "17c7eda538e0005d03",
     "to" : "client@isp.com",
     "time" : 1634215809,
-    "user" : "mb5658"
+    "locked" : 1,
+    "user" : "mb5658",
+    "seq" : 1
   } ],
   "total" : 10234,
   "limit" : 100,

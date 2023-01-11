@@ -214,11 +214,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **view_mail_log**
-> MailLog view_mail_log(id=id, search=search, skip=skip, limit=limit, start_date=start_date, end_date=end_date)
+> MailLog view_mail_log(id=id, origin=origin, mx=mx, _from=_from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, start_date=start_date, end_date=end_date)
 
 displays the mail log
 
-By passing in the appropriate options, you can search for available inventory in the system 
+Get a listing of the emails sent through this system 
 
 ### Example
 ```python
@@ -237,7 +237,12 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = swagger_client.DefaultApi(swagger_client.ApiClient(configuration))
 id = 789 # int | The ID of your mail order this will be sent through. (optional)
-search = 'search_example' # str | pass an optional search string for looking up inventory (optional)
+origin = 'origin_example' # str | originating ip address sending mail (optional)
+mx = 'mx_example' # str | mx record mail was sent to (optional)
+_from = '_from_example' # str | from email address (optional)
+to = 'to_example' # str | to/destination email address (optional)
+subject = 'subject_example' # str | subject containing this string (optional)
+mailid = 'mailid_example' # str | mail id (optional)
 skip = 0 # int | number of records to skip for pagination (optional) (default to 0)
 limit = 100 # int | maximum number of records to return (optional) (default to 100)
 start_date = 789 # int | earliest date to get emails in unix timestamp format (optional)
@@ -245,7 +250,7 @@ end_date = 789 # int | earliest date to get emails in unix timestamp format (opt
 
 try:
     # displays the mail log
-    api_response = api_instance.view_mail_log(id=id, search=search, skip=skip, limit=limit, start_date=start_date, end_date=end_date)
+    api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, _from=_from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, start_date=start_date, end_date=end_date)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->view_mail_log: %s\n" % e)
@@ -256,7 +261,12 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
- **search** | **str**| pass an optional search string for looking up inventory | [optional] 
+ **origin** | **str**| originating ip address sending mail | [optional] 
+ **mx** | **str**| mx record mail was sent to | [optional] 
+ **_from** | **str**| from email address | [optional] 
+ **to** | **str**| to/destination email address | [optional] 
+ **subject** | **str**| subject containing this string | [optional] 
+ **mailid** | **str**| mail id | [optional] 
  **skip** | **int**| number of records to skip for pagination | [optional] [default to 0]
  **limit** | **int**| maximum number of records to return | [optional] [default to 100]
  **start_date** | **int**| earliest date to get emails in unix timestamp format | [optional] 

@@ -12,8 +12,8 @@ To see how to make this your own, look here:
 
 [README](https://github.com/swagger-api/swagger-codegen/blob/master/README.md)
 
-- API version: 1.0.1
-- Build date: 2023-01-03T15:07:31.867826-05:00[America/New_York]
+- API version: 1.1.0
+- Build date: 2023-01-10T22:49:39.276651-05:00[America/New_York]
 For more information, please visit [https://www.mail.baby/contact/](https://www.mail.baby/contact/)
 
 

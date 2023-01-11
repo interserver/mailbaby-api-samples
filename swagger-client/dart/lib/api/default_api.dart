@@ -294,8 +294,8 @@ if (body != null)
   }
   /// displays the mail log
   ///
-  /// By passing in the appropriate options, you can search for available inventory in the system 
-  Future<MailLog> viewMailLog({ int id, String search, int skip, int limit, int startDate, int endDate }) async {
+  /// Get a listing of the emails sent through this system 
+  Future<MailLog> viewMailLog({ int id, String origin, String mx, String from, String to, String subject, String mailid, int skip, int limit, int startDate, int endDate }) async {
     Object postBody = null;
 
     // verify required params are set
@@ -310,8 +310,23 @@ if (body != null)
     if(id != null) {
       queryParams.addAll(_convertParametersForCollectionFormat("", "id", id));
     }
-    if(search != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("", "search", search));
+    if(origin != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "origin", origin));
+    }
+    if(mx != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "mx", mx));
+    }
+    if(from != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "from", from));
+    }
+    if(to != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "to", to));
+    }
+    if(subject != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "subject", subject));
+    }
+    if(mailid != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "mailid", mailid));
     }
     if(skip != null) {
       queryParams.addAll(_convertParametersForCollectionFormat("", "skip", skip));

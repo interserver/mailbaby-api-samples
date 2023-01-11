@@ -207,12 +207,12 @@ Name | Type | Description  | Notes
 
 # **viewMailLog**
 ```swift
-    open class func viewMailLog(id: Int64? = nil, search: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, completion: @escaping (_ data: MailLog?, _ error: Error?) -> Void)
+    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, completion: @escaping (_ data: MailLog?, _ error: Error?) -> Void)
 ```
 
 displays the mail log
 
-By passing in the appropriate options, you can search for available inventory in the system 
+Get a listing of the emails sent through this system 
 
 ### Example
 ```swift
@@ -220,14 +220,19 @@ By passing in the appropriate options, you can search for available inventory in
 import OpenAPIClient
 
 let id = 987 // Int64 | The ID of your mail order this will be sent through. (optional)
-let search = "search_example" // String | pass an optional search string for looking up inventory (optional)
+let origin = "origin_example" // String | originating ip address sending mail (optional)
+let mx = "mx_example" // String | mx record mail was sent to (optional)
+let from = "from_example" // String | from email address (optional)
+let to = "to_example" // String | to/destination email address (optional)
+let subject = "subject_example" // String | subject containing this string (optional)
+let mailid = "mailid_example" // String | mail id (optional)
 let skip = 987 // Int | number of records to skip for pagination (optional) (default to 0)
 let limit = 987 // Int | maximum number of records to return (optional) (default to 100)
 let startDate = 987 // Int64 | earliest date to get emails in unix timestamp format (optional)
 let endDate = 987 // Int64 | earliest date to get emails in unix timestamp format (optional)
 
 // displays the mail log
-DefaultAPI.viewMailLog(id: id, search: search, skip: skip, limit: limit, startDate: startDate, endDate: endDate) { (response, error) in
+DefaultAPI.viewMailLog(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -244,7 +249,12 @@ DefaultAPI.viewMailLog(id: id, search: search, skip: skip, limit: limit, startDa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Int64** | The ID of your mail order this will be sent through. | [optional] 
- **search** | **String** | pass an optional search string for looking up inventory | [optional] 
+ **origin** | **String** | originating ip address sending mail | [optional] 
+ **mx** | **String** | mx record mail was sent to | [optional] 
+ **from** | **String** | from email address | [optional] 
+ **to** | **String** | to/destination email address | [optional] 
+ **subject** | **String** | subject containing this string | [optional] 
+ **mailid** | **String** | mail id | [optional] 
  **skip** | **Int** | number of records to skip for pagination | [optional] [default to 0]
  **limit** | **Int** | maximum number of records to return | [optional] [default to 100]
  **startDate** | **Int64** | earliest date to get emails in unix timestamp format | [optional] 

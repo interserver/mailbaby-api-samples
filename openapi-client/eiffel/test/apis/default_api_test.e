@@ -77,11 +77,16 @@ feature -- Test routines
     test_view_mail_log
             -- displays the mail log
             --
-            -- By passing in the appropriate options, you can search for available inventory in the system 
+            -- Get a listing of the emails sent through this system 
         local
             l_response: MAIL_LOG
             l_id: INTEGER_64
-            l_search: STRING_32
+            l_origin: STRING_32
+            l_mx: STRING_32
+            l_var_from: STRING_32
+            l_to: STRING_32
+            l_subject: STRING_32
+            l_mailid: STRING_32
             l_skip: INTEGER_32
             l_limit: INTEGER_32
             l_start_date: INTEGER_64
@@ -89,7 +94,7 @@ feature -- Test routines
         do
             -- TODO: Initialize required params.
 
-            -- l_response := api.view_mail_log(l_id, l_search, l_skip, l_limit, l_start_date, l_end_date)
+            -- l_response := api.view_mail_log(l_id, l_origin, l_mx, l_var_from, l_to, l_subject, l_mailid, l_skip, l_limit, l_start_date, l_end_date)
             assert ("not_implemented", False)
         end
 

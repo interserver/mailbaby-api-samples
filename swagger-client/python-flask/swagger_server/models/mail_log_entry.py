@@ -14,7 +14,7 @@ class MailLogEntry(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, id: int=None, id: str=None, _from: str=None, to: str=None, subject: str=None, message_id: str=None, created: str=None, time: int=None, user: str=None, transtype: str=None, transhost: str=None, originhost: str=None, origin: str=None, interface: str=None, _date: str=None, sending_zone: str=None, body_size: int=None, source_md5: str=None, seq: int=None, domain: str=None, recipient: str=None, locked: int=None, lock_time: int=None, assigned: str=None, queued: str=None, lock: str=None, logger: str=None, mx_port: int=None, connection_key: str=None, mx_hostname: str=None, sent_body_hash: str=None, sent_body_size: int=None, md5_match: int=None):  # noqa: E501
+    def __init__(self, id: int=None, id: str=None, _from: str=None, to: str=None, subject: str=None, message_id: str=None, created: str=None, time: int=None, user: str=None, transtype: str=None, origin: str=None, interface: str=None, sending_zone: str=None, body_size: int=None, seq: int=None, recipient: str=None, domain: str=None, locked: int=None, lock_time: int=None, assigned: str=None, queued: str=None, mx_hostname: str=None, response: str=None):  # noqa: E501
         """MailLogEntry - a model defined in Swagger
 
         :param id: The id of this MailLogEntry.  # noqa: E501
@@ -37,28 +37,20 @@ class MailLogEntry(Model):
         :type user: str
         :param transtype: The transtype of this MailLogEntry.  # noqa: E501
         :type transtype: str
-        :param transhost: The transhost of this MailLogEntry.  # noqa: E501
-        :type transhost: str
-        :param originhost: The originhost of this MailLogEntry.  # noqa: E501
-        :type originhost: str
         :param origin: The origin of this MailLogEntry.  # noqa: E501
         :type origin: str
         :param interface: The interface of this MailLogEntry.  # noqa: E501
         :type interface: str
-        :param _date: The _date of this MailLogEntry.  # noqa: E501
-        :type _date: str
         :param sending_zone: The sending_zone of this MailLogEntry.  # noqa: E501
         :type sending_zone: str
         :param body_size: The body_size of this MailLogEntry.  # noqa: E501
         :type body_size: int
-        :param source_md5: The source_md5 of this MailLogEntry.  # noqa: E501
-        :type source_md5: str
         :param seq: The seq of this MailLogEntry.  # noqa: E501
         :type seq: int
-        :param domain: The domain of this MailLogEntry.  # noqa: E501
-        :type domain: str
         :param recipient: The recipient of this MailLogEntry.  # noqa: E501
         :type recipient: str
+        :param domain: The domain of this MailLogEntry.  # noqa: E501
+        :type domain: str
         :param locked: The locked of this MailLogEntry.  # noqa: E501
         :type locked: int
         :param lock_time: The lock_time of this MailLogEntry.  # noqa: E501
@@ -67,22 +59,10 @@ class MailLogEntry(Model):
         :type assigned: str
         :param queued: The queued of this MailLogEntry.  # noqa: E501
         :type queued: str
-        :param lock: The lock of this MailLogEntry.  # noqa: E501
-        :type lock: str
-        :param logger: The logger of this MailLogEntry.  # noqa: E501
-        :type logger: str
-        :param mx_port: The mx_port of this MailLogEntry.  # noqa: E501
-        :type mx_port: int
-        :param connection_key: The connection_key of this MailLogEntry.  # noqa: E501
-        :type connection_key: str
         :param mx_hostname: The mx_hostname of this MailLogEntry.  # noqa: E501
         :type mx_hostname: str
-        :param sent_body_hash: The sent_body_hash of this MailLogEntry.  # noqa: E501
-        :type sent_body_hash: str
-        :param sent_body_size: The sent_body_size of this MailLogEntry.  # noqa: E501
-        :type sent_body_size: int
-        :param md5_match: The md5_match of this MailLogEntry.  # noqa: E501
-        :type md5_match: int
+        :param response: The response of this MailLogEntry.  # noqa: E501
+        :type response: str
         """
         self.swagger_types = {
             'id': int,
@@ -95,29 +75,19 @@ class MailLogEntry(Model):
             'time': int,
             'user': str,
             'transtype': str,
-            'transhost': str,
-            'originhost': str,
             'origin': str,
             'interface': str,
-            '_date': str,
             'sending_zone': str,
             'body_size': int,
-            'source_md5': str,
             'seq': int,
-            'domain': str,
             'recipient': str,
+            'domain': str,
             'locked': int,
             'lock_time': int,
             'assigned': str,
             'queued': str,
-            'lock': str,
-            'logger': str,
-            'mx_port': int,
-            'connection_key': str,
             'mx_hostname': str,
-            'sent_body_hash': str,
-            'sent_body_size': int,
-            'md5_match': int
+            'response': str
         }
 
         self.attribute_map = {
@@ -131,29 +101,19 @@ class MailLogEntry(Model):
             'time': 'time',
             'user': 'user',
             'transtype': 'transtype',
-            'transhost': 'transhost',
-            'originhost': 'originhost',
             'origin': 'origin',
             'interface': 'interface',
-            '_date': 'date',
             'sending_zone': 'sendingZone',
             'body_size': 'bodySize',
-            'source_md5': 'sourceMd5',
             'seq': 'seq',
-            'domain': 'domain',
             'recipient': 'recipient',
+            'domain': 'domain',
             'locked': 'locked',
             'lock_time': 'lockTime',
             'assigned': 'assigned',
             'queued': 'queued',
-            'lock': '_lock',
-            'logger': 'logger',
-            'mx_port': 'mxPort',
-            'connection_key': 'connectionKey',
             'mx_hostname': 'mxHostname',
-            'sent_body_hash': 'sentBodyHash',
-            'sent_body_size': 'sentBodySize',
-            'md5_match': 'md5Match'
+            'response': 'response'
         }
         self._id = id
         self._id = id
@@ -165,29 +125,19 @@ class MailLogEntry(Model):
         self._time = time
         self._user = user
         self._transtype = transtype
-        self._transhost = transhost
-        self._originhost = originhost
         self._origin = origin
         self._interface = interface
-        self.__date = _date
         self._sending_zone = sending_zone
         self._body_size = body_size
-        self._source_md5 = source_md5
         self._seq = seq
-        self._domain = domain
         self._recipient = recipient
+        self._domain = domain
         self._locked = locked
         self._lock_time = lock_time
         self._assigned = assigned
         self._queued = queued
-        self._lock = lock
-        self._logger = logger
-        self._mx_port = mx_port
-        self._connection_key = connection_key
         self._mx_hostname = mx_hostname
-        self._sent_body_hash = sent_body_hash
-        self._sent_body_size = sent_body_size
-        self._md5_match = md5_match
+        self._response = response
 
     @classmethod
     def from_dict(cls, dikt) -> 'MailLogEntry':
@@ -345,8 +295,6 @@ class MailLogEntry(Model):
         :param message_id: The message_id of this MailLogEntry.
         :type message_id: str
         """
-        if message_id is None:
-            raise ValueError("Invalid value for `message_id`, must not be `None`")  # noqa: E501
 
         self._message_id = message_id
 
@@ -451,56 +399,6 @@ class MailLogEntry(Model):
         self._transtype = transtype
 
     @property
-    def transhost(self) -> str:
-        """Gets the transhost of this MailLogEntry.
-
-        transaction host  # noqa: E501
-
-        :return: The transhost of this MailLogEntry.
-        :rtype: str
-        """
-        return self._transhost
-
-    @transhost.setter
-    def transhost(self, transhost: str):
-        """Sets the transhost of this MailLogEntry.
-
-        transaction host  # noqa: E501
-
-        :param transhost: The transhost of this MailLogEntry.
-        :type transhost: str
-        """
-        if transhost is None:
-            raise ValueError("Invalid value for `transhost`, must not be `None`")  # noqa: E501
-
-        self._transhost = transhost
-
-    @property
-    def originhost(self) -> str:
-        """Gets the originhost of this MailLogEntry.
-
-        origin host  # noqa: E501
-
-        :return: The originhost of this MailLogEntry.
-        :rtype: str
-        """
-        return self._originhost
-
-    @originhost.setter
-    def originhost(self, originhost: str):
-        """Sets the originhost of this MailLogEntry.
-
-        origin host  # noqa: E501
-
-        :param originhost: The originhost of this MailLogEntry.
-        :type originhost: str
-        """
-        if originhost is None:
-            raise ValueError("Invalid value for `originhost`, must not be `None`")  # noqa: E501
-
-        self._originhost = originhost
-
-    @property
     def origin(self) -> str:
         """Gets the origin of this MailLogEntry.
 
@@ -549,31 +447,6 @@ class MailLogEntry(Model):
             raise ValueError("Invalid value for `interface`, must not be `None`")  # noqa: E501
 
         self._interface = interface
-
-    @property
-    def _date(self) -> str:
-        """Gets the _date of this MailLogEntry.
-
-        date processed  # noqa: E501
-
-        :return: The _date of this MailLogEntry.
-        :rtype: str
-        """
-        return self.__date
-
-    @_date.setter
-    def _date(self, _date: str):
-        """Sets the _date of this MailLogEntry.
-
-        date processed  # noqa: E501
-
-        :param _date: The _date of this MailLogEntry.
-        :type _date: str
-        """
-        if _date is None:
-            raise ValueError("Invalid value for `_date`, must not be `None`")  # noqa: E501
-
-        self.__date = _date
 
     @property
     def sending_zone(self) -> str:
@@ -626,35 +499,10 @@ class MailLogEntry(Model):
         self._body_size = body_size
 
     @property
-    def source_md5(self) -> str:
-        """Gets the source_md5 of this MailLogEntry.
-
-        md5 sum of the email  # noqa: E501
-
-        :return: The source_md5 of this MailLogEntry.
-        :rtype: str
-        """
-        return self._source_md5
-
-    @source_md5.setter
-    def source_md5(self, source_md5: str):
-        """Sets the source_md5 of this MailLogEntry.
-
-        md5 sum of the email  # noqa: E501
-
-        :param source_md5: The source_md5 of this MailLogEntry.
-        :type source_md5: str
-        """
-        if source_md5 is None:
-            raise ValueError("Invalid value for `source_md5`, must not be `None`")  # noqa: E501
-
-        self._source_md5 = source_md5
-
-    @property
     def seq(self) -> int:
         """Gets the seq of this MailLogEntry.
 
-        delivery sequency  # noqa: E501
+        index of email in the to adderess list  # noqa: E501
 
         :return: The seq of this MailLogEntry.
         :rtype: int
@@ -665,7 +513,7 @@ class MailLogEntry(Model):
     def seq(self, seq: int):
         """Sets the seq of this MailLogEntry.
 
-        delivery sequency  # noqa: E501
+        index of email in the to adderess list  # noqa: E501
 
         :param seq: The seq of this MailLogEntry.
         :type seq: int
@@ -674,6 +522,31 @@ class MailLogEntry(Model):
             raise ValueError("Invalid value for `seq`, must not be `None`")  # noqa: E501
 
         self._seq = seq
+
+    @property
+    def recipient(self) -> str:
+        """Gets the recipient of this MailLogEntry.
+
+        to address this email is being sent to  # noqa: E501
+
+        :return: The recipient of this MailLogEntry.
+        :rtype: str
+        """
+        return self._recipient
+
+    @recipient.setter
+    def recipient(self, recipient: str):
+        """Sets the recipient of this MailLogEntry.
+
+        to address this email is being sent to  # noqa: E501
+
+        :param recipient: The recipient of this MailLogEntry.
+        :type recipient: str
+        """
+        if recipient is None:
+            raise ValueError("Invalid value for `recipient`, must not be `None`")  # noqa: E501
+
+        self._recipient = recipient
 
     @property
     def domain(self) -> str:
@@ -699,31 +572,6 @@ class MailLogEntry(Model):
             raise ValueError("Invalid value for `domain`, must not be `None`")  # noqa: E501
 
         self._domain = domain
-
-    @property
-    def recipient(self) -> str:
-        """Gets the recipient of this MailLogEntry.
-
-        email receiver address  # noqa: E501
-
-        :return: The recipient of this MailLogEntry.
-        :rtype: str
-        """
-        return self._recipient
-
-    @recipient.setter
-    def recipient(self, recipient: str):
-        """Sets the recipient of this MailLogEntry.
-
-        email receiver address  # noqa: E501
-
-        :param recipient: The recipient of this MailLogEntry.
-        :type recipient: str
-        """
-        if recipient is None:
-            raise ValueError("Invalid value for `recipient`, must not be `None`")  # noqa: E501
-
-        self._recipient = recipient
 
     @property
     def locked(self) -> int:
@@ -826,106 +674,6 @@ class MailLogEntry(Model):
         self._queued = queued
 
     @property
-    def lock(self) -> str:
-        """Gets the lock of this MailLogEntry.
-
-        lock id  # noqa: E501
-
-        :return: The lock of this MailLogEntry.
-        :rtype: str
-        """
-        return self._lock
-
-    @lock.setter
-    def lock(self, lock: str):
-        """Sets the lock of this MailLogEntry.
-
-        lock id  # noqa: E501
-
-        :param lock: The lock of this MailLogEntry.
-        :type lock: str
-        """
-        if lock is None:
-            raise ValueError("Invalid value for `lock`, must not be `None`")  # noqa: E501
-
-        self._lock = lock
-
-    @property
-    def logger(self) -> str:
-        """Gets the logger of this MailLogEntry.
-
-        logger  # noqa: E501
-
-        :return: The logger of this MailLogEntry.
-        :rtype: str
-        """
-        return self._logger
-
-    @logger.setter
-    def logger(self, logger: str):
-        """Sets the logger of this MailLogEntry.
-
-        logger  # noqa: E501
-
-        :param logger: The logger of this MailLogEntry.
-        :type logger: str
-        """
-        if logger is None:
-            raise ValueError("Invalid value for `logger`, must not be `None`")  # noqa: E501
-
-        self._logger = logger
-
-    @property
-    def mx_port(self) -> int:
-        """Gets the mx_port of this MailLogEntry.
-
-        mx port number  # noqa: E501
-
-        :return: The mx_port of this MailLogEntry.
-        :rtype: int
-        """
-        return self._mx_port
-
-    @mx_port.setter
-    def mx_port(self, mx_port: int):
-        """Sets the mx_port of this MailLogEntry.
-
-        mx port number  # noqa: E501
-
-        :param mx_port: The mx_port of this MailLogEntry.
-        :type mx_port: int
-        """
-        if mx_port is None:
-            raise ValueError("Invalid value for `mx_port`, must not be `None`")  # noqa: E501
-
-        self._mx_port = mx_port
-
-    @property
-    def connection_key(self) -> str:
-        """Gets the connection_key of this MailLogEntry.
-
-        connection key  # noqa: E501
-
-        :return: The connection_key of this MailLogEntry.
-        :rtype: str
-        """
-        return self._connection_key
-
-    @connection_key.setter
-    def connection_key(self, connection_key: str):
-        """Sets the connection_key of this MailLogEntry.
-
-        connection key  # noqa: E501
-
-        :param connection_key: The connection_key of this MailLogEntry.
-        :type connection_key: str
-        """
-        if connection_key is None:
-            raise ValueError("Invalid value for `connection_key`, must not be `None`")  # noqa: E501
-
-        self._connection_key = connection_key
-
-    @property
     def mx_hostname(self) -> str:
         """Gets the mx_hostname of this MailLogEntry.
 
@@ -951,76 +699,26 @@ class MailLogEntry(Model):
         self._mx_hostname = mx_hostname
 
     @property
-    def sent_body_hash(self) -> str:
-        """Gets the sent_body_hash of this MailLogEntry.
+    def response(self) -> str:
+        """Gets the response of this MailLogEntry.
 
-        body hash  # noqa: E501
+        mail delivery response  # noqa: E501
 
-        :return: The sent_body_hash of this MailLogEntry.
+        :return: The response of this MailLogEntry.
         :rtype: str
         """
-        return self._sent_body_hash
+        return self._response
 
-    @sent_body_hash.setter
-    def sent_body_hash(self, sent_body_hash: str):
-        """Sets the sent_body_hash of this MailLogEntry.
+    @response.setter
+    def response(self, response: str):
+        """Sets the response of this MailLogEntry.
 
-        body hash  # noqa: E501
+        mail delivery response  # noqa: E501
 
-        :param sent_body_hash: The sent_body_hash of this MailLogEntry.
-        :type sent_body_hash: str
+        :param response: The response of this MailLogEntry.
+        :type response: str
         """
-        if sent_body_hash is None:
-            raise ValueError("Invalid value for `sent_body_hash`, must not be `None`")  # noqa: E501
+        if response is None:
+            raise ValueError("Invalid value for `response`, must not be `None`")  # noqa: E501
 
-        self._sent_body_hash = sent_body_hash
-
-    @property
-    def sent_body_size(self) -> int:
-        """Gets the sent_body_size of this MailLogEntry.
-
-        sent body size in bytes  # noqa: E501
-
-        :return: The sent_body_size of this MailLogEntry.
-        :rtype: int
-        """
-        return self._sent_body_size
-
-    @sent_body_size.setter
-    def sent_body_size(self, sent_body_size: int):
-        """Sets the sent_body_size of this MailLogEntry.
-
-        sent body size in bytes  # noqa: E501
-
-        :param sent_body_size: The sent_body_size of this MailLogEntry.
-        :type sent_body_size: int
-        """
-        if sent_body_size is None:
-            raise ValueError("Invalid value for `sent_body_size`, must not be `None`")  # noqa: E501
-
-        self._sent_body_size = sent_body_size
-
-    @property
-    def md5_match(self) -> int:
-        """Gets the md5_match of this MailLogEntry.
-
-        md5 checksum matching result  # noqa: E501
-
-        :return: The md5_match of this MailLogEntry.
-        :rtype: int
-        """
-        return self._md5_match
-
-    @md5_match.setter
-    def md5_match(self, md5_match: int):
-        """Sets the md5_match of this MailLogEntry.
-
-        md5 checksum matching result  # noqa: E501
-
-        :param md5_match: The md5_match of this MailLogEntry.
-        :type md5_match: int
-        """
-        if md5_match is None:
-            raise ValueError("Invalid value for `md5_match`, must not be `None`")  # noqa: E501
-
-        self._md5_match = md5_match
+        self._response = response

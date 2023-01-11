@@ -3,7 +3,7 @@ MailBaby Email Delivery API
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
-API version: 1.0.1
+API version: 1.1.0
 Contact: support@interserver.net
 */
 
@@ -28,7 +28,7 @@ type MailLogEntry struct {
 	// email subject
 	Subject string `json:"subject"`
 	// message id
-	MessageId string `json:"messageId"`
+	MessageId *string `json:"messageId,omitempty"`
 	// creation date
 	Created string `json:"created"`
 	// creation timestamp
@@ -37,28 +37,20 @@ type MailLogEntry struct {
 	User string `json:"user"`
 	// transaction type
 	Transtype string `json:"transtype"`
-	// transaction host
-	Transhost string `json:"transhost"`
-	// origin host
-	Originhost string `json:"originhost"`
 	// origin ip
 	Origin string `json:"origin"`
 	// interface name
 	Interface string `json:"interface"`
-	// date processed
-	Date string `json:"date"`
 	// sending zone
 	SendingZone string `json:"sendingZone"`
 	// email body size in bytes
 	BodySize int32 `json:"bodySize"`
-	// md5 sum of the email
-	SourceMd5 string `json:"sourceMd5"`
-	// delivery sequency
+	// index of email in the to adderess list
 	Seq int32 `json:"seq"`
+	// to address this email is being sent to
+	Recipient string `json:"recipient"`
 	// to address domain
 	Domain string `json:"domain"`
-	// email receiver address
-	Recipient string `json:"recipient"`
 	// locked status
 	Locked int32 `json:"locked"`
 	// lock timestamp
@@ -67,63 +59,40 @@ type MailLogEntry struct {
 	Assigned string `json:"assigned"`
 	// queued timestamp
 	Queued string `json:"queued"`
-	// lock id
-	Lock string `json:"_lock"`
-	// logger
-	Logger string `json:"logger"`
-	// mx port number
-	MxPort int32 `json:"mxPort"`
-	// connection key
-	ConnectionKey string `json:"connectionKey"`
 	// mx hostname
 	MxHostname string `json:"mxHostname"`
-	// body hash
-	SentBodyHash string `json:"sentBodyHash"`
-	// sent body size in bytes
-	SentBodySize int32 `json:"sentBodySize"`
-	// md5 checksum matching result
-	Md5Match int32 `json:"md5Match"`
+	// mail delivery response
+	Response string `json:"response"`
 }
 
 // NewMailLogEntry instantiates a new MailLogEntry object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMailLogEntry(id int32, id string, from string, to string, subject string, messageId string, created string, time int32, user string, transtype string, transhost string, originhost string, origin string, interface_ string, date string, sendingZone string, bodySize int32, sourceMd5 string, seq int32, domain string, recipient string, locked int32, lockTime int32, assigned string, queued string, lock string, logger string, mxPort int32, connectionKey string, mxHostname string, sentBodyHash string, sentBodySize int32, md5Match int32) *MailLogEntry {
+func NewMailLogEntry(id int32, id string, from string, to string, subject string, created string, time int32, user string, transtype string, origin string, interface_ string, sendingZone string, bodySize int32, seq int32, recipient string, domain string, locked int32, lockTime int32, assigned string, queued string, mxHostname string, response string) *MailLogEntry {
 	this := MailLogEntry{}
 	this.Id = id
 	this.Id = id
 	this.From = from
 	this.To = to
 	this.Subject = subject
-	this.MessageId = messageId
 	this.Created = created
 	this.Time = time
 	this.User = user
 	this.Transtype = transtype
-	this.Transhost = transhost
-	this.Originhost = originhost
 	this.Origin = origin
 	this.Interface = interface_
-	this.Date = date
 	this.SendingZone = sendingZone
 	this.BodySize = bodySize
-	this.SourceMd5 = sourceMd5
 	this.Seq = seq
-	this.Domain = domain
 	this.Recipient = recipient
+	this.Domain = domain
 	this.Locked = locked
 	this.LockTime = lockTime
 	this.Assigned = assigned
 	this.Queued = queued
-	this.Lock = lock
-	this.Logger = logger
-	this.MxPort = mxPort
-	this.ConnectionKey = connectionKey
 	this.MxHostname = mxHostname
-	this.SentBodyHash = sentBodyHash
-	this.SentBodySize = sentBodySize
-	this.Md5Match = md5Match
+	this.Response = response
 	return &this
 }
 
@@ -255,28 +224,36 @@ func (o *MailLogEntry) SetSubject(v string) {
 	o.Subject = v
 }
 
-// GetMessageId returns the MessageId field value
+// GetMessageId returns the MessageId field value if set, zero value otherwise.
 func (o *MailLogEntry) GetMessageId() string {
-	if o == nil {
+	if o == nil || o.MessageId == nil {
 		var ret string
 		return ret
 	}
-
-	return o.MessageId
+	return *o.MessageId
 }
 
-// GetMessageIdOk returns a tuple with the MessageId field value
+// GetMessageIdOk returns a tuple with the MessageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MailLogEntry) GetMessageIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.MessageId == nil {
 		return nil, false
 	}
-	return &o.MessageId, true
+	return o.MessageId, true
 }
 
-// SetMessageId sets field value
+// HasMessageId returns a boolean if a field has been set.
+func (o *MailLogEntry) HasMessageId() bool {
+	if o != nil && o.MessageId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMessageId gets a reference to the given string and assigns it to the MessageId field.
 func (o *MailLogEntry) SetMessageId(v string) {
-	o.MessageId = v
+	o.MessageId = &v
 }
 
 // GetCreated returns the Created field value
@@ -375,54 +352,6 @@ func (o *MailLogEntry) SetTranstype(v string) {
 	o.Transtype = v
 }
 
-// GetTranshost returns the Transhost field value
-func (o *MailLogEntry) GetTranshost() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Transhost
-}
-
-// GetTranshostOk returns a tuple with the Transhost field value
-// and a boolean to check if the value has been set.
-func (o *MailLogEntry) GetTranshostOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Transhost, true
-}
-
-// SetTranshost sets field value
-func (o *MailLogEntry) SetTranshost(v string) {
-	o.Transhost = v
-}
-
-// GetOriginhost returns the Originhost field value
-func (o *MailLogEntry) GetOriginhost() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Originhost
-}
-
-// GetOriginhostOk returns a tuple with the Originhost field value
-// and a boolean to check if the value has been set.
-func (o *MailLogEntry) GetOriginhostOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Originhost, true
-}
-
-// SetOriginhost sets field value
-func (o *MailLogEntry) SetOriginhost(v string) {
-	o.Originhost = v
-}
-
 // GetOrigin returns the Origin field value
 func (o *MailLogEntry) GetOrigin() string {
 	if o == nil {
@@ -469,30 +398,6 @@ func (o *MailLogEntry) GetInterfaceOk() (*string, bool) {
 // SetInterface sets field value
 func (o *MailLogEntry) SetInterface(v string) {
 	o.Interface = v
-}
-
-// GetDate returns the Date field value
-func (o *MailLogEntry) GetDate() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Date
-}
-
-// GetDateOk returns a tuple with the Date field value
-// and a boolean to check if the value has been set.
-func (o *MailLogEntry) GetDateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Date, true
-}
-
-// SetDate sets field value
-func (o *MailLogEntry) SetDate(v string) {
-	o.Date = v
 }
 
 // GetSendingZone returns the SendingZone field value
@@ -543,30 +448,6 @@ func (o *MailLogEntry) SetBodySize(v int32) {
 	o.BodySize = v
 }
 
-// GetSourceMd5 returns the SourceMd5 field value
-func (o *MailLogEntry) GetSourceMd5() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SourceMd5
-}
-
-// GetSourceMd5Ok returns a tuple with the SourceMd5 field value
-// and a boolean to check if the value has been set.
-func (o *MailLogEntry) GetSourceMd5Ok() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SourceMd5, true
-}
-
-// SetSourceMd5 sets field value
-func (o *MailLogEntry) SetSourceMd5(v string) {
-	o.SourceMd5 = v
-}
-
 // GetSeq returns the Seq field value
 func (o *MailLogEntry) GetSeq() int32 {
 	if o == nil {
@@ -591,30 +472,6 @@ func (o *MailLogEntry) SetSeq(v int32) {
 	o.Seq = v
 }
 
-// GetDomain returns the Domain field value
-func (o *MailLogEntry) GetDomain() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Domain
-}
-
-// GetDomainOk returns a tuple with the Domain field value
-// and a boolean to check if the value has been set.
-func (o *MailLogEntry) GetDomainOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Domain, true
-}
-
-// SetDomain sets field value
-func (o *MailLogEntry) SetDomain(v string) {
-	o.Domain = v
-}
-
 // GetRecipient returns the Recipient field value
 func (o *MailLogEntry) GetRecipient() string {
 	if o == nil {
@@ -637,6 +494,30 @@ func (o *MailLogEntry) GetRecipientOk() (*string, bool) {
 // SetRecipient sets field value
 func (o *MailLogEntry) SetRecipient(v string) {
 	o.Recipient = v
+}
+
+// GetDomain returns the Domain field value
+func (o *MailLogEntry) GetDomain() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Domain
+}
+
+// GetDomainOk returns a tuple with the Domain field value
+// and a boolean to check if the value has been set.
+func (o *MailLogEntry) GetDomainOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Domain, true
+}
+
+// SetDomain sets field value
+func (o *MailLogEntry) SetDomain(v string) {
+	o.Domain = v
 }
 
 // GetLocked returns the Locked field value
@@ -735,102 +616,6 @@ func (o *MailLogEntry) SetQueued(v string) {
 	o.Queued = v
 }
 
-// GetLock returns the Lock field value
-func (o *MailLogEntry) GetLock() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Lock
-}
-
-// GetLockOk returns a tuple with the Lock field value
-// and a boolean to check if the value has been set.
-func (o *MailLogEntry) GetLockOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Lock, true
-}
-
-// SetLock sets field value
-func (o *MailLogEntry) SetLock(v string) {
-	o.Lock = v
-}
-
-// GetLogger returns the Logger field value
-func (o *MailLogEntry) GetLogger() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Logger
-}
-
-// GetLoggerOk returns a tuple with the Logger field value
-// and a boolean to check if the value has been set.
-func (o *MailLogEntry) GetLoggerOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Logger, true
-}
-
-// SetLogger sets field value
-func (o *MailLogEntry) SetLogger(v string) {
-	o.Logger = v
-}
-
-// GetMxPort returns the MxPort field value
-func (o *MailLogEntry) GetMxPort() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.MxPort
-}
-
-// GetMxPortOk returns a tuple with the MxPort field value
-// and a boolean to check if the value has been set.
-func (o *MailLogEntry) GetMxPortOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.MxPort, true
-}
-
-// SetMxPort sets field value
-func (o *MailLogEntry) SetMxPort(v int32) {
-	o.MxPort = v
-}
-
-// GetConnectionKey returns the ConnectionKey field value
-func (o *MailLogEntry) GetConnectionKey() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ConnectionKey
-}
-
-// GetConnectionKeyOk returns a tuple with the ConnectionKey field value
-// and a boolean to check if the value has been set.
-func (o *MailLogEntry) GetConnectionKeyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ConnectionKey, true
-}
-
-// SetConnectionKey sets field value
-func (o *MailLogEntry) SetConnectionKey(v string) {
-	o.ConnectionKey = v
-}
-
 // GetMxHostname returns the MxHostname field value
 func (o *MailLogEntry) GetMxHostname() string {
 	if o == nil {
@@ -855,76 +640,28 @@ func (o *MailLogEntry) SetMxHostname(v string) {
 	o.MxHostname = v
 }
 
-// GetSentBodyHash returns the SentBodyHash field value
-func (o *MailLogEntry) GetSentBodyHash() string {
+// GetResponse returns the Response field value
+func (o *MailLogEntry) GetResponse() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.SentBodyHash
+	return o.Response
 }
 
-// GetSentBodyHashOk returns a tuple with the SentBodyHash field value
+// GetResponseOk returns a tuple with the Response field value
 // and a boolean to check if the value has been set.
-func (o *MailLogEntry) GetSentBodyHashOk() (*string, bool) {
+func (o *MailLogEntry) GetResponseOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SentBodyHash, true
+	return &o.Response, true
 }
 
-// SetSentBodyHash sets field value
-func (o *MailLogEntry) SetSentBodyHash(v string) {
-	o.SentBodyHash = v
-}
-
-// GetSentBodySize returns the SentBodySize field value
-func (o *MailLogEntry) GetSentBodySize() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.SentBodySize
-}
-
-// GetSentBodySizeOk returns a tuple with the SentBodySize field value
-// and a boolean to check if the value has been set.
-func (o *MailLogEntry) GetSentBodySizeOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SentBodySize, true
-}
-
-// SetSentBodySize sets field value
-func (o *MailLogEntry) SetSentBodySize(v int32) {
-	o.SentBodySize = v
-}
-
-// GetMd5Match returns the Md5Match field value
-func (o *MailLogEntry) GetMd5Match() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.Md5Match
-}
-
-// GetMd5MatchOk returns a tuple with the Md5Match field value
-// and a boolean to check if the value has been set.
-func (o *MailLogEntry) GetMd5MatchOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Md5Match, true
-}
-
-// SetMd5Match sets field value
-func (o *MailLogEntry) SetMd5Match(v int32) {
-	o.Md5Match = v
+// SetResponse sets field value
+func (o *MailLogEntry) SetResponse(v string) {
+	o.Response = v
 }
 
 func (o MailLogEntry) MarshalJSON() ([]byte, error) {
@@ -944,7 +681,7 @@ func (o MailLogEntry) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["subject"] = o.Subject
 	}
-	if true {
+	if o.MessageId != nil {
 		toSerialize["messageId"] = o.MessageId
 	}
 	if true {
@@ -960,19 +697,10 @@ func (o MailLogEntry) MarshalJSON() ([]byte, error) {
 		toSerialize["transtype"] = o.Transtype
 	}
 	if true {
-		toSerialize["transhost"] = o.Transhost
-	}
-	if true {
-		toSerialize["originhost"] = o.Originhost
-	}
-	if true {
 		toSerialize["origin"] = o.Origin
 	}
 	if true {
 		toSerialize["interface"] = o.Interface
-	}
-	if true {
-		toSerialize["date"] = o.Date
 	}
 	if true {
 		toSerialize["sendingZone"] = o.SendingZone
@@ -981,16 +709,13 @@ func (o MailLogEntry) MarshalJSON() ([]byte, error) {
 		toSerialize["bodySize"] = o.BodySize
 	}
 	if true {
-		toSerialize["sourceMd5"] = o.SourceMd5
-	}
-	if true {
 		toSerialize["seq"] = o.Seq
 	}
 	if true {
-		toSerialize["domain"] = o.Domain
+		toSerialize["recipient"] = o.Recipient
 	}
 	if true {
-		toSerialize["recipient"] = o.Recipient
+		toSerialize["domain"] = o.Domain
 	}
 	if true {
 		toSerialize["locked"] = o.Locked
@@ -1005,28 +730,10 @@ func (o MailLogEntry) MarshalJSON() ([]byte, error) {
 		toSerialize["queued"] = o.Queued
 	}
 	if true {
-		toSerialize["_lock"] = o.Lock
-	}
-	if true {
-		toSerialize["logger"] = o.Logger
-	}
-	if true {
-		toSerialize["mxPort"] = o.MxPort
-	}
-	if true {
-		toSerialize["connectionKey"] = o.ConnectionKey
-	}
-	if true {
 		toSerialize["mxHostname"] = o.MxHostname
 	}
 	if true {
-		toSerialize["sentBodyHash"] = o.SentBodyHash
-	}
-	if true {
-		toSerialize["sentBodySize"] = o.SentBodySize
-	}
-	if true {
-		toSerialize["md5Match"] = o.Md5Match
+		toSerialize["response"] = o.Response
 	}
 	return json.Marshal(toSerialize)
 }

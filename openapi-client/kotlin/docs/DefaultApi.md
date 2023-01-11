@@ -203,11 +203,11 @@ Configure apiKeyAuth:
 
 <a name="viewMailLog"></a>
 # **viewMailLog**
-> MailLog viewMailLog(id, search, skip, limit, startDate, endDate)
+> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
 
 displays the mail log
 
-By passing in the appropriate options, you can search for available inventory in the system 
+Get a listing of the emails sent through this system 
 
 ### Example
 ```kotlin
@@ -216,14 +216,19 @@ By passing in the appropriate options, you can search for available inventory in
 //import org.openapitools.client.models.*
 
 val apiInstance = DefaultApi()
-val id : kotlin.Long = 789 // kotlin.Long | The ID of your mail order this will be sent through.
-val search : kotlin.String = search_example // kotlin.String | pass an optional search string for looking up inventory
-val skip : kotlin.Int = 56 // kotlin.Int | number of records to skip for pagination
-val limit : kotlin.Int = 56 // kotlin.Int | maximum number of records to return
-val startDate : kotlin.Long = 789 // kotlin.Long | earliest date to get emails in unix timestamp format
-val endDate : kotlin.Long = 789 // kotlin.Long | earliest date to get emails in unix timestamp format
+val id : kotlin.Long = 2604 // kotlin.Long | The ID of your mail order this will be sent through.
+val origin : kotlin.String = 1.2.3.4 // kotlin.String | originating ip address sending mail
+val mx : kotlin.String = mx.google.com // kotlin.String | mx record mail was sent to
+val from : kotlin.String = me@sender.com // kotlin.String | from email address
+val to : kotlin.String = you@receiver.com // kotlin.String | to/destination email address
+val subject : kotlin.String = Support // kotlin.String | subject containing this string
+val mailid : kotlin.String = 185997065c60008840 // kotlin.String | mail id
+val skip : kotlin.Int = 1000 // kotlin.Int | number of records to skip for pagination
+val limit : kotlin.Int = 1000 // kotlin.Int | maximum number of records to return
+val startDate : kotlin.Long = 1641781008 // kotlin.Long | earliest date to get emails in unix timestamp format
+val endDate : kotlin.Long = 1673317008 // kotlin.Long | earliest date to get emails in unix timestamp format
 try {
-    val result : MailLog = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate)
+    val result : MailLog = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#viewMailLog")
@@ -239,7 +244,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **kotlin.Long**| The ID of your mail order this will be sent through. | [optional]
- **search** | **kotlin.String**| pass an optional search string for looking up inventory | [optional]
+ **origin** | **kotlin.String**| originating ip address sending mail | [optional]
+ **mx** | **kotlin.String**| mx record mail was sent to | [optional]
+ **from** | **kotlin.String**| from email address | [optional]
+ **to** | **kotlin.String**| to/destination email address | [optional]
+ **subject** | **kotlin.String**| subject containing this string | [optional]
+ **mailid** | **kotlin.String**| mail id | [optional]
  **skip** | **kotlin.Int**| number of records to skip for pagination | [optional] [default to 0]
  **limit** | **kotlin.Int**| maximum number of records to return | [optional] [default to 100]
  **startDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional]

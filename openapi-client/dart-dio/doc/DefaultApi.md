@@ -194,11 +194,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **viewMailLog**
-> MailLog viewMailLog(id, search, skip, limit, startDate, endDate)
+> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
 
 displays the mail log
 
-By passing in the appropriate options, you can search for available inventory in the system 
+Get a listing of the emails sent through this system 
 
 ### Example
 ```dart
@@ -209,15 +209,20 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
 final api = Openapi().getDefaultApi();
-final int id = 789; // int | The ID of your mail order this will be sent through.
-final String search = search_example; // String | pass an optional search string for looking up inventory
-final int skip = 56; // int | number of records to skip for pagination
-final int limit = 56; // int | maximum number of records to return
-final int startDate = 789; // int | earliest date to get emails in unix timestamp format
-final int endDate = 789; // int | earliest date to get emails in unix timestamp format
+final int id = 2604; // int | The ID of your mail order this will be sent through.
+final String origin = 1.2.3.4; // String | originating ip address sending mail
+final String mx = mx.google.com; // String | mx record mail was sent to
+final String from = me@sender.com; // String | from email address
+final String to = you@receiver.com; // String | to/destination email address
+final String subject = Support; // String | subject containing this string
+final String mailid = 185997065c60008840; // String | mail id
+final int skip = 1000; // int | number of records to skip for pagination
+final int limit = 1000; // int | maximum number of records to return
+final int startDate = 1641781008; // int | earliest date to get emails in unix timestamp format
+final int endDate = 1673317008; // int | earliest date to get emails in unix timestamp format
 
 try {
-    final response = api.viewMailLog(id, search, skip, limit, startDate, endDate);
+    final response = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling DefaultApi->viewMailLog: $e\n');
@@ -229,7 +234,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
- **search** | **String**| pass an optional search string for looking up inventory | [optional] 
+ **origin** | **String**| originating ip address sending mail | [optional] 
+ **mx** | **String**| mx record mail was sent to | [optional] 
+ **from** | **String**| from email address | [optional] 
+ **to** | **String**| to/destination email address | [optional] 
+ **subject** | **String**| subject containing this string | [optional] 
+ **mailid** | **String**| mail id | [optional] 
  **skip** | **int**| number of records to skip for pagination | [optional] [default to 0]
  **limit** | **int**| maximum number of records to return | [optional] [default to 100]
  **startDate** | **int**| earliest date to get emails in unix timestamp format | [optional] 

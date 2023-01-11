@@ -77,7 +77,5 @@ private class OASMailLogEntryTest {
         System.assertEquals('r_from', x-property-mappings.get('from'));
         System.assertEquals('r_time', x-property-mappings.get('time'));
         System.assertEquals('r_interface', x-property-mappings.get('interface'));
-        System.assertEquals('r_date', x-property-mappings.get('date'));
-        System.assertEquals('lock', x-property-mappings.get('_lock'));
     }
 }

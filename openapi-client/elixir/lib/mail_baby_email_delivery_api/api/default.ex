@@ -130,14 +130,19 @@ defmodule MailBabyEmailDeliveryAPI.Api.Default do
 
   @doc """
   displays the mail log
-  By passing in the appropriate options, you can search for available inventory in the system 
+  Get a listing of the emails sent through this system 
 
   ## Parameters
 
   - connection (MailBabyEmailDeliveryAPI.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
     - :id (integer()): The ID of your mail order this will be sent through.
-    - :search (String.t): pass an optional search string for looking up inventory
+    - :origin (String.t): originating ip address sending mail
+    - :mx (String.t): mx record mail was sent to
+    - :from (String.t): from email address
+    - :to (String.t): to/destination email address
+    - :subject (String.t): subject containing this string
+    - :mailid (String.t): mail id
     - :skip (integer()): number of records to skip for pagination
     - :limit (integer()): maximum number of records to return
     - :start_date (integer()): earliest date to get emails in unix timestamp format
@@ -151,7 +156,12 @@ defmodule MailBabyEmailDeliveryAPI.Api.Default do
   def view_mail_log(connection, opts \\ []) do
     optional_params = %{
       :id => :query,
-      :search => :query,
+      :origin => :query,
+      :mx => :query,
+      :from => :query,
+      :to => :query,
+      :subject => :query,
+      :mailid => :query,
       :skip => :query,
       :limit => :query,
       :startDate => :query,

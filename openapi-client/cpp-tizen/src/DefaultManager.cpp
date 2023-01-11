@@ -703,7 +703,7 @@ static bool viewMailLogProcessor(MemoryStruct_s p_chunk, long code, char* errorm
 }
 
 static bool viewMailLogHelper(char * accessToken,
-	long long id, std::string search, int skip, int limit, long long startDate, long long endDate, 
+	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, int skip, int limit, long long startDate, long long endDate, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -728,10 +728,45 @@ static bool viewMailLogHelper(char * accessToken,
 	}
 
 
-	itemAtq = stringify(&search, "std::string");
-	queryParams.insert(pair<string, string>("search", itemAtq));
+	itemAtq = stringify(&origin, "std::string");
+	queryParams.insert(pair<string, string>("origin", itemAtq));
 	if( itemAtq.empty()==true){
-		queryParams.erase("search");
+		queryParams.erase("origin");
+	}
+
+
+	itemAtq = stringify(&mx, "std::string");
+	queryParams.insert(pair<string, string>("mx", itemAtq));
+	if( itemAtq.empty()==true){
+		queryParams.erase("mx");
+	}
+
+
+	itemAtq = stringify(&from, "std::string");
+	queryParams.insert(pair<string, string>("from", itemAtq));
+	if( itemAtq.empty()==true){
+		queryParams.erase("from");
+	}
+
+
+	itemAtq = stringify(&to, "std::string");
+	queryParams.insert(pair<string, string>("to", itemAtq));
+	if( itemAtq.empty()==true){
+		queryParams.erase("to");
+	}
+
+
+	itemAtq = stringify(&subject, "std::string");
+	queryParams.insert(pair<string, string>("subject", itemAtq));
+	if( itemAtq.empty()==true){
+		queryParams.erase("subject");
+	}
+
+
+	itemAtq = stringify(&mailid, "std::string");
+	queryParams.insert(pair<string, string>("mailid", itemAtq));
+	if( itemAtq.empty()==true){
+		queryParams.erase("mailid");
 	}
 
 
@@ -816,22 +851,22 @@ static bool viewMailLogHelper(char * accessToken,
 
 
 bool DefaultManager::viewMailLogAsync(char * accessToken,
-	long long id, std::string search, int skip, int limit, long long startDate, long long endDate, 
+	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, int skip, int limit, long long startDate, long long endDate, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData)
 {
 	return viewMailLogHelper(accessToken,
-	id, search, skip, limit, startDate, endDate, 
+	id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, 
 	handler, userData, true);
 }
 
 bool DefaultManager::viewMailLogSync(char * accessToken,
-	long long id, std::string search, int skip, int limit, long long startDate, long long endDate, 
+	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, int skip, int limit, long long startDate, long long endDate, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData)
 {
 	return viewMailLogHelper(accessToken,
-	id, search, skip, limit, startDate, endDate, 
+	id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, 
 	handler, userData, false);
 }
 

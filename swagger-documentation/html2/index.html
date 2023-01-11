@@ -769,7 +769,7 @@
   "description" : "Mail log records"
 };
             defs["MailLogEntry"] = {
-  "required" : [ "_id", "_lock", "assigned", "bodySize", "connectionKey", "created", "date", "domain", "from", "id", "interface", "lockTime", "locked", "logger", "md5Match", "messageId", "mxHostname", "mxPort", "origin", "originhost", "queued", "recipient", "sendingZone", "sentBodyHash", "sentBodySize", "seq", "sourceMd5", "subject", "time", "to", "transhost", "transtype", "user" ],
+  "required" : [ "_id", "assigned", "bodySize", "created", "domain", "from", "id", "interface", "lockTime", "locked", "mxHostname", "origin", "queued", "recipient", "response", "sendingZone", "seq", "subject", "time", "to", "transtype", "user" ],
   "type" : "object",
   "properties" : {
     "_id" : {
@@ -822,16 +822,6 @@
       "description" : "transaction type",
       "example" : "ESMTPSA"
     },
-    "transhost" : {
-      "type" : "string",
-      "description" : "transaction host",
-      "example" : "relay0.mailbaby.net"
-    },
-    "originhost" : {
-      "type" : "string",
-      "description" : "origin host",
-      "example" : "199.231.189.154"
-    },
     "origin" : {
       "type" : "string",
       "description" : "origin ip",
@@ -841,11 +831,6 @@
       "type" : "string",
       "description" : "interface name",
       "example" : "feeder"
-    },
-    "date" : {
-      "type" : "string",
-      "description" : "date processed",
-      "example" : "Thu, 14 Oct 2021 08:50:09 -0400"
     },
     "sendingZone" : {
       "type" : "string",
@@ -857,25 +842,20 @@
       "description" : "email body size in bytes",
       "example" : 63
     },
-    "sourceMd5" : {
-      "type" : "string",
-      "description" : "md5 sum of the email",
-      "example" : "1d7058e6a30369f200b0c34fab2fac92"
-    },
     "seq" : {
       "type" : "integer",
-      "description" : "delivery sequency",
+      "description" : "index of email in the to adderess list",
       "example" : 1
+    },
+    "recipient" : {
+      "type" : "string",
+      "description" : "to address this email is being sent to",
+      "example" : "client@isp.com"
     },
     "domain" : {
       "type" : "string",
       "description" : "to address domain",
       "example" : "interserver.net"
-    },
-    "recipient" : {
-      "type" : "string",
-      "description" : "email receiver address",
-      "example" : "client@isp.com"
     },
     "locked" : {
       "type" : "integer",
@@ -897,45 +877,15 @@
       "description" : "queued timestamp",
       "example" : "2021-10-14T12:50:15.487Z"
     },
-    "_lock" : {
-      "type" : "string",
-      "description" : "lock id",
-      "example" : "lock 17c7eda538e0005d03 001"
-    },
-    "logger" : {
-      "type" : "string",
-      "description" : "logger",
-      "example" : null
-    },
-    "mxPort" : {
-      "type" : "integer",
-      "description" : "mx port number",
-      "example" : 25
-    },
-    "connectionKey" : {
-      "type" : "string",
-      "description" : "connection key",
-      "example" : "206.72.200.46:interserver.net:25"
-    },
     "mxHostname" : {
       "type" : "string",
       "description" : "mx hostname",
       "example" : "mx.j.is.cc"
     },
-    "sentBodyHash" : {
+    "response" : {
       "type" : "string",
-      "description" : "body hash",
-      "example" : "1d7058e6a30369f200b0c34fab2fac92"
-    },
-    "sentBodySize" : {
-      "type" : "integer",
-      "description" : "sent body size in bytes",
-      "example" : 63
-    },
-    "md5Match" : {
-      "type" : "integer",
-      "description" : "md5 checksum matching result",
-      "example" : 1
+      "description" : "mail delivery response",
+      "example" : "250 2.0.0 Ok queued as C91D83E128C"
     }
   },
   "description" : "An email record"
@@ -1176,7 +1126,7 @@
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 1.0.1</div>
+              <div class="app-desc">Version: 1.1.0</div>
             <hr>
             <div><p><strong>Send emails fast and with confidence through our easy to use <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> API interface.</strong></p>
 <h1>📌 Overview</h1>
@@ -3116,8 +3066,7 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">By passing in the appropriate options, you can search for
-available inventory in the system
+                        <p class="marked">Get a listing of the emails sent through this system
 </p>
                         <p></p>
                         <br />
@@ -3144,7 +3093,7 @@ available inventory in the system
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
-"https://api.mailbaby.net/mail/log?id=&search=&skip=&limit=&startDate=&endDate="</code></pre>
+"https://api.mailbaby.net/mail/log?id=&origin=&mx=&from=&to=&subject=&mailid=&skip=&limit=&startDate=&endDate="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-viewMailLog-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -3168,13 +3117,18 @@ public class DefaultApiExample {
 
         DefaultApi apiInstance = new DefaultApi();
         Long id = 789; // Long | The ID of your mail order this will be sent through.
-        String search = search_example; // String | pass an optional search string for looking up inventory
+        String origin = origin_example; // String | originating ip address sending mail
+        String mx = mx_example; // String | mx record mail was sent to
+        String from = from_example; // String | from email address
+        String to = to_example; // String | to/destination email address
+        String subject = subject_example; // String | subject containing this string
+        String mailid = mailid_example; // String | mail id
         Integer skip = 56; // Integer | number of records to skip for pagination
         Integer limit = 56; // Integer | maximum number of records to return
         Long startDate = 789; // Long | earliest date to get emails in unix timestamp format
         Long endDate = 789; // Long | earliest date to get emails in unix timestamp format
         try {
-            MailLog result = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate);
+            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#viewMailLog");
@@ -3192,13 +3146,18 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         Long id = 789; // Long | The ID of your mail order this will be sent through.
-        String search = search_example; // String | pass an optional search string for looking up inventory
+        String origin = origin_example; // String | originating ip address sending mail
+        String mx = mx_example; // String | mx record mail was sent to
+        String from = from_example; // String | from email address
+        String to = to_example; // String | to/destination email address
+        String subject = subject_example; // String | subject containing this string
+        String mailid = mailid_example; // String | mail id
         Integer skip = 56; // Integer | number of records to skip for pagination
         Integer limit = 56; // Integer | maximum number of records to return
         Long startDate = 789; // Long | earliest date to get emails in unix timestamp format
         Long endDate = 789; // Long | earliest date to get emails in unix timestamp format
         try {
-            MailLog result = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate);
+            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#viewMailLog");
@@ -3218,7 +3177,12 @@ public class DefaultApiExample {
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
 Long *id = 789; // The ID of your mail order this will be sent through. (optional)
-String *search = search_example; // pass an optional search string for looking up inventory (optional)
+String *origin = origin_example; // originating ip address sending mail (optional)
+String *mx = mx_example; // mx record mail was sent to (optional)
+String *from = from_example; // from email address (optional)
+String *to = to_example; // to/destination email address (optional)
+String *subject = subject_example; // subject containing this string (optional)
+String *mailid = mailid_example; // mail id (optional)
 Integer *skip = 56; // number of records to skip for pagination (optional) (default to 0)
 Integer *limit = 56; // maximum number of records to return (optional) (default to 100)
 Long *startDate = 789; // earliest date to get emails in unix timestamp format (optional)
@@ -3228,7 +3192,12 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 // displays the mail log
 [apiInstance viewMailLogWith:id
-    search:search
+    origin:origin
+    mx:mx
+    from:from
+    to:to
+    subject:subject
+    mailid:mailid
     skip:skip
     limit:limit
     startDate:startDate
@@ -3257,7 +3226,12 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 var api = new MailBabyEmailDeliveryApi.DefaultApi()
 var opts = { 
   'id': 789, // {{Long}} The ID of your mail order this will be sent through.
-  'search': search_example, // {{String}} pass an optional search string for looking up inventory
+  'origin': origin_example, // {{String}} originating ip address sending mail
+  'mx': mx_example, // {{String}} mx record mail was sent to
+  'from': from_example, // {{String}} from email address
+  'to': to_example, // {{String}} to/destination email address
+  'subject': subject_example, // {{String}} subject containing this string
+  'mailid': mailid_example, // {{String}} mail id
   'skip': 56, // {{Integer}} number of records to skip for pagination
   'limit': 56, // {{Integer}} maximum number of records to return
   'startDate': 789, // {{Long}} earliest date to get emails in unix timestamp format
@@ -3298,7 +3272,12 @@ namespace Example
 
             var apiInstance = new DefaultApi();
             var id = 789;  // Long | The ID of your mail order this will be sent through. (optional) 
-            var search = search_example;  // String | pass an optional search string for looking up inventory (optional) 
+            var origin = origin_example;  // String | originating ip address sending mail (optional) 
+            var mx = mx_example;  // String | mx record mail was sent to (optional) 
+            var from = from_example;  // String | from email address (optional) 
+            var to = to_example;  // String | to/destination email address (optional) 
+            var subject = subject_example;  // String | subject containing this string (optional) 
+            var mailid = mailid_example;  // String | mail id (optional) 
             var skip = 56;  // Integer | number of records to skip for pagination (optional)  (default to 0)
             var limit = 56;  // Integer | maximum number of records to return (optional)  (default to 100)
             var startDate = 789;  // Long | earliest date to get emails in unix timestamp format (optional) 
@@ -3307,7 +3286,7 @@ namespace Example
             try
             {
                 // displays the mail log
-                MailLog result = apiInstance.viewMailLog(id, search, skip, limit, startDate, endDate);
+                MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -3331,14 +3310,19 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 
 $api_instance = new Swagger\Client\ApiDefaultApi();
 $id = 789; // Long | The ID of your mail order this will be sent through.
-$search = search_example; // String | pass an optional search string for looking up inventory
+$origin = origin_example; // String | originating ip address sending mail
+$mx = mx_example; // String | mx record mail was sent to
+$from = from_example; // String | from email address
+$to = to_example; // String | to/destination email address
+$subject = subject_example; // String | subject containing this string
+$mailid = mailid_example; // String | mail id
 $skip = 56; // Integer | number of records to skip for pagination
 $limit = 56; // Integer | maximum number of records to return
 $startDate = 789; // Long | earliest date to get emails in unix timestamp format
 $endDate = 789; // Long | earliest date to get emails in unix timestamp format
 
 try {
-    $result = $api_instance->viewMailLog($id, $search, $skip, $limit, $startDate, $endDate);
+    $result = $api_instance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
@@ -3358,14 +3342,19 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 
 my $api_instance = MailBabyApi::DefaultApi->new();
 my $id = 789; # Long | The ID of your mail order this will be sent through.
-my $search = search_example; # String | pass an optional search string for looking up inventory
+my $origin = origin_example; # String | originating ip address sending mail
+my $mx = mx_example; # String | mx record mail was sent to
+my $from = from_example; # String | from email address
+my $to = to_example; # String | to/destination email address
+my $subject = subject_example; # String | subject containing this string
+my $mailid = mailid_example; # String | mail id
 my $skip = 56; # Integer | number of records to skip for pagination
 my $limit = 56; # Integer | maximum number of records to return
 my $startDate = 789; # Long | earliest date to get emails in unix timestamp format
 my $endDate = 789; # Long | earliest date to get emails in unix timestamp format
 
 eval { 
-    my $result = $api_instance->viewMailLog(id => $id, search => $search, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate);
+    my $result = $api_instance->viewMailLog(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate);
     print Dumper($result);
 };
 if ($@) {
@@ -3388,7 +3377,12 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = MailBabyApi.DefaultApi()
 id = 789 # Long | The ID of your mail order this will be sent through. (optional)
-search = search_example # String | pass an optional search string for looking up inventory (optional)
+origin = origin_example # String | originating ip address sending mail (optional)
+mx = mx_example # String | mx record mail was sent to (optional)
+from = from_example # String | from email address (optional)
+to = to_example # String | to/destination email address (optional)
+subject = subject_example # String | subject containing this string (optional)
+mailid = mailid_example # String | mail id (optional)
 skip = 56 # Integer | number of records to skip for pagination (optional) (default to 0)
 limit = 56 # Integer | maximum number of records to return (optional) (default to 100)
 startDate = 789 # Long | earliest date to get emails in unix timestamp format (optional)
@@ -3396,7 +3390,7 @@ endDate = 789 # Long | earliest date to get emails in unix timestamp format (opt
 
 try: 
     # displays the mail log
-    api_response = api_instance.view_mail_log(id=id, search=search, skip=skip, limit=limit, startDate=startDate, endDate=endDate)
+    api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, from=from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, startDate=startDate, endDate=endDate)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->viewMailLog: %s\n" % e)</code></pre>
@@ -3437,11 +3431,11 @@ except ApiException as e:
                                     </div>
                                 </td>
                                 </tr>
-                                <tr><td style="width:150px;">search</td>
+                                <tr><td style="width:150px;">origin</td>
                                 <td>
                                 
                                 
-                                    <div id="d2e199_viewMailLog_search">
+                                    <div id="d2e199_viewMailLog_origin">
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
@@ -3449,7 +3443,102 @@ except ApiException as e:
                                                 </span>
                                 
                                                     <div class="inner description">
-                                                        pass an optional search string for looking up inventory
+                                                        originating ip address sending mail
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">mx</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_mx">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        mx record mail was sent to
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">from</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_from">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        from email address
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">to</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_to">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        to/destination email address
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">subject</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_subject">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        subject containing this string
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">mailid</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_mailid">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        mail id
                                                     </div>
                                             </div>
                                         </div>

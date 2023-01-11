@@ -33,34 +33,24 @@ entity MailLogEntry {
     * from: String
     * to: String
     * subject: String
-    * messageId: String
     * created: String
     * time: Integer
     * user: String
     * transtype: String
-    * transhost: String
-    * originhost: String
     * origin: String
     * interface: String
-    * date: String
     * sendingZone: String
     * bodySize: Integer
-    * sourceMd5: String
     * seq: Integer
-    * domain: String
     * recipient: String
+    * domain: String
     * locked: Integer
     * lockTime: Integer
     * assigned: String
     * queued: String
-    * _lock: String
-    * logger: String
-    * mxPort: Integer
-    * connectionKey: String
     * mxHostname: String
-    * sentBodyHash: String
-    * sentBodySize: Integer
-    * md5Match: Integer
+    * response: String
+    messageId: String
 }
 
 entity SendMail {

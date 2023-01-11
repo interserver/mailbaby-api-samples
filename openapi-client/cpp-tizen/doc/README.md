@@ -1,4 +1,4 @@
-# Documentation for MailBaby Email Delivery API 1.0.1 Tizen Client SDK
+# Documentation for MailBaby Email Delivery API 1.1.0 Tizen Client SDK
 
 ## How do I get the doc files?
 First generate source code by running `openapi-generator`

@@ -245,7 +245,7 @@ class DefaultApi {
 
   /// displays the mail log
   ///
-  /// By passing in the appropriate options, you can search for available inventory in the system 
+  /// Get a listing of the emails sent through this system 
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -254,8 +254,23 @@ class DefaultApi {
   /// * [int] id:
   ///   The ID of your mail order this will be sent through.
   ///
-  /// * [String] search:
-  ///   pass an optional search string for looking up inventory
+  /// * [String] origin:
+  ///   originating ip address sending mail
+  ///
+  /// * [String] mx:
+  ///   mx record mail was sent to
+  ///
+  /// * [String] from:
+  ///   from email address
+  ///
+  /// * [String] to:
+  ///   to/destination email address
+  ///
+  /// * [String] subject:
+  ///   subject containing this string
+  ///
+  /// * [String] mailid:
+  ///   mail id
   ///
   /// * [int] skip:
   ///   number of records to skip for pagination
@@ -268,7 +283,7 @@ class DefaultApi {
   ///
   /// * [int] endDate:
   ///   earliest date to get emails in unix timestamp format
-  Future<Response> viewMailLogWithHttpInfo({ int? id, String? search, int? skip, int? limit, int? startDate, int? endDate, }) async {
+  Future<Response> viewMailLogWithHttpInfo({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, int? skip, int? limit, int? startDate, int? endDate, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/log';
 
@@ -282,8 +297,23 @@ class DefaultApi {
     if (id != null) {
       queryParams.addAll(_queryParams('', 'id', id));
     }
-    if (search != null) {
-      queryParams.addAll(_queryParams('', 'search', search));
+    if (origin != null) {
+      queryParams.addAll(_queryParams('', 'origin', origin));
+    }
+    if (mx != null) {
+      queryParams.addAll(_queryParams('', 'mx', mx));
+    }
+    if (from != null) {
+      queryParams.addAll(_queryParams('', 'from', from));
+    }
+    if (to != null) {
+      queryParams.addAll(_queryParams('', 'to', to));
+    }
+    if (subject != null) {
+      queryParams.addAll(_queryParams('', 'subject', subject));
+    }
+    if (mailid != null) {
+      queryParams.addAll(_queryParams('', 'mailid', mailid));
     }
     if (skip != null) {
       queryParams.addAll(_queryParams('', 'skip', skip));
@@ -314,15 +344,30 @@ class DefaultApi {
 
   /// displays the mail log
   ///
-  /// By passing in the appropriate options, you can search for available inventory in the system 
+  /// Get a listing of the emails sent through this system 
   ///
   /// Parameters:
   ///
   /// * [int] id:
   ///   The ID of your mail order this will be sent through.
   ///
-  /// * [String] search:
-  ///   pass an optional search string for looking up inventory
+  /// * [String] origin:
+  ///   originating ip address sending mail
+  ///
+  /// * [String] mx:
+  ///   mx record mail was sent to
+  ///
+  /// * [String] from:
+  ///   from email address
+  ///
+  /// * [String] to:
+  ///   to/destination email address
+  ///
+  /// * [String] subject:
+  ///   subject containing this string
+  ///
+  /// * [String] mailid:
+  ///   mail id
   ///
   /// * [int] skip:
   ///   number of records to skip for pagination
@@ -335,8 +380,8 @@ class DefaultApi {
   ///
   /// * [int] endDate:
   ///   earliest date to get emails in unix timestamp format
-  Future<MailLog?> viewMailLog({ int? id, String? search, int? skip, int? limit, int? startDate, int? endDate, }) async {
-    final response = await viewMailLogWithHttpInfo( id: id, search: search, skip: skip, limit: limit, startDate: startDate, endDate: endDate, );
+  Future<MailLog?> viewMailLog({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, int? skip, int? limit, int? startDate, int? endDate, }) async {
+    final response = await viewMailLogWithHttpInfo( id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

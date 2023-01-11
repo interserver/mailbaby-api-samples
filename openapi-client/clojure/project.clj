@@ -1,4 +1,4 @@
-(defproject mail-baby-email-delivery-api "1.0.1"
+(defproject mail-baby-email-delivery-api "1.1.0"
   :description "**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
 

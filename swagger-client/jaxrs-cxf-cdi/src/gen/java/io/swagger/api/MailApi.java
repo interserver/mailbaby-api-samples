@@ -43,7 +43,8 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2023-01-10T22:49:54.716593-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2023-05-09T00:51:32.660870-04:00[America/New_York]")
+
 public class MailApi  {
 
   @Context SecurityContext securityContext;

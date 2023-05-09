@@ -44,7 +44,7 @@ import javax.annotation.Generated;
   SendMailAdv.JSON_PROPERTY_ID
 })
 @JsonTypeName("SendMailAdv")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2023-01-10T22:47:56.421964-05:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2023-05-09T00:49:41.503062-04:00[America/New_York]")
 @Introspected
 public class SendMailAdv {
     public static final String JSON_PROPERTY_SUBJECT = "subject";

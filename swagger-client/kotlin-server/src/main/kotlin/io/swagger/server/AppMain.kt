@@ -23,6 +23,8 @@ import java.util.concurrent.TimeUnit
 import io.ktor.util.KtorExperimentalAPI
 import io.ktor.auth.Authentication
 import io.ktor.auth.oauth
+import io.ktor.auth.basic
+import io.ktor.auth.UserIdPrincipal
 import io.ktor.metrics.dropwizard.DropwizardMetrics
 import io.swagger.server.infrastructure.ApiKeyCredential
 import io.swagger.server.infrastructure.ApiPrincipal

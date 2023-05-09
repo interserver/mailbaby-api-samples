@@ -12,29 +12,78 @@
 
 
 /**
- * An email record * @param id internal db id * @param id mail id * @param from from address * @param to to address * @param subject email subject * @param messageId message id * @param created creation date * @param time creation timestamp * @param user user account * @param transtype transaction type * @param origin origin ip * @param &#x60;interface&#x60; interface name * @param sendingZone sending zone * @param bodySize email body size in bytes * @param seq index of email in the to adderess list * @param recipient to address this email is being sent to * @param domain to address domain * @param locked locked status * @param lockTime lock timestamp * @param assigned assigned server * @param queued queued timestamp * @param mxHostname mx hostname * @param response mail delivery response*/
-data class MailLogEntry (    /* internal db id */
-    val id: kotlin.Int,    /* mail id */
-    val id: kotlin.String,    /* from address */
-    val from: kotlin.String,    /* to address */
-    val to: kotlin.String,    /* email subject */
-    val subject: kotlin.String,    /* creation date */
-    val created: kotlin.String,    /* creation timestamp */
-    val time: kotlin.Int,    /* user account */
-    val user: kotlin.String,    /* transaction type */
-    val transtype: kotlin.String,    /* origin ip */
-    val origin: kotlin.String,    /* interface name */
-    val `interface`: kotlin.String,    /* sending zone */
-    val sendingZone: kotlin.String,    /* email body size in bytes */
-    val bodySize: kotlin.Int,    /* index of email in the to adderess list */
-    val seq: kotlin.Int,    /* to address this email is being sent to */
-    val recipient: kotlin.String,    /* to address domain */
-    val domain: kotlin.String,    /* locked status */
-    val locked: kotlin.Int,    /* lock timestamp */
-    val lockTime: kotlin.Int,    /* assigned server */
-    val assigned: kotlin.String,    /* queued timestamp */
-    val queued: kotlin.String,    /* mx hostname */
-    val mxHostname: kotlin.String,    /* mail delivery response */
-    val response: kotlin.String,    /* message id */    val messageId: kotlin.String? = null
+ * An email record
+ * @param id internal db id
+ * @param id mail id
+ * @param from from address
+ * @param to to address
+ * @param subject email subject
+ * @param messageId message id
+ * @param created creation date
+ * @param time creation timestamp
+ * @param user user account
+ * @param transtype transaction type
+ * @param origin origin ip
+ * @param &#x60;interface&#x60; interface name
+ * @param sendingZone sending zone
+ * @param bodySize email body size in bytes
+ * @param seq index of email in the to adderess list
+ * @param recipient to address this email is being sent to
+ * @param domain to address domain
+ * @param locked locked status
+ * @param lockTime lock timestamp
+ * @param assigned assigned server
+ * @param queued queued timestamp
+ * @param mxHostname mx hostname
+ * @param response mail delivery response
+ */
+data class MailLogEntry (
+
+    /* internal db id */
+    val id: kotlin.Int,
+    /* mail id */
+    val id: kotlin.String,
+    /* from address */
+    val from: kotlin.String,
+    /* to address */
+    val to: kotlin.String,
+    /* email subject */
+    val subject: kotlin.String,
+    /* message id */
+    val messageId: kotlin.String? = null,
+    /* creation date */
+    val created: kotlin.String,
+    /* creation timestamp */
+    val time: kotlin.Int,
+    /* user account */
+    val user: kotlin.String,
+    /* transaction type */
+    val transtype: kotlin.String,
+    /* origin ip */
+    val origin: kotlin.String,
+    /* interface name */
+    val `interface`: kotlin.String,
+    /* sending zone */
+    val sendingZone: kotlin.String,
+    /* email body size in bytes */
+    val bodySize: kotlin.Int,
+    /* index of email in the to adderess list */
+    val seq: kotlin.Int,
+    /* to address this email is being sent to */
+    val recipient: kotlin.String,
+    /* to address domain */
+    val domain: kotlin.String,
+    /* locked status */
+    val locked: kotlin.Int,
+    /* lock timestamp */
+    val lockTime: kotlin.Int,
+    /* assigned server */
+    val assigned: kotlin.String,
+    /* queued timestamp */
+    val queued: kotlin.String,
+    /* mx hostname */
+    val mxHostname: kotlin.String,
+    /* mail delivery response */
+    val response: kotlin.String
 ) {
 }

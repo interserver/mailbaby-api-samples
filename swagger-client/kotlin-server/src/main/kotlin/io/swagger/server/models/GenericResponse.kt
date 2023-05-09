@@ -12,7 +12,13 @@
 
 
 /**
- *  * @param status  * @param text */
-data class GenericResponse (    val status: kotlin.String? = null,    val text: kotlin.String? = null
+ * 
+ * @param status 
+ * @param text 
+ */
+data class GenericResponse (
+
+    val status: kotlin.String? = null,
+    val text: kotlin.String? = null
 ) {
 }

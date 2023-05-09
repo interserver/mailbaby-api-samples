@@ -12,8 +12,15 @@
 
 
 /**
- * An Email Contact * @param email The email address * @param name (optional) Name to use for the BCC contact.*/
-data class SendMailAdvBcc (    /* The email address */
-    val email: kotlin.String,    /* (optional) Name to use for the BCC contact. */    val name: kotlin.String? = null
+ * An Email Contact
+ * @param email The email address
+ * @param name (optional) Name to use for the BCC contact.
+ */
+data class SendMailAdvBcc (
+
+    /* The email address */
+    val email: kotlin.String,
+    /* (optional) Name to use for the BCC contact. */
+    val name: kotlin.String? = null
 ) {
 }

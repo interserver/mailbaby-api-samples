@@ -12,7 +12,13 @@
 
 
 /**
- *  * @param code  * @param message */
-data class InlineResponse401 (    val code: kotlin.String,    val message: kotlin.String
+ * 
+ * @param code 
+ * @param message 
+ */
+data class InlineResponse401 (
+
+    val code: kotlin.String,
+    val message: kotlin.String
 ) {
 }

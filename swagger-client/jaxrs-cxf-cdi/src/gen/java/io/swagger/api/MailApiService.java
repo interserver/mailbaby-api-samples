@@ -26,7 +26,8 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2023-01-10T22:49:54.716593-05:00[America/New_York]")public interface MailApiService {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2023-05-09T00:51:32.660870-04:00[America/New_York]")
+public interface MailApiService {
       public Response getMailOrders(SecurityContext securityContext);
       public Response sendAdvMail(SendMailAdv body, SecurityContext securityContext);
       public Response sendAdvMail(String subject, String body, SendMailAdvFrom from, List<SendMailAdvTo> to, List<SendMailAdvReplyto> replyto, List<SendMailAdvCc> cc, List<SendMailAdvBcc> bcc, List<SendMailAdvAttachments> attachments, Long id, SecurityContext securityContext);

@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
  * Mail log records
  */
 @ApiModel(description = "Mail log records")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-10T22:47:54.479864-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-05-09T00:49:39.575209-04:00[America/New_York]")
 public class MailLog {
   public static final String SERIALIZED_NAME_TOTAL = "total";
   @SerializedName(SERIALIZED_NAME_TOTAL)

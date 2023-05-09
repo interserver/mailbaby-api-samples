@@ -31,7 +31,7 @@ import javax.annotation.Generated;
   SendMailAdvAttachmentsInner.JSON_PROPERTY_FILENAME
 })
 @JsonTypeName("SendMailAdv_attachments_inner")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2023-01-10T22:47:56.421964-05:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2023-05-09T00:49:41.503062-04:00[America/New_York]")
 @Introspected
 public class SendMailAdvAttachmentsInner {
     public static final String JSON_PROPERTY_DATA = "data";

@@ -2,6 +2,8 @@ package io.swagger.api;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
+import javax.servlet.ServletConfig;
+import javax.ws.rs.core.Context;
 
 import java.util.Set;
 import java.util.HashSet;

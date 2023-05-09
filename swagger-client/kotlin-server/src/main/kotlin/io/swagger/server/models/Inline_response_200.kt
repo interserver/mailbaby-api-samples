@@ -12,7 +12,19 @@
 
 
 /**
- *  * @param id  * @param status  * @param username  * @param password  * @param comment */
-data class InlineResponse200 (    val id: kotlin.Int,    val status: kotlin.String,    val username: kotlin.String,    val password: kotlin.String? = null,    val comment: kotlin.String? = null
+ * 
+ * @param id 
+ * @param status 
+ * @param username 
+ * @param password 
+ * @param comment 
+ */
+data class InlineResponse200 (
+
+    val id: kotlin.Int,
+    val status: kotlin.String,
+    val username: kotlin.String,
+    val password: kotlin.String? = null,
+    val comment: kotlin.String? = null
 ) {
 }

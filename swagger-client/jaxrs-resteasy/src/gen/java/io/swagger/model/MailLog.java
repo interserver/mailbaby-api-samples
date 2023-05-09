@@ -11,7 +11,8 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="Mail log records")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2023-01-10T22:50:10.186355-05:00[America/New_York]")public class MailLog   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2023-05-09T00:51:44.319867-04:00[America/New_York]")
+public class MailLog   {
   private Integer total = null;  private Integer skip = null;  private Integer limit = null;  private List<MailLogEntry> emails = new ArrayList<MailLogEntry>();
 
   /**

@@ -18,10 +18,35 @@ import io.swagger.server.models.SendMailAdvReplyto
 import io.swagger.server.models.SendMailAdvTo
 
 /**
- * Details for an Email * @param subject The subject or title of the email * @param body The main email contents. * @param from  * @param to A list of destionation email addresses to send this to * @param replyto (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. * @param cc (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. * @param bcc (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. * @param attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded! * @param id (optional)  ID of the Mail order within our system to use as the Mail Account.*/
-data class SendMailAdv (    /* The subject or title of the email */
-    val subject: kotlin.String,    /* The main email contents. */
-    val body: kotlin.String,    val from: SendMailAdvFrom,    /* A list of destionation email addresses to send this to */
-    val to: kotlin.Array<SendMailAdvTo>,    /* (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. */    val replyto: kotlin.Array<SendMailAdvReplyto>? = null,    /* (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */    val cc: kotlin.Array<SendMailAdvCc>? = null,    /* (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. */    val bcc: kotlin.Array<SendMailAdvBcc>? = null,    /* (optional) File attachments to include in the email.  The file contents must be base64 encoded! */    val attachments: kotlin.Array<SendMailAdvAttachments>? = null,    /* (optional)  ID of the Mail order within our system to use as the Mail Account. */    val id: kotlin.Long? = null
+ * Details for an Email
+ * @param subject The subject or title of the email
+ * @param body The main email contents.
+ * @param from 
+ * @param to A list of destionation email addresses to send this to
+ * @param replyto (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+ * @param cc (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+ * @param bcc (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+ * @param attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+ * @param id (optional)  ID of the Mail order within our system to use as the Mail Account.
+ */
+data class SendMailAdv (
+
+    /* The subject or title of the email */
+    val subject: kotlin.String,
+    /* The main email contents. */
+    val body: kotlin.String,
+    val from: SendMailAdvFrom,
+    /* A list of destionation email addresses to send this to */
+    val to: kotlin.Array<SendMailAdvTo>,
+    /* (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. */
+    val replyto: kotlin.Array<SendMailAdvReplyto>? = null,
+    /* (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */
+    val cc: kotlin.Array<SendMailAdvCc>? = null,
+    /* (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. */
+    val bcc: kotlin.Array<SendMailAdvBcc>? = null,
+    /* (optional) File attachments to include in the email.  The file contents must be base64 encoded! */
+    val attachments: kotlin.Array<SendMailAdvAttachments>? = null,
+    /* (optional)  ID of the Mail order within our system to use as the Mail Account. */
+    val id: kotlin.Long? = null
 ) {
 }

@@ -12,8 +12,15 @@
 
 
 /**
- * A File attachment for an email * @param filename (optional) Filename to specify for the attachment. * @param &#x60;data&#x60; Contents of the attached file (must be base64 encoded)*/
-data class SendMailAdvAttachments (    /* Contents of the attached file (must be base64 encoded) */
-    val `data`: kotlin.Array<kotlin.Byte>,    /* (optional) Filename to specify for the attachment. */    val filename: kotlin.String? = null
+ * A File attachment for an email
+ * @param filename (optional) Filename to specify for the attachment.
+ * @param &#x60;data&#x60; Contents of the attached file (must be base64 encoded)
+ */
+data class SendMailAdvAttachments (
+
+    /* (optional) Filename to specify for the attachment. */
+    val filename: kotlin.String? = null,
+    /* Contents of the attached file (must be base64 encoded) */
+    val `data`: kotlin.Array<kotlin.Byte>
 ) {
 }

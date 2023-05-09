@@ -13,10 +13,20 @@
 import io.swagger.server.models.MailLogEntry
 
 /**
- * Mail log records * @param total total number of mail log entries * @param skip number of emails skipped in listing * @param limit number of emails to return * @param emails */
-data class MailLog (    /* total number of mail log entries */
-    val total: kotlin.Int,    /* number of emails skipped in listing */
-    val skip: kotlin.Int,    /* number of emails to return */
-    val limit: kotlin.Int,    val emails: kotlin.Array<MailLogEntry>
+ * Mail log records
+ * @param total total number of mail log entries
+ * @param skip number of emails skipped in listing
+ * @param limit number of emails to return
+ * @param emails 
+ */
+data class MailLog (
+
+    /* total number of mail log entries */
+    val total: kotlin.Int,
+    /* number of emails skipped in listing */
+    val skip: kotlin.Int,
+    /* number of emails to return */
+    val limit: kotlin.Int,
+    val emails: kotlin.Array<MailLogEntry>
 ) {
 }

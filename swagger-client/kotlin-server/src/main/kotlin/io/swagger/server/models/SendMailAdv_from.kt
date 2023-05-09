@@ -12,8 +12,15 @@
 
 
 /**
- * The information to use for the From address in the email. from. * @param email The email address * @param name (optional) Name to use for the sending contact.*/
-data class SendMailAdvFrom (    /* The email address */
-    val email: kotlin.String,    /* (optional) Name to use for the sending contact. */    val name: kotlin.String? = null
+ * The information to use for the From address in the email. from.
+ * @param email The email address
+ * @param name (optional) Name to use for the sending contact.
+ */
+data class SendMailAdvFrom (
+
+    /* The email address */
+    val email: kotlin.String,
+    /* (optional) Name to use for the sending contact. */
+    val name: kotlin.String? = null
 ) {
 }

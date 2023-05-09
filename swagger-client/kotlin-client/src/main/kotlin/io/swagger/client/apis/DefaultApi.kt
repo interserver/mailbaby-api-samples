@@ -35,7 +35,6 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
      */
     @Suppress("UNCHECKED_CAST")
     fun getMailOrders(): kotlin.Array<InlineResponse200> {
-        
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
                 "/mail"
@@ -58,7 +57,6 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
      * @return void
      */
     fun pingServer(): Unit {
-        
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
                 "/ping"
@@ -84,8 +82,8 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
     @Suppress("UNCHECKED_CAST")
     fun sendAdvMail(body: SendMailAdv): GenericResponse {
         val localVariableBody: kotlin.Any? = body
-        
-        val localVariableHeaders: kotlin.collections.Map<kotlin.String, kotlin.String> = mapOf("Content-Type" to "multipart/form-data")
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/json")
+        localVariableHeaders["Accept"] = "application/json"
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
                 "/mail/advsend", headers = localVariableHeaders
@@ -119,8 +117,8 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
     @Suppress("UNCHECKED_CAST")
     fun sendAdvMail(subject: kotlin.String, body: kotlin.String, from: SendMailAdvFrom, to: kotlin.Array<SendMailAdvTo>, replyto: kotlin.Array<SendMailAdvReplyto>, cc: kotlin.Array<SendMailAdvCc>, bcc: kotlin.Array<SendMailAdvBcc>, attachments: kotlin.Array<SendMailAdvAttachments>, id: kotlin.Long): GenericResponse {
         val localVariableBody: kotlin.Any? = mapOf("subject" to "$subject", "body" to "$body", "from" to "$from", "to" to "$to", "replyto" to "$replyto", "cc" to "$cc", "bcc" to "$bcc", "attachments" to "$attachments", "id" to "$id")
-        
-        val localVariableHeaders: kotlin.collections.Map<kotlin.String, kotlin.String> = mapOf("Content-Type" to "multipart/form-data")
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/json")
+        localVariableHeaders["Accept"] = "application/json"
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
                 "/mail/advsend", headers = localVariableHeaders
@@ -149,8 +147,8 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
     @Suppress("UNCHECKED_CAST")
     fun sendMail(to: kotlin.String, from: kotlin.String, subject: kotlin.String, body: kotlin.String): GenericResponse {
         val localVariableBody: kotlin.Any? = mapOf("to" to "$to", "from" to "$from", "subject" to "$subject", "body" to "$body")
-        
-        val localVariableHeaders: kotlin.collections.Map<kotlin.String, kotlin.String> = mapOf("Content-Type" to "multipart/form-data")
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
+        localVariableHeaders["Accept"] = "application/json"
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
                 "/mail/send", headers = localVariableHeaders
@@ -176,8 +174,8 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
     @Suppress("UNCHECKED_CAST")
     fun sendMail(body: SendMail): GenericResponse {
         val localVariableBody: kotlin.Any? = body
-        
-        val localVariableHeaders: kotlin.collections.Map<kotlin.String, kotlin.String> = mapOf("Content-Type" to "multipart/form-data")
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
+        localVariableHeaders["Accept"] = "application/json"
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
                 "/mail/send", headers = localVariableHeaders
@@ -212,7 +210,41 @@ class DefaultApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
      */
     @Suppress("UNCHECKED_CAST")
     fun viewMailLog(id: kotlin.Long? = null, origin: kotlin.String? = null, mx: kotlin.String? = null, from: kotlin.String? = null, to: kotlin.String? = null, subject: kotlin.String? = null, mailid: kotlin.String? = null, skip: kotlin.Int? = null, limit: kotlin.Int? = null, startDate: kotlin.Long? = null, endDate: kotlin.Long? = null): MailLog {
-        val localVariableQuery: MultiValueMap = mapOf("id" to listOf("$id"), "origin" to listOf("$origin"), "mx" to listOf("$mx"), "from" to listOf("$from"), "to" to listOf("$to"), "subject" to listOf("$subject"), "mailid" to listOf("$mailid"), "skip" to listOf("$skip"), "limit" to listOf("$limit"), "startDate" to listOf("$startDate"), "endDate" to listOf("$endDate"))
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>().apply {
+            if (id != null) {
+                put("id", listOf(id.toString()))
+            }
+            if (origin != null) {
+                put("origin", listOf(origin.toString()))
+            }
+            if (mx != null) {
+                put("mx", listOf(mx.toString()))
+            }
+            if (from != null) {
+                put("from", listOf(from.toString()))
+            }
+            if (to != null) {
+                put("to", listOf(to.toString()))
+            }
+            if (subject != null) {
+                put("subject", listOf(subject.toString()))
+            }
+            if (mailid != null) {
+                put("mailid", listOf(mailid.toString()))
+            }
+            if (skip != null) {
+                put("skip", listOf(skip.toString()))
+            }
+            if (limit != null) {
+                put("limit", listOf(limit.toString()))
+            }
+            if (startDate != null) {
+                put("startDate", listOf(startDate.toString()))
+            }
+            if (endDate != null) {
+                put("endDate", listOf(endDate.toString()))
+            }
+        }
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
                 "/mail/log", query = localVariableQuery

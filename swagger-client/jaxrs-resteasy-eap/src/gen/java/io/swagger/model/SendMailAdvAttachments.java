@@ -10,7 +10,8 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="A File attachment for an email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2023-01-10T22:50:06.966286-05:00[America/New_York]")public class SendMailAdvAttachments   {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2023-05-09T00:51:41.955864-04:00[America/New_York]")
+public class SendMailAdvAttachments   {
   private String filename = null;
   private File data = null;
 

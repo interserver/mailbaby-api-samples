@@ -9,7 +9,7 @@ import io.vertx.codegen.annotations.DataObject;
  * InlineResponse200
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaVertXServerCodegen", date = "2023-05-09T00:51:46.773748-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaVertXServerCodegen", date = "2023-08-10T12:38:17.936627-04:00[America/New_York]")
 
 
 

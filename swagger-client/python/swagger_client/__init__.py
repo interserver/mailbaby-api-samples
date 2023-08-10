@@ -3,9 +3,9 @@
 # flake8: noqa
 
 """
-    MailBaby Email Delivery API
+    MailBaby Email Delivery and Management Service API
 
-    **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.   # noqa: E501
+    **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.   # noqa: E501
 
     OpenAPI spec version: 1.1.0
     Contact: support@interserver.net
@@ -15,21 +15,28 @@
 from __future__ import absolute_import
 
 # import apis into sdk package
-from swagger_client.api.default_api import DefaultApi
+from swagger_client.api.blocking_api import BlockingApi
+from swagger_client.api.history_api import HistoryApi
+from swagger_client.api.sending_api import SendingApi
+from swagger_client.api.services_api import ServicesApi
+from swagger_client.api.status_api import StatusApi
 # import ApiClient
 from swagger_client.api_client import ApiClient
 from swagger_client.configuration import Configuration
 # import models into sdk package
+from swagger_client.models.deny_rule_new import DenyRuleNew
+from swagger_client.models.deny_rule_record import DenyRuleRecord
+from swagger_client.models.email_address import EmailAddress
+from swagger_client.models.email_address_name import EmailAddressName
 from swagger_client.models.generic_response import GenericResponse
 from swagger_client.models.inline_response200 import InlineResponse200
 from swagger_client.models.inline_response401 import InlineResponse401
+from swagger_client.models.mail_attachment import MailAttachment
+from swagger_client.models.mail_block_click_house import MailBlockClickHouse
+from swagger_client.models.mail_block_rspamd import MailBlockRspamd
+from swagger_client.models.mail_blocks import MailBlocks
 from swagger_client.models.mail_log import MailLog
 from swagger_client.models.mail_log_entry import MailLogEntry
+from swagger_client.models.mail_order import MailOrder
 from swagger_client.models.send_mail import SendMail
 from swagger_client.models.send_mail_adv import SendMailAdv
-from swagger_client.models.send_mail_adv_attachments import SendMailAdvAttachments
-from swagger_client.models.send_mail_adv_bcc import SendMailAdvBcc
-from swagger_client.models.send_mail_adv_cc import SendMailAdvCc
-from swagger_client.models.send_mail_adv_from import SendMailAdvFrom
-from swagger_client.models.send_mail_adv_replyto import SendMailAdvReplyto
-from swagger_client.models.send_mail_adv_to import SendMailAdvTo

@@ -1,4 +1,4 @@
-# MailBabyEmailDeliveryApi.SendMail
+# MailBabyEmailDeliveryAndManagementServiceApi.SendMail
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,6 +1,6 @@
 /*
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 import com.google.gson.Gson;
@@ -34,10 +32,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -47,8 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * An email record
  */
-@ApiModel(description = "An email record")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-05-09T00:49:39.575209-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-10T12:35:23.309340-04:00[America/New_York]")
 public class MailLogEntry {
   public static final String SERIALIZED_NAME_ID = "_id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -142,7 +144,7 @@ public class MailLogEntry {
   @SerializedName(SERIALIZED_NAME_MESSAGE_ID)
   private String messageId;
 
-  public MailLogEntry() { 
+  public MailLogEntry() {
   }
 
   public MailLogEntry id(Integer id) {
@@ -156,8 +158,6 @@ public class MailLogEntry {
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "103172", required = true, value = "internal db id")
-
   public Integer getId() {
     return id;
   }
@@ -179,8 +179,6 @@ public class MailLogEntry {
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "17c7eda538e0005d03", required = true, value = "mail id")
-
   public String getId() {
     return id;
   }
@@ -202,8 +200,6 @@ public class MailLogEntry {
    * @return from
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "person@mysite.com", required = true, value = "from address")
-
   public String getFrom() {
     return from;
   }
@@ -225,8 +221,6 @@ public class MailLogEntry {
    * @return to
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "client@isp.com", required = true, value = "to address")
-
   public String getTo() {
     return to;
   }
@@ -248,8 +242,6 @@ public class MailLogEntry {
    * @return subject
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "sell 0.005 shares", required = true, value = "email subject")
-
   public String getSubject() {
     return subject;
   }
@@ -271,8 +263,6 @@ public class MailLogEntry {
    * @return created
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2021-10-14 08:50:10", required = true, value = "creation date")
-
   public String getCreated() {
     return created;
   }
@@ -294,8 +284,6 @@ public class MailLogEntry {
    * @return time
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1634215809", required = true, value = "creation timestamp")
-
   public Integer getTime() {
     return time;
   }
@@ -317,8 +305,6 @@ public class MailLogEntry {
    * @return user
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "mb5658", required = true, value = "user account")
-
   public String getUser() {
     return user;
   }
@@ -340,8 +326,6 @@ public class MailLogEntry {
    * @return transtype
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "ESMTPSA", required = true, value = "transaction type")
-
   public String getTranstype() {
     return transtype;
   }
@@ -363,8 +347,6 @@ public class MailLogEntry {
    * @return origin
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "199.231.189.154", required = true, value = "origin ip")
-
   public String getOrigin() {
     return origin;
   }
@@ -386,8 +368,6 @@ public class MailLogEntry {
    * @return _interface
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "feeder", required = true, value = "interface name")
-
   public String getInterface() {
     return _interface;
   }
@@ -409,8 +389,6 @@ public class MailLogEntry {
    * @return sendingZone
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "interserver", required = true, value = "sending zone")
-
   public String getSendingZone() {
     return sendingZone;
   }
@@ -432,8 +410,6 @@ public class MailLogEntry {
    * @return bodySize
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "63", required = true, value = "email body size in bytes")
-
   public Integer getBodySize() {
     return bodySize;
   }
@@ -455,8 +431,6 @@ public class MailLogEntry {
    * @return seq
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1", required = true, value = "index of email in the to adderess list")
-
   public Integer getSeq() {
     return seq;
   }
@@ -478,8 +452,6 @@ public class MailLogEntry {
    * @return recipient
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "client@isp.com", required = true, value = "to address this email is being sent to")
-
   public String getRecipient() {
     return recipient;
   }
@@ -501,8 +473,6 @@ public class MailLogEntry {
    * @return domain
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "interserver.net", required = true, value = "to address domain")
-
   public String getDomain() {
     return domain;
   }
@@ -524,8 +494,6 @@ public class MailLogEntry {
    * @return locked
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1", required = true, value = "locked status")
-
   public Integer getLocked() {
     return locked;
   }
@@ -547,8 +515,6 @@ public class MailLogEntry {
    * @return lockTime
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "1634215818533", required = true, value = "lock timestamp")
-
   public Integer getLockTime() {
     return lockTime;
   }
@@ -570,8 +536,6 @@ public class MailLogEntry {
    * @return assigned
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "relay1", required = true, value = "assigned server")
-
   public String getAssigned() {
     return assigned;
   }
@@ -593,8 +557,6 @@ public class MailLogEntry {
    * @return queued
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2021-10-14T12:50:15.487Z", required = true, value = "queued timestamp")
-
   public String getQueued() {
     return queued;
   }
@@ -616,8 +578,6 @@ public class MailLogEntry {
    * @return mxHostname
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "mx.j.is.cc", required = true, value = "mx hostname")
-
   public String getMxHostname() {
     return mxHostname;
   }
@@ -639,8 +599,6 @@ public class MailLogEntry {
    * @return response
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "250 2.0.0 Ok queued as C91D83E128C", required = true, value = "mail delivery response")
-
   public String getResponse() {
     return response;
   }
@@ -662,8 +620,6 @@ public class MailLogEntry {
    * @return messageId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>", value = "message id")
-
   public String getMessageId() {
     return messageId;
   }
@@ -814,83 +770,82 @@ public class MailLogEntry {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to MailLogEntry
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to MailLogEntry
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (MailLogEntry.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!MailLogEntry.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in MailLogEntry is not found in the empty JSON string", MailLogEntry.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Entry<String, JsonElement> entry : entries) {
         if (!MailLogEntry.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MailLogEntry` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MailLogEntry` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : MailLogEntry.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
-      if (jsonObj.get("id") != null && !jsonObj.get("id").isJsonPrimitive()) {
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
       }
-      if (jsonObj.get("from") != null && !jsonObj.get("from").isJsonPrimitive()) {
+      if (!jsonObj.get("from").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `from` to be a primitive type in the JSON string but got `%s`", jsonObj.get("from").toString()));
       }
-      if (jsonObj.get("to") != null && !jsonObj.get("to").isJsonPrimitive()) {
+      if (!jsonObj.get("to").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `to` to be a primitive type in the JSON string but got `%s`", jsonObj.get("to").toString()));
       }
-      if (jsonObj.get("subject") != null && !jsonObj.get("subject").isJsonPrimitive()) {
+      if (!jsonObj.get("subject").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `subject` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subject").toString()));
       }
-      if (jsonObj.get("created") != null && !jsonObj.get("created").isJsonPrimitive()) {
+      if (!jsonObj.get("created").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `created` to be a primitive type in the JSON string but got `%s`", jsonObj.get("created").toString()));
       }
-      if (jsonObj.get("user") != null && !jsonObj.get("user").isJsonPrimitive()) {
+      if (!jsonObj.get("user").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `user` to be a primitive type in the JSON string but got `%s`", jsonObj.get("user").toString()));
       }
-      if (jsonObj.get("transtype") != null && !jsonObj.get("transtype").isJsonPrimitive()) {
+      if (!jsonObj.get("transtype").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `transtype` to be a primitive type in the JSON string but got `%s`", jsonObj.get("transtype").toString()));
       }
-      if (jsonObj.get("origin") != null && !jsonObj.get("origin").isJsonPrimitive()) {
+      if (!jsonObj.get("origin").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `origin` to be a primitive type in the JSON string but got `%s`", jsonObj.get("origin").toString()));
       }
-      if (jsonObj.get("interface") != null && !jsonObj.get("interface").isJsonPrimitive()) {
+      if (!jsonObj.get("interface").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `interface` to be a primitive type in the JSON string but got `%s`", jsonObj.get("interface").toString()));
       }
-      if (jsonObj.get("sendingZone") != null && !jsonObj.get("sendingZone").isJsonPrimitive()) {
+      if (!jsonObj.get("sendingZone").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `sendingZone` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sendingZone").toString()));
       }
-      if (jsonObj.get("recipient") != null && !jsonObj.get("recipient").isJsonPrimitive()) {
+      if (!jsonObj.get("recipient").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `recipient` to be a primitive type in the JSON string but got `%s`", jsonObj.get("recipient").toString()));
       }
-      if (jsonObj.get("domain") != null && !jsonObj.get("domain").isJsonPrimitive()) {
+      if (!jsonObj.get("domain").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `domain` to be a primitive type in the JSON string but got `%s`", jsonObj.get("domain").toString()));
       }
-      if (jsonObj.get("assigned") != null && !jsonObj.get("assigned").isJsonPrimitive()) {
+      if (!jsonObj.get("assigned").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `assigned` to be a primitive type in the JSON string but got `%s`", jsonObj.get("assigned").toString()));
       }
-      if (jsonObj.get("queued") != null && !jsonObj.get("queued").isJsonPrimitive()) {
+      if (!jsonObj.get("queued").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `queued` to be a primitive type in the JSON string but got `%s`", jsonObj.get("queued").toString()));
       }
-      if (jsonObj.get("mxHostname") != null && !jsonObj.get("mxHostname").isJsonPrimitive()) {
+      if (!jsonObj.get("mxHostname").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `mxHostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mxHostname").toString()));
       }
-      if (jsonObj.get("response") != null && !jsonObj.get("response").isJsonPrimitive()) {
+      if (!jsonObj.get("response").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `response` to be a primitive type in the JSON string but got `%s`", jsonObj.get("response").toString()));
       }
-      if (jsonObj.get("messageId") != null && !jsonObj.get("messageId").isJsonPrimitive()) {
+      if ((jsonObj.get("messageId") != null && !jsonObj.get("messageId").isJsonNull()) && !jsonObj.get("messageId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `messageId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("messageId").toString()));
       }
   }
@@ -915,9 +870,9 @@ public class MailLogEntry {
 
            @Override
            public MailLogEntry read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

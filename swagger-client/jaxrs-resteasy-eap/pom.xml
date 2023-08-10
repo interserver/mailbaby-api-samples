@@ -97,9 +97,9 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j-version}</version>
         </dependency>
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta-api</artifactId>
+         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
             <version>${servlet-api-version}</version>
         </dependency>
 
@@ -111,17 +111,17 @@
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-servlet-initializer</artifactId>
-            <version>${resteasy-version}</version>
+            <version>6.2.3.Final</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>jaxrs-api</artifactId>
-            <version>${resteasy-version}</version>
+            <version>3.0.12.Final</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-validator-provider-11</artifactId>
-            <version>${resteasy-version}</version>
+            <version>3.6.3.Final</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
@@ -134,9 +134,9 @@
             <version>${resteasy-version}</version>
         </dependency>
         <dependency>
-            <groupId>jakarta.annotation</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
-            <version>1.3.5</version>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.2</version>
         </dependency>
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
@@ -171,9 +171,9 @@
         </dependency>
         <!-- Bean Validation API support -->
         <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
-            <version>2.0.2</version>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.1.0.Final</version>
         </dependency>
         <dependency>
             <groupId>joda-time</groupId>
@@ -220,9 +220,9 @@
     <properties>
         <swagger-core-version>2.0.0</swagger-core-version>
         <jetty-version>9.3.27.v20190418</jetty-version>
-        <resteasy-version>3.0.11.Final</resteasy-version>
+        <resteasy-version>3.15.6.Final</resteasy-version>
         <slf4j-version>1.6.3</slf4j-version>
         <junit-version>4.13.1</junit-version>
-        <servlet-api-version>3.1.0</servlet-api-version>
+        <servlet-api-version>2.5</servlet-api-version>
     </properties>
 </project>

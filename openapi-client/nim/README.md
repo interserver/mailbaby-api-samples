@@ -1,17 +1,10 @@
-# Nim API client for MailBaby Email Delivery API (Package: openapiclient)
+# Nim API client for MailBaby Email Delivery and Management Service API (Package: openapiclient)
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
-
-
-# 📌 Overview
-
+# Overview
 This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).
-
-
-# 🔐 Authentication
-
+# Authentication
 In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.
-
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 
 
@@ -38,11 +31,17 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Module | Proc | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-api_default | getMailOrders | **GET** /mail | displays a list of mail service orders
-api_default | pingServer | **GET** /ping | Checks if the server is running
-api_default | sendAdvMail | **POST** /mail/advsend | Sends an Email with Advanced Options
-api_default | sendMail | **POST** /mail/send | Sends an Email
-api_default | viewMailLog | **GET** /mail/log | displays the mail log
+api_blocking | addRule | **POST** /mail/rules | Creates a new email deny rule.
+api_blocking | deleteRule | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule.
+api_blocking | delistBlock | **POST** /mail/blocks/delete | Removes an email address from the blocked list
+api_blocking | getMailBlocks | **GET** /mail/blocks | displays a list of blocked email addresses
+api_blocking | getRules | **GET** /mail/rules | Displays a listing of deny email rules.
+api_history | getStats | **GET** /mail/stats | displays a list of blocked email addresses
+api_history | viewMailLog | **GET** /mail/log | displays the mail log
+api_sending | sendAdvMail | **POST** /mail/advsend | Sends an Email with Advanced Options
+api_sending | sendMail | **POST** /mail/send | Sends an Email
+api_services | getMailOrders | **GET** /mail | displays a list of mail service orders
+api_status | pingServer | **GET** /ping | Checks if the server is running
 
 
 To generate documentation with Nim DocGen, use:

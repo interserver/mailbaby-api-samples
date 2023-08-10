@@ -21,7 +21,7 @@
              nuget.org gallery uses information you add in the portal. -->
         <description>A library generated from a Swagger doc</description>
         <copyright>https://www.interserver.net/terms-of-service.html</copyright>
-        <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
+        <licenseUrl>https://www.gnu.org/licenses/gpl.txt</licenseUrl>
 
         <!-- Dependencies are automatically installed when the package is installed -->
         <dependencies>

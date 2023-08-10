@@ -6,12 +6,8 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model_ import Model
-from swagger_server.models.send_mail_adv_attachments import SendMailAdvAttachments  # noqa: F401,E501
-from swagger_server.models.send_mail_adv_bcc import SendMailAdvBcc  # noqa: F401,E501
-from swagger_server.models.send_mail_adv_cc import SendMailAdvCc  # noqa: F401,E501
-from swagger_server.models.send_mail_adv_from import SendMailAdvFrom  # noqa: F401,E501
-from swagger_server.models.send_mail_adv_replyto import SendMailAdvReplyto  # noqa: F401,E501
-from swagger_server.models.send_mail_adv_to import SendMailAdvTo  # noqa: F401,E501
+from swagger_server.models.email_address_name import EmailAddressName  # noqa: F401,E501
+from swagger_server.models.mail_attachment import MailAttachment  # noqa: F401,E501
 from swagger_server import util
 
 
@@ -20,7 +16,7 @@ class SendMailAdv(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, subject: str=None, body: str=None, _from: SendMailAdvFrom=None, to: List[SendMailAdvTo]=None, replyto: List[SendMailAdvReplyto]=None, cc: List[SendMailAdvCc]=None, bcc: List[SendMailAdvBcc]=None, attachments: List[SendMailAdvAttachments]=None, id: int=None):  # noqa: E501
+    def __init__(self, subject: str=None, body: str=None, _from: EmailAddressName=None, to: List[EmailAddressName]=None, replyto: List[EmailAddressName]=None, cc: List[EmailAddressName]=None, bcc: List[EmailAddressName]=None, attachments: List[MailAttachment]=None, id: int=None):  # noqa: E501
         """SendMailAdv - a model defined in Swagger
 
         :param subject: The subject of this SendMailAdv.  # noqa: E501
@@ -28,29 +24,29 @@ class SendMailAdv(Model):
         :param body: The body of this SendMailAdv.  # noqa: E501
         :type body: str
         :param _from: The _from of this SendMailAdv.  # noqa: E501
-        :type _from: SendMailAdvFrom
+        :type _from: EmailAddressName
         :param to: The to of this SendMailAdv.  # noqa: E501
-        :type to: List[SendMailAdvTo]
+        :type to: List[EmailAddressName]
         :param replyto: The replyto of this SendMailAdv.  # noqa: E501
-        :type replyto: List[SendMailAdvReplyto]
+        :type replyto: List[EmailAddressName]
         :param cc: The cc of this SendMailAdv.  # noqa: E501
-        :type cc: List[SendMailAdvCc]
+        :type cc: List[EmailAddressName]
         :param bcc: The bcc of this SendMailAdv.  # noqa: E501
-        :type bcc: List[SendMailAdvBcc]
+        :type bcc: List[EmailAddressName]
         :param attachments: The attachments of this SendMailAdv.  # noqa: E501
-        :type attachments: List[SendMailAdvAttachments]
+        :type attachments: List[MailAttachment]
         :param id: The id of this SendMailAdv.  # noqa: E501
         :type id: int
         """
         self.swagger_types = {
             'subject': str,
             'body': str,
-            '_from': SendMailAdvFrom,
-            'to': List[SendMailAdvTo],
-            'replyto': List[SendMailAdvReplyto],
-            'cc': List[SendMailAdvCc],
-            'bcc': List[SendMailAdvBcc],
-            'attachments': List[SendMailAdvAttachments],
+            '_from': EmailAddressName,
+            'to': List[EmailAddressName],
+            'replyto': List[EmailAddressName],
+            'cc': List[EmailAddressName],
+            'bcc': List[EmailAddressName],
+            'attachments': List[MailAttachment],
             'id': int
         }
 
@@ -137,22 +133,22 @@ class SendMailAdv(Model):
         self._body = body
 
     @property
-    def _from(self) -> SendMailAdvFrom:
+    def _from(self) -> EmailAddressName:
         """Gets the _from of this SendMailAdv.
 
 
         :return: The _from of this SendMailAdv.
-        :rtype: SendMailAdvFrom
+        :rtype: EmailAddressName
         """
         return self.__from
 
     @_from.setter
-    def _from(self, _from: SendMailAdvFrom):
+    def _from(self, _from: EmailAddressName):
         """Sets the _from of this SendMailAdv.
 
 
         :param _from: The _from of this SendMailAdv.
-        :type _from: SendMailAdvFrom
+        :type _from: EmailAddressName
         """
         if _from is None:
             raise ValueError("Invalid value for `_from`, must not be `None`")  # noqa: E501
@@ -160,24 +156,24 @@ class SendMailAdv(Model):
         self.__from = _from
 
     @property
-    def to(self) -> List[SendMailAdvTo]:
+    def to(self) -> List[EmailAddressName]:
         """Gets the to of this SendMailAdv.
 
         A list of destionation email addresses to send this to  # noqa: E501
 
         :return: The to of this SendMailAdv.
-        :rtype: List[SendMailAdvTo]
+        :rtype: List[EmailAddressName]
         """
         return self._to
 
     @to.setter
-    def to(self, to: List[SendMailAdvTo]):
+    def to(self, to: List[EmailAddressName]):
         """Sets the to of this SendMailAdv.
 
         A list of destionation email addresses to send this to  # noqa: E501
 
         :param to: The to of this SendMailAdv.
-        :type to: List[SendMailAdvTo]
+        :type to: List[EmailAddressName]
         """
         if to is None:
             raise ValueError("Invalid value for `to`, must not be `None`")  # noqa: E501
@@ -185,93 +181,93 @@ class SendMailAdv(Model):
         self._to = to
 
     @property
-    def replyto(self) -> List[SendMailAdvReplyto]:
+    def replyto(self) -> List[EmailAddressName]:
         """Gets the replyto of this SendMailAdv.
 
         (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.  # noqa: E501
 
         :return: The replyto of this SendMailAdv.
-        :rtype: List[SendMailAdvReplyto]
+        :rtype: List[EmailAddressName]
         """
         return self._replyto
 
     @replyto.setter
-    def replyto(self, replyto: List[SendMailAdvReplyto]):
+    def replyto(self, replyto: List[EmailAddressName]):
         """Sets the replyto of this SendMailAdv.
 
         (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.  # noqa: E501
 
         :param replyto: The replyto of this SendMailAdv.
-        :type replyto: List[SendMailAdvReplyto]
+        :type replyto: List[EmailAddressName]
         """
 
         self._replyto = replyto
 
     @property
-    def cc(self) -> List[SendMailAdvCc]:
+    def cc(self) -> List[EmailAddressName]:
         """Gets the cc of this SendMailAdv.
 
         (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.  # noqa: E501
 
         :return: The cc of this SendMailAdv.
-        :rtype: List[SendMailAdvCc]
+        :rtype: List[EmailAddressName]
         """
         return self._cc
 
     @cc.setter
-    def cc(self, cc: List[SendMailAdvCc]):
+    def cc(self, cc: List[EmailAddressName]):
         """Sets the cc of this SendMailAdv.
 
         (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.  # noqa: E501
 
         :param cc: The cc of this SendMailAdv.
-        :type cc: List[SendMailAdvCc]
+        :type cc: List[EmailAddressName]
         """
 
         self._cc = cc
 
     @property
-    def bcc(self) -> List[SendMailAdvBcc]:
+    def bcc(self) -> List[EmailAddressName]:
         """Gets the bcc of this SendMailAdv.
 
         (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.  # noqa: E501
 
         :return: The bcc of this SendMailAdv.
-        :rtype: List[SendMailAdvBcc]
+        :rtype: List[EmailAddressName]
         """
         return self._bcc
 
     @bcc.setter
-    def bcc(self, bcc: List[SendMailAdvBcc]):
+    def bcc(self, bcc: List[EmailAddressName]):
         """Sets the bcc of this SendMailAdv.
 
         (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.  # noqa: E501
 
         :param bcc: The bcc of this SendMailAdv.
-        :type bcc: List[SendMailAdvBcc]
+        :type bcc: List[EmailAddressName]
         """
 
         self._bcc = bcc
 
     @property
-    def attachments(self) -> List[SendMailAdvAttachments]:
+    def attachments(self) -> List[MailAttachment]:
         """Gets the attachments of this SendMailAdv.
 
         (optional) File attachments to include in the email.  The file contents must be base64 encoded!  # noqa: E501
 
         :return: The attachments of this SendMailAdv.
-        :rtype: List[SendMailAdvAttachments]
+        :rtype: List[MailAttachment]
         """
         return self._attachments
 
     @attachments.setter
-    def attachments(self, attachments: List[SendMailAdvAttachments]):
+    def attachments(self, attachments: List[MailAttachment]):
         """Sets the attachments of this SendMailAdv.
 
         (optional) File attachments to include in the email.  The file contents must be base64 encoded!  # noqa: E501
 
         :param attachments: The attachments of this SendMailAdv.
-        :type attachments: List[SendMailAdvAttachments]
+        :type attachments: List[MailAttachment]
         """
 
         self._attachments = attachments

@@ -33,7 +33,7 @@ namespace IO.Swagger.Model {
     /// </summary>
     [DataMember(Name="from", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "from")]
-    public SendMailAdvFrom From { get; set; }
+    public EmailAddressName From { get; set; }
 
     /// <summary>
     /// A list of destionation email addresses to send this to
@@ -41,7 +41,7 @@ namespace IO.Swagger.Model {
     /// <value>A list of destionation email addresses to send this to</value>
     [DataMember(Name="to", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "to")]
-    public List<SendMailAdvTo> To { get; set; }
+    public List<EmailAddressName> To { get; set; }
 
     /// <summary>
     /// (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
@@ -49,7 +49,7 @@ namespace IO.Swagger.Model {
     /// <value>(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.</value>
     [DataMember(Name="replyto", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "replyto")]
-    public List<SendMailAdvReplyto> Replyto { get; set; }
+    public List<EmailAddressName> Replyto { get; set; }
 
     /// <summary>
     /// (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
@@ -57,7 +57,7 @@ namespace IO.Swagger.Model {
     /// <value>(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.</value>
     [DataMember(Name="cc", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "cc")]
-    public List<SendMailAdvCc> Cc { get; set; }
+    public List<EmailAddressName> Cc { get; set; }
 
     /// <summary>
     /// (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
@@ -65,7 +65,7 @@ namespace IO.Swagger.Model {
     /// <value>(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.</value>
     [DataMember(Name="bcc", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "bcc")]
-    public List<SendMailAdvBcc> Bcc { get; set; }
+    public List<EmailAddressName> Bcc { get; set; }
 
     /// <summary>
     /// (optional) File attachments to include in the email.  The file contents must be base64 encoded!
@@ -73,7 +73,7 @@ namespace IO.Swagger.Model {
     /// <value>(optional) File attachments to include in the email.  The file contents must be base64 encoded!</value>
     [DataMember(Name="attachments", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "attachments")]
-    public List<SendMailAdvAttachments> Attachments { get; set; }
+    public List<MailAttachment> Attachments { get; set; }
 
     /// <summary>
     /// (optional)  ID of the Mail order within our system to use as the Mail Account.

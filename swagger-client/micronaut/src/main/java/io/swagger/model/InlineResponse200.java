@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
  * InlineResponse200
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2023-05-09T00:51:48.563040-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2023-08-10T12:38:20.165655-04:00[America/New_York]")
 public class InlineResponse200   {
   @JsonProperty("id")
   private Integer id = null;

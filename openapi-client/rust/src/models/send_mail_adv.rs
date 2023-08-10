@@ -1,7 +1,7 @@
 /*
- * MailBaby Email Delivery API
+ * MailBaby Email Delivery and Management Service API
  *
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SendMailAdv {
     /// The subject or title of the email
     #[serde(rename = "subject")]
@@ -21,22 +21,22 @@ pub struct SendMailAdv {
     #[serde(rename = "body")]
     pub body: String,
     #[serde(rename = "from")]
-    pub from: Box<crate::models::SendMailAdvFrom>,
+    pub from: Box<crate::models::EmailAddressName>,
     /// A list of destionation email addresses to send this to
     #[serde(rename = "to")]
-    pub to: Vec<crate::models::SendMailAdvToInner>,
+    pub to: Vec<crate::models::EmailAddressName>,
     /// (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
     #[serde(rename = "replyto", skip_serializing_if = "Option::is_none")]
-    pub replyto: Option<Vec<crate::models::SendMailAdvReplytoInner>>,
+    pub replyto: Option<Vec<crate::models::EmailAddressName>>,
     /// (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
     #[serde(rename = "cc", skip_serializing_if = "Option::is_none")]
-    pub cc: Option<Vec<crate::models::SendMailAdvCcInner>>,
+    pub cc: Option<Vec<crate::models::EmailAddressName>>,
     /// (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
     #[serde(rename = "bcc", skip_serializing_if = "Option::is_none")]
-    pub bcc: Option<Vec<crate::models::SendMailAdvBccInner>>,
+    pub bcc: Option<Vec<crate::models::EmailAddressName>>,
     /// (optional) File attachments to include in the email.  The file contents must be base64 encoded!
     #[serde(rename = "attachments", skip_serializing_if = "Option::is_none")]
-    pub attachments: Option<Vec<crate::models::SendMailAdvAttachmentsInner>>,
+    pub attachments: Option<Vec<crate::models::MailAttachment>>,
     /// (optional)  ID of the Mail order within our system to use as the Mail Account.
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<i64>,
@@ -44,7 +44,7 @@ pub struct SendMailAdv {
 
 impl SendMailAdv {
     /// Details for an Email
-    pub fn new(subject: String, body: String, from: crate::models::SendMailAdvFrom, to: Vec<crate::models::SendMailAdvToInner>) -> SendMailAdv {
+    pub fn new(subject: String, body: String, from: crate::models::EmailAddressName, to: Vec<crate::models::EmailAddressName>) -> SendMailAdv {
         SendMailAdv {
             subject,
             body,

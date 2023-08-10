@@ -27,7 +27,7 @@ else()
     message (STATUS "OpenSSL Not found.")
 endif()
 
-set(pkgName "mailbaby_email_delivery_api")
+set(pkgName "mailbaby_email_delivery_and_management_service_api")
 
 # this default version can be overridden in PreTarget.cmake
 set(PROJECT_VERSION_MAJOR 0)
@@ -54,20 +54,27 @@ set(SRCS
     src/binary.c
     external/cJSON.c
     model/object.c
+    model/deny_rule_new.c
+    model/deny_rule_record.c
+    model/email_address.c
+    model/email_address_name.c
     model/generic_response.c
-    model/get_mail_orders_200_response_inner.c
     model/get_mail_orders_401_response.c
+    model/get_stats_200_response_inner.c
+    model/mail_attachment.c
+    model/mail_block_click_house.c
+    model/mail_block_rspamd.c
+    model/mail_blocks.c
     model/mail_log.c
     model/mail_log_entry.c
+    model/mail_order.c
     model/send_mail.c
     model/send_mail_adv.c
-    model/send_mail_adv_attachments_inner.c
-    model/send_mail_adv_bcc_inner.c
-    model/send_mail_adv_cc_inner.c
-    model/send_mail_adv_from.c
-    model/send_mail_adv_replyto_inner.c
-    model/send_mail_adv_to_inner.c
-    api/DefaultAPI.c
+    api/BlockingAPI.c
+    api/HistoryAPI.c
+    api/SendingAPI.c
+    api/ServicesAPI.c
+    api/StatusAPI.c
 
 )
 
@@ -78,20 +85,27 @@ set(HDRS
     include/keyValuePair.h
     external/cJSON.h
     model/object.h
+    model/deny_rule_new.h
+    model/deny_rule_record.h
+    model/email_address.h
+    model/email_address_name.h
     model/generic_response.h
-    model/get_mail_orders_200_response_inner.h
     model/get_mail_orders_401_response.h
+    model/get_stats_200_response_inner.h
+    model/mail_attachment.h
+    model/mail_block_click_house.h
+    model/mail_block_rspamd.h
+    model/mail_blocks.h
     model/mail_log.h
     model/mail_log_entry.h
+    model/mail_order.h
     model/send_mail.h
     model/send_mail_adv.h
-    model/send_mail_adv_attachments_inner.h
-    model/send_mail_adv_bcc_inner.h
-    model/send_mail_adv_cc_inner.h
-    model/send_mail_adv_from.h
-    model/send_mail_adv_replyto_inner.h
-    model/send_mail_adv_to_inner.h
-    api/DefaultAPI.h
+    api/BlockingAPI.h
+    api/HistoryAPI.h
+    api/SendingAPI.h
+    api/ServicesAPI.h
+    api/StatusAPI.h
 
 )
 
@@ -173,7 +187,11 @@ set(HDRS "")
 ## This section shows how to use the above compiled library to compile the source files
 ## set source files
 #set(SRCS
-#    unit-tests/manual-DefaultAPI.c
+#    unit-tests/manual-BlockingAPI.c
+#    unit-tests/manual-HistoryAPI.c
+#    unit-tests/manual-SendingAPI.c
+#    unit-tests/manual-ServicesAPI.c
+#    unit-tests/manual-StatusAPI.c
 #)
 
 ##set header files

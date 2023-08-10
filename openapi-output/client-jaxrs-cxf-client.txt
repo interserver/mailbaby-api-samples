@@ -2,41 +2,55 @@
 [main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
 [main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: jaxrs-cxf-client (client)
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'jaxrs-cxf-client' is considered stable.
-[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getMailOrders_200_response_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
-[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getMailOrders_401_response. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
-[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_from. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
-[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_to_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
-[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_replyto_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
-[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_cc_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
-[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_bcc_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
-[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as SendMailAdv_attachments_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mapping in CLI).
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Environment variable JAVA_POST_PROCESS_FILE not defined so the Java code may not be properly formatted. To define it, try 'export JAVA_POST_PROCESS_FILE="/usr/local/bin/clang-format -i"' (Linux/Mac)
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getMailOrders_401_response. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getStats_200_response_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation getMailOrders
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation getMailBlocks
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation getStats
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation sendMail
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation sendAdvMail
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation viewMailLog
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation pingServer
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation delistBlock
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation getRules
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation addRule
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation deleteRule
+[main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressName (marked as unused due to form parameters) is generated due to the global property `skipFormModel` set to false
+[main] INFO  o.o.codegen.DefaultGenerator - Model MailAttachment (marked as unused due to form parameters) is generated due to the global property `skipFormModel` set to false
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/DenyRuleNew.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/DenyRuleRecord.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/EmailAddress.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/EmailAddressName.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/GenericResponse.java
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/GetMailOrders200ResponseInner.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/GetMailOrders401Response.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/GetStats200ResponseInner.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/MailAttachment.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/MailBlockClickHouse.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/MailBlockRspamd.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/MailBlocks.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/MailLog.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/MailLogEntry.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/MailOrder.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/SendMail.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/SendMailAdv.java
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/SendMailAdvAttachmentsInner.java
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/SendMailAdvBccInner.java
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/SendMailAdvCcInner.java
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/SendMailAdvFrom.java
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/SendMailAdvReplytoInner.java
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/SendMailAdvToInner.java
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)
-[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
-[main] WARN  o.o.c.languages.AbstractJavaCodegen - Multiple MediaTypes found, using only the first one
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/api/DefaultApi.java
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/test/java/org/openapitools/api/DefaultApiTest.java
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
+[main] WARN  o.o.c.languages.AbstractJavaCodegen - Ignoring complex example on request body
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/api/BlockingApi.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/test/java/org/openapitools/api/BlockingApiTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/api/HistoryApi.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/test/java/org/openapitools/api/HistoryApiTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/api/SendingApi.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/test/java/org/openapitools/api/SendingApiTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/api/ServicesApi.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/test/java/org/openapitools/api/ServicesApiTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/api/StatusApi.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/test/java/org/openapitools/api/StatusApiTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/pom.xml
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/.openapi-generator-ignore
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/.openapi-generator/VERSION

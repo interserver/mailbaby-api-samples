@@ -1,17 +1,10 @@
 # R API client for openapi
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
-
-
-# 📌 Overview
-
+# Overview
 This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).
-
-
-# 🔐 Authentication
-
+# Authentication
 In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.
-
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 
 
@@ -69,39 +62,60 @@ install.packages("openapi_1.0.0.tar.gz", repos = NULL, type = "source")
 library(openapi)
 ```
 
+### Reformat code
+
+To reformat code using [styler](https://styler.r-lib.org/index.html), please run the following in the R console:
+
+```R
+install.packages("remotes")
+remotes::install_github("r-lib/styler@v1.7.0.9003")
+library("styler")
+style_dir()
+```
+
 ## Documentation for API Endpoints
 
 All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**GetMailOrders**](docs/DefaultApi.md#GetMailOrders) | **GET** /mail | displays a list of mail service orders
-*DefaultApi* | [**PingServer**](docs/DefaultApi.md#PingServer) | **GET** /ping | Checks if the server is running
-*DefaultApi* | [**SendAdvMail**](docs/DefaultApi.md#SendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**SendMail**](docs/DefaultApi.md#SendMail) | **POST** /mail/send | Sends an Email
-*DefaultApi* | [**ViewMailLog**](docs/DefaultApi.md#ViewMailLog) | **GET** /mail/log | displays the mail log
+*BlockingApi* | [**AddRule**](docs/BlockingApi.md#AddRule) | **POST** /mail/rules | Creates a new email deny rule.
+*BlockingApi* | [**DeleteRule**](docs/BlockingApi.md#DeleteRule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule.
+*BlockingApi* | [**DelistBlock**](docs/BlockingApi.md#DelistBlock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
+*BlockingApi* | [**GetMailBlocks**](docs/BlockingApi.md#GetMailBlocks) | **GET** /mail/blocks | displays a list of blocked email addresses
+*BlockingApi* | [**GetRules**](docs/BlockingApi.md#GetRules) | **GET** /mail/rules | Displays a listing of deny email rules.
+*HistoryApi* | [**GetStats**](docs/HistoryApi.md#GetStats) | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | [**ViewMailLog**](docs/HistoryApi.md#ViewMailLog) | **GET** /mail/log | displays the mail log
+*SendingApi* | [**SendAdvMail**](docs/SendingApi.md#SendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*SendingApi* | [**SendMail**](docs/SendingApi.md#SendMail) | **POST** /mail/send | Sends an Email
+*ServicesApi* | [**GetMailOrders**](docs/ServicesApi.md#GetMailOrders) | **GET** /mail | displays a list of mail service orders
+*StatusApi* | [**PingServer**](docs/StatusApi.md#PingServer) | **GET** /ping | Checks if the server is running
 
 
 ## Documentation for Models
 
+ - [DenyRuleNew](docs/DenyRuleNew.md)
+ - [DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [EmailAddress](docs/EmailAddress.md)
+ - [EmailAddressName](docs/EmailAddressName.md)
  - [GenericResponse](docs/GenericResponse.md)
- - [GetMailOrders200ResponseInner](docs/GetMailOrders200ResponseInner.md)
  - [GetMailOrders401Response](docs/GetMailOrders401Response.md)
+ - [GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
+ - [MailAttachment](docs/MailAttachment.md)
+ - [MailBlockClickHouse](docs/MailBlockClickHouse.md)
+ - [MailBlockRspamd](docs/MailBlockRspamd.md)
+ - [MailBlocks](docs/MailBlocks.md)
  - [MailLog](docs/MailLog.md)
  - [MailLogEntry](docs/MailLogEntry.md)
+ - [MailOrder](docs/MailOrder.md)
  - [SendMail](docs/SendMail.md)
  - [SendMailAdv](docs/SendMailAdv.md)
- - [SendMailAdvAttachmentsInner](docs/SendMailAdvAttachmentsInner.md)
- - [SendMailAdvBccInner](docs/SendMailAdvBccInner.md)
- - [SendMailAdvCcInner](docs/SendMailAdvCcInner.md)
- - [SendMailAdvFrom](docs/SendMailAdvFrom.md)
- - [SendMailAdvReplytoInner](docs/SendMailAdvReplytoInner.md)
- - [SendMailAdvToInner](docs/SendMailAdvToInner.md)
 
 
 ## Documentation for Authorization
 
 
+Authentication schemes defined for the API:
 ### apiKeyAuth
 
 - **Type**: API key
@@ -109,8 +123,6 @@ Class | Method | HTTP request | Description
 - **Location**: HTTP header
 
 
-
 ## Author
 
 support@interserver.net
-

@@ -12,10 +12,10 @@
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 #
-# This is a Bash client for MailBaby Email Delivery API.
+# This is a Bash client for MailBaby Email Delivery and Management Service API.
 #
 # LICENSE:
-# http://www.apache.org/licenses/LICENSE-2.0.html
+# https://www.gnu.org/licenses/gpl.txt
 #
 # CONTACT:
 # support@interserver.net
@@ -95,11 +95,11 @@ declare -a result_color_table=( "$WHITE" "$WHITE" "$GREEN" "$YELLOW" "$WHITE" "$
 # 0 - optional
 # 1 - required
 declare -A operation_parameters_minimum_occurrences
-operation_parameters_minimum_occurrences["sendAdvMail:::SendMailAdv"]=1
-operation_parameters_minimum_occurrences["sendMail:::to"]=1
-operation_parameters_minimum_occurrences["sendMail:::from"]=1
-operation_parameters_minimum_occurrences["sendMail:::subject"]=1
-operation_parameters_minimum_occurrences["sendMail:::body"]=1
+operation_parameters_minimum_occurrences["addRule:::type"]=1
+operation_parameters_minimum_occurrences["addRule:::data"]=1
+operation_parameters_minimum_occurrences["addRule:::user"]=0
+operation_parameters_minimum_occurrences["deleteRule:::ruleId"]=1
+operation_parameters_minimum_occurrences["delistBlock:::EmailAddress"]=1
 operation_parameters_minimum_occurrences["viewMailLog:::id"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::origin"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::mx"]=0
@@ -111,6 +111,19 @@ operation_parameters_minimum_occurrences["viewMailLog:::skip"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::limit"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::startDate"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::endDate"]=0
+operation_parameters_minimum_occurrences["sendAdvMail:::subject"]=1
+operation_parameters_minimum_occurrences["sendAdvMail:::body"]=1
+operation_parameters_minimum_occurrences["sendAdvMail:::from"]=1
+operation_parameters_minimum_occurrences["sendAdvMail:::to"]=1
+operation_parameters_minimum_occurrences["sendAdvMail:::replyto"]=0
+operation_parameters_minimum_occurrences["sendAdvMail:::cc"]=0
+operation_parameters_minimum_occurrences["sendAdvMail:::bcc"]=0
+operation_parameters_minimum_occurrences["sendAdvMail:::attachments"]=0
+operation_parameters_minimum_occurrences["sendAdvMail:::id"]=0
+operation_parameters_minimum_occurrences["sendMail:::to"]=1
+operation_parameters_minimum_occurrences["sendMail:::from"]=1
+operation_parameters_minimum_occurrences["sendMail:::subject"]=1
+operation_parameters_minimum_occurrences["sendMail:::body"]=1
 
 ##
 # This array stores the maximum number of allowed occurrences for parameter
@@ -119,11 +132,11 @@ operation_parameters_minimum_occurrences["viewMailLog:::endDate"]=0
 # N - N values
 # 0 - unlimited
 declare -A operation_parameters_maximum_occurrences
-operation_parameters_maximum_occurrences["sendAdvMail:::SendMailAdv"]=0
-operation_parameters_maximum_occurrences["sendMail:::to"]=0
-operation_parameters_maximum_occurrences["sendMail:::from"]=0
-operation_parameters_maximum_occurrences["sendMail:::subject"]=0
-operation_parameters_maximum_occurrences["sendMail:::body"]=0
+operation_parameters_maximum_occurrences["addRule:::type"]=0
+operation_parameters_maximum_occurrences["addRule:::data"]=0
+operation_parameters_maximum_occurrences["addRule:::user"]=0
+operation_parameters_maximum_occurrences["deleteRule:::ruleId"]=0
+operation_parameters_maximum_occurrences["delistBlock:::EmailAddress"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::id"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::origin"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::mx"]=0
@@ -135,16 +148,29 @@ operation_parameters_maximum_occurrences["viewMailLog:::skip"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::limit"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::startDate"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::endDate"]=0
+operation_parameters_maximum_occurrences["sendAdvMail:::subject"]=0
+operation_parameters_maximum_occurrences["sendAdvMail:::body"]=0
+operation_parameters_maximum_occurrences["sendAdvMail:::from"]=0
+operation_parameters_maximum_occurrences["sendAdvMail:::to"]=0
+operation_parameters_maximum_occurrences["sendAdvMail:::replyto"]=0
+operation_parameters_maximum_occurrences["sendAdvMail:::cc"]=0
+operation_parameters_maximum_occurrences["sendAdvMail:::bcc"]=0
+operation_parameters_maximum_occurrences["sendAdvMail:::attachments"]=0
+operation_parameters_maximum_occurrences["sendAdvMail:::id"]=0
+operation_parameters_maximum_occurrences["sendMail:::to"]=0
+operation_parameters_maximum_occurrences["sendMail:::from"]=0
+operation_parameters_maximum_occurrences["sendMail:::subject"]=0
+operation_parameters_maximum_occurrences["sendMail:::body"]=0
 
 ##
 # The type of collection for specifying multiple values for parameter:
 # - multi, csv, ssv, tsv
 declare -A operation_parameters_collection_type
-operation_parameters_collection_type["sendAdvMail:::SendMailAdv"]=""
-operation_parameters_collection_type["sendMail:::to"]=""
-operation_parameters_collection_type["sendMail:::from"]=""
-operation_parameters_collection_type["sendMail:::subject"]=""
-operation_parameters_collection_type["sendMail:::body"]=""
+operation_parameters_collection_type["addRule:::type"]=""
+operation_parameters_collection_type["addRule:::data"]=""
+operation_parameters_collection_type["addRule:::user"]=""
+operation_parameters_collection_type["deleteRule:::ruleId"]=""
+operation_parameters_collection_type["delistBlock:::EmailAddress"]=""
 operation_parameters_collection_type["viewMailLog:::id"]=""
 operation_parameters_collection_type["viewMailLog:::origin"]=""
 operation_parameters_collection_type["viewMailLog:::mx"]=""
@@ -156,6 +182,19 @@ operation_parameters_collection_type["viewMailLog:::skip"]=""
 operation_parameters_collection_type["viewMailLog:::limit"]=""
 operation_parameters_collection_type["viewMailLog:::startDate"]=""
 operation_parameters_collection_type["viewMailLog:::endDate"]=""
+operation_parameters_collection_type["sendAdvMail:::subject"]=""
+operation_parameters_collection_type["sendAdvMail:::body"]=""
+operation_parameters_collection_type["sendAdvMail:::from"]=""
+operation_parameters_collection_type["sendAdvMail:::to"]=
+operation_parameters_collection_type["sendAdvMail:::replyto"]=
+operation_parameters_collection_type["sendAdvMail:::cc"]=
+operation_parameters_collection_type["sendAdvMail:::bcc"]=
+operation_parameters_collection_type["sendAdvMail:::attachments"]=
+operation_parameters_collection_type["sendAdvMail:::id"]=""
+operation_parameters_collection_type["sendMail:::to"]=""
+operation_parameters_collection_type["sendMail:::from"]=""
+operation_parameters_collection_type["sendMail:::subject"]=""
+operation_parameters_collection_type["sendMail:::body"]=""
 
 
 ##
@@ -525,7 +564,7 @@ build_request_path() {
 print_help() {
 cat <<EOF
 
-${BOLD}${WHITE}MailBaby Email Delivery API command line client (API version 1.1.0)${OFF}
+${BOLD}${WHITE}MailBaby Email Delivery and Management Service API command line client (API version 1.1.0)${OFF}
 
 ${BOLD}${WHITE}Usage${OFF}
 
@@ -559,13 +598,39 @@ EOF
     echo ""
     echo -e "${BOLD}${WHITE}Operations (grouped by tags)${OFF}"
     echo ""
-    echo -e "${BOLD}${WHITE}[default]${OFF}"
+    echo -e "${BOLD}${WHITE}[blocking]${OFF}"
 read -r -d '' ops <<EOF
-  ${CYAN}getMailOrders${OFF};displays a list of mail service orders (AUTH)
-  ${CYAN}pingServer${OFF};Checks if the server is running
+  ${CYAN}addRule${OFF};Creates a new email deny rule. (AUTH)
+  ${CYAN}deleteRule${OFF};Removes an deny mail rule. (AUTH)
+  ${CYAN}delistBlock${OFF};Removes an email address from the blocked list (AUTH)
+  ${CYAN}getMailBlocks${OFF};displays a list of blocked email addresses (AUTH)
+  ${CYAN}getRules${OFF};Displays a listing of deny email rules. (AUTH)
+EOF
+echo "  $ops" | column -t -s ';'
+    echo ""
+    echo -e "${BOLD}${WHITE}[history]${OFF}"
+read -r -d '' ops <<EOF
+  ${CYAN}getStats${OFF};displays a list of blocked email addresses (AUTH)
+  ${CYAN}viewMailLog${OFF};displays the mail log (AUTH)
+EOF
+echo "  $ops" | column -t -s ';'
+    echo ""
+    echo -e "${BOLD}${WHITE}[sending]${OFF}"
+read -r -d '' ops <<EOF
   ${CYAN}sendAdvMail${OFF};Sends an Email with Advanced Options (AUTH)
   ${CYAN}sendMail${OFF};Sends an Email (AUTH)
-  ${CYAN}viewMailLog${OFF};displays the mail log (AUTH)
+EOF
+echo "  $ops" | column -t -s ';'
+    echo ""
+    echo -e "${BOLD}${WHITE}[services]${OFF}"
+read -r -d '' ops <<EOF
+  ${CYAN}getMailOrders${OFF};displays a list of mail service orders (AUTH)
+EOF
+echo "  $ops" | column -t -s ';'
+    echo ""
+    echo -e "${BOLD}${WHITE}[status]${OFF}"
+read -r -d '' ops <<EOF
+  ${CYAN}pingServer${OFF};Checks if the server is running (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
@@ -595,25 +660,18 @@ echo -e "              \\t\\t\\t\\t(e.g. 'https://api.mailbaby.net')"
 ##############################################################################
 print_about() {
     echo ""
-    echo -e "${BOLD}${WHITE}MailBaby Email Delivery API command line client (API version 1.1.0)${OFF}"
+    echo -e "${BOLD}${WHITE}MailBaby Email Delivery and Management Service API command line client (API version 1.1.0)${OFF}"
     echo ""
-    echo -e "License: Apache 2.0"
+    echo -e "License: GNU GPLv3"
     echo -e "Contact: support@interserver.net"
     echo ""
 read -r -d '' appdescription <<EOF
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
-
-
-# 📌 Overview
-
+# Overview
 This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).
-
-
-# 🔐 Authentication
-
+# Authentication
 In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.
-
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 EOF
 echo "$appdescription" | paste -sd' ' | fold -sw 80
@@ -627,18 +685,90 @@ echo "$appdescription" | paste -sd' ' | fold -sw 80
 ##############################################################################
 print_version() {
     echo ""
-    echo -e "${BOLD}MailBaby Email Delivery API command line client (API version 1.1.0)${OFF}"
+    echo -e "${BOLD}MailBaby Email Delivery and Management Service API command line client (API version 1.1.0)${OFF}"
     echo ""
 }
 
 ##############################################################################
 #
-# Print help for getMailOrders operation
+# Print help for addRule operation
 #
 ##############################################################################
-print_getMailOrders_help() {
+print_addRule_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getMailOrders - displays a list of mail service orders${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}addRule - Creates a new email deny rule.${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Adds a new email deny rule into the system to block new emails that match the given criteria" | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=400
+    echo -e "${result_color_table[${code:0:1}]}  400;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for deleteRule operation
+#
+##############################################################################
+print_deleteRule_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}deleteRule - Removes an deny mail rule.${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Removes one of the configured deny mail rules from the system." | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}ruleId${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the Rules entry. ${YELLOW}Specify as: ruleId=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=400
+    echo -e "${result_color_table[${code:0:1}]}  400;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for delistBlock operation
+#
+##############################################################################
+print_delistBlock_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}delistBlock - Removes an email address from the blocked list${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Removes an email address from the various block lists." | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json,multipart/form-data]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=400
+    echo -e "${result_color_table[${code:0:1}]}  400;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getMailBlocks operation
+#
+##############################################################################
+print_getMailBlocks_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getMailBlocks - displays a list of blocked email addresses${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -651,69 +781,41 @@ print_getMailOrders_help() {
 }
 ##############################################################################
 #
-# Print help for pingServer operation
+# Print help for getRules operation
 #
 ##############################################################################
-print_pingServer_help() {
+print_getRules_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}pingServer - Checks if the server is running${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getRules - Displays a listing of deny email rules.${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Returns a listing of all the deny block rules you have configured." | paste -sd' ' | fold -sw 80
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;Server is up and running${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=0
-    echo -e "${result_color_table[${code:0:1}]}  0;Something is wrong${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-}
-##############################################################################
-#
-# Print help for sendAdvMail operation
-#
-##############################################################################
-print_sendAdvMail_help() {
-    echo ""
-    echo -e "${BOLD}${WHITE}sendAdvMail - Sends an Email with Advanced Options${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo -e "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc." | paste -sd' ' | fold -sw 80
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json,application/x-www-form-urlencoded]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e ""
-    echo ""
-    echo -e "${BOLD}${WHITE}Responses${OFF}"
-    code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
     echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
-# Print help for sendMail operation
+# Print help for getStats operation
 #
 ##############################################################################
-print_sendMail_help() {
+print_getStats_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}sendMail - Sends an Email${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getStats - displays a list of blocked email addresses${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Sends an email through one of your mail orders.
-
-*Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead." | paste -sd' ' | fold -sw 80
-    echo -e ""
-    echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
-    code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
     echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -756,14 +858,98 @@ print_viewMailLog_help() {
     code=400
     echo -e "${result_color_table[${code:0:1}]}  400;bad input parameter${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
+##############################################################################
+#
+# Print help for sendAdvMail operation
+#
+##############################################################################
+print_sendAdvMail_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}sendAdvMail - Sends an Email with Advanced Options${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc." | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=400
+    echo -e "${result_color_table[${code:0:1}]}  400;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for sendMail operation
+#
+##############################################################################
+print_sendMail_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}sendMail - Sends an Email${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Sends an email through one of your mail orders.
+
+*Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead." | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=400
+    echo -e "${result_color_table[${code:0:1}]}  400;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for getMailOrders operation
+#
+##############################################################################
+print_getMailOrders_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}getMailOrders - displays a list of mail service orders${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "This will return a list of the mail orders you have in our system including their id, status, username, and optional comment." | paste -sd' ' | fold -sw 80
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for pingServer operation
+#
+##############################################################################
+print_pingServer_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}pingServer - Checks if the server is running${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;Server is up and running${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=0
+    echo -e "${result_color_table[${code:0:1}]}  0;Something is wrong${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
 
 
 ##############################################################################
 #
-# Call getMailOrders operation
+# Call addRule operation
 #
 ##############################################################################
-call_getMailOrders() {
+call_addRule() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
@@ -772,7 +958,156 @@ call_getMailOrders() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/mail" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/mail/rules" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    body_form_urlencoded=$(body_parameters_to_form_urlencoded)
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${body_form_urlencoded} ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl ${body_form_urlencoded} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call deleteRule operation
+#
+##############################################################################
+call_deleteRule() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=(ruleId)
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/mail/rules/{ruleId}" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="DELETE"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call delistBlock operation
+#
+##############################################################################
+call_delistBlock() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/mail/blocks/delete" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the OpenAPI specification
+    # if values produces and consumes are defined unambiguously
+    #
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo -e "\\t- multipart/form-data"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
+# Call getMailBlocks operation
+#
+##############################################################################
+call_getMailBlocks() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/mail/blocks" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -796,19 +1131,91 @@ call_getMailOrders() {
 
 ##############################################################################
 #
-# Call pingServer operation
+# Call getRules operation
 #
 ##############################################################################
-call_pingServer() {
+call_getRules() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=()
+    local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/ping" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/mail/rules" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call getStats operation
+#
+##############################################################################
+call_getStats() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/mail/stats" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call viewMailLog operation
+#
+##############################################################################
+call_viewMailLog() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(id origin mx from to subject mailid skip limit startDate endDate  )
+    local path
+
+    if ! path=$(build_request_path "/mail/log" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -859,50 +1266,11 @@ call_sendAdvMail() {
     if [[ -n $basic_auth_credential ]]; then
         basic_auth_option="-u ${basic_auth_credential}"
     fi
-    local body_json_curl=""
-
-    #
-    # Check if the user provided 'Content-type' headers in the
-    # command line. If not try to set them based on the OpenAPI specification
-    # if values produces and consumes are defined unambiguously
-    #
-
-
-    if [[ -z $header_content_type && "$force" = false ]]; then
-        :
-        echo "ERROR: Request's content-type not specified!!!"
-        echo "This operation expects content-type in one of the following formats:"
-        echo -e "\\t- application/json"
-        echo -e "\\t- application/x-www-form-urlencoded"
-        echo ""
-        echo "Use '--content-type' to set proper content type"
-        exit 1
+    body_form_urlencoded=$(body_parameters_to_form_urlencoded)
+    if [[ "$print_curl" = true ]]; then
+        echo "curl ${body_form_urlencoded} ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
-    fi
-
-
-    #
-    # If we have received some body content over pipe, pass it from the
-    # temporary file to cURL
-    #
-    if [[ -n $body_content_temp_file ]]; then
-        if [[ "$print_curl" = true ]]; then
-            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
-        else
-            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
-        fi
-        rm "${body_content_temp_file}"
-    #
-    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
-    #
-    else
-        body_json_curl=$(body_parameters_to_json)
-        if [[ "$print_curl" = true ]]; then
-            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
-        else
-            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
-        fi
+        eval "curl ${body_form_urlencoded} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -945,19 +1313,55 @@ call_sendMail() {
 
 ##############################################################################
 #
-# Call viewMailLog operation
+# Call getMailOrders operation
 #
 ##############################################################################
-call_viewMailLog() {
+call_getMailOrders() {
     # ignore error about 'path_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(id origin mx from to subject mailid skip limit startDate endDate  )
+    local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "/mail/log" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/mail" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="GET"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    if [[ "$print_curl" = true ]]; then
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    else
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+    fi
+}
+
+##############################################################################
+#
+# Call pingServer operation
+#
+##############################################################################
+call_pingServer() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/ping" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -1076,11 +1480,26 @@ case $key in
         OFF=""
         result_color_table=( "" "" "" "" "" "" "" )
     ;;
-    getMailOrders)
-    operation="getMailOrders"
+    addRule)
+    operation="addRule"
     ;;
-    pingServer)
-    operation="pingServer"
+    deleteRule)
+    operation="deleteRule"
+    ;;
+    delistBlock)
+    operation="delistBlock"
+    ;;
+    getMailBlocks)
+    operation="getMailBlocks"
+    ;;
+    getRules)
+    operation="getRules"
+    ;;
+    getStats)
+    operation="getStats"
+    ;;
+    viewMailLog)
+    operation="viewMailLog"
     ;;
     sendAdvMail)
     operation="sendAdvMail"
@@ -1088,8 +1507,11 @@ case $key in
     sendMail)
     operation="sendMail"
     ;;
-    viewMailLog)
-    operation="viewMailLog"
+    getMailOrders)
+    operation="getMailOrders"
+    ;;
+    pingServer)
+    operation="pingServer"
     ;;
     *==*)
     # Parse body arguments and convert them into top level
@@ -1175,11 +1597,26 @@ fi
 
 # Run cURL command based on the operation ID
 case $operation in
-    getMailOrders)
-    call_getMailOrders
+    addRule)
+    call_addRule
     ;;
-    pingServer)
-    call_pingServer
+    deleteRule)
+    call_deleteRule
+    ;;
+    delistBlock)
+    call_delistBlock
+    ;;
+    getMailBlocks)
+    call_getMailBlocks
+    ;;
+    getRules)
+    call_getRules
+    ;;
+    getStats)
+    call_getStats
+    ;;
+    viewMailLog)
+    call_viewMailLog
     ;;
     sendAdvMail)
     call_sendAdvMail
@@ -1187,8 +1624,11 @@ case $operation in
     sendMail)
     call_sendMail
     ;;
-    viewMailLog)
-    call_viewMailLog
+    getMailOrders)
+    call_getMailOrders
+    ;;
+    pingServer)
+    call_pingServer
     ;;
     *)
     ERROR_MSG="ERROR: Unknown operation: $operation"

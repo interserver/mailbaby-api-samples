@@ -1,29 +1,35 @@
 
+#include "DenyRuleNewTest.cpp"
+
+#include "DenyRuleRecordTest.cpp"
+
+#include "EmailAddressTest.cpp"
+
+#include "EmailAddressNameTest.cpp"
+
 #include "GenericResponseTest.cpp"
 
-#include "GetMailOrders_200_response_innerTest.cpp"
-
 #include "GetMailOrders_401_responseTest.cpp"
+
+#include "GetStats_200_response_innerTest.cpp"
+
+#include "MailAttachmentTest.cpp"
+
+#include "MailBlockClickHouseTest.cpp"
+
+#include "MailBlockRspamdTest.cpp"
+
+#include "MailBlocksTest.cpp"
 
 #include "MailLogTest.cpp"
 
 #include "MailLogEntryTest.cpp"
 
+#include "MailOrderTest.cpp"
+
 #include "SendMailTest.cpp"
 
 #include "SendMailAdvTest.cpp"
-
-#include "SendMailAdv_attachments_innerTest.cpp"
-
-#include "SendMailAdv_bcc_innerTest.cpp"
-
-#include "SendMailAdv_cc_innerTest.cpp"
-
-#include "SendMailAdv_fromTest.cpp"
-
-#include "SendMailAdv_replyto_innerTest.cpp"
-
-#include "SendMailAdv_to_innerTest.cpp"
 
 
 
@@ -34,6 +40,43 @@ void tearDown(){}
 void runTests(){
     
     
+    RUN_TEST(test_DenyRuleNew_type_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_DenyRuleNew_data_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_DenyRuleNew_user_is_assigned_from_json);
+    
+    
+    
+    RUN_TEST(test_DenyRuleRecord_type_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_DenyRuleRecord_data_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_DenyRuleRecord_id_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_DenyRuleRecord_created_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_DenyRuleRecord_user_is_assigned_from_json);
+    
+    
+    
+    RUN_TEST(test_EmailAddress_email_is_assigned_from_json);
+    
+    
+    
+    RUN_TEST(test_EmailAddressName_email_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_EmailAddressName_name_is_assigned_from_json);
+    
+    
+    
     RUN_TEST(test_GenericResponse_status_is_assigned_from_json);
     
     
@@ -41,26 +84,58 @@ void runTests(){
     
     
     
-    RUN_TEST(test_GetMailOrders_200_response_inner_id_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_GetMailOrders_200_response_inner_status_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_GetMailOrders_200_response_inner_username_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_GetMailOrders_200_response_inner_password_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_GetMailOrders_200_response_inner_comment_is_assigned_from_json);
-    
-    
-    
     RUN_TEST(test_GetMailOrders_401_response_code_is_assigned_from_json);
     
     
     RUN_TEST(test_GetMailOrders_401_response_message_is_assigned_from_json);
+    
+    
+    
+    RUN_TEST(test_GetStats_200_response_inner_id_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_GetStats_200_response_inner_status_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_GetStats_200_response_inner_username_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_GetStats_200_response_inner_password_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_GetStats_200_response_inner_comment_is_assigned_from_json);
+    
+    
+    
+    RUN_TEST(test_MailAttachment_filename_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailAttachment_data_is_assigned_from_json);
+    
+    
+    
+    
+    RUN_TEST(test_MailBlockClickHouse_from_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailBlockClickHouse_messageId_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailBlockClickHouse_subject_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailBlockClickHouse_to_is_assigned_from_json);
+    
+    
+    
+    RUN_TEST(test_MailBlockRspamd_from_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailBlockRspamd_subject_is_assigned_from_json);
+    
+    
+    
+    
     
     
     
@@ -145,6 +220,19 @@ void runTests(){
     
     
     
+    RUN_TEST(test_MailOrder_id_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailOrder_status_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailOrder_username_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailOrder_comment_is_assigned_from_json);
+    
+    
+    
     RUN_TEST(test_SendMail_to_is_assigned_from_json);
     
     
@@ -173,49 +261,44 @@ void runTests(){
     RUN_TEST(test_SendMailAdv_id_is_assigned_from_json);
     
     
-    
-    RUN_TEST(test_SendMailAdv_attachments_inner_data_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_SendMailAdv_attachments_inner_filename_is_assigned_from_json);
-    
-    
-    
-    RUN_TEST(test_SendMailAdv_bcc_inner_email_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_SendMailAdv_bcc_inner_name_is_assigned_from_json);
-    
-    
-    
-    RUN_TEST(test_SendMailAdv_cc_inner_email_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_SendMailAdv_cc_inner_name_is_assigned_from_json);
-    
-    
-    
-    RUN_TEST(test_SendMailAdv_from_email_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_SendMailAdv_from_name_is_assigned_from_json);
-    
-    
-    
-    RUN_TEST(test_SendMailAdv_replyto_inner_email_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_SendMailAdv_replyto_inner_name_is_assigned_from_json);
-    
-    
-    
-    RUN_TEST(test_SendMailAdv_to_inner_email_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_SendMailAdv_to_inner_name_is_assigned_from_json);
-    
-    
 
+    
+    
+    RUN_TEST(test_DenyRuleNew_type_is_converted_to_json);
+    
+    
+    RUN_TEST(test_DenyRuleNew_data_is_converted_to_json);
+    
+    
+    RUN_TEST(test_DenyRuleNew_user_is_converted_to_json);
+    
+    
+    
+    RUN_TEST(test_DenyRuleRecord_type_is_converted_to_json);
+    
+    
+    RUN_TEST(test_DenyRuleRecord_data_is_converted_to_json);
+    
+    
+    RUN_TEST(test_DenyRuleRecord_id_is_converted_to_json);
+    
+    
+    RUN_TEST(test_DenyRuleRecord_created_is_converted_to_json);
+    
+    
+    RUN_TEST(test_DenyRuleRecord_user_is_converted_to_json);
+    
+    
+    
+    RUN_TEST(test_EmailAddress_email_is_converted_to_json);
+    
+    
+    
+    RUN_TEST(test_EmailAddressName_email_is_converted_to_json);
+    
+    
+    RUN_TEST(test_EmailAddressName_name_is_converted_to_json);
+    
     
     
     RUN_TEST(test_GenericResponse_status_is_converted_to_json);
@@ -225,26 +308,58 @@ void runTests(){
     
     
     
-    RUN_TEST(test_GetMailOrders_200_response_inner_id_is_converted_to_json);
-    
-    
-    RUN_TEST(test_GetMailOrders_200_response_inner_status_is_converted_to_json);
-    
-    
-    RUN_TEST(test_GetMailOrders_200_response_inner_username_is_converted_to_json);
-    
-    
-    RUN_TEST(test_GetMailOrders_200_response_inner_password_is_converted_to_json);
-    
-    
-    RUN_TEST(test_GetMailOrders_200_response_inner_comment_is_converted_to_json);
-    
-    
-    
     RUN_TEST(test_GetMailOrders_401_response_code_is_converted_to_json);
     
     
     RUN_TEST(test_GetMailOrders_401_response_message_is_converted_to_json);
+    
+    
+    
+    RUN_TEST(test_GetStats_200_response_inner_id_is_converted_to_json);
+    
+    
+    RUN_TEST(test_GetStats_200_response_inner_status_is_converted_to_json);
+    
+    
+    RUN_TEST(test_GetStats_200_response_inner_username_is_converted_to_json);
+    
+    
+    RUN_TEST(test_GetStats_200_response_inner_password_is_converted_to_json);
+    
+    
+    RUN_TEST(test_GetStats_200_response_inner_comment_is_converted_to_json);
+    
+    
+    
+    RUN_TEST(test_MailAttachment_filename_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailAttachment_data_is_converted_to_json);
+    
+    
+    
+    
+    RUN_TEST(test_MailBlockClickHouse_from_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailBlockClickHouse_messageId_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailBlockClickHouse_subject_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailBlockClickHouse_to_is_converted_to_json);
+    
+    
+    
+    RUN_TEST(test_MailBlockRspamd_from_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailBlockRspamd_subject_is_converted_to_json);
+    
+    
+    
+    
     
     
     
@@ -329,6 +444,19 @@ void runTests(){
     
     
     
+    RUN_TEST(test_MailOrder_id_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailOrder_status_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailOrder_username_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailOrder_comment_is_converted_to_json);
+    
+    
+    
     RUN_TEST(test_SendMail_to_is_converted_to_json);
     
     
@@ -355,48 +483,6 @@ void runTests(){
     
     
     RUN_TEST(test_SendMailAdv_id_is_converted_to_json);
-    
-    
-    
-    RUN_TEST(test_SendMailAdv_attachments_inner_data_is_converted_to_json);
-    
-    
-    RUN_TEST(test_SendMailAdv_attachments_inner_filename_is_converted_to_json);
-    
-    
-    
-    RUN_TEST(test_SendMailAdv_bcc_inner_email_is_converted_to_json);
-    
-    
-    RUN_TEST(test_SendMailAdv_bcc_inner_name_is_converted_to_json);
-    
-    
-    
-    RUN_TEST(test_SendMailAdv_cc_inner_email_is_converted_to_json);
-    
-    
-    RUN_TEST(test_SendMailAdv_cc_inner_name_is_converted_to_json);
-    
-    
-    
-    RUN_TEST(test_SendMailAdv_from_email_is_converted_to_json);
-    
-    
-    RUN_TEST(test_SendMailAdv_from_name_is_converted_to_json);
-    
-    
-    
-    RUN_TEST(test_SendMailAdv_replyto_inner_email_is_converted_to_json);
-    
-    
-    RUN_TEST(test_SendMailAdv_replyto_inner_name_is_converted_to_json);
-    
-    
-    
-    RUN_TEST(test_SendMailAdv_to_inner_email_is_converted_to_json);
-    
-    
-    RUN_TEST(test_SendMailAdv_to_inner_name_is_converted_to_json);
     
     
 

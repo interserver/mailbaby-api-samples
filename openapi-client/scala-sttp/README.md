@@ -1,20 +1,13 @@
 # openapi-client
 
-MailBaby Email Delivery API
+MailBaby Email Delivery and Management Service API
 - API version: 1.1.0
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
-
-
-# 📌 Overview
-
+# Overview
 This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).
-
-
-# 🔐 Authentication
-
+# Authentication
 In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.
-
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 
 
@@ -79,33 +72,45 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | **getMailOrders** | **GET** /mail | displays a list of mail service orders
-*DefaultApi* | **pingServer** | **GET** /ping | Checks if the server is running
-*DefaultApi* | **sendAdvMail** | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | **sendMail** | **POST** /mail/send | Sends an Email
-*DefaultApi* | **viewMailLog** | **GET** /mail/log | displays the mail log
+*BlockingApi* | **addRule** | **POST** /mail/rules | Creates a new email deny rule.
+*BlockingApi* | **deleteRule** | **DELETE** /mail/rules/${ruleId} | Removes an deny mail rule.
+*BlockingApi* | **delistBlock** | **POST** /mail/blocks/delete | Removes an email address from the blocked list
+*BlockingApi* | **getMailBlocks** | **GET** /mail/blocks | displays a list of blocked email addresses
+*BlockingApi* | **getRules** | **GET** /mail/rules | Displays a listing of deny email rules.
+*HistoryApi* | **getStats** | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | **viewMailLog** | **GET** /mail/log | displays the mail log
+*SendingApi* | **sendAdvMail** | **POST** /mail/advsend | Sends an Email with Advanced Options
+*SendingApi* | **sendMail** | **POST** /mail/send | Sends an Email
+*ServicesApi* | **getMailOrders** | **GET** /mail | displays a list of mail service orders
+*StatusApi* | **pingServer** | **GET** /ping | Checks if the server is running
 
 
 ## Documentation for Models
 
+ - [DenyRuleNew](DenyRuleNew.md)
+ - [DenyRuleRecord](DenyRuleRecord.md)
+ - [EmailAddress](EmailAddress.md)
+ - [EmailAddressName](EmailAddressName.md)
  - [GenericResponse](GenericResponse.md)
- - [GetMailOrders200ResponseInner](GetMailOrders200ResponseInner.md)
  - [GetMailOrders401Response](GetMailOrders401Response.md)
+ - [GetStats200ResponseInner](GetStats200ResponseInner.md)
+ - [MailAttachment](MailAttachment.md)
+ - [MailBlockClickHouse](MailBlockClickHouse.md)
+ - [MailBlockRspamd](MailBlockRspamd.md)
+ - [MailBlocks](MailBlocks.md)
  - [MailLog](MailLog.md)
  - [MailLogEntry](MailLogEntry.md)
+ - [MailOrder](MailOrder.md)
  - [SendMail](SendMail.md)
  - [SendMailAdv](SendMailAdv.md)
- - [SendMailAdvAttachmentsInner](SendMailAdvAttachmentsInner.md)
- - [SendMailAdvBccInner](SendMailAdvBccInner.md)
- - [SendMailAdvCcInner](SendMailAdvCcInner.md)
- - [SendMailAdvFrom](SendMailAdvFrom.md)
- - [SendMailAdvReplytoInner](SendMailAdvReplytoInner.md)
- - [SendMailAdvToInner](SendMailAdvToInner.md)
 
 
+<a id="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
+
 Authentication schemes defined for the API:
+<a id="apiKeyAuth"></a>
 ### apiKeyAuth
 
 - **Type**: API key

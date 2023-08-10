@@ -22,14 +22,14 @@ test_that("body", {
 })
 
 test_that("from", {
-  # tests for the property `from` (SendMailAdvFrom)
+  # tests for the property `from` (EmailAddressName)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`from`, "EXPECTED_RESULT")
 })
 
 test_that("to", {
-  # tests for the property `to` (array[SendMailAdvToInner])
+  # tests for the property `to` (array[EmailAddressName])
   # A list of destionation email addresses to send this to
 
   # uncomment below to test the property
@@ -37,7 +37,7 @@ test_that("to", {
 })
 
 test_that("replyto", {
-  # tests for the property `replyto` (array[SendMailAdvReplytoInner])
+  # tests for the property `replyto` (array[EmailAddressName])
   # (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
 
   # uncomment below to test the property
@@ -45,7 +45,7 @@ test_that("replyto", {
 })
 
 test_that("cc", {
-  # tests for the property `cc` (array[SendMailAdvCcInner])
+  # tests for the property `cc` (array[EmailAddressName])
   # (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
 
   # uncomment below to test the property
@@ -53,7 +53,7 @@ test_that("cc", {
 })
 
 test_that("bcc", {
-  # tests for the property `bcc` (array[SendMailAdvBccInner])
+  # tests for the property `bcc` (array[EmailAddressName])
   # (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
 
   # uncomment below to test the property
@@ -61,7 +61,7 @@ test_that("bcc", {
 })
 
 test_that("attachments", {
-  # tests for the property `attachments` (array[SendMailAdvAttachmentsInner])
+  # tests for the property `attachments` (array[MailAttachment])
   # (optional) File attachments to include in the email.  The file contents must be base64 encoded!
 
   # uncomment below to test the property

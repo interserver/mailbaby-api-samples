@@ -7,7 +7,7 @@
 -type openapi_send_mail_adv() ::
     #{ 'subject' := binary(),
        'body' := binary(),
-       'from' := openapi_send_mail_adv_from:openapi_send_mail_adv_from(),
+       'from' := openapi_email_address_name:openapi_email_address_name(),
        'to' := list(),
        'replyto' => list(),
        'cc' => list(),

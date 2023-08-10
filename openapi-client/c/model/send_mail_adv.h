@@ -15,19 +15,15 @@
 
 typedef struct send_mail_adv_t send_mail_adv_t;
 
-#include "send_mail_adv_attachments_inner.h"
-#include "send_mail_adv_bcc_inner.h"
-#include "send_mail_adv_cc_inner.h"
-#include "send_mail_adv_from.h"
-#include "send_mail_adv_replyto_inner.h"
-#include "send_mail_adv_to_inner.h"
+#include "email_address_name.h"
+#include "mail_attachment.h"
 
 
 
 typedef struct send_mail_adv_t {
     char *subject; // string
     char *body; // string
-    struct send_mail_adv_from_t *from; //model
+    struct email_address_name_t *from; //model
     list_t *to; //nonprimitive container
     list_t *replyto; //nonprimitive container
     list_t *cc; //nonprimitive container
@@ -40,7 +36,7 @@ typedef struct send_mail_adv_t {
 send_mail_adv_t *send_mail_adv_create(
     char *subject,
     char *body,
-    send_mail_adv_from_t *from,
+    email_address_name_t *from,
     list_t *to,
     list_t *replyto,
     list_t *cc,

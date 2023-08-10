@@ -6,17 +6,17 @@ class SendMailAdv {
 /* The main email contents. */
   String body = null;
 
-  SendMailAdvFrom from = null;
+  EmailAddressName from = null;
 /* A list of destionation email addresses to send this to */
-  List<SendMailAdvTo> to = [];
+  List<EmailAddressName> to = [];
 /* (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. */
-  List<SendMailAdvReplyto> replyto = [];
+  List<EmailAddressName> replyto = [];
 /* (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */
-  List<SendMailAdvCc> cc = [];
+  List<EmailAddressName> cc = [];
 /* (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. */
-  List<SendMailAdvBcc> bcc = [];
+  List<EmailAddressName> bcc = [];
 /* (optional) File attachments to include in the email.  The file contents must be base64 encoded! */
-  List<SendMailAdvAttachments> attachments = [];
+  List<MailAttachment> attachments = [];
 /* (optional)  ID of the Mail order within our system to use as the Mail Account. */
   int id = null;
 
@@ -31,12 +31,12 @@ class SendMailAdv {
     if (json == null) return;
     subject = json['subject'];
     body = json['body'];
-    from = new SendMailAdvFrom.fromJson(json['from']);
-    to = SendMailAdvTo.listFromJson(json['to']);
-    replyto = SendMailAdvReplyto.listFromJson(json['replyto']);
-    cc = SendMailAdvCc.listFromJson(json['cc']);
-    bcc = SendMailAdvBcc.listFromJson(json['bcc']);
-    attachments = SendMailAdvAttachments.listFromJson(json['attachments']);
+    from = new EmailAddressName.fromJson(json['from']);
+    to = EmailAddressName.listFromJson(json['to']);
+    replyto = EmailAddressName.listFromJson(json['replyto']);
+    cc = EmailAddressName.listFromJson(json['cc']);
+    bcc = EmailAddressName.listFromJson(json['bcc']);
+    attachments = MailAttachment.listFromJson(json['attachments']);
     id = json['id'];
   }
 

@@ -1,3 +1,11 @@
-export * from './default.service';
-import { DefaultService } from './default.service';
-export const APIS = [DefaultService];
+export * from './blocking.service';
+import { BlockingService } from './blocking.service';
+export * from './history.service';
+import { HistoryService } from './history.service';
+export * from './sending.service';
+import { SendingService } from './sending.service';
+export * from './services.service';
+import { ServicesService } from './services.service';
+export * from './status.service';
+import { StatusService } from './status.service';
+export const APIS = [BlockingService, HistoryService, SendingService, ServicesService, StatusService];

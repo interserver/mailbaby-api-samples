@@ -1,11 +1,7 @@
 package io.swagger.model;
 
-import io.swagger.model.SendMailAdvAttachments;
-import io.swagger.model.SendMailAdvBcc;
-import io.swagger.model.SendMailAdvCc;
-import io.swagger.model.SendMailAdvFrom;
-import io.swagger.model.SendMailAdvReplyto;
-import io.swagger.model.SendMailAdvTo;
+import io.swagger.model.EmailAddressName;
+import io.swagger.model.MailAttachment;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,17 +22,17 @@ public class SendMailAdv   {
 
   private @Valid String body = null;
 
-  private @Valid SendMailAdvFrom from = null;
+  private @Valid EmailAddressName from = null;
 
-  private @Valid List<SendMailAdvTo> to = new ArrayList<SendMailAdvTo>();
+  private @Valid List<EmailAddressName> to = new ArrayList<EmailAddressName>();
 
-  private @Valid List<SendMailAdvReplyto> replyto = new ArrayList<SendMailAdvReplyto>();
+  private @Valid List<EmailAddressName> replyto = new ArrayList<EmailAddressName>();
 
-  private @Valid List<SendMailAdvCc> cc = new ArrayList<SendMailAdvCc>();
+  private @Valid List<EmailAddressName> cc = new ArrayList<EmailAddressName>();
 
-  private @Valid List<SendMailAdvBcc> bcc = new ArrayList<SendMailAdvBcc>();
+  private @Valid List<EmailAddressName> bcc = new ArrayList<EmailAddressName>();
 
-  private @Valid List<SendMailAdvAttachments> attachments = new ArrayList<SendMailAdvAttachments>();
+  private @Valid List<MailAttachment> attachments = new ArrayList<MailAttachment>();
 
   private @Valid Long id = null;
 
@@ -82,7 +78,7 @@ public class SendMailAdv   {
 
   /**
    **/
-  public SendMailAdv from(SendMailAdvFrom from) {
+  public SendMailAdv from(EmailAddressName from) {
     this.from = from;
     return this;
   }
@@ -92,106 +88,106 @@ public class SendMailAdv   {
   @JsonProperty("from")
   @NotNull
 
-  public SendMailAdvFrom getFrom() {
+  public EmailAddressName getFrom() {
     return from;
   }
-  public void setFrom(SendMailAdvFrom from) {
+  public void setFrom(EmailAddressName from) {
     this.from = from;
   }
 
   /**
    * A list of destionation email addresses to send this to
    **/
-  public SendMailAdv to(List<SendMailAdvTo> to) {
+  public SendMailAdv to(List<EmailAddressName> to) {
     this.to = to;
     return this;
   }
 
   
-  @ApiModelProperty(required = true, value = "A list of destionation email addresses to send this to")
+  @ApiModelProperty(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", required = true, value = "A list of destionation email addresses to send this to")
   @JsonProperty("to")
   @NotNull
 
-  public List<SendMailAdvTo> getTo() {
+  public List<EmailAddressName> getTo() {
     return to;
   }
-  public void setTo(List<SendMailAdvTo> to) {
+  public void setTo(List<EmailAddressName> to) {
     this.to = to;
   }
 
   /**
    * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
    **/
-  public SendMailAdv replyto(List<SendMailAdvReplyto> replyto) {
+  public SendMailAdv replyto(List<EmailAddressName> replyto) {
     this.replyto = replyto;
     return this;
   }
 
   
-  @ApiModelProperty(value = "(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.")
+  @ApiModelProperty(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", value = "(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.")
   @JsonProperty("replyto")
 
-  public List<SendMailAdvReplyto> getReplyto() {
+  public List<EmailAddressName> getReplyto() {
     return replyto;
   }
-  public void setReplyto(List<SendMailAdvReplyto> replyto) {
+  public void setReplyto(List<EmailAddressName> replyto) {
     this.replyto = replyto;
   }
 
   /**
    * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
    **/
-  public SendMailAdv cc(List<SendMailAdvCc> cc) {
+  public SendMailAdv cc(List<EmailAddressName> cc) {
     this.cc = cc;
     return this;
   }
 
   
-  @ApiModelProperty(value = "(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.")
+  @ApiModelProperty(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", value = "(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.")
   @JsonProperty("cc")
 
-  public List<SendMailAdvCc> getCc() {
+  public List<EmailAddressName> getCc() {
     return cc;
   }
-  public void setCc(List<SendMailAdvCc> cc) {
+  public void setCc(List<EmailAddressName> cc) {
     this.cc = cc;
   }
 
   /**
    * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
    **/
-  public SendMailAdv bcc(List<SendMailAdvBcc> bcc) {
+  public SendMailAdv bcc(List<EmailAddressName> bcc) {
     this.bcc = bcc;
     return this;
   }
 
   
-  @ApiModelProperty(value = "(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.")
+  @ApiModelProperty(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", value = "(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.")
   @JsonProperty("bcc")
 
-  public List<SendMailAdvBcc> getBcc() {
+  public List<EmailAddressName> getBcc() {
     return bcc;
   }
-  public void setBcc(List<SendMailAdvBcc> bcc) {
+  public void setBcc(List<EmailAddressName> bcc) {
     this.bcc = bcc;
   }
 
   /**
    * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
    **/
-  public SendMailAdv attachments(List<SendMailAdvAttachments> attachments) {
+  public SendMailAdv attachments(List<MailAttachment> attachments) {
     this.attachments = attachments;
     return this;
   }
 
   
-  @ApiModelProperty(value = "(optional) File attachments to include in the email.  The file contents must be base64 encoded!")
+  @ApiModelProperty(example = "[         {             \"filename\": \"text.txt\",             \"data\": \"base64_encoded_contents\"         } ]", value = "(optional) File attachments to include in the email.  The file contents must be base64 encoded!")
   @JsonProperty("attachments")
 
-  public List<SendMailAdvAttachments> getAttachments() {
+  public List<MailAttachment> getAttachments() {
     return attachments;
   }
-  public void setAttachments(List<SendMailAdvAttachments> attachments) {
+  public void setAttachments(List<MailAttachment> attachments) {
     this.attachments = attachments;
   }
 

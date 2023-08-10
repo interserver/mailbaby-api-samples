@@ -1,6 +1,6 @@
 /**
-* MailBaby Email Delivery API
-* **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+* MailBaby Email Delivery and Management Service API
+* **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 *
 * OpenAPI spec version: 1.1.0
 * Contact: support@interserver.net
@@ -32,36 +32,46 @@ inline fun <reified T : Any> Route.delete(noinline body: suspend PipelineContext
 
 object Paths {
     /**
-     * displays a list of mail service orders
-     * 
+     * Creates a new email deny rule.
+     * Adds a new email deny rule into the system to block new emails that match the given criteria
+     * @param user  
+     * @param type  
+     * @param &#x60;data&#x60;  
      */
-    @Location("/mail") class getMailOrders()
+    @Location("/mail/rules") class addRule(val user: kotlin.String, val type: kotlin.String, val &#x60;data&#x60;: kotlin.String)
 
     /**
-     * Checks if the server is running
-     * 
+     * Removes an deny mail rule.
+     * Removes one of the configured deny mail rules from the system.
+     * @param ruleId The ID of the Rules entry. 
      */
-    @Location("/ping") class pingServer()
+    @Location("/mail/rules/{ruleId}") class deleteRule(val ruleId: kotlin.Int)
 
     /**
-     * Sends an Email with Advanced Options
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+     * Removes an email address from the blocked list
+     * Removes an email address from the various block lists.
+
      * @param body  
      */
-    @Location("/mail/advsend") class sendAdvMail(val body: SendMailAdv)
+    @Location("/mail/blocks/delete") class delistBlock(val body: EmailAddress)
 
     /**
-     * Sends an Email
-     * Sends an email through one of your mail orders.
-
-*Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead.
-
-     * @param to  
-     * @param from  
-     * @param subject  
-     * @param body  
+     * displays a list of blocked email addresses
+     * 
      */
-    @Location("/mail/send") class sendMail(val to: kotlin.String, val from: kotlin.String, val subject: kotlin.String, val body: kotlin.String)
+    @Location("/mail/blocks") class getMailBlocks()
+
+    /**
+     * Displays a listing of deny email rules.
+     * Returns a listing of all the deny block rules you have configured.
+     */
+    @Location("/mail/rules") class getRules()
+
+    /**
+     * displays a list of blocked email addresses
+     * 
+     */
+    @Location("/mail/stats") class getStats()
 
     /**
      * displays the mail log
@@ -80,5 +90,45 @@ object Paths {
      * @param endDate earliest date to get emails in unix timestamp format (optional)
      */
     @Location("/mail/log") class viewMailLog(val id: kotlin.Long, val origin: kotlin.String, val mx: kotlin.String, val from: kotlin.String, val to: kotlin.String, val subject: kotlin.String, val mailid: kotlin.String, val skip: kotlin.Int, val limit: kotlin.Int, val startDate: kotlin.Long, val endDate: kotlin.Long)
+
+    /**
+     * Sends an Email with Advanced Options
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+     * @param subject  
+     * @param body  
+     * @param from  
+     * @param to  
+     * @param replyto  
+     * @param cc  
+     * @param bcc  
+     * @param attachments  
+     * @param id  
+     */
+    @Location("/mail/advsend") class sendAdvMail(val subject: kotlin.String, val body: kotlin.String, val from: EmailAddressName, val to: kotlin.Array<EmailAddressName>, val replyto: kotlin.Array<EmailAddressName>, val cc: kotlin.Array<EmailAddressName>, val bcc: kotlin.Array<EmailAddressName>, val attachments: kotlin.Array<MailAttachment>, val id: kotlin.Long)
+
+    /**
+     * Sends an Email
+     * Sends an email through one of your mail orders.
+
+*Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead.
+
+     * @param to  
+     * @param from  
+     * @param subject  
+     * @param body  
+     */
+    @Location("/mail/send") class sendMail(val to: kotlin.String, val from: kotlin.String, val subject: kotlin.String, val body: kotlin.String)
+
+    /**
+     * displays a list of mail service orders
+     * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+     */
+    @Location("/mail") class getMailOrders()
+
+    /**
+     * Checks if the server is running
+     * 
+     */
+    @Location("/ping") class pingServer()
 
 }

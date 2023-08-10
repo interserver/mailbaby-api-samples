@@ -1,4 +1,4 @@
-# MailBabyEmailDeliveryApi.InlineResponse200
+# MailBabyEmailDeliveryAndManagementServiceApi.InlineResponse200
 
 ## Properties
 Name | Type | Description | Notes

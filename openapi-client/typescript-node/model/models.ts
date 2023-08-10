@@ -1,18 +1,21 @@
 import localVarRequest from 'request';
 
+export * from './denyRuleNew';
+export * from './denyRuleRecord';
+export * from './emailAddress';
+export * from './emailAddressName';
 export * from './genericResponse';
-export * from './getMailOrders200ResponseInner';
 export * from './getMailOrders401Response';
+export * from './getStats200ResponseInner';
+export * from './mailAttachment';
+export * from './mailBlockClickHouse';
+export * from './mailBlockRspamd';
+export * from './mailBlocks';
 export * from './mailLog';
 export * from './mailLogEntry';
+export * from './mailOrder';
 export * from './sendMail';
 export * from './sendMailAdv';
-export * from './sendMailAdvAttachmentsInner';
-export * from './sendMailAdvBccInner';
-export * from './sendMailAdvCcInner';
-export * from './sendMailAdvFrom';
-export * from './sendMailAdvReplytoInner';
-export * from './sendMailAdvToInner';
 
 import * as fs from 'fs';
 
@@ -27,19 +30,22 @@ export interface RequestDetailedFile {
 export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 
+import { DenyRuleNew } from './denyRuleNew';
+import { DenyRuleRecord } from './denyRuleRecord';
+import { EmailAddress } from './emailAddress';
+import { EmailAddressName } from './emailAddressName';
 import { GenericResponse } from './genericResponse';
-import { GetMailOrders200ResponseInner } from './getMailOrders200ResponseInner';
 import { GetMailOrders401Response } from './getMailOrders401Response';
+import { GetStats200ResponseInner } from './getStats200ResponseInner';
+import { MailAttachment } from './mailAttachment';
+import { MailBlockClickHouse } from './mailBlockClickHouse';
+import { MailBlockRspamd } from './mailBlockRspamd';
+import { MailBlocks } from './mailBlocks';
 import { MailLog } from './mailLog';
 import { MailLogEntry } from './mailLogEntry';
+import { MailOrder } from './mailOrder';
 import { SendMail } from './sendMail';
 import { SendMailAdv } from './sendMailAdv';
-import { SendMailAdvAttachmentsInner } from './sendMailAdvAttachmentsInner';
-import { SendMailAdvBccInner } from './sendMailAdvBccInner';
-import { SendMailAdvCcInner } from './sendMailAdvCcInner';
-import { SendMailAdvFrom } from './sendMailAdvFrom';
-import { SendMailAdvReplytoInner } from './sendMailAdvReplytoInner';
-import { SendMailAdvToInner } from './sendMailAdvToInner';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -54,22 +60,27 @@ let primitives = [
                  ];
 
 let enumsMap: {[index: string]: any} = {
+        "DenyRuleNew.TypeEnum": DenyRuleNew.TypeEnum,
+        "DenyRuleRecord.TypeEnum": DenyRuleRecord.TypeEnum,
 }
 
 let typeMap: {[index: string]: any} = {
+    "DenyRuleNew": DenyRuleNew,
+    "DenyRuleRecord": DenyRuleRecord,
+    "EmailAddress": EmailAddress,
+    "EmailAddressName": EmailAddressName,
     "GenericResponse": GenericResponse,
-    "GetMailOrders200ResponseInner": GetMailOrders200ResponseInner,
     "GetMailOrders401Response": GetMailOrders401Response,
+    "GetStats200ResponseInner": GetStats200ResponseInner,
+    "MailAttachment": MailAttachment,
+    "MailBlockClickHouse": MailBlockClickHouse,
+    "MailBlockRspamd": MailBlockRspamd,
+    "MailBlocks": MailBlocks,
     "MailLog": MailLog,
     "MailLogEntry": MailLogEntry,
+    "MailOrder": MailOrder,
     "SendMail": SendMail,
     "SendMailAdv": SendMailAdv,
-    "SendMailAdvAttachmentsInner": SendMailAdvAttachmentsInner,
-    "SendMailAdvBccInner": SendMailAdvBccInner,
-    "SendMailAdvCcInner": SendMailAdvCcInner,
-    "SendMailAdvFrom": SendMailAdvFrom,
-    "SendMailAdvReplytoInner": SendMailAdvReplytoInner,
-    "SendMailAdvToInner": SendMailAdvToInner,
 }
 
 export class ObjectSerializer {

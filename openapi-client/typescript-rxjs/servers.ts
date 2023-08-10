@@ -39,6 +39,5 @@ export class ServerConfiguration<T extends { [key: string]: string }> {
 }
 
 const server1 = new ServerConfiguration<{  }>("https://api.mailbaby.net", {  }, "Live API Endpoint");
-const server2 = new ServerConfiguration<{  }>("https://virtserver.swaggerhub.com/InterServer/Mail-Baby/1.1.0", {  }, "SwaggerHub API Auto Mocking");
 
-export const servers = [server1, server2];
+export const servers = [server1];

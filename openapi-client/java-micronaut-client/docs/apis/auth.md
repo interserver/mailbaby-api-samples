@@ -1,5 +1,5 @@
 # Authorization methods
-<a name="name"></a>
+<a id="name"></a>
 # apiKeyAuth
 Authorization method is of **api key type**. The parameter `X-API-KEY` is located in `header`.
 

@@ -7,7 +7,7 @@
 # General application configuration
 import Config
 
-config :mail_baby_email_delivery_api, base_url: "https://api.mailbaby.net"
+config :mail_baby_email_delivery_and_management_service_api, base_url: "https://api.mailbaby.net"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

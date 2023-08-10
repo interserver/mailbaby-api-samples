@@ -9,7 +9,11 @@ import 'package:openapi/src/auth/api_key_auth.dart';
 import 'package:openapi/src/auth/basic_auth.dart';
 import 'package:openapi/src/auth/bearer_auth.dart';
 import 'package:openapi/src/auth/oauth.dart';
-import 'package:openapi/src/api/default_api.dart';
+import 'package:openapi/src/api/blocking_api.dart';
+import 'package:openapi/src/api/history_api.dart';
+import 'package:openapi/src/api/sending_api.dart';
+import 'package:openapi/src/api/services_api.dart';
+import 'package:openapi/src/api/status_api.dart';
 
 class Openapi {
   static const String basePath = r'https://api.mailbaby.net';
@@ -26,8 +30,8 @@ class Openapi {
         this.dio = dio ??
             Dio(BaseOptions(
               baseUrl: basePathOverride ?? basePath,
-              connectTimeout: 5000,
-              receiveTimeout: 3000,
+              connectTimeout: const Duration(milliseconds: 5000),
+              receiveTimeout: const Duration(milliseconds: 3000),
             )) {
     if (interceptors == null) {
       this.dio.interceptors.addAll([
@@ -65,9 +69,33 @@ class Openapi {
     }
   }
 
-  /// Get DefaultApi instance, base route and serializer can be overridden by a given but be careful,
+  /// Get BlockingApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
-  DefaultApi getDefaultApi() {
-    return DefaultApi(dio, serializers);
+  BlockingApi getBlockingApi() {
+    return BlockingApi(dio, serializers);
+  }
+
+  /// Get HistoryApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  HistoryApi getHistoryApi() {
+    return HistoryApi(dio, serializers);
+  }
+
+  /// Get SendingApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  SendingApi getSendingApi() {
+    return SendingApi(dio, serializers);
+  }
+
+  /// Get ServicesApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  ServicesApi getServicesApi() {
+    return ServicesApi(dio, serializers);
+  }
+
+  /// Get StatusApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  StatusApi getStatusApi() {
+    return StatusApi(dio, serializers);
   }
 }

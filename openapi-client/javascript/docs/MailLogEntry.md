@@ -1,4 +1,4 @@
-# MailBabyEmailDeliveryApi.MailLogEntry
+# MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry
 
 ## Properties
 

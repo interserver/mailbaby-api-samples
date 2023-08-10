@@ -38,32 +38,38 @@ class ApiClient {
           return value is bool ? value : '$value'.toLowerCase() == 'true';
         case 'double':
           return value is double ? value : double.parse('$value');
+        case 'DenyRuleNew':
+          return new DenyRuleNew.fromJson(value);
+        case 'DenyRuleRecord':
+          return new DenyRuleRecord.fromJson(value);
+        case 'EmailAddress':
+          return new EmailAddress.fromJson(value);
+        case 'EmailAddressName':
+          return new EmailAddressName.fromJson(value);
         case 'GenericResponse':
           return new GenericResponse.fromJson(value);
         case 'InlineResponse200':
           return new InlineResponse200.fromJson(value);
         case 'InlineResponse401':
           return new InlineResponse401.fromJson(value);
+        case 'MailAttachment':
+          return new MailAttachment.fromJson(value);
+        case 'MailBlockClickHouse':
+          return new MailBlockClickHouse.fromJson(value);
+        case 'MailBlockRspamd':
+          return new MailBlockRspamd.fromJson(value);
+        case 'MailBlocks':
+          return new MailBlocks.fromJson(value);
         case 'MailLog':
           return new MailLog.fromJson(value);
         case 'MailLogEntry':
           return new MailLogEntry.fromJson(value);
+        case 'MailOrder':
+          return new MailOrder.fromJson(value);
         case 'SendMail':
           return new SendMail.fromJson(value);
         case 'SendMailAdv':
           return new SendMailAdv.fromJson(value);
-        case 'SendMailAdvAttachments':
-          return new SendMailAdvAttachments.fromJson(value);
-        case 'SendMailAdvBcc':
-          return new SendMailAdvBcc.fromJson(value);
-        case 'SendMailAdvCc':
-          return new SendMailAdvCc.fromJson(value);
-        case 'SendMailAdvFrom':
-          return new SendMailAdvFrom.fromJson(value);
-        case 'SendMailAdvReplyto':
-          return new SendMailAdvReplyto.fromJson(value);
-        case 'SendMailAdvTo':
-          return new SendMailAdvTo.fromJson(value);
         default:
           {
             Match match;

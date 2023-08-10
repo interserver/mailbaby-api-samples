@@ -6,7 +6,7 @@ After the client have been generated, you have to change these following variabl
 - src/main.cpp | Change wifi password
 - lib/service/AbstractService.h | Change to your url
 
-# Documentation for MailBaby Email Delivery API 1.1.0 Tiny client cpp (Arduino) 
+# Documentation for MailBaby Email Delivery and Management Service API 1.1.0 Tiny client cpp (Arduino) 
 
 The project is structured like this:
 ```
@@ -27,30 +27,55 @@ samples/client/petstore/tiny/cpp/
 
 All URIs are relative to https://api.mailbaby.nethttps://api.mailbaby.net
 
-### DefaultApi
+### BlockingApi
+|Method | HTTP request | Description|
+|------------- | ------------- | -------------|
+|*addRule* | *POST* /mail/rules | Creates a new email deny rule..|
+|*deleteRule* | *DELETE* /mail/rules/{ruleId} | Removes an deny mail rule..|
+|*delistBlock* | *POST* /mail/blocks/delete | Removes an email address from the blocked list.|
+|*getMailBlocks* | *GET* /mail/blocks | displays a list of blocked email addresses.|
+|*getRules* | *GET* /mail/rules | Displays a listing of deny email rules..|
+
+### HistoryApi
+|Method | HTTP request | Description|
+|------------- | ------------- | -------------|
+|*getStats* | *GET* /mail/stats | displays a list of blocked email addresses.|
+|*viewMailLog* | *GET* /mail/log | displays the mail log.|
+
+### SendingApi
+|Method | HTTP request | Description|
+|------------- | ------------- | -------------|
+|*sendAdvMail* | *POST* /mail/advsend | Sends an Email with Advanced Options.|
+|*sendMail* | *POST* /mail/send | Sends an Email.|
+
+### ServicesApi
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
 |*getMailOrders* | *GET* /mail | displays a list of mail service orders.|
+
+### StatusApi
+|Method | HTTP request | Description|
+|------------- | ------------- | -------------|
 |*pingServer* | *GET* /ping | Checks if the server is running.|
-|*sendAdvMail* | *POST* /mail/advsend | Sends an Email with Advanced Options.|
-|*sendMail* | *POST* /mail/send | Sends an Email.|
-|*viewMailLog* | *GET* /mail/log | displays the mail log.|
 
 
 ## What are the Model files for the data structures/objects?
 |Class | Description|
 |------------- | -------------|
+|*DenyRuleNew* | The data for a email deny rule record.|
+|*DenyRuleRecord* | The data for a email deny rule record.|
+|*EmailAddress* | an email address|
+|*EmailAddressName* | An email contact.|
 |*GenericResponse* | |
-|*GetMailOrders_200_response_inner* | |
 |*GetMailOrders_401_response* | |
+|*GetStats_200_response_inner* | |
+|*MailAttachment* | (optional) File attachments to include in the email.  The file contents must be base64|
+|*MailBlockClickHouse* | A block entry from the clickhouse mailblocks server.|
+|*MailBlockRspamd* | This is a block entry from the rspamd block list.|
+|*MailBlocks* | The listing of blocked emails.|
 |*MailLog* | Mail log records|
 |*MailLogEntry* | An email record|
+|*MailOrder* | A mail order record|
 |*SendMail* | Details for an Email|
 |*SendMailAdv* | Details for an Email|
-|*SendMailAdv_attachments_inner* | A File attachment for an email|
-|*SendMailAdv_bcc_inner* | An Email Contact|
-|*SendMailAdv_cc_inner* | An Email Contact|
-|*SendMailAdv_from* | The information to use for the From address in the email. from.|
-|*SendMailAdv_replyto_inner* | An Email Contact|
-|*SendMailAdv_to_inner* | An Email Contact|
 

@@ -1,6 +1,6 @@
 /**
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -12,12 +12,8 @@
  */
 
 import ApiClient from '../ApiClient';
-import SendMailAdvAttachmentsInner from './SendMailAdvAttachmentsInner';
-import SendMailAdvBccInner from './SendMailAdvBccInner';
-import SendMailAdvCcInner from './SendMailAdvCcInner';
-import SendMailAdvFrom from './SendMailAdvFrom';
-import SendMailAdvReplytoInner from './SendMailAdvReplytoInner';
-import SendMailAdvToInner from './SendMailAdvToInner';
+import EmailAddressName from './EmailAddressName';
+import MailAttachment from './MailAttachment';
 
 /**
  * The SendMailAdv model module.
@@ -31,8 +27,8 @@ class SendMailAdv {
      * @alias module:model/SendMailAdv
      * @param subject {String} The subject or title of the email
      * @param body {String} The main email contents.
-     * @param from {module:model/SendMailAdvFrom} 
-     * @param to {Array.<module:model/SendMailAdvToInner>} A list of destionation email addresses to send this to
+     * @param from {module:model/EmailAddressName} 
+     * @param to {Array.<module:model/EmailAddressName>} A list of destionation email addresses to send this to
      */
     constructor(subject, body, from, to) { 
         
@@ -69,22 +65,22 @@ class SendMailAdv {
                 obj['body'] = ApiClient.convertToType(data['body'], 'String');
             }
             if (data.hasOwnProperty('from')) {
-                obj['from'] = SendMailAdvFrom.constructFromObject(data['from']);
+                obj['from'] = EmailAddressName.constructFromObject(data['from']);
             }
             if (data.hasOwnProperty('to')) {
-                obj['to'] = ApiClient.convertToType(data['to'], [SendMailAdvToInner]);
+                obj['to'] = ApiClient.convertToType(data['to'], [EmailAddressName]);
             }
             if (data.hasOwnProperty('replyto')) {
-                obj['replyto'] = ApiClient.convertToType(data['replyto'], [SendMailAdvReplytoInner]);
+                obj['replyto'] = ApiClient.convertToType(data['replyto'], [EmailAddressName]);
             }
             if (data.hasOwnProperty('cc')) {
-                obj['cc'] = ApiClient.convertToType(data['cc'], [SendMailAdvCcInner]);
+                obj['cc'] = ApiClient.convertToType(data['cc'], [EmailAddressName]);
             }
             if (data.hasOwnProperty('bcc')) {
-                obj['bcc'] = ApiClient.convertToType(data['bcc'], [SendMailAdvBccInner]);
+                obj['bcc'] = ApiClient.convertToType(data['bcc'], [EmailAddressName]);
             }
             if (data.hasOwnProperty('attachments')) {
-                obj['attachments'] = ApiClient.convertToType(data['attachments'], [SendMailAdvAttachmentsInner]);
+                obj['attachments'] = ApiClient.convertToType(data['attachments'], [MailAttachment]);
             }
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'Number');
@@ -93,8 +89,88 @@ class SendMailAdv {
         return obj;
     }
 
+    /**
+     * Validates the JSON data with respect to <code>SendMailAdv</code>.
+     * @param {Object} data The plain JavaScript object bearing properties of interest.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>SendMailAdv</code>.
+     */
+    static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of SendMailAdv.RequiredProperties) {
+            if (!data[property]) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
+        }
+        // ensure the json data is a string
+        if (data['subject'] && !(typeof data['subject'] === 'string' || data['subject'] instanceof String)) {
+            throw new Error("Expected the field `subject` to be a primitive type in the JSON string but got " + data['subject']);
+        }
+        // ensure the json data is a string
+        if (data['body'] && !(typeof data['body'] === 'string' || data['body'] instanceof String)) {
+            throw new Error("Expected the field `body` to be a primitive type in the JSON string but got " + data['body']);
+        }
+        // validate the optional field `from`
+        if (data['from']) { // data not null
+          EmailAddressName.validateJSON(data['from']);
+        }
+        if (data['to']) { // data not null
+            // ensure the json data is an array
+            if (!Array.isArray(data['to'])) {
+                throw new Error("Expected the field `to` to be an array in the JSON data but got " + data['to']);
+            }
+            // validate the optional field `to` (array)
+            for (const item of data['to']) {
+                EmailAddressName.validateJSON(item);
+            };
+        }
+        if (data['replyto']) { // data not null
+            // ensure the json data is an array
+            if (!Array.isArray(data['replyto'])) {
+                throw new Error("Expected the field `replyto` to be an array in the JSON data but got " + data['replyto']);
+            }
+            // validate the optional field `replyto` (array)
+            for (const item of data['replyto']) {
+                EmailAddressName.validateJSON(item);
+            };
+        }
+        if (data['cc']) { // data not null
+            // ensure the json data is an array
+            if (!Array.isArray(data['cc'])) {
+                throw new Error("Expected the field `cc` to be an array in the JSON data but got " + data['cc']);
+            }
+            // validate the optional field `cc` (array)
+            for (const item of data['cc']) {
+                EmailAddressName.validateJSON(item);
+            };
+        }
+        if (data['bcc']) { // data not null
+            // ensure the json data is an array
+            if (!Array.isArray(data['bcc'])) {
+                throw new Error("Expected the field `bcc` to be an array in the JSON data but got " + data['bcc']);
+            }
+            // validate the optional field `bcc` (array)
+            for (const item of data['bcc']) {
+                EmailAddressName.validateJSON(item);
+            };
+        }
+        if (data['attachments']) { // data not null
+            // ensure the json data is an array
+            if (!Array.isArray(data['attachments'])) {
+                throw new Error("Expected the field `attachments` to be an array in the JSON data but got " + data['attachments']);
+            }
+            // validate the optional field `attachments` (array)
+            for (const item of data['attachments']) {
+                MailAttachment.validateJSON(item);
+            };
+        }
+
+        return true;
+    }
+
 
 }
+
+SendMailAdv.RequiredProperties = ["subject", "body", "from", "to"];
 
 /**
  * The subject or title of the email
@@ -109,37 +185,37 @@ SendMailAdv.prototype['subject'] = undefined;
 SendMailAdv.prototype['body'] = undefined;
 
 /**
- * @member {module:model/SendMailAdvFrom} from
+ * @member {module:model/EmailAddressName} from
  */
 SendMailAdv.prototype['from'] = undefined;
 
 /**
  * A list of destionation email addresses to send this to
- * @member {Array.<module:model/SendMailAdvToInner>} to
+ * @member {Array.<module:model/EmailAddressName>} to
  */
 SendMailAdv.prototype['to'] = undefined;
 
 /**
  * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
- * @member {Array.<module:model/SendMailAdvReplytoInner>} replyto
+ * @member {Array.<module:model/EmailAddressName>} replyto
  */
 SendMailAdv.prototype['replyto'] = undefined;
 
 /**
  * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
- * @member {Array.<module:model/SendMailAdvCcInner>} cc
+ * @member {Array.<module:model/EmailAddressName>} cc
  */
 SendMailAdv.prototype['cc'] = undefined;
 
 /**
  * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
- * @member {Array.<module:model/SendMailAdvBccInner>} bcc
+ * @member {Array.<module:model/EmailAddressName>} bcc
  */
 SendMailAdv.prototype['bcc'] = undefined;
 
 /**
  * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
- * @member {Array.<module:model/SendMailAdvAttachmentsInner>} attachments
+ * @member {Array.<module:model/MailAttachment>} attachments
  */
 SendMailAdv.prototype['attachments'] = undefined;
 

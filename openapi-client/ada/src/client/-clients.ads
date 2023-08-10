@@ -1,5 +1,5 @@
---  MailBaby Email Delivery API
---  **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+--  MailBaby Email Delivery and Management Service API
+--  **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 --
 --  The version of the OpenAPI document: 1.1.0
 --  Contact: support@interserver.net
@@ -11,37 +11,48 @@
 with .Models;
 with Swagger.Clients;
 package .Clients is
-   pragma Style_Checks ("-mr");
+   pragma Style_Checks ("-bmrIu");
 
    type Client_Type is new Swagger.Clients.Client_Type with null record;
 
-   --  displays a list of mail service orders
-   procedure Get_Mail_Orders
+   --  Creates a new email deny rule.
+   --  Adds a new email deny rule into the system to block new emails that match the given criteria
+   procedure Add_Rule
       (Client : in out Client_Type;
-       Result : out .Models.GetMailOrders200ResponseInner_Type_Vectors.Vector);
-
-   --  Checks if the server is running
-   procedure Ping_Server
-      (Client : in out Client_Type);
-
-   --  Sends an Email with Advanced Options
-   --  Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-   procedure Send_Adv_Mail
-      (Client : in out Client_Type;
-       Send_Mail_Adv_Type : in .Models.SendMailAdv_Type;
+       P_Type : in Swagger.UString;
+       Data : in Swagger.UString;
+       User : in Swagger.Nullable_UString;
        Result : out .Models.GenericResponse_Type);
 
-   --  Sends an Email
-   --  Sends an email through one of your mail orders.
-   --  
-   --  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead.
-   procedure Send_Mail
+   --  Removes an deny mail rule.
+   --  Removes one of the configured deny mail rules from the system.
+   procedure Delete_Rule
       (Client : in out Client_Type;
-       To : in Swagger.UString;
-       From : in Swagger.UString;
-       Subject : in Swagger.UString;
-       P_Body : in Swagger.UString;
+       Rule_Id : in Integer;
        Result : out .Models.GenericResponse_Type);
+
+   --  Removes an email address from the blocked list
+   --  Removes an email address from the various block lists.
+   procedure Delist_Block
+      (Client : in out Client_Type;
+       Email_Address_Type : in .Models.EmailAddress_Type;
+       Result : out .Models.GenericResponse_Type);
+
+   --  displays a list of blocked email addresses
+   procedure Get_Mail_Blocks
+      (Client : in out Client_Type;
+       Result : out .Models.MailBlocks_Type);
+
+   --  Displays a listing of deny email rules.
+   --  Returns a listing of all the deny block rules you have configured.
+   procedure Get_Rules
+      (Client : in out Client_Type;
+       Result : out .Models.DenyRuleRecord_Type_Vectors.Vector);
+
+   --  displays a list of blocked email addresses
+   procedure Get_Stats
+      (Client : in out Client_Type;
+       Result : out .Models.GetStats200ResponseInner_Type_Vectors.Vector);
 
    --  displays the mail log
    --  Get a listing of the emails sent through this system
@@ -59,5 +70,42 @@ package .Clients is
        Start_Date : in Swagger.Nullable_Long;
        End_Date : in Swagger.Nullable_Long;
        Result : out .Models.MailLog_Type);
+
+   --  Sends an Email with Advanced Options
+   --  Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+   procedure Send_Adv_Mail
+      (Client : in out Client_Type;
+       Subject : in Swagger.UString;
+       P_Body : in Swagger.UString;
+       From : in .Models..Models.EmailAddressName_Type;
+       To : in .Models.EmailAddressName_Type_Vectors.Vector;
+       Replyto : in .Models.EmailAddressName_Type_Vectors.Vector;
+       Cc : in .Models.EmailAddressName_Type_Vectors.Vector;
+       Bcc : in .Models.EmailAddressName_Type_Vectors.Vector;
+       Attachments : in .Models.MailAttachment_Type_Vectors.Vector;
+       Id : in Swagger.Nullable_Long;
+       Result : out .Models.GenericResponse_Type);
+
+   --  Sends an Email
+   --  Sends an email through one of your mail orders.
+   --  
+   --  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead.
+   procedure Send_Mail
+      (Client : in out Client_Type;
+       To : in Swagger.UString;
+       From : in Swagger.UString;
+       Subject : in Swagger.UString;
+       P_Body : in Swagger.UString;
+       Result : out .Models.GenericResponse_Type);
+
+   --  displays a list of mail service orders
+   --  This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+   procedure Get_Mail_Orders
+      (Client : in out Client_Type;
+       Result : out .Models.MailOrder_Type_Vectors.Vector);
+
+   --  Checks if the server is running
+   procedure Ping_Server
+      (Client : in out Client_Type);
 
 end .Clients;

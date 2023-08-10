@@ -2,6 +2,7 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
+// ignore_for_file: unused_element
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -12,75 +13,114 @@ part 'generic_response.g.dart';
 /// Properties:
 /// * [status] 
 /// * [text] 
+@BuiltValue()
 abstract class GenericResponse implements Built<GenericResponse, GenericResponseBuilder> {
-    @BuiltValueField(wireName: r'status')
-    String? get status;
+  @BuiltValueField(wireName: r'status')
+  String? get status;
 
-    @BuiltValueField(wireName: r'text')
-    String? get text;
+  @BuiltValueField(wireName: r'text')
+  String? get text;
 
-    GenericResponse._();
+  GenericResponse._();
 
-    @BuiltValueHook(initializeBuilder: true)
-    static void _defaults(GenericResponseBuilder b) => b;
+  factory GenericResponse([void updates(GenericResponseBuilder b)]) = _$GenericResponse;
 
-    factory GenericResponse([void updates(GenericResponseBuilder b)]) = _$GenericResponse;
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(GenericResponseBuilder b) => b;
 
-    @BuiltValueSerializer(custom: true)
-    static Serializer<GenericResponse> get serializer => _$GenericResponseSerializer();
+  @BuiltValueSerializer(custom: true)
+  static Serializer<GenericResponse> get serializer => _$GenericResponseSerializer();
 }
 
-class _$GenericResponseSerializer implements StructuredSerializer<GenericResponse> {
-    @override
-    final Iterable<Type> types = const [GenericResponse, _$GenericResponse];
+class _$GenericResponseSerializer implements PrimitiveSerializer<GenericResponse> {
+  @override
+  final Iterable<Type> types = const [GenericResponse, _$GenericResponse];
 
-    @override
-    final String wireName = r'GenericResponse';
+  @override
+  final String wireName = r'GenericResponse';
 
-    @override
-    Iterable<Object?> serialize(Serializers serializers, GenericResponse object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object?>[];
-        if (object.status != null) {
-            result
-                ..add(r'status')
-                ..add(serializers.serialize(object.status,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.text != null) {
-            result
-                ..add(r'text')
-                ..add(serializers.serialize(object.text,
-                    specifiedType: const FullType(String)));
-        }
-        return result;
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    GenericResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.status != null) {
+      yield r'status';
+      yield serializers.serialize(
+        object.status,
+        specifiedType: const FullType(String),
+      );
     }
-
-    @override
-    GenericResponse deserialize(Serializers serializers, Iterable<Object?> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = GenericResponseBuilder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final Object? value = iterator.current;
-            
-            switch (key) {
-                case r'status':
-                    final valueDes = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    result.status = valueDes;
-                    break;
-                case r'text':
-                    final valueDes = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    result.text = valueDes;
-                    break;
-            }
-        }
-        return result.build();
+    if (object.text != null) {
+      yield r'text';
+      yield serializers.serialize(
+        object.text,
+        specifiedType: const FullType(String),
+      );
     }
+  }
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    GenericResponse object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required GenericResponseBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'status':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.status = valueDes;
+          break;
+        case r'text':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.text = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  GenericResponse deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GenericResponseBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
 }
 

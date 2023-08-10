@@ -1,11 +1,7 @@
 package io.swagger.model;
 
-import io.swagger.model.SendMailAdvAttachments;
-import io.swagger.model.SendMailAdvBcc;
-import io.swagger.model.SendMailAdvCc;
-import io.swagger.model.SendMailAdvFrom;
-import io.swagger.model.SendMailAdvReplyto;
-import io.swagger.model.SendMailAdvTo;
+import io.swagger.model.EmailAddressName;
+import io.swagger.model.MailAttachment;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,37 +38,37 @@ public class SendMailAdv   {
   private String body = null;
   
   @Schema(required = true, description = "")
-  private SendMailAdvFrom from = null;
+  private EmailAddressName from = null;
   
-  @Schema(required = true, description = "A list of destionation email addresses to send this to")
+  @Schema(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", required = true, description = "A list of destionation email addresses to send this to")
  /**
    * A list of destionation email addresses to send this to  
   **/
-  private List<SendMailAdvTo> to = new ArrayList<SendMailAdvTo>();
+  private List<EmailAddressName> to = new ArrayList<EmailAddressName>();
   
-  @Schema(description = "(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.")
+  @Schema(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", description = "(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.")
  /**
    * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.  
   **/
-  private List<SendMailAdvReplyto> replyto = null;
+  private List<EmailAddressName> replyto = null;
   
-  @Schema(description = "(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.")
+  @Schema(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", description = "(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.")
  /**
    * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.  
   **/
-  private List<SendMailAdvCc> cc = null;
+  private List<EmailAddressName> cc = null;
   
-  @Schema(description = "(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.")
+  @Schema(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", description = "(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.")
  /**
    * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.  
   **/
-  private List<SendMailAdvBcc> bcc = null;
+  private List<EmailAddressName> bcc = null;
   
-  @Schema(description = "(optional) File attachments to include in the email.  The file contents must be base64 encoded!")
+  @Schema(example = "[         {             \"filename\": \"text.txt\",             \"data\": \"base64_encoded_contents\"         } ]", description = "(optional) File attachments to include in the email.  The file contents must be base64 encoded!")
  /**
    * (optional) File attachments to include in the email.  The file contents must be base64 encoded!  
   **/
-  private List<SendMailAdvAttachments> attachments = null;
+  private List<MailAttachment> attachments = null;
   
   @Schema(example = "5000", description = "(optional)  ID of the Mail order within our system to use as the Mail Account.")
  /**
@@ -123,15 +119,15 @@ public class SendMailAdv   {
   **/
   @JsonProperty("from")
   @NotNull
-  public SendMailAdvFrom getFrom() {
+  public EmailAddressName getFrom() {
     return from;
   }
 
-  public void setFrom(SendMailAdvFrom from) {
+  public void setFrom(EmailAddressName from) {
     this.from = from;
   }
 
-  public SendMailAdv from(SendMailAdvFrom from) {
+  public SendMailAdv from(EmailAddressName from) {
     this.from = from;
     return this;
   }
@@ -142,20 +138,20 @@ public class SendMailAdv   {
   **/
   @JsonProperty("to")
   @NotNull
-  public List<SendMailAdvTo> getTo() {
+  public List<EmailAddressName> getTo() {
     return to;
   }
 
-  public void setTo(List<SendMailAdvTo> to) {
+  public void setTo(List<EmailAddressName> to) {
     this.to = to;
   }
 
-  public SendMailAdv to(List<SendMailAdvTo> to) {
+  public SendMailAdv to(List<EmailAddressName> to) {
     this.to = to;
     return this;
   }
 
-  public SendMailAdv addToItem(SendMailAdvTo toItem) {
+  public SendMailAdv addToItem(EmailAddressName toItem) {
     this.to.add(toItem);
     return this;
   }
@@ -165,20 +161,20 @@ public class SendMailAdv   {
    * @return replyto
   **/
   @JsonProperty("replyto")
-  public List<SendMailAdvReplyto> getReplyto() {
+  public List<EmailAddressName> getReplyto() {
     return replyto;
   }
 
-  public void setReplyto(List<SendMailAdvReplyto> replyto) {
+  public void setReplyto(List<EmailAddressName> replyto) {
     this.replyto = replyto;
   }
 
-  public SendMailAdv replyto(List<SendMailAdvReplyto> replyto) {
+  public SendMailAdv replyto(List<EmailAddressName> replyto) {
     this.replyto = replyto;
     return this;
   }
 
-  public SendMailAdv addReplytoItem(SendMailAdvReplyto replytoItem) {
+  public SendMailAdv addReplytoItem(EmailAddressName replytoItem) {
     this.replyto.add(replytoItem);
     return this;
   }
@@ -188,20 +184,20 @@ public class SendMailAdv   {
    * @return cc
   **/
   @JsonProperty("cc")
-  public List<SendMailAdvCc> getCc() {
+  public List<EmailAddressName> getCc() {
     return cc;
   }
 
-  public void setCc(List<SendMailAdvCc> cc) {
+  public void setCc(List<EmailAddressName> cc) {
     this.cc = cc;
   }
 
-  public SendMailAdv cc(List<SendMailAdvCc> cc) {
+  public SendMailAdv cc(List<EmailAddressName> cc) {
     this.cc = cc;
     return this;
   }
 
-  public SendMailAdv addCcItem(SendMailAdvCc ccItem) {
+  public SendMailAdv addCcItem(EmailAddressName ccItem) {
     this.cc.add(ccItem);
     return this;
   }
@@ -211,20 +207,20 @@ public class SendMailAdv   {
    * @return bcc
   **/
   @JsonProperty("bcc")
-  public List<SendMailAdvBcc> getBcc() {
+  public List<EmailAddressName> getBcc() {
     return bcc;
   }
 
-  public void setBcc(List<SendMailAdvBcc> bcc) {
+  public void setBcc(List<EmailAddressName> bcc) {
     this.bcc = bcc;
   }
 
-  public SendMailAdv bcc(List<SendMailAdvBcc> bcc) {
+  public SendMailAdv bcc(List<EmailAddressName> bcc) {
     this.bcc = bcc;
     return this;
   }
 
-  public SendMailAdv addBccItem(SendMailAdvBcc bccItem) {
+  public SendMailAdv addBccItem(EmailAddressName bccItem) {
     this.bcc.add(bccItem);
     return this;
   }
@@ -234,20 +230,20 @@ public class SendMailAdv   {
    * @return attachments
   **/
   @JsonProperty("attachments")
-  public List<SendMailAdvAttachments> getAttachments() {
+  public List<MailAttachment> getAttachments() {
     return attachments;
   }
 
-  public void setAttachments(List<SendMailAdvAttachments> attachments) {
+  public void setAttachments(List<MailAttachment> attachments) {
     this.attachments = attachments;
   }
 
-  public SendMailAdv attachments(List<SendMailAdvAttachments> attachments) {
+  public SendMailAdv attachments(List<MailAttachment> attachments) {
     this.attachments = attachments;
     return this;
   }
 
-  public SendMailAdv addAttachmentsItem(SendMailAdvAttachments attachmentsItem) {
+  public SendMailAdv addAttachmentsItem(MailAttachment attachmentsItem) {
     this.attachments.add(attachmentsItem);
     return this;
   }

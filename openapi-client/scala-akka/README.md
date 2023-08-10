@@ -1,20 +1,13 @@
 # openapi-client
 
-MailBaby Email Delivery API
+MailBaby Email Delivery and Management Service API
 - API version: 1.1.0
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
-
-
-# 📌 Overview
-
+# Overview
 This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).
-
-
-# 🔐 Authentication
-
+# Authentication
 In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.
-
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 
 
@@ -79,13 +72,13 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 import org.openapitools.client.core._
 import org.openapitools.client.model._
-import org.openapitools.client.api.DefaultApi
+import org.openapitools.client.api.BlockingApi
 
 import akka.actor.ActorSystem
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
 
-object DefaultApiExample extends App {
+object BlockingApiExample extends App {
 
     implicit val system: ActorSystem = ActorSystem()
     import system.dispatcher
@@ -95,8 +88,14 @@ object DefaultApiExample extends App {
 
     // Create invoker to execute requests
     val apiInvoker = ApiInvoker()
-    val apiInstance = DefaultApi("https://api.mailbaby.net")
-    val request = apiInstance.getMailOrders()
+    val apiInstance = BlockingApi("https://api.mailbaby.net")
+    val `type`: String = `type`_example // String | The type of deny rule.
+
+    val data: String = data_example // String | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+
+    val user: String = user_example // String | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+
+    val request = apiInstance.addRule(`type`, data, user)
     val response = apiInvoker.execute(request)
 
     response.onComplete {
@@ -106,14 +105,14 @@ object DefaultApiExample extends App {
             System.out.println(s"Response body: $content")
 
         case Failure(error @ ApiError(code, message, responseContent, cause, headers)) =>
-            System.err.println("Exception when calling DefaultApi#getMailOrders")
+            System.err.println("Exception when calling BlockingApi#addRule")
             System.err.println(s"Status code: $code}")
             System.err.println(s"Reason: $responseContent")
             System.err.println(s"Response headers: ${headers.mkString(", ")}")
             error.printStackTrace();
 
         case Failure(exception) =>
-            System.err.println("Exception when calling DefaultApi#getMailOrders")
+            System.err.println("Exception when calling BlockingApi#addRule")
             exception.printStackTrace();
     }
 
@@ -127,33 +126,45 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**getMailOrders**](docs/DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
-*DefaultApi* | [**pingServer**](docs/DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
-*DefaultApi* | [**sendAdvMail**](docs/DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMail**](docs/DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
-*DefaultApi* | [**viewMailLog**](docs/DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
+*BlockingApi* | [**addRule**](docs/BlockingApi.md#addRule) | **POST** /mail/rules | Creates a new email deny rule.
+*BlockingApi* | [**deleteRule**](docs/BlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule.
+*BlockingApi* | [**delistBlock**](docs/BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
+*BlockingApi* | [**getMailBlocks**](docs/BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | displays a list of blocked email addresses
+*BlockingApi* | [**getRules**](docs/BlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules.
+*HistoryApi* | [**getStats**](docs/HistoryApi.md#getStats) | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
+*SendingApi* | [**sendAdvMail**](docs/SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*SendingApi* | [**sendMail**](docs/SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
+*ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
+*StatusApi* | [**pingServer**](docs/StatusApi.md#pingServer) | **GET** /ping | Checks if the server is running
 
 
 ## Documentation for Models
 
+ - [DenyRuleNew](docs/DenyRuleNew.md)
+ - [DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [EmailAddress](docs/EmailAddress.md)
+ - [EmailAddressName](docs/EmailAddressName.md)
  - [GenericResponse](docs/GenericResponse.md)
- - [GetMailOrders200ResponseInner](docs/GetMailOrders200ResponseInner.md)
  - [GetMailOrders401Response](docs/GetMailOrders401Response.md)
+ - [GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
+ - [MailAttachment](docs/MailAttachment.md)
+ - [MailBlockClickHouse](docs/MailBlockClickHouse.md)
+ - [MailBlockRspamd](docs/MailBlockRspamd.md)
+ - [MailBlocks](docs/MailBlocks.md)
  - [MailLog](docs/MailLog.md)
  - [MailLogEntry](docs/MailLogEntry.md)
+ - [MailOrder](docs/MailOrder.md)
  - [SendMail](docs/SendMail.md)
  - [SendMailAdv](docs/SendMailAdv.md)
- - [SendMailAdvAttachmentsInner](docs/SendMailAdvAttachmentsInner.md)
- - [SendMailAdvBccInner](docs/SendMailAdvBccInner.md)
- - [SendMailAdvCcInner](docs/SendMailAdvCcInner.md)
- - [SendMailAdvFrom](docs/SendMailAdvFrom.md)
- - [SendMailAdvReplytoInner](docs/SendMailAdvReplytoInner.md)
- - [SendMailAdvToInner](docs/SendMailAdvToInner.md)
 
 
+<a id="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
+
 Authentication schemes defined for the API:
+<a id="apiKeyAuth"></a>
 ### apiKeyAuth
 
 - **Type**: API key

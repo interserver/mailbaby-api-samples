@@ -30,22 +30,22 @@ class SendMailAdv {
   /// The main email contents.
   String body;
 
-  SendMailAdvFrom from;
+  EmailAddressName from;
 
   /// A list of destionation email addresses to send this to
-  List<SendMailAdvToInner> to;
+  List<EmailAddressName> to;
 
   /// (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-  List<SendMailAdvReplytoInner> replyto;
+  List<EmailAddressName> replyto;
 
   /// (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-  List<SendMailAdvCcInner> cc;
+  List<EmailAddressName> cc;
 
   /// (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-  List<SendMailAdvBccInner> bcc;
+  List<EmailAddressName> bcc;
 
   /// (optional) File attachments to include in the email.  The file contents must be base64 encoded!
-  List<SendMailAdvAttachmentsInner> attachments;
+  List<MailAttachment> attachments;
 
   /// (optional)  ID of the Mail order within our system to use as the Mail Account.
   ///
@@ -58,15 +58,15 @@ class SendMailAdv {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is SendMailAdv &&
-     other.subject == subject &&
-     other.body == body &&
-     other.from == from &&
-     other.to == to &&
-     other.replyto == replyto &&
-     other.cc == cc &&
-     other.bcc == bcc &&
-     other.attachments == attachments &&
-     other.id == id;
+    other.subject == subject &&
+    other.body == body &&
+    other.from == from &&
+    _deepEquality.equals(other.to, to) &&
+    _deepEquality.equals(other.replyto, replyto) &&
+    _deepEquality.equals(other.cc, cc) &&
+    _deepEquality.equals(other.bcc, bcc) &&
+    _deepEquality.equals(other.attachments, attachments) &&
+    other.id == id;
 
   @override
   int get hashCode =>
@@ -85,21 +85,21 @@ class SendMailAdv {
   String toString() => 'SendMailAdv[subject=$subject, body=$body, from=$from, to=$to, replyto=$replyto, cc=$cc, bcc=$bcc, attachments=$attachments, id=$id]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-      _json[r'subject'] = subject;
-      _json[r'body'] = body;
-      _json[r'from'] = from;
-      _json[r'to'] = to;
-      _json[r'replyto'] = replyto;
-      _json[r'cc'] = cc;
-      _json[r'bcc'] = bcc;
-      _json[r'attachments'] = attachments;
-    if (id != null) {
-      _json[r'id'] = id;
+    final json = <String, dynamic>{};
+      json[r'subject'] = this.subject;
+      json[r'body'] = this.body;
+      json[r'from'] = this.from;
+      json[r'to'] = this.to;
+      json[r'replyto'] = this.replyto;
+      json[r'cc'] = this.cc;
+      json[r'bcc'] = this.bcc;
+      json[r'attachments'] = this.attachments;
+    if (this.id != null) {
+      json[r'id'] = this.id;
     } else {
-      _json[r'id'] = null;
+      json[r'id'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [SendMailAdv] instance and imports its values from
@@ -123,19 +123,19 @@ class SendMailAdv {
       return SendMailAdv(
         subject: mapValueOfType<String>(json, r'subject')!,
         body: mapValueOfType<String>(json, r'body')!,
-        from: SendMailAdvFrom.fromJson(json[r'from'])!,
-        to: SendMailAdvToInner.listFromJson(json[r'to'])!,
-        replyto: SendMailAdvReplytoInner.listFromJson(json[r'replyto']) ?? const [],
-        cc: SendMailAdvCcInner.listFromJson(json[r'cc']) ?? const [],
-        bcc: SendMailAdvBccInner.listFromJson(json[r'bcc']) ?? const [],
-        attachments: SendMailAdvAttachmentsInner.listFromJson(json[r'attachments']) ?? const [],
+        from: EmailAddressName.fromJson(json[r'from'])!,
+        to: EmailAddressName.listFromJson(json[r'to']),
+        replyto: EmailAddressName.listFromJson(json[r'replyto']),
+        cc: EmailAddressName.listFromJson(json[r'cc']),
+        bcc: EmailAddressName.listFromJson(json[r'bcc']),
+        attachments: MailAttachment.listFromJson(json[r'attachments']),
         id: mapValueOfType<int>(json, r'id'),
       );
     }
     return null;
   }
 
-  static List<SendMailAdv>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SendMailAdv> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <SendMailAdv>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -166,12 +166,10 @@ class SendMailAdv {
   static Map<String, List<SendMailAdv>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<SendMailAdv>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = SendMailAdv.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = SendMailAdv.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

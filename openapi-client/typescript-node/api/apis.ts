@@ -1,5 +1,13 @@
-export * from './defaultApi';
-import { DefaultApi } from './defaultApi';
+export * from './blockingApi';
+import { BlockingApi } from './blockingApi';
+export * from './historyApi';
+import { HistoryApi } from './historyApi';
+export * from './sendingApi';
+import { SendingApi } from './sendingApi';
+export * from './servicesApi';
+import { ServicesApi } from './servicesApi';
+export * from './statusApi';
+import { StatusApi } from './statusApi';
 import * as http from 'http';
 
 export class HttpError extends Error {
@@ -11,4 +19,4 @@ export class HttpError extends Error {
 
 export { RequestFile } from '../model/models';
 
-export const APIS = [DefaultApi];
+export const APIS = [BlockingApi, HistoryApi, SendingApi, ServicesApi, StatusApi];

@@ -1,17 +1,10 @@
-h1. MailBaby Email Delivery API
+h1. MailBaby Email Delivery and Management Service API
 
 **Send emails fast and with confidence through our easy to use [REST\](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
-
-
-# 📌 Overview
-
+# Overview
 This is the API interface to the [Mail Baby\](https//mail.baby/) Mail services provided by [InterServer\](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net\](https://my.interserver.net).
-
-
-# 🔐 Authentication
-
+# Authentication
 In order to use most of the API calls you must pass credentials from the [my.interserver.net\](https://my.interserver.net/) site.
-
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security\](https://my.interserver.net/account_security) page.
 
 *Version:* 1.1.0
@@ -25,14 +18,287 @@ We support several different authentication methods but the preferred method is 
 h2. Endpoints
 
 
-h3. getMailOrders
-{panel:title=getMailOrders|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
-    *Summary:* displays a list of mail service orders
+h3. addRule
+{panel:title=addRule|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* Creates a new email deny rule.
+    *Description:* Adds a new email deny rule into the system to block new emails that match the given criteria
+
+	|| HttpMethod | {status:colour=Yellow|title=post|subtle=false} |
+    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Path | {noformat:nopanel=true}/mail/rules{noformat} |
+    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
+----
+h4. Parameters
+
+
+
+----
+h4. Responses
+
+    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
+    	|| Message | search results matching criteria |
+    	|| Response Type | GenericResponse |
+    	|| Response Model | [GenericResponse Model|#GenericResponseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "search results matching criteria",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/GenericResponse"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
+    	|| Message | The specified resource was not found |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
+    	|| Message | The specified resource was not found |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
+      }
+    }
+  }
+}{code} |
+       
+
+{panel}
+
+
+
+h3. deleteRule
+{panel:title=deleteRule|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* Removes an deny mail rule.
+    *Description:* Removes one of the configured deny mail rules from the system.
+
+	|| HttpMethod | {status:colour=Yellow|title=delete|subtle=false} |
+    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Path | {noformat:nopanel=true}/mail/rules/{ruleId}{noformat} |
+    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
+----
+h4. Parameters
+h5. Path Parameters
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
+        |ruleId |The ID of the Rules entry. | Integer | (/) |null |  |  |
+
+
+
+----
+h4. Responses
+
+    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
+    	|| Message | search results matching criteria |
+    	|| Response Type | GenericResponse |
+    	|| Response Model | [GenericResponse Model|#GenericResponseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "search results matching criteria",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/GenericResponse"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
+    	|| Message | The specified resource was not found |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
+    	|| Message | The specified resource was not found |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
+      }
+    }
+  }
+}{code} |
+       
+
+{panel}
+
+
+
+h3. delistBlock
+{panel:title=delistBlock|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* Removes an email address from the blocked list
+    *Description:* Removes an email address from the various block lists.
+
+	|| HttpMethod | {status:colour=Yellow|title=post|subtle=false} |
+    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Path | {noformat:nopanel=true}/mail/blocks/delete{noformat} |
+    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
+----
+h4. Parameters
+
+h5. Body Parameter
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
+        |EmailAddress | | EmailAddress | (/) | |  |  |
+
+
+----
+h4. Responses
+
+    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
+    	|| Message | search results matching criteria |
+    	|| Response Type | GenericResponse |
+    	|| Response Model | [GenericResponse Model|#GenericResponseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "search results matching criteria",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/GenericResponse"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
+    	|| Message | The specified resource was not found |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
+    	|| Message | The specified resource was not found |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
+      }
+    }
+  }
+}{code} |
+       
+
+{panel}
+
+
+
+h3. getMailBlocks
+{panel:title=getMailBlocks|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* displays a list of blocked email addresses
     *Description:* *No Description*
 
 	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
     || Protocol | {noformat:nopanel=true}https{noformat} |
-    || Path | {noformat:nopanel=true}/mail{noformat} |
+    || Path | {noformat:nopanel=true}/mail/blocks{noformat} |
     || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
     || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
@@ -45,8 +311,113 @@ h4. Responses
 
     	|| Status Code | {status:colour=Green|title=200|subtle=false} |
     	|| Message | OK |
-    	|| Response Type | array[getMailOrders_200_response_inner] |
-    	|| Response Model | [array[getMailOrders_200_response_inner] Model|#array[getMailOrders_200_response_inner]ModelAnchor|Jump to model] |
+    	|| Response Type | MailBlocks |
+    	|| Response Model | [MailBlocks Model|#MailBlocksModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "OK",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/MailBlocks"
+      },
+      "examples" : {
+        "MailBlocksExample" : {
+          "value" : {
+            "local" : [ {
+              "date" : "2023-08-07",
+              "from" : "user@domain.com",
+              "messageId" : "pFaRqFUEWkucjhTuIzYuoAgWU@domain.com",
+              "subject" : "Test Email",
+              "to" : "['client@site.com']"
+            } ],
+            "mbtrap" : [ {
+              "date" : "2023-08-07",
+              "from" : "user@domain.com",
+              "messageId" : "pFaRqFUEWkucjhTuIzYuoAgWU@domain.com",
+              "subject" : "Test Email",
+              "to" : "['client@site.com']"
+            } ],
+            "subject" : [ {
+              "from" : "user@domain.com",
+              "subject" : "Test Email"
+            } ]
+          }
+        }
+      }
+    }
+  },
+  "links" : {
+    "delistBlockLink" : {
+      "operationId" : "delistBlock",
+      "parameters" : {
+        "email" : "$response.body#/local/0/from"
+      },
+      "description" : "The `from` value returned in the response can be used as the `email` parameter in `DELETE /mail/blocks`."
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
+      }
+    }
+  }
+}{code} |
+       
+
+{panel}
+
+
+
+h3. getRules
+{panel:title=getRules|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* Displays a listing of deny email rules.
+    *Description:* Returns a listing of all the deny block rules you have configured.
+
+	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
+    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Path | {noformat:nopanel=true}/mail/rules{noformat} |
+    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
+----
+h4. Parameters
+
+
+
+----
+h4. Responses
+
+    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
+    	|| Message | OK |
+    	|| Response Type | array[DenyRuleRecord] |
+    	|| Response Model | [array[DenyRuleRecord] Model|#array[DenyRuleRecord]ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "OK",
   "content" : {
@@ -54,14 +425,31 @@ h4. Responses
       "schema" : {
         "type" : "array",
         "items" : {
-          "$ref" : "#/components/schemas/getMailOrders_200_response_inner"
+          "$ref" : "#/components/schemas/DenyRuleRecord"
+        }
+      },
+      "examples" : {
+        "ExampleMailRulesList" : {
+          "value" : [ {
+            "id" : "14",
+            "user" : "mb20682",
+            "type" : "email",
+            "data" : "domeinwo@server.guesshost.net",
+            "created" : "2022-03-22 19:16:35"
+          }, {
+            "id" : "15",
+            "user" : "mb20682",
+            "type" : "email",
+            "data" : "mamediieva@thedigital.gov.ua",
+            "created" : "2022-03-22 19:18:01"
+          } ]
         }
       }
     }
   },
   "links" : {
-    "sendMailByIdLink" : {
-      "operationId" : "sendMail",
+    "delistBlockLink" : {
+      "operationId" : "delistBlock",
       "parameters" : {
         "id" : "$response.body#/0/id"
       },
@@ -109,16 +497,16 @@ h4. Responses
 
 
 
-h3. pingServer
-{panel:title=pingServer|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
-    *Summary:* Checks if the server is running
+h3. getStats
+{panel:title=getStats|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* displays a list of blocked email addresses
     *Description:* *No Description*
 
 	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
     || Protocol | {noformat:nopanel=true}https{noformat} |
-    || Path | {noformat:nopanel=true}/ping{noformat} |
+    || Path | {noformat:nopanel=true}/mail/stats{noformat} |
     || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
-    
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 
@@ -128,21 +516,149 @@ h4. Parameters
 h4. Responses
 
     	|| Status Code | {status:colour=Green|title=200|subtle=false} |
-    	|| Message | Server is up and running |
-    	|| Response Type |  |
-    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Message | OK |
+    	|| Response Type | array[getStats_200_response_inner] |
+    	|| Response Model | [array[getStats_200_response_inner] Model|#array[getStats_200_response_inner]ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
-  "description" : "Server is up and running"
+  "description" : "OK",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/getStats_200_response_inner"
+        }
+      }
+    }
+  },
+  "links" : {
+    "delistBlockLink" : {
+      "operationId" : "delistBlock",
+      "parameters" : {
+        "id" : "$response.body#/0/id"
+      },
+      "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/advsend`."
+    }
+  }
 }{code} |
        
 
 
-    	|| Status Code | {status:colour=Red|title=0|subtle=false} |
-    	|| Message | Something is wrong |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
+      }
+    }
+  }
+}{code} |
+       
+
+{panel}
+
+
+
+h3. viewMailLog
+{panel:title=viewMailLog|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* displays the mail log
+    *Description:* Get a listing of the emails sent through this system
+
+	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
+    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Path | {noformat:nopanel=true}/mail/log{noformat} |
+    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
+----
+h4. Parameters
+
+
+
+h5. Query Parameters
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
+        |id |The ID of your mail order this will be sent through. | Long | (x) |null |  |  ||origin |originating ip address sending mail | String | (x) |null |  |  ||mx |mx record mail was sent to | String | (x) |null |  |  ||from |from email address | String | (x) |null |  |  ||to |to/destination email address | String | (x) |null |  |  ||subject |subject containing this string | String | (x) |null |  |  ||mailid |mail id | String | (x) |null |  |  ||skip |number of records to skip for pagination | Integer | (x) |0 |  |  ||limit |maximum number of records to return | Integer | (x) |100 |  |  ||startDate |earliest date to get emails in unix timestamp format | Long | (x) |null |  |  ||endDate |earliest date to get emails in unix timestamp format | Long | (x) |null |  |  |
+----
+h4. Responses
+
+    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
+    	|| Message | search results matching criteria |
+    	|| Response Type | MailLog |
+    	|| Response Model | [MailLog Model|#MailLogModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "search results matching criteria",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/MailLog"
+      },
+      "examples" : {
+        "MailLogExample" : {
+          "value" : {
+            "total" : 1,
+            "skip" : 0,
+            "limit" : 100,
+            "emails" : [ {
+              "_id" : 103172,
+              "id" : "17c7eda538e0005d03",
+              "from" : "person@mysite.com",
+              "to" : "client@isp.com",
+              "subject" : "sell 0.005 shares",
+              "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
+              "created" : "2021-10-14 08:50:10",
+              "time" : 1634215809,
+              "user" : "mb5658",
+              "transtype" : "ESMTPSA",
+              "origin" : "199.231.189.154",
+              "interface" : "feeder",
+              "sendingZone" : "interserver",
+              "bodySize" : 63,
+              "seq" : 1,
+              "recipient" : "client@isp.com",
+              "domain" : "interserver.net",
+              "locked" : 1,
+              "lockTime" : "1634215818533",
+              "assigned" : "relay1",
+              "queued" : "2021-10-14T12:50:15.487Z",
+              "mxHostname" : "mx.j.is.cc",
+              "response" : "250 2.0.0 Ok queued as C91D83E128C"
+            } ]
+          }
+        }
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
+    	|| Message | bad input parameter |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
-  "description" : "Something is wrong"
+  "description" : "bad input parameter"
 }{code} |
        
 
@@ -163,9 +679,6 @@ h3. sendAdvMail
 ----
 h4. Parameters
 
-h5. Body Parameter
-        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
-        |SendMailAdv | | SendMailAdv | (/) | |  |  |
 
 
 ----
@@ -333,14 +846,14 @@ h4. Responses
 
 
 
-h3. viewMailLog
-{panel:title=viewMailLog|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
-    *Summary:* displays the mail log
-    *Description:* Get a listing of the emails sent through this system
+h3. getMailOrders
+{panel:title=getMailOrders|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* displays a list of mail service orders
+    *Description:* This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
 
 	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
     || Protocol | {noformat:nopanel=true}https{noformat} |
-    || Path | {noformat:nopanel=true}/mail/log{noformat} |
+    || Path | {noformat:nopanel=true}/mail{noformat} |
     || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
     || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
@@ -348,22 +861,62 @@ h4. Parameters
 
 
 
-h5. Query Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
-        |id |The ID of your mail order this will be sent through. | Long | (x) |null |  |  ||origin |originating ip address sending mail | String | (x) |null |  |  ||mx |mx record mail was sent to | String | (x) |null |  |  ||from |from email address | String | (x) |null |  |  ||to |to/destination email address | String | (x) |null |  |  ||subject |subject containing this string | String | (x) |null |  |  ||mailid |mail id | String | (x) |null |  |  ||skip |number of records to skip for pagination | Integer | (x) |0 |  |  ||limit |maximum number of records to return | Integer | (x) |100 |  |  ||startDate |earliest date to get emails in unix timestamp format | Long | (x) |null |  |  ||endDate |earliest date to get emails in unix timestamp format | Long | (x) |null |  |  |
 ----
 h4. Responses
 
     	|| Status Code | {status:colour=Green|title=200|subtle=false} |
-    	|| Message | search results matching criteria |
-    	|| Response Type | MailLog |
-    	|| Response Model | [MailLog Model|#MailLogModelAnchor|Jump to model] |
+    	|| Message | OK |
+    	|| Response Type | array[MailOrder] |
+    	|| Response Model | [array[MailOrder] Model|#array[MailOrder]ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
-  "description" : "search results matching criteria",
+  "description" : "OK",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/MailLog"
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/MailOrder"
+        }
+      },
+      "examples" : {
+        "MailOrders" : {
+          "value" : [ {
+            "id" : 39,
+            "status" : "active",
+            "username" : "mb39"
+          }, {
+            "id" : 33,
+            "status" : "canceled",
+            "username" : "mb33",
+            "comment" : "test order"
+          } ]
+        }
+      }
+    }
+  },
+  "links" : {
+    "sendMailByIdLink" : {
+      "operationId" : "sendMail",
+      "parameters" : {
+        "id" : "$response.body#/0/id"
+      },
+      "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/advsend`."
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
       }
     }
   }
@@ -371,12 +924,60 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
-    	|| Message | bad input parameter |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | getMailOrders_401_response |
+    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/getMailOrders_401_response"
+      }
+    }
+  }
+}{code} |
+       
+
+{panel}
+
+
+
+h3. pingServer
+{panel:title=pingServer|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* Checks if the server is running
+    *Description:* *No Description*
+
+	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
+    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Path | {noformat:nopanel=true}/ping{noformat} |
+    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    
+----
+h4. Parameters
+
+
+
+----
+h4. Responses
+
+    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
+    	|| Message | Server is up and running |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
-  "description" : "bad input parameter"
+  "description" : "Server is up and running"
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Red|title=0|subtle=false} |
+    	|| Message | Something is wrong |
+    	|| Response Type |  |
+    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Something is wrong"
 }{code} |
        
 
@@ -386,6 +987,49 @@ h4. Responses
 {anchor:models}
 h2. Models
 
+        {anchor:DenyRuleNewModelAnchor}
+        h3. DenyRuleNew
+
+        The data for a email deny rule record.
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |type |(/) |{noformat:nopanel=true}String{noformat} | The type of deny rule. |  [domain, email, startswith]  | email
+         |data |(/) |{noformat:nopanel=true}String{noformat} | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. |  | domeinwo@server.guesshost.net
+         |user |(x) |{noformat:nopanel=true}String{noformat} | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. |  | mb20682
+         
+        {anchor:DenyRuleRecordModelAnchor}
+        h3. DenyRuleRecord
+
+        The data for a email deny rule record.
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |type |(/) |{noformat:nopanel=true}String{noformat} | The type of deny rule. |  [domain, email, startswith]  | email
+         |data |(/) |{noformat:nopanel=true}String{noformat} | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. |  | domeinwo@server.guesshost.net
+         |id |(/) |{noformat:nopanel=true}Integer{noformat} | The deny rule Id number. |  | 41124
+         |created |(/) |{noformat:nopanel=true}Date{noformat} | the date the rule was created. |  | null
+         |user |(x) |{noformat:nopanel=true}String{noformat} | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. |  | mb20682
+         
+        {anchor:EmailAddressModelAnchor}
+        h3. EmailAddress
+
+        an email address
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |email |(x) |{noformat:nopanel=true}String{noformat} | an email address |  | user@domain.com
+         
+        {anchor:EmailAddressNameModelAnchor}
+        h3. EmailAddressName
+
+        An email contact.
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |email |(/) |{noformat:nopanel=true}String{noformat} | The email address. |  | user@domain.com
+         |name |(x) |{noformat:nopanel=true}String{noformat} | Name to use for the sending contact. |  | John Smith
+         
         {anchor:GenericResponseModelAnchor}
         h3. GenericResponse
 
@@ -395,19 +1039,6 @@ h2. Models
         ||Field Name||Required||Type||Description||Enum||Example||
          |status |(x) |{noformat:nopanel=true}String{noformat} |  |  | ok
          |text |(x) |{noformat:nopanel=true}String{noformat} |  |  | The command completed successfully.
-         
-        {anchor:GetMailOrders200ResponseInnerModelAnchor}
-        h3. GetMailOrders200ResponseInner
-
-        
-
-        
-        ||Field Name||Required||Type||Description||Enum||Example||
-         |id |(/) |{noformat:nopanel=true}Integer{noformat} |  |  | 1234
-         |status |(/) |{noformat:nopanel=true}String{noformat} |  |  | active
-         |username |(/) |{noformat:nopanel=true}String{noformat} |  |  | mb1234
-         |password |(x) |{noformat:nopanel=true}String{noformat} |  |  | guest123
-         |comment |(x) |{noformat:nopanel=true}String{noformat} |  |  | main mail account
          
         {anchor:GetMailOrders401ResponseModelAnchor}
         h3. GetMailOrders401Response
@@ -419,6 +1050,63 @@ h2. Models
          |code |(/) |{noformat:nopanel=true}String{noformat} |  |  | null
          |message |(/) |{noformat:nopanel=true}String{noformat} |  |  | null
          
+        {anchor:GetStats200ResponseInnerModelAnchor}
+        h3. GetStats200ResponseInner
+
+        
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |id |(/) |{noformat:nopanel=true}Integer{noformat} |  |  | 1234
+         |status |(/) |{noformat:nopanel=true}String{noformat} |  |  | active
+         |username |(/) |{noformat:nopanel=true}String{noformat} |  |  | mb1234
+         |password |(x) |{noformat:nopanel=true}String{noformat} |  |  | guest123
+         |comment |(x) |{noformat:nopanel=true}String{noformat} |  |  | main mail account
+         
+        {anchor:MailAttachmentModelAnchor}
+        h3. MailAttachment
+
+        (optional) File attachments to include in the email.  The file contents must be base64
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |filename |(/) |{noformat:nopanel=true}String{noformat} | The filename of the attached file. |  | message.txt
+         |data |(/) |{noformat:nopanel=true}String{noformat} | The file contents base64 encoded |  | aGVsbG8gdGhlcmUK
+         
+        {anchor:MailBlockClickHouseModelAnchor}
+        h3. MailBlockClickHouse
+
+        A block entry from the clickhouse mailblocks server.
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |date |(/) |{noformat:nopanel=true}date{noformat} |  |  | null
+         |from |(/) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |messageId |(/) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |subject |(/) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |to |(/) |{noformat:nopanel=true}String{noformat} |  |  | null
+         
+        {anchor:MailBlockRspamdModelAnchor}
+        h3. MailBlockRspamd
+
+        This is a block entry from the rspamd block list.
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |from |(/) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |subject |(/) |{noformat:nopanel=true}String{noformat} |  |  | null
+         
+        {anchor:MailBlocksModelAnchor}
+        h3. MailBlocks
+
+        The listing of blocked emails.
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |local |(/) |{noformat:nopanel=true}array[MailBlockClickHouse]{noformat} |  |  | null
+         |mbtrap |(/) |{noformat:nopanel=true}array[MailBlockClickHouse]{noformat} |  |  | null
+         |subject |(/) |{noformat:nopanel=true}array[MailBlockRspamd]{noformat} |  |  | null
+         
         {anchor:MailLogModelAnchor}
         h3. MailLog
 
@@ -429,7 +1117,31 @@ h2. Models
          |total |(/) |{noformat:nopanel=true}Integer{noformat} | total number of mail log entries |  | 10234
          |skip |(/) |{noformat:nopanel=true}Integer{noformat} | number of emails skipped in listing |  | 0
          |limit |(/) |{noformat:nopanel=true}Integer{noformat} | number of emails to return |  | 100
-         |emails |(/) |{noformat:nopanel=true}array[MailLogEntry]{noformat} |  |  | null
+         |emails |(/) |{noformat:nopanel=true}array[MailLogEntry]{noformat} |  |  | [{
+    &quot;_id&quot;: 103172,
+    &quot;id&quot;: &quot;17c7eda538e0005d03&quot;,
+    &quot;from&quot;: &quot;person@mysite.com&quot;,
+    &quot;to&quot;: &quot;client@isp.com&quot;,
+    &quot;subject&quot;: &quot;sell 0.005 shares&quot;,
+    &quot;messageId&quot;: &quot;&lt;vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net&gt;&quot;,
+    &quot;created&quot;: &quot;2021-10-14 08:50:10&quot;,
+    &quot;time&quot;: 1634215809,
+    &quot;user&quot;: &quot;mb5658&quot;,
+    &quot;transtype&quot;: &quot;ESMTPSA&quot;,
+    &quot;origin&quot;: &quot;199.231.189.154&quot;,
+    &quot;interface&quot;: &quot;feeder&quot;,
+    &quot;sendingZone&quot;: &quot;interserver&quot;,
+    &quot;bodySize&quot;: 63,
+    &quot;seq&quot;: 1,
+    &quot;recipient&quot;: &quot;client@isp.com&quot;,
+    &quot;domain&quot;: &quot;interserver.net&quot;,
+    &quot;locked&quot;: 1,
+    &quot;lockTime&quot;: &quot;1634215818533&quot;,
+    &quot;assigned&quot;: &quot;relay1&quot;,
+    &quot;queued&quot;: &quot;2021-10-14T12:50:15.487Z&quot;,
+    &quot;mxHostname&quot;: &quot;mx.j.is.cc&quot;,
+    &quot;response&quot;: &quot;250 2.0.0 Ok queued as C91D83E128C&quot;
+}]
          
         {anchor:MailLogEntryModelAnchor}
         h3. MailLogEntry
@@ -462,6 +1174,18 @@ h2. Models
          |response |(/) |{noformat:nopanel=true}String{noformat} | mail delivery response |  | 250 2.0.0 Ok queued as C91D83E128C
          |messageId |(x) |{noformat:nopanel=true}String{noformat} | message id |  | &lt;vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net&gt;
          
+        {anchor:MailOrderModelAnchor}
+        h3. MailOrder
+
+        A mail order record
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |id |(/) |{noformat:nopanel=true}Integer{noformat} | The ID of the order. |  | 21472
+         |status |(/) |{noformat:nopanel=true}String{noformat} | The order status. |  | active
+         |username |(/) |{noformat:nopanel=true}String{noformat} | The username to use for this order. |  | mb21472
+         |comment |(x) |{noformat:nopanel=true}String{noformat} | Optional order comment. |  | null
+         
         {anchor:SendMailModelAnchor}
         h3. SendMail
 
@@ -483,71 +1207,16 @@ h2. Models
         ||Field Name||Required||Type||Description||Enum||Example||
          |subject |(/) |{noformat:nopanel=true}String{noformat} | The subject or title of the email |  | Your Package has been Delivered!
          |body |(/) |{noformat:nopanel=true}String{noformat} | The main email contents. |  | The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-         |from |(/) |{noformat:nopanel=true}SendMailAdv_from{noformat} |  |  | null
-         |to |(/) |{noformat:nopanel=true}array[SendMailAdv_to_inner]{noformat} | A list of destionation email addresses to send this to |  | null
-         |replyto |(x) |{noformat:nopanel=true}array[SendMailAdv_replyto_inner]{noformat} | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. |  | null
-         |cc |(x) |{noformat:nopanel=true}array[SendMailAdv_cc_inner]{noformat} | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. |  | null
-         |bcc |(x) |{noformat:nopanel=true}array[SendMailAdv_bcc_inner]{noformat} | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. |  | null
-         |attachments |(x) |{noformat:nopanel=true}array[SendMailAdv_attachments_inner]{noformat} | (optional) File attachments to include in the email.  The file contents must be base64 encoded\! |  | null
+         |from |(/) |{noformat:nopanel=true}EmailAddressName{noformat} |  |  | null
+         |to |(/) |{noformat:nopanel=true}array[EmailAddressName]{noformat} | A list of destionation email addresses to send this to |  | [{&quot;email&quot;: &quot;user@domain.com&quot;, &quot;name&quot;: &quot;John Smith&quot;}]
+         |replyto |(x) |{noformat:nopanel=true}array[EmailAddressName]{noformat} | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. |  | [{&quot;email&quot;: &quot;user@domain.com&quot;, &quot;name&quot;: &quot;John Smith&quot;}]
+         |cc |(x) |{noformat:nopanel=true}array[EmailAddressName]{noformat} | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. |  | [{&quot;email&quot;: &quot;user@domain.com&quot;, &quot;name&quot;: &quot;John Smith&quot;}]
+         |bcc |(x) |{noformat:nopanel=true}array[EmailAddressName]{noformat} | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. |  | [{&quot;email&quot;: &quot;user@domain.com&quot;, &quot;name&quot;: &quot;John Smith&quot;}]
+         |attachments |(x) |{noformat:nopanel=true}array[MailAttachment]{noformat} | (optional) File attachments to include in the email.  The file contents must be base64 encoded\! |  | [
+        {
+            &quot;filename&quot;: &quot;text.txt&quot;,
+            &quot;data&quot;: &quot;base64_encoded_contents&quot;
+        }
+]
          |id |(x) |{noformat:nopanel=true}Long{noformat} | (optional)  ID of the Mail order within our system to use as the Mail Account. |  | 5000
-         
-        {anchor:SendMailAdvAttachmentsInnerModelAnchor}
-        h3. SendMailAdvAttachmentsInner
-
-        A File attachment for an email
-
-        
-        ||Field Name||Required||Type||Description||Enum||Example||
-         |data |(/) |{noformat:nopanel=true}File{noformat} | Contents of the attached file (must be base64 encoded) |  | null
-         |filename |(x) |{noformat:nopanel=true}String{noformat} | (optional) Filename to specify for the attachment. |  | company_logo.png
-         
-        {anchor:SendMailAdvBccInnerModelAnchor}
-        h3. SendMailAdvBccInner
-
-        An Email Contact
-
-        
-        ||Field Name||Required||Type||Description||Enum||Example||
-         |email |(/) |{noformat:nopanel=true}String{noformat} | The email address |  | records@company.com
-         |name |(x) |{noformat:nopanel=true}String{noformat} | (optional) Name to use for the BCC contact. |  | Records Department
-         
-        {anchor:SendMailAdvCcInnerModelAnchor}
-        h3. SendMailAdvCcInner
-
-        An Email Contact
-
-        
-        ||Field Name||Required||Type||Description||Enum||Example||
-         |email |(/) |{noformat:nopanel=true}String{noformat} | The email address |  | janedoe@isp.com
-         |name |(x) |{noformat:nopanel=true}String{noformat} | (optional) Name to use for the CC contact. |  | Jane Doe
-         
-        {anchor:SendMailAdvFromModelAnchor}
-        h3. SendMailAdvFrom
-
-        The information to use for the From address in the email. from.
-
-        
-        ||Field Name||Required||Type||Description||Enum||Example||
-         |email |(/) |{noformat:nopanel=true}String{noformat} | The email address |  | business@company.com
-         |name |(x) |{noformat:nopanel=true}String{noformat} | (optional) Name to use for the sending contact. |  | The Man
-         
-        {anchor:SendMailAdvReplytoInnerModelAnchor}
-        h3. SendMailAdvReplytoInner
-
-        An Email Contact
-
-        
-        ||Field Name||Required||Type||Description||Enum||Example||
-         |email |(/) |{noformat:nopanel=true}String{noformat} | The email address |  | support@company.com
-         |name |(x) |{noformat:nopanel=true}String{noformat} | (optional) Name to use for the sending contact. |  | Support Staff
-         
-        {anchor:SendMailAdvToInnerModelAnchor}
-        h3. SendMailAdvToInner
-
-        An Email Contact
-
-        
-        ||Field Name||Required||Type||Description||Enum||Example||
-         |email |(/) |{noformat:nopanel=true}String{noformat} | The email address |  | johndoe@isp.com
-         |name |(x) |{noformat:nopanel=true}String{noformat} | (optional) Name to use for the destination contact. |  | John Doe
          

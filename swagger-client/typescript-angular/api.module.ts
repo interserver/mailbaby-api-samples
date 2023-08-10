@@ -3,14 +3,22 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 
-import { DefaultService } from './api/default.service';
+import { BlockingService } from './api/blocking.service';
+import { HistoryService } from './api/history.service';
+import { SendingService } from './api/sending.service';
+import { ServicesService } from './api/services.service';
+import { StatusService } from './api/status.service';
 
 @NgModule({
   imports:      [],
   declarations: [],
   exports:      [],
   providers: [
-    DefaultService ]
+    BlockingService,
+    HistoryService,
+    SendingService,
+    ServicesService,
+    StatusService ]
 })
 export class ApiModule {
     public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<ApiModule> {

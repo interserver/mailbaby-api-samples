@@ -17,21 +17,21 @@ public struct SendMailAdv: Codable, JSONEncodable, Hashable {
     public var subject: String
     /** The main email contents. */
     public var body: String
-    public var from: SendMailAdvFrom
+    public var from: EmailAddressName
     /** A list of destionation email addresses to send this to */
-    public var to: [SendMailAdvToInner]
+    public var to: [EmailAddressName]
     /** (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. */
-    public var replyto: [SendMailAdvReplytoInner]?
+    public var replyto: [EmailAddressName]?
     /** (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */
-    public var cc: [SendMailAdvCcInner]?
+    public var cc: [EmailAddressName]?
     /** (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. */
-    public var bcc: [SendMailAdvBccInner]?
+    public var bcc: [EmailAddressName]?
     /** (optional) File attachments to include in the email.  The file contents must be base64 encoded! */
-    public var attachments: [SendMailAdvAttachmentsInner]?
+    public var attachments: [MailAttachment]?
     /** (optional)  ID of the Mail order within our system to use as the Mail Account. */
     public var id: Int64?
 
-    public init(subject: String, body: String, from: SendMailAdvFrom, to: [SendMailAdvToInner], replyto: [SendMailAdvReplytoInner]? = nil, cc: [SendMailAdvCcInner]? = nil, bcc: [SendMailAdvBccInner]? = nil, attachments: [SendMailAdvAttachmentsInner]? = nil, id: Int64? = nil) {
+    public init(subject: String, body: String, from: EmailAddressName, to: [EmailAddressName], replyto: [EmailAddressName]? = nil, cc: [EmailAddressName]? = nil, bcc: [EmailAddressName]? = nil, attachments: [MailAttachment]? = nil, id: Int64? = nil) {
         self.subject = subject
         self.body = body
         self.from = from

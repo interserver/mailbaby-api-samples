@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>MailBaby Email Delivery API</title>
+    <title>MailBaby Email Delivery and Management Service API</title>
     <style type="text/css">
       body {
 	font-family: Trebuchet MS, sans-serif;
@@ -179,20 +179,20 @@ font-style: italic;
     </style>
   </head>
   <body>
-  <h1>MailBaby Email Delivery API</h1>
+  <h1>MailBaby Email Delivery and Management Service API</h1>
     <div class="app-desc"><p><strong>Send emails fast and with confidence through our easy to use <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> API interface.</strong></p>
-<h1>📌 Overview</h1>
+<h1>Overview</h1>
 <p>This is the API interface to the <a href="https//mail.baby/">Mail Baby</a> Mail services provided by <a href="https://www.interserver.net">InterServer</a>. To use this service you must have an account with us at <a href="https://my.interserver.net">my.interserver.net</a>.</p>
-<h1>🔐 Authentication</h1>
-<p>In order to use most of the API calls you must pass credentials from the <a href="https://my.interserver.net/">my.interserver.net</a> site.</p>
-<p>We support several different authentication methods but the preferred method is to use the <strong>API Key</strong> which you can get from the <a href="https://my.interserver.net/account_security">Account Security</a> page.</p>
+<h1>Authentication</h1>
+<p>In order to use most of the API calls you must pass credentials from the <a href="https://my.interserver.net/">my.interserver.net</a> site.
+We support several different authentication methods but the preferred method is to use the <strong>API Key</strong> which you can get from the <a href="https://my.interserver.net/account_security">Account Security</a> page.</p>
 </div>
     <div class="app-desc">More information: <a href="https://www.mail.baby/contact/">https://www.mail.baby/contact/</a></div>
     <div class="app-desc">Contact Info: <a href="support@interserver.net">support@interserver.net</a></div>
     <div class="app-desc">Version: 1.1.0</div>
     <div class="app-desc">BasePath:</div>
-    <div class="license-info">Apache 2.0</div>
-    <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
+    <div class="license-info">GNU GPLv3</div>
+    <div class="license-url">https://www.gnu.org/licenses/gpl.txt</div>
   <h2>Access</h2>
     <ol>
       <li>APIKey KeyParamName:X-API-KEY KeyInQuery:false KeyInHeader:true</li>
@@ -203,21 +203,224 @@ font-style: italic;
 
   <h3>Table of Contents </h3>
   <div class="method-summary"></div>
-  <h4><a href="#Default">Default</a></h4>
+  <h4><a href="#Blocking">Blocking</a></h4>
   <ul>
-  <li><a href="#getMailOrders"><code><span class="http-method">get</span> /mail</code></a></li>
-  <li><a href="#pingServer"><code><span class="http-method">get</span> /ping</code></a></li>
-  <li><a href="#sendAdvMail"><code><span class="http-method">post</span> /mail/advsend</code></a></li>
-  <li><a href="#sendMail"><code><span class="http-method">post</span> /mail/send</code></a></li>
+  <li><a href="#addRule"><code><span class="http-method">post</span> /mail/rules</code></a></li>
+  <li><a href="#deleteRule"><code><span class="http-method">delete</span> /mail/rules/{ruleId}</code></a></li>
+  <li><a href="#delistBlock"><code><span class="http-method">post</span> /mail/blocks/delete</code></a></li>
+  <li><a href="#getMailBlocks"><code><span class="http-method">get</span> /mail/blocks</code></a></li>
+  <li><a href="#getRules"><code><span class="http-method">get</span> /mail/rules</code></a></li>
+  </ul>
+  <h4><a href="#History">History</a></h4>
+  <ul>
+  <li><a href="#getStats"><code><span class="http-method">get</span> /mail/stats</code></a></li>
   <li><a href="#viewMailLog"><code><span class="http-method">get</span> /mail/log</code></a></li>
   </ul>
+  <h4><a href="#Sending">Sending</a></h4>
+  <ul>
+  <li><a href="#sendAdvMail"><code><span class="http-method">post</span> /mail/advsend</code></a></li>
+  <li><a href="#sendMail"><code><span class="http-method">post</span> /mail/send</code></a></li>
+  </ul>
+  <h4><a href="#Services">Services</a></h4>
+  <ul>
+  <li><a href="#getMailOrders"><code><span class="http-method">get</span> /mail</code></a></li>
+  </ul>
+  <h4><a href="#Status">Status</a></h4>
+  <ul>
+  <li><a href="#pingServer"><code><span class="http-method">get</span> /ping</code></a></li>
+  </ul>
 
-  <h1><a name="Default">Default</a></h1>
-  <div class="method"><a name="getMailOrders"/>
+  <h1><a name="Blocking">Blocking</a></h1>
+  <div class="method"><a name="addRule"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /mail</code></pre></div>
-    <div class="method-summary">displays a list of mail service orders (<span class="nickname">getMailOrders</span>)</div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/rules</code></pre></div>
+    <div class="method-summary">Creates a new email deny rule. (<span class="nickname">addRule</span>)</div>
+    <div class="method-notes">Adds a new email deny rule into the system to block new emails that match the given criteria</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/x-www-form-urlencoded</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">user (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. default: null </div><div class="param">type (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The type of deny rule. default: null </div><div class="param">data (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#GenericResponse">GenericResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "text" : "The command completed successfully.",
+  "status" : "ok"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        <a href="#GenericResponse">GenericResponse</a>
+    <h4 class="field-label">400</h4>
+    The specified resource was not found
+        <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
+    <h4 class="field-label">404</h4>
+    The specified resource was not found
+        <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteRule"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /mail/rules/{ruleId}</code></pre></div>
+    <div class="method-summary">Removes an deny mail rule. (<span class="nickname">deleteRule</span>)</div>
+    <div class="method-notes">Removes one of the configured deny mail rules from the system.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">ruleId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The ID of the Rules entry. default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#GenericResponse">GenericResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "text" : "The command completed successfully.",
+  "status" : "ok"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        <a href="#GenericResponse">GenericResponse</a>
+    <h4 class="field-label">400</h4>
+    The specified resource was not found
+        <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
+    <h4 class="field-label">404</h4>
+    The specified resource was not found
+        <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="delistBlock"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/blocks/delete</code></pre></div>
+    <div class="method-summary">Removes an email address from the blocked list (<span class="nickname">delistBlock</span>)</div>
+    <div class="method-notes">Removes an email address from the various block lists.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>multipart/form-data</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">EmailAddress <a href="#EmailAddress">EmailAddress</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#GenericResponse">GenericResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "text" : "The command completed successfully.",
+  "status" : "ok"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        <a href="#GenericResponse">GenericResponse</a>
+    <h4 class="field-label">400</h4>
+    The specified resource was not found
+        <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
+    <h4 class="field-label">404</h4>
+    The specified resource was not found
+        <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getMailBlocks"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/blocks</code></pre></div>
+    <div class="method-summary">displays a list of blocked email addresses (<span class="nickname">getMailBlocks</span>)</div>
     <div class="method-notes"></div>
 
 
@@ -228,7 +431,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      array[<a href="#getMailOrders_200_response_inner">getMailOrders_200_response_inner</a>]
+      <a href="#MailBlocks">MailBlocks</a>
       
     </div>
 
@@ -237,12 +440,81 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "password" : "guest123",
-  "comment" : "main mail account",
-  "id" : 1234,
-  "status" : "active",
-  "username" : "mb1234"
+  "local" : [ {
+    "date" : "2023-08-07",
+    "from" : "user@domain.com",
+    "messageId" : "pFaRqFUEWkucjhTuIzYuoAgWU@domain.com",
+    "subject" : "Test Email",
+    "to" : "['client@site.com']"
+  } ],
+  "mbtrap" : [ {
+    "date" : "2023-08-07",
+    "from" : "user@domain.com",
+    "messageId" : "pFaRqFUEWkucjhTuIzYuoAgWU@domain.com",
+    "subject" : "Test Email",
+    "to" : "['client@site.com']"
+  } ],
+  "subject" : [ {
+    "from" : "user@domain.com",
+    "subject" : "Test Email"
+  } ]
 }</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#MailBlocks">MailBlocks</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
+    <h4 class="field-label">404</h4>
+    Unauthorized
+        <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getRules"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/rules</code></pre></div>
+    <div class="method-summary">Displays a listing of deny email rules. (<span class="nickname">getRules</span>)</div>
+    <div class="method-notes">Returns a listing of all the deny block rules you have configured.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#DenyRuleRecord">DenyRuleRecord</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "id" : 14,
+  "user" : "mb20682",
+  "type" : "email",
+  "data" : "domeinwo@server.guesshost.net",
+  "created" : "2022-03-22 19:16:35"
+}, {
+  "id" : 14,
+  "user" : "mb20682",
+  "type" : "email",
+  "data" : "domeinwo@server.guesshost.net",
+  "created" : "2022-03-22 19:16:35"
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -263,11 +535,12 @@ font-style: italic;
         <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="pingServer"/>
+  <h1><a name="History">History</a></h1>
+  <div class="method"><a name="getStats"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /ping</code></pre></div>
-    <div class="method-summary">Checks if the server is running (<span class="nickname">pingServer</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/stats</code></pre></div>
+    <div class="method-summary">displays a list of blocked email addresses (<span class="nickname">getStats</span>)</div>
     <div class="method-notes"></div>
 
 
@@ -276,20 +549,146 @@ font-style: italic;
 
 
 
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#getStats_200_response_inner">getStats_200_response_inner</a>]
+      
+    </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "password" : "guest123",
+  "comment" : "main mail account",
+  "id" : 1234,
+  "status" : "active",
+  "username" : "mb1234"
+}, {
+  "password" : "guest123",
+  "comment" : "main mail account",
+  "id" : 1234,
+  "status" : "active",
+  "username" : "mb1234"
+} ]</code></pre>
 
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    Server is up and running
-        <a href="#"></a>
-    <h4 class="field-label">default</h4>
-    Something is wrong
+    OK
+        
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
+    <h4 class="field-label">404</h4>
+    Unauthorized
+        <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="viewMailLog"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/log</code></pre></div>
+    <div class="method-summary">displays the mail log (<span class="nickname">viewMailLog</span>)</div>
+    <div class="method-notes">Get a listing of the emails sent through this system</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The ID of your mail order this will be sent through. default: null format: int64</div><div class="param">origin (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; originating ip address sending mail default: null </div><div class="param">mx (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; mx record mail was sent to default: null </div><div class="param">from (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; from email address default: null </div><div class="param">to (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; to/destination email address default: null </div><div class="param">subject (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; subject containing this string default: null </div><div class="param">mailid (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; mail id default: null </div><div class="param">skip (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; number of records to skip for pagination default: 0 format: int32</div><div class="param">limit (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; maximum number of records to return default: 100 format: int32</div><div class="param">startDate (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; earliest date to get emails in unix timestamp format default: null format: int64</div><div class="param">endDate (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; earliest date to get emails in unix timestamp format default: null format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#MailLog">MailLog</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "total" : 1,
+  "skip" : 0,
+  "limit" : 100,
+  "emails" : [ {
+    "_id" : 103172,
+    "id" : "17c7eda538e0005d03",
+    "from" : "person@mysite.com",
+    "to" : "client@isp.com",
+    "subject" : "sell 0.005 shares",
+    "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
+    "created" : "2021-10-14T08:50:10.000Z",
+    "time" : 1634215809,
+    "user" : "mb5658",
+    "transtype" : "ESMTPSA",
+    "origin" : "199.231.189.154",
+    "interface" : "feeder",
+    "sendingZone" : "interserver",
+    "bodySize" : 63,
+    "seq" : 1,
+    "recipient" : "client@isp.com",
+    "domain" : "interserver.net",
+    "locked" : 1,
+    "lockTime" : "1634215818533",
+    "assigned" : "relay1",
+    "queued" : "2021-10-14T12:50:15.487Z",
+    "mxHostname" : "mx.j.is.cc",
+    "response" : "250 2.0.0 Ok queued as C91D83E128C"
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        <a href="#MailLog">MailLog</a>
+    <h4 class="field-label">400</h4>
+    bad input parameter
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
+  <h1><a name="Sending">Sending</a></h1>
   <div class="method"><a name="sendAdvMail"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
@@ -301,20 +700,35 @@ font-style: italic;
     <h3 class="field-label">Consumes</h3>
     This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
-      <li><code>application/json</code></li>
       <li><code>application/x-www-form-urlencoded</code></li>
+      <li><code>application/json</code></li>
     </ul>
 
-    <h3 class="field-label">Request body</h3>
+
+
+
+    <h3 class="field-label">Form parameters</h3>
     <div class="field-items">
-      <div class="param">SendMailAdv <a href="#SendMailAdv">SendMailAdv</a> (required)</div>
+      <div class="param">subject (required)</div>
 
-      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The subject or title of the email default: null </div><div class="param">body (required)</div>
 
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The main email contents. default: null </div><div class="param">from (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  default: null </div><div class="param">to (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; A list of destionation email addresses to send this to default: null </div><div class="param">replyto (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; (optional) A list of email addresses that specify where replies to the email should be sent instead of the <em>from</em> address. default: null </div><div class="param">cc (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. default: null </div><div class="param">bcc (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. default: null </div><div class="param">attachments (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; (optional) File attachments to include in the email.  The file contents must be base64 encoded! default: null </div><div class="param">id (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; (optional)  ID of the Mail order within our system to use as the Mail Account. default: null format: int64</div>
     </div>  <!-- field-items -->
-
-
-
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
@@ -423,48 +837,23 @@ font-style: italic;
         <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="viewMailLog"/>
+  <h1><a name="Services">Services</a></h1>
+  <div class="method"><a name="getMailOrders"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/log</code></pre></div>
-    <div class="method-summary">displays the mail log (<span class="nickname">viewMailLog</span>)</div>
-    <div class="method-notes">Get a listing of the emails sent through this system</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /mail</code></pre></div>
+    <div class="method-summary">displays a list of mail service orders (<span class="nickname">getMailOrders</span>)</div>
+    <div class="method-notes">This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.</div>
 
 
 
 
 
-    <h3 class="field-label">Query parameters</h3>
-    <div class="field-items">
-      <div class="param">id (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The ID of your mail order this will be sent through. default: null format: int64</div><div class="param">origin (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; originating ip address sending mail default: null </div><div class="param">mx (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; mx record mail was sent to default: null </div><div class="param">from (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; from email address default: null </div><div class="param">to (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; to/destination email address default: null </div><div class="param">subject (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; subject containing this string default: null </div><div class="param">mailid (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; mail id default: null </div><div class="param">skip (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; number of records to skip for pagination default: 0 format: int32</div><div class="param">limit (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; maximum number of records to return default: 100 format: int32</div><div class="param">startDate (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; earliest date to get emails in unix timestamp format default: null format: int64</div><div class="param">endDate (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; earliest date to get emails in unix timestamp format default: null format: int64</div>
-    </div>  <!-- field-items -->
 
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#MailLog">MailLog</a>
+      array[<a href="#MailOrder">MailOrder</a>]
       
     </div>
 
@@ -472,60 +861,15 @@ font-style: italic;
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "emails" : [ {
-    "subject" : "sell 0.005 shares",
-    "created" : "2021-10-14 08:50:10",
-    "transtype" : "ESMTPSA",
-    "origin" : "199.231.189.154",
-    "queued" : "2021-10-14T12:50:15.487Z",
-    "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
-    "sendingZone" : "interserver",
-    "mxHostname" : "mx.j.is.cc",
-    "interface" : "feeder",
-    "lockTime" : 1634215818533,
-    "response" : "250 2.0.0 Ok queued as C91D83E128C",
-    "domain" : "interserver.net",
-    "bodySize" : 63,
-    "recipient" : "client@isp.com",
-    "from" : "person@mysite.com",
-    "assigned" : "relay1",
-    "_id" : 103172,
-    "id" : "17c7eda538e0005d03",
-    "to" : "client@isp.com",
-    "time" : 1634215809,
-    "locked" : 1,
-    "user" : "mb5658",
-    "seq" : 1
-  }, {
-    "subject" : "sell 0.005 shares",
-    "created" : "2021-10-14 08:50:10",
-    "transtype" : "ESMTPSA",
-    "origin" : "199.231.189.154",
-    "queued" : "2021-10-14T12:50:15.487Z",
-    "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
-    "sendingZone" : "interserver",
-    "mxHostname" : "mx.j.is.cc",
-    "interface" : "feeder",
-    "lockTime" : 1634215818533,
-    "response" : "250 2.0.0 Ok queued as C91D83E128C",
-    "domain" : "interserver.net",
-    "bodySize" : 63,
-    "recipient" : "client@isp.com",
-    "from" : "person@mysite.com",
-    "assigned" : "relay1",
-    "_id" : 103172,
-    "id" : "17c7eda538e0005d03",
-    "to" : "client@isp.com",
-    "time" : 1634215809,
-    "locked" : 1,
-    "user" : "mb5658",
-    "seq" : 1
-  } ],
-  "total" : 10234,
-  "limit" : 100,
-  "skip" : 0
-}</code></pre>
+    <pre class="example"><code>[ {
+  "id" : 21472,
+  "status" : "active",
+  "username" : "mb21472"
+}, {
+  "id" : 21472,
+  "status" : "active",
+  "username" : "mb21472"
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -536,10 +880,41 @@ font-style: italic;
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    search results matching criteria
-        <a href="#MailLog">MailLog</a>
-    <h4 class="field-label">400</h4>
-    bad input parameter
+    OK
+        
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
+    <h4 class="field-label">404</h4>
+    Unauthorized
+        <a href="#getMailOrders_401_response">getMailOrders_401_response</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Status">Status</a></h1>
+  <div class="method"><a name="pingServer"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /ping</code></pre></div>
+    <div class="method-summary">Checks if the server is running (<span class="nickname">pingServer</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Server is up and running
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Something is wrong
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -549,27 +924,105 @@ font-style: italic;
 
   <h3>Table of Contents</h3>
   <ol>
+    <li><a href="#DenyRuleNew"><code>DenyRuleNew</code> - Root Type for DenyRule</a></li>
+    <li><a href="#DenyRuleRecord"><code>DenyRuleRecord</code> - Root Type for DenyRule</a></li>
+    <li><a href="#EmailAddress"><code>EmailAddress</code> - Root Type for EmailAddress</a></li>
+    <li><a href="#EmailAddressName"><code>EmailAddressName</code> - Root Type for EmailAddressName</a></li>
     <li><a href="#GenericResponse"><code>GenericResponse</code> - </a></li>
+    <li><a href="#MailAttachment"><code>MailAttachment</code> - Root Type for MailAttachment</a></li>
+    <li><a href="#MailBlockClickHouse"><code>MailBlockClickHouse</code> - Root Type for MailBlockClickHouse</a></li>
+    <li><a href="#MailBlockRspamd"><code>MailBlockRspamd</code> - Root Type for MailBlockRspamd</a></li>
+    <li><a href="#MailBlocks"><code>MailBlocks</code> - Root Type for MailBlocks</a></li>
     <li><a href="#MailLog"><code>MailLog</code> - </a></li>
     <li><a href="#MailLogEntry"><code>MailLogEntry</code> - </a></li>
+    <li><a href="#MailOrder"><code>MailOrder</code> - Root Type for MailOrder</a></li>
     <li><a href="#SendMail"><code>SendMail</code> - </a></li>
     <li><a href="#SendMailAdv"><code>SendMailAdv</code> - Email details</a></li>
-    <li><a href="#SendMailAdv_attachments_inner"><code>SendMailAdv_attachments_inner</code> - </a></li>
-    <li><a href="#SendMailAdv_bcc_inner"><code>SendMailAdv_bcc_inner</code> - </a></li>
-    <li><a href="#SendMailAdv_cc_inner"><code>SendMailAdv_cc_inner</code> - </a></li>
-    <li><a href="#SendMailAdv_from"><code>SendMailAdv_from</code> - </a></li>
-    <li><a href="#SendMailAdv_replyto_inner"><code>SendMailAdv_replyto_inner</code> - </a></li>
-    <li><a href="#SendMailAdv_to_inner"><code>SendMailAdv_to_inner</code> - </a></li>
-    <li><a href="#getMailOrders_200_response_inner"><code>getMailOrders_200_response_inner</code> - </a></li>
     <li><a href="#getMailOrders_401_response"><code>getMailOrders_401_response</code> - </a></li>
+    <li><a href="#getStats_200_response_inner"><code>getStats_200_response_inner</code> - </a></li>
   </ol>
 
+  <div class="model">
+    <h3><a name="DenyRuleNew"><code>DenyRuleNew</code> - Root Type for DenyRule</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>The data for a email deny rule record.</div>
+    <div class="field-items">
+      <div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The type of deny rule. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">domain</div><div class="param-enum">email</div><div class="param-enum">startswith</div>
+<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. </div>
+<div class="param">user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="DenyRuleRecord"><code>DenyRuleRecord</code> - Root Type for DenyRule</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>The data for a email deny rule record.</div>
+    <div class="field-items">
+      <div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The type of deny rule. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">domain</div><div class="param-enum">email</div><div class="param-enum">startswith</div>
+<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. </div>
+<div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The deny rule Id number. </div>
+<div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span> the date the rule was created. format: date-time</div>
+<div class="param">user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="EmailAddress"><code>EmailAddress</code> - Root Type for EmailAddress</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>an email address</div>
+    <div class="field-items">
+      <div class="param">email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> an email address </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="EmailAddressName"><code>EmailAddressName</code> - Root Type for EmailAddressName</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>An email contact.</div>
+    <div class="field-items">
+      <div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The email address. </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name to use for the sending contact. </div>
+    </div>  <!-- field-items -->
+  </div>
   <div class="model">
     <h3><a name="GenericResponse"><code>GenericResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
       <div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">text (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="MailAttachment"><code>MailAttachment</code> - Root Type for MailAttachment</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>(optional) File attachments to include in the email.  The file contents must be base64</div>
+    <div class="field-items">
+      <div class="param">filename </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The filename of the attached file. </div>
+<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The file contents base64 encoded </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="MailBlockClickHouse"><code>MailBlockClickHouse</code> - Root Type for MailBlockClickHouse</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A block entry from the clickhouse mailblocks server.</div>
+    <div class="field-items">
+      <div class="param">date </div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span>  format: date</div>
+<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">messageId </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="MailBlockRspamd"><code>MailBlockRspamd</code> - Root Type for MailBlockRspamd</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>This is a block entry from the rspamd block list.</div>
+    <div class="field-items">
+      <div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="MailBlocks"><code>MailBlocks</code> - Root Type for MailBlocks</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>The listing of blocked emails.</div>
+    <div class="field-items">
+      <div class="param">local </div><div class="param-desc"><span class="param-type"><a href="#MailBlockClickHouse">array[MailBlockClickHouse]</a></span>  </div>
+<div class="param">mbtrap </div><div class="param-desc"><span class="param-type"><a href="#MailBlockClickHouse">array[MailBlockClickHouse]</a></span>  </div>
+<div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#MailBlockRspamd">array[MailBlockRspamd]</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -612,6 +1065,16 @@ font-style: italic;
     </div>  <!-- field-items -->
   </div>
   <div class="model">
+    <h3><a name="MailOrder"><code>MailOrder</code> - Root Type for MailOrder</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A mail order record</div>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The ID of the order. format: int32</div>
+<div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The order status. </div>
+<div class="param">username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The username to use for this order. </div>
+<div class="param">comment (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional order comment. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
     <h3><a name="SendMail"><code>SendMail</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Details for an Email</div>
     <div class="field-items">
@@ -627,72 +1090,13 @@ font-style: italic;
     <div class="field-items">
       <div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The subject or title of the email </div>
 <div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The main email contents. </div>
-<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#SendMailAdv_from">SendMailAdv_from</a></span>  </div>
-<div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#SendMailAdv_to_inner">array[SendMailAdv_to_inner]</a></span> A list of destionation email addresses to send this to </div>
-<div class="param">replyto (optional)</div><div class="param-desc"><span class="param-type"><a href="#SendMailAdv_replyto_inner">array[SendMailAdv_replyto_inner]</a></span> (optional) A list of email addresses that specify where replies to the email should be sent instead of the <em>from</em> address. </div>
-<div class="param">cc (optional)</div><div class="param-desc"><span class="param-type"><a href="#SendMailAdv_cc_inner">array[SendMailAdv_cc_inner]</a></span> (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. </div>
-<div class="param">bcc (optional)</div><div class="param-desc"><span class="param-type"><a href="#SendMailAdv_bcc_inner">array[SendMailAdv_bcc_inner]</a></span> (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. </div>
-<div class="param">attachments (optional)</div><div class="param-desc"><span class="param-type"><a href="#SendMailAdv_attachments_inner">array[SendMailAdv_attachments_inner]</a></span> (optional) File attachments to include in the email.  The file contents must be base64 encoded! </div>
+<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#EmailAddressName">EmailAddressName</a></span>  </div>
+<div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#EmailAddressName">array[EmailAddressName]</a></span> A list of destionation email addresses to send this to </div>
+<div class="param">replyto (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressName">array[EmailAddressName]</a></span> (optional) A list of email addresses that specify where replies to the email should be sent instead of the <em>from</em> address. </div>
+<div class="param">cc (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressName">array[EmailAddressName]</a></span> (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. </div>
+<div class="param">bcc (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressName">array[EmailAddressName]</a></span> (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. </div>
+<div class="param">attachments (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailAttachment">array[MailAttachment]</a></span> (optional) File attachments to include in the email.  The file contents must be base64 encoded! </div>
 <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span> (optional)  ID of the Mail order within our system to use as the Mail Account. format: int64</div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="SendMailAdv_attachments_inner"><code>SendMailAdv_attachments_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>A File attachment for an email</div>
-    <div class="field-items">
-      <div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#file">File</a></span> Contents of the attached file (must be base64 encoded) format: binary</div>
-<div class="param">filename (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> (optional) Filename to specify for the attachment. </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="SendMailAdv_bcc_inner"><code>SendMailAdv_bcc_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>An Email Contact</div>
-    <div class="field-items">
-      <div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The email address </div>
-<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> (optional) Name to use for the BCC contact. </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="SendMailAdv_cc_inner"><code>SendMailAdv_cc_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>An Email Contact</div>
-    <div class="field-items">
-      <div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The email address </div>
-<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> (optional) Name to use for the CC contact. </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="SendMailAdv_from"><code>SendMailAdv_from</code> - </a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>The information to use for the From address in the email. from.</div>
-    <div class="field-items">
-      <div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The email address </div>
-<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> (optional) Name to use for the sending contact. </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="SendMailAdv_replyto_inner"><code>SendMailAdv_replyto_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>An Email Contact</div>
-    <div class="field-items">
-      <div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The email address </div>
-<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> (optional) Name to use for the sending contact. </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="SendMailAdv_to_inner"><code>SendMailAdv_to_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>An Email Contact</div>
-    <div class="field-items">
-      <div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The email address </div>
-<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> (optional) Name to use for the destination contact. </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="getMailOrders_200_response_inner"><code>getMailOrders_200_response_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'></div>
-    <div class="field-items">
-      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
-<div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">comment (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -701,6 +1105,17 @@ font-style: italic;
     <div class="field-items">
       <div class="param">code </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">message </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="getStats_200_response_inner"><code>getStats_200_response_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">comment (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   </body>

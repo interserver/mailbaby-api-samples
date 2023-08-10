@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -13,14 +13,128 @@
  */
 
 
-import { Configuration } from './configuration';
-import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { Configuration } from './configuration';
+import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
+import type { RequestArgs } from './base';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
+import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
 
+/**
+ * The data for a email deny rule record.
+ * @export
+ * @interface DenyRuleNew
+ */
+export interface DenyRuleNew {
+    /**
+     * The type of deny rule.
+     * @type {string}
+     * @memberof DenyRuleNew
+     */
+    'type': DenyRuleNewTypeEnum;
+    /**
+     * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+     * @type {string}
+     * @memberof DenyRuleNew
+     */
+    'data': string;
+    /**
+     * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+     * @type {string}
+     * @memberof DenyRuleNew
+     */
+    'user'?: string;
+}
+
+export const DenyRuleNewTypeEnum = {
+    Domain: 'domain',
+    Email: 'email',
+    Startswith: 'startswith'
+} as const;
+
+export type DenyRuleNewTypeEnum = typeof DenyRuleNewTypeEnum[keyof typeof DenyRuleNewTypeEnum];
+
+/**
+ * The data for a email deny rule record.
+ * @export
+ * @interface DenyRuleRecord
+ */
+export interface DenyRuleRecord {
+    /**
+     * The type of deny rule.
+     * @type {string}
+     * @memberof DenyRuleRecord
+     */
+    'type': DenyRuleRecordTypeEnum;
+    /**
+     * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+     * @type {string}
+     * @memberof DenyRuleRecord
+     */
+    'data': string;
+    /**
+     * The deny rule Id number.
+     * @type {number}
+     * @memberof DenyRuleRecord
+     */
+    'id': number;
+    /**
+     * the date the rule was created.
+     * @type {string}
+     * @memberof DenyRuleRecord
+     */
+    'created': string;
+    /**
+     * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+     * @type {string}
+     * @memberof DenyRuleRecord
+     */
+    'user'?: string;
+}
+
+export const DenyRuleRecordTypeEnum = {
+    Domain: 'domain',
+    Email: 'email',
+    Startswith: 'startswith'
+} as const;
+
+export type DenyRuleRecordTypeEnum = typeof DenyRuleRecordTypeEnum[keyof typeof DenyRuleRecordTypeEnum];
+
+/**
+ * an email address
+ * @export
+ * @interface EmailAddress
+ */
+export interface EmailAddress {
+    /**
+     * an email address
+     * @type {string}
+     * @memberof EmailAddress
+     */
+    'email'?: string;
+}
+/**
+ * An email contact.
+ * @export
+ * @interface EmailAddressName
+ */
+export interface EmailAddressName {
+    /**
+     * The email address.
+     * @type {string}
+     * @memberof EmailAddressName
+     */
+    'email': string;
+    /**
+     * Name to use for the sending contact.
+     * @type {string}
+     * @memberof EmailAddressName
+     */
+    'name'?: string;
+}
 /**
  * 
  * @export
@@ -43,43 +157,6 @@ export interface GenericResponse {
 /**
  * 
  * @export
- * @interface GetMailOrders200ResponseInner
- */
-export interface GetMailOrders200ResponseInner {
-    /**
-     * 
-     * @type {number}
-     * @memberof GetMailOrders200ResponseInner
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMailOrders200ResponseInner
-     */
-    'status': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMailOrders200ResponseInner
-     */
-    'username': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMailOrders200ResponseInner
-     */
-    'password'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMailOrders200ResponseInner
-     */
-    'comment'?: string;
-}
-/**
- * 
- * @export
  * @interface GetMailOrders401Response
  */
 export interface GetMailOrders401Response {
@@ -95,6 +172,143 @@ export interface GetMailOrders401Response {
      * @memberof GetMailOrders401Response
      */
     'message': string;
+}
+/**
+ * 
+ * @export
+ * @interface GetStats200ResponseInner
+ */
+export interface GetStats200ResponseInner {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetStats200ResponseInner
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetStats200ResponseInner
+     */
+    'status': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetStats200ResponseInner
+     */
+    'username': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetStats200ResponseInner
+     */
+    'password'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetStats200ResponseInner
+     */
+    'comment'?: string;
+}
+/**
+ * (optional) File attachments to include in the email.  The file contents must be base64
+ * @export
+ * @interface MailAttachment
+ */
+export interface MailAttachment {
+    /**
+     * The filename of the attached file.
+     * @type {string}
+     * @memberof MailAttachment
+     */
+    'filename': string;
+    /**
+     * The file contents base64 encoded
+     * @type {string}
+     * @memberof MailAttachment
+     */
+    'data': string;
+}
+/**
+ * A block entry from the clickhouse mailblocks server.
+ * @export
+ * @interface MailBlockClickHouse
+ */
+export interface MailBlockClickHouse {
+    /**
+     * 
+     * @type {string}
+     * @memberof MailBlockClickHouse
+     */
+    'date': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MailBlockClickHouse
+     */
+    'from': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MailBlockClickHouse
+     */
+    'messageId': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MailBlockClickHouse
+     */
+    'subject': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MailBlockClickHouse
+     */
+    'to': string;
+}
+/**
+ * This is a block entry from the rspamd block list.
+ * @export
+ * @interface MailBlockRspamd
+ */
+export interface MailBlockRspamd {
+    /**
+     * 
+     * @type {string}
+     * @memberof MailBlockRspamd
+     */
+    'from': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MailBlockRspamd
+     */
+    'subject': string;
+}
+/**
+ * The listing of blocked emails.
+ * @export
+ * @interface MailBlocks
+ */
+export interface MailBlocks {
+    /**
+     * 
+     * @type {Array<MailBlockClickHouse>}
+     * @memberof MailBlocks
+     */
+    'local': Array<MailBlockClickHouse>;
+    /**
+     * 
+     * @type {Array<MailBlockClickHouse>}
+     * @memberof MailBlocks
+     */
+    'mbtrap': Array<MailBlockClickHouse>;
+    /**
+     * 
+     * @type {Array<MailBlockRspamd>}
+     * @memberof MailBlocks
+     */
+    'subject': Array<MailBlockRspamd>;
 }
 /**
  * Mail log records
@@ -273,6 +487,37 @@ export interface MailLogEntry {
     'messageId'?: string;
 }
 /**
+ * A mail order record
+ * @export
+ * @interface MailOrder
+ */
+export interface MailOrder {
+    /**
+     * The ID of the order.
+     * @type {number}
+     * @memberof MailOrder
+     */
+    'id': number;
+    /**
+     * The order status.
+     * @type {string}
+     * @memberof MailOrder
+     */
+    'status': string;
+    /**
+     * The username to use for this order.
+     * @type {string}
+     * @memberof MailOrder
+     */
+    'username': string;
+    /**
+     * Optional order comment.
+     * @type {string}
+     * @memberof MailOrder
+     */
+    'comment'?: string;
+}
+/**
  * Details for an Email
  * @export
  * @interface SendMail
@@ -323,40 +568,40 @@ export interface SendMailAdv {
     'body': string;
     /**
      * 
-     * @type {SendMailAdvFrom}
+     * @type {EmailAddressName}
      * @memberof SendMailAdv
      */
-    'from': SendMailAdvFrom;
+    'from': EmailAddressName;
     /**
      * A list of destionation email addresses to send this to
-     * @type {Array<SendMailAdvToInner>}
+     * @type {Array<EmailAddressName>}
      * @memberof SendMailAdv
      */
-    'to': Array<SendMailAdvToInner>;
+    'to': Array<EmailAddressName>;
     /**
      * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-     * @type {Array<SendMailAdvReplytoInner>}
+     * @type {Array<EmailAddressName>}
      * @memberof SendMailAdv
      */
-    'replyto'?: Array<SendMailAdvReplytoInner>;
+    'replyto'?: Array<EmailAddressName>;
     /**
      * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @type {Array<SendMailAdvCcInner>}
+     * @type {Array<EmailAddressName>}
      * @memberof SendMailAdv
      */
-    'cc'?: Array<SendMailAdvCcInner>;
+    'cc'?: Array<EmailAddressName>;
     /**
      * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-     * @type {Array<SendMailAdvBccInner>}
+     * @type {Array<EmailAddressName>}
      * @memberof SendMailAdv
      */
-    'bcc'?: Array<SendMailAdvBccInner>;
+    'bcc'?: Array<EmailAddressName>;
     /**
      * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
-     * @type {Array<SendMailAdvAttachmentsInner>}
+     * @type {Array<MailAttachment>}
      * @memberof SendMailAdv
      */
-    'attachments'?: Array<SendMailAdvAttachmentsInner>;
+    'attachments'?: Array<MailAttachment>;
     /**
      * (optional)  ID of the Mail order within our system to use as the Mail Account.
      * @type {number}
@@ -364,135 +609,28 @@ export interface SendMailAdv {
      */
     'id'?: number;
 }
-/**
- * A File attachment for an email
- * @export
- * @interface SendMailAdvAttachmentsInner
- */
-export interface SendMailAdvAttachmentsInner {
-    /**
-     * Contents of the attached file (must be base64 encoded)
-     * @type {any}
-     * @memberof SendMailAdvAttachmentsInner
-     */
-    'data': any;
-    /**
-     * (optional) Filename to specify for the attachment.
-     * @type {string}
-     * @memberof SendMailAdvAttachmentsInner
-     */
-    'filename'?: string;
-}
-/**
- * An Email Contact
- * @export
- * @interface SendMailAdvBccInner
- */
-export interface SendMailAdvBccInner {
-    /**
-     * The email address
-     * @type {string}
-     * @memberof SendMailAdvBccInner
-     */
-    'email': string;
-    /**
-     * (optional) Name to use for the BCC contact.
-     * @type {string}
-     * @memberof SendMailAdvBccInner
-     */
-    'name'?: string;
-}
-/**
- * An Email Contact
- * @export
- * @interface SendMailAdvCcInner
- */
-export interface SendMailAdvCcInner {
-    /**
-     * The email address
-     * @type {string}
-     * @memberof SendMailAdvCcInner
-     */
-    'email': string;
-    /**
-     * (optional) Name to use for the CC contact.
-     * @type {string}
-     * @memberof SendMailAdvCcInner
-     */
-    'name'?: string;
-}
-/**
- * The information to use for the From address in the email. from.
- * @export
- * @interface SendMailAdvFrom
- */
-export interface SendMailAdvFrom {
-    /**
-     * The email address
-     * @type {string}
-     * @memberof SendMailAdvFrom
-     */
-    'email': string;
-    /**
-     * (optional) Name to use for the sending contact.
-     * @type {string}
-     * @memberof SendMailAdvFrom
-     */
-    'name'?: string;
-}
-/**
- * An Email Contact
- * @export
- * @interface SendMailAdvReplytoInner
- */
-export interface SendMailAdvReplytoInner {
-    /**
-     * The email address
-     * @type {string}
-     * @memberof SendMailAdvReplytoInner
-     */
-    'email': string;
-    /**
-     * (optional) Name to use for the sending contact.
-     * @type {string}
-     * @memberof SendMailAdvReplytoInner
-     */
-    'name'?: string;
-}
-/**
- * An Email Contact
- * @export
- * @interface SendMailAdvToInner
- */
-export interface SendMailAdvToInner {
-    /**
-     * The email address
-     * @type {string}
-     * @memberof SendMailAdvToInner
-     */
-    'email': string;
-    /**
-     * (optional) Name to use for the destination contact.
-     * @type {string}
-     * @memberof SendMailAdvToInner
-     */
-    'name'?: string;
-}
 
 /**
- * DefaultApi - axios parameter creator
+ * BlockingApi - axios parameter creator
  * @export
  */
-export const DefaultApiAxiosParamCreator = function (configuration?: Configuration) {
+export const BlockingApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
-         * @summary displays a list of mail service orders
+         * Adds a new email deny rule into the system to block new emails that match the given criteria
+         * @summary Creates a new email deny rule.
+         * @param {AddRuleTypeEnum} type The type of deny rule.
+         * @param {string} data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+         * @param {string} [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailOrders: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/mail`;
+        addRule: async (type: AddRuleTypeEnum, data: string, user?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('addRule', 'type', type)
+            // verify required parameter 'data' is not null or undefined
+            assertParamExists('addRule', 'data', data)
+            const localVarPath = `/mail/rules`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -500,7 +638,60 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new URLSearchParams();
+
+            // authentication apiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
+
+
+            if (user !== undefined) { 
+                localVarFormParams.set('user', user as any);
+            }
+    
+            if (type !== undefined) { 
+                localVarFormParams.set('type', type as any);
+            }
+    
+            if (data !== undefined) { 
+                localVarFormParams.set('data', data as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams.toString();
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Removes one of the configured deny mail rules from the system.
+         * @summary Removes an deny mail rule.
+         * @param {number} ruleId The ID of the Rules entry.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteRule: async (ruleId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'ruleId' is not null or undefined
+            assertParamExists('deleteRule', 'ruleId', ruleId)
+            const localVarPath = `/mail/rules/{ruleId}`
+                .replace(`{${"ruleId"}}`, encodeURIComponent(String(ruleId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -519,46 +710,16 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * 
-         * @summary Checks if the server is running
+         * Removes an email address from the various block lists. 
+         * @summary Removes an email address from the blocked list
+         * @param {EmailAddress} emailAddress 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pingServer: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/ping`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-         * @summary Sends an Email with Advanced Options
-         * @param {SendMailAdv} sendMailAdv 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        sendAdvMail: async (sendMailAdv: SendMailAdv, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'sendMailAdv' is not null or undefined
-            assertParamExists('sendAdvMail', 'sendMailAdv', sendMailAdv)
-            const localVarPath = `/mail/advsend`;
+        delistBlock: async (emailAddress: EmailAddress, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'emailAddress' is not null or undefined
+            assertParamExists('delistBlock', 'emailAddress', emailAddress)
+            const localVarPath = `/mail/blocks/delete`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -580,7 +741,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(sendMailAdv, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(emailAddress, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -588,25 +749,13 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
-         * @summary Sends an Email
-         * @param {string} to The Contact whom is the primary recipient of this email.
-         * @param {string} from The contact whom is the this email is from.
-         * @param {string} subject The subject or title of the email
-         * @param {string} body The main email contents.
+         * 
+         * @summary displays a list of blocked email addresses
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail: async (to: string, from: string, subject: string, body: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'to' is not null or undefined
-            assertParamExists('sendMail', 'to', to)
-            // verify required parameter 'from' is not null or undefined
-            assertParamExists('sendMail', 'from', from)
-            // verify required parameter 'subject' is not null or undefined
-            assertParamExists('sendMail', 'subject', subject)
-            // verify required parameter 'body' is not null or undefined
-            assertParamExists('sendMail', 'body', body)
-            const localVarPath = `/mail/send`;
+        getMailBlocks: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/mail/blocks`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -614,38 +763,297 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-            const localVarFormParams = new URLSearchParams();
 
             // authentication apiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
 
 
-            if (to !== undefined) { 
-                localVarFormParams.set('to', to as any);
-            }
-    
-            if (from !== undefined) { 
-                localVarFormParams.set('from', from as any);
-            }
-    
-            if (subject !== undefined) { 
-                localVarFormParams.set('subject', subject as any);
-            }
-    
-            if (body !== undefined) { 
-                localVarFormParams.set('body', body as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams.toString();
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a listing of all the deny block rules you have configured.
+         * @summary Displays a listing of deny email rules.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRules: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/mail/rules`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * BlockingApi - functional programming interface
+ * @export
+ */
+export const BlockingApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = BlockingApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Adds a new email deny rule into the system to block new emails that match the given criteria
+         * @summary Creates a new email deny rule.
+         * @param {AddRuleTypeEnum} type The type of deny rule.
+         * @param {string} data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+         * @param {string} [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addRule(type, data, user, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Removes one of the configured deny mail rules from the system.
+         * @summary Removes an deny mail rule.
+         * @param {number} ruleId The ID of the Rules entry.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteRule(ruleId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteRule(ruleId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Removes an email address from the various block lists. 
+         * @summary Removes an email address from the blocked list
+         * @param {EmailAddress} emailAddress 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async delistBlock(emailAddress: EmailAddress, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.delistBlock(emailAddress, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary displays a list of blocked email addresses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMailBlocks(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MailBlocks>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMailBlocks(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Returns a listing of all the deny block rules you have configured.
+         * @summary Displays a listing of deny email rules.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getRules(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DenyRuleRecord>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRules(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * BlockingApi - factory interface
+ * @export
+ */
+export const BlockingApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = BlockingApiFp(configuration)
+    return {
+        /**
+         * Adds a new email deny rule into the system to block new emails that match the given criteria
+         * @summary Creates a new email deny rule.
+         * @param {AddRuleTypeEnum} type The type of deny rule.
+         * @param {string} data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+         * @param {string} [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: any): AxiosPromise<GenericResponse> {
+            return localVarFp.addRule(type, data, user, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Removes one of the configured deny mail rules from the system.
+         * @summary Removes an deny mail rule.
+         * @param {number} ruleId The ID of the Rules entry.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteRule(ruleId: number, options?: any): AxiosPromise<GenericResponse> {
+            return localVarFp.deleteRule(ruleId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Removes an email address from the various block lists. 
+         * @summary Removes an email address from the blocked list
+         * @param {EmailAddress} emailAddress 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        delistBlock(emailAddress: EmailAddress, options?: any): AxiosPromise<GenericResponse> {
+            return localVarFp.delistBlock(emailAddress, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary displays a list of blocked email addresses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMailBlocks(options?: any): AxiosPromise<MailBlocks> {
+            return localVarFp.getMailBlocks(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns a listing of all the deny block rules you have configured.
+         * @summary Displays a listing of deny email rules.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getRules(options?: any): AxiosPromise<Array<DenyRuleRecord>> {
+            return localVarFp.getRules(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * BlockingApi - object-oriented interface
+ * @export
+ * @class BlockingApi
+ * @extends {BaseAPI}
+ */
+export class BlockingApi extends BaseAPI {
+    /**
+     * Adds a new email deny rule into the system to block new emails that match the given criteria
+     * @summary Creates a new email deny rule.
+     * @param {AddRuleTypeEnum} type The type of deny rule.
+     * @param {string} data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+     * @param {string} [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BlockingApi
+     */
+    public addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: AxiosRequestConfig) {
+        return BlockingApiFp(this.configuration).addRule(type, data, user, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Removes one of the configured deny mail rules from the system.
+     * @summary Removes an deny mail rule.
+     * @param {number} ruleId The ID of the Rules entry.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BlockingApi
+     */
+    public deleteRule(ruleId: number, options?: AxiosRequestConfig) {
+        return BlockingApiFp(this.configuration).deleteRule(ruleId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Removes an email address from the various block lists. 
+     * @summary Removes an email address from the blocked list
+     * @param {EmailAddress} emailAddress 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BlockingApi
+     */
+    public delistBlock(emailAddress: EmailAddress, options?: AxiosRequestConfig) {
+        return BlockingApiFp(this.configuration).delistBlock(emailAddress, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary displays a list of blocked email addresses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BlockingApi
+     */
+    public getMailBlocks(options?: AxiosRequestConfig) {
+        return BlockingApiFp(this.configuration).getMailBlocks(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns a listing of all the deny block rules you have configured.
+     * @summary Displays a listing of deny email rules.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BlockingApi
+     */
+    public getRules(options?: AxiosRequestConfig) {
+        return BlockingApiFp(this.configuration).getRules(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+/**
+ * @export
+ */
+export const AddRuleTypeEnum = {
+    Domain: 'domain',
+    Email: 'email',
+    Startswith: 'startswith'
+} as const;
+export type AddRuleTypeEnum = typeof AddRuleTypeEnum[keyof typeof AddRuleTypeEnum];
+
+
+/**
+ * HistoryApi - axios parameter creator
+ * @export
+ */
+export const HistoryApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary displays a list of blocked email addresses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getStats: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/mail/stats`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -744,55 +1152,20 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 };
 
 /**
- * DefaultApi - functional programming interface
+ * HistoryApi - functional programming interface
  * @export
  */
-export const DefaultApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = DefaultApiAxiosParamCreator(configuration)
+export const HistoryApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = HistoryApiAxiosParamCreator(configuration)
     return {
         /**
          * 
-         * @summary displays a list of mail service orders
+         * @summary displays a list of blocked email addresses
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMailOrders(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetMailOrders200ResponseInner>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getMailOrders(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * 
-         * @summary Checks if the server is running
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async pingServer(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.pingServer(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-         * @summary Sends an Email with Advanced Options
-         * @param {SendMailAdv} sendMailAdv 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async sendAdvMail(sendMailAdv: SendMailAdv, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendAdvMail(sendMailAdv, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
-         * @summary Sends an Email
-         * @param {string} to The Contact whom is the primary recipient of this email.
-         * @param {string} from The contact whom is the this email is from.
-         * @param {string} subject The subject or title of the email
-         * @param {string} body The main email contents.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async sendMail(to: string, from: string, subject: string, body: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.sendMail(to, from, subject, body, options);
+        async getStats(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetStats200ResponseInner>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getStats(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -820,52 +1193,20 @@ export const DefaultApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * DefaultApi - factory interface
+ * HistoryApi - factory interface
  * @export
  */
-export const DefaultApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = DefaultApiFp(configuration)
+export const HistoryApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = HistoryApiFp(configuration)
     return {
         /**
          * 
-         * @summary displays a list of mail service orders
+         * @summary displays a list of blocked email addresses
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailOrders(options?: any): AxiosPromise<Array<GetMailOrders200ResponseInner>> {
-            return localVarFp.getMailOrders(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Checks if the server is running
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        pingServer(options?: any): AxiosPromise<void> {
-            return localVarFp.pingServer(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-         * @summary Sends an Email with Advanced Options
-         * @param {SendMailAdv} sendMailAdv 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        sendAdvMail(sendMailAdv: SendMailAdv, options?: any): AxiosPromise<GenericResponse> {
-            return localVarFp.sendAdvMail(sendMailAdv, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
-         * @summary Sends an Email
-         * @param {string} to The Contact whom is the primary recipient of this email.
-         * @param {string} from The contact whom is the this email is from.
-         * @param {string} subject The subject or title of the email
-         * @param {string} body The main email contents.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        sendMail(to: string, from: string, subject: string, body: string, options?: any): AxiosPromise<GenericResponse> {
-            return localVarFp.sendMail(to, from, subject, body, options).then((request) => request(axios, basePath));
+        getStats(options?: any): AxiosPromise<Array<GetStats200ResponseInner>> {
+            return localVarFp.getStats(options).then((request) => request(axios, basePath));
         },
         /**
          * Get a listing of the emails sent through this system 
@@ -891,59 +1232,21 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
 };
 
 /**
- * DefaultApi - object-oriented interface
+ * HistoryApi - object-oriented interface
  * @export
- * @class DefaultApi
+ * @class HistoryApi
  * @extends {BaseAPI}
  */
-export class DefaultApi extends BaseAPI {
+export class HistoryApi extends BaseAPI {
     /**
      * 
-     * @summary displays a list of mail service orders
+     * @summary displays a list of blocked email addresses
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DefaultApi
+     * @memberof HistoryApi
      */
-    public getMailOrders(options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).getMailOrders(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Checks if the server is running
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public pingServer(options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).pingServer(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-     * @summary Sends an Email with Advanced Options
-     * @param {SendMailAdv} sendMailAdv 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public sendAdvMail(sendMailAdv: SendMailAdv, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).sendAdvMail(sendMailAdv, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
-     * @summary Sends an Email
-     * @param {string} to The Contact whom is the primary recipient of this email.
-     * @param {string} from The contact whom is the this email is from.
-     * @param {string} subject The subject or title of the email
-     * @param {string} body The main email contents.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public sendMail(to: string, from: string, subject: string, body: string, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).sendMail(to, from, subject, body, options).then((request) => request(this.axios, this.basePath));
+    public getStats(options?: AxiosRequestConfig) {
+        return HistoryApiFp(this.configuration).getStats(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -962,10 +1265,507 @@ export class DefaultApi extends BaseAPI {
      * @param {number} [endDate] earliest date to get emails in unix timestamp format
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DefaultApi
+     * @memberof HistoryApi
      */
     public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, options).then((request) => request(this.axios, this.basePath));
+        return HistoryApiFp(this.configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * SendingApi - axios parameter creator
+ * @export
+ */
+export const SendingApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+         * @summary Sends an Email with Advanced Options
+         * @param {string} subject The subject or title of the email
+         * @param {string} body The main email contents.
+         * @param {EmailAddressName} from 
+         * @param {Array<EmailAddressName>} to A list of destionation email addresses to send this to
+         * @param {Array<EmailAddressName>} [replyto] (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+         * @param {Array<EmailAddressName>} [cc] (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+         * @param {Array<EmailAddressName>} [bcc] (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+         * @param {Array<MailAttachment>} [attachments] (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+         * @param {number} [id] (optional)  ID of the Mail order within our system to use as the Mail Account.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sendAdvMail: async (subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'subject' is not null or undefined
+            assertParamExists('sendAdvMail', 'subject', subject)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('sendAdvMail', 'body', body)
+            // verify required parameter 'from' is not null or undefined
+            assertParamExists('sendAdvMail', 'from', from)
+            // verify required parameter 'to' is not null or undefined
+            assertParamExists('sendAdvMail', 'to', to)
+            const localVarPath = `/mail/advsend`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new URLSearchParams();
+
+            // authentication apiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
+
+
+            if (subject !== undefined) { 
+                localVarFormParams.set('subject', subject as any);
+            }
+    
+            if (body !== undefined) { 
+                localVarFormParams.set('body', body as any);
+            }
+    
+            if (from !== undefined) { 
+                localVarFormParams.set('from', from as any);
+            }
+                if (to) {
+                localVarFormParams.set('to', to.join(COLLECTION_FORMATS.csv));
+            }
+
+                if (replyto) {
+                localVarFormParams.set('replyto', replyto.join(COLLECTION_FORMATS.csv));
+            }
+
+                if (cc) {
+                localVarFormParams.set('cc', cc.join(COLLECTION_FORMATS.csv));
+            }
+
+                if (bcc) {
+                localVarFormParams.set('bcc', bcc.join(COLLECTION_FORMATS.csv));
+            }
+
+                if (attachments) {
+                localVarFormParams.set('attachments', attachments.join(COLLECTION_FORMATS.csv));
+            }
+
+    
+            if (id !== undefined) { 
+                localVarFormParams.set('id', id as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams.toString();
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
+         * @summary Sends an Email
+         * @param {string} to The Contact whom is the primary recipient of this email.
+         * @param {string} from The contact whom is the this email is from.
+         * @param {string} subject The subject or title of the email
+         * @param {string} body The main email contents.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sendMail: async (to: string, from: string, subject: string, body: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'to' is not null or undefined
+            assertParamExists('sendMail', 'to', to)
+            // verify required parameter 'from' is not null or undefined
+            assertParamExists('sendMail', 'from', from)
+            // verify required parameter 'subject' is not null or undefined
+            assertParamExists('sendMail', 'subject', subject)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('sendMail', 'body', body)
+            const localVarPath = `/mail/send`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new URLSearchParams();
+
+            // authentication apiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
+
+
+            if (to !== undefined) { 
+                localVarFormParams.set('to', to as any);
+            }
+    
+            if (from !== undefined) { 
+                localVarFormParams.set('from', from as any);
+            }
+    
+            if (subject !== undefined) { 
+                localVarFormParams.set('subject', subject as any);
+            }
+    
+            if (body !== undefined) { 
+                localVarFormParams.set('body', body as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams.toString();
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SendingApi - functional programming interface
+ * @export
+ */
+export const SendingApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SendingApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+         * @summary Sends an Email with Advanced Options
+         * @param {string} subject The subject or title of the email
+         * @param {string} body The main email contents.
+         * @param {EmailAddressName} from 
+         * @param {Array<EmailAddressName>} to A list of destionation email addresses to send this to
+         * @param {Array<EmailAddressName>} [replyto] (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+         * @param {Array<EmailAddressName>} [cc] (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+         * @param {Array<EmailAddressName>} [bcc] (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+         * @param {Array<MailAttachment>} [attachments] (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+         * @param {number} [id] (optional)  ID of the Mail order within our system to use as the Mail Account.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async sendAdvMail(subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
+         * @summary Sends an Email
+         * @param {string} to The Contact whom is the primary recipient of this email.
+         * @param {string} from The contact whom is the this email is from.
+         * @param {string} subject The subject or title of the email
+         * @param {string} body The main email contents.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async sendMail(to: string, from: string, subject: string, body: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.sendMail(to, from, subject, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * SendingApi - factory interface
+ * @export
+ */
+export const SendingApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SendingApiFp(configuration)
+    return {
+        /**
+         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+         * @summary Sends an Email with Advanced Options
+         * @param {string} subject The subject or title of the email
+         * @param {string} body The main email contents.
+         * @param {EmailAddressName} from 
+         * @param {Array<EmailAddressName>} to A list of destionation email addresses to send this to
+         * @param {Array<EmailAddressName>} [replyto] (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+         * @param {Array<EmailAddressName>} [cc] (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+         * @param {Array<EmailAddressName>} [bcc] (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+         * @param {Array<MailAttachment>} [attachments] (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+         * @param {number} [id] (optional)  ID of the Mail order within our system to use as the Mail Account.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sendAdvMail(subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, options?: any): AxiosPromise<GenericResponse> {
+            return localVarFp.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
+         * @summary Sends an Email
+         * @param {string} to The Contact whom is the primary recipient of this email.
+         * @param {string} from The contact whom is the this email is from.
+         * @param {string} subject The subject or title of the email
+         * @param {string} body The main email contents.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sendMail(to: string, from: string, subject: string, body: string, options?: any): AxiosPromise<GenericResponse> {
+            return localVarFp.sendMail(to, from, subject, body, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SendingApi - object-oriented interface
+ * @export
+ * @class SendingApi
+ * @extends {BaseAPI}
+ */
+export class SendingApi extends BaseAPI {
+    /**
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+     * @summary Sends an Email with Advanced Options
+     * @param {string} subject The subject or title of the email
+     * @param {string} body The main email contents.
+     * @param {EmailAddressName} from 
+     * @param {Array<EmailAddressName>} to A list of destionation email addresses to send this to
+     * @param {Array<EmailAddressName>} [replyto] (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+     * @param {Array<EmailAddressName>} [cc] (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+     * @param {Array<EmailAddressName>} [bcc] (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+     * @param {Array<MailAttachment>} [attachments] (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+     * @param {number} [id] (optional)  ID of the Mail order within our system to use as the Mail Account.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SendingApi
+     */
+    public sendAdvMail(subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, options?: AxiosRequestConfig) {
+        return SendingApiFp(this.configuration).sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
+     * @summary Sends an Email
+     * @param {string} to The Contact whom is the primary recipient of this email.
+     * @param {string} from The contact whom is the this email is from.
+     * @param {string} subject The subject or title of the email
+     * @param {string} body The main email contents.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SendingApi
+     */
+    public sendMail(to: string, from: string, subject: string, body: string, options?: AxiosRequestConfig) {
+        return SendingApiFp(this.configuration).sendMail(to, from, subject, body, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * ServicesApi - axios parameter creator
+ * @export
+ */
+export const ServicesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+         * @summary displays a list of mail service orders
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMailOrders: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/mail`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ServicesApi - functional programming interface
+ * @export
+ */
+export const ServicesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ServicesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+         * @summary displays a list of mail service orders
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMailOrders(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MailOrder>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMailOrders(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * ServicesApi - factory interface
+ * @export
+ */
+export const ServicesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ServicesApiFp(configuration)
+    return {
+        /**
+         * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+         * @summary displays a list of mail service orders
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMailOrders(options?: any): AxiosPromise<Array<MailOrder>> {
+            return localVarFp.getMailOrders(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ServicesApi - object-oriented interface
+ * @export
+ * @class ServicesApi
+ * @extends {BaseAPI}
+ */
+export class ServicesApi extends BaseAPI {
+    /**
+     * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+     * @summary displays a list of mail service orders
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ServicesApi
+     */
+    public getMailOrders(options?: AxiosRequestConfig) {
+        return ServicesApiFp(this.configuration).getMailOrders(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * StatusApi - axios parameter creator
+ * @export
+ */
+export const StatusApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Checks if the server is running
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pingServer: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/ping`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication apiKeyAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * StatusApi - functional programming interface
+ * @export
+ */
+export const StatusApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = StatusApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Checks if the server is running
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pingServer(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pingServer(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * StatusApi - factory interface
+ * @export
+ */
+export const StatusApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = StatusApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Checks if the server is running
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pingServer(options?: any): AxiosPromise<void> {
+            return localVarFp.pingServer(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * StatusApi - object-oriented interface
+ * @export
+ * @class StatusApi
+ * @extends {BaseAPI}
+ */
+export class StatusApi extends BaseAPI {
+    /**
+     * 
+     * @summary Checks if the server is running
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StatusApi
+     */
+    public pingServer(options?: AxiosRequestConfig) {
+        return StatusApiFp(this.configuration).pingServer(options).then((request) => request(this.axios, this.basePath));
     }
 }
 

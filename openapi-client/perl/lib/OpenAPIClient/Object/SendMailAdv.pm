@@ -1,8 +1,8 @@
 =begin comment
 
-MailBaby Email Delivery API
+MailBaby Email Delivery and Management Service API
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
 The version of the OpenAPI document: 1.1.0
 Contact: support@interserver.net
@@ -30,12 +30,8 @@ use Log::Any qw($log);
 use Date::Parse;
 use DateTime;
 
-use OpenAPIClient::Object::SendMailAdvAttachmentsInner;
-use OpenAPIClient::Object::SendMailAdvBccInner;
-use OpenAPIClient::Object::SendMailAdvCcInner;
-use OpenAPIClient::Object::SendMailAdvFrom;
-use OpenAPIClient::Object::SendMailAdvReplytoInner;
-use OpenAPIClient::Object::SendMailAdvToInner;
+use OpenAPIClient::Object::EmailAddressName;
+use OpenAPIClient::Object::MailAttachment;
 
 use base ("Class::Accessor", "Class::Data::Inheritable");
 
@@ -48,9 +44,9 @@ use base ("Class::Accessor", "Class::Data::Inheritable");
 
 =begin comment
 
-MailBaby Email Delivery API
+MailBaby Email Delivery and Management Service API
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
 The version of the OpenAPI document: 1.1.0
 Contact: support@interserver.net
@@ -136,21 +132,25 @@ sub _to_json_primitives {
     if ( grep( /^$type$/, ('int', 'double'))) {
         # https://metacpan.org/pod/JSON#simple-scalars
         # numify it, ensuring it will be dumped as a number
+        return undef unless defined $data;
         return $data + 0;
     } elsif ($type eq 'string') {
         # https://metacpan.org/pod/JSON#simple-scalars
         # stringified
+        return undef unless defined $data;
         return $data . q();
     } elsif ($type eq 'boolean') {
         # https://metacpan.org/pod/JSON#JSON::true,-JSON::false,-JSON::null
         return $data ? \1 : \0;
     } elsif ($type eq 'DATE') {
+        return undef unless defined $data;
         if (ref($data) eq 'DateTime') {
             # https://metacpan.org/pod/DateTime#$dt-%3Eymd($optional_separator),-$dt-%3Emdy(...),-$dt-%3Edmy(...)
             return $data->ymd;
         }
         return $data .q();
     } elsif ($type eq 'DATE_TIME') {
+        return undef unless defined $data;
         # the date-time notation as defined by RFC 3339, section 5.6, for example, 2017-07-21T17:32:28Z
         if (ref($data) eq 'DateTime') {
             # https://metacpan.org/pod/DateTime#$dt-%3Erfc3339
@@ -201,8 +201,10 @@ sub _deserialize {
     if (grep( /^$type$/ , ('DATE_TIME', 'DATE'))) {
         return DateTime->from_epoch(epoch => str2time($data));
     } elsif ( grep( /^$type$/, ('int', 'double'))) {
+        return undef unless defined $data;
         return $data + 0;
     } elsif ($type eq 'string') {
+        return undef unless defined $data;
         return $data . q();
     } elsif ($type eq 'boolean') {
         return !!$data;
@@ -234,42 +236,42 @@ __PACKAGE__->method_documentation({
         read_only => '',
             },
     'from' => {
-        datatype => 'SendMailAdvFrom',
+        datatype => 'EmailAddressName',
         base_name => 'from',
         description => '',
         format => '',
         read_only => '',
             },
     'to' => {
-        datatype => 'ARRAY[SendMailAdvToInner]',
+        datatype => 'ARRAY[EmailAddressName]',
         base_name => 'to',
         description => 'A list of destionation email addresses to send this to',
         format => '',
         read_only => '',
             },
     'replyto' => {
-        datatype => 'ARRAY[SendMailAdvReplytoInner]',
+        datatype => 'ARRAY[EmailAddressName]',
         base_name => 'replyto',
         description => '(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.',
         format => '',
         read_only => '',
             },
     'cc' => {
-        datatype => 'ARRAY[SendMailAdvCcInner]',
+        datatype => 'ARRAY[EmailAddressName]',
         base_name => 'cc',
         description => '(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.',
         format => '',
         read_only => '',
             },
     'bcc' => {
-        datatype => 'ARRAY[SendMailAdvBccInner]',
+        datatype => 'ARRAY[EmailAddressName]',
         base_name => 'bcc',
         description => '(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.',
         format => '',
         read_only => '',
             },
     'attachments' => {
-        datatype => 'ARRAY[SendMailAdvAttachmentsInner]',
+        datatype => 'ARRAY[MailAttachment]',
         base_name => 'attachments',
         description => '(optional) File attachments to include in the email.  The file contents must be base64 encoded!',
         format => '',
@@ -287,12 +289,12 @@ __PACKAGE__->method_documentation({
 __PACKAGE__->openapi_types( {
     'subject' => 'string',
     'body' => 'string',
-    'from' => 'SendMailAdvFrom',
-    'to' => 'ARRAY[SendMailAdvToInner]',
-    'replyto' => 'ARRAY[SendMailAdvReplytoInner]',
-    'cc' => 'ARRAY[SendMailAdvCcInner]',
-    'bcc' => 'ARRAY[SendMailAdvBccInner]',
-    'attachments' => 'ARRAY[SendMailAdvAttachmentsInner]',
+    'from' => 'EmailAddressName',
+    'to' => 'ARRAY[EmailAddressName]',
+    'replyto' => 'ARRAY[EmailAddressName]',
+    'cc' => 'ARRAY[EmailAddressName]',
+    'bcc' => 'ARRAY[EmailAddressName]',
+    'attachments' => 'ARRAY[MailAttachment]',
     'id' => 'int'
 } );
 

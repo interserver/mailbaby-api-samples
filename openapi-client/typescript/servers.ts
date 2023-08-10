@@ -14,9 +14,11 @@ export class ServerConfiguration<T extends { [key: string]: string }> implements
     public constructor(private url: string, private variableConfiguration: T) {}
 
     /**
-     * Sets the value of the variables of this server.
+     * Sets the value of the variables of this server. Variables are included in 
+     * the `url` of this ServerConfiguration in the form `{variableName}`
      *
-     * @param variableConfiguration a partial variable configuration for the variables contained in the url
+     * @param variableConfiguration a partial variable configuration for the 
+     * variables contained in the url
      */
     public setVariables(variableConfiguration: Partial<T>) {
         Object.assign(this.variableConfiguration, variableConfiguration);
@@ -49,6 +51,5 @@ export class ServerConfiguration<T extends { [key: string]: string }> implements
 }
 
 export const server1 = new ServerConfiguration<{  }>("https://api.mailbaby.net", {  })
-export const server2 = new ServerConfiguration<{  }>("https://virtserver.swaggerhub.com/InterServer/Mail-Baby/1.1.0", {  })
 
-export const servers = [server1, server2];
+export const servers = [server1];

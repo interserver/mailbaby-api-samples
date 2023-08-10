@@ -1,8 +1,8 @@
 // @flow
 /* eslint-disable no-use-before-define */
 /**
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -69,6 +69,104 @@ export class RequiredError extends Error {
     }
 }
 
+
+            export type DenyRuleNewTypeEnum = 'domain' | 'email' | 'startswith';
+/**
+ * The data for a email deny rule record.
+ * @export
+ */
+export type DenyRuleNew = {
+    /**
+     * The type of deny rule.
+     * @type {string}
+     * @memberof DenyRuleNew
+     */
+    type: DenyRuleNewTypeEnum;
+    /**
+     * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+     * @type {string}
+     * @memberof DenyRuleNew
+     */
+    data: string;
+    /**
+     * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+     * @type {string}
+     * @memberof DenyRuleNew
+     */
+    user?: string;
+}
+
+
+            export type DenyRuleRecordTypeEnum = 'domain' | 'email' | 'startswith';
+/**
+ * The data for a email deny rule record.
+ * @export
+ */
+export type DenyRuleRecord = {
+    /**
+     * The type of deny rule.
+     * @type {string}
+     * @memberof DenyRuleRecord
+     */
+    type: DenyRuleRecordTypeEnum;
+    /**
+     * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+     * @type {string}
+     * @memberof DenyRuleRecord
+     */
+    data: string;
+    /**
+     * The deny rule Id number.
+     * @type {number}
+     * @memberof DenyRuleRecord
+     */
+    id: number;
+    /**
+     * the date the rule was created.
+     * @type {Date}
+     * @memberof DenyRuleRecord
+     */
+    created: Date;
+    /**
+     * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+     * @type {string}
+     * @memberof DenyRuleRecord
+     */
+    user?: string;
+}
+
+/**
+ * an email address
+ * @export
+ */
+export type EmailAddress = {
+    /**
+     * an email address
+     * @type {string}
+     * @memberof EmailAddress
+     */
+    email?: string;
+}
+
+/**
+ * An email contact.
+ * @export
+ */
+export type EmailAddressName = {
+    /**
+     * The email address.
+     * @type {string}
+     * @memberof EmailAddressName
+     */
+    email: string;
+    /**
+     * Name to use for the sending contact.
+     * @type {string}
+     * @memberof EmailAddressName
+     */
+    name?: string;
+}
+
 /**
  * 
  * @export
@@ -92,43 +190,6 @@ export type GenericResponse = {
  * 
  * @export
  */
-export type GetMailOrders200ResponseInner = {
-    /**
-     * 
-     * @type {number}
-     * @memberof GetMailOrders200ResponseInner
-     */
-    id: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMailOrders200ResponseInner
-     */
-    status: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMailOrders200ResponseInner
-     */
-    username: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMailOrders200ResponseInner
-     */
-    password?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMailOrders200ResponseInner
-     */
-    comment?: string;
-}
-
-/**
- * 
- * @export
- */
 export type GetMailOrders401Response = {
     /**
      * 
@@ -142,6 +203,143 @@ export type GetMailOrders401Response = {
      * @memberof GetMailOrders401Response
      */
     message: string;
+}
+
+/**
+ * 
+ * @export
+ */
+export type GetStats200ResponseInner = {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetStats200ResponseInner
+     */
+    id: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetStats200ResponseInner
+     */
+    status: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetStats200ResponseInner
+     */
+    username: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetStats200ResponseInner
+     */
+    password?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetStats200ResponseInner
+     */
+    comment?: string;
+}
+
+/**
+ * (optional) File attachments to include in the email.  The file contents must be base64
+ * @export
+ */
+export type MailAttachment = {
+    /**
+     * The filename of the attached file.
+     * @type {string}
+     * @memberof MailAttachment
+     */
+    filename: string;
+    /**
+     * The file contents base64 encoded
+     * @type {string}
+     * @memberof MailAttachment
+     */
+    data: string;
+}
+
+/**
+ * A block entry from the clickhouse mailblocks server.
+ * @export
+ */
+export type MailBlockClickHouse = {
+    /**
+     * 
+     * @type {Date}
+     * @memberof MailBlockClickHouse
+     */
+    _date: Date;
+    /**
+     * 
+     * @type {string}
+     * @memberof MailBlockClickHouse
+     */
+    from: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MailBlockClickHouse
+     */
+    messageId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MailBlockClickHouse
+     */
+    subject: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MailBlockClickHouse
+     */
+    to: string;
+}
+
+/**
+ * This is a block entry from the rspamd block list.
+ * @export
+ */
+export type MailBlockRspamd = {
+    /**
+     * 
+     * @type {string}
+     * @memberof MailBlockRspamd
+     */
+    from: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MailBlockRspamd
+     */
+    subject: string;
+}
+
+/**
+ * The listing of blocked emails.
+ * @export
+ */
+export type MailBlocks = {
+    /**
+     * 
+     * @type {Array<MailBlockClickHouse>}
+     * @memberof MailBlocks
+     */
+    local: Array<MailBlockClickHouse>;
+    /**
+     * 
+     * @type {Array<MailBlockClickHouse>}
+     * @memberof MailBlocks
+     */
+    mbtrap: Array<MailBlockClickHouse>;
+    /**
+     * 
+     * @type {Array<MailBlockRspamd>}
+     * @memberof MailBlocks
+     */
+    subject: Array<MailBlockRspamd>;
 }
 
 /**
@@ -321,6 +519,37 @@ export type MailLogEntry = {
 }
 
 /**
+ * A mail order record
+ * @export
+ */
+export type MailOrder = {
+    /**
+     * The ID of the order.
+     * @type {number}
+     * @memberof MailOrder
+     */
+    id: number;
+    /**
+     * The order status.
+     * @type {string}
+     * @memberof MailOrder
+     */
+    status: string;
+    /**
+     * The username to use for this order.
+     * @type {string}
+     * @memberof MailOrder
+     */
+    username: string;
+    /**
+     * Optional order comment.
+     * @type {string}
+     * @memberof MailOrder
+     */
+    comment?: string;
+}
+
+/**
  * Details for an Email
  * @export
  */
@@ -370,40 +599,40 @@ export type SendMailAdv = {
     body: string;
     /**
      * 
-     * @type {SendMailAdvFrom}
+     * @type {EmailAddressName}
      * @memberof SendMailAdv
      */
-    from: SendMailAdvFrom;
+    from: EmailAddressName;
     /**
      * A list of destionation email addresses to send this to
-     * @type {Array<SendMailAdvToInner>}
+     * @type {Array<EmailAddressName>}
      * @memberof SendMailAdv
      */
-    to: Array<SendMailAdvToInner>;
+    to: Array<EmailAddressName>;
     /**
      * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-     * @type {Array<SendMailAdvReplytoInner>}
+     * @type {Array<EmailAddressName>}
      * @memberof SendMailAdv
      */
-    replyto?: Array<SendMailAdvReplytoInner>;
+    replyto?: Array<EmailAddressName>;
     /**
      * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @type {Array<SendMailAdvCcInner>}
+     * @type {Array<EmailAddressName>}
      * @memberof SendMailAdv
      */
-    cc?: Array<SendMailAdvCcInner>;
+    cc?: Array<EmailAddressName>;
     /**
      * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-     * @type {Array<SendMailAdvBccInner>}
+     * @type {Array<EmailAddressName>}
      * @memberof SendMailAdv
      */
-    bcc?: Array<SendMailAdvBccInner>;
+    bcc?: Array<EmailAddressName>;
     /**
      * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
-     * @type {Array<SendMailAdvAttachmentsInner>}
+     * @type {Array<MailAttachment>}
      * @memberof SendMailAdv
      */
-    attachments?: Array<SendMailAdvAttachmentsInner>;
+    attachments?: Array<MailAttachment>;
     /**
      * (optional)  ID of the Mail order within our system to use as the Mail Account.
      * @type {number}
@@ -412,137 +641,80 @@ export type SendMailAdv = {
     id?: number;
 }
 
-/**
- * A File attachment for an email
- * @export
- */
-export type SendMailAdvAttachmentsInner = {
-    /**
-     * Contents of the attached file (must be base64 encoded)
-     * @type {any}
-     * @memberof SendMailAdvAttachmentsInner
-     */
-    data: any;
-    /**
-     * (optional) Filename to specify for the attachment.
-     * @type {string}
-     * @memberof SendMailAdvAttachmentsInner
-     */
-    filename?: string;
-}
-
-/**
- * An Email Contact
- * @export
- */
-export type SendMailAdvBccInner = {
-    /**
-     * The email address
-     * @type {string}
-     * @memberof SendMailAdvBccInner
-     */
-    email: string;
-    /**
-     * (optional) Name to use for the BCC contact.
-     * @type {string}
-     * @memberof SendMailAdvBccInner
-     */
-    name?: string;
-}
-
-/**
- * An Email Contact
- * @export
- */
-export type SendMailAdvCcInner = {
-    /**
-     * The email address
-     * @type {string}
-     * @memberof SendMailAdvCcInner
-     */
-    email: string;
-    /**
-     * (optional) Name to use for the CC contact.
-     * @type {string}
-     * @memberof SendMailAdvCcInner
-     */
-    name?: string;
-}
-
-/**
- * The information to use for the From address in the email. from.
- * @export
- */
-export type SendMailAdvFrom = {
-    /**
-     * The email address
-     * @type {string}
-     * @memberof SendMailAdvFrom
-     */
-    email: string;
-    /**
-     * (optional) Name to use for the sending contact.
-     * @type {string}
-     * @memberof SendMailAdvFrom
-     */
-    name?: string;
-}
-
-/**
- * An Email Contact
- * @export
- */
-export type SendMailAdvReplytoInner = {
-    /**
-     * The email address
-     * @type {string}
-     * @memberof SendMailAdvReplytoInner
-     */
-    email: string;
-    /**
-     * (optional) Name to use for the sending contact.
-     * @type {string}
-     * @memberof SendMailAdvReplytoInner
-     */
-    name?: string;
-}
-
-/**
- * An Email Contact
- * @export
- */
-export type SendMailAdvToInner = {
-    /**
-     * The email address
-     * @type {string}
-     * @memberof SendMailAdvToInner
-     */
-    email: string;
-    /**
-     * (optional) Name to use for the destination contact.
-     * @type {string}
-     * @memberof SendMailAdvToInner
-     */
-    name?: string;
-}
-
 
 
 /**
- * DefaultApi - fetch parameter creator
+ * BlockingApi - fetch parameter creator
  * @export
  */
-export const DefaultApiFetchParamCreator = function (configuration?: Configuration) {
+export const BlockingApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
-         * @summary displays a list of mail service orders
+         * Adds a new email deny rule into the system to block new emails that match the given criteria
+         * @summary Creates a new email deny rule.
          * @throws {RequiredError}
          */
-        getMailOrders(options: RequestOptions): FetchArgs {
-            const localVarPath = `/mail`;
+        addRule(type: string, data: string, user?: string, options: RequestOptions): FetchArgs {
+            // verify required parameter 'type' is not null or undefined
+            if (type === null || type === undefined) {
+                throw new RequiredError('type','Required parameter type was null or undefined when calling addRule.');
+            }
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling addRule.');
+            }
+            const localVarPath = `/mail/rules`;
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
+            const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            const localVarFormParams = new FormData();
+
+            // authentication apiKeyAuth required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("X-API-KEY")
+                    : configuration.apiKey;
+                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
+            }
+
+            if (user !== undefined) {
+                localVarFormParams.set('user', ((user:any):string));
+            }
+
+            if (type !== undefined) {
+                localVarFormParams.set('type', ((type:any):string));
+            }
+
+            if (data !== undefined) {
+                localVarFormParams.set('data', ((data:any):string));
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            localVarRequestOptions.body = localVarFormParams;
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Removes one of the configured deny mail rules from the system.
+         * @summary Removes an deny mail rule.
+         * @throws {RequiredError}
+         */
+        deleteRule(ruleId: number, options: RequestOptions): FetchArgs {
+            // verify required parameter 'ruleId' is not null or undefined
+            if (ruleId === null || ruleId === undefined) {
+                throw new RequiredError('ruleId','Required parameter ruleId was null or undefined when calling deleteRule.');
+            }
+            const localVarPath = `/mail/rules/{ruleId}`
+                .replace(`{${"ruleId"}}`, encodeURIComponent(String(ruleId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'DELETE' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
 
@@ -565,38 +737,16 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * 
-         * @summary Checks if the server is running
+         * Removes an email address from the various block lists. 
+         * @summary Removes an email address from the blocked list
          * @throws {RequiredError}
          */
-        pingServer(options: RequestOptions): FetchArgs {
-            const localVarPath = `/ping`;
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            localVarUrlObj.search = null;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-         * @summary Sends an Email with Advanced Options
-         * @throws {RequiredError}
-         */
-        sendAdvMail(sendMailAdv: SendMailAdv, options: RequestOptions): FetchArgs {
-            // verify required parameter 'sendMailAdv' is not null or undefined
-            if (sendMailAdv === null || sendMailAdv === undefined) {
-                throw new RequiredError('sendMailAdv','Required parameter sendMailAdv was null or undefined when calling sendAdvMail.');
+        delistBlock(emailAddress: EmailAddress, options: RequestOptions): FetchArgs {
+            // verify required parameter 'emailAddress' is not null or undefined
+            if (emailAddress === null || emailAddress === undefined) {
+                throw new RequiredError('emailAddress','Required parameter emailAddress was null or undefined when calling delistBlock.');
             }
-            const localVarPath = `/mail/advsend`;
+            const localVarPath = `/mail/blocks/delete`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
             const localVarHeaderParameter = {};
@@ -616,8 +766,8 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             localVarUrlObj.search = null;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (typeof sendMailAdv !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(sendMailAdv != null ? sendMailAdv : {}) : (((sendMailAdv:any):string) || "");
+            const needsSerialization = (typeof emailAddress !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(emailAddress != null ? emailAddress : {}) : (((emailAddress:any):string) || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -625,33 +775,16 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
-         * @summary Sends an Email
+         * 
+         * @summary displays a list of blocked email addresses
          * @throws {RequiredError}
          */
-        sendMail(to: string, from: string, subject: string, body: string, options: RequestOptions): FetchArgs {
-            // verify required parameter 'to' is not null or undefined
-            if (to === null || to === undefined) {
-                throw new RequiredError('to','Required parameter to was null or undefined when calling sendMail.');
-            }
-            // verify required parameter 'from' is not null or undefined
-            if (from === null || from === undefined) {
-                throw new RequiredError('from','Required parameter from was null or undefined when calling sendMail.');
-            }
-            // verify required parameter 'subject' is not null or undefined
-            if (subject === null || subject === undefined) {
-                throw new RequiredError('subject','Required parameter subject was null or undefined when calling sendMail.');
-            }
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling sendMail.');
-            }
-            const localVarPath = `/mail/send`;
+        getMailBlocks(options: RequestOptions): FetchArgs {
+            const localVarPath = `/mail/blocks`;
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
+            const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
-            const localVarFormParams = new FormData();
 
             // authentication apiKeyAuth required
             if (configuration && configuration.apiKey) {
@@ -661,27 +794,177 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            if (to !== undefined) {
-                localVarFormParams.set('to', ((to:any):string));
-            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
-            if (from !== undefined) {
-                localVarFormParams.set('from', ((from:any):string));
-            }
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns a listing of all the deny block rules you have configured.
+         * @summary Displays a listing of deny email rules.
+         * @throws {RequiredError}
+         */
+        getRules(options: RequestOptions): FetchArgs {
+            const localVarPath = `/mail/rules`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
 
-            if (subject !== undefined) {
-                localVarFormParams.set('subject', ((subject:any):string));
-            }
-
-            if (body !== undefined) {
-                localVarFormParams.set('body', ((body:any):string));
+            // authentication apiKeyAuth required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("X-API-KEY")
+                    : configuration.apiKey;
+                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             localVarUrlObj.search = null;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            localVarRequestOptions.body = localVarFormParams;
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+export type BlockingApiType = { 
+    addRule(type: string, data: string, user?: string, options?: RequestOptions): Promise<GenericResponse>,
+
+    deleteRule(ruleId: number, options?: RequestOptions): Promise<GenericResponse>,
+
+    delistBlock(emailAddress: EmailAddress, options?: RequestOptions): Promise<GenericResponse>,
+
+    getMailBlocks(options?: RequestOptions): Promise<MailBlocks>,
+
+    getRules(options?: RequestOptions): Promise<Array<DenyRuleRecord>>,
+}
+
+/**
+ * BlockingApi - factory function to inject configuration 
+ * @export
+ */
+export const BlockingApi = function(configuration?: Configuration, fetch: FetchAPI = portableFetch): BlockingApiType {
+    const basePath: string = (configuration && configuration.basePath) || BASE_PATH;
+    return {
+        /**
+         * Adds a new email deny rule into the system to block new emails that match the given criteria
+         * @summary Creates a new email deny rule.
+         * @throws {RequiredError}
+         */
+        addRule(type: string, data: string, user?: string, options?: RequestOptions = {}): Promise<GenericResponse> {
+            const localVarFetchArgs = BlockingApiFetchParamCreator(configuration).addRule(type, data, user, options);
+            return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        },
+        /**
+         * Removes one of the configured deny mail rules from the system.
+         * @summary Removes an deny mail rule.
+         * @throws {RequiredError}
+         */
+        deleteRule(ruleId: number, options?: RequestOptions = {}): Promise<GenericResponse> {
+            const localVarFetchArgs = BlockingApiFetchParamCreator(configuration).deleteRule(ruleId, options);
+            return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        },
+        /**
+         * Removes an email address from the various block lists. 
+         * @summary Removes an email address from the blocked list
+         * @throws {RequiredError}
+         */
+        delistBlock(emailAddress: EmailAddress, options?: RequestOptions = {}): Promise<GenericResponse> {
+            const localVarFetchArgs = BlockingApiFetchParamCreator(configuration).delistBlock(emailAddress, options);
+            return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        },
+        /**
+         * 
+         * @summary displays a list of blocked email addresses
+         * @throws {RequiredError}
+         */
+        getMailBlocks(options?: RequestOptions = {}): Promise<MailBlocks> {
+            const localVarFetchArgs = BlockingApiFetchParamCreator(configuration).getMailBlocks(options);
+            return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        },
+        /**
+         * Returns a listing of all the deny block rules you have configured.
+         * @summary Displays a listing of deny email rules.
+         * @throws {RequiredError}
+         */
+        getRules(options?: RequestOptions = {}): Promise<Array<DenyRuleRecord>> {
+            const localVarFetchArgs = BlockingApiFetchParamCreator(configuration).getRules(options);
+            return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        },
+    }
+};
+
+
+/**
+ * HistoryApi - fetch parameter creator
+ * @export
+ */
+export const HistoryApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary displays a list of blocked email addresses
+         * @throws {RequiredError}
+         */
+        getStats(options: RequestOptions): FetchArgs {
+            const localVarPath = `/mail/stats`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+
+            // authentication apiKeyAuth required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("X-API-KEY")
+                    : configuration.apiKey;
+                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
 
             return {
                 url: url.format(localVarUrlObj),
@@ -765,77 +1048,26 @@ export const DefaultApiFetchParamCreator = function (configuration?: Configurati
     }
 };
 
-export type DefaultApiType = { 
-    getMailOrders(options?: RequestOptions): Promise<Array<GetMailOrders200ResponseInner>>,
-
-    pingServer(options?: RequestOptions): Promise<Response>,
-
-    sendAdvMail(sendMailAdv: SendMailAdv, options?: RequestOptions): Promise<GenericResponse>,
-
-    sendMail(to: string, from: string, subject: string, body: string, options?: RequestOptions): Promise<GenericResponse>,
+export type HistoryApiType = { 
+    getStats(options?: RequestOptions): Promise<Array<GetStats200ResponseInner>>,
 
     viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, options?: RequestOptions): Promise<MailLog>,
 }
 
 /**
- * DefaultApi - factory function to inject configuration 
+ * HistoryApi - factory function to inject configuration 
  * @export
  */
-export const DefaultApi = function(configuration?: Configuration, fetch: FetchAPI = portableFetch): DefaultApiType {
+export const HistoryApi = function(configuration?: Configuration, fetch: FetchAPI = portableFetch): HistoryApiType {
     const basePath: string = (configuration && configuration.basePath) || BASE_PATH;
     return {
         /**
          * 
-         * @summary displays a list of mail service orders
+         * @summary displays a list of blocked email addresses
          * @throws {RequiredError}
          */
-        getMailOrders(options?: RequestOptions = {}): Promise<Array<GetMailOrders200ResponseInner>> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).getMailOrders(options);
-            return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    return response.json();
-                } else {
-                    throw response;
-                }
-            });
-        },
-        /**
-         * 
-         * @summary Checks if the server is running
-         * @throws {RequiredError}
-         */
-        pingServer(options?: RequestOptions = {}): Promise<Response> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).pingServer(options);
-            return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    return response;
-                } else {
-                    throw response;
-                }
-            });
-        },
-        /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-         * @summary Sends an Email with Advanced Options
-         * @throws {RequiredError}
-         */
-        sendAdvMail(sendMailAdv: SendMailAdv, options?: RequestOptions = {}): Promise<GenericResponse> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendAdvMail(sendMailAdv, options);
-            return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                if (response.status >= 200 && response.status < 300) {
-                    return response.json();
-                } else {
-                    throw response;
-                }
-            });
-        },
-        /**
-         * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
-         * @summary Sends an Email
-         * @throws {RequiredError}
-         */
-        sendMail(to: string, from: string, subject: string, body: string, options?: RequestOptions = {}): Promise<GenericResponse> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).sendMail(to, from, subject, body, options);
+        getStats(options?: RequestOptions = {}): Promise<Array<GetStats200ResponseInner>> {
+            const localVarFetchArgs = HistoryApiFetchParamCreator(configuration).getStats(options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();
@@ -850,7 +1082,7 @@ export const DefaultApi = function(configuration?: Configuration, fetch: FetchAP
          * @throws {RequiredError}
          */
         viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, options?: RequestOptions = {}): Promise<MailLog> {
-            const localVarFetchArgs = DefaultApiFetchParamCreator(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, options);
+            const localVarFetchArgs = HistoryApiFetchParamCreator(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();
@@ -863,6 +1095,356 @@ export const DefaultApi = function(configuration?: Configuration, fetch: FetchAP
 };
 
 
+/**
+ * SendingApi - fetch parameter creator
+ * @export
+ */
+export const SendingApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+         * @summary Sends an Email with Advanced Options
+         * @throws {RequiredError}
+         */
+        sendAdvMail(subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, options: RequestOptions): FetchArgs {
+            // verify required parameter 'subject' is not null or undefined
+            if (subject === null || subject === undefined) {
+                throw new RequiredError('subject','Required parameter subject was null or undefined when calling sendAdvMail.');
+            }
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling sendAdvMail.');
+            }
+            // verify required parameter 'from' is not null or undefined
+            if (from === null || from === undefined) {
+                throw new RequiredError('from','Required parameter from was null or undefined when calling sendAdvMail.');
+            }
+            // verify required parameter 'to' is not null or undefined
+            if (to === null || to === undefined) {
+                throw new RequiredError('to','Required parameter to was null or undefined when calling sendAdvMail.');
+            }
+            const localVarPath = `/mail/advsend`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            const localVarFormParams = new FormData();
+
+            // authentication apiKeyAuth required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("X-API-KEY")
+                    : configuration.apiKey;
+                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
+            }
+
+            if (subject !== undefined) {
+                localVarFormParams.set('subject', ((subject:any):string));
+            }
+
+            if (body !== undefined) {
+                localVarFormParams.set('body', ((body:any):string));
+            }
+
+            if (from !== undefined) {
+                localVarFormParams.set('from', ((from:any):string));
+            }
+
+            if (to) {
+                    localVarFormParams.set('to', to.join(COLLECTION_FORMATS["csv"]));
+            }
+
+            if (replyto) {
+                    localVarFormParams.set('replyto', replyto.join(COLLECTION_FORMATS["csv"]));
+            }
+
+            if (cc) {
+                    localVarFormParams.set('cc', cc.join(COLLECTION_FORMATS["csv"]));
+            }
+
+            if (bcc) {
+                    localVarFormParams.set('bcc', bcc.join(COLLECTION_FORMATS["csv"]));
+            }
+
+            if (attachments) {
+                    localVarFormParams.set('attachments', attachments.join(COLLECTION_FORMATS["csv"]));
+            }
+
+            if (id !== undefined) {
+                localVarFormParams.set('id', ((id:any):string));
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            localVarRequestOptions.body = localVarFormParams;
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
+         * @summary Sends an Email
+         * @throws {RequiredError}
+         */
+        sendMail(to: string, from: string, subject: string, body: string, options: RequestOptions): FetchArgs {
+            // verify required parameter 'to' is not null or undefined
+            if (to === null || to === undefined) {
+                throw new RequiredError('to','Required parameter to was null or undefined when calling sendMail.');
+            }
+            // verify required parameter 'from' is not null or undefined
+            if (from === null || from === undefined) {
+                throw new RequiredError('from','Required parameter from was null or undefined when calling sendMail.');
+            }
+            // verify required parameter 'subject' is not null or undefined
+            if (subject === null || subject === undefined) {
+                throw new RequiredError('subject','Required parameter subject was null or undefined when calling sendMail.');
+            }
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling sendMail.');
+            }
+            const localVarPath = `/mail/send`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'POST' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            const localVarFormParams = new FormData();
+
+            // authentication apiKeyAuth required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("X-API-KEY")
+                    : configuration.apiKey;
+                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
+            }
+
+            if (to !== undefined) {
+                localVarFormParams.set('to', ((to:any):string));
+            }
+
+            if (from !== undefined) {
+                localVarFormParams.set('from', ((from:any):string));
+            }
+
+            if (subject !== undefined) {
+                localVarFormParams.set('subject', ((subject:any):string));
+            }
+
+            if (body !== undefined) {
+                localVarFormParams.set('body', ((body:any):string));
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            localVarRequestOptions.body = localVarFormParams;
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+export type SendingApiType = { 
+    sendAdvMail(subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, options?: RequestOptions): Promise<GenericResponse>,
+
+    sendMail(to: string, from: string, subject: string, body: string, options?: RequestOptions): Promise<GenericResponse>,
+}
+
+/**
+ * SendingApi - factory function to inject configuration 
+ * @export
+ */
+export const SendingApi = function(configuration?: Configuration, fetch: FetchAPI = portableFetch): SendingApiType {
+    const basePath: string = (configuration && configuration.basePath) || BASE_PATH;
+    return {
+        /**
+         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+         * @summary Sends an Email with Advanced Options
+         * @throws {RequiredError}
+         */
+        sendAdvMail(subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, options?: RequestOptions = {}): Promise<GenericResponse> {
+            const localVarFetchArgs = SendingApiFetchParamCreator(configuration).sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, options);
+            return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        },
+        /**
+         * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
+         * @summary Sends an Email
+         * @throws {RequiredError}
+         */
+        sendMail(to: string, from: string, subject: string, body: string, options?: RequestOptions = {}): Promise<GenericResponse> {
+            const localVarFetchArgs = SendingApiFetchParamCreator(configuration).sendMail(to, from, subject, body, options);
+            return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        },
+    }
+};
+
+
+/**
+ * ServicesApi - fetch parameter creator
+ * @export
+ */
+export const ServicesApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+         * @summary displays a list of mail service orders
+         * @throws {RequiredError}
+         */
+        getMailOrders(options: RequestOptions): FetchArgs {
+            const localVarPath = `/mail`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+
+            // authentication apiKeyAuth required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("X-API-KEY")
+                    : configuration.apiKey;
+                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+export type ServicesApiType = { 
+    getMailOrders(options?: RequestOptions): Promise<Array<MailOrder>>,
+}
+
+/**
+ * ServicesApi - factory function to inject configuration 
+ * @export
+ */
+export const ServicesApi = function(configuration?: Configuration, fetch: FetchAPI = portableFetch): ServicesApiType {
+    const basePath: string = (configuration && configuration.basePath) || BASE_PATH;
+    return {
+        /**
+         * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+         * @summary displays a list of mail service orders
+         * @throws {RequiredError}
+         */
+        getMailOrders(options?: RequestOptions = {}): Promise<Array<MailOrder>> {
+            const localVarFetchArgs = ServicesApiFetchParamCreator(configuration).getMailOrders(options);
+            return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.json();
+                } else {
+                    throw response;
+                }
+            });
+        },
+    }
+};
+
+
+/**
+ * StatusApi - fetch parameter creator
+ * @export
+ */
+export const StatusApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Checks if the server is running
+         * @throws {RequiredError}
+         */
+        pingServer(options: RequestOptions): FetchArgs {
+            const localVarPath = `/ping`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+
+            // authentication apiKeyAuth required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("X-API-KEY")
+                    : configuration.apiKey;
+                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            localVarUrlObj.search = null;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+export type StatusApiType = { 
+    pingServer(options?: RequestOptions): Promise<Response>,
+}
+
+/**
+ * StatusApi - factory function to inject configuration 
+ * @export
+ */
+export const StatusApi = function(configuration?: Configuration, fetch: FetchAPI = portableFetch): StatusApiType {
+    const basePath: string = (configuration && configuration.basePath) || BASE_PATH;
+    return {
+        /**
+         * 
+         * @summary Checks if the server is running
+         * @throws {RequiredError}
+         */
+        pingServer(options?: RequestOptions = {}): Promise<Response> {
+            const localVarFetchArgs = StatusApiFetchParamCreator(configuration).pingServer(options);
+            return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response;
+                } else {
+                    throw response;
+                }
+            });
+        },
+    }
+};
+
+
 export type ApiTypes = { 
-    DefaultApi: DefaultApiType,
+    BlockingApi: BlockingApiType,
+
+    HistoryApi: HistoryApiType,
+
+    SendingApi: SendingApiType,
+
+    ServicesApi: ServicesApiType,
+
+    StatusApi: StatusApiType,
  }

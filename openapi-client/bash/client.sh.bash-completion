@@ -68,20 +68,32 @@ _()
     # The list of available operation in the REST service
     # It's modelled as an associative array for efficient key lookup
     declare -A operations
-    operations["getMailOrders"]=1
-    operations["pingServer"]=1
+    operations["addRule"]=1
+    operations["deleteRule"]=1
+    operations["delistBlock"]=1
+    operations["getMailBlocks"]=1
+    operations["getRules"]=1
+    operations["getStats"]=1
+    operations["viewMailLog"]=1
     operations["sendAdvMail"]=1
     operations["sendMail"]=1
-    operations["viewMailLog"]=1
+    operations["getMailOrders"]=1
+    operations["pingServer"]=1
 
     # An associative array of operations to their parameters
     # Only include path, query and header parameters
     declare -A operation_parameters
-    operation_parameters["getMailOrders"]=""
-    operation_parameters["pingServer"]=""
+    operation_parameters["addRule"]=""
+    operation_parameters["deleteRule"]="ruleId= "
+    operation_parameters["delistBlock"]=""
+    operation_parameters["getMailBlocks"]=""
+    operation_parameters["getRules"]=""
+    operation_parameters["getStats"]=""
+    operation_parameters["viewMailLog"]="id= origin= mx= from= to= subject= mailid= skip= limit= startDate= endDate= "
     operation_parameters["sendAdvMail"]=""
     operation_parameters["sendMail"]=""
-    operation_parameters["viewMailLog"]="id= origin= mx= from= to= subject= mailid= skip= limit= startDate= endDate= "
+    operation_parameters["getMailOrders"]=""
+    operation_parameters["pingServer"]=""
 
     # An associative array of possible values for enum parameters
     declare -A operation_parameters_enum_values

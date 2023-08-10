@@ -1,5 +1,5 @@
---  MailBaby Email Delivery API
---  **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+--  MailBaby Email Delivery and Management Service API
+--  **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 --
 --  The version of the OpenAPI document: 1.1.0
 --  Contact: support@interserver.net
@@ -8,29 +8,29 @@
 --  https://openapi-generator.tech
 --  Do not edit the class manually.
 
-
 package body .Models is
-   pragma Style_Checks ("-mr");
+   pragma Style_Checks ("-bmrIu");
 
    pragma Warnings (Off, "*use clause for package*");
 
    use Swagger.Streams;
 
-
-
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in SendMailAdvCcInner_Type) is
+                        Value : in .Models.DenyRuleNew_Type) is
    begin
       Into.Start_Entity (Name);
-      Into.Write_Entity ("email", Value.Email);
-      Into.Write_Entity ("name", Value.Name);
+      Into.Write_Entity ("type", Value.P_Type);
+      Into.Write_Entity ("data", Value.Data);
+      if not Value.User.Is_Null then
+         Into.Write_Entity ("user", Value.User);
+      end if;
       Into.End_Entity (Name);
    end Serialize;
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in SendMailAdvCcInner_Type_Vectors.Vector) is
+                        Value : in DenyRuleNew_Type_Vectors.Vector) is
    begin
       Into.Start_Array (Name);
       for Item of Value loop
@@ -41,19 +41,20 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out SendMailAdvCcInner_Type) is
+                          Value : out .Models.DenyRuleNew_Type) is
       Object : Swagger.Value_Type;
    begin
       Swagger.Streams.Deserialize (From, Name, Object);
-      Swagger.Streams.Deserialize (Object, "email", Value.Email);
-      Swagger.Streams.Deserialize (Object, "name", Value.Name);
+      Swagger.Streams.Deserialize (Object, "type", Value.P_Type);
+      Swagger.Streams.Deserialize (Object, "data", Value.Data);
+      Swagger.Streams.Deserialize (Object, "user", Value.User);
    end Deserialize;
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out SendMailAdvCcInner_Type_Vectors.Vector) is
+                          Value : in out DenyRuleNew_Type_Vectors.Vector) is
       List : Swagger.Value_Array_Type;
-      Item : SendMailAdvCcInner_Type;
+      Item : .Models.DenyRuleNew_Type;
    begin
       Value.Clear;
       Swagger.Streams.Deserialize (From, Name, List);
@@ -63,22 +64,24 @@ package body .Models is
       end loop;
    end Deserialize;
 
-
-
-
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in SendMailAdvToInner_Type) is
+                        Value : in .Models.DenyRuleRecord_Type) is
    begin
       Into.Start_Entity (Name);
-      Into.Write_Entity ("email", Value.Email);
-      Into.Write_Entity ("name", Value.Name);
+      Into.Write_Entity ("type", Value.P_Type);
+      Into.Write_Entity ("data", Value.Data);
+      Into.Write_Entity ("id", Value.Id);
+      Into.Write_Entity ("created", Value.Created);
+      if not Value.User.Is_Null then
+         Into.Write_Entity ("user", Value.User);
+      end if;
       Into.End_Entity (Name);
    end Serialize;
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in SendMailAdvToInner_Type_Vectors.Vector) is
+                        Value : in DenyRuleRecord_Type_Vectors.Vector) is
    begin
       Into.Start_Array (Name);
       for Item of Value loop
@@ -89,19 +92,22 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out SendMailAdvToInner_Type) is
+                          Value : out .Models.DenyRuleRecord_Type) is
       Object : Swagger.Value_Type;
    begin
       Swagger.Streams.Deserialize (From, Name, Object);
-      Swagger.Streams.Deserialize (Object, "email", Value.Email);
-      Swagger.Streams.Deserialize (Object, "name", Value.Name);
+      Swagger.Streams.Deserialize (Object, "type", Value.P_Type);
+      Swagger.Streams.Deserialize (Object, "data", Value.Data);
+      Swagger.Streams.Deserialize (Object, "id", Value.Id);
+      Swagger.Streams.Deserialize (Object, "created", Value.Created);
+      Swagger.Streams.Deserialize (Object, "user", Value.User);
    end Deserialize;
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out SendMailAdvToInner_Type_Vectors.Vector) is
+                          Value : in out DenyRuleRecord_Type_Vectors.Vector) is
       List : Swagger.Value_Array_Type;
-      Item : SendMailAdvToInner_Type;
+      Item : .Models.DenyRuleRecord_Type;
    begin
       Value.Clear;
       Swagger.Streams.Deserialize (From, Name, List);
@@ -111,12 +117,150 @@ package body .Models is
       end loop;
    end Deserialize;
 
-
-
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in .Models.EmailAddressName_Type) is
+   begin
+      Into.Start_Entity (Name);
+      Into.Write_Entity ("email", Value.Email);
+      if not Value.Name.Is_Null then
+         Into.Write_Entity ("name", Value.Name);
+      end if;
+      Into.End_Entity (Name);
+   end Serialize;
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in GetMailOrders401Response_Type) is
+                        Value : in EmailAddressName_Type_Vectors.Vector) is
+   begin
+      Into.Start_Array (Name);
+      for Item of Value loop
+         Serialize (Into, "", Item);
+      end loop;
+      Into.End_Array (Name);
+   end Serialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : out .Models.EmailAddressName_Type) is
+      Object : Swagger.Value_Type;
+   begin
+      Swagger.Streams.Deserialize (From, Name, Object);
+      Swagger.Streams.Deserialize (Object, "email", Value.Email);
+      Swagger.Streams.Deserialize (Object, "name", Value.Name);
+   end Deserialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : in out EmailAddressName_Type_Vectors.Vector) is
+      List : Swagger.Value_Array_Type;
+      Item : .Models.EmailAddressName_Type;
+   begin
+      Value.Clear;
+      Swagger.Streams.Deserialize (From, Name, List);
+      for Data of List loop
+         Deserialize (Data, "", Item);
+         Value.Append (Item);
+      end loop;
+   end Deserialize;
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in .Models.EmailAddress_Type) is
+   begin
+      Into.Start_Entity (Name);
+      if not Value.Email.Is_Null then
+         Into.Write_Entity ("email", Value.Email);
+      end if;
+      Into.End_Entity (Name);
+   end Serialize;
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in EmailAddress_Type_Vectors.Vector) is
+   begin
+      Into.Start_Array (Name);
+      for Item of Value loop
+         Serialize (Into, "", Item);
+      end loop;
+      Into.End_Array (Name);
+   end Serialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : out .Models.EmailAddress_Type) is
+      Object : Swagger.Value_Type;
+   begin
+      Swagger.Streams.Deserialize (From, Name, Object);
+      Swagger.Streams.Deserialize (Object, "email", Value.Email);
+   end Deserialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : in out EmailAddress_Type_Vectors.Vector) is
+      List : Swagger.Value_Array_Type;
+      Item : .Models.EmailAddress_Type;
+   begin
+      Value.Clear;
+      Swagger.Streams.Deserialize (From, Name, List);
+      for Data of List loop
+         Deserialize (Data, "", Item);
+         Value.Append (Item);
+      end loop;
+   end Deserialize;
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in .Models.GenericResponse_Type) is
+   begin
+      Into.Start_Entity (Name);
+      if not Value.Status.Is_Null then
+         Into.Write_Entity ("status", Value.Status);
+      end if;
+      if not Value.Text.Is_Null then
+         Into.Write_Entity ("text", Value.Text);
+      end if;
+      Into.End_Entity (Name);
+   end Serialize;
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in GenericResponse_Type_Vectors.Vector) is
+   begin
+      Into.Start_Array (Name);
+      for Item of Value loop
+         Serialize (Into, "", Item);
+      end loop;
+      Into.End_Array (Name);
+   end Serialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : out .Models.GenericResponse_Type) is
+      Object : Swagger.Value_Type;
+   begin
+      Swagger.Streams.Deserialize (From, Name, Object);
+      Swagger.Streams.Deserialize (Object, "status", Value.Status);
+      Swagger.Streams.Deserialize (Object, "text", Value.Text);
+   end Deserialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : in out GenericResponse_Type_Vectors.Vector) is
+      List : Swagger.Value_Array_Type;
+      Item : .Models.GenericResponse_Type;
+   begin
+      Value.Clear;
+      Swagger.Streams.Deserialize (From, Name, List);
+      for Data of List loop
+         Deserialize (Data, "", Item);
+         Value.Append (Item);
+      end loop;
+   end Deserialize;
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in .Models.GetMailOrders401Response_Type) is
    begin
       Into.Start_Entity (Name);
       Into.Write_Entity ("code", Value.Code);
@@ -137,7 +281,7 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out GetMailOrders401Response_Type) is
+                          Value : out .Models.GetMailOrders401Response_Type) is
       Object : Swagger.Value_Type;
    begin
       Swagger.Streams.Deserialize (From, Name, Object);
@@ -147,9 +291,9 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out GetMailOrders401Response_Type_Vectors.Vector) is
+                          Value : in out GetMailOrders401Response_Type_Vectors.Vector) is
       List : Swagger.Value_Array_Type;
-      Item : GetMailOrders401Response_Type;
+      Item : .Models.GetMailOrders401Response_Type;
    begin
       Value.Clear;
       Swagger.Streams.Deserialize (From, Name, List);
@@ -159,12 +303,205 @@ package body .Models is
       end loop;
    end Deserialize;
 
-
-
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in .Models.GetStats200ResponseInner_Type) is
+   begin
+      Into.Start_Entity (Name);
+      Into.Write_Entity ("id", Value.Id);
+      Into.Write_Entity ("status", Value.Status);
+      Into.Write_Entity ("username", Value.Username);
+      if not Value.Password.Is_Null then
+         Into.Write_Entity ("password", Value.Password);
+      end if;
+      if not Value.Comment.Is_Null then
+         Into.Write_Entity ("comment", Value.Comment);
+      end if;
+      Into.End_Entity (Name);
+   end Serialize;
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in MailLogEntry_Type) is
+                        Value : in GetStats200ResponseInner_Type_Vectors.Vector) is
+   begin
+      Into.Start_Array (Name);
+      for Item of Value loop
+         Serialize (Into, "", Item);
+      end loop;
+      Into.End_Array (Name);
+   end Serialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : out .Models.GetStats200ResponseInner_Type) is
+      Object : Swagger.Value_Type;
+   begin
+      Swagger.Streams.Deserialize (From, Name, Object);
+      Swagger.Streams.Deserialize (Object, "id", Value.Id);
+      Swagger.Streams.Deserialize (Object, "status", Value.Status);
+      Swagger.Streams.Deserialize (Object, "username", Value.Username);
+      Swagger.Streams.Deserialize (Object, "password", Value.Password);
+      Swagger.Streams.Deserialize (Object, "comment", Value.Comment);
+   end Deserialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : in out GetStats200ResponseInner_Type_Vectors.Vector) is
+      List : Swagger.Value_Array_Type;
+      Item : .Models.GetStats200ResponseInner_Type;
+   begin
+      Value.Clear;
+      Swagger.Streams.Deserialize (From, Name, List);
+      for Data of List loop
+         Deserialize (Data, "", Item);
+         Value.Append (Item);
+      end loop;
+   end Deserialize;
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in .Models.MailAttachment_Type) is
+   begin
+      Into.Start_Entity (Name);
+      Into.Write_Entity ("filename", Value.Filename);
+      Into.Write_Entity ("data", Value.Data);
+      Into.End_Entity (Name);
+   end Serialize;
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in MailAttachment_Type_Vectors.Vector) is
+   begin
+      Into.Start_Array (Name);
+      for Item of Value loop
+         Serialize (Into, "", Item);
+      end loop;
+      Into.End_Array (Name);
+   end Serialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : out .Models.MailAttachment_Type) is
+      Object : Swagger.Value_Type;
+   begin
+      Swagger.Streams.Deserialize (From, Name, Object);
+      Swagger.Streams.Deserialize (Object, "filename", Value.Filename);
+      Swagger.Streams.Deserialize (Object, "data", Value.Data);
+   end Deserialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : in out MailAttachment_Type_Vectors.Vector) is
+      List : Swagger.Value_Array_Type;
+      Item : .Models.MailAttachment_Type;
+   begin
+      Value.Clear;
+      Swagger.Streams.Deserialize (From, Name, List);
+      for Data of List loop
+         Deserialize (Data, "", Item);
+         Value.Append (Item);
+      end loop;
+   end Deserialize;
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in .Models.MailBlockClickHouse_Type) is
+   begin
+      Into.Start_Entity (Name);
+      Into.Write_Entity ("date", Value.Date);
+      Into.Write_Entity ("from", Value.From);
+      Into.Write_Entity ("messageId", Value.Message_Id);
+      Into.Write_Entity ("subject", Value.Subject);
+      Into.Write_Entity ("to", Value.To);
+      Into.End_Entity (Name);
+   end Serialize;
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in MailBlockClickHouse_Type_Vectors.Vector) is
+   begin
+      Into.Start_Array (Name);
+      for Item of Value loop
+         Serialize (Into, "", Item);
+      end loop;
+      Into.End_Array (Name);
+   end Serialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : out .Models.MailBlockClickHouse_Type) is
+      Object : Swagger.Value_Type;
+   begin
+      Swagger.Streams.Deserialize (From, Name, Object);
+      Swagger.Streams.Deserialize (Object, "date", Value.Date);
+      Swagger.Streams.Deserialize (Object, "from", Value.From);
+      Swagger.Streams.Deserialize (Object, "messageId", Value.Message_Id);
+      Swagger.Streams.Deserialize (Object, "subject", Value.Subject);
+      Swagger.Streams.Deserialize (Object, "to", Value.To);
+   end Deserialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : in out MailBlockClickHouse_Type_Vectors.Vector) is
+      List : Swagger.Value_Array_Type;
+      Item : .Models.MailBlockClickHouse_Type;
+   begin
+      Value.Clear;
+      Swagger.Streams.Deserialize (From, Name, List);
+      for Data of List loop
+         Deserialize (Data, "", Item);
+         Value.Append (Item);
+      end loop;
+   end Deserialize;
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in .Models.MailBlockRspamd_Type) is
+   begin
+      Into.Start_Entity (Name);
+      Into.Write_Entity ("from", Value.From);
+      Into.Write_Entity ("subject", Value.Subject);
+      Into.End_Entity (Name);
+   end Serialize;
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in MailBlockRspamd_Type_Vectors.Vector) is
+   begin
+      Into.Start_Array (Name);
+      for Item of Value loop
+         Serialize (Into, "", Item);
+      end loop;
+      Into.End_Array (Name);
+   end Serialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : out .Models.MailBlockRspamd_Type) is
+      Object : Swagger.Value_Type;
+   begin
+      Swagger.Streams.Deserialize (From, Name, Object);
+      Swagger.Streams.Deserialize (Object, "from", Value.From);
+      Swagger.Streams.Deserialize (Object, "subject", Value.Subject);
+   end Deserialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : in out MailBlockRspamd_Type_Vectors.Vector) is
+      List : Swagger.Value_Array_Type;
+      Item : .Models.MailBlockRspamd_Type;
+   begin
+      Value.Clear;
+      Swagger.Streams.Deserialize (From, Name, List);
+      for Data of List loop
+         Deserialize (Data, "", Item);
+         Value.Append (Item);
+      end loop;
+   end Deserialize;
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in .Models.MailLogEntry_Type) is
    begin
       Into.Start_Entity (Name);
       Into.Write_Entity ("_id", Value.P__id);
@@ -189,7 +526,9 @@ package body .Models is
       Into.Write_Entity ("queued", Value.Queued);
       Into.Write_Entity ("mxHostname", Value.Mx_Hostname);
       Into.Write_Entity ("response", Value.Response);
-      Into.Write_Entity ("messageId", Value.Message_Id);
+      if not Value.Message_Id.Is_Null then
+         Into.Write_Entity ("messageId", Value.Message_Id);
+      end if;
       Into.End_Entity (Name);
    end Serialize;
 
@@ -206,7 +545,7 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out MailLogEntry_Type) is
+                          Value : out .Models.MailLogEntry_Type) is
       Object : Swagger.Value_Type;
    begin
       Swagger.Streams.Deserialize (From, Name, Object);
@@ -237,9 +576,9 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out MailLogEntry_Type_Vectors.Vector) is
+                          Value : in out MailLogEntry_Type_Vectors.Vector) is
       List : Swagger.Value_Array_Type;
-      Item : MailLogEntry_Type;
+      Item : .Models.MailLogEntry_Type;
    begin
       Value.Clear;
       Swagger.Streams.Deserialize (From, Name, List);
@@ -249,74 +588,23 @@ package body .Models is
       end loop;
    end Deserialize;
 
-
-
-
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in MailLog_Type) is
+                        Value : in .Models.MailOrder_Type) is
    begin
       Into.Start_Entity (Name);
-      Into.Write_Entity ("total", Value.Total);
-      Into.Write_Entity ("skip", Value.Skip);
-      Into.Write_Entity ("limit", Value.Limit);
-      Serialize (Into, "emails", Value.Emails);
-      Into.End_Entity (Name);
-   end Serialize;
-
-   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
-                        Name  : in String;
-                        Value : in MailLog_Type_Vectors.Vector) is
-   begin
-      Into.Start_Array (Name);
-      for Item of Value loop
-         Serialize (Into, "", Item);
-      end loop;
-      Into.End_Array (Name);
-   end Serialize;
-
-   procedure Deserialize (From  : in Swagger.Value_Type;
-                          Name  : in String;
-                          Value : out MailLog_Type) is
-      Object : Swagger.Value_Type;
-   begin
-      Swagger.Streams.Deserialize (From, Name, Object);
-      Swagger.Streams.Deserialize (Object, "total", Value.Total);
-      Swagger.Streams.Deserialize (Object, "skip", Value.Skip);
-      Swagger.Streams.Deserialize (Object, "limit", Value.Limit);
-      Deserialize (Object, "emails", Value.Emails);
-   end Deserialize;
-
-   procedure Deserialize (From  : in Swagger.Value_Type;
-                          Name  : in String;
-                          Value : out MailLog_Type_Vectors.Vector) is
-      List : Swagger.Value_Array_Type;
-      Item : MailLog_Type;
-   begin
-      Value.Clear;
-      Swagger.Streams.Deserialize (From, Name, List);
-      for Data of List loop
-         Deserialize (Data, "", Item);
-         Value.Append (Item);
-      end loop;
-   end Deserialize;
-
-
-
-
-   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
-                        Name  : in String;
-                        Value : in GenericResponse_Type) is
-   begin
-      Into.Start_Entity (Name);
+      Into.Write_Entity ("id", Value.Id);
       Into.Write_Entity ("status", Value.Status);
-      Into.Write_Entity ("text", Value.Text);
+      Into.Write_Entity ("username", Value.Username);
+      if not Value.Comment.Is_Null then
+         Into.Write_Entity ("comment", Value.Comment);
+      end if;
       Into.End_Entity (Name);
    end Serialize;
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in GenericResponse_Type_Vectors.Vector) is
+                        Value : in MailOrder_Type_Vectors.Vector) is
    begin
       Into.Start_Array (Name);
       for Item of Value loop
@@ -327,19 +615,21 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out GenericResponse_Type) is
+                          Value : out .Models.MailOrder_Type) is
       Object : Swagger.Value_Type;
    begin
       Swagger.Streams.Deserialize (From, Name, Object);
+      Swagger.Streams.Deserialize (Object, "id", Value.Id);
       Swagger.Streams.Deserialize (Object, "status", Value.Status);
-      Swagger.Streams.Deserialize (Object, "text", Value.Text);
+      Swagger.Streams.Deserialize (Object, "username", Value.Username);
+      Swagger.Streams.Deserialize (Object, "comment", Value.Comment);
    end Deserialize;
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out GenericResponse_Type_Vectors.Vector) is
+                          Value : in out MailOrder_Type_Vectors.Vector) is
       List : Swagger.Value_Array_Type;
-      Item : GenericResponse_Type;
+      Item : .Models.MailOrder_Type;
    begin
       Value.Clear;
       Swagger.Streams.Deserialize (From, Name, List);
@@ -349,12 +639,9 @@ package body .Models is
       end loop;
    end Deserialize;
 
-
-
-
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in SendMail_Type) is
+                        Value : in .Models.SendMail_Type) is
    begin
       Into.Start_Entity (Name);
       Into.Write_Entity ("to", Value.To);
@@ -377,7 +664,7 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out SendMail_Type) is
+                          Value : out .Models.SendMail_Type) is
       Object : Swagger.Value_Type;
    begin
       Swagger.Streams.Deserialize (From, Name, Object);
@@ -389,9 +676,9 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out SendMail_Type_Vectors.Vector) is
+                          Value : in out SendMail_Type_Vectors.Vector) is
       List : Swagger.Value_Array_Type;
-      Item : SendMail_Type;
+      Item : .Models.SendMail_Type;
    begin
       Value.Clear;
       Swagger.Streams.Deserialize (From, Name, List);
@@ -401,25 +688,21 @@ package body .Models is
       end loop;
    end Deserialize;
 
-
-
-
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in GetMailOrders200ResponseInner_Type) is
+                        Value : in .Models.MailLog_Type) is
    begin
       Into.Start_Entity (Name);
-      Into.Write_Entity ("id", Value.Id);
-      Into.Write_Entity ("status", Value.Status);
-      Into.Write_Entity ("username", Value.Username);
-      Into.Write_Entity ("password", Value.Password);
-      Into.Write_Entity ("comment", Value.Comment);
+      Into.Write_Entity ("total", Value.Total);
+      Into.Write_Entity ("skip", Value.Skip);
+      Into.Write_Entity ("limit", Value.Limit);
+      Serialize (Into, "emails", Value.Emails);
       Into.End_Entity (Name);
    end Serialize;
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in GetMailOrders200ResponseInner_Type_Vectors.Vector) is
+                        Value : in MailLog_Type_Vectors.Vector) is
    begin
       Into.Start_Array (Name);
       for Item of Value loop
@@ -430,22 +713,21 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out GetMailOrders200ResponseInner_Type) is
+                          Value : out .Models.MailLog_Type) is
       Object : Swagger.Value_Type;
    begin
       Swagger.Streams.Deserialize (From, Name, Object);
-      Swagger.Streams.Deserialize (Object, "id", Value.Id);
-      Swagger.Streams.Deserialize (Object, "status", Value.Status);
-      Swagger.Streams.Deserialize (Object, "username", Value.Username);
-      Swagger.Streams.Deserialize (Object, "password", Value.Password);
-      Swagger.Streams.Deserialize (Object, "comment", Value.Comment);
+      Swagger.Streams.Deserialize (Object, "total", Value.Total);
+      Swagger.Streams.Deserialize (Object, "skip", Value.Skip);
+      Swagger.Streams.Deserialize (Object, "limit", Value.Limit);
+      Deserialize (Object, "emails", Value.Emails);
    end Deserialize;
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out GetMailOrders200ResponseInner_Type_Vectors.Vector) is
+                          Value : in out MailLog_Type_Vectors.Vector) is
       List : Swagger.Value_Array_Type;
-      Item : GetMailOrders200ResponseInner_Type;
+      Item : .Models.MailLog_Type;
    begin
       Value.Clear;
       Swagger.Streams.Deserialize (From, Name, List);
@@ -455,22 +737,20 @@ package body .Models is
       end loop;
    end Deserialize;
 
-
-
-
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in SendMailAdvFrom_Type) is
+                        Value : in .Models.MailBlocks_Type) is
    begin
       Into.Start_Entity (Name);
-      Into.Write_Entity ("email", Value.Email);
-      Into.Write_Entity ("name", Value.Name);
+      Serialize (Into, "local", Value.Local);
+      Serialize (Into, "mbtrap", Value.Mbtrap);
+      Serialize (Into, "subject", Value.Subject);
       Into.End_Entity (Name);
    end Serialize;
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in SendMailAdvFrom_Type_Vectors.Vector) is
+                        Value : in MailBlocks_Type_Vectors.Vector) is
    begin
       Into.Start_Array (Name);
       for Item of Value loop
@@ -481,19 +761,20 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out SendMailAdvFrom_Type) is
+                          Value : out .Models.MailBlocks_Type) is
       Object : Swagger.Value_Type;
    begin
       Swagger.Streams.Deserialize (From, Name, Object);
-      Swagger.Streams.Deserialize (Object, "email", Value.Email);
-      Swagger.Streams.Deserialize (Object, "name", Value.Name);
+      Deserialize (Object, "local", Value.Local);
+      Deserialize (Object, "mbtrap", Value.Mbtrap);
+      Deserialize (Object, "subject", Value.Subject);
    end Deserialize;
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out SendMailAdvFrom_Type_Vectors.Vector) is
+                          Value : in out MailBlocks_Type_Vectors.Vector) is
       List : Swagger.Value_Array_Type;
-      Item : SendMailAdvFrom_Type;
+      Item : .Models.MailBlocks_Type;
    begin
       Value.Clear;
       Swagger.Streams.Deserialize (From, Name, List);
@@ -503,108 +784,9 @@ package body .Models is
       end loop;
    end Deserialize;
 
-
-
-
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in SendMailAdvReplytoInner_Type) is
-   begin
-      Into.Start_Entity (Name);
-      Into.Write_Entity ("email", Value.Email);
-      Into.Write_Entity ("name", Value.Name);
-      Into.End_Entity (Name);
-   end Serialize;
-
-   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
-                        Name  : in String;
-                        Value : in SendMailAdvReplytoInner_Type_Vectors.Vector) is
-   begin
-      Into.Start_Array (Name);
-      for Item of Value loop
-         Serialize (Into, "", Item);
-      end loop;
-      Into.End_Array (Name);
-   end Serialize;
-
-   procedure Deserialize (From  : in Swagger.Value_Type;
-                          Name  : in String;
-                          Value : out SendMailAdvReplytoInner_Type) is
-      Object : Swagger.Value_Type;
-   begin
-      Swagger.Streams.Deserialize (From, Name, Object);
-      Swagger.Streams.Deserialize (Object, "email", Value.Email);
-      Swagger.Streams.Deserialize (Object, "name", Value.Name);
-   end Deserialize;
-
-   procedure Deserialize (From  : in Swagger.Value_Type;
-                          Name  : in String;
-                          Value : out SendMailAdvReplytoInner_Type_Vectors.Vector) is
-      List : Swagger.Value_Array_Type;
-      Item : SendMailAdvReplytoInner_Type;
-   begin
-      Value.Clear;
-      Swagger.Streams.Deserialize (From, Name, List);
-      for Data of List loop
-         Deserialize (Data, "", Item);
-         Value.Append (Item);
-      end loop;
-   end Deserialize;
-
-
-
-
-   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
-                        Name  : in String;
-                        Value : in SendMailAdvBccInner_Type) is
-   begin
-      Into.Start_Entity (Name);
-      Into.Write_Entity ("email", Value.Email);
-      Into.Write_Entity ("name", Value.Name);
-      Into.End_Entity (Name);
-   end Serialize;
-
-   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
-                        Name  : in String;
-                        Value : in SendMailAdvBccInner_Type_Vectors.Vector) is
-   begin
-      Into.Start_Array (Name);
-      for Item of Value loop
-         Serialize (Into, "", Item);
-      end loop;
-      Into.End_Array (Name);
-   end Serialize;
-
-   procedure Deserialize (From  : in Swagger.Value_Type;
-                          Name  : in String;
-                          Value : out SendMailAdvBccInner_Type) is
-      Object : Swagger.Value_Type;
-   begin
-      Swagger.Streams.Deserialize (From, Name, Object);
-      Swagger.Streams.Deserialize (Object, "email", Value.Email);
-      Swagger.Streams.Deserialize (Object, "name", Value.Name);
-   end Deserialize;
-
-   procedure Deserialize (From  : in Swagger.Value_Type;
-                          Name  : in String;
-                          Value : out SendMailAdvBccInner_Type_Vectors.Vector) is
-      List : Swagger.Value_Array_Type;
-      Item : SendMailAdvBccInner_Type;
-   begin
-      Value.Clear;
-      Swagger.Streams.Deserialize (From, Name, List);
-      for Data of List loop
-         Deserialize (Data, "", Item);
-         Value.Append (Item);
-      end loop;
-   end Deserialize;
-
-
-
-
-   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
-                        Name  : in String;
-                        Value : in SendMailAdv_Type) is
+                        Value : in .Models.SendMailAdv_Type) is
    begin
       Into.Start_Entity (Name);
       Into.Write_Entity ("subject", Value.Subject);
@@ -615,7 +797,9 @@ package body .Models is
       Serialize (Into, "cc", Value.Cc);
       Serialize (Into, "bcc", Value.Bcc);
       Serialize (Into, "attachments", Value.Attachments);
-      Into.Write_Entity ("id", Value.Id);
+      if not Value.Id.Is_Null then
+         Into.Write_Entity ("id", Value.Id);
+      end if;
       Into.End_Entity (Name);
    end Serialize;
 
@@ -632,7 +816,7 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out SendMailAdv_Type) is
+                          Value : out .Models.SendMailAdv_Type) is
       Object : Swagger.Value_Type;
    begin
       Swagger.Streams.Deserialize (From, Name, Object);
@@ -649,9 +833,9 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out SendMailAdv_Type_Vectors.Vector) is
+                          Value : in out SendMailAdv_Type_Vectors.Vector) is
       List : Swagger.Value_Array_Type;
-      Item : SendMailAdv_Type;
+      Item : .Models.SendMailAdv_Type;
    begin
       Value.Clear;
       Swagger.Streams.Deserialize (From, Name, List);
@@ -660,55 +844,6 @@ package body .Models is
          Value.Append (Item);
       end loop;
    end Deserialize;
-
-
-
-
-   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
-                        Name  : in String;
-                        Value : in SendMailAdvAttachmentsInner_Type) is
-   begin
-      Into.Start_Entity (Name);
-      Serialize (Into, "data", Value.Data);
-      Into.Write_Entity ("filename", Value.Filename);
-      Into.End_Entity (Name);
-   end Serialize;
-
-   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
-                        Name  : in String;
-                        Value : in SendMailAdvAttachmentsInner_Type_Vectors.Vector) is
-   begin
-      Into.Start_Array (Name);
-      for Item of Value loop
-         Serialize (Into, "", Item);
-      end loop;
-      Into.End_Array (Name);
-   end Serialize;
-
-   procedure Deserialize (From  : in Swagger.Value_Type;
-                          Name  : in String;
-                          Value : out SendMailAdvAttachmentsInner_Type) is
-      Object : Swagger.Value_Type;
-   begin
-      Swagger.Streams.Deserialize (From, Name, Object);
-      Deserialize (Object, "data", Value.Data);
-      Swagger.Streams.Deserialize (Object, "filename", Value.Filename);
-   end Deserialize;
-
-   procedure Deserialize (From  : in Swagger.Value_Type;
-                          Name  : in String;
-                          Value : out SendMailAdvAttachmentsInner_Type_Vectors.Vector) is
-      List : Swagger.Value_Array_Type;
-      Item : SendMailAdvAttachmentsInner_Type;
-   begin
-      Value.Clear;
-      Swagger.Streams.Deserialize (From, Name, List);
-      for Data of List loop
-         Deserialize (Data, "", Item);
-         Value.Append (Item);
-      end loop;
-   end Deserialize;
-
 
 
 end .Models;

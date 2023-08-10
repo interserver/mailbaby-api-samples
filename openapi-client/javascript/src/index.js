@@ -1,6 +1,6 @@
 /**
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -13,31 +13,38 @@
 
 
 import ApiClient from './ApiClient';
+import DenyRuleNew from './model/DenyRuleNew';
+import DenyRuleRecord from './model/DenyRuleRecord';
+import EmailAddress from './model/EmailAddress';
+import EmailAddressName from './model/EmailAddressName';
 import GenericResponse from './model/GenericResponse';
-import GetMailOrders200ResponseInner from './model/GetMailOrders200ResponseInner';
 import GetMailOrders401Response from './model/GetMailOrders401Response';
+import GetStats200ResponseInner from './model/GetStats200ResponseInner';
+import MailAttachment from './model/MailAttachment';
+import MailBlockClickHouse from './model/MailBlockClickHouse';
+import MailBlockRspamd from './model/MailBlockRspamd';
+import MailBlocks from './model/MailBlocks';
 import MailLog from './model/MailLog';
 import MailLogEntry from './model/MailLogEntry';
+import MailOrder from './model/MailOrder';
 import SendMail from './model/SendMail';
 import SendMailAdv from './model/SendMailAdv';
-import SendMailAdvAttachmentsInner from './model/SendMailAdvAttachmentsInner';
-import SendMailAdvBccInner from './model/SendMailAdvBccInner';
-import SendMailAdvCcInner from './model/SendMailAdvCcInner';
-import SendMailAdvFrom from './model/SendMailAdvFrom';
-import SendMailAdvReplytoInner from './model/SendMailAdvReplytoInner';
-import SendMailAdvToInner from './model/SendMailAdvToInner';
-import DefaultApi from './api/DefaultApi';
+import BlockingApi from './api/BlockingApi';
+import HistoryApi from './api/HistoryApi';
+import SendingApi from './api/SendingApi';
+import ServicesApi from './api/ServicesApi';
+import StatusApi from './api/StatusApi';
 
 
 /**
-* Send_emails_fast_and_with_confidence_through_our_easy_to_use__REST_https__en_wikipedia_org_wiki_Representational_state_transfer_API_interface___OverviewThis_is_the_API_interface_to_the__Mail_Baby_https__mail_baby__Mail_services_provided_by__InterServer_https__www_interserver_net__To_use_this_service_you_must_have_an_account_with_us_at__my_interserver_net_https__my_interserver_net___AuthenticationIn_order_to_use_most_of_the_API_calls_you_must_pass_credentials_from_the__my_interserver_net_https__my_interserver_net__site_We_support_several_different_authentication_methods_but_the_preferred_method_is_to_use_the_API_Key_which_you_can_get_from_the__Account_Security_https__my_interserver_net_account_security_page_.<br>
+* **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. .<br>
 * The <code>index</code> module provides access to constructors for all the classes which comprise the public API.
 * <p>
 * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:
 * <pre>
-* var MailBabyEmailDeliveryApi = require('index'); // See note below*.
-* var xxxSvc = new MailBabyEmailDeliveryApi.XxxApi(); // Allocate the API class we're going to use.
-* var yyyModel = new MailBabyEmailDeliveryApi.Yyy(); // Construct a model instance.
+* var MailBabyEmailDeliveryAndManagementServiceApi = require('index'); // See note below*.
+* var xxxSvc = new MailBabyEmailDeliveryAndManagementServiceApi.XxxApi(); // Allocate the API class we're going to use.
+* var yyyModel = new MailBabyEmailDeliveryAndManagementServiceApi.Yyy(); // Construct a model instance.
 * yyyModel.someProperty = 'someValue';
 * ...
 * var zzz = xxxSvc.doSomething(yyyModel); // Invoke the service.
@@ -49,8 +56,8 @@ import DefaultApi from './api/DefaultApi';
 * <p>
 * A non-AMD browser application (discouraged) might do something like this:
 * <pre>
-* var xxxSvc = new MailBabyEmailDeliveryApi.XxxApi(); // Allocate the API class we're going to use.
-* var yyy = new MailBabyEmailDeliveryApi.Yyy(); // Construct a model instance.
+* var xxxSvc = new MailBabyEmailDeliveryAndManagementServiceApi.XxxApi(); // Allocate the API class we're going to use.
+* var yyy = new MailBabyEmailDeliveryAndManagementServiceApi.Yyy(); // Construct a model instance.
 * yyyModel.someProperty = 'someValue';
 * ...
 * var zzz = xxxSvc.doSomething(yyyModel); // Invoke the service.
@@ -68,22 +75,70 @@ export {
     ApiClient,
 
     /**
+     * The DenyRuleNew model constructor.
+     * @property {module:model/DenyRuleNew}
+     */
+    DenyRuleNew,
+
+    /**
+     * The DenyRuleRecord model constructor.
+     * @property {module:model/DenyRuleRecord}
+     */
+    DenyRuleRecord,
+
+    /**
+     * The EmailAddress model constructor.
+     * @property {module:model/EmailAddress}
+     */
+    EmailAddress,
+
+    /**
+     * The EmailAddressName model constructor.
+     * @property {module:model/EmailAddressName}
+     */
+    EmailAddressName,
+
+    /**
      * The GenericResponse model constructor.
      * @property {module:model/GenericResponse}
      */
     GenericResponse,
 
     /**
-     * The GetMailOrders200ResponseInner model constructor.
-     * @property {module:model/GetMailOrders200ResponseInner}
-     */
-    GetMailOrders200ResponseInner,
-
-    /**
      * The GetMailOrders401Response model constructor.
      * @property {module:model/GetMailOrders401Response}
      */
     GetMailOrders401Response,
+
+    /**
+     * The GetStats200ResponseInner model constructor.
+     * @property {module:model/GetStats200ResponseInner}
+     */
+    GetStats200ResponseInner,
+
+    /**
+     * The MailAttachment model constructor.
+     * @property {module:model/MailAttachment}
+     */
+    MailAttachment,
+
+    /**
+     * The MailBlockClickHouse model constructor.
+     * @property {module:model/MailBlockClickHouse}
+     */
+    MailBlockClickHouse,
+
+    /**
+     * The MailBlockRspamd model constructor.
+     * @property {module:model/MailBlockRspamd}
+     */
+    MailBlockRspamd,
+
+    /**
+     * The MailBlocks model constructor.
+     * @property {module:model/MailBlocks}
+     */
+    MailBlocks,
 
     /**
      * The MailLog model constructor.
@@ -98,6 +153,12 @@ export {
     MailLogEntry,
 
     /**
+     * The MailOrder model constructor.
+     * @property {module:model/MailOrder}
+     */
+    MailOrder,
+
+    /**
      * The SendMail model constructor.
      * @property {module:model/SendMail}
      */
@@ -110,44 +171,32 @@ export {
     SendMailAdv,
 
     /**
-     * The SendMailAdvAttachmentsInner model constructor.
-     * @property {module:model/SendMailAdvAttachmentsInner}
-     */
-    SendMailAdvAttachmentsInner,
-
-    /**
-     * The SendMailAdvBccInner model constructor.
-     * @property {module:model/SendMailAdvBccInner}
-     */
-    SendMailAdvBccInner,
-
-    /**
-     * The SendMailAdvCcInner model constructor.
-     * @property {module:model/SendMailAdvCcInner}
-     */
-    SendMailAdvCcInner,
-
-    /**
-     * The SendMailAdvFrom model constructor.
-     * @property {module:model/SendMailAdvFrom}
-     */
-    SendMailAdvFrom,
-
-    /**
-     * The SendMailAdvReplytoInner model constructor.
-     * @property {module:model/SendMailAdvReplytoInner}
-     */
-    SendMailAdvReplytoInner,
-
-    /**
-     * The SendMailAdvToInner model constructor.
-     * @property {module:model/SendMailAdvToInner}
-     */
-    SendMailAdvToInner,
-
-    /**
-    * The DefaultApi service constructor.
-    * @property {module:api/DefaultApi}
+    * The BlockingApi service constructor.
+    * @property {module:api/BlockingApi}
     */
-    DefaultApi
+    BlockingApi,
+
+    /**
+    * The HistoryApi service constructor.
+    * @property {module:api/HistoryApi}
+    */
+    HistoryApi,
+
+    /**
+    * The SendingApi service constructor.
+    * @property {module:api/SendingApi}
+    */
+    SendingApi,
+
+    /**
+    * The ServicesApi service constructor.
+    * @property {module:api/ServicesApi}
+    */
+    ServicesApi,
+
+    /**
+    * The StatusApi service constructor.
+    * @property {module:api/StatusApi}
+    */
+    StatusApi
 };

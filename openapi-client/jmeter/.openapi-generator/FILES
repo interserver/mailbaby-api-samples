@@ -1,3 +1,11 @@
 .openapi-generator-ignore
-DefaultApi.csv
-DefaultApi.jmx
+BlockingApi.csv
+BlockingApi.jmx
+HistoryApi.csv
+HistoryApi.jmx
+SendingApi.csv
+SendingApi.jmx
+ServicesApi.csv
+ServicesApi.jmx
+StatusApi.csv
+StatusApi.jmx

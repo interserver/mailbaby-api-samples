@@ -2,22 +2,15 @@
 
 # 
 
-MailBaby Email Delivery API
+MailBaby Email Delivery and Management Service API
 
 - API version: 1.1.0
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
-
-
-# 📌 Overview
-
+# Overview
 This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).
-
-
-# 🔐 Authentication
-
+# Authentication
 In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.
-
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 
 
@@ -40,12 +33,15 @@ example.h:
 ```c++
 
 #include <iostream>
-#include "../client/OAIDefaultApi.h"
+#include "../client/OAIBlockingApi.h"
 
 using namespace test_namespace;
 
 class Example : public QObject {
     Q_OBJECT
+    QString create();
+    QString create();
+    QString create();
 public slots:
    void exampleFunction1();
 };
@@ -55,20 +51,59 @@ public slots:
 example.cpp:
 ```c++
 
-#include "../client/OAIDefaultApi.h"
+#include "../client/OAIBlockingApi.h"
 #include "example.h"
 #include <QTimer>
 #include <QEventLoop>
 
+QString Example::create(){
+    QString obj;
+QString Example::create(){
+    QString obj;
+QString Example::create(){
+    QString obj;
  return obj;
 }
 
 void Example::exampleFunction1(){
-     OAIDefaultApi apiInstance;
+     OAIBlockingApi apiInstance;
      
       // Configure API key authorization: apiKeyAuth
       apiInstance.setApiKey("YOUR API KEY NAME","YOUR API KEY");
-      apiInstance.getMailOrders();
+
+      QEventLoop loop;
+      connect(&apiInstance, &OAIBlockingApi::addRuleSignal, [&]() {
+          loop.quit();
+      });
+      connect(&apiInstance, &OAIBlockingApi::addRuleSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
+          qDebug() << "Error happened while issuing request : " << error_str;
+          loop.quit();
+      });
+
+      QString type = create(); // QString | The type of deny rule.
+
+      QEventLoop loop;
+      connect(&apiInstance, &OAIBlockingApi::addRuleSignal, [&]() {
+          loop.quit();
+      });
+      connect(&apiInstance, &OAIBlockingApi::addRuleSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
+          qDebug() << "Error happened while issuing request : " << error_str;
+          loop.quit();
+      });
+
+      QString data = create(); // QString | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+
+      QEventLoop loop;
+      connect(&apiInstance, &OAIBlockingApi::addRuleSignal, [&]() {
+          loop.quit();
+      });
+      connect(&apiInstance, &OAIBlockingApi::addRuleSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
+          qDebug() << "Error happened while issuing request : " << error_str;
+          loop.quit();
+      });
+
+      QString user = create(); // QString | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+      apiInstance.addRule(typedatauser);
       QTimer::singleShot(5000, &loop, &QEventLoop::quit);
       loop.exec();
   }
@@ -144,4 +179,4 @@ support@interserver.net
 
 ## License
 
-Apache 2.0 for more information visit [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
+GNU GPLv3 for more information visit [GNU GPLv3](https://www.gnu.org/licenses/gpl.txt)

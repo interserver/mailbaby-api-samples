@@ -1,9 +1,9 @@
 # coding: utf-8
 
 """
-    MailBaby Email Delivery API
+    MailBaby Email Delivery and Management Service API
 
-    **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.   # noqa: E501
+    **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.   # noqa: E501
 
     OpenAPI spec version: 1.1.0
     Contact: support@interserver.net
@@ -30,12 +30,12 @@ class SendMailAdv(object):
     swagger_types = {
         'subject': 'str',
         'body': 'str',
-        '_from': 'SendMailAdvFrom',
-        'to': 'list[SendMailAdvTo]',
-        'replyto': 'list[SendMailAdvReplyto]',
-        'cc': 'list[SendMailAdvCc]',
-        'bcc': 'list[SendMailAdvBcc]',
-        'attachments': 'list[SendMailAdvAttachments]',
+        '_from': 'EmailAddressName',
+        'to': 'list[EmailAddressName]',
+        'replyto': 'list[EmailAddressName]',
+        'cc': 'list[EmailAddressName]',
+        'bcc': 'list[EmailAddressName]',
+        'attachments': 'list[MailAttachment]',
         'id': 'int'
     }
 
@@ -134,7 +134,7 @@ class SendMailAdv(object):
 
 
         :return: The _from of this SendMailAdv.  # noqa: E501
-        :rtype: SendMailAdvFrom
+        :rtype: EmailAddressName
         """
         return self.__from
 
@@ -144,7 +144,7 @@ class SendMailAdv(object):
 
 
         :param _from: The _from of this SendMailAdv.  # noqa: E501
-        :type: SendMailAdvFrom
+        :type: EmailAddressName
         """
         if _from is None:
             raise ValueError("Invalid value for `_from`, must not be `None`")  # noqa: E501
@@ -158,7 +158,7 @@ class SendMailAdv(object):
         A list of destionation email addresses to send this to  # noqa: E501
 
         :return: The to of this SendMailAdv.  # noqa: E501
-        :rtype: list[SendMailAdvTo]
+        :rtype: list[EmailAddressName]
         """
         return self._to
 
@@ -169,7 +169,7 @@ class SendMailAdv(object):
         A list of destionation email addresses to send this to  # noqa: E501
 
         :param to: The to of this SendMailAdv.  # noqa: E501
-        :type: list[SendMailAdvTo]
+        :type: list[EmailAddressName]
         """
         if to is None:
             raise ValueError("Invalid value for `to`, must not be `None`")  # noqa: E501
@@ -183,7 +183,7 @@ class SendMailAdv(object):
         (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.  # noqa: E501
 
         :return: The replyto of this SendMailAdv.  # noqa: E501
-        :rtype: list[SendMailAdvReplyto]
+        :rtype: list[EmailAddressName]
         """
         return self._replyto
 
@@ -194,7 +194,7 @@ class SendMailAdv(object):
         (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.  # noqa: E501
 
         :param replyto: The replyto of this SendMailAdv.  # noqa: E501
-        :type: list[SendMailAdvReplyto]
+        :type: list[EmailAddressName]
         """
 
         self._replyto = replyto
@@ -206,7 +206,7 @@ class SendMailAdv(object):
         (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.  # noqa: E501
 
         :return: The cc of this SendMailAdv.  # noqa: E501
-        :rtype: list[SendMailAdvCc]
+        :rtype: list[EmailAddressName]
         """
         return self._cc
 
@@ -217,7 +217,7 @@ class SendMailAdv(object):
         (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.  # noqa: E501
 
         :param cc: The cc of this SendMailAdv.  # noqa: E501
-        :type: list[SendMailAdvCc]
+        :type: list[EmailAddressName]
         """
 
         self._cc = cc
@@ -229,7 +229,7 @@ class SendMailAdv(object):
         (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.  # noqa: E501
 
         :return: The bcc of this SendMailAdv.  # noqa: E501
-        :rtype: list[SendMailAdvBcc]
+        :rtype: list[EmailAddressName]
         """
         return self._bcc
 
@@ -240,7 +240,7 @@ class SendMailAdv(object):
         (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.  # noqa: E501
 
         :param bcc: The bcc of this SendMailAdv.  # noqa: E501
-        :type: list[SendMailAdvBcc]
+        :type: list[EmailAddressName]
         """
 
         self._bcc = bcc
@@ -252,7 +252,7 @@ class SendMailAdv(object):
         (optional) File attachments to include in the email.  The file contents must be base64 encoded!  # noqa: E501
 
         :return: The attachments of this SendMailAdv.  # noqa: E501
-        :rtype: list[SendMailAdvAttachments]
+        :rtype: list[MailAttachment]
         """
         return self._attachments
 
@@ -263,7 +263,7 @@ class SendMailAdv(object):
         (optional) File attachments to include in the email.  The file contents must be base64 encoded!  # noqa: E501
 
         :param attachments: The attachments of this SendMailAdv.  # noqa: E501
-        :type: list[SendMailAdvAttachments]
+        :type: list[MailAttachment]
         """
 
         self._attachments = attachments

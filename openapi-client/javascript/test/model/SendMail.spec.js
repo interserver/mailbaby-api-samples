@@ -1,6 +1,6 @@
 /**
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.MailBabyEmailDeliveryApi);
+    factory(root.expect, root.MailBabyEmailDeliveryAndManagementServiceApi);
   }
-}(this, function(expect, MailBabyEmailDeliveryApi) {
+}(this, function(expect, MailBabyEmailDeliveryAndManagementServiceApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new MailBabyEmailDeliveryApi.SendMail();
+    instance = new MailBabyEmailDeliveryAndManagementServiceApi.SendMail();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,31 +50,31 @@
   describe('SendMail', function() {
     it('should create an instance of SendMail', function() {
       // uncomment below and update the code to test SendMail
-      //var instance = new MailBabyEmailDeliveryApi.SendMail();
-      //expect(instance).to.be.a(MailBabyEmailDeliveryApi.SendMail);
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.SendMail();
+      //expect(instance).to.be.a(MailBabyEmailDeliveryAndManagementServiceApi.SendMail);
     });
 
     it('should have the property to (base name: "to")', function() {
       // uncomment below and update the code to test the property to
-      //var instance = new MailBabyEmailDeliveryApi.SendMail();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.SendMail();
       //expect(instance).to.be();
     });
 
     it('should have the property from (base name: "from")', function() {
       // uncomment below and update the code to test the property from
-      //var instance = new MailBabyEmailDeliveryApi.SendMail();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.SendMail();
       //expect(instance).to.be();
     });
 
     it('should have the property subject (base name: "subject")', function() {
       // uncomment below and update the code to test the property subject
-      //var instance = new MailBabyEmailDeliveryApi.SendMail();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.SendMail();
       //expect(instance).to.be();
     });
 
     it('should have the property body (base name: "body")', function() {
       // uncomment below and update the code to test the property body
-      //var instance = new MailBabyEmailDeliveryApi.SendMail();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.SendMail();
       //expect(instance).to.be();
     });
 

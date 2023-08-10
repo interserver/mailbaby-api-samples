@@ -1,8 +1,8 @@
-# MailBaby Email Delivery API Bash client
+# MailBaby Email Delivery and Management Service API Bash client
 
 ## Overview
 
-This is a Bash client script for accessing MailBaby Email Delivery API service.
+This is a Bash client script for accessing MailBaby Email Delivery and Management Service API service.
 
 The script uses cURL underneath for making all REST calls.
 
@@ -103,28 +103,37 @@ All URIs are relative to **
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**getMailOrders**](docs/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
-*DefaultApi* | [**pingServer**](docs/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
-*DefaultApi* | [**sendAdvMail**](docs/DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMail**](docs/DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
-*DefaultApi* | [**viewMailLog**](docs/DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
+*BlockingApi* | [**addRule**](docs/BlockingApi.md#addrule) | **POST** /mail/rules | Creates a new email deny rule.
+*BlockingApi* | [**deleteRule**](docs/BlockingApi.md#deleterule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule.
+*BlockingApi* | [**delistBlock**](docs/BlockingApi.md#delistblock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
+*BlockingApi* | [**getMailBlocks**](docs/BlockingApi.md#getmailblocks) | **GET** /mail/blocks | displays a list of blocked email addresses
+*BlockingApi* | [**getRules**](docs/BlockingApi.md#getrules) | **GET** /mail/rules | Displays a listing of deny email rules.
+*HistoryApi* | [**getStats**](docs/HistoryApi.md#getstats) | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
+*SendingApi* | [**sendAdvMail**](docs/SendingApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*SendingApi* | [**sendMail**](docs/SendingApi.md#sendmail) | **POST** /mail/send | Sends an Email
+*ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
+*StatusApi* | [**pingServer**](docs/StatusApi.md#pingserver) | **GET** /ping | Checks if the server is running
 
 
 ## Documentation For Models
 
+ - [DenyRuleNew](docs/DenyRuleNew.md)
+ - [DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [EmailAddress](docs/EmailAddress.md)
+ - [EmailAddressName](docs/EmailAddressName.md)
  - [GenericResponse](docs/GenericResponse.md)
- - [GetMailOrders200ResponseInner](docs/GetMailOrders200ResponseInner.md)
  - [GetMailOrders401Response](docs/GetMailOrders401Response.md)
+ - [GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
+ - [MailAttachment](docs/MailAttachment.md)
+ - [MailBlockClickHouse](docs/MailBlockClickHouse.md)
+ - [MailBlockRspamd](docs/MailBlockRspamd.md)
+ - [MailBlocks](docs/MailBlocks.md)
  - [MailLog](docs/MailLog.md)
  - [MailLogEntry](docs/MailLogEntry.md)
+ - [MailOrder](docs/MailOrder.md)
  - [SendMail](docs/SendMail.md)
  - [SendMailAdv](docs/SendMailAdv.md)
- - [SendMailAdvAttachmentsInner](docs/SendMailAdvAttachmentsInner.md)
- - [SendMailAdvBccInner](docs/SendMailAdvBccInner.md)
- - [SendMailAdvCcInner](docs/SendMailAdvCcInner.md)
- - [SendMailAdvFrom](docs/SendMailAdvFrom.md)
- - [SendMailAdvReplytoInner](docs/SendMailAdvReplytoInner.md)
- - [SendMailAdvToInner](docs/SendMailAdvToInner.md)
 
 
 ## Documentation For Authorization

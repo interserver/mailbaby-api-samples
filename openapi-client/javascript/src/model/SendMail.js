@@ -1,6 +1,6 @@
 /**
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -72,8 +72,42 @@ class SendMail {
         return obj;
     }
 
+    /**
+     * Validates the JSON data with respect to <code>SendMail</code>.
+     * @param {Object} data The plain JavaScript object bearing properties of interest.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>SendMail</code>.
+     */
+    static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of SendMail.RequiredProperties) {
+            if (!data[property]) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
+        }
+        // ensure the json data is a string
+        if (data['to'] && !(typeof data['to'] === 'string' || data['to'] instanceof String)) {
+            throw new Error("Expected the field `to` to be a primitive type in the JSON string but got " + data['to']);
+        }
+        // ensure the json data is a string
+        if (data['from'] && !(typeof data['from'] === 'string' || data['from'] instanceof String)) {
+            throw new Error("Expected the field `from` to be a primitive type in the JSON string but got " + data['from']);
+        }
+        // ensure the json data is a string
+        if (data['subject'] && !(typeof data['subject'] === 'string' || data['subject'] instanceof String)) {
+            throw new Error("Expected the field `subject` to be a primitive type in the JSON string but got " + data['subject']);
+        }
+        // ensure the json data is a string
+        if (data['body'] && !(typeof data['body'] === 'string' || data['body'] instanceof String)) {
+            throw new Error("Expected the field `body` to be a primitive type in the JSON string but got " + data['body']);
+        }
+
+        return true;
+    }
+
 
 }
+
+SendMail.RequiredProperties = ["to", "from", "subject", "body"];
 
 /**
  * The Contact whom is the primary recipient of this email.

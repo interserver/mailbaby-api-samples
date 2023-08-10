@@ -9,12 +9,352 @@ use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
  * The version of the OpenAPI document: 1.1.0
  */
 class ApiClient extends OAGAC\AbstractApiClient
 {
+    //region addRule
+    /**
+     * Creates a new email deny rule.
+     * @param \App\DTO\DenyRuleNew $requestContent
+     * @param iterable|string[][] $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function addRuleRaw(
+        \App\DTO\DenyRuleNew $requestContent,
+        iterable $security = ['apiKeyAuth' => []],
+        string $requestMediaType = 'application/x-www-form-urlencoded',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/mail/rules', [], []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Creates a new email deny rule.
+     * @param \App\DTO\DenyRuleNew $requestContent
+     * @param iterable|string[][] $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function addRule(
+        \App\DTO\DenyRuleNew $requestContent,
+        iterable $security = ['apiKeyAuth' => []],
+        string $requestMediaType = 'application/x-www-form-urlencoded',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->addRuleRaw($requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* search results matching criteria */
+                $responseContent = new \App\DTO\GenericResponse();
+                break;
+            case 400:
+                /* The specified resource was not found */
+                $responseContent = new \App\DTO\GetMailOrders401Response();
+                break;
+            case 401:
+                /* Unauthorized */
+                $responseContent = new \App\DTO\GetMailOrders401Response();
+                break;
+            case 404:
+                /* The specified resource was not found */
+                $responseContent = new \App\DTO\GetMailOrders401Response();
+                break;
+        }
+        $this->parseBody($response, $responseContent);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Creates a new email deny rule.
+     * @param \App\DTO\DenyRuleNew $requestContent
+     * @param iterable|string[][] $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\GenericResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function addRuleResult(
+        \App\DTO\DenyRuleNew $requestContent,
+        iterable $security = ['apiKeyAuth' => []],
+        string $requestMediaType = 'application/x-www-form-urlencoded',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\GenericResponse
+    {
+        return $this->getSuccessfulContent(...$this->addRule($requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region deleteRule
+    /**
+     * Removes an deny mail rule.
+     * @param \App\DTO\DeleteRuleParameterData $parameters
+     * @param iterable|string[][] $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function deleteRuleRaw(
+        \App\DTO\DeleteRuleParameterData $parameters,
+        iterable $security = ['apiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('DELETE', '/mail/rules/{ruleId}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Removes an deny mail rule.
+     * @param \App\DTO\DeleteRuleParameterData $parameters
+     * @param iterable|string[][] $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function deleteRule(
+        \App\DTO\DeleteRuleParameterData $parameters,
+        iterable $security = ['apiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->deleteRuleRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* search results matching criteria */
+                $responseContent = new \App\DTO\GenericResponse();
+                break;
+            case 400:
+                /* The specified resource was not found */
+                $responseContent = new \App\DTO\GetMailOrders401Response();
+                break;
+            case 401:
+                /* Unauthorized */
+                $responseContent = new \App\DTO\GetMailOrders401Response();
+                break;
+            case 404:
+                /* The specified resource was not found */
+                $responseContent = new \App\DTO\GetMailOrders401Response();
+                break;
+        }
+        $this->parseBody($response, $responseContent);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Removes an deny mail rule.
+     * @param \App\DTO\DeleteRuleParameterData $parameters
+     * @param iterable|string[][] $security
+     * @param string $responseMediaType
+     * @return \App\DTO\GenericResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function deleteRuleResult(
+        \App\DTO\DeleteRuleParameterData $parameters,
+        iterable $security = ['apiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\GenericResponse
+    {
+        return $this->getSuccessfulContent(...$this->deleteRule($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
+    //region delistBlock
+    /**
+     * Removes an email address from the blocked list
+     * @param \App\DTO\EmailAddress $requestContent
+     * @param iterable|string[][] $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function delistBlockRaw(
+        \App\DTO\EmailAddress $requestContent,
+        iterable $security = ['apiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/mail/blocks/delete', [], []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Removes an email address from the blocked list
+     * @param \App\DTO\EmailAddress $requestContent
+     * @param iterable|string[][] $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function delistBlock(
+        \App\DTO\EmailAddress $requestContent,
+        iterable $security = ['apiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->delistBlockRaw($requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* search results matching criteria */
+                $responseContent = new \App\DTO\GenericResponse();
+                break;
+            case 400:
+                /* The specified resource was not found */
+                $responseContent = new \App\DTO\GetMailOrders401Response();
+                break;
+            case 401:
+                /* Unauthorized */
+                $responseContent = new \App\DTO\GetMailOrders401Response();
+                break;
+            case 404:
+                /* The specified resource was not found */
+                $responseContent = new \App\DTO\GetMailOrders401Response();
+                break;
+        }
+        $this->parseBody($response, $responseContent);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Removes an email address from the blocked list
+     * @param \App\DTO\EmailAddress $requestContent
+     * @param iterable|string[][] $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\GenericResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function delistBlockResult(
+        \App\DTO\EmailAddress $requestContent,
+        iterable $security = ['apiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\GenericResponse
+    {
+        return $this->getSuccessfulContent(...$this->delistBlock($requestContent, $security, $requestMediaType, $responseMediaType));
+    }
+    //endregion
+
+    //region getMailBlocks
+    /**
+     * displays a list of blocked email addresses
+     * @param iterable|string[][] $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function getMailBlocksRaw(
+        iterable $security = ['apiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/mail/blocks', [], []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * displays a list of blocked email addresses
+     * @param iterable|string[][] $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function getMailBlocks(
+        iterable $security = ['apiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->getMailBlocksRaw($security, $responseMediaType);
+        $responseContent = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\MailBlocks();
+                break;
+            case 401:
+                /* Unauthorized */
+                $responseContent = new \App\DTO\GetMailOrders401Response();
+                break;
+            case 404:
+                /* Unauthorized */
+                $responseContent = new \App\DTO\GetMailOrders401Response();
+                break;
+        }
+        $this->parseBody($response, $responseContent);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * displays a list of blocked email addresses
+     * @param iterable|string[][] $security
+     * @param string $responseMediaType
+     * @return \App\DTO\MailBlocks
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function getMailBlocksResult(
+        iterable $security = ['apiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\MailBlocks
+    {
+        return $this->getSuccessfulContent(...$this->getMailBlocks($security, $responseMediaType));
+    }
+    //endregion
+
     //region getMailOrders
     /**
      * displays a list of mail service orders
@@ -89,31 +429,184 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
     //endregion
 
+    //region getRules
+    /**
+     * Displays a listing of deny email rules.
+     * @param iterable|string[][] $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function getRulesRaw(
+        iterable $security = ['apiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/mail/rules', [], []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Displays a listing of deny email rules.
+     * @param iterable|string[][] $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function getRules(
+        iterable $security = ['apiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->getRulesRaw($security, $responseMediaType);
+        $responseContent = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\Collection11();
+                break;
+            case 401:
+                /* Unauthorized */
+                $responseContent = new \App\DTO\GetMailOrders401Response();
+                break;
+            case 404:
+                /* Unauthorized */
+                $responseContent = new \App\DTO\GetMailOrders401Response();
+                break;
+        }
+        $this->parseBody($response, $responseContent);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Displays a listing of deny email rules.
+     * @param iterable|string[][] $security
+     * @param string $responseMediaType
+     * @return \App\DTO\Collection11
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function getRulesResult(
+        iterable $security = ['apiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\Collection11
+    {
+        return $this->getSuccessfulContent(...$this->getRules($security, $responseMediaType));
+    }
+    //endregion
+
+    //region getStats
+    /**
+     * displays a list of blocked email addresses
+     * @param iterable|string[][] $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function getStatsRaw(
+        iterable $security = ['apiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/mail/stats', [], []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * displays a list of blocked email addresses
+     * @param iterable|string[][] $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function getStats(
+        iterable $security = ['apiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->getStatsRaw($security, $responseMediaType);
+        $responseContent = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\Collection4();
+                break;
+            case 401:
+                /* Unauthorized */
+                $responseContent = new \App\DTO\GetMailOrders401Response();
+                break;
+            case 404:
+                /* Unauthorized */
+                $responseContent = new \App\DTO\GetMailOrders401Response();
+                break;
+        }
+        $this->parseBody($response, $responseContent);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * displays a list of blocked email addresses
+     * @param iterable|string[][] $security
+     * @param string $responseMediaType
+     * @return \App\DTO\Collection4
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function getStatsResult(
+        iterable $security = ['apiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\Collection4
+    {
+        return $this->getSuccessfulContent(...$this->getStats($security, $responseMediaType));
+    }
+    //endregion
+
     //region pingServer
     /**
      * Checks if the server is running
+     * @param iterable|string[][] $security
      * @return ResponseInterface
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      */
     public function pingServerRaw(
+        iterable $security = ['apiKeyAuth' => []]
     ): ResponseInterface
     {
         $request = $this->createRequest('GET', '/ping', [], []);
+        $request = $this->addSecurity($request, $security);
         return $this->httpClient->sendRequest($request);
     }
 
     /**
      * Checks if the server is running
+     * @param iterable|string[][] $security
      * @return array
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
      */
     public function pingServer(
+        iterable $security = ['apiKeyAuth' => []]
     ): array
     {
-        $response = $this->pingServerRaw();
+        $response = $this->pingServerRaw($security);
         $responseContent = null;
         switch ($response->getStatusCode())
         {
@@ -130,6 +623,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * Checks if the server is running
+     * @param iterable|string[][] $security
      * @return mixed
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -137,9 +631,10 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws OAGAC\Exception\UnsuccessfulResponse
      */
     public function pingServerResult(
+        iterable $security = ['apiKeyAuth' => []]
     ): mixed
     {
-        return $this->getSuccessfulContent(...$this->pingServer());
+        return $this->getSuccessfulContent(...$this->pingServer($security));
     }
     //endregion
 
@@ -157,7 +652,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     public function sendAdvMailRaw(
         \App\DTO\SendMailAdv $requestContent,
         iterable $security = ['apiKeyAuth' => []],
-        string $requestMediaType = 'application/json',
+        string $requestMediaType = 'application/x-www-form-urlencoded',
         string $responseMediaType = 'application/json'
     ): ResponseInterface
     {
@@ -182,7 +677,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     public function sendAdvMail(
         \App\DTO\SendMailAdv $requestContent,
         iterable $security = ['apiKeyAuth' => []],
-        string $requestMediaType = 'application/json',
+        string $requestMediaType = 'application/x-www-form-urlencoded',
         string $responseMediaType = 'application/json'
     ): array
     {
@@ -226,7 +721,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     public function sendAdvMailResult(
         \App\DTO\SendMailAdv $requestContent,
         iterable $security = ['apiKeyAuth' => []],
-        string $requestMediaType = 'application/json',
+        string $requestMediaType = 'application/x-www-form-urlencoded',
         string $responseMediaType = 'application/json'
     ): \App\DTO\GenericResponse
     {

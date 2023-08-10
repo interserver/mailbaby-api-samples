@@ -1,7 +1,7 @@
 /*
-MailBaby Email Delivery API
+MailBaby Email Delivery and Management Service API
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
 API version: 1.1.0
 Contact: support@interserver.net
@@ -14,6 +14,9 @@ package openapi
 import (
 	"encoding/json"
 )
+
+// checks if the MailLogEntry type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MailLogEntry{}
 
 // MailLogEntry An email record
 type MailLogEntry struct {
@@ -226,7 +229,7 @@ func (o *MailLogEntry) SetSubject(v string) {
 
 // GetMessageId returns the MessageId field value if set, zero value otherwise.
 func (o *MailLogEntry) GetMessageId() string {
-	if o == nil || o.MessageId == nil {
+	if o == nil || IsNil(o.MessageId) {
 		var ret string
 		return ret
 	}
@@ -236,7 +239,7 @@ func (o *MailLogEntry) GetMessageId() string {
 // GetMessageIdOk returns a tuple with the MessageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MailLogEntry) GetMessageIdOk() (*string, bool) {
-	if o == nil || o.MessageId == nil {
+	if o == nil || IsNil(o.MessageId) {
 		return nil, false
 	}
 	return o.MessageId, true
@@ -244,7 +247,7 @@ func (o *MailLogEntry) GetMessageIdOk() (*string, bool) {
 
 // HasMessageId returns a boolean if a field has been set.
 func (o *MailLogEntry) HasMessageId() bool {
-	if o != nil && o.MessageId != nil {
+	if o != nil && !IsNil(o.MessageId) {
 		return true
 	}
 
@@ -665,77 +668,41 @@ func (o *MailLogEntry) SetResponse(v string) {
 }
 
 func (o MailLogEntry) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["_id"] = o.Id
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["from"] = o.From
-	}
-	if true {
-		toSerialize["to"] = o.To
-	}
-	if true {
-		toSerialize["subject"] = o.Subject
-	}
-	if o.MessageId != nil {
-		toSerialize["messageId"] = o.MessageId
-	}
-	if true {
-		toSerialize["created"] = o.Created
-	}
-	if true {
-		toSerialize["time"] = o.Time
-	}
-	if true {
-		toSerialize["user"] = o.User
-	}
-	if true {
-		toSerialize["transtype"] = o.Transtype
-	}
-	if true {
-		toSerialize["origin"] = o.Origin
-	}
-	if true {
-		toSerialize["interface"] = o.Interface
-	}
-	if true {
-		toSerialize["sendingZone"] = o.SendingZone
-	}
-	if true {
-		toSerialize["bodySize"] = o.BodySize
-	}
-	if true {
-		toSerialize["seq"] = o.Seq
-	}
-	if true {
-		toSerialize["recipient"] = o.Recipient
-	}
-	if true {
-		toSerialize["domain"] = o.Domain
-	}
-	if true {
-		toSerialize["locked"] = o.Locked
-	}
-	if true {
-		toSerialize["lockTime"] = o.LockTime
-	}
-	if true {
-		toSerialize["assigned"] = o.Assigned
-	}
-	if true {
-		toSerialize["queued"] = o.Queued
-	}
-	if true {
-		toSerialize["mxHostname"] = o.MxHostname
-	}
-	if true {
-		toSerialize["response"] = o.Response
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MailLogEntry) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["_id"] = o.Id
+	toSerialize["id"] = o.Id
+	toSerialize["from"] = o.From
+	toSerialize["to"] = o.To
+	toSerialize["subject"] = o.Subject
+	if !IsNil(o.MessageId) {
+		toSerialize["messageId"] = o.MessageId
+	}
+	toSerialize["created"] = o.Created
+	toSerialize["time"] = o.Time
+	toSerialize["user"] = o.User
+	toSerialize["transtype"] = o.Transtype
+	toSerialize["origin"] = o.Origin
+	toSerialize["interface"] = o.Interface
+	toSerialize["sendingZone"] = o.SendingZone
+	toSerialize["bodySize"] = o.BodySize
+	toSerialize["seq"] = o.Seq
+	toSerialize["recipient"] = o.Recipient
+	toSerialize["domain"] = o.Domain
+	toSerialize["locked"] = o.Locked
+	toSerialize["lockTime"] = o.LockTime
+	toSerialize["assigned"] = o.Assigned
+	toSerialize["queued"] = o.Queued
+	toSerialize["mxHostname"] = o.MxHostname
+	toSerialize["response"] = o.Response
+	return toSerialize, nil
 }
 
 type NullableMailLogEntry struct {

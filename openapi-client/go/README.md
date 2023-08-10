@@ -1,17 +1,10 @@
 # Go API client for openapi
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
-
-
-# 📌 Overview
-
+# Overview
 This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).
-
-
-# 🔐 Authentication
-
+# Authentication
 In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.
-
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 
 
@@ -29,7 +22,6 @@ Install the following dependencies:
 
 ```shell
 go get github.com/stretchr/testify/assert
-go get golang.org/x/oauth2
 go get golang.org/x/net/context
 ```
 
@@ -75,7 +67,7 @@ Each operation can use different server URL defined using `OperationServers` map
 An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
 Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
 
-```
+```golang
 ctx := context.WithValue(context.Background(), openapi.ContextOperationServerIndices, map[string]int{
 	"{classname}Service.{nickname}": 2,
 })
@@ -92,34 +84,43 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**GetMailOrders**](docs/DefaultApi.md#getmailorders) | **Get** /mail | displays a list of mail service orders
-*DefaultApi* | [**PingServer**](docs/DefaultApi.md#pingserver) | **Get** /ping | Checks if the server is running
-*DefaultApi* | [**SendAdvMail**](docs/DefaultApi.md#sendadvmail) | **Post** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**SendMail**](docs/DefaultApi.md#sendmail) | **Post** /mail/send | Sends an Email
-*DefaultApi* | [**ViewMailLog**](docs/DefaultApi.md#viewmaillog) | **Get** /mail/log | displays the mail log
+*BlockingAPI* | [**AddRule**](docs/BlockingAPI.md#addrule) | **Post** /mail/rules | Creates a new email deny rule.
+*BlockingAPI* | [**DeleteRule**](docs/BlockingAPI.md#deleterule) | **Delete** /mail/rules/{ruleId} | Removes an deny mail rule.
+*BlockingAPI* | [**DelistBlock**](docs/BlockingAPI.md#delistblock) | **Post** /mail/blocks/delete | Removes an email address from the blocked list
+*BlockingAPI* | [**GetMailBlocks**](docs/BlockingAPI.md#getmailblocks) | **Get** /mail/blocks | displays a list of blocked email addresses
+*BlockingAPI* | [**GetRules**](docs/BlockingAPI.md#getrules) | **Get** /mail/rules | Displays a listing of deny email rules.
+*HistoryAPI* | [**GetStats**](docs/HistoryAPI.md#getstats) | **Get** /mail/stats | displays a list of blocked email addresses
+*HistoryAPI* | [**ViewMailLog**](docs/HistoryAPI.md#viewmaillog) | **Get** /mail/log | displays the mail log
+*SendingAPI* | [**SendAdvMail**](docs/SendingAPI.md#sendadvmail) | **Post** /mail/advsend | Sends an Email with Advanced Options
+*SendingAPI* | [**SendMail**](docs/SendingAPI.md#sendmail) | **Post** /mail/send | Sends an Email
+*ServicesAPI* | [**GetMailOrders**](docs/ServicesAPI.md#getmailorders) | **Get** /mail | displays a list of mail service orders
+*StatusAPI* | [**PingServer**](docs/StatusAPI.md#pingserver) | **Get** /ping | Checks if the server is running
 
 
 ## Documentation For Models
 
+ - [DenyRuleNew](docs/DenyRuleNew.md)
+ - [DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [EmailAddress](docs/EmailAddress.md)
+ - [EmailAddressName](docs/EmailAddressName.md)
  - [GenericResponse](docs/GenericResponse.md)
- - [GetMailOrders200ResponseInner](docs/GetMailOrders200ResponseInner.md)
  - [GetMailOrders401Response](docs/GetMailOrders401Response.md)
+ - [GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
+ - [MailAttachment](docs/MailAttachment.md)
+ - [MailBlockClickHouse](docs/MailBlockClickHouse.md)
+ - [MailBlockRspamd](docs/MailBlockRspamd.md)
+ - [MailBlocks](docs/MailBlocks.md)
  - [MailLog](docs/MailLog.md)
  - [MailLogEntry](docs/MailLogEntry.md)
+ - [MailOrder](docs/MailOrder.md)
  - [SendMail](docs/SendMail.md)
  - [SendMailAdv](docs/SendMailAdv.md)
- - [SendMailAdvAttachmentsInner](docs/SendMailAdvAttachmentsInner.md)
- - [SendMailAdvBccInner](docs/SendMailAdvBccInner.md)
- - [SendMailAdvCcInner](docs/SendMailAdvCcInner.md)
- - [SendMailAdvFrom](docs/SendMailAdvFrom.md)
- - [SendMailAdvReplytoInner](docs/SendMailAdvReplytoInner.md)
- - [SendMailAdvToInner](docs/SendMailAdvToInner.md)
 
 
 ## Documentation For Authorization
 
 
-
+Authentication schemes defined for the API:
 ### apiKeyAuth
 
 - **Type**: API key
@@ -127,6 +128,19 @@ Class | Method | HTTP request | Description
 - **Location**: HTTP header
 
 Note, each API key must be added to a map of `map[string]APIKey` where the key is: X-API-KEY and passed in as the auth context for each request.
+
+Example
+
+```golang
+auth := context.WithValue(
+		context.Background(),
+		sw.ContextAPIKeys,
+		map[string]sw.APIKey{
+			"X-API-KEY": {Key: "API_KEY_STRING"},
+		},
+	)
+r, err := client.Service.Operation(auth, args)
+```
 
 
 ## Documentation for Utility Methods

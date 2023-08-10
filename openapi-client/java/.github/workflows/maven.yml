@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: Build MailBaby Email Delivery API
+    name: Build MailBaby Email Delivery and Management Service API
     runs-on: ubuntu-latest
     strategy:
       matrix:

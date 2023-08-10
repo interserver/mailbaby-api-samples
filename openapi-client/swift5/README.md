@@ -1,17 +1,10 @@
 # Swift5 API client for OpenAPIClient
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
-
-
-# 📌 Overview
-
+# Overview
 This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).
-
-
-# 🔐 Authentication
-
+# Authentication
 In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.
-
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 
 
@@ -39,34 +32,46 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultAPI* | [**getMailOrders**](docs/DefaultAPI.md#getmailorders) | **GET** /mail | displays a list of mail service orders
-*DefaultAPI* | [**pingServer**](docs/DefaultAPI.md#pingserver) | **GET** /ping | Checks if the server is running
-*DefaultAPI* | [**sendAdvMail**](docs/DefaultAPI.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultAPI* | [**sendMail**](docs/DefaultAPI.md#sendmail) | **POST** /mail/send | Sends an Email
-*DefaultAPI* | [**viewMailLog**](docs/DefaultAPI.md#viewmaillog) | **GET** /mail/log | displays the mail log
+*BlockingAPI* | [**addRule**](docs/BlockingAPI.md#addrule) | **POST** /mail/rules | Creates a new email deny rule.
+*BlockingAPI* | [**deleteRule**](docs/BlockingAPI.md#deleterule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule.
+*BlockingAPI* | [**delistBlock**](docs/BlockingAPI.md#delistblock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
+*BlockingAPI* | [**getMailBlocks**](docs/BlockingAPI.md#getmailblocks) | **GET** /mail/blocks | displays a list of blocked email addresses
+*BlockingAPI* | [**getRules**](docs/BlockingAPI.md#getrules) | **GET** /mail/rules | Displays a listing of deny email rules.
+*HistoryAPI* | [**getStats**](docs/HistoryAPI.md#getstats) | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryAPI* | [**viewMailLog**](docs/HistoryAPI.md#viewmaillog) | **GET** /mail/log | displays the mail log
+*SendingAPI* | [**sendAdvMail**](docs/SendingAPI.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*SendingAPI* | [**sendMail**](docs/SendingAPI.md#sendmail) | **POST** /mail/send | Sends an Email
+*ServicesAPI* | [**getMailOrders**](docs/ServicesAPI.md#getmailorders) | **GET** /mail | displays a list of mail service orders
+*StatusAPI* | [**pingServer**](docs/StatusAPI.md#pingserver) | **GET** /ping | Checks if the server is running
 
 
 ## Documentation For Models
 
+ - [DenyRuleNew](docs/DenyRuleNew.md)
+ - [DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [EmailAddress](docs/EmailAddress.md)
+ - [EmailAddressName](docs/EmailAddressName.md)
  - [GenericResponse](docs/GenericResponse.md)
- - [GetMailOrders200ResponseInner](docs/GetMailOrders200ResponseInner.md)
  - [GetMailOrders401Response](docs/GetMailOrders401Response.md)
+ - [GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
+ - [MailAttachment](docs/MailAttachment.md)
+ - [MailBlockClickHouse](docs/MailBlockClickHouse.md)
+ - [MailBlockRspamd](docs/MailBlockRspamd.md)
+ - [MailBlocks](docs/MailBlocks.md)
  - [MailLog](docs/MailLog.md)
  - [MailLogEntry](docs/MailLogEntry.md)
+ - [MailOrder](docs/MailOrder.md)
  - [SendMail](docs/SendMail.md)
  - [SendMailAdv](docs/SendMailAdv.md)
- - [SendMailAdvAttachmentsInner](docs/SendMailAdvAttachmentsInner.md)
- - [SendMailAdvBccInner](docs/SendMailAdvBccInner.md)
- - [SendMailAdvCcInner](docs/SendMailAdvCcInner.md)
- - [SendMailAdvFrom](docs/SendMailAdvFrom.md)
- - [SendMailAdvReplytoInner](docs/SendMailAdvReplytoInner.md)
- - [SendMailAdvToInner](docs/SendMailAdvToInner.md)
 
 
+<a id="documentation-for-authorization"></a>
 ## Documentation For Authorization
 
 
-## apiKeyAuth
+Authentication schemes defined for the API:
+<a id="apiKeyAuth"></a>
+### apiKeyAuth
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY

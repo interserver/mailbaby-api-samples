@@ -5,9 +5,9 @@ namespace App\DTO;
 
 use Articus\DataTransfer\PhpAttribute as DTA;
 
-#[DTA\Strategy("ObjectList", ["type" => \App\DTO\SendMailAdvCcInner::class])]
+#[DTA\Strategy("ObjectList", ["type" => \App\DTO\MailBlockRspamd::class])]
 #[DTA\Validator("Collection", ["validators" => [
-    ["name" => "TypeCompliant", "options" => ["type" => \App\DTO\SendMailAdvCcInner::class]]
+    ["name" => "TypeCompliant", "options" => ["type" => \App\DTO\MailBlockRspamd::class]]
 ]])]
 class Collection3 extends \ArrayObject
 {

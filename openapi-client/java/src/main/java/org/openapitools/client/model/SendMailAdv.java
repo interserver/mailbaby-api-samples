@@ -1,6 +1,6 @@
 /*
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -20,17 +20,11 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.openapitools.client.model.SendMailAdvAttachmentsInner;
-import org.openapitools.client.model.SendMailAdvBccInner;
-import org.openapitools.client.model.SendMailAdvCcInner;
-import org.openapitools.client.model.SendMailAdvFrom;
-import org.openapitools.client.model.SendMailAdvReplytoInner;
-import org.openapitools.client.model.SendMailAdvToInner;
+import org.openapitools.client.model.EmailAddressName;
+import org.openapitools.client.model.MailAttachment;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,10 +36,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -55,8 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Details for an Email
  */
-@ApiModel(description = "Details for an Email")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-05-09T00:49:39.575209-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-10T12:35:23.309340-04:00[America/New_York]")
 public class SendMailAdv {
   public static final String SERIALIZED_NAME_SUBJECT = "subject";
   @SerializedName(SERIALIZED_NAME_SUBJECT)
@@ -68,33 +66,33 @@ public class SendMailAdv {
 
   public static final String SERIALIZED_NAME_FROM = "from";
   @SerializedName(SERIALIZED_NAME_FROM)
-  private SendMailAdvFrom from;
+  private EmailAddressName from;
 
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
-  private List<SendMailAdvToInner> to = new ArrayList<>();
+  private List<EmailAddressName> to = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REPLYTO = "replyto";
   @SerializedName(SERIALIZED_NAME_REPLYTO)
-  private List<SendMailAdvReplytoInner> replyto = null;
+  private List<EmailAddressName> replyto;
 
   public static final String SERIALIZED_NAME_CC = "cc";
   @SerializedName(SERIALIZED_NAME_CC)
-  private List<SendMailAdvCcInner> cc = null;
+  private List<EmailAddressName> cc;
 
   public static final String SERIALIZED_NAME_BCC = "bcc";
   @SerializedName(SERIALIZED_NAME_BCC)
-  private List<SendMailAdvBccInner> bcc = null;
+  private List<EmailAddressName> bcc;
 
   public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
   @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
-  private List<SendMailAdvAttachmentsInner> attachments = null;
+  private List<MailAttachment> attachments;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private Long id;
 
-  public SendMailAdv() { 
+  public SendMailAdv() {
   }
 
   public SendMailAdv subject(String subject) {
@@ -108,8 +106,6 @@ public class SendMailAdv {
    * @return subject
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "Your Package has been Delivered!", required = true, value = "The subject or title of the email")
-
   public String getSubject() {
     return subject;
   }
@@ -131,8 +127,6 @@ public class SendMailAdv {
    * @return body
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.", required = true, value = "The main email contents.")
-
   public String getBody() {
     return body;
   }
@@ -143,7 +137,7 @@ public class SendMailAdv {
   }
 
 
-  public SendMailAdv from(SendMailAdvFrom from) {
+  public SendMailAdv from(EmailAddressName from) {
     
     this.from = from;
     return this;
@@ -154,25 +148,26 @@ public class SendMailAdv {
    * @return from
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
-  public SendMailAdvFrom getFrom() {
+  public EmailAddressName getFrom() {
     return from;
   }
 
 
-  public void setFrom(SendMailAdvFrom from) {
+  public void setFrom(EmailAddressName from) {
     this.from = from;
   }
 
 
-  public SendMailAdv to(List<SendMailAdvToInner> to) {
+  public SendMailAdv to(List<EmailAddressName> to) {
     
     this.to = to;
     return this;
   }
 
-  public SendMailAdv addToItem(SendMailAdvToInner toItem) {
+  public SendMailAdv addToItem(EmailAddressName toItem) {
+    if (this.to == null) {
+      this.to = new ArrayList<>();
+    }
     this.to.add(toItem);
     return this;
   }
@@ -182,25 +177,23 @@ public class SendMailAdv {
    * @return to
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "A list of destionation email addresses to send this to")
-
-  public List<SendMailAdvToInner> getTo() {
+  public List<EmailAddressName> getTo() {
     return to;
   }
 
 
-  public void setTo(List<SendMailAdvToInner> to) {
+  public void setTo(List<EmailAddressName> to) {
     this.to = to;
   }
 
 
-  public SendMailAdv replyto(List<SendMailAdvReplytoInner> replyto) {
+  public SendMailAdv replyto(List<EmailAddressName> replyto) {
     
     this.replyto = replyto;
     return this;
   }
 
-  public SendMailAdv addReplytoItem(SendMailAdvReplytoInner replytoItem) {
+  public SendMailAdv addReplytoItem(EmailAddressName replytoItem) {
     if (this.replyto == null) {
       this.replyto = new ArrayList<>();
     }
@@ -213,25 +206,23 @@ public class SendMailAdv {
    * @return replyto
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.")
-
-  public List<SendMailAdvReplytoInner> getReplyto() {
+  public List<EmailAddressName> getReplyto() {
     return replyto;
   }
 
 
-  public void setReplyto(List<SendMailAdvReplytoInner> replyto) {
+  public void setReplyto(List<EmailAddressName> replyto) {
     this.replyto = replyto;
   }
 
 
-  public SendMailAdv cc(List<SendMailAdvCcInner> cc) {
+  public SendMailAdv cc(List<EmailAddressName> cc) {
     
     this.cc = cc;
     return this;
   }
 
-  public SendMailAdv addCcItem(SendMailAdvCcInner ccItem) {
+  public SendMailAdv addCcItem(EmailAddressName ccItem) {
     if (this.cc == null) {
       this.cc = new ArrayList<>();
     }
@@ -244,25 +235,23 @@ public class SendMailAdv {
    * @return cc
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.")
-
-  public List<SendMailAdvCcInner> getCc() {
+  public List<EmailAddressName> getCc() {
     return cc;
   }
 
 
-  public void setCc(List<SendMailAdvCcInner> cc) {
+  public void setCc(List<EmailAddressName> cc) {
     this.cc = cc;
   }
 
 
-  public SendMailAdv bcc(List<SendMailAdvBccInner> bcc) {
+  public SendMailAdv bcc(List<EmailAddressName> bcc) {
     
     this.bcc = bcc;
     return this;
   }
 
-  public SendMailAdv addBccItem(SendMailAdvBccInner bccItem) {
+  public SendMailAdv addBccItem(EmailAddressName bccItem) {
     if (this.bcc == null) {
       this.bcc = new ArrayList<>();
     }
@@ -275,25 +264,23 @@ public class SendMailAdv {
    * @return bcc
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.")
-
-  public List<SendMailAdvBccInner> getBcc() {
+  public List<EmailAddressName> getBcc() {
     return bcc;
   }
 
 
-  public void setBcc(List<SendMailAdvBccInner> bcc) {
+  public void setBcc(List<EmailAddressName> bcc) {
     this.bcc = bcc;
   }
 
 
-  public SendMailAdv attachments(List<SendMailAdvAttachmentsInner> attachments) {
+  public SendMailAdv attachments(List<MailAttachment> attachments) {
     
     this.attachments = attachments;
     return this;
   }
 
-  public SendMailAdv addAttachmentsItem(SendMailAdvAttachmentsInner attachmentsItem) {
+  public SendMailAdv addAttachmentsItem(MailAttachment attachmentsItem) {
     if (this.attachments == null) {
       this.attachments = new ArrayList<>();
     }
@@ -306,14 +293,12 @@ public class SendMailAdv {
    * @return attachments
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "(optional) File attachments to include in the email.  The file contents must be base64 encoded!")
-
-  public List<SendMailAdvAttachmentsInner> getAttachments() {
+  public List<MailAttachment> getAttachments() {
     return attachments;
   }
 
 
-  public void setAttachments(List<SendMailAdvAttachmentsInner> attachments) {
+  public void setAttachments(List<MailAttachment> attachments) {
     this.attachments = attachments;
   }
 
@@ -329,8 +314,6 @@ public class SendMailAdv {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "5000", value = "(optional)  ID of the Mail order within our system to use as the Mail Account.")
-
   public Long getId() {
     return id;
   }
@@ -421,103 +404,106 @@ public class SendMailAdv {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to SendMailAdv
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to SendMailAdv
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (SendMailAdv.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SendMailAdv.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SendMailAdv is not found in the empty JSON string", SendMailAdv.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Entry<String, JsonElement> entry : entries) {
         if (!SendMailAdv.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SendMailAdv` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SendMailAdv` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : SendMailAdv.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
-      if (jsonObj.get("subject") != null && !jsonObj.get("subject").isJsonPrimitive()) {
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("subject").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `subject` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subject").toString()));
       }
-      if (jsonObj.get("body") != null && !jsonObj.get("body").isJsonPrimitive()) {
+      if (!jsonObj.get("body").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `body` to be a primitive type in the JSON string but got `%s`", jsonObj.get("body").toString()));
       }
-      // validate the optional field `from`
-      if (jsonObj.getAsJsonObject("from") != null) {
-        SendMailAdvFrom.validateJsonObject(jsonObj.getAsJsonObject("from"));
+      // validate the required field `from`
+      EmailAddressName.validateJsonElement(jsonObj.get("from"));
+      // ensure the json data is an array
+      if (!jsonObj.get("to").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `to` to be an array in the JSON string but got `%s`", jsonObj.get("to").toString()));
       }
+
       JsonArray jsonArrayto = jsonObj.getAsJsonArray("to");
-      if (jsonArrayto != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("to").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `to` to be an array in the JSON string but got `%s`", jsonObj.get("to").toString()));
-        }
+      // validate the required field `to` (array)
+      for (int i = 0; i < jsonArrayto.size(); i++) {
+        EmailAddressName.validateJsonElement(jsonArrayto.get(i));
+      };
+      if (jsonObj.get("replyto") != null && !jsonObj.get("replyto").isJsonNull()) {
+        JsonArray jsonArrayreplyto = jsonObj.getAsJsonArray("replyto");
+        if (jsonArrayreplyto != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("replyto").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `replyto` to be an array in the JSON string but got `%s`", jsonObj.get("replyto").toString()));
+          }
 
-        // validate the optional field `to` (array)
-        for (int i = 0; i < jsonArrayto.size(); i++) {
-          SendMailAdvToInner.validateJsonObject(jsonArrayto.get(i).getAsJsonObject());
-        };
+          // validate the optional field `replyto` (array)
+          for (int i = 0; i < jsonArrayreplyto.size(); i++) {
+            EmailAddressName.validateJsonElement(jsonArrayreplyto.get(i));
+          };
+        }
       }
-      JsonArray jsonArrayreplyto = jsonObj.getAsJsonArray("replyto");
-      if (jsonArrayreplyto != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("replyto").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `replyto` to be an array in the JSON string but got `%s`", jsonObj.get("replyto").toString()));
-        }
+      if (jsonObj.get("cc") != null && !jsonObj.get("cc").isJsonNull()) {
+        JsonArray jsonArraycc = jsonObj.getAsJsonArray("cc");
+        if (jsonArraycc != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("cc").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `cc` to be an array in the JSON string but got `%s`", jsonObj.get("cc").toString()));
+          }
 
-        // validate the optional field `replyto` (array)
-        for (int i = 0; i < jsonArrayreplyto.size(); i++) {
-          SendMailAdvReplytoInner.validateJsonObject(jsonArrayreplyto.get(i).getAsJsonObject());
-        };
+          // validate the optional field `cc` (array)
+          for (int i = 0; i < jsonArraycc.size(); i++) {
+            EmailAddressName.validateJsonElement(jsonArraycc.get(i));
+          };
+        }
       }
-      JsonArray jsonArraycc = jsonObj.getAsJsonArray("cc");
-      if (jsonArraycc != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("cc").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `cc` to be an array in the JSON string but got `%s`", jsonObj.get("cc").toString()));
-        }
+      if (jsonObj.get("bcc") != null && !jsonObj.get("bcc").isJsonNull()) {
+        JsonArray jsonArraybcc = jsonObj.getAsJsonArray("bcc");
+        if (jsonArraybcc != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("bcc").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `bcc` to be an array in the JSON string but got `%s`", jsonObj.get("bcc").toString()));
+          }
 
-        // validate the optional field `cc` (array)
-        for (int i = 0; i < jsonArraycc.size(); i++) {
-          SendMailAdvCcInner.validateJsonObject(jsonArraycc.get(i).getAsJsonObject());
-        };
+          // validate the optional field `bcc` (array)
+          for (int i = 0; i < jsonArraybcc.size(); i++) {
+            EmailAddressName.validateJsonElement(jsonArraybcc.get(i));
+          };
+        }
       }
-      JsonArray jsonArraybcc = jsonObj.getAsJsonArray("bcc");
-      if (jsonArraybcc != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("bcc").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `bcc` to be an array in the JSON string but got `%s`", jsonObj.get("bcc").toString()));
-        }
+      if (jsonObj.get("attachments") != null && !jsonObj.get("attachments").isJsonNull()) {
+        JsonArray jsonArrayattachments = jsonObj.getAsJsonArray("attachments");
+        if (jsonArrayattachments != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("attachments").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `attachments` to be an array in the JSON string but got `%s`", jsonObj.get("attachments").toString()));
+          }
 
-        // validate the optional field `bcc` (array)
-        for (int i = 0; i < jsonArraybcc.size(); i++) {
-          SendMailAdvBccInner.validateJsonObject(jsonArraybcc.get(i).getAsJsonObject());
-        };
-      }
-      JsonArray jsonArrayattachments = jsonObj.getAsJsonArray("attachments");
-      if (jsonArrayattachments != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("attachments").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `attachments` to be an array in the JSON string but got `%s`", jsonObj.get("attachments").toString()));
+          // validate the optional field `attachments` (array)
+          for (int i = 0; i < jsonArrayattachments.size(); i++) {
+            MailAttachment.validateJsonElement(jsonArrayattachments.get(i));
+          };
         }
-
-        // validate the optional field `attachments` (array)
-        for (int i = 0; i < jsonArrayattachments.size(); i++) {
-          SendMailAdvAttachmentsInner.validateJsonObject(jsonArrayattachments.get(i).getAsJsonObject());
-        };
       }
   }
 
@@ -541,9 +527,9 @@ public class SendMailAdv {
 
            @Override
            public SendMailAdv read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

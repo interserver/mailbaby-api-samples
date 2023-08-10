@@ -625,7 +625,7 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
     // mail_log_entry->message_id
     cJSON *message_id = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "messageId");
     if (message_id) { 
-    if(!cJSON_IsString(message_id))
+    if(!cJSON_IsString(message_id) && !cJSON_IsNull(message_id))
     {
     goto end; //String
     }
@@ -655,7 +655,7 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
         strdup(queued->valuestring),
         strdup(mx_hostname->valuestring),
         strdup(response->valuestring),
-        message_id ? strdup(message_id->valuestring) : NULL
+        message_id && !cJSON_IsNull(message_id) ? strdup(message_id->valuestring) : NULL
         );
 
     return mail_log_entry_local_var;

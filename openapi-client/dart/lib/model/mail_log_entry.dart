@@ -115,29 +115,29 @@ class MailLogEntry {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is MailLogEntry &&
-     other.id == id &&
-     other.id == id &&
-     other.from == from &&
-     other.to == to &&
-     other.subject == subject &&
-     other.created == created &&
-     other.time == time &&
-     other.user == user &&
-     other.transtype == transtype &&
-     other.origin == origin &&
-     other.interface_ == interface_ &&
-     other.sendingZone == sendingZone &&
-     other.bodySize == bodySize &&
-     other.seq == seq &&
-     other.recipient == recipient &&
-     other.domain == domain &&
-     other.locked == locked &&
-     other.lockTime == lockTime &&
-     other.assigned == assigned &&
-     other.queued == queued &&
-     other.mxHostname == mxHostname &&
-     other.response == response &&
-     other.messageId == messageId;
+    other.id == id &&
+    other.id == id &&
+    other.from == from &&
+    other.to == to &&
+    other.subject == subject &&
+    other.created == created &&
+    other.time == time &&
+    other.user == user &&
+    other.transtype == transtype &&
+    other.origin == origin &&
+    other.interface_ == interface_ &&
+    other.sendingZone == sendingZone &&
+    other.bodySize == bodySize &&
+    other.seq == seq &&
+    other.recipient == recipient &&
+    other.domain == domain &&
+    other.locked == locked &&
+    other.lockTime == lockTime &&
+    other.assigned == assigned &&
+    other.queued == queued &&
+    other.mxHostname == mxHostname &&
+    other.response == response &&
+    other.messageId == messageId;
 
   @override
   int get hashCode =>
@@ -170,35 +170,35 @@ class MailLogEntry {
   String toString() => 'MailLogEntry[id=$id, id=$id, from=$from, to=$to, subject=$subject, created=$created, time=$time, user=$user, transtype=$transtype, origin=$origin, interface_=$interface_, sendingZone=$sendingZone, bodySize=$bodySize, seq=$seq, recipient=$recipient, domain=$domain, locked=$locked, lockTime=$lockTime, assigned=$assigned, queued=$queued, mxHostname=$mxHostname, response=$response, messageId=$messageId]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-      _json[r'_id'] = id;
-      _json[r'id'] = id;
-      _json[r'from'] = from;
-      _json[r'to'] = to;
-      _json[r'subject'] = subject;
-      _json[r'created'] = created;
-      _json[r'time'] = time;
-      _json[r'user'] = user;
-      _json[r'transtype'] = transtype;
-      _json[r'origin'] = origin;
-      _json[r'interface'] = interface_;
-      _json[r'sendingZone'] = sendingZone;
-      _json[r'bodySize'] = bodySize;
-      _json[r'seq'] = seq;
-      _json[r'recipient'] = recipient;
-      _json[r'domain'] = domain;
-      _json[r'locked'] = locked;
-      _json[r'lockTime'] = lockTime;
-      _json[r'assigned'] = assigned;
-      _json[r'queued'] = queued;
-      _json[r'mxHostname'] = mxHostname;
-      _json[r'response'] = response;
-    if (messageId != null) {
-      _json[r'messageId'] = messageId;
+    final json = <String, dynamic>{};
+      json[r'_id'] = this.id;
+      json[r'id'] = this.id;
+      json[r'from'] = this.from;
+      json[r'to'] = this.to;
+      json[r'subject'] = this.subject;
+      json[r'created'] = this.created;
+      json[r'time'] = this.time;
+      json[r'user'] = this.user;
+      json[r'transtype'] = this.transtype;
+      json[r'origin'] = this.origin;
+      json[r'interface'] = this.interface_;
+      json[r'sendingZone'] = this.sendingZone;
+      json[r'bodySize'] = this.bodySize;
+      json[r'seq'] = this.seq;
+      json[r'recipient'] = this.recipient;
+      json[r'domain'] = this.domain;
+      json[r'locked'] = this.locked;
+      json[r'lockTime'] = this.lockTime;
+      json[r'assigned'] = this.assigned;
+      json[r'queued'] = this.queued;
+      json[r'mxHostname'] = this.mxHostname;
+      json[r'response'] = this.response;
+    if (this.messageId != null) {
+      json[r'messageId'] = this.messageId;
     } else {
-      _json[r'messageId'] = null;
+      json[r'messageId'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [MailLogEntry] instance and imports its values from
@@ -248,7 +248,7 @@ class MailLogEntry {
     return null;
   }
 
-  static List<MailLogEntry>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<MailLogEntry> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MailLogEntry>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -279,12 +279,10 @@ class MailLogEntry {
   static Map<String, List<MailLogEntry>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<MailLogEntry>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = MailLogEntry.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = MailLogEntry.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

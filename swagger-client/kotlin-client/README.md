@@ -1,4 +1,4 @@
-# io.swagger.client - Kotlin client library for MailBaby Email Delivery API
+# io.swagger.client - Kotlin client library for MailBaby Email Delivery and Management Service API
 
 ## Requires
 
@@ -35,28 +35,37 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**getMailOrders**](docs/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
-*DefaultApi* | [**pingServer**](docs/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
-*DefaultApi* | [**sendAdvMail**](docs/DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMail**](docs/DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
-*DefaultApi* | [**viewMailLog**](docs/DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
+*BlockingApi* | [**addRule**](docs/BlockingApi.md#addrule) | **POST** /mail/rules | Creates a new email deny rule.
+*BlockingApi* | [**deleteRule**](docs/BlockingApi.md#deleterule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule.
+*BlockingApi* | [**delistBlock**](docs/BlockingApi.md#delistblock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
+*BlockingApi* | [**getMailBlocks**](docs/BlockingApi.md#getmailblocks) | **GET** /mail/blocks | displays a list of blocked email addresses
+*BlockingApi* | [**getRules**](docs/BlockingApi.md#getrules) | **GET** /mail/rules | Displays a listing of deny email rules.
+*HistoryApi* | [**getStats**](docs/HistoryApi.md#getstats) | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
+*SendingApi* | [**sendAdvMail**](docs/SendingApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*SendingApi* | [**sendMail**](docs/SendingApi.md#sendmail) | **POST** /mail/send | Sends an Email
+*ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
+*StatusApi* | [**pingServer**](docs/StatusApi.md#pingserver) | **GET** /ping | Checks if the server is running
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [io.swagger.client.models.DenyRuleNew](docs/DenyRuleNew.md)
+ - [io.swagger.client.models.DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [io.swagger.client.models.EmailAddress](docs/EmailAddress.md)
+ - [io.swagger.client.models.EmailAddressName](docs/EmailAddressName.md)
  - [io.swagger.client.models.GenericResponse](docs/GenericResponse.md)
  - [io.swagger.client.models.InlineResponse200](docs/InlineResponse200.md)
  - [io.swagger.client.models.InlineResponse401](docs/InlineResponse401.md)
+ - [io.swagger.client.models.MailAttachment](docs/MailAttachment.md)
+ - [io.swagger.client.models.MailBlockClickHouse](docs/MailBlockClickHouse.md)
+ - [io.swagger.client.models.MailBlockRspamd](docs/MailBlockRspamd.md)
+ - [io.swagger.client.models.MailBlocks](docs/MailBlocks.md)
  - [io.swagger.client.models.MailLog](docs/MailLog.md)
  - [io.swagger.client.models.MailLogEntry](docs/MailLogEntry.md)
+ - [io.swagger.client.models.MailOrder](docs/MailOrder.md)
  - [io.swagger.client.models.SendMail](docs/SendMail.md)
  - [io.swagger.client.models.SendMailAdv](docs/SendMailAdv.md)
- - [io.swagger.client.models.SendMailAdvAttachments](docs/SendMailAdvAttachments.md)
- - [io.swagger.client.models.SendMailAdvBcc](docs/SendMailAdvBcc.md)
- - [io.swagger.client.models.SendMailAdvCc](docs/SendMailAdvCc.md)
- - [io.swagger.client.models.SendMailAdvFrom](docs/SendMailAdvFrom.md)
- - [io.swagger.client.models.SendMailAdvReplyto](docs/SendMailAdvReplyto.md)
- - [io.swagger.client.models.SendMailAdvTo](docs/SendMailAdvTo.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization

@@ -1,19 +1,12 @@
 # NAME
 
-OpenAPIClient::Role - a Moose role for the MailBaby Email Delivery API
+OpenAPIClient::Role - a Moose role for the MailBaby Email Delivery and Management Service API
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
-
-
-# 📌 Overview
-
+# Overview
 This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).
-
-
-# 🔐 Authentication
-
+# Authentication
 In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.
-
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 
 
@@ -244,25 +237,32 @@ cpanm --quiet --no-interactive Class::Accessor Test::Exception Test::More Log::A
 
 To load the API packages:
 ```perl
-use OpenAPIClient::DefaultApi;
+use OpenAPIClient::BlockingApi;
+use OpenAPIClient::HistoryApi;
+use OpenAPIClient::SendingApi;
+use OpenAPIClient::ServicesApi;
+use OpenAPIClient::StatusApi;
 
 ```
 
 To load the models:
 ```perl
+use OpenAPIClient::Object::DenyRuleNew;
+use OpenAPIClient::Object::DenyRuleRecord;
+use OpenAPIClient::Object::EmailAddress;
+use OpenAPIClient::Object::EmailAddressName;
 use OpenAPIClient::Object::GenericResponse;
-use OpenAPIClient::Object::GetMailOrders200ResponseInner;
 use OpenAPIClient::Object::GetMailOrders401Response;
+use OpenAPIClient::Object::GetStats200ResponseInner;
+use OpenAPIClient::Object::MailAttachment;
+use OpenAPIClient::Object::MailBlockClickHouse;
+use OpenAPIClient::Object::MailBlockRspamd;
+use OpenAPIClient::Object::MailBlocks;
 use OpenAPIClient::Object::MailLog;
 use OpenAPIClient::Object::MailLogEntry;
+use OpenAPIClient::Object::MailOrder;
 use OpenAPIClient::Object::SendMail;
 use OpenAPIClient::Object::SendMailAdv;
-use OpenAPIClient::Object::SendMailAdvAttachmentsInner;
-use OpenAPIClient::Object::SendMailAdvBccInner;
-use OpenAPIClient::Object::SendMailAdvCcInner;
-use OpenAPIClient::Object::SendMailAdvFrom;
-use OpenAPIClient::Object::SendMailAdvReplytoInner;
-use OpenAPIClient::Object::SendMailAdvToInner;
 
 ````
 
@@ -274,41 +274,51 @@ use lib 'lib';
 use strict;
 use warnings;
 # load the API package
-use OpenAPIClient::DefaultApi;
+use OpenAPIClient::BlockingApi;
+use OpenAPIClient::HistoryApi;
+use OpenAPIClient::SendingApi;
+use OpenAPIClient::ServicesApi;
+use OpenAPIClient::StatusApi;
 
 # load the models
+use OpenAPIClient::Object::DenyRuleNew;
+use OpenAPIClient::Object::DenyRuleRecord;
+use OpenAPIClient::Object::EmailAddress;
+use OpenAPIClient::Object::EmailAddressName;
 use OpenAPIClient::Object::GenericResponse;
-use OpenAPIClient::Object::GetMailOrders200ResponseInner;
 use OpenAPIClient::Object::GetMailOrders401Response;
+use OpenAPIClient::Object::GetStats200ResponseInner;
+use OpenAPIClient::Object::MailAttachment;
+use OpenAPIClient::Object::MailBlockClickHouse;
+use OpenAPIClient::Object::MailBlockRspamd;
+use OpenAPIClient::Object::MailBlocks;
 use OpenAPIClient::Object::MailLog;
 use OpenAPIClient::Object::MailLogEntry;
+use OpenAPIClient::Object::MailOrder;
 use OpenAPIClient::Object::SendMail;
 use OpenAPIClient::Object::SendMailAdv;
-use OpenAPIClient::Object::SendMailAdvAttachmentsInner;
-use OpenAPIClient::Object::SendMailAdvBccInner;
-use OpenAPIClient::Object::SendMailAdvCcInner;
-use OpenAPIClient::Object::SendMailAdvFrom;
-use OpenAPIClient::Object::SendMailAdvReplytoInner;
-use OpenAPIClient::Object::SendMailAdvToInner;
 
 # for displaying the API response data
 use Data::Dumper;
 
 
-my $api_instance = OpenAPIClient::DefaultApi->new(
+my $api_instance = OpenAPIClient::BlockingApi->new(
     # Configure API key authorization: apiKeyAuth
     api_key => {'X-API-KEY' => 'YOUR_API_KEY'},
     # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
     #api_key_prefix => {'X-API-KEY' => 'Bearer'},
 );
 
+my $type = "type_example"; # string | The type of deny rule.
+my $data = "data_example"; # string | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+my $user = "user_example"; # string | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
 
 eval {
-    my $result = $api_instance->get_mail_orders();
+    my $result = $api_instance->add_rule(type => $type, data => $data, user => $user);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->get_mail_orders: $@\n";
+    warn "Exception when calling BlockingApi->add_rule: $@\n";
 }
 
 ```
@@ -319,31 +329,41 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**get_mail_orders**](docs/DefaultApi.md#get_mail_orders) | **GET** /mail | displays a list of mail service orders
-*DefaultApi* | [**ping_server**](docs/DefaultApi.md#ping_server) | **GET** /ping | Checks if the server is running
-*DefaultApi* | [**send_adv_mail**](docs/DefaultApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**send_mail**](docs/DefaultApi.md#send_mail) | **POST** /mail/send | Sends an Email
-*DefaultApi* | [**view_mail_log**](docs/DefaultApi.md#view_mail_log) | **GET** /mail/log | displays the mail log
+*BlockingApi* | [**add_rule**](docs/BlockingApi.md#add_rule) | **POST** /mail/rules | Creates a new email deny rule.
+*BlockingApi* | [**delete_rule**](docs/BlockingApi.md#delete_rule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule.
+*BlockingApi* | [**delist_block**](docs/BlockingApi.md#delist_block) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
+*BlockingApi* | [**get_mail_blocks**](docs/BlockingApi.md#get_mail_blocks) | **GET** /mail/blocks | displays a list of blocked email addresses
+*BlockingApi* | [**get_rules**](docs/BlockingApi.md#get_rules) | **GET** /mail/rules | Displays a listing of deny email rules.
+*HistoryApi* | [**get_stats**](docs/HistoryApi.md#get_stats) | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | [**view_mail_log**](docs/HistoryApi.md#view_mail_log) | **GET** /mail/log | displays the mail log
+*SendingApi* | [**send_adv_mail**](docs/SendingApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*SendingApi* | [**send_mail**](docs/SendingApi.md#send_mail) | **POST** /mail/send | Sends an Email
+*ServicesApi* | [**get_mail_orders**](docs/ServicesApi.md#get_mail_orders) | **GET** /mail | displays a list of mail service orders
+*StatusApi* | [**ping_server**](docs/StatusApi.md#ping_server) | **GET** /ping | Checks if the server is running
 
 
 # DOCUMENTATION FOR MODELS
+ - [OpenAPIClient::Object::DenyRuleNew](docs/DenyRuleNew.md)
+ - [OpenAPIClient::Object::DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [OpenAPIClient::Object::EmailAddress](docs/EmailAddress.md)
+ - [OpenAPIClient::Object::EmailAddressName](docs/EmailAddressName.md)
  - [OpenAPIClient::Object::GenericResponse](docs/GenericResponse.md)
- - [OpenAPIClient::Object::GetMailOrders200ResponseInner](docs/GetMailOrders200ResponseInner.md)
  - [OpenAPIClient::Object::GetMailOrders401Response](docs/GetMailOrders401Response.md)
+ - [OpenAPIClient::Object::GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
+ - [OpenAPIClient::Object::MailAttachment](docs/MailAttachment.md)
+ - [OpenAPIClient::Object::MailBlockClickHouse](docs/MailBlockClickHouse.md)
+ - [OpenAPIClient::Object::MailBlockRspamd](docs/MailBlockRspamd.md)
+ - [OpenAPIClient::Object::MailBlocks](docs/MailBlocks.md)
  - [OpenAPIClient::Object::MailLog](docs/MailLog.md)
  - [OpenAPIClient::Object::MailLogEntry](docs/MailLogEntry.md)
+ - [OpenAPIClient::Object::MailOrder](docs/MailOrder.md)
  - [OpenAPIClient::Object::SendMail](docs/SendMail.md)
  - [OpenAPIClient::Object::SendMailAdv](docs/SendMailAdv.md)
- - [OpenAPIClient::Object::SendMailAdvAttachmentsInner](docs/SendMailAdvAttachmentsInner.md)
- - [OpenAPIClient::Object::SendMailAdvBccInner](docs/SendMailAdvBccInner.md)
- - [OpenAPIClient::Object::SendMailAdvCcInner](docs/SendMailAdvCcInner.md)
- - [OpenAPIClient::Object::SendMailAdvFrom](docs/SendMailAdvFrom.md)
- - [OpenAPIClient::Object::SendMailAdvReplytoInner](docs/SendMailAdvReplytoInner.md)
- - [OpenAPIClient::Object::SendMailAdvToInner](docs/SendMailAdvToInner.md)
 
 
 # DOCUMENTATION FOR AUTHORIZATION
 
+Authentication schemes defined for the API:
 ## apiKeyAuth
 
 - **Type**: API key

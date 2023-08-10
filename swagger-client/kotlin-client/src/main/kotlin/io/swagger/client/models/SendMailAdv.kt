@@ -1,6 +1,6 @@
 /**
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * OpenAPI spec version: 1.1.0
  * Contact: support@interserver.net
@@ -11,12 +11,8 @@
  */
 package io.swagger.client.models
 
-import io.swagger.client.models.SendMailAdvAttachments
-import io.swagger.client.models.SendMailAdvBcc
-import io.swagger.client.models.SendMailAdvCc
-import io.swagger.client.models.SendMailAdvFrom
-import io.swagger.client.models.SendMailAdvReplyto
-import io.swagger.client.models.SendMailAdvTo
+import io.swagger.client.models.EmailAddressName
+import io.swagger.client.models.MailAttachment
 
 /**
  * Details for an Email
@@ -36,17 +32,17 @@ data class SendMailAdv (
     val subject: kotlin.String,
     /* The main email contents. */
     val body: kotlin.String,
-    val from: SendMailAdvFrom,
+    val from: EmailAddressName,
     /* A list of destionation email addresses to send this to */
-    val to: kotlin.Array<SendMailAdvTo>,
+    val to: kotlin.Array<EmailAddressName>,
     /* (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. */
-    val replyto: kotlin.Array<SendMailAdvReplyto>? = null,
+    val replyto: kotlin.Array<EmailAddressName>? = null,
     /* (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */
-    val cc: kotlin.Array<SendMailAdvCc>? = null,
+    val cc: kotlin.Array<EmailAddressName>? = null,
     /* (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. */
-    val bcc: kotlin.Array<SendMailAdvBcc>? = null,
+    val bcc: kotlin.Array<EmailAddressName>? = null,
     /* (optional) File attachments to include in the email.  The file contents must be base64 encoded! */
-    val attachments: kotlin.Array<SendMailAdvAttachments>? = null,
+    val attachments: kotlin.Array<MailAttachment>? = null,
     /* (optional)  ID of the Mail order within our system to use as the Mail Account. */
     val id: kotlin.Long? = null
 ) {

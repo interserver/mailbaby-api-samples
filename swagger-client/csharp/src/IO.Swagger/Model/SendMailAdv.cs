@@ -1,7 +1,7 @@
 /* 
- * MailBaby Email Delivery API
+ * MailBaby Email Delivery and Management Service API
  *
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * OpenAPI spec version: 1.1.0
  * Contact: support@interserver.net
@@ -20,7 +20,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = IO.Swagger.Client.SwaggerDateConverter;
-
 namespace IO.Swagger.Model
 {
     /// <summary>
@@ -41,7 +40,7 @@ namespace IO.Swagger.Model
         /// <param name="bcc">(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list..</param>
         /// <param name="attachments">(optional) File attachments to include in the email.  The file contents must be base64 encoded!.</param>
         /// <param name="id">(optional)  ID of the Mail order within our system to use as the Mail Account..</param>
-        public SendMailAdv(string subject = default(string), string body = default(string), SendMailAdvFrom from = default(SendMailAdvFrom), List<SendMailAdvTo> to = default(List<SendMailAdvTo>), List<SendMailAdvReplyto> replyto = default(List<SendMailAdvReplyto>), List<SendMailAdvCc> cc = default(List<SendMailAdvCc>), List<SendMailAdvBcc> bcc = default(List<SendMailAdvBcc>), List<SendMailAdvAttachments> attachments = default(List<SendMailAdvAttachments>), long? id = default(long?))
+        public SendMailAdv(string subject = default(string), string body = default(string), EmailAddressName from = default(EmailAddressName), List<EmailAddressName> to = default(List<EmailAddressName>), List<EmailAddressName> replyto = default(List<EmailAddressName>), List<EmailAddressName> cc = default(List<EmailAddressName>), List<EmailAddressName> bcc = default(List<EmailAddressName>), List<MailAttachment> attachments = default(List<MailAttachment>), long? id = default(long?))
         {
             // to ensure "subject" is required (not null)
             if (subject == null)
@@ -104,42 +103,42 @@ namespace IO.Swagger.Model
         /// Gets or Sets From
         /// </summary>
         [DataMember(Name="from", EmitDefaultValue=false)]
-        public SendMailAdvFrom From { get; set; }
+        public EmailAddressName From { get; set; }
 
         /// <summary>
         /// A list of destionation email addresses to send this to
         /// </summary>
         /// <value>A list of destionation email addresses to send this to</value>
         [DataMember(Name="to", EmitDefaultValue=false)]
-        public List<SendMailAdvTo> To { get; set; }
+        public List<EmailAddressName> To { get; set; }
 
         /// <summary>
         /// (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
         /// </summary>
         /// <value>(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.</value>
         [DataMember(Name="replyto", EmitDefaultValue=false)]
-        public List<SendMailAdvReplyto> Replyto { get; set; }
+        public List<EmailAddressName> Replyto { get; set; }
 
         /// <summary>
         /// (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
         /// </summary>
         /// <value>(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.</value>
         [DataMember(Name="cc", EmitDefaultValue=false)]
-        public List<SendMailAdvCc> Cc { get; set; }
+        public List<EmailAddressName> Cc { get; set; }
 
         /// <summary>
         /// (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
         /// </summary>
         /// <value>(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.</value>
         [DataMember(Name="bcc", EmitDefaultValue=false)]
-        public List<SendMailAdvBcc> Bcc { get; set; }
+        public List<EmailAddressName> Bcc { get; set; }
 
         /// <summary>
         /// (optional) File attachments to include in the email.  The file contents must be base64 encoded!
         /// </summary>
         /// <value>(optional) File attachments to include in the email.  The file contents must be base64 encoded!</value>
         [DataMember(Name="attachments", EmitDefaultValue=false)]
-        public List<SendMailAdvAttachments> Attachments { get; set; }
+        public List<MailAttachment> Attachments { get; set; }
 
         /// <summary>
         /// (optional)  ID of the Mail order within our system to use as the Mail Account.

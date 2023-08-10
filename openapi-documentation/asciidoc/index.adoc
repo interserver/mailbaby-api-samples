@@ -1,20 +1,20 @@
-= MailBaby Email Delivery API
+= MailBaby Email Delivery and Management Service API
 support@interserver.net
 1.1.0
 :toc: left
 :numbered:
-:toclevels: 3
+:toclevels: 4
 :source-highlighter: highlightjs
-:keywords: openapi, rest, MailBaby Email Delivery API
+:keywords: openapi, rest, MailBaby Email Delivery and Management Service API
 :specDir: ..
 :snippetDir: .
 :generator-template: v1 2019-12-20
 :info-url: https://www.mail.baby/contact/
-:app-name: MailBaby Email Delivery API
+:app-name: MailBaby Email Delivery and Management Service API
 
 [abstract]
 .Abstract
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
 
 // markup not found, no include::{specDir}intro.adoc[opts=optional]
@@ -29,23 +29,23 @@ support@interserver.net
 == Endpoints
 
 
-[.Default]
-=== Default
+[.Blocking]
+=== Blocking
 
 
-[.getMailOrders]
-==== getMailOrders
+[.addRule]
+==== addRule
 
-`GET /mail`
+`POST /mail/rules`
 
-displays a list of mail service orders
+Creates a new email deny rule.
 
 ===== Description
 
+Adds a new email deny rule into the system to block new emails that match the given criteria
 
 
-
-// markup not found, no include::{specDir}mail/GET/spec.adoc[opts=optional]
+// markup not found, no include::{specDir}mail/rules/POST/spec.adoc[opts=optional]
 
 
 
@@ -53,13 +53,38 @@ displays a list of mail service orders
 
 
 
+====== Form Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| user
+| Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. <<string>>
+| -
+| null
+| 
+
+| type
+| The type of deny rule. <<string>>
+| X
+| null
+| 
+
+| data
+| The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. <<string>>
+| X
+| null
+| 
+
+|===
 
 
 
 
 ===== Return Type
 
-array[<<getMailOrders_200_response_inner>>]
+<<GenericResponse>>
 
 
 ===== Content Type
@@ -68,15 +93,20 @@ array[<<getMailOrders_200_response_inner>>]
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
 
 
 | 200
-| OK
-| List[<<getMailOrders_200_response_inner>>] 
+| search results matching criteria
+|  <<GenericResponse>>
+
+
+| 400
+| The specified resource was not found
+|  <<getMailOrders_401_response>>
 
 
 | 401
@@ -85,7 +115,7 @@ array[<<getMailOrders_200_response_inner>>]
 
 
 | 404
-| Unauthorized
+| The specified resource was not found
 |  <<getMailOrders_401_response>>
 
 |===
@@ -93,43 +123,56 @@ array[<<getMailOrders_200_response_inner>>]
 ===== Samples
 
 
-// markup not found, no include::{snippetDir}mail/GET/http-request.adoc[opts=optional]
+// markup not found, no include::{snippetDir}mail/rules/POST/http-request.adoc[opts=optional]
 
 
-// markup not found, no include::{snippetDir}mail/GET/http-response.adoc[opts=optional]
+// markup not found, no include::{snippetDir}mail/rules/POST/http-response.adoc[opts=optional]
 
 
 
-// file not found, no * wiremock data link :mail/GET/GET.json[]
+// file not found, no * wiremock data link :mail/rules/POST/POST.json[]
 
 
 ifdef::internal-generation[]
 ===== Implementation
 
-// markup not found, no include::{specDir}mail/GET/implementation.adoc[opts=optional]
+// markup not found, no include::{specDir}mail/rules/POST/implementation.adoc[opts=optional]
 
 
 endif::internal-generation[]
 
 
-[.pingServer]
-==== pingServer
+[.deleteRule]
+==== deleteRule
 
-`GET /ping`
+`DELETE /mail/rules/{ruleId}`
 
-Checks if the server is running
+Removes an deny mail rule.
 
 ===== Description
 
+Removes one of the configured deny mail rules from the system.
 
 
-
-// markup not found, no include::{specDir}ping/GET/spec.adoc[opts=optional]
+// markup not found, no include::{specDir}mail/rules/\{ruleId\}/DELETE/spec.adoc[opts=optional]
 
 
 
 ===== Parameters
 
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| ruleId
+| The ID of the Rules entry. 
+| X
+| null
+| 
+
+|===
 
 
 
@@ -138,65 +181,77 @@ Checks if the server is running
 
 ===== Return Type
 
+<<GenericResponse>>
 
 
--
+===== Content Type
 
+* application/json
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
 
 
 | 200
-| Server is up and running
-|  <<>>
+| search results matching criteria
+|  <<GenericResponse>>
 
 
-| 0
-| Something is wrong
-|  <<>>
+| 400
+| The specified resource was not found
+|  <<getMailOrders_401_response>>
+
+
+| 401
+| Unauthorized
+|  <<getMailOrders_401_response>>
+
+
+| 404
+| The specified resource was not found
+|  <<getMailOrders_401_response>>
 
 |===
 
 ===== Samples
 
 
-// markup not found, no include::{snippetDir}ping/GET/http-request.adoc[opts=optional]
+// markup not found, no include::{snippetDir}mail/rules/\{ruleId\}/DELETE/http-request.adoc[opts=optional]
 
 
-// markup not found, no include::{snippetDir}ping/GET/http-response.adoc[opts=optional]
+// markup not found, no include::{snippetDir}mail/rules/\{ruleId\}/DELETE/http-response.adoc[opts=optional]
 
 
 
-// file not found, no * wiremock data link :ping/GET/GET.json[]
+// file not found, no * wiremock data link :mail/rules/{ruleId}/DELETE/DELETE.json[]
 
 
 ifdef::internal-generation[]
 ===== Implementation
 
-// markup not found, no include::{specDir}ping/GET/implementation.adoc[opts=optional]
+// markup not found, no include::{specDir}mail/rules/\{ruleId\}/DELETE/implementation.adoc[opts=optional]
 
 
 endif::internal-generation[]
 
 
-[.sendAdvMail]
-==== sendAdvMail
+[.delistBlock]
+==== delistBlock
 
-`POST /mail/advsend`
+`POST /mail/blocks/delete`
 
-Sends an Email with Advanced Options
+Removes an email address from the blocked list
 
 ===== Description
 
-Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+Removes an email address from the various block lists. 
 
 
-// markup not found, no include::{specDir}mail/advsend/POST/spec.adoc[opts=optional]
+// markup not found, no include::{specDir}mail/blocks/delete/POST/spec.adoc[opts=optional]
 
 
 
@@ -209,8 +264,8 @@ Sends An email through one of your mail orders allowing additional options such 
 |===
 |Name| Description| Required| Default| Pattern
 
-| SendMailAdv
-|  <<SendMailAdv>>
+| EmailAddress
+|  <<EmailAddress>>
 | X
 | 
 | 
@@ -232,7 +287,544 @@ Sends An email through one of your mail orders allowing additional options such 
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| search results matching criteria
+|  <<GenericResponse>>
+
+
+| 400
+| The specified resource was not found
+|  <<getMailOrders_401_response>>
+
+
+| 401
+| Unauthorized
+|  <<getMailOrders_401_response>>
+
+
+| 404
+| The specified resource was not found
+|  <<getMailOrders_401_response>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}mail/blocks/delete/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}mail/blocks/delete/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :mail/blocks/delete/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}mail/blocks/delete/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.getMailBlocks]
+==== getMailBlocks
+
+`GET /mail/blocks`
+
+displays a list of blocked email addresses
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}mail/blocks/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+
+
+===== Return Type
+
+<<MailBlocks>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<MailBlocks>>
+
+
+| 401
+| Unauthorized
+|  <<getMailOrders_401_response>>
+
+
+| 404
+| Unauthorized
+|  <<getMailOrders_401_response>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}mail/blocks/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}mail/blocks/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :mail/blocks/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}mail/blocks/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.getRules]
+==== getRules
+
+`GET /mail/rules`
+
+Displays a listing of deny email rules.
+
+===== Description
+
+Returns a listing of all the deny block rules you have configured.
+
+
+// markup not found, no include::{specDir}mail/rules/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+
+
+===== Return Type
+
+array[<<DenyRuleRecord>>]
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+| List[<<DenyRuleRecord>>] 
+
+
+| 401
+| Unauthorized
+|  <<getMailOrders_401_response>>
+
+
+| 404
+| Unauthorized
+|  <<getMailOrders_401_response>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}mail/rules/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}mail/rules/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :mail/rules/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}mail/rules/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.History]
+=== History
+
+
+[.getStats]
+==== getStats
+
+`GET /mail/stats`
+
+displays a list of blocked email addresses
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}mail/stats/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+
+
+===== Return Type
+
+array[<<getStats_200_response_inner>>]
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+| List[<<getStats_200_response_inner>>] 
+
+
+| 401
+| Unauthorized
+|  <<getMailOrders_401_response>>
+
+
+| 404
+| Unauthorized
+|  <<getMailOrders_401_response>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}mail/stats/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}mail/stats/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :mail/stats/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}mail/stats/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.viewMailLog]
+==== viewMailLog
+
+`GET /mail/log`
+
+displays the mail log
+
+===== Description
+
+Get a listing of the emails sent through this system 
+
+
+// markup not found, no include::{specDir}mail/log/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| id
+| The ID of your mail order this will be sent through. 
+| -
+| null
+| 
+
+| origin
+| originating ip address sending mail 
+| -
+| null
+| 
+
+| mx
+| mx record mail was sent to 
+| -
+| null
+| 
+
+| from
+| from email address 
+| -
+| null
+| 
+
+| to
+| to/destination email address 
+| -
+| null
+| 
+
+| subject
+| subject containing this string 
+| -
+| null
+| 
+
+| mailid
+| mail id 
+| -
+| null
+| 
+
+| skip
+| number of records to skip for pagination 
+| -
+| 0
+| 
+
+| limit
+| maximum number of records to return 
+| -
+| 100
+| 
+
+| startDate
+| earliest date to get emails in unix timestamp format 
+| -
+| null
+| 
+
+| endDate
+| earliest date to get emails in unix timestamp format 
+| -
+| null
+| 
+
+|===
+
+
+===== Return Type
+
+<<MailLog>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| search results matching criteria
+|  <<MailLog>>
+
+
+| 400
+| bad input parameter
+|  <<>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}mail/log/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}mail/log/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :mail/log/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}mail/log/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.Sending]
+=== Sending
+
+
+[.sendAdvMail]
+==== sendAdvMail
+
+`POST /mail/advsend`
+
+Sends an Email with Advanced Options
+
+===== Description
+
+Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+
+
+// markup not found, no include::{specDir}mail/advsend/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+====== Form Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| subject
+| The subject or title of the email <<string>>
+| X
+| null
+| 
+
+| body
+| The main email contents. <<string>>
+| X
+| null
+| 
+
+| from
+|  <<EmailAddressName>>
+| X
+| null
+| 
+
+| to
+| A list of destionation email addresses to send this to <<EmailAddressName>>
+| X
+| null
+| 
+
+| replyto
+| (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. <<EmailAddressName>>
+| -
+| null
+| 
+
+| cc
+| (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. <<EmailAddressName>>
+| -
+| null
+| 
+
+| bcc
+| (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. <<EmailAddressName>>
+| -
+| null
+| 
+
+| attachments
+| (optional) File attachments to include in the email.  The file contents must be base64 encoded! <<MailAttachment>>
+| -
+| null
+| 
+
+| id
+| (optional)  ID of the Mail order within our system to use as the Mail Account. <<long>>
+| -
+| null
+| 
+
+|===
+
+
+
+
+===== Return Type
+
+<<GenericResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -347,7 +939,7 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -396,19 +988,23 @@ ifdef::internal-generation[]
 endif::internal-generation[]
 
 
-[.viewMailLog]
-==== viewMailLog
+[.Services]
+=== Services
 
-`GET /mail/log`
 
-displays the mail log
+[.getMailOrders]
+==== getMailOrders
+
+`GET /mail`
+
+displays a list of mail service orders
 
 ===== Description
 
-Get a listing of the emails sent through this system 
+This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
 
 
-// markup not found, no include::{specDir}mail/log/GET/spec.adoc[opts=optional]
+// markup not found, no include::{specDir}mail/GET/spec.adoc[opts=optional]
 
 
 
@@ -418,84 +1014,11 @@ Get a listing of the emails sent through this system
 
 
 
-====== Query Parameters
-
-[cols="2,3,1,1,1"]
-|===
-|Name| Description| Required| Default| Pattern
-
-| id
-| The ID of your mail order this will be sent through. 
-| -
-| null
-| 
-
-| origin
-| originating ip address sending mail 
-| -
-| null
-| 
-
-| mx
-| mx record mail was sent to 
-| -
-| null
-| 
-
-| from
-| from email address 
-| -
-| null
-| 
-
-| to
-| to/destination email address 
-| -
-| null
-| 
-
-| subject
-| subject containing this string 
-| -
-| null
-| 
-
-| mailid
-| mail id 
-| -
-| null
-| 
-
-| skip
-| number of records to skip for pagination 
-| -
-| 0
-| 
-
-| limit
-| maximum number of records to return 
-| -
-| 100
-| 
-
-| startDate
-| earliest date to get emails in unix timestamp format 
-| -
-| null
-| 
-
-| endDate
-| earliest date to get emails in unix timestamp format 
-| -
-| null
-| 
-
-|===
 
 
 ===== Return Type
 
-<<MailLog>>
+array[<<MailOrder>>]
 
 
 ===== Content Type
@@ -504,19 +1027,100 @@ Get a listing of the emails sent through this system
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
 
 
 | 200
-| search results matching criteria
-|  <<MailLog>>
+| OK
+| List[<<MailOrder>>] 
 
 
-| 400
-| bad input parameter
+| 401
+| Unauthorized
+|  <<getMailOrders_401_response>>
+
+
+| 404
+| Unauthorized
+|  <<getMailOrders_401_response>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}mail/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}mail/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :mail/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}mail/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.Status]
+=== Status
+
+
+[.pingServer]
+==== pingServer
+
+`GET /ping`
+
+Checks if the server is running
+
+===== Description
+
+
+
+
+// markup not found, no include::{specDir}ping/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+
+
+===== Return Type
+
+
+
+-
+
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| Server is up and running
+|  <<>>
+
+
+| 0
+| Something is wrong
 |  <<>>
 
 |===
@@ -524,20 +1128,20 @@ Get a listing of the emails sent through this system
 ===== Samples
 
 
-// markup not found, no include::{snippetDir}mail/log/GET/http-request.adoc[opts=optional]
+// markup not found, no include::{snippetDir}ping/GET/http-request.adoc[opts=optional]
 
 
-// markup not found, no include::{snippetDir}mail/log/GET/http-response.adoc[opts=optional]
+// markup not found, no include::{snippetDir}ping/GET/http-response.adoc[opts=optional]
 
 
 
-// file not found, no * wiremock data link :mail/log/GET/GET.json[]
+// file not found, no * wiremock data link :ping/GET/GET.json[]
 
 
 ifdef::internal-generation[]
 ===== Implementation
 
-// markup not found, no include::{specDir}mail/log/GET/implementation.adoc[opts=optional]
+// markup not found, no include::{specDir}ping/GET/implementation.adoc[opts=optional]
 
 
 endif::internal-generation[]
@@ -545,6 +1149,124 @@ endif::internal-generation[]
 
 [#models]
 == Models
+
+
+[#DenyRuleNew]
+=== _DenyRuleNew_ Root Type for DenyRule
+
+The data for a email deny rule record.
+
+[.fields-DenyRuleNew]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| type
+| X
+| String 
+| The type of deny rule.
+|  _Enum:_ domain, email, startswith, 
+
+| data
+| X
+| String 
+| The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+|  
+
+| user
+| 
+| String 
+| Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+|  
+
+|===
+
+
+[#DenyRuleRecord]
+=== _DenyRuleRecord_ Root Type for DenyRule
+
+The data for a email deny rule record.
+
+[.fields-DenyRuleRecord]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| type
+| X
+| String 
+| The type of deny rule.
+|  _Enum:_ domain, email, startswith, 
+
+| data
+| X
+| String 
+| The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+|  
+
+| id
+| X
+| Integer 
+| The deny rule Id number.
+|  
+
+| created
+| X
+| Date 
+| the date the rule was created.
+| date-time 
+
+| user
+| 
+| String 
+| Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+|  
+
+|===
+
+
+[#EmailAddress]
+=== _EmailAddress_ Root Type for EmailAddress
+
+an email address
+
+[.fields-EmailAddress]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| email
+| 
+| String 
+| an email address
+|  
+
+|===
+
+
+[#EmailAddressName]
+=== _EmailAddressName_ Root Type for EmailAddressName
+
+An email contact.
+
+[.fields-EmailAddressName]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| email
+| X
+| String 
+| The email address.
+|  
+
+| name
+| 
+| String 
+| Name to use for the sending contact.
+|  
+
+|===
 
 
 [#GenericResponse]
@@ -572,12 +1294,37 @@ endif::internal-generation[]
 |===
 
 
-[#GetMailOrders200ResponseInner]
-=== _GetMailOrders200ResponseInner_ 
+[#GetMailOrders401Response]
+=== _GetMailOrders401Response_ 
 
 
 
-[.fields-GetMailOrders200ResponseInner]
+[.fields-GetMailOrders401Response]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| code
+| X
+| String 
+| 
+|  
+
+| message
+| X
+| String 
+| 
+|  
+
+|===
+
+
+[#GetStats200ResponseInner]
+=== _GetStats200ResponseInner_ 
+
+
+
+[.fields-GetStats200ResponseInner]
 [cols="2,1,2,4,1"]
 |===
 | Field Name| Required| Type| Description| Format
@@ -615,25 +1362,124 @@ endif::internal-generation[]
 |===
 
 
-[#GetMailOrders401Response]
-=== _GetMailOrders401Response_ 
+[#MailAttachment]
+=== _MailAttachment_ Root Type for MailAttachment
 
+(optional) File attachments to include in the email.  The file contents must be base64
 
-
-[.fields-GetMailOrders401Response]
+[.fields-MailAttachment]
 [cols="2,1,2,4,1"]
 |===
 | Field Name| Required| Type| Description| Format
 
-| code
+| filename
+| X
+| String 
+| The filename of the attached file.
+|  
+
+| data
+| X
+| String 
+| The file contents base64 encoded
+|  
+
+|===
+
+
+[#MailBlockClickHouse]
+=== _MailBlockClickHouse_ Root Type for MailBlockClickHouse
+
+A block entry from the clickhouse mailblocks server.
+
+[.fields-MailBlockClickHouse]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| date
+| X
+| date 
+| 
+| date 
+
+| from
 | X
 | String 
 | 
 |  
 
-| message
+| messageId
 | X
 | String 
+| 
+|  
+
+| subject
+| X
+| String 
+| 
+|  
+
+| to
+| X
+| String 
+| 
+|  
+
+|===
+
+
+[#MailBlockRspamd]
+=== _MailBlockRspamd_ Root Type for MailBlockRspamd
+
+This is a block entry from the rspamd block list.
+
+[.fields-MailBlockRspamd]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| from
+| X
+| String 
+| 
+|  
+
+| subject
+| X
+| String 
+| 
+|  
+
+|===
+
+
+[#MailBlocks]
+=== _MailBlocks_ Root Type for MailBlocks
+
+The listing of blocked emails.
+
+[.fields-MailBlocks]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| local
+| X
+| List  of <<MailBlockClickHouse>>
+| 
+|  
+
+| mbtrap
+| X
+| List  of <<MailBlockClickHouse>>
+| 
+|  
+
+| subject
+| X
+| List  of <<MailBlockRspamd>>
 | 
 |  
 
@@ -828,6 +1674,43 @@ An email record
 |===
 
 
+[#MailOrder]
+=== _MailOrder_ Root Type for MailOrder
+
+A mail order record
+
+[.fields-MailOrder]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| id
+| X
+| Integer 
+| The ID of the order.
+| int32 
+
+| status
+| X
+| String 
+| The order status.
+|  
+
+| username
+| X
+| String 
+| The username to use for this order.
+|  
+
+| comment
+| 
+| String 
+| Optional order comment.
+|  
+
+|===
+
+
 [#SendMail]
 === _SendMail_ 
 
@@ -889,37 +1772,37 @@ Details for an Email
 
 | from
 | X
-| SendMailAdv_from 
+| EmailAddressName 
 | 
 |  
 
 | to
 | X
-| List  of <<SendMailAdv_to_inner>>
+| List  of <<EmailAddressName>>
 | A list of destionation email addresses to send this to
 |  
 
 | replyto
 | 
-| List  of <<SendMailAdv_replyto_inner>>
+| List  of <<EmailAddressName>>
 | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
 |  
 
 | cc
 | 
-| List  of <<SendMailAdv_cc_inner>>
+| List  of <<EmailAddressName>>
 | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
 |  
 
 | bcc
 | 
-| List  of <<SendMailAdv_bcc_inner>>
+| List  of <<EmailAddressName>>
 | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
 |  
 
 | attachments
 | 
-| List  of <<SendMailAdv_attachments_inner>>
+| List  of <<MailAttachment>>
 | (optional) File attachments to include in the email.  The file contents must be base64 encoded!
 |  
 
@@ -928,156 +1811,6 @@ Details for an Email
 | Long 
 | (optional)  ID of the Mail order within our system to use as the Mail Account.
 | int64 
-
-|===
-
-
-[#SendMailAdvAttachmentsInner]
-=== _SendMailAdvAttachmentsInner_ 
-
-A File attachment for an email
-
-[.fields-SendMailAdvAttachmentsInner]
-[cols="2,1,2,4,1"]
-|===
-| Field Name| Required| Type| Description| Format
-
-| data
-| X
-| File 
-| Contents of the attached file (must be base64 encoded)
-| binary 
-
-| filename
-| 
-| String 
-| (optional) Filename to specify for the attachment.
-|  
-
-|===
-
-
-[#SendMailAdvBccInner]
-=== _SendMailAdvBccInner_ 
-
-An Email Contact
-
-[.fields-SendMailAdvBccInner]
-[cols="2,1,2,4,1"]
-|===
-| Field Name| Required| Type| Description| Format
-
-| email
-| X
-| String 
-| The email address
-|  
-
-| name
-| 
-| String 
-| (optional) Name to use for the BCC contact.
-|  
-
-|===
-
-
-[#SendMailAdvCcInner]
-=== _SendMailAdvCcInner_ 
-
-An Email Contact
-
-[.fields-SendMailAdvCcInner]
-[cols="2,1,2,4,1"]
-|===
-| Field Name| Required| Type| Description| Format
-
-| email
-| X
-| String 
-| The email address
-|  
-
-| name
-| 
-| String 
-| (optional) Name to use for the CC contact.
-|  
-
-|===
-
-
-[#SendMailAdvFrom]
-=== _SendMailAdvFrom_ 
-
-The information to use for the From address in the email. from.
-
-[.fields-SendMailAdvFrom]
-[cols="2,1,2,4,1"]
-|===
-| Field Name| Required| Type| Description| Format
-
-| email
-| X
-| String 
-| The email address
-|  
-
-| name
-| 
-| String 
-| (optional) Name to use for the sending contact.
-|  
-
-|===
-
-
-[#SendMailAdvReplytoInner]
-=== _SendMailAdvReplytoInner_ 
-
-An Email Contact
-
-[.fields-SendMailAdvReplytoInner]
-[cols="2,1,2,4,1"]
-|===
-| Field Name| Required| Type| Description| Format
-
-| email
-| X
-| String 
-| The email address
-|  
-
-| name
-| 
-| String 
-| (optional) Name to use for the sending contact.
-|  
-
-|===
-
-
-[#SendMailAdvToInner]
-=== _SendMailAdvToInner_ 
-
-An Email Contact
-
-[.fields-SendMailAdvToInner]
-[cols="2,1,2,4,1"]
-|===
-| Field Name| Required| Type| Description| Format
-
-| email
-| X
-| String 
-| The email address
-|  
-
-| name
-| 
-| String 
-| (optional) Name to use for the destination contact.
-|  
 
 |===
 

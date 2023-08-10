@@ -1,6 +1,6 @@
 /**
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -50,10 +50,10 @@ void OAIGenericResponse::fromJson(QString jsonString) {
 
 void OAIGenericResponse::fromJsonObject(QJsonObject json) {
 
-    m_status_isValid = ::OpenAPI::fromJsonValue(status, json[QString("status")]);
+    m_status_isValid = ::OpenAPI::fromJsonValue(m_status, json[QString("status")]);
     m_status_isSet = !json[QString("status")].isNull() && m_status_isValid;
 
-    m_text_isValid = ::OpenAPI::fromJsonValue(text, json[QString("text")]);
+    m_text_isValid = ::OpenAPI::fromJsonValue(m_text, json[QString("text")]);
     m_text_isSet = !json[QString("text")].isNull() && m_text_isValid;
 }
 
@@ -67,20 +67,20 @@ QString OAIGenericResponse::asJson() const {
 QJsonObject OAIGenericResponse::asJsonObject() const {
     QJsonObject obj;
     if (m_status_isSet) {
-        obj.insert(QString("status"), ::OpenAPI::toJsonValue(status));
+        obj.insert(QString("status"), ::OpenAPI::toJsonValue(m_status));
     }
     if (m_text_isSet) {
-        obj.insert(QString("text"), ::OpenAPI::toJsonValue(text));
+        obj.insert(QString("text"), ::OpenAPI::toJsonValue(m_text));
     }
     return obj;
 }
 
 QString OAIGenericResponse::getStatus() const {
-    return status;
+    return m_status;
 }
 void OAIGenericResponse::setStatus(const QString &status) {
-    this->status = status;
-    this->m_status_isSet = true;
+    m_status = status;
+    m_status_isSet = true;
 }
 
 bool OAIGenericResponse::is_status_Set() const{
@@ -92,11 +92,11 @@ bool OAIGenericResponse::is_status_Valid() const{
 }
 
 QString OAIGenericResponse::getText() const {
-    return text;
+    return m_text;
 }
 void OAIGenericResponse::setText(const QString &text) {
-    this->text = text;
-    this->m_text_isSet = true;
+    m_text = text;
+    m_text_isSet = true;
 }
 
 bool OAIGenericResponse::is_text_Set() const{

@@ -1,13 +1,36 @@
 @startuml
 
-title MailBaby Email Delivery API Schemas Diagram
+title MailBaby Email Delivery and Management Service API Schemas Diagram
+
+entity DenyRuleNew {
+    * type: String
+    * data: String
+    user: String
+}
+
+entity DenyRuleRecord {
+}
+
+entity EmailAddress {
+    email: String
+}
+
+entity EmailAddressName {
+    * email: String
+    name: String
+}
 
 entity GenericResponse {
     status: String
     text: String
 }
 
-entity GetMailOrders200ResponseInner {
+entity GetMailOrders401Response {
+    * code: String
+    * message: String
+}
+
+entity GetStats200ResponseInner {
     * id: Integer
     * status: String
     * username: String
@@ -15,9 +38,28 @@ entity GetMailOrders200ResponseInner {
     comment: String
 }
 
-entity GetMailOrders401Response {
-    * code: String
-    * message: String
+entity MailAttachment {
+    * filename: String
+    * data: String
+}
+
+entity MailBlockClickHouse {
+    * date: Date
+    * from: String
+    * messageId: String
+    * subject: String
+    * to: String
+}
+
+entity MailBlockRspamd {
+    * from: String
+    * subject: String
+}
+
+entity MailBlocks {
+    * local: List<MailBlockClickHouse>
+    * mbtrap: List<MailBlockClickHouse>
+    * subject: List<MailBlockRspamd>
 }
 
 entity MailLog {
@@ -53,6 +95,13 @@ entity MailLogEntry {
     messageId: String
 }
 
+entity MailOrder {
+    * id: Integer
+    * status: String
+    * username: String
+    comment: String
+}
+
 entity SendMail {
     * to: String
     * from: String
@@ -63,52 +112,26 @@ entity SendMail {
 entity SendMailAdv {
     * subject: String
     * body: String
-    * from: SendMailAdvFrom
-    * to: List<SendMailAdvToInner>
-    replyto: List<SendMailAdvReplytoInner>
-    cc: List<SendMailAdvCcInner>
-    bcc: List<SendMailAdvBccInner>
-    attachments: List<SendMailAdvAttachmentsInner>
+    * from: EmailAddressName
+    * to: List<EmailAddressName>
+    replyto: List<EmailAddressName>
+    cc: List<EmailAddressName>
+    bcc: List<EmailAddressName>
+    attachments: List<MailAttachment>
     id: Long
 }
 
-entity SendMailAdvAttachmentsInner {
-    * data: File
-    filename: String
-}
+DenyRuleNew <|--- DenyRuleRecord
 
-entity SendMailAdvBccInner {
-    * email: String
-    name: String
-}
-
-entity SendMailAdvCcInner {
-    * email: String
-    name: String
-}
-
-entity SendMailAdvFrom {
-    * email: String
-    name: String
-}
-
-entity SendMailAdvReplytoInner {
-    * email: String
-    name: String
-}
-
-entity SendMailAdvToInner {
-    * email: String
-    name: String
-}
-
-
-SendMailAdv -- SendMailAdvFrom : from
-SendMailAdv -- "0..*" SendMailAdvToInner : to
-SendMailAdv -- "0..*" SendMailAdvReplytoInner : replyto
-SendMailAdv -- "0..*" SendMailAdvCcInner : cc
-SendMailAdv -- "0..*" SendMailAdvBccInner : bcc
-SendMailAdv -- "0..*" SendMailAdvAttachmentsInner : attachments
+SendMailAdv -- EmailAddressName : from
+SendMailAdv -- "0..*" EmailAddressName : to
+SendMailAdv -- "0..*" EmailAddressName : replyto
+SendMailAdv -- "0..*" EmailAddressName : cc
+SendMailAdv -- "0..*" EmailAddressName : bcc
+SendMailAdv -- "0..*" MailAttachment : attachments
 MailLog -- "0..*" MailLogEntry : emails
+MailBlocks -- "0..*" MailBlockClickHouse : local
+MailBlocks -- "0..*" MailBlockClickHouse : mbtrap
+MailBlocks -- "0..*" MailBlockRspamd : subject
 
 @enduml

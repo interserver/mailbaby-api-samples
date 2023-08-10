@@ -1,17 +1,18 @@
 package io.swagger.api;
 
+import io.swagger.model.DenyRuleNew;
+import io.swagger.model.DenyRuleRecord;
+import io.swagger.model.EmailAddress;
+import io.swagger.model.EmailAddressName;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.InlineResponse200;
 import io.swagger.model.InlineResponse401;
+import io.swagger.model.MailAttachment;
+import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
+import io.swagger.model.MailOrder;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
-import io.swagger.model.SendMailAdvAttachments;
-import io.swagger.model.SendMailAdvBcc;
-import io.swagger.model.SendMailAdvCc;
-import io.swagger.model.SendMailAdvFrom;
-import io.swagger.model.SendMailAdvReplyto;
-import io.swagger.model.SendMailAdvTo;
 
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
@@ -31,9 +32,106 @@ class MailApiControllerTest {
     private MailApi api;
 
     @Test
+    void addRuleWithFormTest() {
+        String user = "user_example";
+        String type = "type_example";
+        String data = "data_example";
+        try {
+            api.addRule(user, type, data).blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
+    void addRuleTest() {
+        DenyRuleNew body = new DenyRuleNew();
+        try {
+            api.addRule(body).blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
+    void deleteRuleTest() {
+        Integer ruleId = 56;
+        try {
+            api.deleteRule(ruleId).blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
+    void delistBlockTest() {
+        EmailAddress body = new EmailAddress();
+        try {
+            api.delistBlock(body).blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
+    void delistBlockWithFormTest() {
+        String email = "email_example";
+        try {
+            api.delistBlock(email).blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
+    void getMailBlocksTest() {
+        try {
+            api.getMailBlocks().blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
     void getMailOrdersTest() {
         try {
             api.getMailOrders().blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
+    void getRulesTest() {
+        try {
+            api.getRules().blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
+    void getStatsTest() {
+        try {
+            api.getStats().blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
+    void sendAdvMailWithFormTest() {
+        String subject = "subject_example";
+        String body = "body_example";
+        EmailAddressName from = new EmailAddressName();
+        List<EmailAddressName> to = Arrays.asList(new EmailAddressName());
+        List<EmailAddressName> replyto = Arrays.asList(new EmailAddressName());
+        List<EmailAddressName> cc = Arrays.asList(new EmailAddressName());
+        List<EmailAddressName> bcc = Arrays.asList(new EmailAddressName());
+        List<MailAttachment> attachments = Arrays.asList(new MailAttachment());
+        Long id = 789L;
+        try {
+            api.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }
@@ -44,24 +142,6 @@ class MailApiControllerTest {
         SendMailAdv body = new SendMailAdv();
         try {
             api.sendAdvMail(body).blockingGet();
-        } catch (UnsupportedOperationException e) {
-            assumeTrue(false, "API is not yet implemented");
-        }
-    }
-
-    @Test
-    void sendAdvMailWithFormTest() {
-        String subject = "subject_example";
-        String body = "body_example";
-        SendMailAdvFrom from = new SendMailAdvFrom();
-        List<SendMailAdvTo> to = Arrays.asList(new SendMailAdvTo());
-        List<SendMailAdvReplyto> replyto = Arrays.asList(new SendMailAdvReplyto());
-        List<SendMailAdvCc> cc = Arrays.asList(new SendMailAdvCc());
-        List<SendMailAdvBcc> bcc = Arrays.asList(new SendMailAdvBcc());
-        List<SendMailAdvAttachments> attachments = Arrays.asList(new SendMailAdvAttachments());
-        Long id = 789L;
-        try {
-            api.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

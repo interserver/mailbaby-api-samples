@@ -1,7 +1,7 @@
 /*
-MailBaby Email Delivery API
+MailBaby Email Delivery and Management Service API
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
 API version: 1.1.0
 Contact: support@interserver.net
@@ -15,23 +15,26 @@ import (
 	"encoding/json"
 )
 
+// checks if the SendMailAdv type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SendMailAdv{}
+
 // SendMailAdv Details for an Email
 type SendMailAdv struct {
 	// The subject or title of the email
 	Subject string `json:"subject"`
 	// The main email contents.
 	Body string `json:"body"`
-	From SendMailAdvFrom `json:"from"`
+	From EmailAddressName `json:"from"`
 	// A list of destionation email addresses to send this to
-	To []SendMailAdvToInner `json:"to"`
+	To []EmailAddressName `json:"to"`
 	// (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-	Replyto []SendMailAdvReplytoInner `json:"replyto,omitempty"`
+	Replyto []EmailAddressName `json:"replyto,omitempty"`
 	// (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-	Cc []SendMailAdvCcInner `json:"cc,omitempty"`
+	Cc []EmailAddressName `json:"cc,omitempty"`
 	// (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-	Bcc []SendMailAdvBccInner `json:"bcc,omitempty"`
+	Bcc []EmailAddressName `json:"bcc,omitempty"`
 	// (optional) File attachments to include in the email.  The file contents must be base64 encoded!
-	Attachments []SendMailAdvAttachmentsInner `json:"attachments,omitempty"`
+	Attachments []MailAttachment `json:"attachments,omitempty"`
 	// (optional)  ID of the Mail order within our system to use as the Mail Account.
 	Id *int64 `json:"id,omitempty"`
 }
@@ -40,7 +43,7 @@ type SendMailAdv struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSendMailAdv(subject string, body string, from SendMailAdvFrom, to []SendMailAdvToInner) *SendMailAdv {
+func NewSendMailAdv(subject string, body string, from EmailAddressName, to []EmailAddressName) *SendMailAdv {
 	this := SendMailAdv{}
 	this.Subject = subject
 	this.Body = body
@@ -106,9 +109,9 @@ func (o *SendMailAdv) SetBody(v string) {
 }
 
 // GetFrom returns the From field value
-func (o *SendMailAdv) GetFrom() SendMailAdvFrom {
+func (o *SendMailAdv) GetFrom() EmailAddressName {
 	if o == nil {
-		var ret SendMailAdvFrom
+		var ret EmailAddressName
 		return ret
 	}
 
@@ -117,7 +120,7 @@ func (o *SendMailAdv) GetFrom() SendMailAdvFrom {
 
 // GetFromOk returns a tuple with the From field value
 // and a boolean to check if the value has been set.
-func (o *SendMailAdv) GetFromOk() (*SendMailAdvFrom, bool) {
+func (o *SendMailAdv) GetFromOk() (*EmailAddressName, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -125,14 +128,14 @@ func (o *SendMailAdv) GetFromOk() (*SendMailAdvFrom, bool) {
 }
 
 // SetFrom sets field value
-func (o *SendMailAdv) SetFrom(v SendMailAdvFrom) {
+func (o *SendMailAdv) SetFrom(v EmailAddressName) {
 	o.From = v
 }
 
 // GetTo returns the To field value
-func (o *SendMailAdv) GetTo() []SendMailAdvToInner {
+func (o *SendMailAdv) GetTo() []EmailAddressName {
 	if o == nil {
-		var ret []SendMailAdvToInner
+		var ret []EmailAddressName
 		return ret
 	}
 
@@ -141,7 +144,7 @@ func (o *SendMailAdv) GetTo() []SendMailAdvToInner {
 
 // GetToOk returns a tuple with the To field value
 // and a boolean to check if the value has been set.
-func (o *SendMailAdv) GetToOk() ([]SendMailAdvToInner, bool) {
+func (o *SendMailAdv) GetToOk() ([]EmailAddressName, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -149,14 +152,14 @@ func (o *SendMailAdv) GetToOk() ([]SendMailAdvToInner, bool) {
 }
 
 // SetTo sets field value
-func (o *SendMailAdv) SetTo(v []SendMailAdvToInner) {
+func (o *SendMailAdv) SetTo(v []EmailAddressName) {
 	o.To = v
 }
 
 // GetReplyto returns the Replyto field value if set, zero value otherwise.
-func (o *SendMailAdv) GetReplyto() []SendMailAdvReplytoInner {
-	if o == nil || o.Replyto == nil {
-		var ret []SendMailAdvReplytoInner
+func (o *SendMailAdv) GetReplyto() []EmailAddressName {
+	if o == nil || IsNil(o.Replyto) {
+		var ret []EmailAddressName
 		return ret
 	}
 	return o.Replyto
@@ -164,8 +167,8 @@ func (o *SendMailAdv) GetReplyto() []SendMailAdvReplytoInner {
 
 // GetReplytoOk returns a tuple with the Replyto field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SendMailAdv) GetReplytoOk() ([]SendMailAdvReplytoInner, bool) {
-	if o == nil || o.Replyto == nil {
+func (o *SendMailAdv) GetReplytoOk() ([]EmailAddressName, bool) {
+	if o == nil || IsNil(o.Replyto) {
 		return nil, false
 	}
 	return o.Replyto, true
@@ -173,22 +176,22 @@ func (o *SendMailAdv) GetReplytoOk() ([]SendMailAdvReplytoInner, bool) {
 
 // HasReplyto returns a boolean if a field has been set.
 func (o *SendMailAdv) HasReplyto() bool {
-	if o != nil && o.Replyto != nil {
+	if o != nil && !IsNil(o.Replyto) {
 		return true
 	}
 
 	return false
 }
 
-// SetReplyto gets a reference to the given []SendMailAdvReplytoInner and assigns it to the Replyto field.
-func (o *SendMailAdv) SetReplyto(v []SendMailAdvReplytoInner) {
+// SetReplyto gets a reference to the given []EmailAddressName and assigns it to the Replyto field.
+func (o *SendMailAdv) SetReplyto(v []EmailAddressName) {
 	o.Replyto = v
 }
 
 // GetCc returns the Cc field value if set, zero value otherwise.
-func (o *SendMailAdv) GetCc() []SendMailAdvCcInner {
-	if o == nil || o.Cc == nil {
-		var ret []SendMailAdvCcInner
+func (o *SendMailAdv) GetCc() []EmailAddressName {
+	if o == nil || IsNil(o.Cc) {
+		var ret []EmailAddressName
 		return ret
 	}
 	return o.Cc
@@ -196,8 +199,8 @@ func (o *SendMailAdv) GetCc() []SendMailAdvCcInner {
 
 // GetCcOk returns a tuple with the Cc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SendMailAdv) GetCcOk() ([]SendMailAdvCcInner, bool) {
-	if o == nil || o.Cc == nil {
+func (o *SendMailAdv) GetCcOk() ([]EmailAddressName, bool) {
+	if o == nil || IsNil(o.Cc) {
 		return nil, false
 	}
 	return o.Cc, true
@@ -205,22 +208,22 @@ func (o *SendMailAdv) GetCcOk() ([]SendMailAdvCcInner, bool) {
 
 // HasCc returns a boolean if a field has been set.
 func (o *SendMailAdv) HasCc() bool {
-	if o != nil && o.Cc != nil {
+	if o != nil && !IsNil(o.Cc) {
 		return true
 	}
 
 	return false
 }
 
-// SetCc gets a reference to the given []SendMailAdvCcInner and assigns it to the Cc field.
-func (o *SendMailAdv) SetCc(v []SendMailAdvCcInner) {
+// SetCc gets a reference to the given []EmailAddressName and assigns it to the Cc field.
+func (o *SendMailAdv) SetCc(v []EmailAddressName) {
 	o.Cc = v
 }
 
 // GetBcc returns the Bcc field value if set, zero value otherwise.
-func (o *SendMailAdv) GetBcc() []SendMailAdvBccInner {
-	if o == nil || o.Bcc == nil {
-		var ret []SendMailAdvBccInner
+func (o *SendMailAdv) GetBcc() []EmailAddressName {
+	if o == nil || IsNil(o.Bcc) {
+		var ret []EmailAddressName
 		return ret
 	}
 	return o.Bcc
@@ -228,8 +231,8 @@ func (o *SendMailAdv) GetBcc() []SendMailAdvBccInner {
 
 // GetBccOk returns a tuple with the Bcc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SendMailAdv) GetBccOk() ([]SendMailAdvBccInner, bool) {
-	if o == nil || o.Bcc == nil {
+func (o *SendMailAdv) GetBccOk() ([]EmailAddressName, bool) {
+	if o == nil || IsNil(o.Bcc) {
 		return nil, false
 	}
 	return o.Bcc, true
@@ -237,22 +240,22 @@ func (o *SendMailAdv) GetBccOk() ([]SendMailAdvBccInner, bool) {
 
 // HasBcc returns a boolean if a field has been set.
 func (o *SendMailAdv) HasBcc() bool {
-	if o != nil && o.Bcc != nil {
+	if o != nil && !IsNil(o.Bcc) {
 		return true
 	}
 
 	return false
 }
 
-// SetBcc gets a reference to the given []SendMailAdvBccInner and assigns it to the Bcc field.
-func (o *SendMailAdv) SetBcc(v []SendMailAdvBccInner) {
+// SetBcc gets a reference to the given []EmailAddressName and assigns it to the Bcc field.
+func (o *SendMailAdv) SetBcc(v []EmailAddressName) {
 	o.Bcc = v
 }
 
 // GetAttachments returns the Attachments field value if set, zero value otherwise.
-func (o *SendMailAdv) GetAttachments() []SendMailAdvAttachmentsInner {
-	if o == nil || o.Attachments == nil {
-		var ret []SendMailAdvAttachmentsInner
+func (o *SendMailAdv) GetAttachments() []MailAttachment {
+	if o == nil || IsNil(o.Attachments) {
+		var ret []MailAttachment
 		return ret
 	}
 	return o.Attachments
@@ -260,8 +263,8 @@ func (o *SendMailAdv) GetAttachments() []SendMailAdvAttachmentsInner {
 
 // GetAttachmentsOk returns a tuple with the Attachments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SendMailAdv) GetAttachmentsOk() ([]SendMailAdvAttachmentsInner, bool) {
-	if o == nil || o.Attachments == nil {
+func (o *SendMailAdv) GetAttachmentsOk() ([]MailAttachment, bool) {
+	if o == nil || IsNil(o.Attachments) {
 		return nil, false
 	}
 	return o.Attachments, true
@@ -269,21 +272,21 @@ func (o *SendMailAdv) GetAttachmentsOk() ([]SendMailAdvAttachmentsInner, bool) {
 
 // HasAttachments returns a boolean if a field has been set.
 func (o *SendMailAdv) HasAttachments() bool {
-	if o != nil && o.Attachments != nil {
+	if o != nil && !IsNil(o.Attachments) {
 		return true
 	}
 
 	return false
 }
 
-// SetAttachments gets a reference to the given []SendMailAdvAttachmentsInner and assigns it to the Attachments field.
-func (o *SendMailAdv) SetAttachments(v []SendMailAdvAttachmentsInner) {
+// SetAttachments gets a reference to the given []MailAttachment and assigns it to the Attachments field.
+func (o *SendMailAdv) SetAttachments(v []MailAttachment) {
 	o.Attachments = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SendMailAdv) GetId() int64 {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
@@ -293,7 +296,7 @@ func (o *SendMailAdv) GetId() int64 {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SendMailAdv) GetIdOk() (*int64, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -301,7 +304,7 @@ func (o *SendMailAdv) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SendMailAdv) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -314,35 +317,35 @@ func (o *SendMailAdv) SetId(v int64) {
 }
 
 func (o SendMailAdv) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["subject"] = o.Subject
-	}
-	if true {
-		toSerialize["body"] = o.Body
-	}
-	if true {
-		toSerialize["from"] = o.From
-	}
-	if true {
-		toSerialize["to"] = o.To
-	}
-	if o.Replyto != nil {
-		toSerialize["replyto"] = o.Replyto
-	}
-	if o.Cc != nil {
-		toSerialize["cc"] = o.Cc
-	}
-	if o.Bcc != nil {
-		toSerialize["bcc"] = o.Bcc
-	}
-	if o.Attachments != nil {
-		toSerialize["attachments"] = o.Attachments
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SendMailAdv) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["subject"] = o.Subject
+	toSerialize["body"] = o.Body
+	toSerialize["from"] = o.From
+	toSerialize["to"] = o.To
+	if !IsNil(o.Replyto) {
+		toSerialize["replyto"] = o.Replyto
+	}
+	if !IsNil(o.Cc) {
+		toSerialize["cc"] = o.Cc
+	}
+	if !IsNil(o.Bcc) {
+		toSerialize["bcc"] = o.Bcc
+	}
+	if !IsNil(o.Attachments) {
+		toSerialize["attachments"] = o.Attachments
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	return toSerialize, nil
 }
 
 type NullableSendMailAdv struct {

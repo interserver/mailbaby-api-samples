@@ -8,12 +8,12 @@ SendMailAdv::SendMailAdv()
 {
 	subject = std::string();
 	body = std::string();
-	from = SendMailAdv_from();
-	to = std::list<SendMailAdv_to_inner>();
-	replyto = std::list<SendMailAdv_replyto_inner>();
-	cc = std::list<SendMailAdv_cc_inner>();
-	bcc = std::list<SendMailAdv_bcc_inner>();
-	attachments = std::list<SendMailAdv_attachments_inner>();
+	from = EmailAddressName();
+	to = std::list<EmailAddressName>();
+	replyto = std::list<EmailAddressName>();
+	cc = std::list<EmailAddressName>();
+	bcc = std::list<EmailAddressName>();
+	attachments = std::list<MailAttachment>();
 	id = long(0);
 }
 
@@ -67,7 +67,7 @@ SendMailAdv::fromJson(std::string jsonObj)
 
 
 
-        SendMailAdv_from* obj = &from;
+        EmailAddressName* obj = &from;
 		obj->fromJson(value.dump());
 
     }
@@ -79,8 +79,8 @@ SendMailAdv::fromJson(std::string jsonObj)
         bourne::json value = object[toKey];
 
 
-        std::list<SendMailAdv_to_inner> to_list;
-        SendMailAdv_to_inner element;
+        std::list<EmailAddressName> to_list;
+        EmailAddressName element;
         for(auto& var : value.array_range())
         {
 
@@ -101,8 +101,8 @@ SendMailAdv::fromJson(std::string jsonObj)
         bourne::json value = object[replytoKey];
 
 
-        std::list<SendMailAdv_replyto_inner> replyto_list;
-        SendMailAdv_replyto_inner element;
+        std::list<EmailAddressName> replyto_list;
+        EmailAddressName element;
         for(auto& var : value.array_range())
         {
 
@@ -123,8 +123,8 @@ SendMailAdv::fromJson(std::string jsonObj)
         bourne::json value = object[ccKey];
 
 
-        std::list<SendMailAdv_cc_inner> cc_list;
-        SendMailAdv_cc_inner element;
+        std::list<EmailAddressName> cc_list;
+        EmailAddressName element;
         for(auto& var : value.array_range())
         {
 
@@ -145,8 +145,8 @@ SendMailAdv::fromJson(std::string jsonObj)
         bourne::json value = object[bccKey];
 
 
-        std::list<SendMailAdv_bcc_inner> bcc_list;
-        SendMailAdv_bcc_inner element;
+        std::list<EmailAddressName> bcc_list;
+        EmailAddressName element;
         for(auto& var : value.array_range())
         {
 
@@ -167,8 +167,8 @@ SendMailAdv::fromJson(std::string jsonObj)
         bourne::json value = object[attachmentsKey];
 
 
-        std::list<SendMailAdv_attachments_inner> attachments_list;
-        SendMailAdv_attachments_inner element;
+        std::list<MailAttachment> attachments_list;
+        MailAttachment element;
         for(auto& var : value.array_range())
         {
 
@@ -227,12 +227,12 @@ SendMailAdv::toJson()
 
 
 
-    std::list<SendMailAdv_to_inner> to_list = getTo();
+    std::list<EmailAddressName> to_list = getTo();
     bourne::json to_arr = bourne::json::array();
 
     for(auto& var : to_list)
     {
-        SendMailAdv_to_inner obj = var;
+        EmailAddressName obj = var;
         to_arr.append(obj.toJson());
     }
     object["to"] = to_arr;
@@ -242,12 +242,12 @@ SendMailAdv::toJson()
 
 
 
-    std::list<SendMailAdv_replyto_inner> replyto_list = getReplyto();
+    std::list<EmailAddressName> replyto_list = getReplyto();
     bourne::json replyto_arr = bourne::json::array();
 
     for(auto& var : replyto_list)
     {
-        SendMailAdv_replyto_inner obj = var;
+        EmailAddressName obj = var;
         replyto_arr.append(obj.toJson());
     }
     object["replyto"] = replyto_arr;
@@ -257,12 +257,12 @@ SendMailAdv::toJson()
 
 
 
-    std::list<SendMailAdv_cc_inner> cc_list = getCc();
+    std::list<EmailAddressName> cc_list = getCc();
     bourne::json cc_arr = bourne::json::array();
 
     for(auto& var : cc_list)
     {
-        SendMailAdv_cc_inner obj = var;
+        EmailAddressName obj = var;
         cc_arr.append(obj.toJson());
     }
     object["cc"] = cc_arr;
@@ -272,12 +272,12 @@ SendMailAdv::toJson()
 
 
 
-    std::list<SendMailAdv_bcc_inner> bcc_list = getBcc();
+    std::list<EmailAddressName> bcc_list = getBcc();
     bourne::json bcc_arr = bourne::json::array();
 
     for(auto& var : bcc_list)
     {
-        SendMailAdv_bcc_inner obj = var;
+        EmailAddressName obj = var;
         bcc_arr.append(obj.toJson());
     }
     object["bcc"] = bcc_arr;
@@ -287,12 +287,12 @@ SendMailAdv::toJson()
 
 
 
-    std::list<SendMailAdv_attachments_inner> attachments_list = getAttachments();
+    std::list<MailAttachment> attachments_list = getAttachments();
     bourne::json attachments_arr = bourne::json::array();
 
     for(auto& var : attachments_list)
     {
-        SendMailAdv_attachments_inner obj = var;
+        MailAttachment obj = var;
         attachments_arr.append(obj.toJson());
     }
     object["attachments"] = attachments_arr;
@@ -335,74 +335,74 @@ SendMailAdv::setBody(std::string  body)
 	this->body = body;
 }
 
-SendMailAdv_from
+EmailAddressName
 SendMailAdv::getFrom()
 {
 	return from;
 }
 
 void
-SendMailAdv::setFrom(SendMailAdv_from  from)
+SendMailAdv::setFrom(EmailAddressName  from)
 {
 	this->from = from;
 }
 
-std::list<SendMailAdv_to_inner>
+std::list<EmailAddressName>
 SendMailAdv::getTo()
 {
 	return to;
 }
 
 void
-SendMailAdv::setTo(std::list <SendMailAdv_to_inner> to)
+SendMailAdv::setTo(std::list <EmailAddressName> to)
 {
 	this->to = to;
 }
 
-std::list<SendMailAdv_replyto_inner>
+std::list<EmailAddressName>
 SendMailAdv::getReplyto()
 {
 	return replyto;
 }
 
 void
-SendMailAdv::setReplyto(std::list <SendMailAdv_replyto_inner> replyto)
+SendMailAdv::setReplyto(std::list <EmailAddressName> replyto)
 {
 	this->replyto = replyto;
 }
 
-std::list<SendMailAdv_cc_inner>
+std::list<EmailAddressName>
 SendMailAdv::getCc()
 {
 	return cc;
 }
 
 void
-SendMailAdv::setCc(std::list <SendMailAdv_cc_inner> cc)
+SendMailAdv::setCc(std::list <EmailAddressName> cc)
 {
 	this->cc = cc;
 }
 
-std::list<SendMailAdv_bcc_inner>
+std::list<EmailAddressName>
 SendMailAdv::getBcc()
 {
 	return bcc;
 }
 
 void
-SendMailAdv::setBcc(std::list <SendMailAdv_bcc_inner> bcc)
+SendMailAdv::setBcc(std::list <EmailAddressName> bcc)
 {
 	this->bcc = bcc;
 }
 
-std::list<SendMailAdv_attachments_inner>
+std::list<MailAttachment>
 SendMailAdv::getAttachments()
 {
 	return attachments;
 }
 
 void
-SendMailAdv::setAttachments(std::list <SendMailAdv_attachments_inner> attachments)
+SendMailAdv::setAttachments(std::list <MailAttachment> attachments)
 {
 	this->attachments = attachments;
 }

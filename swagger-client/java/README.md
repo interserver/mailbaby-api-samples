@@ -1,10 +1,10 @@
 # swagger-java-client
 
-MailBaby Email Delivery API
+MailBaby Email Delivery and Management Service API
 - API version: 1.1.0
-  - Build date: 2023-05-09T00:51:24.025516-04:00[America/New_York]
+  - Build date: 2023-08-10T12:37:50.000252-04:00[America/New_York]
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
   For more information, please visit [https://www.mail.baby/contact/](https://www.mail.baby/contact/)
 
@@ -75,12 +75,12 @@ Please follow the [installation](#installation) instruction and execute the foll
 import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
+import io.swagger.client.api.BlockingApi;
 
 import java.io.File;
 import java.util.*;
 
-public class DefaultApiExample {
+public class BlockingApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
@@ -91,12 +91,16 @@ public class DefaultApiExample {
         // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
         //apiKeyAuth.setApiKeyPrefix("Token");
 
-        DefaultApi apiInstance = new DefaultApi();
+        BlockingApi apiInstance = new BlockingApi();
+        String user = "user_example"; // String | 
+        String type = "type_example"; // String | 
+        String data = "data_example"; // String | 
+        DenyRuleNew body = new DenyRuleNew(); // DenyRuleNew | These are the fields needed to create a new email deny rule.
         try {
-            List<InlineResponse200> result = apiInstance.getMailOrders();
+            GenericResponse result = apiInstance.addRule(user, type, data, body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#getMailOrders");
+            System.err.println("Exception when calling BlockingApi#addRule");
             e.printStackTrace();
         }
     }
@@ -104,33 +108,12 @@ public class DefaultApiExample {
 import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
+import io.swagger.client.api.BlockingApi;
 
 import java.io.File;
 import java.util.*;
 
-public class DefaultApiExample {
-
-    public static void main(String[] args) {
-        
-        DefaultApi apiInstance = new DefaultApi();
-        try {
-            apiInstance.pingServer();
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#pingServer");
-            e.printStackTrace();
-        }
-    }
-}
-import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
-
-import java.io.File;
-import java.util.*;
-
-public class DefaultApiExample {
+public class BlockingApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
@@ -141,22 +124,13 @@ public class DefaultApiExample {
         // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
         //apiKeyAuth.setApiKeyPrefix("Token");
 
-        DefaultApi apiInstance = new DefaultApi();
-        SendMailAdv body = new SendMailAdv(); // SendMailAdv | 
-        String subject = "subject_example"; // String | 
-        String body = "body_example"; // String | 
-        SendMailAdvFrom from = new SendMailAdvFrom(); // SendMailAdvFrom | 
-        List<SendMailAdvTo> to = Arrays.asList(new SendMailAdvTo()); // List<SendMailAdvTo> | 
-        List<SendMailAdvReplyto> replyto = Arrays.asList(new SendMailAdvReplyto()); // List<SendMailAdvReplyto> | 
-        List<SendMailAdvCc> cc = Arrays.asList(new SendMailAdvCc()); // List<SendMailAdvCc> | 
-        List<SendMailAdvBcc> bcc = Arrays.asList(new SendMailAdvBcc()); // List<SendMailAdvBcc> | 
-        List<SendMailAdvAttachments> attachments = Arrays.asList(new SendMailAdvAttachments()); // List<SendMailAdvAttachments> | 
-        Long id = 789L; // Long | 
+        BlockingApi apiInstance = new BlockingApi();
+        Integer ruleId = 56; // Integer | The ID of the Rules entry.
         try {
-            GenericResponse result = apiInstance.sendAdvMail(body, subject, body, from, to, replyto, cc, bcc, attachments, id);
+            GenericResponse result = apiInstance.deleteRule(ruleId);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#sendAdvMail");
+            System.err.println("Exception when calling BlockingApi#deleteRule");
             e.printStackTrace();
         }
     }
@@ -164,12 +138,12 @@ public class DefaultApiExample {
 import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
+import io.swagger.client.api.BlockingApi;
 
 import java.io.File;
 import java.util.*;
 
-public class DefaultApiExample {
+public class BlockingApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
@@ -180,17 +154,14 @@ public class DefaultApiExample {
         // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
         //apiKeyAuth.setApiKeyPrefix("Token");
 
-        DefaultApi apiInstance = new DefaultApi();
-        String to = "to_example"; // String | 
-        String from = "from_example"; // String | 
-        String subject = "subject_example"; // String | 
-        String body = "body_example"; // String | 
-        SendMail body = new SendMail(); // SendMail | 
+        BlockingApi apiInstance = new BlockingApi();
+        EmailAddress body = new EmailAddress(); // EmailAddress | 
+        String email = "email_example"; // String | 
         try {
-            GenericResponse result = apiInstance.sendMail(to, from, subject, body, body);
+            GenericResponse result = apiInstance.delistBlock(body, email);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#sendMail");
+            System.err.println("Exception when calling BlockingApi#delistBlock");
             e.printStackTrace();
         }
     }
@@ -198,12 +169,12 @@ public class DefaultApiExample {
 import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
+import io.swagger.client.api.BlockingApi;
 
 import java.io.File;
 import java.util.*;
 
-public class DefaultApiExample {
+public class BlockingApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
@@ -214,23 +185,41 @@ public class DefaultApiExample {
         // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
         //apiKeyAuth.setApiKeyPrefix("Token");
 
-        DefaultApi apiInstance = new DefaultApi();
-        Long id = 789L; // Long | The ID of your mail order this will be sent through.
-        String origin = "origin_example"; // String | originating ip address sending mail
-        String mx = "mx_example"; // String | mx record mail was sent to
-        String from = "from_example"; // String | from email address
-        String to = "to_example"; // String | to/destination email address
-        String subject = "subject_example"; // String | subject containing this string
-        String mailid = "mailid_example"; // String | mail id
-        Integer skip = 0; // Integer | number of records to skip for pagination
-        Integer limit = 100; // Integer | maximum number of records to return
-        Long startDate = 789L; // Long | earliest date to get emails in unix timestamp format
-        Long endDate = 789L; // Long | earliest date to get emails in unix timestamp format
+        BlockingApi apiInstance = new BlockingApi();
         try {
-            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+            MailBlocks result = apiInstance.getMailBlocks();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#viewMailLog");
+            System.err.println("Exception when calling BlockingApi#getMailBlocks");
+            e.printStackTrace();
+        }
+    }
+}
+import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.BlockingApi;
+
+import java.io.File;
+import java.util.*;
+
+public class BlockingApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure API key authorization: apiKeyAuth
+        ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
+        apiKeyAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //apiKeyAuth.setApiKeyPrefix("Token");
+
+        BlockingApi apiInstance = new BlockingApi();
+        try {
+            List<DenyRuleRecord> result = apiInstance.getRules();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling BlockingApi#getRules");
             e.printStackTrace();
         }
     }
@@ -243,27 +232,36 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**getMailOrders**](docs/DefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
-*DefaultApi* | [**pingServer**](docs/DefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
-*DefaultApi* | [**sendAdvMail**](docs/DefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMail**](docs/DefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
-*DefaultApi* | [**viewMailLog**](docs/DefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
+*BlockingApi* | [**addRule**](docs/BlockingApi.md#addRule) | **POST** /mail/rules | Creates a new email deny rule.
+*BlockingApi* | [**deleteRule**](docs/BlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule.
+*BlockingApi* | [**delistBlock**](docs/BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
+*BlockingApi* | [**getMailBlocks**](docs/BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | displays a list of blocked email addresses
+*BlockingApi* | [**getRules**](docs/BlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules.
+*HistoryApi* | [**getStats**](docs/HistoryApi.md#getStats) | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
+*SendingApi* | [**sendAdvMail**](docs/SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*SendingApi* | [**sendMail**](docs/SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
+*ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
+*StatusApi* | [**pingServer**](docs/StatusApi.md#pingServer) | **GET** /ping | Checks if the server is running
 
 ## Documentation for Models
 
+ - [DenyRuleNew](docs/DenyRuleNew.md)
+ - [DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [EmailAddress](docs/EmailAddress.md)
+ - [EmailAddressName](docs/EmailAddressName.md)
  - [GenericResponse](docs/GenericResponse.md)
  - [InlineResponse200](docs/InlineResponse200.md)
  - [InlineResponse401](docs/InlineResponse401.md)
+ - [MailAttachment](docs/MailAttachment.md)
+ - [MailBlockClickHouse](docs/MailBlockClickHouse.md)
+ - [MailBlockRspamd](docs/MailBlockRspamd.md)
+ - [MailBlocks](docs/MailBlocks.md)
  - [MailLog](docs/MailLog.md)
  - [MailLogEntry](docs/MailLogEntry.md)
+ - [MailOrder](docs/MailOrder.md)
  - [SendMail](docs/SendMail.md)
  - [SendMailAdv](docs/SendMailAdv.md)
- - [SendMailAdvAttachments](docs/SendMailAdvAttachments.md)
- - [SendMailAdvBcc](docs/SendMailAdvBcc.md)
- - [SendMailAdvCc](docs/SendMailAdvCc.md)
- - [SendMailAdvFrom](docs/SendMailAdvFrom.md)
- - [SendMailAdvReplyto](docs/SendMailAdvReplyto.md)
- - [SendMailAdvTo](docs/SendMailAdvTo.md)
 
 ## Documentation for Authorization
 

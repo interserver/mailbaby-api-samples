@@ -1,8 +1,8 @@
 =begin comment
 
-MailBaby Email Delivery API
+MailBaby Email Delivery and Management Service API
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
 The version of the OpenAPI document: 1.1.0
 Contact: support@interserver.net
@@ -42,9 +42,9 @@ use base ("Class::Accessor", "Class::Data::Inheritable");
 
 =begin comment
 
-MailBaby Email Delivery API
+MailBaby Email Delivery and Management Service API
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
 The version of the OpenAPI document: 1.1.0
 Contact: support@interserver.net
@@ -130,21 +130,25 @@ sub _to_json_primitives {
     if ( grep( /^$type$/, ('int', 'double'))) {
         # https://metacpan.org/pod/JSON#simple-scalars
         # numify it, ensuring it will be dumped as a number
+        return undef unless defined $data;
         return $data + 0;
     } elsif ($type eq 'string') {
         # https://metacpan.org/pod/JSON#simple-scalars
         # stringified
+        return undef unless defined $data;
         return $data . q();
     } elsif ($type eq 'boolean') {
         # https://metacpan.org/pod/JSON#JSON::true,-JSON::false,-JSON::null
         return $data ? \1 : \0;
     } elsif ($type eq 'DATE') {
+        return undef unless defined $data;
         if (ref($data) eq 'DateTime') {
             # https://metacpan.org/pod/DateTime#$dt-%3Eymd($optional_separator),-$dt-%3Emdy(...),-$dt-%3Edmy(...)
             return $data->ymd;
         }
         return $data .q();
     } elsif ($type eq 'DATE_TIME') {
+        return undef unless defined $data;
         # the date-time notation as defined by RFC 3339, section 5.6, for example, 2017-07-21T17:32:28Z
         if (ref($data) eq 'DateTime') {
             # https://metacpan.org/pod/DateTime#$dt-%3Erfc3339
@@ -195,8 +199,10 @@ sub _deserialize {
     if (grep( /^$type$/ , ('DATE_TIME', 'DATE'))) {
         return DateTime->from_epoch(epoch => str2time($data));
     } elsif ( grep( /^$type$/, ('int', 'double'))) {
+        return undef unless defined $data;
         return $data + 0;
     } elsif ($type eq 'string') {
+        return undef unless defined $data;
         return $data . q();
     } elsif ($type eq 'boolean') {
         return !!$data;

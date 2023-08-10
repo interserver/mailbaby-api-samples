@@ -20,11 +20,12 @@ import javax.validation.Valid;
 
 @Path("/ping")
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2023-05-09T00:51:34.904053-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2023-08-10T12:38:02.912685-04:00[America/New_York]")
 public class PingApi {
 
     @GET
-    @Operation(summary = "Checks if the server is running", description = "", tags={  })
+    @Operation(summary = "Checks if the server is running", description = "", security = {
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={ "Status" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "Server is up and running"),
         @ApiResponse(responseCode = "200", description = "Something is wrong")

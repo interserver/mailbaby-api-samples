@@ -1,6 +1,6 @@
 /**
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -20,15 +20,15 @@
     factory(require('expect.js'), require(process.cwd()+'/src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.MailBabyEmailDeliveryApi);
+    factory(root.expect, root.MailBabyEmailDeliveryAndManagementServiceApi);
   }
-}(this, function(expect, MailBabyEmailDeliveryApi) {
+}(this, function(expect, MailBabyEmailDeliveryAndManagementServiceApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+    instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
   });
 
   var getProperty = function(object, getter, property) {
@@ -50,145 +50,145 @@
   describe('MailLogEntry', function() {
     it('should create an instance of MailLogEntry', function() {
       // uncomment below and update the code to test MailLogEntry
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
-      //expect(instance).to.be.a(MailBabyEmailDeliveryApi.MailLogEntry);
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
+      //expect(instance).to.be.a(MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry);
     });
 
     it('should have the property id (base name: "_id")', function() {
       // uncomment below and update the code to test the property id
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property from (base name: "from")', function() {
       // uncomment below and update the code to test the property from
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property to (base name: "to")', function() {
       // uncomment below and update the code to test the property to
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property subject (base name: "subject")', function() {
       // uncomment below and update the code to test the property subject
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property created (base name: "created")', function() {
       // uncomment below and update the code to test the property created
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property time (base name: "time")', function() {
       // uncomment below and update the code to test the property time
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property user (base name: "user")', function() {
       // uncomment below and update the code to test the property user
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property transtype (base name: "transtype")', function() {
       // uncomment below and update the code to test the property transtype
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property origin (base name: "origin")', function() {
       // uncomment below and update the code to test the property origin
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property _interface (base name: "interface")', function() {
       // uncomment below and update the code to test the property _interface
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property sendingZone (base name: "sendingZone")', function() {
       // uncomment below and update the code to test the property sendingZone
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property bodySize (base name: "bodySize")', function() {
       // uncomment below and update the code to test the property bodySize
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property seq (base name: "seq")', function() {
       // uncomment below and update the code to test the property seq
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property recipient (base name: "recipient")', function() {
       // uncomment below and update the code to test the property recipient
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property domain (base name: "domain")', function() {
       // uncomment below and update the code to test the property domain
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property locked (base name: "locked")', function() {
       // uncomment below and update the code to test the property locked
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property lockTime (base name: "lockTime")', function() {
       // uncomment below and update the code to test the property lockTime
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property assigned (base name: "assigned")', function() {
       // uncomment below and update the code to test the property assigned
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property queued (base name: "queued")', function() {
       // uncomment below and update the code to test the property queued
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property mxHostname (base name: "mxHostname")', function() {
       // uncomment below and update the code to test the property mxHostname
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property response (base name: "response")', function() {
       // uncomment below and update the code to test the property response
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 
     it('should have the property messageId (base name: "messageId")', function() {
       // uncomment below and update the code to test the property messageId
-      //var instance = new MailBabyEmailDeliveryApi.MailLogEntry();
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });
 

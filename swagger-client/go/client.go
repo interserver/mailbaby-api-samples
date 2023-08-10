@@ -1,7 +1,7 @@
 /*
- * MailBaby Email Delivery API
+ * MailBaby Email Delivery and Management Service API
  *
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * API version: 1.1.0
  * Contact: support@interserver.net
@@ -37,7 +37,7 @@ var (
 	xmlCheck  = regexp.MustCompile("(?i:[application|text]/xml)")
 )
 
-// APIClient manages communication with the MailBaby Email Delivery API API v1.1.0
+// APIClient manages communication with the MailBaby Email Delivery and Management Service API API v1.1.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -45,7 +45,15 @@ type APIClient struct {
 
 	// API Services
 
-	DefaultApi *DefaultApiService
+	BlockingApi *BlockingApiService
+
+	HistoryApi *HistoryApiService
+
+	SendingApi *SendingApiService
+
+	ServicesApi *ServicesApiService
+
+	StatusApi *StatusApiService
 }
 
 type service struct {
@@ -64,7 +72,11 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.DefaultApi = (*DefaultApiService)(&c.common)
+	c.BlockingApi = (*BlockingApiService)(&c.common)
+	c.HistoryApi = (*HistoryApiService)(&c.common)
+	c.SendingApi = (*SendingApiService)(&c.common)
+	c.ServicesApi = (*ServicesApiService)(&c.common)
+	c.StatusApi = (*StatusApiService)(&c.common)
 
 	return c
 }

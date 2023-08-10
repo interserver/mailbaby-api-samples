@@ -1,17 +1,10 @@
 # Eiffel API client for openapi
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
-
-
-# 📌 Overview
-
+# Overview
 This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).
-
-
-# 🔐 Authentication
-
+# Authentication
 In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.
-
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 
 
@@ -35,28 +28,37 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DEFAULT_API* | [**mail_orders**](docs/DEFAULT_API.md#mail_orders) | **Get** /mail | displays a list of mail service orders
-*DEFAULT_API* | [**ping_server**](docs/DEFAULT_API.md#ping_server) | **Get** /ping | Checks if the server is running
-*DEFAULT_API* | [**send_adv_mail**](docs/DEFAULT_API.md#send_adv_mail) | **Post** /mail/advsend | Sends an Email with Advanced Options
-*DEFAULT_API* | [**send_mail**](docs/DEFAULT_API.md#send_mail) | **Post** /mail/send | Sends an Email
-*DEFAULT_API* | [**view_mail_log**](docs/DEFAULT_API.md#view_mail_log) | **Get** /mail/log | displays the mail log
+*BLOCKING_API* | [**add_rule**](docs/BLOCKING_API.md#add_rule) | **Post** /mail/rules | Creates a new email deny rule.
+*BLOCKING_API* | [**delete_rule**](docs/BLOCKING_API.md#delete_rule) | **Delete** /mail/rules/{ruleId} | Removes an deny mail rule.
+*BLOCKING_API* | [**delist_block**](docs/BLOCKING_API.md#delist_block) | **Post** /mail/blocks/delete | Removes an email address from the blocked list
+*BLOCKING_API* | [**mail_blocks**](docs/BLOCKING_API.md#mail_blocks) | **Get** /mail/blocks | displays a list of blocked email addresses
+*BLOCKING_API* | [**rules**](docs/BLOCKING_API.md#rules) | **Get** /mail/rules | Displays a listing of deny email rules.
+*HISTORY_API* | [**stats**](docs/HISTORY_API.md#stats) | **Get** /mail/stats | displays a list of blocked email addresses
+*HISTORY_API* | [**view_mail_log**](docs/HISTORY_API.md#view_mail_log) | **Get** /mail/log | displays the mail log
+*SENDING_API* | [**send_adv_mail**](docs/SENDING_API.md#send_adv_mail) | **Post** /mail/advsend | Sends an Email with Advanced Options
+*SENDING_API* | [**send_mail**](docs/SENDING_API.md#send_mail) | **Post** /mail/send | Sends an Email
+*SERVICES_API* | [**mail_orders**](docs/SERVICES_API.md#mail_orders) | **Get** /mail | displays a list of mail service orders
+*STATUS_API* | [**ping_server**](docs/STATUS_API.md#ping_server) | **Get** /ping | Checks if the server is running
 
 
 ## Documentation For Models
 
+ - [DENY_RULE_NEW](docs/DENY_RULE_NEW.md)
+ - [DENY_RULE_RECORD](docs/DENY_RULE_RECORD.md)
+ - [EMAIL_ADDRESS](docs/EMAIL_ADDRESS.md)
+ - [EMAIL_ADDRESS_NAME](docs/EMAIL_ADDRESS_NAME.md)
  - [GENERIC_RESPONSE](docs/GENERIC_RESPONSE.md)
- - [GET_MAIL_ORDERS_200_RESPONSE_INNER](docs/GET_MAIL_ORDERS_200_RESPONSE_INNER.md)
  - [GET_MAIL_ORDERS_401_RESPONSE](docs/GET_MAIL_ORDERS_401_RESPONSE.md)
+ - [GET_STATS_200_RESPONSE_INNER](docs/GET_STATS_200_RESPONSE_INNER.md)
+ - [MAIL_ATTACHMENT](docs/MAIL_ATTACHMENT.md)
+ - [MAIL_BLOCKS](docs/MAIL_BLOCKS.md)
+ - [MAIL_BLOCK_CLICK_HOUSE](docs/MAIL_BLOCK_CLICK_HOUSE.md)
+ - [MAIL_BLOCK_RSPAMD](docs/MAIL_BLOCK_RSPAMD.md)
  - [MAIL_LOG](docs/MAIL_LOG.md)
  - [MAIL_LOG_ENTRY](docs/MAIL_LOG_ENTRY.md)
+ - [MAIL_ORDER](docs/MAIL_ORDER.md)
  - [SEND_MAIL](docs/SEND_MAIL.md)
  - [SEND_MAIL_ADV](docs/SEND_MAIL_ADV.md)
- - [SEND_MAIL_ADV_ATTACHMENTS_INNER](docs/SEND_MAIL_ADV_ATTACHMENTS_INNER.md)
- - [SEND_MAIL_ADV_BCC_INNER](docs/SEND_MAIL_ADV_BCC_INNER.md)
- - [SEND_MAIL_ADV_CC_INNER](docs/SEND_MAIL_ADV_CC_INNER.md)
- - [SEND_MAIL_ADV_FROM](docs/SEND_MAIL_ADV_FROM.md)
- - [SEND_MAIL_ADV_REPLYTO_INNER](docs/SEND_MAIL_ADV_REPLYTO_INNER.md)
- - [SEND_MAIL_ADV_TO_INNER](docs/SEND_MAIL_ADV_TO_INNER.md)
 
 
 ## Documentation For Authorization

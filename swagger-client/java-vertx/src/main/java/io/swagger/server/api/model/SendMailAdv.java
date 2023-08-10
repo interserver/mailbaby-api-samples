@@ -3,12 +3,8 @@ package io.swagger.server.api.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.server.api.model.SendMailAdvAttachments;
-import io.swagger.server.api.model.SendMailAdvBcc;
-import io.swagger.server.api.model.SendMailAdvCc;
-import io.swagger.server.api.model.SendMailAdvFrom;
-import io.swagger.server.api.model.SendMailAdvReplyto;
-import io.swagger.server.api.model.SendMailAdvTo;
+import io.swagger.server.api.model.EmailAddressName;
+import io.swagger.server.api.model.MailAttachment;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +14,7 @@ import io.vertx.codegen.annotations.DataObject;
  * Details for an Email
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaVertXServerCodegen", date = "2023-05-09T00:51:46.773748-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaVertXServerCodegen", date = "2023-08-10T12:38:17.936627-04:00[America/New_York]")
 
 
 
@@ -27,22 +23,22 @@ public class SendMailAdv   {
 
   private String body = null;
 
-  private SendMailAdvFrom from = null;
+  private EmailAddressName from = null;
 
   
-  private List<SendMailAdvTo> to = new ArrayList<SendMailAdvTo>();
+  private List<EmailAddressName> to = new ArrayList<EmailAddressName>();
 
   
-  private List<SendMailAdvReplyto> replyto = null;
+  private List<EmailAddressName> replyto = null;
 
   
-  private List<SendMailAdvCc> cc = null;
+  private List<EmailAddressName> cc = null;
 
   
-  private List<SendMailAdvBcc> bcc = null;
+  private List<EmailAddressName> bcc = null;
 
   
-  private List<SendMailAdvAttachments> attachments = null;
+  private List<MailAttachment> attachments = null;
 
   private Long id = null;
 
@@ -80,7 +76,7 @@ public class SendMailAdv   {
     this.body = body;
   }
 
-  public SendMailAdv from(SendMailAdvFrom from) {
+  public SendMailAdv from(EmailAddressName from) {
     this.from = from;
     return this;
   }
@@ -89,20 +85,20 @@ public class SendMailAdv   {
    * Get from
    * @return from
    **/
-    public SendMailAdvFrom getFrom() {
+    public EmailAddressName getFrom() {
     return from;
   }
 
-  public void setFrom(SendMailAdvFrom from) {
+  public void setFrom(EmailAddressName from) {
     this.from = from;
   }
 
-  public SendMailAdv to(List<SendMailAdvTo> to) {
+  public SendMailAdv to(List<EmailAddressName> to) {
     this.to = to;
     return this;
   }
 
-  public SendMailAdv addToItem(SendMailAdvTo toItem) {
+  public SendMailAdv addToItem(EmailAddressName toItem) {
     this.to.add(toItem);
     return this;
   }
@@ -111,22 +107,22 @@ public class SendMailAdv   {
    * A list of destionation email addresses to send this to
    * @return to
    **/
-    public List<SendMailAdvTo> getTo() {
+    public List<EmailAddressName> getTo() {
     return to;
   }
 
-  public void setTo(List<SendMailAdvTo> to) {
+  public void setTo(List<EmailAddressName> to) {
     this.to = to;
   }
 
-  public SendMailAdv replyto(List<SendMailAdvReplyto> replyto) {
+  public SendMailAdv replyto(List<EmailAddressName> replyto) {
     this.replyto = replyto;
     return this;
   }
 
-  public SendMailAdv addReplytoItem(SendMailAdvReplyto replytoItem) {
+  public SendMailAdv addReplytoItem(EmailAddressName replytoItem) {
     if (this.replyto == null) {
-      this.replyto = new ArrayList<SendMailAdvReplyto>();
+      this.replyto = new ArrayList<EmailAddressName>();
     }
     this.replyto.add(replytoItem);
     return this;
@@ -136,22 +132,22 @@ public class SendMailAdv   {
    * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
    * @return replyto
    **/
-    public List<SendMailAdvReplyto> getReplyto() {
+    public List<EmailAddressName> getReplyto() {
     return replyto;
   }
 
-  public void setReplyto(List<SendMailAdvReplyto> replyto) {
+  public void setReplyto(List<EmailAddressName> replyto) {
     this.replyto = replyto;
   }
 
-  public SendMailAdv cc(List<SendMailAdvCc> cc) {
+  public SendMailAdv cc(List<EmailAddressName> cc) {
     this.cc = cc;
     return this;
   }
 
-  public SendMailAdv addCcItem(SendMailAdvCc ccItem) {
+  public SendMailAdv addCcItem(EmailAddressName ccItem) {
     if (this.cc == null) {
-      this.cc = new ArrayList<SendMailAdvCc>();
+      this.cc = new ArrayList<EmailAddressName>();
     }
     this.cc.add(ccItem);
     return this;
@@ -161,22 +157,22 @@ public class SendMailAdv   {
    * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
    * @return cc
    **/
-    public List<SendMailAdvCc> getCc() {
+    public List<EmailAddressName> getCc() {
     return cc;
   }
 
-  public void setCc(List<SendMailAdvCc> cc) {
+  public void setCc(List<EmailAddressName> cc) {
     this.cc = cc;
   }
 
-  public SendMailAdv bcc(List<SendMailAdvBcc> bcc) {
+  public SendMailAdv bcc(List<EmailAddressName> bcc) {
     this.bcc = bcc;
     return this;
   }
 
-  public SendMailAdv addBccItem(SendMailAdvBcc bccItem) {
+  public SendMailAdv addBccItem(EmailAddressName bccItem) {
     if (this.bcc == null) {
-      this.bcc = new ArrayList<SendMailAdvBcc>();
+      this.bcc = new ArrayList<EmailAddressName>();
     }
     this.bcc.add(bccItem);
     return this;
@@ -186,22 +182,22 @@ public class SendMailAdv   {
    * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
    * @return bcc
    **/
-    public List<SendMailAdvBcc> getBcc() {
+    public List<EmailAddressName> getBcc() {
     return bcc;
   }
 
-  public void setBcc(List<SendMailAdvBcc> bcc) {
+  public void setBcc(List<EmailAddressName> bcc) {
     this.bcc = bcc;
   }
 
-  public SendMailAdv attachments(List<SendMailAdvAttachments> attachments) {
+  public SendMailAdv attachments(List<MailAttachment> attachments) {
     this.attachments = attachments;
     return this;
   }
 
-  public SendMailAdv addAttachmentsItem(SendMailAdvAttachments attachmentsItem) {
+  public SendMailAdv addAttachmentsItem(MailAttachment attachmentsItem) {
     if (this.attachments == null) {
-      this.attachments = new ArrayList<SendMailAdvAttachments>();
+      this.attachments = new ArrayList<MailAttachment>();
     }
     this.attachments.add(attachmentsItem);
     return this;
@@ -211,11 +207,11 @@ public class SendMailAdv   {
    * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
    * @return attachments
    **/
-    public List<SendMailAdvAttachments> getAttachments() {
+    public List<MailAttachment> getAttachments() {
     return attachments;
   }
 
-  public void setAttachments(List<SendMailAdvAttachments> attachments) {
+  public void setAttachments(List<MailAttachment> attachments) {
     this.attachments = attachments;
   }
 

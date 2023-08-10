@@ -1,7 +1,7 @@
-# MailBaby Email Delivery API API Client
+# MailBaby Email Delivery and Management Service API API Client
 
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**\n\n\n# 📌 Overview\n\nThis is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).\n\n\n# 🔐 Authentication\n\nIn order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.\n\nWe support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.\n
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**\n# Overview\nThis is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).\n# Authentication\nIn order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.\nWe support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.\n
 
 ## Requirements
 
@@ -42,13 +42,19 @@ If everything is set correctly:
 Please follow the [installation](#installation) instruction and execute the following Apex code:
 
 ```java
-OASDefaultApi api = new OASDefaultApi();
+OASBlockingApi api = new OASBlockingApi();
 OASClient client = api.getClient();
 
 
+Map<String, Object> params = new Map<String, Object>{
+    'type' => 'null',
+    'data' => 'null',
+    'user' => 'null'
+};
+
 try {
     // cross your fingers
-    List<OASGetMailOrders200ResponseInner> result = api.getMailOrders();
+    OASGenericResponse result = api.addRule(params);
     System.debug(result);
 } catch (OAS.ApiException e) {
     // ...handle your exceptions
@@ -61,35 +67,44 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*OASDefaultApi* | [**getMailOrders**](OASDefaultApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
-*OASDefaultApi* | [**pingServer**](OASDefaultApi.md#pingServer) | **GET** /ping | Checks if the server is running
-*OASDefaultApi* | [**sendAdvMail**](OASDefaultApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*OASDefaultApi* | [**sendMail**](OASDefaultApi.md#sendMail) | **POST** /mail/send | Sends an Email
-*OASDefaultApi* | [**viewMailLog**](OASDefaultApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
+*OASBlockingApi* | [**addRule**](OASBlockingApi.md#addRule) | **POST** /mail/rules | Creates a new email deny rule.
+*OASBlockingApi* | [**deleteRule**](OASBlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule.
+*OASBlockingApi* | [**delistBlock**](OASBlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
+*OASBlockingApi* | [**getMailBlocks**](OASBlockingApi.md#getMailBlocks) | **GET** /mail/blocks | displays a list of blocked email addresses
+*OASBlockingApi* | [**getRules**](OASBlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules.
+*OASHistoryApi* | [**getStats**](OASHistoryApi.md#getStats) | **GET** /mail/stats | displays a list of blocked email addresses
+*OASHistoryApi* | [**viewMailLog**](OASHistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
+*OASSendingApi* | [**sendAdvMail**](OASSendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*OASSendingApi* | [**sendMail**](OASSendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
+*OASServicesApi* | [**getMailOrders**](OASServicesApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
+*OASStatusApi* | [**pingServer**](OASStatusApi.md#pingServer) | **GET** /ping | Checks if the server is running
 
 
 ## Documentation for Models
 
+ - [OASDenyRuleNew](OASDenyRuleNew.md)
+ - [OASDenyRuleRecord](OASDenyRuleRecord.md)
+ - [OASEmailAddress](OASEmailAddress.md)
+ - [OASEmailAddressName](OASEmailAddressName.md)
  - [OASGenericResponse](OASGenericResponse.md)
- - [OASGetMailOrders200ResponseInner](OASGetMailOrders200ResponseInner.md)
  - [OASGetMailOrders401Response](OASGetMailOrders401Response.md)
+ - [OASGetStats200ResponseInner](OASGetStats200ResponseInner.md)
+ - [OASMailAttachment](OASMailAttachment.md)
+ - [OASMailBlockClickHouse](OASMailBlockClickHouse.md)
+ - [OASMailBlockRspamd](OASMailBlockRspamd.md)
+ - [OASMailBlocks](OASMailBlocks.md)
  - [OASMailLog](OASMailLog.md)
  - [OASMailLogEntry](OASMailLogEntry.md)
+ - [OASMailOrder](OASMailOrder.md)
  - [OASSendMail](OASSendMail.md)
  - [OASSendMailAdv](OASSendMailAdv.md)
- - [OASSendMailAdvAttachmentsInner](OASSendMailAdvAttachmentsInner.md)
- - [OASSendMailAdvBccInner](OASSendMailAdvBccInner.md)
- - [OASSendMailAdvCcInner](OASSendMailAdvCcInner.md)
- - [OASSendMailAdvFrom](OASSendMailAdvFrom.md)
- - [OASSendMailAdvReplytoInner](OASSendMailAdvReplytoInner.md)
- - [OASSendMailAdvToInner](OASSendMailAdvToInner.md)
 
 
 ## Documentation for Authorization
 
+
 Authentication schemes defined for the API:
 ### apiKeyAuth
-
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY

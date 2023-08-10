@@ -2,16 +2,11 @@ package org.openapitools.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.openapitools.model.SendMailAdvAttachmentsInner;
-import org.openapitools.model.SendMailAdvBccInner;
-import org.openapitools.model.SendMailAdvCcInner;
-import org.openapitools.model.SendMailAdvFrom;
-import org.openapitools.model.SendMailAdvReplytoInner;
-import org.openapitools.model.SendMailAdvToInner;
+import org.openapitools.model.EmailAddressName;
+import org.openapitools.model.MailAttachment;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-
 
 /**
  * Model tests for SendMailAdv

@@ -5,6 +5,7 @@ import io.swagger.model.*;
 
 
 import java.util.List;
+import java.util.Map;
 import io.swagger.api.NotFoundException;
 
 import java.io.InputStream;
@@ -14,7 +15,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2023-05-09T00:51:44.319867-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2023-08-10T12:38:15.139831-04:00[America/New_York]")
 public class PingApiServiceImpl implements PingApiService {
       public Response pingServer(SecurityContext securityContext)
       throws NotFoundException {

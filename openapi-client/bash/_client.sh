@@ -296,11 +296,13 @@ case $state in
   ops)
     # Operations
     _values "Operations" \
-            "getMailOrders[displays a list of mail service orders]" \
-            "pingServer[Checks if the server is running]" \
-            "sendAdvMail[Sends an Email with Advanced Options]" \
-            "sendMail[Sends an Email]" \
-            "viewMailLog[displays the mail log]" \
+            "addRule[Creates a new email deny rule.]" \
+            "deleteRule[Removes an deny mail rule.]" \
+            "delistBlock[Removes an email address from the blocked list]" \
+            "getMailBlocks[displays a list of blocked email addresses]" \
+            "getRules[Displays a listing of deny email rules.]"             "getStats[displays a list of blocked email addresses]" \
+            "viewMailLog[displays the mail log]"             "sendAdvMail[Sends an Email with Advanced Options]" \
+            "sendMail[Sends an Email]"             "getMailOrders[displays a list of mail service orders]"             "pingServer[Checks if the server is running]" \
 
     _arguments "(--help)--help[Print information about operation]"
 
@@ -308,25 +310,38 @@ case $state in
     ;;
   args)
     case $line[1] in
-      getMailOrders)
+      addRule)
         local -a _op_arguments
         _op_arguments=(
                               )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      pingServer)
+      deleteRule)
+        local -a _op_arguments
+        _op_arguments=(
+          "ruleId=:[PATH] The ID of the Rules entry."
+                    )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      delistBlock)
         local -a _op_arguments
         _op_arguments=(
                               )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      sendAdvMail)
+      getMailBlocks)
         local -a _op_arguments
         _op_arguments=(
                               )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
-      sendMail)
+      getRules)
+        local -a _op_arguments
+        _op_arguments=(
+                              )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getStats)
         local -a _op_arguments
         _op_arguments=(
                               )
@@ -347,6 +362,30 @@ case $state in
 "startDate=:[QUERY] earliest date to get emails in unix timestamp format"
 "endDate=:[QUERY] earliest date to get emails in unix timestamp format"
           )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      sendAdvMail)
+        local -a _op_arguments
+        _op_arguments=(
+                              )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      sendMail)
+        local -a _op_arguments
+        _op_arguments=(
+                              )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getMailOrders)
+        local -a _op_arguments
+        _op_arguments=(
+                              )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      pingServer)
+        local -a _op_arguments
+        _op_arguments=(
+                              )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
     esac

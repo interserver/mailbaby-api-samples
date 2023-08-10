@@ -11,9 +11,9 @@
  */
 
 /**
- * MailBaby Email Delivery API
+ * MailBaby Email Delivery and Management Service API
  *
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -136,6 +136,16 @@ class MailLog implements ModelInterface, ArrayAccess, \JsonSerializable
     private function getOpenAPINullablesSetToNull(): array
     {
         return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Setter - Array of nullable field names deliberately set to null
+     *
+     * @param boolean[] $openAPINullablesSetToNull
+     */
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    {
+        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
 
     /**
@@ -333,11 +343,9 @@ class MailLog implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTotal($total)
     {
-
         if (is_null($total)) {
             throw new \InvalidArgumentException('non-nullable total cannot be null');
         }
-
         $this->container['total'] = $total;
 
         return $this;
@@ -362,11 +370,9 @@ class MailLog implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSkip($skip)
     {
-
         if (is_null($skip)) {
             throw new \InvalidArgumentException('non-nullable skip cannot be null');
         }
-
         $this->container['skip'] = $skip;
 
         return $this;
@@ -391,11 +397,9 @@ class MailLog implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLimit($limit)
     {
-
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
-
         $this->container['limit'] = $limit;
 
         return $this;
@@ -420,11 +424,9 @@ class MailLog implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmails($emails)
     {
-
         if (is_null($emails)) {
             throw new \InvalidArgumentException('non-nullable emails cannot be null');
         }
-
         $this->container['emails'] = $emails;
 
         return $this;

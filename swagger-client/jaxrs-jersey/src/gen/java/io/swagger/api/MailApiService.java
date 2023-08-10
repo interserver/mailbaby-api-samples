@@ -5,18 +5,19 @@ import io.swagger.model.*;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
+import io.swagger.model.DenyRuleNew;
+import io.swagger.model.DenyRuleRecord;
+import io.swagger.model.EmailAddress;
+import io.swagger.model.EmailAddressName;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.InlineResponse200;
 import io.swagger.model.InlineResponse401;
+import io.swagger.model.MailAttachment;
+import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
+import io.swagger.model.MailOrder;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
-import io.swagger.model.SendMailAdvAttachments;
-import io.swagger.model.SendMailAdvBcc;
-import io.swagger.model.SendMailAdvCc;
-import io.swagger.model.SendMailAdvFrom;
-import io.swagger.model.SendMailAdvReplyto;
-import io.swagger.model.SendMailAdvTo;
 
 import java.util.Map;
 import java.util.List;
@@ -27,11 +28,19 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-05-09T00:51:37.034744-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-08-10T12:38:05.873302-04:00[America/New_York]")
 public abstract class MailApiService {
+    public abstract Response addRule(String user,String type,String data,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response addRule(DenyRuleNew body,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response deleteRule(Integer ruleId,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response delistBlock(EmailAddress body,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response delistBlock(String email,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response getMailBlocks(SecurityContext securityContext) throws NotFoundException;
     public abstract Response getMailOrders(SecurityContext securityContext) throws NotFoundException;
+    public abstract Response getRules(SecurityContext securityContext) throws NotFoundException;
+    public abstract Response getStats(SecurityContext securityContext) throws NotFoundException;
+    public abstract Response sendAdvMail(String subject,String body,EmailAddressName from,List<EmailAddressName> to,List<EmailAddressName> replyto,List<EmailAddressName> cc,List<EmailAddressName> bcc,List<MailAttachment> attachments,Long id,SecurityContext securityContext) throws NotFoundException;
     public abstract Response sendAdvMail(SendMailAdv body,SecurityContext securityContext) throws NotFoundException;
-    public abstract Response sendAdvMail(String subject,String body,SendMailAdvFrom from,List<SendMailAdvTo> to,List<SendMailAdvReplyto> replyto,List<SendMailAdvCc> cc,List<SendMailAdvBcc> bcc,List<SendMailAdvAttachments> attachments,Long id,SecurityContext securityContext) throws NotFoundException;
     public abstract Response sendMail(String to,String from,String subject,String body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response sendMail(SendMail body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response viewMailLog( Long id, String origin, String mx, String from, String to, String subject, String mailid, @Min(0) Integer skip, @Min(1) @Max(10000) Integer limit, @Min(0L) @Max(9999999999L) Long startDate, @Min(0L) @Max(9999999999L) Long endDate,SecurityContext securityContext) throws NotFoundException;

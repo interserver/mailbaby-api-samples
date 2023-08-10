@@ -1,30 +1,36 @@
-export * from './GenericResponse';
-export * from './GetMailOrders200ResponseInner';
-export * from './GetMailOrders401Response';
-export * from './MailLog';
-export * from './MailLogEntry';
-export * from './SendMail';
-export * from './SendMailAdv';
-export * from './SendMailAdvAttachmentsInner';
-export * from './SendMailAdvBccInner';
-export * from './SendMailAdvCcInner';
-export * from './SendMailAdvFrom';
-export * from './SendMailAdvReplytoInner';
-export * from './SendMailAdvToInner';
+export * from '../models/DenyRuleNew';
+export * from '../models/DenyRuleRecord';
+export * from '../models/EmailAddress';
+export * from '../models/EmailAddressName';
+export * from '../models/GenericResponse';
+export * from '../models/GetMailOrders401Response';
+export * from '../models/GetStats200ResponseInner';
+export * from '../models/MailAttachment';
+export * from '../models/MailBlockClickHouse';
+export * from '../models/MailBlockRspamd';
+export * from '../models/MailBlocks';
+export * from '../models/MailLog';
+export * from '../models/MailLogEntry';
+export * from '../models/MailOrder';
+export * from '../models/SendMail';
+export * from '../models/SendMailAdv';
 
-import { GenericResponse } from './GenericResponse';
-import { GetMailOrders200ResponseInner } from './GetMailOrders200ResponseInner';
-import { GetMailOrders401Response } from './GetMailOrders401Response';
-import { MailLog } from './MailLog';
-import { MailLogEntry } from './MailLogEntry';
-import { SendMail } from './SendMail';
-import { SendMailAdv } from './SendMailAdv';
-import { SendMailAdvAttachmentsInner } from './SendMailAdvAttachmentsInner';
-import { SendMailAdvBccInner } from './SendMailAdvBccInner';
-import { SendMailAdvCcInner } from './SendMailAdvCcInner';
-import { SendMailAdvFrom } from './SendMailAdvFrom';
-import { SendMailAdvReplytoInner } from './SendMailAdvReplytoInner';
-import { SendMailAdvToInner } from './SendMailAdvToInner';
+import { DenyRuleNew, DenyRuleNewTypeEnum     } from '../models/DenyRuleNew';
+import { DenyRuleRecord, DenyRuleRecordTypeEnum       } from '../models/DenyRuleRecord';
+import { EmailAddress } from '../models/EmailAddress';
+import { EmailAddressName } from '../models/EmailAddressName';
+import { GenericResponse } from '../models/GenericResponse';
+import { GetMailOrders401Response } from '../models/GetMailOrders401Response';
+import { GetStats200ResponseInner } from '../models/GetStats200ResponseInner';
+import { MailAttachment } from '../models/MailAttachment';
+import { MailBlockClickHouse } from '../models/MailBlockClickHouse';
+import { MailBlockRspamd } from '../models/MailBlockRspamd';
+import { MailBlocks } from '../models/MailBlocks';
+import { MailLog } from '../models/MailLog';
+import { MailLogEntry } from '../models/MailLogEntry';
+import { MailOrder } from '../models/MailOrder';
+import { SendMail } from '../models/SendMail';
+import { SendMailAdv } from '../models/SendMailAdv';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -46,22 +52,27 @@ const supportedMediaTypes: { [mediaType: string]: number } = {
 
 
 let enumsMap: Set<string> = new Set<string>([
+    "DenyRuleNewTypeEnum",
+    "DenyRuleRecordTypeEnum",
 ]);
 
 let typeMap: {[index: string]: any} = {
+    "DenyRuleNew": DenyRuleNew,
+    "DenyRuleRecord": DenyRuleRecord,
+    "EmailAddress": EmailAddress,
+    "EmailAddressName": EmailAddressName,
     "GenericResponse": GenericResponse,
-    "GetMailOrders200ResponseInner": GetMailOrders200ResponseInner,
     "GetMailOrders401Response": GetMailOrders401Response,
+    "GetStats200ResponseInner": GetStats200ResponseInner,
+    "MailAttachment": MailAttachment,
+    "MailBlockClickHouse": MailBlockClickHouse,
+    "MailBlockRspamd": MailBlockRspamd,
+    "MailBlocks": MailBlocks,
     "MailLog": MailLog,
     "MailLogEntry": MailLogEntry,
+    "MailOrder": MailOrder,
     "SendMail": SendMail,
     "SendMailAdv": SendMailAdv,
-    "SendMailAdvAttachmentsInner": SendMailAdvAttachmentsInner,
-    "SendMailAdvBccInner": SendMailAdvBccInner,
-    "SendMailAdvCcInner": SendMailAdvCcInner,
-    "SendMailAdvFrom": SendMailAdvFrom,
-    "SendMailAdvReplytoInner": SendMailAdvReplytoInner,
-    "SendMailAdvToInner": SendMailAdvToInner,
 }
 
 export class ObjectSerializer {
@@ -109,8 +120,7 @@ export class ObjectSerializer {
             let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
             subType = subType.substring(0, subType.length - 1); // Type> => Type
             let transformedData: any[] = [];
-            for (let index in data) {
-                let date = data[index];
+            for (let date of data) {
                 transformedData.push(ObjectSerializer.serialize(date, subType, format));
             }
             return transformedData;
@@ -139,8 +149,7 @@ export class ObjectSerializer {
             // get the map for the correct type.
             let attributeTypes = typeMap[type].getAttributeTypeMap();
             let instance: {[index: string]: any} = {};
-            for (let index in attributeTypes) {
-                let attributeType = attributeTypes[index];
+            for (let attributeType of attributeTypes) {
                 instance[attributeType.baseName] = ObjectSerializer.serialize(data[attributeType.name], attributeType.type, attributeType.format);
             }
             return instance;
@@ -158,8 +167,7 @@ export class ObjectSerializer {
             let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
             subType = subType.substring(0, subType.length - 1); // Type> => Type
             let transformedData: any[] = [];
-            for (let index in data) {
-                let date = data[index];
+            for (let date of data) {
                 transformedData.push(ObjectSerializer.deserialize(date, subType, format));
             }
             return transformedData;
@@ -175,8 +183,7 @@ export class ObjectSerializer {
             }
             let instance = new typeMap[type]();
             let attributeTypes = typeMap[type].getAttributeTypeMap();
-            for (let index in attributeTypes) {
-                let attributeType = attributeTypes[index];
+            for (let attributeType of attributeTypes) {
                 let value = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type, attributeType.format);
                 if (value !== undefined) {
                     instance[attributeType.name] = value;
@@ -208,7 +215,7 @@ export class ObjectSerializer {
      */
     public static getPreferredMediaType(mediaTypes: Array<string>): string {
         /** According to OAS 3 we should default to json */
-        if (!mediaTypes) {
+        if (mediaTypes.length === 0) {
             return "application/json";
         }
 
@@ -250,6 +257,10 @@ export class ObjectSerializer {
     public static parse(rawData: string, mediaType: string | undefined) {
         if (mediaType === undefined) {
             throw new Error("Cannot parse content. No Content-Type defined.");
+        }
+
+        if (mediaType === "text/plain") {
+            return rawData;
         }
 
         if (mediaType === "application/json") {

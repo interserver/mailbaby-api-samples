@@ -1,16 +1,9 @@
 # openapi
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
-
-
-# 📌 Overview
-
+# Overview
 This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).
-
-
-# 🔐 Authentication
-
+# Authentication
 In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.
-
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 
 
@@ -58,13 +51,16 @@ import 'package:openapi/api.dart';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
-final api_instance = DefaultApi();
+final api_instance = BlockingApi();
+final type = type_example; // String | The type of deny rule.
+final data = data_example; // String | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+final user = user_example; // String | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
 
 try {
-    final result = api_instance.getMailOrders();
+    final result = api_instance.addRule(type, data, user);
     print(result);
 } catch (e) {
-    print('Exception when calling DefaultApi->getMailOrders: $e\n');
+    print('Exception when calling BlockingApi->addRule: $e\n');
 }
 
 ```
@@ -75,34 +71,44 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**getMailOrders**](doc//DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
-*DefaultApi* | [**pingServer**](doc//DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
-*DefaultApi* | [**sendAdvMail**](doc//DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMail**](doc//DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
-*DefaultApi* | [**viewMailLog**](doc//DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
+*BlockingApi* | [**addRule**](doc//BlockingApi.md#addrule) | **POST** /mail/rules | Creates a new email deny rule.
+*BlockingApi* | [**deleteRule**](doc//BlockingApi.md#deleterule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule.
+*BlockingApi* | [**delistBlock**](doc//BlockingApi.md#delistblock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
+*BlockingApi* | [**getMailBlocks**](doc//BlockingApi.md#getmailblocks) | **GET** /mail/blocks | displays a list of blocked email addresses
+*BlockingApi* | [**getRules**](doc//BlockingApi.md#getrules) | **GET** /mail/rules | Displays a listing of deny email rules.
+*HistoryApi* | [**getStats**](doc//HistoryApi.md#getstats) | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | [**viewMailLog**](doc//HistoryApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
+*SendingApi* | [**sendAdvMail**](doc//SendingApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*SendingApi* | [**sendMail**](doc//SendingApi.md#sendmail) | **POST** /mail/send | Sends an Email
+*ServicesApi* | [**getMailOrders**](doc//ServicesApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
+*StatusApi* | [**pingServer**](doc//StatusApi.md#pingserver) | **GET** /ping | Checks if the server is running
 
 
 ## Documentation For Models
 
+ - [DenyRuleNew](doc//DenyRuleNew.md)
+ - [DenyRuleRecord](doc//DenyRuleRecord.md)
+ - [EmailAddress](doc//EmailAddress.md)
+ - [EmailAddressName](doc//EmailAddressName.md)
  - [GenericResponse](doc//GenericResponse.md)
- - [GetMailOrders200ResponseInner](doc//GetMailOrders200ResponseInner.md)
  - [GetMailOrders401Response](doc//GetMailOrders401Response.md)
+ - [GetStats200ResponseInner](doc//GetStats200ResponseInner.md)
+ - [MailAttachment](doc//MailAttachment.md)
+ - [MailBlockClickHouse](doc//MailBlockClickHouse.md)
+ - [MailBlockRspamd](doc//MailBlockRspamd.md)
+ - [MailBlocks](doc//MailBlocks.md)
  - [MailLog](doc//MailLog.md)
  - [MailLogEntry](doc//MailLogEntry.md)
+ - [MailOrder](doc//MailOrder.md)
  - [SendMail](doc//SendMail.md)
  - [SendMailAdv](doc//SendMailAdv.md)
- - [SendMailAdvAttachmentsInner](doc//SendMailAdvAttachmentsInner.md)
- - [SendMailAdvBccInner](doc//SendMailAdvBccInner.md)
- - [SendMailAdvCcInner](doc//SendMailAdvCcInner.md)
- - [SendMailAdvFrom](doc//SendMailAdvFrom.md)
- - [SendMailAdvReplytoInner](doc//SendMailAdvReplytoInner.md)
- - [SendMailAdvToInner](doc//SendMailAdvToInner.md)
 
 
 ## Documentation For Authorization
 
 
-## apiKeyAuth
+Authentication schemes defined for the API:
+### apiKeyAuth
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY

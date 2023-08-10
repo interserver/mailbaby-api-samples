@@ -33,10 +33,10 @@ class SendMail {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is SendMail &&
-     other.to == to &&
-     other.from == from &&
-     other.subject == subject &&
-     other.body == body;
+    other.to == to &&
+    other.from == from &&
+    other.subject == subject &&
+    other.body == body;
 
   @override
   int get hashCode =>
@@ -50,12 +50,12 @@ class SendMail {
   String toString() => 'SendMail[to=$to, from=$from, subject=$subject, body=$body]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-      _json[r'to'] = to;
-      _json[r'from'] = from;
-      _json[r'subject'] = subject;
-      _json[r'body'] = body;
-    return _json;
+    final json = <String, dynamic>{};
+      json[r'to'] = this.to;
+      json[r'from'] = this.from;
+      json[r'subject'] = this.subject;
+      json[r'body'] = this.body;
+    return json;
   }
 
   /// Returns a new [SendMail] instance and imports its values from
@@ -86,7 +86,7 @@ class SendMail {
     return null;
   }
 
-  static List<SendMail>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SendMail> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <SendMail>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -117,12 +117,10 @@ class SendMail {
   static Map<String, List<SendMail>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<SendMail>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = SendMail.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = SendMail.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

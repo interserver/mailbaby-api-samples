@@ -32,10 +32,10 @@ class MailLog {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is MailLog &&
-     other.total == total &&
-     other.skip == skip &&
-     other.limit == limit &&
-     other.emails == emails;
+    other.total == total &&
+    other.skip == skip &&
+    other.limit == limit &&
+    _deepEquality.equals(other.emails, emails);
 
   @override
   int get hashCode =>
@@ -49,12 +49,12 @@ class MailLog {
   String toString() => 'MailLog[total=$total, skip=$skip, limit=$limit, emails=$emails]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-      _json[r'total'] = total;
-      _json[r'skip'] = skip;
-      _json[r'limit'] = limit;
-      _json[r'emails'] = emails;
-    return _json;
+    final json = <String, dynamic>{};
+      json[r'total'] = this.total;
+      json[r'skip'] = this.skip;
+      json[r'limit'] = this.limit;
+      json[r'emails'] = this.emails;
+    return json;
   }
 
   /// Returns a new [MailLog] instance and imports its values from
@@ -79,13 +79,13 @@ class MailLog {
         total: mapValueOfType<int>(json, r'total')!,
         skip: mapValueOfType<int>(json, r'skip')!,
         limit: mapValueOfType<int>(json, r'limit')!,
-        emails: MailLogEntry.listFromJson(json[r'emails'])!,
+        emails: MailLogEntry.listFromJson(json[r'emails']),
       );
     }
     return null;
   }
 
-  static List<MailLog>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<MailLog> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MailLog>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -116,12 +116,10 @@ class MailLog {
   static Map<String, List<MailLog>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<MailLog>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = MailLog.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = MailLog.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

@@ -5,18 +5,19 @@ import io.swagger.model.*;
 
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 
+import io.swagger.model.DenyRuleNew;
+import io.swagger.model.DenyRuleRecord;
+import io.swagger.model.EmailAddress;
+import io.swagger.model.EmailAddressName;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.InlineResponse200;
 import io.swagger.model.InlineResponse401;
+import io.swagger.model.MailAttachment;
+import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
+import io.swagger.model.MailOrder;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
-import io.swagger.model.SendMailAdvAttachments;
-import io.swagger.model.SendMailAdvBcc;
-import io.swagger.model.SendMailAdvCc;
-import io.swagger.model.SendMailAdvFrom;
-import io.swagger.model.SendMailAdvReplyto;
-import io.swagger.model.SendMailAdvTo;
 
 import java.util.List;
 
@@ -27,20 +28,60 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2023-05-09T00:51:32.660870-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2023-08-10T12:38:00.023822-04:00[America/New_York]")
 public class MailApiServiceImpl implements MailApiService {
+      @Override
+      public Response addRule(String user, String type, String data, SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().entity("magic!").build();
+  }
+      @Override
+      public Response addRule(DenyRuleNew body, SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().entity("magic!").build();
+  }
+      @Override
+      public Response deleteRule(Integer ruleId, SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().entity("magic!").build();
+  }
+      @Override
+      public Response delistBlock(EmailAddress body, SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().entity("magic!").build();
+  }
+      @Override
+      public Response delistBlock(String email, SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().entity("magic!").build();
+  }
+      @Override
+      public Response getMailBlocks(SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().entity("magic!").build();
+  }
       @Override
       public Response getMailOrders(SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }
       @Override
-      public Response sendAdvMail(SendMailAdv body, SecurityContext securityContext) {
+      public Response getRules(SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }
       @Override
-      public Response sendAdvMail(String subject, String body, SendMailAdvFrom from, List<SendMailAdvTo> to, List<SendMailAdvReplyto> replyto, List<SendMailAdvCc> cc, List<SendMailAdvBcc> bcc, List<SendMailAdvAttachments> attachments, Long id, SecurityContext securityContext) {
+      public Response getStats(SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().entity("magic!").build();
+  }
+      @Override
+      public Response sendAdvMail(String subject, String body, EmailAddressName from, List<EmailAddressName> to, List<EmailAddressName> replyto, List<EmailAddressName> cc, List<EmailAddressName> bcc, List<MailAttachment> attachments, Long id, SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().entity("magic!").build();
+  }
+      @Override
+      public Response sendAdvMail(SendMailAdv body, SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }

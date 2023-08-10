@@ -1,6 +1,6 @@
 /**
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -21,12 +21,8 @@
 
 #include <QJsonObject>
 
-#include "OAISendMailAdv_attachments_inner.h"
-#include "OAISendMailAdv_bcc_inner.h"
-#include "OAISendMailAdv_cc_inner.h"
-#include "OAISendMailAdv_from.h"
-#include "OAISendMailAdv_replyto_inner.h"
-#include "OAISendMailAdv_to_inner.h"
+#include "OAIEmailAddressName.h"
+#include "OAIMailAttachment.h"
 #include <QList>
 #include <QString>
 
@@ -34,12 +30,8 @@
 #include "OAIObject.h"
 
 namespace OpenAPI {
-class OAISendMailAdv_from;
-class OAISendMailAdv_to_inner;
-class OAISendMailAdv_replyto_inner;
-class OAISendMailAdv_cc_inner;
-class OAISendMailAdv_bcc_inner;
-class OAISendMailAdv_attachments_inner;
+class OAIEmailAddressName;
+class OAIMailAttachment;
 
 class OAISendMailAdv : public OAIObject {
 public:
@@ -62,33 +54,33 @@ public:
     bool is_body_Set() const;
     bool is_body_Valid() const;
 
-    OAISendMailAdv_from getFrom() const;
-    void setFrom(const OAISendMailAdv_from &from);
+    OAIEmailAddressName getFrom() const;
+    void setFrom(const OAIEmailAddressName &from);
     bool is_from_Set() const;
     bool is_from_Valid() const;
 
-    QList<OAISendMailAdv_to_inner> getTo() const;
-    void setTo(const QList<OAISendMailAdv_to_inner> &to);
+    QList<OAIEmailAddressName> getTo() const;
+    void setTo(const QList<OAIEmailAddressName> &to);
     bool is_to_Set() const;
     bool is_to_Valid() const;
 
-    QList<OAISendMailAdv_replyto_inner> getReplyto() const;
-    void setReplyto(const QList<OAISendMailAdv_replyto_inner> &replyto);
+    QList<OAIEmailAddressName> getReplyto() const;
+    void setReplyto(const QList<OAIEmailAddressName> &replyto);
     bool is_replyto_Set() const;
     bool is_replyto_Valid() const;
 
-    QList<OAISendMailAdv_cc_inner> getCc() const;
-    void setCc(const QList<OAISendMailAdv_cc_inner> &cc);
+    QList<OAIEmailAddressName> getCc() const;
+    void setCc(const QList<OAIEmailAddressName> &cc);
     bool is_cc_Set() const;
     bool is_cc_Valid() const;
 
-    QList<OAISendMailAdv_bcc_inner> getBcc() const;
-    void setBcc(const QList<OAISendMailAdv_bcc_inner> &bcc);
+    QList<OAIEmailAddressName> getBcc() const;
+    void setBcc(const QList<OAIEmailAddressName> &bcc);
     bool is_bcc_Set() const;
     bool is_bcc_Valid() const;
 
-    QList<OAISendMailAdv_attachments_inner> getAttachments() const;
-    void setAttachments(const QList<OAISendMailAdv_attachments_inner> &attachments);
+    QList<OAIMailAttachment> getAttachments() const;
+    void setAttachments(const QList<OAIMailAttachment> &attachments);
     bool is_attachments_Set() const;
     bool is_attachments_Valid() const;
 
@@ -103,39 +95,39 @@ public:
 private:
     void initializeModel();
 
-    QString subject;
+    QString m_subject;
     bool m_subject_isSet;
     bool m_subject_isValid;
 
-    QString body;
+    QString m_body;
     bool m_body_isSet;
     bool m_body_isValid;
 
-    OAISendMailAdv_from from;
+    OAIEmailAddressName m_from;
     bool m_from_isSet;
     bool m_from_isValid;
 
-    QList<OAISendMailAdv_to_inner> to;
+    QList<OAIEmailAddressName> m_to;
     bool m_to_isSet;
     bool m_to_isValid;
 
-    QList<OAISendMailAdv_replyto_inner> replyto;
+    QList<OAIEmailAddressName> m_replyto;
     bool m_replyto_isSet;
     bool m_replyto_isValid;
 
-    QList<OAISendMailAdv_cc_inner> cc;
+    QList<OAIEmailAddressName> m_cc;
     bool m_cc_isSet;
     bool m_cc_isValid;
 
-    QList<OAISendMailAdv_bcc_inner> bcc;
+    QList<OAIEmailAddressName> m_bcc;
     bool m_bcc_isSet;
     bool m_bcc_isValid;
 
-    QList<OAISendMailAdv_attachments_inner> attachments;
+    QList<OAIMailAttachment> m_attachments;
     bool m_attachments_isSet;
     bool m_attachments_isValid;
 
-    qint64 id;
+    qint64 m_id;
     bool m_id_isSet;
     bool m_id_isValid;
 };

@@ -29,7 +29,11 @@ import io.ktor.metrics.dropwizard.DropwizardMetrics
 import io.swagger.server.infrastructure.ApiKeyCredential
 import io.swagger.server.infrastructure.ApiPrincipal
 import io.swagger.server.infrastructure.apiKeyAuth
-import io.swagger.server.apis.DefaultApi
+import io.swagger.server.apis.BlockingApi
+import io.swagger.server.apis.HistoryApi
+import io.swagger.server.apis.SendingApi
+import io.swagger.server.apis.ServicesApi
+import io.swagger.server.apis.StatusApi
 
 @KtorExperimentalAPI
 internal val settings = HoconApplicationConfig(ConfigFactory.defaultApplication(HTTP::class.java.classLoader))
@@ -69,7 +73,11 @@ fun Application.main() {
         }
     }
     install(Routing) {
-        DefaultApi()
+        BlockingApi()
+        HistoryApi()
+        SendingApi()
+        ServicesApi()
+        StatusApi()
     }
 
 

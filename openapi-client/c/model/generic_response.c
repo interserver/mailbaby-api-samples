@@ -69,7 +69,7 @@ generic_response_t *generic_response_parseFromJSON(cJSON *generic_responseJSON){
     // generic_response->status
     cJSON *status = cJSON_GetObjectItemCaseSensitive(generic_responseJSON, "status");
     if (status) { 
-    if(!cJSON_IsString(status))
+    if(!cJSON_IsString(status) && !cJSON_IsNull(status))
     {
     goto end; //String
     }
@@ -78,7 +78,7 @@ generic_response_t *generic_response_parseFromJSON(cJSON *generic_responseJSON){
     // generic_response->text
     cJSON *text = cJSON_GetObjectItemCaseSensitive(generic_responseJSON, "text");
     if (text) { 
-    if(!cJSON_IsString(text))
+    if(!cJSON_IsString(text) && !cJSON_IsNull(text))
     {
     goto end; //String
     }
@@ -86,8 +86,8 @@ generic_response_t *generic_response_parseFromJSON(cJSON *generic_responseJSON){
 
 
     generic_response_local_var = generic_response_create (
-        status ? strdup(status->valuestring) : NULL,
-        text ? strdup(text->valuestring) : NULL
+        status && !cJSON_IsNull(status) ? strdup(status->valuestring) : NULL,
+        text && !cJSON_IsNull(text) ? strdup(text->valuestring) : NULL
         );
 
     return generic_response_local_var;

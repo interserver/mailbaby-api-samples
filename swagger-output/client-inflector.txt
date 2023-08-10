@@ -1,30 +1,28 @@
-SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
-SLF4J: Defaulting to no-operation (NOP) logger implementation
-SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-Exception in thread "Thread-0" java.lang.RuntimeException: Could not generate supporting file 'SupportingFile:
-	templateFile: web.mustache
-	folder: src/main/webapp/WEB-INF
-	destinationFilename: web.xml
-'
-	at io.swagger.codegen.v3.DefaultGenerator.generateSupportingFiles(DefaultGenerator.java:672)
-	at io.swagger.codegen.v3.DefaultGenerator.generate(DefaultGenerator.java:795)
-	at io.swagger.codegen.v3.cli.cmd.Generate.run(Generate.java:388)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-Caused by: com.github.jknack.handlebars.HandlebarsException: /handlebars/JavaInflector/web.mustache:7:60: found: '{{^', expected: '<EOF>'
-            <param-name>{{#jakarta}}jakarta{{/jakarta}}javax{{^jakarta}}.ws.rs.Application</param-name>
-                                                            ^
-	at com.github.jknack.handlebars.internal.HbsErrorReporter.syntaxError(HbsErrorReporter.java:93)
-	at com.github.jknack.handlebars.internal.antlr.ProxyErrorListener.syntaxError(ProxyErrorListener.java:41)
-	at com.github.jknack.handlebars.internal.antlr.Parser.notifyErrorListeners(Parser.java:544)
-	at com.github.jknack.handlebars.internal.HbsErrorStrategy.reportInputMismatch(HbsErrorStrategy.java:186)
-	at com.github.jknack.handlebars.internal.antlr.DefaultErrorStrategy.reportError(DefaultErrorStrategy.java:139)
-	at com.github.jknack.handlebars.internal.HbsParser.template(HbsParser.java:181)
-	at com.github.jknack.handlebars.internal.HbsParserFactory$1.parse(HbsParserFactory.java:88)
-	at com.github.jknack.handlebars.cache.NullTemplateCache.get(NullTemplateCache.java:54)
-	at com.github.jknack.handlebars.Handlebars.compile(Handlebars.java:575)
-	at com.github.jknack.handlebars.Handlebars.compile(Handlebars.java:500)
-	at com.github.jknack.handlebars.Handlebars.compile(Handlebars.java:481)
-	at io.swagger.codegen.v3.templates.HandlebarTemplateEngine.getHandlebars(HandlebarTemplateEngine.java:41)
-	at io.swagger.codegen.v3.templates.HandlebarTemplateEngine.getRendered(HandlebarTemplateEngine.java:21)
-	at io.swagger.codegen.v3.DefaultGenerator.generateSupportingFiles(DefaultGenerator.java:643)
-	... 3 more
+12:37:57.559 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
+12:37:57.664 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - Interface (reserved word) cannot be used as model name. Renamed to ModelInterface
+12:37:57.839 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/DenyRuleNew.java
+12:37:57.874 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/DenyRuleRecord.java
+12:37:57.894 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/EmailAddress.java
+12:37:57.917 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/EmailAddressName.java
+12:37:57.940 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/GenericResponse.java
+12:37:57.961 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/InlineResponse200.java
+12:37:57.978 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/InlineResponse401.java
+12:37:57.995 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/MailAttachment.java
+12:37:58.013 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/MailBlockClickHouse.java
+12:37:58.028 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/MailBlockRspamd.java
+12:37:58.044 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/MailBlocks.java
+12:37:58.076 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/MailLog.java
+12:37:58.092 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/MailLogEntry.java
+12:37:58.105 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/MailOrder.java
+12:37:58.117 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/SendMail.java
+12:37:58.128 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/model/SendMailAdv.java
+12:37:58.426 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/main/java/io/swagger/controllers/MailController.java
+12:37:58.432 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/main/java/io/swagger/controllers/PingController.java
+12:37:58.530 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/pom.xml
+12:37:58.531 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/README.md
+12:37:58.532 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/main/webapp/WEB-INF/web.xml
+12:37:58.535 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/inflector.yaml
+12:37:58.536 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/main/resources/openapi3.yaml
+12:37:58.539 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/src/gen/java/io/swagger/controllers/StringUtil.java
+12:37:58.543 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/.swagger-codegen-ignore
+12:37:58.544 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/inflector/.swagger-codegen/VERSION

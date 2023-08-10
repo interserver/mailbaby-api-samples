@@ -1,6 +1,6 @@
 /*
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * OpenAPI spec version: 1.1.0
  * Contact: support@interserver.net
@@ -26,7 +26,7 @@ import javax.validation.Valid;
  * Mail log records
  */
 @Schema(description = "Mail log records")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2023-05-09T00:51:39.509118-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2023-08-10T12:38:09.207366-04:00[America/New_York]")
 public class MailLog   {
   @JsonProperty("total")
   private Integer total = null;
@@ -115,7 +115,7 @@ public class MailLog   {
    * @return emails
    **/
   @JsonProperty("emails")
-  @Schema(required = true, description = "")
+  @Schema(example = "[{     \"_id\": 103172,     \"id\": \"17c7eda538e0005d03\",     \"from\": \"person@mysite.com\",     \"to\": \"client@isp.com\",     \"subject\": \"sell 0.005 shares\",     \"messageId\": \"<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>\",     \"created\": \"2021-10-14 08:50:10\",     \"time\": 1634215809,     \"user\": \"mb5658\",     \"transtype\": \"ESMTPSA\",     \"origin\": \"199.231.189.154\",     \"interface\": \"feeder\",     \"sendingZone\": \"interserver\",     \"bodySize\": 63,     \"seq\": 1,     \"recipient\": \"client@isp.com\",     \"domain\": \"interserver.net\",     \"locked\": 1,     \"lockTime\": \"1634215818533\",     \"assigned\": \"relay1\",     \"queued\": \"2021-10-14T12:50:15.487Z\",     \"mxHostname\": \"mx.j.is.cc\",     \"response\": \"250 2.0.0 Ok queued as C91D83E128C\" }]", required = true, description = "")
   @NotNull
   @Valid
   public List<MailLogEntry> getEmails() {

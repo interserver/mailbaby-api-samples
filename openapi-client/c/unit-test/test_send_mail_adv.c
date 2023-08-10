@@ -16,7 +16,7 @@
 #include "../model/send_mail_adv.h"
 send_mail_adv_t* instantiate_send_mail_adv(int include_optional);
 
-#include "test_send_mail_adv_from.c"
+#include "test_email_address_name.c"
 
 
 send_mail_adv_t* instantiate_send_mail_adv(int include_optional) {
@@ -25,25 +25,34 @@ send_mail_adv_t* instantiate_send_mail_adv(int include_optional) {
     send_mail_adv = send_mail_adv_create(
       "Your Package has been Delivered!",
       "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.",
-       // false, not to have infinite recursion
-      instantiate_send_mail_adv_from(0),
-      list_createList(),
-      list_createList(),
-      list_createList(),
-      list_createList(),
-      list_createList(),
+      {"email":"user@domain.com","name":"John Smith"},
+      [{"email": "user@domain.com", "name": "John Smith"}],
+      [{"email": "user@domain.com", "name": "John Smith"}],
+      [{"email": "user@domain.com", "name": "John Smith"}],
+      [{"email": "user@domain.com", "name": "John Smith"}],
+      [
+        {
+            "filename": "text.txt",
+            "data": "base64_encoded_contents"
+        }
+],
       5000
     );
   } else {
     send_mail_adv = send_mail_adv_create(
       "Your Package has been Delivered!",
       "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.",
-      NULL,
-      list_createList(),
-      list_createList(),
-      list_createList(),
-      list_createList(),
-      list_createList(),
+      {"email":"user@domain.com","name":"John Smith"},
+      [{"email": "user@domain.com", "name": "John Smith"}],
+      [{"email": "user@domain.com", "name": "John Smith"}],
+      [{"email": "user@domain.com", "name": "John Smith"}],
+      [{"email": "user@domain.com", "name": "John Smith"}],
+      [
+        {
+            "filename": "text.txt",
+            "data": "base64_encoded_contents"
+        }
+],
       5000
     );
   }

@@ -1,4 +1,4 @@
-## mail_baby_email_delivery_api@1.0.0
+## mail_baby_email_delivery_and_management_service_api@1.0.0
 
 This generator creates Flow typed JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -15,7 +15,7 @@ Module system
 
 ### Building
 
-To build an compile the flow typed sources to javascript use:
+To build and compile the flow typed sources to javascript use:
 ```
 npm install
 # The dependency `babel-preset-react-app` requires that you specify `NODE_ENV` or `BABEL_ENV` environment variables
@@ -33,7 +33,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install mail_baby_email_delivery_api@1.0.0 --save
+npm install mail_baby_email_delivery_and_management_service_api@1.0.0 --save
 ```
 
 _unPublished (not recommended):_

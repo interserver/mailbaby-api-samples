@@ -2,6 +2,7 @@ package io.swagger.model;
 
 import java.util.Objects;
 import java.util.ArrayList;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.model.MailLogEntry;
@@ -11,7 +12,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="Mail log records")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2023-05-09T00:51:44.319867-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2023-08-10T12:38:15.139831-04:00[America/New_York]")
 public class MailLog   {
   private Integer total = null;  private Integer skip = null;  private Integer limit = null;  private List<MailLogEntry> emails = new ArrayList<MailLogEntry>();
 
@@ -60,7 +61,7 @@ public class MailLog   {
   /**
    **/
   
-  @Schema(required = true, description = "")
+  @Schema(example = "[{     \"_id\": 103172,     \"id\": \"17c7eda538e0005d03\",     \"from\": \"person@mysite.com\",     \"to\": \"client@isp.com\",     \"subject\": \"sell 0.005 shares\",     \"messageId\": \"<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>\",     \"created\": \"2021-10-14 08:50:10\",     \"time\": 1634215809,     \"user\": \"mb5658\",     \"transtype\": \"ESMTPSA\",     \"origin\": \"199.231.189.154\",     \"interface\": \"feeder\",     \"sendingZone\": \"interserver\",     \"bodySize\": 63,     \"seq\": 1,     \"recipient\": \"client@isp.com\",     \"domain\": \"interserver.net\",     \"locked\": 1,     \"lockTime\": \"1634215818533\",     \"assigned\": \"relay1\",     \"queued\": \"2021-10-14T12:50:15.487Z\",     \"mxHostname\": \"mx.j.is.cc\",     \"response\": \"250 2.0.0 Ok queued as C91D83E128C\" }]", required = true, description = "")
   @JsonProperty("emails")
   @NotNull
   public List<MailLogEntry> getEmails() {

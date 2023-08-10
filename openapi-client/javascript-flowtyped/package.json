@@ -1,14 +1,14 @@
 {
-  "name": "mail_baby_email_delivery_api",
+  "name": "mail_baby_email_delivery_and_management_service_api",
   "version": "1.0.0",
-  "description": "OpenAPI Client for mail_baby_email_delivery_api",
+  "description": "OpenAPI Client for mail_baby_email_delivery_and_management_service_api",
   "author": "OpenAPI-Generator Contributors",
   "keywords": [
     "fetch",
     "flow",
     "openapi",
     "openapi-generator",
-    "mail_baby_email_delivery_api"
+    "mail_baby_email_delivery_and_management_service_api"
   ],
   "license": "Unlicense",
   "main": "./lib/index.js",

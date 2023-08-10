@@ -10,13 +10,13 @@ public class MainApiVerticle extends AbstractVerticle {
 
     @Override
     public void start(Promise<Void> startPromise) throws Exception {
-    vertx.deployVerticle("io.swagger.server.api.verticle.MailBabyEmailDelivery_Verticle")
+    vertx.deployVerticle("io.swagger.server.api.verticle.MailBabyEmailDeliveryAndManagementService_Verticle")
       .onFailure(error -> {
-        LOGGER.error("MailBabyEmailDelivery_Verticle : Deployment failed");
+        LOGGER.error("MailBabyEmailDeliveryAndManagementService_Verticle : Deployment failed");
         startPromise.fail(error);
       })
       .onSuccess(server -> {
-        LOGGER.info("MailBabyEmailDelivery_Verticle : Deployed");
+        LOGGER.info("MailBabyEmailDeliveryAndManagementService_Verticle : Deployed");
         startPromise.complete();
       });
     }

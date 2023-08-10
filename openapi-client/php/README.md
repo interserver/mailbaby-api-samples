@@ -1,17 +1,10 @@
 # MailBaby
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
-
-
-# 📌 Overview
-
+# Overview
 This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).
-
-
-# 🔐 Authentication
-
+# Authentication
 In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.
-
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 
 
@@ -69,18 +62,21 @@ $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiK
 // $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new Interserver\Mailbaby\Api\DefaultApi(
+$apiInstance = new Interserver\Mailbaby\Api\BlockingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
+$type = 'type_example'; // string | The type of deny rule.
+$data = 'data_example'; // string | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+$user = 'user_example'; // string | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
 
 try {
-    $result = $apiInstance->getMailOrders();
+    $result = $apiInstance->addRule($type, $data, $user);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->getMailOrders: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BlockingApi->addRule: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -91,30 +87,40 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**getMailOrders**](docs/Api/DefaultApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
-*DefaultApi* | [**pingServer**](docs/Api/DefaultApi.md#pingserver) | **GET** /ping | Checks if the server is running
-*DefaultApi* | [**sendAdvMail**](docs/Api/DefaultApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*DefaultApi* | [**sendMail**](docs/Api/DefaultApi.md#sendmail) | **POST** /mail/send | Sends an Email
-*DefaultApi* | [**viewMailLog**](docs/Api/DefaultApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
+*BlockingApi* | [**addRule**](docs/Api/BlockingApi.md#addrule) | **POST** /mail/rules | Creates a new email deny rule.
+*BlockingApi* | [**deleteRule**](docs/Api/BlockingApi.md#deleterule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule.
+*BlockingApi* | [**delistBlock**](docs/Api/BlockingApi.md#delistblock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
+*BlockingApi* | [**getMailBlocks**](docs/Api/BlockingApi.md#getmailblocks) | **GET** /mail/blocks | displays a list of blocked email addresses
+*BlockingApi* | [**getRules**](docs/Api/BlockingApi.md#getrules) | **GET** /mail/rules | Displays a listing of deny email rules.
+*HistoryApi* | [**getStats**](docs/Api/HistoryApi.md#getstats) | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | [**viewMailLog**](docs/Api/HistoryApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
+*SendingApi* | [**sendAdvMail**](docs/Api/SendingApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
+*SendingApi* | [**sendMail**](docs/Api/SendingApi.md#sendmail) | **POST** /mail/send | Sends an Email
+*ServicesApi* | [**getMailOrders**](docs/Api/ServicesApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
+*StatusApi* | [**pingServer**](docs/Api/StatusApi.md#pingserver) | **GET** /ping | Checks if the server is running
 
 ## Models
 
+- [DenyRuleNew](docs/Model/DenyRuleNew.md)
+- [DenyRuleRecord](docs/Model/DenyRuleRecord.md)
+- [EmailAddress](docs/Model/EmailAddress.md)
+- [EmailAddressName](docs/Model/EmailAddressName.md)
 - [GenericResponse](docs/Model/GenericResponse.md)
-- [GetMailOrders200ResponseInner](docs/Model/GetMailOrders200ResponseInner.md)
 - [GetMailOrders401Response](docs/Model/GetMailOrders401Response.md)
+- [GetStats200ResponseInner](docs/Model/GetStats200ResponseInner.md)
+- [MailAttachment](docs/Model/MailAttachment.md)
+- [MailBlockClickHouse](docs/Model/MailBlockClickHouse.md)
+- [MailBlockRspamd](docs/Model/MailBlockRspamd.md)
+- [MailBlocks](docs/Model/MailBlocks.md)
 - [MailLog](docs/Model/MailLog.md)
 - [MailLogEntry](docs/Model/MailLogEntry.md)
+- [MailOrder](docs/Model/MailOrder.md)
 - [SendMail](docs/Model/SendMail.md)
 - [SendMailAdv](docs/Model/SendMailAdv.md)
-- [SendMailAdvAttachmentsInner](docs/Model/SendMailAdvAttachmentsInner.md)
-- [SendMailAdvBccInner](docs/Model/SendMailAdvBccInner.md)
-- [SendMailAdvCcInner](docs/Model/SendMailAdvCcInner.md)
-- [SendMailAdvFrom](docs/Model/SendMailAdvFrom.md)
-- [SendMailAdvReplytoInner](docs/Model/SendMailAdvReplytoInner.md)
-- [SendMailAdvToInner](docs/Model/SendMailAdvToInner.md)
 
 ## Authorization
 
+Authentication schemes defined for the API:
 ### apiKeyAuth
 
 - **Type**: API key

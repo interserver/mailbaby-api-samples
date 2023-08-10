@@ -1,6 +1,6 @@
-# #MailBaby Email Delivery API
+# #MailBaby Email Delivery and Management Service API
 #
-##**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+##**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 #
 #The version of the OpenAPI document: 1.1.0
 #Contact: support@interserver.net
@@ -8,10 +8,11 @@
 #OpenAPI Generator version: 7.0.0-SNAPSHOT
 #
 
+require "big"
 require "json"
 require "time"
 
-module 
+module OpenAPIClient
   # Details for an Email
   class SendMailAdv
     include JSON::Serializable
@@ -25,29 +26,29 @@ module
     @[JSON::Field(key: "body", type: String, nillable: false, emit_null: false)]
     property body : String
 
-    @[JSON::Field(key: "from", type: SendMailAdvFrom, nillable: false, emit_null: false)]
-    property from : SendMailAdvFrom
+    @[JSON::Field(key: "from", type: EmailAddressName, nillable: false, emit_null: false)]
+    property from : EmailAddressName
 
     # A list of destionation email addresses to send this to
-    @[JSON::Field(key: "to", type: Array(SendMailAdvToInner), nillable: false, emit_null: false)]
-    property to : Array(SendMailAdvToInner)
+    @[JSON::Field(key: "to", type: Array(EmailAddressName), nillable: false, emit_null: false)]
+    property to : Array(EmailAddressName)
 
     # Optional properties
     # (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-    @[JSON::Field(key: "replyto", type: Array(SendMailAdvReplytoInner)?, nillable: true, emit_null: false)]
-    property replyto : Array(SendMailAdvReplytoInner)?
+    @[JSON::Field(key: "replyto", type: Array(EmailAddressName)?, nillable: true, emit_null: false)]
+    property replyto : Array(EmailAddressName)?
 
     # (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-    @[JSON::Field(key: "cc", type: Array(SendMailAdvCcInner)?, nillable: true, emit_null: false)]
-    property cc : Array(SendMailAdvCcInner)?
+    @[JSON::Field(key: "cc", type: Array(EmailAddressName)?, nillable: true, emit_null: false)]
+    property cc : Array(EmailAddressName)?
 
     # (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-    @[JSON::Field(key: "bcc", type: Array(SendMailAdvBccInner)?, nillable: true, emit_null: false)]
-    property bcc : Array(SendMailAdvBccInner)?
+    @[JSON::Field(key: "bcc", type: Array(EmailAddressName)?, nillable: true, emit_null: false)]
+    property bcc : Array(EmailAddressName)?
 
     # (optional) File attachments to include in the email.  The file contents must be base64 encoded!
-    @[JSON::Field(key: "attachments", type: Array(SendMailAdvAttachmentsInner)?, nillable: true, emit_null: false)]
-    property attachments : Array(SendMailAdvAttachmentsInner)?
+    @[JSON::Field(key: "attachments", type: Array(MailAttachment)?, nillable: true, emit_null: false)]
+    property attachments : Array(MailAttachment)?
 
     # (optional)  ID of the Mail order within our system to use as the Mail Account.
     @[JSON::Field(key: "id", type: Int64?, nillable: true, emit_null: false)]
@@ -55,7 +56,7 @@ module
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@subject : String, @body : String, @from : SendMailAdvFrom, @to : Array(SendMailAdvToInner), @replyto : Array(SendMailAdvReplytoInner)?, @cc : Array(SendMailAdvCcInner)?, @bcc : Array(SendMailAdvBccInner)?, @attachments : Array(SendMailAdvAttachmentsInner)?, @id : Int64?)
+    def initialize(@subject : String, @body : String, @from : EmailAddressName, @to : Array(EmailAddressName), @replyto : Array(EmailAddressName)?, @cc : Array(EmailAddressName)?, @bcc : Array(EmailAddressName)?, @attachments : Array(MailAttachment)?, @id : Int64?)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -166,7 +167,7 @@ module
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = .const_get(type)
+        klass = OpenAPIClient.const_get(type)
         klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

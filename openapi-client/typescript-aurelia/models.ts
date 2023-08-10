@@ -1,6 +1,6 @@
 /**
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -11,13 +11,101 @@
  */
 
 
+/**
+ * The data for a email deny rule record.
+ */
+export interface DenyRuleNew {
+  /**
+   * The type of deny rule.
+   */
+  type: DenyRuleNewTypeEnum;
+  /**
+   * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+   */
+  data: string;
+  /**
+   * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+   */
+  user?: string;
+}
+
+/**
+ * Enum for the type property.
+ */
+export type DenyRuleNewTypeEnum = 'domain' | 'email' | 'startswith';
+
+
+/**
+ * The data for a email deny rule record.
+ */
+export interface DenyRuleRecord {
+  /**
+   * The type of deny rule.
+   */
+  type: DenyRuleRecordTypeEnum;
+  /**
+   * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+   */
+  data: string;
+  /**
+   * The deny rule Id number.
+   */
+  id: number;
+  /**
+   * the date the rule was created.
+   */
+  created: string;
+  /**
+   * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+   */
+  user?: string;
+}
+
+/**
+ * Enum for the type property.
+ */
+export type DenyRuleRecordTypeEnum = 'domain' | 'email' | 'startswith';
+
+
+/**
+ * an email address
+ */
+export interface EmailAddress {
+  /**
+   * an email address
+   */
+  email?: string;
+}
+
+
+/**
+ * An email contact.
+ */
+export interface EmailAddressName {
+  /**
+   * The email address.
+   */
+  email: string;
+  /**
+   * Name to use for the sending contact.
+   */
+  name?: string;
+}
+
+
 export interface GenericResponse {
   status?: string;
   text?: string;
 }
 
 
-export interface GetMailOrders200ResponseInner {
+export interface GetMailOrders401Response {
+  code: string;
+  message: string;
+}
+
+
+export interface GetStats200ResponseInner {
   id: number;
   status: string;
   username: string;
@@ -26,9 +114,49 @@ export interface GetMailOrders200ResponseInner {
 }
 
 
-export interface GetMailOrders401Response {
-  code: string;
-  message: string;
+/**
+ * (optional) File attachments to include in the email.  The file contents must be base64
+ */
+export interface MailAttachment {
+  /**
+   * The filename of the attached file.
+   */
+  filename: string;
+  /**
+   * The file contents base64 encoded
+   */
+  data: string;
+}
+
+
+/**
+ * A block entry from the clickhouse mailblocks server.
+ */
+export interface MailBlockClickHouse {
+  date: string;
+  from: string;
+  messageId: string;
+  subject: string;
+  to: string;
+}
+
+
+/**
+ * This is a block entry from the rspamd block list.
+ */
+export interface MailBlockRspamd {
+  from: string;
+  subject: string;
+}
+
+
+/**
+ * The listing of blocked emails.
+ */
+export interface MailBlocks {
+  local: Array<MailBlockClickHouse>;
+  mbtrap: Array<MailBlockClickHouse>;
+  subject: Array<MailBlockRspamd>;
 }
 
 
@@ -152,6 +280,29 @@ export interface MailLogEntry {
 
 
 /**
+ * A mail order record
+ */
+export interface MailOrder {
+  /**
+   * The ID of the order.
+   */
+  id: number;
+  /**
+   * The order status.
+   */
+  status: string;
+  /**
+   * The username to use for this order.
+   */
+  username: string;
+  /**
+   * Optional order comment.
+   */
+  comment?: string;
+}
+
+
+/**
  * Details for an Email
  */
 export interface SendMail {
@@ -186,120 +337,30 @@ export interface SendMailAdv {
    * The main email contents.
    */
   body: string;
-  from: SendMailAdvFrom;
+  from: EmailAddressName;
   /**
    * A list of destionation email addresses to send this to
    */
-  to: Array<SendMailAdvToInner>;
+  to: Array<EmailAddressName>;
   /**
    * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
    */
-  replyto?: Array<SendMailAdvReplytoInner>;
+  replyto?: Array<EmailAddressName>;
   /**
    * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
    */
-  cc?: Array<SendMailAdvCcInner>;
+  cc?: Array<EmailAddressName>;
   /**
    * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
    */
-  bcc?: Array<SendMailAdvBccInner>;
+  bcc?: Array<EmailAddressName>;
   /**
    * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
    */
-  attachments?: Array<SendMailAdvAttachmentsInner>;
+  attachments?: Array<MailAttachment>;
   /**
    * (optional)  ID of the Mail order within our system to use as the Mail Account.
    */
   id?: number;
-}
-
-
-/**
- * A File attachment for an email
- */
-export interface SendMailAdvAttachmentsInner {
-  /**
-   * Contents of the attached file (must be base64 encoded)
-   */
-  data: any;
-  /**
-   * (optional) Filename to specify for the attachment.
-   */
-  filename?: string;
-}
-
-
-/**
- * An Email Contact
- */
-export interface SendMailAdvBccInner {
-  /**
-   * The email address
-   */
-  email: string;
-  /**
-   * (optional) Name to use for the BCC contact.
-   */
-  name?: string;
-}
-
-
-/**
- * An Email Contact
- */
-export interface SendMailAdvCcInner {
-  /**
-   * The email address
-   */
-  email: string;
-  /**
-   * (optional) Name to use for the CC contact.
-   */
-  name?: string;
-}
-
-
-/**
- * The information to use for the From address in the email. from.
- */
-export interface SendMailAdvFrom {
-  /**
-   * The email address
-   */
-  email: string;
-  /**
-   * (optional) Name to use for the sending contact.
-   */
-  name?: string;
-}
-
-
-/**
- * An Email Contact
- */
-export interface SendMailAdvReplytoInner {
-  /**
-   * The email address
-   */
-  email: string;
-  /**
-   * (optional) Name to use for the sending contact.
-   */
-  name?: string;
-}
-
-
-/**
- * An Email Contact
- */
-export interface SendMailAdvToInner {
-  /**
-   * The email address
-   */
-  email: string;
-  /**
-   * (optional) Name to use for the destination contact.
-   */
-  name?: string;
 }
 

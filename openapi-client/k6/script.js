@@ -1,6 +1,6 @@
 /*
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * OpenAPI spec version: 1.1.0
  * Contact: support@interserver.net
@@ -15,21 +15,47 @@
 import http from "k6/http";
 import { group, check, sleep } from "k6";
 
-const BASE_URL = "https://virtserver.swaggerhub.com/InterServer/Mail-Baby/1.1.0";
+const BASE_URL = "https://api.mailbaby.net";
 // Sleep duration between successive requests.
 // You might want to edit the value of this variable or remove calls to the sleep function on the script.
 const SLEEP_DURATION = 0.1;
 // Global variables should be initialized.
 
 export default function() {
+    group("/mail/rules", () => {
+
+        // Request No. 1: getRules
+        {
+            let url = BASE_URL + `/mail/rules`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+
+            sleep(SLEEP_DURATION);
+        }
+
+        // Request No. 2: addRule
+        {
+            let url = BASE_URL + `/mail/rules`;
+            let body = {"user": "mb20682", "type": "email", "data": "domeinwo@server.guesshost.net"};
+            let params = {headers: {"Content-Type": "application/x-www-form-urlencoded", "Accept": "application/json"}};
+            let request = http.post(url, JSON.stringify(body), params);
+
+            check(request, {
+                "search results matching criteria": (r) => r.status === 200
+            });
+        }
+    });
+
     group("/mail/advsend", () => {
 
-        // Request No. 1
+        // Request No. 1: sendAdvMail
         {
             let url = BASE_URL + `/mail/advsend`;
-            // TODO: edit the parameters of the request body.
-            let body = {"subject": "string", "body": "string", "from": {"email": "string", "name": "string"}, "to": "list", "replyto": "list", "cc": "list", "bcc": "list", "attachments": "list", "id": "long"};
-            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
+            let body = {"subject": "Welcome", "body": "Hello", "from": {"email":"user@domain.com"}, "to": [{"email":"someone@client.com","name":"Mr Client"}], "attachments": [{"filename":"message.txt","data":"base64_encoded_contents"}], "id": 66};
+            let params = {headers: {"Content-Type": "application/x-www-form-urlencoded", "Accept": "application/json"}};
             let request = http.post(url, JSON.stringify(body), params);
 
             check(request, {
@@ -40,7 +66,7 @@ export default function() {
 
     group("/mail/send", () => {
 
-        // Request No. 1
+        // Request No. 1: sendMail
         {
             let url = BASE_URL + `/mail/send`;
             // TODO: edit the parameters of the request body.
@@ -50,6 +76,19 @@ export default function() {
 
             check(request, {
                 "search results matching criteria": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/mail/blocks", () => {
+
+        // Request No. 1: getMailBlocks
+        {
+            let url = BASE_URL + `/mail/blocks`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
             });
         }
     });
@@ -67,7 +106,7 @@ export default function() {
         let to = 'you@receiver.com'; // extracted from 'example' field defined at the parameter level of OpenAPI spec
         let startDate = '1641781008'; // extracted from 'example' field defined at the parameter level of OpenAPI spec
 
-        // Request No. 1
+        // Request No. 1: viewMailLog
         {
             let url = BASE_URL + `/mail/log?id=${id}&origin=${origin}&mx=${mx}&from=${from}&to=${to}&subject=${subject}&mailid=${mailid}&skip=${skip}&limit=${limit}&startDate=${startDate}&endDate=${endDate}`;
             let request = http.get(url);
@@ -78,9 +117,23 @@ export default function() {
         }
     });
 
+    group("/mail/rules/{ruleId}", () => {
+        let ruleId = ['34'].shift(); // first element from list extracted from 'examples' field defined at the parameter level of OpenAPI spec
+
+        // Request No. 1: deleteRule
+        {
+            let url = BASE_URL + `/mail/rules/${ruleId}`;
+            let request = http.del(url);
+
+            check(request, {
+                "search results matching criteria": (r) => r.status === 200
+            });
+        }
+    });
+
     group("/ping", () => {
 
-        // Request No. 1
+        // Request No. 1: pingServer
         {
             let url = BASE_URL + `/ping`;
             let request = http.get(url);
@@ -94,9 +147,37 @@ export default function() {
         }
     });
 
+    group("/mail/stats", () => {
+
+        // Request No. 1: getStats
+        {
+            let url = BASE_URL + `/mail/stats`;
+            let request = http.get(url);
+
+            check(request, {
+                "OK": (r) => r.status === 200
+            });
+        }
+    });
+
+    group("/mail/blocks/delete", () => {
+
+        // Request No. 1: delistBlock
+        {
+            let url = BASE_URL + `/mail/blocks/delete`;
+            let body = {"email": "client@domain.com"};
+            let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
+            let request = http.post(url, JSON.stringify(body), params);
+
+            check(request, {
+                "search results matching criteria": (r) => r.status === 200
+            });
+        }
+    });
+
     group("/mail", () => {
 
-        // Request No. 1
+        // Request No. 1: getMailOrders
         {
             let url = BASE_URL + `/mail`;
             let request = http.get(url);

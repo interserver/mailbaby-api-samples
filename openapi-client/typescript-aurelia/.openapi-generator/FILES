@@ -2,8 +2,12 @@
 .openapi-generator-ignore
 Api.ts
 AuthStorage.ts
-DefaultApi.ts
+BlockingApi.ts
+HistoryApi.ts
 README.md
+SendingApi.ts
+ServicesApi.ts
+StatusApi.ts
 git_push.sh
 index.ts
 models.ts

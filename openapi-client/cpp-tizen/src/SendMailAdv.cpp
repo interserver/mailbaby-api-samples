@@ -25,7 +25,7 @@ SendMailAdv::__init()
 {
 	//subject = std::string();
 	//body = std::string();
-	//from = new SendMailAdv_from();
+	//from = new EmailAddressName();
 	//new std::list()std::list> to;
 	//new std::list()std::list> replyto;
 	//new std::list()std::list> cc;
@@ -117,11 +117,11 @@ SendMailAdv::fromJson(char* jsonStr)
 	if (node !=NULL) {
 	
 
-		if (isprimitive("SendMailAdv_from")) {
-			jsonToValue(&from, node, "SendMailAdv_from", "SendMailAdv_from");
+		if (isprimitive("EmailAddressName")) {
+			jsonToValue(&from, node, "EmailAddressName", "EmailAddressName");
 		} else {
 			
-			SendMailAdv_from* obj = static_cast<SendMailAdv_from*> (&from);
+			EmailAddressName* obj = static_cast<EmailAddressName*> (&from);
 			obj->fromJson(json_to_string(node, false));
 			
 		}
@@ -133,12 +133,12 @@ SendMailAdv::fromJson(char* jsonStr)
 		{
 			JsonArray* arr = json_node_get_array(node);
 			JsonNode*  temp_json;
-			list<SendMailAdv_to_inner> new_list;
-			SendMailAdv_to_inner inst;
+			list<EmailAddressName> new_list;
+			EmailAddressName inst;
 			for (guint i=0;i<json_array_get_length(arr);i++) {
 				temp_json = json_array_get_element(arr,i);
-				if (isprimitive("SendMailAdv_to_inner")) {
-					jsonToValue(&inst, temp_json, "SendMailAdv_to_inner", "");
+				if (isprimitive("EmailAddressName")) {
+					jsonToValue(&inst, temp_json, "EmailAddressName", "");
 				} else {
 					
 					inst.fromJson(json_to_string(temp_json, false));
@@ -157,12 +157,12 @@ SendMailAdv::fromJson(char* jsonStr)
 		{
 			JsonArray* arr = json_node_get_array(node);
 			JsonNode*  temp_json;
-			list<SendMailAdv_replyto_inner> new_list;
-			SendMailAdv_replyto_inner inst;
+			list<EmailAddressName> new_list;
+			EmailAddressName inst;
 			for (guint i=0;i<json_array_get_length(arr);i++) {
 				temp_json = json_array_get_element(arr,i);
-				if (isprimitive("SendMailAdv_replyto_inner")) {
-					jsonToValue(&inst, temp_json, "SendMailAdv_replyto_inner", "");
+				if (isprimitive("EmailAddressName")) {
+					jsonToValue(&inst, temp_json, "EmailAddressName", "");
 				} else {
 					
 					inst.fromJson(json_to_string(temp_json, false));
@@ -181,12 +181,12 @@ SendMailAdv::fromJson(char* jsonStr)
 		{
 			JsonArray* arr = json_node_get_array(node);
 			JsonNode*  temp_json;
-			list<SendMailAdv_cc_inner> new_list;
-			SendMailAdv_cc_inner inst;
+			list<EmailAddressName> new_list;
+			EmailAddressName inst;
 			for (guint i=0;i<json_array_get_length(arr);i++) {
 				temp_json = json_array_get_element(arr,i);
-				if (isprimitive("SendMailAdv_cc_inner")) {
-					jsonToValue(&inst, temp_json, "SendMailAdv_cc_inner", "");
+				if (isprimitive("EmailAddressName")) {
+					jsonToValue(&inst, temp_json, "EmailAddressName", "");
 				} else {
 					
 					inst.fromJson(json_to_string(temp_json, false));
@@ -205,12 +205,12 @@ SendMailAdv::fromJson(char* jsonStr)
 		{
 			JsonArray* arr = json_node_get_array(node);
 			JsonNode*  temp_json;
-			list<SendMailAdv_bcc_inner> new_list;
-			SendMailAdv_bcc_inner inst;
+			list<EmailAddressName> new_list;
+			EmailAddressName inst;
 			for (guint i=0;i<json_array_get_length(arr);i++) {
 				temp_json = json_array_get_element(arr,i);
-				if (isprimitive("SendMailAdv_bcc_inner")) {
-					jsonToValue(&inst, temp_json, "SendMailAdv_bcc_inner", "");
+				if (isprimitive("EmailAddressName")) {
+					jsonToValue(&inst, temp_json, "EmailAddressName", "");
 				} else {
 					
 					inst.fromJson(json_to_string(temp_json, false));
@@ -229,12 +229,12 @@ SendMailAdv::fromJson(char* jsonStr)
 		{
 			JsonArray* arr = json_node_get_array(node);
 			JsonNode*  temp_json;
-			list<SendMailAdv_attachments_inner> new_list;
-			SendMailAdv_attachments_inner inst;
+			list<MailAttachment> new_list;
+			MailAttachment inst;
 			for (guint i=0;i<json_array_get_length(arr);i++) {
 				temp_json = json_array_get_element(arr,i);
-				if (isprimitive("SendMailAdv_attachments_inner")) {
-					jsonToValue(&inst, temp_json, "SendMailAdv_attachments_inner", "");
+				if (isprimitive("MailAttachment")) {
+					jsonToValue(&inst, temp_json, "MailAttachment", "");
 				} else {
 					
 					inst.fromJson(json_to_string(temp_json, false));
@@ -287,13 +287,13 @@ SendMailAdv::toJson()
 	}
 	const gchar *bodyKey = "body";
 	json_object_set_member(pJsonObject, bodyKey, node);
-	if (isprimitive("SendMailAdv_from")) {
-		SendMailAdv_from obj = getFrom();
-		node = converttoJson(&obj, "SendMailAdv_from", "");
+	if (isprimitive("EmailAddressName")) {
+		EmailAddressName obj = getFrom();
+		node = converttoJson(&obj, "EmailAddressName", "");
 	}
 	else {
 		
-		SendMailAdv_from obj = static_cast<SendMailAdv_from> (getFrom());
+		EmailAddressName obj = static_cast<EmailAddressName> (getFrom());
 		GError *mygerror;
 		mygerror = NULL;
 		node = json_from_string(obj.toJson(), &mygerror);
@@ -301,18 +301,18 @@ SendMailAdv::toJson()
 	}
 	const gchar *fromKey = "from";
 	json_object_set_member(pJsonObject, fromKey, node);
-	if (isprimitive("SendMailAdv_to_inner")) {
-		list<SendMailAdv_to_inner> new_list = static_cast<list <SendMailAdv_to_inner> > (getTo());
-		node = converttoJson(&new_list, "SendMailAdv_to_inner", "array");
+	if (isprimitive("EmailAddressName")) {
+		list<EmailAddressName> new_list = static_cast<list <EmailAddressName> > (getTo());
+		node = converttoJson(&new_list, "EmailAddressName", "array");
 	} else {
 		node = json_node_alloc();
-		list<SendMailAdv_to_inner> new_list = static_cast<list <SendMailAdv_to_inner> > (getTo());
+		list<EmailAddressName> new_list = static_cast<list <EmailAddressName> > (getTo());
 		JsonArray* json_array = json_array_new();
 		GError *mygerror;
 		
-		for (list<SendMailAdv_to_inner>::iterator it = new_list.begin(); it != new_list.end(); it++) {
+		for (list<EmailAddressName>::iterator it = new_list.begin(); it != new_list.end(); it++) {
 			mygerror = NULL;
-			SendMailAdv_to_inner obj = *it;
+			EmailAddressName obj = *it;
 			JsonNode *node_temp = json_from_string(obj.toJson(), &mygerror);
 			json_array_add_element(json_array, node_temp);
 			g_clear_error(&mygerror);
@@ -326,18 +326,18 @@ SendMailAdv::toJson()
 	
 	const gchar *toKey = "to";
 	json_object_set_member(pJsonObject, toKey, node);
-	if (isprimitive("SendMailAdv_replyto_inner")) {
-		list<SendMailAdv_replyto_inner> new_list = static_cast<list <SendMailAdv_replyto_inner> > (getReplyto());
-		node = converttoJson(&new_list, "SendMailAdv_replyto_inner", "array");
+	if (isprimitive("EmailAddressName")) {
+		list<EmailAddressName> new_list = static_cast<list <EmailAddressName> > (getReplyto());
+		node = converttoJson(&new_list, "EmailAddressName", "array");
 	} else {
 		node = json_node_alloc();
-		list<SendMailAdv_replyto_inner> new_list = static_cast<list <SendMailAdv_replyto_inner> > (getReplyto());
+		list<EmailAddressName> new_list = static_cast<list <EmailAddressName> > (getReplyto());
 		JsonArray* json_array = json_array_new();
 		GError *mygerror;
 		
-		for (list<SendMailAdv_replyto_inner>::iterator it = new_list.begin(); it != new_list.end(); it++) {
+		for (list<EmailAddressName>::iterator it = new_list.begin(); it != new_list.end(); it++) {
 			mygerror = NULL;
-			SendMailAdv_replyto_inner obj = *it;
+			EmailAddressName obj = *it;
 			JsonNode *node_temp = json_from_string(obj.toJson(), &mygerror);
 			json_array_add_element(json_array, node_temp);
 			g_clear_error(&mygerror);
@@ -351,18 +351,18 @@ SendMailAdv::toJson()
 	
 	const gchar *replytoKey = "replyto";
 	json_object_set_member(pJsonObject, replytoKey, node);
-	if (isprimitive("SendMailAdv_cc_inner")) {
-		list<SendMailAdv_cc_inner> new_list = static_cast<list <SendMailAdv_cc_inner> > (getCc());
-		node = converttoJson(&new_list, "SendMailAdv_cc_inner", "array");
+	if (isprimitive("EmailAddressName")) {
+		list<EmailAddressName> new_list = static_cast<list <EmailAddressName> > (getCc());
+		node = converttoJson(&new_list, "EmailAddressName", "array");
 	} else {
 		node = json_node_alloc();
-		list<SendMailAdv_cc_inner> new_list = static_cast<list <SendMailAdv_cc_inner> > (getCc());
+		list<EmailAddressName> new_list = static_cast<list <EmailAddressName> > (getCc());
 		JsonArray* json_array = json_array_new();
 		GError *mygerror;
 		
-		for (list<SendMailAdv_cc_inner>::iterator it = new_list.begin(); it != new_list.end(); it++) {
+		for (list<EmailAddressName>::iterator it = new_list.begin(); it != new_list.end(); it++) {
 			mygerror = NULL;
-			SendMailAdv_cc_inner obj = *it;
+			EmailAddressName obj = *it;
 			JsonNode *node_temp = json_from_string(obj.toJson(), &mygerror);
 			json_array_add_element(json_array, node_temp);
 			g_clear_error(&mygerror);
@@ -376,18 +376,18 @@ SendMailAdv::toJson()
 	
 	const gchar *ccKey = "cc";
 	json_object_set_member(pJsonObject, ccKey, node);
-	if (isprimitive("SendMailAdv_bcc_inner")) {
-		list<SendMailAdv_bcc_inner> new_list = static_cast<list <SendMailAdv_bcc_inner> > (getBcc());
-		node = converttoJson(&new_list, "SendMailAdv_bcc_inner", "array");
+	if (isprimitive("EmailAddressName")) {
+		list<EmailAddressName> new_list = static_cast<list <EmailAddressName> > (getBcc());
+		node = converttoJson(&new_list, "EmailAddressName", "array");
 	} else {
 		node = json_node_alloc();
-		list<SendMailAdv_bcc_inner> new_list = static_cast<list <SendMailAdv_bcc_inner> > (getBcc());
+		list<EmailAddressName> new_list = static_cast<list <EmailAddressName> > (getBcc());
 		JsonArray* json_array = json_array_new();
 		GError *mygerror;
 		
-		for (list<SendMailAdv_bcc_inner>::iterator it = new_list.begin(); it != new_list.end(); it++) {
+		for (list<EmailAddressName>::iterator it = new_list.begin(); it != new_list.end(); it++) {
 			mygerror = NULL;
-			SendMailAdv_bcc_inner obj = *it;
+			EmailAddressName obj = *it;
 			JsonNode *node_temp = json_from_string(obj.toJson(), &mygerror);
 			json_array_add_element(json_array, node_temp);
 			g_clear_error(&mygerror);
@@ -401,18 +401,18 @@ SendMailAdv::toJson()
 	
 	const gchar *bccKey = "bcc";
 	json_object_set_member(pJsonObject, bccKey, node);
-	if (isprimitive("SendMailAdv_attachments_inner")) {
-		list<SendMailAdv_attachments_inner> new_list = static_cast<list <SendMailAdv_attachments_inner> > (getAttachments());
-		node = converttoJson(&new_list, "SendMailAdv_attachments_inner", "array");
+	if (isprimitive("MailAttachment")) {
+		list<MailAttachment> new_list = static_cast<list <MailAttachment> > (getAttachments());
+		node = converttoJson(&new_list, "MailAttachment", "array");
 	} else {
 		node = json_node_alloc();
-		list<SendMailAdv_attachments_inner> new_list = static_cast<list <SendMailAdv_attachments_inner> > (getAttachments());
+		list<MailAttachment> new_list = static_cast<list <MailAttachment> > (getAttachments());
 		JsonArray* json_array = json_array_new();
 		GError *mygerror;
 		
-		for (list<SendMailAdv_attachments_inner>::iterator it = new_list.begin(); it != new_list.end(); it++) {
+		for (list<MailAttachment>::iterator it = new_list.begin(); it != new_list.end(); it++) {
 			mygerror = NULL;
-			SendMailAdv_attachments_inner obj = *it;
+			MailAttachment obj = *it;
 			JsonNode *node_temp = json_from_string(obj.toJson(), &mygerror);
 			json_array_add_element(json_array, node_temp);
 			g_clear_error(&mygerror);
@@ -467,74 +467,74 @@ SendMailAdv::setBody(std::string  body)
 	this->body = body;
 }
 
-SendMailAdv_from
+EmailAddressName
 SendMailAdv::getFrom()
 {
 	return from;
 }
 
 void
-SendMailAdv::setFrom(SendMailAdv_from  from)
+SendMailAdv::setFrom(EmailAddressName  from)
 {
 	this->from = from;
 }
 
-std::list<SendMailAdv_to_inner>
+std::list<EmailAddressName>
 SendMailAdv::getTo()
 {
 	return to;
 }
 
 void
-SendMailAdv::setTo(std::list <SendMailAdv_to_inner> to)
+SendMailAdv::setTo(std::list <EmailAddressName> to)
 {
 	this->to = to;
 }
 
-std::list<SendMailAdv_replyto_inner>
+std::list<EmailAddressName>
 SendMailAdv::getReplyto()
 {
 	return replyto;
 }
 
 void
-SendMailAdv::setReplyto(std::list <SendMailAdv_replyto_inner> replyto)
+SendMailAdv::setReplyto(std::list <EmailAddressName> replyto)
 {
 	this->replyto = replyto;
 }
 
-std::list<SendMailAdv_cc_inner>
+std::list<EmailAddressName>
 SendMailAdv::getCc()
 {
 	return cc;
 }
 
 void
-SendMailAdv::setCc(std::list <SendMailAdv_cc_inner> cc)
+SendMailAdv::setCc(std::list <EmailAddressName> cc)
 {
 	this->cc = cc;
 }
 
-std::list<SendMailAdv_bcc_inner>
+std::list<EmailAddressName>
 SendMailAdv::getBcc()
 {
 	return bcc;
 }
 
 void
-SendMailAdv::setBcc(std::list <SendMailAdv_bcc_inner> bcc)
+SendMailAdv::setBcc(std::list <EmailAddressName> bcc)
 {
 	this->bcc = bcc;
 }
 
-std::list<SendMailAdv_attachments_inner>
+std::list<MailAttachment>
 SendMailAdv::getAttachments()
 {
 	return attachments;
 }
 
 void
-SendMailAdv::setAttachments(std::list <SendMailAdv_attachments_inner> attachments)
+SendMailAdv::setAttachments(std::list <MailAttachment> attachments)
 {
 	this->attachments = attachments;
 }

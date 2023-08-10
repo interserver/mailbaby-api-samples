@@ -1,6 +1,6 @@
 /**
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -165,8 +165,94 @@ class MailLogEntry {
         return obj;
     }
 
+    /**
+     * Validates the JSON data with respect to <code>MailLogEntry</code>.
+     * @param {Object} data The plain JavaScript object bearing properties of interest.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>MailLogEntry</code>.
+     */
+    static validateJSON(data) {
+        // check to make sure all required properties are present in the JSON string
+        for (const property of MailLogEntry.RequiredProperties) {
+            if (!data[property]) {
+                throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
+            }
+        }
+        // ensure the json data is a string
+        if (data['id'] && !(typeof data['id'] === 'string' || data['id'] instanceof String)) {
+            throw new Error("Expected the field `id` to be a primitive type in the JSON string but got " + data['id']);
+        }
+        // ensure the json data is a string
+        if (data['from'] && !(typeof data['from'] === 'string' || data['from'] instanceof String)) {
+            throw new Error("Expected the field `from` to be a primitive type in the JSON string but got " + data['from']);
+        }
+        // ensure the json data is a string
+        if (data['to'] && !(typeof data['to'] === 'string' || data['to'] instanceof String)) {
+            throw new Error("Expected the field `to` to be a primitive type in the JSON string but got " + data['to']);
+        }
+        // ensure the json data is a string
+        if (data['subject'] && !(typeof data['subject'] === 'string' || data['subject'] instanceof String)) {
+            throw new Error("Expected the field `subject` to be a primitive type in the JSON string but got " + data['subject']);
+        }
+        // ensure the json data is a string
+        if (data['created'] && !(typeof data['created'] === 'string' || data['created'] instanceof String)) {
+            throw new Error("Expected the field `created` to be a primitive type in the JSON string but got " + data['created']);
+        }
+        // ensure the json data is a string
+        if (data['user'] && !(typeof data['user'] === 'string' || data['user'] instanceof String)) {
+            throw new Error("Expected the field `user` to be a primitive type in the JSON string but got " + data['user']);
+        }
+        // ensure the json data is a string
+        if (data['transtype'] && !(typeof data['transtype'] === 'string' || data['transtype'] instanceof String)) {
+            throw new Error("Expected the field `transtype` to be a primitive type in the JSON string but got " + data['transtype']);
+        }
+        // ensure the json data is a string
+        if (data['origin'] && !(typeof data['origin'] === 'string' || data['origin'] instanceof String)) {
+            throw new Error("Expected the field `origin` to be a primitive type in the JSON string but got " + data['origin']);
+        }
+        // ensure the json data is a string
+        if (data['interface'] && !(typeof data['interface'] === 'string' || data['interface'] instanceof String)) {
+            throw new Error("Expected the field `interface` to be a primitive type in the JSON string but got " + data['interface']);
+        }
+        // ensure the json data is a string
+        if (data['sendingZone'] && !(typeof data['sendingZone'] === 'string' || data['sendingZone'] instanceof String)) {
+            throw new Error("Expected the field `sendingZone` to be a primitive type in the JSON string but got " + data['sendingZone']);
+        }
+        // ensure the json data is a string
+        if (data['recipient'] && !(typeof data['recipient'] === 'string' || data['recipient'] instanceof String)) {
+            throw new Error("Expected the field `recipient` to be a primitive type in the JSON string but got " + data['recipient']);
+        }
+        // ensure the json data is a string
+        if (data['domain'] && !(typeof data['domain'] === 'string' || data['domain'] instanceof String)) {
+            throw new Error("Expected the field `domain` to be a primitive type in the JSON string but got " + data['domain']);
+        }
+        // ensure the json data is a string
+        if (data['assigned'] && !(typeof data['assigned'] === 'string' || data['assigned'] instanceof String)) {
+            throw new Error("Expected the field `assigned` to be a primitive type in the JSON string but got " + data['assigned']);
+        }
+        // ensure the json data is a string
+        if (data['queued'] && !(typeof data['queued'] === 'string' || data['queued'] instanceof String)) {
+            throw new Error("Expected the field `queued` to be a primitive type in the JSON string but got " + data['queued']);
+        }
+        // ensure the json data is a string
+        if (data['mxHostname'] && !(typeof data['mxHostname'] === 'string' || data['mxHostname'] instanceof String)) {
+            throw new Error("Expected the field `mxHostname` to be a primitive type in the JSON string but got " + data['mxHostname']);
+        }
+        // ensure the json data is a string
+        if (data['response'] && !(typeof data['response'] === 'string' || data['response'] instanceof String)) {
+            throw new Error("Expected the field `response` to be a primitive type in the JSON string but got " + data['response']);
+        }
+        // ensure the json data is a string
+        if (data['messageId'] && !(typeof data['messageId'] === 'string' || data['messageId'] instanceof String)) {
+            throw new Error("Expected the field `messageId` to be a primitive type in the JSON string but got " + data['messageId']);
+        }
+
+        return true;
+    }
+
 
 }
+
+MailLogEntry.RequiredProperties = ["_id", "id", "from", "to", "subject", "created", "time", "user", "transtype", "origin", "interface", "sendingZone", "bodySize", "seq", "recipient", "domain", "locked", "lockTime", "assigned", "queued", "mxHostname", "response"];
 
 /**
  * internal db id

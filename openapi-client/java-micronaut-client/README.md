@@ -25,7 +25,11 @@ All the properties can be changed in the [application.yml][src/main/resources/ap
 
 Description on how to create Apis is given inside individual api guides:
 
-* [DefaultApi](docs/apis/DefaultApi.md)
+* [BlockingApi](docs/apis/BlockingApi.md)
+* [HistoryApi](docs/apis/HistoryApi.md)
+* [SendingApi](docs/apis/SendingApi.md)
+* [ServicesApi](docs/apis/ServicesApi.md)
+* [StatusApi](docs/apis/StatusApi.md)
 
 
 ## Auth methods
@@ -34,6 +38,10 @@ Details on auth methods can be found in the [auth.md](doc/auth.md).
 
 ## Author
 
+support@interserver.net
+support@interserver.net
+support@interserver.net
+support@interserver.net
 support@interserver.net
 
 

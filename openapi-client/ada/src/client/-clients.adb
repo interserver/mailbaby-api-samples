@@ -1,5 +1,5 @@
---  MailBaby Email Delivery API
---  **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+--  MailBaby Email Delivery and Management Service API
+--  **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 --
 --  The version of the OpenAPI document: 1.1.0
 --  Contact: support@interserver.net
@@ -11,47 +11,196 @@
 pragma Warnings (Off, "*is not referenced");
 with Swagger.Streams;
 package body .Clients is
-   pragma Style_Checks ("-mr");
+   pragma Style_Checks ("-bmrIu");
 
-   --  displays a list of mail service orders
-   procedure Get_Mail_Orders
+   Mime_1 : aliased constant String := "multipart/form-data";
+   Media_List_1 : constant Swagger.Mime_List := (
+     1 => Swagger.Mime_Json   );
+   Media_List_2 : constant Swagger.Mime_List := (
+     1 => Swagger.Mime_Form,
+   
+     2 => Swagger.Mime_Json   );
+   Media_List_3 : constant Swagger.Mime_List := (
+     1 => Swagger.Mime_Json,
+   
+     2 => Mime_1'Access   );
+
+
+   --  Creates a new email deny rule.
+   --  Adds a new email deny rule into the system to block new emails that match the given criteria
+   procedure Add_Rule
       (Client : in out Client_Type;
-       Result : out .Models.GetMailOrders200ResponseInner_Type_Vectors.Vector) is
-      URI   : Swagger.Clients.URI_Type;
-      Reply : Swagger.Value_Type;
-   begin
-      Client.Set_Accept ((1 => Swagger.Clients.APPLICATION_JSON));
-
-      URI.Set_Path ("/mail");
-      Client.Call (Swagger.Clients.GET, URI, Reply);
-      .Models.Deserialize (Reply, "", Result);
-   end Get_Mail_Orders;
-
-   --  Checks if the server is running
-   procedure Ping_Server
-      (Client : in out Client_Type) is
-      URI   : Swagger.Clients.URI_Type;
-   begin
-
-
-      URI.Set_Path ("/ping");
-      Client.Call (Swagger.Clients.GET, URI);
-   end Ping_Server;
-
-   --  Sends an Email with Advanced Options
-   --  Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-   procedure Send_Adv_Mail
-      (Client : in out Client_Type;
-       Send_Mail_Adv_Type : in .Models.SendMailAdv_Type;
+       P_Type : in Swagger.UString;
+       Data : in Swagger.UString;
+       User : in Swagger.Nullable_UString;
        Result : out .Models.GenericResponse_Type) is
       URI   : Swagger.Clients.URI_Type;
       Req   : Swagger.Clients.Request_Type;
       Reply : Swagger.Value_Type;
    begin
-      Client.Set_Accept ((1 => Swagger.Clients.APPLICATION_JSON));
-      Client.Initialize (Req, (Swagger.Clients.APPLICATION_JSON,
-                               Swagger.Clients.APPLICATION_X-WWW-FORM-URLENCODED));
-      .Models.Serialize (Req.Stream, "", Send_Mail_Adv_Type);
+      Client.Set_Accept (Media_List_1);
+
+      Client.Initialize (Req, Media_List_2);
+      .Models.Serialize (Req.Stream, "user", User);
+      .Models.Serialize (Req.Stream, "type", P_Type);
+      .Models.Serialize (Req.Stream, "data", Data);
+
+      URI.Set_Path ("/mail/rules");
+      Client.Call (Swagger.Clients.POST, URI, Req, Reply);
+      .Models.Deserialize (Reply, "", Result);
+   end Add_Rule;
+
+   --  Removes an deny mail rule.
+   --  Removes one of the configured deny mail rules from the system.
+   procedure Delete_Rule
+      (Client : in out Client_Type;
+       Rule_Id : in Integer;
+       Result : out .Models.GenericResponse_Type) is
+      URI   : Swagger.Clients.URI_Type;
+      Reply : Swagger.Value_Type;
+   begin
+      Client.Set_Accept (Media_List_1);
+
+
+      URI.Set_Path ("/mail/rules/{ruleId}");
+      URI.Set_Path_Param ("ruleId", .Models.To_String (Rule_Id));
+      Client.Call (Swagger.Clients.DELETE, URI, Reply);
+      .Models.Deserialize (Reply, "", Result);
+   end Delete_Rule;
+
+   --  Removes an email address from the blocked list
+   --  Removes an email address from the various block lists.
+   procedure Delist_Block
+      (Client : in out Client_Type;
+       Email_Address_Type : in .Models.EmailAddress_Type;
+       Result : out .Models.GenericResponse_Type) is
+      URI   : Swagger.Clients.URI_Type;
+      Req   : Swagger.Clients.Request_Type;
+      Reply : Swagger.Value_Type;
+   begin
+      Client.Set_Accept (Media_List_1);
+      Client.Initialize (Req, Media_List_3);
+      .Models.Serialize (Req.Stream, "", Email_Address_Type);
+
+      URI.Set_Path ("/mail/blocks/delete");
+      Client.Call (Swagger.Clients.POST, URI, Req, Reply);
+      .Models.Deserialize (Reply, "", Result);
+   end Delist_Block;
+
+   --  displays a list of blocked email addresses
+   procedure Get_Mail_Blocks
+      (Client : in out Client_Type;
+       Result : out .Models.MailBlocks_Type) is
+      URI   : Swagger.Clients.URI_Type;
+      Reply : Swagger.Value_Type;
+   begin
+      Client.Set_Accept (Media_List_1);
+
+
+      URI.Set_Path ("/mail/blocks");
+      Client.Call (Swagger.Clients.GET, URI, Reply);
+      .Models.Deserialize (Reply, "", Result);
+   end Get_Mail_Blocks;
+
+   --  Displays a listing of deny email rules.
+   --  Returns a listing of all the deny block rules you have configured.
+   procedure Get_Rules
+      (Client : in out Client_Type;
+       Result : out .Models.DenyRuleRecord_Type_Vectors.Vector) is
+      URI   : Swagger.Clients.URI_Type;
+      Reply : Swagger.Value_Type;
+   begin
+      Client.Set_Accept (Media_List_1);
+
+
+      URI.Set_Path ("/mail/rules");
+      Client.Call (Swagger.Clients.GET, URI, Reply);
+      .Models.Deserialize (Reply, "", Result);
+   end Get_Rules;
+
+   --  displays a list of blocked email addresses
+   procedure Get_Stats
+      (Client : in out Client_Type;
+       Result : out .Models.GetStats200ResponseInner_Type_Vectors.Vector) is
+      URI   : Swagger.Clients.URI_Type;
+      Reply : Swagger.Value_Type;
+   begin
+      Client.Set_Accept (Media_List_1);
+
+
+      URI.Set_Path ("/mail/stats");
+      Client.Call (Swagger.Clients.GET, URI, Reply);
+      .Models.Deserialize (Reply, "", Result);
+   end Get_Stats;
+
+   --  displays the mail log
+   --  Get a listing of the emails sent through this system
+   procedure View_Mail_Log
+      (Client : in out Client_Type;
+       Id : in Swagger.Nullable_Long;
+       Origin : in Swagger.Nullable_UString;
+       Mx : in Swagger.Nullable_UString;
+       From : in Swagger.Nullable_UString;
+       To : in Swagger.Nullable_UString;
+       Subject : in Swagger.Nullable_UString;
+       Mailid : in Swagger.Nullable_UString;
+       Skip : in Swagger.Nullable_Integer;
+       Limit : in Swagger.Nullable_Integer;
+       Start_Date : in Swagger.Nullable_Long;
+       End_Date : in Swagger.Nullable_Long;
+       Result : out .Models.MailLog_Type) is
+      URI   : Swagger.Clients.URI_Type;
+      Reply : Swagger.Value_Type;
+   begin
+      Client.Set_Accept (Media_List_1);
+
+
+      URI.Add_Param ("id", Id);
+      URI.Add_Param ("origin", Origin);
+      URI.Add_Param ("mx", Mx);
+      URI.Add_Param ("from", From);
+      URI.Add_Param ("to", To);
+      URI.Add_Param ("subject", Subject);
+      URI.Add_Param ("mailid", Mailid);
+      URI.Add_Param ("skip", Skip);
+      URI.Add_Param ("limit", Limit);
+      URI.Add_Param ("startDate", Start_Date);
+      URI.Add_Param ("endDate", End_Date);
+      URI.Set_Path ("/mail/log");
+      Client.Call (Swagger.Clients.GET, URI, Reply);
+      .Models.Deserialize (Reply, "", Result);
+   end View_Mail_Log;
+
+   --  Sends an Email with Advanced Options
+   --  Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+   procedure Send_Adv_Mail
+      (Client : in out Client_Type;
+       Subject : in Swagger.UString;
+       P_Body : in Swagger.UString;
+       From : in .Models..Models.EmailAddressName_Type;
+       To : in .Models.EmailAddressName_Type_Vectors.Vector;
+       Replyto : in .Models.EmailAddressName_Type_Vectors.Vector;
+       Cc : in .Models.EmailAddressName_Type_Vectors.Vector;
+       Bcc : in .Models.EmailAddressName_Type_Vectors.Vector;
+       Attachments : in .Models.MailAttachment_Type_Vectors.Vector;
+       Id : in Swagger.Nullable_Long;
+       Result : out .Models.GenericResponse_Type) is
+      URI   : Swagger.Clients.URI_Type;
+      Req   : Swagger.Clients.Request_Type;
+      Reply : Swagger.Value_Type;
+   begin
+      Client.Set_Accept (Media_List_1);
+
+      Client.Initialize (Req, Media_List_2);
+      .Models.Serialize (Req.Stream, "subject", Subject);
+      .Models.Serialize (Req.Stream, "body", P_Body);
+      .Models.Serialize (Req.Stream, "from", From);
+      .Models.Serialize (Req.Stream, "to", To);
+      .Models.Serialize (Req.Stream, "replyto", Replyto);
+      .Models.Serialize (Req.Stream, "cc", Cc);
+      .Models.Serialize (Req.Stream, "bcc", Bcc);
+      .Models.Serialize (Req.Stream, "attachments", Attachments);
+      .Models.Serialize (Req.Stream, "id", Id);
 
       URI.Set_Path ("/mail/advsend");
       Client.Call (Swagger.Clients.POST, URI, Req, Reply);
@@ -73,8 +222,9 @@ package body .Clients is
       Req   : Swagger.Clients.Request_Type;
       Reply : Swagger.Value_Type;
    begin
-      Client.Set_Accept ((1 => Swagger.Clients.APPLICATION_JSON));
-      Client.Initialize (Req, (1 => Swagger.Clients.APPLICATION_FORM));
+      Client.Set_Accept (Media_List_1);
+
+      Client.Initialize (Req, Media_List_2);
       .Models.Serialize (Req.Stream, "to", To);
       .Models.Serialize (Req.Stream, "from", From);
       .Models.Serialize (Req.Stream, "subject", Subject);
@@ -85,40 +235,30 @@ package body .Clients is
       .Models.Deserialize (Reply, "", Result);
    end Send_Mail;
 
-   --  displays the mail log
-   --  Get a listing of the emails sent through this system
-   procedure View_Mail_Log
+   --  displays a list of mail service orders
+   --  This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+   procedure Get_Mail_Orders
       (Client : in out Client_Type;
-       Id : in Swagger.Nullable_Long;
-       Origin : in Swagger.Nullable_UString;
-       Mx : in Swagger.Nullable_UString;
-       From : in Swagger.Nullable_UString;
-       To : in Swagger.Nullable_UString;
-       Subject : in Swagger.Nullable_UString;
-       Mailid : in Swagger.Nullable_UString;
-       Skip : in Swagger.Nullable_Integer;
-       Limit : in Swagger.Nullable_Integer;
-       Start_Date : in Swagger.Nullable_Long;
-       End_Date : in Swagger.Nullable_Long;
-       Result : out .Models.MailLog_Type) is
+       Result : out .Models.MailOrder_Type_Vectors.Vector) is
       URI   : Swagger.Clients.URI_Type;
       Reply : Swagger.Value_Type;
    begin
-      Client.Set_Accept ((1 => Swagger.Clients.APPLICATION_JSON));
+      Client.Set_Accept (Media_List_1);
 
-      URI.Add_Param ("id", Id);
-      URI.Add_Param ("origin", Origin);
-      URI.Add_Param ("mx", Mx);
-      URI.Add_Param ("from", From);
-      URI.Add_Param ("to", To);
-      URI.Add_Param ("subject", Subject);
-      URI.Add_Param ("mailid", Mailid);
-      URI.Add_Param ("skip", Skip);
-      URI.Add_Param ("limit", Limit);
-      URI.Add_Param ("startDate", Start_Date);
-      URI.Add_Param ("endDate", End_Date);
-      URI.Set_Path ("/mail/log");
+
+      URI.Set_Path ("/mail");
       Client.Call (Swagger.Clients.GET, URI, Reply);
       .Models.Deserialize (Reply, "", Result);
-   end View_Mail_Log;
+   end Get_Mail_Orders;
+
+   --  Checks if the server is running
+   procedure Ping_Server
+      (Client : in out Client_Type) is
+      URI   : Swagger.Clients.URI_Type;
+   begin
+
+
+      URI.Set_Path ("/ping");
+      Client.Call (Swagger.Clients.GET, URI);
+   end Ping_Server;
 end .Clients;

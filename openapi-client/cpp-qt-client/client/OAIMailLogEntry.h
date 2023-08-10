@@ -1,6 +1,6 @@
 /**
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -160,95 +160,95 @@ public:
 private:
     void initializeModel();
 
-    qint32 _id;
+    qint32 m__id;
     bool m__id_isSet;
     bool m__id_isValid;
 
-    QString id;
+    QString m_id;
     bool m_id_isSet;
     bool m_id_isValid;
 
-    QString from;
+    QString m_from;
     bool m_from_isSet;
     bool m_from_isValid;
 
-    QString to;
+    QString m_to;
     bool m_to_isSet;
     bool m_to_isValid;
 
-    QString subject;
+    QString m_subject;
     bool m_subject_isSet;
     bool m_subject_isValid;
 
-    QString created;
+    QString m_created;
     bool m_created_isSet;
     bool m_created_isValid;
 
-    qint32 time;
+    qint32 m_time;
     bool m_time_isSet;
     bool m_time_isValid;
 
-    QString user;
+    QString m_user;
     bool m_user_isSet;
     bool m_user_isValid;
 
-    QString transtype;
+    QString m_transtype;
     bool m_transtype_isSet;
     bool m_transtype_isValid;
 
-    QString origin;
+    QString m_origin;
     bool m_origin_isSet;
     bool m_origin_isValid;
 
-    QString interface;
+    QString m_interface;
     bool m_interface_isSet;
     bool m_interface_isValid;
 
-    QString sending_zone;
+    QString m_sending_zone;
     bool m_sending_zone_isSet;
     bool m_sending_zone_isValid;
 
-    qint32 body_size;
+    qint32 m_body_size;
     bool m_body_size_isSet;
     bool m_body_size_isValid;
 
-    qint32 seq;
+    qint32 m_seq;
     bool m_seq_isSet;
     bool m_seq_isValid;
 
-    QString recipient;
+    QString m_recipient;
     bool m_recipient_isSet;
     bool m_recipient_isValid;
 
-    QString domain;
+    QString m_domain;
     bool m_domain_isSet;
     bool m_domain_isValid;
 
-    qint32 locked;
+    qint32 m_locked;
     bool m_locked_isSet;
     bool m_locked_isValid;
 
-    qint32 lock_time;
+    qint32 m_lock_time;
     bool m_lock_time_isSet;
     bool m_lock_time_isValid;
 
-    QString assigned;
+    QString m_assigned;
     bool m_assigned_isSet;
     bool m_assigned_isValid;
 
-    QString queued;
+    QString m_queued;
     bool m_queued_isSet;
     bool m_queued_isValid;
 
-    QString mx_hostname;
+    QString m_mx_hostname;
     bool m_mx_hostname_isSet;
     bool m_mx_hostname_isValid;
 
-    QString response;
+    QString m_response;
     bool m_response_isSet;
     bool m_response_isValid;
 
-    QString message_id;
+    QString m_message_id;
     bool m_message_id_isSet;
     bool m_message_id_isValid;
 };

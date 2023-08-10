@@ -1,6 +1,6 @@
 /*
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**\n\n\n# 📌 Overview\n\nThis is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).\n\n\n# 🔐 Authentication\n\nIn order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.\n\nWe support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.\n
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**\n# Overview\nThis is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).\n# Authentication\nIn order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.\nWe support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.\n
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -30,37 +30,37 @@ public class OASSendMailAdv implements OAS.MappedProperties {
      * Get r_from
      * @return r_from
      */
-    public OASSendMailAdvFrom r_from { get; set; }
+    public OASEmailAddressName r_from { get; set; }
 
     /**
      * A list of destionation email addresses to send this to
      * @return to
      */
-    public List<OASSendMailAdvToInner> to { get; set; }
+    public List<OASEmailAddressName> to { get; set; }
 
     /**
      * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
      * @return replyto
      */
-    public List<OASSendMailAdvReplytoInner> replyto { get; set; }
+    public List<OASEmailAddressName> replyto { get; set; }
 
     /**
      * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
      * @return cc
      */
-    public List<OASSendMailAdvCcInner> cc { get; set; }
+    public List<OASEmailAddressName> cc { get; set; }
 
     /**
      * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
      * @return bcc
      */
-    public List<OASSendMailAdvBccInner> bcc { get; set; }
+    public List<OASEmailAddressName> bcc { get; set; }
 
     /**
      * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
      * @return attachments
      */
-    public List<OASSendMailAdvAttachmentsInner> attachments { get; set; }
+    public List<OASMailAttachment> attachments { get; set; }
 
     /**
      * (optional)  ID of the Mail order within our system to use as the Mail Account.
@@ -77,23 +77,23 @@ public class OASSendMailAdv implements OAS.MappedProperties {
     }
 
     public OASSendMailAdv() {
-        to = new List<OASSendMailAdvToInner>();
-        replyto = new List<OASSendMailAdvReplytoInner>();
-        cc = new List<OASSendMailAdvCcInner>();
-        bcc = new List<OASSendMailAdvBccInner>();
-        attachments = new List<OASSendMailAdvAttachmentsInner>();
+        to = new List<OASEmailAddressName>();
+        replyto = new List<OASEmailAddressName>();
+        cc = new List<OASEmailAddressName>();
+        bcc = new List<OASEmailAddressName>();
+        attachments = new List<OASMailAttachment>();
     }
 
     public static OASSendMailAdv getExample() {
         OASSendMailAdv sendMailAdv = new OASSendMailAdv();
           sendMailAdv.subject = 'Your Package has been Delivered!';
           sendMailAdv.body = 'The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.';
-          sendMailAdv.r_from = OASSendMailAdvFrom.getExample();
-          sendMailAdv.to = new List<OASSendMailAdvToInner>{OASSendMailAdvToInner.getExample()};
-          sendMailAdv.replyto = new List<OASSendMailAdvReplytoInner>{OASSendMailAdvReplytoInner.getExample()};
-          sendMailAdv.cc = new List<OASSendMailAdvCcInner>{OASSendMailAdvCcInner.getExample()};
-          sendMailAdv.bcc = new List<OASSendMailAdvBccInner>{OASSendMailAdvBccInner.getExample()};
-          sendMailAdv.attachments = new List<OASSendMailAdvAttachmentsInner>{OASSendMailAdvAttachmentsInner.getExample()};
+          sendMailAdv.r_from = OASEmailAddressName.getExample();
+          sendMailAdv.to = new List<OASEmailAddressName>{OASEmailAddressName.getExample()};
+          sendMailAdv.replyto = new List<OASEmailAddressName>{OASEmailAddressName.getExample()};
+          sendMailAdv.cc = new List<OASEmailAddressName>{OASEmailAddressName.getExample()};
+          sendMailAdv.bcc = new List<OASEmailAddressName>{OASEmailAddressName.getExample()};
+          sendMailAdv.attachments = new List<OASMailAttachment>{OASMailAttachment.getExample()};
           sendMailAdv.id = 5000L;
         return sendMailAdv;
     }

@@ -23,8 +23,8 @@ class GetMailOrders401Response {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetMailOrders401Response &&
-     other.code == code &&
-     other.message == message;
+    other.code == code &&
+    other.message == message;
 
   @override
   int get hashCode =>
@@ -36,10 +36,10 @@ class GetMailOrders401Response {
   String toString() => 'GetMailOrders401Response[code=$code, message=$message]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-      _json[r'code'] = code;
-      _json[r'message'] = message;
-    return _json;
+    final json = <String, dynamic>{};
+      json[r'code'] = this.code;
+      json[r'message'] = this.message;
+    return json;
   }
 
   /// Returns a new [GetMailOrders401Response] instance and imports its values from
@@ -68,7 +68,7 @@ class GetMailOrders401Response {
     return null;
   }
 
-  static List<GetMailOrders401Response>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<GetMailOrders401Response> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <GetMailOrders401Response>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -99,12 +99,10 @@ class GetMailOrders401Response {
   static Map<String, List<GetMailOrders401Response>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<GetMailOrders401Response>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = GetMailOrders401Response.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = GetMailOrders401Response.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

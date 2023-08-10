@@ -1,6 +1,6 @@
 /**
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * OpenAPI spec version: 1.1.0
  * Contact: support@interserver.net
@@ -15,28 +15,46 @@ import { Configuration } from "./configuration"
 
 const config: Configuration = {}
 
-describe("DefaultApi", () => {
-  let instance: api.DefaultApi
+describe("BlockingApi", () => {
+  let instance: api.BlockingApi
   beforeEach(function() {
-    instance = new api.DefaultApi(config)
+    instance = new api.BlockingApi(config)
   });
 
-  test("getMailOrders", () => {
-    return expect(instance.getMailOrders({})).resolves.toBe(null)
+  test("addRule", () => {
+    const user: string = "user_example"
+    const type: string = "type_example"
+    const data: string = "data_example"
+    return expect(instance.addRule(user, type, data, {})).resolves.toBe(null)
   })
-  test("pingServer", () => {
-    return expect(instance.pingServer({})).resolves.toBe(null)
+  test("deleteRule", () => {
+    const ruleId: number = 56
+    return expect(instance.deleteRule(ruleId, {})).resolves.toBe(null)
   })
-  test("sendAdvMail", () => {
-    const body: api.SendMailAdv = undefined
-    return expect(instance.sendAdvMail(body, {})).resolves.toBe(null)
+  test("delistBlock", () => {
+    const body: api.EmailAddress = {
+  "value" : {
+    "email" : "client@domain.com"
+  }
+}
+    return expect(instance.delistBlock(body, {})).resolves.toBe(null)
   })
-  test("sendMail", () => {
-    const to: string = "to_example"
-    const from: string = "from_example"
-    const subject: string = "subject_example"
-    const body: string = "body_example"
-    return expect(instance.sendMail(to, from, subject, body, {})).resolves.toBe(null)
+  test("getMailBlocks", () => {
+    return expect(instance.getMailBlocks({})).resolves.toBe(null)
+  })
+  test("getRules", () => {
+    return expect(instance.getRules({})).resolves.toBe(null)
+  })
+})
+
+describe("HistoryApi", () => {
+  let instance: api.HistoryApi
+  beforeEach(function() {
+    instance = new api.HistoryApi(config)
+  });
+
+  test("getStats", () => {
+    return expect(instance.getStats({})).resolves.toBe(null)
   })
   test("viewMailLog", () => {
     const id: number = 789
@@ -51,6 +69,55 @@ describe("DefaultApi", () => {
     const startDate: number = 789
     const endDate: number = 789
     return expect(instance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, {})).resolves.toBe(null)
+  })
+})
+
+describe("SendingApi", () => {
+  let instance: api.SendingApi
+  beforeEach(function() {
+    instance = new api.SendingApi(config)
+  });
+
+  test("sendAdvMail", () => {
+    const subject: string = "subject_example"
+    const body: string = "body_example"
+    const from: api.EmailAddressName = undefined
+    const to: Array<api.EmailAddressName> = undefined
+    const replyto: Array<api.EmailAddressName> = undefined
+    const cc: Array<api.EmailAddressName> = undefined
+    const bcc: Array<api.EmailAddressName> = undefined
+    const attachments: Array<api.MailAttachment> = undefined
+    const id: number = 789
+    return expect(instance.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, {})).resolves.toBe(null)
+  })
+  test("sendMail", () => {
+    const to: string = "to_example"
+    const from: string = "from_example"
+    const subject: string = "subject_example"
+    const body: string = "body_example"
+    return expect(instance.sendMail(to, from, subject, body, {})).resolves.toBe(null)
+  })
+})
+
+describe("ServicesApi", () => {
+  let instance: api.ServicesApi
+  beforeEach(function() {
+    instance = new api.ServicesApi(config)
+  });
+
+  test("getMailOrders", () => {
+    return expect(instance.getMailOrders({})).resolves.toBe(null)
+  })
+})
+
+describe("StatusApi", () => {
+  let instance: api.StatusApi
+  beforeEach(function() {
+    instance = new api.StatusApi(config)
+  });
+
+  test("pingServer", () => {
+    return expect(instance.pingServer({})).resolves.toBe(null)
   })
 })
 

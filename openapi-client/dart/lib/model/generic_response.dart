@@ -35,8 +35,8 @@ class GenericResponse {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GenericResponse &&
-     other.status == status &&
-     other.text == text;
+    other.status == status &&
+    other.text == text;
 
   @override
   int get hashCode =>
@@ -48,18 +48,18 @@ class GenericResponse {
   String toString() => 'GenericResponse[status=$status, text=$text]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (status != null) {
-      _json[r'status'] = status;
+    final json = <String, dynamic>{};
+    if (this.status != null) {
+      json[r'status'] = this.status;
     } else {
-      _json[r'status'] = null;
+      json[r'status'] = null;
     }
-    if (text != null) {
-      _json[r'text'] = text;
+    if (this.text != null) {
+      json[r'text'] = this.text;
     } else {
-      _json[r'text'] = null;
+      json[r'text'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [GenericResponse] instance and imports its values from
@@ -88,7 +88,7 @@ class GenericResponse {
     return null;
   }
 
-  static List<GenericResponse>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<GenericResponse> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <GenericResponse>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -119,12 +119,10 @@ class GenericResponse {
   static Map<String, List<GenericResponse>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<GenericResponse>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = GenericResponse.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = GenericResponse.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

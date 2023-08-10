@@ -7,17 +7,17 @@ case class SendMailAdv (
     _subject: String,
     /* The main email contents. */
     _body: String,
-    _from: SendMailAdvFrom,
+    _from: EmailAddressName,
     /* A list of destionation email addresses to send this to */
-    _to: List[SendMailAdvToInner],
+    _to: List[EmailAddressName],
     /* (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. */
-    _replyto: Option[List[SendMailAdvReplytoInner]],
+    _replyto: Option[List[EmailAddressName]],
     /* (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */
-    _cc: Option[List[SendMailAdvCcInner]],
+    _cc: Option[List[EmailAddressName]],
     /* (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. */
-    _bcc: Option[List[SendMailAdvBccInner]],
+    _bcc: Option[List[EmailAddressName]],
     /* (optional) File attachments to include in the email.  The file contents must be base64 encoded! */
-    _attachments: Option[List[SendMailAdvAttachmentsInner]],
+    _attachments: Option[List[MailAttachment]],
     /* (optional)  ID of the Mail order within our system to use as the Mail Account. */
     _id: Option[Long]
 )

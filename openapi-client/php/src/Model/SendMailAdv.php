@@ -11,9 +11,9 @@
  */
 
 /**
- * MailBaby Email Delivery API
+ * MailBaby Email Delivery and Management Service API
  *
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -61,12 +61,12 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'subject' => 'string',
         'body' => 'string',
-        'from' => '\Interserver\Mailbaby\Model\SendMailAdvFrom',
-        'to' => '\Interserver\Mailbaby\Model\SendMailAdvToInner[]',
-        'replyto' => '\Interserver\Mailbaby\Model\SendMailAdvReplytoInner[]',
-        'cc' => '\Interserver\Mailbaby\Model\SendMailAdvCcInner[]',
-        'bcc' => '\Interserver\Mailbaby\Model\SendMailAdvBccInner[]',
-        'attachments' => '\Interserver\Mailbaby\Model\SendMailAdvAttachmentsInner[]',
+        'from' => '\Interserver\Mailbaby\Model\EmailAddressName',
+        'to' => '\Interserver\Mailbaby\Model\EmailAddressName[]',
+        'replyto' => '\Interserver\Mailbaby\Model\EmailAddressName[]',
+        'cc' => '\Interserver\Mailbaby\Model\EmailAddressName[]',
+        'bcc' => '\Interserver\Mailbaby\Model\EmailAddressName[]',
+        'attachments' => '\Interserver\Mailbaby\Model\MailAttachment[]',
         'id' => 'int'
     ];
 
@@ -151,6 +151,16 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     private function getOpenAPINullablesSetToNull(): array
     {
         return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Setter - Array of nullable field names deliberately set to null
+     *
+     * @param boolean[] $openAPINullablesSetToNull
+     */
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    {
+        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
 
     /**
@@ -368,11 +378,9 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSubject($subject)
     {
-
         if (is_null($subject)) {
             throw new \InvalidArgumentException('non-nullable subject cannot be null');
         }
-
         $this->container['subject'] = $subject;
 
         return $this;
@@ -397,11 +405,9 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBody($body)
     {
-
         if (is_null($body)) {
             throw new \InvalidArgumentException('non-nullable body cannot be null');
         }
-
         $this->container['body'] = $body;
 
         return $this;
@@ -410,7 +416,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets from
      *
-     * @return \Interserver\Mailbaby\Model\SendMailAdvFrom
+     * @return \Interserver\Mailbaby\Model\EmailAddressName
      */
     public function getFrom()
     {
@@ -420,17 +426,15 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets from
      *
-     * @param \Interserver\Mailbaby\Model\SendMailAdvFrom $from from
+     * @param \Interserver\Mailbaby\Model\EmailAddressName $from from
      *
      * @return self
      */
     public function setFrom($from)
     {
-
         if (is_null($from)) {
             throw new \InvalidArgumentException('non-nullable from cannot be null');
         }
-
         $this->container['from'] = $from;
 
         return $this;
@@ -439,7 +443,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets to
      *
-     * @return \Interserver\Mailbaby\Model\SendMailAdvToInner[]
+     * @return \Interserver\Mailbaby\Model\EmailAddressName[]
      */
     public function getTo()
     {
@@ -449,17 +453,15 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets to
      *
-     * @param \Interserver\Mailbaby\Model\SendMailAdvToInner[] $to A list of destionation email addresses to send this to
+     * @param \Interserver\Mailbaby\Model\EmailAddressName[] $to A list of destionation email addresses to send this to
      *
      * @return self
      */
     public function setTo($to)
     {
-
         if (is_null($to)) {
             throw new \InvalidArgumentException('non-nullable to cannot be null');
         }
-
         $this->container['to'] = $to;
 
         return $this;
@@ -468,7 +470,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets replyto
      *
-     * @return \Interserver\Mailbaby\Model\SendMailAdvReplytoInner[]|null
+     * @return \Interserver\Mailbaby\Model\EmailAddressName[]|null
      */
     public function getReplyto()
     {
@@ -478,17 +480,15 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets replyto
      *
-     * @param \Interserver\Mailbaby\Model\SendMailAdvReplytoInner[]|null $replyto (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+     * @param \Interserver\Mailbaby\Model\EmailAddressName[]|null $replyto (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
      *
      * @return self
      */
     public function setReplyto($replyto)
     {
-
         if (is_null($replyto)) {
             throw new \InvalidArgumentException('non-nullable replyto cannot be null');
         }
-
         $this->container['replyto'] = $replyto;
 
         return $this;
@@ -497,7 +497,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets cc
      *
-     * @return \Interserver\Mailbaby\Model\SendMailAdvCcInner[]|null
+     * @return \Interserver\Mailbaby\Model\EmailAddressName[]|null
      */
     public function getCc()
     {
@@ -507,17 +507,15 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cc
      *
-     * @param \Interserver\Mailbaby\Model\SendMailAdvCcInner[]|null $cc (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+     * @param \Interserver\Mailbaby\Model\EmailAddressName[]|null $cc (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
      *
      * @return self
      */
     public function setCc($cc)
     {
-
         if (is_null($cc)) {
             throw new \InvalidArgumentException('non-nullable cc cannot be null');
         }
-
         $this->container['cc'] = $cc;
 
         return $this;
@@ -526,7 +524,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets bcc
      *
-     * @return \Interserver\Mailbaby\Model\SendMailAdvBccInner[]|null
+     * @return \Interserver\Mailbaby\Model\EmailAddressName[]|null
      */
     public function getBcc()
     {
@@ -536,17 +534,15 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets bcc
      *
-     * @param \Interserver\Mailbaby\Model\SendMailAdvBccInner[]|null $bcc (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+     * @param \Interserver\Mailbaby\Model\EmailAddressName[]|null $bcc (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
      *
      * @return self
      */
     public function setBcc($bcc)
     {
-
         if (is_null($bcc)) {
             throw new \InvalidArgumentException('non-nullable bcc cannot be null');
         }
-
         $this->container['bcc'] = $bcc;
 
         return $this;
@@ -555,7 +551,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets attachments
      *
-     * @return \Interserver\Mailbaby\Model\SendMailAdvAttachmentsInner[]|null
+     * @return \Interserver\Mailbaby\Model\MailAttachment[]|null
      */
     public function getAttachments()
     {
@@ -565,17 +561,15 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets attachments
      *
-     * @param \Interserver\Mailbaby\Model\SendMailAdvAttachmentsInner[]|null $attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+     * @param \Interserver\Mailbaby\Model\MailAttachment[]|null $attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded!
      *
      * @return self
      */
     public function setAttachments($attachments)
     {
-
         if (is_null($attachments)) {
             throw new \InvalidArgumentException('non-nullable attachments cannot be null');
         }
-
         $this->container['attachments'] = $attachments;
 
         return $this;
@@ -600,11 +594,9 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-
         $this->container['id'] = $id;
 
         return $this;

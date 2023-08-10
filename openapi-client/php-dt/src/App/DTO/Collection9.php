@@ -5,9 +5,9 @@ namespace App\DTO;
 
 use Articus\DataTransfer\PhpAttribute as DTA;
 
-#[DTA\Strategy("ObjectList", ["type" => \App\DTO\SendMailAdvBccInner::class])]
+#[DTA\Strategy("ObjectList", ["type" => \App\DTO\MailAttachment::class])]
 #[DTA\Validator("Collection", ["validators" => [
-    ["name" => "TypeCompliant", "options" => ["type" => \App\DTO\SendMailAdvBccInner::class]]
+    ["name" => "TypeCompliant", "options" => ["type" => \App\DTO\MailAttachment::class]]
 ]])]
 class Collection9 extends \ArrayObject
 {

@@ -11,9 +11,9 @@
  */
 
 /**
- * MailBaby Email Delivery API
+ * MailBaby Email Delivery and Management Service API
  *
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -136,6 +136,16 @@ class SendMail implements ModelInterface, ArrayAccess, \JsonSerializable
     private function getOpenAPINullablesSetToNull(): array
     {
         return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Setter - Array of nullable field names deliberately set to null
+     *
+     * @param boolean[] $openAPINullablesSetToNull
+     */
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    {
+        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
 
     /**
@@ -333,11 +343,9 @@ class SendMail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTo($to)
     {
-
         if (is_null($to)) {
             throw new \InvalidArgumentException('non-nullable to cannot be null');
         }
-
         $this->container['to'] = $to;
 
         return $this;
@@ -362,11 +370,9 @@ class SendMail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFrom($from)
     {
-
         if (is_null($from)) {
             throw new \InvalidArgumentException('non-nullable from cannot be null');
         }
-
         $this->container['from'] = $from;
 
         return $this;
@@ -391,11 +397,9 @@ class SendMail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSubject($subject)
     {
-
         if (is_null($subject)) {
             throw new \InvalidArgumentException('non-nullable subject cannot be null');
         }
-
         $this->container['subject'] = $subject;
 
         return $this;
@@ -420,11 +424,9 @@ class SendMail implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBody($body)
     {
-
         if (is_null($body)) {
             throw new \InvalidArgumentException('non-nullable body cannot be null');
         }
-
         $this->container['body'] = $body;
 
         return $this;

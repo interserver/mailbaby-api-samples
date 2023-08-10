@@ -1,4 +1,4 @@
-# MailBabyEmailDeliveryApi.GetMailOrders401Response
+# MailBabyEmailDeliveryAndManagementServiceApi.GetMailOrders401Response
 
 ## Properties
 

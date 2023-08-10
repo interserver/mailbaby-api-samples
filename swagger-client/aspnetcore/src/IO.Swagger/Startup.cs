@@ -1,7 +1,7 @@
 /*
- * MailBaby Email Delivery API
+ * MailBaby Email Delivery and Management Service API
  *
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * OpenAPI spec version: 1.1.0
  * Contact: support@interserver.net
@@ -76,8 +76,8 @@ namespace IO.Swagger
                     c.SwaggerDoc("1.1.0", new OpenApiInfo
                     {
                         Version = "1.1.0",
-                        Title = "MailBaby Email Delivery API",
-                        Description = "MailBaby Email Delivery API (ASP.NET Core 3.1)",
+                        Title = "MailBaby Email Delivery and Management Service API",
+                        Description = "MailBaby Email Delivery and Management Service API (ASP.NET Core 3.1)",
                         Contact = new OpenApiContact()
                         {
                            Name = "Mail Baby",
@@ -114,10 +114,10 @@ namespace IO.Swagger
             app.UseSwaggerUI(c =>
             {
                 //TODO: Either use the SwaggerGen generated Swagger contract (generated from C# classes)
-                c.SwaggerEndpoint("/swagger/1.1.0/swagger.json", "MailBaby Email Delivery API");
+                c.SwaggerEndpoint("/swagger/1.1.0/swagger.json", "MailBaby Email Delivery and Management Service API");
 
                 //TODO: Or alternatively use the original Swagger contract that's included in the static files
-                // c.SwaggerEndpoint("/swagger-original.json", "MailBaby Email Delivery API Original");
+                // c.SwaggerEndpoint("/swagger-original.json", "MailBaby Email Delivery and Management Service API Original");
             });
 
             //TODO: Use Https Redirection

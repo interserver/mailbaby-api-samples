@@ -1,6 +1,6 @@
 /*
- * MailBaby Email Delivery API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+ * MailBaby Email Delivery and Management Service API
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +35,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -50,8 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * Mail log records
  */
-@ApiModel(description = "Mail log records")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-05-09T00:49:39.575209-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-10T12:35:23.309340-04:00[America/New_York]")
 public class MailLog {
   public static final String SERIALIZED_NAME_TOTAL = "total";
   @SerializedName(SERIALIZED_NAME_TOTAL)
@@ -69,7 +71,7 @@ public class MailLog {
   @SerializedName(SERIALIZED_NAME_EMAILS)
   private List<MailLogEntry> emails = new ArrayList<>();
 
-  public MailLog() { 
+  public MailLog() {
   }
 
   public MailLog total(Integer total) {
@@ -83,8 +85,6 @@ public class MailLog {
    * @return total
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "10234", required = true, value = "total number of mail log entries")
-
   public Integer getTotal() {
     return total;
   }
@@ -106,8 +106,6 @@ public class MailLog {
    * @return skip
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "0", required = true, value = "number of emails skipped in listing")
-
   public Integer getSkip() {
     return skip;
   }
@@ -129,8 +127,6 @@ public class MailLog {
    * @return limit
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "100", required = true, value = "number of emails to return")
-
   public Integer getLimit() {
     return limit;
   }
@@ -148,6 +144,9 @@ public class MailLog {
   }
 
   public MailLog addEmailsItem(MailLogEntry emailsItem) {
+    if (this.emails == null) {
+      this.emails = new ArrayList<>();
+    }
     this.emails.add(emailsItem);
     return this;
   }
@@ -157,8 +156,6 @@ public class MailLog {
    * @return emails
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-
   public List<MailLogEntry> getEmails() {
     return emails;
   }
@@ -234,46 +231,43 @@ public class MailLog {
   }
 
  /**
-  * Validates the JSON Object and throws an exception if issues found
+  * Validates the JSON Element and throws an exception if issues found
   *
-  * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to MailLog
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to MailLog
   */
-  public static void validateJsonObject(JsonObject jsonObj) throws IOException {
-      if (jsonObj == null) {
-        if (MailLog.openapiRequiredFields.isEmpty()) {
-          return;
-        } else { // has required fields
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!MailLog.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in MailLog is not found in the empty JSON string", MailLog.openapiRequiredFields.toString()));
         }
       }
 
-      Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
+      Set<Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Entry<String, JsonElement> entry : entries) {
         if (!MailLog.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MailLog` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MailLog` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : MailLog.openapiRequiredFields) {
-        if (jsonObj.get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonObj.toString()));
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
-      JsonArray jsonArrayemails = jsonObj.getAsJsonArray("emails");
-      if (jsonArrayemails != null) {
-        // ensure the json data is an array
-        if (!jsonObj.get("emails").isJsonArray()) {
-          throw new IllegalArgumentException(String.format("Expected the field `emails` to be an array in the JSON string but got `%s`", jsonObj.get("emails").toString()));
-        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      // ensure the json data is an array
+      if (!jsonObj.get("emails").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `emails` to be an array in the JSON string but got `%s`", jsonObj.get("emails").toString()));
+      }
 
-        // validate the optional field `emails` (array)
-        for (int i = 0; i < jsonArrayemails.size(); i++) {
-          MailLogEntry.validateJsonObject(jsonArrayemails.get(i).getAsJsonObject());
-        };
-      }
+      JsonArray jsonArrayemails = jsonObj.getAsJsonArray("emails");
+      // validate the required field `emails` (array)
+      for (int i = 0; i < jsonArrayemails.size(); i++) {
+        MailLogEntry.validateJsonElement(jsonArrayemails.get(i));
+      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -296,9 +290,9 @@ public class MailLog {
 
            @Override
            public MailLog read(JsonReader in) throws IOException {
-             JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
-             validateJsonObject(jsonObj);
-             return thisAdapter.fromJsonTree(jsonObj);
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
            }
 
        }.nullSafe();

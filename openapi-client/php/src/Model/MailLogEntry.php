@@ -11,9 +11,9 @@
  */
 
 /**
- * MailBaby Email Delivery API
+ * MailBaby Email Delivery and Management Service API
  *
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
  *
  * The version of the OpenAPI document: 1.1.0
  * Contact: support@interserver.net
@@ -193,6 +193,16 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
     private function getOpenAPINullablesSetToNull(): array
     {
         return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Setter - Array of nullable field names deliberately set to null
+     *
+     * @param boolean[] $openAPINullablesSetToNull
+     */
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    {
+        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
 
     /**
@@ -520,11 +530,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-
         $this->container['id'] = $id;
 
         return $this;
@@ -549,11 +557,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setId($id)
     {
-
         if (is_null($id)) {
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-
         $this->container['id'] = $id;
 
         return $this;
@@ -578,11 +584,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFrom($from)
     {
-
         if (is_null($from)) {
             throw new \InvalidArgumentException('non-nullable from cannot be null');
         }
-
         $this->container['from'] = $from;
 
         return $this;
@@ -607,11 +611,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTo($to)
     {
-
         if (is_null($to)) {
             throw new \InvalidArgumentException('non-nullable to cannot be null');
         }
-
         $this->container['to'] = $to;
 
         return $this;
@@ -636,11 +638,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSubject($subject)
     {
-
         if (is_null($subject)) {
             throw new \InvalidArgumentException('non-nullable subject cannot be null');
         }
-
         $this->container['subject'] = $subject;
 
         return $this;
@@ -665,11 +665,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreated($created)
     {
-
         if (is_null($created)) {
             throw new \InvalidArgumentException('non-nullable created cannot be null');
         }
-
         $this->container['created'] = $created;
 
         return $this;
@@ -694,11 +692,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTime($time)
     {
-
         if (is_null($time)) {
             throw new \InvalidArgumentException('non-nullable time cannot be null');
         }
-
         $this->container['time'] = $time;
 
         return $this;
@@ -723,11 +719,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUser($user)
     {
-
         if (is_null($user)) {
             throw new \InvalidArgumentException('non-nullable user cannot be null');
         }
-
         $this->container['user'] = $user;
 
         return $this;
@@ -752,11 +746,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTranstype($transtype)
     {
-
         if (is_null($transtype)) {
             throw new \InvalidArgumentException('non-nullable transtype cannot be null');
         }
-
         $this->container['transtype'] = $transtype;
 
         return $this;
@@ -781,11 +773,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOrigin($origin)
     {
-
         if (is_null($origin)) {
             throw new \InvalidArgumentException('non-nullable origin cannot be null');
         }
-
         $this->container['origin'] = $origin;
 
         return $this;
@@ -810,11 +800,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setInterface($interface)
     {
-
         if (is_null($interface)) {
             throw new \InvalidArgumentException('non-nullable interface cannot be null');
         }
-
         $this->container['interface'] = $interface;
 
         return $this;
@@ -839,11 +827,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSendingZone($sendingZone)
     {
-
         if (is_null($sendingZone)) {
             throw new \InvalidArgumentException('non-nullable sendingZone cannot be null');
         }
-
         $this->container['sendingZone'] = $sendingZone;
 
         return $this;
@@ -868,11 +854,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBodySize($bodySize)
     {
-
         if (is_null($bodySize)) {
             throw new \InvalidArgumentException('non-nullable bodySize cannot be null');
         }
-
         $this->container['bodySize'] = $bodySize;
 
         return $this;
@@ -897,11 +881,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSeq($seq)
     {
-
         if (is_null($seq)) {
             throw new \InvalidArgumentException('non-nullable seq cannot be null');
         }
-
         $this->container['seq'] = $seq;
 
         return $this;
@@ -926,11 +908,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRecipient($recipient)
     {
-
         if (is_null($recipient)) {
             throw new \InvalidArgumentException('non-nullable recipient cannot be null');
         }
-
         $this->container['recipient'] = $recipient;
 
         return $this;
@@ -955,11 +935,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDomain($domain)
     {
-
         if (is_null($domain)) {
             throw new \InvalidArgumentException('non-nullable domain cannot be null');
         }
-
         $this->container['domain'] = $domain;
 
         return $this;
@@ -984,11 +962,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLocked($locked)
     {
-
         if (is_null($locked)) {
             throw new \InvalidArgumentException('non-nullable locked cannot be null');
         }
-
         $this->container['locked'] = $locked;
 
         return $this;
@@ -1013,11 +989,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLockTime($lockTime)
     {
-
         if (is_null($lockTime)) {
             throw new \InvalidArgumentException('non-nullable lockTime cannot be null');
         }
-
         $this->container['lockTime'] = $lockTime;
 
         return $this;
@@ -1042,11 +1016,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAssigned($assigned)
     {
-
         if (is_null($assigned)) {
             throw new \InvalidArgumentException('non-nullable assigned cannot be null');
         }
-
         $this->container['assigned'] = $assigned;
 
         return $this;
@@ -1071,11 +1043,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setQueued($queued)
     {
-
         if (is_null($queued)) {
             throw new \InvalidArgumentException('non-nullable queued cannot be null');
         }
-
         $this->container['queued'] = $queued;
 
         return $this;
@@ -1100,11 +1070,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMxHostname($mxHostname)
     {
-
         if (is_null($mxHostname)) {
             throw new \InvalidArgumentException('non-nullable mxHostname cannot be null');
         }
-
         $this->container['mxHostname'] = $mxHostname;
 
         return $this;
@@ -1129,11 +1097,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setResponse($response)
     {
-
         if (is_null($response)) {
             throw new \InvalidArgumentException('non-nullable response cannot be null');
         }
-
         $this->container['response'] = $response;
 
         return $this;
@@ -1158,11 +1124,9 @@ class MailLogEntry implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMessageId($messageId)
     {
-
         if (is_null($messageId)) {
             throw new \InvalidArgumentException('non-nullable messageId cannot be null');
         }
-
         $this->container['messageId'] = $messageId;
 
         return $this;

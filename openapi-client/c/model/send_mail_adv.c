@@ -8,7 +8,7 @@
 send_mail_adv_t *send_mail_adv_create(
     char *subject,
     char *body,
-    send_mail_adv_from_t *from,
+    email_address_name_t *from,
     list_t *to,
     list_t *replyto,
     list_t *cc,
@@ -48,40 +48,40 @@ void send_mail_adv_free(send_mail_adv_t *send_mail_adv) {
         send_mail_adv->body = NULL;
     }
     if (send_mail_adv->from) {
-        send_mail_adv_from_free(send_mail_adv->from);
+        email_address_name_free(send_mail_adv->from);
         send_mail_adv->from = NULL;
     }
     if (send_mail_adv->to) {
         list_ForEach(listEntry, send_mail_adv->to) {
-            send_mail_adv_to_inner_free(listEntry->data);
+            email_address_name_free(listEntry->data);
         }
         list_freeList(send_mail_adv->to);
         send_mail_adv->to = NULL;
     }
     if (send_mail_adv->replyto) {
         list_ForEach(listEntry, send_mail_adv->replyto) {
-            send_mail_adv_replyto_inner_free(listEntry->data);
+            email_address_name_free(listEntry->data);
         }
         list_freeList(send_mail_adv->replyto);
         send_mail_adv->replyto = NULL;
     }
     if (send_mail_adv->cc) {
         list_ForEach(listEntry, send_mail_adv->cc) {
-            send_mail_adv_cc_inner_free(listEntry->data);
+            email_address_name_free(listEntry->data);
         }
         list_freeList(send_mail_adv->cc);
         send_mail_adv->cc = NULL;
     }
     if (send_mail_adv->bcc) {
         list_ForEach(listEntry, send_mail_adv->bcc) {
-            send_mail_adv_bcc_inner_free(listEntry->data);
+            email_address_name_free(listEntry->data);
         }
         list_freeList(send_mail_adv->bcc);
         send_mail_adv->bcc = NULL;
     }
     if (send_mail_adv->attachments) {
         list_ForEach(listEntry, send_mail_adv->attachments) {
-            send_mail_adv_attachments_inner_free(listEntry->data);
+            mail_attachment_free(listEntry->data);
         }
         list_freeList(send_mail_adv->attachments);
         send_mail_adv->attachments = NULL;
@@ -114,7 +114,7 @@ cJSON *send_mail_adv_convertToJSON(send_mail_adv_t *send_mail_adv) {
     if (!send_mail_adv->from) {
         goto fail;
     }
-    cJSON *from_local_JSON = send_mail_adv_from_convertToJSON(send_mail_adv->from);
+    cJSON *from_local_JSON = email_address_name_convertToJSON(send_mail_adv->from);
     if(from_local_JSON == NULL) {
     goto fail; //model
     }
@@ -136,7 +136,7 @@ cJSON *send_mail_adv_convertToJSON(send_mail_adv_t *send_mail_adv) {
     listEntry_t *toListEntry;
     if (send_mail_adv->to) {
     list_ForEach(toListEntry, send_mail_adv->to) {
-    cJSON *itemLocal = send_mail_adv_to_inner_convertToJSON(toListEntry->data);
+    cJSON *itemLocal = email_address_name_convertToJSON(toListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -155,7 +155,7 @@ cJSON *send_mail_adv_convertToJSON(send_mail_adv_t *send_mail_adv) {
     listEntry_t *replytoListEntry;
     if (send_mail_adv->replyto) {
     list_ForEach(replytoListEntry, send_mail_adv->replyto) {
-    cJSON *itemLocal = send_mail_adv_replyto_inner_convertToJSON(replytoListEntry->data);
+    cJSON *itemLocal = email_address_name_convertToJSON(replytoListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -175,7 +175,7 @@ cJSON *send_mail_adv_convertToJSON(send_mail_adv_t *send_mail_adv) {
     listEntry_t *ccListEntry;
     if (send_mail_adv->cc) {
     list_ForEach(ccListEntry, send_mail_adv->cc) {
-    cJSON *itemLocal = send_mail_adv_cc_inner_convertToJSON(ccListEntry->data);
+    cJSON *itemLocal = email_address_name_convertToJSON(ccListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -195,7 +195,7 @@ cJSON *send_mail_adv_convertToJSON(send_mail_adv_t *send_mail_adv) {
     listEntry_t *bccListEntry;
     if (send_mail_adv->bcc) {
     list_ForEach(bccListEntry, send_mail_adv->bcc) {
-    cJSON *itemLocal = send_mail_adv_bcc_inner_convertToJSON(bccListEntry->data);
+    cJSON *itemLocal = email_address_name_convertToJSON(bccListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -215,7 +215,7 @@ cJSON *send_mail_adv_convertToJSON(send_mail_adv_t *send_mail_adv) {
     listEntry_t *attachmentsListEntry;
     if (send_mail_adv->attachments) {
     list_ForEach(attachmentsListEntry, send_mail_adv->attachments) {
-    cJSON *itemLocal = send_mail_adv_attachments_inner_convertToJSON(attachmentsListEntry->data);
+    cJSON *itemLocal = mail_attachment_convertToJSON(attachmentsListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -245,7 +245,7 @@ send_mail_adv_t *send_mail_adv_parseFromJSON(cJSON *send_mail_advJSON){
     send_mail_adv_t *send_mail_adv_local_var = NULL;
 
     // define the local variable for send_mail_adv->from
-    send_mail_adv_from_t *from_local_nonprim = NULL;
+    email_address_name_t *from_local_nonprim = NULL;
 
     // define the local list for send_mail_adv->to
     list_t *toList = NULL;
@@ -293,7 +293,7 @@ send_mail_adv_t *send_mail_adv_parseFromJSON(cJSON *send_mail_advJSON){
     }
 
     
-    from_local_nonprim = send_mail_adv_from_parseFromJSON(from); //nonprimitive
+    from_local_nonprim = email_address_name_parseFromJSON(from); //nonprimitive
 
     // send_mail_adv->to
     cJSON *to = cJSON_GetObjectItemCaseSensitive(send_mail_advJSON, "to");
@@ -314,7 +314,7 @@ send_mail_adv_t *send_mail_adv_parseFromJSON(cJSON *send_mail_advJSON){
         if(!cJSON_IsObject(to_local_nonprimitive)){
             goto end;
         }
-        send_mail_adv_to_inner_t *toItem = send_mail_adv_to_inner_parseFromJSON(to_local_nonprimitive);
+        email_address_name_t *toItem = email_address_name_parseFromJSON(to_local_nonprimitive);
 
         list_addElement(toList, toItem);
     }
@@ -334,7 +334,7 @@ send_mail_adv_t *send_mail_adv_parseFromJSON(cJSON *send_mail_advJSON){
         if(!cJSON_IsObject(replyto_local_nonprimitive)){
             goto end;
         }
-        send_mail_adv_replyto_inner_t *replytoItem = send_mail_adv_replyto_inner_parseFromJSON(replyto_local_nonprimitive);
+        email_address_name_t *replytoItem = email_address_name_parseFromJSON(replyto_local_nonprimitive);
 
         list_addElement(replytoList, replytoItem);
     }
@@ -355,7 +355,7 @@ send_mail_adv_t *send_mail_adv_parseFromJSON(cJSON *send_mail_advJSON){
         if(!cJSON_IsObject(cc_local_nonprimitive)){
             goto end;
         }
-        send_mail_adv_cc_inner_t *ccItem = send_mail_adv_cc_inner_parseFromJSON(cc_local_nonprimitive);
+        email_address_name_t *ccItem = email_address_name_parseFromJSON(cc_local_nonprimitive);
 
         list_addElement(ccList, ccItem);
     }
@@ -376,7 +376,7 @@ send_mail_adv_t *send_mail_adv_parseFromJSON(cJSON *send_mail_advJSON){
         if(!cJSON_IsObject(bcc_local_nonprimitive)){
             goto end;
         }
-        send_mail_adv_bcc_inner_t *bccItem = send_mail_adv_bcc_inner_parseFromJSON(bcc_local_nonprimitive);
+        email_address_name_t *bccItem = email_address_name_parseFromJSON(bcc_local_nonprimitive);
 
         list_addElement(bccList, bccItem);
     }
@@ -397,7 +397,7 @@ send_mail_adv_t *send_mail_adv_parseFromJSON(cJSON *send_mail_advJSON){
         if(!cJSON_IsObject(attachments_local_nonprimitive)){
             goto end;
         }
-        send_mail_adv_attachments_inner_t *attachmentsItem = send_mail_adv_attachments_inner_parseFromJSON(attachments_local_nonprimitive);
+        mail_attachment_t *attachmentsItem = mail_attachment_parseFromJSON(attachments_local_nonprimitive);
 
         list_addElement(attachmentsList, attachmentsItem);
     }
@@ -428,13 +428,13 @@ send_mail_adv_t *send_mail_adv_parseFromJSON(cJSON *send_mail_advJSON){
     return send_mail_adv_local_var;
 end:
     if (from_local_nonprim) {
-        send_mail_adv_from_free(from_local_nonprim);
+        email_address_name_free(from_local_nonprim);
         from_local_nonprim = NULL;
     }
     if (toList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, toList) {
-            send_mail_adv_to_inner_free(listEntry->data);
+            email_address_name_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(toList);
@@ -443,7 +443,7 @@ end:
     if (replytoList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, replytoList) {
-            send_mail_adv_replyto_inner_free(listEntry->data);
+            email_address_name_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(replytoList);
@@ -452,7 +452,7 @@ end:
     if (ccList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, ccList) {
-            send_mail_adv_cc_inner_free(listEntry->data);
+            email_address_name_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(ccList);
@@ -461,7 +461,7 @@ end:
     if (bccList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, bccList) {
-            send_mail_adv_bcc_inner_free(listEntry->data);
+            email_address_name_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(bccList);
@@ -470,7 +470,7 @@ end:
     if (attachmentsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, attachmentsList) {
-            send_mail_adv_attachments_inner_free(listEntry->data);
+            mail_attachment_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(attachmentsList);

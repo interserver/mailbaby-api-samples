@@ -1,6 +1,6 @@
-# MailBaby Email Delivery API
+# MailBaby Email Delivery and Management Service API
 #
-# **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**   # 📌 Overview  This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).   # 🔐 Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.  We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+# **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 #
 # OpenAPI spec version: 1.1.0
 # Contact: support@interserver.net
@@ -117,41 +117,41 @@ SendMailAdv <- R6::R6Class(
         self$`body` <- SendMailAdvObject$`body`
       }
       if (!is.null(SendMailAdvObject$`from`)) {
-        fromObject <- SendMailAdvFrom$new()
+        fromObject <- EmailAddressName$new()
         fromObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$from, auto_unbox = TRUE))
         self$`from` <- fromObject
       }
       if (!is.null(SendMailAdvObject$`to`)) {
         self$`to` <- lapply(SendMailAdvObject$`to`, function(x) {
-          toObject <- SendMailAdvTo$new()
+          toObject <- EmailAddressName$new()
           toObject$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE))
           toObject
         })
       }
       if (!is.null(SendMailAdvObject$`replyto`)) {
         self$`replyto` <- lapply(SendMailAdvObject$`replyto`, function(x) {
-          replytoObject <- SendMailAdvReplyto$new()
+          replytoObject <- EmailAddressName$new()
           replytoObject$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE))
           replytoObject
         })
       }
       if (!is.null(SendMailAdvObject$`cc`)) {
         self$`cc` <- lapply(SendMailAdvObject$`cc`, function(x) {
-          ccObject <- SendMailAdvCc$new()
+          ccObject <- EmailAddressName$new()
           ccObject$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE))
           ccObject
         })
       }
       if (!is.null(SendMailAdvObject$`bcc`)) {
         self$`bcc` <- lapply(SendMailAdvObject$`bcc`, function(x) {
-          bccObject <- SendMailAdvBcc$new()
+          bccObject <- EmailAddressName$new()
           bccObject$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE))
           bccObject
         })
       }
       if (!is.null(SendMailAdvObject$`attachments`)) {
         self$`attachments` <- lapply(SendMailAdvObject$`attachments`, function(x) {
-          attachmentsObject <- SendMailAdvAttachments$new()
+          attachmentsObject <- MailAttachment$new()
           attachmentsObject$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE))
           attachmentsObject
         })
@@ -188,13 +188,13 @@ SendMailAdv <- R6::R6Class(
       SendMailAdvObject <- jsonlite::fromJSON(SendMailAdvJson)
       self$`subject` <- SendMailAdvObject$`subject`
       self$`body` <- SendMailAdvObject$`body`
-      SendMailAdvFromObject <- SendMailAdvFrom$new()
-      self$`from` <- SendMailAdvFromObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$from, auto_unbox = TRUE))
-      self$`to` <- lapply(SendMailAdvObject$`to`, function(x) SendMailAdvTo$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self$`replyto` <- lapply(SendMailAdvObject$`replyto`, function(x) SendMailAdvReplyto$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self$`cc` <- lapply(SendMailAdvObject$`cc`, function(x) SendMailAdvCc$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self$`bcc` <- lapply(SendMailAdvObject$`bcc`, function(x) SendMailAdvBcc$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
-      self$`attachments` <- lapply(SendMailAdvObject$`attachments`, function(x) SendMailAdvAttachments$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
+      EmailAddressNameObject <- EmailAddressName$new()
+      self$`from` <- EmailAddressNameObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$from, auto_unbox = TRUE))
+      self$`to` <- lapply(SendMailAdvObject$`to`, function(x) EmailAddressName$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
+      self$`replyto` <- lapply(SendMailAdvObject$`replyto`, function(x) EmailAddressName$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
+      self$`cc` <- lapply(SendMailAdvObject$`cc`, function(x) EmailAddressName$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
+      self$`bcc` <- lapply(SendMailAdvObject$`bcc`, function(x) EmailAddressName$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
+      self$`attachments` <- lapply(SendMailAdvObject$`attachments`, function(x) MailAttachment$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
       self$`id` <- SendMailAdvObject$`id`
     }
   )

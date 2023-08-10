@@ -1,0 +1,13 @@
+## SendingApi
+
+### Sends an Email with Advanced Options
+# @name sendAdvMail
+POST https://api.mailbaby.net/mail/advsend
+Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
+
+### Sends an Email
+# @name sendMail
+POST https://api.mailbaby.net/mail/send
+Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json

@@ -1,0 +1,52 @@
+[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
+[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
+[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: swift-combine (client)
+[main] INFO  o.o.codegen.DefaultGenerator - Generator 'swift-combine' is considered stable.
+[main] INFO  o.o.c.l.SwiftCombineClientCodegen - Environment variable SWIFT_POST_PROCESS_FILE not defined so the Swift code may not be properly formatted. To define it, try 'export SWIFT_POST_PROCESS_FILE=/usr/local/bin/swiftformat' (Linux/Mac)
+[main] INFO  o.o.c.l.SwiftCombineClientCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getMailOrders_401_response. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getStats_200_response_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
+[main] WARN  o.o.c.l.SwiftCombineClientCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+[main] WARN  o.o.c.l.SwiftCombineClientCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+[main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressName (marked as unused due to form parameters) is generated due to the global property `skipFormModel` set to false
+[main] INFO  o.o.codegen.DefaultGenerator - Model MailAttachment (marked as unused due to form parameters) is generated due to the global property `skipFormModel` set to false
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/DenyRuleNew.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/DenyRuleRecord.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/EmailAddress.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/EmailAddressName.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/GenericResponse.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/GetMailOrders401Response.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/GetStats200ResponseInner.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailAttachment.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailBlockClickHouse.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailBlockRspamd.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailBlocks.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailLog.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailLogEntry.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailOrder.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/SendMail.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/SendMailAdv.swift
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
+[main] WARN  o.o.c.l.SwiftCombineClientCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+[main] WARN  o.o.c.l.SwiftCombineClientCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/APIs/BlockingAPI.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/APIs/HistoryAPI.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/APIs/SendingAPI.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/APIs/ServicesAPI.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/APIs/StatusAPI.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Package.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPITransport/Package.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPITransport/Sources/OpenAPITransport.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Private/OpenISO8601DateFormatter.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Private/AnyDecodable.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/.openapi-generator/VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/.openapi-generator/FILES
+################################################################################
+# Thanks for using OpenAPI Generator.                                          #
+# swift combine generator is contributed by @dydus0x14 and @ptiz.          #
+################################################################################

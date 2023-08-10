@@ -1,0 +1,9 @@
+## HistoryApi
+
+### displays a list of blocked email addresses
+# @name getStats
+GET https://api.mailbaby.net/mail/stats
+
+### displays the mail log
+# @name viewMailLog
+GET https://api.mailbaby.net/mail/log

@@ -1,0 +1,5 @@
+## StatusApi
+
+### Checks if the server is running
+# @name pingServer
+GET https://api.mailbaby.net/ping

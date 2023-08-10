@@ -1,0 +1,2 @@
+testCase,httpStatusCode,id,origin,mx,from,to,subject,mailid,skip,limit,startDate,endDate
+Success,200,0,0,0,0,0,0,0,0,0,0,0

@@ -1,0 +1,7 @@
+.openapi-generator-ignore
+Apis/BlockingApi.http
+Apis/HistoryApi.http
+Apis/SendingApi.http
+Apis/ServicesApi.http
+Apis/StatusApi.http
+README.md

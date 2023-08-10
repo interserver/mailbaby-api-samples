@@ -1,0 +1,25 @@
+## BlockingApi
+
+### Creates a new email deny rule.
+# @name addRule
+POST https://api.mailbaby.net/mail/rules
+Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
+
+### Removes an deny mail rule.
+# @name deleteRule
+DELETE https://api.mailbaby.net/mail/rules/{{ruleId}}
+
+### Removes an email address from the blocked list
+# @name delistBlock
+POST https://api.mailbaby.net/mail/blocks/delete
+Content-Type: application/json
+Content-Type: multipart/form-data
+
+### displays a list of blocked email addresses
+# @name getMailBlocks
+GET https://api.mailbaby.net/mail/blocks
+
+### Displays a listing of deny email rules.
+# @name getRules
+GET https://api.mailbaby.net/mail/rules

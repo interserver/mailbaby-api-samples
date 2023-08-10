@@ -1,0 +1,85 @@
+# HistoryApi
+
+All URIs are relative to **
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getStats**](HistoryApi.md#getStats) | **GET** /mail/stats | displays a list of blocked email addresses
+[**viewMailLog**](HistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
+
+
+
+## getStats
+
+displays a list of blocked email addresses
+
+### Example
+
+```bash
+ getStats
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**array[GetStats200ResponseInner]**](GetStats200ResponseInner.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## viewMailLog
+
+displays the mail log
+
+Get a listing of the emails sent through this system
+
+### Example
+
+```bash
+ viewMailLog  id=value  origin=value  mx=value  from=value  to=value  subject=value  mailid=value  skip=value  limit=value  startDate=value  endDate=value
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **integer** | The ID of your mail order this will be sent through. | [optional] [default to null]
+ **origin** | **string** | originating ip address sending mail | [optional] [default to null]
+ **mx** | **string** | mx record mail was sent to | [optional] [default to null]
+ **from** | **string** | from email address | [optional] [default to null]
+ **to** | **string** | to/destination email address | [optional] [default to null]
+ **subject** | **string** | subject containing this string | [optional] [default to null]
+ **mailid** | **string** | mail id | [optional] [default to null]
+ **skip** | **integer** | number of records to skip for pagination | [optional] [default to 0]
+ **limit** | **integer** | maximum number of records to return | [optional] [default to 100]
+ **startDate** | **integer** | earliest date to get emails in unix timestamp format | [optional] [default to null]
+ **endDate** | **integer** | earliest date to get emails in unix timestamp format | [optional] [default to null]
+
+### Return type
+
+[**MailLog**](MailLog.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

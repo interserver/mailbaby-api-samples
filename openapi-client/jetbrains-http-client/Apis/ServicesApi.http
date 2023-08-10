@@ -1,0 +1,5 @@
+## ServicesApi
+
+### displays a list of mail service orders
+# @name getMailOrders
+GET https://api.mailbaby.net/mail

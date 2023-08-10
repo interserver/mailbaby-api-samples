@@ -1,0 +1,147 @@
+[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
+[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
+[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: xojo-client (client)
+[main] INFO  o.o.codegen.DefaultGenerator - Generator 'xojo-client' is considered stable.
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getMailOrders_401_response. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getStats_200_response_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'interface' to 'Escapedinterface'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'interface' to 'Escapedinterface'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'interface' to 'Escapedinterface'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'interface' to 'Escapedinterface'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'interface' to 'Escapedinterface'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressName (marked as unused due to form parameters) is generated due to the global property `skipFormModel` set to false
+[main] INFO  o.o.codegen.DefaultGenerator - Model MailAttachment (marked as unused due to form parameters) is generated due to the global property `skipFormModel` set to false
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/DenyRuleNew.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/DenyRuleNewOptional.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/DenyRuleRecord.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/DenyRuleRecordOptional.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/EmailAddress.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/EmailAddressOptional.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/EmailAddressName.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/EmailAddressNameOptional.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/GenericResponse.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/GenericResponseOptional.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/GetMailOrders401Response.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/GetMailOrders401ResponseOptional.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/GetStats200ResponseInner.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/GetStats200ResponseInnerOptional.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/MailAttachment.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/MailAttachmentOptional.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/MailBlockClickHouse.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/MailBlockClickHouseOptional.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/MailBlockRspamd.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/MailBlockRspamdOptional.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/MailBlocks.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/MailBlocksOptional.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/MailLog.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/MailLogOptional.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/MailLogEntry.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/MailLogEntryOptional.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/MailOrder.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/MailOrderOptional.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/SendMail.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/SendMailOptional.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/SendMailAdv.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models/SendMailAdvOptional.xojo_code
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - Escaping word 'to' to 'Escapedto'. This will likely cause issues at runtime!
+[main] WARN  o.o.c.languages.XojoClientCodegen - To (reserved word) cannot be used as model name. Renamed to ModelTo
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] WARN  o.o.c.languages.XojoClientCodegen - Array (reserved word) cannot be used as model name. Renamed to ModelArray
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/APIs/BlockingApi.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/APIs/BlockingApiCallbackHandler.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/APIs/HistoryApi.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/APIs/HistoryApiCallbackHandler.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/APIs/SendingApi.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/APIs/SendingApiCallbackHandler.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/APIs/ServicesApi.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/APIs/ServicesApiCallbackHandler.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/APIs/StatusApi.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/APIs/StatusApiCallbackHandler.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/README.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/App.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/Build Automation.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/Mock.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/APIs.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/Models.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient.xojo_project
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient/OpenAPIClientException.xojo_code
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/OpenAPIClient.xojo_resources
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/.openapi-generator/VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/xojo-client/.openapi-generator/FILES
+################################################################################
+# Thanks for using OpenAPI Generator.                                          #
+# Please consider donation to help us maintain this project 🙏                 #
+# https://opencollective.com/openapi_generator/donate                          #
+#                                                                              #
+# xojo-client contributed by Christopher Kobusch (https://github.com/Topheee). #
+################################################################################

@@ -1,0 +1,79 @@
+(ns mail-baby-email-delivery-and-management-service-api.api.sending
+  (:require [mail-baby-email-delivery-and-management-service-api.core :refer [call-api check-required-params with-collection-format *api-context*]]
+            [clojure.spec.alpha :as s]
+            [spec-tools.core :as st]
+            [orchestra.core :refer [defn-spec]]
+            [mail-baby-email-delivery-and-management-service-api.specs.mail-blocks :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.email-address :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.deny-rule-new :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.mail-block-click-house :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.email-address-name :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.send-mail :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.mail-order :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.get-mail-orders-401-response :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.mail-log-entry :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.mail-attachment :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.generic-response :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.get-stats-200-response-inner :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.deny-rule-record :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.mail-block-rspamd :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.send-mail-adv :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.mail-log :refer :all]
+            )
+  (:import (java.io File)))
+
+
+(defn-spec send-adv-mail-with-http-info any?
+  "Sends an Email with Advanced Options
+  Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc."
+  ([subject string?, body string?, from email-address-name-spec, to (s/coll-of email-address-name-spec), ] (send-adv-mail-with-http-info subject body from to nil))
+  ([subject string?, body string?, from email-address-name-spec, to (s/coll-of email-address-name-spec), {:keys [replyto cc bcc attachments id]} (s/map-of keyword? any?)]
+   (check-required-params subject body from to)
+   (call-api "/mail/advsend" :post
+             {:path-params   {}
+              :header-params {}
+              :query-params  {}
+              :form-params   {"subject" subject "body" body "from" from "to" (with-collection-format to :csv) "replyto" (with-collection-format replyto :csv) "cc" (with-collection-format cc :csv) "bcc" (with-collection-format bcc :csv) "attachments" (with-collection-format attachments :csv) "id" id }
+              :content-types ["application/x-www-form-urlencoded" "application/json"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKeyAuth"]})))
+
+(defn-spec send-adv-mail generic-response-spec
+  "Sends an Email with Advanced Options
+  Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc."
+  ([subject string?, body string?, from email-address-name-spec, to (s/coll-of email-address-name-spec), ] (send-adv-mail subject body from to nil))
+  ([subject string?, body string?, from email-address-name-spec, to (s/coll-of email-address-name-spec), optional-params any?]
+   (let [res (:data (send-adv-mail-with-http-info subject body from to optional-params))]
+     (if (:decode-models *api-context*)
+        (st/decode generic-response-spec res st/string-transformer)
+        res))))
+
+
+(defn-spec send-mail-with-http-info any?
+  "Sends an Email
+  Sends an email through one of your mail orders.
+
+*Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead."
+  [to string?, from string?, subject string?, body string?]
+  (check-required-params to from subject body)
+  (call-api "/mail/send" :post
+            {:path-params   {}
+             :header-params {}
+             :query-params  {}
+             :form-params   {"to" to "from" from "subject" subject "body" body }
+             :content-types ["application/x-www-form-urlencoded" "application/json"]
+             :accepts       ["application/json"]
+             :auth-names    ["apiKeyAuth"]}))
+
+(defn-spec send-mail generic-response-spec
+  "Sends an Email
+  Sends an email through one of your mail orders.
+
+*Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead."
+  [to string?, from string?, subject string?, body string?]
+  (let [res (:data (send-mail-with-http-info to from subject body))]
+    (if (:decode-models *api-context*)
+       (st/decode generic-response-spec res st/string-transformer)
+       res)))
+
+

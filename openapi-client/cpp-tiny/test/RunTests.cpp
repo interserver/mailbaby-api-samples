@@ -3,17 +3,15 @@
 
 #include "DenyRuleRecordTest.cpp"
 
-#include "EmailAddressTest.cpp"
+#include "DenyRuleRecord_allOfTest.cpp"
 
-#include "EmailAddressNameTest.cpp"
+#include "EmailAddressTest.cpp"
 
 #include "GenericResponseTest.cpp"
 
 #include "GetMailOrders_401_responseTest.cpp"
 
 #include "GetStats_200_response_innerTest.cpp"
-
-#include "MailAttachmentTest.cpp"
 
 #include "MailBlockClickHouseTest.cpp"
 
@@ -50,30 +48,30 @@ void runTests(){
     
     
     
-    RUN_TEST(test_DenyRuleRecord_type_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_DenyRuleRecord_data_is_assigned_from_json);
-    
-    
     RUN_TEST(test_DenyRuleRecord_id_is_assigned_from_json);
     
     
     RUN_TEST(test_DenyRuleRecord_created_is_assigned_from_json);
     
     
+    RUN_TEST(test_DenyRuleRecord_type_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_DenyRuleRecord_data_is_assigned_from_json);
+    
+    
     RUN_TEST(test_DenyRuleRecord_user_is_assigned_from_json);
     
     
     
+    RUN_TEST(test_DenyRuleRecord_allOf_id_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_DenyRuleRecord_allOf_created_is_assigned_from_json);
+    
+    
+    
     RUN_TEST(test_EmailAddress_email_is_assigned_from_json);
-    
-    
-    
-    RUN_TEST(test_EmailAddressName_email_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_EmailAddressName_name_is_assigned_from_json);
     
     
     
@@ -104,13 +102,6 @@ void runTests(){
     
     
     RUN_TEST(test_GetStats_200_response_inner_comment_is_assigned_from_json);
-    
-    
-    
-    RUN_TEST(test_MailAttachment_filename_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_MailAttachment_data_is_assigned_from_json);
     
     
     
@@ -274,30 +265,30 @@ void runTests(){
     
     
     
-    RUN_TEST(test_DenyRuleRecord_type_is_converted_to_json);
-    
-    
-    RUN_TEST(test_DenyRuleRecord_data_is_converted_to_json);
-    
-    
     RUN_TEST(test_DenyRuleRecord_id_is_converted_to_json);
     
     
     RUN_TEST(test_DenyRuleRecord_created_is_converted_to_json);
     
     
+    RUN_TEST(test_DenyRuleRecord_type_is_converted_to_json);
+    
+    
+    RUN_TEST(test_DenyRuleRecord_data_is_converted_to_json);
+    
+    
     RUN_TEST(test_DenyRuleRecord_user_is_converted_to_json);
     
     
     
+    RUN_TEST(test_DenyRuleRecord_allOf_id_is_converted_to_json);
+    
+    
+    RUN_TEST(test_DenyRuleRecord_allOf_created_is_converted_to_json);
+    
+    
+    
     RUN_TEST(test_EmailAddress_email_is_converted_to_json);
-    
-    
-    
-    RUN_TEST(test_EmailAddressName_email_is_converted_to_json);
-    
-    
-    RUN_TEST(test_EmailAddressName_name_is_converted_to_json);
     
     
     
@@ -328,13 +319,6 @@ void runTests(){
     
     
     RUN_TEST(test_GetStats_200_response_inner_comment_is_converted_to_json);
-    
-    
-    
-    RUN_TEST(test_MailAttachment_filename_is_converted_to_json);
-    
-    
-    RUN_TEST(test_MailAttachment_data_is_converted_to_json);
     
     
     

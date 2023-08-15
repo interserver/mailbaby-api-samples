@@ -50,15 +50,15 @@ type APIClient struct {
 
 	// API Services
 
-	BlockingAPI *BlockingAPIService
+	BlockingApi *BlockingApiService
 
-	HistoryAPI *HistoryAPIService
+	HistoryApi *HistoryApiService
 
-	SendingAPI *SendingAPIService
+	SendingApi *SendingApiService
 
-	ServicesAPI *ServicesAPIService
+	ServicesApi *ServicesApiService
 
-	StatusAPI *StatusAPIService
+	StatusApi *StatusApiService
 }
 
 type service struct {
@@ -77,11 +77,11 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.BlockingAPI = (*BlockingAPIService)(&c.common)
-	c.HistoryAPI = (*HistoryAPIService)(&c.common)
-	c.SendingAPI = (*SendingAPIService)(&c.common)
-	c.ServicesAPI = (*ServicesAPIService)(&c.common)
-	c.StatusAPI = (*StatusAPIService)(&c.common)
+	c.BlockingApi = (*BlockingApiService)(&c.common)
+	c.HistoryApi = (*HistoryApiService)(&c.common)
+	c.SendingApi = (*SendingApiService)(&c.common)
+	c.ServicesApi = (*ServicesApiService)(&c.common)
+	c.StatusApi = (*StatusApiService)(&c.common)
 
 	return c
 }
@@ -537,11 +537,7 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 	} else if jsonCheck.MatchString(contentType) {
 		err = json.NewEncoder(bodyBuf).Encode(body)
 	} else if xmlCheck.MatchString(contentType) {
-		var bs []byte
-		bs, err = xml.Marshal(body)
-		if err == nil {
-			bodyBuf.Write(bs)
-		}
+		err = xml.NewEncoder(bodyBuf).Encode(body)
 	}
 
 	if err != nil {

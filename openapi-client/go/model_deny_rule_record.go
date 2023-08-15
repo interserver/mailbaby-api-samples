@@ -21,28 +21,28 @@ var _ MappedNullable = &DenyRuleRecord{}
 
 // DenyRuleRecord The data for a email deny rule record.
 type DenyRuleRecord struct {
+	// The deny rule Id number.
+	Id int32 `json:"id"`
+	// the date the rule was created.
+	Created time.Time `json:"created"`
 	// Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
 	User *string `json:"user,omitempty"`
 	// The type of deny rule.
 	Type string `json:"type"`
 	// The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
 	Data string `json:"data"`
-	// The deny rule Id number.
-	Id int32 `json:"id"`
-	// the date the rule was created.
-	Created time.Time `json:"created"`
 }
 
 // NewDenyRuleRecord instantiates a new DenyRuleRecord object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDenyRuleRecord(type_ string, data string, id int32, created time.Time) *DenyRuleRecord {
+func NewDenyRuleRecord(id int32, created time.Time, type_ string, data string) *DenyRuleRecord {
 	this := DenyRuleRecord{}
-	this.Type = type_
-	this.Data = data
 	this.Id = id
 	this.Created = created
+	this.Type = type_
+	this.Data = data
 	return &this
 }
 
@@ -52,6 +52,54 @@ func NewDenyRuleRecord(type_ string, data string, id int32, created time.Time) *
 func NewDenyRuleRecordWithDefaults() *DenyRuleRecord {
 	this := DenyRuleRecord{}
 	return &this
+}
+
+// GetId returns the Id field value
+func (o *DenyRuleRecord) GetId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *DenyRuleRecord) GetIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *DenyRuleRecord) SetId(v int32) {
+	o.Id = v
+}
+
+// GetCreated returns the Created field value
+func (o *DenyRuleRecord) GetCreated() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *DenyRuleRecord) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
+// SetCreated sets field value
+func (o *DenyRuleRecord) SetCreated(v time.Time) {
+	o.Created = v
 }
 
 // GetUser returns the User field value if set, zero value otherwise.
@@ -134,54 +182,6 @@ func (o *DenyRuleRecord) SetData(v string) {
 	o.Data = v
 }
 
-// GetId returns the Id field value
-func (o *DenyRuleRecord) GetId() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *DenyRuleRecord) GetIdOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *DenyRuleRecord) SetId(v int32) {
-	o.Id = v
-}
-
-// GetCreated returns the Created field value
-func (o *DenyRuleRecord) GetCreated() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.Created
-}
-
-// GetCreatedOk returns a tuple with the Created field value
-// and a boolean to check if the value has been set.
-func (o *DenyRuleRecord) GetCreatedOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Created, true
-}
-
-// SetCreated sets field value
-func (o *DenyRuleRecord) SetCreated(v time.Time) {
-	o.Created = v
-}
-
 func (o DenyRuleRecord) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -192,13 +192,13 @@ func (o DenyRuleRecord) MarshalJSON() ([]byte, error) {
 
 func (o DenyRuleRecord) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
+	toSerialize["created"] = o.Created
 	if !IsNil(o.User) {
 		toSerialize["user"] = o.User
 	}
 	toSerialize["type"] = o.Type
 	toSerialize["data"] = o.Data
-	toSerialize["id"] = o.Id
-	toSerialize["created"] = o.Created
 	return toSerialize, nil
 }
 

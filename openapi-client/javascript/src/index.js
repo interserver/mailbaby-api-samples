@@ -15,12 +15,11 @@
 import ApiClient from './ApiClient';
 import DenyRuleNew from './model/DenyRuleNew';
 import DenyRuleRecord from './model/DenyRuleRecord';
+import DenyRuleRecordAllOf from './model/DenyRuleRecordAllOf';
 import EmailAddress from './model/EmailAddress';
-import EmailAddressName from './model/EmailAddressName';
 import GenericResponse from './model/GenericResponse';
 import GetMailOrders401Response from './model/GetMailOrders401Response';
 import GetStats200ResponseInner from './model/GetStats200ResponseInner';
-import MailAttachment from './model/MailAttachment';
 import MailBlockClickHouse from './model/MailBlockClickHouse';
 import MailBlockRspamd from './model/MailBlockRspamd';
 import MailBlocks from './model/MailBlocks';
@@ -87,16 +86,16 @@ export {
     DenyRuleRecord,
 
     /**
+     * The DenyRuleRecordAllOf model constructor.
+     * @property {module:model/DenyRuleRecordAllOf}
+     */
+    DenyRuleRecordAllOf,
+
+    /**
      * The EmailAddress model constructor.
      * @property {module:model/EmailAddress}
      */
     EmailAddress,
-
-    /**
-     * The EmailAddressName model constructor.
-     * @property {module:model/EmailAddressName}
-     */
-    EmailAddressName,
 
     /**
      * The GenericResponse model constructor.
@@ -115,12 +114,6 @@ export {
      * @property {module:model/GetStats200ResponseInner}
      */
     GetStats200ResponseInner,
-
-    /**
-     * The MailAttachment model constructor.
-     * @property {module:model/MailAttachment}
-     */
-    MailAttachment,
 
     /**
      * The MailBlockClickHouse model constructor.

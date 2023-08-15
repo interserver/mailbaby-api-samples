@@ -9,15 +9,12 @@ entity DenyRuleNew {
 }
 
 entity DenyRuleRecord {
+    * id: Integer
+    * created: Date
 }
 
 entity EmailAddress {
     email: String
-}
-
-entity EmailAddressName {
-    * email: String
-    name: String
 }
 
 entity GenericResponse {
@@ -36,11 +33,6 @@ entity GetStats200ResponseInner {
     * username: String
     password: String
     comment: String
-}
-
-entity MailAttachment {
-    * filename: String
-    * data: String
 }
 
 entity MailBlockClickHouse {

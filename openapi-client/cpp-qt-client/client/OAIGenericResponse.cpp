@@ -50,10 +50,10 @@ void OAIGenericResponse::fromJson(QString jsonString) {
 
 void OAIGenericResponse::fromJsonObject(QJsonObject json) {
 
-    m_status_isValid = ::OpenAPI::fromJsonValue(m_status, json[QString("status")]);
+    m_status_isValid = ::OpenAPI::fromJsonValue(status, json[QString("status")]);
     m_status_isSet = !json[QString("status")].isNull() && m_status_isValid;
 
-    m_text_isValid = ::OpenAPI::fromJsonValue(m_text, json[QString("text")]);
+    m_text_isValid = ::OpenAPI::fromJsonValue(text, json[QString("text")]);
     m_text_isSet = !json[QString("text")].isNull() && m_text_isValid;
 }
 
@@ -67,20 +67,20 @@ QString OAIGenericResponse::asJson() const {
 QJsonObject OAIGenericResponse::asJsonObject() const {
     QJsonObject obj;
     if (m_status_isSet) {
-        obj.insert(QString("status"), ::OpenAPI::toJsonValue(m_status));
+        obj.insert(QString("status"), ::OpenAPI::toJsonValue(status));
     }
     if (m_text_isSet) {
-        obj.insert(QString("text"), ::OpenAPI::toJsonValue(m_text));
+        obj.insert(QString("text"), ::OpenAPI::toJsonValue(text));
     }
     return obj;
 }
 
 QString OAIGenericResponse::getStatus() const {
-    return m_status;
+    return status;
 }
 void OAIGenericResponse::setStatus(const QString &status) {
-    m_status = status;
-    m_status_isSet = true;
+    this->status = status;
+    this->m_status_isSet = true;
 }
 
 bool OAIGenericResponse::is_status_Set() const{
@@ -92,11 +92,11 @@ bool OAIGenericResponse::is_status_Valid() const{
 }
 
 QString OAIGenericResponse::getText() const {
-    return m_text;
+    return text;
 }
 void OAIGenericResponse::setText(const QString &text) {
-    m_text = text;
-    m_text_isSet = true;
+    this->text = text;
+    this->m_text_isSet = true;
 }
 
 bool OAIGenericResponse::is_text_Set() const{

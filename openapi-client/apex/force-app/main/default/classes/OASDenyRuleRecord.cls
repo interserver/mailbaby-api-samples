@@ -13,7 +13,19 @@
 /**
  * The data for a email deny rule record.
  */
-public class OASDenyRuleRecord implements OASDenyRuleNew {
+public class OASDenyRuleRecord implements OASDenyRuleRecordAllOf, OASDenyRuleNew {
+    /**
+     * The deny rule Id number.
+     * @return id
+     */
+    public Integer id { get; set; }
+
+    /**
+     * the date the rule was created.
+     * @return created
+     */
+    public Datetime created { get; set; }
+
     /**
      * The type of deny rule.
      */
@@ -36,18 +48,6 @@ public class OASDenyRuleRecord implements OASDenyRuleNew {
     public String data { get; set; }
 
     /**
-     * The deny rule Id number.
-     * @return id
-     */
-    public Integer id { get; set; }
-
-    /**
-     * the date the rule was created.
-     * @return created
-     */
-    public Datetime created { get; set; }
-
-    /**
      * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      * @return user
      */
@@ -55,10 +55,10 @@ public class OASDenyRuleRecord implements OASDenyRuleNew {
 
     public static OASDenyRuleRecord getExample() {
         OASDenyRuleRecord denyRuleRecord = new OASDenyRuleRecord();
-          denyRuleRecord.type = TypeEnum.EMAIL;
-          denyRuleRecord.data = 'domeinwo@server.guesshost.net';
           denyRuleRecord.id = 41124;
           denyRuleRecord.created = Datetime.newInstanceGmt(2000, 1, 23, 4, 56, 7);
+          denyRuleRecord.type = TypeEnum.EMAIL;
+          denyRuleRecord.data = 'domeinwo@server.guesshost.net';
           denyRuleRecord.user = 'mb20682';
         return denyRuleRecord;
     }
@@ -66,10 +66,10 @@ public class OASDenyRuleRecord implements OASDenyRuleNew {
     public Boolean equals(Object obj) {
         if (obj instanceof OASDenyRuleRecord) {           
             OASDenyRuleRecord denyRuleRecord = (OASDenyRuleRecord) obj;
-            return this.type == denyRuleRecord.type
-                && this.data == denyRuleRecord.data
-                && this.id == denyRuleRecord.id
+            return this.id == denyRuleRecord.id
                 && this.created == denyRuleRecord.created
+                && this.type == denyRuleRecord.type
+                && this.data == denyRuleRecord.data
                 && this.user == denyRuleRecord.user;
         }
         return false;
@@ -77,10 +77,10 @@ public class OASDenyRuleRecord implements OASDenyRuleNew {
 
     public Integer hashCode() {
         Integer hashCode = 43;
-        hashCode = (17 * hashCode) + (type == null ? 0 : System.hashCode(type));
-        hashCode = (17 * hashCode) + (data == null ? 0 : System.hashCode(data));
         hashCode = (17 * hashCode) + (id == null ? 0 : System.hashCode(id));
         hashCode = (17 * hashCode) + (created == null ? 0 : System.hashCode(created));
+        hashCode = (17 * hashCode) + (type == null ? 0 : System.hashCode(type));
+        hashCode = (17 * hashCode) + (data == null ? 0 : System.hashCode(data));
         hashCode = (17 * hashCode) + (user == null ? 0 : System.hashCode(user));
         return hashCode;
     }

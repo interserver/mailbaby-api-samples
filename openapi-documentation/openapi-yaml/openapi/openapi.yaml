@@ -756,19 +756,7 @@ components:
       type: object
     DenyRuleRecord:
       allOf:
-      - properties:
-          id:
-            description: The deny rule Id number.
-            example: 41124
-            type: integer
-          created:
-            description: the date the rule was created.
-            format: date-time
-            type: string
-        required:
-        - created
-        - id
-        type: object
+      - $ref: '#/components/schemas/DenyRuleRecord_allOf'
       - $ref: '#/components/schemas/DenyRuleNew'
       description: The data for a email deny rule record.
       example:
@@ -1309,6 +1297,21 @@ components:
       - status
       - username
       type: object
+    DenyRuleRecord_allOf:
+      properties:
+        id:
+          description: The deny rule Id number.
+          example: 41124
+          type: integer
+        created:
+          description: the date the rule was created.
+          format: date-time
+          type: string
+      required:
+      - created
+      - id
+      type: object
+      example: null
   securitySchemes:
     apiKeyAuth:
       description: This authentication method uses a X-API-KEY HTTP header with the

@@ -154,12 +154,11 @@ Class | Method | HTTP request | Description
 
  - [MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleNew](docs/DenyRuleNew.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleRecordAllOf](docs/DenyRuleRecordAllOf.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddress](docs/EmailAddress.md)
- - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressName](docs/EmailAddressName.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.GenericResponse](docs/GenericResponse.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.GetMailOrders401Response](docs/GetMailOrders401Response.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
- - [MailBabyEmailDeliveryAndManagementServiceApi.MailAttachment](docs/MailAttachment.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.MailBlockClickHouse](docs/MailBlockClickHouse.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.MailBlockRspamd](docs/MailBlockRspamd.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.MailBlocks](docs/MailBlocks.md)

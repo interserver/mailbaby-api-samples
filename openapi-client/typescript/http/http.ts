@@ -33,13 +33,6 @@ export class HttpException extends Error {
  */
 export type RequestBody = undefined | string | FormData | URLSearchParams;
 
-function ensureAbsoluteUrl(url: string) {
-    if (url.startsWith("http://") || url.startsWith("https://")) {
-        return url;
-    }
-    return window.location.origin + url;
-}
-
 /**
  * Represents an HTTP request context
  */
@@ -55,7 +48,7 @@ export class RequestContext {
      * @param httpMethod http method
      */
     public constructor(url: string, private httpMethod: HttpMethod) {
-        this.url = new URL(ensureAbsoluteUrl(url));
+        this.url = new URL(url);
     }
 
     /*
@@ -73,7 +66,7 @@ export class RequestContext {
      *
      */
     public setUrl(url: string) {
-        this.url = new URL(ensureAbsoluteUrl(url));
+        this.url = new URL(url);
     }
 
     /**

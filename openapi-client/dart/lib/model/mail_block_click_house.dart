@@ -32,11 +32,11 @@ class MailBlockClickHouse {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is MailBlockClickHouse &&
-    other.date == date &&
-    other.from == from &&
-    other.messageId == messageId &&
-    other.subject == subject &&
-    other.to == to;
+     other.date == date &&
+     other.from == from &&
+     other.messageId == messageId &&
+     other.subject == subject &&
+     other.to == to;
 
   @override
   int get hashCode =>
@@ -79,7 +79,7 @@ class MailBlockClickHouse {
       }());
 
       return MailBlockClickHouse(
-        date: mapDateTime(json, r'date', r'')!,
+        date: mapDateTime(json, r'date', '')!,
         from: mapValueOfType<String>(json, r'from')!,
         messageId: mapValueOfType<String>(json, r'messageId')!,
         subject: mapValueOfType<String>(json, r'subject')!,

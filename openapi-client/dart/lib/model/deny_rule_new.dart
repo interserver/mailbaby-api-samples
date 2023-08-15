@@ -35,9 +35,9 @@ class DenyRuleNew {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DenyRuleNew &&
-    other.type == type &&
-    other.data == data &&
-    other.user == user;
+     other.type == type &&
+     other.data == data &&
+     other.user == user;
 
   @override
   int get hashCode =>

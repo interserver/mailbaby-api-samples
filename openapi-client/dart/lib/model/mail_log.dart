@@ -32,10 +32,10 @@ class MailLog {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is MailLog &&
-    other.total == total &&
-    other.skip == skip &&
-    other.limit == limit &&
-    _deepEquality.equals(other.emails, emails);
+     other.total == total &&
+     other.skip == skip &&
+     other.limit == limit &&
+     other.emails == emails;
 
   @override
   int get hashCode =>

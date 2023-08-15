@@ -57,7 +57,7 @@ class HistoryApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<GetStats200ResponseInner>') as List)
         .cast<GetStats200ResponseInner>()
-        .toList(growable: false);
+        .toList();
 
     }
     return null;

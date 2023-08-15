@@ -65,19 +65,19 @@ public:
 private:
     void initializeModel();
 
-    QString m_to;
+    QString to;
     bool m_to_isSet;
     bool m_to_isValid;
 
-    QString m_from;
+    QString from;
     bool m_from_isSet;
     bool m_from_isValid;
 
-    QString m_subject;
+    QString subject;
     bool m_subject_isSet;
     bool m_subject_isValid;
 
-    QString m_body;
+    QString body;
     bool m_body_isSet;
     bool m_body_isValid;
 };

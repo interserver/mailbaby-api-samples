@@ -4,12 +4,11 @@ HEADERS += \
 # Models
     $${PWD}/OAIDenyRuleNew.h \
     $${PWD}/OAIDenyRuleRecord.h \
+    $${PWD}/OAIDenyRuleRecord_allOf.h \
     $${PWD}/OAIEmailAddress.h \
-    $${PWD}/OAIEmailAddressName.h \
     $${PWD}/OAIGenericResponse.h \
     $${PWD}/OAIGetMailOrders_401_response.h \
     $${PWD}/OAIGetStats_200_response_inner.h \
-    $${PWD}/OAIMailAttachment.h \
     $${PWD}/OAIMailBlockClickHouse.h \
     $${PWD}/OAIMailBlockRspamd.h \
     $${PWD}/OAIMailBlocks.h \
@@ -38,12 +37,11 @@ SOURCES += \
 # Models
     $${PWD}/OAIDenyRuleNew.cpp \
     $${PWD}/OAIDenyRuleRecord.cpp \
+    $${PWD}/OAIDenyRuleRecord_allOf.cpp \
     $${PWD}/OAIEmailAddress.cpp \
-    $${PWD}/OAIEmailAddressName.cpp \
     $${PWD}/OAIGenericResponse.cpp \
     $${PWD}/OAIGetMailOrders_401_response.cpp \
     $${PWD}/OAIGetStats_200_response_inner.cpp \
-    $${PWD}/OAIMailAttachment.cpp \
     $${PWD}/OAIMailBlockClickHouse.cpp \
     $${PWD}/OAIMailBlockRspamd.cpp \
     $${PWD}/OAIMailBlocks.cpp \

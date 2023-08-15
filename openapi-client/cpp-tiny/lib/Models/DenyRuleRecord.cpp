@@ -6,10 +6,10 @@ using namespace Tiny;
 
 DenyRuleRecord::DenyRuleRecord()
 {
-	type = std::string();
-	data = std::string();
 	id = int(0);
 	created = std::string();
+	type = std::string();
+	data = std::string();
 	user = std::string();
 }
 
@@ -27,32 +27,6 @@ void
 DenyRuleRecord::fromJson(std::string jsonObj)
 {
     bourne::json object = bourne::json::parse(jsonObj);
-
-    const char *typeKey = "type";
-
-    if(object.has_key(typeKey))
-    {
-        bourne::json value = object[typeKey];
-
-
-
-        jsonToValue(&type, value, "std::string");
-
-
-    }
-
-    const char *dataKey = "data";
-
-    if(object.has_key(dataKey))
-    {
-        bourne::json value = object[dataKey];
-
-
-
-        jsonToValue(&data, value, "std::string");
-
-
-    }
 
     const char *idKey = "id";
 
@@ -76,6 +50,32 @@ DenyRuleRecord::fromJson(std::string jsonObj)
 
 
         jsonToValue(&created, value, "std::string");
+
+
+    }
+
+    const char *typeKey = "type";
+
+    if(object.has_key(typeKey))
+    {
+        bourne::json value = object[typeKey];
+
+
+
+        jsonToValue(&type, value, "std::string");
+
+
+    }
+
+    const char *dataKey = "data";
+
+    if(object.has_key(dataKey))
+    {
+        bourne::json value = object[dataKey];
+
+
+
+        jsonToValue(&data, value, "std::string");
 
 
     }
@@ -105,20 +105,6 @@ DenyRuleRecord::toJson()
 
 
 
-    object["type"] = getType();
-
-
-
-
-
-
-    object["data"] = getData();
-
-
-
-
-
-
     object["id"] = getId();
 
 
@@ -133,36 +119,26 @@ DenyRuleRecord::toJson()
 
 
 
+    object["type"] = getType();
+
+
+
+
+
+
+    object["data"] = getData();
+
+
+
+
+
+
     object["user"] = getUser();
 
 
 
     return object;
 
-}
-
-std::string
-DenyRuleRecord::getType()
-{
-	return type;
-}
-
-void
-DenyRuleRecord::setType(std::string  type)
-{
-	this->type = type;
-}
-
-std::string
-DenyRuleRecord::getData()
-{
-	return data;
-}
-
-void
-DenyRuleRecord::setData(std::string  data)
-{
-	this->data = data;
 }
 
 int
@@ -187,6 +163,30 @@ void
 DenyRuleRecord::setCreated(std::string  created)
 {
 	this->created = created;
+}
+
+std::string
+DenyRuleRecord::getType()
+{
+	return type;
+}
+
+void
+DenyRuleRecord::setType(std::string  type)
+{
+	this->type = type;
+}
+
+std::string
+DenyRuleRecord::getData()
+{
+	return data;
+}
+
+void
+DenyRuleRecord::setData(std::string  data)
+{
+	this->data = data;
 }
 
 std::string

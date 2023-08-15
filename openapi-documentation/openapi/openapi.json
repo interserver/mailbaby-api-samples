@@ -1037,20 +1037,7 @@
       },
       "DenyRuleRecord" : {
         "allOf" : [ {
-          "properties" : {
-            "id" : {
-              "description" : "The deny rule Id number.",
-              "example" : 41124,
-              "type" : "integer"
-            },
-            "created" : {
-              "description" : "the date the rule was created.",
-              "format" : "date-time",
-              "type" : "string"
-            }
-          },
-          "required" : [ "created", "id" ],
-          "type" : "object"
+          "$ref" : "#/components/schemas/DenyRuleRecord_allOf"
         }, {
           "$ref" : "#/components/schemas/DenyRuleNew"
         } ],
@@ -1607,6 +1594,23 @@
         },
         "required" : [ "id", "status", "username" ],
         "type" : "object"
+      },
+      "DenyRuleRecord_allOf" : {
+        "properties" : {
+          "id" : {
+            "description" : "The deny rule Id number.",
+            "example" : 41124,
+            "type" : "integer"
+          },
+          "created" : {
+            "description" : "the date the rule was created.",
+            "format" : "date-time",
+            "type" : "string"
+          }
+        },
+        "required" : [ "created", "id" ],
+        "type" : "object",
+        "example" : null
       }
     },
     "securitySchemes" : {

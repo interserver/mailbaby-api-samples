@@ -32,7 +32,7 @@ final api = Openapi().getServicesApi();
 try {
     final response = api.getMailOrders();
     print(response);
-} catch on DioException (e) {
+} catch on DioError (e) {
     print('Exception when calling ServicesApi->getMailOrders: $e\n');
 }
 ```

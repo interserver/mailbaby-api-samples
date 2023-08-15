@@ -160,95 +160,95 @@ public:
 private:
     void initializeModel();
 
-    qint32 m__id;
+    qint32 _id;
     bool m__id_isSet;
     bool m__id_isValid;
 
-    QString m_id;
+    QString id;
     bool m_id_isSet;
     bool m_id_isValid;
 
-    QString m_from;
+    QString from;
     bool m_from_isSet;
     bool m_from_isValid;
 
-    QString m_to;
+    QString to;
     bool m_to_isSet;
     bool m_to_isValid;
 
-    QString m_subject;
+    QString subject;
     bool m_subject_isSet;
     bool m_subject_isValid;
 
-    QString m_created;
+    QString created;
     bool m_created_isSet;
     bool m_created_isValid;
 
-    qint32 m_time;
+    qint32 time;
     bool m_time_isSet;
     bool m_time_isValid;
 
-    QString m_user;
+    QString user;
     bool m_user_isSet;
     bool m_user_isValid;
 
-    QString m_transtype;
+    QString transtype;
     bool m_transtype_isSet;
     bool m_transtype_isValid;
 
-    QString m_origin;
+    QString origin;
     bool m_origin_isSet;
     bool m_origin_isValid;
 
-    QString m_interface;
+    QString interface;
     bool m_interface_isSet;
     bool m_interface_isValid;
 
-    QString m_sending_zone;
+    QString sending_zone;
     bool m_sending_zone_isSet;
     bool m_sending_zone_isValid;
 
-    qint32 m_body_size;
+    qint32 body_size;
     bool m_body_size_isSet;
     bool m_body_size_isValid;
 
-    qint32 m_seq;
+    qint32 seq;
     bool m_seq_isSet;
     bool m_seq_isValid;
 
-    QString m_recipient;
+    QString recipient;
     bool m_recipient_isSet;
     bool m_recipient_isValid;
 
-    QString m_domain;
+    QString domain;
     bool m_domain_isSet;
     bool m_domain_isValid;
 
-    qint32 m_locked;
+    qint32 locked;
     bool m_locked_isSet;
     bool m_locked_isValid;
 
-    qint32 m_lock_time;
+    qint32 lock_time;
     bool m_lock_time_isSet;
     bool m_lock_time_isValid;
 
-    QString m_assigned;
+    QString assigned;
     bool m_assigned_isSet;
     bool m_assigned_isValid;
 
-    QString m_queued;
+    QString queued;
     bool m_queued_isSet;
     bool m_queued_isValid;
 
-    QString m_mx_hostname;
+    QString mx_hostname;
     bool m_mx_hostname_isSet;
     bool m_mx_hostname_isValid;
 
-    QString m_response;
+    QString response;
     bool m_response_isSet;
     bool m_response_isValid;
 
-    QString m_message_id;
+    QString message_id;
     bool m_message_id_isSet;
     bool m_message_id_isValid;
 };

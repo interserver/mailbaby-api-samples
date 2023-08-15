@@ -8,7 +8,6 @@
 #include "GetMailOrders_401_response.h"
 #include "GetStats_200_response_inner.h"
 #include "MailLog.h"
-#include <list>
 #include "Error.h"
 
 /** \defgroup Operations API Endpoints

@@ -4,19 +4,112 @@
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'csharp' is considered stable.
 [main] INFO  o.o.c.l.AbstractCSharpCodegen - Environment variable CSHARP_POST_PROCESS_FILE not defined so the C# code may not be properly formatted by uncrustify (0.66 or later) or other code formatter. To define it, try `export CSHARP_POST_PROCESS_FILE="/usr/local/bin/uncrustify --no-backup" && export UNCRUSTIFY_CONFIG=/path/to/uncrustify-rules.cfg` (Linux/Mac). Note: replace /path/to with the location of uncrustify-rules.cfg
 [main] INFO  o.o.c.l.AbstractCSharpCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
-[main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
-[main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
-[main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
-[main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
-[main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
-[main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
-[main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
-[main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
-[main] WARN  o.o.c.languages.CSharpClientCodegen - If using built-in templates, RestSharp only supports netstandard 2.0 or later.
-Exception in thread "main" java.lang.IllegalArgumentException: The input (v4.5) contains Invalid .NET framework version: v4.5. List of supported versions: netstandard1.3, netstandard1.4, netstandard1.5, netstandard1.6, netstandard2.0, netstandard2.1, net47, net48, net6.0, net7.0
-	at org.openapitools.codegen.languages.CSharpClientCodegen.processOpts(CSharpClientCodegen.java:795)
-	at org.openapitools.codegen.DefaultGenerator.configureGeneratorProperties(DefaultGenerator.java:255)
-	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:939)
-	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:511)
-	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
-	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)
+[main] INFO  o.o.c.languages.CSharpClientCodegen - Generating code for .NET Framework v4.5
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getMailOrders_401_response. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getStats_200_response_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as DenyRuleRecord_allOf. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
+[main] WARN  o.o.codegen.DefaultCodegen - allOf with multiple schemas defined. Using only the first one: DenyRuleRecord_allOf
+[main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressName not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
+[main] INFO  o.o.codegen.DefaultGenerator - Model MailAttachment not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Model/DenyRuleNew.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Model/DenyRuleNewTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/DenyRuleNew.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Model/DenyRuleRecord.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Model/DenyRuleRecordTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/DenyRuleRecord.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Model/DenyRuleRecordAllOf.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Model/DenyRuleRecordAllOfTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/DenyRuleRecordAllOf.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Model/EmailAddress.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Model/EmailAddressTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/EmailAddress.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Model/GenericResponse.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Model/GenericResponseTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/GenericResponse.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Model/GetMailOrders401Response.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Model/GetMailOrders401ResponseTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/GetMailOrders401Response.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Model/GetStats200ResponseInner.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Model/GetStats200ResponseInnerTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/GetStats200ResponseInner.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Model/MailBlockClickHouse.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Model/MailBlockClickHouseTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/MailBlockClickHouse.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Model/MailBlockRspamd.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Model/MailBlockRspamdTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/MailBlockRspamd.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Model/MailBlocks.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Model/MailBlocksTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/MailBlocks.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Model/MailLog.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Model/MailLogTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/MailLog.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Model/MailLogEntry.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Model/MailLogEntryTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/MailLogEntry.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Model/MailOrder.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Model/MailOrderTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/MailOrder.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Model/SendMail.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Model/SendMailTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/SendMail.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Model/SendMailAdv.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Model/SendMailAdvTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/SendMailAdv.md
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.DefaultCodegen - Multiple MediaTypes found, using only the first one
+[main] WARN  o.o.codegen.DefaultCodegen - allOf with multiple schemas defined. Using only the first one: DenyRuleRecord_allOf
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Api/BlockingApi.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Api/BlockingApiTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/BlockingApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Api/HistoryApi.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Api/HistoryApiTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/HistoryApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Api/SendingApi.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Api/SendingApiTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/SendingApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Api/ServicesApi.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Api/ServicesApiTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/ServicesApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Api/StatusApi.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Api/StatusApiTests.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/docs/StatusApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Client/IApiAccessor.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Client/Configuration.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Client/ApiClient.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Client/ApiException.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Client/ApiResponse.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Client/ExceptionFactory.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Client/OpenAPIDateConverter.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/build.bat
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/build.sh
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/packages.config
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/.travis.yml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Client/IReadableConfiguration.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Client/GlobalConfiguration.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/mono_nunit_test.sh
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/packages.config
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/README.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/git_push.sh
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/.gitignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Properties/AssemblyInfo.cs
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/Org.OpenAPITools.sln
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Org.OpenAPITools.csproj
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools/Org.OpenAPITools.nuspec
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/src/Org.OpenAPITools.Test/Org.OpenAPITools.Test.csproj
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/.openapi-generator/VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/csharp/.openapi-generator/FILES
+################################################################################
+# Thanks for using OpenAPI Generator.                                          #
+# Please consider donation to help us maintain this project 🙏                 #
+# https://opencollective.com/openapi_generator/donate                          #
+################################################################################

@@ -82,12 +82,11 @@ Category | Method | HTTP request | Description
 
  - [deny_rule_new_t](docs/deny_rule_new.md)
  - [deny_rule_record_t](docs/deny_rule_record.md)
+ - [deny_rule_record_all_of_t](docs/deny_rule_record_all_of.md)
  - [email_address_t](docs/email_address.md)
- - [email_address_name_t](docs/email_address_name.md)
  - [generic_response_t](docs/generic_response.md)
  - [get_mail_orders_401_response_t](docs/get_mail_orders_401_response.md)
  - [get_stats_200_response_inner_t](docs/get_stats_200_response_inner.md)
- - [mail_attachment_t](docs/mail_attachment.md)
  - [mail_block_click_house_t](docs/mail_block_click_house.md)
  - [mail_block_rspamd_t](docs/mail_block_rspamd.md)
  - [mail_blocks_t](docs/mail_blocks.md)

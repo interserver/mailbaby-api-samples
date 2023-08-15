@@ -249,12 +249,11 @@ To load the models:
 ```perl
 use OpenAPIClient::Object::DenyRuleNew;
 use OpenAPIClient::Object::DenyRuleRecord;
+use OpenAPIClient::Object::DenyRuleRecordAllOf;
 use OpenAPIClient::Object::EmailAddress;
-use OpenAPIClient::Object::EmailAddressName;
 use OpenAPIClient::Object::GenericResponse;
 use OpenAPIClient::Object::GetMailOrders401Response;
 use OpenAPIClient::Object::GetStats200ResponseInner;
-use OpenAPIClient::Object::MailAttachment;
 use OpenAPIClient::Object::MailBlockClickHouse;
 use OpenAPIClient::Object::MailBlockRspamd;
 use OpenAPIClient::Object::MailBlocks;
@@ -283,12 +282,11 @@ use OpenAPIClient::StatusApi;
 # load the models
 use OpenAPIClient::Object::DenyRuleNew;
 use OpenAPIClient::Object::DenyRuleRecord;
+use OpenAPIClient::Object::DenyRuleRecordAllOf;
 use OpenAPIClient::Object::EmailAddress;
-use OpenAPIClient::Object::EmailAddressName;
 use OpenAPIClient::Object::GenericResponse;
 use OpenAPIClient::Object::GetMailOrders401Response;
 use OpenAPIClient::Object::GetStats200ResponseInner;
-use OpenAPIClient::Object::MailAttachment;
 use OpenAPIClient::Object::MailBlockClickHouse;
 use OpenAPIClient::Object::MailBlockRspamd;
 use OpenAPIClient::Object::MailBlocks;
@@ -345,12 +343,11 @@ Class | Method | HTTP request | Description
 # DOCUMENTATION FOR MODELS
  - [OpenAPIClient::Object::DenyRuleNew](docs/DenyRuleNew.md)
  - [OpenAPIClient::Object::DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [OpenAPIClient::Object::DenyRuleRecordAllOf](docs/DenyRuleRecordAllOf.md)
  - [OpenAPIClient::Object::EmailAddress](docs/EmailAddress.md)
- - [OpenAPIClient::Object::EmailAddressName](docs/EmailAddressName.md)
  - [OpenAPIClient::Object::GenericResponse](docs/GenericResponse.md)
  - [OpenAPIClient::Object::GetMailOrders401Response](docs/GetMailOrders401Response.md)
  - [OpenAPIClient::Object::GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
- - [OpenAPIClient::Object::MailAttachment](docs/MailAttachment.md)
  - [OpenAPIClient::Object::MailBlockClickHouse](docs/MailBlockClickHouse.md)
  - [OpenAPIClient::Object::MailBlockRspamd](docs/MailBlockRspamd.md)
  - [OpenAPIClient::Object::MailBlocks](docs/MailBlocks.md)

@@ -8,10 +8,10 @@ src/DenyRuleNew.cpp
 src/DenyRuleNew.h
 src/DenyRuleRecord.cpp
 src/DenyRuleRecord.h
+src/DenyRuleRecordAllOf.cpp
+src/DenyRuleRecordAllOf.h
 src/EmailAddress.cpp
 src/EmailAddress.h
-src/EmailAddressName.cpp
-src/EmailAddressName.h
 src/Error.cpp
 src/Error.h
 src/GenericResponse.cpp
@@ -24,8 +24,6 @@ src/Helpers.cpp
 src/Helpers.h
 src/HistoryManager.cpp
 src/HistoryManager.h
-src/MailAttachment.cpp
-src/MailAttachment.h
 src/MailBlockClickHouse.cpp
 src/MailBlockClickHouse.h
 src/MailBlockRspamd.cpp

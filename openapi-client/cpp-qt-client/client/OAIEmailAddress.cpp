@@ -47,7 +47,7 @@ void OAIEmailAddress::fromJson(QString jsonString) {
 
 void OAIEmailAddress::fromJsonObject(QJsonObject json) {
 
-    m_email_isValid = ::OpenAPI::fromJsonValue(m_email, json[QString("email")]);
+    m_email_isValid = ::OpenAPI::fromJsonValue(email, json[QString("email")]);
     m_email_isSet = !json[QString("email")].isNull() && m_email_isValid;
 }
 
@@ -61,17 +61,17 @@ QString OAIEmailAddress::asJson() const {
 QJsonObject OAIEmailAddress::asJsonObject() const {
     QJsonObject obj;
     if (m_email_isSet) {
-        obj.insert(QString("email"), ::OpenAPI::toJsonValue(m_email));
+        obj.insert(QString("email"), ::OpenAPI::toJsonValue(email));
     }
     return obj;
 }
 
 QString OAIEmailAddress::getEmail() const {
-    return m_email;
+    return email;
 }
 void OAIEmailAddress::setEmail(const QString &email) {
-    m_email = email;
-    m_email_isSet = true;
+    this->email = email;
+    this->m_email_isSet = true;
 }
 
 bool OAIEmailAddress::is_email_Set() const{

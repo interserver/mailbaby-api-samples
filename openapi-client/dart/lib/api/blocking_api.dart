@@ -299,7 +299,7 @@ class BlockingApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<DenyRuleRecord>') as List)
         .cast<DenyRuleRecord>()
-        .toList(growable: false);
+        .toList();
 
     }
     return null;

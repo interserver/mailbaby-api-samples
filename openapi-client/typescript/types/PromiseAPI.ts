@@ -3,12 +3,11 @@ import { Configuration} from '../configuration'
 
 import { DenyRuleNew } from '../models/DenyRuleNew';
 import { DenyRuleRecord } from '../models/DenyRuleRecord';
+import { DenyRuleRecordAllOf } from '../models/DenyRuleRecordAllOf';
 import { EmailAddress } from '../models/EmailAddress';
-import { EmailAddressName } from '../models/EmailAddressName';
 import { GenericResponse } from '../models/GenericResponse';
 import { GetMailOrders401Response } from '../models/GetMailOrders401Response';
 import { GetStats200ResponseInner } from '../models/GetStats200ResponseInner';
-import { MailAttachment } from '../models/MailAttachment';
 import { MailBlockClickHouse } from '../models/MailBlockClickHouse';
 import { MailBlockRspamd } from '../models/MailBlockRspamd';
 import { MailBlocks } from '../models/MailBlocks';

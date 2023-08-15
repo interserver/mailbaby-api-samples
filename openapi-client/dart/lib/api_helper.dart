@@ -87,7 +87,7 @@ DateTime? mapDateTime(dynamic map, String key, [String? pattern]) {
     if (value is int) {
       millis = value;
     } else if (value is String) {
-      if (_isEpochMarker(pattern)) {
+      if (pattern == _dateEpochMarker) {
         millis = int.tryParse(value);
       } else {
         return DateTime.tryParse(value);

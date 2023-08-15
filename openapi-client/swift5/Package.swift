@@ -5,10 +5,10 @@ import PackageDescription
 let package = Package(
     name: "OpenAPIClient",
     platforms: [
-        .iOS(.v11),
-        .macOS(.v10_13),
-        .tvOS(.v11),
-        .watchOS(.v4),
+        .iOS(.v9),
+        .macOS(.v10_11),
+        .tvOS(.v9),
+        .watchOS(.v3),
     ],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.

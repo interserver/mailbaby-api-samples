@@ -20,12 +20,12 @@ import (
 )
 
 
-// StatusAPIService StatusAPI service
-type StatusAPIService service
+// StatusApiService StatusApi service
+type StatusApiService service
 
 type ApiPingServerRequest struct {
 	ctx context.Context
-	ApiService *StatusAPIService
+	ApiService *StatusApiService
 }
 
 func (r ApiPingServerRequest) Execute() (*http.Response, error) {
@@ -38,7 +38,7 @@ PingServer Checks if the server is running
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPingServerRequest
 */
-func (a *StatusAPIService) PingServer(ctx context.Context) ApiPingServerRequest {
+func (a *StatusApiService) PingServer(ctx context.Context) ApiPingServerRequest {
 	return ApiPingServerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -46,14 +46,14 @@ func (a *StatusAPIService) PingServer(ctx context.Context) ApiPingServerRequest 
 }
 
 // Execute executes the request
-func (a *StatusAPIService) PingServerExecute(r ApiPingServerRequest) (*http.Response, error) {
+func (a *StatusApiService) PingServerExecute(r ApiPingServerRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusAPIService.PingServer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusApiService.PingServer")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

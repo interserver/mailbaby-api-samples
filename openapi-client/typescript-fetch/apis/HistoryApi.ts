@@ -18,7 +18,7 @@ import type {
   GetMailOrders401Response,
   GetStats200ResponseInner,
   MailLog,
-} from '../models/index';
+} from '../models';
 import {
     GetMailOrders401ResponseFromJSON,
     GetMailOrders401ResponseToJSON,
@@ -26,7 +26,7 @@ import {
     GetStats200ResponseInnerToJSON,
     MailLogFromJSON,
     MailLogToJSON,
-} from '../models/index';
+} from '../models';
 
 export interface ViewMailLogRequest {
     id?: number;

@@ -24,12 +24,12 @@ library(openapi)
 # prepare function argument(s)
 var_subject <- "subject_example" # character | The subject or title of the email
 var_body <- "body_example" # character | The main email contents.
-var_from <- EmailAddressName$new("email_example", "name_example") # EmailAddressName | 
-var_to <- c(EmailAddressName$new("email_example", "name_example")) # array[EmailAddressName] | A list of destionation email addresses to send this to
-var_replyto <- c(EmailAddressName$new("email_example", "name_example")) # array[EmailAddressName] | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. (Optional)
-var_cc <- c(EmailAddressName$new("email_example", "name_example")) # array[EmailAddressName] | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. (Optional)
-var_bcc <- c(EmailAddressName$new("email_example", "name_example")) # array[EmailAddressName] | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. (Optional)
-var_attachments <- c(MailAttachment$new("filename_example", "data_example")) # array[MailAttachment] | (optional) File attachments to include in the email.  The file contents must be base64 encoded! (Optional)
+var_from <- TODO # EmailAddressName | 
+var_to <- c(TODO) # array[EmailAddressName] | A list of destionation email addresses to send this to
+var_replyto <- c(TODO) # array[EmailAddressName] | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. (Optional)
+var_cc <- c(TODO) # array[EmailAddressName] | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. (Optional)
+var_bcc <- c(TODO) # array[EmailAddressName] | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. (Optional)
+var_attachments <- c(TODO) # array[MailAttachment] | (optional) File attachments to include in the email.  The file contents must be base64 encoded! (Optional)
 var_id <- 56 # integer | (optional)  ID of the Mail order within our system to use as the Mail Account. (Optional)
 
 api_instance <- SendingApi$new()

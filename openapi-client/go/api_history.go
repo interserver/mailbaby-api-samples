@@ -20,12 +20,12 @@ import (
 )
 
 
-// HistoryAPIService HistoryAPI service
-type HistoryAPIService service
+// HistoryApiService HistoryApi service
+type HistoryApiService service
 
 type ApiGetStatsRequest struct {
 	ctx context.Context
-	ApiService *HistoryAPIService
+	ApiService *HistoryApiService
 }
 
 func (r ApiGetStatsRequest) Execute() ([]GetStats200ResponseInner, *http.Response, error) {
@@ -38,7 +38,7 @@ GetStats displays a list of blocked email addresses
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetStatsRequest
 */
-func (a *HistoryAPIService) GetStats(ctx context.Context) ApiGetStatsRequest {
+func (a *HistoryApiService) GetStats(ctx context.Context) ApiGetStatsRequest {
 	return ApiGetStatsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -47,7 +47,7 @@ func (a *HistoryAPIService) GetStats(ctx context.Context) ApiGetStatsRequest {
 
 // Execute executes the request
 //  @return []GetStats200ResponseInner
-func (a *HistoryAPIService) GetStatsExecute(r ApiGetStatsRequest) ([]GetStats200ResponseInner, *http.Response, error) {
+func (a *HistoryApiService) GetStatsExecute(r ApiGetStatsRequest) ([]GetStats200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -55,7 +55,7 @@ func (a *HistoryAPIService) GetStatsExecute(r ApiGetStatsRequest) ([]GetStats200
 		localVarReturnValue  []GetStats200ResponseInner
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.GetStats")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryApiService.GetStats")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -157,7 +157,7 @@ func (a *HistoryAPIService) GetStatsExecute(r ApiGetStatsRequest) ([]GetStats200
 
 type ApiViewMailLogRequest struct {
 	ctx context.Context
-	ApiService *HistoryAPIService
+	ApiService *HistoryApiService
 	id *int64
 	origin *string
 	mx *string
@@ -250,7 +250,7 @@ Get a listing of the emails sent through this system
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiViewMailLogRequest
 */
-func (a *HistoryAPIService) ViewMailLog(ctx context.Context) ApiViewMailLogRequest {
+func (a *HistoryApiService) ViewMailLog(ctx context.Context) ApiViewMailLogRequest {
 	return ApiViewMailLogRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -259,7 +259,7 @@ func (a *HistoryAPIService) ViewMailLog(ctx context.Context) ApiViewMailLogReque
 
 // Execute executes the request
 //  @return MailLog
-func (a *HistoryAPIService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLog, *http.Response, error) {
+func (a *HistoryApiService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLog, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -267,7 +267,7 @@ func (a *HistoryAPIService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLo
 		localVarReturnValue  *MailLog
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.ViewMailLog")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryApiService.ViewMailLog")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

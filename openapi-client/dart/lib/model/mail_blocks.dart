@@ -26,9 +26,9 @@ class MailBlocks {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is MailBlocks &&
-    _deepEquality.equals(other.local, local) &&
-    _deepEquality.equals(other.mbtrap, mbtrap) &&
-    _deepEquality.equals(other.subject, subject);
+     other.local == local &&
+     other.mbtrap == mbtrap &&
+     other.subject == subject;
 
   @override
   int get hashCode =>

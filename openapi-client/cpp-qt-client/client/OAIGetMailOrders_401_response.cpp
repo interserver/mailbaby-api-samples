@@ -50,10 +50,10 @@ void OAIGetMailOrders_401_response::fromJson(QString jsonString) {
 
 void OAIGetMailOrders_401_response::fromJsonObject(QJsonObject json) {
 
-    m_code_isValid = ::OpenAPI::fromJsonValue(m_code, json[QString("code")]);
+    m_code_isValid = ::OpenAPI::fromJsonValue(code, json[QString("code")]);
     m_code_isSet = !json[QString("code")].isNull() && m_code_isValid;
 
-    m_message_isValid = ::OpenAPI::fromJsonValue(m_message, json[QString("message")]);
+    m_message_isValid = ::OpenAPI::fromJsonValue(message, json[QString("message")]);
     m_message_isSet = !json[QString("message")].isNull() && m_message_isValid;
 }
 
@@ -67,20 +67,20 @@ QString OAIGetMailOrders_401_response::asJson() const {
 QJsonObject OAIGetMailOrders_401_response::asJsonObject() const {
     QJsonObject obj;
     if (m_code_isSet) {
-        obj.insert(QString("code"), ::OpenAPI::toJsonValue(m_code));
+        obj.insert(QString("code"), ::OpenAPI::toJsonValue(code));
     }
     if (m_message_isSet) {
-        obj.insert(QString("message"), ::OpenAPI::toJsonValue(m_message));
+        obj.insert(QString("message"), ::OpenAPI::toJsonValue(message));
     }
     return obj;
 }
 
 QString OAIGetMailOrders_401_response::getCode() const {
-    return m_code;
+    return code;
 }
 void OAIGetMailOrders_401_response::setCode(const QString &code) {
-    m_code = code;
-    m_code_isSet = true;
+    this->code = code;
+    this->m_code_isSet = true;
 }
 
 bool OAIGetMailOrders_401_response::is_code_Set() const{
@@ -92,11 +92,11 @@ bool OAIGetMailOrders_401_response::is_code_Valid() const{
 }
 
 QString OAIGetMailOrders_401_response::getMessage() const {
-    return m_message;
+    return message;
 }
 void OAIGetMailOrders_401_response::setMessage(const QString &message) {
-    m_message = message;
-    m_message_isSet = true;
+    this->message = message;
+    this->m_message_isSet = true;
 }
 
 bool OAIGetMailOrders_401_response::is_message_Set() const{

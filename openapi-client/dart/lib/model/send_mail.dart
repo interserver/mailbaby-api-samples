@@ -33,10 +33,10 @@ class SendMail {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is SendMail &&
-    other.to == to &&
-    other.from == from &&
-    other.subject == subject &&
-    other.body == body;
+     other.to == to &&
+     other.from == from &&
+     other.subject == subject &&
+     other.body == body;
 
   @override
   int get hashCode =>

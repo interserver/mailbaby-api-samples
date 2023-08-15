@@ -1005,11 +1005,21 @@ h2. Models
 
         
         ||Field Name||Required||Type||Description||Enum||Example||
-         |type |(/) |{noformat:nopanel=true}String{noformat} | The type of deny rule. |  [domain, email, startswith]  | email
-         |data |(/) |{noformat:nopanel=true}String{noformat} | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. |  | domeinwo@server.guesshost.net
          |id |(/) |{noformat:nopanel=true}Integer{noformat} | The deny rule Id number. |  | 41124
          |created |(/) |{noformat:nopanel=true}Date{noformat} | the date the rule was created. |  | null
+         |type |(/) |{noformat:nopanel=true}String{noformat} | The type of deny rule. |  [domain, email, startswith]  | email
+         |data |(/) |{noformat:nopanel=true}String{noformat} | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. |  | domeinwo@server.guesshost.net
          |user |(x) |{noformat:nopanel=true}String{noformat} | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. |  | mb20682
+         
+        {anchor:DenyRuleRecordAllOfModelAnchor}
+        h3. DenyRuleRecordAllOf
+
+        
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |id |(/) |{noformat:nopanel=true}Integer{noformat} | The deny rule Id number. |  | 41124
+         |created |(/) |{noformat:nopanel=true}Date{noformat} | the date the rule was created. |  | null
          
         {anchor:EmailAddressModelAnchor}
         h3. EmailAddress
@@ -1019,16 +1029,6 @@ h2. Models
         
         ||Field Name||Required||Type||Description||Enum||Example||
          |email |(x) |{noformat:nopanel=true}String{noformat} | an email address |  | user@domain.com
-         
-        {anchor:EmailAddressNameModelAnchor}
-        h3. EmailAddressName
-
-        An email contact.
-
-        
-        ||Field Name||Required||Type||Description||Enum||Example||
-         |email |(/) |{noformat:nopanel=true}String{noformat} | The email address. |  | user@domain.com
-         |name |(x) |{noformat:nopanel=true}String{noformat} | Name to use for the sending contact. |  | John Smith
          
         {anchor:GenericResponseModelAnchor}
         h3. GenericResponse
@@ -1062,16 +1062,6 @@ h2. Models
          |username |(/) |{noformat:nopanel=true}String{noformat} |  |  | mb1234
          |password |(x) |{noformat:nopanel=true}String{noformat} |  |  | guest123
          |comment |(x) |{noformat:nopanel=true}String{noformat} |  |  | main mail account
-         
-        {anchor:MailAttachmentModelAnchor}
-        h3. MailAttachment
-
-        (optional) File attachments to include in the email.  The file contents must be base64
-
-        
-        ||Field Name||Required||Type||Description||Enum||Example||
-         |filename |(/) |{noformat:nopanel=true}String{noformat} | The filename of the attached file. |  | message.txt
-         |data |(/) |{noformat:nopanel=true}String{noformat} | The file contents base64 encoded |  | aGVsbG8gdGhlcmUK
          
         {anchor:MailBlockClickHouseModelAnchor}
         h3. MailBlockClickHouse

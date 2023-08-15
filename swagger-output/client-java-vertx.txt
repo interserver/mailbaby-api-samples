@@ -1,41 +1,41 @@
-12:38:17.926 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
-12:38:17.934 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getMailOrders, will not be mount
-12:38:17.935 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getMailBlocks, will not be mount
-12:38:17.935 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getStats, will not be mount
-12:38:17.935 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId sendMail, will not be mount
-12:38:17.936 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId sendAdvMail, will not be mount
-12:38:17.936 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId viewMailLog, will not be mount
-12:38:17.936 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId pingServer, will not be mount
-12:38:17.936 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId delistBlock, will not be mount
-12:38:17.936 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getRules, will not be mount
-12:38:17.936 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId addRule, will not be mount
-12:38:17.936 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId deleteRule, will not be mount
-12:38:18.029 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - Interface (reserved word) cannot be used as model name. Renamed to ModelInterface
-12:38:18.190 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/DenyRuleNew.java
-12:38:18.219 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/DenyRuleRecord.java
-12:38:18.241 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/EmailAddress.java
-12:38:18.265 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/EmailAddressName.java
-12:38:18.287 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/GenericResponse.java
-12:38:18.306 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/InlineResponse200.java
-12:38:18.322 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/InlineResponse401.java
-12:38:18.338 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/MailAttachment.java
-12:38:18.353 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/MailBlockClickHouse.java
-12:38:18.416 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/MailBlockRspamd.java
-12:38:18.430 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/MailBlocks.java
-12:38:18.444 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/MailLog.java
-12:38:18.459 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/MailLogEntry.java
-12:38:18.473 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/MailOrder.java
-12:38:18.485 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/SendMail.java
-12:38:18.499 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/SendMailAdv.java
-12:38:18.607 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/service/BlockingApi.java
-12:38:18.613 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/service/HistoryApi.java
-12:38:18.618 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/service/SendingApi.java
-12:38:18.624 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/service/ServicesApi.java
-12:38:18.629 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/service/StatusApi.java
-12:38:18.632 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/MainApiVerticle.java
-12:38:18.633 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/service/package-info.java
-12:38:18.636 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/pom.xml
-12:38:18.637 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/README.md
-12:38:18.640 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/verticle/MailBabyEmailDeliveryAndManagementService_Verticle.java
-12:38:18.644 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/.swagger-codegen-ignore
-12:38:18.645 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/.swagger-codegen/VERSION
+21:52:00.451 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
+21:52:00.459 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getMailOrders, will not be mount
+21:52:00.460 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getMailBlocks, will not be mount
+21:52:00.460 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getStats, will not be mount
+21:52:00.460 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId sendMail, will not be mount
+21:52:00.460 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId sendAdvMail, will not be mount
+21:52:00.460 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId viewMailLog, will not be mount
+21:52:00.460 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId pingServer, will not be mount
+21:52:00.460 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId delistBlock, will not be mount
+21:52:00.460 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getRules, will not be mount
+21:52:00.460 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId addRule, will not be mount
+21:52:00.460 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId deleteRule, will not be mount
+21:52:00.552 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - Interface (reserved word) cannot be used as model name. Renamed to ModelInterface
+21:52:00.701 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/DenyRuleNew.java
+21:52:00.730 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/DenyRuleRecord.java
+21:52:00.749 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/EmailAddress.java
+21:52:00.771 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/EmailAddressName.java
+21:52:00.790 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/GenericResponse.java
+21:52:00.809 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/InlineResponse200.java
+21:52:00.824 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/InlineResponse401.java
+21:52:00.839 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/MailAttachment.java
+21:52:00.854 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/MailBlockClickHouse.java
+21:52:00.892 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/MailBlockRspamd.java
+21:52:00.908 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/MailBlocks.java
+21:52:00.919 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/MailLog.java
+21:52:00.932 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/MailLogEntry.java
+21:52:00.943 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/MailOrder.java
+21:52:00.954 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/SendMail.java
+21:52:00.965 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/SendMailAdv.java
+21:52:01.061 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/service/BlockingApi.java
+21:52:01.066 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/service/HistoryApi.java
+21:52:01.070 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/service/SendingApi.java
+21:52:01.075 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/service/ServicesApi.java
+21:52:01.082 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/service/StatusApi.java
+21:52:01.084 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/MainApiVerticle.java
+21:52:01.085 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/service/package-info.java
+21:52:01.088 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/pom.xml
+21:52:01.088 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/README.md
+21:52:01.093 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/verticle/MailBabyEmailDeliveryAndManagementService_Verticle.java
+21:52:01.098 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/.swagger-codegen-ignore
+21:52:01.098 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/.swagger-codegen/VERSION

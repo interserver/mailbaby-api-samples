@@ -12,12 +12,11 @@ api/services.service.ts
 api/status.service.ts
 model/denyRuleNew.ts
 model/denyRuleRecord.ts
+model/denyRuleRecordAllOf.ts
 model/emailAddress.ts
-model/emailAddressName.ts
 model/genericResponse.ts
 model/getMailOrders401Response.ts
 model/getStats200ResponseInner.ts
-model/mailAttachment.ts
 model/mailBlockClickHouse.ts
 model/mailBlockRspamd.ts
 model/mailBlocks.ts

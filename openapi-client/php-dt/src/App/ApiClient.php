@@ -469,7 +469,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* OK */
-                $responseContent = new \App\DTO\Collection11();
+                $responseContent = new \App\DTO\Collection16();
                 break;
             case 401:
                 /* Unauthorized */
@@ -488,7 +488,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * Displays a listing of deny email rules.
      * @param iterable|string[][] $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection11
+     * @return \App\DTO\Collection16
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -497,7 +497,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     public function getRulesResult(
         iterable $security = ['apiKeyAuth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection11
+    ): \App\DTO\Collection16
     {
         return $this->getSuccessfulContent(...$this->getRules($security, $responseMediaType));
     }

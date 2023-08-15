@@ -31,7 +31,7 @@ class ServicesApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<MailOrder>] as data
-  /// Throws [DioException] if API call or serialization fails
+  /// Throws [DioError] if API call or serialization fails
   Future<Response<BuiltList<MailOrder>>> getMailOrders({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -78,10 +78,10 @@ class ServicesApi {
       ) as BuiltList<MailOrder>;
 
     } catch (error, stackTrace) {
-      throw DioException(
+      throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioExceptionType.unknown,
+        type: DioErrorType.unknown,
         error: error,
         stackTrace: stackTrace,
       );

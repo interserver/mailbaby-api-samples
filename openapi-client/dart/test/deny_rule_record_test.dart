@@ -16,18 +16,6 @@ void main() {
   // final instance = DenyRuleRecord();
 
   group('test DenyRuleRecord', () {
-    // The type of deny rule.
-    // String type
-    test('to test the property `type`', () async {
-      // TODO
-    });
-
-    // The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-    // String data
-    test('to test the property `data`', () async {
-      // TODO
-    });
-
     // The deny rule Id number.
     // int id
     test('to test the property `id`', () async {
@@ -37,6 +25,18 @@ void main() {
     // the date the rule was created.
     // DateTime created
     test('to test the property `created`', () async {
+      // TODO
+    });
+
+    // The type of deny rule.
+    // String type
+    test('to test the property `type`', () async {
+      // TODO
+    });
+
+    // The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+    // String data
+    test('to test the property `data`', () async {
       // TODO
     });
 

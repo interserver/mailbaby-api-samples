@@ -3,22 +3,6 @@ Protected Class DenyRuleRecord
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The type of deny rule.
-		#tag EndNote
-		type As String
-	#tag EndProperty
-
-
-	#tag Property, Flags = &h0
-		#tag Note
-			The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-		#tag EndNote
-		data As String
-	#tag EndProperty
-
-
-	#tag Property, Flags = &h0
-		#tag Note
 			The deny rule Id number.
 		#tag EndNote
 		id As Integer
@@ -30,6 +14,22 @@ Protected Class DenyRuleRecord
 			the date the rule was created.
 		#tag EndNote
 		created As Date
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			The type of deny rule.
+		#tag EndNote
+		type As String
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+		#tag EndNote
+		data As String
 	#tag EndProperty
 
 
@@ -101,14 +101,6 @@ Protected Class DenyRuleRecord
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="data"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="id"
 			Visible=false
 			Group="Behavior"
@@ -122,6 +114,14 @@ Protected Class DenyRuleRecord
 			Group="Behavior"
 			InitialValue=""
 			Type="Date"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="data"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

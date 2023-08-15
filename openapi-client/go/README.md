@@ -84,29 +84,28 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BlockingAPI* | [**AddRule**](docs/BlockingAPI.md#addrule) | **Post** /mail/rules | Creates a new email deny rule.
-*BlockingAPI* | [**DeleteRule**](docs/BlockingAPI.md#deleterule) | **Delete** /mail/rules/{ruleId} | Removes an deny mail rule.
-*BlockingAPI* | [**DelistBlock**](docs/BlockingAPI.md#delistblock) | **Post** /mail/blocks/delete | Removes an email address from the blocked list
-*BlockingAPI* | [**GetMailBlocks**](docs/BlockingAPI.md#getmailblocks) | **Get** /mail/blocks | displays a list of blocked email addresses
-*BlockingAPI* | [**GetRules**](docs/BlockingAPI.md#getrules) | **Get** /mail/rules | Displays a listing of deny email rules.
-*HistoryAPI* | [**GetStats**](docs/HistoryAPI.md#getstats) | **Get** /mail/stats | displays a list of blocked email addresses
-*HistoryAPI* | [**ViewMailLog**](docs/HistoryAPI.md#viewmaillog) | **Get** /mail/log | displays the mail log
-*SendingAPI* | [**SendAdvMail**](docs/SendingAPI.md#sendadvmail) | **Post** /mail/advsend | Sends an Email with Advanced Options
-*SendingAPI* | [**SendMail**](docs/SendingAPI.md#sendmail) | **Post** /mail/send | Sends an Email
-*ServicesAPI* | [**GetMailOrders**](docs/ServicesAPI.md#getmailorders) | **Get** /mail | displays a list of mail service orders
-*StatusAPI* | [**PingServer**](docs/StatusAPI.md#pingserver) | **Get** /ping | Checks if the server is running
+*BlockingApi* | [**AddRule**](docs/BlockingApi.md#addrule) | **Post** /mail/rules | Creates a new email deny rule.
+*BlockingApi* | [**DeleteRule**](docs/BlockingApi.md#deleterule) | **Delete** /mail/rules/{ruleId} | Removes an deny mail rule.
+*BlockingApi* | [**DelistBlock**](docs/BlockingApi.md#delistblock) | **Post** /mail/blocks/delete | Removes an email address from the blocked list
+*BlockingApi* | [**GetMailBlocks**](docs/BlockingApi.md#getmailblocks) | **Get** /mail/blocks | displays a list of blocked email addresses
+*BlockingApi* | [**GetRules**](docs/BlockingApi.md#getrules) | **Get** /mail/rules | Displays a listing of deny email rules.
+*HistoryApi* | [**GetStats**](docs/HistoryApi.md#getstats) | **Get** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | [**ViewMailLog**](docs/HistoryApi.md#viewmaillog) | **Get** /mail/log | displays the mail log
+*SendingApi* | [**SendAdvMail**](docs/SendingApi.md#sendadvmail) | **Post** /mail/advsend | Sends an Email with Advanced Options
+*SendingApi* | [**SendMail**](docs/SendingApi.md#sendmail) | **Post** /mail/send | Sends an Email
+*ServicesApi* | [**GetMailOrders**](docs/ServicesApi.md#getmailorders) | **Get** /mail | displays a list of mail service orders
+*StatusApi* | [**PingServer**](docs/StatusApi.md#pingserver) | **Get** /ping | Checks if the server is running
 
 
 ## Documentation For Models
 
  - [DenyRuleNew](docs/DenyRuleNew.md)
  - [DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [DenyRuleRecordAllOf](docs/DenyRuleRecordAllOf.md)
  - [EmailAddress](docs/EmailAddress.md)
- - [EmailAddressName](docs/EmailAddressName.md)
  - [GenericResponse](docs/GenericResponse.md)
  - [GetMailOrders401Response](docs/GetMailOrders401Response.md)
  - [GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
- - [MailAttachment](docs/MailAttachment.md)
  - [MailBlockClickHouse](docs/MailBlockClickHouse.md)
  - [MailBlockRspamd](docs/MailBlockRspamd.md)
  - [MailBlocks](docs/MailBlocks.md)
@@ -128,19 +127,6 @@ Authentication schemes defined for the API:
 - **Location**: HTTP header
 
 Note, each API key must be added to a map of `map[string]APIKey` where the key is: X-API-KEY and passed in as the auth context for each request.
-
-Example
-
-```golang
-auth := context.WithValue(
-		context.Background(),
-		sw.ContextAPIKeys,
-		map[string]sw.APIKey{
-			"X-API-KEY": {Key: "API_KEY_STRING"},
-		},
-	)
-r, err := client.Service.Operation(auth, args)
-```
 
 
 ## Documentation for Utility Methods

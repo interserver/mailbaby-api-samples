@@ -15,16 +15,16 @@ No summary available.
 
 The data for a email deny rule record.
 
+.PARAMETER Id
+The deny rule Id number.
+.PARAMETER Created
+the date the rule was created.
 .PARAMETER User
 Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
 .PARAMETER Type
 The type of deny rule.
 .PARAMETER VarData
 The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-.PARAMETER Id
-The deny rule Id number.
-.PARAMETER Created
-the date the rule was created.
 .OUTPUTS
 
 DenyRuleRecord<PSCustomObject>
@@ -34,34 +34,26 @@ function Initialize-DenyRuleRecord {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
+        [Int32]
+        ${Id},
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
+        [System.DateTime]
+        ${Created},
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${User},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("domain", "email", "startswith")]
         [String]
         ${Type},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${VarData},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
-        [Int32]
-        ${Id},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
-        [System.DateTime]
-        ${Created}
+        [String]
+        ${VarData}
     )
 
     Process {
         'Creating PSCustomObject: PSOpenAPITools => DenyRuleRecord' | Write-Debug
         $PSBoundParameters | Out-DebugParameter | Write-Debug
-
-        if ($null -eq $Type) {
-            throw "invalid value for 'Type', 'Type' cannot be null."
-        }
-
-        if ($null -eq $VarData) {
-            throw "invalid value for 'VarData', 'VarData' cannot be null."
-        }
 
         if ($null -eq $Id) {
             throw "invalid value for 'Id', 'Id' cannot be null."
@@ -71,13 +63,21 @@ function Initialize-DenyRuleRecord {
             throw "invalid value for 'Created', 'Created' cannot be null."
         }
 
+        if ($null -eq $Type) {
+            throw "invalid value for 'Type', 'Type' cannot be null."
+        }
+
+        if ($null -eq $VarData) {
+            throw "invalid value for 'VarData', 'VarData' cannot be null."
+        }
+
 
         $PSO = [PSCustomObject]@{
+            "id" = ${Id}
+            "created" = ${Created}
             "user" = ${User}
             "type" = ${Type}
             "data" = ${VarData}
-            "id" = ${Id}
-            "created" = ${Created}
         }
 
 
@@ -115,7 +115,7 @@ function ConvertFrom-JsonToDenyRuleRecord {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in DenyRuleRecord
-        $AllProperties = ("user", "type", "data", "id", "created")
+        $AllProperties = ("id", "created", "user", "type", "data")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -123,19 +123,7 @@ function ConvertFrom-JsonToDenyRuleRecord {
         }
 
         If ([string]::IsNullOrEmpty($Json) -or $Json -eq "{}") { # empty json
-            throw "Error! Empty JSON cannot be serialized due to the required property 'type' missing."
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
-        } else {
-            $Type = $JsonParameters.PSobject.Properties["type"].value
-        }
-
-        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data"))) {
-            throw "Error! JSON cannot be serialized due to the required property 'data' missing."
-        } else {
-            $VarData = $JsonParameters.PSobject.Properties["data"].value
+            throw "Error! Empty JSON cannot be serialized due to the required property 'id' missing."
         }
 
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) {
@@ -150,6 +138,18 @@ function ConvertFrom-JsonToDenyRuleRecord {
             $Created = $JsonParameters.PSobject.Properties["created"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "type"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'type' missing."
+        } else {
+            $Type = $JsonParameters.PSobject.Properties["type"].value
+        }
+
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "data"))) {
+            throw "Error! JSON cannot be serialized due to the required property 'data' missing."
+        } else {
+            $VarData = $JsonParameters.PSobject.Properties["data"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "user"))) { #optional property not found
             $User = $null
         } else {
@@ -157,11 +157,11 @@ function ConvertFrom-JsonToDenyRuleRecord {
         }
 
         $PSO = [PSCustomObject]@{
+            "id" = ${Id}
+            "created" = ${Created}
             "user" = ${User}
             "type" = ${Type}
             "data" = ${VarData}
-            "id" = ${Id}
-            "created" = ${Created}
         }
 
         return $PSO

@@ -23,7 +23,7 @@ import javax.validation.Valid;
  * (optional) File attachments to include in the email.  The file contents must be base64
  */
 @Schema(description = "(optional) File attachments to include in the email.  The file contents must be base64")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-08-10T12:38:05.873302-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-08-14T21:51:49.442877-04:00[America/New_York]")
 public class MailAttachment   {
   @JsonProperty("filename")
   private String filename = null;

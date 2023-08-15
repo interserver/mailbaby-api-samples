@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | **int32** | The deny rule Id number. | 
+**Created** | **time.Time** | the date the rule was created. | 
 **User** | Pointer to **string** | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. | [optional] 
 **Type** | **string** | The type of deny rule. | 
 **Data** | **string** | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. | 
-**Id** | **int32** | The deny rule Id number. | 
-**Created** | **time.Time** | the date the rule was created. | 
 
 ## Methods
 
 ### NewDenyRuleRecord
 
-`func NewDenyRuleRecord(type_ string, data string, id int32, created time.Time, ) *DenyRuleRecord`
+`func NewDenyRuleRecord(id int32, created time.Time, type_ string, data string, ) *DenyRuleRecord`
 
 NewDenyRuleRecord instantiates a new DenyRuleRecord object
 This constructor will assign default values to properties that have it defined,
@@ -28,6 +28,46 @@ will change when the set of required properties is changed
 NewDenyRuleRecordWithDefaults instantiates a new DenyRuleRecord object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *DenyRuleRecord) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *DenyRuleRecord) GetIdOk() (*int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *DenyRuleRecord) SetId(v int32)`
+
+SetId sets Id field to given value.
+
+
+### GetCreated
+
+`func (o *DenyRuleRecord) GetCreated() time.Time`
+
+GetCreated returns the Created field if non-nil, zero value otherwise.
+
+### GetCreatedOk
+
+`func (o *DenyRuleRecord) GetCreatedOk() (*time.Time, bool)`
+
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreated
+
+`func (o *DenyRuleRecord) SetCreated(v time.Time)`
+
+SetCreated sets Created field to given value.
+
 
 ### GetUser
 
@@ -92,46 +132,6 @@ and a boolean to check if the value has been set.
 `func (o *DenyRuleRecord) SetData(v string)`
 
 SetData sets Data field to given value.
-
-
-### GetId
-
-`func (o *DenyRuleRecord) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *DenyRuleRecord) GetIdOk() (*int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *DenyRuleRecord) SetId(v int32)`
-
-SetId sets Id field to given value.
-
-
-### GetCreated
-
-`func (o *DenyRuleRecord) GetCreated() time.Time`
-
-GetCreated returns the Created field if non-nil, zero value otherwise.
-
-### GetCreatedOk
-
-`func (o *DenyRuleRecord) GetCreatedOk() (*time.Time, bool)`
-
-GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreated
-
-`func (o *DenyRuleRecord) SetCreated(v time.Time)`
-
-SetCreated sets Created field to given value.
 
 
 

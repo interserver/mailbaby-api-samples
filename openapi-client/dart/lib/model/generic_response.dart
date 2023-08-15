@@ -35,8 +35,8 @@ class GenericResponse {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GenericResponse &&
-    other.status == status &&
-    other.text == text;
+     other.status == status &&
+     other.text == text;
 
   @override
   int get hashCode =>

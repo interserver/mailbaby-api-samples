@@ -18,30 +18,30 @@ public struct DenyRuleRecord: Codable, JSONEncodable, Hashable {
         case email = "email"
         case startswith = "startswith"
     }
-    /** The type of deny rule. */
-    public var type: ModelType
-    /** The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. */
-    public var data: String
     /** The deny rule Id number. */
     public var id: Int
     /** the date the rule was created. */
     public var created: Date
+    /** The type of deny rule. */
+    public var type: ModelType
+    /** The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. */
+    public var data: String
     /** Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. */
     public var user: String?
 
-    public init(type: ModelType, data: String, id: Int, created: Date, user: String? = nil) {
-        self.type = type
-        self.data = data
+    public init(id: Int, created: Date, type: ModelType, data: String, user: String? = nil) {
         self.id = id
         self.created = created
+        self.type = type
+        self.data = data
         self.user = user
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case type
-        case data
         case id
         case created
+        case type
+        case data
         case user
     }
 
@@ -49,10 +49,10 @@ public struct DenyRuleRecord: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(type, forKey: .type)
-        try container.encode(data, forKey: .data)
         try container.encode(id, forKey: .id)
         try container.encode(created, forKey: .created)
+        try container.encode(type, forKey: .type)
+        try container.encode(data, forKey: .data)
         try container.encodeIfPresent(user, forKey: .user)
     }
 }

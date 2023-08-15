@@ -79,10 +79,10 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPIDeny
 void OpenAPIDenyRuleRecord::WriteJson(JsonWriter& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("type")); WriteJsonValue(Writer, Type);
-	Writer->WriteIdentifierPrefix(TEXT("data")); WriteJsonValue(Writer, Data);
 	Writer->WriteIdentifierPrefix(TEXT("id")); WriteJsonValue(Writer, Id);
 	Writer->WriteIdentifierPrefix(TEXT("created")); WriteJsonValue(Writer, Created);
+	Writer->WriteIdentifierPrefix(TEXT("type")); WriteJsonValue(Writer, Type);
+	Writer->WriteIdentifierPrefix(TEXT("data")); WriteJsonValue(Writer, Data);
 	if (User.IsSet())
 	{
 		Writer->WriteIdentifierPrefix(TEXT("user")); WriteJsonValue(Writer, User.GetValue());
@@ -98,10 +98,10 @@ bool OpenAPIDenyRuleRecord::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
 	bool ParseSuccess = true;
 
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("type"), Type);
-	ParseSuccess &= TryGetJsonValue(*Object, TEXT("data"), Data);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("id"), Id);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("created"), Created);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("type"), Type);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("data"), Data);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("user"), User);
 
 	return ParseSuccess;

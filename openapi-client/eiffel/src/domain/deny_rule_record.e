@@ -19,18 +19,34 @@ class DENY_RULE_RECORD
 
 feature --Access
 
+ 	id: INTEGER_32
+    	 -- The deny rule Id number.
+    created: detachable DATE_TIME
+      -- the date the rule was created.
     user: detachable STRING_32
       -- Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
     type: detachable STRING_32
       -- The type of deny rule.
     data: detachable STRING_32
       -- The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
- 	id: INTEGER_32
-    	 -- The deny rule Id number.
-    created: detachable DATE_TIME
-      -- the date the rule was created.
 
 feature -- Change Element
+
+    set_id (a_name: like id)
+        -- Set 'id' with 'a_name'.
+      do
+        id := a_name
+      ensure
+        id_set: id = a_name
+      end
+
+    set_created (a_name: like created)
+        -- Set 'created' with 'a_name'.
+      do
+        created := a_name
+      ensure
+        created_set: created = a_name
+      end
 
     set_user (a_name: like user)
         -- Set 'user' with 'a_name'.
@@ -56,22 +72,6 @@ feature -- Change Element
         data_set: data = a_name
       end
 
-    set_id (a_name: like id)
-        -- Set 'id' with 'a_name'.
-      do
-        id := a_name
-      ensure
-        id_set: id = a_name
-      end
-
-    set_created (a_name: like created)
-        -- Set 'created' with 'a_name'.
-      do
-        created := a_name
-      ensure
-        created_set: created = a_name
-      end
-
 
  feature -- Status Report
 
@@ -80,6 +80,16 @@ feature -- Change Element
       do
         create Result.make_empty
         Result.append("%Nclass DENY_RULE_RECORD%N")
+        if attached id as l_id then
+          Result.append ("%Nid:")
+          Result.append (l_id.out)
+          Result.append ("%N")
+        end
+        if attached created as l_created then
+          Result.append ("%Ncreated:")
+          Result.append (l_created.out)
+          Result.append ("%N")
+        end
         if attached user as l_user then
           Result.append ("%Nuser:")
           Result.append (l_user.out)
@@ -93,16 +103,6 @@ feature -- Change Element
         if attached data as l_data then
           Result.append ("%Ndata:")
           Result.append (l_data.out)
-          Result.append ("%N")
-        end
-        if attached id as l_id then
-          Result.append ("%Nid:")
-          Result.append (l_id.out)
-          Result.append ("%N")
-        end
-        if attached created as l_created then
-          Result.append ("%Ncreated:")
-          Result.append (l_created.out)
           Result.append ("%N")
         end
       end

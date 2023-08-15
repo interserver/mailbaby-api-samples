@@ -50,10 +50,10 @@ void OAIMailBlockRspamd::fromJson(QString jsonString) {
 
 void OAIMailBlockRspamd::fromJsonObject(QJsonObject json) {
 
-    m_from_isValid = ::OpenAPI::fromJsonValue(m_from, json[QString("from")]);
+    m_from_isValid = ::OpenAPI::fromJsonValue(from, json[QString("from")]);
     m_from_isSet = !json[QString("from")].isNull() && m_from_isValid;
 
-    m_subject_isValid = ::OpenAPI::fromJsonValue(m_subject, json[QString("subject")]);
+    m_subject_isValid = ::OpenAPI::fromJsonValue(subject, json[QString("subject")]);
     m_subject_isSet = !json[QString("subject")].isNull() && m_subject_isValid;
 }
 
@@ -67,20 +67,20 @@ QString OAIMailBlockRspamd::asJson() const {
 QJsonObject OAIMailBlockRspamd::asJsonObject() const {
     QJsonObject obj;
     if (m_from_isSet) {
-        obj.insert(QString("from"), ::OpenAPI::toJsonValue(m_from));
+        obj.insert(QString("from"), ::OpenAPI::toJsonValue(from));
     }
     if (m_subject_isSet) {
-        obj.insert(QString("subject"), ::OpenAPI::toJsonValue(m_subject));
+        obj.insert(QString("subject"), ::OpenAPI::toJsonValue(subject));
     }
     return obj;
 }
 
 QString OAIMailBlockRspamd::getFrom() const {
-    return m_from;
+    return from;
 }
 void OAIMailBlockRspamd::setFrom(const QString &from) {
-    m_from = from;
-    m_from_isSet = true;
+    this->from = from;
+    this->m_from_isSet = true;
 }
 
 bool OAIMailBlockRspamd::is_from_Set() const{
@@ -92,11 +92,11 @@ bool OAIMailBlockRspamd::is_from_Valid() const{
 }
 
 QString OAIMailBlockRspamd::getSubject() const {
-    return m_subject;
+    return subject;
 }
 void OAIMailBlockRspamd::setSubject(const QString &subject) {
-    m_subject = subject;
-    m_subject_isSet = true;
+    this->subject = subject;
+    this->m_subject_isSet = true;
 }
 
 bool OAIMailBlockRspamd::is_subject_Set() const{

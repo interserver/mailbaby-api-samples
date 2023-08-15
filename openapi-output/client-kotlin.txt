@@ -7,24 +7,24 @@
 [main] WARN  o.o.c.languages.KotlinClientCodegen - You specified RxJava versions 1 and 2 and 3 or Coroutines together, please choose one of them.
 [main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getMailOrders_401_response. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
 [main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getStats_200_response_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
-[main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressName (marked as unused due to form parameters) is generated due to the global property `skipFormModel` set to false
-[main] INFO  o.o.codegen.DefaultGenerator - Model MailAttachment (marked as unused due to form parameters) is generated due to the global property `skipFormModel` set to false
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as DenyRuleRecord_allOf. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
+[main] WARN  o.o.codegen.DefaultCodegen - allOf with multiple schemas defined. Using only the first one: DenyRuleRecord_allOf
+[main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressName not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
+[main] INFO  o.o.codegen.DefaultGenerator - Model MailAttachment not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/DenyRuleNew.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/DenyRuleNew.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/DenyRuleRecord.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/DenyRuleRecord.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/DenyRuleRecordAllOf.kt
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/DenyRuleRecordAllOf.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/EmailAddress.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/EmailAddress.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/EmailAddressName.kt
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/EmailAddressName.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/GenericResponse.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/GenericResponse.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/GetMailOrders401Response.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/GetMailOrders401Response.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/GetStats200ResponseInner.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/GetStats200ResponseInner.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/MailAttachment.kt
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/MailAttachment.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/MailBlockClickHouse.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/MailBlockClickHouse.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/MailBlockRspamd.kt
@@ -41,11 +41,17 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/SendMail.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/SendMailAdv.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/SendMailAdv.md
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.DefaultCodegen - Multiple MediaTypes found, using only the first one
+[main] WARN  o.o.codegen.DefaultCodegen - allOf with multiple schemas defined. Using only the first one: DenyRuleRecord_allOf
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/apis/BlockingApi.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/BlockingApi.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/apis/HistoryApi.kt

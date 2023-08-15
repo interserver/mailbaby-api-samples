@@ -20,7 +20,7 @@ import type {
   GenericResponse,
   GetMailOrders401Response,
   MailBlocks,
-} from '../models/index';
+} from '../models';
 import {
     DenyRuleRecordFromJSON,
     DenyRuleRecordToJSON,
@@ -32,7 +32,7 @@ import {
     GetMailOrders401ResponseToJSON,
     MailBlocksFromJSON,
     MailBlocksToJSON,
-} from '../models/index';
+} from '../models';
 
 export interface AddRuleRequest {
     type: AddRuleTypeEnum;

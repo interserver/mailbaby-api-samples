@@ -2,13 +2,12 @@
 API/Client/BlockingApi.js
 API/Client/DenyRuleNew.js
 API/Client/DenyRuleRecord.js
+API/Client/DenyRuleRecordAllOf.js
 API/Client/EmailAddress.js
-API/Client/EmailAddressName.js
 API/Client/GenericResponse.js
 API/Client/GetMailOrders401Response.js
 API/Client/GetStats200ResponseInner.js
 API/Client/HistoryApi.js
-API/Client/MailAttachment.js
 API/Client/MailBlockClickHouse.js
 API/Client/MailBlockRspamd.js
 API/Client/MailBlocks.js

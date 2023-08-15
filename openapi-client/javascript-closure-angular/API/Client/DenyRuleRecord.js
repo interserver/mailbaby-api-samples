@@ -7,20 +7,6 @@ goog.provide('API.Client.DenyRuleRecord');
 API.Client.DenyRuleRecord = function() {}
 
 /**
- * The type of deny rule.
- * @type {!string}
- * @export
- */
-API.Client.DenyRuleRecord.prototype.type;
-
-/**
- * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
- * @type {!string}
- * @export
- */
-API.Client.DenyRuleRecord.prototype.data;
-
-/**
  * The deny rule Id number.
  * @type {!number}
  * @export
@@ -33,6 +19,20 @@ API.Client.DenyRuleRecord.prototype.id;
  * @export
  */
 API.Client.DenyRuleRecord.prototype.created;
+
+/**
+ * The type of deny rule.
+ * @type {!string}
+ * @export
+ */
+API.Client.DenyRuleRecord.prototype.type;
+
+/**
+ * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+ * @type {!string}
+ * @export
+ */
+API.Client.DenyRuleRecord.prototype.data;
 
 /**
  * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.

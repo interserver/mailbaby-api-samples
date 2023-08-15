@@ -33,7 +33,7 @@ class HistoryApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<GetStats200ResponseInner>] as data
-  /// Throws [DioException] if API call or serialization fails
+  /// Throws [DioError] if API call or serialization fails
   Future<Response<BuiltList<GetStats200ResponseInner>>> getStats({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -80,10 +80,10 @@ class HistoryApi {
       ) as BuiltList<GetStats200ResponseInner>;
 
     } catch (error, stackTrace) {
-      throw DioException(
+      throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioExceptionType.unknown,
+        type: DioErrorType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -124,7 +124,7 @@ class HistoryApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [MailLog] as data
-  /// Throws [DioException] if API call or serialization fails
+  /// Throws [DioError] if API call or serialization fails
   Future<Response<MailLog>> viewMailLog({ 
     int? id,
     String? origin,
@@ -197,10 +197,10 @@ class HistoryApi {
       ) as MailLog;
 
     } catch (error, stackTrace) {
-      throw DioException(
+      throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioExceptionType.unknown,
+        type: DioErrorType.unknown,
         error: error,
         stackTrace: stackTrace,
       );

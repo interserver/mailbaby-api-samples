@@ -887,23 +887,27 @@ ul.nav-tabs {
     "created" : "2022-03-22 19:16:35"
   },
   "allOf" : [ {
-    "required" : [ "created", "id" ],
-    "type" : "object",
-    "properties" : {
-      "id" : {
-        "type" : "integer",
-        "description" : "The deny rule Id number.",
-        "example" : 41124
-      },
-      "created" : {
-        "type" : "string",
-        "description" : "the date the rule was created.",
-        "format" : "date-time"
-      }
-    }
+    "$ref" : "#/components/schemas/DenyRuleRecord_allOf"
   }, {
     "$ref" : "#/components/schemas/DenyRuleNew"
   } ]
+};
+    defs["DenyRuleRecord_allOf"] = {
+  "required" : [ "created", "id" ],
+  "type" : "object",
+  "properties" : {
+    "id" : {
+      "type" : "integer",
+      "description" : "The deny rule Id number.",
+      "example" : 41124
+    },
+    "created" : {
+      "type" : "string",
+      "description" : "the date the rule was created.",
+      "format" : "date-time"
+    }
+  },
+  "example" : null
 };
     defs["EmailAddress"] = {
   "title" : "Root Type for EmailAddress",
@@ -918,28 +922,6 @@ ul.nav-tabs {
   "description" : "an email address",
   "example" : {
     "email" : "user@domain.com"
-  }
-};
-    defs["EmailAddressName"] = {
-  "title" : "Root Type for EmailAddressName",
-  "required" : [ "email" ],
-  "type" : "object",
-  "properties" : {
-    "email" : {
-      "type" : "string",
-      "description" : "The email address.",
-      "example" : "user@domain.com"
-    },
-    "name" : {
-      "type" : "string",
-      "description" : "Name to use for the sending contact.",
-      "example" : "John Smith"
-    }
-  },
-  "description" : "An email contact.",
-  "example" : {
-    "email" : "user@domain.com",
-    "name" : "John Smith"
   }
 };
     defs["GenericResponse"] = {
@@ -991,28 +973,6 @@ ul.nav-tabs {
       "type" : "string",
       "example" : "main mail account"
     }
-  }
-};
-    defs["MailAttachment"] = {
-  "title" : "Root Type for MailAttachment",
-  "required" : [ "data", "filename" ],
-  "type" : "object",
-  "properties" : {
-    "filename" : {
-      "type" : "string",
-      "description" : "The filename of the attached file.",
-      "example" : "message.txt"
-    },
-    "data" : {
-      "type" : "string",
-      "description" : "The file contents base64 encoded",
-      "example" : "aGVsbG8gdGhlcmUK"
-    }
-  },
-  "description" : "(optional) File attachments to include in the email.  The file contents must be base64",
-  "example" : {
-    "filename" : "file.txt",
-    "data" : "base64_encoded_file_contents"
   }
 };
     defs["MailBlockClickHouse"] = {
@@ -1596,7 +1556,7 @@ import java.util.*;
 public class BlockingApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-
+        
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -2229,7 +2189,7 @@ import java.util.*;
 public class BlockingApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-
+        
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -2798,7 +2758,7 @@ import java.util.*;
 public class BlockingApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-
+        
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -3396,7 +3356,7 @@ import java.util.*;
 public class BlockingApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-
+        
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -3857,7 +3817,7 @@ import java.util.*;
 public class BlockingApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-
+        
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -4321,7 +4281,7 @@ import java.util.*;
 public class HistoryApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-
+        
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -4783,7 +4743,7 @@ import java.util.*;
 public class HistoryApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-
+        
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -5500,7 +5460,7 @@ import java.util.*;
 public class SendingApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-
+        
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -6318,7 +6278,7 @@ import java.util.*;
 public class SendingApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-
+        
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -6983,7 +6943,7 @@ import java.util.*;
 public class ServicesApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-
+        
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -7446,7 +7406,7 @@ import java.util.*;
 public class StatusApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-
+        
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");

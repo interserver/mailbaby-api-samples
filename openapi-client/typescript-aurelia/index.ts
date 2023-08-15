@@ -20,12 +20,11 @@ export { StatusApi } from './StatusApi';
 export {
   DenyRuleNew,
   DenyRuleRecord,
+  DenyRuleRecordAllOf,
   EmailAddress,
-  EmailAddressName,
   GenericResponse,
   GetMailOrders401Response,
   GetStats200ResponseInner,
-  MailAttachment,
   MailBlockClickHouse,
   MailBlockRspamd,
   MailBlocks,

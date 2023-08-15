@@ -18,10 +18,10 @@ type `Type`* {.pure.} = enum
 
 type DenyRuleRecord* = object
   ## The data for a email deny rule record.
-  `type`*: `Type` ## The type of deny rule.
-  data*: string ## The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
   id*: int ## The deny rule Id number.
   created*: string ## the date the rule was created.
+  `type`*: `Type` ## The type of deny rule.
+  data*: string ## The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
   user*: string ## Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
 
 func `%`*(v: `Type`): JsonNode =

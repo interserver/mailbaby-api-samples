@@ -8,10 +8,10 @@ client/OAIDenyRuleNew.cpp
 client/OAIDenyRuleNew.h
 client/OAIDenyRuleRecord.cpp
 client/OAIDenyRuleRecord.h
+client/OAIDenyRuleRecord_allOf.cpp
+client/OAIDenyRuleRecord_allOf.h
 client/OAIEmailAddress.cpp
 client/OAIEmailAddress.h
-client/OAIEmailAddressName.cpp
-client/OAIEmailAddressName.h
 client/OAIEnum.h
 client/OAIGenericResponse.cpp
 client/OAIGenericResponse.h
@@ -27,8 +27,6 @@ client/OAIHttpFileElement.cpp
 client/OAIHttpFileElement.h
 client/OAIHttpRequest.cpp
 client/OAIHttpRequest.h
-client/OAIMailAttachment.cpp
-client/OAIMailAttachment.h
 client/OAIMailBlockClickHouse.cpp
 client/OAIMailBlockClickHouse.h
 client/OAIMailBlockRspamd.cpp

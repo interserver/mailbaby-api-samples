@@ -92,7 +92,7 @@ export function MailBlockClickHouseToJSON(value?: MailBlockClickHouse | null): a
     }
     return {
         
-        'date': (value.date.toISOString().substring(0,10)),
+        'date': (value.date.toISOString().substr(0,10)),
         'from': value.from,
         'messageId': value.messageId,
         'subject': value.subject,

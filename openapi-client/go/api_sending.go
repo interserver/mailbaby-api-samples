@@ -20,12 +20,12 @@ import (
 )
 
 
-// SendingAPIService SendingAPI service
-type SendingAPIService service
+// SendingApiService SendingApi service
+type SendingApiService service
 
 type ApiSendAdvMailRequest struct {
 	ctx context.Context
-	ApiService *SendingAPIService
+	ApiService *SendingApiService
 	subject *string
 	body *string
 	from *EmailAddressName
@@ -102,7 +102,7 @@ Sends An email through one of your mail orders allowing additional options such 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSendAdvMailRequest
 */
-func (a *SendingAPIService) SendAdvMail(ctx context.Context) ApiSendAdvMailRequest {
+func (a *SendingApiService) SendAdvMail(ctx context.Context) ApiSendAdvMailRequest {
 	return ApiSendAdvMailRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -111,7 +111,7 @@ func (a *SendingAPIService) SendAdvMail(ctx context.Context) ApiSendAdvMailReque
 
 // Execute executes the request
 //  @return GenericResponse
-func (a *SendingAPIService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*GenericResponse, *http.Response, error) {
+func (a *SendingApiService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*GenericResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -119,7 +119,7 @@ func (a *SendingAPIService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*Generi
 		localVarReturnValue  *GenericResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SendingAPIService.SendAdvMail")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SendingApiService.SendAdvMail")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -263,7 +263,7 @@ func (a *SendingAPIService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*Generi
 
 type ApiSendMailRequest struct {
 	ctx context.Context
-	ApiService *SendingAPIService
+	ApiService *SendingApiService
 	to *string
 	from *string
 	subject *string
@@ -309,7 +309,7 @@ Sends an email through one of your mail orders.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSendMailRequest
 */
-func (a *SendingAPIService) SendMail(ctx context.Context) ApiSendMailRequest {
+func (a *SendingApiService) SendMail(ctx context.Context) ApiSendMailRequest {
 	return ApiSendMailRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -318,7 +318,7 @@ func (a *SendingAPIService) SendMail(ctx context.Context) ApiSendMailRequest {
 
 // Execute executes the request
 //  @return GenericResponse
-func (a *SendingAPIService) SendMailExecute(r ApiSendMailRequest) (*GenericResponse, *http.Response, error) {
+func (a *SendingApiService) SendMailExecute(r ApiSendMailRequest) (*GenericResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -326,7 +326,7 @@ func (a *SendingAPIService) SendMailExecute(r ApiSendMailRequest) (*GenericRespo
 		localVarReturnValue  *GenericResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SendingAPIService.SendMail")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SendingApiService.SendMail")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

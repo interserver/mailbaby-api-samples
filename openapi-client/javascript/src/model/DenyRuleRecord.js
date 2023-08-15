@@ -13,6 +13,7 @@
 
 import ApiClient from '../ApiClient';
 import DenyRuleNew from './DenyRuleNew';
+import DenyRuleRecordAllOf from './DenyRuleRecordAllOf';
 
 /**
  * The DenyRuleRecord model module.
@@ -24,15 +25,16 @@ class DenyRuleRecord {
      * Constructs a new <code>DenyRuleRecord</code>.
      * The data for a email deny rule record.
      * @alias module:model/DenyRuleRecord
+     * @implements module:model/DenyRuleRecordAllOf
      * @implements module:model/DenyRuleNew
-     * @param type {module:model/DenyRuleRecord.TypeEnum} The type of deny rule.
-     * @param data {String} The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
      * @param id {Number} The deny rule Id number.
      * @param created {Date} the date the rule was created.
+     * @param type {module:model/DenyRuleRecord.TypeEnum} The type of deny rule.
+     * @param data {String} The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
      */
-    constructor(type, data, id, created) { 
-        DenyRuleNew.initialize(this, type, data);
-        DenyRuleRecord.initialize(this, type, data, id, created);
+    constructor(id, created, type, data) { 
+        DenyRuleRecordAllOf.initialize(this, id, created);DenyRuleNew.initialize(this, type, data);
+        DenyRuleRecord.initialize(this, id, created, type, data);
     }
 
     /**
@@ -40,11 +42,11 @@ class DenyRuleRecord {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, type, data, id, created) { 
-        obj['type'] = type;
-        obj['data'] = data;
+    static initialize(obj, id, created, type, data) { 
         obj['id'] = id;
         obj['created'] = created;
+        obj['type'] = type;
+        obj['data'] = data;
     }
 
     /**
@@ -57,19 +59,20 @@ class DenyRuleRecord {
     static constructFromObject(data, obj) {
         if (data) {
             obj = obj || new DenyRuleRecord();
+            DenyRuleRecordAllOf.constructFromObject(data, obj);
             DenyRuleNew.constructFromObject(data, obj);
 
-            if (data.hasOwnProperty('type')) {
-                obj['type'] = ApiClient.convertToType(data['type'], 'String');
-            }
-            if (data.hasOwnProperty('data')) {
-                obj['data'] = ApiClient.convertToType(data['data'], 'String');
-            }
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'Number');
             }
             if (data.hasOwnProperty('created')) {
                 obj['created'] = ApiClient.convertToType(data['created'], 'Date');
+            }
+            if (data.hasOwnProperty('type')) {
+                obj['type'] = ApiClient.convertToType(data['type'], 'String');
+            }
+            if (data.hasOwnProperty('data')) {
+                obj['data'] = ApiClient.convertToType(data['data'], 'String');
             }
             if (data.hasOwnProperty('user')) {
                 obj['user'] = ApiClient.convertToType(data['user'], 'String');
@@ -109,19 +112,7 @@ class DenyRuleRecord {
 
 }
 
-DenyRuleRecord.RequiredProperties = ["type", "data", "id", "created"];
-
-/**
- * The type of deny rule.
- * @member {module:model/DenyRuleRecord.TypeEnum} type
- */
-DenyRuleRecord.prototype['type'] = undefined;
-
-/**
- * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
- * @member {String} data
- */
-DenyRuleRecord.prototype['data'] = undefined;
+DenyRuleRecord.RequiredProperties = ["id", "created", "type", "data"];
 
 /**
  * The deny rule Id number.
@@ -136,12 +127,35 @@ DenyRuleRecord.prototype['id'] = undefined;
 DenyRuleRecord.prototype['created'] = undefined;
 
 /**
+ * The type of deny rule.
+ * @member {module:model/DenyRuleRecord.TypeEnum} type
+ */
+DenyRuleRecord.prototype['type'] = undefined;
+
+/**
+ * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+ * @member {String} data
+ */
+DenyRuleRecord.prototype['data'] = undefined;
+
+/**
  * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
  * @member {String} user
  */
 DenyRuleRecord.prototype['user'] = undefined;
 
 
+// Implement DenyRuleRecordAllOf interface:
+/**
+ * The deny rule Id number.
+ * @member {Number} id
+ */
+DenyRuleRecordAllOf.prototype['id'] = undefined;
+/**
+ * the date the rule was created.
+ * @member {Date} created
+ */
+DenyRuleRecordAllOf.prototype['created'] = undefined;
 // Implement DenyRuleNew interface:
 /**
  * The type of deny rule.

@@ -75,12 +75,11 @@ Class | Method | HTTP request | Description
 
  - [PSOpenAPITools/Model.DenyRuleNew](docs/DenyRuleNew.md)
  - [PSOpenAPITools/Model.DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [PSOpenAPITools/Model.DenyRuleRecordAllOf](docs/DenyRuleRecordAllOf.md)
  - [PSOpenAPITools/Model.EmailAddress](docs/EmailAddress.md)
- - [PSOpenAPITools/Model.EmailAddressName](docs/EmailAddressName.md)
  - [PSOpenAPITools/Model.GenericResponse](docs/GenericResponse.md)
  - [PSOpenAPITools/Model.GetMailOrders401Response](docs/GetMailOrders401Response.md)
  - [PSOpenAPITools/Model.GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
- - [PSOpenAPITools/Model.MailAttachment](docs/MailAttachment.md)
  - [PSOpenAPITools/Model.MailBlockClickHouse](docs/MailBlockClickHouse.md)
  - [PSOpenAPITools/Model.MailBlockRspamd](docs/MailBlockRspamd.md)
  - [PSOpenAPITools/Model.MailBlocks](docs/MailBlocks.md)

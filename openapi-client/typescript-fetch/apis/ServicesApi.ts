@@ -17,13 +17,13 @@ import * as runtime from '../runtime';
 import type {
   GetMailOrders401Response,
   MailOrder,
-} from '../models/index';
+} from '../models';
 import {
     GetMailOrders401ResponseFromJSON,
     GetMailOrders401ResponseToJSON,
     MailOrderFromJSON,
     MailOrderToJSON,
-} from '../models/index';
+} from '../models';
 
 /**
  * 

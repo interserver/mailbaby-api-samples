@@ -95,12 +95,11 @@ Class | Method | HTTP request | Description
 
  - [OpenAPIClient.Models.DenyRuleNew](DenyRuleNew.md)
  - [OpenAPIClient.Models.DenyRuleRecord](DenyRuleRecord.md)
+ - [OpenAPIClient.Models.DenyRuleRecordAllOf](DenyRuleRecordAllOf.md)
  - [OpenAPIClient.Models.EmailAddress](EmailAddress.md)
- - [OpenAPIClient.Models.EmailAddressName](EmailAddressName.md)
  - [OpenAPIClient.Models.GenericResponse](GenericResponse.md)
  - [OpenAPIClient.Models.GetMailOrders401Response](GetMailOrders401Response.md)
  - [OpenAPIClient.Models.GetStats200ResponseInner](GetStats200ResponseInner.md)
- - [OpenAPIClient.Models.MailAttachment](MailAttachment.md)
  - [OpenAPIClient.Models.MailBlockClickHouse](MailBlockClickHouse.md)
  - [OpenAPIClient.Models.MailBlockRspamd](MailBlockRspamd.md)
  - [OpenAPIClient.Models.MailBlocks](MailBlocks.md)

@@ -115,29 +115,29 @@ class MailLogEntry {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is MailLogEntry &&
-    other.id == id &&
-    other.id == id &&
-    other.from == from &&
-    other.to == to &&
-    other.subject == subject &&
-    other.created == created &&
-    other.time == time &&
-    other.user == user &&
-    other.transtype == transtype &&
-    other.origin == origin &&
-    other.interface_ == interface_ &&
-    other.sendingZone == sendingZone &&
-    other.bodySize == bodySize &&
-    other.seq == seq &&
-    other.recipient == recipient &&
-    other.domain == domain &&
-    other.locked == locked &&
-    other.lockTime == lockTime &&
-    other.assigned == assigned &&
-    other.queued == queued &&
-    other.mxHostname == mxHostname &&
-    other.response == response &&
-    other.messageId == messageId;
+     other.id == id &&
+     other.id == id &&
+     other.from == from &&
+     other.to == to &&
+     other.subject == subject &&
+     other.created == created &&
+     other.time == time &&
+     other.user == user &&
+     other.transtype == transtype &&
+     other.origin == origin &&
+     other.interface_ == interface_ &&
+     other.sendingZone == sendingZone &&
+     other.bodySize == bodySize &&
+     other.seq == seq &&
+     other.recipient == recipient &&
+     other.domain == domain &&
+     other.locked == locked &&
+     other.lockTime == lockTime &&
+     other.assigned == assigned &&
+     other.queued == queued &&
+     other.mxHostname == mxHostname &&
+     other.response == response &&
+     other.messageId == messageId;
 
   @override
   int get hashCode =>

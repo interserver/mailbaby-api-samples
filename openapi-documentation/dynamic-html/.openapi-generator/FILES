@@ -9,12 +9,11 @@ docs/assets/js/main.js
 docs/index.html
 docs/models/DenyRuleNew.html
 docs/models/DenyRuleRecord.html
+docs/models/DenyRuleRecordAllOf.html
 docs/models/EmailAddress.html
-docs/models/EmailAddressName.html
 docs/models/GenericResponse.html
 docs/models/GetMailOrders401Response.html
 docs/models/GetStats200ResponseInner.html
-docs/models/MailAttachment.html
 docs/models/MailBlockClickHouse.html
 docs/models/MailBlockRspamd.html
 docs/models/MailBlocks.html

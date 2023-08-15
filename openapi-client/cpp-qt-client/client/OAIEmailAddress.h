@@ -50,7 +50,7 @@ public:
 private:
     void initializeModel();
 
-    QString m_email;
+    QString email;
     bool m_email_isSet;
     bool m_email_isValid;
 };

@@ -39,10 +39,10 @@ class MailOrder {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is MailOrder &&
-    other.id == id &&
-    other.status == status &&
-    other.username == username &&
-    other.comment == comment;
+     other.id == id &&
+     other.status == status &&
+     other.username == username &&
+     other.comment == comment;
 
   @override
   int get hashCode =>

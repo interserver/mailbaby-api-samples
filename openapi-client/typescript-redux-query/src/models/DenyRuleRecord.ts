@@ -16,12 +16,13 @@
  * The data for a email deny rule record.
  * @export
  */
-export interface DenyRuleRecord extends DenyRuleNew {
+export interface DenyRuleRecord extends DenyRuleNew, DenyRuleRecordAllOf {
 }
 
 export function DenyRuleRecordFromJSON(json: any): DenyRuleRecord {
     return {
         ...DenyRuleNewFromJSON(json),
+        ...DenyRuleRecordAllOfFromJSON(json),
     };
 }
 
@@ -31,5 +32,6 @@ export function DenyRuleRecordToJSON(value?: DenyRuleRecord): any {
     }
     return {
         ...DenyRuleNewToJSON(value),
+        ...DenyRuleRecordAllOfToJSON(value),
     };
 }

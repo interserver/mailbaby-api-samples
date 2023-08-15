@@ -1,7 +1,7 @@
 /*
 MailBaby Email Delivery and Management Service API
 
-Testing SendingAPIService
+Testing SendingApiService
 
 */
 
@@ -17,16 +17,16 @@ import (
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
-func Test_openapi_SendingAPIService(t *testing.T) {
+func Test_openapi_SendingApiService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test SendingAPIService SendAdvMail", func(t *testing.T) {
+	t.Run("Test SendingApiService SendAdvMail", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SendingAPI.SendAdvMail(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SendingApi.SendAdvMail(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,11 +34,11 @@ func Test_openapi_SendingAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test SendingAPIService SendMail", func(t *testing.T) {
+	t.Run("Test SendingApiService SendMail", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.SendingAPI.SendMail(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SendingApi.SendMail(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -53,13 +53,13 @@ void OAIMailBlocks::fromJson(QString jsonString) {
 
 void OAIMailBlocks::fromJsonObject(QJsonObject json) {
 
-    m_local_isValid = ::OpenAPI::fromJsonValue(m_local, json[QString("local")]);
+    m_local_isValid = ::OpenAPI::fromJsonValue(local, json[QString("local")]);
     m_local_isSet = !json[QString("local")].isNull() && m_local_isValid;
 
-    m_mbtrap_isValid = ::OpenAPI::fromJsonValue(m_mbtrap, json[QString("mbtrap")]);
+    m_mbtrap_isValid = ::OpenAPI::fromJsonValue(mbtrap, json[QString("mbtrap")]);
     m_mbtrap_isSet = !json[QString("mbtrap")].isNull() && m_mbtrap_isValid;
 
-    m_subject_isValid = ::OpenAPI::fromJsonValue(m_subject, json[QString("subject")]);
+    m_subject_isValid = ::OpenAPI::fromJsonValue(subject, json[QString("subject")]);
     m_subject_isSet = !json[QString("subject")].isNull() && m_subject_isValid;
 }
 
@@ -72,24 +72,24 @@ QString OAIMailBlocks::asJson() const {
 
 QJsonObject OAIMailBlocks::asJsonObject() const {
     QJsonObject obj;
-    if (m_local.size() > 0) {
-        obj.insert(QString("local"), ::OpenAPI::toJsonValue(m_local));
+    if (local.size() > 0) {
+        obj.insert(QString("local"), ::OpenAPI::toJsonValue(local));
     }
-    if (m_mbtrap.size() > 0) {
-        obj.insert(QString("mbtrap"), ::OpenAPI::toJsonValue(m_mbtrap));
+    if (mbtrap.size() > 0) {
+        obj.insert(QString("mbtrap"), ::OpenAPI::toJsonValue(mbtrap));
     }
-    if (m_subject.size() > 0) {
-        obj.insert(QString("subject"), ::OpenAPI::toJsonValue(m_subject));
+    if (subject.size() > 0) {
+        obj.insert(QString("subject"), ::OpenAPI::toJsonValue(subject));
     }
     return obj;
 }
 
 QList<OAIMailBlockClickHouse> OAIMailBlocks::getLocal() const {
-    return m_local;
+    return local;
 }
 void OAIMailBlocks::setLocal(const QList<OAIMailBlockClickHouse> &local) {
-    m_local = local;
-    m_local_isSet = true;
+    this->local = local;
+    this->m_local_isSet = true;
 }
 
 bool OAIMailBlocks::is_local_Set() const{
@@ -101,11 +101,11 @@ bool OAIMailBlocks::is_local_Valid() const{
 }
 
 QList<OAIMailBlockClickHouse> OAIMailBlocks::getMbtrap() const {
-    return m_mbtrap;
+    return mbtrap;
 }
 void OAIMailBlocks::setMbtrap(const QList<OAIMailBlockClickHouse> &mbtrap) {
-    m_mbtrap = mbtrap;
-    m_mbtrap_isSet = true;
+    this->mbtrap = mbtrap;
+    this->m_mbtrap_isSet = true;
 }
 
 bool OAIMailBlocks::is_mbtrap_Set() const{
@@ -117,11 +117,11 @@ bool OAIMailBlocks::is_mbtrap_Valid() const{
 }
 
 QList<OAIMailBlockRspamd> OAIMailBlocks::getSubject() const {
-    return m_subject;
+    return subject;
 }
 void OAIMailBlocks::setSubject(const QList<OAIMailBlockRspamd> &subject) {
-    m_subject = subject;
-    m_subject_isSet = true;
+    this->subject = subject;
+    this->m_subject_isSet = true;
 }
 
 bool OAIMailBlocks::is_subject_Set() const{
@@ -135,17 +135,17 @@ bool OAIMailBlocks::is_subject_Valid() const{
 bool OAIMailBlocks::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (m_local.size() > 0) {
+        if (local.size() > 0) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_mbtrap.size() > 0) {
+        if (mbtrap.size() > 0) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_subject.size() > 0) {
+        if (subject.size() > 0) {
             isObjectUpdated = true;
             break;
         }

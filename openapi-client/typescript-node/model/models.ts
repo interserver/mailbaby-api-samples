@@ -2,12 +2,11 @@ import localVarRequest from 'request';
 
 export * from './denyRuleNew';
 export * from './denyRuleRecord';
+export * from './denyRuleRecordAllOf';
 export * from './emailAddress';
-export * from './emailAddressName';
 export * from './genericResponse';
 export * from './getMailOrders401Response';
 export * from './getStats200ResponseInner';
-export * from './mailAttachment';
 export * from './mailBlockClickHouse';
 export * from './mailBlockRspamd';
 export * from './mailBlocks';
@@ -32,12 +31,11 @@ export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 import { DenyRuleNew } from './denyRuleNew';
 import { DenyRuleRecord } from './denyRuleRecord';
+import { DenyRuleRecordAllOf } from './denyRuleRecordAllOf';
 import { EmailAddress } from './emailAddress';
-import { EmailAddressName } from './emailAddressName';
 import { GenericResponse } from './genericResponse';
 import { GetMailOrders401Response } from './getMailOrders401Response';
 import { GetStats200ResponseInner } from './getStats200ResponseInner';
-import { MailAttachment } from './mailAttachment';
 import { MailBlockClickHouse } from './mailBlockClickHouse';
 import { MailBlockRspamd } from './mailBlockRspamd';
 import { MailBlocks } from './mailBlocks';
@@ -67,12 +65,11 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "DenyRuleNew": DenyRuleNew,
     "DenyRuleRecord": DenyRuleRecord,
+    "DenyRuleRecordAllOf": DenyRuleRecordAllOf,
     "EmailAddress": EmailAddress,
-    "EmailAddressName": EmailAddressName,
     "GenericResponse": GenericResponse,
     "GetMailOrders401Response": GetMailOrders401Response,
     "GetStats200ResponseInner": GetStats200ResponseInner,
-    "MailAttachment": MailAttachment,
     "MailBlockClickHouse": MailBlockClickHouse,
     "MailBlockRspamd": MailBlockRspamd,
     "MailBlocks": MailBlocks,

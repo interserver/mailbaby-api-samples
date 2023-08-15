@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
+import 'package:openapi/src/model/deny_rule_record_all_of.dart';
 import 'package:openapi/src/model/deny_rule_new.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -13,21 +14,13 @@ part 'deny_rule_record.g.dart';
 /// The data for a email deny rule record.
 ///
 /// Properties:
-/// * [type] - The type of deny rule.
-/// * [data] - The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
 /// * [id] - The deny rule Id number.
 /// * [created] - the date the rule was created.
+/// * [type] - The type of deny rule.
+/// * [data] - The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
 /// * [user] - Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
 @BuiltValue()
-abstract class DenyRuleRecord implements DenyRuleNew, Built<DenyRuleRecord, DenyRuleRecordBuilder> {
-  /// the date the rule was created.
-  @BuiltValueField(wireName: r'created')
-  DateTime get created;
-
-  /// The deny rule Id number.
-  @BuiltValueField(wireName: r'id')
-  int get id;
-
+abstract class DenyRuleRecord implements DenyRuleNew, DenyRuleRecordAllOf, Built<DenyRuleRecord, DenyRuleRecordBuilder> {
   DenyRuleRecord._();
 
   factory DenyRuleRecord([void updates(DenyRuleRecordBuilder b)]) = _$DenyRuleRecord;

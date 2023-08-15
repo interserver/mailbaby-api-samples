@@ -24,12 +24,12 @@ import OpenAPIClient
 
 let subject = "subject_example" // String | The subject or title of the email
 let body = "body_example" // String | The main email contents.
-let from = EmailAddressName(email: "email_example", name: "name_example") // EmailAddressName | 
-let to = [EmailAddressName(email: "email_example", name: "name_example")] // [EmailAddressName] | A list of destionation email addresses to send this to
-let replyto = [EmailAddressName(email: "email_example", name: "name_example")] // [EmailAddressName] | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. (optional)
-let cc = [EmailAddressName(email: "email_example", name: "name_example")] // [EmailAddressName] | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. (optional)
-let bcc = [EmailAddressName(email: "email_example", name: "name_example")] // [EmailAddressName] | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. (optional)
-let attachments = [MailAttachment(filename: "filename_example", data: "data_example")] // [MailAttachment] | (optional) File attachments to include in the email.  The file contents must be base64 encoded! (optional)
+let from = TODO // EmailAddressName | 
+let to = ["TODO"] // [EmailAddressName] | A list of destionation email addresses to send this to
+let replyto = ["TODO"] // [EmailAddressName] | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. (optional)
+let cc = ["TODO"] // [EmailAddressName] | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. (optional)
+let bcc = ["TODO"] // [EmailAddressName] | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. (optional)
+let attachments = ["TODO"] // [MailAttachment] | (optional) File attachments to include in the email.  The file contents must be base64 encoded! (optional)
 let id = 987 // Int64 | (optional)  ID of the Mail order within our system to use as the Mail Account. (optional)
 
 // Sends an Email with Advanced Options

@@ -64,18 +64,6 @@ export type DenyRuleNewTypeEnum = typeof DenyRuleNewTypeEnum[keyof typeof DenyRu
  */
 export interface DenyRuleRecord {
     /**
-     * The type of deny rule.
-     * @type {string}
-     * @memberof DenyRuleRecord
-     */
-    'type': DenyRuleRecordTypeEnum;
-    /**
-     * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-     * @type {string}
-     * @memberof DenyRuleRecord
-     */
-    'data': string;
-    /**
      * The deny rule Id number.
      * @type {number}
      * @memberof DenyRuleRecord
@@ -87,6 +75,18 @@ export interface DenyRuleRecord {
      * @memberof DenyRuleRecord
      */
     'created': string;
+    /**
+     * The type of deny rule.
+     * @type {string}
+     * @memberof DenyRuleRecord
+     */
+    'type': DenyRuleRecordTypeEnum;
+    /**
+     * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+     * @type {string}
+     * @memberof DenyRuleRecord
+     */
+    'data': string;
     /**
      * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      * @type {string}
@@ -104,6 +104,25 @@ export const DenyRuleRecordTypeEnum = {
 export type DenyRuleRecordTypeEnum = typeof DenyRuleRecordTypeEnum[keyof typeof DenyRuleRecordTypeEnum];
 
 /**
+ * 
+ * @export
+ * @interface DenyRuleRecordAllOf
+ */
+export interface DenyRuleRecordAllOf {
+    /**
+     * The deny rule Id number.
+     * @type {number}
+     * @memberof DenyRuleRecordAllOf
+     */
+    'id': number;
+    /**
+     * the date the rule was created.
+     * @type {string}
+     * @memberof DenyRuleRecordAllOf
+     */
+    'created': string;
+}
+/**
  * an email address
  * @export
  * @interface EmailAddress
@@ -115,25 +134,6 @@ export interface EmailAddress {
      * @memberof EmailAddress
      */
     'email'?: string;
-}
-/**
- * An email contact.
- * @export
- * @interface EmailAddressName
- */
-export interface EmailAddressName {
-    /**
-     * The email address.
-     * @type {string}
-     * @memberof EmailAddressName
-     */
-    'email': string;
-    /**
-     * Name to use for the sending contact.
-     * @type {string}
-     * @memberof EmailAddressName
-     */
-    'name'?: string;
 }
 /**
  * 
@@ -209,25 +209,6 @@ export interface GetStats200ResponseInner {
      * @memberof GetStats200ResponseInner
      */
     'comment'?: string;
-}
-/**
- * (optional) File attachments to include in the email.  The file contents must be base64
- * @export
- * @interface MailAttachment
- */
-export interface MailAttachment {
-    /**
-     * The filename of the attached file.
-     * @type {string}
-     * @memberof MailAttachment
-     */
-    'filename': string;
-    /**
-     * The file contents base64 encoded
-     * @type {string}
-     * @memberof MailAttachment
-     */
-    'data': string;
 }
 /**
  * A block entry from the clickhouse mailblocks server.
@@ -619,13 +600,13 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Adds a new email deny rule into the system to block new emails that match the given criteria
          * @summary Creates a new email deny rule.
-         * @param {AddRuleTypeEnum} type The type of deny rule.
+         * @param {string} type The type of deny rule.
          * @param {string} data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
          * @param {string} [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addRule: async (type: AddRuleTypeEnum, data: string, user?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        addRule: async (type: string, data: string, user?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'type' is not null or undefined
             assertParamExists('addRule', 'type', type)
             // verify required parameter 'data' is not null or undefined
@@ -827,13 +808,13 @@ export const BlockingApiFp = function(configuration?: Configuration) {
         /**
          * Adds a new email deny rule into the system to block new emails that match the given criteria
          * @summary Creates a new email deny rule.
-         * @param {AddRuleTypeEnum} type The type of deny rule.
+         * @param {string} type The type of deny rule.
          * @param {string} data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
          * @param {string} [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+        async addRule(type: string, data: string, user?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.addRule(type, data, user, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -892,13 +873,13 @@ export const BlockingApiFactory = function (configuration?: Configuration, baseP
         /**
          * Adds a new email deny rule into the system to block new emails that match the given criteria
          * @summary Creates a new email deny rule.
-         * @param {AddRuleTypeEnum} type The type of deny rule.
+         * @param {string} type The type of deny rule.
          * @param {string} data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
          * @param {string} [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: any): AxiosPromise<GenericResponse> {
+        addRule(type: string, data: string, user?: string, options?: any): AxiosPromise<GenericResponse> {
             return localVarFp.addRule(type, data, user, options).then((request) => request(axios, basePath));
         },
         /**
@@ -952,14 +933,14 @@ export class BlockingApi extends BaseAPI {
     /**
      * Adds a new email deny rule into the system to block new emails that match the given criteria
      * @summary Creates a new email deny rule.
-     * @param {AddRuleTypeEnum} type The type of deny rule.
+     * @param {string} type The type of deny rule.
      * @param {string} data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
      * @param {string} [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BlockingApi
      */
-    public addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: AxiosRequestConfig) {
+    public addRule(type: string, data: string, user?: string, options?: AxiosRequestConfig) {
         return BlockingApiFp(this.configuration).addRule(type, data, user, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1009,16 +990,6 @@ export class BlockingApi extends BaseAPI {
         return BlockingApiFp(this.configuration).getRules(options).then((request) => request(this.axios, this.basePath));
     }
 }
-
-/**
- * @export
- */
-export const AddRuleTypeEnum = {
-    Domain: 'domain',
-    Email: 'email',
-    Startswith: 'startswith'
-} as const;
-export type AddRuleTypeEnum = typeof AddRuleTypeEnum[keyof typeof AddRuleTypeEnum];
 
 
 /**
@@ -1271,7 +1242,6 @@ export class HistoryApi extends BaseAPI {
         return HistoryApiFp(this.configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, options).then((request) => request(this.axios, this.basePath));
     }
 }
-
 
 
 /**
@@ -1566,7 +1536,6 @@ export class SendingApi extends BaseAPI {
 }
 
 
-
 /**
  * ServicesApi - axios parameter creator
  * @export
@@ -1668,7 +1637,6 @@ export class ServicesApi extends BaseAPI {
 }
 
 
-
 /**
  * StatusApi - axios parameter creator
  * @export
@@ -1768,6 +1736,5 @@ export class StatusApi extends BaseAPI {
         return StatusApiFp(this.configuration).pingServer(options).then((request) => request(this.axios, this.basePath));
     }
 }
-
 
 

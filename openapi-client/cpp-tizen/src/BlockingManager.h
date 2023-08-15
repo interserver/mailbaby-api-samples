@@ -10,7 +10,6 @@
 #include "GenericResponse.h"
 #include "GetMailOrders_401_response.h"
 #include "MailBlocks.h"
-#include <list>
 #include "Error.h"
 
 /** \defgroup Operations API Endpoints

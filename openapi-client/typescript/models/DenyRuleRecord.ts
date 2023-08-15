@@ -17,14 +17,6 @@ import { HttpFile } from '../http/http';
 */
 export class DenyRuleRecord {
     /**
-    * The type of deny rule.
-    */
-    'type': DenyRuleRecordTypeEnum;
-    /**
-    * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-    */
-    'data': string;
-    /**
     * The deny rule Id number.
     */
     'id': number;
@@ -33,6 +25,14 @@ export class DenyRuleRecord {
     */
     'created': Date;
     /**
+    * The type of deny rule.
+    */
+    'type': DenyRuleRecordTypeEnum;
+    /**
+    * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+    */
+    'data': string;
+    /**
     * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
     */
     'user'?: string;
@@ -40,18 +40,6 @@ export class DenyRuleRecord {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "type",
-            "baseName": "type",
-            "type": "DenyRuleRecordTypeEnum",
-            "format": ""
-        },
-        {
-            "name": "data",
-            "baseName": "data",
-            "type": "string",
-            "format": ""
-        },
         {
             "name": "id",
             "baseName": "id",
@@ -63,6 +51,18 @@ export class DenyRuleRecord {
             "baseName": "created",
             "type": "Date",
             "format": "date-time"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "DenyRuleRecordTypeEnum",
+            "format": ""
+        },
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "string",
+            "format": ""
         },
         {
             "name": "user",
@@ -80,9 +80,5 @@ export class DenyRuleRecord {
 }
 
 
-export enum DenyRuleRecordTypeEnum {
-    Domain = 'domain',
-    Email = 'email',
-    Startswith = 'startswith'
-}
+export type DenyRuleRecordTypeEnum = "domain" | "email" | "startswith" ;
 

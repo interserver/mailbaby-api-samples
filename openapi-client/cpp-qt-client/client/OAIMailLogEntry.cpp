@@ -113,73 +113,73 @@ void OAIMailLogEntry::fromJson(QString jsonString) {
 
 void OAIMailLogEntry::fromJsonObject(QJsonObject json) {
 
-    m__id_isValid = ::OpenAPI::fromJsonValue(m__id, json[QString("_id")]);
+    m__id_isValid = ::OpenAPI::fromJsonValue(_id, json[QString("_id")]);
     m__id_isSet = !json[QString("_id")].isNull() && m__id_isValid;
 
-    m_id_isValid = ::OpenAPI::fromJsonValue(m_id, json[QString("id")]);
+    m_id_isValid = ::OpenAPI::fromJsonValue(id, json[QString("id")]);
     m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
 
-    m_from_isValid = ::OpenAPI::fromJsonValue(m_from, json[QString("from")]);
+    m_from_isValid = ::OpenAPI::fromJsonValue(from, json[QString("from")]);
     m_from_isSet = !json[QString("from")].isNull() && m_from_isValid;
 
-    m_to_isValid = ::OpenAPI::fromJsonValue(m_to, json[QString("to")]);
+    m_to_isValid = ::OpenAPI::fromJsonValue(to, json[QString("to")]);
     m_to_isSet = !json[QString("to")].isNull() && m_to_isValid;
 
-    m_subject_isValid = ::OpenAPI::fromJsonValue(m_subject, json[QString("subject")]);
+    m_subject_isValid = ::OpenAPI::fromJsonValue(subject, json[QString("subject")]);
     m_subject_isSet = !json[QString("subject")].isNull() && m_subject_isValid;
 
-    m_created_isValid = ::OpenAPI::fromJsonValue(m_created, json[QString("created")]);
+    m_created_isValid = ::OpenAPI::fromJsonValue(created, json[QString("created")]);
     m_created_isSet = !json[QString("created")].isNull() && m_created_isValid;
 
-    m_time_isValid = ::OpenAPI::fromJsonValue(m_time, json[QString("time")]);
+    m_time_isValid = ::OpenAPI::fromJsonValue(time, json[QString("time")]);
     m_time_isSet = !json[QString("time")].isNull() && m_time_isValid;
 
-    m_user_isValid = ::OpenAPI::fromJsonValue(m_user, json[QString("user")]);
+    m_user_isValid = ::OpenAPI::fromJsonValue(user, json[QString("user")]);
     m_user_isSet = !json[QString("user")].isNull() && m_user_isValid;
 
-    m_transtype_isValid = ::OpenAPI::fromJsonValue(m_transtype, json[QString("transtype")]);
+    m_transtype_isValid = ::OpenAPI::fromJsonValue(transtype, json[QString("transtype")]);
     m_transtype_isSet = !json[QString("transtype")].isNull() && m_transtype_isValid;
 
-    m_origin_isValid = ::OpenAPI::fromJsonValue(m_origin, json[QString("origin")]);
+    m_origin_isValid = ::OpenAPI::fromJsonValue(origin, json[QString("origin")]);
     m_origin_isSet = !json[QString("origin")].isNull() && m_origin_isValid;
 
-    m_interface_isValid = ::OpenAPI::fromJsonValue(m_interface, json[QString("interface")]);
+    m_interface_isValid = ::OpenAPI::fromJsonValue(interface, json[QString("interface")]);
     m_interface_isSet = !json[QString("interface")].isNull() && m_interface_isValid;
 
-    m_sending_zone_isValid = ::OpenAPI::fromJsonValue(m_sending_zone, json[QString("sendingZone")]);
+    m_sending_zone_isValid = ::OpenAPI::fromJsonValue(sending_zone, json[QString("sendingZone")]);
     m_sending_zone_isSet = !json[QString("sendingZone")].isNull() && m_sending_zone_isValid;
 
-    m_body_size_isValid = ::OpenAPI::fromJsonValue(m_body_size, json[QString("bodySize")]);
+    m_body_size_isValid = ::OpenAPI::fromJsonValue(body_size, json[QString("bodySize")]);
     m_body_size_isSet = !json[QString("bodySize")].isNull() && m_body_size_isValid;
 
-    m_seq_isValid = ::OpenAPI::fromJsonValue(m_seq, json[QString("seq")]);
+    m_seq_isValid = ::OpenAPI::fromJsonValue(seq, json[QString("seq")]);
     m_seq_isSet = !json[QString("seq")].isNull() && m_seq_isValid;
 
-    m_recipient_isValid = ::OpenAPI::fromJsonValue(m_recipient, json[QString("recipient")]);
+    m_recipient_isValid = ::OpenAPI::fromJsonValue(recipient, json[QString("recipient")]);
     m_recipient_isSet = !json[QString("recipient")].isNull() && m_recipient_isValid;
 
-    m_domain_isValid = ::OpenAPI::fromJsonValue(m_domain, json[QString("domain")]);
+    m_domain_isValid = ::OpenAPI::fromJsonValue(domain, json[QString("domain")]);
     m_domain_isSet = !json[QString("domain")].isNull() && m_domain_isValid;
 
-    m_locked_isValid = ::OpenAPI::fromJsonValue(m_locked, json[QString("locked")]);
+    m_locked_isValid = ::OpenAPI::fromJsonValue(locked, json[QString("locked")]);
     m_locked_isSet = !json[QString("locked")].isNull() && m_locked_isValid;
 
-    m_lock_time_isValid = ::OpenAPI::fromJsonValue(m_lock_time, json[QString("lockTime")]);
+    m_lock_time_isValid = ::OpenAPI::fromJsonValue(lock_time, json[QString("lockTime")]);
     m_lock_time_isSet = !json[QString("lockTime")].isNull() && m_lock_time_isValid;
 
-    m_assigned_isValid = ::OpenAPI::fromJsonValue(m_assigned, json[QString("assigned")]);
+    m_assigned_isValid = ::OpenAPI::fromJsonValue(assigned, json[QString("assigned")]);
     m_assigned_isSet = !json[QString("assigned")].isNull() && m_assigned_isValid;
 
-    m_queued_isValid = ::OpenAPI::fromJsonValue(m_queued, json[QString("queued")]);
+    m_queued_isValid = ::OpenAPI::fromJsonValue(queued, json[QString("queued")]);
     m_queued_isSet = !json[QString("queued")].isNull() && m_queued_isValid;
 
-    m_mx_hostname_isValid = ::OpenAPI::fromJsonValue(m_mx_hostname, json[QString("mxHostname")]);
+    m_mx_hostname_isValid = ::OpenAPI::fromJsonValue(mx_hostname, json[QString("mxHostname")]);
     m_mx_hostname_isSet = !json[QString("mxHostname")].isNull() && m_mx_hostname_isValid;
 
-    m_response_isValid = ::OpenAPI::fromJsonValue(m_response, json[QString("response")]);
+    m_response_isValid = ::OpenAPI::fromJsonValue(response, json[QString("response")]);
     m_response_isSet = !json[QString("response")].isNull() && m_response_isValid;
 
-    m_message_id_isValid = ::OpenAPI::fromJsonValue(m_message_id, json[QString("messageId")]);
+    m_message_id_isValid = ::OpenAPI::fromJsonValue(message_id, json[QString("messageId")]);
     m_message_id_isSet = !json[QString("messageId")].isNull() && m_message_id_isValid;
 }
 
@@ -193,83 +193,83 @@ QString OAIMailLogEntry::asJson() const {
 QJsonObject OAIMailLogEntry::asJsonObject() const {
     QJsonObject obj;
     if (m__id_isSet) {
-        obj.insert(QString("_id"), ::OpenAPI::toJsonValue(m__id));
+        obj.insert(QString("_id"), ::OpenAPI::toJsonValue(_id));
     }
     if (m_id_isSet) {
-        obj.insert(QString("id"), ::OpenAPI::toJsonValue(m_id));
+        obj.insert(QString("id"), ::OpenAPI::toJsonValue(id));
     }
     if (m_from_isSet) {
-        obj.insert(QString("from"), ::OpenAPI::toJsonValue(m_from));
+        obj.insert(QString("from"), ::OpenAPI::toJsonValue(from));
     }
     if (m_to_isSet) {
-        obj.insert(QString("to"), ::OpenAPI::toJsonValue(m_to));
+        obj.insert(QString("to"), ::OpenAPI::toJsonValue(to));
     }
     if (m_subject_isSet) {
-        obj.insert(QString("subject"), ::OpenAPI::toJsonValue(m_subject));
+        obj.insert(QString("subject"), ::OpenAPI::toJsonValue(subject));
     }
     if (m_created_isSet) {
-        obj.insert(QString("created"), ::OpenAPI::toJsonValue(m_created));
+        obj.insert(QString("created"), ::OpenAPI::toJsonValue(created));
     }
     if (m_time_isSet) {
-        obj.insert(QString("time"), ::OpenAPI::toJsonValue(m_time));
+        obj.insert(QString("time"), ::OpenAPI::toJsonValue(time));
     }
     if (m_user_isSet) {
-        obj.insert(QString("user"), ::OpenAPI::toJsonValue(m_user));
+        obj.insert(QString("user"), ::OpenAPI::toJsonValue(user));
     }
     if (m_transtype_isSet) {
-        obj.insert(QString("transtype"), ::OpenAPI::toJsonValue(m_transtype));
+        obj.insert(QString("transtype"), ::OpenAPI::toJsonValue(transtype));
     }
     if (m_origin_isSet) {
-        obj.insert(QString("origin"), ::OpenAPI::toJsonValue(m_origin));
+        obj.insert(QString("origin"), ::OpenAPI::toJsonValue(origin));
     }
     if (m_interface_isSet) {
-        obj.insert(QString("interface"), ::OpenAPI::toJsonValue(m_interface));
+        obj.insert(QString("interface"), ::OpenAPI::toJsonValue(interface));
     }
     if (m_sending_zone_isSet) {
-        obj.insert(QString("sendingZone"), ::OpenAPI::toJsonValue(m_sending_zone));
+        obj.insert(QString("sendingZone"), ::OpenAPI::toJsonValue(sending_zone));
     }
     if (m_body_size_isSet) {
-        obj.insert(QString("bodySize"), ::OpenAPI::toJsonValue(m_body_size));
+        obj.insert(QString("bodySize"), ::OpenAPI::toJsonValue(body_size));
     }
     if (m_seq_isSet) {
-        obj.insert(QString("seq"), ::OpenAPI::toJsonValue(m_seq));
+        obj.insert(QString("seq"), ::OpenAPI::toJsonValue(seq));
     }
     if (m_recipient_isSet) {
-        obj.insert(QString("recipient"), ::OpenAPI::toJsonValue(m_recipient));
+        obj.insert(QString("recipient"), ::OpenAPI::toJsonValue(recipient));
     }
     if (m_domain_isSet) {
-        obj.insert(QString("domain"), ::OpenAPI::toJsonValue(m_domain));
+        obj.insert(QString("domain"), ::OpenAPI::toJsonValue(domain));
     }
     if (m_locked_isSet) {
-        obj.insert(QString("locked"), ::OpenAPI::toJsonValue(m_locked));
+        obj.insert(QString("locked"), ::OpenAPI::toJsonValue(locked));
     }
     if (m_lock_time_isSet) {
-        obj.insert(QString("lockTime"), ::OpenAPI::toJsonValue(m_lock_time));
+        obj.insert(QString("lockTime"), ::OpenAPI::toJsonValue(lock_time));
     }
     if (m_assigned_isSet) {
-        obj.insert(QString("assigned"), ::OpenAPI::toJsonValue(m_assigned));
+        obj.insert(QString("assigned"), ::OpenAPI::toJsonValue(assigned));
     }
     if (m_queued_isSet) {
-        obj.insert(QString("queued"), ::OpenAPI::toJsonValue(m_queued));
+        obj.insert(QString("queued"), ::OpenAPI::toJsonValue(queued));
     }
     if (m_mx_hostname_isSet) {
-        obj.insert(QString("mxHostname"), ::OpenAPI::toJsonValue(m_mx_hostname));
+        obj.insert(QString("mxHostname"), ::OpenAPI::toJsonValue(mx_hostname));
     }
     if (m_response_isSet) {
-        obj.insert(QString("response"), ::OpenAPI::toJsonValue(m_response));
+        obj.insert(QString("response"), ::OpenAPI::toJsonValue(response));
     }
     if (m_message_id_isSet) {
-        obj.insert(QString("messageId"), ::OpenAPI::toJsonValue(m_message_id));
+        obj.insert(QString("messageId"), ::OpenAPI::toJsonValue(message_id));
     }
     return obj;
 }
 
 qint32 OAIMailLogEntry::getId() const {
-    return m__id;
+    return _id;
 }
 void OAIMailLogEntry::setId(const qint32 &_id) {
-    m__id = _id;
-    m__id_isSet = true;
+    this->_id = _id;
+    this->m__id_isSet = true;
 }
 
 bool OAIMailLogEntry::is__id_Set() const{
@@ -281,11 +281,11 @@ bool OAIMailLogEntry::is__id_Valid() const{
 }
 
 QString OAIMailLogEntry::getId() const {
-    return m_id;
+    return id;
 }
 void OAIMailLogEntry::setId(const QString &id) {
-    m_id = id;
-    m_id_isSet = true;
+    this->id = id;
+    this->m_id_isSet = true;
 }
 
 bool OAIMailLogEntry::is_id_Set() const{
@@ -297,11 +297,11 @@ bool OAIMailLogEntry::is_id_Valid() const{
 }
 
 QString OAIMailLogEntry::getFrom() const {
-    return m_from;
+    return from;
 }
 void OAIMailLogEntry::setFrom(const QString &from) {
-    m_from = from;
-    m_from_isSet = true;
+    this->from = from;
+    this->m_from_isSet = true;
 }
 
 bool OAIMailLogEntry::is_from_Set() const{
@@ -313,11 +313,11 @@ bool OAIMailLogEntry::is_from_Valid() const{
 }
 
 QString OAIMailLogEntry::getTo() const {
-    return m_to;
+    return to;
 }
 void OAIMailLogEntry::setTo(const QString &to) {
-    m_to = to;
-    m_to_isSet = true;
+    this->to = to;
+    this->m_to_isSet = true;
 }
 
 bool OAIMailLogEntry::is_to_Set() const{
@@ -329,11 +329,11 @@ bool OAIMailLogEntry::is_to_Valid() const{
 }
 
 QString OAIMailLogEntry::getSubject() const {
-    return m_subject;
+    return subject;
 }
 void OAIMailLogEntry::setSubject(const QString &subject) {
-    m_subject = subject;
-    m_subject_isSet = true;
+    this->subject = subject;
+    this->m_subject_isSet = true;
 }
 
 bool OAIMailLogEntry::is_subject_Set() const{
@@ -345,11 +345,11 @@ bool OAIMailLogEntry::is_subject_Valid() const{
 }
 
 QString OAIMailLogEntry::getCreated() const {
-    return m_created;
+    return created;
 }
 void OAIMailLogEntry::setCreated(const QString &created) {
-    m_created = created;
-    m_created_isSet = true;
+    this->created = created;
+    this->m_created_isSet = true;
 }
 
 bool OAIMailLogEntry::is_created_Set() const{
@@ -361,11 +361,11 @@ bool OAIMailLogEntry::is_created_Valid() const{
 }
 
 qint32 OAIMailLogEntry::getTime() const {
-    return m_time;
+    return time;
 }
 void OAIMailLogEntry::setTime(const qint32 &time) {
-    m_time = time;
-    m_time_isSet = true;
+    this->time = time;
+    this->m_time_isSet = true;
 }
 
 bool OAIMailLogEntry::is_time_Set() const{
@@ -377,11 +377,11 @@ bool OAIMailLogEntry::is_time_Valid() const{
 }
 
 QString OAIMailLogEntry::getUser() const {
-    return m_user;
+    return user;
 }
 void OAIMailLogEntry::setUser(const QString &user) {
-    m_user = user;
-    m_user_isSet = true;
+    this->user = user;
+    this->m_user_isSet = true;
 }
 
 bool OAIMailLogEntry::is_user_Set() const{
@@ -393,11 +393,11 @@ bool OAIMailLogEntry::is_user_Valid() const{
 }
 
 QString OAIMailLogEntry::getTranstype() const {
-    return m_transtype;
+    return transtype;
 }
 void OAIMailLogEntry::setTranstype(const QString &transtype) {
-    m_transtype = transtype;
-    m_transtype_isSet = true;
+    this->transtype = transtype;
+    this->m_transtype_isSet = true;
 }
 
 bool OAIMailLogEntry::is_transtype_Set() const{
@@ -409,11 +409,11 @@ bool OAIMailLogEntry::is_transtype_Valid() const{
 }
 
 QString OAIMailLogEntry::getOrigin() const {
-    return m_origin;
+    return origin;
 }
 void OAIMailLogEntry::setOrigin(const QString &origin) {
-    m_origin = origin;
-    m_origin_isSet = true;
+    this->origin = origin;
+    this->m_origin_isSet = true;
 }
 
 bool OAIMailLogEntry::is_origin_Set() const{
@@ -425,11 +425,11 @@ bool OAIMailLogEntry::is_origin_Valid() const{
 }
 
 QString OAIMailLogEntry::getInterface() const {
-    return m_interface;
+    return interface;
 }
 void OAIMailLogEntry::setInterface(const QString &interface) {
-    m_interface = interface;
-    m_interface_isSet = true;
+    this->interface = interface;
+    this->m_interface_isSet = true;
 }
 
 bool OAIMailLogEntry::is_interface_Set() const{
@@ -441,11 +441,11 @@ bool OAIMailLogEntry::is_interface_Valid() const{
 }
 
 QString OAIMailLogEntry::getSendingZone() const {
-    return m_sending_zone;
+    return sending_zone;
 }
 void OAIMailLogEntry::setSendingZone(const QString &sending_zone) {
-    m_sending_zone = sending_zone;
-    m_sending_zone_isSet = true;
+    this->sending_zone = sending_zone;
+    this->m_sending_zone_isSet = true;
 }
 
 bool OAIMailLogEntry::is_sending_zone_Set() const{
@@ -457,11 +457,11 @@ bool OAIMailLogEntry::is_sending_zone_Valid() const{
 }
 
 qint32 OAIMailLogEntry::getBodySize() const {
-    return m_body_size;
+    return body_size;
 }
 void OAIMailLogEntry::setBodySize(const qint32 &body_size) {
-    m_body_size = body_size;
-    m_body_size_isSet = true;
+    this->body_size = body_size;
+    this->m_body_size_isSet = true;
 }
 
 bool OAIMailLogEntry::is_body_size_Set() const{
@@ -473,11 +473,11 @@ bool OAIMailLogEntry::is_body_size_Valid() const{
 }
 
 qint32 OAIMailLogEntry::getSeq() const {
-    return m_seq;
+    return seq;
 }
 void OAIMailLogEntry::setSeq(const qint32 &seq) {
-    m_seq = seq;
-    m_seq_isSet = true;
+    this->seq = seq;
+    this->m_seq_isSet = true;
 }
 
 bool OAIMailLogEntry::is_seq_Set() const{
@@ -489,11 +489,11 @@ bool OAIMailLogEntry::is_seq_Valid() const{
 }
 
 QString OAIMailLogEntry::getRecipient() const {
-    return m_recipient;
+    return recipient;
 }
 void OAIMailLogEntry::setRecipient(const QString &recipient) {
-    m_recipient = recipient;
-    m_recipient_isSet = true;
+    this->recipient = recipient;
+    this->m_recipient_isSet = true;
 }
 
 bool OAIMailLogEntry::is_recipient_Set() const{
@@ -505,11 +505,11 @@ bool OAIMailLogEntry::is_recipient_Valid() const{
 }
 
 QString OAIMailLogEntry::getDomain() const {
-    return m_domain;
+    return domain;
 }
 void OAIMailLogEntry::setDomain(const QString &domain) {
-    m_domain = domain;
-    m_domain_isSet = true;
+    this->domain = domain;
+    this->m_domain_isSet = true;
 }
 
 bool OAIMailLogEntry::is_domain_Set() const{
@@ -521,11 +521,11 @@ bool OAIMailLogEntry::is_domain_Valid() const{
 }
 
 qint32 OAIMailLogEntry::getLocked() const {
-    return m_locked;
+    return locked;
 }
 void OAIMailLogEntry::setLocked(const qint32 &locked) {
-    m_locked = locked;
-    m_locked_isSet = true;
+    this->locked = locked;
+    this->m_locked_isSet = true;
 }
 
 bool OAIMailLogEntry::is_locked_Set() const{
@@ -537,11 +537,11 @@ bool OAIMailLogEntry::is_locked_Valid() const{
 }
 
 qint32 OAIMailLogEntry::getLockTime() const {
-    return m_lock_time;
+    return lock_time;
 }
 void OAIMailLogEntry::setLockTime(const qint32 &lock_time) {
-    m_lock_time = lock_time;
-    m_lock_time_isSet = true;
+    this->lock_time = lock_time;
+    this->m_lock_time_isSet = true;
 }
 
 bool OAIMailLogEntry::is_lock_time_Set() const{
@@ -553,11 +553,11 @@ bool OAIMailLogEntry::is_lock_time_Valid() const{
 }
 
 QString OAIMailLogEntry::getAssigned() const {
-    return m_assigned;
+    return assigned;
 }
 void OAIMailLogEntry::setAssigned(const QString &assigned) {
-    m_assigned = assigned;
-    m_assigned_isSet = true;
+    this->assigned = assigned;
+    this->m_assigned_isSet = true;
 }
 
 bool OAIMailLogEntry::is_assigned_Set() const{
@@ -569,11 +569,11 @@ bool OAIMailLogEntry::is_assigned_Valid() const{
 }
 
 QString OAIMailLogEntry::getQueued() const {
-    return m_queued;
+    return queued;
 }
 void OAIMailLogEntry::setQueued(const QString &queued) {
-    m_queued = queued;
-    m_queued_isSet = true;
+    this->queued = queued;
+    this->m_queued_isSet = true;
 }
 
 bool OAIMailLogEntry::is_queued_Set() const{
@@ -585,11 +585,11 @@ bool OAIMailLogEntry::is_queued_Valid() const{
 }
 
 QString OAIMailLogEntry::getMxHostname() const {
-    return m_mx_hostname;
+    return mx_hostname;
 }
 void OAIMailLogEntry::setMxHostname(const QString &mx_hostname) {
-    m_mx_hostname = mx_hostname;
-    m_mx_hostname_isSet = true;
+    this->mx_hostname = mx_hostname;
+    this->m_mx_hostname_isSet = true;
 }
 
 bool OAIMailLogEntry::is_mx_hostname_Set() const{
@@ -601,11 +601,11 @@ bool OAIMailLogEntry::is_mx_hostname_Valid() const{
 }
 
 QString OAIMailLogEntry::getResponse() const {
-    return m_response;
+    return response;
 }
 void OAIMailLogEntry::setResponse(const QString &response) {
-    m_response = response;
-    m_response_isSet = true;
+    this->response = response;
+    this->m_response_isSet = true;
 }
 
 bool OAIMailLogEntry::is_response_Set() const{
@@ -617,11 +617,11 @@ bool OAIMailLogEntry::is_response_Valid() const{
 }
 
 QString OAIMailLogEntry::getMessageId() const {
-    return m_message_id;
+    return message_id;
 }
 void OAIMailLogEntry::setMessageId(const QString &message_id) {
-    m_message_id = message_id;
-    m_message_id_isSet = true;
+    this->message_id = message_id;
+    this->m_message_id_isSet = true;
 }
 
 bool OAIMailLogEntry::is_message_id_Set() const{

@@ -28,7 +28,7 @@ class StatusApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future]
-  /// Throws [DioException] if API call or serialization fails
+  /// Throws [DioError] if API call or serialization fails
   Future<Response<void>> pingServer({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,

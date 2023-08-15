@@ -27,19 +27,19 @@ mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e deny_
 
 
 typedef struct deny_rule_record_t {
-    mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e type; //enum
-    char *data; // string
     int id; //numeric
     char *created; //date time
+    mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e type; //enum
+    char *data; // string
     char *user; // string
 
 } deny_rule_record_t;
 
 deny_rule_record_t *deny_rule_record_create(
-    mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e type,
-    char *data,
     int id,
     char *created,
+    mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e type,
+    char *data,
     char *user
 );
 

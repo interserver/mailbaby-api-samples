@@ -61,7 +61,7 @@ final String user = user_example; // String | Mail account username that will be
 try {
     final response = await api.addRule(type, data, user);
     print(response);
-} catch on DioException (e) {
+} catch on DioError (e) {
     print("Exception when calling BlockingApi->addRule: $e\n");
 }
 
@@ -90,12 +90,11 @@ Class | Method | HTTP request | Description
 
  - [DenyRuleNew](doc/DenyRuleNew.md)
  - [DenyRuleRecord](doc/DenyRuleRecord.md)
+ - [DenyRuleRecordAllOf](doc/DenyRuleRecordAllOf.md)
  - [EmailAddress](doc/EmailAddress.md)
- - [EmailAddressName](doc/EmailAddressName.md)
  - [GenericResponse](doc/GenericResponse.md)
  - [GetMailOrders401Response](doc/GetMailOrders401Response.md)
  - [GetStats200ResponseInner](doc/GetStats200ResponseInner.md)
- - [MailAttachment](doc/MailAttachment.md)
  - [MailBlockClickHouse](doc/MailBlockClickHouse.md)
  - [MailBlockRspamd](doc/MailBlockRspamd.md)
  - [MailBlocks](doc/MailBlocks.md)

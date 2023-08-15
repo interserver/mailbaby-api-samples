@@ -1,11 +1,10 @@
 export * from '../models/DenyRuleNew';
 export * from '../models/DenyRuleRecord';
+export * from '../models/DenyRuleRecordAllOf';
 export * from '../models/EmailAddress';
-export * from '../models/EmailAddressName';
 export * from '../models/GenericResponse';
 export * from '../models/GetMailOrders401Response';
 export * from '../models/GetStats200ResponseInner';
-export * from '../models/MailAttachment';
 export * from '../models/MailBlockClickHouse';
 export * from '../models/MailBlockRspamd';
 export * from '../models/MailBlocks';
@@ -16,13 +15,12 @@ export * from '../models/SendMail';
 export * from '../models/SendMailAdv';
 
 import { DenyRuleNew, DenyRuleNewTypeEnum     } from '../models/DenyRuleNew';
-import { DenyRuleRecord, DenyRuleRecordTypeEnum       } from '../models/DenyRuleRecord';
+import { DenyRuleRecord  , DenyRuleRecordTypeEnum     } from '../models/DenyRuleRecord';
+import { DenyRuleRecordAllOf } from '../models/DenyRuleRecordAllOf';
 import { EmailAddress } from '../models/EmailAddress';
-import { EmailAddressName } from '../models/EmailAddressName';
 import { GenericResponse } from '../models/GenericResponse';
 import { GetMailOrders401Response } from '../models/GetMailOrders401Response';
 import { GetStats200ResponseInner } from '../models/GetStats200ResponseInner';
-import { MailAttachment } from '../models/MailAttachment';
 import { MailBlockClickHouse } from '../models/MailBlockClickHouse';
 import { MailBlockRspamd } from '../models/MailBlockRspamd';
 import { MailBlocks } from '../models/MailBlocks';
@@ -59,12 +57,11 @@ let enumsMap: Set<string> = new Set<string>([
 let typeMap: {[index: string]: any} = {
     "DenyRuleNew": DenyRuleNew,
     "DenyRuleRecord": DenyRuleRecord,
+    "DenyRuleRecordAllOf": DenyRuleRecordAllOf,
     "EmailAddress": EmailAddress,
-    "EmailAddressName": EmailAddressName,
     "GenericResponse": GenericResponse,
     "GetMailOrders401Response": GetMailOrders401Response,
     "GetStats200ResponseInner": GetStats200ResponseInner,
-    "MailAttachment": MailAttachment,
     "MailBlockClickHouse": MailBlockClickHouse,
     "MailBlockRspamd": MailBlockRspamd,
     "MailBlocks": MailBlocks,
@@ -215,7 +212,7 @@ export class ObjectSerializer {
      */
     public static getPreferredMediaType(mediaTypes: Array<string>): string {
         /** According to OAS 3 we should default to json */
-        if (mediaTypes.length === 0) {
+        if (!mediaTypes) {
             return "application/json";
         }
 

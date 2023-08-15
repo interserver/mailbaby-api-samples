@@ -7,24 +7,24 @@
  *)
 
 type t = {
-    (* The type of deny rule. *)
-    _type: Enums.denyrulenew_type;
-    (* The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. *)
-    data: string;
     (* The deny rule Id number. *)
     id: int32;
     (* the date the rule was created. *)
     created: string;
+    (* The type of deny rule. *)
+    _type: Enums.denyrulenew_type;
+    (* The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. *)
+    data: string;
     (* Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. *)
     user: string option [@default None];
 } [@@deriving yojson { strict = false }, show ];;
 
 (** The data for a email deny rule record. *)
-let create (_type : Enums.denyrulenew_type) (data : string) (id : int32) (created : string) : t = {
-    _type = _type;
-    data = data;
+let create (id : int32) (created : string) (_type : Enums.denyrulenew_type) (data : string) : t = {
     id = id;
     created = created;
+    _type = _type;
+    data = data;
     user = None;
 }
 

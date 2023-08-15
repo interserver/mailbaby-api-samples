@@ -42,7 +42,7 @@ final int id = 789; // int | (optional)  ID of the Mail order within our system 
 try {
     final response = api.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id);
     print(response);
-} catch on DioException (e) {
+} catch on DioError (e) {
     print('Exception when calling SendingApi->sendAdvMail: $e\n');
 }
 ```
@@ -100,7 +100,7 @@ final String body = body_example; // String | The main email contents.
 try {
     final response = api.sendMail(to, from, subject, body);
     print(response);
-} catch on DioException (e) {
+} catch on DioError (e) {
     print('Exception when calling SendingApi->sendMail: $e\n');
 }
 ```

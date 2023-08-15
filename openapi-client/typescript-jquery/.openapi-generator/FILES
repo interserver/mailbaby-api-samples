@@ -10,12 +10,11 @@ git_push.sh
 index.ts
 model/DenyRuleNew.ts
 model/DenyRuleRecord.ts
+model/DenyRuleRecordAllOf.ts
 model/EmailAddress.ts
-model/EmailAddressName.ts
 model/GenericResponse.ts
 model/GetMailOrders401Response.ts
 model/GetStats200ResponseInner.ts
-model/MailAttachment.ts
 model/MailBlockClickHouse.ts
 model/MailBlockRspamd.ts
 model/MailBlocks.ts

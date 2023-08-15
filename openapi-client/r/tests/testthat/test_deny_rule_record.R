@@ -5,6 +5,22 @@ context("Test DenyRuleRecord")
 
 model_instance <- DenyRuleRecord$new()
 
+test_that("id", {
+  # tests for the property `id` (integer)
+  # The deny rule Id number.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`id`, "EXPECTED_RESULT")
+})
+
+test_that("created", {
+  # tests for the property `created` (character)
+  # the date the rule was created.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`created`, "EXPECTED_RESULT")
+})
+
 test_that("user", {
   # tests for the property `user` (character)
   # Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
@@ -27,20 +43,4 @@ test_that("data", {
 
   # uncomment below to test the property
   #expect_equal(model.instance$`data`, "EXPECTED_RESULT")
-})
-
-test_that("id", {
-  # tests for the property `id` (integer)
-  # The deny rule Id number.
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`id`, "EXPECTED_RESULT")
-})
-
-test_that("created", {
-  # tests for the property `created` (character)
-  # the date the rule was created.
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`created`, "EXPECTED_RESULT")
 })

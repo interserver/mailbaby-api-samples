@@ -3,12 +3,11 @@ README.md
 rebar.config
 src/model/openapi_deny_rule_new.erl
 src/model/openapi_deny_rule_record.erl
+src/model/openapi_deny_rule_record_all_of.erl
 src/model/openapi_email_address.erl
-src/model/openapi_email_address_name.erl
 src/model/openapi_generic_response.erl
 src/model/openapi_get_mail_orders_401_response.erl
 src/model/openapi_get_stats_200_response_inner.erl
-src/model/openapi_mail_attachment.erl
 src/model/openapi_mail_block_click_house.erl
 src/model/openapi_mail_block_rspamd.erl
 src/model/openapi_mail_blocks.erl

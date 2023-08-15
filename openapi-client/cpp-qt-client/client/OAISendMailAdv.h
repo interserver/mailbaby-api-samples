@@ -30,8 +30,6 @@
 #include "OAIObject.h"
 
 namespace OpenAPI {
-class OAIEmailAddressName;
-class OAIMailAttachment;
 
 class OAISendMailAdv : public OAIObject {
 public:
@@ -95,39 +93,39 @@ public:
 private:
     void initializeModel();
 
-    QString m_subject;
+    QString subject;
     bool m_subject_isSet;
     bool m_subject_isValid;
 
-    QString m_body;
+    QString body;
     bool m_body_isSet;
     bool m_body_isValid;
 
-    OAIEmailAddressName m_from;
+    OAIEmailAddressName from;
     bool m_from_isSet;
     bool m_from_isValid;
 
-    QList<OAIEmailAddressName> m_to;
+    QList<OAIEmailAddressName> to;
     bool m_to_isSet;
     bool m_to_isValid;
 
-    QList<OAIEmailAddressName> m_replyto;
+    QList<OAIEmailAddressName> replyto;
     bool m_replyto_isSet;
     bool m_replyto_isValid;
 
-    QList<OAIEmailAddressName> m_cc;
+    QList<OAIEmailAddressName> cc;
     bool m_cc_isSet;
     bool m_cc_isValid;
 
-    QList<OAIEmailAddressName> m_bcc;
+    QList<OAIEmailAddressName> bcc;
     bool m_bcc_isSet;
     bool m_bcc_isValid;
 
-    QList<OAIMailAttachment> m_attachments;
+    QList<OAIMailAttachment> attachments;
     bool m_attachments_isSet;
     bool m_attachments_isValid;
 
-    qint64 m_id;
+    qint64 id;
     bool m_id_isSet;
     bool m_id_isValid;
 };

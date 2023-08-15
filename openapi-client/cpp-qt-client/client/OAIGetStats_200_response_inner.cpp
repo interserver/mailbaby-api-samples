@@ -59,19 +59,19 @@ void OAIGetStats_200_response_inner::fromJson(QString jsonString) {
 
 void OAIGetStats_200_response_inner::fromJsonObject(QJsonObject json) {
 
-    m_id_isValid = ::OpenAPI::fromJsonValue(m_id, json[QString("id")]);
+    m_id_isValid = ::OpenAPI::fromJsonValue(id, json[QString("id")]);
     m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
 
-    m_status_isValid = ::OpenAPI::fromJsonValue(m_status, json[QString("status")]);
+    m_status_isValid = ::OpenAPI::fromJsonValue(status, json[QString("status")]);
     m_status_isSet = !json[QString("status")].isNull() && m_status_isValid;
 
-    m_username_isValid = ::OpenAPI::fromJsonValue(m_username, json[QString("username")]);
+    m_username_isValid = ::OpenAPI::fromJsonValue(username, json[QString("username")]);
     m_username_isSet = !json[QString("username")].isNull() && m_username_isValid;
 
-    m_password_isValid = ::OpenAPI::fromJsonValue(m_password, json[QString("password")]);
+    m_password_isValid = ::OpenAPI::fromJsonValue(password, json[QString("password")]);
     m_password_isSet = !json[QString("password")].isNull() && m_password_isValid;
 
-    m_comment_isValid = ::OpenAPI::fromJsonValue(m_comment, json[QString("comment")]);
+    m_comment_isValid = ::OpenAPI::fromJsonValue(comment, json[QString("comment")]);
     m_comment_isSet = !json[QString("comment")].isNull() && m_comment_isValid;
 }
 
@@ -85,29 +85,29 @@ QString OAIGetStats_200_response_inner::asJson() const {
 QJsonObject OAIGetStats_200_response_inner::asJsonObject() const {
     QJsonObject obj;
     if (m_id_isSet) {
-        obj.insert(QString("id"), ::OpenAPI::toJsonValue(m_id));
+        obj.insert(QString("id"), ::OpenAPI::toJsonValue(id));
     }
     if (m_status_isSet) {
-        obj.insert(QString("status"), ::OpenAPI::toJsonValue(m_status));
+        obj.insert(QString("status"), ::OpenAPI::toJsonValue(status));
     }
     if (m_username_isSet) {
-        obj.insert(QString("username"), ::OpenAPI::toJsonValue(m_username));
+        obj.insert(QString("username"), ::OpenAPI::toJsonValue(username));
     }
     if (m_password_isSet) {
-        obj.insert(QString("password"), ::OpenAPI::toJsonValue(m_password));
+        obj.insert(QString("password"), ::OpenAPI::toJsonValue(password));
     }
     if (m_comment_isSet) {
-        obj.insert(QString("comment"), ::OpenAPI::toJsonValue(m_comment));
+        obj.insert(QString("comment"), ::OpenAPI::toJsonValue(comment));
     }
     return obj;
 }
 
 qint32 OAIGetStats_200_response_inner::getId() const {
-    return m_id;
+    return id;
 }
 void OAIGetStats_200_response_inner::setId(const qint32 &id) {
-    m_id = id;
-    m_id_isSet = true;
+    this->id = id;
+    this->m_id_isSet = true;
 }
 
 bool OAIGetStats_200_response_inner::is_id_Set() const{
@@ -119,11 +119,11 @@ bool OAIGetStats_200_response_inner::is_id_Valid() const{
 }
 
 QString OAIGetStats_200_response_inner::getStatus() const {
-    return m_status;
+    return status;
 }
 void OAIGetStats_200_response_inner::setStatus(const QString &status) {
-    m_status = status;
-    m_status_isSet = true;
+    this->status = status;
+    this->m_status_isSet = true;
 }
 
 bool OAIGetStats_200_response_inner::is_status_Set() const{
@@ -135,11 +135,11 @@ bool OAIGetStats_200_response_inner::is_status_Valid() const{
 }
 
 QString OAIGetStats_200_response_inner::getUsername() const {
-    return m_username;
+    return username;
 }
 void OAIGetStats_200_response_inner::setUsername(const QString &username) {
-    m_username = username;
-    m_username_isSet = true;
+    this->username = username;
+    this->m_username_isSet = true;
 }
 
 bool OAIGetStats_200_response_inner::is_username_Set() const{
@@ -151,11 +151,11 @@ bool OAIGetStats_200_response_inner::is_username_Valid() const{
 }
 
 QString OAIGetStats_200_response_inner::getPassword() const {
-    return m_password;
+    return password;
 }
 void OAIGetStats_200_response_inner::setPassword(const QString &password) {
-    m_password = password;
-    m_password_isSet = true;
+    this->password = password;
+    this->m_password_isSet = true;
 }
 
 bool OAIGetStats_200_response_inner::is_password_Set() const{
@@ -167,11 +167,11 @@ bool OAIGetStats_200_response_inner::is_password_Valid() const{
 }
 
 QString OAIGetStats_200_response_inner::getComment() const {
-    return m_comment;
+    return comment;
 }
 void OAIGetStats_200_response_inner::setComment(const QString &comment) {
-    m_comment = comment;
-    m_comment_isSet = true;
+    this->comment = comment;
+    this->m_comment_isSet = true;
 }
 
 bool OAIGetStats_200_response_inner::is_comment_Set() const{

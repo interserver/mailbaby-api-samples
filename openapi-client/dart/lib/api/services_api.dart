@@ -61,7 +61,7 @@ class ServicesApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<MailOrder>') as List)
         .cast<MailOrder>()
-        .toList(growable: false);
+        .toList();
 
     }
     return null;

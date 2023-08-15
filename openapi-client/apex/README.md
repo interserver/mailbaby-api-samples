@@ -84,12 +84,11 @@ Class | Method | HTTP request | Description
 
  - [OASDenyRuleNew](OASDenyRuleNew.md)
  - [OASDenyRuleRecord](OASDenyRuleRecord.md)
+ - [OASDenyRuleRecordAllOf](OASDenyRuleRecordAllOf.md)
  - [OASEmailAddress](OASEmailAddress.md)
- - [OASEmailAddressName](OASEmailAddressName.md)
  - [OASGenericResponse](OASGenericResponse.md)
  - [OASGetMailOrders401Response](OASGetMailOrders401Response.md)
  - [OASGetStats200ResponseInner](OASGetStats200ResponseInner.md)
- - [OASMailAttachment](OASMailAttachment.md)
  - [OASMailBlockClickHouse](OASMailBlockClickHouse.md)
  - [OASMailBlockRspamd](OASMailBlockRspamd.md)
  - [OASMailBlocks](OASMailBlocks.md)
@@ -105,6 +104,7 @@ Class | Method | HTTP request | Description
 
 Authentication schemes defined for the API:
 ### apiKeyAuth
+
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY

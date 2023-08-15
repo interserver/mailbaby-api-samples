@@ -7,7 +7,6 @@
 #include <glib.h>
 #include "GetMailOrders_401_response.h"
 #include "MailOrder.h"
-#include <list>
 #include "Error.h"
 
 /** \defgroup Operations API Endpoints

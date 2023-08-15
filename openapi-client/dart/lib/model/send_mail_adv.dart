@@ -58,15 +58,15 @@ class SendMailAdv {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is SendMailAdv &&
-    other.subject == subject &&
-    other.body == body &&
-    other.from == from &&
-    _deepEquality.equals(other.to, to) &&
-    _deepEquality.equals(other.replyto, replyto) &&
-    _deepEquality.equals(other.cc, cc) &&
-    _deepEquality.equals(other.bcc, bcc) &&
-    _deepEquality.equals(other.attachments, attachments) &&
-    other.id == id;
+     other.subject == subject &&
+     other.body == body &&
+     other.from == from &&
+     other.to == to &&
+     other.replyto == replyto &&
+     other.cc == cc &&
+     other.bcc == bcc &&
+     other.attachments == attachments &&
+     other.id == id;
 
   @override
   int get hashCode =>

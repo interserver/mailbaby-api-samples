@@ -926,10 +926,9 @@ We support several different authentication methods but the preferred method is 
   <ol>
     <li><a href="#DenyRuleNew"><code>DenyRuleNew</code> - Root Type for DenyRule</a></li>
     <li><a href="#DenyRuleRecord"><code>DenyRuleRecord</code> - Root Type for DenyRule</a></li>
+    <li><a href="#DenyRuleRecord_allOf"><code>DenyRuleRecord_allOf</code> - </a></li>
     <li><a href="#EmailAddress"><code>EmailAddress</code> - Root Type for EmailAddress</a></li>
-    <li><a href="#EmailAddressName"><code>EmailAddressName</code> - Root Type for EmailAddressName</a></li>
     <li><a href="#GenericResponse"><code>GenericResponse</code> - </a></li>
-    <li><a href="#MailAttachment"><code>MailAttachment</code> - Root Type for MailAttachment</a></li>
     <li><a href="#MailBlockClickHouse"><code>MailBlockClickHouse</code> - Root Type for MailBlockClickHouse</a></li>
     <li><a href="#MailBlockRspamd"><code>MailBlockRspamd</code> - Root Type for MailBlockRspamd</a></li>
     <li><a href="#MailBlocks"><code>MailBlocks</code> - Root Type for MailBlocks</a></li>
@@ -957,13 +956,21 @@ We support several different authentication methods but the preferred method is 
     <h3><a name="DenyRuleRecord"><code>DenyRuleRecord</code> - Root Type for DenyRule</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>The data for a email deny rule record.</div>
     <div class="field-items">
-      <div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The type of deny rule. </div>
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The deny rule Id number. </div>
+<div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span> the date the rule was created. format: date-time</div>
+<div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The type of deny rule. </div>
         <div class="param-enum-header">Enum:</div>
         <div class="param-enum">domain</div><div class="param-enum">email</div><div class="param-enum">startswith</div>
 <div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. </div>
-<div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The deny rule Id number. </div>
-<div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span> the date the rule was created. format: date-time</div>
 <div class="param">user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="DenyRuleRecord_allOf"><code>DenyRuleRecord_allOf</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The deny rule Id number. </div>
+<div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span> the date the rule was created. format: date-time</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -974,27 +981,11 @@ We support several different authentication methods but the preferred method is 
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="EmailAddressName"><code>EmailAddressName</code> - Root Type for EmailAddressName</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>An email contact.</div>
-    <div class="field-items">
-      <div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The email address. </div>
-<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name to use for the sending contact. </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
     <h3><a name="GenericResponse"><code>GenericResponse</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
       <div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">text (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="MailAttachment"><code>MailAttachment</code> - Root Type for MailAttachment</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>(optional) File attachments to include in the email.  The file contents must be base64</div>
-    <div class="field-items">
-      <div class="param">filename </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The filename of the attached file. </div>
-<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The file contents base64 encoded </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">

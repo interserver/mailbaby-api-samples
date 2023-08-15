@@ -67,19 +67,19 @@ public:
 private:
     void initializeModel();
 
-    qint32 m_total;
+    qint32 total;
     bool m_total_isSet;
     bool m_total_isValid;
 
-    qint32 m_skip;
+    qint32 skip;
     bool m_skip_isSet;
     bool m_skip_isValid;
 
-    qint32 m_limit;
+    qint32 limit;
     bool m_limit_isSet;
     bool m_limit_isValid;
 
-    QList<OAIMailLogEntry> m_emails;
+    QList<OAIMailLogEntry> emails;
     bool m_emails_isSet;
     bool m_emails_isValid;
 };

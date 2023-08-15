@@ -70,23 +70,23 @@ public:
 private:
     void initializeModel();
 
-    qint32 m_id;
+    qint32 id;
     bool m_id_isSet;
     bool m_id_isValid;
 
-    QString m_status;
+    QString status;
     bool m_status_isSet;
     bool m_status_isValid;
 
-    QString m_username;
+    QString username;
     bool m_username_isSet;
     bool m_username_isValid;
 
-    QString m_password;
+    QString password;
     bool m_password_isSet;
     bool m_password_isValid;
 
-    QString m_comment;
+    QString comment;
     bool m_comment_isSet;
     bool m_comment_isValid;
 };

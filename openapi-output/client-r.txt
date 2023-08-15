@@ -4,20 +4,22 @@
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'r' is considered stable.
 [main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getMailOrders_401_response. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
 [main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getStats_200_response_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
-[main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressName (marked as unused due to form parameters) is generated due to the global property `skipFormModel` set to false
-[main] INFO  o.o.codegen.DefaultGenerator - Model MailAttachment (marked as unused due to form parameters) is generated due to the global property `skipFormModel` set to false
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as DenyRuleRecord_allOf. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
+[main] WARN  o.o.codegen.DefaultCodegen - allOf with multiple schemas defined. Using only the first one: DenyRuleRecord_allOf
+[main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressName not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
+[main] INFO  o.o.codegen.DefaultGenerator - Model MailAttachment not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/R/deny_rule_new.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/tests/testthat/test_deny_rule_new.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/docs/DenyRuleNew.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/R/deny_rule_record.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/tests/testthat/test_deny_rule_record.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/docs/DenyRuleRecord.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/R/deny_rule_record_all_of.R
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/tests/testthat/test_deny_rule_record_all_of.R
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/docs/DenyRuleRecordAllOf.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/R/email_address.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/tests/testthat/test_email_address.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/docs/EmailAddress.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/R/email_address_name.R
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/tests/testthat/test_email_address_name.R
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/docs/EmailAddressName.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/R/generic_response.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/tests/testthat/test_generic_response.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/docs/GenericResponse.md
@@ -27,9 +29,6 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/R/get_stats200_response_inner.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/tests/testthat/test_get_stats200_response_inner.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/docs/GetStats200ResponseInner.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/R/mail_attachment.R
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/tests/testthat/test_mail_attachment.R
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/docs/MailAttachment.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/R/mail_block_click_house.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/tests/testthat/test_mail_block_click_house.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/docs/MailBlockClickHouse.md
@@ -54,17 +53,35 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/R/send_mail_adv.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/tests/testthat/test_send_mail_adv.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/docs/SendMailAdv.md
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/json)
+[main] WARN  o.o.codegen.DefaultCodegen - Multiple MediaTypes found, using only the first one
+[main] WARN  o.o.codegen.DefaultCodegen - allOf with multiple schemas defined. Using only the first one: DenyRuleRecord_allOf
+[main] WARN  o.o.codegen.utils.ModelUtils - Multiple schemas found in the OAS 'content' section, returning only the first one (application/x-www-form-urlencoded)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/R/blocking_api.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/tests/testthat/test_blocking_api.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/docs/BlockingApi.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/R/history_api.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/tests/testthat/test_history_api.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/docs/HistoryApi.md
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model EmailAddressName
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model EmailAddressName
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model EmailAddressName
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model EmailAddressName
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model EmailAddressName
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model EmailAddressName
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model EmailAddressName
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model EmailAddressName
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model EmailAddressName
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model EmailAddressName
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model MailAttachment
+[main] ERROR o.o.codegen.languages.RClientCodegen - Error in constructing examples. Failed to look up the model MailAttachment
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/R/sending_api.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/tests/testthat/test_sending_api.R
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/r/docs/SendingApi.md

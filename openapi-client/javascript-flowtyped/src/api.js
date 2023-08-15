@@ -104,18 +104,6 @@ export type DenyRuleNew = {
  */
 export type DenyRuleRecord = {
     /**
-     * The type of deny rule.
-     * @type {string}
-     * @memberof DenyRuleRecord
-     */
-    type: DenyRuleRecordTypeEnum;
-    /**
-     * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-     * @type {string}
-     * @memberof DenyRuleRecord
-     */
-    data: string;
-    /**
      * The deny rule Id number.
      * @type {number}
      * @memberof DenyRuleRecord
@@ -128,11 +116,42 @@ export type DenyRuleRecord = {
      */
     created: Date;
     /**
+     * The type of deny rule.
+     * @type {string}
+     * @memberof DenyRuleRecord
+     */
+    type: DenyRuleRecordTypeEnum;
+    /**
+     * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+     * @type {string}
+     * @memberof DenyRuleRecord
+     */
+    data: string;
+    /**
      * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      * @type {string}
      * @memberof DenyRuleRecord
      */
     user?: string;
+}
+
+/**
+ * 
+ * @export
+ */
+export type DenyRuleRecordAllOf = {
+    /**
+     * The deny rule Id number.
+     * @type {number}
+     * @memberof DenyRuleRecordAllOf
+     */
+    id: number;
+    /**
+     * the date the rule was created.
+     * @type {Date}
+     * @memberof DenyRuleRecordAllOf
+     */
+    created: Date;
 }
 
 /**
@@ -146,25 +165,6 @@ export type EmailAddress = {
      * @memberof EmailAddress
      */
     email?: string;
-}
-
-/**
- * An email contact.
- * @export
- */
-export type EmailAddressName = {
-    /**
-     * The email address.
-     * @type {string}
-     * @memberof EmailAddressName
-     */
-    email: string;
-    /**
-     * Name to use for the sending contact.
-     * @type {string}
-     * @memberof EmailAddressName
-     */
-    name?: string;
 }
 
 /**
@@ -240,25 +240,6 @@ export type GetStats200ResponseInner = {
      * @memberof GetStats200ResponseInner
      */
     comment?: string;
-}
-
-/**
- * (optional) File attachments to include in the email.  The file contents must be base64
- * @export
- */
-export type MailAttachment = {
-    /**
-     * The filename of the attached file.
-     * @type {string}
-     * @memberof MailAttachment
-     */
-    filename: string;
-    /**
-     * The file contents base64 encoded
-     * @type {string}
-     * @memberof MailAttachment
-     */
-    data: string;
 }
 
 /**

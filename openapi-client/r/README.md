@@ -96,12 +96,11 @@ Class | Method | HTTP request | Description
 
  - [DenyRuleNew](docs/DenyRuleNew.md)
  - [DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [DenyRuleRecordAllOf](docs/DenyRuleRecordAllOf.md)
  - [EmailAddress](docs/EmailAddress.md)
- - [EmailAddressName](docs/EmailAddressName.md)
  - [GenericResponse](docs/GenericResponse.md)
  - [GetMailOrders401Response](docs/GetMailOrders401Response.md)
  - [GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
- - [MailAttachment](docs/MailAttachment.md)
  - [MailBlockClickHouse](docs/MailBlockClickHouse.md)
  - [MailBlockRspamd](docs/MailBlockRspamd.md)
  - [MailBlocks](docs/MailBlocks.md)

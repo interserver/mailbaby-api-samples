@@ -59,19 +59,19 @@ void OAIMailBlockClickHouse::fromJson(QString jsonString) {
 
 void OAIMailBlockClickHouse::fromJsonObject(QJsonObject json) {
 
-    m_date_isValid = ::OpenAPI::fromJsonValue(m_date, json[QString("date")]);
+    m_date_isValid = ::OpenAPI::fromJsonValue(date, json[QString("date")]);
     m_date_isSet = !json[QString("date")].isNull() && m_date_isValid;
 
-    m_from_isValid = ::OpenAPI::fromJsonValue(m_from, json[QString("from")]);
+    m_from_isValid = ::OpenAPI::fromJsonValue(from, json[QString("from")]);
     m_from_isSet = !json[QString("from")].isNull() && m_from_isValid;
 
-    m_message_id_isValid = ::OpenAPI::fromJsonValue(m_message_id, json[QString("messageId")]);
+    m_message_id_isValid = ::OpenAPI::fromJsonValue(message_id, json[QString("messageId")]);
     m_message_id_isSet = !json[QString("messageId")].isNull() && m_message_id_isValid;
 
-    m_subject_isValid = ::OpenAPI::fromJsonValue(m_subject, json[QString("subject")]);
+    m_subject_isValid = ::OpenAPI::fromJsonValue(subject, json[QString("subject")]);
     m_subject_isSet = !json[QString("subject")].isNull() && m_subject_isValid;
 
-    m_to_isValid = ::OpenAPI::fromJsonValue(m_to, json[QString("to")]);
+    m_to_isValid = ::OpenAPI::fromJsonValue(to, json[QString("to")]);
     m_to_isSet = !json[QString("to")].isNull() && m_to_isValid;
 }
 
@@ -85,29 +85,29 @@ QString OAIMailBlockClickHouse::asJson() const {
 QJsonObject OAIMailBlockClickHouse::asJsonObject() const {
     QJsonObject obj;
     if (m_date_isSet) {
-        obj.insert(QString("date"), ::OpenAPI::toJsonValue(m_date));
+        obj.insert(QString("date"), ::OpenAPI::toJsonValue(date));
     }
     if (m_from_isSet) {
-        obj.insert(QString("from"), ::OpenAPI::toJsonValue(m_from));
+        obj.insert(QString("from"), ::OpenAPI::toJsonValue(from));
     }
     if (m_message_id_isSet) {
-        obj.insert(QString("messageId"), ::OpenAPI::toJsonValue(m_message_id));
+        obj.insert(QString("messageId"), ::OpenAPI::toJsonValue(message_id));
     }
     if (m_subject_isSet) {
-        obj.insert(QString("subject"), ::OpenAPI::toJsonValue(m_subject));
+        obj.insert(QString("subject"), ::OpenAPI::toJsonValue(subject));
     }
     if (m_to_isSet) {
-        obj.insert(QString("to"), ::OpenAPI::toJsonValue(m_to));
+        obj.insert(QString("to"), ::OpenAPI::toJsonValue(to));
     }
     return obj;
 }
 
 QDate OAIMailBlockClickHouse::getDate() const {
-    return m_date;
+    return date;
 }
 void OAIMailBlockClickHouse::setDate(const QDate &date) {
-    m_date = date;
-    m_date_isSet = true;
+    this->date = date;
+    this->m_date_isSet = true;
 }
 
 bool OAIMailBlockClickHouse::is_date_Set() const{
@@ -119,11 +119,11 @@ bool OAIMailBlockClickHouse::is_date_Valid() const{
 }
 
 QString OAIMailBlockClickHouse::getFrom() const {
-    return m_from;
+    return from;
 }
 void OAIMailBlockClickHouse::setFrom(const QString &from) {
-    m_from = from;
-    m_from_isSet = true;
+    this->from = from;
+    this->m_from_isSet = true;
 }
 
 bool OAIMailBlockClickHouse::is_from_Set() const{
@@ -135,11 +135,11 @@ bool OAIMailBlockClickHouse::is_from_Valid() const{
 }
 
 QString OAIMailBlockClickHouse::getMessageId() const {
-    return m_message_id;
+    return message_id;
 }
 void OAIMailBlockClickHouse::setMessageId(const QString &message_id) {
-    m_message_id = message_id;
-    m_message_id_isSet = true;
+    this->message_id = message_id;
+    this->m_message_id_isSet = true;
 }
 
 bool OAIMailBlockClickHouse::is_message_id_Set() const{
@@ -151,11 +151,11 @@ bool OAIMailBlockClickHouse::is_message_id_Valid() const{
 }
 
 QString OAIMailBlockClickHouse::getSubject() const {
-    return m_subject;
+    return subject;
 }
 void OAIMailBlockClickHouse::setSubject(const QString &subject) {
-    m_subject = subject;
-    m_subject_isSet = true;
+    this->subject = subject;
+    this->m_subject_isSet = true;
 }
 
 bool OAIMailBlockClickHouse::is_subject_Set() const{
@@ -167,11 +167,11 @@ bool OAIMailBlockClickHouse::is_subject_Valid() const{
 }
 
 QString OAIMailBlockClickHouse::getTo() const {
-    return m_to;
+    return to;
 }
 void OAIMailBlockClickHouse::setTo(const QString &to) {
-    m_to = to;
-    m_to_isSet = true;
+    this->to = to;
+    this->m_to_isSet = true;
 }
 
 bool OAIMailBlockClickHouse::is_to_Set() const{

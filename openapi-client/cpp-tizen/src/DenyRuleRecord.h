@@ -45,20 +45,6 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get The type of deny rule.
-	 */
-	std::string getType();
-
-	/*! \brief Set The type of deny rule.
-	 */
-	void setType(std::string  type);
-	/*! \brief Get The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-	 */
-	std::string getData();
-
-	/*! \brief Set The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-	 */
-	void setData(std::string  data);
 	/*! \brief Get The deny rule Id number.
 	 */
 	int getId();
@@ -73,6 +59,20 @@ public:
 	/*! \brief Set the date the rule was created.
 	 */
 	void setCreated(std::string  created);
+	/*! \brief Get The type of deny rule.
+	 */
+	std::string getType();
+
+	/*! \brief Set The type of deny rule.
+	 */
+	void setType(std::string  type);
+	/*! \brief Get The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+	 */
+	std::string getData();
+
+	/*! \brief Set The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+	 */
+	void setData(std::string  data);
 	/*! \brief Get Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
 	 */
 	std::string getUser();
@@ -82,10 +82,10 @@ public:
 	void setUser(std::string  user);
 
 private:
-	std::string type;
-	std::string data;
 	int id;
 	std::string created;
+	std::string type;
+	std::string data;
 	std::string user;
 	void __init();
 	void __cleanup();

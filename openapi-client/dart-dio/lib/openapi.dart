@@ -17,12 +17,11 @@ export 'package:openapi/src/api/status_api.dart';
 
 export 'package:openapi/src/model/deny_rule_new.dart';
 export 'package:openapi/src/model/deny_rule_record.dart';
+export 'package:openapi/src/model/deny_rule_record_all_of.dart';
 export 'package:openapi/src/model/email_address.dart';
-export 'package:openapi/src/model/email_address_name.dart';
 export 'package:openapi/src/model/generic_response.dart';
 export 'package:openapi/src/model/get_mail_orders401_response.dart';
 export 'package:openapi/src/model/get_stats200_response_inner.dart';
-export 'package:openapi/src/model/mail_attachment.dart';
 export 'package:openapi/src/model/mail_block_click_house.dart';
 export 'package:openapi/src/model/mail_block_rspamd.dart';
 export 'package:openapi/src/model/mail_blocks.dart';

@@ -40,14 +40,6 @@ export type DenyRuleNewTypeEnum = 'domain' | 'email' | 'startswith';
  */
 export interface DenyRuleRecord {
   /**
-   * The type of deny rule.
-   */
-  type: DenyRuleRecordTypeEnum;
-  /**
-   * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-   */
-  data: string;
-  /**
    * The deny rule Id number.
    */
   id: number;
@@ -55,6 +47,14 @@ export interface DenyRuleRecord {
    * the date the rule was created.
    */
   created: string;
+  /**
+   * The type of deny rule.
+   */
+  type: DenyRuleRecordTypeEnum;
+  /**
+   * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+   */
+  data: string;
   /**
    * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
    */
@@ -67,6 +67,18 @@ export interface DenyRuleRecord {
 export type DenyRuleRecordTypeEnum = 'domain' | 'email' | 'startswith';
 
 
+export interface DenyRuleRecordAllOf {
+  /**
+   * The deny rule Id number.
+   */
+  id: number;
+  /**
+   * the date the rule was created.
+   */
+  created: string;
+}
+
+
 /**
  * an email address
  */
@@ -75,21 +87,6 @@ export interface EmailAddress {
    * an email address
    */
   email?: string;
-}
-
-
-/**
- * An email contact.
- */
-export interface EmailAddressName {
-  /**
-   * The email address.
-   */
-  email: string;
-  /**
-   * Name to use for the sending contact.
-   */
-  name?: string;
 }
 
 
@@ -111,21 +108,6 @@ export interface GetStats200ResponseInner {
   username: string;
   password?: string;
   comment?: string;
-}
-
-
-/**
- * (optional) File attachments to include in the email.  The file contents must be base64
- */
-export interface MailAttachment {
-  /**
-   * The filename of the attached file.
-   */
-  filename: string;
-  /**
-   * The file contents base64 encoded
-   */
-  data: string;
 }
 
 

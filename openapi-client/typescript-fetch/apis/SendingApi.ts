@@ -19,7 +19,7 @@ import type {
   GenericResponse,
   GetMailOrders401Response,
   MailAttachment,
-} from '../models/index';
+} from '../models';
 import {
     EmailAddressNameFromJSON,
     EmailAddressNameToJSON,
@@ -29,7 +29,7 @@ import {
     GetMailOrders401ResponseToJSON,
     MailAttachmentFromJSON,
     MailAttachmentToJSON,
-} from '../models/index';
+} from '../models';
 
 export interface SendAdvMailRequest {
     subject: string;

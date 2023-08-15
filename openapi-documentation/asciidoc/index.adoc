@@ -3,7 +3,7 @@ support@interserver.net
 1.1.0
 :toc: left
 :numbered:
-:toclevels: 4
+:toclevels: 3
 :source-highlighter: highlightjs
 :keywords: openapi, rest, MailBaby Email Delivery and Management Service API
 :specDir: ..
@@ -93,7 +93,7 @@ Adds a new email deny rule into the system to block new emails that match the gi
 
 ===== Responses
 
-.HTTP Response Codes
+.http response codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -190,7 +190,7 @@ Removes one of the configured deny mail rules from the system.
 
 ===== Responses
 
-.HTTP Response Codes
+.http response codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -287,7 +287,7 @@ Removes an email address from the various block lists.
 
 ===== Responses
 
-.HTTP Response Codes
+.http response codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -371,7 +371,7 @@ displays a list of blocked email addresses
 
 ===== Responses
 
-.HTTP Response Codes
+.http response codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -450,7 +450,7 @@ array[<<DenyRuleRecord>>]
 
 ===== Responses
 
-.HTTP Response Codes
+.http response codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -533,7 +533,7 @@ array[<<getStats_200_response_inner>>]
 
 ===== Responses
 
-.HTTP Response Codes
+.http response codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -685,7 +685,7 @@ Get a listing of the emails sent through this system
 
 ===== Responses
 
-.HTTP Response Codes
+.http response codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -824,7 +824,7 @@ Sends An email through one of your mail orders allowing additional options such 
 
 ===== Responses
 
-.HTTP Response Codes
+.http response codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -939,7 +939,7 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 
 ===== Responses
 
-.HTTP Response Codes
+.http response codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -1027,7 +1027,7 @@ array[<<MailOrder>>]
 
 ===== Responses
 
-.HTTP Response Codes
+.http response codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -1108,7 +1108,7 @@ Checks if the server is running
 
 ===== Responses
 
-.HTTP Response Codes
+.http response codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -1192,18 +1192,6 @@ The data for a email deny rule record.
 |===
 | Field Name| Required| Type| Description| Format
 
-| type
-| X
-| String 
-| The type of deny rule.
-|  _Enum:_ domain, email, startswith, 
-
-| data
-| X
-| String 
-| The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-|  
-
 | id
 | X
 | Integer 
@@ -1216,11 +1204,48 @@ The data for a email deny rule record.
 | the date the rule was created.
 | date-time 
 
+| type
+| X
+| String 
+| The type of deny rule.
+|  _Enum:_ domain, email, startswith, 
+
+| data
+| X
+| String 
+| The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+|  
+
 | user
 | 
 | String 
 | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
 |  
+
+|===
+
+
+[#DenyRuleRecordAllOf]
+=== _DenyRuleRecordAllOf_ 
+
+
+
+[.fields-DenyRuleRecordAllOf]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| id
+| X
+| Integer 
+| The deny rule Id number.
+|  
+
+| created
+| X
+| Date 
+| the date the rule was created.
+| date-time 
 
 |===
 
@@ -1239,31 +1264,6 @@ an email address
 | 
 | String 
 | an email address
-|  
-
-|===
-
-
-[#EmailAddressName]
-=== _EmailAddressName_ Root Type for EmailAddressName
-
-An email contact.
-
-[.fields-EmailAddressName]
-[cols="2,1,2,4,1"]
-|===
-| Field Name| Required| Type| Description| Format
-
-| email
-| X
-| String 
-| The email address.
-|  
-
-| name
-| 
-| String 
-| Name to use for the sending contact.
 |  
 
 |===
@@ -1357,31 +1357,6 @@ An email contact.
 | 
 | String 
 | 
-|  
-
-|===
-
-
-[#MailAttachment]
-=== _MailAttachment_ Root Type for MailAttachment
-
-(optional) File attachments to include in the email.  The file contents must be base64
-
-[.fields-MailAttachment]
-[cols="2,1,2,4,1"]
-|===
-| Field Name| Required| Type| Description| Format
-
-| filename
-| X
-| String 
-| The filename of the attached file.
-|  
-
-| data
-| X
-| String 
-| The file contents base64 encoded
 |  
 
 |===

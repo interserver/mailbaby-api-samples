@@ -15,12 +15,11 @@ src/apis/status_api.ml
 src/apis/status_api.mli
 src/models/deny_rule_new.ml
 src/models/deny_rule_record.ml
+src/models/deny_rule_record_all_of.ml
 src/models/email_address.ml
-src/models/email_address_name.ml
 src/models/generic_response.ml
 src/models/get_mail_orders_401_response.ml
 src/models/get_stats_200_response_inner.ml
-src/models/mail_attachment.ml
 src/models/mail_block_click_house.ml
 src/models/mail_block_rspamd.ml
 src/models/mail_blocks.ml

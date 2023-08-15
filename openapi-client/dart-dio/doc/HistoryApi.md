@@ -31,7 +31,7 @@ final api = Openapi().getHistoryApi();
 try {
     final response = api.getStats();
     print(response);
-} catch on DioException (e) {
+} catch on DioError (e) {
     print('Exception when calling HistoryApi->getStats: $e\n');
 }
 ```
@@ -85,7 +85,7 @@ final int endDate = 1673317008; // int | earliest date to get emails in unix tim
 try {
     final response = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
     print(response);
-} catch on DioException (e) {
+} catch on DioError (e) {
     print('Exception when calling HistoryApi->viewMailLog: $e\n');
 }
 ```

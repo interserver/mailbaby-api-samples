@@ -2,7 +2,7 @@ package io.swagger.server.model
 
 
 /**
- * = Root Type for EmailAddressName =
+ * = EmailAddressName =
  *
  * An email contact.
  *

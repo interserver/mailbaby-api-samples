@@ -1,10 +1,10 @@
-# PSOpenAPITools.PSOpenAPITools/Api.HistoryApi
+# PSOpenAPITools.PSOpenAPITools\Api.HistoryApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Get-Stats**](HistoryApi.md#Get-Stats) | **GET** /mail/stats | displays a list of blocked email addresses
+[**Get-Stats**](HistoryApi.md#Get-Stats) | **GET** /mail/stats | Account usage statistics.
 [**Invoke-ViewMailLog**](HistoryApi.md#Invoke-ViewMailLog) | **GET** /mail/log | displays the mail log
 
 
@@ -12,7 +12,9 @@ Method | HTTP request | Description
 # **Get-Stats**
 > GetStats200ResponseInner[] Get-Stats<br>
 
-displays a list of blocked email addresses
+Account usage statistics.
+
+Returns information about the usage on your mail accounts.
 
 ### Example
 ```powershell
@@ -24,7 +26,7 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 #$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
 
-# displays a list of blocked email addresses
+# Account usage statistics.
 try {
     $Result = Get-Stats
 } catch {

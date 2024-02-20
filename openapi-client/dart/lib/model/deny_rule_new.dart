@@ -35,9 +35,9 @@ class DenyRuleNew {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DenyRuleNew &&
-     other.type == type &&
-     other.data == data &&
-     other.user == user;
+    other.type == type &&
+    other.data == data &&
+    other.user == user;
 
   @override
   int get hashCode =>
@@ -151,12 +151,14 @@ class DenyRuleNewTypeEnum {
   static const domain = DenyRuleNewTypeEnum._(r'domain');
   static const email = DenyRuleNewTypeEnum._(r'email');
   static const startswith = DenyRuleNewTypeEnum._(r'startswith');
+  static const destination = DenyRuleNewTypeEnum._(r'destination');
 
   /// List of all possible values in this [enum][DenyRuleNewTypeEnum].
   static const values = <DenyRuleNewTypeEnum>[
     domain,
     email,
     startswith,
+    destination,
   ];
 
   static DenyRuleNewTypeEnum? fromJson(dynamic value) => DenyRuleNewTypeEnumTypeTransformer().decode(value);
@@ -198,6 +200,7 @@ class DenyRuleNewTypeEnumTypeTransformer {
         case r'domain': return DenyRuleNewTypeEnum.domain;
         case r'email': return DenyRuleNewTypeEnum.email;
         case r'startswith': return DenyRuleNewTypeEnum.startswith;
+        case r'destination': return DenyRuleNewTypeEnum.destination;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');

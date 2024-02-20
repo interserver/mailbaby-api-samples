@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MailBlocks {
     #[serde(rename = "local")]
     pub local: Vec<crate::models::MailBlockClickHouse>,

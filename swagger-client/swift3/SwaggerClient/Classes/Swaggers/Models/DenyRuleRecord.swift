@@ -14,7 +14,12 @@ open class DenyRuleRecord: JSONEncodable {
         case domain = "domain"
         case email = "email"
         case startswith = "startswith"
+        case destination = "destination"
     }
+    /** The deny rule Id number. */
+    public var id: String?
+    /** the date the rule was created. */
+    public var created: Date?
     /** Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. */
     public var user: String?
     /** The type of deny rule. */
@@ -27,6 +32,8 @@ open class DenyRuleRecord: JSONEncodable {
     // MARK: JSONEncodable
     open func encodeToJSON() -> Any {
         var nillableDictionary = [String:Any?]()
+        nillableDictionary["id"] = self.id
+        nillableDictionary["created"] = self.created?.encodeToJSON()
         nillableDictionary["user"] = self.user
         nillableDictionary["type"] = self.type?.rawValue
         nillableDictionary["data"] = self.data

@@ -52,12 +52,12 @@ delete_rule(Ctx, RuleId, Optional) ->
 
 %% @doc Removes an email address from the blocked list
 %% Removes an email address from the various block lists. 
--spec delist_block(ctx:ctx(), openapi_email_address:openapi_email_address()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-delist_block(Ctx, OpenapiEmailAddress) ->
-    delist_block(Ctx, OpenapiEmailAddress, #{}).
+-spec delist_block(ctx:ctx(), binary()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+delist_block(Ctx, Body) ->
+    delist_block(Ctx, Body, #{}).
 
--spec delist_block(ctx:ctx(), openapi_email_address:openapi_email_address(), maps:map()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-delist_block(Ctx, OpenapiEmailAddress, Optional) ->
+-spec delist_block(ctx:ctx(), binary(), maps:map()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+delist_block(Ctx, Body, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
@@ -65,7 +65,7 @@ delist_block(Ctx, OpenapiEmailAddress, Optional) ->
     Path = [?BASE_URL, "/mail/blocks/delete"],
     QS = [],
     Headers = [],
-    Body1 = OpenapiEmailAddress,
+    Body1 = Body,
     ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>, <<"multipart/form-data">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 

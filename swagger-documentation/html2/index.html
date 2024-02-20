@@ -690,7 +690,7 @@
     // Script section to load models into a JS Var
     var defs = {}
             defs["DenyRuleNew"] = {
-  "title" : "Root Type for DenyRule",
+  "title" : "DenyRuleNew",
   "required" : [ "data", "type" ],
   "type" : "object",
   "properties" : {
@@ -703,7 +703,7 @@
       "type" : "string",
       "description" : "The type of deny rule.",
       "example" : "email",
-      "enum" : [ "domain", "email", "startswith" ]
+      "enum" : [ "domain", "email", "startswith", "destination" ]
     },
     "data" : {
       "type" : "string",
@@ -719,7 +719,7 @@
   }
 };
             defs["DenyRuleRecord"] = {
-  "title" : "Root Type for DenyRule",
+  "title" : "DenyRuleRecord",
   "type" : "object",
   "description" : "The data for a email deny rule record.",
   "example" : {
@@ -734,9 +734,9 @@
     "type" : "object",
     "properties" : {
       "id" : {
-        "type" : "integer",
+        "type" : "string",
         "description" : "The deny rule Id number.",
-        "example" : 41124
+        "example" : "41124"
       },
       "created" : {
         "type" : "string",
@@ -749,22 +749,12 @@
   } ]
 };
             defs["EmailAddress"] = {
-  "title" : "Root Type for EmailAddress",
-  "type" : "object",
-  "properties" : {
-    "email" : {
-      "type" : "string",
-      "description" : "an email address",
-      "example" : "user@domain.com"
-    }
-  },
+  "type" : "string",
   "description" : "an email address",
-  "example" : {
-    "email" : "user@domain.com"
-  }
+  "example" : "user@domain.com"
 };
             defs["EmailAddressName"] = {
-  "title" : "Root Type for EmailAddressName",
+  "title" : "EmailAddressName",
   "required" : [ "email" ],
   "type" : "object",
   "properties" : {
@@ -783,6 +773,43 @@
   "example" : {
     "email" : "user@domain.com",
     "name" : "John Smith"
+  }
+};
+            defs["EmailAddressNames"] = {
+  "title" : "EmailAddressNames",
+  "type" : "array",
+  "description" : "Array of Email Addresses",
+  "example" : [ {
+    "email" : "user@domain.com",
+    "name" : "John Smith"
+  } ],
+  "items" : {
+    "$ref" : "#/components/schemas/EmailAddressName"
+  }
+};
+            defs["EmailAddressTypes"] = {};
+            defs["EmailAddressesTypes"] = {};
+            defs["ErrorMessage"] = {
+  "title" : "ErrorMessage",
+  "required" : [ "code", "message" ],
+  "type" : "object",
+  "properties" : {
+    "code" : {
+      "type" : "integer",
+      "description" : "The response code associated with the error.",
+      "format" : "int32",
+      "example" : 400
+    },
+    "message" : {
+      "type" : "string",
+      "description" : "The details or description of the error.",
+      "example" : "There was an error."
+    }
+  },
+  "description" : "The resposne when an error occurs.",
+  "example" : {
+    "code" : 400,
+    "message" : "There was an error."
   }
 };
             defs["GenericResponse"] = {
@@ -824,20 +851,8 @@
     }
   }
 };
-            defs["inline_response_401"] = {
-  "required" : [ "code", "message" ],
-  "type" : "object",
-  "properties" : {
-    "code" : {
-      "type" : "string"
-    },
-    "message" : {
-      "type" : "string"
-    }
-  }
-};
             defs["MailAttachment"] = {
-  "title" : "Root Type for MailAttachment",
+  "title" : "MailAttachment",
   "required" : [ "data", "filename" ],
   "type" : "object",
   "properties" : {
@@ -859,7 +874,7 @@
   }
 };
             defs["MailBlockClickHouse"] = {
-  "title" : "Root Type for MailBlockClickHouse",
+  "title" : "MailBlockClickHouse",
   "required" : [ "date", "from", "messageId", "subject", "to" ],
   "type" : "object",
   "properties" : {
@@ -890,7 +905,7 @@
   }
 };
             defs["MailBlockRspamd"] = {
-  "title" : "Root Type for MailBlockRspamd",
+  "title" : "MailBlockRspamd",
   "required" : [ "from", "subject" ],
   "type" : "object",
   "properties" : {
@@ -908,7 +923,7 @@
   }
 };
             defs["MailBlocks"] = {
-  "title" : "Root Type for MailBlocks",
+  "title" : "MailBlocks",
   "required" : [ "local", "mbtrap", "subject" ],
   "type" : "object",
   "properties" : {
@@ -954,6 +969,7 @@
   }
 };
             defs["MailLog"] = {
+  "title" : "MailLog",
   "required" : [ "emails", "limit", "skip", "total" ],
   "type" : "object",
   "properties" : {
@@ -1013,6 +1029,7 @@
   }
 };
             defs["MailLogEntry"] = {
+  "title" : "MailLogEntry",
   "required" : [ "_id", "assigned", "bodySize", "created", "domain", "from", "id", "interface", "lockTime", "locked", "mxHostname", "origin", "queued", "recipient", "response", "sendingZone", "seq", "subject", "time", "to", "transtype", "user" ],
   "type" : "object",
   "properties" : {
@@ -1107,9 +1124,9 @@
       "example" : 1
     },
     "lockTime" : {
-      "type" : "integer",
+      "type" : "string",
       "description" : "lock timestamp",
-      "example" : 1634215818533
+      "example" : "1634215818533"
     },
     "assigned" : {
       "type" : "string",
@@ -1160,7 +1177,7 @@
   }
 };
             defs["MailOrder"] = {
-  "title" : "Root Type for MailOrder",
+  "title" : "MailOrder",
   "required" : [ "id", "status", "username" ],
   "type" : "object",
   "properties" : {
@@ -1193,6 +1210,7 @@
   }
 };
             defs["SendMail"] = {
+  "title" : "SendMail",
   "required" : [ "body", "from", "subject", "to" ],
   "type" : "object",
   "properties" : {
@@ -1220,7 +1238,7 @@
   "description" : "Details for an Email"
 };
             defs["SendMailAdv"] = {
-  "title" : "Email details",
+  "title" : "SendMailAdv",
   "required" : [ "body", "from", "subject", "to" ],
   "type" : "object",
   "properties" : {
@@ -1235,39 +1253,19 @@
       "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else."
     },
     "from" : {
-      "$ref" : "#/components/schemas/EmailAddressName"
+      "$ref" : "#/components/schemas/EmailAddressTypes"
     },
     "to" : {
-      "type" : "array",
-      "description" : "A list of destionation email addresses to send this to",
-      "example" : "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]",
-      "items" : {
-        "$ref" : "#/components/schemas/EmailAddressName"
-      }
+      "$ref" : "#/components/schemas/EmailAddressesTypes"
     },
     "replyto" : {
-      "type" : "array",
-      "description" : "(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.",
-      "example" : "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]",
-      "items" : {
-        "$ref" : "#/components/schemas/EmailAddressName"
-      }
+      "$ref" : "#/components/schemas/EmailAddressesTypes"
     },
     "cc" : {
-      "type" : "array",
-      "description" : "(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.",
-      "example" : "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]",
-      "items" : {
-        "$ref" : "#/components/schemas/EmailAddressName"
-      }
+      "$ref" : "#/components/schemas/EmailAddressesTypes"
     },
     "bcc" : {
-      "type" : "array",
-      "description" : "(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.",
-      "example" : "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]",
-      "items" : {
-        "$ref" : "#/components/schemas/EmailAddressName"
-      }
+      "$ref" : "#/components/schemas/EmailAddressesTypes"
     },
     "attachments" : {
       "type" : "array",
@@ -1288,11 +1286,13 @@
   "example" : {
     "subject" : "Welcome",
     "body" : "Hello",
-    "from" : {
-      "email" : "user@domain.com"
-    },
-    "to" : [ {
-      "email" : "someone@client.com",
+    "from" : "user@domain.com",
+    "to" : "someone@client.com",
+    "cc" : [ {
+      "email" : "someone2@client.com",
+      "name" : "Mr Client"
+    }, {
+      "email" : "someone3@client.com",
       "name" : "Mr Client"
     } ],
     "attachments" : [ {
@@ -1761,7 +1761,7 @@ except ApiException as e:
                                               </div>
                                                       <div class="inner enums" id="addRule_type_enum">
                                                           <span class="inner">
-                                                              <b>Enum: </b><code>domain</code>, <code>email</code>, <code>startswith</code>
+                                                              <b>Enum: </b><code>domain</code>, <code>email</code>, <code>startswith</code>, <code>destination</code>
                                                           </span>
                                                       </div>
                                                   <div class="inner required">
@@ -1842,7 +1842,7 @@ except ApiException as e:
                                 </div>
                             </div>
 
-                            <h3> Status: 400 - The specified resource was not found </h3>
+                            <h3> Status: 400 - Error message when there was a problem with the input parameters. </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
@@ -1857,11 +1857,19 @@ except ApiException as e:
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "The specified resource was not found",
+  "description" : "Error message when there was a problem with the input parameters.",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "BadInputError" : {
+          "value" : {
+            "code" : 400,
+            "message" : "There was a problem with the input parameters."
+          }
+        }
       }
     }
   }
@@ -1909,7 +1917,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -1957,7 +1973,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "NotFoundError" : {
+          "value" : {
+            "code" : 404,
+            "message" : "The specified resource was not found."
+          }
+        }
       }
     }
   }
@@ -2322,7 +2346,7 @@ except ApiException as e:
                                 </div>
                             </div>
 
-                            <h3> Status: 400 - The specified resource was not found </h3>
+                            <h3> Status: 400 - Error message when there was a problem with the input parameters. </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
@@ -2337,11 +2361,19 @@ except ApiException as e:
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "The specified resource was not found",
+  "description" : "Error message when there was a problem with the input parameters.",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "BadInputError" : {
+          "value" : {
+            "code" : 400,
+            "message" : "There was a problem with the input parameters."
+          }
+        }
       }
     }
   }
@@ -2389,7 +2421,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -2437,7 +2477,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "NotFoundError" : {
+          "value" : {
+            "code" : 404,
+            "message" : "The specified resource was not found."
+          }
+        }
       }
     }
   }
@@ -2529,11 +2577,11 @@ public class BlockingApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         BlockingApi apiInstance = new BlockingApi();
-        EmailAddress body = {
+        String body = {
   "value" : {
     "email" : "client@domain.com"
   }
-}; // EmailAddress | 
+}; // String | 
         try {
             GenericResponse result = apiInstance.delistBlock(body);
             System.out.println(result);
@@ -2552,11 +2600,11 @@ public class BlockingApiExample {
 
     public static void main(String[] args) {
         BlockingApi apiInstance = new BlockingApi();
-        EmailAddress body = {
+        String body = {
   "value" : {
     "email" : "client@domain.com"
   }
-}; // EmailAddress | 
+}; // String | 
         try {
             GenericResponse result = apiInstance.delistBlock(body);
             System.out.println(result);
@@ -2577,7 +2625,7 @@ public class BlockingApiExample {
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-EmailAddress *body = {
+String *body = {
   "value" : {
     "email" : "client@domain.com"
   }
@@ -2613,7 +2661,7 @@ var body = {
   "value" : {
     "email" : "client@domain.com"
   }
-}; // {{EmailAddress}} 
+}; // {{String}} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -2649,7 +2697,7 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new BlockingApi();
-            var body = new EmailAddress(); // EmailAddress | 
+            var body = new String(); // String | 
 
             try
             {
@@ -2681,7 +2729,7 @@ $body = {
   "value" : {
     "email" : "client@domain.com"
   }
-}; // EmailAddress | 
+}; // String | 
 
 try {
     $result = $api_instance->delistBlock($body);
@@ -2703,7 +2751,7 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 my $api_instance = MailBabyApi::BlockingApi->new();
-my $body = MailBabyApi::Object::EmailAddress->new(); # EmailAddress | 
+my $body = MailBabyApi::Object::String->new(); # String | 
 
 eval { 
     my $result = $api_instance->delistBlock(body => $body);
@@ -2732,7 +2780,7 @@ body = {
   "value" : {
     "email" : "client@domain.com"
   }
-} # EmailAddress | 
+} # String | 
 
 try: 
     # Removes an email address from the blocked list
@@ -2810,32 +2858,6 @@ except ApiException as e:
                                 </tr>
                             </table>
 
-                            <div class="methodsubtabletitle">Form parameters</div>
-                            <table id="methodsubtable">
-                              <tr>
-                                <th width="150px">Name</th>
-                                <th>Description</th>
-                              </tr>
-                                  <tr><td style="width:150px;">email*</td>
-                                  <td>
-                                  
-                                  
-                                      <div id="d2e199_delistBlock_email">
-                                          <div class="json-schema-view">
-                                              <div class="primitive">
-                                                  <span class="type">
-                                                      String
-                                                  </span>
-                                  
-                                              </div>
-                                                  <div class="inner required">
-                                                      Required
-                                                  </div>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  </tr>
-                            </table>
 
 
                           <h2>Responses</h2>
@@ -2887,7 +2909,7 @@ except ApiException as e:
                                 </div>
                             </div>
 
-                            <h3> Status: 400 - The specified resource was not found </h3>
+                            <h3> Status: 400 - Error message when there was a problem with the input parameters. </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
@@ -2902,11 +2924,19 @@ except ApiException as e:
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "The specified resource was not found",
+  "description" : "Error message when there was a problem with the input parameters.",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "BadInputError" : {
+          "value" : {
+            "code" : 400,
+            "message" : "There was a problem with the input parameters."
+          }
+        }
       }
     }
   }
@@ -2954,7 +2984,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -3002,7 +3040,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "NotFoundError" : {
+          "value" : {
+            "code" : 404,
+            "message" : "The specified resource was not found."
+          }
+        }
       }
     }
   }
@@ -3381,7 +3427,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -3429,7 +3483,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -3805,7 +3867,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -3853,7 +3923,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -3892,12 +3970,12 @@ except ApiException as e:
                       <article id="api-History-getStats-0" data-group="User" data-name="getStats" data-version="0">
                         <div class="pull-left">
                           <h1>getStats</h1>
-                          <p>displays a list of blocked email addresses</p>
+                          <p>Account usage statistics.</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked"></p>
+                        <p class="marked">Returns information about the usage on your mail accounts.</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/mail/stats</span></code></pre>
@@ -3987,7 +4065,7 @@ public class HistoryApiExample {
 
 HistoryApi *apiInstance = [[HistoryApi alloc] init];
 
-// displays a list of blocked email addresses
+// Account usage statistics.
 [apiInstance getStatsWithCompletionHandler: 
               ^(array[inline_response_200] output, NSError* error) {
                             if (output) {
@@ -4048,7 +4126,7 @@ namespace Example
 
             try
             {
-                // displays a list of blocked email addresses
+                // Account usage statistics.
                 array[inline_response_200] result = apiInstance.getStats();
                 Debug.WriteLine(result);
             }
@@ -4119,7 +4197,7 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 api_instance = MailBabyApi.HistoryApi()
 
 try: 
-    # displays a list of blocked email addresses
+    # Account usage statistics.
     api_response = api_instance.get_stats()
     pprint(api_response)
 except ApiException as e:
@@ -4215,7 +4293,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -4263,7 +4349,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -4979,7 +5073,119 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.</p>
+                        <p class="marked">Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+
+Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#x27;Accept: application/json&#x27; \
+--header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
+--header &#x27;X-API-KEY: YOUR_API_KEY&#x27; \
+--data &#x27;subject&#x3D;Welcome&#x27; \
+--data &#x27;body&#x3D;Hello&#x27; \
+--data from&#x3D;user@domain.com \
+--data to&#x3D;support@interserver.net
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#x27;Accept: application/json&#x27; \
+--header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
+--header &#x27;X-API-KEY: YOUR_API_KEY&#x27; \
+--data &#x27;subject&#x3D;Welcome&#x27; \
+--data &#x27;body&#x3D;Hello&#x27; \
+--data from&#x3D;user@domain.com \
+--data &quot;to[0][name]&#x3D;Joe&quot; \
+--data &quot;to[0][email]&#x3D;support@interserver.net&quot;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#x27;Accept: application/json&#x27; \
+--header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
+--header &#x27;X-API-KEY: YOUR_API_KEY&#x27; \
+--data &#x27;subject&#x3D;Welcome&#x27; \
+--data &#x27;body&#x3D;Hello&#x27; \
+--data from&#x3D;&quot;Joe &lt;user@domain.com&gt;&quot; \
+--data to&#x3D;&quot;Joe &lt;support@interserver.net&gt;&quot;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#x27;Accept: application/json&#x27; \
+--header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
+--header &#x27;X-API-KEY: YOUR_API_KEY&#x27; \
+--data &#x27;subject&#x3D;Welcome&#x27; \
+--data &#x27;body&#x3D;Hello&#x27; \
+--data from&#x3D;user@domain.com \
+--data &quot;to&#x3D;support@interserver.net, support@interserver.net&quot;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#x27;Accept: application/json&#x27; \
+--header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
+--header &#x27;X-API-KEY: YOUR_API_KEY&#x27; \
+--data &#x27;subject&#x3D;Welcome&#x27; \
+--data &#x27;body&#x3D;Hello&#x27; \
+--data from&#x3D;user@domain.com \
+--data &quot;to&#x3D;Joe &lt;support@interserver.net&gt;, Joe &lt;support@interserver.net&gt;&quot;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#x27;Accept: application/json&#x27; \
+--header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
+--header &#x27;X-API-KEY: YOUR_API_KEY&#x27; \
+--data &#x27;subject&#x3D;Welcome&#x27; \
+--data &#x27;body&#x3D;Hello&#x27; \
+--data from&#x3D;user@domain.com \
+--data &quot;to[0][name]&#x3D;Joe&quot; \
+--data &quot;to[0][email]&#x3D;support@interserver.net&quot; \
+--data &quot;to[1][name]&#x3D;Joe&quot; \
+--data &quot;to[1][email]&#x3D;support@interserver.net&quot;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#x27;Accept: application/json&#x27; \
+--header &#x27;Content-Type: application/json&#x27; \
+--header &#x27;X-API-KEY: YOUR_API_KEY&#x27; \
+--data &#x27;{
+&quot;subject&quot;: &quot;Welcome&quot;,
+&quot;body&quot;: &quot;Hello&quot;,
+&quot;from&quot;: &quot;user@domain.com&quot;,
+&quot;to&quot;: &quot;support@interserver.net&quot;
+}&#x27;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#x27;Accept: application/json&#x27; \
+--header &#x27;Content-Type: application/json&#x27; \
+--header &#x27;X-API-KEY: YOUR_API_KEY&#x27; \
+--data &#x27;{
+&quot;subject&quot;: &quot;Welcome&quot;,
+&quot;body&quot;: &quot;Hello&quot;,
+&quot;from&quot;: {&quot;name&quot;: &quot;Joe&quot;, &quot;email&quot;: &quot;user@domain.com&quot;},
+&quot;to&quot;: [{&quot;name&quot;: &quot;Joe&quot;, &quot;email&quot;: &quot;support@interserver.net&quot;}]
+}&#x27;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#x27;Accept: application/json&#x27; \
+--header &#x27;Content-Type: application/json&#x27; \
+--header &#x27;X-API-KEY: YOUR_API_KEY&#x27; \
+--data &#x27;{
+&quot;subject&quot;: &quot;Welcome&quot;,
+&quot;body&quot;: &quot;Hello&quot;,
+&quot;from&quot;: &quot;Joe &lt;user@domain.com&gt;&quot;,
+&quot;to&quot;: &quot;Joe &lt;support@interserver.net&gt;&quot;
+}&#x27;
+&#x60;&#x60;&#x60;
+</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/mail/advsend</span></code></pre>
@@ -5031,11 +5237,11 @@ public class SendingApiExample {
         SendingApi apiInstance = new SendingApi();
         String subject = subject_example; // String | 
         String body = body_example; // String | 
-        EmailAddressName from = ; // EmailAddressName | 
-        array[EmailAddressName] to = ; // array[EmailAddressName] | 
-        array[EmailAddressName] replyto = ; // array[EmailAddressName] | 
-        array[EmailAddressName] cc = ; // array[EmailAddressName] | 
-        array[EmailAddressName] bcc = ; // array[EmailAddressName] | 
+        EmailAddressTypes from = ; // EmailAddressTypes | 
+        EmailAddressesTypes to = ; // EmailAddressesTypes | 
+        EmailAddressesTypes replyto = ; // EmailAddressesTypes | 
+        EmailAddressesTypes cc = ; // EmailAddressesTypes | 
+        EmailAddressesTypes bcc = ; // EmailAddressesTypes | 
         array[MailAttachment] attachments = ; // array[MailAttachment] | 
         Long id = 789; // Long | 
         try {
@@ -5058,11 +5264,11 @@ public class SendingApiExample {
         SendingApi apiInstance = new SendingApi();
         String subject = subject_example; // String | 
         String body = body_example; // String | 
-        EmailAddressName from = ; // EmailAddressName | 
-        array[EmailAddressName] to = ; // array[EmailAddressName] | 
-        array[EmailAddressName] replyto = ; // array[EmailAddressName] | 
-        array[EmailAddressName] cc = ; // array[EmailAddressName] | 
-        array[EmailAddressName] bcc = ; // array[EmailAddressName] | 
+        EmailAddressTypes from = ; // EmailAddressTypes | 
+        EmailAddressesTypes to = ; // EmailAddressesTypes | 
+        EmailAddressesTypes replyto = ; // EmailAddressesTypes | 
+        EmailAddressesTypes cc = ; // EmailAddressesTypes | 
+        EmailAddressesTypes bcc = ; // EmailAddressesTypes | 
         array[MailAttachment] attachments = ; // array[MailAttachment] | 
         Long id = 789; // Long | 
         try {
@@ -5087,11 +5293,11 @@ public class SendingApiExample {
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
 String *subject = subject_example; // 
 String *body = body_example; // 
-EmailAddressName *from = ; // 
-array[EmailAddressName] *to = ; // 
-array[EmailAddressName] *replyto = ; // 
-array[EmailAddressName] *cc = ; // 
-array[EmailAddressName] *bcc = ; // 
+EmailAddressTypes *from = ; // 
+EmailAddressesTypes *to = ; // 
+EmailAddressesTypes *replyto = ; // 
+EmailAddressesTypes *cc = ; // 
+EmailAddressesTypes *bcc = ; // 
 array[MailAttachment] *attachments = ; // 
 Long *id = 789; // 
 
@@ -5131,11 +5337,11 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 var api = new MailBabyEmailDeliveryAndManagementServiceApi.SendingApi()
 var subject = subject_example; // {{String}} 
 var body = body_example; // {{String}} 
-var from = ; // {{EmailAddressName}} 
-var to = ; // {{array[EmailAddressName]}} 
-var replyto = ; // {{array[EmailAddressName]}} 
-var cc = ; // {{array[EmailAddressName]}} 
-var bcc = ; // {{array[EmailAddressName]}} 
+var from = ; // {{EmailAddressTypes}} 
+var to = ; // {{EmailAddressesTypes}} 
+var replyto = ; // {{EmailAddressesTypes}} 
+var cc = ; // {{EmailAddressesTypes}} 
+var bcc = ; // {{EmailAddressesTypes}} 
 var attachments = ; // {{array[MailAttachment]}} 
 var id = 789; // {{Long}} 
 
@@ -5175,11 +5381,11 @@ namespace Example
             var apiInstance = new SendingApi();
             var subject = subject_example;  // String | 
             var body = body_example;  // String | 
-            var from = new EmailAddressName(); // EmailAddressName | 
-            var to = new array[EmailAddressName](); // array[EmailAddressName] | 
-            var replyto = new array[EmailAddressName](); // array[EmailAddressName] | 
-            var cc = new array[EmailAddressName](); // array[EmailAddressName] | 
-            var bcc = new array[EmailAddressName](); // array[EmailAddressName] | 
+            var from = new EmailAddressTypes(); // EmailAddressTypes | 
+            var to = new EmailAddressesTypes(); // EmailAddressesTypes | 
+            var replyto = new EmailAddressesTypes(); // EmailAddressesTypes | 
+            var cc = new EmailAddressesTypes(); // EmailAddressesTypes | 
+            var bcc = new EmailAddressesTypes(); // EmailAddressesTypes | 
             var attachments = new array[MailAttachment](); // array[MailAttachment] | 
             var id = 789;  // Long | 
 
@@ -5211,11 +5417,11 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 $api_instance = new Swagger\Client\ApiSendingApi();
 $subject = subject_example; // String | 
 $body = body_example; // String | 
-$from = ; // EmailAddressName | 
-$to = ; // array[EmailAddressName] | 
-$replyto = ; // array[EmailAddressName] | 
-$cc = ; // array[EmailAddressName] | 
-$bcc = ; // array[EmailAddressName] | 
+$from = ; // EmailAddressTypes | 
+$to = ; // EmailAddressesTypes | 
+$replyto = ; // EmailAddressesTypes | 
+$cc = ; // EmailAddressesTypes | 
+$bcc = ; // EmailAddressesTypes | 
 $attachments = ; // array[MailAttachment] | 
 $id = 789; // Long | 
 
@@ -5241,11 +5447,11 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 my $api_instance = MailBabyApi::SendingApi->new();
 my $subject = subject_example; # String | 
 my $body = body_example; # String | 
-my $from = ; # EmailAddressName | 
-my $to = []; # array[EmailAddressName] | 
-my $replyto = []; # array[EmailAddressName] | 
-my $cc = []; # array[EmailAddressName] | 
-my $bcc = []; # array[EmailAddressName] | 
+my $from = ; # EmailAddressTypes | 
+my $to = ; # EmailAddressesTypes | 
+my $replyto = ; # EmailAddressesTypes | 
+my $cc = ; # EmailAddressesTypes | 
+my $bcc = ; # EmailAddressesTypes | 
 my $attachments = []; # array[MailAttachment] | 
 my $id = 789; # Long | 
 
@@ -5274,11 +5480,11 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 api_instance = MailBabyApi.SendingApi()
 subject = subject_example # String | 
 body = body_example # String | 
-from =  # EmailAddressName | 
-to =  # array[EmailAddressName] | 
-replyto =  # array[EmailAddressName] | 
-cc =  # array[EmailAddressName] | 
-bcc =  # array[EmailAddressName] | 
+from =  # EmailAddressTypes | 
+to =  # EmailAddressesTypes | 
+replyto =  # EmailAddressesTypes | 
+cc =  # EmailAddressesTypes | 
+bcc =  # EmailAddressesTypes | 
 attachments =  # array[MailAttachment] | 
 id = 789 # Long | 
 
@@ -5436,7 +5642,7 @@ except ApiException as e:
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      EmailAddressName
+                                                      EmailAddressTypes
                                                   </span>
                                   
                                               </div>
@@ -5455,7 +5661,7 @@ except ApiException as e:
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      array[EmailAddressName]
+                                                      EmailAddressesTypes
                                                   </span>
                                   
                                               </div>
@@ -5474,7 +5680,7 @@ except ApiException as e:
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      array[EmailAddressName]
+                                                      EmailAddressesTypes
                                                   </span>
                                   
                                               </div>
@@ -5493,7 +5699,7 @@ except ApiException as e:
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      array[EmailAddressName]
+                                                      EmailAddressesTypes
                                                   </span>
                                   
                                               </div>
@@ -5512,7 +5718,7 @@ except ApiException as e:
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      array[EmailAddressName]
+                                                      EmailAddressesTypes
                                                   </span>
                                   
                                               </div>
@@ -5616,7 +5822,7 @@ except ApiException as e:
                                 </div>
                             </div>
 
-                            <h3> Status: 400 - The specified resource was not found </h3>
+                            <h3> Status: 400 - Error message when there was a problem with the input parameters. </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
@@ -5631,11 +5837,19 @@ except ApiException as e:
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "The specified resource was not found",
+  "description" : "Error message when there was a problem with the input parameters.",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "BadInputError" : {
+          "value" : {
+            "code" : 400,
+            "message" : "There was a problem with the input parameters."
+          }
+        }
       }
     }
   }
@@ -5683,7 +5897,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -5731,7 +5953,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "NotFoundError" : {
+          "value" : {
+            "code" : 404,
+            "message" : "The specified resource was not found."
+          }
+        }
       }
     }
   }
@@ -6229,7 +6459,7 @@ except ApiException as e:
                                 </div>
                             </div>
 
-                            <h3> Status: 400 - The specified resource was not found </h3>
+                            <h3> Status: 400 - Error message when there was a problem with the input parameters. </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
@@ -6244,11 +6474,19 @@ except ApiException as e:
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "The specified resource was not found",
+  "description" : "Error message when there was a problem with the input parameters.",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "BadInputError" : {
+          "value" : {
+            "code" : 400,
+            "message" : "There was a problem with the input parameters."
+          }
+        }
       }
     }
   }
@@ -6296,7 +6534,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -6344,7 +6590,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "NotFoundError" : {
+          "value" : {
+            "code" : 404,
+            "message" : "The specified resource was not found."
+          }
+        }
       }
     }
   }
@@ -6720,7 +6974,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -6768,7 +7030,15 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/inline_response_401"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }

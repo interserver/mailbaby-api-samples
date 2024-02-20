@@ -42,7 +42,7 @@ type t = {
     (* locked status *)
     locked: int32;
     (* lock timestamp *)
-    lock_time: int32;
+    lock_time: string;
     (* assigned server *)
     assigned: string;
     (* queued timestamp *)
@@ -56,7 +56,7 @@ type t = {
 } [@@deriving yojson { strict = false }, show ];;
 
 (** An email record *)
-let create (_id : int32) (id : string) (from : string) (_to : string) (subject : string) (created : string) (time : int32) (user : string) (transtype : string) (origin : string) (interface : string) (sending_zone : string) (body_size : int32) (seq : int32) (recipient : string) (domain : string) (locked : int32) (lock_time : int32) (assigned : string) (queued : string) (mx_hostname : string) (response : string) : t = {
+let create (_id : int32) (id : string) (from : string) (_to : string) (subject : string) (created : string) (time : int32) (user : string) (transtype : string) (origin : string) (interface : string) (sending_zone : string) (body_size : int32) (seq : int32) (recipient : string) (domain : string) (locked : int32) (lock_time : string) (assigned : string) (queued : string) (mx_hostname : string) (response : string) : t = {
     _id = _id;
     id = id;
     from = from;

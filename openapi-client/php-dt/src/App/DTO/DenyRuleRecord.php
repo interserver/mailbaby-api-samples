@@ -11,21 +11,6 @@ use Articus\DataTransfer\PhpAttribute as DTA;
 class DenyRuleRecord
 {
     /**
-     * The deny rule Id number.
-     */
-    #[DTA\Data(field: "id")]
-    #[DTA\Validator("Scalar", ["type" => "int"])]
-    public int|null $id = null;
-
-    /**
-     * the date the rule was created.
-     */
-    #[DTA\Data(field: "created")]
-    #[DTA\Strategy("DateTime")]
-    #[DTA\Validator("Date", ["format" => \DateTime::RFC3339])]
-    public \DateTime|null $created = null;
-
-    /**
      * The type of deny rule.
      */
     #[DTA\Data(field: "type")]
@@ -38,6 +23,21 @@ class DenyRuleRecord
     #[DTA\Data(field: "data")]
     #[DTA\Validator("Scalar", ["type" => "string"])]
     public string|null $data = null;
+
+    /**
+     * The deny rule Id number.
+     */
+    #[DTA\Data(field: "id")]
+    #[DTA\Validator("Scalar", ["type" => "string"])]
+    public string|null $id = null;
+
+    /**
+     * the date the rule was created.
+     */
+    #[DTA\Data(field: "created")]
+    #[DTA\Strategy("DateTime")]
+    #[DTA\Validator("Date", ["format" => \DateTime::RFC3339])]
+    public \DateTime|null $created = null;
 
     /**
      * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.

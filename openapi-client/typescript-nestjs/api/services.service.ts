@@ -14,7 +14,7 @@
 import { HttpService, Inject, Injectable, Optional } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
-import { GetMailOrders401Response } from '../model/getMailOrders401Response';
+import { ErrorMessage } from '../model/errorMessage';
 import { MailOrder } from '../model/mailOrder';
 import { Configuration } from '../configuration';
 

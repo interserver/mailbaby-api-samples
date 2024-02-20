@@ -47,8 +47,8 @@ export class HistoryApi {
     }
 
     /**
-     * 
-     * @summary displays a list of blocked email addresses
+     * Returns information about the usage on your mail accounts.
+     * @summary Account usage statistics.
      */
     public getStats(extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: Array<models.GetStats200ResponseInner>;  },

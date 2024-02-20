@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delist_block**
-> delist_block (email_address: EMAIL_ADDRESS ): detachable GENERIC_RESPONSE
+> delist_block (body: STRING_32 ): detachable GENERIC_RESPONSE
 
 
 Removes an email address from the blocked list
@@ -86,7 +86,7 @@ Removes an email address from the various block lists.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **email_address** | [**EMAIL_ADDRESS**](EMAIL_ADDRESS.md)|  | 
+ **body** | **STRING_32**|  | 
 
 ### Return type
 

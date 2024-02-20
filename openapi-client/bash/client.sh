@@ -99,7 +99,7 @@ operation_parameters_minimum_occurrences["addRule:::type"]=1
 operation_parameters_minimum_occurrences["addRule:::data"]=1
 operation_parameters_minimum_occurrences["addRule:::user"]=0
 operation_parameters_minimum_occurrences["deleteRule:::ruleId"]=1
-operation_parameters_minimum_occurrences["delistBlock:::EmailAddress"]=1
+operation_parameters_minimum_occurrences["delistBlock:::body"]=1
 operation_parameters_minimum_occurrences["viewMailLog:::id"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::origin"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::mx"]=0
@@ -136,7 +136,7 @@ operation_parameters_maximum_occurrences["addRule:::type"]=0
 operation_parameters_maximum_occurrences["addRule:::data"]=0
 operation_parameters_maximum_occurrences["addRule:::user"]=0
 operation_parameters_maximum_occurrences["deleteRule:::ruleId"]=0
-operation_parameters_maximum_occurrences["delistBlock:::EmailAddress"]=0
+operation_parameters_maximum_occurrences["delistBlock:::body"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::id"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::origin"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::mx"]=0
@@ -170,7 +170,7 @@ operation_parameters_collection_type["addRule:::type"]=""
 operation_parameters_collection_type["addRule:::data"]=""
 operation_parameters_collection_type["addRule:::user"]=""
 operation_parameters_collection_type["deleteRule:::ruleId"]=""
-operation_parameters_collection_type["delistBlock:::EmailAddress"]=""
+operation_parameters_collection_type["delistBlock:::body"]=""
 operation_parameters_collection_type["viewMailLog:::id"]=""
 operation_parameters_collection_type["viewMailLog:::origin"]=""
 operation_parameters_collection_type["viewMailLog:::mx"]=""
@@ -185,10 +185,10 @@ operation_parameters_collection_type["viewMailLog:::endDate"]=""
 operation_parameters_collection_type["sendAdvMail:::subject"]=""
 operation_parameters_collection_type["sendAdvMail:::body"]=""
 operation_parameters_collection_type["sendAdvMail:::from"]=""
-operation_parameters_collection_type["sendAdvMail:::to"]=
-operation_parameters_collection_type["sendAdvMail:::replyto"]=
-operation_parameters_collection_type["sendAdvMail:::cc"]=
-operation_parameters_collection_type["sendAdvMail:::bcc"]=
+operation_parameters_collection_type["sendAdvMail:::to"]=""
+operation_parameters_collection_type["sendAdvMail:::replyto"]=""
+operation_parameters_collection_type["sendAdvMail:::cc"]=""
+operation_parameters_collection_type["sendAdvMail:::bcc"]=""
 operation_parameters_collection_type["sendAdvMail:::attachments"]=
 operation_parameters_collection_type["sendAdvMail:::id"]=""
 operation_parameters_collection_type["sendMail:::to"]=""
@@ -610,7 +610,7 @@ echo "  $ops" | column -t -s ';'
     echo ""
     echo -e "${BOLD}${WHITE}[history]${OFF}"
 read -r -d '' ops <<EOF
-  ${CYAN}getStats${OFF};displays a list of blocked email addresses (AUTH)
+  ${CYAN}getStats${OFF};Account usage statistics. (AUTH)
   ${CYAN}viewMailLog${OFF};displays the mail log (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
@@ -706,7 +706,7 @@ print_addRule_help() {
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
     echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
@@ -730,7 +730,7 @@ print_deleteRule_help() {
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
     echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
@@ -755,7 +755,7 @@ print_delistBlock_help() {
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
     echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
@@ -806,7 +806,9 @@ print_getRules_help() {
 ##############################################################################
 print_getStats_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getStats - displays a list of blocked email addresses${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getStats - Account usage statistics.${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "Returns information about the usage on your mail accounts." | paste -sd' ' | fold -sw 80
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -867,7 +869,118 @@ print_sendAdvMail_help() {
     echo ""
     echo -e "${BOLD}${WHITE}sendAdvMail - Sends an Email with Advanced Options${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc." | paste -sd' ' | fold -sw 80
+    echo -e "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+
+Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
+
+'''
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header 'Accept: application/json' \\
+--header 'Content-Type: application/x-www-form-urlencoded' \\
+--header 'X-API-KEY: YOUR_API_KEY' \\
+--data 'subject=Welcome' \\
+--data 'body=Hello' \\
+--data from=user@domain.com \\
+--data to=support@interserver.net
+'''
+
+'''
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header 'Accept: application/json' \\
+--header 'Content-Type: application/x-www-form-urlencoded' \\
+--header 'X-API-KEY: YOUR_API_KEY' \\
+--data 'subject=Welcome' \\
+--data 'body=Hello' \\
+--data from=user@domain.com \\
+--data \"to[0][name]=Joe\" \\
+--data \"to[0][email]=support@interserver.net\"
+'''
+
+'''
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header 'Accept: application/json' \\
+--header 'Content-Type: application/x-www-form-urlencoded' \\
+--header 'X-API-KEY: YOUR_API_KEY' \\
+--data 'subject=Welcome' \\
+--data 'body=Hello' \\
+--data from=\"Joe <user@domain.com>\" \\
+--data to=\"Joe <support@interserver.net>\"
+'''
+
+'''
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header 'Accept: application/json' \\
+--header 'Content-Type: application/x-www-form-urlencoded' \\
+--header 'X-API-KEY: YOUR_API_KEY' \\
+--data 'subject=Welcome' \\
+--data 'body=Hello' \\
+--data from=user@domain.com \\
+--data \"to=support@interserver.net, support@interserver.net\"
+'''
+
+'''
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header 'Accept: application/json' \\
+--header 'Content-Type: application/x-www-form-urlencoded' \\
+--header 'X-API-KEY: YOUR_API_KEY' \\
+--data 'subject=Welcome' \\
+--data 'body=Hello' \\
+--data from=user@domain.com \\
+--data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\"
+'''
+
+'''
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header 'Accept: application/json' \\
+--header 'Content-Type: application/x-www-form-urlencoded' \\
+--header 'X-API-KEY: YOUR_API_KEY' \\
+--data 'subject=Welcome' \\
+--data 'body=Hello' \\
+--data from=user@domain.com \\
+--data \"to[0][name]=Joe\" \\
+--data \"to[0][email]=support@interserver.net\" \\
+--data \"to[1][name]=Joe\" \\
+--data \"to[1][email]=support@interserver.net\"
+'''
+
+'''
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header 'Accept: application/json' \\
+--header 'Content-Type: application/json' \\
+--header 'X-API-KEY: YOUR_API_KEY' \\
+--data '{
+\"subject\": \"Welcome\",
+\"body\": \"Hello\",
+\"from\": \"user@domain.com\",
+\"to\": \"support@interserver.net\"
+}'
+'''
+
+'''
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header 'Accept: application/json' \\
+--header 'Content-Type: application/json' \\
+--header 'X-API-KEY: YOUR_API_KEY' \\
+--data '{
+\"subject\": \"Welcome\",
+\"body\": \"Hello\",
+\"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"},
+\"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}]
+}'
+'''
+
+'''
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header 'Accept: application/json' \\
+--header 'Content-Type: application/json' \\
+--header 'X-API-KEY: YOUR_API_KEY' \\
+--data '{
+\"subject\": \"Welcome\",
+\"body\": \"Hello\",
+\"from\": \"Joe <user@domain.com>\",
+\"to\": \"Joe <support@interserver.net>\"
+}'
+'''" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo ""
@@ -875,7 +988,7 @@ print_sendAdvMail_help() {
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
     echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
@@ -900,7 +1013,7 @@ print_sendMail_help() {
     code=200
     echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
     echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404

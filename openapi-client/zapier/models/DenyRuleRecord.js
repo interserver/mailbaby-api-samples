@@ -12,6 +12,7 @@ module.exports = {
                     'domain',
                     'email',
                     'startswith',
+                    'destination',
                 ],
             },
             {
@@ -22,7 +23,7 @@ module.exports = {
             {
                 key: `${keyPrefix}id`,
                 label: `The deny rule Id number. - [${labelPrefix}id]`,
-                type: 'integer',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}created`,

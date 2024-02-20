@@ -1,6 +1,6 @@
 package io.swagger.api;
 
-import io.swagger.model.InlineResponse401;
+import io.swagger.model.ErrorMessage;
 import io.swagger.model.MailOrder;
 
 import java.io.InputStream;
@@ -40,7 +40,7 @@ public interface ServicesApi  {
     @Operation(summary = "displays a list of mail service orders", tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = MailOrder.class)))),
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = InlineResponse401.class))),
-        @ApiResponse(responseCode = "404", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = InlineResponse401.class))) })
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        @ApiResponse(responseCode = "404", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
     public List<MailOrder> getMailOrders();
 }

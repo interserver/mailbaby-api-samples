@@ -72,7 +72,7 @@ Class | Method | HTTP request | Description
 *OASBlockingApi* | [**delistBlock**](OASBlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
 *OASBlockingApi* | [**getMailBlocks**](OASBlockingApi.md#getMailBlocks) | **GET** /mail/blocks | displays a list of blocked email addresses
 *OASBlockingApi* | [**getRules**](OASBlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules.
-*OASHistoryApi* | [**getStats**](OASHistoryApi.md#getStats) | **GET** /mail/stats | displays a list of blocked email addresses
+*OASHistoryApi* | [**getStats**](OASHistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics.
 *OASHistoryApi* | [**viewMailLog**](OASHistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 *OASSendingApi* | [**sendAdvMail**](OASSendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *OASSendingApi* | [**sendMail**](OASSendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
@@ -84,11 +84,13 @@ Class | Method | HTTP request | Description
 
  - [OASDenyRuleNew](OASDenyRuleNew.md)
  - [OASDenyRuleRecord](OASDenyRuleRecord.md)
- - [OASDenyRuleRecordAllOf](OASDenyRuleRecordAllOf.md)
- - [OASEmailAddress](OASEmailAddress.md)
+ - [OASEmailAddressName](OASEmailAddressName.md)
+ - [OASEmailAddressTypes](OASEmailAddressTypes.md)
+ - [OASEmailAddressesTypes](OASEmailAddressesTypes.md)
+ - [OASErrorMessage](OASErrorMessage.md)
  - [OASGenericResponse](OASGenericResponse.md)
- - [OASGetMailOrders401Response](OASGetMailOrders401Response.md)
  - [OASGetStats200ResponseInner](OASGetStats200ResponseInner.md)
+ - [OASMailAttachment](OASMailAttachment.md)
  - [OASMailBlockClickHouse](OASMailBlockClickHouse.md)
  - [OASMailBlockRspamd](OASMailBlockRspamd.md)
  - [OASMailBlocks](OASMailBlocks.md)
@@ -104,7 +106,6 @@ Class | Method | HTTP request | Description
 
 Authentication schemes defined for the API:
 ### apiKeyAuth
-
 
 - **Type**: API key
 - **API key parameter name**: X-API-KEY

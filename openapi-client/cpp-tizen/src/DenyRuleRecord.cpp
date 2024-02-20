@@ -23,26 +23,16 @@ DenyRuleRecord::~DenyRuleRecord()
 void
 DenyRuleRecord::__init()
 {
-	//id = int(0);
-	//created = null;
 	//type = std::string();
 	//data = std::string();
+	//id = std::string();
+	//created = null;
 	//user = std::string();
 }
 
 void
 DenyRuleRecord::__cleanup()
 {
-	//if(id != NULL) {
-	//
-	//delete id;
-	//id = NULL;
-	//}
-	//if(created != NULL) {
-	//
-	//delete created;
-	//created = NULL;
-	//}
 	//if(type != NULL) {
 	//
 	//delete type;
@@ -52,6 +42,16 @@ DenyRuleRecord::__cleanup()
 	//
 	//delete data;
 	//data = NULL;
+	//}
+	//if(id != NULL) {
+	//
+	//delete id;
+	//id = NULL;
+	//}
+	//if(created != NULL) {
+	//
+	//delete created;
+	//created = NULL;
 	//}
 	//if(user != NULL) {
 	//
@@ -66,28 +66,6 @@ DenyRuleRecord::fromJson(char* jsonStr)
 {
 	JsonObject *pJsonObject = json_node_get_object(json_from_string(jsonStr,NULL));
 	JsonNode *node;
-	const gchar *idKey = "id";
-	node = json_object_get_member(pJsonObject, idKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("int")) {
-			jsonToValue(&id, node, "int", "");
-		} else {
-			
-		}
-	}
-	const gchar *createdKey = "created";
-	node = json_object_get_member(pJsonObject, createdKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("std::string")) {
-			jsonToValue(&created, node, "std::string", "");
-		} else {
-			
-		}
-	}
 	const gchar *typeKey = "type";
 	node = json_object_get_member(pJsonObject, typeKey);
 	if (node !=NULL) {
@@ -106,6 +84,28 @@ DenyRuleRecord::fromJson(char* jsonStr)
 
 		if (isprimitive("std::string")) {
 			jsonToValue(&data, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *idKey = "id";
+	node = json_object_get_member(pJsonObject, idKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&id, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *createdKey = "created";
+	node = json_object_get_member(pJsonObject, createdKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&created, node, "std::string", "");
 		} else {
 			
 		}
@@ -133,24 +133,6 @@ DenyRuleRecord::toJson()
 {
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;
-	if (isprimitive("int")) {
-		int obj = getId();
-		node = converttoJson(&obj, "int", "");
-	}
-	else {
-		
-	}
-	const gchar *idKey = "id";
-	json_object_set_member(pJsonObject, idKey, node);
-	if (isprimitive("std::string")) {
-		std::string obj = getCreated();
-		node = converttoJson(&obj, "std::string", "");
-	}
-	else {
-		
-	}
-	const gchar *createdKey = "created";
-	json_object_set_member(pJsonObject, createdKey, node);
 	if (isprimitive("std::string")) {
 		std::string obj = getType();
 		node = converttoJson(&obj, "std::string", "");
@@ -170,6 +152,24 @@ DenyRuleRecord::toJson()
 	const gchar *dataKey = "data";
 	json_object_set_member(pJsonObject, dataKey, node);
 	if (isprimitive("std::string")) {
+		std::string obj = getId();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *idKey = "id";
+	json_object_set_member(pJsonObject, idKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getCreated();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *createdKey = "created";
+	json_object_set_member(pJsonObject, createdKey, node);
+	if (isprimitive("std::string")) {
 		std::string obj = getUser();
 		node = converttoJson(&obj, "std::string", "");
 	}
@@ -184,30 +184,6 @@ DenyRuleRecord::toJson()
 	char * ret = json_to_string(node, false);
 	json_node_free(node);
 	return ret;
-}
-
-int
-DenyRuleRecord::getId()
-{
-	return id;
-}
-
-void
-DenyRuleRecord::setId(int  id)
-{
-	this->id = id;
-}
-
-std::string
-DenyRuleRecord::getCreated()
-{
-	return created;
-}
-
-void
-DenyRuleRecord::setCreated(std::string  created)
-{
-	this->created = created;
 }
 
 std::string
@@ -232,6 +208,30 @@ void
 DenyRuleRecord::setData(std::string  data)
 {
 	this->data = data;
+}
+
+std::string
+DenyRuleRecord::getId()
+{
+	return id;
+}
+
+void
+DenyRuleRecord::setId(std::string  id)
+{
+	this->id = id;
+}
+
+std::string
+DenyRuleRecord::getCreated()
+{
+	return created;
+}
+
+void
+DenyRuleRecord::setCreated(std::string  created)
+{
+	this->created = created;
 }
 
 std::string

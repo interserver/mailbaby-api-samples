@@ -3,8 +3,9 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:openapi/src/model/email_address_name.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:openapi/src/model/email_addresses_types.dart';
+import 'package:openapi/src/model/email_address_types.dart';
 import 'package:openapi/src/model/mail_attachment.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -17,10 +18,10 @@ part 'send_mail_adv.g.dart';
 /// * [subject] - The subject or title of the email
 /// * [body] - The main email contents.
 /// * [from] 
-/// * [to] - A list of destionation email addresses to send this to
-/// * [replyto] - (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-/// * [cc] - (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-/// * [bcc] - (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+/// * [to] 
+/// * [replyto] 
+/// * [cc] 
+/// * [bcc] 
 /// * [attachments] - (optional) File attachments to include in the email.  The file contents must be base64 encoded!
 /// * [id] - (optional)  ID of the Mail order within our system to use as the Mail Account.
 @BuiltValue()
@@ -34,23 +35,19 @@ abstract class SendMailAdv implements Built<SendMailAdv, SendMailAdvBuilder> {
   String get body;
 
   @BuiltValueField(wireName: r'from')
-  EmailAddressName get from;
+  EmailAddressTypes get from;
 
-  /// A list of destionation email addresses to send this to
   @BuiltValueField(wireName: r'to')
-  BuiltList<EmailAddressName> get to;
+  EmailAddressesTypes get to;
 
-  /// (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
   @BuiltValueField(wireName: r'replyto')
-  BuiltList<EmailAddressName>? get replyto;
+  EmailAddressesTypes? get replyto;
 
-  /// (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
   @BuiltValueField(wireName: r'cc')
-  BuiltList<EmailAddressName>? get cc;
+  EmailAddressesTypes? get cc;
 
-  /// (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
   @BuiltValueField(wireName: r'bcc')
-  BuiltList<EmailAddressName>? get bcc;
+  EmailAddressesTypes? get bcc;
 
   /// (optional) File attachments to include in the email.  The file contents must be base64 encoded!
   @BuiltValueField(wireName: r'attachments')
@@ -96,32 +93,32 @@ class _$SendMailAdvSerializer implements PrimitiveSerializer<SendMailAdv> {
     yield r'from';
     yield serializers.serialize(
       object.from,
-      specifiedType: const FullType(EmailAddressName),
+      specifiedType: const FullType(EmailAddressTypes),
     );
     yield r'to';
     yield serializers.serialize(
       object.to,
-      specifiedType: const FullType(BuiltList, [FullType(EmailAddressName)]),
+      specifiedType: const FullType(EmailAddressesTypes),
     );
     if (object.replyto != null) {
       yield r'replyto';
       yield serializers.serialize(
         object.replyto,
-        specifiedType: const FullType(BuiltList, [FullType(EmailAddressName)]),
+        specifiedType: const FullType(EmailAddressesTypes),
       );
     }
     if (object.cc != null) {
       yield r'cc';
       yield serializers.serialize(
         object.cc,
-        specifiedType: const FullType(BuiltList, [FullType(EmailAddressName)]),
+        specifiedType: const FullType(EmailAddressesTypes),
       );
     }
     if (object.bcc != null) {
       yield r'bcc';
       yield serializers.serialize(
         object.bcc,
-        specifiedType: const FullType(BuiltList, [FullType(EmailAddressName)]),
+        specifiedType: const FullType(EmailAddressesTypes),
       );
     }
     if (object.attachments != null) {
@@ -178,36 +175,36 @@ class _$SendMailAdvSerializer implements PrimitiveSerializer<SendMailAdv> {
         case r'from':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(EmailAddressName),
-          ) as EmailAddressName;
+            specifiedType: const FullType(EmailAddressTypes),
+          ) as EmailAddressTypes;
           result.from.replace(valueDes);
           break;
         case r'to':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(EmailAddressName)]),
-          ) as BuiltList<EmailAddressName>;
+            specifiedType: const FullType(EmailAddressesTypes),
+          ) as EmailAddressesTypes;
           result.to.replace(valueDes);
           break;
         case r'replyto':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(EmailAddressName)]),
-          ) as BuiltList<EmailAddressName>;
+            specifiedType: const FullType(EmailAddressesTypes),
+          ) as EmailAddressesTypes;
           result.replyto.replace(valueDes);
           break;
         case r'cc':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(EmailAddressName)]),
-          ) as BuiltList<EmailAddressName>;
+            specifiedType: const FullType(EmailAddressesTypes),
+          ) as EmailAddressesTypes;
           result.cc.replace(valueDes);
           break;
         case r'bcc':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(EmailAddressName)]),
-          ) as BuiltList<EmailAddressName>;
+            specifiedType: const FullType(EmailAddressesTypes),
+          ) as EmailAddressesTypes;
           result.bcc.replace(valueDes);
           break;
         case r'attachments':

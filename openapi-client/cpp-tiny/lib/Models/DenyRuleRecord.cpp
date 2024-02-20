@@ -6,10 +6,10 @@ using namespace Tiny;
 
 DenyRuleRecord::DenyRuleRecord()
 {
-	id = int(0);
-	created = std::string();
 	type = std::string();
 	data = std::string();
+	id = std::string();
+	created = std::string();
 	user = std::string();
 }
 
@@ -27,32 +27,6 @@ void
 DenyRuleRecord::fromJson(std::string jsonObj)
 {
     bourne::json object = bourne::json::parse(jsonObj);
-
-    const char *idKey = "id";
-
-    if(object.has_key(idKey))
-    {
-        bourne::json value = object[idKey];
-
-
-
-        jsonToValue(&id, value, "int");
-
-
-    }
-
-    const char *createdKey = "created";
-
-    if(object.has_key(createdKey))
-    {
-        bourne::json value = object[createdKey];
-
-
-
-        jsonToValue(&created, value, "std::string");
-
-
-    }
 
     const char *typeKey = "type";
 
@@ -76,6 +50,32 @@ DenyRuleRecord::fromJson(std::string jsonObj)
 
 
         jsonToValue(&data, value, "std::string");
+
+
+    }
+
+    const char *idKey = "id";
+
+    if(object.has_key(idKey))
+    {
+        bourne::json value = object[idKey];
+
+
+
+        jsonToValue(&id, value, "std::string");
+
+
+    }
+
+    const char *createdKey = "created";
+
+    if(object.has_key(createdKey))
+    {
+        bourne::json value = object[createdKey];
+
+
+
+        jsonToValue(&created, value, "std::string");
 
 
     }
@@ -105,20 +105,6 @@ DenyRuleRecord::toJson()
 
 
 
-    object["id"] = getId();
-
-
-
-
-
-
-    object["created"] = getCreated();
-
-
-
-
-
-
     object["type"] = getType();
 
 
@@ -133,36 +119,26 @@ DenyRuleRecord::toJson()
 
 
 
+    object["id"] = getId();
+
+
+
+
+
+
+    object["created"] = getCreated();
+
+
+
+
+
+
     object["user"] = getUser();
 
 
 
     return object;
 
-}
-
-int
-DenyRuleRecord::getId()
-{
-	return id;
-}
-
-void
-DenyRuleRecord::setId(int  id)
-{
-	this->id = id;
-}
-
-std::string
-DenyRuleRecord::getCreated()
-{
-	return created;
-}
-
-void
-DenyRuleRecord::setCreated(std::string  created)
-{
-	this->created = created;
 }
 
 std::string
@@ -187,6 +163,30 @@ void
 DenyRuleRecord::setData(std::string  data)
 {
 	this->data = data;
+}
+
+std::string
+DenyRuleRecord::getId()
+{
+	return id;
+}
+
+void
+DenyRuleRecord::setId(std::string  id)
+{
+	this->id = id;
+}
+
+std::string
+DenyRuleRecord::getCreated()
+{
+	return created;
+}
+
+void
+DenyRuleRecord::setCreated(std::string  created)
+{
+	this->created = created;
 }
 
 std::string

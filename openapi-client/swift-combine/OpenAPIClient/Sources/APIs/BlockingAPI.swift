@@ -34,19 +34,20 @@ open class BlockingAPI {
         case domain = "domain"
         case email = "email"
         case startswith = "startswith"
+        case destination = "destination"
     }
     public enum AddRuleError: Error, CustomStringConvertible {
-        // The specified resource was not found
-        case code400Error(GetMailOrders401Response)
+        // Error message when there was a problem with the input parameters.
+        case code400Error(ErrorMessage)
         // Unauthorized
-        case code401Error(GetMailOrders401Response)
+        case code401Error(ErrorMessage)
         // The specified resource was not found
-        case code404Error(GetMailOrders401Response)
+        case code404Error(ErrorMessage)
 
         public var description: String {
             switch self {
             case .code400Error(let object):
-                return "AddRuleError: The specified resource was not found: \(object)"
+                return "AddRuleError: Error message when there was a problem with the input parameters.: \(object)"
             case .code401Error(let object):
                 return "AddRuleError: Unauthorized: \(object)"
             case .code404Error(let object):
@@ -92,7 +93,7 @@ open class BlockingAPI {
                 .mapError { transportError -> Error in 
                     if transportError.statusCode == 400 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return AddRuleError.code400Error(error)
                         } catch {
                             return error
@@ -100,7 +101,7 @@ open class BlockingAPI {
                     }
                     if transportError.statusCode == 401 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return AddRuleError.code401Error(error)
                         } catch {
                             return error
@@ -108,7 +109,7 @@ open class BlockingAPI {
                     }
                     if transportError.statusCode == 404 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return AddRuleError.code404Error(error)
                         } catch {
                             return error
@@ -124,17 +125,17 @@ open class BlockingAPI {
     }
 
     public enum DeleteRuleError: Error, CustomStringConvertible {
-        // The specified resource was not found
-        case code400Error(GetMailOrders401Response)
+        // Error message when there was a problem with the input parameters.
+        case code400Error(ErrorMessage)
         // Unauthorized
-        case code401Error(GetMailOrders401Response)
+        case code401Error(ErrorMessage)
         // The specified resource was not found
-        case code404Error(GetMailOrders401Response)
+        case code404Error(ErrorMessage)
 
         public var description: String {
             switch self {
             case .code400Error(let object):
-                return "DeleteRuleError: The specified resource was not found: \(object)"
+                return "DeleteRuleError: Error message when there was a problem with the input parameters.: \(object)"
             case .code401Error(let object):
                 return "DeleteRuleError: Unauthorized: \(object)"
             case .code404Error(let object):
@@ -173,7 +174,7 @@ open class BlockingAPI {
                 .mapError { transportError -> Error in 
                     if transportError.statusCode == 400 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return DeleteRuleError.code400Error(error)
                         } catch {
                             return error
@@ -181,7 +182,7 @@ open class BlockingAPI {
                     }
                     if transportError.statusCode == 401 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return DeleteRuleError.code401Error(error)
                         } catch {
                             return error
@@ -189,7 +190,7 @@ open class BlockingAPI {
                     }
                     if transportError.statusCode == 404 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return DeleteRuleError.code404Error(error)
                         } catch {
                             return error
@@ -205,17 +206,17 @@ open class BlockingAPI {
     }
 
     public enum DelistBlockError: Error, CustomStringConvertible {
-        // The specified resource was not found
-        case code400Error(GetMailOrders401Response)
+        // Error message when there was a problem with the input parameters.
+        case code400Error(ErrorMessage)
         // Unauthorized
-        case code401Error(GetMailOrders401Response)
+        case code401Error(ErrorMessage)
         // The specified resource was not found
-        case code404Error(GetMailOrders401Response)
+        case code404Error(ErrorMessage)
 
         public var description: String {
             switch self {
             case .code400Error(let object):
-                return "DelistBlockError: The specified resource was not found: \(object)"
+                return "DelistBlockError: Error message when there was a problem with the input parameters.: \(object)"
             case .code401Error(let object):
                 return "DelistBlockError: Unauthorized: \(object)"
             case .code404Error(let object):
@@ -230,9 +231,9 @@ open class BlockingAPI {
     /// - API Key:
     /// - type: apiKey X-API-KEY 
     /// - name: apiKeyAuth
-    /// - parameter emailAddress: (body)  
+    /// - parameter body: (body)  
     /// - returns: AnyPublisher<GenericResponse, Error> 
-    open func delistBlock(emailAddress: EmailAddress) -> AnyPublisher<GenericResponse, Error> {
+    open func delistBlock(body: String) -> AnyPublisher<GenericResponse, Error> {
         Deferred {
             Result<URLRequest, Error> {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
@@ -246,7 +247,7 @@ open class BlockingAPI {
                 }
                 var request = URLRequest(url: requestURL)
                 request.httpMethod = "POST"
-                request.httpBody = try self.encoder.encode(emailAddress)
+                request.httpBody = try self.encoder.encode(body)
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 return request
             }.publisher
@@ -255,7 +256,7 @@ open class BlockingAPI {
                 .mapError { transportError -> Error in 
                     if transportError.statusCode == 400 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return DelistBlockError.code400Error(error)
                         } catch {
                             return error
@@ -263,7 +264,7 @@ open class BlockingAPI {
                     }
                     if transportError.statusCode == 401 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return DelistBlockError.code401Error(error)
                         } catch {
                             return error
@@ -271,7 +272,7 @@ open class BlockingAPI {
                     }
                     if transportError.statusCode == 404 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return DelistBlockError.code404Error(error)
                         } catch {
                             return error
@@ -288,9 +289,9 @@ open class BlockingAPI {
 
     public enum GetMailBlocksError: Error, CustomStringConvertible {
         // Unauthorized
-        case code401Error(GetMailOrders401Response)
+        case code401Error(ErrorMessage)
         // Unauthorized
-        case code404Error(GetMailOrders401Response)
+        case code404Error(ErrorMessage)
 
         public var description: String {
             switch self {
@@ -329,7 +330,7 @@ open class BlockingAPI {
                 .mapError { transportError -> Error in 
                     if transportError.statusCode == 401 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return GetMailBlocksError.code401Error(error)
                         } catch {
                             return error
@@ -337,7 +338,7 @@ open class BlockingAPI {
                     }
                     if transportError.statusCode == 404 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return GetMailBlocksError.code404Error(error)
                         } catch {
                             return error
@@ -354,9 +355,9 @@ open class BlockingAPI {
 
     public enum GetRulesError: Error, CustomStringConvertible {
         // Unauthorized
-        case code401Error(GetMailOrders401Response)
+        case code401Error(ErrorMessage)
         // Unauthorized
-        case code404Error(GetMailOrders401Response)
+        case code404Error(ErrorMessage)
 
         public var description: String {
             switch self {
@@ -396,7 +397,7 @@ open class BlockingAPI {
                 .mapError { transportError -> Error in 
                     if transportError.statusCode == 401 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return GetRulesError.code401Error(error)
                         } catch {
                             return error
@@ -404,7 +405,7 @@ open class BlockingAPI {
                     }
                     if transportError.statusCode == 404 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return GetRulesError.code404Error(error)
                         } catch {
                             return error

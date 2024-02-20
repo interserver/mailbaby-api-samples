@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **Recipient** | **string** | to address this email is being sent to | 
 **Domain** | **string** | to address domain | 
 **Locked** | **int32** | locked status | 
-**LockTime** | **int32** | lock timestamp | 
+**LockTime** | **string** | lock timestamp | 
 **Assigned** | **string** | assigned server | 
 **Queued** | **string** | queued timestamp | 
 **MxHostname** | **string** | mx hostname | 
@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 
 ### NewMailLogEntry
 
-`func NewMailLogEntry(id int32, id string, from string, to string, subject string, created string, time int32, user string, transtype string, origin string, interface_ string, sendingZone string, bodySize int32, seq int32, recipient string, domain string, locked int32, lockTime int32, assigned string, queued string, mxHostname string, response string, ) *MailLogEntry`
+`func NewMailLogEntry(id int32, id string, from string, to string, subject string, created string, time int32, user string, transtype string, origin string, interface_ string, sendingZone string, bodySize int32, seq int32, recipient string, domain string, locked int32, lockTime string, assigned string, queued string, mxHostname string, response string, ) *MailLogEntry`
 
 NewMailLogEntry instantiates a new MailLogEntry object
 This constructor will assign default values to properties that have it defined,
@@ -414,20 +414,20 @@ SetLocked sets Locked field to given value.
 
 ### GetLockTime
 
-`func (o *MailLogEntry) GetLockTime() int32`
+`func (o *MailLogEntry) GetLockTime() string`
 
 GetLockTime returns the LockTime field if non-nil, zero value otherwise.
 
 ### GetLockTimeOk
 
-`func (o *MailLogEntry) GetLockTimeOk() (*int32, bool)`
+`func (o *MailLogEntry) GetLockTimeOk() (*string, bool)`
 
 GetLockTimeOk returns a tuple with the LockTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLockTime
 
-`func (o *MailLogEntry) SetLockTime(v int32)`
+`func (o *MailLogEntry) SetLockTime(v string)`
 
 SetLockTime sets LockTime field to given value.
 

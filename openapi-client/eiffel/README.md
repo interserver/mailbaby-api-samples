@@ -33,7 +33,7 @@ Class | Method | HTTP request | Description
 *BLOCKING_API* | [**delist_block**](docs/BLOCKING_API.md#delist_block) | **Post** /mail/blocks/delete | Removes an email address from the blocked list
 *BLOCKING_API* | [**mail_blocks**](docs/BLOCKING_API.md#mail_blocks) | **Get** /mail/blocks | displays a list of blocked email addresses
 *BLOCKING_API* | [**rules**](docs/BLOCKING_API.md#rules) | **Get** /mail/rules | Displays a listing of deny email rules.
-*HISTORY_API* | [**stats**](docs/HISTORY_API.md#stats) | **Get** /mail/stats | displays a list of blocked email addresses
+*HISTORY_API* | [**stats**](docs/HISTORY_API.md#stats) | **Get** /mail/stats | Account usage statistics.
 *HISTORY_API* | [**view_mail_log**](docs/HISTORY_API.md#view_mail_log) | **Get** /mail/log | displays the mail log
 *SENDING_API* | [**send_adv_mail**](docs/SENDING_API.md#send_adv_mail) | **Post** /mail/advsend | Sends an Email with Advanced Options
 *SENDING_API* | [**send_mail**](docs/SENDING_API.md#send_mail) | **Post** /mail/send | Sends an Email
@@ -45,11 +45,13 @@ Class | Method | HTTP request | Description
 
  - [DENY_RULE_NEW](docs/DENY_RULE_NEW.md)
  - [DENY_RULE_RECORD](docs/DENY_RULE_RECORD.md)
- - [DENY_RULE_RECORD_ALL_OF](docs/DENY_RULE_RECORD_ALL_OF.md)
- - [EMAIL_ADDRESS](docs/EMAIL_ADDRESS.md)
+ - [EMAIL_ADDRESSES_TYPES](docs/EMAIL_ADDRESSES_TYPES.md)
+ - [EMAIL_ADDRESS_NAME](docs/EMAIL_ADDRESS_NAME.md)
+ - [EMAIL_ADDRESS_TYPES](docs/EMAIL_ADDRESS_TYPES.md)
+ - [ERROR_MESSAGE](docs/ERROR_MESSAGE.md)
  - [GENERIC_RESPONSE](docs/GENERIC_RESPONSE.md)
- - [GET_MAIL_ORDERS_401_RESPONSE](docs/GET_MAIL_ORDERS_401_RESPONSE.md)
  - [GET_STATS_200_RESPONSE_INNER](docs/GET_STATS_200_RESPONSE_INNER.md)
+ - [MAIL_ATTACHMENT](docs/MAIL_ATTACHMENT.md)
  - [MAIL_BLOCKS](docs/MAIL_BLOCKS.md)
  - [MAIL_BLOCK_CLICK_HOUSE](docs/MAIL_BLOCK_CLICK_HOUSE.md)
  - [MAIL_BLOCK_RSPAMD](docs/MAIL_BLOCK_RSPAMD.md)

@@ -43,16 +43,6 @@ module.exports.delistBlock = function delistBlock (req, res, next, body) {
     });
 };
 
-module.exports.delistBlock = function delistBlock (req, res, next, body) {
-  Blocking.delistBlock(body)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
 module.exports.getMailBlocks = function getMailBlocks (req, res, next) {
   Blocking.getMailBlocks()
     .then(function (response) {

@@ -9,11 +9,11 @@
 #' @format An \code{R6Class} generator object
 #' @field subject The subject or title of the email character
 #' @field body The main email contents. character
-#' @field from  \link{EmailAddressName}
-#' @field to A list of destionation email addresses to send this to list(\link{EmailAddressName})
-#' @field replyto (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. list(\link{EmailAddressName}) [optional]
-#' @field cc (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. list(\link{EmailAddressName}) [optional]
-#' @field bcc (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. list(\link{EmailAddressName}) [optional]
+#' @field from  \link{EmailAddressTypes}
+#' @field to  \link{EmailAddressesTypes}
+#' @field replyto  \link{EmailAddressesTypes} [optional]
+#' @field cc  \link{EmailAddressesTypes} [optional]
+#' @field bcc  \link{EmailAddressesTypes} [optional]
 #' @field attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded! list(\link{MailAttachment}) [optional]
 #' @field id (optional)  ID of the Mail order within our system to use as the Mail Account. integer [optional]
 #' @importFrom R6 R6Class
@@ -39,10 +39,10 @@ SendMailAdv <- R6::R6Class(
     #' @param subject The subject or title of the email
     #' @param body The main email contents.
     #' @param from from
-    #' @param to A list of destionation email addresses to send this to
-    #' @param replyto (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-    #' @param cc (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-    #' @param bcc (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+    #' @param to to
+    #' @param replyto replyto
+    #' @param cc cc
+    #' @param bcc bcc
     #' @param attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded!
     #' @param id (optional)  ID of the Mail order within our system to use as the Mail Account.
     #' @param ... Other optional arguments.
@@ -65,23 +65,19 @@ SendMailAdv <- R6::R6Class(
         self$`from` <- `from`
       }
       if (!missing(`to`)) {
-        stopifnot(is.vector(`to`), length(`to`) != 0)
-        sapply(`to`, function(x) stopifnot(R6::is.R6(x)))
+        stopifnot(R6::is.R6(`to`))
         self$`to` <- `to`
       }
       if (!is.null(`replyto`)) {
-        stopifnot(is.vector(`replyto`), length(`replyto`) != 0)
-        sapply(`replyto`, function(x) stopifnot(R6::is.R6(x)))
+        stopifnot(R6::is.R6(`replyto`))
         self$`replyto` <- `replyto`
       }
       if (!is.null(`cc`)) {
-        stopifnot(is.vector(`cc`), length(`cc`) != 0)
-        sapply(`cc`, function(x) stopifnot(R6::is.R6(x)))
+        stopifnot(R6::is.R6(`cc`))
         self$`cc` <- `cc`
       }
       if (!is.null(`bcc`)) {
-        stopifnot(is.vector(`bcc`), length(`bcc`) != 0)
-        sapply(`bcc`, function(x) stopifnot(R6::is.R6(x)))
+        stopifnot(R6::is.R6(`bcc`))
         self$`bcc` <- `bcc`
       }
       if (!is.null(`attachments`)) {
@@ -119,19 +115,19 @@ SendMailAdv <- R6::R6Class(
       }
       if (!is.null(self$`to`)) {
         SendMailAdvObject[["to"]] <-
-          lapply(self$`to`, function(x) x$toJSON())
+          self$`to`$toJSON()
       }
       if (!is.null(self$`replyto`)) {
         SendMailAdvObject[["replyto"]] <-
-          lapply(self$`replyto`, function(x) x$toJSON())
+          self$`replyto`$toJSON()
       }
       if (!is.null(self$`cc`)) {
         SendMailAdvObject[["cc"]] <-
-          lapply(self$`cc`, function(x) x$toJSON())
+          self$`cc`$toJSON()
       }
       if (!is.null(self$`bcc`)) {
         SendMailAdvObject[["bcc"]] <-
-          lapply(self$`bcc`, function(x) x$toJSON())
+          self$`bcc`$toJSON()
       }
       if (!is.null(self$`attachments`)) {
         SendMailAdvObject[["attachments"]] <-
@@ -160,21 +156,29 @@ SendMailAdv <- R6::R6Class(
         self$`body` <- this_object$`body`
       }
       if (!is.null(this_object$`from`)) {
-        `from_object` <- EmailAddressName$new()
+        `from_object` <- EmailAddressTypes$new()
         `from_object`$fromJSON(jsonlite::toJSON(this_object$`from`, auto_unbox = TRUE, digits = NA))
         self$`from` <- `from_object`
       }
       if (!is.null(this_object$`to`)) {
-        self$`to` <- ApiClient$new()$deserializeObj(this_object$`to`, "array[EmailAddressName]", loadNamespace("openapi"))
+        `to_object` <- EmailAddressesTypes$new()
+        `to_object`$fromJSON(jsonlite::toJSON(this_object$`to`, auto_unbox = TRUE, digits = NA))
+        self$`to` <- `to_object`
       }
       if (!is.null(this_object$`replyto`)) {
-        self$`replyto` <- ApiClient$new()$deserializeObj(this_object$`replyto`, "array[EmailAddressName]", loadNamespace("openapi"))
+        `replyto_object` <- EmailAddressesTypes$new()
+        `replyto_object`$fromJSON(jsonlite::toJSON(this_object$`replyto`, auto_unbox = TRUE, digits = NA))
+        self$`replyto` <- `replyto_object`
       }
       if (!is.null(this_object$`cc`)) {
-        self$`cc` <- ApiClient$new()$deserializeObj(this_object$`cc`, "array[EmailAddressName]", loadNamespace("openapi"))
+        `cc_object` <- EmailAddressesTypes$new()
+        `cc_object`$fromJSON(jsonlite::toJSON(this_object$`cc`, auto_unbox = TRUE, digits = NA))
+        self$`cc` <- `cc_object`
       }
       if (!is.null(this_object$`bcc`)) {
-        self$`bcc` <- ApiClient$new()$deserializeObj(this_object$`bcc`, "array[EmailAddressName]", loadNamespace("openapi"))
+        `bcc_object` <- EmailAddressesTypes$new()
+        `bcc_object`$fromJSON(jsonlite::toJSON(this_object$`bcc`, auto_unbox = TRUE, digits = NA))
+        self$`bcc` <- `bcc_object`
       }
       if (!is.null(this_object$`attachments`)) {
         self$`attachments` <- ApiClient$new()$deserializeObj(this_object$`attachments`, "array[MailAttachment]", loadNamespace("openapi"))
@@ -220,33 +224,33 @@ SendMailAdv <- R6::R6Class(
         if (!is.null(self$`to`)) {
           sprintf(
           '"to":
-          [%s]
-',
-          paste(sapply(self$`to`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
+          %s
+          ',
+          jsonlite::toJSON(self$`to`$toJSON(), auto_unbox = TRUE, digits = NA)
           )
         },
         if (!is.null(self$`replyto`)) {
           sprintf(
           '"replyto":
-          [%s]
-',
-          paste(sapply(self$`replyto`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
+          %s
+          ',
+          jsonlite::toJSON(self$`replyto`$toJSON(), auto_unbox = TRUE, digits = NA)
           )
         },
         if (!is.null(self$`cc`)) {
           sprintf(
           '"cc":
-          [%s]
-',
-          paste(sapply(self$`cc`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
+          %s
+          ',
+          jsonlite::toJSON(self$`cc`$toJSON(), auto_unbox = TRUE, digits = NA)
           )
         },
         if (!is.null(self$`bcc`)) {
           sprintf(
           '"bcc":
-          [%s]
-',
-          paste(sapply(self$`bcc`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
+          %s
+          ',
+          jsonlite::toJSON(self$`bcc`$toJSON(), auto_unbox = TRUE, digits = NA)
           )
         },
         if (!is.null(self$`attachments`)) {
@@ -281,11 +285,11 @@ SendMailAdv <- R6::R6Class(
       this_object <- jsonlite::fromJSON(input_json)
       self$`subject` <- this_object$`subject`
       self$`body` <- this_object$`body`
-      self$`from` <- EmailAddressName$new()$fromJSON(jsonlite::toJSON(this_object$`from`, auto_unbox = TRUE, digits = NA))
-      self$`to` <- ApiClient$new()$deserializeObj(this_object$`to`, "array[EmailAddressName]", loadNamespace("openapi"))
-      self$`replyto` <- ApiClient$new()$deserializeObj(this_object$`replyto`, "array[EmailAddressName]", loadNamespace("openapi"))
-      self$`cc` <- ApiClient$new()$deserializeObj(this_object$`cc`, "array[EmailAddressName]", loadNamespace("openapi"))
-      self$`bcc` <- ApiClient$new()$deserializeObj(this_object$`bcc`, "array[EmailAddressName]", loadNamespace("openapi"))
+      self$`from` <- EmailAddressTypes$new()$fromJSON(jsonlite::toJSON(this_object$`from`, auto_unbox = TRUE, digits = NA))
+      self$`to` <- EmailAddressesTypes$new()$fromJSON(jsonlite::toJSON(this_object$`to`, auto_unbox = TRUE, digits = NA))
+      self$`replyto` <- EmailAddressesTypes$new()$fromJSON(jsonlite::toJSON(this_object$`replyto`, auto_unbox = TRUE, digits = NA))
+      self$`cc` <- EmailAddressesTypes$new()$fromJSON(jsonlite::toJSON(this_object$`cc`, auto_unbox = TRUE, digits = NA))
+      self$`bcc` <- EmailAddressesTypes$new()$fromJSON(jsonlite::toJSON(this_object$`bcc`, auto_unbox = TRUE, digits = NA))
       self$`attachments` <- ApiClient$new()$deserializeObj(this_object$`attachments`, "array[MailAttachment]", loadNamespace("openapi"))
       self$`id` <- this_object$`id`
       self
@@ -323,8 +327,7 @@ SendMailAdv <- R6::R6Class(
       }
       # check the required field `to`
       if (!is.null(input_json$`to`)) {
-        stopifnot(is.vector(input_json$`to`), length(input_json$`to`) != 0)
-        tmp <- sapply(input_json$`to`, function(x) stopifnot(R6::is.R6(x)))
+        stopifnot(R6::is.R6(input_json$`to`))
       } else {
         stop(paste("The JSON input `", input, "` is invalid for SendMailAdv: the required field `to` is missing."))
       }

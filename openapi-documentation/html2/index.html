@@ -847,7 +847,7 @@ ul.nav-tabs {
     // Script section to load models into a JS Var
     var defs = {}
     defs["DenyRuleNew"] = {
-  "title" : "Root Type for DenyRule",
+  "title" : "DenyRuleNew",
   "required" : [ "data", "type" ],
   "type" : "object",
   "properties" : {
@@ -860,7 +860,7 @@ ul.nav-tabs {
       "type" : "string",
       "description" : "The type of deny rule.",
       "example" : "email",
-      "enum" : [ "domain", "email", "startswith" ]
+      "enum" : [ "domain", "email", "startswith", "destination" ]
     },
     "data" : {
       "type" : "string",
@@ -876,7 +876,7 @@ ul.nav-tabs {
   }
 };
     defs["DenyRuleRecord"] = {
-  "title" : "Root Type for DenyRule",
+  "title" : "DenyRuleRecord",
   "type" : "object",
   "description" : "The data for a email deny rule record.",
   "example" : {
@@ -887,41 +887,85 @@ ul.nav-tabs {
     "created" : "2022-03-22 19:16:35"
   },
   "allOf" : [ {
-    "$ref" : "#/components/schemas/DenyRuleRecord_allOf"
+    "required" : [ "created", "id" ],
+    "type" : "object",
+    "properties" : {
+      "id" : {
+        "type" : "string",
+        "description" : "The deny rule Id number.",
+        "example" : "41124"
+      },
+      "created" : {
+        "type" : "string",
+        "description" : "the date the rule was created.",
+        "format" : "date-time"
+      }
+    }
   }, {
     "$ref" : "#/components/schemas/DenyRuleNew"
   } ]
 };
-    defs["DenyRuleRecord_allOf"] = {
-  "required" : [ "created", "id" ],
-  "type" : "object",
-  "properties" : {
-    "id" : {
-      "type" : "integer",
-      "description" : "The deny rule Id number.",
-      "example" : 41124
-    },
-    "created" : {
-      "type" : "string",
-      "description" : "the date the rule was created.",
-      "format" : "date-time"
-    }
-  },
-  "example" : null
-};
-    defs["EmailAddress"] = {
-  "title" : "Root Type for EmailAddress",
+    defs["EmailAddressName"] = {
+  "title" : "EmailAddressName",
+  "required" : [ "email" ],
   "type" : "object",
   "properties" : {
     "email" : {
       "type" : "string",
-      "description" : "an email address",
+      "description" : "The email address.",
       "example" : "user@domain.com"
+    },
+    "name" : {
+      "type" : "string",
+      "description" : "Name to use for the sending contact.",
+      "example" : "John Smith"
     }
   },
-  "description" : "an email address",
+  "description" : "An email contact.",
   "example" : {
-    "email" : "user@domain.com"
+    "email" : "user@domain.com",
+    "name" : "John Smith"
+  }
+};
+    defs["EmailAddressTypes"] = {
+  "title" : "EmailAddressTypes",
+  "description" : "",
+  "oneOf" : [ {
+    "$ref" : "#/components/schemas/EmailAddress"
+  }, {
+    "$ref" : "#/components/schemas/EmailAddressName"
+  } ]
+};
+    defs["EmailAddressesTypes"] = {
+  "title" : "EmailAddressTypes",
+  "description" : "",
+  "oneOf" : [ {
+    "$ref" : "#/components/schemas/EmailAddress"
+  }, {
+    "$ref" : "#/components/schemas/EmailAddressNames"
+  } ]
+};
+    defs["ErrorMessage"] = {
+  "title" : "ErrorMessage",
+  "required" : [ "code", "message" ],
+  "type" : "object",
+  "properties" : {
+    "code" : {
+      "type" : "integer",
+      "description" : "The response code associated with the error.",
+      "format" : "int32",
+      "example" : 400
+    },
+    "message" : {
+      "type" : "string",
+      "description" : "The details or description of the error.",
+      "example" : "There was an error."
+    }
+  },
+  "description" : "The resposne when an error occurs.",
+  "example" : {
+    "code" : 400,
+    "message" : "There was an error."
   }
 };
     defs["GenericResponse"] = {
@@ -934,18 +978,6 @@ ul.nav-tabs {
     "text" : {
       "type" : "string",
       "example" : "The command completed successfully."
-    }
-  }
-};
-    defs["getMailOrders_401_response"] = {
-  "required" : [ "code", "message" ],
-  "type" : "object",
-  "properties" : {
-    "code" : {
-      "type" : "string"
-    },
-    "message" : {
-      "type" : "string"
     }
   }
 };
@@ -975,8 +1007,30 @@ ul.nav-tabs {
     }
   }
 };
+    defs["MailAttachment"] = {
+  "title" : "MailAttachment",
+  "required" : [ "data", "filename" ],
+  "type" : "object",
+  "properties" : {
+    "filename" : {
+      "type" : "string",
+      "description" : "The filename of the attached file.",
+      "example" : "message.txt"
+    },
+    "data" : {
+      "type" : "string",
+      "description" : "The file contents base64 encoded",
+      "example" : "aGVsbG8gdGhlcmUK"
+    }
+  },
+  "description" : "(optional) File attachments to include in the email.  The file contents must be base64",
+  "example" : {
+    "filename" : "file.txt",
+    "data" : "base64_encoded_file_contents"
+  }
+};
     defs["MailBlockClickHouse"] = {
-  "title" : "Root Type for MailBlockClickHouse",
+  "title" : "MailBlockClickHouse",
   "required" : [ "date", "from", "messageId", "subject", "to" ],
   "type" : "object",
   "properties" : {
@@ -1007,7 +1061,7 @@ ul.nav-tabs {
   }
 };
     defs["MailBlockRspamd"] = {
-  "title" : "Root Type for MailBlockRspamd",
+  "title" : "MailBlockRspamd",
   "required" : [ "from", "subject" ],
   "type" : "object",
   "properties" : {
@@ -1025,7 +1079,7 @@ ul.nav-tabs {
   }
 };
     defs["MailBlocks"] = {
-  "title" : "Root Type for MailBlocks",
+  "title" : "MailBlocks",
   "required" : [ "local", "mbtrap", "subject" ],
   "type" : "object",
   "properties" : {
@@ -1071,6 +1125,7 @@ ul.nav-tabs {
   }
 };
     defs["MailLog"] = {
+  "title" : "MailLog",
   "required" : [ "emails", "limit", "skip", "total" ],
   "type" : "object",
   "properties" : {
@@ -1130,6 +1185,7 @@ ul.nav-tabs {
   }
 };
     defs["MailLogEntry"] = {
+  "title" : "MailLogEntry",
   "required" : [ "_id", "assigned", "bodySize", "created", "domain", "from", "id", "interface", "lockTime", "locked", "mxHostname", "origin", "queued", "recipient", "response", "sendingZone", "seq", "subject", "time", "to", "transtype", "user" ],
   "type" : "object",
   "properties" : {
@@ -1224,9 +1280,9 @@ ul.nav-tabs {
       "example" : 1
     },
     "lockTime" : {
-      "type" : "integer",
+      "type" : "string",
       "description" : "lock timestamp",
-      "example" : 1634215818533
+      "example" : "1634215818533"
     },
     "assigned" : {
       "type" : "string",
@@ -1277,7 +1333,7 @@ ul.nav-tabs {
   }
 };
     defs["MailOrder"] = {
-  "title" : "Root Type for MailOrder",
+  "title" : "MailOrder",
   "required" : [ "id", "status", "username" ],
   "type" : "object",
   "properties" : {
@@ -1310,6 +1366,7 @@ ul.nav-tabs {
   }
 };
     defs["SendMail"] = {
+  "title" : "SendMail",
   "required" : [ "body", "from", "subject", "to" ],
   "type" : "object",
   "properties" : {
@@ -1337,7 +1394,7 @@ ul.nav-tabs {
   "description" : "Details for an Email"
 };
     defs["SendMailAdv"] = {
-  "title" : "Email details",
+  "title" : "SendMailAdv",
   "required" : [ "body", "from", "subject", "to" ],
   "type" : "object",
   "properties" : {
@@ -1352,39 +1409,19 @@ ul.nav-tabs {
       "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else."
     },
     "from" : {
-      "$ref" : "#/components/schemas/EmailAddressName"
+      "$ref" : "#/components/schemas/EmailAddressTypes"
     },
     "to" : {
-      "type" : "array",
-      "description" : "A list of destionation email addresses to send this to",
-      "example" : "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]",
-      "items" : {
-        "$ref" : "#/components/schemas/EmailAddressName"
-      }
+      "$ref" : "#/components/schemas/EmailAddressesTypes"
     },
     "replyto" : {
-      "type" : "array",
-      "description" : "(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.",
-      "example" : "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]",
-      "items" : {
-        "$ref" : "#/components/schemas/EmailAddressName"
-      }
+      "$ref" : "#/components/schemas/EmailAddressesTypes"
     },
     "cc" : {
-      "type" : "array",
-      "description" : "(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.",
-      "example" : "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]",
-      "items" : {
-        "$ref" : "#/components/schemas/EmailAddressName"
-      }
+      "$ref" : "#/components/schemas/EmailAddressesTypes"
     },
     "bcc" : {
-      "type" : "array",
-      "description" : "(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.",
-      "example" : "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]",
-      "items" : {
-        "$ref" : "#/components/schemas/EmailAddressName"
-      }
+      "$ref" : "#/components/schemas/EmailAddressesTypes"
     },
     "attachments" : {
       "type" : "array",
@@ -1405,11 +1442,13 @@ ul.nav-tabs {
   "example" : {
     "subject" : "Welcome",
     "body" : "Hello",
-    "from" : {
-      "email" : "user@domain.com"
-    },
-    "to" : [ {
-      "email" : "someone@client.com",
+    "from" : "user@domain.com",
+    "to" : "someone@client.com",
+    "cc" : [ {
+      "email" : "someone2@client.com",
+      "name" : "Mr Client"
+    }, {
+      "email" : "someone3@client.com",
       "name" : "Mr Client"
     } ],
     "attachments" : [ {
@@ -1523,6 +1562,7 @@ We support several different authentication methods but the preferred method is 
                         <ul class="nav nav-tabs nav-tabs-examples">
                           <li class="active"><a href="#examples-Blocking-addRule-0-curl">Curl</a></li>
                           <li class=""><a href="#examples-Blocking-addRule-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Blocking-addRule-0-dart">Dart</a></li>
                           <li class=""><a href="#examples-Blocking-addRule-0-android">Android</a></li>
                           <!--<li class=""><a href="#examples-Blocking-addRule-0-groovy">Groovy</a></li>-->
                           <li class=""><a href="#examples-Blocking-addRule-0-objc">Obj-C</a></li>
@@ -1556,7 +1596,7 @@ import java.util.*;
 public class BlockingApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
+
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -1578,6 +1618,25 @@ public class BlockingApiExample {
         }
     }
 }
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Blocking-addRule-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+final String type = new String(); // String | The type of deny rule.
+final String data = new String(); // String | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+final String user = new String(); // String | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+
+try {
+    final result = await api_instance.addRule(type, data, user);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->addRule: $e\n');
+}
+
 </code></pre>
                           </div>
 
@@ -1849,7 +1908,7 @@ The type of deny rule.
             </div>
                     <div class="inner enums" id="addRule_type_enum">
                         <span class="inner">
-                            <b>Enum: </b><code>domain</code>, <code>email</code>, <code>startswith</code>
+                            <b>Enum: </b><code>domain</code>, <code>email</code>, <code>startswith</code>, <code>destination</code>
                         </span>
                     </div>
                 <div class="inner required">
@@ -1952,7 +2011,7 @@ The content of the rule.  If a domain type rule then an example would be google.
                             <h3 id="examples-Blocking-addRule-title-400"></h3>
                             <p id="examples-Blocking-addRule-description-400" class="marked"></p>
                             <script>
-                              var responseBlocking400_description = `The specified resource was not found`;
+                              var responseBlocking400_description = `Error message when there was a problem with the input parameters.`;
                               var responseBlocking400_description_break = responseBlocking400_description.indexOf('\n');
                               if (responseBlocking400_description_break == -1) {
                                 $("#examples-Blocking-addRule-title-400").text("Status: 400 - " + responseBlocking400_description);
@@ -2157,6 +2216,7 @@ The content of the rule.  If a domain type rule then an example would be google.
                         <ul class="nav nav-tabs nav-tabs-examples">
                           <li class="active"><a href="#examples-Blocking-deleteRule-0-curl">Curl</a></li>
                           <li class=""><a href="#examples-Blocking-deleteRule-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Blocking-deleteRule-0-dart">Dart</a></li>
                           <li class=""><a href="#examples-Blocking-deleteRule-0-android">Android</a></li>
                           <!--<li class=""><a href="#examples-Blocking-deleteRule-0-groovy">Groovy</a></li>-->
                           <li class=""><a href="#examples-Blocking-deleteRule-0-objc">Obj-C</a></li>
@@ -2189,7 +2249,7 @@ import java.util.*;
 public class BlockingApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
+
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -2209,6 +2269,23 @@ public class BlockingApiExample {
         }
     }
 }
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Blocking-deleteRule-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+final Integer ruleId = new Integer(); // Integer | The ID of the Rules entry.
+
+try {
+    final result = await api_instance.deleteRule(ruleId);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->deleteRule: $e\n');
+}
+
 </code></pre>
                           </div>
 
@@ -2515,7 +2592,7 @@ The ID of the Rules entry.
                             <h3 id="examples-Blocking-deleteRule-title-400"></h3>
                             <p id="examples-Blocking-deleteRule-description-400" class="marked"></p>
                             <script>
-                              var responseBlocking400_description = `The specified resource was not found`;
+                              var responseBlocking400_description = `Error message when there was a problem with the input parameters.`;
                               var responseBlocking400_description_break = responseBlocking400_description.indexOf('\n');
                               if (responseBlocking400_description_break == -1) {
                                 $("#examples-Blocking-deleteRule-title-400").text("Status: 400 - " + responseBlocking400_description);
@@ -2721,6 +2798,7 @@ The ID of the Rules entry.
                         <ul class="nav nav-tabs nav-tabs-examples">
                           <li class="active"><a href="#examples-Blocking-delistBlock-0-curl">Curl</a></li>
                           <li class=""><a href="#examples-Blocking-delistBlock-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Blocking-delistBlock-0-dart">Dart</a></li>
                           <li class=""><a href="#examples-Blocking-delistBlock-0-android">Android</a></li>
                           <!--<li class=""><a href="#examples-Blocking-delistBlock-0-groovy">Groovy</a></li>-->
                           <li class=""><a href="#examples-Blocking-delistBlock-0-objc">Obj-C</a></li>
@@ -2740,9 +2818,6 @@ The ID of the Rules entry.
  -H "Accept: application/json" \
  -H "Content-Type: application/json,multipart/form-data" \
  "https://api.mailbaby.net/mail/blocks/delete" \
- -d '{
-  &quot;email&quot; : &quot;user@domain.com&quot;
-}' \
  -d 'Custom MIME type example not yet supported: multipart/form-data'
 </code></pre>
                           </div>
@@ -2758,7 +2833,7 @@ import java.util.*;
 public class BlockingApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
+
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -2767,10 +2842,10 @@ public class BlockingApiExample {
 
         // Create an instance of the API class
         BlockingApi apiInstance = new BlockingApi();
-        EmailAddress emailAddress = {"email":"client@domain.com"}; // EmailAddress | 
+        String body = {"email":"client@domain.com"}; // String | 
 
         try {
-            GenericResponse result = apiInstance.delistBlock(emailAddress);
+            GenericResponse result = apiInstance.delistBlock(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BlockingApi#delistBlock");
@@ -2781,16 +2856,33 @@ public class BlockingApiExample {
 </code></pre>
                           </div>
 
+                          <div class="tab-pane" id="examples-Blocking-delistBlock-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+final String body = new String(); // String | 
+
+try {
+    final result = await api_instance.delistBlock(body);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->delistBlock: $e\n');
+}
+
+</code></pre>
+                          </div>
+
                           <div class="tab-pane" id="examples-Blocking-delistBlock-0-android">
                             <pre class="prettyprint"><code class="language-java">import MailBaby.api.BlockingApi;
 
 public class BlockingApiExample {
     public static void main(String[] args) {
         BlockingApi apiInstance = new BlockingApi();
-        EmailAddress emailAddress = {"email":"client@domain.com"}; // EmailAddress | 
+        String body = {"email":"client@domain.com"}; // String | 
 
         try {
-            GenericResponse result = apiInstance.delistBlock(emailAddress);
+            GenericResponse result = apiInstance.delistBlock(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BlockingApi#delistBlock");
@@ -2814,10 +2906,10 @@ public class BlockingApiExample {
 
 // Create an instance of the API class
 BlockingApi *apiInstance = [[BlockingApi alloc] init];
-EmailAddress *emailAddress = {"email":"client@domain.com"}; // 
+String *body = {"email":"client@domain.com"}; // 
 
 // Removes an email address from the blocked list
-[apiInstance delistBlockWith:emailAddress
+[apiInstance delistBlockWith:body
               completionHandler: ^(GenericResponse output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -2841,7 +2933,7 @@ apiKeyAuth.apiKey = "YOUR API KEY";
 
 // Create an instance of the API class
 var api = new MailBabyEmailDeliveryAndManagementServiceApi.BlockingApi()
-var emailAddress = {"email":"client@domain.com"}; // {EmailAddress} 
+var body = {"email":"client@domain.com"}; // {String} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -2850,7 +2942,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.delistBlock(emailAddress, callback);
+api.delistBlock(body, callback);
 </code></pre>
                             </div>
 
@@ -2877,11 +2969,11 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new BlockingApi();
-            var emailAddress = new EmailAddress(); // EmailAddress | 
+            var body = {"email":"client@domain.com"};  // String | 
 
             try {
                 // Removes an email address from the blocked list
-                GenericResponse result = apiInstance.delistBlock(emailAddress);
+                GenericResponse result = apiInstance.delistBlock(body);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling BlockingApi.delistBlock: " + e.Message );
@@ -2903,10 +2995,10 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\BlockingApi();
-$emailAddress = {"email":"client@domain.com"}; // EmailAddress | 
+$body = {"email":"client@domain.com"}; // String | 
 
 try {
-    $result = $api_instance->delistBlock($emailAddress);
+    $result = $api_instance->delistBlock($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BlockingApi->delistBlock: ', $e->getMessage(), PHP_EOL;
@@ -2926,10 +3018,10 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = MailBabyApi::BlockingApi->new();
-my $emailAddress = MailBabyApi::Object::EmailAddress->new(); # EmailAddress | 
+my $body = MailBabyApi::Object::String->new(); # String | 
 
 eval {
-    my $result = $api_instance->delistBlock(emailAddress => $emailAddress);
+    my $result = $api_instance->delistBlock(body => $body);
     print Dumper($result);
 };
 if ($@) {
@@ -2951,11 +3043,11 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = MailBabyApi.BlockingApi()
-emailAddress = {"email":"client@domain.com"} # EmailAddress | 
+body = {"email":"client@domain.com"} # String | 
 
 try:
     # Removes an email address from the blocked list
-    api_response = api_instance.delist_block(emailAddress)
+    api_response = api_instance.delist_block(body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling BlockingApi->delistBlock: %s\n" % e)</code></pre>
@@ -2965,10 +3057,10 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate BlockingApi;
 
 pub fn main() {
-    let emailAddress = {"email":"client@domain.com"}; // EmailAddress
+    let body = {"email":"client@domain.com"}; // String
 
     let mut context = BlockingApi::Context::default();
-    let result = client.delistBlock(emailAddress, &context).wait();
+    let result = client.delistBlock(body, &context).wait();
 
     println!("{:?}", result);
 }
@@ -2991,7 +3083,7 @@ pub fn main() {
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">emailAddress <span style="color:red;">*</span></td>
+                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
 <td>
 <p class="marked"></p>
 <script>
@@ -3040,12 +3132,12 @@ $(document).ready(function() {
   }
 
   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-  var result = $('#d2e199_delistBlock_emailAddress');
+  var result = $('#d2e199_delistBlock_body');
   result.empty();
   result.append(view.render());
 });
 </script>
-<div id="d2e199_delistBlock_emailAddress"></div>
+<div id="d2e199_delistBlock_body"></div>
 </td>
 </tr>
 
@@ -3119,7 +3211,7 @@ $(document).ready(function() {
                             <h3 id="examples-Blocking-delistBlock-title-400"></h3>
                             <p id="examples-Blocking-delistBlock-description-400" class="marked"></p>
                             <script>
-                              var responseBlocking400_description = `The specified resource was not found`;
+                              var responseBlocking400_description = `Error message when there was a problem with the input parameters.`;
                               var responseBlocking400_description_break = responseBlocking400_description.indexOf('\n');
                               if (responseBlocking400_description_break == -1) {
                                 $("#examples-Blocking-delistBlock-title-400").text("Status: 400 - " + responseBlocking400_description);
@@ -3324,6 +3416,7 @@ $(document).ready(function() {
                         <ul class="nav nav-tabs nav-tabs-examples">
                           <li class="active"><a href="#examples-Blocking-getMailBlocks-0-curl">Curl</a></li>
                           <li class=""><a href="#examples-Blocking-getMailBlocks-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Blocking-getMailBlocks-0-dart">Dart</a></li>
                           <li class=""><a href="#examples-Blocking-getMailBlocks-0-android">Android</a></li>
                           <!--<li class=""><a href="#examples-Blocking-getMailBlocks-0-groovy">Groovy</a></li>-->
                           <li class=""><a href="#examples-Blocking-getMailBlocks-0-objc">Obj-C</a></li>
@@ -3356,7 +3449,7 @@ import java.util.*;
 public class BlockingApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
+
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -3375,6 +3468,22 @@ public class BlockingApiExample {
         }
     }
 }
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Blocking-getMailBlocks-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+
+try {
+    final result = await api_instance.getMailBlocks();
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getMailBlocks: $e\n');
+}
+
 </code></pre>
                           </div>
 
@@ -3785,6 +3894,7 @@ pub fn main() {
                         <ul class="nav nav-tabs nav-tabs-examples">
                           <li class="active"><a href="#examples-Blocking-getRules-0-curl">Curl</a></li>
                           <li class=""><a href="#examples-Blocking-getRules-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Blocking-getRules-0-dart">Dart</a></li>
                           <li class=""><a href="#examples-Blocking-getRules-0-android">Android</a></li>
                           <!--<li class=""><a href="#examples-Blocking-getRules-0-groovy">Groovy</a></li>-->
                           <li class=""><a href="#examples-Blocking-getRules-0-objc">Obj-C</a></li>
@@ -3817,7 +3927,7 @@ import java.util.*;
 public class BlockingApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
+
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -3836,6 +3946,22 @@ public class BlockingApiExample {
         }
     }
 }
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Blocking-getRules-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+
+try {
+    final result = await api_instance.getRules();
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getRules: $e\n');
+}
+
 </code></pre>
                           </div>
 
@@ -4234,12 +4360,12 @@ pub fn main() {
                       <article id="api-History-getStats-0" data-group="User" data-name="getStats" data-version="0">
                         <div class="pull-left">
                           <h1>getStats</h1>
-                          <p>displays a list of blocked email addresses</p>
+                          <p>Account usage statistics.</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked"></p>
+                        <p class="marked">Returns information about the usage on your mail accounts.</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/mail/stats</span></code></pre>
@@ -4249,6 +4375,7 @@ pub fn main() {
                         <ul class="nav nav-tabs nav-tabs-examples">
                           <li class="active"><a href="#examples-History-getStats-0-curl">Curl</a></li>
                           <li class=""><a href="#examples-History-getStats-0-java">Java</a></li>
+                          <li class=""><a href="#examples-History-getStats-0-dart">Dart</a></li>
                           <li class=""><a href="#examples-History-getStats-0-android">Android</a></li>
                           <!--<li class=""><a href="#examples-History-getStats-0-groovy">Groovy</a></li>-->
                           <li class=""><a href="#examples-History-getStats-0-objc">Obj-C</a></li>
@@ -4281,7 +4408,7 @@ import java.util.*;
 public class HistoryApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
+
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -4300,6 +4427,22 @@ public class HistoryApiExample {
         }
     }
 }
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-History-getStats-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+
+try {
+    final result = await api_instance.getStats();
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getStats: $e\n');
+}
+
 </code></pre>
                           </div>
 
@@ -4336,7 +4479,7 @@ public class HistoryApiExample {
 // Create an instance of the API class
 HistoryApi *apiInstance = [[HistoryApi alloc] init];
 
-// displays a list of blocked email addresses
+// Account usage statistics.
 [apiInstance getStatsWithCompletionHandler: 
               ^(array[getStats_200_response_inner] output, NSError* error) {
     if (output) {
@@ -4397,7 +4540,7 @@ namespace Example
             var apiInstance = new HistoryApi();
 
             try {
-                // displays a list of blocked email addresses
+                // Account usage statistics.
                 array[getStats_200_response_inner] result = apiInstance.getStats();
                 Debug.WriteLine(result);
             } catch (Exception e) {
@@ -4468,7 +4611,7 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 api_instance = MailBabyApi.HistoryApi()
 
 try:
-    # displays a list of blocked email addresses
+    # Account usage statistics.
     api_response = api_instance.get_stats()
     pprint(api_response)
 except ApiException as e:
@@ -4711,6 +4854,7 @@ pub fn main() {
                         <ul class="nav nav-tabs nav-tabs-examples">
                           <li class="active"><a href="#examples-History-viewMailLog-0-curl">Curl</a></li>
                           <li class=""><a href="#examples-History-viewMailLog-0-java">Java</a></li>
+                          <li class=""><a href="#examples-History-viewMailLog-0-dart">Dart</a></li>
                           <li class=""><a href="#examples-History-viewMailLog-0-android">Android</a></li>
                           <!--<li class=""><a href="#examples-History-viewMailLog-0-groovy">Groovy</a></li>-->
                           <li class=""><a href="#examples-History-viewMailLog-0-objc">Obj-C</a></li>
@@ -4743,7 +4887,7 @@ import java.util.*;
 public class HistoryApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
+
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -4773,6 +4917,33 @@ public class HistoryApiExample {
         }
     }
 }
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-History-viewMailLog-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+final Long id = new Long(); // Long | The ID of your mail order this will be sent through.
+final String origin = new String(); // String | originating ip address sending mail
+final String mx = new String(); // String | mx record mail was sent to
+final String from = new String(); // String | from email address
+final String to = new String(); // String | to/destination email address
+final String subject = new String(); // String | subject containing this string
+final String mailid = new String(); // String | mail id
+final Integer skip = new Integer(); // Integer | number of records to skip for pagination
+final Integer limit = new Integer(); // Integer | maximum number of records to return
+final Long startDate = new Long(); // Long | earliest date to get emails in unix timestamp format
+final Long endDate = new Long(); // Long | earliest date to get emails in unix timestamp format
+
+try {
+    final result = await api_instance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->viewMailLog: $e\n');
+}
+
 </code></pre>
                           </div>
 
@@ -5417,7 +5588,119 @@ earliest date to get emails in unix timestamp format
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.</p>
+                        <p class="marked">Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+
+Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#39;Accept: application/json&#39; \
+--header &#39;Content-Type: application/x-www-form-urlencoded&#39; \
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \
+--data &#39;subject&#x3D;Welcome&#39; \
+--data &#39;body&#x3D;Hello&#39; \
+--data from&#x3D;user@domain.com \
+--data to&#x3D;support@interserver.net
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#39;Accept: application/json&#39; \
+--header &#39;Content-Type: application/x-www-form-urlencoded&#39; \
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \
+--data &#39;subject&#x3D;Welcome&#39; \
+--data &#39;body&#x3D;Hello&#39; \
+--data from&#x3D;user@domain.com \
+--data &quot;to[0][name]&#x3D;Joe&quot; \
+--data &quot;to[0][email]&#x3D;support@interserver.net&quot;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#39;Accept: application/json&#39; \
+--header &#39;Content-Type: application/x-www-form-urlencoded&#39; \
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \
+--data &#39;subject&#x3D;Welcome&#39; \
+--data &#39;body&#x3D;Hello&#39; \
+--data from&#x3D;&quot;Joe &lt;user@domain.com&gt;&quot; \
+--data to&#x3D;&quot;Joe &lt;support@interserver.net&gt;&quot;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#39;Accept: application/json&#39; \
+--header &#39;Content-Type: application/x-www-form-urlencoded&#39; \
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \
+--data &#39;subject&#x3D;Welcome&#39; \
+--data &#39;body&#x3D;Hello&#39; \
+--data from&#x3D;user@domain.com \
+--data &quot;to&#x3D;support@interserver.net, support@interserver.net&quot;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#39;Accept: application/json&#39; \
+--header &#39;Content-Type: application/x-www-form-urlencoded&#39; \
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \
+--data &#39;subject&#x3D;Welcome&#39; \
+--data &#39;body&#x3D;Hello&#39; \
+--data from&#x3D;user@domain.com \
+--data &quot;to&#x3D;Joe &lt;support@interserver.net&gt;, Joe &lt;support@interserver.net&gt;&quot;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#39;Accept: application/json&#39; \
+--header &#39;Content-Type: application/x-www-form-urlencoded&#39; \
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \
+--data &#39;subject&#x3D;Welcome&#39; \
+--data &#39;body&#x3D;Hello&#39; \
+--data from&#x3D;user@domain.com \
+--data &quot;to[0][name]&#x3D;Joe&quot; \
+--data &quot;to[0][email]&#x3D;support@interserver.net&quot; \
+--data &quot;to[1][name]&#x3D;Joe&quot; \
+--data &quot;to[1][email]&#x3D;support@interserver.net&quot;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#39;Accept: application/json&#39; \
+--header &#39;Content-Type: application/json&#39; \
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \
+--data &#39;{
+&quot;subject&quot;: &quot;Welcome&quot;,
+&quot;body&quot;: &quot;Hello&quot;,
+&quot;from&quot;: &quot;user@domain.com&quot;,
+&quot;to&quot;: &quot;support@interserver.net&quot;
+}&#39;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#39;Accept: application/json&#39; \
+--header &#39;Content-Type: application/json&#39; \
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \
+--data &#39;{
+&quot;subject&quot;: &quot;Welcome&quot;,
+&quot;body&quot;: &quot;Hello&quot;,
+&quot;from&quot;: {&quot;name&quot;: &quot;Joe&quot;, &quot;email&quot;: &quot;user@domain.com&quot;},
+&quot;to&quot;: [{&quot;name&quot;: &quot;Joe&quot;, &quot;email&quot;: &quot;support@interserver.net&quot;}]
+}&#39;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header &#39;Accept: application/json&#39; \
+--header &#39;Content-Type: application/json&#39; \
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \
+--data &#39;{
+&quot;subject&quot;: &quot;Welcome&quot;,
+&quot;body&quot;: &quot;Hello&quot;,
+&quot;from&quot;: &quot;Joe &lt;user@domain.com&gt;&quot;,
+&quot;to&quot;: &quot;Joe &lt;support@interserver.net&gt;&quot;
+}&#39;
+&#x60;&#x60;&#x60;
+</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/mail/advsend</span></code></pre>
@@ -5427,6 +5710,7 @@ earliest date to get emails in unix timestamp format
                         <ul class="nav nav-tabs nav-tabs-examples">
                           <li class="active"><a href="#examples-Sending-sendAdvMail-0-curl">Curl</a></li>
                           <li class=""><a href="#examples-Sending-sendAdvMail-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Sending-sendAdvMail-0-dart">Dart</a></li>
                           <li class=""><a href="#examples-Sending-sendAdvMail-0-android">Android</a></li>
                           <!--<li class=""><a href="#examples-Sending-sendAdvMail-0-groovy">Groovy</a></li>-->
                           <li class=""><a href="#examples-Sending-sendAdvMail-0-objc">Obj-C</a></li>
@@ -5460,7 +5744,7 @@ import java.util.*;
 public class SendingApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
+
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -5471,11 +5755,11 @@ public class SendingApiExample {
         SendingApi apiInstance = new SendingApi();
         String subject = subject_example; // String | The subject or title of the email
         String body = body_example; // String | The main email contents.
-        EmailAddressName from = ; // EmailAddressName | 
-        array[EmailAddressName] to = ; // array[EmailAddressName] | A list of destionation email addresses to send this to
-        array[EmailAddressName] replyto = ; // array[EmailAddressName] | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-        array[EmailAddressName] cc = ; // array[EmailAddressName] | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-        array[EmailAddressName] bcc = ; // array[EmailAddressName] | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+        EmailAddressTypes from = ; // EmailAddressTypes | 
+        EmailAddressesTypes to = ; // EmailAddressesTypes | 
+        EmailAddressesTypes replyto = ; // EmailAddressesTypes | 
+        EmailAddressesTypes cc = ; // EmailAddressesTypes | 
+        EmailAddressesTypes bcc = ; // EmailAddressesTypes | 
         array[MailAttachment] attachments = ; // array[MailAttachment] | (optional) File attachments to include in the email.  The file contents must be base64 encoded!
         Long id = 789; // Long | (optional)  ID of the Mail order within our system to use as the Mail Account.
 
@@ -5491,6 +5775,31 @@ public class SendingApiExample {
 </code></pre>
                           </div>
 
+                          <div class="tab-pane" id="examples-Sending-sendAdvMail-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+final String subject = new String(); // String | The subject or title of the email
+final String body = new String(); // String | The main email contents.
+final EmailAddressTypes from = new EmailAddressTypes(); // EmailAddressTypes | 
+final EmailAddressesTypes to = new EmailAddressesTypes(); // EmailAddressesTypes | 
+final EmailAddressesTypes replyto = new EmailAddressesTypes(); // EmailAddressesTypes | 
+final EmailAddressesTypes cc = new EmailAddressesTypes(); // EmailAddressesTypes | 
+final EmailAddressesTypes bcc = new EmailAddressesTypes(); // EmailAddressesTypes | 
+final array[MailAttachment] attachments = new array[MailAttachment](); // array[MailAttachment] | (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+final Long id = new Long(); // Long | (optional)  ID of the Mail order within our system to use as the Mail Account.
+
+try {
+    final result = await api_instance.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->sendAdvMail: $e\n');
+}
+
+</code></pre>
+                          </div>
+
                           <div class="tab-pane" id="examples-Sending-sendAdvMail-0-android">
                             <pre class="prettyprint"><code class="language-java">import MailBaby.api.SendingApi;
 
@@ -5499,11 +5808,11 @@ public class SendingApiExample {
         SendingApi apiInstance = new SendingApi();
         String subject = subject_example; // String | The subject or title of the email
         String body = body_example; // String | The main email contents.
-        EmailAddressName from = ; // EmailAddressName | 
-        array[EmailAddressName] to = ; // array[EmailAddressName] | A list of destionation email addresses to send this to
-        array[EmailAddressName] replyto = ; // array[EmailAddressName] | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-        array[EmailAddressName] cc = ; // array[EmailAddressName] | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-        array[EmailAddressName] bcc = ; // array[EmailAddressName] | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+        EmailAddressTypes from = ; // EmailAddressTypes | 
+        EmailAddressesTypes to = ; // EmailAddressesTypes | 
+        EmailAddressesTypes replyto = ; // EmailAddressesTypes | 
+        EmailAddressesTypes cc = ; // EmailAddressesTypes | 
+        EmailAddressesTypes bcc = ; // EmailAddressesTypes | 
         array[MailAttachment] attachments = ; // array[MailAttachment] | (optional) File attachments to include in the email.  The file contents must be base64 encoded!
         Long id = 789; // Long | (optional)  ID of the Mail order within our system to use as the Mail Account.
 
@@ -5534,11 +5843,11 @@ public class SendingApiExample {
 SendingApi *apiInstance = [[SendingApi alloc] init];
 String *subject = subject_example; // The subject or title of the email (default to null)
 String *body = body_example; // The main email contents. (default to null)
-EmailAddressName *from = ; //  (default to null)
-array[EmailAddressName] *to = ; // A list of destionation email addresses to send this to (default to null)
-array[EmailAddressName] *replyto = ; // (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. (optional) (default to null)
-array[EmailAddressName] *cc = ; // (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. (optional) (default to null)
-array[EmailAddressName] *bcc = ; // (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. (optional) (default to null)
+EmailAddressTypes *from = ; //  (default to null)
+EmailAddressesTypes *to = ; //  (default to null)
+EmailAddressesTypes *replyto = ; //  (optional) (default to null)
+EmailAddressesTypes *cc = ; //  (optional) (default to null)
+EmailAddressesTypes *bcc = ; //  (optional) (default to null)
 array[MailAttachment] *attachments = ; // (optional) File attachments to include in the email.  The file contents must be base64 encoded! (optional) (default to null)
 Long *id = 789; // (optional)  ID of the Mail order within our system to use as the Mail Account. (optional) (default to null)
 
@@ -5577,12 +5886,12 @@ apiKeyAuth.apiKey = "YOUR API KEY";
 var api = new MailBabyEmailDeliveryAndManagementServiceApi.SendingApi()
 var subject = subject_example; // {String} The subject or title of the email
 var body = body_example; // {String} The main email contents.
-var from = ; // {EmailAddressName} 
-var to = ; // {array[EmailAddressName]} A list of destionation email addresses to send this to
+var from = ; // {EmailAddressTypes} 
+var to = ; // {EmailAddressesTypes} 
 var opts = {
-  'replyto': , // {array[EmailAddressName]} (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-  'cc': , // {array[EmailAddressName]} (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-  'bcc': , // {array[EmailAddressName]} (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+  'replyto': , // {EmailAddressesTypes} 
+  'cc': , // {EmailAddressesTypes} 
+  'bcc': , // {EmailAddressesTypes} 
   'attachments': , // {array[MailAttachment]} (optional) File attachments to include in the email.  The file contents must be base64 encoded!
   'id': 789 // {Long} (optional)  ID of the Mail order within our system to use as the Mail Account.
 };
@@ -5623,11 +5932,11 @@ namespace Example
             var apiInstance = new SendingApi();
             var subject = subject_example;  // String | The subject or title of the email (default to null)
             var body = body_example;  // String | The main email contents. (default to null)
-            var from = new EmailAddressName(); // EmailAddressName |  (default to null)
-            var to = new array[EmailAddressName](); // array[EmailAddressName] | A list of destionation email addresses to send this to (default to null)
-            var replyto = new array[EmailAddressName](); // array[EmailAddressName] | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. (optional)  (default to null)
-            var cc = new array[EmailAddressName](); // array[EmailAddressName] | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. (optional)  (default to null)
-            var bcc = new array[EmailAddressName](); // array[EmailAddressName] | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. (optional)  (default to null)
+            var from = new EmailAddressTypes(); // EmailAddressTypes |  (default to null)
+            var to = new EmailAddressesTypes(); // EmailAddressesTypes |  (default to null)
+            var replyto = new EmailAddressesTypes(); // EmailAddressesTypes |  (optional)  (default to null)
+            var cc = new EmailAddressesTypes(); // EmailAddressesTypes |  (optional)  (default to null)
+            var bcc = new EmailAddressesTypes(); // EmailAddressesTypes |  (optional)  (default to null)
             var attachments = new array[MailAttachment](); // array[MailAttachment] | (optional) File attachments to include in the email.  The file contents must be base64 encoded! (optional)  (default to null)
             var id = 789;  // Long | (optional)  ID of the Mail order within our system to use as the Mail Account. (optional)  (default to null)
 
@@ -5657,11 +5966,11 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 $api_instance = new OpenAPITools\Client\Api\SendingApi();
 $subject = subject_example; // String | The subject or title of the email
 $body = body_example; // String | The main email contents.
-$from = ; // EmailAddressName | 
-$to = ; // array[EmailAddressName] | A list of destionation email addresses to send this to
-$replyto = ; // array[EmailAddressName] | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-$cc = ; // array[EmailAddressName] | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-$bcc = ; // array[EmailAddressName] | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+$from = ; // EmailAddressTypes | 
+$to = ; // EmailAddressesTypes | 
+$replyto = ; // EmailAddressesTypes | 
+$cc = ; // EmailAddressesTypes | 
+$bcc = ; // EmailAddressesTypes | 
 $attachments = ; // array[MailAttachment] | (optional) File attachments to include in the email.  The file contents must be base64 encoded!
 $id = 789; // Long | (optional)  ID of the Mail order within our system to use as the Mail Account.
 
@@ -5688,11 +5997,11 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 my $api_instance = MailBabyApi::SendingApi->new();
 my $subject = subject_example; # String | The subject or title of the email
 my $body = body_example; # String | The main email contents.
-my $from = ; # EmailAddressName | 
-my $to = []; # array[EmailAddressName] | A list of destionation email addresses to send this to
-my $replyto = []; # array[EmailAddressName] | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-my $cc = []; # array[EmailAddressName] | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-my $bcc = []; # array[EmailAddressName] | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+my $from = ; # EmailAddressTypes | 
+my $to = ; # EmailAddressesTypes | 
+my $replyto = ; # EmailAddressesTypes | 
+my $cc = ; # EmailAddressesTypes | 
+my $bcc = ; # EmailAddressesTypes | 
 my $attachments = []; # array[MailAttachment] | (optional) File attachments to include in the email.  The file contents must be base64 encoded!
 my $id = 789; # Long | (optional)  ID of the Mail order within our system to use as the Mail Account.
 
@@ -5721,11 +6030,11 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 api_instance = MailBabyApi.SendingApi()
 subject = subject_example # String | The subject or title of the email (default to null)
 body = body_example # String | The main email contents. (default to null)
-from =  # EmailAddressName |  (default to null)
-to =  # array[EmailAddressName] | A list of destionation email addresses to send this to (default to null)
-replyto =  # array[EmailAddressName] | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. (optional) (default to null)
-cc =  # array[EmailAddressName] | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. (optional) (default to null)
-bcc =  # array[EmailAddressName] | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. (optional) (default to null)
+from =  # EmailAddressTypes |  (default to null)
+to =  # EmailAddressesTypes |  (default to null)
+replyto =  # EmailAddressesTypes |  (optional) (default to null)
+cc =  # EmailAddressesTypes |  (optional) (default to null)
+bcc =  # EmailAddressesTypes |  (optional) (default to null)
 attachments =  # array[MailAttachment] | (optional) File attachments to include in the email.  The file contents must be base64 encoded! (optional) (default to null)
 id = 789 # Long | (optional)  ID of the Mail order within our system to use as the Mail Account. (optional) (default to null)
 
@@ -5743,11 +6052,11 @@ except ApiException as e:
 pub fn main() {
     let subject = subject_example; // String
     let body = body_example; // String
-    let from = ; // EmailAddressName
-    let to = ; // array[EmailAddressName]
-    let replyto = ; // array[EmailAddressName]
-    let cc = ; // array[EmailAddressName]
-    let bcc = ; // array[EmailAddressName]
+    let from = ; // EmailAddressTypes
+    let to = ; // EmailAddressesTypes
+    let replyto = ; // EmailAddressesTypes
+    let cc = ; // EmailAddressesTypes
+    let bcc = ; // EmailAddressesTypes
     let attachments = ; // array[MailAttachment]
     let id = 789; // Long
 
@@ -5830,7 +6139,7 @@ The main email contents.
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
-                    EmailAddressName
+                    EmailAddressTypes
                 </span>
 
             </div>
@@ -5850,12 +6159,9 @@ The main email contents.
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
-                    array[EmailAddressName]
+                    EmailAddressesTypes
                 </span>
 
-                    <div class="inner description marked">
-A list of destionation email addresses to send this to
-                    </div>
             </div>
                 <div class="inner required">
                     Required
@@ -5873,12 +6179,9 @@ A list of destionation email addresses to send this to
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
-                    array[EmailAddressName]
+                    EmailAddressesTypes
                 </span>
 
-                    <div class="inner description marked">
-(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-                    </div>
             </div>
         </div>
     </div>
@@ -5893,12 +6196,9 @@ A list of destionation email addresses to send this to
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
-                    array[EmailAddressName]
+                    EmailAddressesTypes
                 </span>
 
-                    <div class="inner description marked">
-(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-                    </div>
             </div>
         </div>
     </div>
@@ -5913,12 +6213,9 @@ A list of destionation email addresses to send this to
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
-                    array[EmailAddressName]
+                    EmailAddressesTypes
                 </span>
 
-                    <div class="inner description marked">
-(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-                    </div>
             </div>
         </div>
     </div>
@@ -6037,7 +6334,7 @@ A list of destionation email addresses to send this to
                             <h3 id="examples-Sending-sendAdvMail-title-400"></h3>
                             <p id="examples-Sending-sendAdvMail-description-400" class="marked"></p>
                             <script>
-                              var responseSending400_description = `The specified resource was not found`;
+                              var responseSending400_description = `Error message when there was a problem with the input parameters.`;
                               var responseSending400_description_break = responseSending400_description.indexOf('\n');
                               if (responseSending400_description_break == -1) {
                                 $("#examples-Sending-sendAdvMail-title-400").text("Status: 400 - " + responseSending400_description);
@@ -6245,6 +6542,7 @@ A list of destionation email addresses to send this to
                         <ul class="nav nav-tabs nav-tabs-examples">
                           <li class="active"><a href="#examples-Sending-sendMail-0-curl">Curl</a></li>
                           <li class=""><a href="#examples-Sending-sendMail-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Sending-sendMail-0-dart">Dart</a></li>
                           <li class=""><a href="#examples-Sending-sendMail-0-android">Android</a></li>
                           <!--<li class=""><a href="#examples-Sending-sendMail-0-groovy">Groovy</a></li>-->
                           <li class=""><a href="#examples-Sending-sendMail-0-objc">Obj-C</a></li>
@@ -6278,7 +6576,7 @@ import java.util.*;
 public class SendingApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
+
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -6301,6 +6599,26 @@ public class SendingApiExample {
         }
     }
 }
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Sending-sendMail-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+final String to = new String(); // String | The Contact whom is the primary recipient of this email.
+final String from = new String(); // String | The contact whom is the this email is from.
+final String subject = new String(); // String | The subject or title of the email
+final String body = new String(); // String | The main email contents.
+
+try {
+    final result = await api_instance.sendMail(to, from, subject, body);
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->sendMail: $e\n');
+}
+
 </code></pre>
                           </div>
 
@@ -6703,7 +7021,7 @@ The main email contents.
                             <h3 id="examples-Sending-sendMail-title-400"></h3>
                             <p id="examples-Sending-sendMail-description-400" class="marked"></p>
                             <script>
-                              var responseSending400_description = `The specified resource was not found`;
+                              var responseSending400_description = `Error message when there was a problem with the input parameters.`;
                               var responseSending400_description_break = responseSending400_description.indexOf('\n');
                               if (responseSending400_description_break == -1) {
                                 $("#examples-Sending-sendMail-title-400").text("Status: 400 - " + responseSending400_description);
@@ -6911,6 +7229,7 @@ The main email contents.
                         <ul class="nav nav-tabs nav-tabs-examples">
                           <li class="active"><a href="#examples-Services-getMailOrders-0-curl">Curl</a></li>
                           <li class=""><a href="#examples-Services-getMailOrders-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Services-getMailOrders-0-dart">Dart</a></li>
                           <li class=""><a href="#examples-Services-getMailOrders-0-android">Android</a></li>
                           <!--<li class=""><a href="#examples-Services-getMailOrders-0-groovy">Groovy</a></li>-->
                           <li class=""><a href="#examples-Services-getMailOrders-0-objc">Obj-C</a></li>
@@ -6943,7 +7262,7 @@ import java.util.*;
 public class ServicesApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
+
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -6962,6 +7281,22 @@ public class ServicesApiExample {
         }
     }
 }
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Services-getMailOrders-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+
+try {
+    final result = await api_instance.getMailOrders();
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->getMailOrders: $e\n');
+}
+
 </code></pre>
                           </div>
 
@@ -7375,6 +7710,7 @@ pub fn main() {
                         <ul class="nav nav-tabs nav-tabs-examples">
                           <li class="active"><a href="#examples-Status-pingServer-0-curl">Curl</a></li>
                           <li class=""><a href="#examples-Status-pingServer-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Status-pingServer-0-dart">Dart</a></li>
                           <li class=""><a href="#examples-Status-pingServer-0-android">Android</a></li>
                           <!--<li class=""><a href="#examples-Status-pingServer-0-groovy">Groovy</a></li>-->
                           <li class=""><a href="#examples-Status-pingServer-0-objc">Obj-C</a></li>
@@ -7406,7 +7742,7 @@ import java.util.*;
 public class StatusApiExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
+
         // Configure API key authorization: apiKeyAuth
         ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
         apiKeyAuth.setApiKey("YOUR API KEY");
@@ -7424,6 +7760,22 @@ public class StatusApiExample {
         }
     }
 }
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Status-pingServer-0-dart">
+                            <pre class="prettyprint"><code class="language-dart">import 'package:openapi/api.dart';
+
+final api_instance = DefaultApi();
+
+
+try {
+    final result = await api_instance.pingServer();
+    print(result);
+} catch (e) {
+    print('Exception when calling DefaultApi->pingServer: $e\n');
+}
+
 </code></pre>
                           </div>
 

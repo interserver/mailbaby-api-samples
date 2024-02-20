@@ -5,12 +5,14 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/get_mail_orders_401_response.h"
+#include "../model/error_message.h"
 #include "../model/get_stats_200_response_inner.h"
 #include "../model/mail_log.h"
 
 
-// displays a list of blocked email addresses
+// Account usage statistics.
+//
+// Returns information about the usage on your mail accounts.
 //
 list_t*
 HistoryAPI_getStats(apiClient_t *apiClient);

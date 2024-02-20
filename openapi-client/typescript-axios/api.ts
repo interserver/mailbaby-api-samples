@@ -52,7 +52,8 @@ export interface DenyRuleNew {
 export const DenyRuleNewTypeEnum = {
     Domain: 'domain',
     Email: 'email',
-    Startswith: 'startswith'
+    Startswith: 'startswith',
+    Destination: 'destination'
 } as const;
 
 export type DenyRuleNewTypeEnum = typeof DenyRuleNewTypeEnum[keyof typeof DenyRuleNewTypeEnum];
@@ -63,18 +64,6 @@ export type DenyRuleNewTypeEnum = typeof DenyRuleNewTypeEnum[keyof typeof DenyRu
  * @interface DenyRuleRecord
  */
 export interface DenyRuleRecord {
-    /**
-     * The deny rule Id number.
-     * @type {number}
-     * @memberof DenyRuleRecord
-     */
-    'id': number;
-    /**
-     * the date the rule was created.
-     * @type {string}
-     * @memberof DenyRuleRecord
-     */
-    'created': string;
     /**
      * The type of deny rule.
      * @type {string}
@@ -88,6 +77,18 @@ export interface DenyRuleRecord {
      */
     'data': string;
     /**
+     * The deny rule Id number.
+     * @type {string}
+     * @memberof DenyRuleRecord
+     */
+    'id': string;
+    /**
+     * the date the rule was created.
+     * @type {string}
+     * @memberof DenyRuleRecord
+     */
+    'created': string;
+    /**
      * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      * @type {string}
      * @memberof DenyRuleRecord
@@ -98,42 +99,63 @@ export interface DenyRuleRecord {
 export const DenyRuleRecordTypeEnum = {
     Domain: 'domain',
     Email: 'email',
-    Startswith: 'startswith'
+    Startswith: 'startswith',
+    Destination: 'destination'
 } as const;
 
 export type DenyRuleRecordTypeEnum = typeof DenyRuleRecordTypeEnum[keyof typeof DenyRuleRecordTypeEnum];
 
 /**
- * 
+ * An email contact.
  * @export
- * @interface DenyRuleRecordAllOf
+ * @interface EmailAddressName
  */
-export interface DenyRuleRecordAllOf {
+export interface EmailAddressName {
     /**
-     * The deny rule Id number.
-     * @type {number}
-     * @memberof DenyRuleRecordAllOf
-     */
-    'id': number;
-    /**
-     * the date the rule was created.
+     * The email address.
      * @type {string}
-     * @memberof DenyRuleRecordAllOf
+     * @memberof EmailAddressName
      */
-    'created': string;
+    'email': string;
+    /**
+     * Name to use for the sending contact.
+     * @type {string}
+     * @memberof EmailAddressName
+     */
+    'name'?: string;
 }
 /**
- * an email address
+ * @type EmailAddressTypes
+ * 
  * @export
- * @interface EmailAddress
  */
-export interface EmailAddress {
+export type EmailAddressTypes = EmailAddressName | string;
+
+/**
+ * @type EmailAddressesTypes
+ * 
+ * @export
+ */
+export type EmailAddressesTypes = Array<EmailAddressName> | string;
+
+/**
+ * The resposne when an error occurs.
+ * @export
+ * @interface ErrorMessage
+ */
+export interface ErrorMessage {
     /**
-     * an email address
-     * @type {string}
-     * @memberof EmailAddress
+     * The response code associated with the error.
+     * @type {number}
+     * @memberof ErrorMessage
      */
-    'email'?: string;
+    'code': number;
+    /**
+     * The details or description of the error.
+     * @type {string}
+     * @memberof ErrorMessage
+     */
+    'message': string;
 }
 /**
  * 
@@ -153,25 +175,6 @@ export interface GenericResponse {
      * @memberof GenericResponse
      */
     'text'?: string;
-}
-/**
- * 
- * @export
- * @interface GetMailOrders401Response
- */
-export interface GetMailOrders401Response {
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMailOrders401Response
-     */
-    'code': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMailOrders401Response
-     */
-    'message': string;
 }
 /**
  * 
@@ -209,6 +212,25 @@ export interface GetStats200ResponseInner {
      * @memberof GetStats200ResponseInner
      */
     'comment'?: string;
+}
+/**
+ * (optional) File attachments to include in the email.  The file contents must be base64
+ * @export
+ * @interface MailAttachment
+ */
+export interface MailAttachment {
+    /**
+     * The filename of the attached file.
+     * @type {string}
+     * @memberof MailAttachment
+     */
+    'filename': string;
+    /**
+     * The file contents base64 encoded
+     * @type {string}
+     * @memberof MailAttachment
+     */
+    'data': string;
 }
 /**
  * A block entry from the clickhouse mailblocks server.
@@ -432,10 +454,10 @@ export interface MailLogEntry {
     'locked': number;
     /**
      * lock timestamp
-     * @type {number}
+     * @type {string}
      * @memberof MailLogEntry
      */
-    'lockTime': number;
+    'lockTime': string;
     /**
      * assigned server
      * @type {string}
@@ -549,34 +571,34 @@ export interface SendMailAdv {
     'body': string;
     /**
      * 
-     * @type {EmailAddressName}
+     * @type {EmailAddressTypes}
      * @memberof SendMailAdv
      */
-    'from': EmailAddressName;
+    'from': EmailAddressTypes;
     /**
-     * A list of destionation email addresses to send this to
-     * @type {Array<EmailAddressName>}
+     * 
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    'to': Array<EmailAddressName>;
+    'to': EmailAddressesTypes;
     /**
-     * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-     * @type {Array<EmailAddressName>}
+     * 
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    'replyto'?: Array<EmailAddressName>;
+    'replyto'?: EmailAddressesTypes;
     /**
-     * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @type {Array<EmailAddressName>}
+     * 
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    'cc'?: Array<EmailAddressName>;
+    'cc'?: EmailAddressesTypes;
     /**
-     * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-     * @type {Array<EmailAddressName>}
+     * 
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    'bcc'?: Array<EmailAddressName>;
+    'bcc'?: EmailAddressesTypes;
     /**
      * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
      * @type {Array<MailAttachment>}
@@ -600,13 +622,13 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Adds a new email deny rule into the system to block new emails that match the given criteria
          * @summary Creates a new email deny rule.
-         * @param {string} type The type of deny rule.
+         * @param {AddRuleTypeEnum} type The type of deny rule.
          * @param {string} data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
          * @param {string} [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addRule: async (type: string, data: string, user?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        addRule: async (type: AddRuleTypeEnum, data: string, user?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'type' is not null or undefined
             assertParamExists('addRule', 'type', type)
             // verify required parameter 'data' is not null or undefined
@@ -693,13 +715,13 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Removes an email address from the various block lists. 
          * @summary Removes an email address from the blocked list
-         * @param {EmailAddress} emailAddress 
+         * @param {string} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        delistBlock: async (emailAddress: EmailAddress, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'emailAddress' is not null or undefined
-            assertParamExists('delistBlock', 'emailAddress', emailAddress)
+        delistBlock: async (body: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('delistBlock', 'body', body)
             const localVarPath = `/mail/blocks/delete`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -722,7 +744,7 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(emailAddress, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -808,13 +830,13 @@ export const BlockingApiFp = function(configuration?: Configuration) {
         /**
          * Adds a new email deny rule into the system to block new emails that match the given criteria
          * @summary Creates a new email deny rule.
-         * @param {string} type The type of deny rule.
+         * @param {AddRuleTypeEnum} type The type of deny rule.
          * @param {string} data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
          * @param {string} [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async addRule(type: string, data: string, user?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+        async addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.addRule(type, data, user, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -832,12 +854,12 @@ export const BlockingApiFp = function(configuration?: Configuration) {
         /**
          * Removes an email address from the various block lists. 
          * @summary Removes an email address from the blocked list
-         * @param {EmailAddress} emailAddress 
+         * @param {string} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async delistBlock(emailAddress: EmailAddress, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.delistBlock(emailAddress, options);
+        async delistBlock(body: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.delistBlock(body, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -873,13 +895,13 @@ export const BlockingApiFactory = function (configuration?: Configuration, baseP
         /**
          * Adds a new email deny rule into the system to block new emails that match the given criteria
          * @summary Creates a new email deny rule.
-         * @param {string} type The type of deny rule.
+         * @param {AddRuleTypeEnum} type The type of deny rule.
          * @param {string} data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
          * @param {string} [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addRule(type: string, data: string, user?: string, options?: any): AxiosPromise<GenericResponse> {
+        addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: any): AxiosPromise<GenericResponse> {
             return localVarFp.addRule(type, data, user, options).then((request) => request(axios, basePath));
         },
         /**
@@ -895,12 +917,12 @@ export const BlockingApiFactory = function (configuration?: Configuration, baseP
         /**
          * Removes an email address from the various block lists. 
          * @summary Removes an email address from the blocked list
-         * @param {EmailAddress} emailAddress 
+         * @param {string} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        delistBlock(emailAddress: EmailAddress, options?: any): AxiosPromise<GenericResponse> {
-            return localVarFp.delistBlock(emailAddress, options).then((request) => request(axios, basePath));
+        delistBlock(body: string, options?: any): AxiosPromise<GenericResponse> {
+            return localVarFp.delistBlock(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -933,14 +955,14 @@ export class BlockingApi extends BaseAPI {
     /**
      * Adds a new email deny rule into the system to block new emails that match the given criteria
      * @summary Creates a new email deny rule.
-     * @param {string} type The type of deny rule.
+     * @param {AddRuleTypeEnum} type The type of deny rule.
      * @param {string} data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
      * @param {string} [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BlockingApi
      */
-    public addRule(type: string, data: string, user?: string, options?: AxiosRequestConfig) {
+    public addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: AxiosRequestConfig) {
         return BlockingApiFp(this.configuration).addRule(type, data, user, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -959,13 +981,13 @@ export class BlockingApi extends BaseAPI {
     /**
      * Removes an email address from the various block lists. 
      * @summary Removes an email address from the blocked list
-     * @param {EmailAddress} emailAddress 
+     * @param {string} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BlockingApi
      */
-    public delistBlock(emailAddress: EmailAddress, options?: AxiosRequestConfig) {
-        return BlockingApiFp(this.configuration).delistBlock(emailAddress, options).then((request) => request(this.axios, this.basePath));
+    public delistBlock(body: string, options?: AxiosRequestConfig) {
+        return BlockingApiFp(this.configuration).delistBlock(body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -991,6 +1013,17 @@ export class BlockingApi extends BaseAPI {
     }
 }
 
+/**
+ * @export
+ */
+export const AddRuleTypeEnum = {
+    Domain: 'domain',
+    Email: 'email',
+    Startswith: 'startswith',
+    Destination: 'destination'
+} as const;
+export type AddRuleTypeEnum = typeof AddRuleTypeEnum[keyof typeof AddRuleTypeEnum];
+
 
 /**
  * HistoryApi - axios parameter creator
@@ -999,8 +1032,8 @@ export class BlockingApi extends BaseAPI {
 export const HistoryApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
-         * @summary displays a list of blocked email addresses
+         * Returns information about the usage on your mail accounts.
+         * @summary Account usage statistics.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1130,8 +1163,8 @@ export const HistoryApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = HistoryApiAxiosParamCreator(configuration)
     return {
         /**
-         * 
-         * @summary displays a list of blocked email addresses
+         * Returns information about the usage on your mail accounts.
+         * @summary Account usage statistics.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1171,8 +1204,8 @@ export const HistoryApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = HistoryApiFp(configuration)
     return {
         /**
-         * 
-         * @summary displays a list of blocked email addresses
+         * Returns information about the usage on your mail accounts.
+         * @summary Account usage statistics.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -1210,8 +1243,8 @@ export const HistoryApiFactory = function (configuration?: Configuration, basePa
  */
 export class HistoryApi extends BaseAPI {
     /**
-     * 
-     * @summary displays a list of blocked email addresses
+     * Returns information about the usage on your mail accounts.
+     * @summary Account usage statistics.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HistoryApi
@@ -1244,6 +1277,7 @@ export class HistoryApi extends BaseAPI {
 }
 
 
+
 /**
  * SendingApi - axios parameter creator
  * @export
@@ -1251,21 +1285,21 @@ export class HistoryApi extends BaseAPI {
 export const SendingApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
          * @summary Sends an Email with Advanced Options
          * @param {string} subject The subject or title of the email
          * @param {string} body The main email contents.
-         * @param {EmailAddressName} from 
-         * @param {Array<EmailAddressName>} to A list of destionation email addresses to send this to
-         * @param {Array<EmailAddressName>} [replyto] (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-         * @param {Array<EmailAddressName>} [cc] (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-         * @param {Array<EmailAddressName>} [bcc] (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+         * @param {EmailAddressTypes} from 
+         * @param {EmailAddressesTypes} to 
+         * @param {EmailAddressesTypes} [replyto] 
+         * @param {EmailAddressesTypes} [cc] 
+         * @param {EmailAddressesTypes} [bcc] 
          * @param {Array<MailAttachment>} [attachments] (optional) File attachments to include in the email.  The file contents must be base64 encoded!
          * @param {number} [id] (optional)  ID of the Mail order within our system to use as the Mail Account.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendAdvMail: async (subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        sendAdvMail: async (subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'subject' is not null or undefined
             assertParamExists('sendAdvMail', 'subject', subject)
             // verify required parameter 'body' is not null or undefined
@@ -1302,22 +1336,22 @@ export const SendingApiAxiosParamCreator = function (configuration?: Configurati
             if (from !== undefined) { 
                 localVarFormParams.set('from', from as any);
             }
-                if (to) {
-                localVarFormParams.set('to', to.join(COLLECTION_FORMATS.csv));
+    
+            if (to !== undefined) { 
+                localVarFormParams.set('to', to as any);
             }
-
-                if (replyto) {
-                localVarFormParams.set('replyto', replyto.join(COLLECTION_FORMATS.csv));
+    
+            if (replyto !== undefined) { 
+                localVarFormParams.set('replyto', replyto as any);
             }
-
-                if (cc) {
-                localVarFormParams.set('cc', cc.join(COLLECTION_FORMATS.csv));
+    
+            if (cc !== undefined) { 
+                localVarFormParams.set('cc', cc as any);
             }
-
-                if (bcc) {
-                localVarFormParams.set('bcc', bcc.join(COLLECTION_FORMATS.csv));
+    
+            if (bcc !== undefined) { 
+                localVarFormParams.set('bcc', bcc as any);
             }
-
                 if (attachments) {
                 localVarFormParams.set('attachments', attachments.join(COLLECTION_FORMATS.csv));
             }
@@ -1416,21 +1450,21 @@ export const SendingApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = SendingApiAxiosParamCreator(configuration)
     return {
         /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
          * @summary Sends an Email with Advanced Options
          * @param {string} subject The subject or title of the email
          * @param {string} body The main email contents.
-         * @param {EmailAddressName} from 
-         * @param {Array<EmailAddressName>} to A list of destionation email addresses to send this to
-         * @param {Array<EmailAddressName>} [replyto] (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-         * @param {Array<EmailAddressName>} [cc] (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-         * @param {Array<EmailAddressName>} [bcc] (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+         * @param {EmailAddressTypes} from 
+         * @param {EmailAddressesTypes} to 
+         * @param {EmailAddressesTypes} [replyto] 
+         * @param {EmailAddressesTypes} [cc] 
+         * @param {EmailAddressesTypes} [bcc] 
          * @param {Array<MailAttachment>} [attachments] (optional) File attachments to include in the email.  The file contents must be base64 encoded!
          * @param {number} [id] (optional)  ID of the Mail order within our system to use as the Mail Account.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendAdvMail(subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+        async sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1459,21 +1493,21 @@ export const SendingApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = SendingApiFp(configuration)
     return {
         /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
          * @summary Sends an Email with Advanced Options
          * @param {string} subject The subject or title of the email
          * @param {string} body The main email contents.
-         * @param {EmailAddressName} from 
-         * @param {Array<EmailAddressName>} to A list of destionation email addresses to send this to
-         * @param {Array<EmailAddressName>} [replyto] (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-         * @param {Array<EmailAddressName>} [cc] (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-         * @param {Array<EmailAddressName>} [bcc] (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+         * @param {EmailAddressTypes} from 
+         * @param {EmailAddressesTypes} to 
+         * @param {EmailAddressesTypes} [replyto] 
+         * @param {EmailAddressesTypes} [cc] 
+         * @param {EmailAddressesTypes} [bcc] 
          * @param {Array<MailAttachment>} [attachments] (optional) File attachments to include in the email.  The file contents must be base64 encoded!
          * @param {number} [id] (optional)  ID of the Mail order within our system to use as the Mail Account.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendAdvMail(subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, options?: any): AxiosPromise<GenericResponse> {
+        sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options?: any): AxiosPromise<GenericResponse> {
             return localVarFp.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1500,22 +1534,22 @@ export const SendingApiFactory = function (configuration?: Configuration, basePa
  */
 export class SendingApi extends BaseAPI {
     /**
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
      * @summary Sends an Email with Advanced Options
      * @param {string} subject The subject or title of the email
      * @param {string} body The main email contents.
-     * @param {EmailAddressName} from 
-     * @param {Array<EmailAddressName>} to A list of destionation email addresses to send this to
-     * @param {Array<EmailAddressName>} [replyto] (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-     * @param {Array<EmailAddressName>} [cc] (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @param {Array<EmailAddressName>} [bcc] (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+     * @param {EmailAddressTypes} from 
+     * @param {EmailAddressesTypes} to 
+     * @param {EmailAddressesTypes} [replyto] 
+     * @param {EmailAddressesTypes} [cc] 
+     * @param {EmailAddressesTypes} [bcc] 
      * @param {Array<MailAttachment>} [attachments] (optional) File attachments to include in the email.  The file contents must be base64 encoded!
      * @param {number} [id] (optional)  ID of the Mail order within our system to use as the Mail Account.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SendingApi
      */
-    public sendAdvMail(subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, options?: AxiosRequestConfig) {
+    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options?: AxiosRequestConfig) {
         return SendingApiFp(this.configuration).sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1534,6 +1568,7 @@ export class SendingApi extends BaseAPI {
         return SendingApiFp(this.configuration).sendMail(to, from, subject, body, options).then((request) => request(this.axios, this.basePath));
     }
 }
+
 
 
 /**
@@ -1637,6 +1672,7 @@ export class ServicesApi extends BaseAPI {
 }
 
 
+
 /**
  * StatusApi - axios parameter creator
  * @export
@@ -1736,5 +1772,6 @@ export class StatusApi extends BaseAPI {
         return StatusApiFp(this.configuration).pingServer(options).then((request) => request(this.axios, this.basePath));
     }
 }
+
 
 

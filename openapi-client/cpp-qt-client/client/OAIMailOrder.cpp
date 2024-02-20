@@ -56,16 +56,16 @@ void OAIMailOrder::fromJson(QString jsonString) {
 
 void OAIMailOrder::fromJsonObject(QJsonObject json) {
 
-    m_id_isValid = ::OpenAPI::fromJsonValue(id, json[QString("id")]);
+    m_id_isValid = ::OpenAPI::fromJsonValue(m_id, json[QString("id")]);
     m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
 
-    m_status_isValid = ::OpenAPI::fromJsonValue(status, json[QString("status")]);
+    m_status_isValid = ::OpenAPI::fromJsonValue(m_status, json[QString("status")]);
     m_status_isSet = !json[QString("status")].isNull() && m_status_isValid;
 
-    m_username_isValid = ::OpenAPI::fromJsonValue(username, json[QString("username")]);
+    m_username_isValid = ::OpenAPI::fromJsonValue(m_username, json[QString("username")]);
     m_username_isSet = !json[QString("username")].isNull() && m_username_isValid;
 
-    m_comment_isValid = ::OpenAPI::fromJsonValue(comment, json[QString("comment")]);
+    m_comment_isValid = ::OpenAPI::fromJsonValue(m_comment, json[QString("comment")]);
     m_comment_isSet = !json[QString("comment")].isNull() && m_comment_isValid;
 }
 
@@ -79,26 +79,26 @@ QString OAIMailOrder::asJson() const {
 QJsonObject OAIMailOrder::asJsonObject() const {
     QJsonObject obj;
     if (m_id_isSet) {
-        obj.insert(QString("id"), ::OpenAPI::toJsonValue(id));
+        obj.insert(QString("id"), ::OpenAPI::toJsonValue(m_id));
     }
     if (m_status_isSet) {
-        obj.insert(QString("status"), ::OpenAPI::toJsonValue(status));
+        obj.insert(QString("status"), ::OpenAPI::toJsonValue(m_status));
     }
     if (m_username_isSet) {
-        obj.insert(QString("username"), ::OpenAPI::toJsonValue(username));
+        obj.insert(QString("username"), ::OpenAPI::toJsonValue(m_username));
     }
     if (m_comment_isSet) {
-        obj.insert(QString("comment"), ::OpenAPI::toJsonValue(comment));
+        obj.insert(QString("comment"), ::OpenAPI::toJsonValue(m_comment));
     }
     return obj;
 }
 
 qint32 OAIMailOrder::getId() const {
-    return id;
+    return m_id;
 }
 void OAIMailOrder::setId(const qint32 &id) {
-    this->id = id;
-    this->m_id_isSet = true;
+    m_id = id;
+    m_id_isSet = true;
 }
 
 bool OAIMailOrder::is_id_Set() const{
@@ -110,11 +110,11 @@ bool OAIMailOrder::is_id_Valid() const{
 }
 
 QString OAIMailOrder::getStatus() const {
-    return status;
+    return m_status;
 }
 void OAIMailOrder::setStatus(const QString &status) {
-    this->status = status;
-    this->m_status_isSet = true;
+    m_status = status;
+    m_status_isSet = true;
 }
 
 bool OAIMailOrder::is_status_Set() const{
@@ -126,11 +126,11 @@ bool OAIMailOrder::is_status_Valid() const{
 }
 
 QString OAIMailOrder::getUsername() const {
-    return username;
+    return m_username;
 }
 void OAIMailOrder::setUsername(const QString &username) {
-    this->username = username;
-    this->m_username_isSet = true;
+    m_username = username;
+    m_username_isSet = true;
 }
 
 bool OAIMailOrder::is_username_Set() const{
@@ -142,11 +142,11 @@ bool OAIMailOrder::is_username_Valid() const{
 }
 
 QString OAIMailOrder::getComment() const {
-    return comment;
+    return m_comment;
 }
 void OAIMailOrder::setComment(const QString &comment) {
-    this->comment = comment;
-    this->m_comment_isSet = true;
+    m_comment = comment;
+    m_comment_isSet = true;
 }
 
 bool OAIMailOrder::is_comment_Set() const{

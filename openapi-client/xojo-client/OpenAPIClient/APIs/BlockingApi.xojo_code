@@ -147,6 +147,8 @@ localVarFormParams.Value("data") = data
 		      Return "email"
 		    Case TypeEnum_AddRule.Startswith
 		      Return "startswith"
+		    Case TypeEnum_AddRule.Destination
+		      Return "destination"
 		    
 		  End Select
 		  Return ""
@@ -288,11 +290,11 @@ localVarFormParams.Value("data") = data
 
 
 	#tag Method, Flags = &h0
-		Sub DelistBlock(, emailAddress As OpenAPIClient.Models.EmailAddress)
+		Sub DelistBlock(, body As String)
 		  // Operation delistBlock
 		  // Removes an email address from the blocked list
 		  // - 
-		  // - parameter emailAddress: (body)  
+		  // - parameter body: (body)  
 		  //
 		  // Invokes BlockingApiCallbackHandler.DelistBlockCallback(GenericResponse) on completion. 
 		  //
@@ -307,7 +309,7 @@ localVarFormParams.Value("data") = data
 		  
 		  Dim localVarHTTPSocket As New HTTPSecureSocket
 		  Me.PrivateFuncPrepareSocket(localVarHTTPSocket)
-		  localVarHTTPSocket.SetRequestContent(Xoson.toJSON(emailAddress), "application/json")
+		  localVarHTTPSocket.SetRequestContent(body, "application/json")
 		  
 		  If me.ApiKeyapiKeyAuth = "" Then Raise New OpenAPIClient.OpenAPIClientException(kErrorCannotAuthenticate, "API key is unset. Please assign a value to `BlockingApi.ApiKeyapiKeyAuth` before invoking `BlockingApi.DelistBlock()`.")
 		  
@@ -760,6 +762,7 @@ localVarFormParams.Value("data") = data
         Domain
         Email
         Startswith
+        Destination
 		
 	#tag EndEnum
 

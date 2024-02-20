@@ -16,10 +16,10 @@ class SendMailAdv {
     required this.subject,
     required this.body,
     required this.from,
-    this.to = const [],
-    this.replyto = const [],
-    this.cc = const [],
-    this.bcc = const [],
+    required this.to,
+    this.replyto,
+    this.cc,
+    this.bcc,
     this.attachments = const [],
     this.id,
   });
@@ -30,19 +30,33 @@ class SendMailAdv {
   /// The main email contents.
   String body;
 
-  EmailAddressName from;
+  EmailAddressTypes from;
 
-  /// A list of destionation email addresses to send this to
-  List<EmailAddressName> to;
+  EmailAddressesTypes to;
 
-  /// (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-  List<EmailAddressName> replyto;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  EmailAddressesTypes? replyto;
 
-  /// (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-  List<EmailAddressName> cc;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  EmailAddressesTypes? cc;
 
-  /// (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-  List<EmailAddressName> bcc;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  EmailAddressesTypes? bcc;
 
   /// (optional) File attachments to include in the email.  The file contents must be base64 encoded!
   List<MailAttachment> attachments;
@@ -58,15 +72,15 @@ class SendMailAdv {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is SendMailAdv &&
-     other.subject == subject &&
-     other.body == body &&
-     other.from == from &&
-     other.to == to &&
-     other.replyto == replyto &&
-     other.cc == cc &&
-     other.bcc == bcc &&
-     other.attachments == attachments &&
-     other.id == id;
+    other.subject == subject &&
+    other.body == body &&
+    other.from == from &&
+    other.to == to &&
+    other.replyto == replyto &&
+    other.cc == cc &&
+    other.bcc == bcc &&
+    _deepEquality.equals(other.attachments, attachments) &&
+    other.id == id;
 
   @override
   int get hashCode =>
@@ -75,9 +89,9 @@ class SendMailAdv {
     (body.hashCode) +
     (from.hashCode) +
     (to.hashCode) +
-    (replyto.hashCode) +
-    (cc.hashCode) +
-    (bcc.hashCode) +
+    (replyto == null ? 0 : replyto!.hashCode) +
+    (cc == null ? 0 : cc!.hashCode) +
+    (bcc == null ? 0 : bcc!.hashCode) +
     (attachments.hashCode) +
     (id == null ? 0 : id!.hashCode);
 
@@ -90,9 +104,21 @@ class SendMailAdv {
       json[r'body'] = this.body;
       json[r'from'] = this.from;
       json[r'to'] = this.to;
+    if (this.replyto != null) {
       json[r'replyto'] = this.replyto;
+    } else {
+      json[r'replyto'] = null;
+    }
+    if (this.cc != null) {
       json[r'cc'] = this.cc;
+    } else {
+      json[r'cc'] = null;
+    }
+    if (this.bcc != null) {
       json[r'bcc'] = this.bcc;
+    } else {
+      json[r'bcc'] = null;
+    }
       json[r'attachments'] = this.attachments;
     if (this.id != null) {
       json[r'id'] = this.id;
@@ -123,11 +149,11 @@ class SendMailAdv {
       return SendMailAdv(
         subject: mapValueOfType<String>(json, r'subject')!,
         body: mapValueOfType<String>(json, r'body')!,
-        from: EmailAddressName.fromJson(json[r'from'])!,
-        to: EmailAddressName.listFromJson(json[r'to']),
-        replyto: EmailAddressName.listFromJson(json[r'replyto']),
-        cc: EmailAddressName.listFromJson(json[r'cc']),
-        bcc: EmailAddressName.listFromJson(json[r'bcc']),
+        from: EmailAddressTypes.fromJson(json[r'from'])!,
+        to: EmailAddressesTypes.fromJson(json[r'to'])!,
+        replyto: EmailAddressesTypes.fromJson(json[r'replyto']),
+        cc: EmailAddressesTypes.fromJson(json[r'cc']),
+        bcc: EmailAddressesTypes.fromJson(json[r'bcc']),
         attachments: MailAttachment.listFromJson(json[r'attachments']),
         id: mapValueOfType<int>(json, r'id'),
       );

@@ -11,15 +11,11 @@ type t = {
     subject: string;
     (* The main email contents. *)
     body: string;
-    from: Email_address_name.t;
-    (* A list of destionation email addresses to send this to *)
-    _to: Email_address_name.t list;
-    (* (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. *)
-    replyto: Email_address_name.t list;
-    (* (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. *)
-    cc: Email_address_name.t list;
-    (* (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. *)
-    bcc: Email_address_name.t list;
+    from: Email_address_types.t;
+    _to: Email_addresses_types.t;
+    replyto: Email_addresses_types.t option [@default None];
+    cc: Email_addresses_types.t option [@default None];
+    bcc: Email_addresses_types.t option [@default None];
     (* (optional) File attachments to include in the email.  The file contents must be base64 encoded! *)
     attachments: Mail_attachment.t list;
     (* (optional)  ID of the Mail order within our system to use as the Mail Account. *)
@@ -27,14 +23,14 @@ type t = {
 } [@@deriving yojson { strict = false }, show ];;
 
 (** Details for an Email *)
-let create (subject : string) (body : string) (from : Email_address_name.t) (_to : Email_address_name.t list) : t = {
+let create (subject : string) (body : string) (from : Email_address_types.t) (_to : Email_addresses_types.t) : t = {
     subject = subject;
     body = body;
     from = from;
     _to = _to;
-    replyto = [];
-    cc = [];
-    bcc = [];
+    replyto = None;
+    cc = None;
+    bcc = None;
     attachments = [];
     id = None;
 }

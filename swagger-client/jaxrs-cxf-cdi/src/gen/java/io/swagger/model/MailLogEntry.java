@@ -33,7 +33,7 @@ public class MailLogEntry   {
   private String recipient = null;
   private String domain = null;
   private Integer locked = null;
-  private Integer lockTime = null;
+  private String lockTime = null;
   private String assigned = null;
   private String queued = null;
   private String mxHostname = null;
@@ -401,7 +401,7 @@ public class MailLogEntry   {
   /**
    * lock timestamp
    **/
-  public MailLogEntry lockTime(Integer lockTime) {
+  public MailLogEntry lockTime(String lockTime) {
     this.lockTime = lockTime;
     return this;
   }
@@ -411,10 +411,10 @@ public class MailLogEntry   {
   @Schema(example = "1634215818533", required = true, description = "lock timestamp")
   @JsonProperty("lockTime")
   @NotNull
-  public Integer getLockTime() {
+  public String getLockTime() {
     return lockTime;
   }
-  public void setLockTime(Integer lockTime) {
+  public void setLockTime(String lockTime) {
     this.lockTime = lockTime;
   }
 

@@ -11,22 +11,30 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * (optional) File attachments to include in the email.  The file contents must be base64
+ *
  * @export
  * @interface MailAttachment
  */
 export interface MailAttachment {
+
     /**
      * The filename of the attached file.
+     *
      * @type {string}
      * @memberof MailAttachment
+     * @example message.txt
      */
     filename: string;
+
     /**
      * The file contents base64 encoded
+     *
      * @type {string}
      * @memberof MailAttachment
+     * @example aGVsbG8gdGhlcmUK
      */
     data: string;
 }

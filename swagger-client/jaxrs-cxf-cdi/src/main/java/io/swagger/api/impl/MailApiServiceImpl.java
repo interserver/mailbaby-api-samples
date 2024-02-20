@@ -7,11 +7,11 @@ import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
-import io.swagger.model.EmailAddress;
-import io.swagger.model.EmailAddressName;
+import io.swagger.model.EmailAddressTypes;
+import io.swagger.model.EmailAddressesTypes;
+import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.InlineResponse200;
-import io.swagger.model.InlineResponse401;
 import io.swagger.model.MailAttachment;
 import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
@@ -28,7 +28,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2023-08-14T21:51:44.281559-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2024-02-20T06:54:22.480466-05:00[America/New_York]")
 public class MailApiServiceImpl implements MailApiService {
       @Override
       public Response addRule(String user, String type, String data, SecurityContext securityContext) {
@@ -46,12 +46,7 @@ public class MailApiServiceImpl implements MailApiService {
       return Response.ok().entity("magic!").build();
   }
       @Override
-      public Response delistBlock(EmailAddress body, SecurityContext securityContext) {
-      // do some magic!
-      return Response.ok().entity("magic!").build();
-  }
-      @Override
-      public Response delistBlock(String email, SecurityContext securityContext) {
+      public Response delistBlock(String body, SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }
@@ -76,7 +71,7 @@ public class MailApiServiceImpl implements MailApiService {
       return Response.ok().entity("magic!").build();
   }
       @Override
-      public Response sendAdvMail(String subject, String body, EmailAddressName from, List<EmailAddressName> to, List<EmailAddressName> replyto, List<EmailAddressName> cc, List<EmailAddressName> bcc, List<MailAttachment> attachments, Long id, SecurityContext securityContext) {
+      public Response sendAdvMail(String subject, String body, EmailAddressTypes from, EmailAddressesTypes to, EmailAddressesTypes replyto, EmailAddressesTypes cc, EmailAddressesTypes bcc, List<MailAttachment> attachments, Long id, SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }

@@ -22,39 +22,35 @@ test_that("body", {
 })
 
 test_that("from", {
-  # tests for the property `from` (EmailAddressName)
+  # tests for the property `from` (EmailAddressTypes)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`from`, "EXPECTED_RESULT")
 })
 
 test_that("to", {
-  # tests for the property `to` (array[EmailAddressName])
-  # A list of destionation email addresses to send this to
+  # tests for the property `to` (EmailAddressesTypes)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`to`, "EXPECTED_RESULT")
 })
 
 test_that("replyto", {
-  # tests for the property `replyto` (array[EmailAddressName])
-  # (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+  # tests for the property `replyto` (EmailAddressesTypes)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`replyto`, "EXPECTED_RESULT")
 })
 
 test_that("cc", {
-  # tests for the property `cc` (array[EmailAddressName])
-  # (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+  # tests for the property `cc` (EmailAddressesTypes)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`cc`, "EXPECTED_RESULT")
 })
 
 test_that("bcc", {
-  # tests for the property `bcc` (array[EmailAddressName])
-  # (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+  # tests for the property `bcc` (EmailAddressesTypes)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`bcc`, "EXPECTED_RESULT")

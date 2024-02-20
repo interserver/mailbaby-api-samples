@@ -15,9 +15,9 @@
 import { HttpMethods, QueryConfig, ResponseBody, ResponseText } from 'redux-query';
 import * as runtime from '../runtime';
 import {
-    GetMailOrders401Response,
-    GetMailOrders401ResponseFromJSON,
-    GetMailOrders401ResponseToJSON,
+    ErrorMessage,
+    ErrorMessageFromJSON,
+    ErrorMessageToJSON,
     MailOrder,
     MailOrderFromJSON,
     MailOrderToJSON,

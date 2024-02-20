@@ -25,7 +25,7 @@
 #' @field recipient to address this email is being sent to character
 #' @field domain to address domain character
 #' @field locked locked status integer
-#' @field lockTime lock timestamp integer
+#' @field lockTime lock timestamp character
 #' @field assigned assigned server character
 #' @field queued queued timestamp character
 #' @field mxHostname mx hostname character
@@ -193,8 +193,8 @@ MailLogEntry <- R6::R6Class(
         self$`locked` <- `locked`
       }
       if (!missing(`lockTime`)) {
-        if (!(is.numeric(`lockTime`) && length(`lockTime`) == 1)) {
-          stop(paste("Error! Invalid data for `lockTime`. Must be an integer:", `lockTime`))
+        if (!(is.character(`lockTime`) && length(`lockTime`) == 1)) {
+          stop(paste("Error! Invalid data for `lockTime`. Must be a string:", `lockTime`))
         }
         self$`lockTime` <- `lockTime`
       }
@@ -569,7 +569,7 @@ MailLogEntry <- R6::R6Class(
         if (!is.null(self$`lockTime`)) {
           sprintf(
           '"lockTime":
-            %d
+            "%s"
                     ',
           self$`lockTime`
           )
@@ -792,8 +792,8 @@ MailLogEntry <- R6::R6Class(
       }
       # check the required field `lockTime`
       if (!is.null(input_json$`lockTime`)) {
-        if (!(is.numeric(input_json$`lockTime`) && length(input_json$`lockTime`) == 1)) {
-          stop(paste("Error! Invalid data for `lockTime`. Must be an integer:", input_json$`lockTime`))
+        if (!(is.character(input_json$`lockTime`) && length(input_json$`lockTime`) == 1)) {
+          stop(paste("Error! Invalid data for `lockTime`. Must be a string:", input_json$`lockTime`))
         }
       } else {
         stop(paste("The JSON input `", input, "` is invalid for MailLogEntry: the required field `lockTime` is missing."))

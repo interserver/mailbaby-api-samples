@@ -8,7 +8,7 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/get_mail_orders401_response.dart';
+import 'package:openapi/src/model/error_message.dart';
 import 'package:openapi/src/model/mail_order.dart';
 
 class ServicesApi {
@@ -31,7 +31,7 @@ class ServicesApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<MailOrder>] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<MailOrder>>> getMailOrders({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -78,10 +78,10 @@ class ServicesApi {
       ) as BuiltList<MailOrder>;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );

@@ -11,7 +11,7 @@
  */
 package org.openapitools.client.api
 
-import org.openapitools.client.model.GetMailOrders401Response
+import org.openapitools.client.model.ErrorMessage
 import org.openapitools.client.model.MailOrder
 import org.openapitools.client.core.JsonSupport._
 import sttp.client3._
@@ -29,8 +29,8 @@ class ServicesApi(baseUrl: String) {
    * 
    * Expected answers:
    *   code 200 : Seq[MailOrder] (OK)
-   *   code 401 : GetMailOrders401Response (Unauthorized)
-   *   code 404 : GetMailOrders401Response (Unauthorized)
+   *   code 401 : ErrorMessage (Unauthorized)
+   *   code 404 : ErrorMessage (Unauthorized)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)

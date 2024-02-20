@@ -11,40 +11,47 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface InlineResponse200
  */
 export interface InlineResponse200 {
+
     /**
-     * 
      * @type {number}
      * @memberof InlineResponse200
+     * @example 1234
      */
     id: number;
+
     /**
-     * 
      * @type {string}
      * @memberof InlineResponse200
+     * @example active
      */
     status: string;
+
     /**
-     * 
      * @type {string}
      * @memberof InlineResponse200
+     * @example mb1234
      */
     username: string;
+
     /**
-     * 
      * @type {string}
      * @memberof InlineResponse200
+     * @example guest123
      */
     password?: string;
+
     /**
-     * 
      * @type {string}
      * @memberof InlineResponse200
+     * @example main mail account
      */
     comment?: string;
 }

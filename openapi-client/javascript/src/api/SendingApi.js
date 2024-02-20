@@ -13,9 +13,10 @@
 
 
 import ApiClient from "../ApiClient";
-import EmailAddressName from '../model/EmailAddressName';
+import EmailAddressTypes from '../model/EmailAddressTypes';
+import EmailAddressesTypes from '../model/EmailAddressesTypes';
+import ErrorMessage from '../model/ErrorMessage';
 import GenericResponse from '../model/GenericResponse';
-import GetMailOrders401Response from '../model/GetMailOrders401Response';
 import MailAttachment from '../model/MailAttachment';
 
 /**
@@ -47,15 +48,15 @@ export default class SendingApi {
 
     /**
      * Sends an Email with Advanced Options
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
      * @param {String} subject The subject or title of the email
      * @param {String} body The main email contents.
-     * @param {module:model/EmailAddressName} from 
-     * @param {Array.<module:model/EmailAddressName>} to A list of destionation email addresses to send this to
+     * @param {module:model/EmailAddressTypes} from 
+     * @param {module:model/EmailAddressesTypes} to 
      * @param {Object} opts Optional parameters
-     * @param {Array.<module:model/EmailAddressName>} [replyto] (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-     * @param {Array.<module:model/EmailAddressName>} [cc] (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @param {Array.<module:model/EmailAddressName>} [bcc] (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+     * @param {module:model/EmailAddressesTypes} [replyto] 
+     * @param {module:model/EmailAddressesTypes} [cc] 
+     * @param {module:model/EmailAddressesTypes} [bcc] 
      * @param {Array.<module:model/MailAttachment>} [attachments] (optional) File attachments to include in the email.  The file contents must be base64 encoded!
      * @param {Number} [id] (optional)  ID of the Mail order within our system to use as the Mail Account.
      * @param {module:api/SendingApi~sendAdvMailCallback} callback The callback function, accepting three arguments: error, data, response
@@ -91,10 +92,10 @@ export default class SendingApi {
         'subject': subject,
         'body': body,
         'from': from,
-        'to': this.apiClient.buildCollectionParam(to, 'csv'),
-        'replyto': this.apiClient.buildCollectionParam(opts['replyto'], 'csv'),
-        'cc': this.apiClient.buildCollectionParam(opts['cc'], 'csv'),
-        'bcc': this.apiClient.buildCollectionParam(opts['bcc'], 'csv'),
+        'to': to,
+        'replyto': opts['replyto'],
+        'cc': opts['cc'],
+        'bcc': opts['bcc'],
         'attachments': this.apiClient.buildCollectionParam(opts['attachments'], 'csv'),
         'id': opts['id']
       };

@@ -9,7 +9,7 @@ import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/api_util.dart';
-import 'package:openapi/src/model/get_mail_orders401_response.dart';
+import 'package:openapi/src/model/error_message.dart';
 import 'package:openapi/src/model/get_stats200_response_inner.dart';
 import 'package:openapi/src/model/mail_log.dart';
 
@@ -21,8 +21,8 @@ class HistoryApi {
 
   const HistoryApi(this._dio, this._serializers);
 
-  /// displays a list of blocked email addresses
-  /// 
+  /// Account usage statistics.
+  /// Returns information about the usage on your mail accounts.
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -33,7 +33,7 @@ class HistoryApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<GetStats200ResponseInner>] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<GetStats200ResponseInner>>> getStats({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -80,10 +80,10 @@ class HistoryApi {
       ) as BuiltList<GetStats200ResponseInner>;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -124,7 +124,7 @@ class HistoryApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [MailLog] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<MailLog>> viewMailLog({ 
     int? id,
     String? origin,
@@ -197,10 +197,10 @@ class HistoryApi {
       ) as MailLog;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );

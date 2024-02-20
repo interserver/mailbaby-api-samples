@@ -1,14 +1,14 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import {ObjectSerializer} from '../models/ObjectSerializer';
 import {ApiException} from './exception';
 import {canConsumeForm, isCodeInRange} from '../util';
 import {SecurityAuthentication} from '../auth/auth';
 
 
-import { GetMailOrders401Response } from '../models/GetMailOrders401Response';
+import { ErrorMessage } from '../models/ErrorMessage';
 import { GetStats200ResponseInner } from '../models/GetStats200ResponseInner';
 import { MailLog } from '../models/MailLog';
 
@@ -18,7 +18,8 @@ import { MailLog } from '../models/MailLog';
 export class HistoryApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * displays a list of blocked email addresses
+     * Returns information about the usage on your mail accounts.
+     * Account usage statistics.
      */
     public async getStats(_options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
@@ -164,28 +165,28 @@ export class HistoryApiResponseProcessor {
      * @params response Response returned by the server for a request to getStats
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getStats(response: ResponseContext): Promise<Array<GetStats200ResponseInner> > {
+     public async getStatsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<GetStats200ResponseInner> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Array<GetStats200ResponseInner> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<GetStats200ResponseInner>", ""
             ) as Array<GetStats200ResponseInner>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
+            const body: ErrorMessage = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetMailOrders401Response", ""
-            ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "Unauthorized", body, response.headers);
+                "ErrorMessage", ""
+            ) as ErrorMessage;
+            throw new ApiException<ErrorMessage>(response.httpStatusCode, "Unauthorized", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
-            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
+            const body: ErrorMessage = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetMailOrders401Response", ""
-            ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "Unauthorized", body, response.headers);
+                "ErrorMessage", ""
+            ) as ErrorMessage;
+            throw new ApiException<ErrorMessage>(response.httpStatusCode, "Unauthorized", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -194,7 +195,7 @@ export class HistoryApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<GetStats200ResponseInner>", ""
             ) as Array<GetStats200ResponseInner>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -207,14 +208,14 @@ export class HistoryApiResponseProcessor {
      * @params response Response returned by the server for a request to viewMailLog
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async viewMailLog(response: ResponseContext): Promise<MailLog > {
+     public async viewMailLogWithHttpInfo(response: ResponseContext): Promise<HttpInfo<MailLog >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: MailLog = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "MailLog", ""
             ) as MailLog;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "bad input parameter", undefined, response.headers);
@@ -226,7 +227,7 @@ export class HistoryApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "MailLog", ""
             ) as MailLog;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

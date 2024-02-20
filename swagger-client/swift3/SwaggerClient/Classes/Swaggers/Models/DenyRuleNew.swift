@@ -14,6 +14,7 @@ open class DenyRuleNew: JSONEncodable {
         case domain = "domain"
         case email = "email"
         case startswith = "startswith"
+        case destination = "destination"
     }
     /** Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. */
     public var user: String?

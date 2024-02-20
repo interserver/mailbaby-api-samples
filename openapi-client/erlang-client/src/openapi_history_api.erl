@@ -5,8 +5,8 @@
 
 -define(BASE_URL, <<"">>).
 
-%% @doc displays a list of blocked email addresses
-%% 
+%% @doc Account usage statistics.
+%% Returns information about the usage on your mail accounts.
 -spec get_stats(ctx:ctx()) -> {ok, [openapi_get_stats_200_response_inner:openapi_get_stats_200_response_inner()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_stats(Ctx) ->
     get_stats(Ctx, #{}).

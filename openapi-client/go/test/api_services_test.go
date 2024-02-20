@@ -1,7 +1,7 @@
 /*
 MailBaby Email Delivery and Management Service API
 
-Testing ServicesApiService
+Testing ServicesAPIService
 
 */
 
@@ -17,16 +17,16 @@ import (
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
-func Test_openapi_ServicesApiService(t *testing.T) {
+func Test_openapi_ServicesAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ServicesApiService GetMailOrders", func(t *testing.T) {
+	t.Run("Test ServicesAPIService GetMailOrders", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ServicesApi.GetMailOrders(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ServicesAPI.GetMailOrders(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

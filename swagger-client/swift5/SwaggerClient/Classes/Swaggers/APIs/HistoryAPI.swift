@@ -11,7 +11,7 @@ import Alamofire
 
 open class HistoryAPI {
     /**
-     displays a list of blocked email addresses
+     Account usage statistics.
 
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -23,9 +23,8 @@ open class HistoryAPI {
 
 
     /**
-     displays a list of blocked email addresses
+     Account usage statistics.
      - GET /mail/stats
-     - 
 
      - API Key:
        - type: apiKey X-API-KEY 

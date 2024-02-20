@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **Recipient** | **string** | to address this email is being sent to | [default to null]
 **Domain** | **string** | to address domain | [default to null]
 **Locked** | **int32** | locked status | [default to null]
-**LockTime** | **int32** | lock timestamp | [default to null]
+**LockTime** | **string** | lock timestamp | [default to null]
 **Assigned** | **string** | assigned server | [default to null]
 **Queued** | **string** | queued timestamp | [default to null]
 **MxHostname** | **string** | mx hostname | [default to null]

@@ -124,7 +124,7 @@ function Initialize-MailLogEntry {
         [Int32]
         ${Locked},
         [Parameter(Position = 18, ValueFromPipelineByPropertyName = $true)]
-        [Int32]
+        [String]
         ${LockTime},
         [Parameter(Position = 19, ValueFromPipelineByPropertyName = $true)]
         [String]

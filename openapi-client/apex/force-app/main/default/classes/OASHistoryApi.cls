@@ -26,8 +26,8 @@ public class OASHistoryApi {
     }
 
     /**
-     * displays a list of blocked email addresses
-     * 
+     * Account usage statistics.
+     * Returns information about the usage on your mail accounts.
      * @return List<OASGetStats200ResponseInner>
      * @throws OAS.ApiException if fails to make API call
      */

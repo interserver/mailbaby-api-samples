@@ -18,15 +18,12 @@ import {
     DenyRuleRecord,
     DenyRuleRecordFromJSON,
     DenyRuleRecordToJSON,
-    EmailAddress,
-    EmailAddressFromJSON,
-    EmailAddressToJSON,
+    ErrorMessage,
+    ErrorMessageFromJSON,
+    ErrorMessageToJSON,
     GenericResponse,
     GenericResponseFromJSON,
     GenericResponseToJSON,
-    GetMailOrders401Response,
-    GetMailOrders401ResponseFromJSON,
-    GetMailOrders401ResponseToJSON,
     MailBlocks,
     MailBlocksFromJSON,
     MailBlocksToJSON,
@@ -43,7 +40,7 @@ export interface DeleteRuleRequest {
 }
 
 export interface DelistBlockRequest {
-    emailAddress: EmailAddress;
+    body: string;
 }
 
 
@@ -167,8 +164,8 @@ export function deleteRule<T>(requestParameters: DeleteRuleRequest, requestConfi
  * Removes an email address from the blocked list
  */
 function delistBlockRaw<T>(requestParameters: DelistBlockRequest, requestConfig: runtime.TypedQueryConfig<T, GenericResponse> = {}): QueryConfig<T> {
-    if (requestParameters.emailAddress === null || requestParameters.emailAddress === undefined) {
-        throw new runtime.RequiredError('emailAddress','Required parameter requestParameters.emailAddress was null or undefined when calling delistBlock.');
+    if (requestParameters.body === null || requestParameters.body === undefined) {
+        throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling delistBlock.');
     }
 
     let queryParameters = null;
@@ -194,7 +191,7 @@ function delistBlockRaw<T>(requestParameters: DelistBlockRequest, requestConfig:
             method: 'POST',
             headers: headerParameters,
         },
-        body: queryParameters || EmailAddressToJSON(requestParameters.emailAddress),
+        body: queryParameters || requestParameters.body as any,
     };
 
     const { transform: requestTransform } = requestConfig;
@@ -309,5 +306,6 @@ export function getRules<T>( requestConfig?: runtime.TypedQueryConfig<T, Array<D
 export enum AddRuleTypeEnum {
     Domain = 'domain',
     Email = 'email',
-    Startswith = 'startswith'
+    Startswith = 'startswith',
+    Destination = 'destination'
 }

@@ -33,6 +33,8 @@ inline FString ToString(const OpenAPIBlockingApi::AddRuleRequest::TypeEnum& Valu
 		return TEXT("email");
 	case OpenAPIBlockingApi::AddRuleRequest::TypeEnum::Startswith:
 		return TEXT("startswith");
+	case OpenAPIBlockingApi::AddRuleRequest::TypeEnum::Destination:
+		return TEXT("destination");
 	}
 
 	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIBlockingApi::AddRuleRequest::TypeEnum Value (%d)"), (int)Value);
@@ -49,7 +51,8 @@ inline bool FromString(const FString& EnumAsString, OpenAPIBlockingApi::AddRuleR
 	static TMap<FString, OpenAPIBlockingApi::AddRuleRequest::TypeEnum> StringToEnum = { 
 		{ TEXT("domain"), OpenAPIBlockingApi::AddRuleRequest::TypeEnum::Domain },
 		{ TEXT("email"), OpenAPIBlockingApi::AddRuleRequest::TypeEnum::Email },
-		{ TEXT("startswith"), OpenAPIBlockingApi::AddRuleRequest::TypeEnum::Startswith }, };
+		{ TEXT("startswith"), OpenAPIBlockingApi::AddRuleRequest::TypeEnum::Startswith },
+		{ TEXT("destination"), OpenAPIBlockingApi::AddRuleRequest::TypeEnum::Destination }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)
@@ -152,7 +155,7 @@ void OpenAPIBlockingApi::AddRuleResponse::SetHttpResponseCode(EHttpResponseCodes
 		SetResponseString(TEXT("search results matching criteria"));
 		break;
 	case 400:
-		SetResponseString(TEXT("The specified resource was not found"));
+		SetResponseString(TEXT("Error message when there was a problem with the input parameters."));
 		break;
 	case 401:
 		SetResponseString(TEXT("Unauthorized"));
@@ -196,7 +199,7 @@ void OpenAPIBlockingApi::DeleteRuleResponse::SetHttpResponseCode(EHttpResponseCo
 		SetResponseString(TEXT("search results matching criteria"));
 		break;
 	case 400:
-		SetResponseString(TEXT("The specified resource was not found"));
+		SetResponseString(TEXT("Error message when there was a problem with the input parameters."));
 		break;
 	case 401:
 		SetResponseString(TEXT("Unauthorized"));
@@ -232,7 +235,7 @@ void OpenAPIBlockingApi::DelistBlockRequest::SetupHttpRequest(const FHttpRequest
 		FString JsonBody;
 		JsonWriter Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-		WriteJsonValue(Writer, OpenAPIEmailAddress);
+		WriteJsonValue(Writer, Body);
 		Writer->Close();
 
 		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -240,11 +243,11 @@ void OpenAPIBlockingApi::DelistBlockRequest::SetupHttpRequest(const FHttpRequest
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
-		UE_LOG(LogOpenAPI, Error, TEXT("Body parameter (OpenAPIEmailAddress) was ignored, not supported in multipart form"));
+		UE_LOG(LogOpenAPI, Error, TEXT("Body parameter (body) was ignored, not supported in multipart form"));
 	}
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
-		UE_LOG(LogOpenAPI, Error, TEXT("Body parameter (OpenAPIEmailAddress) was ignored, not supported in urlencoded requests"));
+		UE_LOG(LogOpenAPI, Error, TEXT("Body parameter (body) was ignored, not supported in urlencoded requests"));
 	}
 	else
 	{
@@ -261,7 +264,7 @@ void OpenAPIBlockingApi::DelistBlockResponse::SetHttpResponseCode(EHttpResponseC
 		SetResponseString(TEXT("search results matching criteria"));
 		break;
 	case 400:
-		SetResponseString(TEXT("The specified resource was not found"));
+		SetResponseString(TEXT("Error message when there was a problem with the input parameters."));
 		break;
 	case 401:
 		SetResponseString(TEXT("Unauthorized"));

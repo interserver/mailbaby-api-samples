@@ -105,7 +105,7 @@ Class | Method | HTTP request | Description
 *MailBabyEmailDeliveryAndManagementServiceApi.BlockingApi* | [**delistBlock**](docs/BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
 *MailBabyEmailDeliveryAndManagementServiceApi.BlockingApi* | [**getMailBlocks**](docs/BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | displays a list of blocked email addresses
 *MailBabyEmailDeliveryAndManagementServiceApi.BlockingApi* | [**getRules**](docs/BlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules.
-*MailBabyEmailDeliveryAndManagementServiceApi.HistoryApi* | [**getStats**](docs/HistoryApi.md#getStats) | **GET** /mail/stats | displays a list of blocked email addresses
+*MailBabyEmailDeliveryAndManagementServiceApi.HistoryApi* | [**getStats**](docs/HistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics.
 *MailBabyEmailDeliveryAndManagementServiceApi.HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
 *MailBabyEmailDeliveryAndManagementServiceApi.SendingApi* | [**sendAdvMail**](docs/SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *MailBabyEmailDeliveryAndManagementServiceApi.SendingApi* | [**sendMail**](docs/SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
@@ -118,9 +118,12 @@ Class | Method | HTTP request | Description
  - [MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleRecord](docs/DenyRuleRecord.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddress](docs/EmailAddress.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressName](docs/EmailAddressName.md)
+ - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressNames](docs/EmailAddressNames.md)
+ - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressTypes](docs/EmailAddressTypes.md)
+ - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressesTypes](docs/EmailAddressesTypes.md)
+ - [MailBabyEmailDeliveryAndManagementServiceApi.ErrorMessage](docs/ErrorMessage.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.GenericResponse](docs/GenericResponse.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.InlineResponse200](docs/InlineResponse200.md)
- - [MailBabyEmailDeliveryAndManagementServiceApi.InlineResponse401](docs/InlineResponse401.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.MailAttachment](docs/MailAttachment.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.MailBlockClickHouse](docs/MailBlockClickHouse.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.MailBlockRspamd](docs/MailBlockRspamd.md)

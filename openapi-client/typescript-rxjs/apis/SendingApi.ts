@@ -16,20 +16,21 @@ import type { AjaxResponse } from 'rxjs/ajax';
 import { BaseAPI, throwIfNullOrUndefined, COLLECTION_FORMATS } from '../runtime';
 import type { OperationOpts, HttpHeaders } from '../runtime';
 import type {
-    EmailAddressName,
+    EmailAddressTypes,
+    EmailAddressesTypes,
+    ErrorMessage,
     GenericResponse,
-    GetMailOrders401Response,
     MailAttachment,
 } from '../models';
 
 export interface SendAdvMailRequest {
     subject: string;
     body: string;
-    from: EmailAddressName;
-    to: Array<EmailAddressName>;
-    replyto?: Array<EmailAddressName>;
-    cc?: Array<EmailAddressName>;
-    bcc?: Array<EmailAddressName>;
+    from: EmailAddressTypes;
+    to: EmailAddressesTypes;
+    replyto?: EmailAddressesTypes;
+    cc?: EmailAddressesTypes;
+    bcc?: EmailAddressesTypes;
     attachments?: Array<MailAttachment>;
     id?: number;
 }
@@ -47,7 +48,7 @@ export interface SendMailRequest {
 export class SendingApi extends BaseAPI {
 
     /**
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
      * Sends an Email with Advanced Options
      */
     sendAdvMail({ subject, body, from, to, replyto, cc, bcc, attachments, id }: SendAdvMailRequest): Observable<GenericResponse>
@@ -66,22 +67,10 @@ export class SendingApi extends BaseAPI {
         if (subject !== undefined) { formData.append('subject', subject as any); }
         if (body !== undefined) { formData.append('body', body as any); }
         if (from !== undefined) { formData.append('from', from as any); }
-        if (to !== undefined) {
-            formData.append('to', to.join(COLLECTION_FORMATS['csv']));
-        }
-
-        if (replyto !== undefined) {
-            formData.append('replyto', replyto.join(COLLECTION_FORMATS['csv']));
-        }
-
-        if (cc !== undefined) {
-            formData.append('cc', cc.join(COLLECTION_FORMATS['csv']));
-        }
-
-        if (bcc !== undefined) {
-            formData.append('bcc', bcc.join(COLLECTION_FORMATS['csv']));
-        }
-
+        if (to !== undefined) { formData.append('to', to as any); }
+        if (replyto !== undefined) { formData.append('replyto', replyto as any); }
+        if (cc !== undefined) { formData.append('cc', cc as any); }
+        if (bcc !== undefined) { formData.append('bcc', bcc as any); }
         if (attachments !== undefined) {
             formData.append('attachments', attachments.join(COLLECTION_FORMATS['csv']));
         }

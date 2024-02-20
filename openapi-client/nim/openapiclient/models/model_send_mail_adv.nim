@@ -10,17 +10,18 @@
 import json
 import tables
 
-import model_email_address_name
+import model_email_address_types
+import model_email_addresses_types
 import model_mail_attachment
 
 type SendMailAdv* = object
   ## Details for an Email
   subject*: string ## The subject or title of the email
   body*: string ## The main email contents.
-  `from`*: EmailAddressName
-  to*: seq[EmailAddressName] ## A list of destionation email addresses to send this to
-  replyto*: seq[EmailAddressName] ## (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-  cc*: seq[EmailAddressName] ## (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-  bcc*: seq[EmailAddressName] ## (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+  `from`*: EmailAddressTypes
+  to*: EmailAddressesTypes
+  replyto*: EmailAddressesTypes
+  cc*: EmailAddressesTypes
+  bcc*: EmailAddressesTypes
   attachments*: seq[MailAttachment] ## (optional) File attachments to include in the email.  The file contents must be base64 encoded!
   id*: int64 ## (optional)  ID of the Mail order within our system to use as the Mail Account.

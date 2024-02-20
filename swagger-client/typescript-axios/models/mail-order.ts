@@ -11,32 +11,45 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * A mail order record
+ *
  * @export
  * @interface MailOrder
  */
 export interface MailOrder {
+
     /**
      * The ID of the order.
+     *
      * @type {number}
      * @memberof MailOrder
+     * @example 21472
      */
     id: number;
+
     /**
      * The order status.
+     *
      * @type {string}
      * @memberof MailOrder
+     * @example active
      */
     status: string;
+
     /**
      * The username to use for this order.
+     *
      * @type {string}
      * @memberof MailOrder
+     * @example mb21472
      */
     username: string;
+
     /**
      * Optional order comment.
+     *
      * @type {string}
      * @memberof MailOrder
      */

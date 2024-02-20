@@ -12,7 +12,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 @Schema(description = "An email contact.")
 
-public class EmailAddressName   {
+public class EmailAddressName  implements EmailAddressTypes  {
 
   private @Valid String email = null;
 

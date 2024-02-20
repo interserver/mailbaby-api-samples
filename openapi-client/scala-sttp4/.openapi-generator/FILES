@@ -12,10 +12,11 @@ src/main/scala/org/openapitools/client/core/DateSerializers.scala
 src/main/scala/org/openapitools/client/core/JsonSupport.scala
 src/main/scala/org/openapitools/client/model/DenyRuleNew.scala
 src/main/scala/org/openapitools/client/model/DenyRuleRecord.scala
-src/main/scala/org/openapitools/client/model/EmailAddress.scala
 src/main/scala/org/openapitools/client/model/EmailAddressName.scala
+src/main/scala/org/openapitools/client/model/EmailAddressTypes.scala
+src/main/scala/org/openapitools/client/model/EmailAddressesTypes.scala
+src/main/scala/org/openapitools/client/model/ErrorMessage.scala
 src/main/scala/org/openapitools/client/model/GenericResponse.scala
-src/main/scala/org/openapitools/client/model/GetMailOrders401Response.scala
 src/main/scala/org/openapitools/client/model/GetStats200ResponseInner.scala
 src/main/scala/org/openapitools/client/model/MailAttachment.scala
 src/main/scala/org/openapitools/client/model/MailBlockClickHouse.scala

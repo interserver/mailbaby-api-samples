@@ -14,7 +14,7 @@ package org.openapitools.client.model
 import java.time.LocalDate
 
   /**
-   * Root Type for MailBlockClickHouse
+   * MailBlockClickHouse
    * A block entry from the clickhouse mailblocks server.
    */
 case class MailBlockClickHouse(

@@ -13,6 +13,7 @@ package org.openapitools.client.model
 
 
   /**
+   * MailLog
    * Mail log records
    */
 case class MailLog(

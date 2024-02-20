@@ -16,23 +16,20 @@
 import * as runtime from '../runtime';
 import type {
   DenyRuleRecord,
-  EmailAddress,
+  ErrorMessage,
   GenericResponse,
-  GetMailOrders401Response,
   MailBlocks,
-} from '../models';
+} from '../models/index';
 import {
     DenyRuleRecordFromJSON,
     DenyRuleRecordToJSON,
-    EmailAddressFromJSON,
-    EmailAddressToJSON,
+    ErrorMessageFromJSON,
+    ErrorMessageToJSON,
     GenericResponseFromJSON,
     GenericResponseToJSON,
-    GetMailOrders401ResponseFromJSON,
-    GetMailOrders401ResponseToJSON,
     MailBlocksFromJSON,
     MailBlocksToJSON,
-} from '../models';
+} from '../models/index';
 
 export interface AddRuleRequest {
     type: AddRuleTypeEnum;
@@ -45,7 +42,7 @@ export interface DeleteRuleRequest {
 }
 
 export interface DelistBlockRequest {
-    emailAddress: EmailAddress;
+    body: string;
 }
 
 /**
@@ -162,8 +159,8 @@ export class BlockingApi extends runtime.BaseAPI {
      * Removes an email address from the blocked list
      */
     async delistBlockRaw(requestParameters: DelistBlockRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
-        if (requestParameters.emailAddress === null || requestParameters.emailAddress === undefined) {
-            throw new runtime.RequiredError('emailAddress','Required parameter requestParameters.emailAddress was null or undefined when calling delistBlock.');
+        if (requestParameters.body === null || requestParameters.body === undefined) {
+            throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling delistBlock.');
         }
 
         const queryParameters: any = {};
@@ -181,7 +178,7 @@ export class BlockingApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: EmailAddressToJSON(requestParameters.emailAddress),
+            body: requestParameters.body as any,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GenericResponseFromJSON(jsonValue));
@@ -266,6 +263,7 @@ export class BlockingApi extends runtime.BaseAPI {
 export const AddRuleTypeEnum = {
     Domain: 'domain',
     Email: 'email',
-    Startswith: 'startswith'
+    Startswith: 'startswith',
+    Destination: 'destination'
 } as const;
 export type AddRuleTypeEnum = typeof AddRuleTypeEnum[keyof typeof AddRuleTypeEnum];

@@ -13,9 +13,4 @@
 /**
  * an email address
  */
-export interface EmailAddress { 
-    /**
-     * an email address
-     */
-    email?: string;
-}
+export type EmailAddress = string;

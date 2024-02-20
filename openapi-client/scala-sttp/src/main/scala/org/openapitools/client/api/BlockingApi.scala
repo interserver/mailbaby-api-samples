@@ -12,9 +12,8 @@
 package org.openapitools.client.api
 
 import org.openapitools.client.model.DenyRuleRecord
-import org.openapitools.client.model.EmailAddress
+import org.openapitools.client.model.ErrorMessage
 import org.openapitools.client.model.GenericResponse
-import org.openapitools.client.model.GetMailOrders401Response
 import org.openapitools.client.model.MailBlocks
 import org.openapitools.client.core.JsonSupport._
 import sttp.client3._
@@ -32,9 +31,9 @@ class BlockingApi(baseUrl: String) {
    * 
    * Expected answers:
    *   code 200 : GenericResponse (search results matching criteria)
-   *   code 400 : GetMailOrders401Response (The specified resource was not found)
-   *   code 401 : GetMailOrders401Response (Unauthorized)
-   *   code 404 : GetMailOrders401Response (The specified resource was not found)
+   *   code 400 : ErrorMessage (Error message when there was a problem with the input parameters.)
+   *   code 401 : ErrorMessage (Unauthorized)
+   *   code 404 : ErrorMessage (The specified resource was not found)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
@@ -61,9 +60,9 @@ class BlockingApi(baseUrl: String) {
    * 
    * Expected answers:
    *   code 200 : GenericResponse (search results matching criteria)
-   *   code 400 : GetMailOrders401Response (The specified resource was not found)
-   *   code 401 : GetMailOrders401Response (Unauthorized)
-   *   code 404 : GetMailOrders401Response (The specified resource was not found)
+   *   code 400 : ErrorMessage (Error message when there was a problem with the input parameters.)
+   *   code 401 : ErrorMessage (Unauthorized)
+   *   code 404 : ErrorMessage (The specified resource was not found)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
@@ -83,29 +82,29 @@ class BlockingApi(baseUrl: String) {
    * 
    * Expected answers:
    *   code 200 : GenericResponse (search results matching criteria)
-   *   code 400 : GetMailOrders401Response (The specified resource was not found)
-   *   code 401 : GetMailOrders401Response (Unauthorized)
-   *   code 404 : GetMailOrders401Response (The specified resource was not found)
+   *   code 400 : ErrorMessage (Error message when there was a problem with the input parameters.)
+   *   code 401 : ErrorMessage (Unauthorized)
+   *   code 404 : ErrorMessage (The specified resource was not found)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
    * 
-   * @param emailAddress 
+   * @param body 
    */
-  def delistBlock(apiKey: String)(emailAddress: EmailAddress
+  def delistBlock(apiKey: String)(body: String
 ): Request[Either[ResponseException[String, Exception], GenericResponse], Any] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/blocks/delete")
       .contentType("application/json")
       .header("X-API-KEY", apiKey)
-      .body(emailAddress)
+      .body(body)
       .response(asJson[GenericResponse])
 
   /**
    * Expected answers:
    *   code 200 : MailBlocks (OK)
-   *   code 401 : GetMailOrders401Response (Unauthorized)
-   *   code 404 : GetMailOrders401Response (Unauthorized)
+   *   code 401 : ErrorMessage (Unauthorized)
+   *   code 404 : ErrorMessage (Unauthorized)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
@@ -123,8 +122,8 @@ class BlockingApi(baseUrl: String) {
    * 
    * Expected answers:
    *   code 200 : Seq[DenyRuleRecord] (OK)
-   *   code 401 : GetMailOrders401Response (Unauthorized)
-   *   code 404 : GetMailOrders401Response (Unauthorized)
+   *   code 401 : ErrorMessage (Unauthorized)
+   *   code 404 : ErrorMessage (Unauthorized)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)

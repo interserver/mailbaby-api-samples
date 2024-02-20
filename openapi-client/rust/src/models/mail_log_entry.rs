@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MailLogEntry {
     /// internal db id
     #[serde(rename = "_id")]
@@ -70,7 +70,7 @@ pub struct MailLogEntry {
     pub locked: i32,
     /// lock timestamp
     #[serde(rename = "lockTime")]
-    pub lock_time: i32,
+    pub lock_time: String,
     /// assigned server
     #[serde(rename = "assigned")]
     pub assigned: String,
@@ -87,7 +87,7 @@ pub struct MailLogEntry {
 
 impl MailLogEntry {
     /// An email record
-    pub fn new(_id: i32, id: String, from: String, to: String, subject: String, created: String, time: i32, user: String, transtype: String, origin: String, interface: String, sending_zone: String, body_size: i32, seq: i32, recipient: String, domain: String, locked: i32, lock_time: i32, assigned: String, queued: String, mx_hostname: String, response: String) -> MailLogEntry {
+    pub fn new(_id: i32, id: String, from: String, to: String, subject: String, created: String, time: i32, user: String, transtype: String, origin: String, interface: String, sending_zone: String, body_size: i32, seq: i32, recipient: String, domain: String, locked: i32, lock_time: String, assigned: String, queued: String, mx_hostname: String, response: String) -> MailLogEntry {
         MailLogEntry {
             _id,
             id,

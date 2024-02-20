@@ -9,22 +9,29 @@ entity DenyRuleNew {
 }
 
 entity DenyRuleRecord {
-    * id: Integer
-    * created: Date
 }
 
-entity EmailAddress {
-    email: String
+entity EmailAddressName {
+    * email: String
+    name: String
+}
+
+entity EmailAddressTypes {
+    * email: String
+    name: String
+}
+
+entity EmailAddressesTypes {
+}
+
+entity ErrorMessage {
+    * code: Integer
+    * message: String
 }
 
 entity GenericResponse {
     status: String
     text: String
-}
-
-entity GetMailOrders401Response {
-    * code: String
-    * message: String
 }
 
 entity GetStats200ResponseInner {
@@ -33,6 +40,11 @@ entity GetStats200ResponseInner {
     * username: String
     password: String
     comment: String
+}
+
+entity MailAttachment {
+    * filename: String
+    * data: String
 }
 
 entity MailBlockClickHouse {
@@ -79,7 +91,7 @@ entity MailLogEntry {
     * recipient: String
     * domain: String
     * locked: Integer
-    * lockTime: Integer
+    * lockTime: String
     * assigned: String
     * queued: String
     * mxHostname: String
@@ -104,22 +116,22 @@ entity SendMail {
 entity SendMailAdv {
     * subject: String
     * body: String
-    * from: EmailAddressName
-    * to: List<EmailAddressName>
-    replyto: List<EmailAddressName>
-    cc: List<EmailAddressName>
-    bcc: List<EmailAddressName>
+    * from: EmailAddressTypes
+    * to: EmailAddressesTypes
+    replyto: EmailAddressesTypes
+    cc: EmailAddressesTypes
+    bcc: EmailAddressesTypes
     attachments: List<MailAttachment>
     id: Long
 }
 
 DenyRuleNew <|--- DenyRuleRecord
 
-SendMailAdv -- EmailAddressName : from
-SendMailAdv -- "0..*" EmailAddressName : to
-SendMailAdv -- "0..*" EmailAddressName : replyto
-SendMailAdv -- "0..*" EmailAddressName : cc
-SendMailAdv -- "0..*" EmailAddressName : bcc
+SendMailAdv -- EmailAddressTypes : from
+SendMailAdv -- EmailAddressesTypes : to
+SendMailAdv -- EmailAddressesTypes : replyto
+SendMailAdv -- EmailAddressesTypes : cc
+SendMailAdv -- EmailAddressesTypes : bcc
 SendMailAdv -- "0..*" MailAttachment : attachments
 MailLog -- "0..*" MailLogEntry : emails
 MailBlocks -- "0..*" MailBlockClickHouse : local

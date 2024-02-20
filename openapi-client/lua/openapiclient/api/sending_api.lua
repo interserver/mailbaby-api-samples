@@ -16,10 +16,11 @@ local dkjson = require "dkjson"
 local basexx = require "basexx"
 
 -- model import
-local openapiclient_email_address_name = require "openapiclient.model.email_address_name"
+local openapiclient_email_address_types = require "openapiclient.model.email_address_types"
+local openapiclient_email_addresses_types = require "openapiclient.model.email_addresses_types"
+local openapiclient_error_message = require "openapiclient.model.error_message"
 local openapiclient_generic_response = require "openapiclient.model.generic_response"
 local openapiclient_mail_attachment = require "openapiclient.model.mail_attachment"
-local openapiclient_get_mail_orders_401_response = require "openapiclient.model.get_mail_orders_401_response"
 
 local sending_api = {}
 local sending_api_mt = {

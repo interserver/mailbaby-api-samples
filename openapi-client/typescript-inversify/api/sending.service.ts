@@ -20,9 +20,10 @@ import { IAPIConfiguration } from '../IAPIConfiguration';
 import { Headers } from '../Headers';
 import HttpResponse from '../HttpResponse';
 
-import { EmailAddressName } from '../model/emailAddressName';
+import { EmailAddressTypes } from '../model/emailAddressTypes';
+import { EmailAddressesTypes } from '../model/emailAddressesTypes';
+import { ErrorMessage } from '../model/errorMessage';
 import { GenericResponse } from '../model/genericResponse';
-import { GetMailOrders401Response } from '../model/getMailOrders401Response';
 import { MailAttachment } from '../model/mailAttachment';
 
 import { COLLECTION_FORMATS }  from '../variables';
@@ -41,21 +42,21 @@ export class SendingService {
 
     /**
      * Sends an Email with Advanced Options
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;user@domain.com \\ --data to&#x3D;support@interserver.net &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to[0][name]&#x3D;Joe\&quot; \\ --data \&quot;to[0][email]&#x3D;support@interserver.net\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;\&quot;Joe &lt;user@domain.com&gt;\&quot; \\ --data to&#x3D;\&quot;Joe &lt;support@interserver.net&gt;\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to&#x3D;support@interserver.net, support@interserver.net\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to&#x3D;Joe &lt;support@interserver.net&gt;, Joe &lt;support@interserver.net&gt;\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to[0][name]&#x3D;Joe\&quot; \\ --data \&quot;to[0][email]&#x3D;support@interserver.net\&quot; \\ --data \&quot;to[1][name]&#x3D;Joe\&quot; \\ --data \&quot;to[1][email]&#x3D;support@interserver.net\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/json\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;{ \&quot;subject\&quot;: \&quot;Welcome\&quot;, \&quot;body\&quot;: \&quot;Hello\&quot;, \&quot;from\&quot;: \&quot;user@domain.com\&quot;, \&quot;to\&quot;: \&quot;support@interserver.net\&quot; }\&#39; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/json\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;{ \&quot;subject\&quot;: \&quot;Welcome\&quot;, \&quot;body\&quot;: \&quot;Hello\&quot;, \&quot;from\&quot;: {\&quot;name\&quot;: \&quot;Joe\&quot;, \&quot;email\&quot;: \&quot;user@domain.com\&quot;}, \&quot;to\&quot;: [{\&quot;name\&quot;: \&quot;Joe\&quot;, \&quot;email\&quot;: \&quot;support@interserver.net\&quot;}] }\&#39; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/json\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;{ \&quot;subject\&quot;: \&quot;Welcome\&quot;, \&quot;body\&quot;: \&quot;Hello\&quot;, \&quot;from\&quot;: \&quot;Joe &lt;user@domain.com&gt;\&quot;, \&quot;to\&quot;: \&quot;Joe &lt;support@interserver.net&gt;\&quot; }\&#39; &#x60;&#x60;&#x60; 
      * @param subject The subject or title of the email
      * @param body The main email contents.
      * @param from 
-     * @param to A list of destionation email addresses to send this to
-     * @param replyto (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-     * @param cc (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @param bcc (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+     * @param to 
+     * @param replyto 
+     * @param cc 
+     * @param bcc 
      * @param attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded!
      * @param id (optional)  ID of the Mail order within our system to use as the Mail Account.
      
      */
-    public sendAdvMail(subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
-    public sendAdvMail(subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
-    public sendAdvMail(subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, observe: any = 'body', headers: Headers = {}): Observable<any> {
+    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
+    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
+    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, observe: any = 'body', headers: Headers = {}): Observable<any> {
         if (subject === null || subject === undefined){
             throw new Error('Required parameter subject was null or undefined when calling sendAdvMail.');
         }
@@ -89,17 +90,17 @@ export class SendingService {
         if (from !== undefined) {
             formData.append('from', <any>from);
         }
-        if (to) {
-            formData.append('to', to.join(COLLECTION_FORMATS['csv']));
+        if (to !== undefined) {
+            formData.append('to', <any>to);
         }
-        if (replyto) {
-            formData.append('replyto', replyto.join(COLLECTION_FORMATS['csv']));
+        if (replyto !== undefined) {
+            formData.append('replyto', <any>replyto);
         }
-        if (cc) {
-            formData.append('cc', cc.join(COLLECTION_FORMATS['csv']));
+        if (cc !== undefined) {
+            formData.append('cc', <any>cc);
         }
-        if (bcc) {
-            formData.append('bcc', bcc.join(COLLECTION_FORMATS['csv']));
+        if (bcc !== undefined) {
+            formData.append('bcc', <any>bcc);
         }
         if (attachments) {
             formData.append('attachments', attachments.join(COLLECTION_FORMATS['csv']));

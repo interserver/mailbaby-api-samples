@@ -346,7 +346,7 @@ __PACKAGE__->method_documentation({
         read_only => '',
             },
     'lock_time' => {
-        datatype => 'int',
+        datatype => 'string',
         base_name => 'lockTime',
         description => 'lock timestamp',
         format => '',
@@ -401,7 +401,7 @@ __PACKAGE__->openapi_types( {
     'recipient' => 'string',
     'domain' => 'string',
     'locked' => 'int',
-    'lock_time' => 'int',
+    'lock_time' => 'string',
     'assigned' => 'string',
     'queued' => 'string',
     'mx_hostname' => 'string',

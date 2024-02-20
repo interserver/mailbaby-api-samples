@@ -22,13 +22,13 @@ The main email contents.
 .PARAMETER VarFrom
 No description available.
 .PARAMETER To
-A list of destionation email addresses to send this to
+No description available.
 .PARAMETER Replyto
-(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+No description available.
 .PARAMETER Cc
-(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+No description available.
 .PARAMETER Bcc
-(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+No description available.
 .PARAMETER Attachments
 (optional) File attachments to include in the email.  The file contents must be base64 encoded!
 .PARAMETER Id
@@ -51,16 +51,16 @@ function Initialize-SendMailAdv {
         [PSCustomObject]
         ${VarFrom},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
+        [PSCustomObject]
         ${To},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
+        [PSCustomObject]
         ${Replyto},
         [Parameter(Position = 5, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
+        [PSCustomObject]
         ${Cc},
         [Parameter(Position = 6, ValueFromPipelineByPropertyName = $true)]
-        [PSCustomObject[]]
+        [PSCustomObject]
         ${Bcc},
         [Parameter(Position = 7, ValueFromPipelineByPropertyName = $true)]
         [PSCustomObject[]]

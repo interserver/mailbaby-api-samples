@@ -212,9 +212,9 @@ export class BlockingApi {
     /**
      * Removes an email address from the various block lists. 
      * @summary Removes an email address from the blocked list
-     * @param emailAddress 
+     * @param body 
      */
-    public delistBlock(emailAddress: models.EmailAddress, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public delistBlock(body: string, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: models.GenericResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
@@ -222,9 +222,9 @@ export class BlockingApi {
 
         let queryParameters: any = {};
         let headerParams: any = {};
-        // verify required parameter 'emailAddress' is not null or undefined
-        if (emailAddress === null || emailAddress === undefined) {
-            throw new Error('Required parameter emailAddress was null or undefined when calling delistBlock.');
+        // verify required parameter 'body' is not null or undefined
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling delistBlock.');
         }
 
 
@@ -255,7 +255,7 @@ export class BlockingApi {
             processData: false
         };
 
-        requestOptions.data = JSON.stringify(emailAddress);
+        requestOptions.data = JSON.stringify(body);
         if (headerParams['Content-Type']) {
             requestOptions.contentType = headerParams['Content-Type'];
         }

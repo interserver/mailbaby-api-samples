@@ -55,8 +55,8 @@ feature --Access
       -- to address domain
  	locked: INTEGER_32
     	 -- locked status
- 	lock_time: INTEGER_32
-    	 -- lock timestamp
+    lock_time: detachable STRING_32
+      -- lock timestamp
     assigned: detachable STRING_32
       -- assigned server
     queued: detachable STRING_32

@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **DelistBlock**
-> GenericResponse DelistBlock(ctx, body, email)
+> GenericResponse DelistBlock(ctx, body)
 Removes an email address from the blocked list
 
 Removes an email address from the various block lists. 
@@ -80,8 +80,7 @@ Removes an email address from the various block lists.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**EmailAddress**](EmailAddress.md)|  | 
-  **email** | **string**|  | 
+  **body** | [**string**](string.md)|  | 
 
 ### Return type
 

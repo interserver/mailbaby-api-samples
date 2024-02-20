@@ -21,9 +21,8 @@ import { Headers } from '../Headers';
 import HttpResponse from '../HttpResponse';
 
 import { DenyRuleRecord } from '../model/denyRuleRecord';
-import { EmailAddress } from '../model/emailAddress';
+import { ErrorMessage } from '../model/errorMessage';
 import { GenericResponse } from '../model/genericResponse';
-import { GetMailOrders401Response } from '../model/getMailOrders401Response';
 import { MailBlocks } from '../model/mailBlocks';
 
 import { COLLECTION_FORMATS }  from '../variables';
@@ -119,14 +118,14 @@ export class BlockingService {
     /**
      * Removes an email address from the blocked list
      * Removes an email address from the various block lists. 
-     * @param emailAddress 
+     * @param body 
      
      */
-    public delistBlock(emailAddress: EmailAddress, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
-    public delistBlock(emailAddress: EmailAddress, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
-    public delistBlock(emailAddress: EmailAddress, observe: any = 'body', headers: Headers = {}): Observable<any> {
-        if (emailAddress === null || emailAddress === undefined){
-            throw new Error('Required parameter emailAddress was null or undefined when calling delistBlock.');
+    public delistBlock(body: string, observe?: 'body', headers?: Headers): Observable<GenericResponse>;
+    public delistBlock(body: string, observe?: 'response', headers?: Headers): Observable<HttpResponse<GenericResponse>>;
+    public delistBlock(body: string, observe: any = 'body', headers: Headers = {}): Observable<any> {
+        if (body === null || body === undefined){
+            throw new Error('Required parameter body was null or undefined when calling delistBlock.');
         }
 
         // authentication (apiKeyAuth) required
@@ -136,7 +135,7 @@ export class BlockingService {
         headers['Accept'] = 'application/json';
         headers['Content-Type'] = 'application/json';
 
-        const response: Observable<HttpResponse<GenericResponse>> = this.httpClient.post(`${this.basePath}/mail/blocks/delete`, emailAddress , headers);
+        const response: Observable<HttpResponse<GenericResponse>> = this.httpClient.post(`${this.basePath}/mail/blocks/delete`, body , headers);
         if (observe === 'body') {
                return response.pipe(
                    map((httpResponse: HttpResponse) => <GenericResponse>(httpResponse.response))

@@ -87,8 +87,16 @@
           "401" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -97,8 +105,16 @@
           "404" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -159,8 +175,16 @@
           "401" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -169,8 +193,16 @@
           "404" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -183,6 +215,7 @@
     },
     "/mail/stats" : {
       "get" : {
+        "description" : "Returns information about the usage on your mail accounts.",
         "operationId" : "getStats",
         "responses" : {
           "200" : {
@@ -210,8 +243,16 @@
           "401" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -220,15 +261,23 @@
           "404" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
             "description" : "Unauthorized"
           }
         },
-        "summary" : "displays a list of blocked email addresses",
+        "summary" : "Account usage statistics.",
         "tags" : [ "History" ]
       }
     },
@@ -265,18 +314,34 @@
           "400" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "BadInputError" : {
+                    "value" : {
+                      "code" : 400,
+                      "message" : "There was a problem with the input parameters."
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
-            "description" : "The specified resource was not found"
+            "description" : "Error message when there was a problem with the input parameters."
           },
           "401" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -285,8 +350,16 @@
           "404" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "NotFoundError" : {
+                    "value" : {
+                      "code" : 404,
+                      "message" : "The specified resource was not found."
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -300,7 +373,7 @@
     "/mail/advsend" : {
       "description" : "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.",
       "post" : {
-        "description" : "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.",
+        "description" : "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.\n\nHere are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=user@domain.com \\\n--data to=support@interserver.net\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=user@domain.com \\\n--data \"to[0][name]=Joe\" \\\n--data \"to[0][email]=support@interserver.net\"\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=\"Joe <user@domain.com>\" \\\n--data to=\"Joe <support@interserver.net>\"\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=user@domain.com \\\n--data \"to=support@interserver.net, support@interserver.net\"\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=user@domain.com \\\n--data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\"\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=user@domain.com \\\n--data \"to[0][name]=Joe\" \\\n--data \"to[0][email]=support@interserver.net\" \\\n--data \"to[1][name]=Joe\" \\\n--data \"to[1][email]=support@interserver.net\"\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data '{\n\"subject\": \"Welcome\",\n\"body\": \"Hello\",\n\"from\": \"user@domain.com\",\n\"to\": \"support@interserver.net\"\n}'\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data '{\n\"subject\": \"Welcome\",\n\"body\": \"Hello\",\n\"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"},\n\"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}]\n}'\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data '{\n\"subject\": \"Welcome\",\n\"body\": \"Hello\",\n\"from\": \"Joe <user@domain.com>\",\n\"to\": \"Joe <support@interserver.net>\"\n}'\n```\n",
         "operationId" : "sendAdvMail",
         "requestBody" : {
           "content" : {
@@ -371,18 +444,34 @@
           "400" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "BadInputError" : {
+                    "value" : {
+                      "code" : 400,
+                      "message" : "There was a problem with the input parameters."
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
-            "description" : "The specified resource was not found"
+            "description" : "Error message when there was a problem with the input parameters."
           },
           "401" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -391,8 +480,16 @@
           "404" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "NotFoundError" : {
+                    "value" : {
+                      "code" : 404,
+                      "message" : "The specified resource was not found."
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -659,18 +756,34 @@
           "400" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "BadInputError" : {
+                    "value" : {
+                      "code" : 400,
+                      "message" : "There was a problem with the input parameters."
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
-            "description" : "The specified resource was not found"
+            "description" : "Error message when there was a problem with the input parameters."
           },
           "401" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -679,8 +792,16 @@
           "404" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "NotFoundError" : {
+                    "value" : {
+                      "code" : 404,
+                      "message" : "The specified resource was not found."
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -739,8 +860,16 @@
           "401" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -749,8 +878,16 @@
           "404" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -811,18 +948,34 @@
           "400" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "BadInputError" : {
+                    "value" : {
+                      "code" : 400,
+                      "message" : "There was a problem with the input parameters."
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
-            "description" : "The specified resource was not found"
+            "description" : "Error message when there was a problem with the input parameters."
           },
           "401" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -831,8 +984,16 @@
           "404" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "NotFoundError" : {
+                    "value" : {
+                      "code" : 404,
+                      "message" : "The specified resource was not found."
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -878,18 +1039,34 @@
           "400" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "BadInputError" : {
+                    "value" : {
+                      "code" : 400,
+                      "message" : "There was a problem with the input parameters."
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
-            "description" : "The specified resource was not found"
+            "description" : "Error message when there was a problem with the input parameters."
           },
           "401" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -898,8 +1075,16 @@
           "404" : {
             "content" : {
               "application/json" : {
+                "examples" : {
+                  "NotFoundError" : {
+                    "value" : {
+                      "code" : 404,
+                      "message" : "The specified resource was not found."
+                    }
+                  }
+                },
                 "schema" : {
-                  "$ref" : "#/components/schemas/getMailOrders_401_response"
+                  "$ref" : "#/components/schemas/ErrorMessage"
                 }
               }
             },
@@ -912,72 +1097,38 @@
     }
   },
   "components" : {
-    "parameters" : {
-      "offsetParam" : {
-        "description" : "Number of items to skip before returning the results.",
-        "explode" : true,
-        "in" : "query",
-        "name" : "offset",
-        "required" : false,
-        "schema" : {
-          "default" : 0,
-          "format" : "int32",
-          "minimum" : 0,
-          "type" : "integer"
-        },
-        "style" : "form"
-      },
-      "limitParam" : {
-        "description" : "Maximum number of items to return.",
-        "explode" : true,
-        "in" : "query",
-        "name" : "limit",
-        "required" : false,
-        "schema" : {
-          "default" : 20,
-          "format" : "int32",
-          "maximum" : 100,
-          "minimum" : 1,
-          "type" : "integer"
-        },
-        "style" : "form"
-      }
-    },
     "responses" : {
       "BadInput" : {
         "content" : {
           "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/getMailOrders_401_response"
-            }
-          }
-        },
-        "description" : "The specified resource was not found"
-      },
-      "AlreadyExists" : {
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "properties" : {
-                "code" : {
-                  "type" : "string"
-                },
-                "message" : {
-                  "type" : "string"
+            "examples" : {
+              "BadInputError" : {
+                "value" : {
+                  "code" : 400,
+                  "message" : "There was a problem with the input parameters."
                 }
-              },
-              "required" : [ "code", "message" ],
-              "type" : "object"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/components/schemas/ErrorMessage"
             }
           }
         },
-        "description" : "The specified resource was not found"
+        "description" : "Error message when there was a problem with the input parameters."
       },
       "NotFound" : {
         "content" : {
           "application/json" : {
+            "examples" : {
+              "NotFoundError" : {
+                "value" : {
+                  "code" : 404,
+                  "message" : "The specified resource was not found."
+                }
+              }
+            },
             "schema" : {
-              "$ref" : "#/components/schemas/getMailOrders_401_response"
+              "$ref" : "#/components/schemas/ErrorMessage"
             }
           }
         },
@@ -986,8 +1137,16 @@
       "Unauthorized" : {
         "content" : {
           "application/json" : {
+            "examples" : {
+              "UnauthorizedError" : {
+                "value" : {
+                  "code" : 401,
+                  "message" : "Unauthorized"
+                }
+              }
+            },
             "schema" : {
-              "$ref" : "#/components/schemas/getMailOrders_401_response"
+              "$ref" : "#/components/schemas/ErrorMessage"
             }
           }
         },
@@ -1008,36 +1167,67 @@
         },
         "type" : "object"
       },
-      "SendMail" : {
-        "description" : "Details for an Email",
+      "ErrorMessage" : {
+        "description" : "The resposne when an error occurs.",
+        "example" : {
+          "code" : 400,
+          "message" : "There was an error."
+        },
         "properties" : {
-          "to" : {
-            "description" : "The Contact whom is the primary recipient of this email.",
-            "example" : "johndoe@company.com",
-            "type" : "string"
+          "code" : {
+            "description" : "The response code associated with the error.",
+            "example" : 400,
+            "format" : "int32",
+            "type" : "integer"
           },
-          "from" : {
-            "description" : "The contact whom is the this email is from.",
-            "example" : "janedoe@company.com",
-            "type" : "string"
-          },
-          "subject" : {
-            "description" : "The subject or title of the email",
-            "example" : "Attention Client",
-            "type" : "string"
-          },
-          "body" : {
-            "description" : "The main email contents.",
-            "example" : "This is an email to inform you that something noteworthy happened.",
+          "message" : {
+            "description" : "The details or description of the error.",
+            "example" : "There was an error.",
             "type" : "string"
           }
         },
-        "required" : [ "body", "from", "subject", "to" ],
+        "required" : [ "code", "message" ],
+        "title" : "ErrorMessage",
+        "type" : "object"
+      },
+      "EmailAddressName" : {
+        "description" : "An email contact.",
+        "example" : {
+          "email" : "user@domain.com",
+          "name" : "John Smith"
+        },
+        "properties" : {
+          "email" : {
+            "description" : "The email address.",
+            "example" : "user@domain.com",
+            "type" : "string"
+          },
+          "name" : {
+            "description" : "Name to use for the sending contact.",
+            "example" : "John Smith",
+            "type" : "string"
+          }
+        },
+        "required" : [ "email" ],
+        "title" : "EmailAddressName",
         "type" : "object"
       },
       "DenyRuleRecord" : {
         "allOf" : [ {
-          "$ref" : "#/components/schemas/DenyRuleRecord_allOf"
+          "properties" : {
+            "id" : {
+              "description" : "The deny rule Id number.",
+              "example" : "41124",
+              "type" : "string"
+            },
+            "created" : {
+              "description" : "the date the rule was created.",
+              "format" : "date-time",
+              "type" : "string"
+            }
+          },
+          "required" : [ "created", "id" ],
+          "type" : "object"
         }, {
           "$ref" : "#/components/schemas/DenyRuleNew"
         } ],
@@ -1049,7 +1239,7 @@
           "data" : "domeinwo@server.guesshost.net",
           "created" : "2022-03-22 19:16:35"
         },
-        "title" : "Root Type for DenyRule",
+        "title" : "DenyRuleRecord",
         "type" : "object"
       },
       "DenyRuleNew" : {
@@ -1067,7 +1257,7 @@
           },
           "type" : {
             "description" : "The type of deny rule.",
-            "enum" : [ "domain", "email", "startswith" ],
+            "enum" : [ "domain", "email", "startswith", "destination" ],
             "example" : "email",
             "type" : "string"
           },
@@ -1078,40 +1268,29 @@
           }
         },
         "required" : [ "data", "type" ],
-        "title" : "Root Type for DenyRule",
+        "title" : "DenyRuleNew",
         "type" : "object"
       },
-      "MailOrder" : {
-        "description" : "A mail order record",
+      "MailAttachment" : {
+        "description" : "(optional) File attachments to include in the email.  The file contents must be base64",
         "example" : {
-          "id" : 21472,
-          "status" : "active",
-          "username" : "mb21472"
+          "filename" : "file.txt",
+          "data" : "base64_encoded_file_contents"
         },
         "properties" : {
-          "id" : {
-            "description" : "The ID of the order.",
-            "example" : 21472,
-            "format" : "int32",
-            "type" : "integer"
-          },
-          "status" : {
-            "description" : "The order status.",
-            "example" : "active",
+          "filename" : {
+            "description" : "The filename of the attached file.",
+            "example" : "message.txt",
             "type" : "string"
           },
-          "username" : {
-            "description" : "The username to use for this order.",
-            "example" : "mb21472",
-            "type" : "string"
-          },
-          "comment" : {
-            "description" : "Optional order comment.",
+          "data" : {
+            "description" : "The file contents base64 encoded",
+            "example" : "aGVsbG8gdGhlcmUK",
             "type" : "string"
           }
         },
-        "required" : [ "id", "status", "username" ],
-        "title" : "Root Type for MailOrder",
+        "required" : [ "data", "filename" ],
+        "title" : "MailAttachment",
         "type" : "object"
       },
       "MailBlockClickHouse" : {
@@ -1142,7 +1321,7 @@
           }
         },
         "required" : [ "date", "from", "messageId", "subject", "to" ],
-        "title" : "Root Type for MailBlockClickHouse",
+        "title" : "MailBlockClickHouse",
         "type" : "object"
       },
       "MailBlockRspamd" : {
@@ -1160,7 +1339,7 @@
           }
         },
         "required" : [ "from", "subject" ],
-        "title" : "Root Type for MailBlockRspamd",
+        "title" : "MailBlockRspamd",
         "type" : "object"
       },
       "MailBlocks" : {
@@ -1206,22 +1385,205 @@
           }
         },
         "required" : [ "local", "mbtrap", "subject" ],
-        "title" : "Root Type for MailBlocks",
+        "title" : "MailBlocks",
         "type" : "object"
       },
-      "EmailAddress" : {
-        "description" : "an email address",
+      "MailLog" : {
+        "description" : "Mail log records",
         "example" : {
-          "email" : "user@domain.com"
+          "total" : 1,
+          "skip" : 0,
+          "limit" : 100,
+          "emails" : [ {
+            "_id" : 103172,
+            "id" : "17c7eda538e0005d03",
+            "from" : "person@mysite.com",
+            "to" : "client@isp.com",
+            "subject" : "sell 0.005 shares",
+            "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
+            "created" : "2021-10-14T08:50:10.000Z",
+            "time" : 1634215809,
+            "user" : "mb5658",
+            "transtype" : "ESMTPSA",
+            "origin" : "199.231.189.154",
+            "interface" : "feeder",
+            "sendingZone" : "interserver",
+            "bodySize" : 63,
+            "seq" : 1,
+            "recipient" : "client@isp.com",
+            "domain" : "interserver.net",
+            "locked" : 1,
+            "lockTime" : "1634215818533",
+            "assigned" : "relay1",
+            "queued" : "2021-10-14T12:50:15.487Z",
+            "mxHostname" : "mx.j.is.cc",
+            "response" : "250 2.0.0 Ok queued as C91D83E128C"
+          } ]
         },
         "properties" : {
-          "email" : {
-            "description" : "an email address",
-            "example" : "user@domain.com",
+          "total" : {
+            "description" : "total number of mail log entries",
+            "example" : 10234,
+            "type" : "integer"
+          },
+          "skip" : {
+            "description" : "number of emails skipped in listing",
+            "example" : 0,
+            "type" : "integer"
+          },
+          "limit" : {
+            "description" : "number of emails to return",
+            "example" : 100,
+            "type" : "integer"
+          },
+          "emails" : {
+            "example" : "[{\n    \"_id\": 103172,\n    \"id\": \"17c7eda538e0005d03\",\n    \"from\": \"person@mysite.com\",\n    \"to\": \"client@isp.com\",\n    \"subject\": \"sell 0.005 shares\",\n    \"messageId\": \"<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>\",\n    \"created\": \"2021-10-14 08:50:10\",\n    \"time\": 1634215809,\n    \"user\": \"mb5658\",\n    \"transtype\": \"ESMTPSA\",\n    \"origin\": \"199.231.189.154\",\n    \"interface\": \"feeder\",\n    \"sendingZone\": \"interserver\",\n    \"bodySize\": 63,\n    \"seq\": 1,\n    \"recipient\": \"client@isp.com\",\n    \"domain\": \"interserver.net\",\n    \"locked\": 1,\n    \"lockTime\": \"1634215818533\",\n    \"assigned\": \"relay1\",\n    \"queued\": \"2021-10-14T12:50:15.487Z\",\n    \"mxHostname\": \"mx.j.is.cc\",\n    \"response\": \"250 2.0.0 Ok queued as C91D83E128C\"\n}]",
+            "items" : {
+              "$ref" : "#/components/schemas/MailLogEntry"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "emails", "limit", "skip", "total" ],
+        "title" : "MailLog",
+        "type" : "object"
+      },
+      "MailOrder" : {
+        "description" : "A mail order record",
+        "example" : {
+          "id" : 21472,
+          "status" : "active",
+          "username" : "mb21472"
+        },
+        "properties" : {
+          "id" : {
+            "description" : "The ID of the order.",
+            "example" : 21472,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "status" : {
+            "description" : "The order status.",
+            "example" : "active",
+            "type" : "string"
+          },
+          "username" : {
+            "description" : "The username to use for this order.",
+            "example" : "mb21472",
+            "type" : "string"
+          },
+          "comment" : {
+            "description" : "Optional order comment.",
             "type" : "string"
           }
         },
-        "title" : "Root Type for EmailAddress",
+        "required" : [ "id", "status", "username" ],
+        "title" : "MailOrder",
+        "type" : "object"
+      },
+      "SendMail" : {
+        "description" : "Details for an Email",
+        "properties" : {
+          "to" : {
+            "description" : "The Contact whom is the primary recipient of this email.",
+            "example" : "johndoe@company.com",
+            "type" : "string"
+          },
+          "from" : {
+            "description" : "The contact whom is the this email is from.",
+            "example" : "janedoe@company.com",
+            "type" : "string"
+          },
+          "subject" : {
+            "description" : "The subject or title of the email",
+            "example" : "Attention Client",
+            "type" : "string"
+          },
+          "body" : {
+            "description" : "The main email contents.",
+            "example" : "This is an email to inform you that something noteworthy happened.",
+            "type" : "string"
+          }
+        },
+        "required" : [ "body", "from", "subject", "to" ],
+        "title" : "SendMail",
+        "type" : "object"
+      },
+      "EmailAddressNames" : {
+        "description" : "Array of Email Addresses",
+        "example" : [ {
+          "email" : "user@domain.com",
+          "name" : "John Smith"
+        } ],
+        "items" : {
+          "$ref" : "#/components/schemas/EmailAddressName"
+        },
+        "title" : "EmailAddressNames",
+        "type" : "array"
+      },
+      "SendMailAdv" : {
+        "description" : "Details for an Email",
+        "example" : {
+          "subject" : "Welcome",
+          "body" : "Hello",
+          "from" : "user@domain.com",
+          "to" : "someone@client.com",
+          "cc" : [ {
+            "email" : "someone2@client.com",
+            "name" : "Mr Client"
+          }, {
+            "email" : "someone3@client.com",
+            "name" : "Mr Client"
+          } ],
+          "attachments" : [ {
+            "filename" : "file.txt",
+            "data" : "base64_encoded_contents"
+          } ],
+          "id" : 66
+        },
+        "properties" : {
+          "subject" : {
+            "description" : "The subject or title of the email",
+            "example" : "Your Package has been Delivered!",
+            "type" : "string"
+          },
+          "body" : {
+            "description" : "The main email contents.",
+            "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.",
+            "type" : "string"
+          },
+          "from" : {
+            "$ref" : "#/components/schemas/EmailAddressTypes"
+          },
+          "to" : {
+            "$ref" : "#/components/schemas/EmailAddressesTypes"
+          },
+          "replyto" : {
+            "$ref" : "#/components/schemas/EmailAddressesTypes"
+          },
+          "cc" : {
+            "$ref" : "#/components/schemas/EmailAddressesTypes"
+          },
+          "bcc" : {
+            "$ref" : "#/components/schemas/EmailAddressesTypes"
+          },
+          "attachments" : {
+            "description" : "(optional) File attachments to include in the email.  The file contents must be base64 encoded!",
+            "example" : "[\n        {\n            \"filename\": \"text.txt\",\n            \"data\": \"base64_encoded_contents\"\n        }\n]",
+            "items" : {
+              "$ref" : "#/components/schemas/MailAttachment"
+            },
+            "type" : "array"
+          },
+          "id" : {
+            "description" : "(optional)  ID of the Mail order within our system to use as the Mail Account.",
+            "example" : 5000,
+            "format" : "int64",
+            "type" : "integer"
+          }
+        },
+        "required" : [ "body", "from", "subject", "to" ],
+        "title" : "SendMailAdv",
         "type" : "object"
       },
       "MailLogEntry" : {
@@ -1344,8 +1706,8 @@
           },
           "lockTime" : {
             "description" : "lock timestamp",
-            "example" : 1634215818533,
-            "type" : "integer"
+            "example" : "1634215818533",
+            "type" : "string"
           },
           "assigned" : {
             "description" : "assigned server",
@@ -1369,205 +1731,31 @@
           }
         },
         "required" : [ "_id", "assigned", "bodySize", "created", "domain", "from", "id", "interface", "lockTime", "locked", "mxHostname", "origin", "queued", "recipient", "response", "sendingZone", "seq", "subject", "time", "to", "transtype", "user" ],
+        "title" : "MailLogEntry",
         "type" : "object"
       },
-      "MailLog" : {
-        "description" : "Mail log records",
-        "example" : {
-          "total" : 1,
-          "skip" : 0,
-          "limit" : 100,
-          "emails" : [ {
-            "_id" : 103172,
-            "id" : "17c7eda538e0005d03",
-            "from" : "person@mysite.com",
-            "to" : "client@isp.com",
-            "subject" : "sell 0.005 shares",
-            "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
-            "created" : "2021-10-14T08:50:10.000Z",
-            "time" : 1634215809,
-            "user" : "mb5658",
-            "transtype" : "ESMTPSA",
-            "origin" : "199.231.189.154",
-            "interface" : "feeder",
-            "sendingZone" : "interserver",
-            "bodySize" : 63,
-            "seq" : 1,
-            "recipient" : "client@isp.com",
-            "domain" : "interserver.net",
-            "locked" : 1,
-            "lockTime" : "1634215818533",
-            "assigned" : "relay1",
-            "queued" : "2021-10-14T12:50:15.487Z",
-            "mxHostname" : "mx.j.is.cc",
-            "response" : "250 2.0.0 Ok queued as C91D83E128C"
-          } ]
-        },
-        "properties" : {
-          "total" : {
-            "description" : "total number of mail log entries",
-            "example" : 10234,
-            "type" : "integer"
-          },
-          "skip" : {
-            "description" : "number of emails skipped in listing",
-            "example" : 0,
-            "type" : "integer"
-          },
-          "limit" : {
-            "description" : "number of emails to return",
-            "example" : 100,
-            "type" : "integer"
-          },
-          "emails" : {
-            "example" : "[{\n    \"_id\": 103172,\n    \"id\": \"17c7eda538e0005d03\",\n    \"from\": \"person@mysite.com\",\n    \"to\": \"client@isp.com\",\n    \"subject\": \"sell 0.005 shares\",\n    \"messageId\": \"<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>\",\n    \"created\": \"2021-10-14 08:50:10\",\n    \"time\": 1634215809,\n    \"user\": \"mb5658\",\n    \"transtype\": \"ESMTPSA\",\n    \"origin\": \"199.231.189.154\",\n    \"interface\": \"feeder\",\n    \"sendingZone\": \"interserver\",\n    \"bodySize\": 63,\n    \"seq\": 1,\n    \"recipient\": \"client@isp.com\",\n    \"domain\": \"interserver.net\",\n    \"locked\": 1,\n    \"lockTime\": \"1634215818533\",\n    \"assigned\": \"relay1\",\n    \"queued\": \"2021-10-14T12:50:15.487Z\",\n    \"mxHostname\": \"mx.j.is.cc\",\n    \"response\": \"250 2.0.0 Ok queued as C91D83E128C\"\n}]",
-            "items" : {
-              "$ref" : "#/components/schemas/MailLogEntry"
-            },
-            "type" : "array"
-          }
-        },
-        "required" : [ "emails", "limit", "skip", "total" ],
-        "type" : "object"
+      "EmailAddress" : {
+        "description" : "an email address",
+        "example" : "user@domain.com",
+        "type" : "string"
       },
-      "SendMailAdv" : {
-        "description" : "Details for an Email",
-        "example" : {
-          "subject" : "Welcome",
-          "body" : "Hello",
-          "from" : {
-            "email" : "user@domain.com"
-          },
-          "to" : [ {
-            "email" : "someone@client.com",
-            "name" : "Mr Client"
-          } ],
-          "attachments" : [ {
-            "filename" : "file.txt",
-            "data" : "base64_encoded_contents"
-          } ],
-          "id" : 66
-        },
-        "properties" : {
-          "subject" : {
-            "description" : "The subject or title of the email",
-            "example" : "Your Package has been Delivered!",
-            "type" : "string"
-          },
-          "body" : {
-            "description" : "The main email contents.",
-            "example" : "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.",
-            "type" : "string"
-          },
-          "from" : {
-            "$ref" : "#/components/schemas/EmailAddressName"
-          },
-          "to" : {
-            "description" : "A list of destionation email addresses to send this to",
-            "example" : "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]",
-            "items" : {
-              "$ref" : "#/components/schemas/EmailAddressName"
-            },
-            "type" : "array"
-          },
-          "replyto" : {
-            "description" : "(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.",
-            "example" : "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]",
-            "items" : {
-              "$ref" : "#/components/schemas/EmailAddressName"
-            },
-            "type" : "array"
-          },
-          "cc" : {
-            "description" : "(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.",
-            "example" : "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]",
-            "items" : {
-              "$ref" : "#/components/schemas/EmailAddressName"
-            },
-            "type" : "array"
-          },
-          "bcc" : {
-            "description" : "(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.",
-            "example" : "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]",
-            "items" : {
-              "$ref" : "#/components/schemas/EmailAddressName"
-            },
-            "type" : "array"
-          },
-          "attachments" : {
-            "description" : "(optional) File attachments to include in the email.  The file contents must be base64 encoded!",
-            "example" : "[\n        {\n            \"filename\": \"text.txt\",\n            \"data\": \"base64_encoded_contents\"\n        }\n]",
-            "items" : {
-              "$ref" : "#/components/schemas/MailAttachment"
-            },
-            "type" : "array"
-          },
-          "id" : {
-            "description" : "(optional)  ID of the Mail order within our system to use as the Mail Account.",
-            "example" : 5000,
-            "format" : "int64",
-            "type" : "integer"
-          }
-        },
-        "required" : [ "body", "from", "subject", "to" ],
-        "title" : "Email details",
-        "type" : "object"
+      "EmailAddressesTypes" : {
+        "description" : "",
+        "oneOf" : [ {
+          "$ref" : "#/components/schemas/EmailAddress"
+        }, {
+          "$ref" : "#/components/schemas/EmailAddressNames"
+        } ],
+        "title" : "EmailAddressTypes"
       },
-      "EmailAddressName" : {
-        "description" : "An email contact.",
-        "example" : {
-          "email" : "user@domain.com",
-          "name" : "John Smith"
-        },
-        "properties" : {
-          "email" : {
-            "description" : "The email address.",
-            "example" : "user@domain.com",
-            "type" : "string"
-          },
-          "name" : {
-            "description" : "Name to use for the sending contact.",
-            "example" : "John Smith",
-            "type" : "string"
-          }
-        },
-        "required" : [ "email" ],
-        "title" : "Root Type for EmailAddressName",
-        "type" : "object"
-      },
-      "MailAttachment" : {
-        "description" : "(optional) File attachments to include in the email.  The file contents must be base64",
-        "example" : {
-          "filename" : "file.txt",
-          "data" : "base64_encoded_file_contents"
-        },
-        "properties" : {
-          "filename" : {
-            "description" : "The filename of the attached file.",
-            "example" : "message.txt",
-            "type" : "string"
-          },
-          "data" : {
-            "description" : "The file contents base64 encoded",
-            "example" : "aGVsbG8gdGhlcmUK",
-            "type" : "string"
-          }
-        },
-        "required" : [ "data", "filename" ],
-        "title" : "Root Type for MailAttachment",
-        "type" : "object"
-      },
-      "getMailOrders_401_response" : {
-        "properties" : {
-          "code" : {
-            "type" : "string"
-          },
-          "message" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "code", "message" ],
-        "type" : "object"
+      "EmailAddressTypes" : {
+        "description" : "",
+        "oneOf" : [ {
+          "$ref" : "#/components/schemas/EmailAddress"
+        }, {
+          "$ref" : "#/components/schemas/EmailAddressName"
+        } ],
+        "title" : "EmailAddressTypes"
       },
       "getStats_200_response_inner" : {
         "properties" : {
@@ -1594,23 +1782,6 @@
         },
         "required" : [ "id", "status", "username" ],
         "type" : "object"
-      },
-      "DenyRuleRecord_allOf" : {
-        "properties" : {
-          "id" : {
-            "description" : "The deny rule Id number.",
-            "example" : 41124,
-            "type" : "integer"
-          },
-          "created" : {
-            "description" : "the date the rule was created.",
-            "format" : "date-time",
-            "type" : "string"
-          }
-        },
-        "required" : [ "created", "id" ],
-        "type" : "object",
-        "example" : null
       }
     },
     "securitySchemes" : {

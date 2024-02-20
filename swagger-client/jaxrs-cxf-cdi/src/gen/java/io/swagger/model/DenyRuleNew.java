@@ -20,7 +20,7 @@ public class DenyRuleNew   {
 @XmlEnum(String.class)
 public enum TypeEnum {
 
-    @XmlEnumValue("domain") DOMAIN(String.valueOf("domain")), @XmlEnumValue("email") EMAIL(String.valueOf("email")), @XmlEnumValue("startswith") STARTSWITH(String.valueOf("startswith"));
+    @XmlEnumValue("domain") DOMAIN(String.valueOf("domain")), @XmlEnumValue("email") EMAIL(String.valueOf("email")), @XmlEnumValue("startswith") STARTSWITH(String.valueOf("startswith")), @XmlEnumValue("destination") DESTINATION(String.valueOf("destination"));
 
 
     private String value;

@@ -10,7 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { EmailAddressName } from '../models/EmailAddressName';
+import { EmailAddressTypes } from '../models/EmailAddressTypes';
+import { EmailAddressesTypes } from '../models/EmailAddressesTypes';
 import { MailAttachment } from '../models/MailAttachment';
 import { HttpFile } from '../http/http';
 
@@ -26,23 +27,11 @@ export class SendMailAdv {
     * The main email contents.
     */
     'body': string;
-    '_from': EmailAddressName;
-    /**
-    * A list of destionation email addresses to send this to
-    */
-    'to': Array<EmailAddressName>;
-    /**
-    * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-    */
-    'replyto'?: Array<EmailAddressName>;
-    /**
-    * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-    */
-    'cc'?: Array<EmailAddressName>;
-    /**
-    * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-    */
-    'bcc'?: Array<EmailAddressName>;
+    '_from': EmailAddressTypes;
+    'to': EmailAddressesTypes;
+    'replyto'?: EmailAddressesTypes;
+    'cc'?: EmailAddressesTypes;
+    'bcc'?: EmailAddressesTypes;
     /**
     * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
     */
@@ -70,31 +59,31 @@ export class SendMailAdv {
         {
             "name": "_from",
             "baseName": "from",
-            "type": "EmailAddressName",
+            "type": "EmailAddressTypes",
             "format": ""
         },
         {
             "name": "to",
             "baseName": "to",
-            "type": "Array<EmailAddressName>",
+            "type": "EmailAddressesTypes",
             "format": ""
         },
         {
             "name": "replyto",
             "baseName": "replyto",
-            "type": "Array<EmailAddressName>",
+            "type": "EmailAddressesTypes",
             "format": ""
         },
         {
             "name": "cc",
             "baseName": "cc",
-            "type": "Array<EmailAddressName>",
+            "type": "EmailAddressesTypes",
             "format": ""
         },
         {
             "name": "bcc",
             "baseName": "bcc",
-            "type": "Array<EmailAddressName>",
+            "type": "EmailAddressesTypes",
             "format": ""
         },
         {

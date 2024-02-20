@@ -60,5 +60,10 @@ export class DenyRuleNew {
 }
 
 
-export type DenyRuleNewTypeEnum = "domain" | "email" | "startswith" ;
+export enum DenyRuleNewTypeEnum {
+    Domain = 'domain',
+    Email = 'email',
+    Startswith = 'startswith',
+    Destination = 'destination'
+}
 

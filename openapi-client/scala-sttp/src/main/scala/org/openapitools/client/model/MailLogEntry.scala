@@ -13,6 +13,7 @@ package org.openapitools.client.model
 
 
   /**
+   * MailLogEntry
    * An email record
    */
 case class MailLogEntry(
@@ -51,7 +52,7 @@ case class MailLogEntry(
   /* locked status */
   locked: Int,
   /* lock timestamp */
-  lockTime: Int,
+  lockTime: String,
   /* assigned server */
   assigned: String,
   /* queued timestamp */

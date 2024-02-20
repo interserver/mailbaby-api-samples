@@ -300,7 +300,7 @@ case $state in
             "deleteRule[Removes an deny mail rule.]" \
             "delistBlock[Removes an email address from the blocked list]" \
             "getMailBlocks[displays a list of blocked email addresses]" \
-            "getRules[Displays a listing of deny email rules.]"             "getStats[displays a list of blocked email addresses]" \
+            "getRules[Displays a listing of deny email rules.]"             "getStats[Account usage statistics.]" \
             "viewMailLog[displays the mail log]"             "sendAdvMail[Sends an Email with Advanced Options]" \
             "sendMail[Sends an Email]"             "getMailOrders[displays a list of mail service orders]"             "pingServer[Checks if the server is running]" \
 

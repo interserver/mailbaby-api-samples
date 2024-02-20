@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 
 * `startswith` (value: `"startswith"`)
 
+* `destination` (value: `"destination"`)
+
 
 
 

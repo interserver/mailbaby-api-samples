@@ -23,16 +23,16 @@ feature --Access
       -- The subject or title of the email
     body: detachable STRING_32
       -- The main email contents.
-    var_from: detachable EMAIL_ADDRESS_NAME
+    var_from: detachable EMAIL_ADDRESS_TYPES
       
-    to: detachable LIST [EMAIL_ADDRESS_NAME]
-      -- A list of destionation email addresses to send this to
-    replyto: detachable LIST [EMAIL_ADDRESS_NAME]
-      -- (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-    cc: detachable LIST [EMAIL_ADDRESS_NAME]
-      -- (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-    bcc: detachable LIST [EMAIL_ADDRESS_NAME]
-      -- (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+    to: detachable EMAIL_ADDRESSES_TYPES
+      
+    replyto: detachable EMAIL_ADDRESSES_TYPES
+      
+    cc: detachable EMAIL_ADDRESSES_TYPES
+      
+    bcc: detachable EMAIL_ADDRESSES_TYPES
+      
     attachments: detachable LIST [MAIL_ATTACHMENT]
       -- (optional) File attachments to include in the email.  The file contents must be base64 encoded!
  	id: INTEGER_64
@@ -136,32 +136,24 @@ feature -- Change Element
           Result.append ("%N")
         end
         if attached to as l_to then
-          across l_to as ic loop
-            Result.append ("%N to:")
-            Result.append (ic.item.out)
-            Result.append ("%N")
-          end
+          Result.append ("%Nto:")
+          Result.append (l_to.out)
+          Result.append ("%N")
         end
         if attached replyto as l_replyto then
-          across l_replyto as ic loop
-            Result.append ("%N replyto:")
-            Result.append (ic.item.out)
-            Result.append ("%N")
-          end
+          Result.append ("%Nreplyto:")
+          Result.append (l_replyto.out)
+          Result.append ("%N")
         end
         if attached cc as l_cc then
-          across l_cc as ic loop
-            Result.append ("%N cc:")
-            Result.append (ic.item.out)
-            Result.append ("%N")
-          end
+          Result.append ("%Ncc:")
+          Result.append (l_cc.out)
+          Result.append ("%N")
         end
         if attached bcc as l_bcc then
-          across l_bcc as ic loop
-            Result.append ("%N bcc:")
-            Result.append (ic.item.out)
-            Result.append ("%N")
-          end
+          Result.append ("%Nbcc:")
+          Result.append (l_bcc.out)
+          Result.append ("%N")
         end
         if attached attachments as l_attachments then
           across l_attachments as ic loop

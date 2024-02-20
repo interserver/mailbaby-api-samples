@@ -1,5 +1,6 @@
 const utils = require('../utils/utils');
-const EmailAddressName = require('../models/EmailAddressName');
+const EmailAddressTypes = require('../models/EmailAddressTypes');
+const EmailAddressesTypes = require('../models/EmailAddressesTypes');
 const MailAttachment = require('../models/MailAttachment');
 
 module.exports = {
@@ -16,27 +17,11 @@ module.exports = {
                 label: `The main email contents. - [${labelPrefix}body]`,
                 type: 'string',
             },
-            ...EmailAddressName.fields(`${keyPrefix}from`, isInput),
-            {
-                key: `${keyPrefix}to`,
-                label: `[${labelPrefix}to]`,
-                children: EmailAddressName.fields(`${keyPrefix}to${!isInput ? '[]' : ''}`, isInput, true), 
-            },
-            {
-                key: `${keyPrefix}replyto`,
-                label: `[${labelPrefix}replyto]`,
-                children: EmailAddressName.fields(`${keyPrefix}replyto${!isInput ? '[]' : ''}`, isInput, true), 
-            },
-            {
-                key: `${keyPrefix}cc`,
-                label: `[${labelPrefix}cc]`,
-                children: EmailAddressName.fields(`${keyPrefix}cc${!isInput ? '[]' : ''}`, isInput, true), 
-            },
-            {
-                key: `${keyPrefix}bcc`,
-                label: `[${labelPrefix}bcc]`,
-                children: EmailAddressName.fields(`${keyPrefix}bcc${!isInput ? '[]' : ''}`, isInput, true), 
-            },
+            ...EmailAddressTypes.fields(`${keyPrefix}from`, isInput),
+            ...EmailAddressesTypes.fields(`${keyPrefix}to`, isInput),
+            ...EmailAddressesTypes.fields(`${keyPrefix}replyto`, isInput),
+            ...EmailAddressesTypes.fields(`${keyPrefix}cc`, isInput),
+            ...EmailAddressesTypes.fields(`${keyPrefix}bcc`, isInput),
             {
                 key: `${keyPrefix}attachments`,
                 label: `[${labelPrefix}attachments]`,
@@ -54,12 +39,12 @@ module.exports = {
         return {
             'subject': bundle.inputData?.[`${keyPrefix}subject`],
             'body': bundle.inputData?.[`${keyPrefix}body`],
-            'from': utils.removeIfEmpty(EmailAddressName.mapping(bundle, `${keyPrefix}from`)),
-            'to': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}to`]),
-            'replyto': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}replyto`]),
-            'cc': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}cc`]),
-            'bcc': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}bcc`]),
-            'attachments': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}attachments`]),
+            'from': utils.removeIfEmpty(EmailAddressTypes.mapping(bundle, `${keyPrefix}from`)),
+            'to': utils.removeIfEmpty(EmailAddressesTypes.mapping(bundle, `${keyPrefix}to`)),
+            'replyto': utils.removeIfEmpty(EmailAddressesTypes.mapping(bundle, `${keyPrefix}replyto`)),
+            'cc': utils.removeIfEmpty(EmailAddressesTypes.mapping(bundle, `${keyPrefix}cc`)),
+            'bcc': utils.removeIfEmpty(EmailAddressesTypes.mapping(bundle, `${keyPrefix}bcc`)),
+            'attachments': utils.childMapping(bundle.inputData?.[`${keyPrefix}attachments`], `${keyPrefix}attachments`, MailAttachment),
             'id': bundle.inputData?.[`${keyPrefix}id`],
         }
     },

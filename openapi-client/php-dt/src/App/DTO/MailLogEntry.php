@@ -133,8 +133,8 @@ class MailLogEntry
      * lock timestamp
      */
     #[DTA\Data(field: "lockTime")]
-    #[DTA\Validator("Scalar", ["type" => "int"])]
-    public int|null $lock_time = null;
+    #[DTA\Validator("Scalar", ["type" => "string"])]
+    public string|null $lock_time = null;
 
     /**
      * assigned server

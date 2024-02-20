@@ -19,7 +19,7 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { GetMailOrders401Response } from '../model/getMailOrders401Response';
+import { ErrorMessage } from '../model/errorMessage';
 // @ts-ignore
 import { GetStats200ResponseInner } from '../model/getStats200ResponseInner';
 // @ts-ignore
@@ -79,7 +79,7 @@ export class HistoryService {
                 (value as any[]).forEach( elem => httpParams = this.addToHttpParamsRecursive(httpParams, elem, key));
             } else if (value instanceof Date) {
                 if (key != null) {
-                    httpParams = httpParams.append(key, (value as Date).toISOString().substr(0, 10));
+                    httpParams = httpParams.append(key, (value as Date).toISOString().substring(0, 10));
                 } else {
                    throw Error("key may not be null if value is Date");
                 }
@@ -96,7 +96,8 @@ export class HistoryService {
     }
 
     /**
-     * displays a list of blocked email addresses
+     * Account usage statistics.
+     * Returns information about the usage on your mail accounts.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */

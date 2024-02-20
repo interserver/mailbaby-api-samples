@@ -198,7 +198,7 @@ $apiInstance = new Interserver\Mailbaby\Api\BlockingApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Interserver\Mailbaby\Model\EmailAddress(); // \Interserver\Mailbaby\Model\EmailAddress | 
+$body = "{   \"value\" : {     \"email\" : \"client@domain.com\"   } }"; // string | 
 
 try {
     $result = $apiInstance->delistBlock($body);
@@ -213,61 +213,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Interserver\Mailbaby\Model\EmailAddress**](../Model/EmailAddress.md)|  |
-
-### Return type
-
-[**\Interserver\Mailbaby\Model\GenericResponse**](../Model/GenericResponse.md)
-
-### Authorization
-
-[apiKeyAuth](../../README.md#apiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, multipart/form-data
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-# **delistBlock**
-> \Interserver\Mailbaby\Model\GenericResponse delistBlock($email)
-
-Removes an email address from the blocked list
-
-Removes an email address from the various block lists.
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-// Configure API key authorization: apiKeyAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-$apiInstance = new Interserver\Mailbaby\Api\BlockingApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$email = "email_example"; // string | 
-
-try {
-    $result = $apiInstance->delistBlock($email);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling BlockingApi->delistBlock: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **string**|  |
+ **body** | [**string**](../Model/string.md)|  |
 
 ### Return type
 

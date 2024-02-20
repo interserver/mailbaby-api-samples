@@ -17,7 +17,9 @@ void main() {
   // final instance = HistoryApi();
 
   group('tests for HistoryApi', () {
-    // displays a list of blocked email addresses
+    // Account usage statistics.
+    //
+    // Returns information about the usage on your mail accounts.
     //
     //Future<List<GetStats200ResponseInner>> getStats() async
     test('test getStats', () async {

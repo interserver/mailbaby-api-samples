@@ -3,22 +3,6 @@ Protected Class DenyRuleRecord
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The deny rule Id number.
-		#tag EndNote
-		id As Integer
-	#tag EndProperty
-
-
-	#tag Property, Flags = &h0
-		#tag Note
-			the date the rule was created.
-		#tag EndNote
-		created As Date
-	#tag EndProperty
-
-
-	#tag Property, Flags = &h0
-		#tag Note
 			The type of deny rule.
 		#tag EndNote
 		type As String
@@ -35,6 +19,22 @@ Protected Class DenyRuleRecord
 
 	#tag Property, Flags = &h0
 		#tag Note
+			The deny rule Id number.
+		#tag EndNote
+		id As String
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			the date the rule was created.
+		#tag EndNote
+		created As Date
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
 			Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
 		#tag EndNote
 		user As Xoson.O.OptionalString
@@ -46,6 +46,7 @@ Protected Class DenyRuleRecord
         Domain
         Email
         Startswith
+        Destination
 		
 	#tag EndEnum
 
@@ -60,6 +61,8 @@ Protected Class DenyRuleRecord
 		      Return "email"
 		    Case TypeEnum.Startswith
 		      Return "startswith"
+		    Case TypeEnum.Destination
+		      Return "destination"
 		    
 		  End Select
 		  Return ""
@@ -101,11 +104,19 @@ Protected Class DenyRuleRecord
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="data"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="id"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Integer"
+			Type="String"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -114,14 +125,6 @@ Protected Class DenyRuleRecord
 			Group="Behavior"
 			InitialValue=""
 			Type="Date"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="data"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

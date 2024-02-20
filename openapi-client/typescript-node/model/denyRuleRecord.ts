@@ -17,14 +17,6 @@ import { RequestFile } from './models';
 */
 export class DenyRuleRecord {
     /**
-    * The deny rule Id number.
-    */
-    'id': number;
-    /**
-    * the date the rule was created.
-    */
-    'created': Date;
-    /**
     * The type of deny rule.
     */
     'type': DenyRuleRecord.TypeEnum;
@@ -32,6 +24,14 @@ export class DenyRuleRecord {
     * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
     */
     'data': string;
+    /**
+    * The deny rule Id number.
+    */
+    'id': string;
+    /**
+    * the date the rule was created.
+    */
+    'created': Date;
     /**
     * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
     */
@@ -41,16 +41,6 @@ export class DenyRuleRecord {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "id",
-            "baseName": "id",
-            "type": "number"
-        },
-        {
-            "name": "created",
-            "baseName": "created",
-            "type": "Date"
-        },
-        {
             "name": "type",
             "baseName": "type",
             "type": "DenyRuleRecord.TypeEnum"
@@ -59,6 +49,16 @@ export class DenyRuleRecord {
             "name": "data",
             "baseName": "data",
             "type": "string"
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string"
+        },
+        {
+            "name": "created",
+            "baseName": "created",
+            "type": "Date"
         },
         {
             "name": "user",
@@ -75,6 +75,7 @@ export namespace DenyRuleRecord {
     export enum TypeEnum {
         Domain = <any> 'domain',
         Email = <any> 'email',
-        Startswith = <any> 'startswith'
+        Startswith = <any> 'startswith',
+        Destination = <any> 'destination'
     }
 }

@@ -56,11 +56,13 @@ set(SRCS
     model/object.c
     model/deny_rule_new.c
     model/deny_rule_record.c
-    model/deny_rule_record_all_of.c
-    model/email_address.c
+    model/email_address_name.c
+    model/email_address_types.c
+    model/email_addresses_types.c
+    model/error_message.c
     model/generic_response.c
-    model/get_mail_orders_401_response.c
     model/get_stats_200_response_inner.c
+    model/mail_attachment.c
     model/mail_block_click_house.c
     model/mail_block_rspamd.c
     model/mail_blocks.c
@@ -86,11 +88,13 @@ set(HDRS
     model/object.h
     model/deny_rule_new.h
     model/deny_rule_record.h
-    model/deny_rule_record_all_of.h
-    model/email_address.h
+    model/email_address_name.h
+    model/email_address_types.h
+    model/email_addresses_types.h
+    model/error_message.h
     model/generic_response.h
-    model/get_mail_orders_401_response.h
     model/get_stats_200_response_inner.h
+    model/mail_attachment.h
     model/mail_block_click_house.h
     model/mail_block_rspamd.h
     model/mail_blocks.h

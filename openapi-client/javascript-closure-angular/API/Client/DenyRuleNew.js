@@ -32,4 +32,5 @@ API.Client.DenyRuleNew.TypeEnum = {
   domain: 'domain',
   email: 'email',
   startswith: 'startswith',
+  destination: 'destination',
 }

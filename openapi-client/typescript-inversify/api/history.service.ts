@@ -20,7 +20,7 @@ import { IAPIConfiguration } from '../IAPIConfiguration';
 import { Headers } from '../Headers';
 import HttpResponse from '../HttpResponse';
 
-import { GetMailOrders401Response } from '../model/getMailOrders401Response';
+import { ErrorMessage } from '../model/errorMessage';
 import { GetStats200ResponseInner } from '../model/getStats200ResponseInner';
 import { MailLog } from '../model/mailLog';
 
@@ -39,8 +39,8 @@ export class HistoryService {
     }
 
     /**
-     * displays a list of blocked email addresses
-     * 
+     * Account usage statistics.
+     * Returns information about the usage on your mail accounts.
      
      */
     public getStats(observe?: 'body', headers?: Headers): Observable<Array<GetStats200ResponseInner>>;

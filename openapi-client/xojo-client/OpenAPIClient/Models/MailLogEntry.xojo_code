@@ -141,7 +141,7 @@ Protected Class MailLogEntry
 		#tag Note
 			lock timestamp
 		#tag EndNote
-		lockTime As Integer
+		lockTime As String
 	#tag EndProperty
 
 
@@ -362,7 +362,7 @@ Protected Class MailLogEntry
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Integer"
+			Type="String"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

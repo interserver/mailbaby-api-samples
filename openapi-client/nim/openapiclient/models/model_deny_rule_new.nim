@@ -15,6 +15,7 @@ type `Type`* {.pure.} = enum
   Domain
   Email
   Startswith
+  Destination
 
 type DenyRuleNew* = object
   ## The data for a email deny rule record.
@@ -27,6 +28,7 @@ func `%`*(v: `Type`): JsonNode =
     of `Type`.Domain: "domain"
     of `Type`.Email: "email"
     of `Type`.Startswith: "startswith"
+    of `Type`.Destination: "destination"
 
   JsonNode(kind: JString, str: str)
 
@@ -35,3 +37,4 @@ func `$`*(v: `Type`): string =
     of `Type`.Domain: "domain"
     of `Type`.Email: "email"
     of `Type`.Startswith: "startswith"
+    of `Type`.Destination: "destination"

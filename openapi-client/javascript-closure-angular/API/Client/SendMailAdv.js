@@ -21,35 +21,31 @@ API.Client.SendMailAdv.prototype.subject;
 API.Client.SendMailAdv.prototype.body;
 
 /**
- * @type {!API.Client.EmailAddressName}
+ * @type {!API.Client.EmailAddressTypes}
  * @export
  */
 API.Client.SendMailAdv.prototype.from;
 
 /**
- * A list of destionation email addresses to send this to
- * @type {!Array<!API.Client.EmailAddressName>}
+ * @type {!API.Client.EmailAddressesTypes}
  * @export
  */
 API.Client.SendMailAdv.prototype.to;
 
 /**
- * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
- * @type {!Array<!API.Client.EmailAddressName>}
+ * @type {!API.Client.EmailAddressesTypes}
  * @export
  */
 API.Client.SendMailAdv.prototype.replyto;
 
 /**
- * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
- * @type {!Array<!API.Client.EmailAddressName>}
+ * @type {!API.Client.EmailAddressesTypes}
  * @export
  */
 API.Client.SendMailAdv.prototype.cc;
 
 /**
- * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
- * @type {!Array<!API.Client.EmailAddressName>}
+ * @type {!API.Client.EmailAddressesTypes}
  * @export
  */
 API.Client.SendMailAdv.prototype.bcc;

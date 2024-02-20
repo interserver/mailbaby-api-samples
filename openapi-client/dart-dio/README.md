@@ -61,7 +61,7 @@ final String user = user_example; // String | Mail account username that will be
 try {
     final response = await api.addRule(type, data, user);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print("Exception when calling BlockingApi->addRule: $e\n");
 }
 
@@ -78,7 +78,7 @@ Class | Method | HTTP request | Description
 [*BlockingApi*](doc/BlockingApi.md) | [**delistBlock**](doc/BlockingApi.md#delistblock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
 [*BlockingApi*](doc/BlockingApi.md) | [**getMailBlocks**](doc/BlockingApi.md#getmailblocks) | **GET** /mail/blocks | displays a list of blocked email addresses
 [*BlockingApi*](doc/BlockingApi.md) | [**getRules**](doc/BlockingApi.md#getrules) | **GET** /mail/rules | Displays a listing of deny email rules.
-[*HistoryApi*](doc/HistoryApi.md) | [**getStats**](doc/HistoryApi.md#getstats) | **GET** /mail/stats | displays a list of blocked email addresses
+[*HistoryApi*](doc/HistoryApi.md) | [**getStats**](doc/HistoryApi.md#getstats) | **GET** /mail/stats | Account usage statistics.
 [*HistoryApi*](doc/HistoryApi.md) | [**viewMailLog**](doc/HistoryApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
 [*SendingApi*](doc/SendingApi.md) | [**sendAdvMail**](doc/SendingApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [*SendingApi*](doc/SendingApi.md) | [**sendMail**](doc/SendingApi.md#sendmail) | **POST** /mail/send | Sends an Email
@@ -90,11 +90,13 @@ Class | Method | HTTP request | Description
 
  - [DenyRuleNew](doc/DenyRuleNew.md)
  - [DenyRuleRecord](doc/DenyRuleRecord.md)
- - [DenyRuleRecordAllOf](doc/DenyRuleRecordAllOf.md)
- - [EmailAddress](doc/EmailAddress.md)
+ - [EmailAddressName](doc/EmailAddressName.md)
+ - [EmailAddressTypes](doc/EmailAddressTypes.md)
+ - [EmailAddressesTypes](doc/EmailAddressesTypes.md)
+ - [ErrorMessage](doc/ErrorMessage.md)
  - [GenericResponse](doc/GenericResponse.md)
- - [GetMailOrders401Response](doc/GetMailOrders401Response.md)
  - [GetStats200ResponseInner](doc/GetStats200ResponseInner.md)
+ - [MailAttachment](doc/MailAttachment.md)
  - [MailBlockClickHouse](doc/MailBlockClickHouse.md)
  - [MailBlockRspamd](doc/MailBlockRspamd.md)
  - [MailBlocks](doc/MailBlocks.md)

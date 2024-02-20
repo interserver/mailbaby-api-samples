@@ -9,9 +9,10 @@ import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/api_util.dart';
-import 'package:openapi/src/model/email_address_name.dart';
+import 'package:openapi/src/model/email_address_types.dart';
+import 'package:openapi/src/model/email_addresses_types.dart';
+import 'package:openapi/src/model/error_message.dart';
 import 'package:openapi/src/model/generic_response.dart';
-import 'package:openapi/src/model/get_mail_orders401_response.dart';
 import 'package:openapi/src/model/mail_attachment.dart';
 
 class SendingApi {
@@ -23,16 +24,16 @@ class SendingApi {
   const SendingApi(this._dio, this._serializers);
 
   /// Sends an Email with Advanced Options
-  /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+  /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header &#39;Accept: application/json&#39; \\ --header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\ --header &#39;X-API-KEY: YOUR_API_KEY&#39; \\ --data &#39;subject&#x3D;Welcome&#39; \\ --data &#39;body&#x3D;Hello&#39; \\ --data from&#x3D;user@domain.com \\ --data to&#x3D;support@interserver.net &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header &#39;Accept: application/json&#39; \\ --header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\ --header &#39;X-API-KEY: YOUR_API_KEY&#39; \\ --data &#39;subject&#x3D;Welcome&#39; \\ --data &#39;body&#x3D;Hello&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to[0][name]&#x3D;Joe\&quot; \\ --data \&quot;to[0][email]&#x3D;support@interserver.net\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header &#39;Accept: application/json&#39; \\ --header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\ --header &#39;X-API-KEY: YOUR_API_KEY&#39; \\ --data &#39;subject&#x3D;Welcome&#39; \\ --data &#39;body&#x3D;Hello&#39; \\ --data from&#x3D;\&quot;Joe &lt;user@domain.com&gt;\&quot; \\ --data to&#x3D;\&quot;Joe &lt;support@interserver.net&gt;\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header &#39;Accept: application/json&#39; \\ --header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\ --header &#39;X-API-KEY: YOUR_API_KEY&#39; \\ --data &#39;subject&#x3D;Welcome&#39; \\ --data &#39;body&#x3D;Hello&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to&#x3D;support@interserver.net, support@interserver.net\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header &#39;Accept: application/json&#39; \\ --header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\ --header &#39;X-API-KEY: YOUR_API_KEY&#39; \\ --data &#39;subject&#x3D;Welcome&#39; \\ --data &#39;body&#x3D;Hello&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to&#x3D;Joe &lt;support@interserver.net&gt;, Joe &lt;support@interserver.net&gt;\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header &#39;Accept: application/json&#39; \\ --header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\ --header &#39;X-API-KEY: YOUR_API_KEY&#39; \\ --data &#39;subject&#x3D;Welcome&#39; \\ --data &#39;body&#x3D;Hello&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to[0][name]&#x3D;Joe\&quot; \\ --data \&quot;to[0][email]&#x3D;support@interserver.net\&quot; \\ --data \&quot;to[1][name]&#x3D;Joe\&quot; \\ --data \&quot;to[1][email]&#x3D;support@interserver.net\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header &#39;Accept: application/json&#39; \\ --header &#39;Content-Type: application/json&#39; \\ --header &#39;X-API-KEY: YOUR_API_KEY&#39; \\ --data &#39;{ \&quot;subject\&quot;: \&quot;Welcome\&quot;, \&quot;body\&quot;: \&quot;Hello\&quot;, \&quot;from\&quot;: \&quot;user@domain.com\&quot;, \&quot;to\&quot;: \&quot;support@interserver.net\&quot; }&#39; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header &#39;Accept: application/json&#39; \\ --header &#39;Content-Type: application/json&#39; \\ --header &#39;X-API-KEY: YOUR_API_KEY&#39; \\ --data &#39;{ \&quot;subject\&quot;: \&quot;Welcome\&quot;, \&quot;body\&quot;: \&quot;Hello\&quot;, \&quot;from\&quot;: {\&quot;name\&quot;: \&quot;Joe\&quot;, \&quot;email\&quot;: \&quot;user@domain.com\&quot;}, \&quot;to\&quot;: [{\&quot;name\&quot;: \&quot;Joe\&quot;, \&quot;email\&quot;: \&quot;support@interserver.net\&quot;}] }&#39; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header &#39;Accept: application/json&#39; \\ --header &#39;Content-Type: application/json&#39; \\ --header &#39;X-API-KEY: YOUR_API_KEY&#39; \\ --data &#39;{ \&quot;subject\&quot;: \&quot;Welcome\&quot;, \&quot;body\&quot;: \&quot;Hello\&quot;, \&quot;from\&quot;: \&quot;Joe &lt;user@domain.com&gt;\&quot;, \&quot;to\&quot;: \&quot;Joe &lt;support@interserver.net&gt;\&quot; }&#39; &#x60;&#x60;&#x60; 
   ///
   /// Parameters:
   /// * [subject] - The subject or title of the email
   /// * [body] - The main email contents.
   /// * [from] 
-  /// * [to] - A list of destionation email addresses to send this to
-  /// * [replyto] - (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-  /// * [cc] - (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-  /// * [bcc] - (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+  /// * [to] 
+  /// * [replyto] 
+  /// * [cc] 
+  /// * [bcc] 
   /// * [attachments] - (optional) File attachments to include in the email.  The file contents must be base64 encoded!
   /// * [id] - (optional)  ID of the Mail order within our system to use as the Mail Account.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -43,15 +44,15 @@ class SendingApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [GenericResponse] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<GenericResponse>> sendAdvMail({ 
     required String subject,
     required String body,
-    required EmailAddressName from,
-    required BuiltList<EmailAddressName> to,
-    BuiltList<EmailAddressName>? replyto,
-    BuiltList<EmailAddressName>? cc,
-    BuiltList<EmailAddressName>? bcc,
+    required EmailAddressTypes from,
+    required EmailAddressesTypes to,
+    EmailAddressesTypes? replyto,
+    EmailAddressesTypes? cc,
+    EmailAddressesTypes? bcc,
     BuiltList<MailAttachment>? attachments,
     int? id,
     CancelToken? cancelToken,
@@ -88,22 +89,22 @@ class SendingApi {
       _bodyData = <String, dynamic>{
         r'subject': encodeQueryParameter(_serializers, subject, const FullType(String)),
         r'body': encodeQueryParameter(_serializers, body, const FullType(String)),
-        r'from': encodeQueryParameter(_serializers, from, const FullType(EmailAddressName)),
-        r'to': encodeCollectionQueryParameter<EmailAddressName>(_serializers, to, const FullType(BuiltList, [FullType(EmailAddressName)]), format: ListFormat.csv,),
-        if (replyto != null) r'replyto': encodeCollectionQueryParameter<EmailAddressName>(_serializers, replyto, const FullType(BuiltList, [FullType(EmailAddressName)]), format: ListFormat.csv,),
-        if (cc != null) r'cc': encodeCollectionQueryParameter<EmailAddressName>(_serializers, cc, const FullType(BuiltList, [FullType(EmailAddressName)]), format: ListFormat.csv,),
-        if (bcc != null) r'bcc': encodeCollectionQueryParameter<EmailAddressName>(_serializers, bcc, const FullType(BuiltList, [FullType(EmailAddressName)]), format: ListFormat.csv,),
+        r'from': encodeQueryParameter(_serializers, from, const FullType(EmailAddressTypes)),
+        r'to': encodeQueryParameter(_serializers, to, const FullType(EmailAddressesTypes)),
+        if (replyto != null) r'replyto': encodeQueryParameter(_serializers, replyto, const FullType(EmailAddressesTypes)),
+        if (cc != null) r'cc': encodeQueryParameter(_serializers, cc, const FullType(EmailAddressesTypes)),
+        if (bcc != null) r'bcc': encodeQueryParameter(_serializers, bcc, const FullType(EmailAddressesTypes)),
         if (attachments != null) r'attachments': encodeCollectionQueryParameter<MailAttachment>(_serializers, attachments, const FullType(BuiltList, [FullType(MailAttachment)]), format: ListFormat.csv,),
         if (id != null) r'id': encodeQueryParameter(_serializers, id, const FullType(int)),
       };
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -128,10 +129,10 @@ class SendingApi {
       ) as GenericResponse;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -165,7 +166,7 @@ class SendingApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [GenericResponse] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<GenericResponse>> sendMail({ 
     required String to,
     required String from,
@@ -210,12 +211,12 @@ class SendingApi {
       };
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -240,10 +241,10 @@ class SendingApi {
       ) as GenericResponse;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );

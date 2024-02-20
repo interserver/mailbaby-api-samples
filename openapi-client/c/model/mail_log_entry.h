@@ -36,7 +36,7 @@ typedef struct mail_log_entry_t {
     char *recipient; // string
     char *domain; // string
     int locked; //numeric
-    int lock_time; //numeric
+    char *lock_time; // string
     char *assigned; // string
     char *queued; // string
     char *mx_hostname; // string
@@ -63,7 +63,7 @@ mail_log_entry_t *mail_log_entry_create(
     char *recipient,
     char *domain,
     int locked,
-    int lock_time,
+    char *lock_time,
     char *assigned,
     char *queued,
     char *mx_hostname,

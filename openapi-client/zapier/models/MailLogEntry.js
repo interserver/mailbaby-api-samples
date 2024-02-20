@@ -92,7 +92,7 @@ module.exports = {
             {
                 key: `${keyPrefix}lockTime`,
                 label: `lock timestamp - [${labelPrefix}lockTime]`,
-                type: 'integer',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}assigned`,

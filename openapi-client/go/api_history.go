@@ -20,12 +20,12 @@ import (
 )
 
 
-// HistoryApiService HistoryApi service
-type HistoryApiService service
+// HistoryAPIService HistoryAPI service
+type HistoryAPIService service
 
 type ApiGetStatsRequest struct {
 	ctx context.Context
-	ApiService *HistoryApiService
+	ApiService *HistoryAPIService
 }
 
 func (r ApiGetStatsRequest) Execute() ([]GetStats200ResponseInner, *http.Response, error) {
@@ -33,12 +33,14 @@ func (r ApiGetStatsRequest) Execute() ([]GetStats200ResponseInner, *http.Respons
 }
 
 /*
-GetStats displays a list of blocked email addresses
+GetStats Account usage statistics.
+
+Returns information about the usage on your mail accounts.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetStatsRequest
 */
-func (a *HistoryApiService) GetStats(ctx context.Context) ApiGetStatsRequest {
+func (a *HistoryAPIService) GetStats(ctx context.Context) ApiGetStatsRequest {
 	return ApiGetStatsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -47,7 +49,7 @@ func (a *HistoryApiService) GetStats(ctx context.Context) ApiGetStatsRequest {
 
 // Execute executes the request
 //  @return []GetStats200ResponseInner
-func (a *HistoryApiService) GetStatsExecute(r ApiGetStatsRequest) ([]GetStats200ResponseInner, *http.Response, error) {
+func (a *HistoryAPIService) GetStatsExecute(r ApiGetStatsRequest) ([]GetStats200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -55,7 +57,7 @@ func (a *HistoryApiService) GetStatsExecute(r ApiGetStatsRequest) ([]GetStats200
 		localVarReturnValue  []GetStats200ResponseInner
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryApiService.GetStats")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.GetStats")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -120,7 +122,7 @@ func (a *HistoryApiService) GetStatsExecute(r ApiGetStatsRequest) ([]GetStats200
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -131,7 +133,7 @@ func (a *HistoryApiService) GetStatsExecute(r ApiGetStatsRequest) ([]GetStats200
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -157,7 +159,7 @@ func (a *HistoryApiService) GetStatsExecute(r ApiGetStatsRequest) ([]GetStats200
 
 type ApiViewMailLogRequest struct {
 	ctx context.Context
-	ApiService *HistoryApiService
+	ApiService *HistoryAPIService
 	id *int64
 	origin *string
 	mx *string
@@ -250,7 +252,7 @@ Get a listing of the emails sent through this system
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiViewMailLogRequest
 */
-func (a *HistoryApiService) ViewMailLog(ctx context.Context) ApiViewMailLogRequest {
+func (a *HistoryAPIService) ViewMailLog(ctx context.Context) ApiViewMailLogRequest {
 	return ApiViewMailLogRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -259,7 +261,7 @@ func (a *HistoryApiService) ViewMailLog(ctx context.Context) ApiViewMailLogReque
 
 // Execute executes the request
 //  @return MailLog
-func (a *HistoryApiService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLog, *http.Response, error) {
+func (a *HistoryAPIService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLog, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -267,7 +269,7 @@ func (a *HistoryApiService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLo
 		localVarReturnValue  *MailLog
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryApiService.ViewMailLog")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.ViewMailLog")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -301,9 +303,15 @@ func (a *HistoryApiService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLo
 	}
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+	} else {
+		var defaultValue int32 = 100
+		r.limit = &defaultValue
 	}
 	if r.startDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "startDate", r.startDate, "")

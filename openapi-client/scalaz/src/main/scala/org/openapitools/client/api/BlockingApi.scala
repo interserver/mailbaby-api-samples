@@ -22,9 +22,8 @@ import scalaz.concurrent.Task
 import HelperCodecs._
 
 import org.openapitools.client.api.DenyRuleRecord
-import org.openapitools.client.api.EmailAddress
+import org.openapitools.client.api.ErrorMessage
 import org.openapitools.client.api.GenericResponse
-import org.openapitools.client.api.GetMailOrders401Response
 import org.openapitools.client.api.MailBlocks
 
 object BlockingApi {
@@ -75,7 +74,7 @@ object BlockingApi {
     } yield resp
   }
 
-  def delistBlock(host: String, emailAddress: EmailAddress): Task[GenericResponse] = {
+  def delistBlock(host: String, body: String): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/blocks/delete"
@@ -90,7 +89,7 @@ object BlockingApi {
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
       uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(emailAddress)
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(body)
       resp          <- client.expect[GenericResponse](req)
 
     } yield resp
@@ -187,7 +186,7 @@ class HttpServiceBlockingApi(service: HttpService) {
     } yield resp
   }
 
-  def delistBlock(emailAddress: EmailAddress): Task[GenericResponse] = {
+  def delistBlock(body: String): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/blocks/delete"
@@ -202,7 +201,7 @@ class HttpServiceBlockingApi(service: HttpService) {
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))
       uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(emailAddress)
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(body)
       resp          <- client.expect[GenericResponse](req)
 
     } yield resp

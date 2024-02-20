@@ -26,7 +26,8 @@ var (
 
 type HistoryApiService service
 /*
-HistoryApiService displays a list of blocked email addresses
+HistoryApiService Account usage statistics.
+Returns information about the usage on your mail accounts.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return []InlineResponse200
 */
@@ -116,7 +117,7 @@ func (a *HistoryApiService) GetStats(ctx context.Context) ([]InlineResponse200, 
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 401 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -126,7 +127,7 @@ func (a *HistoryApiService) GetStats(ctx context.Context) ([]InlineResponse200, 
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 404 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()

@@ -1,7 +1,7 @@
 package io.swagger.api;
 
+import io.swagger.model.ErrorMessage;
 import io.swagger.model.InlineResponse200;
-import io.swagger.model.InlineResponse401;
 import io.swagger.model.MailLog;
 
 import java.io.InputStream;
@@ -30,17 +30,19 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public interface HistoryApi  {
 
     /**
-     * displays a list of blocked email addresses
+     * Account usage statistics.
+     *
+     * Returns information about the usage on your mail accounts.
      *
      */
     @GET
     @Path("/mail/stats")
     @Produces({ "application/json" })
-    @Operation(summary = "displays a list of blocked email addresses", tags={  })
+    @Operation(summary = "Account usage statistics.", tags={  })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = InlineResponse200.class)))),
-        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = InlineResponse401.class))),
-        @ApiResponse(responseCode = "404", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = InlineResponse401.class))) })
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        @ApiResponse(responseCode = "404", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
     public List<InlineResponse200> getStats();
 
     /**

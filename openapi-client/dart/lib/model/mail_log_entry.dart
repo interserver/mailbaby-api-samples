@@ -90,7 +90,7 @@ class MailLogEntry {
   int locked;
 
   /// lock timestamp
-  int lockTime;
+  String lockTime;
 
   /// assigned server
   String assigned;
@@ -115,29 +115,29 @@ class MailLogEntry {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is MailLogEntry &&
-     other.id == id &&
-     other.id == id &&
-     other.from == from &&
-     other.to == to &&
-     other.subject == subject &&
-     other.created == created &&
-     other.time == time &&
-     other.user == user &&
-     other.transtype == transtype &&
-     other.origin == origin &&
-     other.interface_ == interface_ &&
-     other.sendingZone == sendingZone &&
-     other.bodySize == bodySize &&
-     other.seq == seq &&
-     other.recipient == recipient &&
-     other.domain == domain &&
-     other.locked == locked &&
-     other.lockTime == lockTime &&
-     other.assigned == assigned &&
-     other.queued == queued &&
-     other.mxHostname == mxHostname &&
-     other.response == response &&
-     other.messageId == messageId;
+    other.id == id &&
+    other.id == id &&
+    other.from == from &&
+    other.to == to &&
+    other.subject == subject &&
+    other.created == created &&
+    other.time == time &&
+    other.user == user &&
+    other.transtype == transtype &&
+    other.origin == origin &&
+    other.interface_ == interface_ &&
+    other.sendingZone == sendingZone &&
+    other.bodySize == bodySize &&
+    other.seq == seq &&
+    other.recipient == recipient &&
+    other.domain == domain &&
+    other.locked == locked &&
+    other.lockTime == lockTime &&
+    other.assigned == assigned &&
+    other.queued == queued &&
+    other.mxHostname == mxHostname &&
+    other.response == response &&
+    other.messageId == messageId;
 
   @override
   int get hashCode =>
@@ -237,7 +237,7 @@ class MailLogEntry {
         recipient: mapValueOfType<String>(json, r'recipient')!,
         domain: mapValueOfType<String>(json, r'domain')!,
         locked: mapValueOfType<int>(json, r'locked')!,
-        lockTime: mapValueOfType<int>(json, r'lockTime')!,
+        lockTime: mapValueOfType<String>(json, r'lockTime')!,
         assigned: mapValueOfType<String>(json, r'assigned')!,
         queued: mapValueOfType<String>(json, r'queued')!,
         mxHostname: mapValueOfType<String>(json, r'mxHostname')!,

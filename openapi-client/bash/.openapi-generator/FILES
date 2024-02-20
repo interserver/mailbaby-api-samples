@@ -7,12 +7,14 @@ client.sh.bash-completion
 docs/BlockingApi.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
-docs/DenyRuleRecordAllOf.md
-docs/EmailAddress.md
+docs/EmailAddressName.md
+docs/EmailAddressTypes.md
+docs/EmailAddressesTypes.md
+docs/ErrorMessage.md
 docs/GenericResponse.md
-docs/GetMailOrders401Response.md
 docs/GetStats200ResponseInner.md
 docs/HistoryApi.md
+docs/MailAttachment.md
 docs/MailBlockClickHouse.md
 docs/MailBlockRspamd.md
 docs/MailBlocks.md

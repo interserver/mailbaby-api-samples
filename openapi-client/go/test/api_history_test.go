@@ -1,7 +1,7 @@
 /*
 MailBaby Email Delivery and Management Service API
 
-Testing HistoryApiService
+Testing HistoryAPIService
 
 */
 
@@ -17,16 +17,16 @@ import (
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
-func Test_openapi_HistoryApiService(t *testing.T) {
+func Test_openapi_HistoryAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test HistoryApiService GetStats", func(t *testing.T) {
+	t.Run("Test HistoryAPIService GetStats", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.HistoryApi.GetStats(context.Background()).Execute()
+		resp, httpRes, err := apiClient.HistoryAPI.GetStats(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,11 +34,11 @@ func Test_openapi_HistoryApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test HistoryApiService ViewMailLog", func(t *testing.T) {
+	t.Run("Test HistoryAPIService ViewMailLog", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.HistoryApi.ViewMailLog(context.Background()).Execute()
+		resp, httpRes, err := apiClient.HistoryAPI.ViewMailLog(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

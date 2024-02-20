@@ -20,7 +20,7 @@
 | **recipient** | **String** | to address this email is being sent to | [default to null] |
 | **domain** | **String** | to address domain | [default to null] |
 | **locked** | **Integer** | locked status | [default to null] |
-| **lockTime** | **Integer** | lock timestamp | [default to null] |
+| **lockTime** | **String** | lock timestamp | [default to null] |
 | **assigned** | **String** | assigned server | [default to null] |
 | **queued** | **String** | queued timestamp | [default to null] |
 | **mxHostname** | **String** | mx hostname | [default to null] |

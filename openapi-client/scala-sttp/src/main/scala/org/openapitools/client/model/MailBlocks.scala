@@ -13,7 +13,7 @@ package org.openapitools.client.model
 
 
   /**
-   * Root Type for MailBlocks
+   * MailBlocks
    * The listing of blocked emails.
    */
 case class MailBlocks(

@@ -1,4 +1,4 @@
-# PSOpenAPITools.PSOpenAPITools/Api.SendingApi
+# PSOpenAPITools.PSOpenAPITools\Api.SendingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -14,16 +14,16 @@ Method | HTTP request | Description
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Subject] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Body] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <PSCustomObject><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-To] <PSCustomObject[]><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Replyto] <PSCustomObject[]><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Cc] <PSCustomObject[]><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Bcc] <PSCustomObject[]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-To] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Replyto] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Cc] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Bcc] <PSCustomObject><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Attachments] <PSCustomObject[]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <System.Nullable[Int64]><br>
 
 Sends an Email with Advanced Options
 
-Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=user@domain.com \ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=user@domain.com \ --data ""to[0][name]=Joe"" \ --data ""to[0][email]=support@interserver.net"" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=""Joe <user@domain.com>"" \ --data to=""Joe <support@interserver.net>"" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=user@domain.com \ --data ""to=support@interserver.net, support@interserver.net"" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=user@domain.com \ --data ""to=Joe <support@interserver.net>, Joe <support@interserver.net>"" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=user@domain.com \ --data ""to[0][name]=Joe"" \ --data ""to[0][email]=support@interserver.net"" \ --data ""to[1][name]=Joe"" \ --data ""to[1][email]=support@interserver.net"" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/json' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data '{ ""subject"": ""Welcome"", ""body"": ""Hello"", ""from"": ""user@domain.com"", ""to"": ""support@interserver.net"" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/json' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data '{ ""subject"": ""Welcome"", ""body"": ""Hello"", ""from"": {""name"": ""Joe"", ""email"": ""user@domain.com""}, ""to"": [{""name"": ""Joe"", ""email"": ""support@interserver.net""}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/json' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data '{ ""subject"": ""Welcome"", ""body"": ""Hello"", ""from"": ""Joe <user@domain.com>"", ""to"": ""Joe <support@interserver.net>"" }' ``` 
 
 ### Example
 ```powershell
@@ -36,12 +36,12 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 
 $Subject = "MySubject" # String | The subject or title of the email
 $Body = "MyBody" # String | The main email contents.
- # EmailAddressName | 
- # EmailAddressName[] | A list of destionation email addresses to send this to
- # EmailAddressName[] | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. (optional)
- # EmailAddressName[] | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. (optional)
- # EmailAddressName[] | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. (optional)
- # MailAttachment[] | (optional) File attachments to include in the email.  The file contents must be base64 encoded! (optional)
+$EmailAddressTypes = Initialize-EmailAddressTypes -Email "user@domain.com" -Name "John Smith" # EmailAddressTypes | 
+$EmailAddressesTypes = Initialize-EmailAddressesTypes # EmailAddressesTypes | 
+ # EmailAddressesTypes |  (optional)
+ # EmailAddressesTypes |  (optional)
+ # EmailAddressesTypes |  (optional)
+$MailAttachment = Initialize-MailAttachment -Filename "message.txt" -VarData "aGVsbG8gdGhlcmUK" # MailAttachment[] | (optional) File attachments to include in the email.  The file contents must be base64 encoded! (optional)
 $Id = 789 # Int64 | (optional)  ID of the Mail order within our system to use as the Mail Account. (optional)
 
 # Sends an Email with Advanced Options
@@ -59,11 +59,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **Subject** | **String**| The subject or title of the email | 
  **Body** | **String**| The main email contents. | 
- **From** | [**EmailAddressName**](EmailAddressName.md)|  | 
- **To** | [**EmailAddressName[]**](EmailAddressName.md)| A list of destionation email addresses to send this to | 
- **Replyto** | [**EmailAddressName[]**](EmailAddressName.md)| (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. | [optional] 
- **Cc** | [**EmailAddressName[]**](EmailAddressName.md)| (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. | [optional] 
- **Bcc** | [**EmailAddressName[]**](EmailAddressName.md)| (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. | [optional] 
+ **From** | [**EmailAddressTypes**](EmailAddressTypes.md)|  | 
+ **To** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | 
+ **Replyto** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] 
+ **Cc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] 
+ **Bcc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] 
  **Attachments** | [**MailAttachment[]**](MailAttachment.md)| (optional) File attachments to include in the email.  The file contents must be base64 encoded! | [optional] 
  **Id** | **Int64**| (optional)  ID of the Mail order within our system to use as the Mail Account. | [optional] 
 

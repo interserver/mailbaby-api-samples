@@ -17,14 +17,6 @@ import { HttpFile } from '../http/http';
 */
 export class DenyRuleRecord {
     /**
-    * The deny rule Id number.
-    */
-    'id': number;
-    /**
-    * the date the rule was created.
-    */
-    'created': Date;
-    /**
     * The type of deny rule.
     */
     'type': DenyRuleRecordTypeEnum;
@@ -33,6 +25,14 @@ export class DenyRuleRecord {
     */
     'data': string;
     /**
+    * The deny rule Id number.
+    */
+    'id': string;
+    /**
+    * the date the rule was created.
+    */
+    'created': Date;
+    /**
     * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
     */
     'user'?: string;
@@ -40,18 +40,6 @@ export class DenyRuleRecord {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "number",
-            "format": ""
-        },
-        {
-            "name": "created",
-            "baseName": "created",
-            "type": "Date",
-            "format": "date-time"
-        },
         {
             "name": "type",
             "baseName": "type",
@@ -63,6 +51,18 @@ export class DenyRuleRecord {
             "baseName": "data",
             "type": "string",
             "format": ""
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "created",
+            "baseName": "created",
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "user",
@@ -80,5 +80,10 @@ export class DenyRuleRecord {
 }
 
 
-export type DenyRuleRecordTypeEnum = "domain" | "email" | "startswith" ;
+export enum DenyRuleRecordTypeEnum {
+    Domain = 'domain',
+    Email = 'email',
+    Startswith = 'startswith',
+    Destination = 'destination'
+}
 

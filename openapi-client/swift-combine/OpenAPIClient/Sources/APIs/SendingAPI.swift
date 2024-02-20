@@ -28,17 +28,17 @@ open class SendingAPI {
     }
 
     public enum SendAdvMailError: Error, CustomStringConvertible {
-        // The specified resource was not found
-        case code400Error(GetMailOrders401Response)
+        // Error message when there was a problem with the input parameters.
+        case code400Error(ErrorMessage)
         // Unauthorized
-        case code401Error(GetMailOrders401Response)
+        case code401Error(ErrorMessage)
         // The specified resource was not found
-        case code404Error(GetMailOrders401Response)
+        case code404Error(ErrorMessage)
 
         public var description: String {
             switch self {
             case .code400Error(let object):
-                return "SendAdvMailError: The specified resource was not found: \(object)"
+                return "SendAdvMailError: Error message when there was a problem with the input parameters.: \(object)"
             case .code401Error(let object):
                 return "SendAdvMailError: Unauthorized: \(object)"
             case .code404Error(let object):
@@ -49,21 +49,21 @@ open class SendingAPI {
 
     /// Sends an Email with Advanced Options
     /// - POST /mail/advsend
-    /// - Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+    /// - Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
     /// - API Key:
     /// - type: apiKey X-API-KEY 
     /// - name: apiKeyAuth
     /// - parameter subject: (form) The subject or title of the email 
     /// - parameter body: (form) The main email contents. 
     /// - parameter from: (form)  
-    /// - parameter to: (form) A list of destionation email addresses to send this to 
-    /// - parameter replyto: (form) (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. (optional)
-    /// - parameter cc: (form) (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. (optional)
-    /// - parameter bcc: (form) (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. (optional)
+    /// - parameter to: (form)  
+    /// - parameter replyto: (form)  (optional)
+    /// - parameter cc: (form)  (optional)
+    /// - parameter bcc: (form)  (optional)
     /// - parameter attachments: (form) (optional) File attachments to include in the email.  The file contents must be base64 encoded! (optional)
     /// - parameter id: (form) (optional)  ID of the Mail order within our system to use as the Mail Account. (optional)
     /// - returns: AnyPublisher<GenericResponse, Error> 
-    open func sendAdvMail(subject: String, body: String, from: EmailAddressName, to: [EmailAddressName], replyto: [EmailAddressName]? = nil, cc: [EmailAddressName]? = nil, bcc: [EmailAddressName]? = nil, attachments: [MailAttachment]? = nil, id: Int64? = nil) -> AnyPublisher<GenericResponse, Error> {
+    open func sendAdvMail(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: EmailAddressesTypes? = nil, cc: EmailAddressesTypes? = nil, bcc: EmailAddressesTypes? = nil, attachments: [MailAttachment]? = nil, id: Int64? = nil) -> AnyPublisher<GenericResponse, Error> {
         Deferred {
             Result<URLRequest, Error> {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
@@ -96,7 +96,7 @@ open class SendingAPI {
                 .mapError { transportError -> Error in 
                     if transportError.statusCode == 400 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return SendAdvMailError.code400Error(error)
                         } catch {
                             return error
@@ -104,7 +104,7 @@ open class SendingAPI {
                     }
                     if transportError.statusCode == 401 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return SendAdvMailError.code401Error(error)
                         } catch {
                             return error
@@ -112,7 +112,7 @@ open class SendingAPI {
                     }
                     if transportError.statusCode == 404 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return SendAdvMailError.code404Error(error)
                         } catch {
                             return error
@@ -128,17 +128,17 @@ open class SendingAPI {
     }
 
     public enum SendMailError: Error, CustomStringConvertible {
-        // The specified resource was not found
-        case code400Error(GetMailOrders401Response)
+        // Error message when there was a problem with the input parameters.
+        case code400Error(ErrorMessage)
         // Unauthorized
-        case code401Error(GetMailOrders401Response)
+        case code401Error(ErrorMessage)
         // The specified resource was not found
-        case code404Error(GetMailOrders401Response)
+        case code404Error(ErrorMessage)
 
         public var description: String {
             switch self {
             case .code400Error(let object):
-                return "SendMailError: The specified resource was not found: \(object)"
+                return "SendMailError: Error message when there was a problem with the input parameters.: \(object)"
             case .code401Error(let object):
                 return "SendMailError: Unauthorized: \(object)"
             case .code404Error(let object):
@@ -186,7 +186,7 @@ open class SendingAPI {
                 .mapError { transportError -> Error in 
                     if transportError.statusCode == 400 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return SendMailError.code400Error(error)
                         } catch {
                             return error
@@ -194,7 +194,7 @@ open class SendingAPI {
                     }
                     if transportError.statusCode == 401 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return SendMailError.code401Error(error)
                         } catch {
                             return error
@@ -202,7 +202,7 @@ open class SendingAPI {
                     }
                     if transportError.statusCode == 404 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return SendMailError.code404Error(error)
                         } catch {
                             return error

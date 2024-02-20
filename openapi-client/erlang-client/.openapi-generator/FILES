@@ -5,12 +5,14 @@ src/openapi.app.src
 src/openapi_blocking_api.erl
 src/openapi_deny_rule_new.erl
 src/openapi_deny_rule_record.erl
-src/openapi_deny_rule_record_all_of.erl
-src/openapi_email_address.erl
+src/openapi_email_address_name.erl
+src/openapi_email_address_types.erl
+src/openapi_email_addresses_types.erl
+src/openapi_error_message.erl
 src/openapi_generic_response.erl
-src/openapi_get_mail_orders_401_response.erl
 src/openapi_get_stats_200_response_inner.erl
 src/openapi_history_api.erl
+src/openapi_mail_attachment.erl
 src/openapi_mail_block_click_house.erl
 src/openapi_mail_block_rspamd.erl
 src/openapi_mail_blocks.erl

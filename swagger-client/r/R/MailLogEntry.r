@@ -135,7 +135,7 @@ MailLogEntry <- R6::R6Class(
         self$`locked` <- `locked`
       }
       if (!missing(`lockTime`)) {
-        stopifnot(is.numeric(`lockTime`), length(`lockTime`) == 1)
+        stopifnot(is.character(`lockTime`), length(`lockTime`) == 1)
         self$`lockTime` <- `lockTime`
       }
       if (!missing(`assigned`)) {
@@ -322,7 +322,7 @@ MailLogEntry <- R6::R6Class(
            "recipient": %s,
            "domain": %s,
            "locked": %d,
-           "lockTime": %d,
+           "lockTime": %s,
            "assigned": %s,
            "queued": %s,
            "mxHostname": %s,

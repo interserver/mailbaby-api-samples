@@ -34,6 +34,7 @@ public:
 		Domain,
 		Email,
 		Startswith,
+		Destination,
   	};
 
 	static FString EnumToString(const TypeEnum& EnumValue);

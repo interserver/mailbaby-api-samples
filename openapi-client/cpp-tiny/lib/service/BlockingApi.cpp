@@ -114,7 +114,7 @@ using namespace Tiny;
         BlockingApi::
         delistBlock(
             
-            EmailAddress emailAddress
+            std::string body
             
         )
         {
@@ -135,11 +135,11 @@ using namespace Tiny;
             std::string payload = "";
             // Send Request
             // METHOD | POST
-            // Body     | emailAddress
+            // Body     | body
 
 
+            payload = stringify(body);
 
-            payload = emailAddress.toJson().dump();
 
             int httpCode = sendRequest(url, "POST", reinterpret_cast<uint8_t*>(&payload[0]), payload.length());
 

@@ -15,18 +15,18 @@
 
 import * as runtime from '../runtime';
 import type {
-  GetMailOrders401Response,
+  ErrorMessage,
   GetStats200ResponseInner,
   MailLog,
-} from '../models';
+} from '../models/index';
 import {
-    GetMailOrders401ResponseFromJSON,
-    GetMailOrders401ResponseToJSON,
+    ErrorMessageFromJSON,
+    ErrorMessageToJSON,
     GetStats200ResponseInnerFromJSON,
     GetStats200ResponseInnerToJSON,
     MailLogFromJSON,
     MailLogToJSON,
-} from '../models';
+} from '../models/index';
 
 export interface ViewMailLogRequest {
     id?: number;
@@ -48,7 +48,8 @@ export interface ViewMailLogRequest {
 export class HistoryApi extends runtime.BaseAPI {
 
     /**
-     * displays a list of blocked email addresses
+     * Returns information about the usage on your mail accounts.
+     * Account usage statistics.
      */
     async getStatsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GetStats200ResponseInner>>> {
         const queryParameters: any = {};
@@ -70,7 +71,8 @@ export class HistoryApi extends runtime.BaseAPI {
     }
 
     /**
-     * displays a list of blocked email addresses
+     * Returns information about the usage on your mail accounts.
+     * Account usage statistics.
      */
     async getStats(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<GetStats200ResponseInner>> {
         const response = await this.getStatsRaw(initOverrides);

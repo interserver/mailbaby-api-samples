@@ -18,7 +18,6 @@ import {
   GenericResponse,
   MailBlocks,
   DenyRuleRecord,
-  EmailAddress,
 } from './models';
 
 /**
@@ -41,7 +40,7 @@ export interface IDeleteRuleParams {
  * delistBlock - parameters interface
  */
 export interface IDelistBlockParams {
-  emailAddress: EmailAddress;
+  body: string;
 }
 
 /**
@@ -144,11 +143,11 @@ export class BlockingApi extends Api {
   /**
    * Removes an email address from the blocked list
    * Removes an email address from the various block lists. 
-   * @param params.emailAddress 
+   * @param params.body 
    */
   async delistBlock(params: IDelistBlockParams): Promise<GenericResponse> {
     // Verify required parameters are set
-    this.ensureParamIsSet('delistBlock', params, 'emailAddress');
+    this.ensureParamIsSet('delistBlock', params, 'body');
 
     // Create URL to call
     const url = `${this.basePath}/mail/blocks/delete`;
@@ -158,7 +157,7 @@ export class BlockingApi extends Api {
       .asPost()
       // Encode body parameter
       .withHeader('content-type', 'application/json')
-      .withContent(JSON.stringify(params['emailAddress'] || {}))
+      .withContent(JSON.stringify(params['body'] || {}))
 
       // Authentication 'apiKeyAuth' required
       .withHeader('X-API-KEY', this.authStorage.getapiKeyAuth())

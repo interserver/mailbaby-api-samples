@@ -7,11 +7,11 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
-import io.swagger.model.EmailAddress;
-import io.swagger.model.EmailAddressName;
+import io.swagger.model.EmailAddressTypes;
+import io.swagger.model.EmailAddressesTypes;
+import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.InlineResponse200;
-import io.swagger.model.InlineResponse401;
 import io.swagger.model.MailAttachment;
 import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
@@ -28,18 +28,17 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-08-14T21:51:49.442877-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2024-02-20T06:54:27.687095-05:00[America/New_York]")
 public abstract class MailApiService {
     public abstract Response addRule(String user,String type,String data,SecurityContext securityContext) throws NotFoundException;
     public abstract Response addRule(DenyRuleNew body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response deleteRule(Integer ruleId,SecurityContext securityContext) throws NotFoundException;
-    public abstract Response delistBlock(EmailAddress body,SecurityContext securityContext) throws NotFoundException;
-    public abstract Response delistBlock(String email,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response delistBlock(String body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response getMailBlocks(SecurityContext securityContext) throws NotFoundException;
     public abstract Response getMailOrders(SecurityContext securityContext) throws NotFoundException;
     public abstract Response getRules(SecurityContext securityContext) throws NotFoundException;
     public abstract Response getStats(SecurityContext securityContext) throws NotFoundException;
-    public abstract Response sendAdvMail(String subject,String body,EmailAddressName from,List<EmailAddressName> to,List<EmailAddressName> replyto,List<EmailAddressName> cc,List<EmailAddressName> bcc,List<MailAttachment> attachments,Long id,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response sendAdvMail(String subject,String body,EmailAddressTypes from,EmailAddressesTypes to,EmailAddressesTypes replyto,EmailAddressesTypes cc,EmailAddressesTypes bcc,List<MailAttachment> attachments,Long id,SecurityContext securityContext) throws NotFoundException;
     public abstract Response sendAdvMail(SendMailAdv body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response sendMail(String to,String from,String subject,String body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response sendMail(SendMail body,SecurityContext securityContext) throws NotFoundException;

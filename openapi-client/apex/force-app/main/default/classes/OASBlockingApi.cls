@@ -84,18 +84,18 @@ public class OASBlockingApi {
     /**
      * Removes an email address from the blocked list
      * Removes an email address from the various block lists.\n
-     * @param oaSEmailAddress  (required)
+     * @param body  (required)
      * @return OASGenericResponse
      * @throws OAS.ApiException if fails to make API call
      */
     public OASGenericResponse delistBlock(Map<String, Object> params) {
-        client.assertNotNull(params.get('oaSEmailAddress'), 'oaSEmailAddress');
+        client.assertNotNull(params.get('body'), 'body');
         List<OAS.Param> query = new List<OAS.Param>();
         List<OAS.Param> form = new List<OAS.Param>();
 
         return (OASGenericResponse) client.invoke(
             'POST', '/mail/blocks/delete',
-            (OASEmailAddress) params.get('oaSEmailAddress'),
+            (String) params.get('body'),
             query, form,
             new Map<String, Object>(),
             new Map<String, Object>(),

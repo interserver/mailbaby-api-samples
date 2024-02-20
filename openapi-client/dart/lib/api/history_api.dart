@@ -16,7 +16,9 @@ class HistoryApi {
 
   final ApiClient apiClient;
 
-  /// displays a list of blocked email addresses
+  /// Account usage statistics.
+  ///
+  /// Returns information about the usage on your mail accounts.
   ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> getStatsWithHttpInfo() async {
@@ -44,7 +46,9 @@ class HistoryApi {
     );
   }
 
-  /// displays a list of blocked email addresses
+  /// Account usage statistics.
+  ///
+  /// Returns information about the usage on your mail accounts.
   Future<List<GetStats200ResponseInner>?> getStats() async {
     final response = await getStatsWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
@@ -57,7 +61,7 @@ class HistoryApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<GetStats200ResponseInner>') as List)
         .cast<GetStats200ResponseInner>()
-        .toList();
+        .toList(growable: false);
 
     }
     return null;

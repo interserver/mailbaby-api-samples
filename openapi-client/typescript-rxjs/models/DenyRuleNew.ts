@@ -44,6 +44,7 @@ export interface DenyRuleNew {
 export enum DenyRuleNewTypeEnum {
     Domain = 'domain',
     Email = 'email',
-    Startswith = 'startswith'
+    Startswith = 'startswith',
+    Destination = 'destination'
 }
 

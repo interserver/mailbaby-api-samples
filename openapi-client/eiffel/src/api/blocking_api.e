@@ -108,11 +108,11 @@ feature -- API Access
 			end
 		end
 
-	delist_block (email_address: EMAIL_ADDRESS): detachable GENERIC_RESPONSE
+	delist_block (body: STRING_32): detachable GENERIC_RESPONSE
 			-- Removes an email address from the blocked list
 			-- Removes an email address from the various block lists. 
 			-- 
-			-- argument: email_address  (required)
+			-- argument: body  (required)
 			-- 
 			-- 
 			-- Result GENERIC_RESPONSE
@@ -124,7 +124,7 @@ feature -- API Access
 		do
 			reset_error
 			create l_request
-			l_request.set_body(email_address)
+			l_request.set_body(body)
 			l_path := "/mail/blocks/delete"
 
 

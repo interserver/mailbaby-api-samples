@@ -18,39 +18,27 @@ Protected Class SendMailAdv
 
 
 	#tag Property, Flags = &h0
-		from As OpenAPIClient.Models.EmailAddressName
+		from As OpenAPIClient.Models.EmailAddressTypes
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		#tag Note
-			A list of destionation email addresses to send this to
-		#tag EndNote
-		Escapedto() As OpenAPIClient.Models.EmailAddressName
+		Escapedto As OpenAPIClient.Models.EmailAddressesTypes
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		#tag Note
-			(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-		#tag EndNote
-		replyto() As OpenAPIClient.Models.EmailAddressName
+		replyto As OpenAPIClient.Models.EmailAddressesTypes
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		#tag Note
-			(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-		#tag EndNote
-		cc() As OpenAPIClient.Models.EmailAddressName
+		cc As OpenAPIClient.Models.EmailAddressesTypes
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		#tag Note
-			(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-		#tag EndNote
-		bcc() As OpenAPIClient.Models.EmailAddressName
+		bcc As OpenAPIClient.Models.EmailAddressesTypes
 	#tag EndProperty
 
 
@@ -127,7 +115,7 @@ Protected Class SendMailAdv
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="EmailAddressName"
+			Type="EmailAddressTypes"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -135,7 +123,7 @@ Protected Class SendMailAdv
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="EmailAddressName"
+			Type="EmailAddressesTypes"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -143,7 +131,7 @@ Protected Class SendMailAdv
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="EmailAddressName"
+			Type="EmailAddressesTypes"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -151,7 +139,7 @@ Protected Class SendMailAdv
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="EmailAddressName"
+			Type="EmailAddressesTypes"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -159,7 +147,7 @@ Protected Class SendMailAdv
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="EmailAddressName"
+			Type="EmailAddressesTypes"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

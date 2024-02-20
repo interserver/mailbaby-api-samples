@@ -16,6 +16,14 @@ import { DenyRuleNew } from './denyRuleNew';
  */
 export interface DenyRuleRecord { 
     /**
+     * The deny rule Id number.
+     */
+    id: string;
+    /**
+     * the date the rule was created.
+     */
+    created: Date;
+    /**
      * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      */
     user?: string;
@@ -29,10 +37,11 @@ export interface DenyRuleRecord {
     data: string;
 }
 export namespace DenyRuleRecord {
-    export type TypeEnum = 'domain' | 'email' | 'startswith';
+    export type TypeEnum = 'domain' | 'email' | 'startswith' | 'destination';
     export const TypeEnum = {
         Domain: 'domain' as TypeEnum,
         Email: 'email' as TypeEnum,
-        Startswith: 'startswith' as TypeEnum
+        Startswith: 'startswith' as TypeEnum,
+        Destination: 'destination' as TypeEnum
     };
 }

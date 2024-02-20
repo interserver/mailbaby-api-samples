@@ -132,7 +132,7 @@ public class MailLogEntry   {
  /**
    * lock timestamp  
   **/
-  private Integer lockTime = null;
+  private String lockTime = null;
   
   @Schema(example = "relay1", required = true, description = "assigned server")
  /**
@@ -486,15 +486,15 @@ public class MailLogEntry   {
    * @return lockTime
   **/
   @JsonProperty("lockTime")
-  public Integer getLockTime() {
+  public String getLockTime() {
     return lockTime;
   }
 
-  public void setLockTime(Integer lockTime) {
+  public void setLockTime(String lockTime) {
     this.lockTime = lockTime;
   }
 
-  public MailLogEntry lockTime(Integer lockTime) {
+  public MailLogEntry lockTime(String lockTime) {
     this.lockTime = lockTime;
     return this;
   }

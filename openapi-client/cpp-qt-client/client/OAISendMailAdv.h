@@ -21,7 +21,8 @@
 
 #include <QJsonObject>
 
-#include "OAIEmailAddressName.h"
+#include "OAIEmailAddressTypes.h"
+#include "OAIEmailAddressesTypes.h"
 #include "OAIMailAttachment.h"
 #include <QList>
 #include <QString>
@@ -30,6 +31,8 @@
 #include "OAIObject.h"
 
 namespace OpenAPI {
+class OAIEmailAddressTypes;
+class OAIMailAttachment;
 
 class OAISendMailAdv : public OAIObject {
 public:
@@ -52,28 +55,28 @@ public:
     bool is_body_Set() const;
     bool is_body_Valid() const;
 
-    OAIEmailAddressName getFrom() const;
-    void setFrom(const OAIEmailAddressName &from);
+    OAIEmailAddressTypes getFrom() const;
+    void setFrom(const OAIEmailAddressTypes &from);
     bool is_from_Set() const;
     bool is_from_Valid() const;
 
-    QList<OAIEmailAddressName> getTo() const;
-    void setTo(const QList<OAIEmailAddressName> &to);
+    OAIEmailAddressesTypes getTo() const;
+    void setTo(const OAIEmailAddressesTypes &to);
     bool is_to_Set() const;
     bool is_to_Valid() const;
 
-    QList<OAIEmailAddressName> getReplyto() const;
-    void setReplyto(const QList<OAIEmailAddressName> &replyto);
+    OAIEmailAddressesTypes getReplyto() const;
+    void setReplyto(const OAIEmailAddressesTypes &replyto);
     bool is_replyto_Set() const;
     bool is_replyto_Valid() const;
 
-    QList<OAIEmailAddressName> getCc() const;
-    void setCc(const QList<OAIEmailAddressName> &cc);
+    OAIEmailAddressesTypes getCc() const;
+    void setCc(const OAIEmailAddressesTypes &cc);
     bool is_cc_Set() const;
     bool is_cc_Valid() const;
 
-    QList<OAIEmailAddressName> getBcc() const;
-    void setBcc(const QList<OAIEmailAddressName> &bcc);
+    OAIEmailAddressesTypes getBcc() const;
+    void setBcc(const OAIEmailAddressesTypes &bcc);
     bool is_bcc_Set() const;
     bool is_bcc_Valid() const;
 
@@ -93,39 +96,39 @@ public:
 private:
     void initializeModel();
 
-    QString subject;
+    QString m_subject;
     bool m_subject_isSet;
     bool m_subject_isValid;
 
-    QString body;
+    QString m_body;
     bool m_body_isSet;
     bool m_body_isValid;
 
-    OAIEmailAddressName from;
+    OAIEmailAddressTypes m_from;
     bool m_from_isSet;
     bool m_from_isValid;
 
-    QList<OAIEmailAddressName> to;
+    OAIEmailAddressesTypes m_to;
     bool m_to_isSet;
     bool m_to_isValid;
 
-    QList<OAIEmailAddressName> replyto;
+    OAIEmailAddressesTypes m_replyto;
     bool m_replyto_isSet;
     bool m_replyto_isValid;
 
-    QList<OAIEmailAddressName> cc;
+    OAIEmailAddressesTypes m_cc;
     bool m_cc_isSet;
     bool m_cc_isValid;
 
-    QList<OAIEmailAddressName> bcc;
+    OAIEmailAddressesTypes m_bcc;
     bool m_bcc_isSet;
     bool m_bcc_isValid;
 
-    QList<OAIMailAttachment> attachments;
+    QList<OAIMailAttachment> m_attachments;
     bool m_attachments_isSet;
     bool m_attachments_isValid;
 
-    qint64 id;
+    qint64 m_id;
     bool m_id_isSet;
     bool m_id_isValid;
 };

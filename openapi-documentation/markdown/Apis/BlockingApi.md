@@ -23,7 +23,7 @@ Creates a new email deny rule.
 
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **type** | **String**| The type of deny rule. | [default to null] [enum: domain, email, startswith] |
+| **type** | **String**| The type of deny rule. | [default to null] [enum: domain, email, startswith, destination] |
 | **data** | **String**| The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. | [default to null] |
 | **user** | **String**| Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. | [optional] [default to null] |
 
@@ -69,7 +69,7 @@ Removes an deny mail rule.
 
 <a name="delistBlock"></a>
 # **delistBlock**
-> GenericResponse delistBlock(EmailAddress)
+> GenericResponse delistBlock(body)
 
 Removes an email address from the blocked list
 
@@ -79,7 +79,7 @@ Removes an email address from the blocked list
 
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **EmailAddress** | [**EmailAddress**](../Models/EmailAddress.md)|  | |
+| **body** | **String**|  | |
 
 ### Return type
 

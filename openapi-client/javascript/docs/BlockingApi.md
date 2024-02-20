@@ -122,7 +122,7 @@ Name | Type | Description  | Notes
 
 ## delistBlock
 
-> GenericResponse delistBlock(emailAddress)
+> GenericResponse delistBlock(body)
 
 Removes an email address from the blocked list
 
@@ -140,8 +140,8 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyEmailDeliveryAndManagementServiceApi.BlockingApi();
-let emailAddress = {"email":"client@domain.com"}; // EmailAddress | 
-apiInstance.delistBlock(emailAddress, (error, data, response) => {
+let body = {"email":"client@domain.com"}; // String | 
+apiInstance.delistBlock(body, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -155,7 +155,7 @@ apiInstance.delistBlock(emailAddress, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **emailAddress** | [**EmailAddress**](EmailAddress.md)|  | 
+ **body** | **String**|  | 
 
 ### Return type
 

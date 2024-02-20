@@ -10,9 +10,8 @@ import 'package:dio/dio.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/deny_rule_record.dart';
-import 'package:openapi/src/model/email_address.dart';
+import 'package:openapi/src/model/error_message.dart';
 import 'package:openapi/src/model/generic_response.dart';
-import 'package:openapi/src/model/get_mail_orders401_response.dart';
 import 'package:openapi/src/model/mail_blocks.dart';
 
 class BlockingApi {
@@ -38,7 +37,7 @@ class BlockingApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [GenericResponse] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<GenericResponse>> addRule({ 
     required String type,
     required String data,
@@ -81,12 +80,12 @@ class BlockingApi {
       };
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -111,10 +110,10 @@ class BlockingApi {
       ) as GenericResponse;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -145,7 +144,7 @@ class BlockingApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [GenericResponse] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<GenericResponse>> deleteRule({ 
     required int ruleId,
     CancelToken? cancelToken,
@@ -155,7 +154,7 @@ class BlockingApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/mail/rules/{ruleId}'.replaceAll('{' r'ruleId' '}', ruleId.toString());
+    final _path = r'/mail/rules/{ruleId}'.replaceAll('{' r'ruleId' '}', encodeQueryParameter(_serializers, ruleId, const FullType(int)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -193,10 +192,10 @@ class BlockingApi {
       ) as GenericResponse;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -218,7 +217,7 @@ class BlockingApi {
   /// Removes an email address from the various block lists. 
   ///
   /// Parameters:
-  /// * [emailAddress] 
+  /// * [body] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -227,9 +226,9 @@ class BlockingApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [GenericResponse] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<GenericResponse>> delistBlock({ 
-    required EmailAddress emailAddress,
+    required String body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -261,16 +260,15 @@ class BlockingApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(EmailAddress);
-      _bodyData = _serializers.serialize(emailAddress, specifiedType: _type);
+      _bodyData = body;
 
     } catch(error, stackTrace) {
-      throw DioError(
+      throw DioException(
          requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -295,10 +293,10 @@ class BlockingApi {
       ) as GenericResponse;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -328,7 +326,7 @@ class BlockingApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [MailBlocks] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<MailBlocks>> getMailBlocks({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -375,10 +373,10 @@ class BlockingApi {
       ) as MailBlocks;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );
@@ -408,7 +406,7 @@ class BlockingApi {
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<DenyRuleRecord>] as data
-  /// Throws [DioError] if API call or serialization fails
+  /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<DenyRuleRecord>>> getRules({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -455,10 +453,10 @@ class BlockingApi {
       ) as BuiltList<DenyRuleRecord>;
 
     } catch (error, stackTrace) {
-      throw DioError(
+      throw DioException(
         requestOptions: _response.requestOptions,
         response: _response,
-        type: DioErrorType.unknown,
+        type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
       );

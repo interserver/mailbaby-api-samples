@@ -16,8 +16,8 @@ local dkjson = require "dkjson"
 local basexx = require "basexx"
 
 -- model import
+local openapiclient_error_message = require "openapiclient.model.error_message"
 local openapiclient_mail_log = require "openapiclient.model.mail_log"
-local openapiclient_get_mail_orders_401_response = require "openapiclient.model.get_mail_orders_401_response"
 local openapiclient_get_stats_200_response_inner = require "openapiclient.model.get_stats_200_response_inner"
 
 local history_api = {}

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Sends an Email with Advanced Options
 
-Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
 
 ### Example
 ```R
@@ -24,12 +24,12 @@ library(openapi)
 # prepare function argument(s)
 var_subject <- "subject_example" # character | The subject or title of the email
 var_body <- "body_example" # character | The main email contents.
-var_from <- TODO # EmailAddressName | 
-var_to <- c(TODO) # array[EmailAddressName] | A list of destionation email addresses to send this to
-var_replyto <- c(TODO) # array[EmailAddressName] | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. (Optional)
-var_cc <- c(TODO) # array[EmailAddressName] | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. (Optional)
-var_bcc <- c(TODO) # array[EmailAddressName] | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. (Optional)
-var_attachments <- c(TODO) # array[MailAttachment] | (optional) File attachments to include in the email.  The file contents must be base64 encoded! (Optional)
+var_from <- EmailAddressTypes$new("email_example", "name_example") # EmailAddressTypes | 
+var_to <- EmailAddressesTypes$new() # EmailAddressesTypes | 
+var_replyto <- EmailAddressesTypes$new() # EmailAddressesTypes |  (Optional)
+var_cc <- EmailAddressesTypes$new() # EmailAddressesTypes |  (Optional)
+var_bcc <- EmailAddressesTypes$new() # EmailAddressesTypes |  (Optional)
+var_attachments <- c(MailAttachment$new("filename_example", "data_example")) # array[MailAttachment] | (optional) File attachments to include in the email.  The file contents must be base64 encoded! (Optional)
 var_id <- 56 # integer | (optional)  ID of the Mail order within our system to use as the Mail Account. (Optional)
 
 api_instance <- SendingApi$new()
@@ -47,11 +47,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **character**| The subject or title of the email | 
  **body** | **character**| The main email contents. | 
- **from** | [**EmailAddressName**](EmailAddressName.md)|  | 
- **to** | list( [**EmailAddressName**](EmailAddressName.md) )| A list of destionation email addresses to send this to | 
- **replyto** | list( [**EmailAddressName**](EmailAddressName.md) )| (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. | [optional] 
- **cc** | list( [**EmailAddressName**](EmailAddressName.md) )| (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. | [optional] 
- **bcc** | list( [**EmailAddressName**](EmailAddressName.md) )| (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. | [optional] 
+ **from** | [**EmailAddressTypes**](EmailAddressTypes.md)|  | 
+ **to** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | 
+ **replyto** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] 
+ **cc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] 
+ **bcc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] 
  **attachments** | list( [**MailAttachment**](MailAttachment.md) )| (optional) File attachments to include in the email.  The file contents must be base64 encoded! | [optional] 
  **id** | **integer**| (optional)  ID of the Mail order within our system to use as the Mail Account. | [optional] 
 
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | search results matching criteria |  -  |
-| **400** | The specified resource was not found |  -  |
+| **400** | Error message when there was a problem with the input parameters. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | The specified resource was not found |  -  |
 
@@ -130,7 +130,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | search results matching criteria |  -  |
-| **400** | The specified resource was not found |  -  |
+| **400** | Error message when there was a problem with the input parameters. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | The specified resource was not found |  -  |
 

@@ -4,7 +4,7 @@ All URIs are relative to *https://api.mailbaby.net*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getStats**](HistoryApi.md#getStats) | **GET** /mail/stats | displays a list of blocked email addresses |
+| [**getStats**](HistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics. |
 | [**viewMailLog**](HistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log |
 
 
@@ -12,7 +12,9 @@ All URIs are relative to *https://api.mailbaby.net*
 # **getStats**
 > List getStats()
 
-displays a list of blocked email addresses
+Account usage statistics.
+
+    Returns information about the usage on your mail accounts.
 
 ### Parameters
 This endpoint does not need any parameter.

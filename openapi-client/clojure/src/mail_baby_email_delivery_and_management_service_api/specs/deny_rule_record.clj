@@ -7,10 +7,10 @@
 
 (def deny-rule-record-data
   {
-   (ds/req :id) int?
-   (ds/req :created) inst?
    (ds/req :type) string?
    (ds/req :data) string?
+   (ds/req :id) string?
+   (ds/req :created) inst?
    (ds/opt :user) string?
    })
 

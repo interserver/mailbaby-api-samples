@@ -2,6 +2,8 @@ package io.swagger.server.model
 
 
 /**
+ * = SendMail =
+ *
  * Details for an Email
  *
  * @param to The Contact whom is the primary recipient of this email. for example: ''johndoe@company.com''

@@ -83,7 +83,7 @@ Class | Method | HTTP request | Description
 *OpenAPIClient.APIs.BlockingApi* | [**DelistBlock**](BlockingApi.md#delistblock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
 *OpenAPIClient.APIs.BlockingApi* | [**GetMailBlocks**](BlockingApi.md#getmailblocks) | **GET** /mail/blocks | displays a list of blocked email addresses
 *OpenAPIClient.APIs.BlockingApi* | [**GetRules**](BlockingApi.md#getrules) | **GET** /mail/rules | Displays a listing of deny email rules.
-*OpenAPIClient.APIs.HistoryApi* | [**GetStats**](HistoryApi.md#getstats) | **GET** /mail/stats | displays a list of blocked email addresses
+*OpenAPIClient.APIs.HistoryApi* | [**GetStats**](HistoryApi.md#getstats) | **GET** /mail/stats | Account usage statistics.
 *OpenAPIClient.APIs.HistoryApi* | [**ViewMailLog**](HistoryApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
 *OpenAPIClient.APIs.SendingApi* | [**SendAdvMail**](SendingApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *OpenAPIClient.APIs.SendingApi* | [**SendMail**](SendingApi.md#sendmail) | **POST** /mail/send | Sends an Email
@@ -95,11 +95,13 @@ Class | Method | HTTP request | Description
 
  - [OpenAPIClient.Models.DenyRuleNew](DenyRuleNew.md)
  - [OpenAPIClient.Models.DenyRuleRecord](DenyRuleRecord.md)
- - [OpenAPIClient.Models.DenyRuleRecordAllOf](DenyRuleRecordAllOf.md)
- - [OpenAPIClient.Models.EmailAddress](EmailAddress.md)
+ - [OpenAPIClient.Models.EmailAddressName](EmailAddressName.md)
+ - [OpenAPIClient.Models.EmailAddressTypes](EmailAddressTypes.md)
+ - [OpenAPIClient.Models.EmailAddressesTypes](EmailAddressesTypes.md)
+ - [OpenAPIClient.Models.ErrorMessage](ErrorMessage.md)
  - [OpenAPIClient.Models.GenericResponse](GenericResponse.md)
- - [OpenAPIClient.Models.GetMailOrders401Response](GetMailOrders401Response.md)
  - [OpenAPIClient.Models.GetStats200ResponseInner](GetStats200ResponseInner.md)
+ - [OpenAPIClient.Models.MailAttachment](MailAttachment.md)
  - [OpenAPIClient.Models.MailBlockClickHouse](MailBlockClickHouse.md)
  - [OpenAPIClient.Models.MailBlockRspamd](MailBlockRspamd.md)
  - [OpenAPIClient.Models.MailBlocks](MailBlocks.md)

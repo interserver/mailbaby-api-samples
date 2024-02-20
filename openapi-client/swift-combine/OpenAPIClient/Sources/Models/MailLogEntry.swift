@@ -44,7 +44,7 @@ public struct MailLogEntry: Codable {
     /// locked status
     public var locked: Int
     /// lock timestamp
-    public var lockTime: Int
+    public var lockTime: String
     /// assigned server
     public var assigned: String
     /// queued timestamp
@@ -56,7 +56,7 @@ public struct MailLogEntry: Codable {
     /// message id
     public var messageId: String?
 
-    public init(id: Int, id: String, from: String, to: String, subject: String, created: String, time: Int, user: String, transtype: String, origin: String, interface: String, sendingZone: String, bodySize: Int, seq: Int, recipient: String, domain: String, locked: Int, lockTime: Int, assigned: String, queued: String, mxHostname: String, response: String, messageId: String? = nil) {
+    public init(id: Int, id: String, from: String, to: String, subject: String, created: String, time: Int, user: String, transtype: String, origin: String, interface: String, sendingZone: String, bodySize: Int, seq: Int, recipient: String, domain: String, locked: Int, lockTime: String, assigned: String, queued: String, mxHostname: String, response: String, messageId: String? = nil) {
         self.id = id
         self.id = id
         self.from = from
@@ -127,7 +127,7 @@ public struct MailLogEntry: Codable {
         recipient = try container.decode(String.self, forKey: .recipient)
         domain = try container.decode(String.self, forKey: .domain)
         locked = try container.decode(Int.self, forKey: .locked)
-        lockTime = try container.decode(Int.self, forKey: .lockTime)
+        lockTime = try container.decode(String.self, forKey: .lockTime)
         assigned = try container.decode(String.self, forKey: .assigned)
         queued = try container.decode(String.self, forKey: .queued)
         mxHostname = try container.decode(String.self, forKey: .mxHostname)

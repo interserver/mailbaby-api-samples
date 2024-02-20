@@ -64,7 +64,8 @@ export function DenyRuleNewToJSON(value?: DenyRuleNew): any {
 export enum DenyRuleNewTypeEnum {
     Domain = 'domain',
     Email = 'email',
-    Startswith = 'startswith'
+    Startswith = 'startswith',
+    Destination = 'destination'
 }
 
 

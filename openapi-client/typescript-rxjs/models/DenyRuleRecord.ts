@@ -13,7 +13,6 @@
 
 import type {
     DenyRuleNew,
-    DenyRuleRecordAllOf,
 } from './';
 
 /**
@@ -21,4 +20,4 @@ import type {
  * The data for a email deny rule record.
  * @export
  */
-export type DenyRuleRecord = DenyRuleNew & DenyRuleRecordAllOf;
+export type DenyRuleRecord = DenyRuleNew;

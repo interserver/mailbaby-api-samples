@@ -30,14 +30,14 @@
 #' }
 #' \item status code : 401 | Unauthorized
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
 #' \item status code : 404 | Unauthorized
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{

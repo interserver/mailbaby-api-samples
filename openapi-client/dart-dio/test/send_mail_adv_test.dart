@@ -19,31 +19,27 @@ void main() {
       // TODO
     });
 
-    // EmailAddressName from
+    // EmailAddressTypes from
     test('to test the property `from`', () async {
       // TODO
     });
 
-    // A list of destionation email addresses to send this to
-    // BuiltList<EmailAddressName> to
+    // EmailAddressesTypes to
     test('to test the property `to`', () async {
       // TODO
     });
 
-    // (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-    // BuiltList<EmailAddressName> replyto
+    // EmailAddressesTypes replyto
     test('to test the property `replyto`', () async {
       // TODO
     });
 
-    // (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-    // BuiltList<EmailAddressName> cc
+    // EmailAddressesTypes cc
     test('to test the property `cc`', () async {
       // TODO
     });
 
-    // (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-    // BuiltList<EmailAddressName> bcc
+    // EmailAddressesTypes bcc
     test('to test the property `bcc`', () async {
       // TODO
     });

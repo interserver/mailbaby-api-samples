@@ -9,11 +9,11 @@
 -export_type([openapi_deny_rule_record/0]).
 
 -type openapi_deny_rule_record() ::
-  [ {'id', integer() }
-  | {'created', datetime() }
-  | {'user', binary() }
+  [ {'user', binary() }
   | {'type', binary() }
   | {'data', binary() }
+  | {'id', binary() }
+  | {'created', datetime() }
   ].
 
 
@@ -21,11 +21,11 @@ openapi_deny_rule_record() ->
     openapi_deny_rule_record([]).
 
 openapi_deny_rule_record(Fields) ->
-  Default = [ {'id', integer() }
-            , {'created', datetime() }
-            , {'user', binary() }
-            , {'type', elements([<<"domain">>, <<"email">>, <<"startswith">>]) }
+  Default = [ {'user', binary() }
+            , {'type', elements([<<"domain">>, <<"email">>, <<"startswith">>, <<"destination">>]) }
             , {'data', binary() }
+            , {'id', binary() }
+            , {'created', datetime() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

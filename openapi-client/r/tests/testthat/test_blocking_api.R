@@ -36,7 +36,7 @@ test_that("DelistBlock", {
   # base path: https://api.mailbaby.net
   # Removes an email address from the blocked list
   # Removes an email address from the various block lists. 
-  # @param email_address EmailAddress 
+  # @param body character 
   # @return [GenericResponse]
 
   # uncomment below to test the operation

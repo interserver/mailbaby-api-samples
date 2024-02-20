@@ -11,40 +11,69 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { DenyRuleNew } from './deny-rule-new';
-/**
+ /**
  * The data for a email deny rule record.
+ *
  * @export
  * @interface DenyRuleRecord
  */
 export interface DenyRuleRecord {
+
+    /**
+     * The deny rule Id number.
+     *
+     * @type {string}
+     * @memberof DenyRuleRecord
+     * @example 41124
+     */
+    id: string;
+
+    /**
+     * the date the rule was created.
+     *
+     * @type {Date}
+     * @memberof DenyRuleRecord
+     */
+    created: Date;
+
     /**
      * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+     *
      * @type {string}
      * @memberof DenyRuleRecord
+     * @example mb20682
      */
     user?: string;
+
     /**
      * The type of deny rule.
+     *
      * @type {string}
      * @memberof DenyRuleRecord
+     * @example email
      */
     type: DenyRuleRecordTypeEnum;
+
     /**
      * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+     *
      * @type {string}
      * @memberof DenyRuleRecord
+     * @example domeinwo@server.guesshost.net
      */
     data: string;
 }
 
 /**
-    * @export
-    * @enum {string}
-    */
+ * @export
+ * @enum {string}
+ */
 export enum DenyRuleRecordTypeEnum {
     Domain = 'domain',
     Email = 'email',
-    Startswith = 'startswith'
+    Startswith = 'startswith',
+    Destination = 'destination'
 }
 

@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.*;
 
 @Schema(description = "An email contact.")
 
-public class EmailAddressName   {
+public class EmailAddressName  implements EmailAddressTypes  {
   private String email = null;
   private String name = null;
 

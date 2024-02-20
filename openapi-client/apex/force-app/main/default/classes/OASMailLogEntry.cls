@@ -120,7 +120,7 @@ public class OASMailLogEntry implements OAS.MappedProperties {
      * lock timestamp
      * @return lockTime
      */
-    public Integer lockTime { get; set; }
+    public String lockTime { get; set; }
 
     /**
      * assigned server
@@ -215,7 +215,7 @@ public class OASMailLogEntry implements OAS.MappedProperties {
           mailLogEntry.recipient = 'client@isp.com';
           mailLogEntry.domain = 'interserver.net';
           mailLogEntry.locked = 1;
-          mailLogEntry.lockTime = 1634215818533;
+          mailLogEntry.lockTime = '1634215818533';
           mailLogEntry.assigned = 'relay1';
           mailLogEntry.queued = '2021-10-14T12:50:15.487Z';
           mailLogEntry.mxHostname = 'mx.j.is.cc';

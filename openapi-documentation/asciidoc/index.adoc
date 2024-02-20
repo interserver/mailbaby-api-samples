@@ -3,7 +3,7 @@ support@interserver.net
 1.1.0
 :toc: left
 :numbered:
-:toclevels: 3
+:toclevels: 4
 :source-highlighter: highlightjs
 :keywords: openapi, rest, MailBaby Email Delivery and Management Service API
 :specDir: ..
@@ -93,7 +93,7 @@ Adds a new email deny rule into the system to block new emails that match the gi
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -105,18 +105,18 @@ Adds a new email deny rule into the system to block new emails that match the gi
 
 
 | 400
-| The specified resource was not found
-|  <<getMailOrders_401_response>>
+| Error message when there was a problem with the input parameters.
+|  <<ErrorMessage>>
 
 
 | 401
 | Unauthorized
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 
 | 404
 | The specified resource was not found
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 |===
 
@@ -190,7 +190,7 @@ Removes one of the configured deny mail rules from the system.
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -202,18 +202,18 @@ Removes one of the configured deny mail rules from the system.
 
 
 | 400
-| The specified resource was not found
-|  <<getMailOrders_401_response>>
+| Error message when there was a problem with the input parameters.
+|  <<ErrorMessage>>
 
 
 | 401
 | Unauthorized
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 
 | 404
 | The specified resource was not found
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 |===
 
@@ -264,8 +264,8 @@ Removes an email address from the various block lists.
 |===
 |Name| Description| Required| Default| Pattern
 
-| EmailAddress
-|  <<EmailAddress>>
+| body
+|  <<string>>
 | X
 | 
 | 
@@ -287,7 +287,7 @@ Removes an email address from the various block lists.
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -299,18 +299,18 @@ Removes an email address from the various block lists.
 
 
 | 400
-| The specified resource was not found
-|  <<getMailOrders_401_response>>
+| Error message when there was a problem with the input parameters.
+|  <<ErrorMessage>>
 
 
 | 401
 | Unauthorized
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 
 | 404
 | The specified resource was not found
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 |===
 
@@ -371,7 +371,7 @@ displays a list of blocked email addresses
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -384,12 +384,12 @@ displays a list of blocked email addresses
 
 | 401
 | Unauthorized
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 
 | 404
 | Unauthorized
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 |===
 
@@ -450,7 +450,7 @@ array[<<DenyRuleRecord>>]
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -463,12 +463,12 @@ array[<<DenyRuleRecord>>]
 
 | 401
 | Unauthorized
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 
 | 404
 | Unauthorized
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 |===
 
@@ -503,11 +503,11 @@ endif::internal-generation[]
 
 `GET /mail/stats`
 
-displays a list of blocked email addresses
+Account usage statistics.
 
 ===== Description
 
-
+Returns information about the usage on your mail accounts.
 
 
 // markup not found, no include::{specDir}mail/stats/GET/spec.adoc[opts=optional]
@@ -533,7 +533,7 @@ array[<<getStats_200_response_inner>>]
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -546,12 +546,12 @@ array[<<getStats_200_response_inner>>]
 
 | 401
 | Unauthorized
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 
 | 404
 | Unauthorized
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 |===
 
@@ -685,7 +685,7 @@ Get a listing of the emails sent through this system
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -737,7 +737,7 @@ Sends an Email with Advanced Options
 
 ===== Description
 
-Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
 
 
 // markup not found, no include::{specDir}mail/advsend/POST/spec.adoc[opts=optional]
@@ -767,31 +767,31 @@ Sends An email through one of your mail orders allowing additional options such 
 | 
 
 | from
-|  <<EmailAddressName>>
+|  <<EmailAddressTypes>>
 | X
 | null
 | 
 
 | to
-| A list of destionation email addresses to send this to <<EmailAddressName>>
+|  <<EmailAddressesTypes>>
 | X
 | null
 | 
 
 | replyto
-| (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. <<EmailAddressName>>
+|  <<EmailAddressesTypes>>
 | -
 | null
 | 
 
 | cc
-| (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. <<EmailAddressName>>
+|  <<EmailAddressesTypes>>
 | -
 | null
 | 
 
 | bcc
-| (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. <<EmailAddressName>>
+|  <<EmailAddressesTypes>>
 | -
 | null
 | 
@@ -824,7 +824,7 @@ Sends An email through one of your mail orders allowing additional options such 
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -836,18 +836,18 @@ Sends An email through one of your mail orders allowing additional options such 
 
 
 | 400
-| The specified resource was not found
-|  <<getMailOrders_401_response>>
+| Error message when there was a problem with the input parameters.
+|  <<ErrorMessage>>
 
 
 | 401
 | Unauthorized
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 
 | 404
 | The specified resource was not found
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 |===
 
@@ -939,7 +939,7 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -951,18 +951,18 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 
 
 | 400
-| The specified resource was not found
-|  <<getMailOrders_401_response>>
+| Error message when there was a problem with the input parameters.
+|  <<ErrorMessage>>
 
 
 | 401
 | Unauthorized
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 
 | 404
 | The specified resource was not found
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 |===
 
@@ -1027,7 +1027,7 @@ array[<<MailOrder>>]
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -1040,12 +1040,12 @@ array[<<MailOrder>>]
 
 | 401
 | Unauthorized
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 
 | 404
 | Unauthorized
-|  <<getMailOrders_401_response>>
+|  <<ErrorMessage>>
 
 |===
 
@@ -1108,7 +1108,7 @@ Checks if the server is running
 
 ===== Responses
 
-.http response codes
+.HTTP Response Codes
 [cols="2,3,1"]
 |===
 | Code | Message | Datatype
@@ -1152,7 +1152,7 @@ endif::internal-generation[]
 
 
 [#DenyRuleNew]
-=== _DenyRuleNew_ Root Type for DenyRule
+=== _DenyRuleNew_ DenyRuleNew
 
 The data for a email deny rule record.
 
@@ -1165,7 +1165,7 @@ The data for a email deny rule record.
 | X
 | String 
 | The type of deny rule.
-|  _Enum:_ domain, email, startswith, 
+|  _Enum:_ domain, email, startswith, destination, 
 
 | data
 | X
@@ -1183,7 +1183,7 @@ The data for a email deny rule record.
 
 
 [#DenyRuleRecord]
-=== _DenyRuleRecord_ Root Type for DenyRule
+=== _DenyRuleRecord_ DenyRuleRecord
 
 The data for a email deny rule record.
 
@@ -1192,9 +1192,21 @@ The data for a email deny rule record.
 |===
 | Field Name| Required| Type| Description| Format
 
+| type
+| X
+| String 
+| The type of deny rule.
+|  _Enum:_ domain, email, startswith, destination, 
+
+| data
+| X
+| String 
+| The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+|  
+
 | id
 | X
-| Integer 
+| String 
 | The deny rule Id number.
 |  
 
@@ -1203,18 +1215,6 @@ The data for a email deny rule record.
 | Date 
 | the date the rule was created.
 | date-time 
-
-| type
-| X
-| String 
-| The type of deny rule.
-|  _Enum:_ domain, email, startswith, 
-
-| data
-| X
-| String 
-| The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-|  
 
 | user
 | 
@@ -1225,45 +1225,89 @@ The data for a email deny rule record.
 |===
 
 
-[#DenyRuleRecordAllOf]
-=== _DenyRuleRecordAllOf_ 
+[#EmailAddressName]
+=== _EmailAddressName_ EmailAddressName
 
+An email contact.
 
-
-[.fields-DenyRuleRecordAllOf]
-[cols="2,1,2,4,1"]
-|===
-| Field Name| Required| Type| Description| Format
-
-| id
-| X
-| Integer 
-| The deny rule Id number.
-|  
-
-| created
-| X
-| Date 
-| the date the rule was created.
-| date-time 
-
-|===
-
-
-[#EmailAddress]
-=== _EmailAddress_ Root Type for EmailAddress
-
-an email address
-
-[.fields-EmailAddress]
+[.fields-EmailAddressName]
 [cols="2,1,2,4,1"]
 |===
 | Field Name| Required| Type| Description| Format
 
 | email
+| X
+| String 
+| The email address.
+|  
+
+| name
 | 
 | String 
-| an email address
+| Name to use for the sending contact.
+|  
+
+|===
+
+
+[#EmailAddressTypes]
+=== _EmailAddressTypes_ EmailAddressTypes
+
+
+
+[.fields-EmailAddressTypes]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| email
+| X
+| String 
+| The email address.
+|  
+
+| name
+| 
+| String 
+| Name to use for the sending contact.
+|  
+
+|===
+
+
+[#EmailAddressesTypes]
+=== _EmailAddressesTypes_ EmailAddressTypes
+
+
+
+[.fields-EmailAddressesTypes]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+|===
+
+
+[#ErrorMessage]
+=== _ErrorMessage_ ErrorMessage
+
+The resposne when an error occurs.
+
+[.fields-ErrorMessage]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| code
+| X
+| Integer 
+| The response code associated with the error.
+| int32 
+
+| message
+| X
+| String 
+| The details or description of the error.
 |  
 
 |===
@@ -1287,31 +1331,6 @@ an email address
 
 | text
 | 
-| String 
-| 
-|  
-
-|===
-
-
-[#GetMailOrders401Response]
-=== _GetMailOrders401Response_ 
-
-
-
-[.fields-GetMailOrders401Response]
-[cols="2,1,2,4,1"]
-|===
-| Field Name| Required| Type| Description| Format
-
-| code
-| X
-| String 
-| 
-|  
-
-| message
-| X
 | String 
 | 
 |  
@@ -1362,8 +1381,33 @@ an email address
 |===
 
 
+[#MailAttachment]
+=== _MailAttachment_ MailAttachment
+
+(optional) File attachments to include in the email.  The file contents must be base64
+
+[.fields-MailAttachment]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| filename
+| X
+| String 
+| The filename of the attached file.
+|  
+
+| data
+| X
+| String 
+| The file contents base64 encoded
+|  
+
+|===
+
+
 [#MailBlockClickHouse]
-=== _MailBlockClickHouse_ Root Type for MailBlockClickHouse
+=== _MailBlockClickHouse_ MailBlockClickHouse
 
 A block entry from the clickhouse mailblocks server.
 
@@ -1406,7 +1450,7 @@ A block entry from the clickhouse mailblocks server.
 
 
 [#MailBlockRspamd]
-=== _MailBlockRspamd_ Root Type for MailBlockRspamd
+=== _MailBlockRspamd_ MailBlockRspamd
 
 This is a block entry from the rspamd block list.
 
@@ -1431,7 +1475,7 @@ This is a block entry from the rspamd block list.
 
 
 [#MailBlocks]
-=== _MailBlocks_ Root Type for MailBlocks
+=== _MailBlocks_ MailBlocks
 
 The listing of blocked emails.
 
@@ -1462,7 +1506,7 @@ The listing of blocked emails.
 
 
 [#MailLog]
-=== _MailLog_ 
+=== _MailLog_ MailLog
 
 Mail log records
 
@@ -1499,7 +1543,7 @@ Mail log records
 
 
 [#MailLogEntry]
-=== _MailLogEntry_ 
+=== _MailLogEntry_ MailLogEntry
 
 An email record
 
@@ -1612,7 +1656,7 @@ An email record
 
 | lockTime
 | X
-| Integer 
+| String 
 | lock timestamp
 |  
 
@@ -1650,7 +1694,7 @@ An email record
 
 
 [#MailOrder]
-=== _MailOrder_ Root Type for MailOrder
+=== _MailOrder_ MailOrder
 
 A mail order record
 
@@ -1687,7 +1731,7 @@ A mail order record
 
 
 [#SendMail]
-=== _SendMail_ 
+=== _SendMail_ SendMail
 
 Details for an Email
 
@@ -1724,7 +1768,7 @@ Details for an Email
 
 
 [#SendMailAdv]
-=== _SendMailAdv_ Email details
+=== _SendMailAdv_ SendMailAdv
 
 Details for an Email
 
@@ -1747,32 +1791,32 @@ Details for an Email
 
 | from
 | X
-| EmailAddressName 
+| EmailAddressTypes 
 | 
 |  
 
 | to
 | X
-| List  of <<EmailAddressName>>
-| A list of destionation email addresses to send this to
+| EmailAddressesTypes 
+| 
 |  
 
 | replyto
 | 
-| List  of <<EmailAddressName>>
-| (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+| EmailAddressesTypes 
+| 
 |  
 
 | cc
 | 
-| List  of <<EmailAddressName>>
-| (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+| EmailAddressesTypes 
+| 
 |  
 
 | bcc
 | 
-| List  of <<EmailAddressName>>
-| (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+| EmailAddressesTypes 
+| 
 |  
 
 | attachments

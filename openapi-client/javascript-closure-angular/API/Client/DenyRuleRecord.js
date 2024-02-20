@@ -7,20 +7,6 @@ goog.provide('API.Client.DenyRuleRecord');
 API.Client.DenyRuleRecord = function() {}
 
 /**
- * The deny rule Id number.
- * @type {!number}
- * @export
- */
-API.Client.DenyRuleRecord.prototype.id;
-
-/**
- * the date the rule was created.
- * @type {!Date}
- * @export
- */
-API.Client.DenyRuleRecord.prototype.created;
-
-/**
  * The type of deny rule.
  * @type {!string}
  * @export
@@ -35,6 +21,20 @@ API.Client.DenyRuleRecord.prototype.type;
 API.Client.DenyRuleRecord.prototype.data;
 
 /**
+ * The deny rule Id number.
+ * @type {!string}
+ * @export
+ */
+API.Client.DenyRuleRecord.prototype.id;
+
+/**
+ * the date the rule was created.
+ * @type {!Date}
+ * @export
+ */
+API.Client.DenyRuleRecord.prototype.created;
+
+/**
  * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
  * @type {!string}
  * @export
@@ -46,4 +46,5 @@ API.Client.DenyRuleRecord.TypeEnum = {
   domain: 'domain',
   email: 'email',
   startswith: 'startswith',
+  destination: 'destination',
 }

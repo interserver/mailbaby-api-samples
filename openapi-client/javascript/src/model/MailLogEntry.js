@@ -40,7 +40,7 @@ class MailLogEntry {
      * @param recipient {String} to address this email is being sent to
      * @param domain {String} to address domain
      * @param locked {Number} locked status
-     * @param lockTime {Number} lock timestamp
+     * @param lockTime {String} lock timestamp
      * @param assigned {String} assigned server
      * @param queued {String} queued timestamp
      * @param mxHostname {String} mx hostname
@@ -144,7 +144,7 @@ class MailLogEntry {
                 obj['locked'] = ApiClient.convertToType(data['locked'], 'Number');
             }
             if (data.hasOwnProperty('lockTime')) {
-                obj['lockTime'] = ApiClient.convertToType(data['lockTime'], 'Number');
+                obj['lockTime'] = ApiClient.convertToType(data['lockTime'], 'String');
             }
             if (data.hasOwnProperty('assigned')) {
                 obj['assigned'] = ApiClient.convertToType(data['assigned'], 'String');
@@ -224,6 +224,10 @@ class MailLogEntry {
         // ensure the json data is a string
         if (data['domain'] && !(typeof data['domain'] === 'string' || data['domain'] instanceof String)) {
             throw new Error("Expected the field `domain` to be a primitive type in the JSON string but got " + data['domain']);
+        }
+        // ensure the json data is a string
+        if (data['lockTime'] && !(typeof data['lockTime'] === 'string' || data['lockTime'] instanceof String)) {
+            throw new Error("Expected the field `lockTime` to be a primitive type in the JSON string but got " + data['lockTime']);
         }
         // ensure the json data is a string
         if (data['assigned'] && !(typeof data['assigned'] === 'string' || data['assigned'] instanceof String)) {
@@ -358,7 +362,7 @@ MailLogEntry.prototype['locked'] = undefined;
 
 /**
  * lock timestamp
- * @member {Number} lockTime
+ * @member {String} lockTime
  */
 MailLogEntry.prototype['lockTime'] = undefined;
 

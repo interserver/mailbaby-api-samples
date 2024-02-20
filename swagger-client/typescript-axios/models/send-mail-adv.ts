@@ -11,66 +11,86 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { EmailAddressName } from './email-address-name';
+
+import { EmailAddressTypes } from './email-address-types';
+import { EmailAddressesTypes } from './email-addresses-types';
 import { MailAttachment } from './mail-attachment';
-/**
+ /**
  * Details for an Email
+ *
  * @export
  * @interface SendMailAdv
  */
 export interface SendMailAdv {
+
     /**
      * The subject or title of the email
+     *
      * @type {string}
      * @memberof SendMailAdv
+     * @example Your Package has been Delivered!
      */
     subject: string;
+
     /**
      * The main email contents.
+     *
      * @type {string}
      * @memberof SendMailAdv
+     * @example The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
      */
     body: string;
+
     /**
-     * 
-     * @type {EmailAddressName}
+     * @type {EmailAddressTypes}
      * @memberof SendMailAdv
      */
-    from: EmailAddressName;
+    from: EmailAddressTypes;
+
     /**
-     * A list of destionation email addresses to send this to
-     * @type {Array<EmailAddressName>}
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    to: Array<EmailAddressName>;
+    to: EmailAddressesTypes;
+
     /**
-     * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-     * @type {Array<EmailAddressName>}
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    replyto?: Array<EmailAddressName>;
+    replyto?: EmailAddressesTypes;
+
     /**
-     * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @type {Array<EmailAddressName>}
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    cc?: Array<EmailAddressName>;
+    cc?: EmailAddressesTypes;
+
     /**
-     * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-     * @type {Array<EmailAddressName>}
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    bcc?: Array<EmailAddressName>;
+    bcc?: EmailAddressesTypes;
+
     /**
      * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+     *
      * @type {Array<MailAttachment>}
      * @memberof SendMailAdv
+     * @example [
+        {
+            "filename": "text.txt",
+            "data": "base64_encoded_contents"
+        }
+]
      */
     attachments?: Array<MailAttachment>;
+
     /**
      * (optional)  ID of the Mail order within our system to use as the Mail Account.
+     *
      * @type {number}
      * @memberof SendMailAdv
+     * @example 5000
      */
     id?: number;
 }

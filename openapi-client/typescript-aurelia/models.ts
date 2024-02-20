@@ -32,21 +32,13 @@ export interface DenyRuleNew {
 /**
  * Enum for the type property.
  */
-export type DenyRuleNewTypeEnum = 'domain' | 'email' | 'startswith';
+export type DenyRuleNewTypeEnum = 'domain' | 'email' | 'startswith' | 'destination';
 
 
 /**
  * The data for a email deny rule record.
  */
 export interface DenyRuleRecord {
-  /**
-   * The deny rule Id number.
-   */
-  id: number;
-  /**
-   * the date the rule was created.
-   */
-  created: string;
   /**
    * The type of deny rule.
    */
@@ -56,6 +48,14 @@ export interface DenyRuleRecord {
    */
   data: string;
   /**
+   * The deny rule Id number.
+   */
+  id: string;
+  /**
+   * the date the rule was created.
+   */
+  created: string;
+  /**
    * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
    */
   user?: string;
@@ -64,29 +64,50 @@ export interface DenyRuleRecord {
 /**
  * Enum for the type property.
  */
-export type DenyRuleRecordTypeEnum = 'domain' | 'email' | 'startswith';
-
-
-export interface DenyRuleRecordAllOf {
-  /**
-   * The deny rule Id number.
-   */
-  id: number;
-  /**
-   * the date the rule was created.
-   */
-  created: string;
-}
+export type DenyRuleRecordTypeEnum = 'domain' | 'email' | 'startswith' | 'destination';
 
 
 /**
- * an email address
+ * An email contact.
  */
-export interface EmailAddress {
+export interface EmailAddressName {
   /**
-   * an email address
+   * The email address.
    */
-  email?: string;
+  email: string;
+  /**
+   * Name to use for the sending contact.
+   */
+  name?: string;
+}
+
+/**
+ * @type EmailAddressTypes
+ * 
+ * @export
+ */
+export type EmailAddressTypes = EmailAddressName | string;
+
+/**
+ * @type EmailAddressesTypes
+ * 
+ * @export
+ */
+export type EmailAddressesTypes = Array<EmailAddressName> | string;
+
+
+/**
+ * The resposne when an error occurs.
+ */
+export interface ErrorMessage {
+  /**
+   * The response code associated with the error.
+   */
+  code: number;
+  /**
+   * The details or description of the error.
+   */
+  message: string;
 }
 
 
@@ -96,18 +117,27 @@ export interface GenericResponse {
 }
 
 
-export interface GetMailOrders401Response {
-  code: string;
-  message: string;
-}
-
-
 export interface GetStats200ResponseInner {
   id: number;
   status: string;
   username: string;
   password?: string;
   comment?: string;
+}
+
+
+/**
+ * (optional) File attachments to include in the email.  The file contents must be base64
+ */
+export interface MailAttachment {
+  /**
+   * The filename of the attached file.
+   */
+  filename: string;
+  /**
+   * The file contents base64 encoded
+   */
+  data: string;
 }
 
 
@@ -237,7 +267,7 @@ export interface MailLogEntry {
   /**
    * lock timestamp
    */
-  lockTime: number;
+  lockTime: string;
   /**
    * assigned server
    */
@@ -319,23 +349,11 @@ export interface SendMailAdv {
    * The main email contents.
    */
   body: string;
-  from: EmailAddressName;
-  /**
-   * A list of destionation email addresses to send this to
-   */
-  to: Array<EmailAddressName>;
-  /**
-   * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-   */
-  replyto?: Array<EmailAddressName>;
-  /**
-   * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-   */
-  cc?: Array<EmailAddressName>;
-  /**
-   * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-   */
-  bcc?: Array<EmailAddressName>;
+  from: EmailAddressTypes;
+  to: EmailAddressesTypes;
+  replyto?: EmailAddressesTypes;
+  cc?: EmailAddressesTypes;
+  bcc?: EmailAddressesTypes;
   /**
    * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
    */

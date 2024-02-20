@@ -13,7 +13,7 @@
 
 
 import ApiClient from "../ApiClient";
-import GetMailOrders401Response from '../model/GetMailOrders401Response';
+import ErrorMessage from '../model/ErrorMessage';
 import GetStats200ResponseInner from '../model/GetStats200ResponseInner';
 import MailLog from '../model/MailLog';
 
@@ -45,7 +45,8 @@ export default class HistoryApi {
      */
 
     /**
-     * displays a list of blocked email addresses
+     * Account usage statistics.
+     * Returns information about the usage on your mail accounts.
      * @param {module:api/HistoryApi~getStatsCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link Array.<module:model/GetStats200ResponseInner>}
      */

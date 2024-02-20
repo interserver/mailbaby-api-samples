@@ -12,12 +12,7 @@ import Foundation
 
 public struct EmailAddress: Codable {
 
-    /** an email address */
-    public var email: String?
 
-    public init(email: String? = nil) {
-        self.email = email
-    }
 
 
 }

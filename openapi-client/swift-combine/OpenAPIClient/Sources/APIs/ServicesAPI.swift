@@ -29,9 +29,9 @@ open class ServicesAPI {
 
     public enum GetMailOrdersError: Error, CustomStringConvertible {
         // Unauthorized
-        case code401Error(GetMailOrders401Response)
+        case code401Error(ErrorMessage)
         // Unauthorized
-        case code404Error(GetMailOrders401Response)
+        case code404Error(ErrorMessage)
 
         public var description: String {
             switch self {
@@ -71,7 +71,7 @@ open class ServicesAPI {
                 .mapError { transportError -> Error in 
                     if transportError.statusCode == 401 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return GetMailOrdersError.code401Error(error)
                         } catch {
                             return error
@@ -79,7 +79,7 @@ open class ServicesAPI {
                     }
                     if transportError.statusCode == 404 {
                         do {
-                            let error = try self.decoder.decode(GetMailOrders401Response.self, from: transportError.data)
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return GetMailOrdersError.code404Error(error)
                         } catch {
                             return error

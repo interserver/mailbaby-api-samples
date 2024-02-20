@@ -14,8 +14,8 @@
 
 goog.provide('API.Client.ServicesApi');
 
+goog.require('API.Client.ErrorMessage');
 goog.require('API.Client.MailOrder');
-goog.require('API.Client.getMailOrders_401_response');
 
 /**
  * @constructor

@@ -36,6 +36,7 @@ export namespace DenyRuleNew {
     export enum TypeEnum {
         Domain = <any> 'domain',
         Email = <any> 'email',
-        Startswith = <any> 'startswith'
+        Startswith = <any> 'startswith',
+        Destination = <any> 'destination'
     }
 }

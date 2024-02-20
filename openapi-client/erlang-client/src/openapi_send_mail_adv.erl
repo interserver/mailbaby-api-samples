@@ -7,11 +7,11 @@
 -type openapi_send_mail_adv() ::
     #{ 'subject' := binary(),
        'body' := binary(),
-       'from' := openapi_email_address_name:openapi_email_address_name(),
-       'to' := list(),
-       'replyto' => list(),
-       'cc' => list(),
-       'bcc' => list(),
+       'from' := openapi_email_address_types:openapi_email_address_types(),
+       'to' := openapi_email_addresses_types:openapi_email_addresses_types(),
+       'replyto' => openapi_email_addresses_types:openapi_email_addresses_types(),
+       'cc' => openapi_email_addresses_types:openapi_email_addresses_types(),
+       'bcc' => openapi_email_addresses_types:openapi_email_addresses_types(),
        'attachments' => list(),
        'id' => integer()
      }.

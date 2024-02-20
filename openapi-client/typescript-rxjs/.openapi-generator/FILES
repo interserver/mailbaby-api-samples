@@ -9,11 +9,13 @@ apis/index.ts
 index.ts
 models/DenyRuleNew.ts
 models/DenyRuleRecord.ts
-models/DenyRuleRecordAllOf.ts
-models/EmailAddress.ts
+models/EmailAddressName.ts
+models/EmailAddressTypes.ts
+models/EmailAddressesTypes.ts
+models/ErrorMessage.ts
 models/GenericResponse.ts
-models/GetMailOrders401Response.ts
 models/GetStats200ResponseInner.ts
+models/MailAttachment.ts
 models/MailBlockClickHouse.ts
 models/MailBlockRspamd.ts
 models/MailBlocks.ts

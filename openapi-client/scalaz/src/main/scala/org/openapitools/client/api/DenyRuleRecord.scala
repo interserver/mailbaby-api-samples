@@ -13,14 +13,14 @@ import java.time.OffsetDateTime
 import DenyRuleRecord._
 
 case class DenyRuleRecord (
-  /* The deny rule Id number. */
-  id: Integer,
-/* the date the rule was created. */
-  created: OffsetDateTime,
-/* The type of deny rule. */
+  /* The type of deny rule. */
   `type`: `Type`,
 /* The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. */
   data: String,
+/* The deny rule Id number. */
+  id: String,
+/* the date the rule was created. */
+  created: OffsetDateTime,
 /* Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. */
   user: Option[String])
 
@@ -30,12 +30,14 @@ object DenyRuleRecord {
   case object Domain extends `Type`
   case object Email extends `Type`
   case object Startswith extends `Type`
+  case object Destination extends `Type`
 
   object `Type` {
     def to`Type`(s: String): Option[`Type`] = s match {
       case "Domain" => Some(Domain)
       case "Email" => Some(Email)
       case "Startswith" => Some(Startswith)
+      case "Destination" => Some(Destination)
       case _ => None
     }
 
@@ -43,6 +45,7 @@ object DenyRuleRecord {
       case Domain => "Domain"
       case Email => "Email"
       case Startswith => "Startswith"
+      case Destination => "Destination"
     }
   }
 

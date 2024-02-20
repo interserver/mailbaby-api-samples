@@ -2,7 +2,7 @@ package io.swagger.server.model
 
 
 /**
- * = Root Type for MailAttachment =
+ * = MailAttachment =
  *
  * (optional) File attachments to include in the email.  The file contents must be base64
  *

@@ -15,15 +15,16 @@
 #include "OpenAPIBaseModel.h"
 #include "OpenAPIHistoryApi.h"
 
-#include "OpenAPIGetMailOrders401Response.h"
+#include "OpenAPIErrorMessage.h"
 #include "OpenAPIGetStats200ResponseInner.h"
 #include "OpenAPIMailLog.h"
 
 namespace OpenAPI
 {
 
-/* displays a list of blocked email addresses
-
+/* Account usage statistics.
+ *
+ * Returns information about the usage on your mail accounts.
 */
 class OPENAPI_API OpenAPIHistoryApi::GetStatsRequest : public Request
 {

@@ -67,16 +67,16 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\GenericResponse();
                 break;
             case 400:
-                /* The specified resource was not found */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                /* Error message when there was a problem with the input parameters. */
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 401:
                 /* Unauthorized */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 404:
                 /* The specified resource was not found */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
         $this->parseBody($response, $responseContent);
@@ -153,16 +153,16 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\GenericResponse();
                 break;
             case 400:
-                /* The specified resource was not found */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                /* Error message when there was a problem with the input parameters. */
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 401:
                 /* Unauthorized */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 404:
                 /* The specified resource was not found */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
         $this->parseBody($response, $responseContent);
@@ -193,7 +193,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region delistBlock
     /**
      * Removes an email address from the blocked list
-     * @param \App\DTO\EmailAddress $requestContent
+     * @param string $requestContent
      * @param iterable|string[][] $security
      * @param string $requestMediaType
      * @param string $responseMediaType
@@ -202,7 +202,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws DT\Exception\InvalidData
      */
     public function delistBlockRaw(
-        \App\DTO\EmailAddress $requestContent,
+        string $requestContent,
         iterable $security = ['apiKeyAuth' => []],
         string $requestMediaType = 'application/json',
         string $responseMediaType = 'application/json'
@@ -217,7 +217,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * Removes an email address from the blocked list
-     * @param \App\DTO\EmailAddress $requestContent
+     * @param string $requestContent
      * @param iterable|string[][] $security
      * @param string $requestMediaType
      * @param string $responseMediaType
@@ -227,7 +227,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws OAGAC\Exception\InvalidResponseBodySchema
      */
     public function delistBlock(
-        \App\DTO\EmailAddress $requestContent,
+        string $requestContent,
         iterable $security = ['apiKeyAuth' => []],
         string $requestMediaType = 'application/json',
         string $responseMediaType = 'application/json'
@@ -242,16 +242,16 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\GenericResponse();
                 break;
             case 400:
-                /* The specified resource was not found */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                /* Error message when there was a problem with the input parameters. */
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 401:
                 /* Unauthorized */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 404:
                 /* The specified resource was not found */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
         $this->parseBody($response, $responseContent);
@@ -260,7 +260,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * Removes an email address from the blocked list
-     * @param \App\DTO\EmailAddress $requestContent
+     * @param string $requestContent
      * @param iterable|string[][] $security
      * @param string $requestMediaType
      * @param string $responseMediaType
@@ -271,7 +271,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws OAGAC\Exception\UnsuccessfulResponse
      */
     public function delistBlockResult(
-        \App\DTO\EmailAddress $requestContent,
+        string $requestContent,
         iterable $security = ['apiKeyAuth' => []],
         string $requestMediaType = 'application/json',
         string $responseMediaType = 'application/json'
@@ -325,11 +325,11 @@ class ApiClient extends OAGAC\AbstractApiClient
                 break;
             case 401:
                 /* Unauthorized */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 404:
                 /* Unauthorized */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
         $this->parseBody($response, $responseContent);
@@ -399,11 +399,11 @@ class ApiClient extends OAGAC\AbstractApiClient
                 break;
             case 401:
                 /* Unauthorized */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 404:
                 /* Unauthorized */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
         $this->parseBody($response, $responseContent);
@@ -469,15 +469,15 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* OK */
-                $responseContent = new \App\DTO\Collection16();
+                $responseContent = new \App\DTO\Collection7();
                 break;
             case 401:
                 /* Unauthorized */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 404:
                 /* Unauthorized */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
         $this->parseBody($response, $responseContent);
@@ -488,7 +488,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * Displays a listing of deny email rules.
      * @param iterable|string[][] $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection16
+     * @return \App\DTO\Collection7
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -497,7 +497,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     public function getRulesResult(
         iterable $security = ['apiKeyAuth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection16
+    ): \App\DTO\Collection7
     {
         return $this->getSuccessfulContent(...$this->getRules($security, $responseMediaType));
     }
@@ -505,7 +505,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     //region getStats
     /**
-     * displays a list of blocked email addresses
+     * Account usage statistics.
      * @param iterable|string[][] $security
      * @param string $responseMediaType
      * @return ResponseInterface
@@ -524,7 +524,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * displays a list of blocked email addresses
+     * Account usage statistics.
      * @param iterable|string[][] $security
      * @param string $responseMediaType
      * @return array
@@ -547,11 +547,11 @@ class ApiClient extends OAGAC\AbstractApiClient
                 break;
             case 401:
                 /* Unauthorized */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 404:
                 /* Unauthorized */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
         $this->parseBody($response, $responseContent);
@@ -559,7 +559,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * displays a list of blocked email addresses
+     * Account usage statistics.
      * @param iterable|string[][] $security
      * @param string $responseMediaType
      * @return \App\DTO\Collection4
@@ -690,16 +690,16 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\GenericResponse();
                 break;
             case 400:
-                /* The specified resource was not found */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                /* Error message when there was a problem with the input parameters. */
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 401:
                 /* Unauthorized */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 404:
                 /* The specified resource was not found */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
         $this->parseBody($response, $responseContent);
@@ -781,16 +781,16 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\GenericResponse();
                 break;
             case 400:
-                /* The specified resource was not found */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                /* Error message when there was a problem with the input parameters. */
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 401:
                 /* Unauthorized */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 404:
                 /* The specified resource was not found */
-                $responseContent = new \App\DTO\GetMailOrders401Response();
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
         $this->parseBody($response, $responseContent);

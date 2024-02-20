@@ -12,7 +12,8 @@
  */
 
 import ApiClient from '../ApiClient';
-import EmailAddressName from './EmailAddressName';
+import EmailAddressTypes from './EmailAddressTypes';
+import EmailAddressesTypes from './EmailAddressesTypes';
 import MailAttachment from './MailAttachment';
 
 /**
@@ -27,8 +28,8 @@ class SendMailAdv {
      * @alias module:model/SendMailAdv
      * @param subject {String} The subject or title of the email
      * @param body {String} The main email contents.
-     * @param from {module:model/EmailAddressName} 
-     * @param to {Array.<module:model/EmailAddressName>} A list of destionation email addresses to send this to
+     * @param from {module:model/EmailAddressTypes} 
+     * @param to {module:model/EmailAddressesTypes} 
      */
     constructor(subject, body, from, to) { 
         
@@ -65,19 +66,19 @@ class SendMailAdv {
                 obj['body'] = ApiClient.convertToType(data['body'], 'String');
             }
             if (data.hasOwnProperty('from')) {
-                obj['from'] = EmailAddressName.constructFromObject(data['from']);
+                obj['from'] = EmailAddressTypes.constructFromObject(data['from']);
             }
             if (data.hasOwnProperty('to')) {
-                obj['to'] = ApiClient.convertToType(data['to'], [EmailAddressName]);
+                obj['to'] = EmailAddressesTypes.constructFromObject(data['to']);
             }
             if (data.hasOwnProperty('replyto')) {
-                obj['replyto'] = ApiClient.convertToType(data['replyto'], [EmailAddressName]);
+                obj['replyto'] = EmailAddressesTypes.constructFromObject(data['replyto']);
             }
             if (data.hasOwnProperty('cc')) {
-                obj['cc'] = ApiClient.convertToType(data['cc'], [EmailAddressName]);
+                obj['cc'] = EmailAddressesTypes.constructFromObject(data['cc']);
             }
             if (data.hasOwnProperty('bcc')) {
-                obj['bcc'] = ApiClient.convertToType(data['bcc'], [EmailAddressName]);
+                obj['bcc'] = EmailAddressesTypes.constructFromObject(data['bcc']);
             }
             if (data.hasOwnProperty('attachments')) {
                 obj['attachments'] = ApiClient.convertToType(data['attachments'], [MailAttachment]);
@@ -111,47 +112,23 @@ class SendMailAdv {
         }
         // validate the optional field `from`
         if (data['from']) { // data not null
-          EmailAddressName.validateJSON(data['from']);
+          EmailAddressTypes.validateJSON(data['from']);
         }
+        // validate the optional field `to`
         if (data['to']) { // data not null
-            // ensure the json data is an array
-            if (!Array.isArray(data['to'])) {
-                throw new Error("Expected the field `to` to be an array in the JSON data but got " + data['to']);
-            }
-            // validate the optional field `to` (array)
-            for (const item of data['to']) {
-                EmailAddressName.validateJSON(item);
-            };
+          EmailAddressesTypes.validateJSON(data['to']);
         }
+        // validate the optional field `replyto`
         if (data['replyto']) { // data not null
-            // ensure the json data is an array
-            if (!Array.isArray(data['replyto'])) {
-                throw new Error("Expected the field `replyto` to be an array in the JSON data but got " + data['replyto']);
-            }
-            // validate the optional field `replyto` (array)
-            for (const item of data['replyto']) {
-                EmailAddressName.validateJSON(item);
-            };
+          EmailAddressesTypes.validateJSON(data['replyto']);
         }
+        // validate the optional field `cc`
         if (data['cc']) { // data not null
-            // ensure the json data is an array
-            if (!Array.isArray(data['cc'])) {
-                throw new Error("Expected the field `cc` to be an array in the JSON data but got " + data['cc']);
-            }
-            // validate the optional field `cc` (array)
-            for (const item of data['cc']) {
-                EmailAddressName.validateJSON(item);
-            };
+          EmailAddressesTypes.validateJSON(data['cc']);
         }
+        // validate the optional field `bcc`
         if (data['bcc']) { // data not null
-            // ensure the json data is an array
-            if (!Array.isArray(data['bcc'])) {
-                throw new Error("Expected the field `bcc` to be an array in the JSON data but got " + data['bcc']);
-            }
-            // validate the optional field `bcc` (array)
-            for (const item of data['bcc']) {
-                EmailAddressName.validateJSON(item);
-            };
+          EmailAddressesTypes.validateJSON(data['bcc']);
         }
         if (data['attachments']) { // data not null
             // ensure the json data is an array
@@ -185,31 +162,27 @@ SendMailAdv.prototype['subject'] = undefined;
 SendMailAdv.prototype['body'] = undefined;
 
 /**
- * @member {module:model/EmailAddressName} from
+ * @member {module:model/EmailAddressTypes} from
  */
 SendMailAdv.prototype['from'] = undefined;
 
 /**
- * A list of destionation email addresses to send this to
- * @member {Array.<module:model/EmailAddressName>} to
+ * @member {module:model/EmailAddressesTypes} to
  */
 SendMailAdv.prototype['to'] = undefined;
 
 /**
- * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
- * @member {Array.<module:model/EmailAddressName>} replyto
+ * @member {module:model/EmailAddressesTypes} replyto
  */
 SendMailAdv.prototype['replyto'] = undefined;
 
 /**
- * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
- * @member {Array.<module:model/EmailAddressName>} cc
+ * @member {module:model/EmailAddressesTypes} cc
  */
 SendMailAdv.prototype['cc'] = undefined;
 
 /**
- * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
- * @member {Array.<module:model/EmailAddressName>} bcc
+ * @member {module:model/EmailAddressesTypes} bcc
  */
 SendMailAdv.prototype['bcc'] = undefined;
 

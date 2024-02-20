@@ -2,7 +2,7 @@ package io.swagger.server.model
 
 
 /**
- * = Root Type for MailOrder =
+ * = MailOrder =
  *
  * A mail order record
  *

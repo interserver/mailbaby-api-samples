@@ -70,7 +70,7 @@ export class RequiredError extends Error {
 }
 
 
-            export type DenyRuleNewTypeEnum = 'domain' | 'email' | 'startswith';
+            export type DenyRuleNewTypeEnum = 'domain' | 'email' | 'startswith' | 'destination';
 /**
  * The data for a email deny rule record.
  * @export
@@ -97,24 +97,12 @@ export type DenyRuleNew = {
 }
 
 
-            export type DenyRuleRecordTypeEnum = 'domain' | 'email' | 'startswith';
+            export type DenyRuleRecordTypeEnum = 'domain' | 'email' | 'startswith' | 'destination';
 /**
  * The data for a email deny rule record.
  * @export
  */
 export type DenyRuleRecord = {
-    /**
-     * The deny rule Id number.
-     * @type {number}
-     * @memberof DenyRuleRecord
-     */
-    id: number;
-    /**
-     * the date the rule was created.
-     * @type {Date}
-     * @memberof DenyRuleRecord
-     */
-    created: Date;
     /**
      * The type of deny rule.
      * @type {string}
@@ -128,6 +116,18 @@ export type DenyRuleRecord = {
      */
     data: string;
     /**
+     * The deny rule Id number.
+     * @type {string}
+     * @memberof DenyRuleRecord
+     */
+    id: string;
+    /**
+     * the date the rule was created.
+     * @type {Date}
+     * @memberof DenyRuleRecord
+     */
+    created: Date;
+    /**
      * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      * @type {string}
      * @memberof DenyRuleRecord
@@ -136,35 +136,67 @@ export type DenyRuleRecord = {
 }
 
 /**
- * 
+ * An email contact.
  * @export
  */
-export type DenyRuleRecordAllOf = {
+export type EmailAddressName = {
     /**
-     * The deny rule Id number.
-     * @type {number}
-     * @memberof DenyRuleRecordAllOf
+     * The email address.
+     * @type {string}
+     * @memberof EmailAddressName
      */
-    id: number;
+    email: string;
     /**
-     * the date the rule was created.
-     * @type {Date}
-     * @memberof DenyRuleRecordAllOf
+     * Name to use for the sending contact.
+     * @type {string}
+     * @memberof EmailAddressName
      */
-    created: Date;
+    name?: string;
 }
 
 /**
- * an email address
+ * 
  * @export
  */
-export type EmailAddress = {
+export type EmailAddressTypes = {
     /**
-     * an email address
+     * The email address.
      * @type {string}
-     * @memberof EmailAddress
+     * @memberof EmailAddressTypes
      */
-    email?: string;
+    email: string;
+    /**
+     * Name to use for the sending contact.
+     * @type {string}
+     * @memberof EmailAddressTypes
+     */
+    name?: string;
+}
+
+/**
+ * 
+ * @export
+ */
+export type EmailAddressesTypes = {
+}
+
+/**
+ * The resposne when an error occurs.
+ * @export
+ */
+export type ErrorMessage = {
+    /**
+     * The response code associated with the error.
+     * @type {number}
+     * @memberof ErrorMessage
+     */
+    code: number;
+    /**
+     * The details or description of the error.
+     * @type {string}
+     * @memberof ErrorMessage
+     */
+    message: string;
 }
 
 /**
@@ -184,25 +216,6 @@ export type GenericResponse = {
      * @memberof GenericResponse
      */
     text?: string;
-}
-
-/**
- * 
- * @export
- */
-export type GetMailOrders401Response = {
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMailOrders401Response
-     */
-    code: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMailOrders401Response
-     */
-    message: string;
 }
 
 /**
@@ -240,6 +253,25 @@ export type GetStats200ResponseInner = {
      * @memberof GetStats200ResponseInner
      */
     comment?: string;
+}
+
+/**
+ * (optional) File attachments to include in the email.  The file contents must be base64
+ * @export
+ */
+export type MailAttachment = {
+    /**
+     * The filename of the attached file.
+     * @type {string}
+     * @memberof MailAttachment
+     */
+    filename: string;
+    /**
+     * The file contents base64 encoded
+     * @type {string}
+     * @memberof MailAttachment
+     */
+    data: string;
 }
 
 /**
@@ -463,10 +495,10 @@ export type MailLogEntry = {
     locked: number;
     /**
      * lock timestamp
-     * @type {number}
+     * @type {string}
      * @memberof MailLogEntry
      */
-    lockTime: number;
+    lockTime: string;
     /**
      * assigned server
      * @type {string}
@@ -580,34 +612,34 @@ export type SendMailAdv = {
     body: string;
     /**
      * 
-     * @type {EmailAddressName}
+     * @type {EmailAddressTypes}
      * @memberof SendMailAdv
      */
-    from: EmailAddressName;
+    from: EmailAddressTypes;
     /**
-     * A list of destionation email addresses to send this to
-     * @type {Array<EmailAddressName>}
+     * 
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    to: Array<EmailAddressName>;
+    to: EmailAddressesTypes;
     /**
-     * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-     * @type {Array<EmailAddressName>}
+     * 
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    replyto?: Array<EmailAddressName>;
+    replyto?: EmailAddressesTypes;
     /**
-     * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @type {Array<EmailAddressName>}
+     * 
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    cc?: Array<EmailAddressName>;
+    cc?: EmailAddressesTypes;
     /**
-     * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-     * @type {Array<EmailAddressName>}
+     * 
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    bcc?: Array<EmailAddressName>;
+    bcc?: EmailAddressesTypes;
     /**
      * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
      * @type {Array<MailAttachment>}
@@ -722,10 +754,10 @@ export const BlockingApiFetchParamCreator = function (configuration?: Configurat
          * @summary Removes an email address from the blocked list
          * @throws {RequiredError}
          */
-        delistBlock(emailAddress: EmailAddress, options: RequestOptions): FetchArgs {
-            // verify required parameter 'emailAddress' is not null or undefined
-            if (emailAddress === null || emailAddress === undefined) {
-                throw new RequiredError('emailAddress','Required parameter emailAddress was null or undefined when calling delistBlock.');
+        delistBlock(body: string, options: RequestOptions): FetchArgs {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling delistBlock.');
             }
             const localVarPath = `/mail/blocks/delete`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -747,8 +779,8 @@ export const BlockingApiFetchParamCreator = function (configuration?: Configurat
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             localVarUrlObj.search = null;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (typeof emailAddress !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(emailAddress != null ? emailAddress : {}) : (((emailAddress:any):string) || "");
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body != null ? body : {}) : (((body:any):string) || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -823,7 +855,7 @@ export type BlockingApiType = {
 
     deleteRule(ruleId: number, options?: RequestOptions): Promise<GenericResponse>,
 
-    delistBlock(emailAddress: EmailAddress, options?: RequestOptions): Promise<GenericResponse>,
+    delistBlock(body: string, options?: RequestOptions): Promise<GenericResponse>,
 
     getMailBlocks(options?: RequestOptions): Promise<MailBlocks>,
 
@@ -872,8 +904,8 @@ export const BlockingApi = function(configuration?: Configuration, fetch: FetchA
          * @summary Removes an email address from the blocked list
          * @throws {RequiredError}
          */
-        delistBlock(emailAddress: EmailAddress, options?: RequestOptions = {}): Promise<GenericResponse> {
-            const localVarFetchArgs = BlockingApiFetchParamCreator(configuration).delistBlock(emailAddress, options);
+        delistBlock(body: string, options?: RequestOptions = {}): Promise<GenericResponse> {
+            const localVarFetchArgs = BlockingApiFetchParamCreator(configuration).delistBlock(body, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();
@@ -923,8 +955,8 @@ export const BlockingApi = function(configuration?: Configuration, fetch: FetchA
 export const HistoryApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
-         * @summary displays a list of blocked email addresses
+         * Returns information about the usage on your mail accounts.
+         * @summary Account usage statistics.
          * @throws {RequiredError}
          */
         getStats(options: RequestOptions): FetchArgs {
@@ -1043,8 +1075,8 @@ export const HistoryApi = function(configuration?: Configuration, fetch: FetchAP
     const basePath: string = (configuration && configuration.basePath) || BASE_PATH;
     return {
         /**
-         * 
-         * @summary displays a list of blocked email addresses
+         * Returns information about the usage on your mail accounts.
+         * @summary Account usage statistics.
          * @throws {RequiredError}
          */
         getStats(options?: RequestOptions = {}): Promise<Array<GetStats200ResponseInner>> {
@@ -1083,11 +1115,11 @@ export const HistoryApi = function(configuration?: Configuration, fetch: FetchAP
 export const SendingApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
          * @summary Sends an Email with Advanced Options
          * @throws {RequiredError}
          */
-        sendAdvMail(subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, options: RequestOptions): FetchArgs {
+        sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options: RequestOptions): FetchArgs {
             // verify required parameter 'subject' is not null or undefined
             if (subject === null || subject === undefined) {
                 throw new RequiredError('subject','Required parameter subject was null or undefined when calling sendAdvMail.');
@@ -1131,20 +1163,20 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
                 localVarFormParams.set('from', ((from:any):string));
             }
 
-            if (to) {
-                    localVarFormParams.set('to', to.join(COLLECTION_FORMATS["csv"]));
+            if (to !== undefined) {
+                localVarFormParams.set('to', ((to:any):string));
             }
 
-            if (replyto) {
-                    localVarFormParams.set('replyto', replyto.join(COLLECTION_FORMATS["csv"]));
+            if (replyto !== undefined) {
+                localVarFormParams.set('replyto', ((replyto:any):string));
             }
 
-            if (cc) {
-                    localVarFormParams.set('cc', cc.join(COLLECTION_FORMATS["csv"]));
+            if (cc !== undefined) {
+                localVarFormParams.set('cc', ((cc:any):string));
             }
 
-            if (bcc) {
-                    localVarFormParams.set('bcc', bcc.join(COLLECTION_FORMATS["csv"]));
+            if (bcc !== undefined) {
+                localVarFormParams.set('bcc', ((bcc:any):string));
             }
 
             if (attachments) {
@@ -1234,7 +1266,7 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
 };
 
 export type SendingApiType = { 
-    sendAdvMail(subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, options?: RequestOptions): Promise<GenericResponse>,
+    sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options?: RequestOptions): Promise<GenericResponse>,
 
     sendMail(to: string, from: string, subject: string, body: string, options?: RequestOptions): Promise<GenericResponse>,
 }
@@ -1247,11 +1279,11 @@ export const SendingApi = function(configuration?: Configuration, fetch: FetchAP
     const basePath: string = (configuration && configuration.basePath) || BASE_PATH;
     return {
         /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
          * @summary Sends an Email with Advanced Options
          * @throws {RequiredError}
          */
-        sendAdvMail(subject: string, body: string, from: EmailAddressName, to: Array<EmailAddressName>, replyto?: Array<EmailAddressName>, cc?: Array<EmailAddressName>, bcc?: Array<EmailAddressName>, attachments?: Array<MailAttachment>, id?: number, options?: RequestOptions = {}): Promise<GenericResponse> {
+        sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options?: RequestOptions = {}): Promise<GenericResponse> {
             const localVarFetchArgs = SendingApiFetchParamCreator(configuration).sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {

@@ -9,6 +9,7 @@ type denyrulenew_type = [
 | `Domain [@printer fun fmt _ -> Format.pp_print_string fmt "domain"] [@name "domain"]
 | `Email [@printer fun fmt _ -> Format.pp_print_string fmt "email"] [@name "email"]
 | `Startswith [@printer fun fmt _ -> Format.pp_print_string fmt "startswith"] [@name "startswith"]
+| `Destination [@printer fun fmt _ -> Format.pp_print_string fmt "destination"] [@name "destination"]
 ] [@@deriving yojson, show { with_path = false }];;
 
 let denyrulenew_type_of_yojson json = denyrulenew_type_of_yojson (`List [json])

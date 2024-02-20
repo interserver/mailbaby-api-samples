@@ -25,12 +25,14 @@ object DenyRuleNew {
   case object Domain extends `Type`
   case object Email extends `Type`
   case object Startswith extends `Type`
+  case object Destination extends `Type`
 
   object `Type` {
     def to`Type`(s: String): Option[`Type`] = s match {
       case "Domain" => Some(Domain)
       case "Email" => Some(Email)
       case "Startswith" => Some(Startswith)
+      case "Destination" => Some(Destination)
       case _ => None
     }
 
@@ -38,6 +40,7 @@ object DenyRuleNew {
       case Domain => "Domain"
       case Email => "Email"
       case Startswith => "Startswith"
+      case Destination => "Destination"
     }
   }
 

@@ -1,7 +1,7 @@
 /*
 MailBaby Email Delivery and Management Service API
 
-Testing BlockingApiService
+Testing BlockingAPIService
 
 */
 
@@ -17,16 +17,16 @@ import (
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
-func Test_openapi_BlockingApiService(t *testing.T) {
+func Test_openapi_BlockingAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test BlockingApiService AddRule", func(t *testing.T) {
+	t.Run("Test BlockingAPIService AddRule", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.BlockingApi.AddRule(context.Background()).Execute()
+		resp, httpRes, err := apiClient.BlockingAPI.AddRule(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -34,13 +34,13 @@ func Test_openapi_BlockingApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test BlockingApiService DeleteRule", func(t *testing.T) {
+	t.Run("Test BlockingAPIService DeleteRule", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var ruleId int32
 
-		resp, httpRes, err := apiClient.BlockingApi.DeleteRule(context.Background(), ruleId).Execute()
+		resp, httpRes, err := apiClient.BlockingAPI.DeleteRule(context.Background(), ruleId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -48,11 +48,11 @@ func Test_openapi_BlockingApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test BlockingApiService DelistBlock", func(t *testing.T) {
+	t.Run("Test BlockingAPIService DelistBlock", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.BlockingApi.DelistBlock(context.Background()).Execute()
+		resp, httpRes, err := apiClient.BlockingAPI.DelistBlock(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -60,11 +60,11 @@ func Test_openapi_BlockingApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test BlockingApiService GetMailBlocks", func(t *testing.T) {
+	t.Run("Test BlockingAPIService GetMailBlocks", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.BlockingApi.GetMailBlocks(context.Background()).Execute()
+		resp, httpRes, err := apiClient.BlockingAPI.GetMailBlocks(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -72,11 +72,11 @@ func Test_openapi_BlockingApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test BlockingApiService GetRules", func(t *testing.T) {
+	t.Run("Test BlockingAPIService GetRules", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.BlockingApi.GetRules(context.Background()).Execute()
+		resp, httpRes, err := apiClient.BlockingAPI.GetRules(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

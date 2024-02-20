@@ -47,7 +47,7 @@ open class MailLogEntry: JSONEncodable {
     /** locked status */
     public var locked: Int32?
     /** lock timestamp */
-    public var lockTime: Int32?
+    public var lockTime: String?
     /** assigned server */
     public var assigned: String?
     /** queued timestamp */
@@ -80,7 +80,7 @@ open class MailLogEntry: JSONEncodable {
         nillableDictionary["recipient"] = self.recipient
         nillableDictionary["domain"] = self.domain
         nillableDictionary["locked"] = self.locked?.encodeToJSON()
-        nillableDictionary["lockTime"] = self.lockTime?.encodeToJSON()
+        nillableDictionary["lockTime"] = self.lockTime
         nillableDictionary["assigned"] = self.assigned
         nillableDictionary["queued"] = self.queued
         nillableDictionary["mxHostname"] = self.mxHostname

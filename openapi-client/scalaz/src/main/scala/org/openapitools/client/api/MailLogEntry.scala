@@ -47,7 +47,7 @@ case class MailLogEntry (
 /* locked status */
   locked: Integer,
 /* lock timestamp */
-  lockTime: Integer,
+  lockTime: String,
 /* assigned server */
   assigned: String,
 /* queued timestamp */

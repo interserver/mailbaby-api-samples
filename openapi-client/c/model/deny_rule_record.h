@@ -18,7 +18,7 @@ typedef struct deny_rule_record_t deny_rule_record_t;
 
 // Enum TYPE for deny_rule_record
 
-typedef enum  { mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_NULL = 0, mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_domain, mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_email, mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_startswith } mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e;
+typedef enum  { mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_NULL = 0, mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_domain, mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_email, mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_startswith, mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_destination } mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e;
 
 char* deny_rule_record_type_ToString(mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e type);
 
@@ -27,19 +27,19 @@ mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e deny_
 
 
 typedef struct deny_rule_record_t {
-    int id; //numeric
-    char *created; //date time
     mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e type; //enum
     char *data; // string
+    char *id; // string
+    char *created; //date time
     char *user; // string
 
 } deny_rule_record_t;
 
 deny_rule_record_t *deny_rule_record_create(
-    int id,
-    char *created,
     mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e type,
     char *data,
+    char *id,
+    char *created,
     char *user
 );
 

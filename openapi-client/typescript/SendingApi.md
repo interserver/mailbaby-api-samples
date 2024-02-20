@@ -11,7 +11,7 @@ Method | HTTP request | Description
 # **sendAdvMail**
 > GenericResponse sendAdvMail()
 
-Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
 
 ### Example
 
@@ -28,39 +28,16 @@ let body:.SendingApiSendAdvMailRequest = {
   subject: "Your Package has been Delivered!",
   // string | The main email contents.
   body: "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.",
-  // EmailAddressName
-  _from: {
-    email: "user@domain.com",
-    name: "John Smith",
-  },
-  // Array<EmailAddressName> | A list of destionation email addresses to send this to
-  to: [
-    {
-      email: "user@domain.com",
-      name: "John Smith",
-    },
-  ],
-  // Array<EmailAddressName> | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. (optional)
-  replyto: [
-    {
-      email: "user@domain.com",
-      name: "John Smith",
-    },
-  ],
-  // Array<EmailAddressName> | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. (optional)
-  cc: [
-    {
-      email: "user@domain.com",
-      name: "John Smith",
-    },
-  ],
-  // Array<EmailAddressName> | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. (optional)
-  bcc: [
-    {
-      email: "user@domain.com",
-      name: "John Smith",
-    },
-  ],
+  // EmailAddressTypes
+  _from: null,
+  // EmailAddressesTypes
+  to: null,
+  // EmailAddressesTypes (optional)
+  replyto: null,
+  // EmailAddressesTypes (optional)
+  cc: null,
+  // EmailAddressesTypes (optional)
+  bcc: null,
   // Array<MailAttachment> | (optional) File attachments to include in the email.  The file contents must be base64 encoded! (optional)
   attachments: [
     {
@@ -84,11 +61,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | [**string**] | The subject or title of the email | defaults to undefined
  **body** | [**string**] | The main email contents. | defaults to undefined
- **_from** | **EmailAddressName** |  | defaults to undefined
- **to** | **Array&lt;EmailAddressName&gt;** | A list of destionation email addresses to send this to | defaults to undefined
- **replyto** | **Array&lt;EmailAddressName&gt;** | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. | (optional) defaults to undefined
- **cc** | **Array&lt;EmailAddressName&gt;** | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. | (optional) defaults to undefined
- **bcc** | **Array&lt;EmailAddressName&gt;** | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. | (optional) defaults to undefined
+ **_from** | **EmailAddressTypes** |  | defaults to undefined
+ **to** | **EmailAddressesTypes** |  | defaults to undefined
+ **replyto** | **EmailAddressesTypes** |  | (optional) defaults to undefined
+ **cc** | **EmailAddressesTypes** |  | (optional) defaults to undefined
+ **bcc** | **EmailAddressesTypes** |  | (optional) defaults to undefined
  **attachments** | **Array&lt;MailAttachment&gt;** | (optional) File attachments to include in the email.  The file contents must be base64 encoded! | (optional) defaults to undefined
  **id** | [**number**] | (optional)  ID of the Mail order within our system to use as the Mail Account. | (optional) defaults to undefined
 
@@ -111,7 +88,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | search results matching criteria |  -  |
-**400** | The specified resource was not found |  -  |
+**400** | Error message when there was a problem with the input parameters. |  -  |
 **401** | Unauthorized |  -  |
 **404** | The specified resource was not found |  -  |
 
@@ -177,7 +154,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | search results matching criteria |  -  |
-**400** | The specified resource was not found |  -  |
+**400** | Error message when there was a problem with the input parameters. |  -  |
 **401** | Unauthorized |  -  |
 **404** | The specified resource was not found |  -  |
 

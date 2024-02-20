@@ -2,7 +2,7 @@ package io.swagger.server.model
 
 
 /**
- * = Root Type for DenyRule =
+ * = DenyRuleNew =
  *
  * The data for a email deny rule record.
  *

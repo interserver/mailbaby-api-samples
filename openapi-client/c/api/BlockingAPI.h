@@ -6,13 +6,12 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/deny_rule_record.h"
-#include "../model/email_address.h"
+#include "../model/error_message.h"
 #include "../model/generic_response.h"
-#include "../model/get_mail_orders_401_response.h"
 #include "../model/mail_blocks.h"
 
 // Enum TYPE for BlockingAPI_addRule
-typedef enum  { mailbaby_email_delivery_and_management_service_api_addRule_TYPE_NULL = 0, mailbaby_email_delivery_and_management_service_api_addRule_TYPE_domain, mailbaby_email_delivery_and_management_service_api_addRule_TYPE_email, mailbaby_email_delivery_and_management_service_api_addRule_TYPE_startswith } mailbaby_email_delivery_and_management_service_api_addRule_type_e;
+typedef enum  { mailbaby_email_delivery_and_management_service_api_addRule_TYPE_NULL = 0, mailbaby_email_delivery_and_management_service_api_addRule_TYPE_domain, mailbaby_email_delivery_and_management_service_api_addRule_TYPE_email, mailbaby_email_delivery_and_management_service_api_addRule_TYPE_startswith, mailbaby_email_delivery_and_management_service_api_addRule_TYPE_destination } mailbaby_email_delivery_and_management_service_api_addRule_type_e;
 
 
 // Creates a new email deny rule.
@@ -36,7 +35,7 @@ BlockingAPI_deleteRule(apiClient_t *apiClient, int ruleId );
 // Removes an email address from the various block lists. 
 //
 generic_response_t*
-BlockingAPI_delistBlock(apiClient_t *apiClient, email_address_t * email_address );
+BlockingAPI_delistBlock(apiClient_t *apiClient, char * body );
 
 
 // displays a list of blocked email addresses

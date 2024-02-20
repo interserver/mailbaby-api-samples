@@ -13,7 +13,8 @@
 #pragma once
 
 #include "OpenAPIBaseModel.h"
-#include "OpenAPIEmailAddressName.h"
+#include "OpenAPIEmailAddressTypes.h"
+#include "OpenAPIEmailAddressesTypes.h"
 #include "OpenAPIMailAttachment.h"
 
 namespace OpenAPI
@@ -35,15 +36,11 @@ public:
 	FString Subject;
 	/* The main email contents. */
 	FString Body;
-	OpenAPIEmailAddressName From;
-	/* A list of destionation email addresses to send this to */
-	TArray<OpenAPIEmailAddressName> To;
-	/* (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. */
-	TOptional<TArray<OpenAPIEmailAddressName>> Replyto;
-	/* (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. */
-	TOptional<TArray<OpenAPIEmailAddressName>> Cc;
-	/* (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. */
-	TOptional<TArray<OpenAPIEmailAddressName>> Bcc;
+	OpenAPIEmailAddressTypes From;
+	OpenAPIEmailAddressesTypes To;
+	TOptional<OpenAPIEmailAddressesTypes> Replyto;
+	TOptional<OpenAPIEmailAddressesTypes> Cc;
+	TOptional<OpenAPIEmailAddressesTypes> Bcc;
 	/* (optional) File attachments to include in the email.  The file contents must be base64 encoded! */
 	TOptional<TArray<OpenAPIMailAttachment>> Attachments;
 	/* (optional)  ID of the Mail order within our system to use as the Mail Account. */

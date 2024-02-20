@@ -46,7 +46,8 @@ export interface DenyRuleNew {
 export const DenyRuleNewTypeEnum = {
     Domain: 'domain',
     Email: 'email',
-    Startswith: 'startswith'
+    Startswith: 'startswith',
+    Destination: 'destination'
 } as const;
 export type DenyRuleNewTypeEnum = typeof DenyRuleNewTypeEnum[keyof typeof DenyRuleNewTypeEnum];
 

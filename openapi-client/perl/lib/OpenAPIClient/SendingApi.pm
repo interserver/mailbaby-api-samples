@@ -55,11 +55,11 @@ sub new {
 #
 # @param string $subject The subject or title of the email (required)
 # @param string $body The main email contents. (required)
-# @param EmailAddressName $from  (required)
-# @param ARRAY[EmailAddressName] $to A list of destionation email addresses to send this to (required)
-# @param ARRAY[EmailAddressName] $replyto (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. (optional)
-# @param ARRAY[EmailAddressName] $cc (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. (optional)
-# @param ARRAY[EmailAddressName] $bcc (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. (optional)
+# @param EmailAddressTypes $from  (required)
+# @param EmailAddressesTypes $to  (required)
+# @param EmailAddressesTypes $replyto  (optional)
+# @param EmailAddressesTypes $cc  (optional)
+# @param EmailAddressesTypes $bcc  (optional)
 # @param ARRAY[MailAttachment] $attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded! (optional)
 # @param int $id (optional)  ID of the Mail order within our system to use as the Mail Account. (optional)
 {
@@ -75,28 +75,28 @@ sub new {
         required => '1',
     },
     'from' => {
-        data_type => 'EmailAddressName',
+        data_type => 'EmailAddressTypes',
         description => '',
         required => '1',
     },
     'to' => {
-        data_type => 'ARRAY[EmailAddressName]',
-        description => 'A list of destionation email addresses to send this to',
+        data_type => 'EmailAddressesTypes',
+        description => '',
         required => '1',
     },
     'replyto' => {
-        data_type => 'ARRAY[EmailAddressName]',
-        description => '(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.',
+        data_type => 'EmailAddressesTypes',
+        description => '',
         required => '0',
     },
     'cc' => {
-        data_type => 'ARRAY[EmailAddressName]',
-        description => '(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.',
+        data_type => 'EmailAddressesTypes',
+        description => '',
         required => '0',
     },
     'bcc' => {
-        data_type => 'ARRAY[EmailAddressName]',
-        description => '(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.',
+        data_type => 'EmailAddressesTypes',
+        description => '',
         required => '0',
     },
     'attachments' => {

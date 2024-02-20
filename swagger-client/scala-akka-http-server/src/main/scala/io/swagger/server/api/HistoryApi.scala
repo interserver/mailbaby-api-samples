@@ -5,9 +5,9 @@ import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.unmarshalling.FromRequestUnmarshaller
 import akka.http.scaladsl.marshalling.ToEntityMarshaller
 import io.swagger.server.AkkaHttpHelper._
+import io.swagger.server.model.ErrorMessage
 import io.swagger.server.model.MailLog
 import io.swagger.server.model.inline_response_200
-import io.swagger.server.model.inline_response_401
 
 class HistoryApi(
     historyService: HistoryApiService,
@@ -52,17 +52,17 @@ trait HistoryApiService {
 
   def getStats200(responseinline_response_200array: List[inline_response_200])(implicit toEntityMarshallerinline_response_200array: ToEntityMarshaller[List[inline_response_200]]): Route =
     complete((200, responseinline_response_200array))
-  def getStats401(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((401, responseinline_response_401))
-  def getStats404(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((404, responseinline_response_401))
+  def getStats401(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((401, responseErrorMessage))
+  def getStats404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((404, responseErrorMessage))
   /**
    * Code: 200, Message: OK, DataType: List[inline_response_200]
-   * Code: 401, Message: Unauthorized, DataType: inline_response_401
-   * Code: 404, Message: Unauthorized, DataType: inline_response_401
+   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
+   * Code: 404, Message: Unauthorized, DataType: ErrorMessage
    */
   def getStats()
-      (implicit toEntityMarshallerinline_response_200array: ToEntityMarshaller[List[inline_response_200]], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route
+      (implicit toEntityMarshallerinline_response_200array: ToEntityMarshaller[List[inline_response_200]], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
   def viewMailLog200(responseMailLog: MailLog)(implicit toEntityMarshallerMailLog: ToEntityMarshaller[MailLog]): Route =
     complete((200, responseMailLog))
@@ -81,9 +81,9 @@ trait HistoryApiMarshaller {
 
   implicit def toEntityMarshallerinline_response_200array: ToEntityMarshaller[List[inline_response_200]]
 
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
   implicit def toEntityMarshallerMailLog: ToEntityMarshaller[MailLog]
 

@@ -16,11 +16,13 @@ import 'package:openapi/src/model/date.dart';
 
 import 'package:openapi/src/model/deny_rule_new.dart';
 import 'package:openapi/src/model/deny_rule_record.dart';
-import 'package:openapi/src/model/deny_rule_record_all_of.dart';
-import 'package:openapi/src/model/email_address.dart';
+import 'package:openapi/src/model/email_address_name.dart';
+import 'package:openapi/src/model/email_address_types.dart';
+import 'package:openapi/src/model/email_addresses_types.dart';
+import 'package:openapi/src/model/error_message.dart';
 import 'package:openapi/src/model/generic_response.dart';
-import 'package:openapi/src/model/get_mail_orders401_response.dart';
 import 'package:openapi/src/model/get_stats200_response_inner.dart';
+import 'package:openapi/src/model/mail_attachment.dart';
 import 'package:openapi/src/model/mail_block_click_house.dart';
 import 'package:openapi/src/model/mail_block_rspamd.dart';
 import 'package:openapi/src/model/mail_blocks.dart';
@@ -35,11 +37,13 @@ part 'serializers.g.dart';
 @SerializersFor([
   DenyRuleNew,$DenyRuleNew,
   DenyRuleRecord,
-  DenyRuleRecordAllOf,$DenyRuleRecordAllOf,
-  EmailAddress,
+  EmailAddressName,
+  EmailAddressTypes,
+  EmailAddressesTypes,
+  ErrorMessage,
   GenericResponse,
-  GetMailOrders401Response,
   GetStats200ResponseInner,
+  MailAttachment,
   MailBlockClickHouse,
   MailBlockRspamd,
   MailBlocks,
@@ -66,12 +70,7 @@ Serializers serializers = (_$serializers.toBuilder()
         const FullType(BuiltList, [FullType(MailOrder)]),
         () => ListBuilder<MailOrder>(),
       )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(EmailAddressName)]),
-        () => ListBuilder<EmailAddressName>(),
-      )
       ..add(DenyRuleNew.serializer)
-      ..add(DenyRuleRecordAllOf.serializer)
       ..add(const OneOfSerializer())
       ..add(const AnyOfSerializer())
       ..add(const DateSerializer())

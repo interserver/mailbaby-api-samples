@@ -77,7 +77,7 @@ Class | Method | HTTP request | Description
 *BlockingApi* | **delistBlock** | **POST** /mail/blocks/delete | Removes an email address from the blocked list
 *BlockingApi* | **getMailBlocks** | **GET** /mail/blocks | displays a list of blocked email addresses
 *BlockingApi* | **getRules** | **GET** /mail/rules | Displays a listing of deny email rules.
-*HistoryApi* | **getStats** | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | **getStats** | **GET** /mail/stats | Account usage statistics.
 *HistoryApi* | **viewMailLog** | **GET** /mail/log | displays the mail log
 *SendingApi* | **sendAdvMail** | **POST** /mail/advsend | Sends an Email with Advanced Options
 *SendingApi* | **sendMail** | **POST** /mail/send | Sends an Email
@@ -89,10 +89,11 @@ Class | Method | HTTP request | Description
 
  - [DenyRuleNew](DenyRuleNew.md)
  - [DenyRuleRecord](DenyRuleRecord.md)
- - [EmailAddress](EmailAddress.md)
  - [EmailAddressName](EmailAddressName.md)
+ - [EmailAddressTypes](EmailAddressTypes.md)
+ - [EmailAddressesTypes](EmailAddressesTypes.md)
+ - [ErrorMessage](ErrorMessage.md)
  - [GenericResponse](GenericResponse.md)
- - [GetMailOrders401Response](GetMailOrders401Response.md)
  - [GetStats200ResponseInner](GetStats200ResponseInner.md)
  - [MailAttachment](MailAttachment.md)
  - [MailBlockClickHouse](MailBlockClickHouse.md)

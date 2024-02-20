@@ -13,12 +13,18 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { EmailAddressName } from './EmailAddressName';
+import type { EmailAddressTypes } from './EmailAddressTypes';
 import {
-    EmailAddressNameFromJSON,
-    EmailAddressNameFromJSONTyped,
-    EmailAddressNameToJSON,
-} from './EmailAddressName';
+    EmailAddressTypesFromJSON,
+    EmailAddressTypesFromJSONTyped,
+    EmailAddressTypesToJSON,
+} from './EmailAddressTypes';
+import type { EmailAddressesTypes } from './EmailAddressesTypes';
+import {
+    EmailAddressesTypesFromJSON,
+    EmailAddressesTypesFromJSONTyped,
+    EmailAddressesTypesToJSON,
+} from './EmailAddressesTypes';
 import type { MailAttachment } from './MailAttachment';
 import {
     MailAttachmentFromJSON,
@@ -46,34 +52,34 @@ export interface SendMailAdv {
     body: string;
     /**
      * 
-     * @type {EmailAddressName}
+     * @type {EmailAddressTypes}
      * @memberof SendMailAdv
      */
-    from: EmailAddressName;
+    from: EmailAddressTypes;
     /**
-     * A list of destionation email addresses to send this to
-     * @type {Array<EmailAddressName>}
+     * 
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    to: Array<EmailAddressName>;
+    to: EmailAddressesTypes;
     /**
-     * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-     * @type {Array<EmailAddressName>}
+     * 
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    replyto?: Array<EmailAddressName>;
+    replyto?: EmailAddressesTypes;
     /**
-     * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @type {Array<EmailAddressName>}
+     * 
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    cc?: Array<EmailAddressName>;
+    cc?: EmailAddressesTypes;
     /**
-     * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-     * @type {Array<EmailAddressName>}
+     * 
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    bcc?: Array<EmailAddressName>;
+    bcc?: EmailAddressesTypes;
     /**
      * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
      * @type {Array<MailAttachment>}
@@ -113,11 +119,11 @@ export function SendMailAdvFromJSONTyped(json: any, ignoreDiscriminator: boolean
         
         'subject': json['subject'],
         'body': json['body'],
-        'from': EmailAddressNameFromJSON(json['from']),
-        'to': ((json['to'] as Array<any>).map(EmailAddressNameFromJSON)),
-        'replyto': !exists(json, 'replyto') ? undefined : ((json['replyto'] as Array<any>).map(EmailAddressNameFromJSON)),
-        'cc': !exists(json, 'cc') ? undefined : ((json['cc'] as Array<any>).map(EmailAddressNameFromJSON)),
-        'bcc': !exists(json, 'bcc') ? undefined : ((json['bcc'] as Array<any>).map(EmailAddressNameFromJSON)),
+        'from': EmailAddressTypesFromJSON(json['from']),
+        'to': EmailAddressesTypesFromJSON(json['to']),
+        'replyto': !exists(json, 'replyto') ? undefined : EmailAddressesTypesFromJSON(json['replyto']),
+        'cc': !exists(json, 'cc') ? undefined : EmailAddressesTypesFromJSON(json['cc']),
+        'bcc': !exists(json, 'bcc') ? undefined : EmailAddressesTypesFromJSON(json['bcc']),
         'attachments': !exists(json, 'attachments') ? undefined : ((json['attachments'] as Array<any>).map(MailAttachmentFromJSON)),
         'id': !exists(json, 'id') ? undefined : json['id'],
     };
@@ -134,11 +140,11 @@ export function SendMailAdvToJSON(value?: SendMailAdv | null): any {
         
         'subject': value.subject,
         'body': value.body,
-        'from': EmailAddressNameToJSON(value.from),
-        'to': ((value.to as Array<any>).map(EmailAddressNameToJSON)),
-        'replyto': value.replyto === undefined ? undefined : ((value.replyto as Array<any>).map(EmailAddressNameToJSON)),
-        'cc': value.cc === undefined ? undefined : ((value.cc as Array<any>).map(EmailAddressNameToJSON)),
-        'bcc': value.bcc === undefined ? undefined : ((value.bcc as Array<any>).map(EmailAddressNameToJSON)),
+        'from': EmailAddressTypesToJSON(value.from),
+        'to': EmailAddressesTypesToJSON(value.to),
+        'replyto': EmailAddressesTypesToJSON(value.replyto),
+        'cc': EmailAddressesTypesToJSON(value.cc),
+        'bcc': EmailAddressesTypesToJSON(value.bcc),
         'attachments': value.attachments === undefined ? undefined : ((value.attachments as Array<any>).map(MailAttachmentToJSON)),
         'id': value.id,
     };

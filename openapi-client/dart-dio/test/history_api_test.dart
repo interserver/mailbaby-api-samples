@@ -7,7 +7,9 @@ void main() {
   final instance = Openapi().getHistoryApi();
 
   group(HistoryApi, () {
-    // displays a list of blocked email addresses
+    // Account usage statistics.
+    //
+    // Returns information about the usage on your mail accounts.
     //
     //Future<BuiltList<GetStats200ResponseInner>> getStats() async
     test('test getStats', () async {

@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 Sends an Email with Advanced Options
 
-Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
 
 ### Example
 ```dart
@@ -31,18 +31,18 @@ import 'package:openapi/api.dart';
 final api = Openapi().getSendingApi();
 final String subject = subject_example; // String | The subject or title of the email
 final String body = body_example; // String | The main email contents.
-final EmailAddressName from = ; // EmailAddressName | 
-final BuiltList<EmailAddressName> to = ; // BuiltList<EmailAddressName> | A list of destionation email addresses to send this to
-final BuiltList<EmailAddressName> replyto = ; // BuiltList<EmailAddressName> | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-final BuiltList<EmailAddressName> cc = ; // BuiltList<EmailAddressName> | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-final BuiltList<EmailAddressName> bcc = ; // BuiltList<EmailAddressName> | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+final EmailAddressTypes from = ; // EmailAddressTypes | 
+final EmailAddressesTypes to = ; // EmailAddressesTypes | 
+final EmailAddressesTypes replyto = ; // EmailAddressesTypes | 
+final EmailAddressesTypes cc = ; // EmailAddressesTypes | 
+final EmailAddressesTypes bcc = ; // EmailAddressesTypes | 
 final BuiltList<MailAttachment> attachments = ; // BuiltList<MailAttachment> | (optional) File attachments to include in the email.  The file contents must be base64 encoded!
 final int id = 789; // int | (optional)  ID of the Mail order within our system to use as the Mail Account.
 
 try {
     final response = api.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling SendingApi->sendAdvMail: $e\n');
 }
 ```
@@ -53,11 +53,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **String**| The subject or title of the email | 
  **body** | **String**| The main email contents. | 
- **from** | [**EmailAddressName**](EmailAddressName.md)|  | 
- **to** | [**BuiltList&lt;EmailAddressName&gt;**](EmailAddressName.md)| A list of destionation email addresses to send this to | 
- **replyto** | [**BuiltList&lt;EmailAddressName&gt;**](EmailAddressName.md)| (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. | [optional] 
- **cc** | [**BuiltList&lt;EmailAddressName&gt;**](EmailAddressName.md)| (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. | [optional] 
- **bcc** | [**BuiltList&lt;EmailAddressName&gt;**](EmailAddressName.md)| (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. | [optional] 
+ **from** | [**EmailAddressTypes**](EmailAddressTypes.md)|  | 
+ **to** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | 
+ **replyto** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] 
+ **cc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] 
+ **bcc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] 
  **attachments** | [**BuiltList&lt;MailAttachment&gt;**](MailAttachment.md)| (optional) File attachments to include in the email.  The file contents must be base64 encoded! | [optional] 
  **id** | **int**| (optional)  ID of the Mail order within our system to use as the Mail Account. | [optional] 
 
@@ -100,7 +100,7 @@ final String body = body_example; // String | The main email contents.
 try {
     final response = api.sendMail(to, from, subject, body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling SendingApi->sendMail: $e\n');
 }
 ```

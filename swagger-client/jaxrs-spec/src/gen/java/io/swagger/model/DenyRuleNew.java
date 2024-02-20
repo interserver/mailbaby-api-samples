@@ -18,7 +18,7 @@ public class DenyRuleNew   {
 
 public enum TypeEnum {
 
-    DOMAIN(String.valueOf("domain")), EMAIL(String.valueOf("email")), STARTSWITH(String.valueOf("startswith"));
+    DOMAIN(String.valueOf("domain")), EMAIL(String.valueOf("email")), STARTSWITH(String.valueOf("startswith")), DESTINATION(String.valueOf("destination"));
 
 
     private String value;

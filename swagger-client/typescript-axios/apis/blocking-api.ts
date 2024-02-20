@@ -11,6 +11,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import globalAxios, { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
@@ -18,9 +19,8 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { DenyRuleNew } from '../models';
 import { DenyRuleRecord } from '../models';
-import { EmailAddress } from '../models';
+import { ErrorMessage } from '../models';
 import { GenericResponse } from '../models';
-import { InlineResponse401 } from '../models';
 import { MailBlocks } from '../models';
 /**
  * BlockingApi - axios parameter creator
@@ -203,11 +203,11 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Removes an email address from the various block lists. 
          * @summary Removes an email address from the blocked list
-         * @param {EmailAddress} body 
+         * @param {string} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        delistBlock: async (body: EmailAddress, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        delistBlock: async (body: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling delistBlock.');
@@ -222,7 +222,6 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
             const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-            const localVarFormParams = new FormData();
 
             // authentication apiKeyAuth required
             if (configuration && configuration.apiKey) {
@@ -246,61 +245,6 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Removes an email address from the various block lists. 
-         * @summary Removes an email address from the blocked list
-         * @param {string} email 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        delistBlockForm: async (email: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'email' is not null or undefined
-            if (email === null || email === undefined) {
-                throw new RequiredError('email','Required parameter email was null or undefined when calling delistBlockForm.');
-            }
-            const localVarPath = `/mail/blocks/delete`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new FormData();
-
-            // authentication apiKeyAuth required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("X-API-KEY")
-                    : await configuration.apiKey;
-                localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
-            }
-
-
-            if (email !== undefined) { 
-                localVarFormParams.append('email', email as any);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.params) {
-                query.set(key, options.params[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -447,26 +391,12 @@ export const BlockingApiFp = function(configuration?: Configuration) {
         /**
          * Removes an email address from the various block lists. 
          * @summary Removes an email address from the blocked list
-         * @param {EmailAddress} body 
+         * @param {string} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async delistBlock(body: EmailAddress, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<GenericResponse>>> {
+        async delistBlock(body: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<GenericResponse>>> {
             const localVarAxiosArgs = await BlockingApiAxiosParamCreator(configuration).delistBlock(body, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * Removes an email address from the various block lists. 
-         * @summary Removes an email address from the blocked list
-         * @param {string} email 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async delistBlockForm(email: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<GenericResponse>>> {
-            const localVarAxiosArgs = await BlockingApiAxiosParamCreator(configuration).delistBlockForm(email, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -542,22 +472,12 @@ export const BlockingApiFactory = function (configuration?: Configuration, baseP
         /**
          * Removes an email address from the various block lists. 
          * @summary Removes an email address from the blocked list
-         * @param {EmailAddress} body 
+         * @param {string} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async delistBlock(body: EmailAddress, options?: AxiosRequestConfig): Promise<AxiosResponse<GenericResponse>> {
+        async delistBlock(body: string, options?: AxiosRequestConfig): Promise<AxiosResponse<GenericResponse>> {
             return BlockingApiFp(configuration).delistBlock(body, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Removes an email address from the various block lists. 
-         * @summary Removes an email address from the blocked list
-         * @param {string} email 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async delistBlockForm(email: string, options?: AxiosRequestConfig): Promise<AxiosResponse<GenericResponse>> {
-            return BlockingApiFp(configuration).delistBlockForm(email, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -626,25 +546,13 @@ export class BlockingApi extends BaseAPI {
     /**
      * Removes an email address from the various block lists. 
      * @summary Removes an email address from the blocked list
-     * @param {EmailAddress} body 
+     * @param {string} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BlockingApi
      */
-    public async delistBlock(body: EmailAddress, options?: AxiosRequestConfig) : Promise<AxiosResponse<GenericResponse>> {
+    public async delistBlock(body: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<GenericResponse>> {
         return BlockingApiFp(this.configuration).delistBlock(body, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Removes an email address from the various block lists. 
-     * @summary Removes an email address from the blocked list
-     * @param {string} email 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof BlockingApi
-     */
-    public async delistBlockForm(email: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<GenericResponse>> {
-        return BlockingApiFp(this.configuration).delistBlockForm(email, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 

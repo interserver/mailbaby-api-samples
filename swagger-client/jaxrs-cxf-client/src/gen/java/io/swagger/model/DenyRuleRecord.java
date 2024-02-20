@@ -2,6 +2,7 @@ package io.swagger.model;
 
 import io.swagger.model.DenyRuleNew;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.Date;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.xml.bind.annotation.XmlElement;
@@ -21,6 +22,18 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 @Schema(description="The data for a email deny rule record.")
 public class DenyRuleRecord   {
   
+  @Schema(example = "41124", required = true, description = "The deny rule Id number.")
+ /**
+   * The deny rule Id number.  
+  **/
+  private String id = null;
+  
+  @Schema(required = true, description = "the date the rule was created.")
+ /**
+   * the date the rule was created.  
+  **/
+  private Date created = null;
+  
   @Schema(example = "mb20682", description = "Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.")
  /**
    * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.  
@@ -29,7 +42,8 @@ public class DenyRuleRecord   {
   public enum TypeEnum {
     DOMAIN("domain"),
     EMAIL("email"),
-    STARTSWITH("startswith");
+    STARTSWITH("startswith"),
+    DESTINATION("destination");
 
     private String value;
 
@@ -66,6 +80,42 @@ public class DenyRuleRecord   {
    * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.  
   **/
   private String data = null;
+ /**
+   * The deny rule Id number.
+   * @return id
+  **/
+  @JsonProperty("id")
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public DenyRuleRecord id(String id) {
+    this.id = id;
+    return this;
+  }
+
+ /**
+   * the date the rule was created.
+   * @return created
+  **/
+  @JsonProperty("created")
+  public Date getCreated() {
+    return created;
+  }
+
+  public void setCreated(Date created) {
+    this.created = created;
+  }
+
+  public DenyRuleRecord created(Date created) {
+    this.created = created;
+    return this;
+  }
+
  /**
    * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
    * @return user
@@ -129,6 +179,8 @@ public class DenyRuleRecord   {
     StringBuilder sb = new StringBuilder();
     sb.append("class DenyRuleRecord {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");

@@ -64,15 +64,15 @@ public:
 private:
     void initializeModel();
 
-    QList<OAIMailBlockClickHouse> local;
+    QList<OAIMailBlockClickHouse> m_local;
     bool m_local_isSet;
     bool m_local_isValid;
 
-    QList<OAIMailBlockClickHouse> mbtrap;
+    QList<OAIMailBlockClickHouse> m_mbtrap;
     bool m_mbtrap_isSet;
     bool m_mbtrap_isValid;
 
-    QList<OAIMailBlockRspamd> subject;
+    QList<OAIMailBlockRspamd> m_subject;
     bool m_subject_isSet;
     bool m_subject_isValid;
 };

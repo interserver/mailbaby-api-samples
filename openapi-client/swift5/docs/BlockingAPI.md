@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 
 # **delistBlock**
 ```swift
-    open class func delistBlock(emailAddress: EmailAddress, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
+    open class func delistBlock(body: String, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
 ```
 
 Removes an email address from the blocked list
@@ -129,10 +129,10 @@ Removes an email address from the various block lists.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let emailAddress = EmailAddress(email: "email_example") // EmailAddress | 
+let body = "body_example" // String | 
 
 // Removes an email address from the blocked list
-BlockingAPI.delistBlock(emailAddress: emailAddress) { (response, error) in
+BlockingAPI.delistBlock(body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -148,7 +148,7 @@ BlockingAPI.delistBlock(emailAddress: emailAddress) { (response, error) in
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **emailAddress** | [**EmailAddress**](EmailAddress.md) |  | 
+ **body** | **String** |  | 
 
 ### Return type
 

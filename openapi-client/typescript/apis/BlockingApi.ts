@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import {ObjectSerializer} from '../models/ObjectSerializer';
 import {ApiException} from './exception';
 import {canConsumeForm, isCodeInRange} from '../util';
@@ -9,9 +9,8 @@ import {SecurityAuthentication} from '../auth/auth';
 
 
 import { DenyRuleRecord } from '../models/DenyRuleRecord';
-import { EmailAddress } from '../models/EmailAddress';
+import { ErrorMessage } from '../models/ErrorMessage';
 import { GenericResponse } from '../models/GenericResponse';
-import { GetMailOrders401Response } from '../models/GetMailOrders401Response';
 import { MailBlocks } from '../models/MailBlocks';
 
 /**
@@ -142,14 +141,14 @@ export class BlockingApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Removes an email address from the various block lists. 
      * Removes an email address from the blocked list
-     * @param emailAddress 
+     * @param body 
      */
-    public async delistBlock(emailAddress: EmailAddress, _options?: Configuration): Promise<RequestContext> {
+    public async delistBlock(body: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'emailAddress' is not null or undefined
-        if (emailAddress === null || emailAddress === undefined) {
-            throw new RequiredError("BlockingApi", "delistBlock", "emailAddress");
+        // verify required parameter 'body' is not null or undefined
+        if (body === null || body === undefined) {
+            throw new RequiredError("BlockingApi", "delistBlock", "body");
         }
 
 
@@ -169,7 +168,7 @@ export class BlockingApiRequestFactory extends BaseAPIRequestFactory {
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(emailAddress, "EmailAddress", ""),
+            ObjectSerializer.serialize(body, "string", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -259,35 +258,35 @@ export class BlockingApiResponseProcessor {
      * @params response Response returned by the server for a request to addRule
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async addRule(response: ResponseContext): Promise<GenericResponse > {
+     public async addRuleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<GenericResponse >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: GenericResponse = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GenericResponse", ""
             ) as GenericResponse;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
-            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
+            const body: ErrorMessage = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetMailOrders401Response", ""
-            ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "The specified resource was not found", body, response.headers);
+                "ErrorMessage", ""
+            ) as ErrorMessage;
+            throw new ApiException<ErrorMessage>(response.httpStatusCode, "Error message when there was a problem with the input parameters.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
+            const body: ErrorMessage = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetMailOrders401Response", ""
-            ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "Unauthorized", body, response.headers);
+                "ErrorMessage", ""
+            ) as ErrorMessage;
+            throw new ApiException<ErrorMessage>(response.httpStatusCode, "Unauthorized", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
-            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
+            const body: ErrorMessage = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetMailOrders401Response", ""
-            ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "The specified resource was not found", body, response.headers);
+                "ErrorMessage", ""
+            ) as ErrorMessage;
+            throw new ApiException<ErrorMessage>(response.httpStatusCode, "The specified resource was not found", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -296,7 +295,7 @@ export class BlockingApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GenericResponse", ""
             ) as GenericResponse;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -309,35 +308,35 @@ export class BlockingApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteRule
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteRule(response: ResponseContext): Promise<GenericResponse > {
+     public async deleteRuleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<GenericResponse >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: GenericResponse = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GenericResponse", ""
             ) as GenericResponse;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
-            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
+            const body: ErrorMessage = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetMailOrders401Response", ""
-            ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "The specified resource was not found", body, response.headers);
+                "ErrorMessage", ""
+            ) as ErrorMessage;
+            throw new ApiException<ErrorMessage>(response.httpStatusCode, "Error message when there was a problem with the input parameters.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
+            const body: ErrorMessage = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetMailOrders401Response", ""
-            ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "Unauthorized", body, response.headers);
+                "ErrorMessage", ""
+            ) as ErrorMessage;
+            throw new ApiException<ErrorMessage>(response.httpStatusCode, "Unauthorized", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
-            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
+            const body: ErrorMessage = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetMailOrders401Response", ""
-            ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "The specified resource was not found", body, response.headers);
+                "ErrorMessage", ""
+            ) as ErrorMessage;
+            throw new ApiException<ErrorMessage>(response.httpStatusCode, "The specified resource was not found", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -346,7 +345,7 @@ export class BlockingApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GenericResponse", ""
             ) as GenericResponse;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -359,35 +358,35 @@ export class BlockingApiResponseProcessor {
      * @params response Response returned by the server for a request to delistBlock
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async delistBlock(response: ResponseContext): Promise<GenericResponse > {
+     public async delistBlockWithHttpInfo(response: ResponseContext): Promise<HttpInfo<GenericResponse >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: GenericResponse = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GenericResponse", ""
             ) as GenericResponse;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
-            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
+            const body: ErrorMessage = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetMailOrders401Response", ""
-            ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "The specified resource was not found", body, response.headers);
+                "ErrorMessage", ""
+            ) as ErrorMessage;
+            throw new ApiException<ErrorMessage>(response.httpStatusCode, "Error message when there was a problem with the input parameters.", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
+            const body: ErrorMessage = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetMailOrders401Response", ""
-            ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "Unauthorized", body, response.headers);
+                "ErrorMessage", ""
+            ) as ErrorMessage;
+            throw new ApiException<ErrorMessage>(response.httpStatusCode, "Unauthorized", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
-            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
+            const body: ErrorMessage = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetMailOrders401Response", ""
-            ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "The specified resource was not found", body, response.headers);
+                "ErrorMessage", ""
+            ) as ErrorMessage;
+            throw new ApiException<ErrorMessage>(response.httpStatusCode, "The specified resource was not found", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -396,7 +395,7 @@ export class BlockingApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GenericResponse", ""
             ) as GenericResponse;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -409,28 +408,28 @@ export class BlockingApiResponseProcessor {
      * @params response Response returned by the server for a request to getMailBlocks
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getMailBlocks(response: ResponseContext): Promise<MailBlocks > {
+     public async getMailBlocksWithHttpInfo(response: ResponseContext): Promise<HttpInfo<MailBlocks >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: MailBlocks = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "MailBlocks", ""
             ) as MailBlocks;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
+            const body: ErrorMessage = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetMailOrders401Response", ""
-            ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "Unauthorized", body, response.headers);
+                "ErrorMessage", ""
+            ) as ErrorMessage;
+            throw new ApiException<ErrorMessage>(response.httpStatusCode, "Unauthorized", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
-            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
+            const body: ErrorMessage = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetMailOrders401Response", ""
-            ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "Unauthorized", body, response.headers);
+                "ErrorMessage", ""
+            ) as ErrorMessage;
+            throw new ApiException<ErrorMessage>(response.httpStatusCode, "Unauthorized", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -439,7 +438,7 @@ export class BlockingApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "MailBlocks", ""
             ) as MailBlocks;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -452,28 +451,28 @@ export class BlockingApiResponseProcessor {
      * @params response Response returned by the server for a request to getRules
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getRules(response: ResponseContext): Promise<Array<DenyRuleRecord> > {
+     public async getRulesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<DenyRuleRecord> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Array<DenyRuleRecord> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<DenyRuleRecord>", ""
             ) as Array<DenyRuleRecord>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
+            const body: ErrorMessage = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetMailOrders401Response", ""
-            ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "Unauthorized", body, response.headers);
+                "ErrorMessage", ""
+            ) as ErrorMessage;
+            throw new ApiException<ErrorMessage>(response.httpStatusCode, "Unauthorized", body, response.headers);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
-            const body: GetMailOrders401Response = ObjectSerializer.deserialize(
+            const body: ErrorMessage = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetMailOrders401Response", ""
-            ) as GetMailOrders401Response;
-            throw new ApiException<GetMailOrders401Response>(response.httpStatusCode, "Unauthorized", body, response.headers);
+                "ErrorMessage", ""
+            ) as ErrorMessage;
+            throw new ApiException<ErrorMessage>(response.httpStatusCode, "Unauthorized", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -482,7 +481,7 @@ export class BlockingApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<DenyRuleRecord>", ""
             ) as Array<DenyRuleRecord>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

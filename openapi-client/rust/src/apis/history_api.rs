@@ -19,8 +19,8 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetStatsError {
-    Status401(crate::models::GetMailOrders401Response),
-    Status404(crate::models::GetMailOrders401Response),
+    Status401(crate::models::ErrorMessage),
+    Status404(crate::models::ErrorMessage),
     UnknownValue(serde_json::Value),
 }
 
@@ -33,6 +33,7 @@ pub enum ViewMailLogError {
 }
 
 
+/// Returns information about the usage on your mail accounts.
 pub async fn get_stats(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::GetStats200ResponseInner>, Error<GetStatsError>> {
     let local_var_configuration = configuration;
 

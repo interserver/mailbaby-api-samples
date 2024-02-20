@@ -13,6 +13,7 @@ package org.openapitools.client.model
 
 
   /**
+   * SendMail
    * Details for an Email
    */
 case class SendMail(

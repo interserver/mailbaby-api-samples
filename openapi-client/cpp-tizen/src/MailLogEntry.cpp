@@ -40,7 +40,7 @@ MailLogEntry::__init()
 	//recipient = std::string();
 	//domain = std::string();
 	//locked = int(0);
-	//lockTime = int(0);
+	//lockTime = std::string();
 	//assigned = std::string();
 	//queued = std::string();
 	//mxHostname = std::string();
@@ -366,8 +366,8 @@ MailLogEntry::fromJson(char* jsonStr)
 	if (node !=NULL) {
 	
 
-		if (isprimitive("int")) {
-			jsonToValue(&lockTime, node, "int", "");
+		if (isprimitive("std::string")) {
+			jsonToValue(&lockTime, node, "std::string", "");
 		} else {
 			
 		}
@@ -592,9 +592,9 @@ MailLogEntry::toJson()
 	}
 	const gchar *lockedKey = "locked";
 	json_object_set_member(pJsonObject, lockedKey, node);
-	if (isprimitive("int")) {
-		int obj = getLockTime();
-		node = converttoJson(&obj, "int", "");
+	if (isprimitive("std::string")) {
+		std::string obj = getLockTime();
+		node = converttoJson(&obj, "std::string", "");
 	}
 	else {
 		
@@ -858,14 +858,14 @@ MailLogEntry::setLocked(int  locked)
 	this->locked = locked;
 }
 
-int
+std::string
 MailLogEntry::getLockTime()
 {
 	return lockTime;
 }
 
 void
-MailLogEntry::setLockTime(int  lockTime)
+MailLogEntry::setLockTime(std::string  lockTime)
 {
 	this->lockTime = lockTime;
 }

@@ -13,7 +13,7 @@
 
 
 import ApiClient from "../ApiClient";
-import GetMailOrders401Response from '../model/GetMailOrders401Response';
+import ErrorMessage from '../model/ErrorMessage';
 import MailOrder from '../model/MailOrder';
 
 /**

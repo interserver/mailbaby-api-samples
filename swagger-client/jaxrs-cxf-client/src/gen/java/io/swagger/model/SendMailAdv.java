@@ -1,6 +1,7 @@
 package io.swagger.model;
 
-import io.swagger.model.EmailAddressName;
+import io.swagger.model.EmailAddressTypes;
+import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.MailAttachment;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
@@ -37,31 +38,19 @@ public class SendMailAdv   {
   private String body = null;
   
   @Schema(required = true, description = "")
-  private EmailAddressName from = null;
+  private EmailAddressTypes from = null;
   
-  @Schema(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", required = true, description = "A list of destionation email addresses to send this to")
- /**
-   * A list of destionation email addresses to send this to  
-  **/
-  private List<EmailAddressName> to = new ArrayList<EmailAddressName>();
+  @Schema(required = true, description = "")
+  private EmailAddressesTypes to = null;
   
-  @Schema(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", description = "(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.")
- /**
-   * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.  
-  **/
-  private List<EmailAddressName> replyto = null;
+  @Schema(description = "")
+  private EmailAddressesTypes replyto = null;
   
-  @Schema(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", description = "(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.")
- /**
-   * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.  
-  **/
-  private List<EmailAddressName> cc = null;
+  @Schema(description = "")
+  private EmailAddressesTypes cc = null;
   
-  @Schema(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", description = "(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.")
- /**
-   * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.  
-  **/
-  private List<EmailAddressName> bcc = null;
+  @Schema(description = "")
+  private EmailAddressesTypes bcc = null;
   
   @Schema(example = "[         {             \"filename\": \"text.txt\",             \"data\": \"base64_encoded_contents\"         } ]", description = "(optional) File attachments to include in the email.  The file contents must be base64 encoded!")
  /**
@@ -115,108 +104,88 @@ public class SendMailAdv   {
    * @return from
   **/
   @JsonProperty("from")
-  public EmailAddressName getFrom() {
+  public EmailAddressTypes getFrom() {
     return from;
   }
 
-  public void setFrom(EmailAddressName from) {
+  public void setFrom(EmailAddressTypes from) {
     this.from = from;
   }
 
-  public SendMailAdv from(EmailAddressName from) {
+  public SendMailAdv from(EmailAddressTypes from) {
     this.from = from;
     return this;
   }
 
  /**
-   * A list of destionation email addresses to send this to
+   * Get to
    * @return to
   **/
   @JsonProperty("to")
-  public List<EmailAddressName> getTo() {
+  public EmailAddressesTypes getTo() {
     return to;
   }
 
-  public void setTo(List<EmailAddressName> to) {
+  public void setTo(EmailAddressesTypes to) {
     this.to = to;
   }
 
-  public SendMailAdv to(List<EmailAddressName> to) {
+  public SendMailAdv to(EmailAddressesTypes to) {
     this.to = to;
-    return this;
-  }
-
-  public SendMailAdv addToItem(EmailAddressName toItem) {
-    this.to.add(toItem);
     return this;
   }
 
  /**
-   * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+   * Get replyto
    * @return replyto
   **/
   @JsonProperty("replyto")
-  public List<EmailAddressName> getReplyto() {
+  public EmailAddressesTypes getReplyto() {
     return replyto;
   }
 
-  public void setReplyto(List<EmailAddressName> replyto) {
+  public void setReplyto(EmailAddressesTypes replyto) {
     this.replyto = replyto;
   }
 
-  public SendMailAdv replyto(List<EmailAddressName> replyto) {
+  public SendMailAdv replyto(EmailAddressesTypes replyto) {
     this.replyto = replyto;
-    return this;
-  }
-
-  public SendMailAdv addReplytoItem(EmailAddressName replytoItem) {
-    this.replyto.add(replytoItem);
     return this;
   }
 
  /**
-   * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+   * Get cc
    * @return cc
   **/
   @JsonProperty("cc")
-  public List<EmailAddressName> getCc() {
+  public EmailAddressesTypes getCc() {
     return cc;
   }
 
-  public void setCc(List<EmailAddressName> cc) {
+  public void setCc(EmailAddressesTypes cc) {
     this.cc = cc;
   }
 
-  public SendMailAdv cc(List<EmailAddressName> cc) {
+  public SendMailAdv cc(EmailAddressesTypes cc) {
     this.cc = cc;
-    return this;
-  }
-
-  public SendMailAdv addCcItem(EmailAddressName ccItem) {
-    this.cc.add(ccItem);
     return this;
   }
 
  /**
-   * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+   * Get bcc
    * @return bcc
   **/
   @JsonProperty("bcc")
-  public List<EmailAddressName> getBcc() {
+  public EmailAddressesTypes getBcc() {
     return bcc;
   }
 
-  public void setBcc(List<EmailAddressName> bcc) {
+  public void setBcc(EmailAddressesTypes bcc) {
     this.bcc = bcc;
   }
 
-  public SendMailAdv bcc(List<EmailAddressName> bcc) {
+  public SendMailAdv bcc(EmailAddressesTypes bcc) {
     this.bcc = bcc;
-    return this;
-  }
-
-  public SendMailAdv addBccItem(EmailAddressName bccItem) {
-    this.bcc.add(bccItem);
     return this;
   }
 

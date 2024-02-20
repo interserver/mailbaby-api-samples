@@ -162,13 +162,13 @@ class BlockingApi {
   ///
   /// Parameters:
   ///
-  /// * [EmailAddress] emailAddress (required):
-  Future<Response> delistBlockWithHttpInfo(EmailAddress emailAddress,) async {
+  /// * [String] body (required):
+  Future<Response> delistBlockWithHttpInfo(String body,) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/blocks/delete';
 
     // ignore: prefer_final_locals
-    Object? postBody = emailAddress;
+    Object? postBody = body;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -194,9 +194,9 @@ class BlockingApi {
   ///
   /// Parameters:
   ///
-  /// * [EmailAddress] emailAddress (required):
-  Future<GenericResponse?> delistBlock(EmailAddress emailAddress,) async {
-    final response = await delistBlockWithHttpInfo(emailAddress,);
+  /// * [String] body (required):
+  Future<GenericResponse?> delistBlock(String body,) async {
+    final response = await delistBlockWithHttpInfo(body,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -299,7 +299,7 @@ class BlockingApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<DenyRuleRecord>') as List)
         .cast<DenyRuleRecord>()
-        .toList();
+        .toList(growable: false);
 
     }
     return null;

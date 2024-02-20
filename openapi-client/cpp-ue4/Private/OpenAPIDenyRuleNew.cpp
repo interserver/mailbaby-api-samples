@@ -30,6 +30,8 @@ inline FString ToString(const OpenAPIDenyRuleNew::TypeEnum& Value)
 		return TEXT("email");
 	case OpenAPIDenyRuleNew::TypeEnum::Startswith:
 		return TEXT("startswith");
+	case OpenAPIDenyRuleNew::TypeEnum::Destination:
+		return TEXT("destination");
 	}
 
 	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIDenyRuleNew::TypeEnum Value (%d)"), (int)Value);
@@ -46,7 +48,8 @@ inline bool FromString(const FString& EnumAsString, OpenAPIDenyRuleNew::TypeEnum
 	static TMap<FString, OpenAPIDenyRuleNew::TypeEnum> StringToEnum = { 
 		{ TEXT("domain"), OpenAPIDenyRuleNew::TypeEnum::Domain },
 		{ TEXT("email"), OpenAPIDenyRuleNew::TypeEnum::Email },
-		{ TEXT("startswith"), OpenAPIDenyRuleNew::TypeEnum::Startswith }, };
+		{ TEXT("startswith"), OpenAPIDenyRuleNew::TypeEnum::Startswith },
+		{ TEXT("destination"), OpenAPIDenyRuleNew::TypeEnum::Destination }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

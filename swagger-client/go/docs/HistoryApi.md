@@ -4,12 +4,14 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetStats**](HistoryApi.md#GetStats) | **Get** /mail/stats | displays a list of blocked email addresses
+[**GetStats**](HistoryApi.md#GetStats) | **Get** /mail/stats | Account usage statistics.
 [**ViewMailLog**](HistoryApi.md#ViewMailLog) | **Get** /mail/log | displays the mail log
 
 # **GetStats**
 > []InlineResponse200 GetStats(ctx, )
-displays a list of blocked email addresses
+Account usage statistics.
+
+Returns information about the usage on your mail accounts.
 
 ### Required Parameters
 This endpoint does not need any parameter.

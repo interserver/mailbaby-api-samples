@@ -26,9 +26,9 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
-            'local': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}local`]),
-            'mbtrap': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}mbtrap`]),
-            'subject': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}subject`]),
+            'local': utils.childMapping(bundle.inputData?.[`${keyPrefix}local`], `${keyPrefix}local`, MailBlockClickHouse),
+            'mbtrap': utils.childMapping(bundle.inputData?.[`${keyPrefix}mbtrap`], `${keyPrefix}mbtrap`, MailBlockClickHouse),
+            'subject': utils.childMapping(bundle.inputData?.[`${keyPrefix}subject`], `${keyPrefix}subject`, MailBlockRspamd),
         }
     },
 }

@@ -15,7 +15,7 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
-import { GetMailOrders401Response } from '../model/getMailOrders401Response';
+import { ErrorMessage } from '../model/errorMessage';
 import { MailOrder } from '../model/mailOrder';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';

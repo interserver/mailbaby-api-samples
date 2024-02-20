@@ -47,19 +47,19 @@ export class SendingApi {
     }
 
     /**
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
      * @summary Sends an Email with Advanced Options
      * @param subject The subject or title of the email
      * @param body The main email contents.
      * @param from 
-     * @param to A list of destionation email addresses to send this to
-     * @param replyto (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-     * @param cc (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @param bcc (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+     * @param to 
+     * @param replyto 
+     * @param cc 
+     * @param bcc 
      * @param attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded!
      * @param id (optional)  ID of the Mail order within our system to use as the Mail Account.
      */
-    public sendAdvMail(subject: string, body: string, from: models.EmailAddressName, to: Array<models.EmailAddressName>, replyto?: Array<models.EmailAddressName>, cc?: Array<models.EmailAddressName>, bcc?: Array<models.EmailAddressName>, attachments?: Array<models.MailAttachment>, id?: number, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public sendAdvMail(subject: string, body: string, from: models.EmailAddressTypes, to: models.EmailAddressesTypes, replyto?: models.EmailAddressesTypes, cc?: models.EmailAddressesTypes, bcc?: models.EmailAddressesTypes, attachments?: Array<models.MailAttachment>, id?: number, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: models.GenericResponse;  },
     { response: JQueryXHR; errorThrown: string }
     > {
@@ -101,17 +101,17 @@ export class SendingApi {
         if (from !== null && from !== undefined) {
             formParams.append('from', <any>from);
         }
-        if (to) {
-            formParams.append('to', to.join(COLLECTION_FORMATS['csv']));
+        if (to !== null && to !== undefined) {
+            formParams.append('to', <any>to);
         }
-        if (replyto) {
-            formParams.append('replyto', replyto.join(COLLECTION_FORMATS['csv']));
+        if (replyto !== null && replyto !== undefined) {
+            formParams.append('replyto', <any>replyto);
         }
-        if (cc) {
-            formParams.append('cc', cc.join(COLLECTION_FORMATS['csv']));
+        if (cc !== null && cc !== undefined) {
+            formParams.append('cc', <any>cc);
         }
-        if (bcc) {
-            formParams.append('bcc', bcc.join(COLLECTION_FORMATS['csv']));
+        if (bcc !== null && bcc !== undefined) {
+            formParams.append('bcc', <any>bcc);
         }
         if (attachments) {
             formParams.append('attachments', attachments.join(COLLECTION_FORMATS['csv']));

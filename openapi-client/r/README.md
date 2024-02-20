@@ -84,7 +84,7 @@ Class | Method | HTTP request | Description
 *BlockingApi* | [**DelistBlock**](docs/BlockingApi.md#DelistBlock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
 *BlockingApi* | [**GetMailBlocks**](docs/BlockingApi.md#GetMailBlocks) | **GET** /mail/blocks | displays a list of blocked email addresses
 *BlockingApi* | [**GetRules**](docs/BlockingApi.md#GetRules) | **GET** /mail/rules | Displays a listing of deny email rules.
-*HistoryApi* | [**GetStats**](docs/HistoryApi.md#GetStats) | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | [**GetStats**](docs/HistoryApi.md#GetStats) | **GET** /mail/stats | Account usage statistics.
 *HistoryApi* | [**ViewMailLog**](docs/HistoryApi.md#ViewMailLog) | **GET** /mail/log | displays the mail log
 *SendingApi* | [**SendAdvMail**](docs/SendingApi.md#SendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *SendingApi* | [**SendMail**](docs/SendingApi.md#SendMail) | **POST** /mail/send | Sends an Email
@@ -96,11 +96,13 @@ Class | Method | HTTP request | Description
 
  - [DenyRuleNew](docs/DenyRuleNew.md)
  - [DenyRuleRecord](docs/DenyRuleRecord.md)
- - [DenyRuleRecordAllOf](docs/DenyRuleRecordAllOf.md)
- - [EmailAddress](docs/EmailAddress.md)
+ - [EmailAddressName](docs/EmailAddressName.md)
+ - [EmailAddressTypes](docs/EmailAddressTypes.md)
+ - [EmailAddressesTypes](docs/EmailAddressesTypes.md)
+ - [ErrorMessage](docs/ErrorMessage.md)
  - [GenericResponse](docs/GenericResponse.md)
- - [GetMailOrders401Response](docs/GetMailOrders401Response.md)
  - [GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
+ - [MailAttachment](docs/MailAttachment.md)
  - [MailBlockClickHouse](docs/MailBlockClickHouse.md)
  - [MailBlockRspamd](docs/MailBlockRspamd.md)
  - [MailBlocks](docs/MailBlocks.md)

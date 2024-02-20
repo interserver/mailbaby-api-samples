@@ -1,9 +1,8 @@
 const samples = require('../samples/BlockingApi');
 const DenyRuleRecord = require('../models/DenyRuleRecord');
-const EmailAddress = require('../models/EmailAddress');
+const ErrorMessage = require('../models/ErrorMessage');
 const GenericResponse = require('../models/GenericResponse');
 const MailBlocks = require('../models/MailBlocks');
-const getMailOrders_401_response = require('../models/getMailOrders_401_response');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -26,6 +25,7 @@ module.exports = {
                         'domain',
                         'email',
                         'startswith',
+                        'destination',
                     ],
                 },
                 {
@@ -121,7 +121,12 @@ module.exports = {
         },
         operation: {
             inputFields: [
-                ...EmailAddress.fields(),
+                {
+                    key: 'body',
+                    label: '',
+                    type: 'string',
+                    required: true,
+                },
             ],
             outputFields: [
                 ...GenericResponse.fields('', false),
@@ -139,7 +144,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...EmailAddress.mapping(bundle),
+                        'body': bundle.inputData?.['body'],
                     },
                 }
                 return z.request(options).then((response) => {

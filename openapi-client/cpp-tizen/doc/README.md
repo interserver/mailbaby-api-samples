@@ -57,8 +57,8 @@ Method | HTTP request | Description
 ### HistoryManager
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-*getStatsSync* | *GET* /mail/stats | displays a list of blocked email addresses.
-*getStatsASync* | *GET* /mail/stats | displays a list of blocked email addresses.
+*getStatsSync* | *GET* /mail/stats | Account usage statistics..
+*getStatsASync* | *GET* /mail/stats | Account usage statistics..
 *viewMailLogSync* | *GET* /mail/log | displays the mail log.
 *viewMailLogASync* | *GET* /mail/log | displays the mail log.
 
@@ -91,11 +91,13 @@ Class | Description
 ------------- | -------------
  *DenyRuleNew* | The data for a email deny rule record.
  *DenyRuleRecord* | The data for a email deny rule record.
- *DenyRuleRecord_allOf* | 
- *EmailAddress* | an email address
+ *EmailAddressName* | An email contact.
+ *EmailAddressTypes* | 
+ *EmailAddressesTypes* | 
+ *ErrorMessage* | The resposne when an error occurs.
  *GenericResponse* | 
- *GetMailOrders_401_response* | 
  *GetStats_200_response_inner* | 
+ *MailAttachment* | (optional) File attachments to include in the email.  The file contents must be base64
  *MailBlockClickHouse* | A block entry from the clickhouse mailblocks server.
  *MailBlockRspamd* | This is a block entry from the rspamd block list.
  *MailBlocks* | The listing of blocked emails.

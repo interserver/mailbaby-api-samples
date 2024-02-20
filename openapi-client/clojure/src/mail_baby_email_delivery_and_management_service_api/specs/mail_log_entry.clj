@@ -24,7 +24,7 @@
    (ds/req :recipient) string?
    (ds/req :domain) string?
    (ds/req :locked) int?
-   (ds/req :lockTime) int?
+   (ds/req :lockTime) string?
    (ds/req :assigned) string?
    (ds/req :queued) string?
    (ds/req :mxHostname) string?

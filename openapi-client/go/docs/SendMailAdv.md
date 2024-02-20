@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Subject** | **string** | The subject or title of the email | 
 **Body** | **string** | The main email contents. | 
-**From** | [**EmailAddressName**](EmailAddressName.md) |  | 
-**To** | [**[]EmailAddressName**](EmailAddressName.md) | A list of destionation email addresses to send this to | 
-**Replyto** | Pointer to [**[]EmailAddressName**](EmailAddressName.md) | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. | [optional] 
-**Cc** | Pointer to [**[]EmailAddressName**](EmailAddressName.md) | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. | [optional] 
-**Bcc** | Pointer to [**[]EmailAddressName**](EmailAddressName.md) | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. | [optional] 
+**From** | [**EmailAddressTypes**](EmailAddressTypes.md) |  | 
+**To** | [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | 
+**Replyto** | Pointer to [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | [optional] 
+**Cc** | Pointer to [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | [optional] 
+**Bcc** | Pointer to [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | [optional] 
 **Attachments** | Pointer to [**[]MailAttachment**](MailAttachment.md) | (optional) File attachments to include in the email.  The file contents must be base64 encoded! | [optional] 
 **Id** | Pointer to **int64** | (optional)  ID of the Mail order within our system to use as the Mail Account. | [optional] 
 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewSendMailAdv
 
-`func NewSendMailAdv(subject string, body string, from EmailAddressName, to []EmailAddressName, ) *SendMailAdv`
+`func NewSendMailAdv(subject string, body string, from EmailAddressTypes, to EmailAddressesTypes, ) *SendMailAdv`
 
 NewSendMailAdv instantiates a new SendMailAdv object
 This constructor will assign default values to properties that have it defined,
@@ -75,60 +75,60 @@ SetBody sets Body field to given value.
 
 ### GetFrom
 
-`func (o *SendMailAdv) GetFrom() EmailAddressName`
+`func (o *SendMailAdv) GetFrom() EmailAddressTypes`
 
 GetFrom returns the From field if non-nil, zero value otherwise.
 
 ### GetFromOk
 
-`func (o *SendMailAdv) GetFromOk() (*EmailAddressName, bool)`
+`func (o *SendMailAdv) GetFromOk() (*EmailAddressTypes, bool)`
 
 GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrom
 
-`func (o *SendMailAdv) SetFrom(v EmailAddressName)`
+`func (o *SendMailAdv) SetFrom(v EmailAddressTypes)`
 
 SetFrom sets From field to given value.
 
 
 ### GetTo
 
-`func (o *SendMailAdv) GetTo() []EmailAddressName`
+`func (o *SendMailAdv) GetTo() EmailAddressesTypes`
 
 GetTo returns the To field if non-nil, zero value otherwise.
 
 ### GetToOk
 
-`func (o *SendMailAdv) GetToOk() (*[]EmailAddressName, bool)`
+`func (o *SendMailAdv) GetToOk() (*EmailAddressesTypes, bool)`
 
 GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTo
 
-`func (o *SendMailAdv) SetTo(v []EmailAddressName)`
+`func (o *SendMailAdv) SetTo(v EmailAddressesTypes)`
 
 SetTo sets To field to given value.
 
 
 ### GetReplyto
 
-`func (o *SendMailAdv) GetReplyto() []EmailAddressName`
+`func (o *SendMailAdv) GetReplyto() EmailAddressesTypes`
 
 GetReplyto returns the Replyto field if non-nil, zero value otherwise.
 
 ### GetReplytoOk
 
-`func (o *SendMailAdv) GetReplytoOk() (*[]EmailAddressName, bool)`
+`func (o *SendMailAdv) GetReplytoOk() (*EmailAddressesTypes, bool)`
 
 GetReplytoOk returns a tuple with the Replyto field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReplyto
 
-`func (o *SendMailAdv) SetReplyto(v []EmailAddressName)`
+`func (o *SendMailAdv) SetReplyto(v EmailAddressesTypes)`
 
 SetReplyto sets Replyto field to given value.
 
@@ -140,20 +140,20 @@ HasReplyto returns a boolean if a field has been set.
 
 ### GetCc
 
-`func (o *SendMailAdv) GetCc() []EmailAddressName`
+`func (o *SendMailAdv) GetCc() EmailAddressesTypes`
 
 GetCc returns the Cc field if non-nil, zero value otherwise.
 
 ### GetCcOk
 
-`func (o *SendMailAdv) GetCcOk() (*[]EmailAddressName, bool)`
+`func (o *SendMailAdv) GetCcOk() (*EmailAddressesTypes, bool)`
 
 GetCcOk returns a tuple with the Cc field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCc
 
-`func (o *SendMailAdv) SetCc(v []EmailAddressName)`
+`func (o *SendMailAdv) SetCc(v EmailAddressesTypes)`
 
 SetCc sets Cc field to given value.
 
@@ -165,20 +165,20 @@ HasCc returns a boolean if a field has been set.
 
 ### GetBcc
 
-`func (o *SendMailAdv) GetBcc() []EmailAddressName`
+`func (o *SendMailAdv) GetBcc() EmailAddressesTypes`
 
 GetBcc returns the Bcc field if non-nil, zero value otherwise.
 
 ### GetBccOk
 
-`func (o *SendMailAdv) GetBccOk() (*[]EmailAddressName, bool)`
+`func (o *SendMailAdv) GetBccOk() (*EmailAddressesTypes, bool)`
 
 GetBccOk returns a tuple with the Bcc field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBcc
 
-`func (o *SendMailAdv) SetBcc(v []EmailAddressName)`
+`func (o *SendMailAdv) SetBcc(v EmailAddressesTypes)`
 
 SetBcc sets Bcc field to given value.
 

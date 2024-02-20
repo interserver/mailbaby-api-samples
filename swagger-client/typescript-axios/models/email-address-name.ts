@@ -11,22 +11,30 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * An email contact.
+ *
  * @export
  * @interface EmailAddressName
  */
 export interface EmailAddressName {
+
     /**
      * The email address.
+     *
      * @type {string}
      * @memberof EmailAddressName
+     * @example user@domain.com
      */
     email: string;
+
     /**
      * Name to use for the sending contact.
+     *
      * @type {string}
      * @memberof EmailAddressName
+     * @example John Smith
      */
     name?: string;
 }

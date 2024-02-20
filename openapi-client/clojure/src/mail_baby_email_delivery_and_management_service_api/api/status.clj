@@ -6,11 +6,13 @@
             [mail-baby-email-delivery-and-management-service-api.specs.mail-blocks :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.email-address :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.deny-rule-new :refer :all]
-            [mail-baby-email-delivery-and-management-service-api.specs.deny-rule-record-all-of :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-block-click-house :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.email-address-name :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.email-address-types :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.send-mail :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-order :refer :all]
-            [mail-baby-email-delivery-and-management-service-api.specs.get-mail-orders-401-response :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.error-message :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.mail-attachment :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-log-entry :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.generic-response :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.get-stats-200-response-inner :refer :all]
@@ -18,6 +20,7 @@
             [mail-baby-email-delivery-and-management-service-api.specs.mail-block-rspamd :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.send-mail-adv :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-log :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.email-addresses-types :refer :all]
             )
   (:import (java.io File)))
 

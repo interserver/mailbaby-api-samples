@@ -1,7 +1,7 @@
 /*
 MailBaby Email Delivery and Management Service API
 
-Testing StatusApiService
+Testing StatusAPIService
 
 */
 
@@ -17,16 +17,16 @@ import (
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
-func Test_openapi_StatusApiService(t *testing.T) {
+func Test_openapi_StatusAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test StatusApiService PingServer", func(t *testing.T) {
+	t.Run("Test StatusAPIService PingServer", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		httpRes, err := apiClient.StatusApi.PingServer(context.Background()).Execute()
+		httpRes, err := apiClient.StatusAPI.PingServer(context.Background()).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

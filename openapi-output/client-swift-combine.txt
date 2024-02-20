@@ -4,18 +4,17 @@
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'swift-combine' is considered stable.
 [main] INFO  o.o.c.l.SwiftCombineClientCodegen - Environment variable SWIFT_POST_PROCESS_FILE not defined so the Swift code may not be properly formatted. To define it, try 'export SWIFT_POST_PROCESS_FILE=/usr/local/bin/swiftformat' (Linux/Mac)
 [main] INFO  o.o.c.l.SwiftCombineClientCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
-[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getMailOrders_401_response. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
-[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getStats_200_response_inner. To have complete control of the model name, set the `title` field or use the inlineSchemaNameMapping option (--inline-schema-name-mappings in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getStats_200_response_inner. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings getStats_200_response_inner=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings getStats_200_response_inner=NewModel,ModelA=NewModelA in CLI).
 [main] WARN  o.o.c.l.SwiftCombineClientCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
 [main] WARN  o.o.c.l.SwiftCombineClientCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
-[main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressName (marked as unused due to form parameters) is generated due to the global property `skipFormModel` set to false
-[main] INFO  o.o.codegen.DefaultGenerator - Model MailAttachment (marked as unused due to form parameters) is generated due to the global property `skipFormModel` set to false
+[main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressNames not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/DenyRuleNew.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/DenyRuleRecord.swift
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/EmailAddress.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/EmailAddressName.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/EmailAddressTypes.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/EmailAddressesTypes.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/ErrorMessage.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/GenericResponse.swift
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/GetMailOrders401Response.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/GetStats200ResponseInner.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailAttachment.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailBlockClickHouse.swift
@@ -26,10 +25,6 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailOrder.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/SendMail.swift
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/SendMailAdv.swift
-[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
-[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
-[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
-[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from EmailAddressName, null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
 [main] WARN  o.o.c.l.SwiftCombineClientCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
 [main] WARN  o.o.c.l.SwiftCombineClientCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType

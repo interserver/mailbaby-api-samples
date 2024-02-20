@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
   * An email contact.
  **/
 @Schema(description="An email contact.")
-public class EmailAddressName   {
+public class EmailAddressName  implements EmailAddressTypes  {
   
   @Schema(example = "user@domain.com", required = true, description = "The email address.")
  /**

@@ -15,15 +15,15 @@
 
 import * as runtime from '../runtime';
 import type {
-  GetMailOrders401Response,
+  ErrorMessage,
   MailOrder,
-} from '../models';
+} from '../models/index';
 import {
-    GetMailOrders401ResponseFromJSON,
-    GetMailOrders401ResponseToJSON,
+    ErrorMessageFromJSON,
+    ErrorMessageToJSON,
     MailOrderFromJSON,
     MailOrderToJSON,
-} from '../models';
+} from '../models/index';
 
 /**
  * 

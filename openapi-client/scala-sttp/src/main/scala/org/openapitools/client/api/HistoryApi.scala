@@ -11,7 +11,7 @@
  */
 package org.openapitools.client.api
 
-import org.openapitools.client.model.GetMailOrders401Response
+import org.openapitools.client.model.ErrorMessage
 import org.openapitools.client.model.GetStats200ResponseInner
 import org.openapitools.client.model.MailLog
 import org.openapitools.client.core.JsonSupport._
@@ -26,10 +26,12 @@ def apply(baseUrl: String = "https://api.mailbaby.net") = new HistoryApi(baseUrl
 class HistoryApi(baseUrl: String) {
 
   /**
+   * Returns information about the usage on your mail accounts.
+   * 
    * Expected answers:
    *   code 200 : Seq[GetStats200ResponseInner] (OK)
-   *   code 401 : GetMailOrders401Response (Unauthorized)
-   *   code 404 : GetMailOrders401Response (Unauthorized)
+   *   code 401 : ErrorMessage (Unauthorized)
+   *   code 404 : ErrorMessage (Unauthorized)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)

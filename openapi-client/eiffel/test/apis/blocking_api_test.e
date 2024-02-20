@@ -52,12 +52,12 @@ feature -- Test routines
             -- Removes an email address from the various block lists. 
         local
             l_response: GENERIC_RESPONSE
-            l_email_address: EMAIL_ADDRESS
+            l_body: STRING_32
         do
             -- TODO: Initialize required params.
-            -- l_email_address
+            -- l_body
 
-            -- l_response := api.delist_block(l_email_address)
+            -- l_response := api.delist_block(l_body)
             assert ("not_implemented", False)
         end
 

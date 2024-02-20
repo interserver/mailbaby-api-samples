@@ -1,13 +1,15 @@
-import { ResponseContext, RequestContext, HttpFile } from '../http/http';
+import { ResponseContext, RequestContext, HttpFile, HttpInfo } from '../http/http';
 import { Configuration} from '../configuration'
 
 import { DenyRuleNew } from '../models/DenyRuleNew';
 import { DenyRuleRecord } from '../models/DenyRuleRecord';
-import { DenyRuleRecordAllOf } from '../models/DenyRuleRecordAllOf';
-import { EmailAddress } from '../models/EmailAddress';
+import { EmailAddressName } from '../models/EmailAddressName';
+import { EmailAddressTypes } from '../models/EmailAddressTypes';
+import { EmailAddressesTypes } from '../models/EmailAddressesTypes';
+import { ErrorMessage } from '../models/ErrorMessage';
 import { GenericResponse } from '../models/GenericResponse';
-import { GetMailOrders401Response } from '../models/GetMailOrders401Response';
 import { GetStats200ResponseInner } from '../models/GetStats200ResponseInner';
+import { MailAttachment } from '../models/MailAttachment';
 import { MailBlockClickHouse } from '../models/MailBlockClickHouse';
 import { MailBlockRspamd } from '../models/MailBlockRspamd';
 import { MailBlocks } from '../models/MailBlocks';
@@ -53,10 +55,10 @@ export interface BlockingApiDeleteRuleRequest {
 export interface BlockingApiDelistBlockRequest {
     /**
      * 
-     * @type EmailAddress
+     * @type string
      * @memberof BlockingApidelistBlock
      */
-    emailAddress: EmailAddress
+    body: string
 }
 
 export interface BlockingApiGetMailBlocksRequest {
@@ -77,8 +79,26 @@ export class ObjectBlockingApi {
      * Creates a new email deny rule.
      * @param param the request object
      */
+    public addRuleWithHttpInfo(param: BlockingApiAddRuleRequest, options?: Configuration): Promise<HttpInfo<GenericResponse>> {
+        return this.api.addRuleWithHttpInfo(param.type, param.data, param.user,  options).toPromise();
+    }
+
+    /**
+     * Adds a new email deny rule into the system to block new emails that match the given criteria
+     * Creates a new email deny rule.
+     * @param param the request object
+     */
     public addRule(param: BlockingApiAddRuleRequest, options?: Configuration): Promise<GenericResponse> {
         return this.api.addRule(param.type, param.data, param.user,  options).toPromise();
+    }
+
+    /**
+     * Removes one of the configured deny mail rules from the system.
+     * Removes an deny mail rule.
+     * @param param the request object
+     */
+    public deleteRuleWithHttpInfo(param: BlockingApiDeleteRuleRequest, options?: Configuration): Promise<HttpInfo<GenericResponse>> {
+        return this.api.deleteRuleWithHttpInfo(param.ruleId,  options).toPromise();
     }
 
     /**
@@ -95,8 +115,25 @@ export class ObjectBlockingApi {
      * Removes an email address from the blocked list
      * @param param the request object
      */
+    public delistBlockWithHttpInfo(param: BlockingApiDelistBlockRequest, options?: Configuration): Promise<HttpInfo<GenericResponse>> {
+        return this.api.delistBlockWithHttpInfo(param.body,  options).toPromise();
+    }
+
+    /**
+     * Removes an email address from the various block lists. 
+     * Removes an email address from the blocked list
+     * @param param the request object
+     */
     public delistBlock(param: BlockingApiDelistBlockRequest, options?: Configuration): Promise<GenericResponse> {
-        return this.api.delistBlock(param.emailAddress,  options).toPromise();
+        return this.api.delistBlock(param.body,  options).toPromise();
+    }
+
+    /**
+     * displays a list of blocked email addresses
+     * @param param the request object
+     */
+    public getMailBlocksWithHttpInfo(param: BlockingApiGetMailBlocksRequest = {}, options?: Configuration): Promise<HttpInfo<MailBlocks>> {
+        return this.api.getMailBlocksWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -105,6 +142,15 @@ export class ObjectBlockingApi {
      */
     public getMailBlocks(param: BlockingApiGetMailBlocksRequest = {}, options?: Configuration): Promise<MailBlocks> {
         return this.api.getMailBlocks( options).toPromise();
+    }
+
+    /**
+     * Returns a listing of all the deny block rules you have configured.
+     * Displays a listing of deny email rules.
+     * @param param the request object
+     */
+    public getRulesWithHttpInfo(param: BlockingApiGetRulesRequest = {}, options?: Configuration): Promise<HttpInfo<Array<DenyRuleRecord>>> {
+        return this.api.getRulesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -201,11 +247,30 @@ export class ObjectHistoryApi {
     }
 
     /**
-     * displays a list of blocked email addresses
+     * Returns information about the usage on your mail accounts.
+     * Account usage statistics.
+     * @param param the request object
+     */
+    public getStatsWithHttpInfo(param: HistoryApiGetStatsRequest = {}, options?: Configuration): Promise<HttpInfo<Array<GetStats200ResponseInner>>> {
+        return this.api.getStatsWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * Returns information about the usage on your mail accounts.
+     * Account usage statistics.
      * @param param the request object
      */
     public getStats(param: HistoryApiGetStatsRequest = {}, options?: Configuration): Promise<Array<GetStats200ResponseInner>> {
         return this.api.getStats( options).toPromise();
+    }
+
+    /**
+     * Get a listing of the emails sent through this system 
+     * displays the mail log
+     * @param param the request object
+     */
+    public viewMailLogWithHttpInfo(param: HistoryApiViewMailLogRequest = {}, options?: Configuration): Promise<HttpInfo<MailLog>> {
+        return this.api.viewMailLogWithHttpInfo(param.id, param.origin, param.mx, param._from, param.to, param.subject, param.mailid, param.skip, param.limit, param.startDate, param.endDate,  options).toPromise();
     }
 
     /**
@@ -237,34 +302,34 @@ export interface SendingApiSendAdvMailRequest {
     body: string
     /**
      * 
-     * @type EmailAddressName
+     * @type EmailAddressTypes
      * @memberof SendingApisendAdvMail
      */
-    _from: EmailAddressName
+    _from: EmailAddressTypes
     /**
-     * A list of destionation email addresses to send this to
-     * @type Array&lt;EmailAddressName&gt;
+     * 
+     * @type EmailAddressesTypes
      * @memberof SendingApisendAdvMail
      */
-    to: Array<EmailAddressName>
+    to: EmailAddressesTypes
     /**
-     * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-     * @type Array&lt;EmailAddressName&gt;
+     * 
+     * @type EmailAddressesTypes
      * @memberof SendingApisendAdvMail
      */
-    replyto?: Array<EmailAddressName>
+    replyto?: EmailAddressesTypes
     /**
-     * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @type Array&lt;EmailAddressName&gt;
+     * 
+     * @type EmailAddressesTypes
      * @memberof SendingApisendAdvMail
      */
-    cc?: Array<EmailAddressName>
+    cc?: EmailAddressesTypes
     /**
-     * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-     * @type Array&lt;EmailAddressName&gt;
+     * 
+     * @type EmailAddressesTypes
      * @memberof SendingApisendAdvMail
      */
-    bcc?: Array<EmailAddressName>
+    bcc?: EmailAddressesTypes
     /**
      * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
      * @type Array&lt;MailAttachment&gt;
@@ -314,12 +379,30 @@ export class ObjectSendingApi {
     }
 
     /**
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
+     * Sends an Email with Advanced Options
+     * @param param the request object
+     */
+    public sendAdvMailWithHttpInfo(param: SendingApiSendAdvMailRequest, options?: Configuration): Promise<HttpInfo<GenericResponse>> {
+        return this.api.sendAdvMailWithHttpInfo(param.subject, param.body, param._from, param.to, param.replyto, param.cc, param.bcc, param.attachments, param.id,  options).toPromise();
+    }
+
+    /**
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
      * Sends an Email with Advanced Options
      * @param param the request object
      */
     public sendAdvMail(param: SendingApiSendAdvMailRequest, options?: Configuration): Promise<GenericResponse> {
         return this.api.sendAdvMail(param.subject, param.body, param._from, param.to, param.replyto, param.cc, param.bcc, param.attachments, param.id,  options).toPromise();
+    }
+
+    /**
+     * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
+     * Sends an Email
+     * @param param the request object
+     */
+    public sendMailWithHttpInfo(param: SendingApiSendMailRequest, options?: Configuration): Promise<HttpInfo<GenericResponse>> {
+        return this.api.sendMailWithHttpInfo(param.to, param._from, param.subject, param.body,  options).toPromise();
     }
 
     /**
@@ -351,6 +434,15 @@ export class ObjectServicesApi {
      * displays a list of mail service orders
      * @param param the request object
      */
+    public getMailOrdersWithHttpInfo(param: ServicesApiGetMailOrdersRequest = {}, options?: Configuration): Promise<HttpInfo<Array<MailOrder>>> {
+        return this.api.getMailOrdersWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+     * displays a list of mail service orders
+     * @param param the request object
+     */
     public getMailOrders(param: ServicesApiGetMailOrdersRequest = {}, options?: Configuration): Promise<Array<MailOrder>> {
         return this.api.getMailOrders( options).toPromise();
     }
@@ -368,6 +460,14 @@ export class ObjectStatusApi {
 
     public constructor(configuration: Configuration, requestFactory?: StatusApiRequestFactory, responseProcessor?: StatusApiResponseProcessor) {
         this.api = new ObservableStatusApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Checks if the server is running
+     * @param param the request object
+     */
+    public pingServerWithHttpInfo(param: StatusApiPingServerRequest = {}, options?: Configuration): Promise<HttpInfo<void>> {
+        return this.api.pingServerWithHttpInfo( options).toPromise();
     }
 
     /**

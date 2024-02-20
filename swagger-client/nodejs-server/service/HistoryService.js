@@ -2,7 +2,8 @@
 
 
 /**
- * displays a list of blocked email addresses
+ * Account usage statistics.
+ * Returns information about the usage on your mail accounts.
  *
  * returns List
  **/

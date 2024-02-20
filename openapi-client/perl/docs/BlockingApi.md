@@ -123,7 +123,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delist_block**
-> GenericResponse delist_block(email_address => $email_address)
+> GenericResponse delist_block(body => $body)
 
 Removes an email address from the blocked list
 
@@ -141,10 +141,10 @@ my $api_instance = OpenAPIClient::BlockingApi->new(
     #api_key_prefix => {'X-API-KEY' => 'Bearer'},
 );
 
-my $email_address = OpenAPIClient::Object::EmailAddress->new(); # EmailAddress | 
+my $body = OpenAPIClient::Object::string->new(); # string | 
 
 eval {
-    my $result = $api_instance->delist_block(email_address => $email_address);
+    my $result = $api_instance->delist_block(body => $body);
     print Dumper($result);
 };
 if ($@) {
@@ -156,7 +156,7 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **email_address** | [**EmailAddress**](EmailAddress.md)|  | 
+ **body** | **string**|  | 
 
 ### Return type
 

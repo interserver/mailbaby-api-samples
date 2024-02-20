@@ -150,7 +150,7 @@ test_that("locked", {
 })
 
 test_that("lockTime", {
-  # tests for the property `lockTime` (integer)
+  # tests for the property `lockTime` (character)
   # lock timestamp
 
   # uncomment below to test the property

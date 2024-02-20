@@ -51,13 +51,13 @@ sub new {
 #
 # get_stats
 #
-# displays a list of blocked email addresses
+# Account usage statistics.
 #
 {
     my $params = {
     };
     __PACKAGE__->method_documentation->{ 'get_stats' } = {
-        summary => 'displays a list of blocked email addresses',
+        summary => 'Account usage statistics.',
         params => $params,
         returns => 'ARRAY[GetStats200ResponseInner]',
         };

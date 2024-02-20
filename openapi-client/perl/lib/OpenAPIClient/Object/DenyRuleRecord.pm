@@ -219,20 +219,6 @@ __PACKAGE__->class_documentation({description => 'The data for a email deny rule
 }                                 );
 
 __PACKAGE__->method_documentation({
-    'id' => {
-        datatype => 'int',
-        base_name => 'id',
-        description => 'The deny rule Id number.',
-        format => '',
-        read_only => '',
-            },
-    'created' => {
-        datatype => 'DATE_TIME',
-        base_name => 'created',
-        description => 'the date the rule was created.',
-        format => '',
-        read_only => '',
-            },
     'user' => {
         datatype => 'string',
         base_name => 'user',
@@ -254,22 +240,36 @@ __PACKAGE__->method_documentation({
         format => '',
         read_only => '',
             },
+    'id' => {
+        datatype => 'string',
+        base_name => 'id',
+        description => 'The deny rule Id number.',
+        format => '',
+        read_only => '',
+            },
+    'created' => {
+        datatype => 'DATE_TIME',
+        base_name => 'created',
+        description => 'the date the rule was created.',
+        format => '',
+        read_only => '',
+            },
 });
 
 __PACKAGE__->openapi_types( {
-    'id' => 'int',
-    'created' => 'DATE_TIME',
     'user' => 'string',
     'type' => 'string',
-    'data' => 'string'
+    'data' => 'string',
+    'id' => 'string',
+    'created' => 'DATE_TIME'
 } );
 
 __PACKAGE__->attribute_map( {
-    'id' => 'id',
-    'created' => 'created',
     'user' => 'user',
     'type' => 'type',
-    'data' => 'data'
+    'data' => 'data',
+    'id' => 'id',
+    'created' => 'created'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

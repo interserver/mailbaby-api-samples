@@ -5,5 +5,5 @@
  *
  *)
 
-val send_adv_mail : subject:string -> body:string -> from:Email_address_name.t -> _to:Email_address_name.t list -> ?replyto:Email_address_name.t list -> ?cc:Email_address_name.t list -> ?bcc:Email_address_name.t list -> ?attachments:Mail_attachment.t list -> ?id:int64 -> unit -> Generic_response.t Lwt.t
+val send_adv_mail : subject:string -> body:string -> from:Email_address_types.t -> _to:Email_addresses_types.t -> ?replyto:Email_addresses_types.t -> ?cc:Email_addresses_types.t -> ?bcc:Email_addresses_types.t -> ?attachments:Mail_attachment.t list -> ?id:int64 -> unit -> Generic_response.t Lwt.t
 val send_mail : _to:string -> from:string -> subject:string -> body:string -> Generic_response.t Lwt.t

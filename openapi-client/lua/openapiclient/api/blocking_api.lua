@@ -17,10 +17,9 @@ local basexx = require "basexx"
 
 -- model import
 local openapiclient_deny_rule_record = require "openapiclient.model.deny_rule_record"
+local openapiclient_error_message = require "openapiclient.model.error_message"
 local openapiclient_generic_response = require "openapiclient.model.generic_response"
 local openapiclient_mail_blocks = require "openapiclient.model.mail_blocks"
-local openapiclient_email_address = require "openapiclient.model.email_address"
-local openapiclient_get_mail_orders_401_response = require "openapiclient.model.get_mail_orders_401_response"
 
 local blocking_api = {}
 local blocking_api_mt = {
@@ -157,7 +156,7 @@ function blocking_api:delete_rule(rule_id)
 	end
 end
 
-function blocking_api:delist_block(email_address)
+function blocking_api:delist_block(body)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -176,7 +175,7 @@ function blocking_api:delist_block(email_address)
 	--local var_accept = { "application/json" }
 	req.headers:upsert("content-type", "application/json")
 
-	req:set_body(dkjson.encode(email_address))
+	req:set_body(dkjson.encode(body))
 
 	-- api key in headers 'X-API-KEY'
 	if self.api_key['X-API-KEY'] then

@@ -116,7 +116,7 @@ func (a *ServicesApiService) GetMailOrders(ctx context.Context) ([]MailOrder, *h
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 401 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -126,7 +126,7 @@ func (a *ServicesApiService) GetMailOrders(ctx context.Context) ([]MailOrder, *h
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 404 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()

@@ -13,7 +13,7 @@ package org.openapitools.client.model
 
 
   /**
-   * Root Type for MailBlockRspamd
+   * MailBlockRspamd
    * This is a block entry from the rspamd block list.
    */
 case class MailBlockRspamd(

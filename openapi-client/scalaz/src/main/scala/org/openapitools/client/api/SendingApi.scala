@@ -21,9 +21,10 @@ import scalaz.concurrent.Task
 
 import HelperCodecs._
 
-import org.openapitools.client.api.EmailAddressName
+import org.openapitools.client.api.EmailAddressTypes
+import org.openapitools.client.api.EmailAddressesTypes
+import org.openapitools.client.api.ErrorMessage
 import org.openapitools.client.api.GenericResponse
-import org.openapitools.client.api.GetMailOrders401Response
 import org.openapitools.client.api.MailAttachment
 
 object SendingApi {
@@ -32,7 +33,7 @@ object SendingApi {
 
   def escape(value: String): String = URLEncoder.encode(value, "utf-8").replaceAll("\\+", "%20")
 
-  def sendAdvMail(host: String, subject: String, body: String, from: EmailAddressName, to: List[EmailAddressName], replyto: List[EmailAddressName], cc: List[EmailAddressName], bcc: List[EmailAddressName], attachments: List[MailAttachment], id: Long): Task[GenericResponse] = {
+  def sendAdvMail(host: String, subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: EmailAddressesTypes, cc: EmailAddressesTypes, bcc: EmailAddressesTypes, attachments: List[MailAttachment], id: Long): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/advsend"
@@ -81,7 +82,7 @@ class HttpServiceSendingApi(service: HttpService) {
 
   def escape(value: String): String = URLEncoder.encode(value, "utf-8").replaceAll("\\+", "%20")
 
-  def sendAdvMail(subject: String, body: String, from: EmailAddressName, to: List[EmailAddressName], replyto: List[EmailAddressName], cc: List[EmailAddressName], bcc: List[EmailAddressName], attachments: List[MailAttachment], id: Long): Task[GenericResponse] = {
+  def sendAdvMail(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: EmailAddressesTypes, cc: EmailAddressesTypes, bcc: EmailAddressesTypes, attachments: List[MailAttachment], id: Long): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/advsend"

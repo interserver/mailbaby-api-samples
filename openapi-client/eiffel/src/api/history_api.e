@@ -25,8 +25,8 @@ feature -- API Access
 
 
 	stats : detachable LIST [GET_STATS_200_RESPONSE_INNER]
-			-- displays a list of blocked email addresses
-			-- 
+			-- Account usage statistics.
+			-- Returns information about the usage on your mail accounts.
 			-- 
 			-- 
 			-- Result LIST [GET_STATS_200_RESPONSE_INNER]

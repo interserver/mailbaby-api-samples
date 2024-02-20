@@ -29,15 +29,12 @@ public:
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) final;
 	void WriteJson(JsonWriter& Writer) const final;
 
-	/* The deny rule Id number. */
-	int32 Id = 0;
-	/* the date the rule was created. */
-	FDateTime Created;
 	enum class TypeEnum
 	{
 		Domain,
 		Email,
 		Startswith,
+		Destination,
   	};
 
 	static FString EnumToString(const TypeEnum& EnumValue);
@@ -46,6 +43,10 @@ public:
 	TypeEnum Type;
 	/* The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. */
 	FString Data;
+	/* The deny rule Id number. */
+	FString Id;
+	/* the date the rule was created. */
+	FDateTime Created;
 	/* Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. */
 	TOptional<FString> User;
 };

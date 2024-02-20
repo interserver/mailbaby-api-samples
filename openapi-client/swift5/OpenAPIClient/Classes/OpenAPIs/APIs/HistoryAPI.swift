@@ -13,7 +13,7 @@ import AnyCodable
 open class HistoryAPI {
 
     /**
-     displays a list of blocked email addresses
+     Account usage statistics.
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
@@ -31,8 +31,9 @@ open class HistoryAPI {
     }
 
     /**
-     displays a list of blocked email addresses
+     Account usage statistics.
      - GET /mail/stats
+     - Returns information about the usage on your mail accounts.
      - API Key:
        - type: apiKey X-API-KEY (HEADER)
        - name: apiKeyAuth

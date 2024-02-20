@@ -2,6 +2,8 @@ package io.swagger.server.model
 
 
 /**
+ * = MailLogEntry =
+ *
  * An email record
  *
  * @param _id internal db id for example: ''103172''
@@ -47,7 +49,7 @@ case class MailLogEntry (
   recipient: String,
   domain: String,
   locked: Int,
-  lockTime: Int,
+  lockTime: String,
   assigned: String,
   queued: String,
   mxHostname: String,

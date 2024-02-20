@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.model.DenyRuleNew;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.Date;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -25,8 +26,14 @@ import javax.validation.Valid;
  * The data for a email deny rule record.
  */
 @Schema(description = "The data for a email deny rule record.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2023-08-14T21:51:49.442877-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2024-02-20T06:54:27.687095-05:00[America/New_York]")
 public class DenyRuleRecord   {
+  @JsonProperty("id")
+  private String id = null;
+
+  @JsonProperty("created")
+  private Date created = null;
+
   @JsonProperty("user")
   private String user = null;
 
@@ -38,7 +45,9 @@ public class DenyRuleRecord   {
     
     EMAIL("email"),
     
-    STARTSWITH("startswith");
+    STARTSWITH("startswith"),
+    
+    DESTINATION("destination");
 
     private String value;
 
@@ -67,6 +76,47 @@ public class DenyRuleRecord   {
 
   @JsonProperty("data")
   private String data = null;
+
+  public DenyRuleRecord id(String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * The deny rule Id number.
+   * @return id
+   **/
+  @JsonProperty("id")
+  @Schema(example = "41124", required = true, description = "The deny rule Id number.")
+  @NotNull
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public DenyRuleRecord created(Date created) {
+    this.created = created;
+    return this;
+  }
+
+  /**
+   * the date the rule was created.
+   * @return created
+   **/
+  @JsonProperty("created")
+  @Schema(required = true, description = "the date the rule was created.")
+  @NotNull
+  @Valid
+  public Date getCreated() {
+    return created;
+  }
+
+  public void setCreated(Date created) {
+    this.created = created;
+  }
 
   public DenyRuleRecord user(String user) {
     this.user = user;
@@ -137,14 +187,16 @@ public class DenyRuleRecord   {
       return false;
     }
     DenyRuleRecord denyRuleRecord = (DenyRuleRecord) o;
-    return Objects.equals(this.user, denyRuleRecord.user) &&
+    return Objects.equals(this.id, denyRuleRecord.id) &&
+        Objects.equals(this.created, denyRuleRecord.created) &&
+        Objects.equals(this.user, denyRuleRecord.user) &&
         Objects.equals(this.type, denyRuleRecord.type) &&
         Objects.equals(this.data, denyRuleRecord.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(user, type, data);
+    return Objects.hash(id, created, user, type, data);
   }
 
 
@@ -153,6 +205,8 @@ public class DenyRuleRecord   {
     StringBuilder sb = new StringBuilder();
     sb.append("class DenyRuleRecord {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");

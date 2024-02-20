@@ -23,8 +23,8 @@ class MailBlockRspamd {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is MailBlockRspamd &&
-     other.from == from &&
-     other.subject == subject;
+    other.from == from &&
+    other.subject == subject;
 
   @override
   int get hashCode =>

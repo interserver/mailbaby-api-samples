@@ -54,15 +54,23 @@ h4. Responses
 
 
     	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
-    	|| Message | The specified resource was not found |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Message | Error message when there was a problem with the input parameters. |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
-  "description" : "The specified resource was not found",
+  "description" : "Error message when there was a problem with the input parameters.",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "BadInputError" : {
+          "value" : {
+            "code" : 400,
+            "message" : "There was a problem with the input parameters."
+          }
+        }
       }
     }
   }
@@ -72,14 +80,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -89,14 +105,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | The specified resource was not found |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "The specified resource was not found",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "NotFoundError" : {
+          "value" : {
+            "code" : 404,
+            "message" : "The specified resource was not found."
+          }
+        }
       }
     }
   }
@@ -146,15 +170,23 @@ h4. Responses
 
 
     	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
-    	|| Message | The specified resource was not found |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Message | Error message when there was a problem with the input parameters. |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
-  "description" : "The specified resource was not found",
+  "description" : "Error message when there was a problem with the input parameters.",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "BadInputError" : {
+          "value" : {
+            "code" : 400,
+            "message" : "There was a problem with the input parameters."
+          }
+        }
       }
     }
   }
@@ -164,14 +196,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -181,14 +221,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | The specified resource was not found |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "The specified resource was not found",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "NotFoundError" : {
+          "value" : {
+            "code" : 404,
+            "message" : "The specified resource was not found."
+          }
+        }
       }
     }
   }
@@ -214,7 +262,7 @@ h4. Parameters
 
 h5. Body Parameter
         ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
-        |EmailAddress | | EmailAddress | (/) | |  |  |
+        |body | | String | (/) | |  |  |
 
 
 ----
@@ -238,15 +286,23 @@ h4. Responses
 
 
     	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
-    	|| Message | The specified resource was not found |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Message | Error message when there was a problem with the input parameters. |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
-  "description" : "The specified resource was not found",
+  "description" : "Error message when there was a problem with the input parameters.",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "BadInputError" : {
+          "value" : {
+            "code" : 400,
+            "message" : "There was a problem with the input parameters."
+          }
+        }
       }
     }
   }
@@ -256,14 +312,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -273,14 +337,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | The specified resource was not found |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "The specified resource was not found",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "NotFoundError" : {
+          "value" : {
+            "code" : 404,
+            "message" : "The specified resource was not found."
+          }
+        }
       }
     }
   }
@@ -361,14 +433,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -378,14 +458,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -462,14 +550,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -479,14 +575,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -499,8 +603,8 @@ h4. Responses
 
 h3. getStats
 {panel:title=getStats|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
-    *Summary:* displays a list of blocked email addresses
-    *Description:* *No Description*
+    *Summary:* Account usage statistics.
+    *Description:* Returns information about the usage on your mail accounts.
 
 	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
     || Protocol | {noformat:nopanel=true}https{noformat} |
@@ -546,14 +650,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -563,14 +675,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -671,6 +791,117 @@ h3. sendAdvMail
     *Summary:* Sends an Email with Advanced Options
     *Description:* Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 
+Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header &#39;Accept: application/json&#39; \\
+--header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \\
+--data &#39;subject&#x3D;Welcome&#39; \\
+--data &#39;body&#x3D;Hello&#39; \\
+--data from&#x3D;user@domain.com \\
+--data to&#x3D;support@interserver.net
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header &#39;Accept: application/json&#39; \\
+--header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \\
+--data &#39;subject&#x3D;Welcome&#39; \\
+--data &#39;body&#x3D;Hello&#39; \\
+--data from&#x3D;user@domain.com \\
+--data &quot;to[0\][name\]&#x3D;Joe&quot; \\
+--data &quot;to[0\][email\]&#x3D;support@interserver.net&quot;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header &#39;Accept: application/json&#39; \\
+--header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \\
+--data &#39;subject&#x3D;Welcome&#39; \\
+--data &#39;body&#x3D;Hello&#39; \\
+--data from&#x3D;&quot;Joe &lt;user@domain.com&gt;&quot; \\
+--data to&#x3D;&quot;Joe &lt;support@interserver.net&gt;&quot;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header &#39;Accept: application/json&#39; \\
+--header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \\
+--data &#39;subject&#x3D;Welcome&#39; \\
+--data &#39;body&#x3D;Hello&#39; \\
+--data from&#x3D;user@domain.com \\
+--data &quot;to&#x3D;support@interserver.net, support@interserver.net&quot;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header &#39;Accept: application/json&#39; \\
+--header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \\
+--data &#39;subject&#x3D;Welcome&#39; \\
+--data &#39;body&#x3D;Hello&#39; \\
+--data from&#x3D;user@domain.com \\
+--data &quot;to&#x3D;Joe &lt;support@interserver.net&gt;, Joe &lt;support@interserver.net&gt;&quot;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header &#39;Accept: application/json&#39; \\
+--header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \\
+--data &#39;subject&#x3D;Welcome&#39; \\
+--data &#39;body&#x3D;Hello&#39; \\
+--data from&#x3D;user@domain.com \\
+--data &quot;to[0\][name\]&#x3D;Joe&quot; \\
+--data &quot;to[0\][email\]&#x3D;support@interserver.net&quot; \\
+--data &quot;to[1\][name\]&#x3D;Joe&quot; \\
+--data &quot;to[1\][email\]&#x3D;support@interserver.net&quot;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header &#39;Accept: application/json&#39; \\
+--header &#39;Content-Type: application/json&#39; \\
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \\
+--data &#39;\{
+&quot;subject&quot;: &quot;Welcome&quot;,
+&quot;body&quot;: &quot;Hello&quot;,
+&quot;from&quot;: &quot;user@domain.com&quot;,
+&quot;to&quot;: &quot;support@interserver.net&quot;
+\}&#39;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header &#39;Accept: application/json&#39; \\
+--header &#39;Content-Type: application/json&#39; \\
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \\
+--data &#39;\{
+&quot;subject&quot;: &quot;Welcome&quot;,
+&quot;body&quot;: &quot;Hello&quot;,
+&quot;from&quot;: \{&quot;name&quot;: &quot;Joe&quot;, &quot;email&quot;: &quot;user@domain.com&quot;\},
+&quot;to&quot;: [\{&quot;name&quot;: &quot;Joe&quot;, &quot;email&quot;: &quot;support@interserver.net&quot;\}\]
+\}&#39;
+&#x60;&#x60;&#x60;
+
+&#x60;&#x60;&#x60;
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
+--header &#39;Accept: application/json&#39; \\
+--header &#39;Content-Type: application/json&#39; \\
+--header &#39;X-API-KEY: YOUR_API_KEY&#39; \\
+--data &#39;\{
+&quot;subject&quot;: &quot;Welcome&quot;,
+&quot;body&quot;: &quot;Hello&quot;,
+&quot;from&quot;: &quot;Joe &lt;user@domain.com&gt;&quot;,
+&quot;to&quot;: &quot;Joe &lt;support@interserver.net&gt;&quot;
+\}&#39;
+&#x60;&#x60;&#x60;
+
 	|| HttpMethod | {status:colour=Yellow|title=post|subtle=false} |
     || Protocol | {noformat:nopanel=true}https{noformat} |
     || Path | {noformat:nopanel=true}/mail/advsend{noformat} |
@@ -702,15 +933,23 @@ h4. Responses
 
 
     	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
-    	|| Message | The specified resource was not found |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Message | Error message when there was a problem with the input parameters. |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
-  "description" : "The specified resource was not found",
+  "description" : "Error message when there was a problem with the input parameters.",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "BadInputError" : {
+          "value" : {
+            "code" : 400,
+            "message" : "There was a problem with the input parameters."
+          }
+        }
       }
     }
   }
@@ -720,14 +959,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -737,14 +984,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | The specified resource was not found |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "The specified resource was not found",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "NotFoundError" : {
+          "value" : {
+            "code" : 404,
+            "message" : "The specified resource was not found."
+          }
+        }
       }
     }
   }
@@ -793,15 +1048,23 @@ h4. Responses
 
 
     	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
-    	|| Message | The specified resource was not found |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Message | Error message when there was a problem with the input parameters. |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
-  "description" : "The specified resource was not found",
+  "description" : "Error message when there was a problem with the input parameters.",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "BadInputError" : {
+          "value" : {
+            "code" : 400,
+            "message" : "There was a problem with the input parameters."
+          }
+        }
       }
     }
   }
@@ -811,14 +1074,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -828,14 +1099,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | The specified resource was not found |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "The specified resource was not found",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "NotFoundError" : {
+          "value" : {
+            "code" : 404,
+            "message" : "The specified resource was not found."
+          }
+        }
       }
     }
   }
@@ -909,14 +1188,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -926,14 +1213,22 @@ h4. Responses
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Unauthorized |
-    	|| Response Type | getMailOrders_401_response |
-    	|| Response Model | [getMailOrders_401_response Model|#getMailOrders_401_responseModelAnchor|Jump to model] |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "Unauthorized",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/getMailOrders_401_response"
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
       }
     }
   }
@@ -994,7 +1289,7 @@ h2. Models
 
         
         ||Field Name||Required||Type||Description||Enum||Example||
-         |type |(/) |{noformat:nopanel=true}String{noformat} | The type of deny rule. |  [domain, email, startswith]  | email
+         |type |(/) |{noformat:nopanel=true}String{noformat} | The type of deny rule. |  [domain, email, startswith, destination]  | email
          |data |(/) |{noformat:nopanel=true}String{noformat} | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. |  | domeinwo@server.guesshost.net
          |user |(x) |{noformat:nopanel=true}String{noformat} | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. |  | mb20682
          
@@ -1005,30 +1300,49 @@ h2. Models
 
         
         ||Field Name||Required||Type||Description||Enum||Example||
-         |id |(/) |{noformat:nopanel=true}Integer{noformat} | The deny rule Id number. |  | 41124
-         |created |(/) |{noformat:nopanel=true}Date{noformat} | the date the rule was created. |  | null
-         |type |(/) |{noformat:nopanel=true}String{noformat} | The type of deny rule. |  [domain, email, startswith]  | email
+         |type |(/) |{noformat:nopanel=true}String{noformat} | The type of deny rule. |  [domain, email, startswith, destination]  | email
          |data |(/) |{noformat:nopanel=true}String{noformat} | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. |  | domeinwo@server.guesshost.net
+         |id |(/) |{noformat:nopanel=true}String{noformat} | The deny rule Id number. |  | 41124
+         |created |(/) |{noformat:nopanel=true}Date{noformat} | the date the rule was created. |  | null
          |user |(x) |{noformat:nopanel=true}String{noformat} | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. |  | mb20682
          
-        {anchor:DenyRuleRecordAllOfModelAnchor}
-        h3. DenyRuleRecordAllOf
+        {anchor:EmailAddressNameModelAnchor}
+        h3. EmailAddressName
 
-        
+        An email contact.
 
         
         ||Field Name||Required||Type||Description||Enum||Example||
-         |id |(/) |{noformat:nopanel=true}Integer{noformat} | The deny rule Id number. |  | 41124
-         |created |(/) |{noformat:nopanel=true}Date{noformat} | the date the rule was created. |  | null
+         |email |(/) |{noformat:nopanel=true}String{noformat} | The email address. |  | user@domain.com
+         |name |(x) |{noformat:nopanel=true}String{noformat} | Name to use for the sending contact. |  | John Smith
          
-        {anchor:EmailAddressModelAnchor}
-        h3. EmailAddress
+        {anchor:EmailAddressTypesModelAnchor}
+        h3. EmailAddressTypes
 
-        an email address
+        
 
         
         ||Field Name||Required||Type||Description||Enum||Example||
-         |email |(x) |{noformat:nopanel=true}String{noformat} | an email address |  | user@domain.com
+         |email |(/) |{noformat:nopanel=true}String{noformat} | The email address. |  | user@domain.com
+         |name |(x) |{noformat:nopanel=true}String{noformat} | Name to use for the sending contact. |  | John Smith
+         
+        {anchor:EmailAddressesTypesModelAnchor}
+        h3. EmailAddressesTypes
+
+        
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         
+        {anchor:ErrorMessageModelAnchor}
+        h3. ErrorMessage
+
+        The resposne when an error occurs.
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |code |(/) |{noformat:nopanel=true}Integer{noformat} | The response code associated with the error. |  | 400
+         |message |(/) |{noformat:nopanel=true}String{noformat} | The details or description of the error. |  | There was an error.
          
         {anchor:GenericResponseModelAnchor}
         h3. GenericResponse
@@ -1039,16 +1353,6 @@ h2. Models
         ||Field Name||Required||Type||Description||Enum||Example||
          |status |(x) |{noformat:nopanel=true}String{noformat} |  |  | ok
          |text |(x) |{noformat:nopanel=true}String{noformat} |  |  | The command completed successfully.
-         
-        {anchor:GetMailOrders401ResponseModelAnchor}
-        h3. GetMailOrders401Response
-
-        
-
-        
-        ||Field Name||Required||Type||Description||Enum||Example||
-         |code |(/) |{noformat:nopanel=true}String{noformat} |  |  | null
-         |message |(/) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:GetStats200ResponseInnerModelAnchor}
         h3. GetStats200ResponseInner
@@ -1062,6 +1366,16 @@ h2. Models
          |username |(/) |{noformat:nopanel=true}String{noformat} |  |  | mb1234
          |password |(x) |{noformat:nopanel=true}String{noformat} |  |  | guest123
          |comment |(x) |{noformat:nopanel=true}String{noformat} |  |  | main mail account
+         
+        {anchor:MailAttachmentModelAnchor}
+        h3. MailAttachment
+
+        (optional) File attachments to include in the email.  The file contents must be base64
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |filename |(/) |{noformat:nopanel=true}String{noformat} | The filename of the attached file. |  | message.txt
+         |data |(/) |{noformat:nopanel=true}String{noformat} | The file contents base64 encoded |  | aGVsbG8gdGhlcmUK
          
         {anchor:MailBlockClickHouseModelAnchor}
         h3. MailBlockClickHouse
@@ -1157,7 +1471,7 @@ h2. Models
          |recipient |(/) |{noformat:nopanel=true}String{noformat} | to address this email is being sent to |  | client@isp.com
          |domain |(/) |{noformat:nopanel=true}String{noformat} | to address domain |  | interserver.net
          |locked |(/) |{noformat:nopanel=true}Integer{noformat} | locked status |  | 1
-         |lockTime |(/) |{noformat:nopanel=true}Integer{noformat} | lock timestamp |  | 1634215818533
+         |lockTime |(/) |{noformat:nopanel=true}String{noformat} | lock timestamp |  | 1634215818533
          |assigned |(/) |{noformat:nopanel=true}String{noformat} | assigned server |  | relay1
          |queued |(/) |{noformat:nopanel=true}String{noformat} | queued timestamp |  | 2021-10-14T12:50:15.487Z
          |mxHostname |(/) |{noformat:nopanel=true}String{noformat} | mx hostname |  | mx.j.is.cc
@@ -1197,11 +1511,11 @@ h2. Models
         ||Field Name||Required||Type||Description||Enum||Example||
          |subject |(/) |{noformat:nopanel=true}String{noformat} | The subject or title of the email |  | Your Package has been Delivered!
          |body |(/) |{noformat:nopanel=true}String{noformat} | The main email contents. |  | The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.
-         |from |(/) |{noformat:nopanel=true}EmailAddressName{noformat} |  |  | null
-         |to |(/) |{noformat:nopanel=true}array[EmailAddressName]{noformat} | A list of destionation email addresses to send this to |  | [{&quot;email&quot;: &quot;user@domain.com&quot;, &quot;name&quot;: &quot;John Smith&quot;}]
-         |replyto |(x) |{noformat:nopanel=true}array[EmailAddressName]{noformat} | (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address. |  | [{&quot;email&quot;: &quot;user@domain.com&quot;, &quot;name&quot;: &quot;John Smith&quot;}]
-         |cc |(x) |{noformat:nopanel=true}array[EmailAddressName]{noformat} | (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. |  | [{&quot;email&quot;: &quot;user@domain.com&quot;, &quot;name&quot;: &quot;John Smith&quot;}]
-         |bcc |(x) |{noformat:nopanel=true}array[EmailAddressName]{noformat} | (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. |  | [{&quot;email&quot;: &quot;user@domain.com&quot;, &quot;name&quot;: &quot;John Smith&quot;}]
+         |from |(/) |{noformat:nopanel=true}EmailAddressTypes{noformat} |  |  | null
+         |to |(/) |{noformat:nopanel=true}EmailAddressesTypes{noformat} |  |  | null
+         |replyto |(x) |{noformat:nopanel=true}EmailAddressesTypes{noformat} |  |  | null
+         |cc |(x) |{noformat:nopanel=true}EmailAddressesTypes{noformat} |  |  | null
+         |bcc |(x) |{noformat:nopanel=true}EmailAddressesTypes{noformat} |  |  | null
          |attachments |(x) |{noformat:nopanel=true}array[MailAttachment]{noformat} | (optional) File attachments to include in the email.  The file contents must be base64 encoded\! |  | [
         {
             &quot;filename&quot;: &quot;text.txt&quot;,

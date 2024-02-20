@@ -9,11 +9,13 @@ openapiclient/apis/api_services.nim
 openapiclient/apis/api_status.nim
 openapiclient/models/model_deny_rule_new.nim
 openapiclient/models/model_deny_rule_record.nim
-openapiclient/models/model_deny_rule_record_all_of.nim
-openapiclient/models/model_email_address.nim
+openapiclient/models/model_email_address_name.nim
+openapiclient/models/model_email_address_types.nim
+openapiclient/models/model_email_addresses_types.nim
+openapiclient/models/model_error_message.nim
 openapiclient/models/model_generic_response.nim
-openapiclient/models/model_get_mail_orders_401_response.nim
 openapiclient/models/model_get_stats_200_response_inner.nim
+openapiclient/models/model_mail_attachment.nim
 openapiclient/models/model_mail_block_click_house.nim
 openapiclient/models/model_mail_block_rspamd.nim
 openapiclient/models/model_mail_blocks.nim

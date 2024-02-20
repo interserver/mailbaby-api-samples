@@ -44,11 +44,11 @@ class GetStats200ResponseInner {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetStats200ResponseInner &&
-     other.id == id &&
-     other.status == status &&
-     other.username == username &&
-     other.password == password &&
-     other.comment == comment;
+    other.id == id &&
+    other.status == status &&
+    other.username == username &&
+    other.password == password &&
+    other.comment == comment;
 
   @override
   int get hashCode =>

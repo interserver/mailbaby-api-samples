@@ -166,11 +166,11 @@ public:
 	void setLocked(int  locked);
 	/*! \brief Get lock timestamp
 	 */
-	int getLockTime();
+	std::string getLockTime();
 
 	/*! \brief Set lock timestamp
 	 */
-	void setLockTime(int  lockTime);
+	void setLockTime(std::string  lockTime);
 	/*! \brief Get assigned server
 	 */
 	std::string getAssigned();
@@ -225,7 +225,7 @@ private:
 	std::string recipient;
 	std::string domain;
 	int locked;
-	int lockTime;
+	std::string lockTime;
 	std::string assigned;
 	std::string queued;
 	std::string mxHostname;

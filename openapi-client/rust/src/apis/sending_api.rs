@@ -19,9 +19,9 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SendAdvMailError {
-    Status400(crate::models::GetMailOrders401Response),
-    Status401(crate::models::GetMailOrders401Response),
-    Status404(crate::models::GetMailOrders401Response),
+    Status400(crate::models::ErrorMessage),
+    Status401(crate::models::ErrorMessage),
+    Status404(crate::models::ErrorMessage),
     UnknownValue(serde_json::Value),
 }
 
@@ -29,15 +29,15 @@ pub enum SendAdvMailError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SendMailError {
-    Status400(crate::models::GetMailOrders401Response),
-    Status401(crate::models::GetMailOrders401Response),
-    Status404(crate::models::GetMailOrders401Response),
+    Status400(crate::models::ErrorMessage),
+    Status401(crate::models::ErrorMessage),
+    Status404(crate::models::ErrorMessage),
     UnknownValue(serde_json::Value),
 }
 
 
-/// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
-pub async fn send_adv_mail(configuration: &configuration::Configuration, subject: &str, body: &str, from: crate::models::EmailAddressName, to: Vec<crate::models::EmailAddressName>, replyto: Option<Vec<crate::models::EmailAddressName>>, cc: Option<Vec<crate::models::EmailAddressName>>, bcc: Option<Vec<crate::models::EmailAddressName>>, attachments: Option<Vec<crate::models::MailAttachment>>, id: Option<i64>) -> Result<crate::models::GenericResponse, Error<SendAdvMailError>> {
+/// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
+pub async fn send_adv_mail(configuration: &configuration::Configuration, subject: &str, body: &str, from: crate::models::EmailAddressTypes, to: crate::models::EmailAddressesTypes, replyto: Option<crate::models::EmailAddressesTypes>, cc: Option<crate::models::EmailAddressesTypes>, bcc: Option<crate::models::EmailAddressesTypes>, attachments: Option<Vec<crate::models::MailAttachment>>, id: Option<i64>) -> Result<crate::models::GenericResponse, Error<SendAdvMailError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -60,15 +60,15 @@ pub async fn send_adv_mail(configuration: &configuration::Configuration, subject
     local_var_form_params.insert("subject", subject.to_string());
     local_var_form_params.insert("body", body.to_string());
     local_var_form_params.insert("from", from.to_string());
-    local_var_form_params.insert("to", to.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(",").to_string());
+    local_var_form_params.insert("to", to.to_string());
     if let Some(local_var_param_value) = replyto {
-        local_var_form_params.insert("replyto", local_var_param_value.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(",").to_string());
+        local_var_form_params.insert("replyto", local_var_param_value.to_string());
     }
     if let Some(local_var_param_value) = cc {
-        local_var_form_params.insert("cc", local_var_param_value.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(",").to_string());
+        local_var_form_params.insert("cc", local_var_param_value.to_string());
     }
     if let Some(local_var_param_value) = bcc {
-        local_var_form_params.insert("bcc", local_var_param_value.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(",").to_string());
+        local_var_form_params.insert("bcc", local_var_param_value.to_string());
     }
     if let Some(local_var_param_value) = attachments {
         local_var_form_params.insert("attachments", local_var_param_value.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(",").to_string());

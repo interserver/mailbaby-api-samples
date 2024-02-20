@@ -20,19 +20,19 @@ import (
 )
 
 
-// SendingApiService SendingApi service
-type SendingApiService service
+// SendingAPIService SendingAPI service
+type SendingAPIService service
 
 type ApiSendAdvMailRequest struct {
 	ctx context.Context
-	ApiService *SendingApiService
+	ApiService *SendingAPIService
 	subject *string
 	body *string
-	from *EmailAddressName
-	to *[]EmailAddressName
-	replyto *[]EmailAddressName
-	cc *[]EmailAddressName
-	bcc *[]EmailAddressName
+	from *EmailAddressTypes
+	to *EmailAddressesTypes
+	replyto *EmailAddressesTypes
+	cc *EmailAddressesTypes
+	bcc *EmailAddressesTypes
 	attachments *[]MailAttachment
 	id *int64
 }
@@ -49,31 +49,27 @@ func (r ApiSendAdvMailRequest) Body(body string) ApiSendAdvMailRequest {
 	return r
 }
 
-func (r ApiSendAdvMailRequest) From(from EmailAddressName) ApiSendAdvMailRequest {
+func (r ApiSendAdvMailRequest) From(from EmailAddressTypes) ApiSendAdvMailRequest {
 	r.from = &from
 	return r
 }
 
-// A list of destionation email addresses to send this to
-func (r ApiSendAdvMailRequest) To(to []EmailAddressName) ApiSendAdvMailRequest {
+func (r ApiSendAdvMailRequest) To(to EmailAddressesTypes) ApiSendAdvMailRequest {
 	r.to = &to
 	return r
 }
 
-// (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-func (r ApiSendAdvMailRequest) Replyto(replyto []EmailAddressName) ApiSendAdvMailRequest {
+func (r ApiSendAdvMailRequest) Replyto(replyto EmailAddressesTypes) ApiSendAdvMailRequest {
 	r.replyto = &replyto
 	return r
 }
 
-// (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-func (r ApiSendAdvMailRequest) Cc(cc []EmailAddressName) ApiSendAdvMailRequest {
+func (r ApiSendAdvMailRequest) Cc(cc EmailAddressesTypes) ApiSendAdvMailRequest {
 	r.cc = &cc
 	return r
 }
 
-// (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-func (r ApiSendAdvMailRequest) Bcc(bcc []EmailAddressName) ApiSendAdvMailRequest {
+func (r ApiSendAdvMailRequest) Bcc(bcc EmailAddressesTypes) ApiSendAdvMailRequest {
 	r.bcc = &bcc
 	return r
 }
@@ -99,10 +95,122 @@ SendAdvMail Sends an Email with Advanced Options
 
 Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 
+Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
+
+```
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data 'subject=Welcome' \
+--data 'body=Hello' \
+--data from=user@domain.com \
+--data to=support@interserver.net
+```
+
+```
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data 'subject=Welcome' \
+--data 'body=Hello' \
+--data from=user@domain.com \
+--data "to[0][name]=Joe" \
+--data "to[0][email]=support@interserver.net"
+```
+
+```
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data 'subject=Welcome' \
+--data 'body=Hello' \
+--data from="Joe <user@domain.com>" \
+--data to="Joe <support@interserver.net>"
+```
+
+```
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data 'subject=Welcome' \
+--data 'body=Hello' \
+--data from=user@domain.com \
+--data "to=support@interserver.net, support@interserver.net"
+```
+
+```
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data 'subject=Welcome' \
+--data 'body=Hello' \
+--data from=user@domain.com \
+--data "to=Joe <support@interserver.net>, Joe <support@interserver.net>"
+```
+
+```
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data 'subject=Welcome' \
+--data 'body=Hello' \
+--data from=user@domain.com \
+--data "to[0][name]=Joe" \
+--data "to[0][email]=support@interserver.net" \
+--data "to[1][name]=Joe" \
+--data "to[1][email]=support@interserver.net"
+```
+
+```
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data '{
+"subject": "Welcome",
+"body": "Hello",
+"from": "user@domain.com",
+"to": "support@interserver.net"
+}'
+```
+
+```
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data '{
+"subject": "Welcome",
+"body": "Hello",
+"from": {"name": "Joe", "email": "user@domain.com"},
+"to": [{"name": "Joe", "email": "support@interserver.net"}]
+}'
+```
+
+```
+curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data '{
+"subject": "Welcome",
+"body": "Hello",
+"from": "Joe <user@domain.com>",
+"to": "Joe <support@interserver.net>"
+}'
+```
+
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSendAdvMailRequest
 */
-func (a *SendingApiService) SendAdvMail(ctx context.Context) ApiSendAdvMailRequest {
+func (a *SendingAPIService) SendAdvMail(ctx context.Context) ApiSendAdvMailRequest {
 	return ApiSendAdvMailRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -111,7 +219,7 @@ func (a *SendingApiService) SendAdvMail(ctx context.Context) ApiSendAdvMailReque
 
 // Execute executes the request
 //  @return GenericResponse
-func (a *SendingApiService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*GenericResponse, *http.Response, error) {
+func (a *SendingAPIService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*GenericResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -119,7 +227,7 @@ func (a *SendingApiService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*Generi
 		localVarReturnValue  *GenericResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SendingApiService.SendAdvMail")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SendingAPIService.SendAdvMail")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -162,15 +270,27 @@ func (a *SendingApiService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*Generi
 	parameterAddToHeaderOrQuery(localVarFormParams, "subject", r.subject, "")
 	parameterAddToHeaderOrQuery(localVarFormParams, "body", r.body, "")
 	parameterAddToHeaderOrQuery(localVarFormParams, "from", r.from, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "to", r.to, "csv")
+	parameterAddToHeaderOrQuery(localVarFormParams, "to", r.to, "")
 	if r.replyto != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "replyto", r.replyto, "csv")
+		paramJson, err := parameterToJson(*r.replyto)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("replyto", paramJson)
 	}
 	if r.cc != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "cc", r.cc, "csv")
+		paramJson, err := parameterToJson(*r.cc)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("cc", paramJson)
 	}
 	if r.bcc != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "bcc", r.bcc, "csv")
+		paramJson, err := parameterToJson(*r.bcc)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("bcc", paramJson)
 	}
 	if r.attachments != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "attachments", r.attachments, "csv")
@@ -215,7 +335,7 @@ func (a *SendingApiService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*Generi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -226,7 +346,7 @@ func (a *SendingApiService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*Generi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -237,7 +357,7 @@ func (a *SendingApiService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*Generi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -263,7 +383,7 @@ func (a *SendingApiService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*Generi
 
 type ApiSendMailRequest struct {
 	ctx context.Context
-	ApiService *SendingApiService
+	ApiService *SendingAPIService
 	to *string
 	from *string
 	subject *string
@@ -309,7 +429,7 @@ Sends an email through one of your mail orders.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSendMailRequest
 */
-func (a *SendingApiService) SendMail(ctx context.Context) ApiSendMailRequest {
+func (a *SendingAPIService) SendMail(ctx context.Context) ApiSendMailRequest {
 	return ApiSendMailRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -318,7 +438,7 @@ func (a *SendingApiService) SendMail(ctx context.Context) ApiSendMailRequest {
 
 // Execute executes the request
 //  @return GenericResponse
-func (a *SendingApiService) SendMailExecute(r ApiSendMailRequest) (*GenericResponse, *http.Response, error) {
+func (a *SendingAPIService) SendMailExecute(r ApiSendMailRequest) (*GenericResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -326,7 +446,7 @@ func (a *SendingApiService) SendMailExecute(r ApiSendMailRequest) (*GenericRespo
 		localVarReturnValue  *GenericResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SendingApiService.SendMail")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SendingAPIService.SendMail")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -407,7 +527,7 @@ func (a *SendingApiService) SendMailExecute(r ApiSendMailRequest) (*GenericRespo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -418,7 +538,7 @@ func (a *SendingApiService) SendMailExecute(r ApiSendMailRequest) (*GenericRespo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -429,7 +549,7 @@ func (a *SendingApiService) SendMailExecute(r ApiSendMailRequest) (*GenericRespo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

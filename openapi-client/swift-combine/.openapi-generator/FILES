@@ -7,10 +7,11 @@ OpenAPIClient/Sources/APIs/ServicesAPI.swift
 OpenAPIClient/Sources/APIs/StatusAPI.swift
 OpenAPIClient/Sources/Models/DenyRuleNew.swift
 OpenAPIClient/Sources/Models/DenyRuleRecord.swift
-OpenAPIClient/Sources/Models/EmailAddress.swift
 OpenAPIClient/Sources/Models/EmailAddressName.swift
+OpenAPIClient/Sources/Models/EmailAddressTypes.swift
+OpenAPIClient/Sources/Models/EmailAddressesTypes.swift
+OpenAPIClient/Sources/Models/ErrorMessage.swift
 OpenAPIClient/Sources/Models/GenericResponse.swift
-OpenAPIClient/Sources/Models/GetMailOrders401Response.swift
 OpenAPIClient/Sources/Models/GetStats200ResponseInner.swift
 OpenAPIClient/Sources/Models/MailAttachment.swift
 OpenAPIClient/Sources/Models/MailBlockClickHouse.swift

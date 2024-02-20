@@ -9,7 +9,7 @@
 <#
 .SYNOPSIS
 
-displays a list of blocked email addresses
+Account usage statistics.
 
 .DESCRIPTION
 

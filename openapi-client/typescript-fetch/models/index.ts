@@ -2,11 +2,13 @@
 /* eslint-disable */
 export * from './DenyRuleNew';
 export * from './DenyRuleRecord';
-export * from './DenyRuleRecordAllOf';
-export * from './EmailAddress';
+export * from './EmailAddressName';
+export * from './EmailAddressTypes';
+export * from './EmailAddressesTypes';
+export * from './ErrorMessage';
 export * from './GenericResponse';
-export * from './GetMailOrders401Response';
 export * from './GetStats200ResponseInner';
+export * from './MailAttachment';
 export * from './MailBlockClickHouse';
 export * from './MailBlockRspamd';
 export * from './MailBlocks';

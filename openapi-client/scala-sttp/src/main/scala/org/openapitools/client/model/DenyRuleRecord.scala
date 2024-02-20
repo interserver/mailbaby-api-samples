@@ -14,18 +14,18 @@ package org.openapitools.client.model
 import java.time.OffsetDateTime
 
   /**
-   * Root Type for DenyRule
+   * DenyRuleRecord
    * The data for a email deny rule record.
    */
 case class DenyRuleRecord(
-  /* The deny rule Id number. */
-  id: Int,
-  /* the date the rule was created. */
-  created: OffsetDateTime,
   /* The type of deny rule. */
   `type`: DenyRuleRecordEnums.`Type`,
   /* The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. */
   data: String,
+  /* The deny rule Id number. */
+  id: String,
+  /* the date the rule was created. */
+  created: OffsetDateTime,
   /* Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. */
   user: Option[String] = None
 )
@@ -37,6 +37,7 @@ object DenyRuleRecordEnums {
     val Domain = Value("domain")
     val Email = Value("email")
     val Startswith = Value("startswith")
+    val Destination = Value("destination")
   }
 
 }

@@ -111,14 +111,10 @@ BlockingApi <- R6::R6Class(
       }
 
     }
-    delist_block = function(body, email, ...){
+    delist_block = function(body, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()
-
-      body <- list(
-          "email" = email
-      )
 
       if (!missing(`body`)) {
         body <- `body`$toJSONString()

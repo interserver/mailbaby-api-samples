@@ -6,9 +6,12 @@ Apis/ServicesApi.md
 Apis/StatusApi.md
 Models/DenyRuleNew.md
 Models/DenyRuleRecord.md
-Models/DenyRuleRecord_allOf.md
-Models/EmailAddress.md
+Models/EmailAddressName.md
+Models/EmailAddressTypes.md
+Models/EmailAddressesTypes.md
+Models/ErrorMessage.md
 Models/GenericResponse.md
+Models/MailAttachment.md
 Models/MailBlockClickHouse.md
 Models/MailBlockRspamd.md
 Models/MailBlocks.md
@@ -17,6 +20,5 @@ Models/MailLogEntry.md
 Models/MailOrder.md
 Models/SendMail.md
 Models/SendMailAdv.md
-Models/getMailOrders_401_response.md
 Models/getStats_200_response_inner.md
 README.md

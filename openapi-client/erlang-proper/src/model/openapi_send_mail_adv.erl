@@ -11,11 +11,11 @@
 -type openapi_send_mail_adv() ::
   [ {'subject', binary() }
   | {'body', binary() }
-  | {'from', openapi_email_address_name:openapi_email_address_name() }
-  | {'to', list(openapi_email_address_name:openapi_email_address_name()) }
-  | {'replyto', list(openapi_email_address_name:openapi_email_address_name()) }
-  | {'cc', list(openapi_email_address_name:openapi_email_address_name()) }
-  | {'bcc', list(openapi_email_address_name:openapi_email_address_name()) }
+  | {'from', openapi_email_address_types:openapi_email_address_types() }
+  | {'to', openapi_email_addresses_types:openapi_email_addresses_types() }
+  | {'replyto', openapi_email_addresses_types:openapi_email_addresses_types() }
+  | {'cc', openapi_email_addresses_types:openapi_email_addresses_types() }
+  | {'bcc', openapi_email_addresses_types:openapi_email_addresses_types() }
   | {'attachments', list(openapi_mail_attachment:openapi_mail_attachment()) }
   | {'id', integer() }
   ].
@@ -27,11 +27,11 @@ openapi_send_mail_adv() ->
 openapi_send_mail_adv(Fields) ->
   Default = [ {'subject', binary() }
             , {'body', binary() }
-            , {'from', openapi_email_address_name:openapi_email_address_name() }
-            , {'to', list(openapi_email_address_name:openapi_email_address_name()) }
-            , {'replyto', list(openapi_email_address_name:openapi_email_address_name()) }
-            , {'cc', list(openapi_email_address_name:openapi_email_address_name()) }
-            , {'bcc', list(openapi_email_address_name:openapi_email_address_name()) }
+            , {'from', openapi_email_address_types:openapi_email_address_types() }
+            , {'to', openapi_email_addresses_types:openapi_email_addresses_types() }
+            , {'replyto', openapi_email_addresses_types:openapi_email_addresses_types() }
+            , {'cc', openapi_email_addresses_types:openapi_email_addresses_types() }
+            , {'bcc', openapi_email_addresses_types:openapi_email_addresses_types() }
             , {'attachments', list(openapi_mail_attachment:openapi_mail_attachment()) }
             , {'id', integer() }
             ],

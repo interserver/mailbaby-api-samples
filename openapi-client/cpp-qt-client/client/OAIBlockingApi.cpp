@@ -353,7 +353,7 @@ void OAIBlockingApi::deleteRuleCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIBlockingApi::delistBlock(const OAIEmailAddress &oai_email_address) {
+void OAIBlockingApi::delistBlock(const QString &body) {
     QString fullPath = QString(_serverConfigs["delistBlock"][_serverIndices.value("delistBlock")].URL()+"/mail/blocks/delete");
     
     if (_apiKeys.contains("apiKeyAuth")) {
@@ -367,8 +367,7 @@ void OAIBlockingApi::delistBlock(const OAIEmailAddress &oai_email_address) {
 
     {
 
-        
-        QByteArray output = oai_email_address.asJson().toUtf8();
+        QByteArray output = body.toUtf8();
         input.request_body.append(output);
     }
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)

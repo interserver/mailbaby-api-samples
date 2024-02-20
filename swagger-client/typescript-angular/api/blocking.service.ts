@@ -19,9 +19,8 @@ import { Observable }                                        from 'rxjs';
 
 import { DenyRuleNew } from '../model/denyRuleNew';
 import { DenyRuleRecord } from '../model/denyRuleRecord';
-import { EmailAddress } from '../model/emailAddress';
+import { ErrorMessage } from '../model/errorMessage';
 import { GenericResponse } from '../model/genericResponse';
-import { InlineResponse401 } from '../model/inlineResponse401';
 import { MailBlocks } from '../model/mailBlocks';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -246,10 +245,10 @@ export class BlockingService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public delistBlock(body: EmailAddress, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
-    public delistBlock(body: EmailAddress, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
-    public delistBlock(body: EmailAddress, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
-    public delistBlock(body: EmailAddress, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public delistBlock(body: string, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
+    public delistBlock(body: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
+    public delistBlock(body: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
+    public delistBlock(body: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling delistBlock.');
@@ -284,70 +283,6 @@ export class BlockingService {
         return this.httpClient.request<GenericResponse>('post',`${this.basePath}/mail/blocks/delete`,
             {
                 body: body,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Removes an email address from the blocked list
-     * Removes an email address from the various block lists. 
-     * @param email 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public delistBlockForm(email: string, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
-    public delistBlockForm(email: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
-    public delistBlockForm(email: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
-    public delistBlockForm(email: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (email === null || email === undefined) {
-            throw new Error('Required parameter email was null or undefined when calling delistBlock.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (apiKeyAuth) required
-        if (this.configuration.apiKeys && this.configuration.apiKeys["X-API-KEY"]) {
-            headers = headers.set('X-API-KEY', this.configuration.apiKeys["X-API-KEY"]);
-        }
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json',
-            'multipart/form-data'
-        ];
-
-        const canConsumeForm = this.canConsumeForm(consumes);
-
-        let formParams: { append(param: string, value: any): void; };
-        let useForm = false;
-        let convertFormParamsToString = false;
-        if (useForm) {
-            formParams = new FormData();
-        } else {
-            formParams = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        }
-
-        if (email !== undefined) {
-            formParams = formParams.append('email', <any>email) as any || formParams;
-        }
-
-        return this.httpClient.request<GenericResponse>('post',`${this.basePath}/mail/blocks/delete`,
-            {
-                body: convertFormParamsToString ? formParams.toString() : formParams,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

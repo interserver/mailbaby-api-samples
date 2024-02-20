@@ -36,7 +36,7 @@ function Add-Rule {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [ValidateSet("domain", "email", "startswith")]
+        [ValidateSet("domain", "email", "startswith", "destination")]
         [String]
         ${Type},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
@@ -197,7 +197,7 @@ Removes an email address from the blocked list
 
 No description available.
 
-.PARAMETER EmailAddress
+.PARAMETER Body
 No description available.
 
 .PARAMETER WithHttpInfo
@@ -212,8 +212,8 @@ function Invoke-DelistBlock {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${EmailAddress},
+        [String]
+        ${Body},
         [Switch]
         $WithHttpInfo
     )
@@ -240,11 +240,11 @@ function Invoke-DelistBlock {
 
         $LocalVarUri = '/mail/blocks/delete'
 
-        if (!$EmailAddress) {
-            throw "Error! The required parameter `EmailAddress` missing when calling delistBlock."
+        if (!$Body) {
+            throw "Error! The required parameter `Body` missing when calling delistBlock."
         }
 
-        $LocalVarBodyParameter = $EmailAddress | ConvertTo-Json -Depth 100
+        $LocalVarBodyParameter = $Body | ConvertTo-Json -Depth 100
 
         if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
             $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]

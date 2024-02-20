@@ -14,7 +14,14 @@ public struct DenyRuleRecord: Codable {
         case domain = "domain"
         case email = "email"
         case startswith = "startswith"
+        case destination = "destination"
     }
+
+    /** The deny rule Id number. */
+    public var _id: String
+
+    /** the date the rule was created. */
+    public var created: Date
 
     /** Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. */
     public var user: String?
@@ -23,10 +30,19 @@ public struct DenyRuleRecord: Codable {
 
     /** The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. */
     public var data: String
-    public init(user: String? = nil, type: ModelType, data: String) { 
+    public init(_id: String, created: Date, user: String? = nil, type: ModelType, data: String) { 
+        self._id = _id
+        self.created = created
         self.user = user
         self.type = type
         self.data = data
+    }
+    public enum CodingKeys: String, CodingKey { 
+        case _id = "id"
+        case created
+        case user
+        case type
+        case data
     }
 
 }

@@ -30,7 +30,8 @@ use Log::Any qw($log);
 use Date::Parse;
 use DateTime;
 
-use OpenAPIClient::Object::EmailAddressName;
+use OpenAPIClient::Object::EmailAddressTypes;
+use OpenAPIClient::Object::EmailAddressesTypes;
 use OpenAPIClient::Object::MailAttachment;
 
 use base ("Class::Accessor", "Class::Data::Inheritable");
@@ -236,37 +237,37 @@ __PACKAGE__->method_documentation({
         read_only => '',
             },
     'from' => {
-        datatype => 'EmailAddressName',
+        datatype => 'EmailAddressTypes',
         base_name => 'from',
         description => '',
         format => '',
         read_only => '',
             },
     'to' => {
-        datatype => 'ARRAY[EmailAddressName]',
+        datatype => 'EmailAddressesTypes',
         base_name => 'to',
-        description => 'A list of destionation email addresses to send this to',
+        description => '',
         format => '',
         read_only => '',
             },
     'replyto' => {
-        datatype => 'ARRAY[EmailAddressName]',
+        datatype => 'EmailAddressesTypes',
         base_name => 'replyto',
-        description => '(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.',
+        description => '',
         format => '',
         read_only => '',
             },
     'cc' => {
-        datatype => 'ARRAY[EmailAddressName]',
+        datatype => 'EmailAddressesTypes',
         base_name => 'cc',
-        description => '(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.',
+        description => '',
         format => '',
         read_only => '',
             },
     'bcc' => {
-        datatype => 'ARRAY[EmailAddressName]',
+        datatype => 'EmailAddressesTypes',
         base_name => 'bcc',
-        description => '(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.',
+        description => '',
         format => '',
         read_only => '',
             },
@@ -289,11 +290,11 @@ __PACKAGE__->method_documentation({
 __PACKAGE__->openapi_types( {
     'subject' => 'string',
     'body' => 'string',
-    'from' => 'EmailAddressName',
-    'to' => 'ARRAY[EmailAddressName]',
-    'replyto' => 'ARRAY[EmailAddressName]',
-    'cc' => 'ARRAY[EmailAddressName]',
-    'bcc' => 'ARRAY[EmailAddressName]',
+    'from' => 'EmailAddressTypes',
+    'to' => 'EmailAddressesTypes',
+    'replyto' => 'EmailAddressesTypes',
+    'cc' => 'EmailAddressesTypes',
+    'bcc' => 'EmailAddressesTypes',
     'attachments' => 'ARRAY[MailAttachment]',
     'id' => 'int'
 } );

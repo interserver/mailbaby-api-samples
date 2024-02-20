@@ -15,9 +15,9 @@
 import { HttpMethods, QueryConfig, ResponseBody, ResponseText } from 'redux-query';
 import * as runtime from '../runtime';
 import {
-    GetMailOrders401Response,
-    GetMailOrders401ResponseFromJSON,
-    GetMailOrders401ResponseToJSON,
+    ErrorMessage,
+    ErrorMessageFromJSON,
+    ErrorMessageToJSON,
     GetStats200ResponseInner,
     GetStats200ResponseInnerFromJSON,
     GetStats200ResponseInnerToJSON,
@@ -42,7 +42,8 @@ export interface ViewMailLogRequest {
 
 
 /**
- * displays a list of blocked email addresses
+ * Returns information about the usage on your mail accounts.
+ * Account usage statistics.
  */
 function getStatsRaw<T>( requestConfig: runtime.TypedQueryConfig<T, Array<GetStats200ResponseInner>> = {}): QueryConfig<T> {
     let queryParameters = null;
@@ -78,7 +79,8 @@ function getStatsRaw<T>( requestConfig: runtime.TypedQueryConfig<T, Array<GetSta
 }
 
 /**
-* displays a list of blocked email addresses
+* Returns information about the usage on your mail accounts.
+* Account usage statistics.
 */
 export function getStats<T>( requestConfig?: runtime.TypedQueryConfig<T, Array<GetStats200ResponseInner>>): QueryConfig<T> {
     return getStatsRaw( requestConfig);

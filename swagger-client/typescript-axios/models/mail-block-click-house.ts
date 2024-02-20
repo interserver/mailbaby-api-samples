@@ -11,38 +11,40 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * A block entry from the clickhouse mailblocks server.
+ *
  * @export
  * @interface MailBlockClickHouse
  */
 export interface MailBlockClickHouse {
+
     /**
-     * 
      * @type {string}
      * @memberof MailBlockClickHouse
      */
     date: string;
+
     /**
-     * 
      * @type {string}
      * @memberof MailBlockClickHouse
      */
     from: string;
+
     /**
-     * 
      * @type {string}
      * @memberof MailBlockClickHouse
      */
     messageId: string;
+
     /**
-     * 
      * @type {string}
      * @memberof MailBlockClickHouse
      */
     subject: string;
+
     /**
-     * 
      * @type {string}
      * @memberof MailBlockClickHouse
      */

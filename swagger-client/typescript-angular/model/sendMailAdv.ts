@@ -9,7 +9,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { EmailAddressName } from './emailAddressName';
+import { EmailAddressTypes } from './emailAddressTypes';
+import { EmailAddressesTypes } from './emailAddressesTypes';
 import { MailAttachment } from './mailAttachment';
 
 /**
@@ -24,23 +25,11 @@ export interface SendMailAdv {
      * The main email contents.
      */
     body: string;
-    from: EmailAddressName;
-    /**
-     * A list of destionation email addresses to send this to
-     */
-    to: Array<EmailAddressName>;
-    /**
-     * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-     */
-    replyto?: Array<EmailAddressName>;
-    /**
-     * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     */
-    cc?: Array<EmailAddressName>;
-    /**
-     * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-     */
-    bcc?: Array<EmailAddressName>;
+    from: EmailAddressTypes;
+    to: EmailAddressesTypes;
+    replyto?: EmailAddressesTypes;
+    cc?: EmailAddressesTypes;
+    bcc?: EmailAddressesTypes;
     /**
      * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
      */

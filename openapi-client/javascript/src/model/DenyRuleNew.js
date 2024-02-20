@@ -143,7 +143,13 @@ DenyRuleNew['TypeEnum'] = {
      * value: "startswith"
      * @const
      */
-    "startswith": "startswith"
+    "startswith": "startswith",
+
+    /**
+     * value: "destination"
+     * @const
+     */
+    "destination": "destination"
 };
 
 

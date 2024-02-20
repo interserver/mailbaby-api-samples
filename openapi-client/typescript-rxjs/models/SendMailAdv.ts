@@ -12,7 +12,8 @@
  */
 
 import type {
-    EmailAddressName,
+    EmailAddressTypes,
+    EmailAddressesTypes,
     MailAttachment,
 } from './';
 
@@ -35,34 +36,30 @@ export interface SendMailAdv {
      */
     body: string;
     /**
-     * @type {EmailAddressName}
+     * @type {EmailAddressTypes}
      * @memberof SendMailAdv
      */
-    from: EmailAddressName;
+    from: EmailAddressTypes;
     /**
-     * A list of destionation email addresses to send this to
-     * @type {Array<EmailAddressName>}
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    to: Array<EmailAddressName>;
+    to: EmailAddressesTypes;
     /**
-     * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-     * @type {Array<EmailAddressName>}
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    replyto?: Array<EmailAddressName>;
+    replyto?: EmailAddressesTypes;
     /**
-     * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-     * @type {Array<EmailAddressName>}
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    cc?: Array<EmailAddressName>;
+    cc?: EmailAddressesTypes;
     /**
-     * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-     * @type {Array<EmailAddressName>}
+     * @type {EmailAddressesTypes}
      * @memberof SendMailAdv
      */
-    bcc?: Array<EmailAddressName>;
+    bcc?: EmailAddressesTypes;
     /**
      * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
      * @type {Array<MailAttachment>}

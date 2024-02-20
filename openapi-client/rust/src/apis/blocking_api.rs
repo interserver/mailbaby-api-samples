@@ -19,9 +19,9 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddRuleError {
-    Status400(crate::models::GetMailOrders401Response),
-    Status401(crate::models::GetMailOrders401Response),
-    Status404(crate::models::GetMailOrders401Response),
+    Status400(crate::models::ErrorMessage),
+    Status401(crate::models::ErrorMessage),
+    Status404(crate::models::ErrorMessage),
     UnknownValue(serde_json::Value),
 }
 
@@ -29,9 +29,9 @@ pub enum AddRuleError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteRuleError {
-    Status400(crate::models::GetMailOrders401Response),
-    Status401(crate::models::GetMailOrders401Response),
-    Status404(crate::models::GetMailOrders401Response),
+    Status400(crate::models::ErrorMessage),
+    Status401(crate::models::ErrorMessage),
+    Status404(crate::models::ErrorMessage),
     UnknownValue(serde_json::Value),
 }
 
@@ -39,9 +39,9 @@ pub enum DeleteRuleError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DelistBlockError {
-    Status400(crate::models::GetMailOrders401Response),
-    Status401(crate::models::GetMailOrders401Response),
-    Status404(crate::models::GetMailOrders401Response),
+    Status400(crate::models::ErrorMessage),
+    Status401(crate::models::ErrorMessage),
+    Status404(crate::models::ErrorMessage),
     UnknownValue(serde_json::Value),
 }
 
@@ -49,8 +49,8 @@ pub enum DelistBlockError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetMailBlocksError {
-    Status401(crate::models::GetMailOrders401Response),
-    Status404(crate::models::GetMailOrders401Response),
+    Status401(crate::models::ErrorMessage),
+    Status404(crate::models::ErrorMessage),
     UnknownValue(serde_json::Value),
 }
 
@@ -58,8 +58,8 @@ pub enum GetMailBlocksError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetRulesError {
-    Status401(crate::models::GetMailOrders401Response),
-    Status404(crate::models::GetMailOrders401Response),
+    Status401(crate::models::ErrorMessage),
+    Status404(crate::models::ErrorMessage),
     UnknownValue(serde_json::Value),
 }
 
@@ -144,7 +144,7 @@ pub async fn delete_rule(configuration: &configuration::Configuration, rule_id: 
 }
 
 /// Removes an email address from the various block lists. 
-pub async fn delist_block(configuration: &configuration::Configuration, email_address: crate::models::EmailAddress) -> Result<crate::models::GenericResponse, Error<DelistBlockError>> {
+pub async fn delist_block(configuration: &configuration::Configuration, body: &str) -> Result<crate::models::GenericResponse, Error<DelistBlockError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -163,7 +163,7 @@ pub async fn delist_block(configuration: &configuration::Configuration, email_ad
         };
         local_var_req_builder = local_var_req_builder.header("X-API-KEY", local_var_value);
     };
-    local_var_req_builder = local_var_req_builder.json(&email_address);
+    local_var_req_builder = local_var_req_builder.json(&body);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

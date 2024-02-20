@@ -34,17 +34,17 @@ OAIDenyRuleRecord::~OAIDenyRuleRecord() {}
 
 void OAIDenyRuleRecord::initializeModel() {
 
-    m_id_isSet = false;
-    m_id_isValid = false;
-
-    m_created_isSet = false;
-    m_created_isValid = false;
-
     m_type_isSet = false;
     m_type_isValid = false;
 
     m_data_isSet = false;
     m_data_isValid = false;
+
+    m_id_isSet = false;
+    m_id_isValid = false;
+
+    m_created_isSet = false;
+    m_created_isValid = false;
 
     m_user_isSet = false;
     m_user_isValid = false;
@@ -59,19 +59,19 @@ void OAIDenyRuleRecord::fromJson(QString jsonString) {
 
 void OAIDenyRuleRecord::fromJsonObject(QJsonObject json) {
 
-    m_id_isValid = ::OpenAPI::fromJsonValue(id, json[QString("id")]);
-    m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
-
-    m_created_isValid = ::OpenAPI::fromJsonValue(created, json[QString("created")]);
-    m_created_isSet = !json[QString("created")].isNull() && m_created_isValid;
-
-    m_type_isValid = ::OpenAPI::fromJsonValue(type, json[QString("type")]);
+    m_type_isValid = ::OpenAPI::fromJsonValue(m_type, json[QString("type")]);
     m_type_isSet = !json[QString("type")].isNull() && m_type_isValid;
 
-    m_data_isValid = ::OpenAPI::fromJsonValue(data, json[QString("data")]);
+    m_data_isValid = ::OpenAPI::fromJsonValue(m_data, json[QString("data")]);
     m_data_isSet = !json[QString("data")].isNull() && m_data_isValid;
 
-    m_user_isValid = ::OpenAPI::fromJsonValue(user, json[QString("user")]);
+    m_id_isValid = ::OpenAPI::fromJsonValue(m_id, json[QString("id")]);
+    m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
+
+    m_created_isValid = ::OpenAPI::fromJsonValue(m_created, json[QString("created")]);
+    m_created_isSet = !json[QString("created")].isNull() && m_created_isValid;
+
+    m_user_isValid = ::OpenAPI::fromJsonValue(m_user, json[QString("user")]);
     m_user_isSet = !json[QString("user")].isNull() && m_user_isValid;
 }
 
@@ -84,62 +84,30 @@ QString OAIDenyRuleRecord::asJson() const {
 
 QJsonObject OAIDenyRuleRecord::asJsonObject() const {
     QJsonObject obj;
-    if (m_id_isSet) {
-        obj.insert(QString("id"), ::OpenAPI::toJsonValue(id));
-    }
-    if (m_created_isSet) {
-        obj.insert(QString("created"), ::OpenAPI::toJsonValue(created));
-    }
     if (m_type_isSet) {
-        obj.insert(QString("type"), ::OpenAPI::toJsonValue(type));
+        obj.insert(QString("type"), ::OpenAPI::toJsonValue(m_type));
     }
     if (m_data_isSet) {
-        obj.insert(QString("data"), ::OpenAPI::toJsonValue(data));
+        obj.insert(QString("data"), ::OpenAPI::toJsonValue(m_data));
+    }
+    if (m_id_isSet) {
+        obj.insert(QString("id"), ::OpenAPI::toJsonValue(m_id));
+    }
+    if (m_created_isSet) {
+        obj.insert(QString("created"), ::OpenAPI::toJsonValue(m_created));
     }
     if (m_user_isSet) {
-        obj.insert(QString("user"), ::OpenAPI::toJsonValue(user));
+        obj.insert(QString("user"), ::OpenAPI::toJsonValue(m_user));
     }
     return obj;
 }
 
-qint32 OAIDenyRuleRecord::getId() const {
-    return id;
-}
-void OAIDenyRuleRecord::setId(const qint32 &id) {
-    this->id = id;
-    this->m_id_isSet = true;
-}
-
-bool OAIDenyRuleRecord::is_id_Set() const{
-    return m_id_isSet;
-}
-
-bool OAIDenyRuleRecord::is_id_Valid() const{
-    return m_id_isValid;
-}
-
-QDateTime OAIDenyRuleRecord::getCreated() const {
-    return created;
-}
-void OAIDenyRuleRecord::setCreated(const QDateTime &created) {
-    this->created = created;
-    this->m_created_isSet = true;
-}
-
-bool OAIDenyRuleRecord::is_created_Set() const{
-    return m_created_isSet;
-}
-
-bool OAIDenyRuleRecord::is_created_Valid() const{
-    return m_created_isValid;
-}
-
 QString OAIDenyRuleRecord::getType() const {
-    return type;
+    return m_type;
 }
 void OAIDenyRuleRecord::setType(const QString &type) {
-    this->type = type;
-    this->m_type_isSet = true;
+    m_type = type;
+    m_type_isSet = true;
 }
 
 bool OAIDenyRuleRecord::is_type_Set() const{
@@ -151,11 +119,11 @@ bool OAIDenyRuleRecord::is_type_Valid() const{
 }
 
 QString OAIDenyRuleRecord::getData() const {
-    return data;
+    return m_data;
 }
 void OAIDenyRuleRecord::setData(const QString &data) {
-    this->data = data;
-    this->m_data_isSet = true;
+    m_data = data;
+    m_data_isSet = true;
 }
 
 bool OAIDenyRuleRecord::is_data_Set() const{
@@ -166,12 +134,44 @@ bool OAIDenyRuleRecord::is_data_Valid() const{
     return m_data_isValid;
 }
 
+QString OAIDenyRuleRecord::getId() const {
+    return m_id;
+}
+void OAIDenyRuleRecord::setId(const QString &id) {
+    m_id = id;
+    m_id_isSet = true;
+}
+
+bool OAIDenyRuleRecord::is_id_Set() const{
+    return m_id_isSet;
+}
+
+bool OAIDenyRuleRecord::is_id_Valid() const{
+    return m_id_isValid;
+}
+
+QDateTime OAIDenyRuleRecord::getCreated() const {
+    return m_created;
+}
+void OAIDenyRuleRecord::setCreated(const QDateTime &created) {
+    m_created = created;
+    m_created_isSet = true;
+}
+
+bool OAIDenyRuleRecord::is_created_Set() const{
+    return m_created_isSet;
+}
+
+bool OAIDenyRuleRecord::is_created_Valid() const{
+    return m_created_isValid;
+}
+
 QString OAIDenyRuleRecord::getUser() const {
-    return user;
+    return m_user;
 }
 void OAIDenyRuleRecord::setUser(const QString &user) {
-    this->user = user;
-    this->m_user_isSet = true;
+    m_user = user;
+    m_user_isSet = true;
 }
 
 bool OAIDenyRuleRecord::is_user_Set() const{
@@ -185,22 +185,22 @@ bool OAIDenyRuleRecord::is_user_Valid() const{
 bool OAIDenyRuleRecord::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (m_id_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_created_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_type_isSet) {
             isObjectUpdated = true;
             break;
         }
 
         if (m_data_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_id_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_created_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -215,7 +215,7 @@ bool OAIDenyRuleRecord::isSet() const {
 
 bool OAIDenyRuleRecord::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_id_isValid && m_created_isValid && m_type_isValid && m_data_isValid && true;
+    return m_type_isValid && m_data_isValid && m_id_isValid && m_created_isValid && true;
 }
 
 } // namespace OpenAPI

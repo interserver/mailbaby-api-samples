@@ -23,7 +23,7 @@ import javax.validation.Valid;
  * An email record
  */
 @Schema(description = "An email record")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2023-08-14T21:51:52.462173-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2024-02-20T06:54:30.505529-05:00[America/New_York]")
 public class MailLogEntry   {
   @JsonProperty("_id")
   private Integer _id = null;
@@ -80,7 +80,7 @@ public class MailLogEntry   {
   private Integer locked = null;
 
   @JsonProperty("lockTime")
-  private Integer lockTime = null;
+  private String lockTime = null;
 
   @JsonProperty("assigned")
   private String assigned = null;
@@ -453,7 +453,7 @@ public class MailLogEntry   {
     this.locked = locked;
   }
 
-  public MailLogEntry lockTime(Integer lockTime) {
+  public MailLogEntry lockTime(String lockTime) {
     this.lockTime = lockTime;
     return this;
   }
@@ -465,11 +465,11 @@ public class MailLogEntry   {
   @JsonProperty("lockTime")
   @Schema(example = "1634215818533", required = true, description = "lock timestamp")
   @NotNull
-  public Integer getLockTime() {
+  public String getLockTime() {
     return lockTime;
   }
 
-  public void setLockTime(Integer lockTime) {
+  public void setLockTime(String lockTime) {
     this.lockTime = lockTime;
   }
 

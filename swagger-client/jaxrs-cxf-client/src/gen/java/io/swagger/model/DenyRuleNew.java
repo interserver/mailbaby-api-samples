@@ -28,7 +28,8 @@ public class DenyRuleNew   {
   public enum TypeEnum {
     DOMAIN("domain"),
     EMAIL("email"),
-    STARTSWITH("startswith");
+    STARTSWITH("startswith"),
+    DESTINATION("destination");
 
     private String value;
 

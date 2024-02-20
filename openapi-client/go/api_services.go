@@ -20,12 +20,12 @@ import (
 )
 
 
-// ServicesApiService ServicesApi service
-type ServicesApiService service
+// ServicesAPIService ServicesAPI service
+type ServicesAPIService service
 
 type ApiGetMailOrdersRequest struct {
 	ctx context.Context
-	ApiService *ServicesApiService
+	ApiService *ServicesAPIService
 }
 
 func (r ApiGetMailOrdersRequest) Execute() ([]MailOrder, *http.Response, error) {
@@ -40,7 +40,7 @@ This will return a list of the mail orders you have in our system including thei
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetMailOrdersRequest
 */
-func (a *ServicesApiService) GetMailOrders(ctx context.Context) ApiGetMailOrdersRequest {
+func (a *ServicesAPIService) GetMailOrders(ctx context.Context) ApiGetMailOrdersRequest {
 	return ApiGetMailOrdersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -49,7 +49,7 @@ func (a *ServicesApiService) GetMailOrders(ctx context.Context) ApiGetMailOrders
 
 // Execute executes the request
 //  @return []MailOrder
-func (a *ServicesApiService) GetMailOrdersExecute(r ApiGetMailOrdersRequest) ([]MailOrder, *http.Response, error) {
+func (a *ServicesAPIService) GetMailOrdersExecute(r ApiGetMailOrdersRequest) ([]MailOrder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -57,7 +57,7 @@ func (a *ServicesApiService) GetMailOrdersExecute(r ApiGetMailOrdersRequest) ([]
 		localVarReturnValue  []MailOrder
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.GetMailOrders")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesAPIService.GetMailOrders")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -122,7 +122,7 @@ func (a *ServicesApiService) GetMailOrdersExecute(r ApiGetMailOrdersRequest) ([]
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -133,7 +133,7 @@ func (a *ServicesApiService) GetMailOrdersExecute(r ApiGetMailOrdersRequest) ([]
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

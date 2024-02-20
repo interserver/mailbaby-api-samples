@@ -49,8 +49,8 @@ isa_ok($api, 'OpenAPIClient::BlockingApi');
 # delist_block test
 #
 # uncomment below and update the test
-#my $delist_block_email_address = undef; # replace NULL with a proper value
-#my $delist_block_result = $api->delist_block(email_address => $delist_block_email_address);
+#my $delist_block_body = undef; # replace NULL with a proper value
+#my $delist_block_result = $api->delist_block(body => $delist_block_body);
 
 #
 # get_mail_blocks test

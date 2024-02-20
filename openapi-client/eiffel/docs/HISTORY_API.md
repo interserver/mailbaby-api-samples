@@ -4,7 +4,7 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Feature | HTTP request | Description
 ------------- | ------------- | -------------
-[**stats**](HISTORY_API.md#stats) | **Get** /mail/stats | displays a list of blocked email addresses
+[**stats**](HISTORY_API.md#stats) | **Get** /mail/stats | Account usage statistics.
 [**view_mail_log**](HISTORY_API.md#view_mail_log) | **Get** /mail/log | displays the mail log
 
 
@@ -12,7 +12,9 @@ Feature | HTTP request | Description
 > stats : detachable LIST [GET_STATS_200_RESPONSE_INNER]
 
 
-displays a list of blocked email addresses
+Account usage statistics.
+
+Returns information about the usage on your mail accounts.
 
 
 ### Parameters

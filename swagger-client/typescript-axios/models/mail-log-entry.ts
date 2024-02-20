@@ -11,148 +11,219 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * An email record
+ *
  * @export
  * @interface MailLogEntry
  */
 export interface MailLogEntry {
+
     /**
      * internal db id
+     *
      * @type {number}
      * @memberof MailLogEntry
+     * @example 103172
      */
     id: number;
+
     /**
      * mail id
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example 17c7eda538e0005d03
      */
     id: string;
+
     /**
      * from address
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example person@mysite.com
      */
     from: string;
+
     /**
      * to address
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example client@isp.com
      */
     to: string;
+
     /**
      * email subject
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example sell 0.005 shares
      */
     subject: string;
+
     /**
      * message id
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example <vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>
      */
     messageId?: string;
+
     /**
      * creation date
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example 2021-10-14 08:50:10
      */
     created: string;
+
     /**
      * creation timestamp
+     *
      * @type {number}
      * @memberof MailLogEntry
+     * @example 1634215809
      */
     time: number;
+
     /**
      * user account
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example mb5658
      */
     user: string;
+
     /**
      * transaction type
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example ESMTPSA
      */
     transtype: string;
+
     /**
      * origin ip
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example 199.231.189.154
      */
     origin: string;
+
     /**
      * interface name
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example feeder
      */
     _interface: string;
+
     /**
      * sending zone
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example interserver
      */
     sendingZone: string;
+
     /**
      * email body size in bytes
+     *
      * @type {number}
      * @memberof MailLogEntry
+     * @example 63
      */
     bodySize: number;
+
     /**
      * index of email in the to adderess list
+     *
      * @type {number}
      * @memberof MailLogEntry
+     * @example 1
      */
     seq: number;
+
     /**
      * to address this email is being sent to
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example client@isp.com
      */
     recipient: string;
+
     /**
      * to address domain
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example interserver.net
      */
     domain: string;
+
     /**
      * locked status
+     *
      * @type {number}
      * @memberof MailLogEntry
+     * @example 1
      */
     locked: number;
+
     /**
      * lock timestamp
-     * @type {number}
+     *
+     * @type {string}
      * @memberof MailLogEntry
+     * @example 1634215818533
      */
-    lockTime: number;
+    lockTime: string;
+
     /**
      * assigned server
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example relay1
      */
     assigned: string;
+
     /**
      * queued timestamp
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example 2021-10-14T12:50:15.487Z
      */
     queued: string;
+
     /**
      * mx hostname
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example mx.j.is.cc
      */
     mxHostname: string;
+
     /**
      * mail delivery response
+     *
      * @type {string}
      * @memberof MailLogEntry
+     * @example 250 2.0.0 Ok queued as C91D83E128C
      */
     response: string;
 }

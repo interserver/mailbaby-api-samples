@@ -5,13 +5,13 @@
 
 
 char* typedeny_rule_new_ToString(mailbaby_email_delivery_and_management_service_api_deny_rule_new_TYPE_e type) {
-    char* typeArray[] =  { "NULL", "domain", "email", "startswith" };
+    char* typeArray[] =  { "NULL", "domain", "email", "startswith", "destination" };
 	return typeArray[type];
 }
 
 mailbaby_email_delivery_and_management_service_api_deny_rule_new_TYPE_e typedeny_rule_new_FromString(char* type){
     int stringToReturn = 0;
-    char *typeArray[] =  { "NULL", "domain", "email", "startswith" };
+    char *typeArray[] =  { "NULL", "domain", "email", "startswith", "destination" };
     size_t sizeofArray = sizeof(typeArray) / sizeof(typeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(type, typeArray[stringToReturn]) == 0) {

@@ -64,7 +64,7 @@ public:
 	/* locked status */
 	int32 Locked = 0;
 	/* lock timestamp */
-	int32 LockTime = 0;
+	FString LockTime;
 	/* assigned server */
 	FString Assigned;
 	/* queued timestamp */

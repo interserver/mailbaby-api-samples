@@ -20,7 +20,7 @@ abstract class DenyRuleNew  {
   /// The type of deny rule.
   @BuiltValueField(wireName: r'type')
   DenyRuleNewTypeEnum get type;
-  // enum typeEnum {  domain,  email,  startswith,  };
+  // enum typeEnum {  domain,  email,  startswith,  destination,  };
 
   /// The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
   @BuiltValueField(wireName: r'data')
@@ -187,6 +187,9 @@ class DenyRuleNewTypeEnum extends EnumClass {
   /// The type of deny rule.
   @BuiltValueEnumConst(wireName: r'startswith')
   static const DenyRuleNewTypeEnum startswith = _$denyRuleNewTypeEnum_startswith;
+  /// The type of deny rule.
+  @BuiltValueEnumConst(wireName: r'destination')
+  static const DenyRuleNewTypeEnum destination = _$denyRuleNewTypeEnum_destination;
 
   static Serializer<DenyRuleNewTypeEnum> get serializer => _$denyRuleNewTypeEnumSerializer;
 

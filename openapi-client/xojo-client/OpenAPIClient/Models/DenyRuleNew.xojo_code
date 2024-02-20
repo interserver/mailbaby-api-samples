@@ -30,6 +30,7 @@ Protected Class DenyRuleNew
         Domain
         Email
         Startswith
+        Destination
 		
 	#tag EndEnum
 
@@ -44,6 +45,8 @@ Protected Class DenyRuleNew
 		      Return "email"
 		    Case TypeEnum.Startswith
 		      Return "startswith"
+		    Case TypeEnum.Destination
+		      Return "destination"
 		    
 		  End Select
 		  Return ""

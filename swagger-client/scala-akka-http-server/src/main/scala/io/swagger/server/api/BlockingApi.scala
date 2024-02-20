@@ -7,10 +7,9 @@ import akka.http.scaladsl.marshalling.ToEntityMarshaller
 import io.swagger.server.AkkaHttpHelper._
 import io.swagger.server.model.DenyRuleNew
 import io.swagger.server.model.DenyRuleRecord
-import io.swagger.server.model.EmailAddress
+import io.swagger.server.model.ErrorMessage
 import io.swagger.server.model.GenericResponse
 import io.swagger.server.model.MailBlocks
-import io.swagger.server.model.inline_response_401
 
 class BlockingApi(
     blockingService: BlockingApiService,
@@ -53,10 +52,10 @@ class BlockingApi(
       post {
         parameters() { () =>
           
-            formFields("email".as[String]) { (email) =>
+            formFields() { () =>
               
-                entity(as[EmailAddress]){ body =>
-                  blockingService.delistBlock(body = body, email = email)
+                entity(as[String]){ body =>
+                  blockingService.delistBlock(body = body)
                 }
              
             }
@@ -100,126 +99,126 @@ trait BlockingApiService {
 
   def addRule200(responseGenericResponse: GenericResponse)(implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]): Route =
     complete((200, responseGenericResponse))
-  def addRule400(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((400, responseinline_response_401))
-  def addRule401(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((401, responseinline_response_401))
-  def addRule404(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((404, responseinline_response_401))
+  def addRule400(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((400, responseErrorMessage))
+  def addRule401(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((401, responseErrorMessage))
+  def addRule404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((404, responseErrorMessage))
   /**
    * Code: 200, Message: search results matching criteria, DataType: GenericResponse
-   * Code: 400, Message: The specified resource was not found, DataType: inline_response_401
-   * Code: 401, Message: Unauthorized, DataType: inline_response_401
-   * Code: 404, Message: The specified resource was not found, DataType: inline_response_401
+   * Code: 400, Message: Error message when there was a problem with the input parameters., DataType: ErrorMessage
+   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
+   * Code: 404, Message: The specified resource was not found, DataType: ErrorMessage
    */
   def addRule(user: String, &#x60;type&#x60;: String, data: String, body: DenyRuleNew)
-      (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route
+      (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
   def deleteRule200(responseGenericResponse: GenericResponse)(implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]): Route =
     complete((200, responseGenericResponse))
-  def deleteRule400(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((400, responseinline_response_401))
-  def deleteRule401(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((401, responseinline_response_401))
-  def deleteRule404(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((404, responseinline_response_401))
+  def deleteRule400(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((400, responseErrorMessage))
+  def deleteRule401(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((401, responseErrorMessage))
+  def deleteRule404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((404, responseErrorMessage))
   /**
    * Code: 200, Message: search results matching criteria, DataType: GenericResponse
-   * Code: 400, Message: The specified resource was not found, DataType: inline_response_401
-   * Code: 401, Message: Unauthorized, DataType: inline_response_401
-   * Code: 404, Message: The specified resource was not found, DataType: inline_response_401
+   * Code: 400, Message: Error message when there was a problem with the input parameters., DataType: ErrorMessage
+   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
+   * Code: 404, Message: The specified resource was not found, DataType: ErrorMessage
    */
   def deleteRule(ruleId: Int)
-      (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route
+      (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
   def delistBlock200(responseGenericResponse: GenericResponse)(implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]): Route =
     complete((200, responseGenericResponse))
-  def delistBlock400(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((400, responseinline_response_401))
-  def delistBlock401(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((401, responseinline_response_401))
-  def delistBlock404(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((404, responseinline_response_401))
+  def delistBlock400(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((400, responseErrorMessage))
+  def delistBlock401(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((401, responseErrorMessage))
+  def delistBlock404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((404, responseErrorMessage))
   /**
    * Code: 200, Message: search results matching criteria, DataType: GenericResponse
-   * Code: 400, Message: The specified resource was not found, DataType: inline_response_401
-   * Code: 401, Message: Unauthorized, DataType: inline_response_401
-   * Code: 404, Message: The specified resource was not found, DataType: inline_response_401
+   * Code: 400, Message: Error message when there was a problem with the input parameters., DataType: ErrorMessage
+   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
+   * Code: 404, Message: The specified resource was not found, DataType: ErrorMessage
    */
-  def delistBlock(body: EmailAddress, email: String)
-      (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route
+  def delistBlock(body: String)
+      (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
   def getMailBlocks200(responseMailBlocks: MailBlocks)(implicit toEntityMarshallerMailBlocks: ToEntityMarshaller[MailBlocks]): Route =
     complete((200, responseMailBlocks))
-  def getMailBlocks401(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((401, responseinline_response_401))
-  def getMailBlocks404(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((404, responseinline_response_401))
+  def getMailBlocks401(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((401, responseErrorMessage))
+  def getMailBlocks404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((404, responseErrorMessage))
   /**
    * Code: 200, Message: OK, DataType: MailBlocks
-   * Code: 401, Message: Unauthorized, DataType: inline_response_401
-   * Code: 404, Message: Unauthorized, DataType: inline_response_401
+   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
+   * Code: 404, Message: Unauthorized, DataType: ErrorMessage
    */
   def getMailBlocks()
-      (implicit toEntityMarshallerMailBlocks: ToEntityMarshaller[MailBlocks], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route
+      (implicit toEntityMarshallerMailBlocks: ToEntityMarshaller[MailBlocks], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
   def getRules200(responseDenyRuleRecordarray: List[DenyRuleRecord])(implicit toEntityMarshallerDenyRuleRecordarray: ToEntityMarshaller[List[DenyRuleRecord]]): Route =
     complete((200, responseDenyRuleRecordarray))
-  def getRules401(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((401, responseinline_response_401))
-  def getRules404(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((404, responseinline_response_401))
+  def getRules401(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((401, responseErrorMessage))
+  def getRules404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((404, responseErrorMessage))
   /**
    * Code: 200, Message: OK, DataType: List[DenyRuleRecord]
-   * Code: 401, Message: Unauthorized, DataType: inline_response_401
-   * Code: 404, Message: Unauthorized, DataType: inline_response_401
+   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
+   * Code: 404, Message: Unauthorized, DataType: ErrorMessage
    */
   def getRules()
-      (implicit toEntityMarshallerDenyRuleRecordarray: ToEntityMarshaller[List[DenyRuleRecord]], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route
+      (implicit toEntityMarshallerDenyRuleRecordarray: ToEntityMarshaller[List[DenyRuleRecord]], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
 }
 
 trait BlockingApiMarshaller {
+  implicit def fromRequestUnmarshallerString: FromRequestUnmarshaller[String]
+
   implicit def fromRequestUnmarshallerDenyRuleNew: FromRequestUnmarshaller[DenyRuleNew]
 
-  implicit def fromRequestUnmarshallerEmailAddress: FromRequestUnmarshaller[EmailAddress]
-
 
   implicit def toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]
 
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
-
-  implicit def toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]
-
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
-
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
-
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
   implicit def toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]
 
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
+
+  implicit def toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]
+
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
+
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
+
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
   implicit def toEntityMarshallerMailBlocks: ToEntityMarshaller[MailBlocks]
 
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
   implicit def toEntityMarshallerDenyRuleRecordarray: ToEntityMarshaller[List[DenyRuleRecord]]
 
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
 }
 

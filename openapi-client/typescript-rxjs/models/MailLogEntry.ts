@@ -121,10 +121,10 @@ export interface MailLogEntry {
     locked: number;
     /**
      * lock timestamp
-     * @type {number}
+     * @type {string}
      * @memberof MailLogEntry
      */
-    lockTime: number;
+    lockTime: string;
     /**
      * assigned server
      * @type {string}

@@ -14,8 +14,8 @@
 
 goog.provide('API.Client.HistoryApi');
 
+goog.require('API.Client.ErrorMessage');
 goog.require('API.Client.MailLog');
-goog.require('API.Client.getMailOrders_401_response');
 goog.require('API.Client.getStats_200_response_inner');
 
 /**
@@ -46,8 +46,8 @@ API.Client.HistoryApi = function($http, $httpParamSerializer, $injector) {
 API.Client.HistoryApi.$inject = ['$http', '$httpParamSerializer', '$injector'];
 
 /**
- * displays a list of blocked email addresses
- * 
+ * Account usage statistics.
+ * Returns information about the usage on your mail accounts.
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!Array<!API.Client.getStats_200_response_inner>>}
  */

@@ -127,7 +127,7 @@ API.Client.MailLogEntry.prototype.locked;
 
 /**
  * lock timestamp
- * @type {!number}
+ * @type {!string}
  * @export
  */
 API.Client.MailLogEntry.prototype.lockTime;

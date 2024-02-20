@@ -17,8 +17,8 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { ErrorMessage } from '../model/errorMessage';
 import { InlineResponse200 } from '../model/inlineResponse200';
-import { InlineResponse401 } from '../model/inlineResponse401';
 import { MailLog } from '../model/mailLog';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -58,8 +58,8 @@ export class HistoryService {
 
 
     /**
-     * displays a list of blocked email addresses
-     * 
+     * Account usage statistics.
+     * Returns information about the usage on your mail accounts.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */

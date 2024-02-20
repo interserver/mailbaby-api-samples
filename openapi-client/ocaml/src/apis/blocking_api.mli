@@ -7,6 +7,6 @@
 
 val add_rule : _type:Enums.denyrulenew_type -> data:string -> ?user:string -> unit -> Generic_response.t Lwt.t
 val delete_rule : rule_id:int32 -> Generic_response.t Lwt.t
-val delist_block : email_address_t:Email_address.t -> Generic_response.t Lwt.t
+val delist_block : body:string -> Generic_response.t Lwt.t
 val get_mail_blocks : unit -> Mail_blocks.t Lwt.t
 val get_rules : unit -> Deny_rule_record.t list Lwt.t

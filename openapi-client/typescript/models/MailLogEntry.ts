@@ -87,7 +87,7 @@ export class MailLogEntry {
     /**
     * lock timestamp
     */
-    'lockTime': number;
+    'lockTime': string;
     /**
     * assigned server
     */
@@ -217,7 +217,7 @@ export class MailLogEntry {
         {
             "name": "lockTime",
             "baseName": "lockTime",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {

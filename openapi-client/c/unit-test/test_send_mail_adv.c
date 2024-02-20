@@ -16,7 +16,11 @@
 #include "../model/send_mail_adv.h"
 send_mail_adv_t* instantiate_send_mail_adv(int include_optional);
 
-#include "test_email_address_name.c"
+#include "test_email_address_types.c"
+#include "test_email_addresses_types.c"
+#include "test_email_addresses_types.c"
+#include "test_email_addresses_types.c"
+#include "test_email_addresses_types.c"
 
 
 send_mail_adv_t* instantiate_send_mail_adv(int include_optional) {
@@ -25,11 +29,11 @@ send_mail_adv_t* instantiate_send_mail_adv(int include_optional) {
     send_mail_adv = send_mail_adv_create(
       "Your Package has been Delivered!",
       "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.",
-      {"email":"user@domain.com","name":"John Smith"},
-      [{"email": "user@domain.com", "name": "John Smith"}],
-      [{"email": "user@domain.com", "name": "John Smith"}],
-      [{"email": "user@domain.com", "name": "John Smith"}],
-      [{"email": "user@domain.com", "name": "John Smith"}],
+      null,
+      null,
+      null,
+      null,
+      null,
       [
         {
             "filename": "text.txt",
@@ -42,11 +46,11 @@ send_mail_adv_t* instantiate_send_mail_adv(int include_optional) {
     send_mail_adv = send_mail_adv_create(
       "Your Package has been Delivered!",
       "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.",
-      {"email":"user@domain.com","name":"John Smith"},
-      [{"email": "user@domain.com", "name": "John Smith"}],
-      [{"email": "user@domain.com", "name": "John Smith"}],
-      [{"email": "user@domain.com", "name": "John Smith"}],
-      [{"email": "user@domain.com", "name": "John Smith"}],
+      null,
+      null,
+      null,
+      null,
+      null,
       [
         {
             "filename": "text.txt",

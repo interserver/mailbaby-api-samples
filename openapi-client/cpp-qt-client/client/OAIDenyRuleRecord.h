@@ -40,16 +40,6 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
-    qint32 getId() const;
-    void setId(const qint32 &id);
-    bool is_id_Set() const;
-    bool is_id_Valid() const;
-
-    QDateTime getCreated() const;
-    void setCreated(const QDateTime &created);
-    bool is_created_Set() const;
-    bool is_created_Valid() const;
-
     QString getType() const;
     void setType(const QString &type);
     bool is_type_Set() const;
@@ -59,6 +49,16 @@ public:
     void setData(const QString &data);
     bool is_data_Set() const;
     bool is_data_Valid() const;
+
+    QString getId() const;
+    void setId(const QString &id);
+    bool is_id_Set() const;
+    bool is_id_Valid() const;
+
+    QDateTime getCreated() const;
+    void setCreated(const QDateTime &created);
+    bool is_created_Set() const;
+    bool is_created_Valid() const;
 
     QString getUser() const;
     void setUser(const QString &user);
@@ -71,23 +71,23 @@ public:
 private:
     void initializeModel();
 
-    qint32 id;
-    bool m_id_isSet;
-    bool m_id_isValid;
-
-    QDateTime created;
-    bool m_created_isSet;
-    bool m_created_isValid;
-
-    QString type;
+    QString m_type;
     bool m_type_isSet;
     bool m_type_isValid;
 
-    QString data;
+    QString m_data;
     bool m_data_isSet;
     bool m_data_isValid;
 
-    QString user;
+    QString m_id;
+    bool m_id_isSet;
+    bool m_id_isValid;
+
+    QDateTime m_created;
+    bool m_created_isSet;
+    bool m_created_isValid;
+
+    QString m_user;
     bool m_user_isSet;
     bool m_user_isValid;
 };

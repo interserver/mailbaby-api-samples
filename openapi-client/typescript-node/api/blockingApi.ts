@@ -16,9 +16,8 @@ import http from 'http';
 
 /* tslint:disable:no-unused-locals */
 import { DenyRuleRecord } from '../model/denyRuleRecord';
-import { EmailAddress } from '../model/emailAddress';
+import { ErrorMessage } from '../model/errorMessage';
 import { GenericResponse } from '../model/genericResponse';
-import { GetMailOrders401Response } from '../model/getMailOrders401Response';
 import { MailBlocks } from '../model/mailBlocks';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
@@ -258,9 +257,9 @@ export class BlockingApi {
     /**
      * Removes an email address from the various block lists. 
      * @summary Removes an email address from the blocked list
-     * @param emailAddress 
+     * @param body 
      */
-    public async delistBlock (emailAddress: EmailAddress, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
+    public async delistBlock (body: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GenericResponse;  }> {
         const localVarPath = this.basePath + '/mail/blocks/delete';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -273,9 +272,9 @@ export class BlockingApi {
         }
         let localVarFormParams: any = {};
 
-        // verify required parameter 'emailAddress' is not null or undefined
-        if (emailAddress === null || emailAddress === undefined) {
-            throw new Error('Required parameter emailAddress was null or undefined when calling delistBlock.');
+        // verify required parameter 'body' is not null or undefined
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling delistBlock.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -289,7 +288,7 @@ export class BlockingApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(emailAddress, "EmailAddress")
+            body: ObjectSerializer.serialize(body, "string")
         };
 
         let authenticationPromise = Promise.resolve();

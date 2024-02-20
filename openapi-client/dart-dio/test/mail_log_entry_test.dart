@@ -110,7 +110,7 @@ void main() {
     });
 
     // lock timestamp
-    // int lockTime
+    // String lockTime
     test('to test the property `lockTime`', () async {
       // TODO
     });

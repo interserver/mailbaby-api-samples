@@ -25,7 +25,7 @@ Describe -tag 'PSOpenAPITools' -name 'BlockingApi' {
 
     Context 'Invoke-DelistBlock' {
         It 'Test Invoke-DelistBlock' {
-            #$TestResult = Invoke-DelistBlock -EmailAddress "TEST_VALUE"
+            #$TestResult = Invoke-DelistBlock -Body "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }

@@ -18,7 +18,7 @@ Class | Method | HTTP request | Description
 *BlockingApi* | [**delistBlock**](Apis/BlockingApi.http#delistblock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
 *BlockingApi* | [**getMailBlocks**](Apis/BlockingApi.http#getmailblocks) | **GET** /mail/blocks | displays a list of blocked email addresses
 *BlockingApi* | [**getRules**](Apis/BlockingApi.http#getrules) | **GET** /mail/rules | Displays a listing of deny email rules.
-*HistoryApi* | [**getStats**](Apis/HistoryApi.http#getstats) | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | [**getStats**](Apis/HistoryApi.http#getstats) | **GET** /mail/stats | Account usage statistics.
 *HistoryApi* | [**viewMailLog**](Apis/HistoryApi.http#viewmaillog) | **GET** /mail/log | displays the mail log
 *SendingApi* | [**sendAdvMail**](Apis/SendingApi.http#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *SendingApi* | [**sendMail**](Apis/SendingApi.http#sendmail) | **POST** /mail/send | Sends an Email

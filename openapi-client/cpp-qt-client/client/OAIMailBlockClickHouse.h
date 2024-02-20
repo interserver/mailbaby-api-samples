@@ -71,23 +71,23 @@ public:
 private:
     void initializeModel();
 
-    QDate date;
+    QDate m_date;
     bool m_date_isSet;
     bool m_date_isValid;
 
-    QString from;
+    QString m_from;
     bool m_from_isSet;
     bool m_from_isValid;
 
-    QString message_id;
+    QString m_message_id;
     bool m_message_id_isSet;
     bool m_message_id_isValid;
 
-    QString subject;
+    QString m_subject;
     bool m_subject_isSet;
     bool m_subject_isValid;
 
-    QString to;
+    QString m_to;
     bool m_to_isSet;
     bool m_to_isValid;
 };

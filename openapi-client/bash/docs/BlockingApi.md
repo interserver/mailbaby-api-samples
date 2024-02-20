@@ -101,7 +101,7 @@ Removes an email address from the various block lists.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **emailAddress** | [**EmailAddress**](EmailAddress.md) |  |
+ **body** | **string** |  |
 
 ### Return type
 

@@ -8,7 +8,7 @@
 #include "Helpers.h"
 #include <list>
 
-#include "GetMailOrders_401_response.h"
+#include "ErrorMessage.h"
 #include "GetStats_200_response_inner.h"
 #include "MailLog.h"
 
@@ -26,9 +26,9 @@ public:
     virtual ~HistoryApi() = default;
 
     /**
-    * displays a list of blocked email addresses.
+    * Account usage statistics..
     *
-    * 
+    * Returns information about the usage on your mail accounts.
     */
     Response<
                     std::list<GetStats_200_response_inner>

@@ -12,14 +12,14 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DenyRuleNew {
     /// Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
     #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
     pub user: Option<String>,
     /// The type of deny rule.
     #[serde(rename = "type")]
-    pub r#type: RHashType,
+    pub r#type: Type,
     /// The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
     #[serde(rename = "data")]
     pub data: String,
@@ -27,7 +27,7 @@ pub struct DenyRuleNew {
 
 impl DenyRuleNew {
     /// The data for a email deny rule record.
-    pub fn new(r#type: RHashType, data: String) -> DenyRuleNew {
+    pub fn new(r#type: Type, data: String) -> DenyRuleNew {
         DenyRuleNew {
             user: None,
             r#type,
@@ -38,17 +38,19 @@ impl DenyRuleNew {
 
 /// The type of deny rule.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum RHashType {
+pub enum Type {
     #[serde(rename = "domain")]
     Domain,
     #[serde(rename = "email")]
     Email,
     #[serde(rename = "startswith")]
     Startswith,
+    #[serde(rename = "destination")]
+    Destination,
 }
 
-impl Default for RHashType {
-    fn default() -> RHashType {
+impl Default for Type {
+    fn default() -> Type {
         Self::Domain
     }
 }

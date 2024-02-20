@@ -14,10 +14,10 @@
 
 // Sends an Email with Advanced Options
 //
-// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
 //
 generic_response_t*
-SendingAPI_sendAdvMail(apiClient_t *apiClient, char * subject , char * body , email_address_name_t * from , list_t * to , list_t * replyto , list_t * cc , list_t * bcc , list_t * attachments , long id )
+SendingAPI_sendAdvMail(apiClient_t *apiClient, char * subject , char * body , email_address_types_t * from , email_addresses_types_t * to , email_addresses_types_t * replyto , email_addresses_types_t * cc , email_addresses_types_t * bcc , list_t * attachments , long id )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -60,7 +60,7 @@ SendingAPI_sendAdvMail(apiClient_t *apiClient, char * subject , char * body , em
 
     // form parameters
     char *keyForm_from = NULL;
-    email_address_name_t * valueForm_from = 0;
+    email_address_types_t * valueForm_from = 0;
     keyValuePair_t *keyPairForm_from = 0;
     if (from != NULL)
     {
@@ -72,7 +72,7 @@ SendingAPI_sendAdvMail(apiClient_t *apiClient, char * subject , char * body , em
 
     // form parameters
     char *keyForm_to = NULL;
-     valueForm_to = 0;
+    email_addresses_types_t * valueForm_to = 0;
     keyValuePair_t *keyPairForm_to = 0;
     if (to != NULL)
     {
@@ -84,7 +84,7 @@ SendingAPI_sendAdvMail(apiClient_t *apiClient, char * subject , char * body , em
 
     // form parameters
     char *keyForm_replyto = NULL;
-     valueForm_replyto = 0;
+    email_addresses_types_t * valueForm_replyto = 0;
     keyValuePair_t *keyPairForm_replyto = 0;
     if (replyto != NULL)
     {
@@ -96,7 +96,7 @@ SendingAPI_sendAdvMail(apiClient_t *apiClient, char * subject , char * body , em
 
     // form parameters
     char *keyForm_cc = NULL;
-     valueForm_cc = 0;
+    email_addresses_types_t * valueForm_cc = 0;
     keyValuePair_t *keyPairForm_cc = 0;
     if (cc != NULL)
     {
@@ -108,7 +108,7 @@ SendingAPI_sendAdvMail(apiClient_t *apiClient, char * subject , char * body , em
 
     // form parameters
     char *keyForm_bcc = NULL;
-     valueForm_bcc = 0;
+    email_addresses_types_t * valueForm_bcc = 0;
     keyValuePair_t *keyPairForm_bcc = 0;
     if (bcc != NULL)
     {
@@ -160,7 +160,7 @@ SendingAPI_sendAdvMail(apiClient_t *apiClient, char * subject , char * body , em
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 400) {
-    //    printf("%s\n","The specified resource was not found");
+    //    printf("%s\n","Error message when there was a problem with the input parameters.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 401) {
@@ -338,7 +338,7 @@ SendingAPI_sendMail(apiClient_t *apiClient, char * to , char * from , char * sub
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 400) {
-    //    printf("%s\n","The specified resource was not found");
+    //    printf("%s\n","Error message when there was a problem with the input parameters.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 401) {

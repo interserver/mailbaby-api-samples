@@ -18,10 +18,11 @@ import tables
 import typetraits
 import uri
 
-import ../models/model_email_address_name
+import ../models/model_email_address_types
+import ../models/model_email_addresses_types
+import ../models/model_error_message
 import ../models/model_generic_response
 import ../models/model_mail_attachment
-import ../models/model_get_mail_orders_401_response
 
 const basepath = "https://api.mailbaby.net"
 
@@ -41,17 +42,17 @@ template constructResult[T](response: Response): untyped =
     (none(T.typedesc), response)
 
 
-proc sendAdvMail*(httpClient: HttpClient, subject: string, body: string, `from`: EmailAddressName, to: seq[EmailAddressName], replyto: seq[EmailAddressName], cc: seq[EmailAddressName], bcc: seq[EmailAddressName], attachments: seq[MailAttachment], id: int64): (Option[GenericResponse], Response) =
+proc sendAdvMail*(httpClient: HttpClient, subject: string, body: string, `from`: EmailAddressTypes, to: EmailAddressesTypes, replyto: EmailAddressesTypes, cc: EmailAddressesTypes, bcc: EmailAddressesTypes, attachments: seq[MailAttachment], id: int64): (Option[GenericResponse], Response) =
   ## Sends an Email with Advanced Options
   httpClient.headers["Content-Type"] = "application/x-www-form-urlencoded"
   let query_for_api_call = encodeQuery([
     ("subject", $subject), # The subject or title of the email
     ("body", $body), # The main email contents.
     ("from", $`from`), # 
-    ("to", $to.join(",")), # A list of destionation email addresses to send this to
-    ("replyto", $replyto.join(",")), # (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-    ("cc", $cc.join(",")), # (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-    ("bcc", $bcc.join(",")), # (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+    ("to", $to), # 
+    ("replyto", $replyto), # 
+    ("cc", $cc), # 
+    ("bcc", $bcc), # 
     ("attachments", $attachments.join(",")), # (optional) File attachments to include in the email.  The file contents must be base64 encoded!
     ("id", $id), # (optional)  ID of the Mail order within our system to use as the Mail Account.
   ])

@@ -39,7 +39,7 @@ void main() {
     //
     // Removes an email address from the various block lists. 
     //
-    //Future<GenericResponse> delistBlock(EmailAddress emailAddress) async
+    //Future<GenericResponse> delistBlock(String body) async
     test('test delistBlock', () async {
       // TODO
     });

@@ -11,22 +11,26 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * 
+ *
  * @export
  * @interface GenericResponse
  */
 export interface GenericResponse {
+
     /**
-     * 
      * @type {string}
      * @memberof GenericResponse
+     * @example ok
      */
     status?: string;
+
     /**
-     * 
      * @type {string}
      * @memberof GenericResponse
+     * @example The command completed successfully.
      */
     text?: string;
 }

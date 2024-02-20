@@ -16,19 +16,19 @@ using namespace Tiny;
             std::string body
             , 
             
-            EmailAddressName from
+            EmailAddressTypes from
             , 
-            std::list<EmailAddressName> to
             
+            EmailAddressesTypes to
             , 
-            std::list<EmailAddressName> replyto
             
+            EmailAddressesTypes replyto
             , 
-            std::list<EmailAddressName> cc
             
+            EmailAddressesTypes cc
             , 
-            std::list<EmailAddressName> bcc
             
+            EmailAddressesTypes bcc
             , 
             std::list<MailAttachment> attachments
             
@@ -51,18 +51,10 @@ using namespace Tiny;
             addFormParam("subject",subject);
             addFormParam("body",body);
             addFormParam("from",from);
-            for (auto &x : to){
-                addFormParam("to", std::string(x));
-            }
-            for (auto &x : replyto){
-                addFormParam("replyto", std::string(x));
-            }
-            for (auto &x : cc){
-                addFormParam("cc", std::string(x));
-            }
-            for (auto &x : bcc){
-                addFormParam("bcc", std::string(x));
-            }
+            addFormParam("to",to);
+            addFormParam("replyto",replyto);
+            addFormParam("cc",cc);
+            addFormParam("bcc",bcc);
             for (auto &x : attachments){
                 addFormParam("attachments", std::string(x));
             }

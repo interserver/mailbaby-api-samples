@@ -20,18 +20,6 @@ import { exists, mapValues } from '../runtime';
  */
 export interface DenyRuleRecord {
     /**
-     * The deny rule Id number.
-     * @type {number}
-     * @memberof DenyRuleRecord
-     */
-    id: number;
-    /**
-     * the date the rule was created.
-     * @type {Date}
-     * @memberof DenyRuleRecord
-     */
-    created: Date;
-    /**
      * The type of deny rule.
      * @type {string}
      * @memberof DenyRuleRecord
@@ -43,6 +31,18 @@ export interface DenyRuleRecord {
      * @memberof DenyRuleRecord
      */
     data: string;
+    /**
+     * The deny rule Id number.
+     * @type {string}
+     * @memberof DenyRuleRecord
+     */
+    id: string;
+    /**
+     * the date the rule was created.
+     * @type {Date}
+     * @memberof DenyRuleRecord
+     */
+    created: Date;
     /**
      * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      * @type {string}
@@ -58,7 +58,8 @@ export interface DenyRuleRecord {
 export const DenyRuleRecordTypeEnum = {
     Domain: 'domain',
     Email: 'email',
-    Startswith: 'startswith'
+    Startswith: 'startswith',
+    Destination: 'destination'
 } as const;
 export type DenyRuleRecordTypeEnum = typeof DenyRuleRecordTypeEnum[keyof typeof DenyRuleRecordTypeEnum];
 
@@ -68,10 +69,10 @@ export type DenyRuleRecordTypeEnum = typeof DenyRuleRecordTypeEnum[keyof typeof 
  */
 export function instanceOfDenyRuleRecord(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "created" in value;
     isInstance = isInstance && "type" in value;
     isInstance = isInstance && "data" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "created" in value;
 
     return isInstance;
 }
@@ -86,10 +87,10 @@ export function DenyRuleRecordFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
-        'id': json['id'],
-        'created': (new Date(json['created'])),
         'type': json['type'],
         'data': json['data'],
+        'id': json['id'],
+        'created': (new Date(json['created'])),
         'user': !exists(json, 'user') ? undefined : json['user'],
     };
 }
@@ -103,10 +104,10 @@ export function DenyRuleRecordToJSON(value?: DenyRuleRecord | null): any {
     }
     return {
         
-        'id': value.id,
-        'created': (value.created.toISOString()),
         'type': value.type,
         'data': value.data,
+        'id': value.id,
+        'created': (value.created.toISOString()),
         'user': value.user,
     };
 }

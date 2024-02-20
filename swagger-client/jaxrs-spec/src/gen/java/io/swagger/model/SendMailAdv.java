@@ -1,6 +1,7 @@
 package io.swagger.model;
 
-import io.swagger.model.EmailAddressName;
+import io.swagger.model.EmailAddressTypes;
+import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.MailAttachment;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
@@ -22,15 +23,15 @@ public class SendMailAdv   {
 
   private @Valid String body = null;
 
-  private @Valid EmailAddressName from = null;
+  private @Valid EmailAddressTypes from = null;
 
-  private @Valid List<EmailAddressName> to = new ArrayList<EmailAddressName>();
+  private @Valid EmailAddressesTypes to = null;
 
-  private @Valid List<EmailAddressName> replyto = new ArrayList<EmailAddressName>();
+  private @Valid EmailAddressesTypes replyto = null;
 
-  private @Valid List<EmailAddressName> cc = new ArrayList<EmailAddressName>();
+  private @Valid EmailAddressesTypes cc = null;
 
-  private @Valid List<EmailAddressName> bcc = new ArrayList<EmailAddressName>();
+  private @Valid EmailAddressesTypes bcc = null;
 
   private @Valid List<MailAttachment> attachments = new ArrayList<MailAttachment>();
 
@@ -78,7 +79,7 @@ public class SendMailAdv   {
 
   /**
    **/
-  public SendMailAdv from(EmailAddressName from) {
+  public SendMailAdv from(EmailAddressTypes from) {
     this.from = from;
     return this;
   }
@@ -88,87 +89,83 @@ public class SendMailAdv   {
   @JsonProperty("from")
   @NotNull
 
-  public EmailAddressName getFrom() {
+  public EmailAddressTypes getFrom() {
     return from;
   }
-  public void setFrom(EmailAddressName from) {
+  public void setFrom(EmailAddressTypes from) {
     this.from = from;
   }
 
   /**
-   * A list of destionation email addresses to send this to
    **/
-  public SendMailAdv to(List<EmailAddressName> to) {
+  public SendMailAdv to(EmailAddressesTypes to) {
     this.to = to;
     return this;
   }
 
   
-  @ApiModelProperty(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", required = true, value = "A list of destionation email addresses to send this to")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty("to")
   @NotNull
 
-  public List<EmailAddressName> getTo() {
+  public EmailAddressesTypes getTo() {
     return to;
   }
-  public void setTo(List<EmailAddressName> to) {
+  public void setTo(EmailAddressesTypes to) {
     this.to = to;
   }
 
   /**
-   * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
    **/
-  public SendMailAdv replyto(List<EmailAddressName> replyto) {
+  public SendMailAdv replyto(EmailAddressesTypes replyto) {
     this.replyto = replyto;
     return this;
   }
 
   
-  @ApiModelProperty(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", value = "(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.")
+  @ApiModelProperty(value = "")
   @JsonProperty("replyto")
 
-  public List<EmailAddressName> getReplyto() {
+  public EmailAddressesTypes getReplyto() {
     return replyto;
   }
-  public void setReplyto(List<EmailAddressName> replyto) {
+  public void setReplyto(EmailAddressesTypes replyto) {
     this.replyto = replyto;
   }
 
   /**
-   * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
    **/
-  public SendMailAdv cc(List<EmailAddressName> cc) {
+  public SendMailAdv cc(EmailAddressesTypes cc) {
     this.cc = cc;
     return this;
   }
 
   
-  @ApiModelProperty(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", value = "(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.")
+  @ApiModelProperty(value = "")
   @JsonProperty("cc")
 
-  public List<EmailAddressName> getCc() {
+  public EmailAddressesTypes getCc() {
     return cc;
   }
-  public void setCc(List<EmailAddressName> cc) {
+  public void setCc(EmailAddressesTypes cc) {
     this.cc = cc;
   }
 
   /**
-   * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
    **/
-  public SendMailAdv bcc(List<EmailAddressName> bcc) {
+  public SendMailAdv bcc(EmailAddressesTypes bcc) {
     this.bcc = bcc;
     return this;
   }
 
   
-  @ApiModelProperty(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", value = "(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.")
+  @ApiModelProperty(value = "")
   @JsonProperty("bcc")
 
-  public List<EmailAddressName> getBcc() {
+  public EmailAddressesTypes getBcc() {
     return bcc;
   }
-  public void setBcc(List<EmailAddressName> bcc) {
+  public void setBcc(EmailAddressesTypes bcc) {
     this.bcc = bcc;
   }
 

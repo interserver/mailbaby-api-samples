@@ -30,31 +30,31 @@ public class OASSendMailAdv implements OAS.MappedProperties {
      * Get r_from
      * @return r_from
      */
-    public OASEmailAddressName r_from { get; set; }
+    public OASEmailAddressTypes r_from { get; set; }
 
     /**
-     * A list of destionation email addresses to send this to
+     * Get to
      * @return to
      */
-    public List<OASEmailAddressName> to { get; set; }
+    public OASEmailAddressesTypes to { get; set; }
 
     /**
-     * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+     * Get replyto
      * @return replyto
      */
-    public List<OASEmailAddressName> replyto { get; set; }
+    public OASEmailAddressesTypes replyto { get; set; }
 
     /**
-     * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+     * Get cc
      * @return cc
      */
-    public List<OASEmailAddressName> cc { get; set; }
+    public OASEmailAddressesTypes cc { get; set; }
 
     /**
-     * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+     * Get bcc
      * @return bcc
      */
-    public List<OASEmailAddressName> bcc { get; set; }
+    public OASEmailAddressesTypes bcc { get; set; }
 
     /**
      * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
@@ -77,10 +77,6 @@ public class OASSendMailAdv implements OAS.MappedProperties {
     }
 
     public OASSendMailAdv() {
-        to = new List<OASEmailAddressName>();
-        replyto = new List<OASEmailAddressName>();
-        cc = new List<OASEmailAddressName>();
-        bcc = new List<OASEmailAddressName>();
         attachments = new List<OASMailAttachment>();
     }
 
@@ -88,11 +84,11 @@ public class OASSendMailAdv implements OAS.MappedProperties {
         OASSendMailAdv sendMailAdv = new OASSendMailAdv();
           sendMailAdv.subject = 'Your Package has been Delivered!';
           sendMailAdv.body = 'The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.';
-          sendMailAdv.r_from = OASEmailAddressName.getExample();
-          sendMailAdv.to = new List<OASEmailAddressName>{OASEmailAddressName.getExample()};
-          sendMailAdv.replyto = new List<OASEmailAddressName>{OASEmailAddressName.getExample()};
-          sendMailAdv.cc = new List<OASEmailAddressName>{OASEmailAddressName.getExample()};
-          sendMailAdv.bcc = new List<OASEmailAddressName>{OASEmailAddressName.getExample()};
+          sendMailAdv.r_from = OASEmailAddressTypes.getExample();
+          sendMailAdv.to = OASEmailAddressesTypes.getExample();
+          sendMailAdv.replyto = OASEmailAddressesTypes.getExample();
+          sendMailAdv.cc = OASEmailAddressesTypes.getExample();
+          sendMailAdv.bcc = OASEmailAddressesTypes.getExample();
           sendMailAdv.attachments = new List<OASMailAttachment>{OASMailAttachment.getExample()};
           sendMailAdv.id = 5000L;
         return sendMailAdv;

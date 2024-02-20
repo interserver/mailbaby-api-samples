@@ -20,7 +20,8 @@ public class OASDenyRuleNew {
     public enum TypeEnum {
         DOMAIN,
         EMAIL,
-        STARTSWITH
+        STARTSWITH,
+        DESTINATION
     }
 
     /**

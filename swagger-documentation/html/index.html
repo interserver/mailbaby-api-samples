@@ -297,14 +297,23 @@ We support several different authentication methods but the preferred method is 
     search results matching criteria
         <a href="#GenericResponse">GenericResponse</a>
     <h4 class="field-label">400</h4>
-    The specified resource was not found
-        <a href="#inline_response_401">inline_response_401</a>
+    Error message when there was a problem with the input parameters.
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: BadInputError</div>
+    <pre class="example"><code>{&quot;code&quot;:400,&quot;message&quot;:&quot;There was a problem with the input parameters.&quot;}</code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
     <h4 class="field-label">404</h4>
     The specified resource was not found
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: NotFoundError</div>
+    <pre class="example"><code>{&quot;code&quot;:404,&quot;message&quot;:&quot;The specified resource was not found.&quot;}</code></pre>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="deleteRule"></a>
@@ -352,14 +361,23 @@ We support several different authentication methods but the preferred method is 
     search results matching criteria
         <a href="#GenericResponse">GenericResponse</a>
     <h4 class="field-label">400</h4>
-    The specified resource was not found
-        <a href="#inline_response_401">inline_response_401</a>
+    Error message when there was a problem with the input parameters.
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: BadInputError</div>
+    <pre class="example"><code>{&quot;code&quot;:400,&quot;message&quot;:&quot;There was a problem with the input parameters.&quot;}</code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
     <h4 class="field-label">404</h4>
     The specified resource was not found
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: NotFoundError</div>
+    <pre class="example"><code>{&quot;code&quot;:404,&quot;message&quot;:&quot;The specified resource was not found.&quot;}</code></pre>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="delistBlock"></a>
@@ -379,7 +397,7 @@ We support several different authentication methods but the preferred method is 
 
     <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">body <a href="#EmailAddress">EmailAddress</a> (required)</div>
+      <div class="param">body <a href="#string">string</a> (required)</div>
       
             <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
             <div class="param-desc"><span class="param-type">example: <code>{
@@ -390,11 +408,6 @@ We support several different authentication methods but the preferred method is 
 
 
 
-    <h3 class="field-label">Form parameters</h3>
-    <div class="field-items">
-      <div class="param">email (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
@@ -423,14 +436,23 @@ We support several different authentication methods but the preferred method is 
     search results matching criteria
         <a href="#GenericResponse">GenericResponse</a>
     <h4 class="field-label">400</h4>
-    The specified resource was not found
-        <a href="#inline_response_401">inline_response_401</a>
+    Error message when there was a problem with the input parameters.
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: BadInputError</div>
+    <pre class="example"><code>{&quot;code&quot;:400,&quot;message&quot;:&quot;There was a problem with the input parameters.&quot;}</code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
     <h4 class="field-label">404</h4>
     The specified resource was not found
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: NotFoundError</div>
+    <pre class="example"><code>{&quot;code&quot;:404,&quot;message&quot;:&quot;The specified resource was not found.&quot;}</code></pre>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="getMailBlocks"></a>
@@ -493,10 +515,16 @@ We support several different authentication methods but the preferred method is 
     <pre class="example"><code>{&quot;local&quot;:[{&quot;date&quot;:&quot;2023-08-07&quot;,&quot;from&quot;:&quot;user@domain.com&quot;,&quot;messageId&quot;:&quot;pFaRqFUEWkucjhTuIzYuoAgWU@domain.com&quot;,&quot;subject&quot;:&quot;Test Email&quot;,&quot;to&quot;:&quot;[&#x27;client@site.com&#x27;]&quot;}],&quot;mbtrap&quot;:[{&quot;date&quot;:&quot;2023-08-07&quot;,&quot;from&quot;:&quot;user@domain.com&quot;,&quot;messageId&quot;:&quot;pFaRqFUEWkucjhTuIzYuoAgWU@domain.com&quot;,&quot;subject&quot;:&quot;Test Email&quot;,&quot;to&quot;:&quot;[&#x27;client@site.com&#x27;]&quot;}],&quot;subject&quot;:[{&quot;from&quot;:&quot;user@domain.com&quot;,&quot;subject&quot;:&quot;Test Email&quot;}]}</code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
     <h4 class="field-label">404</h4>
     Unauthorized
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="getRules"></a>
@@ -552,10 +580,16 @@ We support several different authentication methods but the preferred method is 
     <pre class="example"><code>[{&quot;id&quot;:&quot;14&quot;,&quot;user&quot;:&quot;mb20682&quot;,&quot;type&quot;:&quot;email&quot;,&quot;data&quot;:&quot;domeinwo@server.guesshost.net&quot;,&quot;created&quot;:&quot;2022-03-22 19:16:35&quot;},{&quot;id&quot;:&quot;15&quot;,&quot;user&quot;:&quot;mb20682&quot;,&quot;type&quot;:&quot;email&quot;,&quot;data&quot;:&quot;mamediieva@thedigital.gov.ua&quot;,&quot;created&quot;:&quot;2022-03-22 19:18:01&quot;}]</code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
     <h4 class="field-label">404</h4>
     Unauthorized
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
   </div> <!-- method -->
   <hr/>
   <h1><a name="History">History</a></h1>
@@ -563,8 +597,8 @@ We support several different authentication methods but the preferred method is 
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/stats</code></pre></div>
-    <div class="method-summary">displays a list of blocked email addresses (<span class="nickname">getStats</span>)</div>
-    <div class="method-notes"></div>
+    <div class="method-summary">Account usage statistics. (<span class="nickname">getStats</span>)</div>
+    <div class="method-notes">Returns information about the usage on your mail accounts.</div>
 
 
 
@@ -609,10 +643,16 @@ We support several different authentication methods but the preferred method is 
         
     <h4 class="field-label">401</h4>
     Unauthorized
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
     <h4 class="field-label">404</h4>
     Unauthorized
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="viewMailLog"></a>
@@ -719,7 +759,100 @@ We support several different authentication methods but the preferred method is 
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/advsend</code></pre></div>
     <div class="method-summary">Sends an Email with Advanced Options (<span class="nickname">sendAdvMail</span>)</div>
-    <div class="method-notes">Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.</div>
+    <div class="method-notes"><p>Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.</p>
+<p>Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.</p>
+<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data 'subject=Welcome' \
+--data 'body=Hello' \
+--data from=user@domain.com \
+--data to=support@interserver.net
+</code></pre>
+<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data 'subject=Welcome' \
+--data 'body=Hello' \
+--data from=user@domain.com \
+--data &quot;to[0][name]=Joe&quot; \
+--data &quot;to[0][email]=support@interserver.net&quot;
+</code></pre>
+<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data 'subject=Welcome' \
+--data 'body=Hello' \
+--data from=&quot;Joe &lt;user@domain.com&gt;&quot; \
+--data to=&quot;Joe &lt;support@interserver.net&gt;&quot;
+</code></pre>
+<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data 'subject=Welcome' \
+--data 'body=Hello' \
+--data from=user@domain.com \
+--data &quot;to=support@interserver.net, support@interserver.net&quot;
+</code></pre>
+<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data 'subject=Welcome' \
+--data 'body=Hello' \
+--data from=user@domain.com \
+--data &quot;to=Joe &lt;support@interserver.net&gt;, Joe &lt;support@interserver.net&gt;&quot;
+</code></pre>
+<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data 'subject=Welcome' \
+--data 'body=Hello' \
+--data from=user@domain.com \
+--data &quot;to[0][name]=Joe&quot; \
+--data &quot;to[0][email]=support@interserver.net&quot; \
+--data &quot;to[1][name]=Joe&quot; \
+--data &quot;to[1][email]=support@interserver.net&quot;
+</code></pre>
+<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data '{
+&quot;subject&quot;: &quot;Welcome&quot;,
+&quot;body&quot;: &quot;Hello&quot;,
+&quot;from&quot;: &quot;user@domain.com&quot;,
+&quot;to&quot;: &quot;support@interserver.net&quot;
+}'
+</code></pre>
+<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data '{
+&quot;subject&quot;: &quot;Welcome&quot;,
+&quot;body&quot;: &quot;Hello&quot;,
+&quot;from&quot;: {&quot;name&quot;: &quot;Joe&quot;, &quot;email&quot;: &quot;user@domain.com&quot;},
+&quot;to&quot;: [{&quot;name&quot;: &quot;Joe&quot;, &quot;email&quot;: &quot;support@interserver.net&quot;}]
+}'
+</code></pre>
+<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'X-API-KEY: YOUR_API_KEY' \
+--data '{
+&quot;subject&quot;: &quot;Welcome&quot;,
+&quot;body&quot;: &quot;Hello&quot;,
+&quot;from&quot;: &quot;Joe &lt;user@domain.com&gt;&quot;,
+&quot;to&quot;: &quot;Joe &lt;support@interserver.net&gt;&quot;
+}'
+</code></pre>
+</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -804,14 +937,23 @@ We support several different authentication methods but the preferred method is 
     search results matching criteria
         <a href="#GenericResponse">GenericResponse</a>
     <h4 class="field-label">400</h4>
-    The specified resource was not found
-        <a href="#inline_response_401">inline_response_401</a>
+    Error message when there was a problem with the input parameters.
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: BadInputError</div>
+    <pre class="example"><code>{&quot;code&quot;:400,&quot;message&quot;:&quot;There was a problem with the input parameters.&quot;}</code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
     <h4 class="field-label">404</h4>
     The specified resource was not found
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: NotFoundError</div>
+    <pre class="example"><code>{&quot;code&quot;:404,&quot;message&quot;:&quot;The specified resource was not found.&quot;}</code></pre>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="sendMail"></a>
@@ -879,14 +1021,23 @@ We support several different authentication methods but the preferred method is 
     search results matching criteria
         <a href="#GenericResponse">GenericResponse</a>
     <h4 class="field-label">400</h4>
-    The specified resource was not found
-        <a href="#inline_response_401">inline_response_401</a>
+    Error message when there was a problem with the input parameters.
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: BadInputError</div>
+    <pre class="example"><code>{&quot;code&quot;:400,&quot;message&quot;:&quot;There was a problem with the input parameters.&quot;}</code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
     <h4 class="field-label">404</h4>
     The specified resource was not found
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: NotFoundError</div>
+    <pre class="example"><code>{&quot;code&quot;:404,&quot;message&quot;:&quot;The specified resource was not found.&quot;}</code></pre>
   </div> <!-- method -->
   <hr/>
   <h1><a name="Services">Services</a></h1>
@@ -939,10 +1090,16 @@ We support several different authentication methods but the preferred method is 
     <pre class="example"><code>[{&quot;id&quot;:39,&quot;status&quot;:&quot;active&quot;,&quot;username&quot;:&quot;mb39&quot;},{&quot;id&quot;:33,&quot;status&quot;:&quot;canceled&quot;,&quot;username&quot;:&quot;mb33&quot;,&quot;comment&quot;:&quot;test order&quot;}]</code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
     <h4 class="field-label">404</h4>
     Unauthorized
-        <a href="#inline_response_401">inline_response_401</a>
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
   </div> <!-- method -->
   <hr/>
   <h1><a name="Status">Status</a></h1>
@@ -979,68 +1136,100 @@ We support several different authentication methods but the preferred method is 
 
   <h3>Table of Contents</h3>
   <ol>
-    <li><a href="#DenyRuleNew"><code>DenyRuleNew</code> - Root Type for DenyRule</a></li>
-    <li><a href="#DenyRuleRecord"><code>DenyRuleRecord</code> - Root Type for DenyRule</a></li>
-    <li><a href="#EmailAddress"><code>EmailAddress</code> - Root Type for EmailAddress</a></li>
-    <li><a href="#EmailAddressName"><code>EmailAddressName</code> - Root Type for EmailAddressName</a></li>
+    <li><a href="#DenyRuleNew"><code>DenyRuleNew</code> - DenyRuleNew</a></li>
+    <li><a href="#DenyRuleRecord"><code>DenyRuleRecord</code> - DenyRuleRecord</a></li>
+    <li><a href="#EmailAddress"><code>EmailAddress</code></a></li>
+    <li><a href="#EmailAddressName"><code>EmailAddressName</code> - EmailAddressName</a></li>
+    <li><a href="#EmailAddressNames"><code>EmailAddressNames</code> - EmailAddressNames</a></li>
+    <li><a href="#EmailAddressTypes"><code>EmailAddressTypes</code> - EmailAddressTypes</a></li>
+    <li><a href="#EmailAddressesTypes"><code>EmailAddressesTypes</code> - EmailAddressTypes</a></li>
+    <li><a href="#ErrorMessage"><code>ErrorMessage</code> - ErrorMessage</a></li>
     <li><a href="#GenericResponse"><code>GenericResponse</code></a></li>
-    <li><a href="#MailAttachment"><code>MailAttachment</code> - Root Type for MailAttachment</a></li>
-    <li><a href="#MailBlockClickHouse"><code>MailBlockClickHouse</code> - Root Type for MailBlockClickHouse</a></li>
-    <li><a href="#MailBlockRspamd"><code>MailBlockRspamd</code> - Root Type for MailBlockRspamd</a></li>
-    <li><a href="#MailBlocks"><code>MailBlocks</code> - Root Type for MailBlocks</a></li>
-    <li><a href="#MailLog"><code>MailLog</code></a></li>
-    <li><a href="#MailLogEntry"><code>MailLogEntry</code></a></li>
-    <li><a href="#MailOrder"><code>MailOrder</code> - Root Type for MailOrder</a></li>
-    <li><a href="#SendMail"><code>SendMail</code></a></li>
-    <li><a href="#SendMailAdv"><code>SendMailAdv</code> - Email details</a></li>
+    <li><a href="#MailAttachment"><code>MailAttachment</code> - MailAttachment</a></li>
+    <li><a href="#MailBlockClickHouse"><code>MailBlockClickHouse</code> - MailBlockClickHouse</a></li>
+    <li><a href="#MailBlockRspamd"><code>MailBlockRspamd</code> - MailBlockRspamd</a></li>
+    <li><a href="#MailBlocks"><code>MailBlocks</code> - MailBlocks</a></li>
+    <li><a href="#MailLog"><code>MailLog</code> - MailLog</a></li>
+    <li><a href="#MailLogEntry"><code>MailLogEntry</code> - MailLogEntry</a></li>
+    <li><a href="#MailOrder"><code>MailOrder</code> - MailOrder</a></li>
+    <li><a href="#SendMail"><code>SendMail</code> - SendMail</a></li>
+    <li><a href="#SendMailAdv"><code>SendMailAdv</code> - SendMailAdv</a></li>
     <li><a href="#inline_response_200"><code>inline_response_200</code></a></li>
-    <li><a href="#inline_response_401"><code>inline_response_401</code></a></li>
   </ol>
 
   <div class="model">
-    <h3><a name="DenyRuleNew"><code>DenyRuleNew</code> - Root Type for DenyRule</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="DenyRuleNew"><code>DenyRuleNew</code> - DenyRuleNew</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>The data for a email deny rule record.</div>
     <div class="field-items">
       <div class="param">user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. </div>
           <div class="param-desc"><span class="param-type">example: mb20682</span></div>
 <div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The type of deny rule. </div>
         <div class="param-enum-header">Enum:</div>
-        <div class="param-enum">domain</div><div class="param-enum">email</div><div class="param-enum">startswith</div>
+        <div class="param-enum">domain</div><div class="param-enum">email</div><div class="param-enum">startswith</div><div class="param-enum">destination</div>
           <div class="param-desc"><span class="param-type">example: email</span></div>
 <div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. </div>
           <div class="param-desc"><span class="param-type">example: domeinwo@server.guesshost.net</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="DenyRuleRecord"><code>DenyRuleRecord</code> - Root Type for DenyRule</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="DenyRuleRecord"><code>DenyRuleRecord</code> - DenyRuleRecord</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>The data for a email deny rule record.</div>
     <div class="field-items">
-      <div class="param">user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. </div>
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The deny rule Id number. </div>
+          <div class="param-desc"><span class="param-type">example: 41124</span></div>
+<div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span> the date the rule was created. format: date-time</div>
+<div class="param">user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. </div>
           <div class="param-desc"><span class="param-type">example: mb20682</span></div>
 <div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The type of deny rule. </div>
         <div class="param-enum-header">Enum:</div>
-        <div class="param-enum">domain</div><div class="param-enum">email</div><div class="param-enum">startswith</div>
+        <div class="param-enum">domain</div><div class="param-enum">email</div><div class="param-enum">startswith</div><div class="param-enum">destination</div>
           <div class="param-desc"><span class="param-type">example: email</span></div>
 <div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. </div>
           <div class="param-desc"><span class="param-type">example: domeinwo@server.guesshost.net</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="EmailAddress"><code>EmailAddress</code> - Root Type for EmailAddress</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="EmailAddress"><code>EmailAddress</code></a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>an email address</div>
     <div class="field-items">
-      <div class="param">email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> an email address </div>
-          <div class="param-desc"><span class="param-type">example: user@domain.com</span></div>
-    </div>  <!-- field-items -->
+          </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="EmailAddressName"><code>EmailAddressName</code> - Root Type for EmailAddressName</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="EmailAddressName"><code>EmailAddressName</code> - EmailAddressName</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>An email contact.</div>
     <div class="field-items">
       <div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The email address. </div>
           <div class="param-desc"><span class="param-type">example: user@domain.com</span></div>
 <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name to use for the sending contact. </div>
           <div class="param-desc"><span class="param-type">example: John Smith</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="EmailAddressNames"><code>EmailAddressNames</code> - EmailAddressNames</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Array of Email Addresses</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="EmailAddressTypes"><code>EmailAddressTypes</code> - EmailAddressTypes</a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="EmailAddressesTypes"><code>EmailAddressesTypes</code> - EmailAddressTypes</a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ErrorMessage"><code>ErrorMessage</code> - ErrorMessage</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>The resposne when an error occurs.</div>
+    <div class="field-items">
+      <div class="param">code </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The response code associated with the error. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 400</span></div>
+<div class="param">message </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The details or description of the error. </div>
+          <div class="param-desc"><span class="param-type">example: There was an error.</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -1054,7 +1243,7 @@ We support several different authentication methods but the preferred method is 
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="MailAttachment"><code>MailAttachment</code> - Root Type for MailAttachment</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="MailAttachment"><code>MailAttachment</code> - MailAttachment</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>(optional) File attachments to include in the email.  The file contents must be base64</div>
     <div class="field-items">
       <div class="param">filename </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The filename of the attached file. </div>
@@ -1064,7 +1253,7 @@ We support several different authentication methods but the preferred method is 
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="MailBlockClickHouse"><code>MailBlockClickHouse</code> - Root Type for MailBlockClickHouse</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="MailBlockClickHouse"><code>MailBlockClickHouse</code> - MailBlockClickHouse</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>A block entry from the clickhouse mailblocks server.</div>
     <div class="field-items">
       <div class="param">date </div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span>  format: date</div>
@@ -1075,7 +1264,7 @@ We support several different authentication methods but the preferred method is 
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="MailBlockRspamd"><code>MailBlockRspamd</code> - Root Type for MailBlockRspamd</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="MailBlockRspamd"><code>MailBlockRspamd</code> - MailBlockRspamd</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>This is a block entry from the rspamd block list.</div>
     <div class="field-items">
       <div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
@@ -1083,7 +1272,7 @@ We support several different authentication methods but the preferred method is 
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="MailBlocks"><code>MailBlocks</code> - Root Type for MailBlocks</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="MailBlocks"><code>MailBlocks</code> - MailBlocks</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>The listing of blocked emails.</div>
     <div class="field-items">
       <div class="param">local </div><div class="param-desc"><span class="param-type"><a href="#MailBlockClickHouse">array[MailBlockClickHouse]</a></span>  </div>
@@ -1092,7 +1281,7 @@ We support several different authentication methods but the preferred method is 
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="MailLog"><code>MailLog</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="MailLog"><code>MailLog</code> - MailLog</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Mail log records</div>
     <div class="field-items">
       <div class="param">total </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> total number of mail log entries </div>
@@ -1130,7 +1319,7 @@ We support several different authentication methods but the preferred method is 
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="MailLogEntry"><code>MailLogEntry</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="MailLogEntry"><code>MailLogEntry</code> - MailLogEntry</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>An email record</div>
     <div class="field-items">
       <div class="param">_id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> internal db id </div>
@@ -1169,7 +1358,7 @@ We support several different authentication methods but the preferred method is 
           <div class="param-desc"><span class="param-type">example: interserver.net</span></div>
 <div class="param">locked </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> locked status </div>
           <div class="param-desc"><span class="param-type">example: 1</span></div>
-<div class="param">lockTime </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> lock timestamp </div>
+<div class="param">lockTime </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> lock timestamp </div>
           <div class="param-desc"><span class="param-type">example: 1634215818533</span></div>
 <div class="param">assigned </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> assigned server </div>
           <div class="param-desc"><span class="param-type">example: relay1</span></div>
@@ -1182,7 +1371,7 @@ We support several different authentication methods but the preferred method is 
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="MailOrder"><code>MailOrder</code> - Root Type for MailOrder</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="MailOrder"><code>MailOrder</code> - MailOrder</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>A mail order record</div>
     <div class="field-items">
       <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The ID of the order. format: int32</div>
@@ -1195,7 +1384,7 @@ We support several different authentication methods but the preferred method is 
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="SendMail"><code>SendMail</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="SendMail"><code>SendMail</code> - SendMail</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Details for an Email</div>
     <div class="field-items">
       <div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The Contact whom is the primary recipient of this email. </div>
@@ -1209,22 +1398,18 @@ We support several different authentication methods but the preferred method is 
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="SendMailAdv"><code>SendMailAdv</code> - Email details</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="SendMailAdv"><code>SendMailAdv</code> - SendMailAdv</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Details for an Email</div>
     <div class="field-items">
       <div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The subject or title of the email </div>
           <div class="param-desc"><span class="param-type">example: Your Package has been Delivered!</span></div>
 <div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The main email contents. </div>
           <div class="param-desc"><span class="param-type">example: The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.</span></div>
-<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#EmailAddressName">EmailAddressName</a></span>  </div>
-<div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#EmailAddressName">array[EmailAddressName]</a></span> A list of destionation email addresses to send this to </div>
-          <div class="param-desc"><span class="param-type">example: [{&quot;email&quot;: &quot;user@domain.com&quot;, &quot;name&quot;: &quot;John Smith&quot;}]</span></div>
-<div class="param">replyto (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressName">array[EmailAddressName]</a></span> (optional) A list of email addresses that specify where replies to the email should be sent instead of the &lt;em&gt;from&lt;/em&gt; address. </div>
-          <div class="param-desc"><span class="param-type">example: [{&quot;email&quot;: &quot;user@domain.com&quot;, &quot;name&quot;: &quot;John Smith&quot;}]</span></div>
-<div class="param">cc (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressName">array[EmailAddressName]</a></span> (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well. </div>
-          <div class="param-desc"><span class="param-type">example: [{&quot;email&quot;: &quot;user@domain.com&quot;, &quot;name&quot;: &quot;John Smith&quot;}]</span></div>
-<div class="param">bcc (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressName">array[EmailAddressName]</a></span> (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list. </div>
-          <div class="param-desc"><span class="param-type">example: [{&quot;email&quot;: &quot;user@domain.com&quot;, &quot;name&quot;: &quot;John Smith&quot;}]</span></div>
+<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#EmailAddressTypes">EmailAddressTypes</a></span>  </div>
+<div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span>  </div>
+<div class="param">replyto (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span>  </div>
+<div class="param">cc (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span>  </div>
+<div class="param">bcc (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span>  </div>
 <div class="param">attachments (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailAttachment">array[MailAttachment]</a></span> (optional) File attachments to include in the email.  The file contents must be base64 encoded! </div>
           <div class="param-desc"><span class="param-type">example: [
         {
@@ -1250,14 +1435,6 @@ We support several different authentication methods but the preferred method is 
           <div class="param-desc"><span class="param-type">example: guest123</span></div>
 <div class="param">comment (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: main mail account</span></div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="inline_response_401"><code>inline_response_401</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">code </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">message </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   </body>

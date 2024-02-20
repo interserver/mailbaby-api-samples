@@ -5,8 +5,8 @@ import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.unmarshalling.FromRequestUnmarshaller
 import akka.http.scaladsl.marshalling.ToEntityMarshaller
 import io.swagger.server.AkkaHttpHelper._
+import io.swagger.server.model.ErrorMessage
 import io.swagger.server.model.MailOrder
-import io.swagger.server.model.inline_response_401
 
 class ServicesApi(
     servicesService: ServicesApiService,
@@ -36,17 +36,17 @@ trait ServicesApiService {
 
   def getMailOrders200(responseMailOrderarray: List[MailOrder])(implicit toEntityMarshallerMailOrderarray: ToEntityMarshaller[List[MailOrder]]): Route =
     complete((200, responseMailOrderarray))
-  def getMailOrders401(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((401, responseinline_response_401))
-  def getMailOrders404(responseinline_response_401: inline_response_401)(implicit toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route =
-    complete((404, responseinline_response_401))
+  def getMailOrders401(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((401, responseErrorMessage))
+  def getMailOrders404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((404, responseErrorMessage))
   /**
    * Code: 200, Message: OK, DataType: List[MailOrder]
-   * Code: 401, Message: Unauthorized, DataType: inline_response_401
-   * Code: 404, Message: Unauthorized, DataType: inline_response_401
+   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
+   * Code: 404, Message: Unauthorized, DataType: ErrorMessage
    */
   def getMailOrders()
-      (implicit toEntityMarshallerMailOrderarray: ToEntityMarshaller[List[MailOrder]], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401], toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]): Route
+      (implicit toEntityMarshallerMailOrderarray: ToEntityMarshaller[List[MailOrder]], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
 }
 
@@ -54,9 +54,9 @@ trait ServicesApiMarshaller {
 
   implicit def toEntityMarshallerMailOrderarray: ToEntityMarshaller[List[MailOrder]]
 
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
-  implicit def toEntityMarshallerinline_response_401: ToEntityMarshaller[inline_response_401]
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
 }
 

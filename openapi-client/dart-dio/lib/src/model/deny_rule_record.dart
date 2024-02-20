@@ -4,7 +4,6 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/deny_rule_record_all_of.dart';
 import 'package:openapi/src/model/deny_rule_new.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -14,13 +13,21 @@ part 'deny_rule_record.g.dart';
 /// The data for a email deny rule record.
 ///
 /// Properties:
-/// * [id] - The deny rule Id number.
-/// * [created] - the date the rule was created.
 /// * [type] - The type of deny rule.
 /// * [data] - The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+/// * [id] - The deny rule Id number.
+/// * [created] - the date the rule was created.
 /// * [user] - Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
 @BuiltValue()
-abstract class DenyRuleRecord implements DenyRuleNew, DenyRuleRecordAllOf, Built<DenyRuleRecord, DenyRuleRecordBuilder> {
+abstract class DenyRuleRecord implements DenyRuleNew, Built<DenyRuleRecord, DenyRuleRecordBuilder> {
+  /// the date the rule was created.
+  @BuiltValueField(wireName: r'created')
+  DateTime get created;
+
+  /// The deny rule Id number.
+  @BuiltValueField(wireName: r'id')
+  String get id;
+
   DenyRuleRecord._();
 
   factory DenyRuleRecord([void updates(DenyRuleRecordBuilder b)]) = _$DenyRuleRecord;
@@ -47,7 +54,7 @@ class _$DenyRuleRecordSerializer implements PrimitiveSerializer<DenyRuleRecord> 
     yield r'id';
     yield serializers.serialize(
       object.id,
-      specifiedType: const FullType(int),
+      specifiedType: const FullType(String),
     );
     yield r'data';
     yield serializers.serialize(
@@ -97,8 +104,8 @@ class _$DenyRuleRecordSerializer implements PrimitiveSerializer<DenyRuleRecord> 
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'data':
@@ -169,6 +176,9 @@ class DenyRuleRecordTypeEnum extends EnumClass {
   /// The type of deny rule.
   @BuiltValueEnumConst(wireName: r'startswith')
   static const DenyRuleRecordTypeEnum startswith = _$denyRuleRecordTypeEnum_startswith;
+  /// The type of deny rule.
+  @BuiltValueEnumConst(wireName: r'destination')
+  static const DenyRuleRecordTypeEnum destination = _$denyRuleRecordTypeEnum_destination;
 
   static Serializer<DenyRuleRecordTypeEnum> get serializer => _$denyRuleRecordTypeEnumSerializer;
 

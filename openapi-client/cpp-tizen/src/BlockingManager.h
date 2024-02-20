@@ -6,10 +6,10 @@
 #include <list>
 #include <glib.h>
 #include "DenyRuleRecord.h"
-#include "EmailAddress.h"
+#include "ErrorMessage.h"
 #include "GenericResponse.h"
-#include "GetMailOrders_401_response.h"
 #include "MailBlocks.h"
+#include <list>
 #include "Error.h"
 
 /** \defgroup Operations API Endpoints
@@ -89,26 +89,26 @@ bool deleteRuleAsync(char * accessToken,
 /*! \brief Removes an email address from the blocked list. *Synchronous*
  *
  * Removes an email address from the various block lists. 
- * \param emailAddress  *Required*
+ * \param body  *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool delistBlockSync(char * accessToken,
-	std::shared_ptr<EmailAddress> emailAddress, 
+	std::string body, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 
 /*! \brief Removes an email address from the blocked list. *Asynchronous*
  *
  * Removes an email address from the various block lists. 
- * \param emailAddress  *Required*
+ * \param body  *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool delistBlockAsync(char * accessToken,
-	std::shared_ptr<EmailAddress> emailAddress, 
+	std::string body, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 

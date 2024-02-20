@@ -106,7 +106,7 @@ abstract class MailLogEntry implements Built<MailLogEntry, MailLogEntryBuilder> 
 
   /// lock timestamp
   @BuiltValueField(wireName: r'lockTime')
-  int get lockTime;
+  String get lockTime;
 
   /// assigned server
   @BuiltValueField(wireName: r'assigned')
@@ -239,7 +239,7 @@ class _$MailLogEntrySerializer implements PrimitiveSerializer<MailLogEntry> {
     yield r'lockTime';
     yield serializers.serialize(
       object.lockTime,
-      specifiedType: const FullType(int),
+      specifiedType: const FullType(String),
     );
     yield r'assigned';
     yield serializers.serialize(
@@ -413,8 +413,8 @@ class _$MailLogEntrySerializer implements PrimitiveSerializer<MailLogEntry> {
         case r'lockTime':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType(String),
+          ) as String;
           result.lockTime = valueDes;
           break;
         case r'assigned':

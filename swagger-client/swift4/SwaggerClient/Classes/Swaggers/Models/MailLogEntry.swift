@@ -66,7 +66,7 @@ public struct MailLogEntry: Codable {
     public var locked: Int
 
     /** lock timestamp */
-    public var lockTime: Int
+    public var lockTime: String
 
     /** assigned server */
     public var assigned: String
@@ -79,7 +79,7 @@ public struct MailLogEntry: Codable {
 
     /** mail delivery response */
     public var response: String
-    public init(_id: Int, _id: String, from: String, to: String, subject: String, messageId: String? = nil, created: String, time: Int, user: String, transtype: String, origin: String, interface: String, sendingZone: String, bodySize: Int, seq: Int, recipient: String, domain: String, locked: Int, lockTime: Int, assigned: String, queued: String, mxHostname: String, response: String) { 
+    public init(_id: Int, _id: String, from: String, to: String, subject: String, messageId: String? = nil, created: String, time: Int, user: String, transtype: String, origin: String, interface: String, sendingZone: String, bodySize: Int, seq: Int, recipient: String, domain: String, locked: Int, lockTime: String, assigned: String, queued: String, mxHostname: String, response: String) { 
         self._id = _id
         self._id = _id
         self.from = from

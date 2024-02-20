@@ -11,34 +11,48 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * Details for an Email
+ *
  * @export
  * @interface SendMail
  */
 export interface SendMail {
+
     /**
      * The Contact whom is the primary recipient of this email.
+     *
      * @type {string}
      * @memberof SendMail
+     * @example johndoe@company.com
      */
     to: string;
+
     /**
      * The contact whom is the this email is from.
+     *
      * @type {string}
      * @memberof SendMail
+     * @example janedoe@company.com
      */
     from: string;
+
     /**
      * The subject or title of the email
+     *
      * @type {string}
      * @memberof SendMail
+     * @example Attention Client
      */
     subject: string;
+
     /**
      * The main email contents.
+     *
      * @type {string}
      * @memberof SendMail
+     * @example This is an email to inform you that something noteworthy happened.
      */
     body: string;
 }

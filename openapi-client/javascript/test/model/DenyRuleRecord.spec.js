@@ -54,18 +54,6 @@
       //expect(instance).to.be.a(MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleRecord);
     });
 
-    it('should have the property id (base name: "id")', function() {
-      // uncomment below and update the code to test the property id
-      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleRecord();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property created (base name: "created")', function() {
-      // uncomment below and update the code to test the property created
-      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleRecord();
-      //expect(instance).to.be();
-    });
-
     it('should have the property type (base name: "type")', function() {
       // uncomment below and update the code to test the property type
       //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleRecord();
@@ -74,6 +62,18 @@
 
     it('should have the property data (base name: "data")', function() {
       // uncomment below and update the code to test the property data
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleRecord();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property id (base name: "id")', function() {
+      // uncomment below and update the code to test the property id
+      //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleRecord();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property created (base name: "created")', function() {
+      // uncomment below and update the code to test the property created
       //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleRecord();
       //expect(instance).to.be();
     });

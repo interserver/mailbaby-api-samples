@@ -23,7 +23,7 @@ mail_log_entry_t *mail_log_entry_create(
     char *recipient,
     char *domain,
     int locked,
-    int lock_time,
+    char *lock_time,
     char *assigned,
     char *queued,
     char *mx_hostname,
@@ -114,6 +114,10 @@ void mail_log_entry_free(mail_log_entry_t *mail_log_entry) {
     if (mail_log_entry->domain) {
         free(mail_log_entry->domain);
         mail_log_entry->domain = NULL;
+    }
+    if (mail_log_entry->lock_time) {
+        free(mail_log_entry->lock_time);
+        mail_log_entry->lock_time = NULL;
     }
     if (mail_log_entry->assigned) {
         free(mail_log_entry->assigned);
@@ -298,8 +302,8 @@ cJSON *mail_log_entry_convertToJSON(mail_log_entry_t *mail_log_entry) {
     if (!mail_log_entry->lock_time) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "lockTime", mail_log_entry->lock_time) == NULL) {
-    goto fail; //Numeric
+    if(cJSON_AddStringToObject(item, "lockTime", mail_log_entry->lock_time) == NULL) {
+    goto fail; //String
     }
 
 
@@ -569,9 +573,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
     }
 
     
-    if(!cJSON_IsNumber(lock_time))
+    if(!cJSON_IsString(lock_time))
     {
-    goto end; //Numeric
+    goto end; //String
     }
 
     // mail_log_entry->assigned
@@ -650,7 +654,7 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
         strdup(recipient->valuestring),
         strdup(domain->valuestring),
         locked->valuedouble,
-        lock_time->valuedouble,
+        strdup(lock_time->valuestring),
         strdup(assigned->valuestring),
         strdup(queued->valuestring),
         strdup(mx_hostname->valuestring),

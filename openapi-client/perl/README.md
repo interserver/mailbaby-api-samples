@@ -249,11 +249,13 @@ To load the models:
 ```perl
 use OpenAPIClient::Object::DenyRuleNew;
 use OpenAPIClient::Object::DenyRuleRecord;
-use OpenAPIClient::Object::DenyRuleRecordAllOf;
-use OpenAPIClient::Object::EmailAddress;
+use OpenAPIClient::Object::EmailAddressName;
+use OpenAPIClient::Object::EmailAddressTypes;
+use OpenAPIClient::Object::EmailAddressesTypes;
+use OpenAPIClient::Object::ErrorMessage;
 use OpenAPIClient::Object::GenericResponse;
-use OpenAPIClient::Object::GetMailOrders401Response;
 use OpenAPIClient::Object::GetStats200ResponseInner;
+use OpenAPIClient::Object::MailAttachment;
 use OpenAPIClient::Object::MailBlockClickHouse;
 use OpenAPIClient::Object::MailBlockRspamd;
 use OpenAPIClient::Object::MailBlocks;
@@ -282,11 +284,13 @@ use OpenAPIClient::StatusApi;
 # load the models
 use OpenAPIClient::Object::DenyRuleNew;
 use OpenAPIClient::Object::DenyRuleRecord;
-use OpenAPIClient::Object::DenyRuleRecordAllOf;
-use OpenAPIClient::Object::EmailAddress;
+use OpenAPIClient::Object::EmailAddressName;
+use OpenAPIClient::Object::EmailAddressTypes;
+use OpenAPIClient::Object::EmailAddressesTypes;
+use OpenAPIClient::Object::ErrorMessage;
 use OpenAPIClient::Object::GenericResponse;
-use OpenAPIClient::Object::GetMailOrders401Response;
 use OpenAPIClient::Object::GetStats200ResponseInner;
+use OpenAPIClient::Object::MailAttachment;
 use OpenAPIClient::Object::MailBlockClickHouse;
 use OpenAPIClient::Object::MailBlockRspamd;
 use OpenAPIClient::Object::MailBlocks;
@@ -332,7 +336,7 @@ Class | Method | HTTP request | Description
 *BlockingApi* | [**delist_block**](docs/BlockingApi.md#delist_block) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
 *BlockingApi* | [**get_mail_blocks**](docs/BlockingApi.md#get_mail_blocks) | **GET** /mail/blocks | displays a list of blocked email addresses
 *BlockingApi* | [**get_rules**](docs/BlockingApi.md#get_rules) | **GET** /mail/rules | Displays a listing of deny email rules.
-*HistoryApi* | [**get_stats**](docs/HistoryApi.md#get_stats) | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | [**get_stats**](docs/HistoryApi.md#get_stats) | **GET** /mail/stats | Account usage statistics.
 *HistoryApi* | [**view_mail_log**](docs/HistoryApi.md#view_mail_log) | **GET** /mail/log | displays the mail log
 *SendingApi* | [**send_adv_mail**](docs/SendingApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *SendingApi* | [**send_mail**](docs/SendingApi.md#send_mail) | **POST** /mail/send | Sends an Email
@@ -343,11 +347,13 @@ Class | Method | HTTP request | Description
 # DOCUMENTATION FOR MODELS
  - [OpenAPIClient::Object::DenyRuleNew](docs/DenyRuleNew.md)
  - [OpenAPIClient::Object::DenyRuleRecord](docs/DenyRuleRecord.md)
- - [OpenAPIClient::Object::DenyRuleRecordAllOf](docs/DenyRuleRecordAllOf.md)
- - [OpenAPIClient::Object::EmailAddress](docs/EmailAddress.md)
+ - [OpenAPIClient::Object::EmailAddressName](docs/EmailAddressName.md)
+ - [OpenAPIClient::Object::EmailAddressTypes](docs/EmailAddressTypes.md)
+ - [OpenAPIClient::Object::EmailAddressesTypes](docs/EmailAddressesTypes.md)
+ - [OpenAPIClient::Object::ErrorMessage](docs/ErrorMessage.md)
  - [OpenAPIClient::Object::GenericResponse](docs/GenericResponse.md)
- - [OpenAPIClient::Object::GetMailOrders401Response](docs/GetMailOrders401Response.md)
  - [OpenAPIClient::Object::GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
+ - [OpenAPIClient::Object::MailAttachment](docs/MailAttachment.md)
  - [OpenAPIClient::Object::MailBlockClickHouse](docs/MailBlockClickHouse.md)
  - [OpenAPIClient::Object::MailBlockRspamd](docs/MailBlockRspamd.md)
  - [OpenAPIClient::Object::MailBlocks](docs/MailBlocks.md)

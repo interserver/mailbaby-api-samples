@@ -4,13 +4,15 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**HistoryAPI_getStats**](HistoryAPI.md#HistoryAPI_getStats) | **GET** /mail/stats | displays a list of blocked email addresses
+[**HistoryAPI_getStats**](HistoryAPI.md#HistoryAPI_getStats) | **GET** /mail/stats | Account usage statistics.
 [**HistoryAPI_viewMailLog**](HistoryAPI.md#HistoryAPI_viewMailLog) | **GET** /mail/log | displays the mail log
 
 
 # **HistoryAPI_getStats**
 ```c
-// displays a list of blocked email addresses
+// Account usage statistics.
+//
+// Returns information about the usage on your mail accounts.
 //
 list_t* HistoryAPI_getStats(apiClient_t *apiClient);
 ```

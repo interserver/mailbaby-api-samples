@@ -21,11 +21,9 @@ import { Observable }                                        from 'rxjs';
 // @ts-ignore
 import { DenyRuleRecord } from '../model/denyRuleRecord';
 // @ts-ignore
-import { EmailAddress } from '../model/emailAddress';
+import { ErrorMessage } from '../model/errorMessage';
 // @ts-ignore
 import { GenericResponse } from '../model/genericResponse';
-// @ts-ignore
-import { GetMailOrders401Response } from '../model/getMailOrders401Response';
 // @ts-ignore
 import { MailBlocks } from '../model/mailBlocks';
 
@@ -96,7 +94,7 @@ export class BlockingService {
                 (value as any[]).forEach( elem => httpParams = this.addToHttpParamsRecursive(httpParams, elem, key));
             } else if (value instanceof Date) {
                 if (key != null) {
-                    httpParams = httpParams.append(key, (value as Date).toISOString().substr(0, 10));
+                    httpParams = httpParams.append(key, (value as Date).toISOString().substring(0, 10));
                 } else {
                    throw Error("key may not be null if value is Date");
                 }
@@ -269,16 +267,16 @@ export class BlockingService {
     /**
      * Removes an email address from the blocked list
      * Removes an email address from the various block lists. 
-     * @param emailAddress 
+     * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public delistBlock(emailAddress: EmailAddress, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<GenericResponse>;
-    public delistBlock(emailAddress: EmailAddress, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpResponse<GenericResponse>>;
-    public delistBlock(emailAddress: EmailAddress, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpEvent<GenericResponse>>;
-    public delistBlock(emailAddress: EmailAddress, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json',}): Observable<any> {
-        if (emailAddress === null || emailAddress === undefined) {
-            throw new Error('Required parameter emailAddress was null or undefined when calling delistBlock.');
+    public delistBlock(body: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<GenericResponse>;
+    public delistBlock(body: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpResponse<GenericResponse>>;
+    public delistBlock(body: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpEvent<GenericResponse>>;
+    public delistBlock(body: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json',}): Observable<any> {
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling delistBlock.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -328,7 +326,7 @@ export class BlockingService {
         let localVarPath = `/mail/blocks/delete`;
         return this.httpClient.request<GenericResponse>('post', `${this.configuration.basePath}${localVarPath}`,
             {
-                body: emailAddress,
+                body: body,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

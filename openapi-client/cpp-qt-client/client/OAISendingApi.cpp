@@ -215,7 +215,7 @@ QString OAISendingApi::getParamStyleDelimiter(const QString &style, const QStrin
     }
 }
 
-void OAISendingApi::sendAdvMail(const QString &subject, const QString &body, const OAIEmailAddressName &from, const QList<OAIEmailAddressName> &to, const ::OpenAPI::OptionalParam<QList<OAIEmailAddressName>> &replyto, const ::OpenAPI::OptionalParam<QList<OAIEmailAddressName>> &cc, const ::OpenAPI::OptionalParam<QList<OAIEmailAddressName>> &bcc, const ::OpenAPI::OptionalParam<QList<OAIMailAttachment>> &attachments, const ::OpenAPI::OptionalParam<qint64> &id) {
+void OAISendingApi::sendAdvMail(const QString &subject, const QString &body, const OAIEmailAddressTypes &from, const OAIEmailAddressesTypes &to, const ::OpenAPI::OptionalParam<OAIEmailAddressesTypes> &replyto, const ::OpenAPI::OptionalParam<OAIEmailAddressesTypes> &cc, const ::OpenAPI::OptionalParam<OAIEmailAddressesTypes> &bcc, const ::OpenAPI::OptionalParam<QList<OAIMailAttachment>> &attachments, const ::OpenAPI::OptionalParam<qint64> &id) {
     QString fullPath = QString(_serverConfigs["sendAdvMail"][_serverIndices.value("sendAdvMail")].URL()+"/mail/advsend");
     
     if (_apiKeys.contains("apiKeyAuth")) {

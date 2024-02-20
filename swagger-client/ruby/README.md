@@ -104,13 +104,12 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::BlockingApi.new
-body = SwaggerClient::EmailAddress.new # EmailAddress | 
-email = 'email_example' # String | 
+body = '{   \"value\" : {     \"email\" : \"client@domain.com\"   } }' # String | 
 
 
 begin
   #Removes an email address from the blocked list
-  result = api_instance.delist_block(body, email)
+  result = api_instance.delist_block(body)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling BlockingApi->delist_block: #{e}"
@@ -160,7 +159,7 @@ end
 api_instance = SwaggerClient::HistoryApi.new
 
 begin
-  #displays a list of blocked email addresses
+  #Account usage statistics.
   result = api_instance.get_stats
   p result
 rescue SwaggerClient::ApiError => e
@@ -207,11 +206,11 @@ end
 api_instance = SwaggerClient::SendingApi.new
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
-from = SwaggerClient::EmailAddressName.new # EmailAddressName | 
-to = [SwaggerClient::EmailAddressName.new] # Array<EmailAddressName> | 
-replyto = [SwaggerClient::EmailAddressName.new] # Array<EmailAddressName> | 
-cc = [SwaggerClient::EmailAddressName.new] # Array<EmailAddressName> | 
-bcc = [SwaggerClient::EmailAddressName.new] # Array<EmailAddressName> | 
+from = SwaggerClient::EmailAddressTypes.new # EmailAddressTypes | 
+to = SwaggerClient::EmailAddressesTypes.new # EmailAddressesTypes | 
+replyto = SwaggerClient::EmailAddressesTypes.new # EmailAddressesTypes | 
+cc = SwaggerClient::EmailAddressesTypes.new # EmailAddressesTypes | 
+bcc = SwaggerClient::EmailAddressesTypes.new # EmailAddressesTypes | 
 attachments = [SwaggerClient::MailAttachment.new] # Array<MailAttachment> | 
 id = 789 # Integer | 
 body = SwaggerClient::SendMailAdv.new # SendMailAdv | 
@@ -293,7 +292,7 @@ Class | Method | HTTP request | Description
 *SwaggerClient::BlockingApi* | [**delist_block**](docs/BlockingApi.md#delist_block) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
 *SwaggerClient::BlockingApi* | [**get_mail_blocks**](docs/BlockingApi.md#get_mail_blocks) | **GET** /mail/blocks | displays a list of blocked email addresses
 *SwaggerClient::BlockingApi* | [**get_rules**](docs/BlockingApi.md#get_rules) | **GET** /mail/rules | Displays a listing of deny email rules.
-*SwaggerClient::HistoryApi* | [**get_stats**](docs/HistoryApi.md#get_stats) | **GET** /mail/stats | displays a list of blocked email addresses
+*SwaggerClient::HistoryApi* | [**get_stats**](docs/HistoryApi.md#get_stats) | **GET** /mail/stats | Account usage statistics.
 *SwaggerClient::HistoryApi* | [**view_mail_log**](docs/HistoryApi.md#view_mail_log) | **GET** /mail/log | displays the mail log
 *SwaggerClient::SendingApi* | [**send_adv_mail**](docs/SendingApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *SwaggerClient::SendingApi* | [**send_mail**](docs/SendingApi.md#send_mail) | **POST** /mail/send | Sends an Email
@@ -306,9 +305,12 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::DenyRuleRecord](docs/DenyRuleRecord.md)
  - [SwaggerClient::EmailAddress](docs/EmailAddress.md)
  - [SwaggerClient::EmailAddressName](docs/EmailAddressName.md)
+ - [SwaggerClient::EmailAddressNames](docs/EmailAddressNames.md)
+ - [SwaggerClient::EmailAddressTypes](docs/EmailAddressTypes.md)
+ - [SwaggerClient::EmailAddressesTypes](docs/EmailAddressesTypes.md)
+ - [SwaggerClient::ErrorMessage](docs/ErrorMessage.md)
  - [SwaggerClient::GenericResponse](docs/GenericResponse.md)
  - [SwaggerClient::InlineResponse200](docs/InlineResponse200.md)
- - [SwaggerClient::InlineResponse401](docs/InlineResponse401.md)
  - [SwaggerClient::MailAttachment](docs/MailAttachment.md)
  - [SwaggerClient::MailBlockClickHouse](docs/MailBlockClickHouse.md)
  - [SwaggerClient::MailBlockRspamd](docs/MailBlockRspamd.md)

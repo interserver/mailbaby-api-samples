@@ -12,6 +12,7 @@ module.exports = {
                     'domain',
                     'email',
                     'startswith',
+                    'destination',
                 ],
             },
             {

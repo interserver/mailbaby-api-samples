@@ -39,7 +39,7 @@ final String user = user_example; // String | Mail account username that will be
 try {
     final response = api.addRule(type, data, user);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling BlockingApi->addRule: $e\n');
 }
 ```
@@ -88,7 +88,7 @@ final int ruleId = 34; // int | The ID of the Rules entry.
 try {
     final response = api.deleteRule(ruleId);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling BlockingApi->deleteRule: $e\n');
 }
 ```
@@ -115,7 +115,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delistBlock**
-> GenericResponse delistBlock(emailAddress)
+> GenericResponse delistBlock(body)
 
 Removes an email address from the blocked list
 
@@ -130,12 +130,12 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
 final api = Openapi().getBlockingApi();
-final EmailAddress emailAddress = {"email":"client@domain.com"}; // EmailAddress | 
+final String body = {"email":"client@domain.com"}; // String | 
 
 try {
-    final response = api.delistBlock(emailAddress);
+    final response = api.delistBlock(body);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling BlockingApi->delistBlock: $e\n');
 }
 ```
@@ -144,7 +144,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **emailAddress** | [**EmailAddress**](EmailAddress.md)|  | 
+ **body** | **String**|  | 
 
 ### Return type
 
@@ -179,7 +179,7 @@ final api = Openapi().getBlockingApi();
 try {
     final response = api.getMailBlocks();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling BlockingApi->getMailBlocks: $e\n');
 }
 ```
@@ -222,7 +222,7 @@ final api = Openapi().getBlockingApi();
 try {
     final response = api.getRules();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling BlockingApi->getRules: $e\n');
 }
 ```

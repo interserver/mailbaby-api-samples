@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **recipient** | **string** |  | [default to null]
 **domain** | **string** |  | [default to null]
 **locked** | **integer** |  | [default to null]
-**lockTime** | **integer** |  | [default to null]
+**lockTime** | **string** |  | [default to null]
 **assigned** | **string** |  | [default to null]
 **queued** | **string** |  | [default to null]
 **mxHostname** | **string** |  | [default to null]

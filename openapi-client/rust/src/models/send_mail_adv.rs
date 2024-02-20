@@ -12,7 +12,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SendMailAdv {
     /// The subject or title of the email
     #[serde(rename = "subject")]
@@ -21,19 +21,15 @@ pub struct SendMailAdv {
     #[serde(rename = "body")]
     pub body: String,
     #[serde(rename = "from")]
-    pub from: Box<crate::models::EmailAddressName>,
-    /// A list of destionation email addresses to send this to
+    pub from: Box<crate::models::EmailAddressTypes>,
     #[serde(rename = "to")]
-    pub to: Vec<crate::models::EmailAddressName>,
-    /// (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+    pub to: Box<crate::models::EmailAddressesTypes>,
     #[serde(rename = "replyto", skip_serializing_if = "Option::is_none")]
-    pub replyto: Option<Vec<crate::models::EmailAddressName>>,
-    /// (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+    pub replyto: Option<Box<crate::models::EmailAddressesTypes>>,
     #[serde(rename = "cc", skip_serializing_if = "Option::is_none")]
-    pub cc: Option<Vec<crate::models::EmailAddressName>>,
-    /// (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+    pub cc: Option<Box<crate::models::EmailAddressesTypes>>,
     #[serde(rename = "bcc", skip_serializing_if = "Option::is_none")]
-    pub bcc: Option<Vec<crate::models::EmailAddressName>>,
+    pub bcc: Option<Box<crate::models::EmailAddressesTypes>>,
     /// (optional) File attachments to include in the email.  The file contents must be base64 encoded!
     #[serde(rename = "attachments", skip_serializing_if = "Option::is_none")]
     pub attachments: Option<Vec<crate::models::MailAttachment>>,
@@ -44,12 +40,12 @@ pub struct SendMailAdv {
 
 impl SendMailAdv {
     /// Details for an Email
-    pub fn new(subject: String, body: String, from: crate::models::EmailAddressName, to: Vec<crate::models::EmailAddressName>) -> SendMailAdv {
+    pub fn new(subject: String, body: String, from: crate::models::EmailAddressTypes, to: crate::models::EmailAddressesTypes) -> SendMailAdv {
         SendMailAdv {
             subject,
             body,
             from: Box::new(from),
-            to,
+            to: Box::new(to),
             replyto: None,
             cc: None,
             bcc: None,

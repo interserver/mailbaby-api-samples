@@ -4,7 +4,7 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getStats**](HistoryAPI.md#getstats) | **GET** /mail/stats | displays a list of blocked email addresses
+[**getStats**](HistoryAPI.md#getstats) | **GET** /mail/stats | Account usage statistics.
 [**viewMailLog**](HistoryAPI.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 
@@ -13,7 +13,9 @@ Method | HTTP request | Description
     open class func getStats(completion: @escaping (_ data: [GetStats200ResponseInner]?, _ error: Error?) -> Void)
 ```
 
-displays a list of blocked email addresses
+Account usage statistics.
+
+Returns information about the usage on your mail accounts.
 
 ### Example
 ```swift
@@ -21,7 +23,7 @@ displays a list of blocked email addresses
 import OpenAPIClient
 
 
-// displays a list of blocked email addresses
+// Account usage statistics.
 HistoryAPI.getStats() { (response, error) in
     guard error == nil else {
         print(error)

@@ -19,6 +19,7 @@ open class BlockingAPI {
         case domain = "domain"
         case email = "email"
         case startswith = "startswith"
+        case destination = "destination"
     }
 
     /**
@@ -132,13 +133,13 @@ open class BlockingAPI {
     /**
      Removes an email address from the blocked list
      
-     - parameter emailAddress: (body)  
+     - parameter body: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func delistBlock(emailAddress: EmailAddress, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) -> RequestTask {
-        return delistBlockWithRequestBuilder(emailAddress: emailAddress).execute(apiResponseQueue) { result in
+    open class func delistBlock(body: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: GenericResponse?, _ error: Error?) -> Void)) -> RequestTask {
+        return delistBlockWithRequestBuilder(body: body).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -155,13 +156,13 @@ open class BlockingAPI {
      - API Key:
        - type: apiKey X-API-KEY (HEADER)
        - name: apiKeyAuth
-     - parameter emailAddress: (body)  
+     - parameter body: (body)  
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func delistBlockWithRequestBuilder(emailAddress: EmailAddress) -> RequestBuilder<GenericResponse> {
+    open class func delistBlockWithRequestBuilder(body: String) -> RequestBuilder<GenericResponse> {
         let localVariablePath = "/mail/blocks/delete"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: emailAddress)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 

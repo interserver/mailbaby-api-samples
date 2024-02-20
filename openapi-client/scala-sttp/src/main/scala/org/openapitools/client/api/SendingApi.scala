@@ -11,9 +11,10 @@
  */
 package org.openapitools.client.api
 
-import org.openapitools.client.model.EmailAddressName
+import org.openapitools.client.model.EmailAddressTypes
+import org.openapitools.client.model.EmailAddressesTypes
+import org.openapitools.client.model.ErrorMessage
 import org.openapitools.client.model.GenericResponse
-import org.openapitools.client.model.GetMailOrders401Response
 import org.openapitools.client.model.MailAttachment
 import org.openapitools.client.core.JsonSupport._
 import sttp.client3._
@@ -27,13 +28,13 @@ def apply(baseUrl: String = "https://api.mailbaby.net") = new SendingApi(baseUrl
 class SendingApi(baseUrl: String) {
 
   /**
-   * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+   * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
    * 
    * Expected answers:
    *   code 200 : GenericResponse (search results matching criteria)
-   *   code 400 : GetMailOrders401Response (The specified resource was not found)
-   *   code 401 : GetMailOrders401Response (Unauthorized)
-   *   code 404 : GetMailOrders401Response (The specified resource was not found)
+   *   code 400 : ErrorMessage (Error message when there was a problem with the input parameters.)
+   *   code 401 : ErrorMessage (Unauthorized)
+   *   code 404 : ErrorMessage (The specified resource was not found)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
@@ -41,14 +42,14 @@ class SendingApi(baseUrl: String) {
    * @param subject The subject or title of the email
    * @param body The main email contents.
    * @param from 
-   * @param to A list of destionation email addresses to send this to
-   * @param replyto (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-   * @param cc (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-   * @param bcc (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+   * @param to 
+   * @param replyto 
+   * @param cc 
+   * @param bcc 
    * @param attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded!
    * @param id (optional)  ID of the Mail order within our system to use as the Mail Account.
    */
-  def sendAdvMail(apiKey: String)(subject: String, body: String, from: EmailAddressName, to: Seq[EmailAddressName], replyto: Seq[EmailAddressName], cc: Seq[EmailAddressName], bcc: Seq[EmailAddressName], attachments: Seq[MailAttachment], id: Option[Long] = None
+  def sendAdvMail(apiKey: String)(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: Option[EmailAddressesTypes] = None, cc: Option[EmailAddressesTypes] = None, bcc: Option[EmailAddressesTypes] = None, attachments: Seq[MailAttachment], id: Option[Long] = None
 ): Request[Either[ResponseException[String, Exception], GenericResponse], Any] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/advsend")
@@ -58,10 +59,10 @@ class SendingApi(baseUrl: String) {
         "subject" -> subject,
         "body" -> body,
         "from" -> from,
-        "to" -> ArrayValues(to, CSV),
-        "replyto" -> ArrayValues(replyto, CSV),
-        "cc" -> ArrayValues(cc, CSV),
-        "bcc" -> ArrayValues(bcc, CSV),
+        "to" -> to,
+        "replyto" -> replyto,
+        "cc" -> cc,
+        "bcc" -> bcc,
         "attachments" -> ArrayValues(attachments, CSV),
         "id" -> id
       ))
@@ -72,9 +73,9 @@ class SendingApi(baseUrl: String) {
    * 
    * Expected answers:
    *   code 200 : GenericResponse (search results matching criteria)
-   *   code 400 : GetMailOrders401Response (The specified resource was not found)
-   *   code 401 : GetMailOrders401Response (Unauthorized)
-   *   code 404 : GetMailOrders401Response (The specified resource was not found)
+   *   code 400 : ErrorMessage (Error message when there was a problem with the input parameters.)
+   *   code 401 : ErrorMessage (Unauthorized)
+   *   code 404 : ErrorMessage (The specified resource was not found)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)

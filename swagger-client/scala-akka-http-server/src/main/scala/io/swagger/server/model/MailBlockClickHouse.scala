@@ -2,7 +2,7 @@ package io.swagger.server.model
 
 
 /**
- * = Root Type for MailBlockClickHouse =
+ * = MailBlockClickHouse =
  *
  * A block entry from the clickhouse mailblocks server.
  *

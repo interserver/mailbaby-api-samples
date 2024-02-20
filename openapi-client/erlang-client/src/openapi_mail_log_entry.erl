@@ -23,7 +23,7 @@
        'recipient' := binary(),
        'domain' := binary(),
        'locked' := integer(),
-       'lockTime' := integer(),
+       'lockTime' := binary(),
        'assigned' := binary(),
        'queued' := binary(),
        'mxHostname' := binary(),

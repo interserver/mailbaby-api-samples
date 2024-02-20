@@ -89,7 +89,7 @@ export interface MailLogEntry {
     /**
      * lock timestamp
      */
-    lockTime: number;
+    lockTime: string;
     /**
      * assigned server
      */

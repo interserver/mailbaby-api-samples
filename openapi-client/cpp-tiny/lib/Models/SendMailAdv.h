@@ -12,7 +12,8 @@
 #include <string>
 #include "bourne/json.hpp"
 #include "Helpers.h"
-#include "EmailAddressName.h"
+#include "EmailAddressTypes.h"
+#include "EmailAddressesTypes.h"
 #include "MailAttachment.h"
 #include <list>
 
@@ -64,39 +65,39 @@ public:
 	void setBody(std::string  body);
 	/*! \brief Get 
 	 */
-	EmailAddressName getFrom();
+	EmailAddressTypes getFrom();
 
 	/*! \brief Set 
 	 */
-	void setFrom(EmailAddressName  from);
-	/*! \brief Get A list of destionation email addresses to send this to
+	void setFrom(EmailAddressTypes  from);
+	/*! \brief Get 
 	 */
-	std::list<EmailAddressName> getTo();
+	EmailAddressesTypes getTo();
 
-	/*! \brief Set A list of destionation email addresses to send this to
+	/*! \brief Set 
 	 */
-	void setTo(std::list <EmailAddressName> to);
-	/*! \brief Get (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+	void setTo(EmailAddressesTypes  to);
+	/*! \brief Get 
 	 */
-	std::list<EmailAddressName> getReplyto();
+	EmailAddressesTypes getReplyto();
 
-	/*! \brief Set (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+	/*! \brief Set 
 	 */
-	void setReplyto(std::list <EmailAddressName> replyto);
-	/*! \brief Get (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+	void setReplyto(EmailAddressesTypes  replyto);
+	/*! \brief Get 
 	 */
-	std::list<EmailAddressName> getCc();
+	EmailAddressesTypes getCc();
 
-	/*! \brief Set (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+	/*! \brief Set 
 	 */
-	void setCc(std::list <EmailAddressName> cc);
-	/*! \brief Get (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+	void setCc(EmailAddressesTypes  cc);
+	/*! \brief Get 
 	 */
-	std::list<EmailAddressName> getBcc();
+	EmailAddressesTypes getBcc();
 
-	/*! \brief Set (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+	/*! \brief Set 
 	 */
-	void setBcc(std::list <EmailAddressName> bcc);
+	void setBcc(EmailAddressesTypes  bcc);
 	/*! \brief Get (optional) File attachments to include in the email.  The file contents must be base64 encoded!
 	 */
 	std::list<MailAttachment> getAttachments();
@@ -116,11 +117,11 @@ public:
     private:
     std::string subject{};
     std::string body{};
-    EmailAddressName from;
-    std::list<EmailAddressName> to;
-    std::list<EmailAddressName> replyto;
-    std::list<EmailAddressName> cc;
-    std::list<EmailAddressName> bcc;
+    EmailAddressTypes from;
+    EmailAddressesTypes to;
+    EmailAddressesTypes replyto;
+    EmailAddressesTypes cc;
+    EmailAddressesTypes bcc;
     std::list<MailAttachment> attachments;
     long id{};
 };

@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **recipient** | [**STRING_32**](STRING_32.md) | to address this email is being sent to | [default to null]
 **domain** | [**STRING_32**](STRING_32.md) | to address domain | [default to null]
 **locked** | **INTEGER_32** | locked status | [default to null]
-**lock_time** | **INTEGER_32** | lock timestamp | [default to null]
+**lock_time** | [**STRING_32**](STRING_32.md) | lock timestamp | [default to null]
 **assigned** | [**STRING_32**](STRING_32.md) | assigned server | [default to null]
 **queued** | [**STRING_32**](STRING_32.md) | queued timestamp | [default to null]
 **mx_hostname** | [**STRING_32**](STRING_32.md) | mx hostname | [default to null]

@@ -15,10 +15,9 @@
 goog.provide('API.Client.BlockingApi');
 
 goog.require('API.Client.DenyRuleRecord');
-goog.require('API.Client.EmailAddress');
+goog.require('API.Client.ErrorMessage');
 goog.require('API.Client.GenericResponse');
 goog.require('API.Client.MailBlocks');
-goog.require('API.Client.getMailOrders_401_response');
 
 /**
  * @constructor
@@ -141,11 +140,11 @@ API.Client.BlockingApi.prototype.deleteRule = function(ruleId, opt_extraHttpRequ
 /**
  * Removes an email address from the blocked list
  * Removes an email address from the various block lists. 
- * @param {!EmailAddress} emailAddress 
+ * @param {!string} body 
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.GenericResponse>}
  */
-API.Client.BlockingApi.prototype.delistBlock = function(emailAddress, opt_extraHttpRequestParams) {
+API.Client.BlockingApi.prototype.delistBlock = function(body, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/mail/blocks/delete';
 
@@ -154,16 +153,16 @@ API.Client.BlockingApi.prototype.delistBlock = function(emailAddress, opt_extraH
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'emailAddress' is set
-  if (!emailAddress) {
-    throw new Error('Missing required parameter emailAddress when calling delistBlock');
+  // verify required parameter 'body' is set
+  if (!body) {
+    throw new Error('Missing required parameter body when calling delistBlock');
   }
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'POST',
     url: path,
     json: true,
-    data: emailAddress,
+    data: body,
         params: queryParameters,
     headers: headerParams
   };

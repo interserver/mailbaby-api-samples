@@ -11,16 +11,12 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * an email address
+ *
  * @export
  * @interface EmailAddress
  */
 export interface EmailAddress {
-    /**
-     * an email address
-     * @type {string}
-     * @memberof EmailAddress
-     */
-    email?: string;
 }

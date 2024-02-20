@@ -33,7 +33,7 @@ module.exports = {
             'total': bundle.inputData?.[`${keyPrefix}total`],
             'skip': bundle.inputData?.[`${keyPrefix}skip`],
             'limit': bundle.inputData?.[`${keyPrefix}limit`],
-            'emails': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}emails`]),
+            'emails': utils.childMapping(bundle.inputData?.[`${keyPrefix}emails`], `${keyPrefix}emails`, MailLogEntry),
         }
     },
 }

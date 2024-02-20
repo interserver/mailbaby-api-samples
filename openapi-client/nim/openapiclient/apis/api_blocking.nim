@@ -19,10 +19,9 @@ import typetraits
 import uri
 
 import ../models/model_deny_rule_record
-import ../models/model_email_address
+import ../models/model_error_message
 import ../models/model_generic_response
 import ../models/model_mail_blocks
-import ../models/model_get_mail_orders_401_response
 
 const basepath = "https://api.mailbaby.net"
 
@@ -62,11 +61,11 @@ proc deleteRule*(httpClient: HttpClient, ruleId: int): (Option[GenericResponse],
   constructResult[GenericResponse](response)
 
 
-proc delistBlock*(httpClient: HttpClient, emailAddress: EmailAddress): (Option[GenericResponse], Response) =
+proc delistBlock*(httpClient: HttpClient, body: string): (Option[GenericResponse], Response) =
   ## Removes an email address from the blocked list
   httpClient.headers["Content-Type"] = "application/json"
 
-  let response = httpClient.post(basepath & "/mail/blocks/delete", $(%emailAddress))
+  let response = httpClient.post(basepath & "/mail/blocks/delete", $(%body))
   constructResult[GenericResponse](response)
 
 

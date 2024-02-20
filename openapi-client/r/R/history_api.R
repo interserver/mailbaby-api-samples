@@ -14,7 +14,8 @@
 #'
 #' @section Methods:
 #' \describe{
-#' \strong{ GetStats } \emph{ displays a list of blocked email addresses }
+#' \strong{ GetStats } \emph{ Account usage statistics. }
+#' Returns information about the usage on your mail accounts.
 #'
 #' \itemize{
 #' \item \emph{ @returnType } list( \link{getStats_200_response_inner} ) \cr
@@ -29,14 +30,14 @@
 #' }
 #' \item status code : 401 | Unauthorized
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
 #' \item status code : 404 | Unauthorized
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
@@ -86,7 +87,7 @@
 #'
 #' library(openapi)
 #'
-#' #displays a list of blocked email addresses
+#' #Account usage statistics.
 #' api_instance <- HistoryApi$new()
 #'
 #' # Configure API key authorization: apiKeyAuth
@@ -147,10 +148,10 @@ HistoryApi <- R6::R6Class(
         self$api_client <- ApiClient$new()
       }
     },
-    #' displays a list of blocked email addresses
+    #' Account usage statistics.
     #'
     #' @description
-    #' displays a list of blocked email addresses
+    #' Account usage statistics.
     #'
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
@@ -168,10 +169,10 @@ HistoryApi <- R6::R6Class(
         local_var_response
       }
     },
-    #' displays a list of blocked email addresses
+    #' Account usage statistics.
     #'
     #' @description
-    #' displays a list of blocked email addresses
+    #' Account usage statistics.
     #'
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments

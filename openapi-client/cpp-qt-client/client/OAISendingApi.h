@@ -18,9 +18,10 @@
 #include "OAIServerConfiguration.h"
 #include "OAIOauth.h"
 
-#include "OAIEmailAddressName.h"
+#include "OAIEmailAddressTypes.h"
+#include "OAIEmailAddressesTypes.h"
+#include "OAIErrorMessage.h"
 #include "OAIGenericResponse.h"
-#include "OAIGetMailOrders_401_response.h"
 #include "OAIMailAttachment.h"
 #include <QString>
 
@@ -63,15 +64,15 @@ public:
     /**
     * @param[in]  subject QString [required]
     * @param[in]  body QString [required]
-    * @param[in]  from OAIEmailAddressName [required]
-    * @param[in]  to QList<OAIEmailAddressName> [required]
-    * @param[in]  replyto QList<OAIEmailAddressName> [optional]
-    * @param[in]  cc QList<OAIEmailAddressName> [optional]
-    * @param[in]  bcc QList<OAIEmailAddressName> [optional]
+    * @param[in]  from OAIEmailAddressTypes [required]
+    * @param[in]  to OAIEmailAddressesTypes [required]
+    * @param[in]  replyto OAIEmailAddressesTypes [optional]
+    * @param[in]  cc OAIEmailAddressesTypes [optional]
+    * @param[in]  bcc OAIEmailAddressesTypes [optional]
     * @param[in]  attachments QList<OAIMailAttachment> [optional]
     * @param[in]  id qint64 [optional]
     */
-    void sendAdvMail(const QString &subject, const QString &body, const OAIEmailAddressName &from, const QList<OAIEmailAddressName> &to, const ::OpenAPI::OptionalParam<QList<OAIEmailAddressName>> &replyto = ::OpenAPI::OptionalParam<QList<OAIEmailAddressName>>(), const ::OpenAPI::OptionalParam<QList<OAIEmailAddressName>> &cc = ::OpenAPI::OptionalParam<QList<OAIEmailAddressName>>(), const ::OpenAPI::OptionalParam<QList<OAIEmailAddressName>> &bcc = ::OpenAPI::OptionalParam<QList<OAIEmailAddressName>>(), const ::OpenAPI::OptionalParam<QList<OAIMailAttachment>> &attachments = ::OpenAPI::OptionalParam<QList<OAIMailAttachment>>(), const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>());
+    void sendAdvMail(const QString &subject, const QString &body, const OAIEmailAddressTypes &from, const OAIEmailAddressesTypes &to, const ::OpenAPI::OptionalParam<OAIEmailAddressesTypes> &replyto = ::OpenAPI::OptionalParam<OAIEmailAddressesTypes>(), const ::OpenAPI::OptionalParam<OAIEmailAddressesTypes> &cc = ::OpenAPI::OptionalParam<OAIEmailAddressesTypes>(), const ::OpenAPI::OptionalParam<OAIEmailAddressesTypes> &bcc = ::OpenAPI::OptionalParam<OAIEmailAddressesTypes>(), const ::OpenAPI::OptionalParam<QList<OAIMailAttachment>> &attachments = ::OpenAPI::OptionalParam<QList<OAIMailAttachment>>(), const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>());
 
     /**
     * @param[in]  to QString [required]

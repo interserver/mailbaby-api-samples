@@ -15,7 +15,7 @@
 #include "OpenAPIBaseModel.h"
 #include "OpenAPIServicesApi.h"
 
-#include "OpenAPIGetMailOrders401Response.h"
+#include "OpenAPIErrorMessage.h"
 #include "OpenAPIMailOrder.h"
 
 namespace OpenAPI

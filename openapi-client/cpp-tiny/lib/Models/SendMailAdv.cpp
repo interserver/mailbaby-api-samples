@@ -8,11 +8,11 @@ SendMailAdv::SendMailAdv()
 {
 	subject = std::string();
 	body = std::string();
-	from = EmailAddressName();
-	to = std::list<EmailAddressName>();
-	replyto = std::list<EmailAddressName>();
-	cc = std::list<EmailAddressName>();
-	bcc = std::list<EmailAddressName>();
+	from = EmailAddressTypes();
+	to = EmailAddressesTypes();
+	replyto = EmailAddressesTypes();
+	cc = EmailAddressesTypes();
+	bcc = EmailAddressesTypes();
 	attachments = std::list<MailAttachment>();
 	id = long(0);
 }
@@ -67,7 +67,7 @@ SendMailAdv::fromJson(std::string jsonObj)
 
 
 
-        EmailAddressName* obj = &from;
+        EmailAddressTypes* obj = &from;
 		obj->fromJson(value.dump());
 
     }
@@ -79,18 +79,10 @@ SendMailAdv::fromJson(std::string jsonObj)
         bourne::json value = object[toKey];
 
 
-        std::list<EmailAddressName> to_list;
-        EmailAddressName element;
-        for(auto& var : value.array_range())
-        {
 
 
-            element.fromJson(var.dump());
-
-            to_list.push_back(element);
-        }
-        to = to_list;
-
+        EmailAddressesTypes* obj = &to;
+		obj->fromJson(value.dump());
 
     }
 
@@ -101,18 +93,10 @@ SendMailAdv::fromJson(std::string jsonObj)
         bourne::json value = object[replytoKey];
 
 
-        std::list<EmailAddressName> replyto_list;
-        EmailAddressName element;
-        for(auto& var : value.array_range())
-        {
 
 
-            element.fromJson(var.dump());
-
-            replyto_list.push_back(element);
-        }
-        replyto = replyto_list;
-
+        EmailAddressesTypes* obj = &replyto;
+		obj->fromJson(value.dump());
 
     }
 
@@ -123,18 +107,10 @@ SendMailAdv::fromJson(std::string jsonObj)
         bourne::json value = object[ccKey];
 
 
-        std::list<EmailAddressName> cc_list;
-        EmailAddressName element;
-        for(auto& var : value.array_range())
-        {
 
 
-            element.fromJson(var.dump());
-
-            cc_list.push_back(element);
-        }
-        cc = cc_list;
-
+        EmailAddressesTypes* obj = &cc;
+		obj->fromJson(value.dump());
 
     }
 
@@ -145,18 +121,10 @@ SendMailAdv::fromJson(std::string jsonObj)
         bourne::json value = object[bccKey];
 
 
-        std::list<EmailAddressName> bcc_list;
-        EmailAddressName element;
-        for(auto& var : value.array_range())
-        {
 
 
-            element.fromJson(var.dump());
-
-            bcc_list.push_back(element);
-        }
-        bcc = bcc_list;
-
+        EmailAddressesTypes* obj = &bcc;
+		obj->fromJson(value.dump());
 
     }
 
@@ -227,62 +195,30 @@ SendMailAdv::toJson()
 
 
 
-    std::list<EmailAddressName> to_list = getTo();
-    bourne::json to_arr = bourne::json::array();
 
-    for(auto& var : to_list)
-    {
-        EmailAddressName obj = var;
-        to_arr.append(obj.toJson());
-    }
-    object["to"] = to_arr;
+
+	object["to"] = getTo().toJson();
 
 
 
 
 
 
-    std::list<EmailAddressName> replyto_list = getReplyto();
-    bourne::json replyto_arr = bourne::json::array();
-
-    for(auto& var : replyto_list)
-    {
-        EmailAddressName obj = var;
-        replyto_arr.append(obj.toJson());
-    }
-    object["replyto"] = replyto_arr;
+	object["replyto"] = getReplyto().toJson();
 
 
 
 
 
 
-    std::list<EmailAddressName> cc_list = getCc();
-    bourne::json cc_arr = bourne::json::array();
-
-    for(auto& var : cc_list)
-    {
-        EmailAddressName obj = var;
-        cc_arr.append(obj.toJson());
-    }
-    object["cc"] = cc_arr;
+	object["cc"] = getCc().toJson();
 
 
 
 
 
 
-    std::list<EmailAddressName> bcc_list = getBcc();
-    bourne::json bcc_arr = bourne::json::array();
-
-    for(auto& var : bcc_list)
-    {
-        EmailAddressName obj = var;
-        bcc_arr.append(obj.toJson());
-    }
-    object["bcc"] = bcc_arr;
-
-
+	object["bcc"] = getBcc().toJson();
 
 
 
@@ -335,62 +271,62 @@ SendMailAdv::setBody(std::string  body)
 	this->body = body;
 }
 
-EmailAddressName
+EmailAddressTypes
 SendMailAdv::getFrom()
 {
 	return from;
 }
 
 void
-SendMailAdv::setFrom(EmailAddressName  from)
+SendMailAdv::setFrom(EmailAddressTypes  from)
 {
 	this->from = from;
 }
 
-std::list<EmailAddressName>
+EmailAddressesTypes
 SendMailAdv::getTo()
 {
 	return to;
 }
 
 void
-SendMailAdv::setTo(std::list <EmailAddressName> to)
+SendMailAdv::setTo(EmailAddressesTypes  to)
 {
 	this->to = to;
 }
 
-std::list<EmailAddressName>
+EmailAddressesTypes
 SendMailAdv::getReplyto()
 {
 	return replyto;
 }
 
 void
-SendMailAdv::setReplyto(std::list <EmailAddressName> replyto)
+SendMailAdv::setReplyto(EmailAddressesTypes  replyto)
 {
 	this->replyto = replyto;
 }
 
-std::list<EmailAddressName>
+EmailAddressesTypes
 SendMailAdv::getCc()
 {
 	return cc;
 }
 
 void
-SendMailAdv::setCc(std::list <EmailAddressName> cc)
+SendMailAdv::setCc(EmailAddressesTypes  cc)
 {
 	this->cc = cc;
 }
 
-std::list<EmailAddressName>
+EmailAddressesTypes
 SendMailAdv::getBcc()
 {
 	return bcc;
 }
 
 void
-SendMailAdv::setBcc(std::list <EmailAddressName> bcc)
+SendMailAdv::setBcc(EmailAddressesTypes  bcc)
 {
 	this->bcc = bcc;
 }

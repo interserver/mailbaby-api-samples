@@ -8,7 +8,7 @@
 #include "Helpers.h"
 #include <list>
 
-#include "GetMailOrders_401_response.h"
+#include "ErrorMessage.h"
 #include "MailOrder.h"
 
 namespace Tiny {

@@ -16,7 +16,7 @@ import type { AjaxResponse } from 'rxjs/ajax';
 import { BaseAPI } from '../runtime';
 import type { OperationOpts, HttpHeaders, HttpQuery } from '../runtime';
 import type {
-    GetMailOrders401Response,
+    ErrorMessage,
     GetStats200ResponseInner,
     MailLog,
 } from '../models';
@@ -41,7 +41,8 @@ export interface ViewMailLogRequest {
 export class HistoryApi extends BaseAPI {
 
     /**
-     * displays a list of blocked email addresses
+     * Returns information about the usage on your mail accounts.
+     * Account usage statistics.
      */
     getStats(): Observable<Array<GetStats200ResponseInner>>
     getStats(opts?: OperationOpts): Observable<AjaxResponse<Array<GetStats200ResponseInner>>>

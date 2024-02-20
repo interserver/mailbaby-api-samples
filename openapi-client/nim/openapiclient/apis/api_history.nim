@@ -18,8 +18,8 @@ import tables
 import typetraits
 import uri
 
+import ../models/model_error_message
 import ../models/model_mail_log
-import ../models/model_get_mail_orders_401_response
 import ../models/model_get_stats_200_response_inner
 
 const basepath = "https://api.mailbaby.net"
@@ -41,7 +41,7 @@ template constructResult[T](response: Response): untyped =
 
 
 proc getStats*(httpClient: HttpClient): (Option[seq[getStats_200_response_inner]], Response) =
-  ## displays a list of blocked email addresses
+  ## Account usage statistics.
 
   let response = httpClient.get(basepath & "/mail/stats")
   constructResult[seq[getStats_200_response_inner]](response)

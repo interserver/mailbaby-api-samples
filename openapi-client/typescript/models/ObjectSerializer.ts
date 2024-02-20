@@ -1,10 +1,12 @@
 export * from '../models/DenyRuleNew';
 export * from '../models/DenyRuleRecord';
-export * from '../models/DenyRuleRecordAllOf';
-export * from '../models/EmailAddress';
+export * from '../models/EmailAddressName';
+export * from '../models/EmailAddressTypes';
+export * from '../models/EmailAddressesTypes';
+export * from '../models/ErrorMessage';
 export * from '../models/GenericResponse';
-export * from '../models/GetMailOrders401Response';
 export * from '../models/GetStats200ResponseInner';
+export * from '../models/MailAttachment';
 export * from '../models/MailBlockClickHouse';
 export * from '../models/MailBlockRspamd';
 export * from '../models/MailBlocks';
@@ -15,12 +17,14 @@ export * from '../models/SendMail';
 export * from '../models/SendMailAdv';
 
 import { DenyRuleNew, DenyRuleNewTypeEnum     } from '../models/DenyRuleNew';
-import { DenyRuleRecord  , DenyRuleRecordTypeEnum     } from '../models/DenyRuleRecord';
-import { DenyRuleRecordAllOf } from '../models/DenyRuleRecordAllOf';
-import { EmailAddress } from '../models/EmailAddress';
+import { DenyRuleRecord, DenyRuleRecordTypeEnum       } from '../models/DenyRuleRecord';
+import { EmailAddressName } from '../models/EmailAddressName';
+import { EmailAddressTypes } from '../models/EmailAddressTypes';
+import { EmailAddressesTypes } from '../models/EmailAddressesTypes';
+import { ErrorMessage } from '../models/ErrorMessage';
 import { GenericResponse } from '../models/GenericResponse';
-import { GetMailOrders401Response } from '../models/GetMailOrders401Response';
 import { GetStats200ResponseInner } from '../models/GetStats200ResponseInner';
+import { MailAttachment } from '../models/MailAttachment';
 import { MailBlockClickHouse } from '../models/MailBlockClickHouse';
 import { MailBlockRspamd } from '../models/MailBlockRspamd';
 import { MailBlocks } from '../models/MailBlocks';
@@ -44,6 +48,9 @@ let primitives = [
 
 const supportedMediaTypes: { [mediaType: string]: number } = {
   "application/json": Infinity,
+  "application/json-patch+json": 1,
+  "application/merge-patch+json": 1,
+  "application/strategic-merge-patch+json": 1,
   "application/octet-stream": 0,
   "application/x-www-form-urlencoded": 0
 }
@@ -57,11 +64,13 @@ let enumsMap: Set<string> = new Set<string>([
 let typeMap: {[index: string]: any} = {
     "DenyRuleNew": DenyRuleNew,
     "DenyRuleRecord": DenyRuleRecord,
-    "DenyRuleRecordAllOf": DenyRuleRecordAllOf,
-    "EmailAddress": EmailAddress,
+    "EmailAddressName": EmailAddressName,
+    "EmailAddressTypes": EmailAddressTypes,
+    "EmailAddressesTypes": EmailAddressesTypes,
+    "ErrorMessage": ErrorMessage,
     "GenericResponse": GenericResponse,
-    "GetMailOrders401Response": GetMailOrders401Response,
     "GetStats200ResponseInner": GetStats200ResponseInner,
+    "MailAttachment": MailAttachment,
     "MailBlockClickHouse": MailBlockClickHouse,
     "MailBlockRspamd": MailBlockRspamd,
     "MailBlocks": MailBlocks,
@@ -212,7 +221,7 @@ export class ObjectSerializer {
      */
     public static getPreferredMediaType(mediaTypes: Array<string>): string {
         /** According to OAS 3 we should default to json */
-        if (!mediaTypes) {
+        if (mediaTypes.length === 0) {
             return "application/json";
         }
 
@@ -241,7 +250,7 @@ export class ObjectSerializer {
             return String(data);
         }
 
-        if (mediaType === "application/json") {
+        if (mediaType === "application/json" || mediaType === "application/json-patch+json" || mediaType === "application/merge-patch+json" || mediaType === "application/strategic-merge-patch+json") {
             return JSON.stringify(data);
         }
 
@@ -260,7 +269,7 @@ export class ObjectSerializer {
             return rawData;
         }
 
-        if (mediaType === "application/json") {
+        if (mediaType === "application/json" || mediaType === "application/json-patch+json" || mediaType === "application/merge-patch+json" || mediaType === "application/strategic-merge-patch+json") {
             return JSON.parse(rawData);
         }
 

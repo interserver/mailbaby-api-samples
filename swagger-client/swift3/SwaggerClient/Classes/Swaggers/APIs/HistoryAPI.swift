@@ -11,7 +11,7 @@ import Alamofire
 
 open class HistoryAPI: APIBase {
     /**
-     displays a list of blocked email addresses
+     Account usage statistics.
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func getStats(completion: @escaping ((_ data: [InlineResponse200]?, _ error: ErrorResponse?) -> Void)) {
@@ -22,8 +22,9 @@ open class HistoryAPI: APIBase {
 
 
     /**
-     displays a list of blocked email addresses
+     Account usage statistics.
      - GET /mail/stats
+     - Returns information about the usage on your mail accounts.
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth

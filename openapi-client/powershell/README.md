@@ -63,7 +63,7 @@ Class | Method | HTTP request | Description
 *BlockingApi* | [**Invoke-DelistBlock**](docs/BlockingApi.md#Invoke-DelistBlock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
 *BlockingApi* | [**Get-MailBlocks**](docs/BlockingApi.md#Get-MailBlocks) | **GET** /mail/blocks | displays a list of blocked email addresses
 *BlockingApi* | [**Get-Rules**](docs/BlockingApi.md#Get-Rules) | **GET** /mail/rules | Displays a listing of deny email rules.
-*HistoryApi* | [**Get-Stats**](docs/HistoryApi.md#Get-Stats) | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | [**Get-Stats**](docs/HistoryApi.md#Get-Stats) | **GET** /mail/stats | Account usage statistics.
 *HistoryApi* | [**Invoke-ViewMailLog**](docs/HistoryApi.md#Invoke-ViewMailLog) | **GET** /mail/log | displays the mail log
 *SendingApi* | [**Send-AdvMail**](docs/SendingApi.md#Send-AdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *SendingApi* | [**Send-Mail**](docs/SendingApi.md#Send-Mail) | **POST** /mail/send | Sends an Email
@@ -73,21 +73,23 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [PSOpenAPITools/Model.DenyRuleNew](docs/DenyRuleNew.md)
- - [PSOpenAPITools/Model.DenyRuleRecord](docs/DenyRuleRecord.md)
- - [PSOpenAPITools/Model.DenyRuleRecordAllOf](docs/DenyRuleRecordAllOf.md)
- - [PSOpenAPITools/Model.EmailAddress](docs/EmailAddress.md)
- - [PSOpenAPITools/Model.GenericResponse](docs/GenericResponse.md)
- - [PSOpenAPITools/Model.GetMailOrders401Response](docs/GetMailOrders401Response.md)
- - [PSOpenAPITools/Model.GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
- - [PSOpenAPITools/Model.MailBlockClickHouse](docs/MailBlockClickHouse.md)
- - [PSOpenAPITools/Model.MailBlockRspamd](docs/MailBlockRspamd.md)
- - [PSOpenAPITools/Model.MailBlocks](docs/MailBlocks.md)
- - [PSOpenAPITools/Model.MailLog](docs/MailLog.md)
- - [PSOpenAPITools/Model.MailLogEntry](docs/MailLogEntry.md)
- - [PSOpenAPITools/Model.MailOrder](docs/MailOrder.md)
- - [PSOpenAPITools/Model.SendMail](docs/SendMail.md)
- - [PSOpenAPITools/Model.SendMailAdv](docs/SendMailAdv.md)
+ - [PSOpenAPITools\Model.DenyRuleNew](docs/DenyRuleNew.md)
+ - [PSOpenAPITools\Model.DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [PSOpenAPITools\Model.EmailAddressName](docs/EmailAddressName.md)
+ - [PSOpenAPITools\Model.EmailAddressTypes](docs/EmailAddressTypes.md)
+ - [PSOpenAPITools\Model.EmailAddressesTypes](docs/EmailAddressesTypes.md)
+ - [PSOpenAPITools\Model.ErrorMessage](docs/ErrorMessage.md)
+ - [PSOpenAPITools\Model.GenericResponse](docs/GenericResponse.md)
+ - [PSOpenAPITools\Model.GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
+ - [PSOpenAPITools\Model.MailAttachment](docs/MailAttachment.md)
+ - [PSOpenAPITools\Model.MailBlockClickHouse](docs/MailBlockClickHouse.md)
+ - [PSOpenAPITools\Model.MailBlockRspamd](docs/MailBlockRspamd.md)
+ - [PSOpenAPITools\Model.MailBlocks](docs/MailBlocks.md)
+ - [PSOpenAPITools\Model.MailLog](docs/MailLog.md)
+ - [PSOpenAPITools\Model.MailLogEntry](docs/MailLogEntry.md)
+ - [PSOpenAPITools\Model.MailOrder](docs/MailOrder.md)
+ - [PSOpenAPITools\Model.SendMail](docs/SendMail.md)
+ - [PSOpenAPITools\Model.SendMailAdv](docs/SendMailAdv.md)
 
 
 <a id="documentation-for-authorization"></a>

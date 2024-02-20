@@ -5,9 +5,10 @@
 #include <cstring>
 #include <list>
 #include <glib.h>
-#include "GetMailOrders_401_response.h"
+#include "ErrorMessage.h"
 #include "GetStats_200_response_inner.h"
 #include "MailLog.h"
+#include <list>
 #include "Error.h"
 
 /** \defgroup Operations API Endpoints
@@ -26,9 +27,9 @@ public:
 	HistoryManager();
 	virtual ~HistoryManager();
 
-/*! \brief displays a list of blocked email addresses. *Synchronous*
+/*! \brief Account usage statistics.. *Synchronous*
  *
- * 
+ * Returns information about the usage on your mail accounts.
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
@@ -38,9 +39,9 @@ bool getStatsSync(char * accessToken,
 	void(* handler)(std::list<GetStats_200_response_inner>, Error, void* )
 	, void* userData);
 
-/*! \brief displays a list of blocked email addresses. *Asynchronous*
+/*! \brief Account usage statistics.. *Asynchronous*
  *
- * 
+ * Returns information about the usage on your mail accounts.
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.

@@ -57,7 +57,7 @@ type MailLogEntry struct {
 	// locked status
 	Locked int32 `json:"locked"`
 	// lock timestamp
-	LockTime int32 `json:"lockTime"`
+	LockTime string `json:"lockTime"`
 	// assigned server
 	Assigned string `json:"assigned"`
 	// queued timestamp
@@ -72,7 +72,7 @@ type MailLogEntry struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMailLogEntry(id int32, id string, from string, to string, subject string, created string, time int32, user string, transtype string, origin string, interface_ string, sendingZone string, bodySize int32, seq int32, recipient string, domain string, locked int32, lockTime int32, assigned string, queued string, mxHostname string, response string) *MailLogEntry {
+func NewMailLogEntry(id int32, id string, from string, to string, subject string, created string, time int32, user string, transtype string, origin string, interface_ string, sendingZone string, bodySize int32, seq int32, recipient string, domain string, locked int32, lockTime string, assigned string, queued string, mxHostname string, response string) *MailLogEntry {
 	this := MailLogEntry{}
 	this.Id = id
 	this.Id = id
@@ -548,9 +548,9 @@ func (o *MailLogEntry) SetLocked(v int32) {
 }
 
 // GetLockTime returns the LockTime field value
-func (o *MailLogEntry) GetLockTime() int32 {
+func (o *MailLogEntry) GetLockTime() string {
 	if o == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -559,7 +559,7 @@ func (o *MailLogEntry) GetLockTime() int32 {
 
 // GetLockTimeOk returns a tuple with the LockTime field value
 // and a boolean to check if the value has been set.
-func (o *MailLogEntry) GetLockTimeOk() (*int32, bool) {
+func (o *MailLogEntry) GetLockTimeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -567,7 +567,7 @@ func (o *MailLogEntry) GetLockTimeOk() (*int32, bool) {
 }
 
 // SetLockTime sets field value
-func (o *MailLogEntry) SetLockTime(v int32) {
+func (o *MailLogEntry) SetLockTime(v string) {
 	o.LockTime = v
 }
 

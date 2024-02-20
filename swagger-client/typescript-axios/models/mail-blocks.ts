@@ -11,28 +11,30 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import { MailBlockClickHouse } from './mail-block-click-house';
 import { MailBlockRspamd } from './mail-block-rspamd';
-/**
+ /**
  * The listing of blocked emails.
+ *
  * @export
  * @interface MailBlocks
  */
 export interface MailBlocks {
+
     /**
-     * 
      * @type {Array<MailBlockClickHouse>}
      * @memberof MailBlocks
      */
     local: Array<MailBlockClickHouse>;
+
     /**
-     * 
      * @type {Array<MailBlockClickHouse>}
      * @memberof MailBlocks
      */
     mbtrap: Array<MailBlockClickHouse>;
+
     /**
-     * 
      * @type {Array<MailBlockRspamd>}
      * @memberof MailBlocks
      */

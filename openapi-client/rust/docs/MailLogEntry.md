@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **recipient** | **String** | to address this email is being sent to | 
 **domain** | **String** | to address domain | 
 **locked** | **i32** | locked status | 
-**lock_time** | **i32** | lock timestamp | 
+**lock_time** | **String** | lock timestamp | 
 **assigned** | **String** | assigned server | 
 **queued** | **String** | queued timestamp | 
 **mx_hostname** | **String** | mx hostname | 

@@ -17,6 +17,7 @@ open class BlockingAPI: APIBase {
         case domain = "domain"
         case email = "email"
         case startswith = "startswith"
+        case destination = "destination"
     }
 
     /**
@@ -145,7 +146,7 @@ open class BlockingAPI: APIBase {
      - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func delistBlock(body: EmailAddress, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
+    open class func delistBlock(body: String, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
         delistBlockWithRequestBuilder(body: body).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -166,45 +167,7 @@ open class BlockingAPI: APIBase {
      - parameter body: (body)  
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func delistBlockWithRequestBuilder(body: EmailAddress) -> RequestBuilder<GenericResponse> {
-        let path = "/mail/blocks/delete"
-        let URLString = SwaggerClientAPI.basePath + path
-        let parameters = body.encodeToJSON()
-
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<GenericResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
-    }
-
-    /**
-     Removes an email address from the blocked list
-     - parameter email: (form)  
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func delistBlock(email: String, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
-        delistBlockWithRequestBuilder(email: email).execute { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Removes an email address from the blocked list
-     - POST /mail/blocks/delete
-     - Removes an email address from the various block lists. 
-     - API Key:
-       - type: apiKey X-API-KEY 
-       - name: apiKeyAuth
-     - examples: [{contentType=application/json, example={
-  "text" : "The command completed successfully.",
-  "status" : "ok"
-}}]
-     - parameter email: (form)  
-     - returns: RequestBuilder<GenericResponse> 
-     */
-    open class func delistBlockWithRequestBuilder(email: String) -> RequestBuilder<GenericResponse> {
+    open class func delistBlockWithRequestBuilder(body: String) -> RequestBuilder<GenericResponse> {
         let path = "/mail/blocks/delete"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = body.encodeToJSON()

@@ -17,6 +17,7 @@ public struct DenyRuleNew: Codable, JSONEncodable, Hashable {
         case domain = "domain"
         case email = "email"
         case startswith = "startswith"
+        case destination = "destination"
     }
     /** The type of deny rule. */
     public var type: ModelType

@@ -2,6 +2,8 @@ package io.swagger.server.model
 
 
 /**
+ * = MailLog =
+ *
  * Mail log records
  *
  * @param total total number of mail log entries for example: ''10234''

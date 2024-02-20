@@ -14,9 +14,9 @@ feature -- Test routines
 
 
     test_stats
-            -- displays a list of blocked email addresses
+            -- Account usage statistics.
             --
-            -- 
+            -- Returns information about the usage on your mail accounts.
         local
             l_response: LIST [GET_STATS_200_RESPONSE_INNER]
         do

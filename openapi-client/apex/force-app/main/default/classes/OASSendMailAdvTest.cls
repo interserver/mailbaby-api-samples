@@ -79,14 +79,14 @@ private class OASSendMailAdvTest {
     @isTest
     private static void defaultValuesPopulated() {
         OASSendMailAdv sendMailAdv = new OASSendMailAdv();
-        System.assertEquals(new List<OASEmailAddressName>(), sendMailAdv.to);
-        System.assertEquals(new List<OASEmailAddressName>(), sendMailAdv.replyto);
-        System.assertEquals(new List<OASEmailAddressName>(), sendMailAdv.cc);
-        System.assertEquals(new List<OASEmailAddressName>(), sendMailAdv.bcc);
         System.assertEquals(new List<OASMailAttachment>(), sendMailAdv.attachments);
         System.assertEquals(null, sendMailAdv.subject);
         System.assertEquals(null, sendMailAdv.body);
         System.assertEquals(null, sendMailAdv.r_from);
+        System.assertEquals(null, sendMailAdv.to);
+        System.assertEquals(null, sendMailAdv.replyto);
+        System.assertEquals(null, sendMailAdv.cc);
+        System.assertEquals(null, sendMailAdv.bcc);
         System.assertEquals(null, sendMailAdv.id);
     }
 }

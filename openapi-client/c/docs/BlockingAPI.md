@@ -81,14 +81,14 @@ Name | Type | Description  | Notes
 //
 // Removes an email address from the various block lists. 
 //
-generic_response_t* BlockingAPI_delistBlock(apiClient_t *apiClient, email_address_t * email_address);
+generic_response_t* BlockingAPI_delistBlock(apiClient_t *apiClient, char * body);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**email_address** | **[email_address_t](email_address.md) \*** |  | 
+**body** | **char \*** |  | 
 
 ### Return type
 

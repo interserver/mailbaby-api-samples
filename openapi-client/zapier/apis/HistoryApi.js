@@ -1,6 +1,6 @@
 const samples = require('../samples/HistoryApi');
+const ErrorMessage = require('../models/ErrorMessage');
 const MailLog = require('../models/MailLog');
-const getMailOrders_401_response = require('../models/getMailOrders_401_response');
 const getStats_200_response_inner = require('../models/getStats_200_response_inner');
 const utils = require('../utils/utils');
 
@@ -9,8 +9,8 @@ module.exports = {
         key: 'getStats',
         noun: 'History',
         display: {
-            label: 'displays a list of blocked email addresses',
-            description: '',
+            label: 'Account usage statistics.',
+            description: 'Returns information about the usage on your mail accounts.',
             hidden: false,
         },
         operation: {

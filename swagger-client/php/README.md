@@ -111,7 +111,7 @@ $apiInstance = new Interserver\Mailbaby\Api\BlockingApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Interserver\Mailbaby\Model\EmailAddress(); // \Interserver\Mailbaby\Model\EmailAddress | 
+$body = "{   \"value\" : {     \"email\" : \"client@domain.com\"   } }"; // string | 
 
 try {
     $result = $apiInstance->delistBlock($body);
@@ -171,7 +171,7 @@ Class | Method | HTTP request | Description
 *BlockingApi* | [**delistBlock**](docs/Api/BlockingApi.md#delistblock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
 *BlockingApi* | [**getMailBlocks**](docs/Api/BlockingApi.md#getmailblocks) | **GET** /mail/blocks | displays a list of blocked email addresses
 *BlockingApi* | [**getRules**](docs/Api/BlockingApi.md#getrules) | **GET** /mail/rules | Displays a listing of deny email rules.
-*HistoryApi* | [**getStats**](docs/Api/HistoryApi.md#getstats) | **GET** /mail/stats | displays a list of blocked email addresses
+*HistoryApi* | [**getStats**](docs/Api/HistoryApi.md#getstats) | **GET** /mail/stats | Account usage statistics.
 *HistoryApi* | [**viewMailLog**](docs/Api/HistoryApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
 *SendingApi* | [**sendAdvMail**](docs/Api/SendingApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *SendingApi* | [**sendMail**](docs/Api/SendingApi.md#sendmail) | **POST** /mail/send | Sends an Email
@@ -184,9 +184,12 @@ Class | Method | HTTP request | Description
  - [DenyRuleRecord](docs/Model/DenyRuleRecord.md)
  - [EmailAddress](docs/Model/EmailAddress.md)
  - [EmailAddressName](docs/Model/EmailAddressName.md)
+ - [EmailAddressNames](docs/Model/EmailAddressNames.md)
+ - [EmailAddressTypes](docs/Model/EmailAddressTypes.md)
+ - [EmailAddressesTypes](docs/Model/EmailAddressesTypes.md)
+ - [ErrorMessage](docs/Model/ErrorMessage.md)
  - [GenericResponse](docs/Model/GenericResponse.md)
  - [InlineResponse200](docs/Model/InlineResponse200.md)
- - [InlineResponse401](docs/Model/InlineResponse401.md)
  - [MailAttachment](docs/Model/MailAttachment.md)
  - [MailBlockClickHouse](docs/Model/MailBlockClickHouse.md)
  - [MailBlockRspamd](docs/Model/MailBlockRspamd.md)

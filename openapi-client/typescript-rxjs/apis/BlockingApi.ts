@@ -17,9 +17,8 @@ import { BaseAPI, throwIfNullOrUndefined, encodeURI } from '../runtime';
 import type { OperationOpts, HttpHeaders } from '../runtime';
 import type {
     DenyRuleRecord,
-    EmailAddress,
+    ErrorMessage,
     GenericResponse,
-    GetMailOrders401Response,
     MailBlocks,
 } from '../models';
 
@@ -34,7 +33,7 @@ export interface DeleteRuleRequest {
 }
 
 export interface DelistBlockRequest {
-    emailAddress: EmailAddress;
+    body: string;
 }
 
 /**
@@ -93,10 +92,10 @@ export class BlockingApi extends BaseAPI {
      * Removes an email address from the various block lists. 
      * Removes an email address from the blocked list
      */
-    delistBlock({ emailAddress }: DelistBlockRequest): Observable<GenericResponse>
-    delistBlock({ emailAddress }: DelistBlockRequest, opts?: OperationOpts): Observable<AjaxResponse<GenericResponse>>
-    delistBlock({ emailAddress }: DelistBlockRequest, opts?: OperationOpts): Observable<GenericResponse | AjaxResponse<GenericResponse>> {
-        throwIfNullOrUndefined(emailAddress, 'emailAddress', 'delistBlock');
+    delistBlock({ body }: DelistBlockRequest): Observable<GenericResponse>
+    delistBlock({ body }: DelistBlockRequest, opts?: OperationOpts): Observable<AjaxResponse<GenericResponse>>
+    delistBlock({ body }: DelistBlockRequest, opts?: OperationOpts): Observable<GenericResponse | AjaxResponse<GenericResponse>> {
+        throwIfNullOrUndefined(body, 'body', 'delistBlock');
 
         const headers: HttpHeaders = {
             'Content-Type': 'application/json',
@@ -107,7 +106,7 @@ export class BlockingApi extends BaseAPI {
             url: '/mail/blocks/delete',
             method: 'POST',
             headers,
-            body: emailAddress,
+            body: body as any,
         }, opts?.responseOpts);
     };
 
@@ -155,5 +154,6 @@ export class BlockingApi extends BaseAPI {
 export enum AddRuleTypeEnum {
     Domain = 'domain',
     Email = 'email',
-    Startswith = 'startswith'
+    Startswith = 'startswith',
+    Destination = 'destination'
 }

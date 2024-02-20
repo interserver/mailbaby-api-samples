@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 
 <a name="delistBlock"></a>
 # **delistBlock**
-> GenericResponse delistBlock(body, email)
+> GenericResponse delistBlock(body)
 
 Removes an email address from the blocked list
 
@@ -136,10 +136,9 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyEmailDeliveryAndManagementServiceApi.BlockingApi();
-let body = new MailBabyEmailDeliveryAndManagementServiceApi.EmailAddress(); // EmailAddress | 
-let email = "email_example"; // String | 
+let body = "{   \"value\" : {     \"email\" : \"client@domain.com\"   } }"; // String | 
 
-apiInstance.delistBlock(body, email, (error, data, response) => {
+apiInstance.delistBlock(body, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -152,8 +151,7 @@ apiInstance.delistBlock(body, email, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**EmailAddress**](EmailAddress.md)|  | 
- **email** | **String**|  | 
+ **body** | [**String**](String.md)|  | 
 
 ### Return type
 

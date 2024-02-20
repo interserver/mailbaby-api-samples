@@ -31,8 +31,8 @@ DenyRuleNew <- R6::R6Class(
     #' @export
     initialize = function(`type`, `data`, `user` = NULL, ...) {
       if (!missing(`type`)) {
-        if (!(`type` %in% c("domain", "email", "startswith"))) {
-          stop(paste("Error! \"", `type`, "\" cannot be assigned to `type`. Must be \"domain\", \"email\", \"startswith\".", sep = ""))
+        if (!(`type` %in% c("domain", "email", "startswith", "destination"))) {
+          stop(paste("Error! \"", `type`, "\" cannot be assigned to `type`. Must be \"domain\", \"email\", \"startswith\", \"destination\".", sep = ""))
         }
         if (!(is.character(`type`) && length(`type`) == 1)) {
           stop(paste("Error! Invalid data for `type`. Must be a string:", `type`))
@@ -89,8 +89,8 @@ DenyRuleNew <- R6::R6Class(
         self$`user` <- this_object$`user`
       }
       if (!is.null(this_object$`type`)) {
-        if (!is.null(this_object$`type`) && !(this_object$`type` %in% c("domain", "email", "startswith"))) {
-          stop(paste("Error! \"", this_object$`type`, "\" cannot be assigned to `type`. Must be \"domain\", \"email\", \"startswith\".", sep = ""))
+        if (!is.null(this_object$`type`) && !(this_object$`type` %in% c("domain", "email", "startswith", "destination"))) {
+          stop(paste("Error! \"", this_object$`type`, "\" cannot be assigned to `type`. Must be \"domain\", \"email\", \"startswith\", \"destination\".", sep = ""))
         }
         self$`type` <- this_object$`type`
       }
@@ -147,8 +147,8 @@ DenyRuleNew <- R6::R6Class(
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`user` <- this_object$`user`
-      if (!is.null(this_object$`type`) && !(this_object$`type` %in% c("domain", "email", "startswith"))) {
-        stop(paste("Error! \"", this_object$`type`, "\" cannot be assigned to `type`. Must be \"domain\", \"email\", \"startswith\".", sep = ""))
+      if (!is.null(this_object$`type`) && !(this_object$`type` %in% c("domain", "email", "startswith", "destination"))) {
+        stop(paste("Error! \"", this_object$`type`, "\" cannot be assigned to `type`. Must be \"domain\", \"email\", \"startswith\", \"destination\".", sep = ""))
       }
       self$`type` <- this_object$`type`
       self$`data` <- this_object$`data`

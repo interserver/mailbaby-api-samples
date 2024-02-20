@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **recipient** | **char \*** | to address this email is being sent to | 
 **domain** | **char \*** | to address domain | 
 **locked** | **int** | locked status | 
-**lock_time** | **int** | lock timestamp | 
+**lock_time** | **char \*** | lock timestamp | 
 **assigned** | **char \*** | assigned server | 
 **queued** | **char \*** | queued timestamp | 
 **mx_hostname** | **char \*** | mx hostname | 

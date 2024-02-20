@@ -115,7 +115,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delistBlock**
-> GenericResponse delistBlock(emailAddress)
+> GenericResponse delistBlock(body)
 
 Removes an email address from the blocked list
 
@@ -130,10 +130,10 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
 final api_instance = BlockingApi();
-final emailAddress = EmailAddress(); // EmailAddress | 
+final body = String(); // String | 
 
 try {
-    final result = api_instance.delistBlock(emailAddress);
+    final result = api_instance.delistBlock(body);
     print(result);
 } catch (e) {
     print('Exception when calling BlockingApi->delistBlock: $e\n');
@@ -144,7 +144,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **emailAddress** | [**EmailAddress**](EmailAddress.md)|  | 
+ **body** | **String**|  | 
 
 ### Return type
 

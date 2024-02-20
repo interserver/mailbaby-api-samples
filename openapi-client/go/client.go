@@ -50,15 +50,15 @@ type APIClient struct {
 
 	// API Services
 
-	BlockingApi *BlockingApiService
+	BlockingAPI *BlockingAPIService
 
-	HistoryApi *HistoryApiService
+	HistoryAPI *HistoryAPIService
 
-	SendingApi *SendingApiService
+	SendingAPI *SendingAPIService
 
-	ServicesApi *ServicesApiService
+	ServicesAPI *ServicesAPIService
 
-	StatusApi *StatusApiService
+	StatusAPI *StatusAPIService
 }
 
 type service struct {
@@ -77,11 +77,11 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.BlockingApi = (*BlockingApiService)(&c.common)
-	c.HistoryApi = (*HistoryApiService)(&c.common)
-	c.SendingApi = (*SendingApiService)(&c.common)
-	c.ServicesApi = (*ServicesApiService)(&c.common)
-	c.StatusApi = (*StatusApiService)(&c.common)
+	c.BlockingAPI = (*BlockingAPIService)(&c.common)
+	c.HistoryAPI = (*HistoryAPIService)(&c.common)
+	c.SendingAPI = (*SendingAPIService)(&c.common)
+	c.ServicesAPI = (*ServicesAPIService)(&c.common)
+	c.StatusAPI = (*StatusAPIService)(&c.common)
 
 	return c
 }
@@ -449,6 +449,7 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 			return
 		}
 		_, err = f.Seek(0, io.SeekStart)
+		err = os.Remove(f.Name())
 		return
 	}
 	if f, ok := v.(**os.File); ok {
@@ -461,6 +462,7 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 			return
 		}
 		_, err = (*f).Seek(0, io.SeekStart)
+		err = os.Remove((*f).Name())
 		return
 	}
 	if xmlCheck.MatchString(contentType) {
@@ -537,7 +539,11 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 	} else if jsonCheck.MatchString(contentType) {
 		err = json.NewEncoder(bodyBuf).Encode(body)
 	} else if xmlCheck.MatchString(contentType) {
-		err = xml.NewEncoder(bodyBuf).Encode(body)
+		var bs []byte
+		bs, err = xml.Marshal(body)
+		if err == nil {
+			bodyBuf.Write(bs)
+		}
 	}
 
 	if err != nil {

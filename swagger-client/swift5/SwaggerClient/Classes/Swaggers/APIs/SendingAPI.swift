@@ -24,7 +24,7 @@ open class SendingAPI {
      - parameter _id: (form)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendAdvMail(subject: String, body: String, from: EmailAddressName, to: [EmailAddressName], replyto: [EmailAddressName], cc: [EmailAddressName], bcc: [EmailAddressName], attachments: [MailAttachment], _id: Int64, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
+    open class func sendAdvMail(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: EmailAddressesTypes, cc: EmailAddressesTypes, bcc: EmailAddressesTypes, attachments: [MailAttachment], _id: Int64, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
         sendAdvMailWithRequestBuilder(subject: subject, body: body, from: from, to: to, replyto: replyto, cc: cc, bcc: bcc, attachments: attachments, _id: _id).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -54,7 +54,7 @@ open class SendingAPI {
 
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendAdvMailWithRequestBuilder(subject: String, body: String, from: EmailAddressName, to: [EmailAddressName], replyto: [EmailAddressName], cc: [EmailAddressName], bcc: [EmailAddressName], attachments: [MailAttachment], _id: Int64) -> RequestBuilder<GenericResponse> {
+    open class func sendAdvMailWithRequestBuilder(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: EmailAddressesTypes, cc: EmailAddressesTypes, bcc: EmailAddressesTypes, attachments: [MailAttachment], _id: Int64) -> RequestBuilder<GenericResponse> {
         let path = "/mail/advsend"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)

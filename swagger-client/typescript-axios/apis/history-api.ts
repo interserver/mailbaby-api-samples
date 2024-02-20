@@ -11,13 +11,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+
 import globalAxios, { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { ErrorMessage } from '../models';
 import { InlineResponse200 } from '../models';
-import { InlineResponse401 } from '../models';
 import { MailLog } from '../models';
 /**
  * HistoryApi - axios parameter creator
@@ -26,8 +27,8 @@ import { MailLog } from '../models';
 export const HistoryApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
-         * @summary displays a list of blocked email addresses
+         * Returns information about the usage on your mail accounts.
+         * @summary Account usage statistics.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -174,8 +175,8 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
 export const HistoryApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * 
-         * @summary displays a list of blocked email addresses
+         * Returns information about the usage on your mail accounts.
+         * @summary Account usage statistics.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -220,8 +221,8 @@ export const HistoryApiFp = function(configuration?: Configuration) {
 export const HistoryApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
-         * 
-         * @summary displays a list of blocked email addresses
+         * Returns information about the usage on your mail accounts.
+         * @summary Account usage statistics.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -259,8 +260,8 @@ export const HistoryApiFactory = function (configuration?: Configuration, basePa
  */
 export class HistoryApi extends BaseAPI {
     /**
-     * 
-     * @summary displays a list of blocked email addresses
+     * Returns information about the usage on your mail accounts.
+     * @summary Account usage statistics.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HistoryApi

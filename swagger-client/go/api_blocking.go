@@ -122,7 +122,7 @@ func (a *BlockingApiService) AddRule(ctx context.Context, user string, type_ str
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 400 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -132,7 +132,7 @@ func (a *BlockingApiService) AddRule(ctx context.Context, user string, type_ str
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 401 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -142,7 +142,7 @@ func (a *BlockingApiService) AddRule(ctx context.Context, user string, type_ str
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 404 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -250,7 +250,7 @@ func (a *BlockingApiService) DeleteRule(ctx context.Context, ruleId int32) (Gene
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 400 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -260,7 +260,7 @@ func (a *BlockingApiService) DeleteRule(ctx context.Context, ruleId int32) (Gene
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 401 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -270,7 +270,7 @@ func (a *BlockingApiService) DeleteRule(ctx context.Context, ruleId int32) (Gene
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 404 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -291,7 +291,7 @@ Removes an email address from the various block lists.
  * @param body
 @return GenericResponse
 */
-func (a *BlockingApiService) DelistBlock(ctx context.Context, body EmailAddress) (GenericResponse, *http.Response, error) {
+func (a *BlockingApiService) DelistBlock(ctx context.Context, body string) (GenericResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -379,7 +379,7 @@ func (a *BlockingApiService) DelistBlock(ctx context.Context, body EmailAddress)
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 400 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -389,7 +389,7 @@ func (a *BlockingApiService) DelistBlock(ctx context.Context, body EmailAddress)
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 401 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -399,7 +399,7 @@ func (a *BlockingApiService) DelistBlock(ctx context.Context, body EmailAddress)
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 404 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -504,7 +504,7 @@ func (a *BlockingApiService) GetMailBlocks(ctx context.Context) (MailBlocks, *ht
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 401 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -514,7 +514,7 @@ func (a *BlockingApiService) GetMailBlocks(ctx context.Context) (MailBlocks, *ht
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 404 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -620,7 +620,7 @@ func (a *BlockingApiService) GetRules(ctx context.Context) ([]DenyRuleRecord, *h
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 401 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -630,7 +630,7 @@ func (a *BlockingApiService) GetRules(ctx context.Context) ([]DenyRuleRecord, *h
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		if localVarHttpResponse.StatusCode == 404 {
-			var v InlineResponse401
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()

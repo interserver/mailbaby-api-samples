@@ -9,8 +9,10 @@ authentication.js
 index.js
 models/DenyRuleNew.js
 models/DenyRuleRecord.js
-models/EmailAddress.js
 models/EmailAddressName.js
+models/EmailAddressTypes.js
+models/EmailAddressesTypes.js
+models/ErrorMessage.js
 models/GenericResponse.js
 models/MailAttachment.js
 models/MailBlockClickHouse.js
@@ -21,7 +23,6 @@ models/MailLogEntry.js
 models/MailOrder.js
 models/SendMail.js
 models/SendMailAdv.js
-models/getMailOrders_401_response.js
 models/getStats_200_response_inner.js
 operations/actions.js
 package.json

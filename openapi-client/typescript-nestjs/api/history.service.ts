@@ -14,7 +14,7 @@
 import { HttpService, Inject, Injectable, Optional } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
-import { GetMailOrders401Response } from '../model/getMailOrders401Response';
+import { ErrorMessage } from '../model/errorMessage';
 import { GetStats200ResponseInner } from '../model/getStats200ResponseInner';
 import { MailLog } from '../model/mailLog';
 import { Configuration } from '../configuration';
@@ -42,8 +42,8 @@ export class HistoryService {
     }
 
     /**
-     * displays a list of blocked email addresses
-     * 
+     * Account usage statistics.
+     * Returns information about the usage on your mail accounts.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */

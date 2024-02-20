@@ -18,7 +18,7 @@
 #include "OAIServerConfiguration.h"
 #include "OAIOauth.h"
 
-#include "OAIGetMailOrders_401_response.h"
+#include "OAIErrorMessage.h"
 #include "OAIMailOrder.h"
 #include <QString>
 

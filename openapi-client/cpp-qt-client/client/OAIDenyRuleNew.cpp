@@ -53,13 +53,13 @@ void OAIDenyRuleNew::fromJson(QString jsonString) {
 
 void OAIDenyRuleNew::fromJsonObject(QJsonObject json) {
 
-    m_type_isValid = ::OpenAPI::fromJsonValue(type, json[QString("type")]);
+    m_type_isValid = ::OpenAPI::fromJsonValue(m_type, json[QString("type")]);
     m_type_isSet = !json[QString("type")].isNull() && m_type_isValid;
 
-    m_data_isValid = ::OpenAPI::fromJsonValue(data, json[QString("data")]);
+    m_data_isValid = ::OpenAPI::fromJsonValue(m_data, json[QString("data")]);
     m_data_isSet = !json[QString("data")].isNull() && m_data_isValid;
 
-    m_user_isValid = ::OpenAPI::fromJsonValue(user, json[QString("user")]);
+    m_user_isValid = ::OpenAPI::fromJsonValue(m_user, json[QString("user")]);
     m_user_isSet = !json[QString("user")].isNull() && m_user_isValid;
 }
 
@@ -73,23 +73,23 @@ QString OAIDenyRuleNew::asJson() const {
 QJsonObject OAIDenyRuleNew::asJsonObject() const {
     QJsonObject obj;
     if (m_type_isSet) {
-        obj.insert(QString("type"), ::OpenAPI::toJsonValue(type));
+        obj.insert(QString("type"), ::OpenAPI::toJsonValue(m_type));
     }
     if (m_data_isSet) {
-        obj.insert(QString("data"), ::OpenAPI::toJsonValue(data));
+        obj.insert(QString("data"), ::OpenAPI::toJsonValue(m_data));
     }
     if (m_user_isSet) {
-        obj.insert(QString("user"), ::OpenAPI::toJsonValue(user));
+        obj.insert(QString("user"), ::OpenAPI::toJsonValue(m_user));
     }
     return obj;
 }
 
 QString OAIDenyRuleNew::getType() const {
-    return type;
+    return m_type;
 }
 void OAIDenyRuleNew::setType(const QString &type) {
-    this->type = type;
-    this->m_type_isSet = true;
+    m_type = type;
+    m_type_isSet = true;
 }
 
 bool OAIDenyRuleNew::is_type_Set() const{
@@ -101,11 +101,11 @@ bool OAIDenyRuleNew::is_type_Valid() const{
 }
 
 QString OAIDenyRuleNew::getData() const {
-    return data;
+    return m_data;
 }
 void OAIDenyRuleNew::setData(const QString &data) {
-    this->data = data;
-    this->m_data_isSet = true;
+    m_data = data;
+    m_data_isSet = true;
 }
 
 bool OAIDenyRuleNew::is_data_Set() const{
@@ -117,11 +117,11 @@ bool OAIDenyRuleNew::is_data_Valid() const{
 }
 
 QString OAIDenyRuleNew::getUser() const {
-    return user;
+    return m_user;
 }
 void OAIDenyRuleNew::setUser(const QString &user) {
-    this->user = user;
-    this->m_user_isSet = true;
+    m_user = user;
+    m_user_isSet = true;
 }
 
 bool OAIDenyRuleNew::is_user_Set() const{

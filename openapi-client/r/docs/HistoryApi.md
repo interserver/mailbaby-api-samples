@@ -4,20 +4,22 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetStats**](HistoryApi.md#GetStats) | **GET** /mail/stats | displays a list of blocked email addresses
+[**GetStats**](HistoryApi.md#GetStats) | **GET** /mail/stats | Account usage statistics.
 [**ViewMailLog**](HistoryApi.md#ViewMailLog) | **GET** /mail/log | displays the mail log
 
 
 # **GetStats**
 > array[GetStats200ResponseInner] GetStats()
 
-displays a list of blocked email addresses
+Account usage statistics.
+
+Returns information about the usage on your mail accounts.
 
 ### Example
 ```R
 library(openapi)
 
-# displays a list of blocked email addresses
+# Account usage statistics.
 #
 
 api_instance <- HistoryApi$new()

@@ -8,7 +8,6 @@
 
 #' EmailAddress Class
 #'
-#' @field email 
 #'
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -16,38 +15,24 @@
 EmailAddress <- R6::R6Class(
   'EmailAddress',
   public = list(
-    `email` = NULL,
-    initialize = function(`email`){
-      if (!missing(`email`)) {
-        stopifnot(is.character(`email`), length(`email`) == 1)
-        self$`email` <- `email`
-      }
+    initialize = function(){
     },
     toJSON = function() {
       EmailAddressObject <- list()
-      if (!is.null(self$`email`)) {
-        EmailAddressObject[['email']] <- self$`email`
-      }
 
       EmailAddressObject
     },
     fromJSON = function(EmailAddressJson) {
       EmailAddressObject <- jsonlite::fromJSON(EmailAddressJson)
-      if (!is.null(EmailAddressObject$`email`)) {
-        self$`email` <- EmailAddressObject$`email`
-      }
     },
     toJSONString = function() {
        sprintf(
         '{
-           "email": %s
         }',
-        self$`email`
       )
     },
     fromJSONString = function(EmailAddressJson) {
       EmailAddressObject <- jsonlite::fromJSON(EmailAddressJson)
-      self$`email` <- EmailAddressObject$`email`
     }
   )
 )

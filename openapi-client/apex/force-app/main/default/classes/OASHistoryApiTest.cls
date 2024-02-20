@@ -1,9 +1,9 @@
 @isTest
 private class OASHistoryApiTest {
     /**
-     * displays a list of blocked email addresses
+     * Account usage statistics.
      *
-     * 
+     * Returns information about the usage on your mail accounts.
      */
     @isTest
     private static void getStatsTest() {

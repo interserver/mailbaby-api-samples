@@ -76,7 +76,7 @@ Name | Type | Description  | Required | Notes
 
 ## delist_block
 
-> crate::models::GenericResponse delist_block(email_address)
+> crate::models::GenericResponse delist_block(body)
 Removes an email address from the blocked list
 
 Removes an email address from the various block lists. 
@@ -86,7 +86,7 @@ Removes an email address from the various block lists.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**email_address** | [**EmailAddress**](EmailAddress.md) |  | [required] |
+**body** | **String** |  | [required] |
 
 ### Return type
 

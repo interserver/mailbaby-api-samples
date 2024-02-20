@@ -17,7 +17,7 @@
 #' @section Methods:
 #' \describe{
 #'
-#' get_stats displays a list of blocked email addresses
+#' get_stats Account usage statistics.
 #'
 #'
 #' view_mail_log displays the mail log

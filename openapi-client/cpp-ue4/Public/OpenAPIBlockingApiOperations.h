@@ -16,9 +16,8 @@
 #include "OpenAPIBlockingApi.h"
 
 #include "OpenAPIDenyRuleRecord.h"
-#include "OpenAPIEmailAddress.h"
+#include "OpenAPIErrorMessage.h"
 #include "OpenAPIGenericResponse.h"
-#include "OpenAPIGetMailOrders401Response.h"
 #include "OpenAPIMailBlocks.h"
 
 namespace OpenAPI
@@ -40,6 +39,7 @@ public:
 		Domain,
 		Email,
 		Startswith,
+		Destination,
   	};
 
 	static FString EnumToString(const TypeEnum& EnumValue);
@@ -98,7 +98,7 @@ public:
 	void SetupHttpRequest(const FHttpRequestRef& HttpRequest) const final;
 	FString ComputePath() const final;
 
-	OpenAPIEmailAddress OpenAPIEmailAddress;
+	FString Body;
 };
 
 class OPENAPI_API OpenAPIBlockingApi::DelistBlockResponse : public Response

@@ -20,7 +20,7 @@ openapi_deny_rule_new() ->
 
 openapi_deny_rule_new(Fields) ->
   Default = [ {'user', binary() }
-            , {'type', elements([<<"domain">>, <<"email">>, <<"startswith">>]) }
+            , {'type', elements([<<"domain">>, <<"email">>, <<"startswith">>, <<"destination">>]) }
             , {'data', binary() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).

@@ -45,7 +45,7 @@ apiInstance.addRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type** | [**string**]**Array<&#39;domain&#39; &#124; &#39;email&#39; &#124; &#39;startswith&#39;>** | The type of deny rule. | defaults to undefined
+ **type** | [**string**]**Array<&#39;domain&#39; &#124; &#39;email&#39; &#124; &#39;startswith&#39; &#124; &#39;destination&#39;>** | The type of deny rule. | defaults to undefined
  **data** | [**string**] | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. | defaults to undefined
  **user** | [**string**] | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. | (optional) defaults to undefined
 
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | search results matching criteria |  -  |
-**400** | The specified resource was not found |  -  |
+**400** | Error message when there was a problem with the input parameters. |  -  |
 **401** | Unauthorized |  -  |
 **404** | The specified resource was not found |  -  |
 
@@ -125,14 +125,14 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | search results matching criteria |  -  |
-**400** | The specified resource was not found |  -  |
+**400** | Error message when there was a problem with the input parameters. |  -  |
 **401** | Unauthorized |  -  |
 **404** | The specified resource was not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **delistBlock**
-> GenericResponse delistBlock(emailAddress)
+> GenericResponse delistBlock(body)
 
 Removes an email address from the various block lists. 
 
@@ -147,10 +147,8 @@ const configuration = .createConfiguration();
 const apiInstance = new .BlockingApi(configuration);
 
 let body:.BlockingApiDelistBlockRequest = {
-  // EmailAddress
-  emailAddress: {
-    email: "user@domain.com",
-  },
+  // string
+  body: "{"email":"client@domain.com"}",
 };
 
 apiInstance.delistBlock(body).then((data:any) => {
@@ -163,7 +161,7 @@ apiInstance.delistBlock(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **emailAddress** | **EmailAddress**|  |
+ **body** | **string**|  |
 
 
 ### Return type
@@ -184,7 +182,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | search results matching criteria |  -  |
-**400** | The specified resource was not found |  -  |
+**400** | Error message when there was a problem with the input parameters. |  -  |
 **401** | Unauthorized |  -  |
 **404** | The specified resource was not found |  -  |
 

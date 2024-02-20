@@ -3,12 +3,13 @@ Protected Class HistoryApi
 	#tag Method, Flags = &h0
 		Sub GetStats()
 		  // Operation getStats
-		  // displays a list of blocked email addresses
+		  // Account usage statistics.
 		  // - 
 		  //
 		  // Invokes HistoryApiCallbackHandler.GetStatsCallback(GetStats200ResponseInner) on completion. 
 		  //
 		  // - GET /mail/stats
+		  // - Returns information about the usage on your mail accounts.
 		  // - defaultResponse: Nil
 		  //
 		  // - API Key:

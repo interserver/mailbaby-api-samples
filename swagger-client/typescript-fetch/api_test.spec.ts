@@ -32,7 +32,7 @@ describe("BlockingApi", () => {
     return expect(instance.deleteRule(ruleId, {})).resolves.toBe(null)
   })
   test("delistBlock", () => {
-    const body: api.EmailAddress = {
+    const body: string = {
   "value" : {
     "email" : "client@domain.com"
   }
@@ -81,11 +81,11 @@ describe("SendingApi", () => {
   test("sendAdvMail", () => {
     const subject: string = "subject_example"
     const body: string = "body_example"
-    const from: api.EmailAddressName = undefined
-    const to: Array<api.EmailAddressName> = undefined
-    const replyto: Array<api.EmailAddressName> = undefined
-    const cc: Array<api.EmailAddressName> = undefined
-    const bcc: Array<api.EmailAddressName> = undefined
+    const from: api.EmailAddressTypes = undefined
+    const to: api.EmailAddressesTypes = undefined
+    const replyto: api.EmailAddressesTypes = undefined
+    const cc: api.EmailAddressesTypes = undefined
+    const bcc: api.EmailAddressesTypes = undefined
     const attachments: Array<api.MailAttachment> = undefined
     const id: number = 789
     return expect(instance.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, {})).resolves.toBe(null)

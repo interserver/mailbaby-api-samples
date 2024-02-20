@@ -13,7 +13,7 @@ package org.openapitools.client.model
 
 
   /**
-   * Root Type for MailOrder
+   * MailOrder
    * A mail order record
    */
 case class MailOrder(

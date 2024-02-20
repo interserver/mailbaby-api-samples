@@ -4,13 +4,15 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getStats**](HistoryApi.md#getstats) | **GET** /mail/stats | displays a list of blocked email addresses
+[**getStats**](HistoryApi.md#getstats) | **GET** /mail/stats | Account usage statistics.
 [**viewMailLog**](HistoryApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
 
 # **getStats**
 > \Interserver\Mailbaby\Model\InlineResponse200[] getStats()
 
-displays a list of blocked email addresses
+Account usage statistics.
+
+Returns information about the usage on your mail accounts.
 
 ### Example
 ```php

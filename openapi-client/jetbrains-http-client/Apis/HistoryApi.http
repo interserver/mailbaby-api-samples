@@ -1,6 +1,6 @@
 ## HistoryApi
 
-### displays a list of blocked email addresses
+### Account usage statistics.
 # @name getStats
 GET https://api.mailbaby.net/mail/stats
 

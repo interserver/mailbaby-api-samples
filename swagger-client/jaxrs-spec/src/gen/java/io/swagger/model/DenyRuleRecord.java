@@ -2,6 +2,7 @@ package io.swagger.model;
 
 import io.swagger.model.DenyRuleNew;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.Date;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
@@ -15,11 +16,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class DenyRuleRecord   {
 
+  private @Valid String id = null;
+
+  private @Valid Date created = null;
+
   private @Valid String user = null;
 
 public enum TypeEnum {
 
-    DOMAIN(String.valueOf("domain")), EMAIL(String.valueOf("email")), STARTSWITH(String.valueOf("startswith"));
+    DOMAIN(String.valueOf("domain")), EMAIL(String.valueOf("email")), STARTSWITH(String.valueOf("startswith")), DESTINATION(String.valueOf("destination"));
 
 
     private String value;
@@ -51,6 +56,46 @@ public enum TypeEnum {
   private @Valid TypeEnum type = null;
 
   private @Valid String data = null;
+
+  /**
+   * The deny rule Id number.
+   **/
+  public DenyRuleRecord id(String id) {
+    this.id = id;
+    return this;
+  }
+
+  
+  @ApiModelProperty(example = "41124", required = true, value = "The deny rule Id number.")
+  @JsonProperty("id")
+  @NotNull
+
+  public String getId() {
+    return id;
+  }
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  /**
+   * the date the rule was created.
+   **/
+  public DenyRuleRecord created(Date created) {
+    this.created = created;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "the date the rule was created.")
+  @JsonProperty("created")
+  @NotNull
+
+  public Date getCreated() {
+    return created;
+  }
+  public void setCreated(Date created) {
+    this.created = created;
+  }
 
   /**
    * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
@@ -121,14 +166,16 @@ public enum TypeEnum {
       return false;
     }
     DenyRuleRecord denyRuleRecord = (DenyRuleRecord) o;
-    return Objects.equals(user, denyRuleRecord.user) &&
+    return Objects.equals(id, denyRuleRecord.id) &&
+        Objects.equals(created, denyRuleRecord.created) &&
+        Objects.equals(user, denyRuleRecord.user) &&
         Objects.equals(type, denyRuleRecord.type) &&
         Objects.equals(data, denyRuleRecord.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(user, type, data);
+    return Objects.hash(id, created, user, type, data);
   }
 
   @Override
@@ -136,6 +183,8 @@ public enum TypeEnum {
     StringBuilder sb = new StringBuilder();
     sb.append("class DenyRuleRecord {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");

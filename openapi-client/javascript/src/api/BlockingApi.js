@@ -14,9 +14,8 @@
 
 import ApiClient from "../ApiClient";
 import DenyRuleRecord from '../model/DenyRuleRecord';
-import EmailAddress from '../model/EmailAddress';
+import ErrorMessage from '../model/ErrorMessage';
 import GenericResponse from '../model/GenericResponse';
-import GetMailOrders401Response from '../model/GetMailOrders401Response';
 import MailBlocks from '../model/MailBlocks';
 
 /**
@@ -145,15 +144,15 @@ export default class BlockingApi {
     /**
      * Removes an email address from the blocked list
      * Removes an email address from the various block lists. 
-     * @param {module:model/EmailAddress} emailAddress 
+     * @param {String} body 
      * @param {module:api/BlockingApi~delistBlockCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    delistBlock(emailAddress, callback) {
-      let postBody = emailAddress;
-      // verify the required parameter 'emailAddress' is set
-      if (emailAddress === undefined || emailAddress === null) {
-        throw new Error("Missing the required parameter 'emailAddress' when calling delistBlock");
+    delistBlock(body, callback) {
+      let postBody = body;
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling delistBlock");
       }
 
       let pathParams = {

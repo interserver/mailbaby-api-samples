@@ -9,14 +9,16 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_stats**](HistoryApi.md#get_stats) | **GET** /mail/stats | displays a list of blocked email addresses
+[**get_stats**](HistoryApi.md#get_stats) | **GET** /mail/stats | Account usage statistics.
 [**view_mail_log**](HistoryApi.md#view_mail_log) | **GET** /mail/log | displays the mail log
 
 
 # **get_stats**
 > ARRAY[GetStats200ResponseInner] get_stats()
 
-displays a list of blocked email addresses
+Account usage statistics.
+
+Returns information about the usage on your mail accounts.
 
 ### Example
 ```perl

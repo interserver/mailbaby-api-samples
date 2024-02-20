@@ -2,7 +2,7 @@ package io.swagger.server.model
 
 
 /**
- * = Root Type for MailBlocks =
+ * = MailBlocks =
  *
  * The listing of blocked emails.
  *

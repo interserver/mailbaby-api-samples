@@ -17,7 +17,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { InlineResponse401 } from '../model/inlineResponse401';
+import { ErrorMessage } from '../model/errorMessage';
 import { MailOrder } from '../model/mailOrder';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';

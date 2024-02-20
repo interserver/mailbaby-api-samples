@@ -119,7 +119,7 @@ static bool sendAdvMailProcessor(MemoryStruct_s p_chunk, long code, char* errorm
 }
 
 static bool sendAdvMailHelper(char * accessToken,
-	std::string subject, std::string body, EmailAddressName from, std::list<EmailAddressName> to, std::list<EmailAddressName> replyto, std::list<EmailAddressName> cc, std::list<EmailAddressName> bcc, std::list<MailAttachment> attachments, long long id, 
+	std::string subject, std::string body, EmailAddressTypes from, EmailAddressesTypes to, EmailAddressesTypes replyto, EmailAddressesTypes cc, EmailAddressesTypes bcc, std::list<MailAttachment> attachments, long long id, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -191,7 +191,7 @@ static bool sendAdvMailHelper(char * accessToken,
 
 
 bool SendingManager::sendAdvMailAsync(char * accessToken,
-	std::string subject, std::string body, EmailAddressName from, std::list<EmailAddressName> to, std::list<EmailAddressName> replyto, std::list<EmailAddressName> cc, std::list<EmailAddressName> bcc, std::list<MailAttachment> attachments, long long id, 
+	std::string subject, std::string body, EmailAddressTypes from, EmailAddressesTypes to, EmailAddressesTypes replyto, EmailAddressesTypes cc, EmailAddressesTypes bcc, std::list<MailAttachment> attachments, long long id, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
@@ -201,7 +201,7 @@ bool SendingManager::sendAdvMailAsync(char * accessToken,
 }
 
 bool SendingManager::sendAdvMailSync(char * accessToken,
-	std::string subject, std::string body, EmailAddressName from, std::list<EmailAddressName> to, std::list<EmailAddressName> replyto, std::list<EmailAddressName> cc, std::list<EmailAddressName> bcc, std::list<MailAttachment> attachments, long long id, 
+	std::string subject, std::string body, EmailAddressTypes from, EmailAddressesTypes to, EmailAddressesTypes replyto, EmailAddressesTypes cc, EmailAddressesTypes bcc, std::list<MailAttachment> attachments, long long id, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {

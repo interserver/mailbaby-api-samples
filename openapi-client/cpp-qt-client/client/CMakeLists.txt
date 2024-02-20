@@ -10,11 +10,13 @@ include(CMakePackageConfigHelpers)
 add_library(${PROJECT_NAME}
   OAIDenyRuleNew.h
   OAIDenyRuleRecord.h
-  OAIDenyRuleRecord_allOf.h
-  OAIEmailAddress.h
+  OAIEmailAddressName.h
+  OAIEmailAddressTypes.h
+  OAIEmailAddressesTypes.h
+  OAIErrorMessage.h
   OAIGenericResponse.h
-  OAIGetMailOrders_401_response.h
   OAIGetStats_200_response_inner.h
+  OAIMailAttachment.h
   OAIMailBlockClickHouse.h
   OAIMailBlockRspamd.h
   OAIMailBlocks.h
@@ -38,11 +40,13 @@ add_library(${PROJECT_NAME}
   OAIOauth.h
   OAIDenyRuleNew.cpp
   OAIDenyRuleRecord.cpp
-  OAIDenyRuleRecord_allOf.cpp
-  OAIEmailAddress.cpp
+  OAIEmailAddressName.cpp
+  OAIEmailAddressTypes.cpp
+  OAIEmailAddressesTypes.cpp
+  OAIErrorMessage.cpp
   OAIGenericResponse.cpp
-  OAIGetMailOrders_401_response.cpp
   OAIGetStats_200_response_inner.cpp
+  OAIMailAttachment.cpp
   OAIMailBlockClickHouse.cpp
   OAIMailBlockRspamd.cpp
   OAIMailBlocks.cpp

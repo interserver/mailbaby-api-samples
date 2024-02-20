@@ -2,7 +2,8 @@ package io.swagger.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.model.EmailAddressName;
+import io.swagger.model.EmailAddressTypes;
+import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.MailAttachment;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ import javax.xml.bind.annotation.*;
 public class SendMailAdv   {
   private String subject = null;
   private String body = null;
-  private EmailAddressName from = null;
-  private List<EmailAddressName> to = new ArrayList<EmailAddressName>();
-  private List<EmailAddressName> replyto = new ArrayList<EmailAddressName>();
-  private List<EmailAddressName> cc = new ArrayList<EmailAddressName>();
-  private List<EmailAddressName> bcc = new ArrayList<EmailAddressName>();
+  private EmailAddressTypes from = null;
+  private EmailAddressesTypes to = null;
+  private EmailAddressesTypes replyto = null;
+  private EmailAddressesTypes cc = null;
+  private EmailAddressesTypes bcc = null;
   private List<MailAttachment> attachments = new ArrayList<MailAttachment>();
   private Long id = null;
 
@@ -72,7 +73,7 @@ public class SendMailAdv   {
 
   /**
    **/
-  public SendMailAdv from(EmailAddressName from) {
+  public SendMailAdv from(EmailAddressTypes from) {
     this.from = from;
     return this;
   }
@@ -83,91 +84,87 @@ public class SendMailAdv   {
   @JsonProperty("from")
   @NotNull
   @Valid
-  public EmailAddressName getFrom() {
+  public EmailAddressTypes getFrom() {
     return from;
   }
-  public void setFrom(EmailAddressName from) {
+  public void setFrom(EmailAddressTypes from) {
     this.from = from;
   }
 
   /**
-   * A list of destionation email addresses to send this to
    **/
-  public SendMailAdv to(List<EmailAddressName> to) {
+  public SendMailAdv to(EmailAddressesTypes to) {
     this.to = to;
     return this;
   }
 
   
   
-  @Schema(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", required = true, description = "A list of destionation email addresses to send this to")
+  @Schema(required = true, description = "")
   @JsonProperty("to")
   @NotNull
   @Valid
-  public List<EmailAddressName> getTo() {
+  public EmailAddressesTypes getTo() {
     return to;
   }
-  public void setTo(List<EmailAddressName> to) {
+  public void setTo(EmailAddressesTypes to) {
     this.to = to;
   }
 
   /**
-   * (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
    **/
-  public SendMailAdv replyto(List<EmailAddressName> replyto) {
+  public SendMailAdv replyto(EmailAddressesTypes replyto) {
     this.replyto = replyto;
     return this;
   }
 
   
   
-  @Schema(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", description = "(optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.")
+  @Schema(description = "")
   @JsonProperty("replyto")
   @Valid
-  public List<EmailAddressName> getReplyto() {
+  public EmailAddressesTypes getReplyto() {
     return replyto;
   }
-  public void setReplyto(List<EmailAddressName> replyto) {
+  public void setReplyto(EmailAddressesTypes replyto) {
     this.replyto = replyto;
   }
 
   /**
-   * (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
    **/
-  public SendMailAdv cc(List<EmailAddressName> cc) {
+  public SendMailAdv cc(EmailAddressesTypes cc) {
     this.cc = cc;
     return this;
   }
 
   
   
-  @Schema(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", description = "(optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.")
+  @Schema(description = "")
   @JsonProperty("cc")
   @Valid
-  public List<EmailAddressName> getCc() {
+  public EmailAddressesTypes getCc() {
     return cc;
   }
-  public void setCc(List<EmailAddressName> cc) {
+  public void setCc(EmailAddressesTypes cc) {
     this.cc = cc;
   }
 
   /**
-   * (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
    **/
-  public SendMailAdv bcc(List<EmailAddressName> bcc) {
+  public SendMailAdv bcc(EmailAddressesTypes bcc) {
     this.bcc = bcc;
     return this;
   }
 
   
   
-  @Schema(example = "[{\"email\": \"user@domain.com\", \"name\": \"John Smith\"}]", description = "(optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.")
+  @Schema(description = "")
   @JsonProperty("bcc")
   @Valid
-  public List<EmailAddressName> getBcc() {
+  public EmailAddressesTypes getBcc() {
     return bcc;
   }
-  public void setBcc(List<EmailAddressName> bcc) {
+  public void setBcc(EmailAddressesTypes bcc) {
     this.bcc = bcc;
   }
 

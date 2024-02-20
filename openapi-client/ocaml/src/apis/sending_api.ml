@@ -5,7 +5,7 @@
  *
  *)
 
-let send_adv_mail ~subject ~body ~from ~_to ?(replyto = []) ?(cc = []) ?(bcc = []) ?(attachments = []) ?id () =
+let send_adv_mail ~subject ~body ~from ~_to ?replyto ?cc ?bcc ?(attachments = []) ?id () =
     let open Lwt.Infix in
     let uri = Request.build_uri "/mail/advsend" in
     let headers = Request.default_headers in
@@ -14,10 +14,10 @@ let send_adv_mail ~subject ~body ~from ~_to ?(replyto = []) ?(cc = []) ?(bcc = [
     let body = Request.add_form_encoded_body_param body "subject" (fun x -> x) subject in
     let body = Request.add_form_encoded_body_param body "body" (fun x -> x) body in
     let body = Request.add_form_encoded_body_param body "from" .show from in
-    let body = Request.add_form_encoded_body_param_list body "_to" (List.map .show) _to in
-    let body = Request.add_form_encoded_body_param_list body "replyto" (List.map .show) replyto in
-    let body = Request.add_form_encoded_body_param_list body "cc" (List.map .show) cc in
-    let body = Request.add_form_encoded_body_param_list body "bcc" (List.map .show) bcc in
+    let body = Request.add_form_encoded_body_param body "_to" .show _to in
+    let body = Request.maybe_add_form_encoded_body_param body "replyto" .show replyto in
+    let body = Request.maybe_add_form_encoded_body_param body "cc" .show cc in
+    let body = Request.maybe_add_form_encoded_body_param body "bcc" .show bcc in
     let body = Request.add_form_encoded_body_param_list body "attachments" (List.map .show) attachments in
     let body = Request.maybe_add_form_encoded_body_param body "id" Int64.to_string id in
     let body = Request.finalize_form_encoded_body body in

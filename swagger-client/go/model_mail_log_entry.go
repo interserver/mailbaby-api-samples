@@ -48,7 +48,7 @@ type MailLogEntry struct {
 	// locked status
 	Locked int32 `json:"locked"`
 	// lock timestamp
-	LockTime int32 `json:"lockTime"`
+	LockTime string `json:"lockTime"`
 	// assigned server
 	Assigned string `json:"assigned"`
 	// queued timestamp

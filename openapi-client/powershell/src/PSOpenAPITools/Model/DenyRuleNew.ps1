@@ -33,7 +33,7 @@ function Initialize-DenyRuleNew {
         [String]
         ${User},
         [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
-        [ValidateSet("domain", "email", "startswith")]
+        [ValidateSet("domain", "email", "startswith", "destination")]
         [String]
         ${Type},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]

@@ -15,9 +15,8 @@ import { HttpService, Inject, Injectable, Optional } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 import { DenyRuleRecord } from '../model/denyRuleRecord';
-import { EmailAddress } from '../model/emailAddress';
+import { ErrorMessage } from '../model/errorMessage';
 import { GenericResponse } from '../model/genericResponse';
-import { GetMailOrders401Response } from '../model/getMailOrders401Response';
 import { MailBlocks } from '../model/mailBlocks';
 import { Configuration } from '../configuration';
 
@@ -160,15 +159,15 @@ export class BlockingService {
     /**
      * Removes an email address from the blocked list
      * Removes an email address from the various block lists. 
-     * @param emailAddress 
+     * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public delistBlock(emailAddress: EmailAddress, ): Observable<AxiosResponse<GenericResponse>>;
-    public delistBlock(emailAddress: EmailAddress, ): Observable<any> {
+    public delistBlock(body: string, ): Observable<AxiosResponse<GenericResponse>>;
+    public delistBlock(body: string, ): Observable<any> {
 
-        if (emailAddress === null || emailAddress === undefined) {
-            throw new Error('Required parameter emailAddress was null or undefined when calling delistBlock.');
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling delistBlock.');
         }
 
         let headers = {...this.defaultHeaders};
@@ -197,7 +196,7 @@ export class BlockingService {
             headers['Content-Type'] = httpContentTypeSelected;
         }
         return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/blocks/delete`,
-            emailAddress,
+            body,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers

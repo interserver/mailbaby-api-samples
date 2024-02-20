@@ -8,7 +8,8 @@ api_instance <- HistoryApi$new()
 test_that("GetStats", {
   # tests for GetStats
   # base path: https://api.mailbaby.net
-  # displays a list of blocked email addresses
+  # Account usage statistics.
+  # Returns information about the usage on your mail accounts.
   # @return [array[GetStats200ResponseInner]]
 
   # uncomment below to test the operation

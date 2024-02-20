@@ -55,11 +55,11 @@ public:
 private:
     void initializeModel();
 
-    QString from;
+    QString m_from;
     bool m_from_isSet;
     bool m_from_isValid;
 
-    QString subject;
+    QString m_subject;
     bool m_subject_isSet;
     bool m_subject_isValid;
 };

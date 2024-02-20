@@ -9,9 +9,8 @@
 #include <list>
 
 #include "DenyRuleRecord.h"
-#include "EmailAddress.h"
+#include "ErrorMessage.h"
 #include "GenericResponse.h"
-#include "GetMailOrders_401_response.h"
 #include "MailBlocks.h"
 
 namespace Tiny {
@@ -67,14 +66,14 @@ public:
     * Removes an email address from the blocked list.
     *
     * Removes an email address from the various block lists. 
-    * \param emailAddress  *Required*
+    * \param body  *Required*
     */
     Response<
                 GenericResponse
         >
     delistBlock(
             
-            EmailAddress emailAddress
+            std::string body
             
     );
     /**

@@ -74,30 +74,7 @@ exports.deleteRule = function(ruleId) {
  * Removes an email address from the blocked list
  * Removes an email address from the various block lists. 
  *
- * body EmailAddress 
- * returns GenericResponse
- **/
-exports.delistBlock = function(body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "text" : "The command completed successfully.",
-  "status" : "ok"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * Removes an email address from the blocked list
- * Removes an email address from the various block lists. 
- *
- * body EmailAddress 
+ * body String 
  * returns GenericResponse
  **/
 exports.delistBlock = function(body) {

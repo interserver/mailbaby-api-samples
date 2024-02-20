@@ -15,7 +15,7 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
-import { GetMailOrders401Response } from '../model/getMailOrders401Response';
+import { ErrorMessage } from '../model/errorMessage';
 import { GetStats200ResponseInner } from '../model/getStats200ResponseInner';
 import { MailLog } from '../model/mailLog';
 
@@ -92,8 +92,8 @@ export class HistoryApi {
     }
 
     /**
-     * 
-     * @summary displays a list of blocked email addresses
+     * Returns information about the usage on your mail accounts.
+     * @summary Account usage statistics.
      */
     public async getStats (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<GetStats200ResponseInner>;  }> {
         const localVarPath = this.basePath + '/mail/stats';

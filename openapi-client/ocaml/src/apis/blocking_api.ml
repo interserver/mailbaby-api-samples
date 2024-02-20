@@ -27,12 +27,12 @@ let delete_rule ~rule_id =
     Cohttp_lwt_unix.Client.call `DELETE uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body
 
-let delist_block ~email_address_t =
+let delist_block ~body =
     let open Lwt.Infix in
     let uri = Request.build_uri "/mail/blocks/delete" in
     let headers = Request.default_headers in
     let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
-    let body = Request.write_as_json_body Email_address.to_yojson email_address_t in
+    let body = Request.write_as_json_body JsonSupport.of_string body in
     Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body
 

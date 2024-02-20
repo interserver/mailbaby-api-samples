@@ -18,7 +18,7 @@
 #' Adds a new email deny rule into the system to block new emails that match the given criteria
 #'
 #' \itemize{
-#' \item \emph{ @param } type Enum < [domain, email, startswith] >
+#' \item \emph{ @param } type Enum < [domain, email, startswith, destination] >
 #' \item \emph{ @param } data character
 #' \item \emph{ @param } user character
 #' \item \emph{ @returnType } \link{GenericResponse} \cr
@@ -31,23 +31,23 @@
 #'
 #' \tabular{ll}{
 #' }
-#' \item status code : 400 | The specified resource was not found
+#' \item status code : 400 | Error message when there was a problem with the input parameters.
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
 #' \item status code : 401 | Unauthorized
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
 #' \item status code : 404 | The specified resource was not found
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
@@ -69,23 +69,23 @@
 #'
 #' \tabular{ll}{
 #' }
-#' \item status code : 400 | The specified resource was not found
+#' \item status code : 400 | Error message when there was a problem with the input parameters.
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
 #' \item status code : 401 | Unauthorized
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
 #' \item status code : 404 | The specified resource was not found
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
@@ -96,7 +96,7 @@
 #' Removes an email address from the various block lists.
 #'
 #' \itemize{
-#' \item \emph{ @param } email_address \link{EmailAddress}
+#' \item \emph{ @param } body character
 #' \item \emph{ @returnType } \link{GenericResponse} \cr
 #'
 #'
@@ -107,23 +107,23 @@
 #'
 #' \tabular{ll}{
 #' }
-#' \item status code : 400 | The specified resource was not found
+#' \item status code : 400 | Error message when there was a problem with the input parameters.
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
 #' \item status code : 401 | Unauthorized
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
 #' \item status code : 404 | The specified resource was not found
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
@@ -145,14 +145,14 @@
 #' }
 #' \item status code : 401 | Unauthorized
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
 #' \item status code : 404 | Unauthorized
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
@@ -175,14 +175,14 @@
 #' }
 #' \item status code : 401 | Unauthorized
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
 #' }
 #' \item status code : 404 | Unauthorized
 #'
-#' \item return type : GetMailOrders401Response
+#' \item return type : ErrorMessage
 #' \item response headers :
 #'
 #' \tabular{ll}{
@@ -233,7 +233,7 @@
 #' ####################  DelistBlock  ####################
 #'
 #' library(openapi)
-#' var_email_address <- EmailAddress$new("email_example") # EmailAddress | 
+#' var_body <- {"email":"client@domain.com"} # character | 
 #'
 #' #Removes an email address from the blocked list
 #' api_instance <- BlockingApi$new()
@@ -242,8 +242,8 @@
 #' api_instance$api_client$api_keys["X-API-KEY"] <- Sys.getenv("API_KEY")
 #'
 #' # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-#' # result <- api_instance$DelistBlock(var_email_addressdata_file = "result.txt")
-#' result <- api_instance$DelistBlock(var_email_address)
+#' # result <- api_instance$DelistBlock(var_bodydata_file = "result.txt")
+#' result <- api_instance$DelistBlock(var_body)
 #' dput(result)
 #'
 #'
@@ -517,13 +517,13 @@ BlockingApi <- R6::R6Class(
     #' @description
     #' Removes an email address from the blocked list
     #'
-    #' @param email_address 
+    #' @param body 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #' @return GenericResponse
     #' @export
-    DelistBlock = function(email_address, data_file = NULL, ...) {
-      local_var_response <- self$DelistBlockWithHttpInfo(email_address, data_file = data_file, ...)
+    DelistBlock = function(body, data_file = NULL, ...) {
+      local_var_response <- self$DelistBlockWithHttpInfo(body, data_file = data_file, ...)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         local_var_response$content
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -539,12 +539,12 @@ BlockingApi <- R6::R6Class(
     #' @description
     #' Removes an email address from the blocked list
     #'
-    #' @param email_address 
+    #' @param body 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #' @return API response (GenericResponse) with additional information such as HTTP status code, headers
     #' @export
-    DelistBlockWithHttpInfo = function(email_address, data_file = NULL, ...) {
+    DelistBlockWithHttpInfo = function(body, data_file = NULL, ...) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -554,13 +554,13 @@ BlockingApi <- R6::R6Class(
       oauth_scopes <- NULL
       is_oauth <- FALSE
 
-      if (missing(`email_address`)) {
-        stop("Missing required parameter `email_address`.")
+      if (missing(`body`)) {
+        stop("Missing required parameter `body`.")
       }
 
 
-      if (!is.null(`email_address`)) {
-        local_var_body <- `email_address`$toJSONString()
+      if (!is.null(`body`)) {
+        local_var_body <- `body`$toJSONString()
       } else {
         body <- NULL
       }

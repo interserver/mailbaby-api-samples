@@ -21,12 +21,12 @@ import (
 )
 
 
-// BlockingApiService BlockingApi service
-type BlockingApiService service
+// BlockingAPIService BlockingAPI service
+type BlockingAPIService service
 
 type ApiAddRuleRequest struct {
 	ctx context.Context
-	ApiService *BlockingApiService
+	ApiService *BlockingAPIService
 	type_ *string
 	data *string
 	user *string
@@ -62,7 +62,7 @@ Adds a new email deny rule into the system to block new emails that match the gi
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiAddRuleRequest
 */
-func (a *BlockingApiService) AddRule(ctx context.Context) ApiAddRuleRequest {
+func (a *BlockingAPIService) AddRule(ctx context.Context) ApiAddRuleRequest {
 	return ApiAddRuleRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -71,7 +71,7 @@ func (a *BlockingApiService) AddRule(ctx context.Context) ApiAddRuleRequest {
 
 // Execute executes the request
 //  @return GenericResponse
-func (a *BlockingApiService) AddRuleExecute(r ApiAddRuleRequest) (*GenericResponse, *http.Response, error) {
+func (a *BlockingAPIService) AddRuleExecute(r ApiAddRuleRequest) (*GenericResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -79,7 +79,7 @@ func (a *BlockingApiService) AddRuleExecute(r ApiAddRuleRequest) (*GenericRespon
 		localVarReturnValue  *GenericResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlockingApiService.AddRule")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlockingAPIService.AddRule")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -155,7 +155,7 @@ func (a *BlockingApiService) AddRuleExecute(r ApiAddRuleRequest) (*GenericRespon
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -166,7 +166,7 @@ func (a *BlockingApiService) AddRuleExecute(r ApiAddRuleRequest) (*GenericRespon
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -177,7 +177,7 @@ func (a *BlockingApiService) AddRuleExecute(r ApiAddRuleRequest) (*GenericRespon
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -203,7 +203,7 @@ func (a *BlockingApiService) AddRuleExecute(r ApiAddRuleRequest) (*GenericRespon
 
 type ApiDeleteRuleRequest struct {
 	ctx context.Context
-	ApiService *BlockingApiService
+	ApiService *BlockingAPIService
 	ruleId int32
 }
 
@@ -220,7 +220,7 @@ Removes one of the configured deny mail rules from the system.
  @param ruleId The ID of the Rules entry.
  @return ApiDeleteRuleRequest
 */
-func (a *BlockingApiService) DeleteRule(ctx context.Context, ruleId int32) ApiDeleteRuleRequest {
+func (a *BlockingAPIService) DeleteRule(ctx context.Context, ruleId int32) ApiDeleteRuleRequest {
 	return ApiDeleteRuleRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -230,7 +230,7 @@ func (a *BlockingApiService) DeleteRule(ctx context.Context, ruleId int32) ApiDe
 
 // Execute executes the request
 //  @return GenericResponse
-func (a *BlockingApiService) DeleteRuleExecute(r ApiDeleteRuleRequest) (*GenericResponse, *http.Response, error) {
+func (a *BlockingAPIService) DeleteRuleExecute(r ApiDeleteRuleRequest) (*GenericResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -238,7 +238,7 @@ func (a *BlockingApiService) DeleteRuleExecute(r ApiDeleteRuleRequest) (*Generic
 		localVarReturnValue  *GenericResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlockingApiService.DeleteRule")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlockingAPIService.DeleteRule")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -304,7 +304,7 @@ func (a *BlockingApiService) DeleteRuleExecute(r ApiDeleteRuleRequest) (*Generic
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -315,7 +315,7 @@ func (a *BlockingApiService) DeleteRuleExecute(r ApiDeleteRuleRequest) (*Generic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -326,7 +326,7 @@ func (a *BlockingApiService) DeleteRuleExecute(r ApiDeleteRuleRequest) (*Generic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -352,12 +352,12 @@ func (a *BlockingApiService) DeleteRuleExecute(r ApiDeleteRuleRequest) (*Generic
 
 type ApiDelistBlockRequest struct {
 	ctx context.Context
-	ApiService *BlockingApiService
-	emailAddress *EmailAddress
+	ApiService *BlockingAPIService
+	body *string
 }
 
-func (r ApiDelistBlockRequest) EmailAddress(emailAddress EmailAddress) ApiDelistBlockRequest {
-	r.emailAddress = &emailAddress
+func (r ApiDelistBlockRequest) Body(body string) ApiDelistBlockRequest {
+	r.body = &body
 	return r
 }
 
@@ -374,7 +374,7 @@ Removes an email address from the various block lists.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiDelistBlockRequest
 */
-func (a *BlockingApiService) DelistBlock(ctx context.Context) ApiDelistBlockRequest {
+func (a *BlockingAPIService) DelistBlock(ctx context.Context) ApiDelistBlockRequest {
 	return ApiDelistBlockRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -383,7 +383,7 @@ func (a *BlockingApiService) DelistBlock(ctx context.Context) ApiDelistBlockRequ
 
 // Execute executes the request
 //  @return GenericResponse
-func (a *BlockingApiService) DelistBlockExecute(r ApiDelistBlockRequest) (*GenericResponse, *http.Response, error) {
+func (a *BlockingAPIService) DelistBlockExecute(r ApiDelistBlockRequest) (*GenericResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -391,7 +391,7 @@ func (a *BlockingApiService) DelistBlockExecute(r ApiDelistBlockRequest) (*Gener
 		localVarReturnValue  *GenericResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlockingApiService.DelistBlock")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlockingAPIService.DelistBlock")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -401,8 +401,8 @@ func (a *BlockingApiService) DelistBlockExecute(r ApiDelistBlockRequest) (*Gener
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.emailAddress == nil {
-		return localVarReturnValue, nil, reportError("emailAddress is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -423,7 +423,7 @@ func (a *BlockingApiService) DelistBlockExecute(r ApiDelistBlockRequest) (*Gener
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.emailAddress
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -461,7 +461,7 @@ func (a *BlockingApiService) DelistBlockExecute(r ApiDelistBlockRequest) (*Gener
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -472,7 +472,7 @@ func (a *BlockingApiService) DelistBlockExecute(r ApiDelistBlockRequest) (*Gener
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -483,7 +483,7 @@ func (a *BlockingApiService) DelistBlockExecute(r ApiDelistBlockRequest) (*Gener
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -509,7 +509,7 @@ func (a *BlockingApiService) DelistBlockExecute(r ApiDelistBlockRequest) (*Gener
 
 type ApiGetMailBlocksRequest struct {
 	ctx context.Context
-	ApiService *BlockingApiService
+	ApiService *BlockingAPIService
 }
 
 func (r ApiGetMailBlocksRequest) Execute() (*MailBlocks, *http.Response, error) {
@@ -522,7 +522,7 @@ GetMailBlocks displays a list of blocked email addresses
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetMailBlocksRequest
 */
-func (a *BlockingApiService) GetMailBlocks(ctx context.Context) ApiGetMailBlocksRequest {
+func (a *BlockingAPIService) GetMailBlocks(ctx context.Context) ApiGetMailBlocksRequest {
 	return ApiGetMailBlocksRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -531,7 +531,7 @@ func (a *BlockingApiService) GetMailBlocks(ctx context.Context) ApiGetMailBlocks
 
 // Execute executes the request
 //  @return MailBlocks
-func (a *BlockingApiService) GetMailBlocksExecute(r ApiGetMailBlocksRequest) (*MailBlocks, *http.Response, error) {
+func (a *BlockingAPIService) GetMailBlocksExecute(r ApiGetMailBlocksRequest) (*MailBlocks, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -539,7 +539,7 @@ func (a *BlockingApiService) GetMailBlocksExecute(r ApiGetMailBlocksRequest) (*M
 		localVarReturnValue  *MailBlocks
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlockingApiService.GetMailBlocks")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlockingAPIService.GetMailBlocks")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -604,7 +604,7 @@ func (a *BlockingApiService) GetMailBlocksExecute(r ApiGetMailBlocksRequest) (*M
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -615,7 +615,7 @@ func (a *BlockingApiService) GetMailBlocksExecute(r ApiGetMailBlocksRequest) (*M
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -641,7 +641,7 @@ func (a *BlockingApiService) GetMailBlocksExecute(r ApiGetMailBlocksRequest) (*M
 
 type ApiGetRulesRequest struct {
 	ctx context.Context
-	ApiService *BlockingApiService
+	ApiService *BlockingAPIService
 }
 
 func (r ApiGetRulesRequest) Execute() ([]DenyRuleRecord, *http.Response, error) {
@@ -656,7 +656,7 @@ Returns a listing of all the deny block rules you have configured.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetRulesRequest
 */
-func (a *BlockingApiService) GetRules(ctx context.Context) ApiGetRulesRequest {
+func (a *BlockingAPIService) GetRules(ctx context.Context) ApiGetRulesRequest {
 	return ApiGetRulesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -665,7 +665,7 @@ func (a *BlockingApiService) GetRules(ctx context.Context) ApiGetRulesRequest {
 
 // Execute executes the request
 //  @return []DenyRuleRecord
-func (a *BlockingApiService) GetRulesExecute(r ApiGetRulesRequest) ([]DenyRuleRecord, *http.Response, error) {
+func (a *BlockingAPIService) GetRulesExecute(r ApiGetRulesRequest) ([]DenyRuleRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -673,7 +673,7 @@ func (a *BlockingApiService) GetRulesExecute(r ApiGetRulesRequest) ([]DenyRuleRe
 		localVarReturnValue  []DenyRuleRecord
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlockingApiService.GetRules")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlockingAPIService.GetRules")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -738,7 +738,7 @@ func (a *BlockingApiService) GetRulesExecute(r ApiGetRulesRequest) ([]DenyRuleRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -749,7 +749,7 @@ func (a *BlockingApiService) GetRulesExecute(r ApiGetRulesRequest) ([]DenyRuleRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GetMailOrders401Response
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

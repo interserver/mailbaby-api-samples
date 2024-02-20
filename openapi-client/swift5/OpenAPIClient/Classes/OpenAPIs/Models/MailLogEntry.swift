@@ -48,7 +48,7 @@ public struct MailLogEntry: Codable, JSONEncodable, Hashable {
     /** locked status */
     public var locked: Int
     /** lock timestamp */
-    public var lockTime: Int
+    public var lockTime: String
     /** assigned server */
     public var assigned: String
     /** queued timestamp */
@@ -60,7 +60,7 @@ public struct MailLogEntry: Codable, JSONEncodable, Hashable {
     /** message id */
     public var messageId: String?
 
-    public init(id: Int, id: String, from: String, to: String, subject: String, created: String, time: Int, user: String, transtype: String, origin: String, interface: String, sendingZone: String, bodySize: Int, seq: Int, recipient: String, domain: String, locked: Int, lockTime: Int, assigned: String, queued: String, mxHostname: String, response: String, messageId: String? = nil) {
+    public init(id: Int, id: String, from: String, to: String, subject: String, created: String, time: Int, user: String, transtype: String, origin: String, interface: String, sendingZone: String, bodySize: Int, seq: Int, recipient: String, domain: String, locked: Int, lockTime: String, assigned: String, queued: String, mxHostname: String, response: String, messageId: String? = nil) {
         self.id = id
         self.id = id
         self.from = from

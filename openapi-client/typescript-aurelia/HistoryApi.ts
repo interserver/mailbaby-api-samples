@@ -59,7 +59,8 @@ export class HistoryApi extends Api {
   }
 
   /**
-   * displays a list of blocked email addresses
+   * Account usage statistics.
+   * Returns information about the usage on your mail accounts.
    */
   async getStats(): Promise<Array<GetStats200ResponseInner>> {
     // Verify required parameters are set

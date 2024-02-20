@@ -142,7 +142,7 @@ try {
 ## `delistBlock()`
 
 ```php
-delistBlock($emailAddress): \Interserver\Mailbaby\Model\GenericResponse
+delistBlock($body): \Interserver\Mailbaby\Model\GenericResponse
 ```
 
 Removes an email address from the blocked list
@@ -168,10 +168,10 @@ $apiInstance = new Interserver\Mailbaby\Api\BlockingApi(
     new GuzzleHttp\Client(),
     $config
 );
-$emailAddress = {"email":"client@domain.com"}; // \Interserver\Mailbaby\Model\EmailAddress
+$body = {"email":"client@domain.com"}; // string
 
 try {
-    $result = $apiInstance->delistBlock($emailAddress);
+    $result = $apiInstance->delistBlock($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BlockingApi->delistBlock: ', $e->getMessage(), PHP_EOL;
@@ -182,7 +182,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **emailAddress** | [**\Interserver\Mailbaby\Model\EmailAddress**](../Model/EmailAddress.md)|  | |
+| **body** | **string**|  | |
 
 ### Return type
 

@@ -11,20 +11,22 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-/**
+
+ /**
  * This is a block entry from the rspamd block list.
+ *
  * @export
  * @interface MailBlockRspamd
  */
 export interface MailBlockRspamd {
+
     /**
-     * 
      * @type {string}
      * @memberof MailBlockRspamd
      */
     from: string;
+
     /**
-     * 
      * @type {string}
      * @memberof MailBlockRspamd
      */

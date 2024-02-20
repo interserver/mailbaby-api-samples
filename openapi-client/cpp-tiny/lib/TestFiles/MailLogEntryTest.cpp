@@ -369,16 +369,16 @@ void test_MailLogEntry_locked_is_assigned_from_json()
 
 void test_MailLogEntry_lockTime_is_assigned_from_json()
 {
+
+
     bourne::json input =
     {
-        "lockTime", 1
+        "lockTime", "hello"
     };
 
     MailLogEntry obj(input.dump());
 
-    TEST_ASSERT_EQUAL_INT(1, obj.getLockTime());
-
-
+    TEST_ASSERT_EQUAL_STRING("hello", obj.getLockTime().c_str());
 
 
 
@@ -853,9 +853,10 @@ void test_MailLogEntry_locked_is_converted_to_json()
 
 void test_MailLogEntry_lockTime_is_converted_to_json()
 {
+
     bourne::json input =
     {
-        "lockTime", 1
+        "lockTime", "hello"
     };
 
     MailLogEntry obj(input.dump());
@@ -865,7 +866,6 @@ void test_MailLogEntry_lockTime_is_converted_to_json()
     output = obj.toJson();
 
     TEST_ASSERT(input["lockTime"] == output["lockTime"]);
-
 
 
 

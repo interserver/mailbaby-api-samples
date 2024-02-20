@@ -27,7 +27,7 @@
   | {'recipient', binary() }
   | {'domain', binary() }
   | {'locked', integer() }
-  | {'lockTime', integer() }
+  | {'lockTime', binary() }
   | {'assigned', binary() }
   | {'queued', binary() }
   | {'mxHostname', binary() }
@@ -57,7 +57,7 @@ openapi_mail_log_entry(Fields) ->
             , {'recipient', binary() }
             , {'domain', binary() }
             , {'locked', integer() }
-            , {'lockTime', integer() }
+            , {'lockTime', binary() }
             , {'assigned', binary() }
             , {'queued', binary() }
             , {'mxHostname', binary() }

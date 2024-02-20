@@ -50,7 +50,7 @@ public class MailLogEntry   {
 
   private @Valid Integer locked = null;
 
-  private @Valid Integer lockTime = null;
+  private @Valid String lockTime = null;
 
   private @Valid String assigned = null;
 
@@ -422,7 +422,7 @@ public class MailLogEntry   {
   /**
    * lock timestamp
    **/
-  public MailLogEntry lockTime(Integer lockTime) {
+  public MailLogEntry lockTime(String lockTime) {
     this.lockTime = lockTime;
     return this;
   }
@@ -432,10 +432,10 @@ public class MailLogEntry   {
   @JsonProperty("lockTime")
   @NotNull
 
-  public Integer getLockTime() {
+  public String getLockTime() {
     return lockTime;
   }
-  public void setLockTime(Integer lockTime) {
+  public void setLockTime(String lockTime) {
     this.lockTime = lockTime;
   }
 

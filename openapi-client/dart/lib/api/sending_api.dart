@@ -18,7 +18,7 @@ class SendingApi {
 
   /// Sends an Email with Advanced Options
   ///
-  /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+  /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
   ///
   /// Note: This method returns the HTTP [Response].
   ///
@@ -30,26 +30,22 @@ class SendingApi {
   /// * [String] body (required):
   ///   The main email contents.
   ///
-  /// * [EmailAddressName] from (required):
+  /// * [EmailAddressTypes] from (required):
   ///
-  /// * [List<EmailAddressName>] to (required):
-  ///   A list of destionation email addresses to send this to
+  /// * [EmailAddressesTypes] to (required):
   ///
-  /// * [List<EmailAddressName>] replyto:
-  ///   (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+  /// * [EmailAddressesTypes] replyto:
   ///
-  /// * [List<EmailAddressName>] cc:
-  ///   (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+  /// * [EmailAddressesTypes] cc:
   ///
-  /// * [List<EmailAddressName>] bcc:
-  ///   (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+  /// * [EmailAddressesTypes] bcc:
   ///
   /// * [List<MailAttachment>] attachments:
   ///   (optional) File attachments to include in the email.  The file contents must be base64 encoded!
   ///
   /// * [int] id:
   ///   (optional)  ID of the Mail order within our system to use as the Mail Account.
-  Future<Response> sendAdvMailWithHttpInfo(String subject, String body, EmailAddressName from, List<EmailAddressName> to, { List<EmailAddressName>? replyto, List<EmailAddressName>? cc, List<EmailAddressName>? bcc, List<MailAttachment>? attachments, int? id, }) async {
+  Future<Response> sendAdvMailWithHttpInfo(String subject, String body, EmailAddressTypes from, EmailAddressesTypes to, { EmailAddressesTypes? replyto, EmailAddressesTypes? cc, EmailAddressesTypes? bcc, List<MailAttachment>? attachments, int? id, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/advsend';
 
@@ -103,7 +99,7 @@ class SendingApi {
 
   /// Sends an Email with Advanced Options
   ///
-  /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+  /// Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
   ///
   /// Parameters:
   ///
@@ -113,26 +109,22 @@ class SendingApi {
   /// * [String] body (required):
   ///   The main email contents.
   ///
-  /// * [EmailAddressName] from (required):
+  /// * [EmailAddressTypes] from (required):
   ///
-  /// * [List<EmailAddressName>] to (required):
-  ///   A list of destionation email addresses to send this to
+  /// * [EmailAddressesTypes] to (required):
   ///
-  /// * [List<EmailAddressName>] replyto:
-  ///   (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
+  /// * [EmailAddressesTypes] replyto:
   ///
-  /// * [List<EmailAddressName>] cc:
-  ///   (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
+  /// * [EmailAddressesTypes] cc:
   ///
-  /// * [List<EmailAddressName>] bcc:
-  ///   (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
+  /// * [EmailAddressesTypes] bcc:
   ///
   /// * [List<MailAttachment>] attachments:
   ///   (optional) File attachments to include in the email.  The file contents must be base64 encoded!
   ///
   /// * [int] id:
   ///   (optional)  ID of the Mail order within our system to use as the Mail Account.
-  Future<GenericResponse?> sendAdvMail(String subject, String body, EmailAddressName from, List<EmailAddressName> to, { List<EmailAddressName>? replyto, List<EmailAddressName>? cc, List<EmailAddressName>? bcc, List<MailAttachment>? attachments, int? id, }) async {
+  Future<GenericResponse?> sendAdvMail(String subject, String body, EmailAddressTypes from, EmailAddressesTypes to, { EmailAddressesTypes? replyto, EmailAddressesTypes? cc, EmailAddressesTypes? bcc, List<MailAttachment>? attachments, int? id, }) async {
     final response = await sendAdvMailWithHttpInfo(subject, body, from, to,  replyto: replyto, cc: cc, bcc: bcc, attachments: attachments, id: id, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));

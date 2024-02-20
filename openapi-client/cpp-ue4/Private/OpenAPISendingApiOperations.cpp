@@ -82,10 +82,19 @@ void OpenAPISendingApi::SendAdvMailRequest::SetupHttpRequest(const FHttpRequestR
 		FormData.AddStringPart(TEXT("subject"), *ToUrlString(Subject));
 		FormData.AddStringPart(TEXT("body"), *ToUrlString(Body));
 		FormData.AddStringPart(TEXT("from"), *ToUrlString(From));
-		UE_LOG(LogOpenAPI, Error, TEXT("Form parameter (to) was ignored, Collections are not supported in multipart form"));
-		UE_LOG(LogOpenAPI, Error, TEXT("Form parameter (replyto) was ignored, Collections are not supported in multipart form"));
-		UE_LOG(LogOpenAPI, Error, TEXT("Form parameter (cc) was ignored, Collections are not supported in multipart form"));
-		UE_LOG(LogOpenAPI, Error, TEXT("Form parameter (bcc) was ignored, Collections are not supported in multipart form"));
+		FormData.AddStringPart(TEXT("to"), *ToUrlString(To));
+		if(Replyto.IsSet())
+		{
+			FormData.AddStringPart(TEXT("replyto"), *ToUrlString(Replyto.GetValue()));
+		}
+		if(Cc.IsSet())
+		{
+			FormData.AddStringPart(TEXT("cc"), *ToUrlString(Cc.GetValue()));
+		}
+		if(Bcc.IsSet())
+		{
+			FormData.AddStringPart(TEXT("bcc"), *ToUrlString(Bcc.GetValue()));
+		}
 		UE_LOG(LogOpenAPI, Error, TEXT("Form parameter (attachments) was ignored, Collections are not supported in multipart form"));
 		if(Id.IsSet())
 		{
@@ -100,10 +109,19 @@ void OpenAPISendingApi::SendAdvMailRequest::SetupHttpRequest(const FHttpRequestR
 		FormParams.Add(FString(TEXT("subject=")) + ToUrlString(Subject));
 		FormParams.Add(FString(TEXT("body=")) + ToUrlString(Body));
 		FormParams.Add(FString(TEXT("from=")) + ToUrlString(From));
-		UE_LOG(LogOpenAPI, Error, TEXT("Form parameter (to) was ignored, Collections are not supported in urlencoded requests"));
-		UE_LOG(LogOpenAPI, Error, TEXT("Form parameter (replyto) was ignored, Collections are not supported in urlencoded requests"));
-		UE_LOG(LogOpenAPI, Error, TEXT("Form parameter (cc) was ignored, Collections are not supported in urlencoded requests"));
-		UE_LOG(LogOpenAPI, Error, TEXT("Form parameter (bcc) was ignored, Collections are not supported in urlencoded requests"));
+		FormParams.Add(FString(TEXT("to=")) + ToUrlString(To));
+		if(Replyto.IsSet())
+		{
+			FormParams.Add(FString(TEXT("replyto=")) + ToUrlString(Replyto.GetValue()));
+		}
+		if(Cc.IsSet())
+		{
+			FormParams.Add(FString(TEXT("cc=")) + ToUrlString(Cc.GetValue()));
+		}
+		if(Bcc.IsSet())
+		{
+			FormParams.Add(FString(TEXT("bcc=")) + ToUrlString(Bcc.GetValue()));
+		}
 		UE_LOG(LogOpenAPI, Error, TEXT("Form parameter (attachments) was ignored, Collections are not supported in urlencoded requests"));
 		if(Id.IsSet())
 		{
@@ -128,7 +146,7 @@ void OpenAPISendingApi::SendAdvMailResponse::SetHttpResponseCode(EHttpResponseCo
 		SetResponseString(TEXT("search results matching criteria"));
 		break;
 	case 400:
-		SetResponseString(TEXT("The specified resource was not found"));
+		SetResponseString(TEXT("Error message when there was a problem with the input parameters."));
 		break;
 	case 401:
 		SetResponseString(TEXT("Unauthorized"));
@@ -213,7 +231,7 @@ void OpenAPISendingApi::SendMailResponse::SetHttpResponseCode(EHttpResponseCodes
 		SetResponseString(TEXT("search results matching criteria"));
 		break;
 	case 400:
-		SetResponseString(TEXT("The specified resource was not found"));
+		SetResponseString(TEXT("Error message when there was a problem with the input parameters."));
 		break;
 	case 401:
 		SetResponseString(TEXT("Unauthorized"));

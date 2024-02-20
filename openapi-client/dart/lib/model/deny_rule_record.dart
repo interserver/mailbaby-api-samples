@@ -13,24 +13,24 @@ part of openapi.api;
 class DenyRuleRecord {
   /// Returns a new [DenyRuleRecord] instance.
   DenyRuleRecord({
-    required this.id,
-    required this.created,
     required this.type,
     required this.data,
+    required this.id,
+    required this.created,
     this.user,
   });
-
-  /// The deny rule Id number.
-  int id;
-
-  /// the date the rule was created.
-  DateTime created;
 
   /// The type of deny rule.
   DenyRuleRecordTypeEnum type;
 
   /// The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
   String data;
+
+  /// The deny rule Id number.
+  String id;
+
+  /// the date the rule was created.
+  DateTime created;
 
   /// Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
   ///
@@ -43,30 +43,30 @@ class DenyRuleRecord {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DenyRuleRecord &&
-     other.id == id &&
-     other.created == created &&
-     other.type == type &&
-     other.data == data &&
-     other.user == user;
+    other.type == type &&
+    other.data == data &&
+    other.id == id &&
+    other.created == created &&
+    other.user == user;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (id.hashCode) +
-    (created.hashCode) +
     (type.hashCode) +
     (data.hashCode) +
+    (id.hashCode) +
+    (created.hashCode) +
     (user == null ? 0 : user!.hashCode);
 
   @override
-  String toString() => 'DenyRuleRecord[id=$id, created=$created, type=$type, data=$data, user=$user]';
+  String toString() => 'DenyRuleRecord[type=$type, data=$data, id=$id, created=$created, user=$user]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'id'] = this.id;
-      json[r'created'] = this.created.toUtc().toIso8601String();
       json[r'type'] = this.type;
       json[r'data'] = this.data;
+      json[r'id'] = this.id;
+      json[r'created'] = this.created.toUtc().toIso8601String();
     if (this.user != null) {
       json[r'user'] = this.user;
     } else {
@@ -94,10 +94,10 @@ class DenyRuleRecord {
       }());
 
       return DenyRuleRecord(
-        id: mapValueOfType<int>(json, r'id')!,
-        created: mapDateTime(json, r'created', '')!,
         type: DenyRuleRecordTypeEnum.fromJson(json[r'type'])!,
         data: mapValueOfType<String>(json, r'data')!,
+        id: mapValueOfType<String>(json, r'id')!,
+        created: mapDateTime(json, r'created', r'')!,
         user: mapValueOfType<String>(json, r'user'),
       );
     }
@@ -146,10 +146,10 @@ class DenyRuleRecord {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
-    'id',
-    'created',
     'type',
     'data',
+    'id',
+    'created',
   };
 }
 
@@ -169,12 +169,14 @@ class DenyRuleRecordTypeEnum {
   static const domain = DenyRuleRecordTypeEnum._(r'domain');
   static const email = DenyRuleRecordTypeEnum._(r'email');
   static const startswith = DenyRuleRecordTypeEnum._(r'startswith');
+  static const destination = DenyRuleRecordTypeEnum._(r'destination');
 
   /// List of all possible values in this [enum][DenyRuleRecordTypeEnum].
   static const values = <DenyRuleRecordTypeEnum>[
     domain,
     email,
     startswith,
+    destination,
   ];
 
   static DenyRuleRecordTypeEnum? fromJson(dynamic value) => DenyRuleRecordTypeEnumTypeTransformer().decode(value);
@@ -216,6 +218,7 @@ class DenyRuleRecordTypeEnumTypeTransformer {
         case r'domain': return DenyRuleRecordTypeEnum.domain;
         case r'email': return DenyRuleRecordTypeEnum.email;
         case r'startswith': return DenyRuleRecordTypeEnum.startswith;
+        case r'destination': return DenyRuleRecordTypeEnum.destination;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');

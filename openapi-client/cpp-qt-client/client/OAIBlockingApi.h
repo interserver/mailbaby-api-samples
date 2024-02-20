@@ -19,9 +19,8 @@
 #include "OAIOauth.h"
 
 #include "OAIDenyRuleRecord.h"
-#include "OAIEmailAddress.h"
+#include "OAIErrorMessage.h"
 #include "OAIGenericResponse.h"
-#include "OAIGetMailOrders_401_response.h"
 #include "OAIMailBlocks.h"
 #include <QString>
 
@@ -74,9 +73,9 @@ public:
     void deleteRule(const qint32 &rule_id);
 
     /**
-    * @param[in]  oai_email_address OAIEmailAddress [required]
+    * @param[in]  body QString [required]
     */
-    void delistBlock(const OAIEmailAddress &oai_email_address);
+    void delistBlock(const QString &body);
 
 
     void getMailBlocks();

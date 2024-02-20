@@ -12,7 +12,9 @@
 }while(0)
 
 
-// displays a list of blocked email addresses
+// Account usage statistics.
+//
+// Returns information about the usage on your mail accounts.
 //
 list_t*
 HistoryAPI_getStats(apiClient_t *apiClient)

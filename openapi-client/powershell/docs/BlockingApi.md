@@ -1,4 +1,4 @@
-# PSOpenAPITools.PSOpenAPITools/Api.BlockingApi
+# PSOpenAPITools.PSOpenAPITools\Api.BlockingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -120,7 +120,7 @@ Name | Type | Description  | Notes
 <a id="Invoke-DelistBlock"></a>
 # **Invoke-DelistBlock**
 > GenericResponse Invoke-DelistBlock<br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-EmailAddress] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Body] <String><br>
 
 Removes an email address from the blocked list
 
@@ -135,11 +135,11 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
-$EmailAddress = Initialize-EmailAddress -Email "user@domain.com" # EmailAddress | 
+$Body = "{"email":"client@domain.com"}" # String | 
 
 # Removes an email address from the blocked list
 try {
-    $Result = Invoke-DelistBlock -EmailAddress $EmailAddress
+    $Result = Invoke-DelistBlock -Body $Body
 } catch {
     Write-Host ("Exception occurred when calling Invoke-DelistBlock: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -150,7 +150,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **EmailAddress** | [**EmailAddress**](EmailAddress.md)|  | 
+ **Body** | **String**|  | 
 
 ### Return type
 

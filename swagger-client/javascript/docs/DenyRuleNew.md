@@ -13,4 +13,5 @@ Name | Type | Description | Notes
 * `domain` (value: `"domain"`)
 * `email` (value: `"email"`)
 * `startswith` (value: `"startswith"`)
+* `destination` (value: `"destination"`)
 

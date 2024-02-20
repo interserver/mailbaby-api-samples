@@ -8,6 +8,8 @@
 
 #' DenyRuleRecord Class
 #'
+#' @field id 
+#' @field created 
 #' @field user 
 #' @field type 
 #' @field data 
@@ -18,10 +20,20 @@
 DenyRuleRecord <- R6::R6Class(
   'DenyRuleRecord',
   public = list(
+    `id` = NULL,
+    `created` = NULL,
     `user` = NULL,
     `type` = NULL,
     `data` = NULL,
-    initialize = function(`user`, `type`, `data`){
+    initialize = function(`id`, `created`, `user`, `type`, `data`){
+      if (!missing(`id`)) {
+        stopifnot(is.character(`id`), length(`id`) == 1)
+        self$`id` <- `id`
+      }
+      if (!missing(`created`)) {
+        stopifnot(is.character(`created`), length(`created`) == 1)
+        self$`created` <- `created`
+      }
       if (!missing(`user`)) {
         stopifnot(is.character(`user`), length(`user`) == 1)
         self$`user` <- `user`
@@ -37,6 +49,12 @@ DenyRuleRecord <- R6::R6Class(
     },
     toJSON = function() {
       DenyRuleRecordObject <- list()
+      if (!is.null(self$`id`)) {
+        DenyRuleRecordObject[['id']] <- self$`id`
+      }
+      if (!is.null(self$`created`)) {
+        DenyRuleRecordObject[['created']] <- self$`created`
+      }
       if (!is.null(self$`user`)) {
         DenyRuleRecordObject[['user']] <- self$`user`
       }
@@ -51,6 +69,12 @@ DenyRuleRecord <- R6::R6Class(
     },
     fromJSON = function(DenyRuleRecordJson) {
       DenyRuleRecordObject <- jsonlite::fromJSON(DenyRuleRecordJson)
+      if (!is.null(DenyRuleRecordObject$`id`)) {
+        self$`id` <- DenyRuleRecordObject$`id`
+      }
+      if (!is.null(DenyRuleRecordObject$`created`)) {
+        self$`created` <- DenyRuleRecordObject$`created`
+      }
       if (!is.null(DenyRuleRecordObject$`user`)) {
         self$`user` <- DenyRuleRecordObject$`user`
       }
@@ -64,10 +88,14 @@ DenyRuleRecord <- R6::R6Class(
     toJSONString = function() {
        sprintf(
         '{
+           "id": %s,
+           "created": %s,
            "user": %s,
            "type": %s,
            "data": %s
         }',
+        self$`id`,
+        self$`created`,
         self$`user`,
         self$`type`,
         self$`data`
@@ -75,6 +103,8 @@ DenyRuleRecord <- R6::R6Class(
     },
     fromJSONString = function(DenyRuleRecordJson) {
       DenyRuleRecordObject <- jsonlite::fromJSON(DenyRuleRecordJson)
+      self$`id` <- DenyRuleRecordObject$`id`
+      self$`created` <- DenyRuleRecordObject$`created`
       self$`user` <- DenyRuleRecordObject$`user`
       self$`type` <- DenyRuleRecordObject$`type`
       self$`data` <- DenyRuleRecordObject$`data`

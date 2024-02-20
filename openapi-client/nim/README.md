@@ -36,7 +36,7 @@ api_blocking | deleteRule | **DELETE** /mail/rules/{ruleId} | Removes an deny ma
 api_blocking | delistBlock | **POST** /mail/blocks/delete | Removes an email address from the blocked list
 api_blocking | getMailBlocks | **GET** /mail/blocks | displays a list of blocked email addresses
 api_blocking | getRules | **GET** /mail/rules | Displays a listing of deny email rules.
-api_history | getStats | **GET** /mail/stats | displays a list of blocked email addresses
+api_history | getStats | **GET** /mail/stats | Account usage statistics.
 api_history | viewMailLog | **GET** /mail/log | displays the mail log
 api_sending | sendAdvMail | **POST** /mail/advsend | Sends an Email with Advanced Options
 api_sending | sendMail | **POST** /mail/send | Sends an Email

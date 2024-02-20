@@ -16,15 +16,15 @@ type SendMailAdv struct {
 	// The main email contents.
 	Body string `json:"body"`
 
-	From *EmailAddressName `json:"from"`
-	// A list of destionation email addresses to send this to
-	To []EmailAddressName `json:"to"`
-	// (optional) A list of email addresses that specify where replies to the email should be sent instead of the _from_ address.
-	Replyto []EmailAddressName `json:"replyto,omitempty"`
-	// (optional) A list of email addresses to carbon copy this message to.  They are listed on the email and anyone getting the email can see this full list of Contacts who received the email as well.
-	Cc []EmailAddressName `json:"cc,omitempty"`
-	// (optional) list of email addresses that should receive copies of the email.  They are hidden on the email and anyone gettitng the email would not see the other people getting the email in this list.
-	Bcc []EmailAddressName `json:"bcc,omitempty"`
+	From *EmailAddressTypes `json:"from"`
+
+	To *EmailAddressesTypes `json:"to"`
+
+	Replyto *EmailAddressesTypes `json:"replyto,omitempty"`
+
+	Cc *EmailAddressesTypes `json:"cc,omitempty"`
+
+	Bcc *EmailAddressesTypes `json:"bcc,omitempty"`
 	// (optional) File attachments to include in the email.  The file contents must be base64 encoded!
 	Attachments []MailAttachment `json:"attachments,omitempty"`
 	// (optional)  ID of the Mail order within our system to use as the Mail Account.

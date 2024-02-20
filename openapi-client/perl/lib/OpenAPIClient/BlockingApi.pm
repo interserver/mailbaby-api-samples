@@ -212,11 +212,11 @@ sub delete_rule {
 #
 # Removes an email address from the blocked list
 #
-# @param EmailAddress $email_address  (required)
+# @param string $body  (required)
 {
     my $params = {
-    'email_address' => {
-        data_type => 'EmailAddress',
+    'body' => {
+        data_type => 'string',
         description => '',
         required => '1',
     },
@@ -232,9 +232,9 @@ sub delete_rule {
 sub delist_block {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'email_address' is set
-    unless (exists $args{'email_address'}) {
-      croak("Missing the required parameter 'email_address' when calling delist_block");
+    # verify the required parameter 'body' is set
+    unless (exists $args{'body'}) {
+      croak("Missing the required parameter 'body' when calling delist_block");
     }
 
     # parse inputs
@@ -254,8 +254,8 @@ sub delist_block {
 
     my $_body_data;
     # body params
-    if ( exists $args{'email_address'}) {
-        $_body_data = $args{'email_address'};
+    if ( exists $args{'body'}) {
+        $_body_data = $args{'body'};
     }
 
     # authentication setting, if any

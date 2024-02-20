@@ -42,7 +42,7 @@ dput(result)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type** | Enum [domain, email, startswith] | The type of deny rule. | 
+ **type** | Enum [domain, email, startswith, destination] | The type of deny rule. | 
  **data** | **character**| The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. | 
  **user** | **character**| Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. | [optional] 
 
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | search results matching criteria |  -  |
-| **400** | The specified resource was not found |  -  |
+| **400** | Error message when there was a problem with the input parameters. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | The specified resource was not found |  -  |
 
@@ -115,12 +115,12 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | search results matching criteria |  -  |
-| **400** | The specified resource was not found |  -  |
+| **400** | Error message when there was a problem with the input parameters. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | The specified resource was not found |  -  |
 
 # **DelistBlock**
-> GenericResponse DelistBlock(email_address)
+> GenericResponse DelistBlock(body)
 
 Removes an email address from the blocked list
 
@@ -133,14 +133,14 @@ library(openapi)
 # Removes an email address from the blocked list
 #
 # prepare function argument(s)
-var_email_address <- EmailAddress$new("email_example") # EmailAddress | 
+var_body <- {"email":"client@domain.com"} # character | 
 
 api_instance <- BlockingApi$new()
 # Configure API key authorization: apiKeyAuth
 api_instance$api_client$api_keys["X-API-KEY"] <- Sys.getenv("API_KEY")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$DelistBlock(var_email_addressdata_file = "result.txt")
-result <- api_instance$DelistBlock(var_email_address)
+# result <- api_instance$DelistBlock(var_bodydata_file = "result.txt")
+result <- api_instance$DelistBlock(var_body)
 dput(result)
 ```
 
@@ -148,7 +148,7 @@ dput(result)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **email_address** | [**EmailAddress**](EmailAddress.md)|  | 
+ **body** | **character**|  | 
 
 ### Return type
 
@@ -167,7 +167,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | search results matching criteria |  -  |
-| **400** | The specified resource was not found |  -  |
+| **400** | Error message when there was a problem with the input parameters. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | The specified resource was not found |  -  |
 

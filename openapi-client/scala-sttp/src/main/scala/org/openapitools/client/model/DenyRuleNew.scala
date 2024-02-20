@@ -13,7 +13,7 @@ package org.openapitools.client.model
 
 
   /**
-   * Root Type for DenyRule
+   * DenyRuleNew
    * The data for a email deny rule record.
    */
 case class DenyRuleNew(
@@ -32,6 +32,7 @@ object DenyRuleNewEnums {
     val Domain = Value("domain")
     val Email = Value("email")
     val Startswith = Value("startswith")
+    val Destination = Value("destination")
   }
 
 }

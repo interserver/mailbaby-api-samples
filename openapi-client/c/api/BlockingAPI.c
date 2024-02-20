@@ -14,13 +14,13 @@
 // Functions for enum TYPE for BlockingAPI_addRule
 
 static char* addRule_TYPE_ToString(mailbaby_email_delivery_and_management_service_api_addRule_type_e TYPE){
-    char *TYPEArray[] =  { "NULL", "domain", "email", "startswith" };
+    char *TYPEArray[] =  { "NULL", "domain", "email", "startswith", "destination" };
     return TYPEArray[TYPE];
 }
 
 static mailbaby_email_delivery_and_management_service_api_addRule_type_e addRule_TYPE_FromString(char* TYPE){
     int stringToReturn = 0;
-    char *TYPEArray[] =  { "NULL", "domain", "email", "startswith" };
+    char *TYPEArray[] =  { "NULL", "domain", "email", "startswith", "destination" };
     size_t sizeofArray = sizeof(TYPEArray) / sizeof(TYPEArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(TYPE, TYPEArray[stringToReturn]) == 0) {
@@ -140,7 +140,7 @@ BlockingAPI_addRule(apiClient_t *apiClient, mailbaby_email_delivery_and_manageme
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 400) {
-    //    printf("%s\n","The specified resource was not found");
+    //    printf("%s\n","Error message when there was a problem with the input parameters.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 401) {
@@ -256,7 +256,7 @@ BlockingAPI_deleteRule(apiClient_t *apiClient, int ruleId )
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 400) {
-    //    printf("%s\n","The specified resource was not found");
+    //    printf("%s\n","Error message when there was a problem with the input parameters.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 401) {
@@ -299,7 +299,7 @@ end:
 // Removes an email address from the various block lists. 
 //
 generic_response_t*
-BlockingAPI_delistBlock(apiClient_t *apiClient, email_address_t * email_address )
+BlockingAPI_delistBlock(apiClient_t *apiClient, char * body )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -317,12 +317,12 @@ BlockingAPI_delistBlock(apiClient_t *apiClient, email_address_t * email_address 
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_email_address = NULL;
-    if (email_address != NULL)
+    cJSON *localVarSingleItemJSON_body = NULL;
+    if (body != NULL)
     {
         //string
-        localVarSingleItemJSON_email_address = email_address_convertToJSON(email_address);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_email_address);
+        localVarSingleItemJSON_body = char_convertToJSON(body);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -343,7 +343,7 @@ BlockingAPI_delistBlock(apiClient_t *apiClient, email_address_t * email_address 
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 400) {
-    //    printf("%s\n","The specified resource was not found");
+    //    printf("%s\n","Error message when there was a problem with the input parameters.");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 401) {
@@ -373,9 +373,9 @@ BlockingAPI_delistBlock(apiClient_t *apiClient, email_address_t * email_address 
     list_freeList(localVarHeaderType);
     list_freeList(localVarContentType);
     free(localVarPath);
-    if (localVarSingleItemJSON_email_address) {
-        cJSON_Delete(localVarSingleItemJSON_email_address);
-        localVarSingleItemJSON_email_address = NULL;
+    if (localVarSingleItemJSON_body) {
+        cJSON_Delete(localVarSingleItemJSON_body);
+        localVarSingleItemJSON_body = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;

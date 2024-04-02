@@ -129,6 +129,8 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
      * @return MailLog
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -138,8 +140,8 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun viewMailLog(id: kotlin.Long? = null, origin: kotlin.String? = null, mx: kotlin.String? = null, from: kotlin.String? = null, to: kotlin.String? = null, subject: kotlin.String? = null, mailid: kotlin.String? = null, skip: kotlin.Int? = 0, limit: kotlin.Int? = 100, startDate: kotlin.Long? = null, endDate: kotlin.Long? = null) : MailLog {
-        val localVarResponse = viewMailLogWithHttpInfo(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, skip = skip, limit = limit, startDate = startDate, endDate = endDate)
+    fun viewMailLog(id: kotlin.Long? = null, origin: kotlin.String? = null, mx: kotlin.String? = null, from: kotlin.String? = null, to: kotlin.String? = null, subject: kotlin.String? = null, mailid: kotlin.String? = null, skip: kotlin.Int? = 0, limit: kotlin.Int? = 100, startDate: kotlin.Long? = null, endDate: kotlin.Long? = null, replyto: kotlin.String? = null, headerfrom: kotlin.String? = null) : MailLog {
+        val localVarResponse = viewMailLogWithHttpInfo(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, skip = skip, limit = limit, startDate = startDate, endDate = endDate, replyto = replyto, headerfrom = headerfrom)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as MailLog
@@ -170,14 +172,16 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
      * @return ApiResponse<MailLog?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun viewMailLogWithHttpInfo(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.Long?, endDate: kotlin.Long?) : ApiResponse<MailLog?> {
-        val localVariableConfig = viewMailLogRequestConfig(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, skip = skip, limit = limit, startDate = startDate, endDate = endDate)
+    fun viewMailLogWithHttpInfo(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.Long?, endDate: kotlin.Long?, replyto: kotlin.String?, headerfrom: kotlin.String?) : ApiResponse<MailLog?> {
+        val localVariableConfig = viewMailLogRequestConfig(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, skip = skip, limit = limit, startDate = startDate, endDate = endDate, replyto = replyto, headerfrom = headerfrom)
 
         return request<Unit, MailLog>(
             localVariableConfig
@@ -198,9 +202,11 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
      * @return RequestConfig
      */
-    fun viewMailLogRequestConfig(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.Long?, endDate: kotlin.Long?) : RequestConfig<Unit> {
+    fun viewMailLogRequestConfig(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.Long?, endDate: kotlin.Long?, replyto: kotlin.String?, headerfrom: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -236,6 +242,12 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
                 }
                 if (endDate != null) {
                     put("endDate", listOf(endDate.toString()))
+                }
+                if (replyto != null) {
+                    put("replyto", listOf(replyto.toString()))
+                }
+                if (headerfrom != null) {
+                    put("headerfrom", listOf(headerfrom.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

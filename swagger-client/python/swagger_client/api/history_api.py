@@ -140,6 +140,8 @@ class HistoryApi(object):
         :param int limit: maximum number of records to return
         :param int start_date: earliest date to get emails in unix timestamp format
         :param int end_date: earliest date to get emails in unix timestamp format
+        :param str replyto: Reply-To Email Address
+        :param str headerfrom: Header From Email Address
         :return: MailLog
                  If the method is called asynchronously,
                  returns the request thread.
@@ -172,12 +174,14 @@ class HistoryApi(object):
         :param int limit: maximum number of records to return
         :param int start_date: earliest date to get emails in unix timestamp format
         :param int end_date: earliest date to get emails in unix timestamp format
+        :param str replyto: Reply-To Email Address
+        :param str headerfrom: Header From Email Address
         :return: MailLog
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['id', 'origin', 'mx', '_from', 'to', 'subject', 'mailid', 'skip', 'limit', 'start_date', 'end_date']  # noqa: E501
+        all_params = ['id', 'origin', 'mx', '_from', 'to', 'subject', 'mailid', 'skip', 'limit', 'start_date', 'end_date', 'replyto', 'headerfrom']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -220,6 +224,10 @@ class HistoryApi(object):
             query_params.append(('startDate', params['start_date']))  # noqa: E501
         if 'end_date' in params:
             query_params.append(('endDate', params['end_date']))  # noqa: E501
+        if 'replyto' in params:
+            query_params.append(('replyto', params['replyto']))  # noqa: E501
+        if 'headerfrom' in params:
+            query_params.append(('headerfrom', params['headerfrom']))  # noqa: E501
 
         header_params = {}
 

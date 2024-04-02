@@ -50,7 +50,7 @@ Exception in thread "main" java.lang.RuntimeException: Could not generate api fi
 	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:511)
 	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
 	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)
-Caused by: java.lang.NullPointerException
+Caused by: java.lang.NullPointerException: Cannot read field "name" because "codegenModel" is null
 	at org.openapitools.codegen.languages.CrystalClientCodegen.constructExampleCode(CrystalClientCodegen.java:777)
 	at org.openapitools.codegen.languages.CrystalClientCodegen.constructExampleCode(CrystalClientCodegen.java:793)
 	at org.openapitools.codegen.languages.CrystalClientCodegen.constructExampleCode(CrystalClientCodegen.java:696)

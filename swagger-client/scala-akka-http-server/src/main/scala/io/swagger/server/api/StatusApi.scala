@@ -11,19 +11,19 @@ class StatusApi(
 ) {
   
   lazy val route: Route =
-    path() { () => 
+    path() { 
       get {
-        parameters() { () =>
+        
           
-            formFields() { () =>
+            
               
                 
                   statusService.pingServer()
                
              
-            }
+           
          
-        }
+       
       }
     }
 }
@@ -38,8 +38,7 @@ trait StatusApiService {
    * Code: 200, Message: Server is up and running
    * Code: 0, Message: Something is wrong
    */
-  def pingServer()
-      (implicit ): Route
+  def pingServer(): Route
 
 }
 

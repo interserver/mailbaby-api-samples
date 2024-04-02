@@ -20,7 +20,7 @@ void main() {
     //
     // Get a listing of the emails sent through this system 
     //
-    //Future<MailLog> viewMailLog({ int id, String origin, String mx, String from, String to, String subject, String mailid, int skip, int limit, int startDate, int endDate }) async
+    //Future<MailLog> viewMailLog({ int id, String origin, String mx, String from, String to, String subject, String mailid, int skip, int limit, int startDate, int endDate, String replyto, String headerfrom }) async
     test('test viewMailLog', () async {
       // TODO
     });

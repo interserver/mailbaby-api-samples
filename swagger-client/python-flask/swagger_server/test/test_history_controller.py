@@ -40,7 +40,9 @@ class TestHistoryController(BaseTestCase):
                         ('skip', 1),
                         ('limit', 10000),
                         ('start_date', 9999999999),
-                        ('end_date', 9999999999)]
+                        ('end_date', 9999999999),
+                        ('replyto', 'replyto_example'),
+                        ('headerfrom', 'headerfrom_example')]
         response = self.client.open(
             '/mail/log',
             method='GET',

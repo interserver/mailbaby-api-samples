@@ -28,7 +28,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2024-02-20T06:54:22.480466-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2024-04-02T13:33:11.099558065-04:00[America/New_York]")
 public class MailApiServiceImpl implements MailApiService {
       @Override
       public Response addRule(String user, String type, String data, SecurityContext securityContext) {
@@ -91,7 +91,7 @@ public class MailApiServiceImpl implements MailApiService {
       return Response.ok().entity("magic!").build();
   }
       @Override
-      public Response viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, SecurityContext securityContext) {
+      public Response viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom, SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }

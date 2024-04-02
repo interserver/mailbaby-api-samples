@@ -36,7 +36,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **view_mail_log**
-> view_mail_log (id:  detachable INTEGER_64 ; origin:  detachable STRING_32 ; mx:  detachable STRING_32 ; var_from:  detachable STRING_32 ; to:  detachable STRING_32 ; subject:  detachable STRING_32 ; mailid:  detachable STRING_32 ; skip:  detachable INTEGER_32 ; limit:  detachable INTEGER_32 ; start_date:  detachable INTEGER_64 ; end_date:  detachable INTEGER_64 ): detachable MAIL_LOG
+> view_mail_log (id:  detachable INTEGER_64 ; origin:  detachable STRING_32 ; mx:  detachable STRING_32 ; var_from:  detachable STRING_32 ; to:  detachable STRING_32 ; subject:  detachable STRING_32 ; mailid:  detachable STRING_32 ; skip:  detachable INTEGER_32 ; limit:  detachable INTEGER_32 ; start_date:  detachable INTEGER_64 ; end_date:  detachable INTEGER_64 ; replyto:  detachable STRING_32 ; headerfrom:  detachable STRING_32 ): detachable MAIL_LOG
 
 
 displays the mail log
@@ -59,6 +59,8 @@ Name | Type | Description  | Notes
  **limit** | **INTEGER_32**| maximum number of records to return | [optional] [default to 100]
  **start_date** | **INTEGER_64**| earliest date to get emails in unix timestamp format | [optional] [default to null]
  **end_date** | **INTEGER_64**| earliest date to get emails in unix timestamp format | [optional] [default to null]
+ **replyto** | **STRING_32**| Reply-To Email Address | [optional] [default to null]
+ **headerfrom** | **STRING_32**| Header From Email Address | [optional] [default to null]
 
 ### Return type
 

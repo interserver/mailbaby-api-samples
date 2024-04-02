@@ -111,6 +111,8 @@ operation_parameters_minimum_occurrences["viewMailLog:::skip"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::limit"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::startDate"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::endDate"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::replyto"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::headerfrom"]=0
 operation_parameters_minimum_occurrences["sendAdvMail:::subject"]=1
 operation_parameters_minimum_occurrences["sendAdvMail:::body"]=1
 operation_parameters_minimum_occurrences["sendAdvMail:::from"]=1
@@ -148,6 +150,8 @@ operation_parameters_maximum_occurrences["viewMailLog:::skip"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::limit"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::startDate"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::endDate"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::replyto"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::headerfrom"]=0
 operation_parameters_maximum_occurrences["sendAdvMail:::subject"]=0
 operation_parameters_maximum_occurrences["sendAdvMail:::body"]=0
 operation_parameters_maximum_occurrences["sendAdvMail:::from"]=0
@@ -182,6 +186,8 @@ operation_parameters_collection_type["viewMailLog:::skip"]=""
 operation_parameters_collection_type["viewMailLog:::limit"]=""
 operation_parameters_collection_type["viewMailLog:::startDate"]=""
 operation_parameters_collection_type["viewMailLog:::endDate"]=""
+operation_parameters_collection_type["viewMailLog:::replyto"]=""
+operation_parameters_collection_type["viewMailLog:::headerfrom"]=""
 operation_parameters_collection_type["sendAdvMail:::subject"]=""
 operation_parameters_collection_type["sendAdvMail:::body"]=""
 operation_parameters_collection_type["sendAdvMail:::from"]=""
@@ -853,6 +859,10 @@ print_viewMailLog_help() {
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}endDate${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - earliest date to get emails in unix timestamp format${YELLOW} Specify as: endDate=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}replyto${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Reply-To Email Address${YELLOW} Specify as: replyto=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}headerfrom${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Header From Email Address${YELLOW} Specify as: headerfrom=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1325,7 +1335,7 @@ call_viewMailLog() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(id origin mx from to subject mailid skip limit startDate endDate  )
+    local query_parameter_names=(id origin mx from to subject mailid skip limit startDate endDate replyto headerfrom  )
     local path
 
     if ! path=$(build_request_path "/mail/log" path_parameter_names query_parameter_names); then

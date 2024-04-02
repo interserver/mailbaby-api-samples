@@ -99,7 +99,9 @@ public class HistoryApiTest {
         Integer limit = null;
         Long startDate = null;
         Long endDate = null;
-        //MailLog response = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+        String replyto = null;
+        String headerfrom = null;
+        //MailLog response = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
         //assertNotNull(response);
         // TODO: test validations
 

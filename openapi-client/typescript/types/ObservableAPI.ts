@@ -262,9 +262,11 @@ export class ObservableHistoryApi {
      * @param limit maximum number of records to return
      * @param startDate earliest date to get emails in unix timestamp format
      * @param endDate earliest date to get emails in unix timestamp format
+     * @param replyto Reply-To Email Address
+     * @param headerfrom Header From Email Address
      */
-    public viewMailLogWithHttpInfo(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, _options?: Configuration): Observable<HttpInfo<MailLog>> {
-        const requestContextPromise = this.requestFactory.viewMailLog(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, _options);
+    public viewMailLogWithHttpInfo(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, _options?: Configuration): Observable<HttpInfo<MailLog>> {
+        const requestContextPromise = this.requestFactory.viewMailLog(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -296,9 +298,11 @@ export class ObservableHistoryApi {
      * @param limit maximum number of records to return
      * @param startDate earliest date to get emails in unix timestamp format
      * @param endDate earliest date to get emails in unix timestamp format
+     * @param replyto Reply-To Email Address
+     * @param headerfrom Header From Email Address
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, _options?: Configuration): Observable<MailLog> {
-        return this.viewMailLogWithHttpInfo(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, _options).pipe(map((apiResponse: HttpInfo<MailLog>) => apiResponse.data));
+    public viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, _options?: Configuration): Observable<MailLog> {
+        return this.viewMailLogWithHttpInfo(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, _options).pipe(map((apiResponse: HttpInfo<MailLog>) => apiResponse.data));
     }
 
 }

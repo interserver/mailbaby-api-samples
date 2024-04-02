@@ -23,6 +23,6 @@ HistoryAPI_getStats(apiClient_t *apiClient);
 // Get a listing of the emails sent through this system 
 //
 mail_log_t*
-HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * mx , char * from , char * to , char * subject , char * mailid , int skip , int limit , long startDate , long endDate );
+HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * mx , char * from , char * to , char * subject , char * mailid , int skip , int limit , long startDate , long endDate , char * replyto , char * headerfrom );
 
 

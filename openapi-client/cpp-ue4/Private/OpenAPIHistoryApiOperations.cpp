@@ -108,6 +108,14 @@ FString OpenAPIHistoryApi::ViewMailLogRequest::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("endDate=")) + ToUrlString(EndDate.GetValue()));
 	}
+	if(Replyto.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("replyto=")) + ToUrlString(Replyto.GetValue()));
+	}
+	if(Headerfrom.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("headerfrom=")) + ToUrlString(Headerfrom.GetValue()));
+	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 

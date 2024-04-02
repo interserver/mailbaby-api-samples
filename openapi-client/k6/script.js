@@ -97,18 +97,20 @@ export default function() {
         let endDate = '1673317008'; // extracted from 'example' field defined at the parameter level of OpenAPI spec
         let subject = 'Support'; // extracted from 'example' field defined at the parameter level of OpenAPI spec
         let origin = '1.2.3.4'; // extracted from 'example' field defined at the parameter level of OpenAPI spec
+        let skip = '1000'; // extracted from 'example' field defined at the parameter level of OpenAPI spec
+        let mx = 'mx.google.com'; // extracted from 'example' field defined at the parameter level of OpenAPI spec
+        let headerfrom = 'TODO_EDIT_THE_HEADERFROM'; // specify value as there is no example value for this parameter in OpenAPI spec
         let limit = '1000'; // extracted from 'example' field defined at the parameter level of OpenAPI spec
+        let replyto = 'TODO_EDIT_THE_REPLYTO'; // specify value as there is no example value for this parameter in OpenAPI spec
         let from = 'me@sender.com'; // extracted from 'example' field defined at the parameter level of OpenAPI spec
         let mailid = '185997065c60008840'; // extracted from 'example' field defined at the parameter level of OpenAPI spec
-        let skip = '1000'; // extracted from 'example' field defined at the parameter level of OpenAPI spec
         let id = '2604'; // extracted from 'example' field defined at the parameter level of OpenAPI spec
-        let mx = 'mx.google.com'; // extracted from 'example' field defined at the parameter level of OpenAPI spec
         let to = 'you@receiver.com'; // extracted from 'example' field defined at the parameter level of OpenAPI spec
         let startDate = '1641781008'; // extracted from 'example' field defined at the parameter level of OpenAPI spec
 
         // Request No. 1: viewMailLog
         {
-            let url = BASE_URL + `/mail/log?id=${id}&origin=${origin}&mx=${mx}&from=${from}&to=${to}&subject=${subject}&mailid=${mailid}&skip=${skip}&limit=${limit}&startDate=${startDate}&endDate=${endDate}`;
+            let url = BASE_URL + `/mail/log?id=${id}&origin=${origin}&mx=${mx}&from=${from}&to=${to}&subject=${subject}&mailid=${mailid}&skip=${skip}&limit=${limit}&startDate=${startDate}&endDate=${endDate}&replyto=${replyto}&headerfrom=${headerfrom}`;
             let request = http.get(url);
 
             check(request, {

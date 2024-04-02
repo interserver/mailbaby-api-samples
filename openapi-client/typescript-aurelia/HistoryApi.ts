@@ -40,6 +40,8 @@ export interface IViewMailLogParams {
   limit?: number;
   startDate?: number;
   endDate?: number;
+  replyto?: string;
+  headerfrom?: string;
 }
 
 /**
@@ -99,6 +101,8 @@ export class HistoryApi extends Api {
    * @param params.limit maximum number of records to return
    * @param params.startDate earliest date to get emails in unix timestamp format
    * @param params.endDate earliest date to get emails in unix timestamp format
+   * @param params.replyto Reply-To Email Address
+   * @param params.headerfrom Header From Email Address
    */
   async viewMailLog(params: IViewMailLogParams): Promise<MailLog> {
     // Verify required parameters are set
@@ -122,6 +126,8 @@ export class HistoryApi extends Api {
         'limit': params['limit'],
         'startDate': params['startDate'],
         'endDate': params['endDate'],
+        'replyto': params['replyto'],
+        'headerfrom': params['headerfrom'],
       })
 
       // Authentication 'apiKeyAuth' required

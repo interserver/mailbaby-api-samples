@@ -70,7 +70,7 @@ This endpoint does not need any parameter.
 ## `viewMailLog()`
 
 ```php
-viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $start_date, $end_date): \OpenAPI\Client\Model\MailLog
+viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $start_date, $end_date, $replyto, $headerfrom): \OpenAPI\Client\Model\MailLog
 ```
 
 displays the mail log
@@ -107,9 +107,11 @@ $skip = 1000; // int | number of records to skip for pagination
 $limit = 1000; // int | maximum number of records to return
 $start_date = 1641781008; // int | earliest date to get emails in unix timestamp format
 $end_date = 1673317008; // int | earliest date to get emails in unix timestamp format
+$replyto = 'replyto_example'; // string | Reply-To Email Address
+$headerfrom = 'headerfrom_example'; // string | Header From Email Address
 
 try {
-    $result = $apiInstance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $start_date, $end_date);
+    $result = $apiInstance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $start_date, $end_date, $replyto, $headerfrom);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling HistoryApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
@@ -131,6 +133,8 @@ try {
 | **limit** | **int**| maximum number of records to return | [optional] [default to 100] |
 | **start_date** | **int**| earliest date to get emails in unix timestamp format | [optional] |
 | **end_date** | **int**| earliest date to get emails in unix timestamp format | [optional] |
+| **replyto** | **string**| Reply-To Email Address | [optional] |
+| **headerfrom** | **string**| Header From Email Address | [optional] |
 
 ### Return type
 

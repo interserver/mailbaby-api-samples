@@ -24,7 +24,7 @@ import io.swagger.model.MailOrder;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2024-02-20T06:54:20.194183-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2024-04-02T13:33:08.445114918-04:00[America/New_York]")
 public class MailController  {
   /** 
    * Uncomment and implement as you see fit.  These operations will map
@@ -137,6 +137,8 @@ public class MailController  {
 , Integer limit 
 , Long startDate 
 , Long endDate 
+, String replyto 
+, String headerfrom 
 ) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }

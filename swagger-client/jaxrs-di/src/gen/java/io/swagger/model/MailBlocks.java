@@ -27,7 +27,7 @@ import javax.validation.Valid;
  * The listing of blocked emails.
  */
 @Schema(description = "The listing of blocked emails.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2024-02-20T06:54:30.505529-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2024-04-02T13:33:20.175525004-04:00[America/New_York]")
 public class MailBlocks   {
   @JsonProperty("local")
   private List<MailBlockClickHouse> local = new ArrayList<MailBlockClickHouse>();

@@ -38,6 +38,8 @@ export interface ViewMailLogRequest {
     limit?: number;
     startDate?: number;
     endDate?: number;
+    replyto?: string;
+    headerfrom?: string;
 }
 
 
@@ -148,6 +150,16 @@ function viewMailLogRaw<T>(requestParameters: ViewMailLogRequest, requestConfig:
 
     if (requestParameters.endDate !== undefined) {
         queryParameters['endDate'] = requestParameters.endDate;
+    }
+
+
+    if (requestParameters.replyto !== undefined) {
+        queryParameters['replyto'] = requestParameters.replyto;
+    }
+
+
+    if (requestParameters.headerfrom !== undefined) {
+        queryParameters['headerfrom'] = requestParameters.headerfrom;
     }
 
     const headerParameters : runtime.HttpHeaders = {};

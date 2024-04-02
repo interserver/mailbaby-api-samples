@@ -59,6 +59,8 @@ Name | Type | Description  | Notes
  **limit** | **optional.Int32**| maximum number of records to return | [default to 100]
  **startDate** | **optional.Int64**| earliest date to get emails in unix timestamp format | 
  **endDate** | **optional.Int64**| earliest date to get emails in unix timestamp format | 
+ **replyto** | **optional.String**| Reply-To Email Address | 
+ **headerfrom** | **optional.String**| Header From Email Address | 
 
 ### Return type
 

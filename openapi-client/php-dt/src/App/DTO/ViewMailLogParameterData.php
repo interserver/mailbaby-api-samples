@@ -37,6 +37,31 @@ class ViewMailLogParameterData
     public string|null $origin = null;
 
     /**
+     * number of records to skip for pagination
+     */
+    #[DTA\Data(subset: "query", field: "skip", nullable: true)]
+    #[DTA\Strategy("QueryStringScalar", ["type" => "int"], "query")]
+    #[DTA\Validator("QueryStringScalar", ["type" => "int"], subset: "query")]
+    #[DTA\Validator("GreaterThan", ["min" => 0, "inclusive" => true], subset: "query")]
+    public int|null $skip = null;
+
+    /**
+     * mx record mail was sent to
+     */
+    #[DTA\Data(subset: "query", field: "mx", nullable: true)]
+    #[DTA\Strategy("QueryStringScalar", ["type" => "string"], "query")]
+    #[DTA\Validator("QueryStringScalar", ["type" => "string"], subset: "query")]
+    public string|null $mx = null;
+
+    /**
+     * Header From Email Address
+     */
+    #[DTA\Data(subset: "query", field: "headerfrom", nullable: true)]
+    #[DTA\Strategy("QueryStringScalar", ["type" => "string"], "query")]
+    #[DTA\Validator("QueryStringScalar", ["type" => "string"], subset: "query")]
+    public string|null $headerfrom = null;
+
+    /**
      * maximum number of records to return
      */
     #[DTA\Data(subset: "query", field: "limit", nullable: true)]
@@ -45,6 +70,14 @@ class ViewMailLogParameterData
     #[DTA\Validator("GreaterThan", ["min" => 1, "inclusive" => true], subset: "query")]
     #[DTA\Validator("LessThan", ["max" => 10000, "inclusive" => true], subset: "query")]
     public int|null $limit = null;
+
+    /**
+     * Reply-To Email Address
+     */
+    #[DTA\Data(subset: "query", field: "replyto", nullable: true)]
+    #[DTA\Strategy("QueryStringScalar", ["type" => "string"], "query")]
+    #[DTA\Validator("QueryStringScalar", ["type" => "string"], subset: "query")]
+    public string|null $replyto = null;
 
     /**
      * from email address
@@ -63,29 +96,12 @@ class ViewMailLogParameterData
     public string|null $mailid = null;
 
     /**
-     * number of records to skip for pagination
-     */
-    #[DTA\Data(subset: "query", field: "skip", nullable: true)]
-    #[DTA\Strategy("QueryStringScalar", ["type" => "int"], "query")]
-    #[DTA\Validator("QueryStringScalar", ["type" => "int"], subset: "query")]
-    #[DTA\Validator("GreaterThan", ["min" => 0, "inclusive" => true], subset: "query")]
-    public int|null $skip = null;
-
-    /**
      * The ID of your mail order this will be sent through.
      */
     #[DTA\Data(subset: "query", field: "id", nullable: true)]
     #[DTA\Strategy("QueryStringScalar", ["type" => "int"], "query")]
     #[DTA\Validator("QueryStringScalar", ["type" => "int"], subset: "query")]
     public int|null $id = null;
-
-    /**
-     * mx record mail was sent to
-     */
-    #[DTA\Data(subset: "query", field: "mx", nullable: true)]
-    #[DTA\Strategy("QueryStringScalar", ["type" => "string"], "query")]
-    #[DTA\Validator("QueryStringScalar", ["type" => "string"], subset: "query")]
-    public string|null $mx = null;
 
     /**
      * to/destination email address

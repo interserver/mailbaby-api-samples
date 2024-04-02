@@ -107,7 +107,13 @@ class HistoryApi {
   ///
   /// * [int] endDate:
   ///   earliest date to get emails in unix timestamp format
-  Future<Response> viewMailLogWithHttpInfo({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, int? skip, int? limit, int? startDate, int? endDate, }) async {
+  ///
+  /// * [String] replyto:
+  ///   Reply-To Email Address
+  ///
+  /// * [String] headerfrom:
+  ///   Header From Email Address
+  Future<Response> viewMailLogWithHttpInfo({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, int? skip, int? limit, int? startDate, int? endDate, String? replyto, String? headerfrom, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/log';
 
@@ -150,6 +156,12 @@ class HistoryApi {
     }
     if (endDate != null) {
       queryParams.addAll(_queryParams('', 'endDate', endDate));
+    }
+    if (replyto != null) {
+      queryParams.addAll(_queryParams('', 'replyto', replyto));
+    }
+    if (headerfrom != null) {
+      queryParams.addAll(_queryParams('', 'headerfrom', headerfrom));
     }
 
     const contentTypes = <String>[];
@@ -204,8 +216,14 @@ class HistoryApi {
   ///
   /// * [int] endDate:
   ///   earliest date to get emails in unix timestamp format
-  Future<MailLog?> viewMailLog({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, int? skip, int? limit, int? startDate, int? endDate, }) async {
-    final response = await viewMailLogWithHttpInfo( id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, );
+  ///
+  /// * [String] replyto:
+  ///   Reply-To Email Address
+  ///
+  /// * [String] headerfrom:
+  ///   Header From Email Address
+  Future<MailLog?> viewMailLog({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, int? skip, int? limit, int? startDate, int? endDate, String? replyto, String? headerfrom, }) async {
+    final response = await viewMailLogWithHttpInfo( id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, replyto: replyto, headerfrom: headerfrom, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

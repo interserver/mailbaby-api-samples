@@ -42,7 +42,7 @@ public class HistoryApiServiceImpl implements HistoryApi {
      * Get a listing of the emails sent through this system 
      *
      */
-    public MailLog viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate) {
+    public MailLog viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom) {
         // TODO: Implement...
         
         return null;

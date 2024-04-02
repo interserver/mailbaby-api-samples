@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 //
 // Get a listing of the emails sent through this system 
 //
-mail_log_t* HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char * origin, char * mx, char * from, char * to, char * subject, char * mailid, int skip, int limit, long startDate, long endDate);
+mail_log_t* HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char * origin, char * mx, char * from, char * to, char * subject, char * mailid, int skip, int limit, long startDate, long endDate, char * replyto, char * headerfrom);
 ```
 
 ### Parameters
@@ -62,6 +62,8 @@ Name | Type | Description  | Notes
 **limit** | **int** | maximum number of records to return | [optional] [default to 100]
 **startDate** | **long** | earliest date to get emails in unix timestamp format | [optional] 
 **endDate** | **long** | earliest date to get emails in unix timestamp format | [optional] 
+**replyto** | **char \*** | Reply-To Email Address | [optional] 
+**headerfrom** | **char \*** | Header From Email Address | [optional] 
 
 ### Return type
 

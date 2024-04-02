@@ -59,6 +59,8 @@
 #' \item \emph{ @param } limit integer
 #' \item \emph{ @param } start_date integer
 #' \item \emph{ @param } end_date integer
+#' \item \emph{ @param } replyto character
+#' \item \emph{ @param } headerfrom character
 #' \item \emph{ @returnType } \link{MailLog} \cr
 #'
 #'
@@ -113,6 +115,8 @@
 #' var_limit <- 100 # integer | maximum number of records to return (Optional)
 #' var_start_date <- 1641781008 # integer | earliest date to get emails in unix timestamp format (Optional)
 #' var_end_date <- 1673317008 # integer | earliest date to get emails in unix timestamp format (Optional)
+#' var_replyto <- "replyto_example" # character | Reply-To Email Address (Optional)
+#' var_headerfrom <- "headerfrom_example" # character | Header From Email Address (Optional)
 #'
 #' #displays the mail log
 #' api_instance <- HistoryApi$new()
@@ -121,8 +125,8 @@
 #' api_instance$api_client$api_keys["X-API-KEY"] <- Sys.getenv("API_KEY")
 #'
 #' # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-#' # result <- api_instance$ViewMailLog(id = var_id, origin = var_origin, mx = var_mx, from = var_from, to = var_to, subject = var_subject, mailid = var_mailid, skip = var_skip, limit = var_limit, start_date = var_start_date, end_date = var_end_datedata_file = "result.txt")
-#' result <- api_instance$ViewMailLog(id = var_id, origin = var_origin, mx = var_mx, from = var_from, to = var_to, subject = var_subject, mailid = var_mailid, skip = var_skip, limit = var_limit, start_date = var_start_date, end_date = var_end_date)
+#' # result <- api_instance$ViewMailLog(id = var_id, origin = var_origin, mx = var_mx, from = var_from, to = var_to, subject = var_subject, mailid = var_mailid, skip = var_skip, limit = var_limit, start_date = var_start_date, end_date = var_end_date, replyto = var_replyto, headerfrom = var_headerfromdata_file = "result.txt")
+#' result <- api_instance$ViewMailLog(id = var_id, origin = var_origin, mx = var_mx, from = var_from, to = var_to, subject = var_subject, mailid = var_mailid, skip = var_skip, limit = var_limit, start_date = var_start_date, end_date = var_end_date, replyto = var_replyto, headerfrom = var_headerfrom)
 #' dput(result)
 #'
 #'
@@ -254,12 +258,14 @@ HistoryApi <- R6::R6Class(
     #' @param limit (optional) maximum number of records to return (default value: 100)
     #' @param start_date (optional) earliest date to get emails in unix timestamp format
     #' @param end_date (optional) earliest date to get emails in unix timestamp format
+    #' @param replyto (optional) Reply-To Email Address
+    #' @param headerfrom (optional) Header From Email Address
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #' @return MailLog
     #' @export
-    ViewMailLog = function(id = NULL, origin = NULL, mx = NULL, from = NULL, to = NULL, subject = NULL, mailid = NULL, skip = 0, limit = 100, start_date = NULL, end_date = NULL, data_file = NULL, ...) {
-      local_var_response <- self$ViewMailLogWithHttpInfo(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date, data_file = data_file, ...)
+    ViewMailLog = function(id = NULL, origin = NULL, mx = NULL, from = NULL, to = NULL, subject = NULL, mailid = NULL, skip = 0, limit = 100, start_date = NULL, end_date = NULL, replyto = NULL, headerfrom = NULL, data_file = NULL, ...) {
+      local_var_response <- self$ViewMailLogWithHttpInfo(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date, replyto, headerfrom, data_file = data_file, ...)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         local_var_response$content
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -286,11 +292,13 @@ HistoryApi <- R6::R6Class(
     #' @param limit (optional) maximum number of records to return (default value: 100)
     #' @param start_date (optional) earliest date to get emails in unix timestamp format
     #' @param end_date (optional) earliest date to get emails in unix timestamp format
+    #' @param replyto (optional) Reply-To Email Address
+    #' @param headerfrom (optional) Header From Email Address
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #' @return API response (MailLog) with additional information such as HTTP status code, headers
     #' @export
-    ViewMailLogWithHttpInfo = function(id = NULL, origin = NULL, mx = NULL, from = NULL, to = NULL, subject = NULL, mailid = NULL, skip = 0, limit = 100, start_date = NULL, end_date = NULL, data_file = NULL, ...) {
+    ViewMailLogWithHttpInfo = function(id = NULL, origin = NULL, mx = NULL, from = NULL, to = NULL, subject = NULL, mailid = NULL, skip = 0, limit = 100, start_date = NULL, end_date = NULL, replyto = NULL, headerfrom = NULL, data_file = NULL, ...) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -332,6 +340,8 @@ HistoryApi <- R6::R6Class(
         stop("Invalid value for `end_date` when calling HistoryApi$ViewMailLog, must be bigger than or equal to 0.")
       }
 
+
+
       query_params[["id"]] <- `id`
 
       query_params[["origin"]] <- `origin`
@@ -353,6 +363,10 @@ HistoryApi <- R6::R6Class(
       query_params[["startDate"]] <- `start_date`
 
       query_params[["endDate"]] <- `end_date`
+
+      query_params[["replyto"]] <- `replyto`
+
+      query_params[["headerfrom"]] <- `headerfrom`
 
       local_var_url_path <- "/mail/log"
       # API key authentication

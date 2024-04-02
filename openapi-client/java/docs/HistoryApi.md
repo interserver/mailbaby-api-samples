@@ -77,7 +77,7 @@ This endpoint does not need any parameter.
 
 <a id="viewMailLog"></a>
 # **viewMailLog**
-> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
+> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom)
 
 displays the mail log
 
@@ -116,8 +116,10 @@ public class Example {
     Integer limit = 100; // Integer | maximum number of records to return
     Long startDate = 1641781008L; // Long | earliest date to get emails in unix timestamp format
     Long endDate = 1673317008L; // Long | earliest date to get emails in unix timestamp format
+    String replyto = "replyto_example"; // String | Reply-To Email Address
+    String headerfrom = "headerfrom_example"; // String | Header From Email Address
     try {
-      MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+      MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling HistoryApi#viewMailLog");
@@ -145,6 +147,8 @@ public class Example {
 | **limit** | **Integer**| maximum number of records to return | [optional] [default to 100] |
 | **startDate** | **Long**| earliest date to get emails in unix timestamp format | [optional] |
 | **endDate** | **Long**| earliest date to get emails in unix timestamp format | [optional] |
+| **replyto** | **String**| Reply-To Email Address | [optional] |
+| **headerfrom** | **String**| Header From Email Address | [optional] |
 
 ### Return type
 

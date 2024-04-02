@@ -47,7 +47,7 @@ proc getStats*(httpClient: HttpClient): (Option[seq[getStats_200_response_inner]
   constructResult[seq[getStats_200_response_inner]](response)
 
 
-proc viewMailLog*(httpClient: HttpClient, id: int64, origin: string, mx: string, `from`: string, to: string, subject: string, mailid: string, skip: int, limit: int, startDate: int64, endDate: int64): (Option[MailLog], Response) =
+proc viewMailLog*(httpClient: HttpClient, id: int64, origin: string, mx: string, `from`: string, to: string, subject: string, mailid: string, skip: int, limit: int, startDate: int64, endDate: int64, replyto: string, headerfrom: string): (Option[MailLog], Response) =
   ## displays the mail log
   let query_for_api_call = encodeQuery([
     ("id", $id), # The ID of your mail order this will be sent through.
@@ -61,6 +61,8 @@ proc viewMailLog*(httpClient: HttpClient, id: int64, origin: string, mx: string,
     ("limit", $limit), # maximum number of records to return
     ("startDate", $startDate), # earliest date to get emails in unix timestamp format
     ("endDate", $endDate), # earliest date to get emails in unix timestamp format
+    ("replyto", $replyto), # Reply-To Email Address
+    ("headerfrom", $headerfrom), # Header From Email Address
   ])
 
   let response = httpClient.get(basepath & "/mail/log" & "?" & query_for_api_call)

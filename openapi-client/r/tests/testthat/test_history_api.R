@@ -32,6 +32,8 @@ test_that("ViewMailLog", {
   # @param limit integer maximum number of records to return (optional)
   # @param start_date integer earliest date to get emails in unix timestamp format (optional)
   # @param end_date integer earliest date to get emails in unix timestamp format (optional)
+  # @param replyto character Reply-To Email Address (optional)
+  # @param headerfrom character Header From Email Address (optional)
   # @return [MailLog]
 
   # uncomment below to test the operation

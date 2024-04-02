@@ -129,7 +129,7 @@ Protected Class HistoryApi
 
 
 	#tag Method, Flags = &h0
-		Sub ViewMailLog(, Optional id As Xoson.O.OptionalInt64, Optional origin As Xoson.O.OptionalString, Optional mx As Xoson.O.OptionalString, Optional from As Xoson.O.OptionalString, Optional Escapedto As Xoson.O.OptionalString, Optional subject As Xoson.O.OptionalString, Optional mailid As Xoson.O.OptionalString, Optional skip As Xoson.O.OptionalInteger, Optional limit As Xoson.O.OptionalInteger, Optional startDate As Xoson.O.OptionalInt64, Optional endDate As Xoson.O.OptionalInt64)
+		Sub ViewMailLog(, Optional id As Xoson.O.OptionalInt64, Optional origin As Xoson.O.OptionalString, Optional mx As Xoson.O.OptionalString, Optional from As Xoson.O.OptionalString, Optional Escapedto As Xoson.O.OptionalString, Optional subject As Xoson.O.OptionalString, Optional mailid As Xoson.O.OptionalString, Optional skip As Xoson.O.OptionalInteger, Optional limit As Xoson.O.OptionalInteger, Optional startDate As Xoson.O.OptionalInt64, Optional endDate As Xoson.O.OptionalInt64, Optional replyto As Xoson.O.OptionalString, Optional headerfrom As Xoson.O.OptionalString)
 		  // Operation viewMailLog
 		  // displays the mail log
 		  // - 
@@ -144,6 +144,8 @@ Protected Class HistoryApi
 		  // - parameter limit: (query) maximum number of records to return (optional, default to 100)
 		  // - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional, default to 0)
 		  // - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional, default to 0)
+		  // - parameter replyto: (query) Reply-To Email Address (optional, default to Sample)
+		  // - parameter headerfrom: (query) Header From Email Address (optional, default to Sample)
 		  //
 		  // Invokes HistoryApiCallbackHandler.ViewMailLogCallback(MailLog) on completion. 
 		  //
@@ -181,6 +183,10 @@ Protected Class HistoryApi
 		  If startDate <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("startDate") + "=" + EncodeURLComponent(startDate.ToString)
 		  
 		  If endDate <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("endDate") + "=" + EncodeURLComponent(endDate.ToString)
+		  
+		  If replyto <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("replyto") + "=" + EncodeURLComponent(replyto)
+		  
+		  If headerfrom <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("headerfrom") + "=" + EncodeURLComponent(headerfrom)
 		  
 
 		  If me.ApiKeyapiKeyAuth = "" Then Raise New OpenAPIClient.OpenAPIClientException(kErrorCannotAuthenticate, "API key is unset. Please assign a value to `HistoryApi.ApiKeyapiKeyAuth` before invoking `HistoryApi.ViewMailLog()`.")

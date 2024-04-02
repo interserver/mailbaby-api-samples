@@ -582,6 +582,22 @@ paths:
           minimum: 0
           type: integer
         style: form
+      - description: Reply-To Email Address
+        explode: true
+        in: query
+        name: replyto
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Header From Email Address
+        explode: true
+        in: query
+        name: headerfrom
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:

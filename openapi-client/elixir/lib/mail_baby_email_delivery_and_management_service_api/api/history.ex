@@ -59,6 +59,8 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.History do
     - `:limit` (integer()): maximum number of records to return
     - `:startDate` (integer()): earliest date to get emails in unix timestamp format
     - `:endDate` (integer()): earliest date to get emails in unix timestamp format
+    - `:replyto` (String.t): Reply-To Email Address
+    - `:headerfrom` (String.t): Header From Email Address
 
   ### Returns
 
@@ -78,7 +80,9 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.History do
       :skip => :query,
       :limit => :query,
       :startDate => :query,
-      :endDate => :query
+      :endDate => :query,
+      :replyto => :query,
+      :headerfrom => :query
     }
 
     request =

@@ -63,10 +63,12 @@ class HistoryApi(baseUrl: String) {
    * @param limit maximum number of records to return
    * @param startDate earliest date to get emails in unix timestamp format
    * @param endDate earliest date to get emails in unix timestamp format
+   * @param replyto Reply-To Email Address
+   * @param headerfrom Header From Email Address
    */
-  def viewMailLog(apiKey: String)(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[Long] = None, endDate: Option[Long] = None): Request[Either[ResponseException[String, Exception], MailLog]] =
+  def viewMailLog(apiKey: String)(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[Long] = None, endDate: Option[Long] = None, replyto: Option[String] = None, headerfrom: Option[String] = None): Request[Either[ResponseException[String, Exception], MailLog]] =
     basicRequest
-      .method(Method.GET, uri"$baseUrl/mail/log?id=${ id }&origin=${ origin }&mx=${ mx }&from=${ from }&to=${ to }&subject=${ subject }&mailid=${ mailid }&skip=${ skip }&limit=${ limit }&startDate=${ startDate }&endDate=${ endDate }")
+      .method(Method.GET, uri"$baseUrl/mail/log?id=${ id }&origin=${ origin }&mx=${ mx }&from=${ from }&to=${ to }&subject=${ subject }&mailid=${ mailid }&skip=${ skip }&limit=${ limit }&startDate=${ startDate }&endDate=${ endDate }&replyto=${ replyto }&headerfrom=${ headerfrom }")
       .contentType("application/json")
       .header("X-API-KEY", apiKey)
       .response(asJson[MailLog])

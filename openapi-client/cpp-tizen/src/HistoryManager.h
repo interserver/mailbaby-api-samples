@@ -66,12 +66,14 @@ bool getStatsAsync(char * accessToken,
  * \param limit maximum number of records to return
  * \param startDate earliest date to get emails in unix timestamp format
  * \param endDate earliest date to get emails in unix timestamp format
+ * \param replyto Reply-To Email Address
+ * \param headerfrom Header From Email Address
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool viewMailLogSync(char * accessToken,
-	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, int skip, int limit, long long startDate, long long endDate, 
+	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, int skip, int limit, long long startDate, long long endDate, std::string replyto, std::string headerfrom, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData);
 
@@ -89,12 +91,14 @@ bool viewMailLogSync(char * accessToken,
  * \param limit maximum number of records to return
  * \param startDate earliest date to get emails in unix timestamp format
  * \param endDate earliest date to get emails in unix timestamp format
+ * \param replyto Reply-To Email Address
+ * \param headerfrom Header From Email Address
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool viewMailLogAsync(char * accessToken,
-	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, int skip, int limit, long long startDate, long long endDate, 
+	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, int skip, int limit, long long startDate, long long endDate, std::string replyto, std::string headerfrom, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData);
 

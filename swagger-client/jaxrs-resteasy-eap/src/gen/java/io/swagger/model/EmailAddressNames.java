@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="Array of Email Addresses")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2024-02-20T06:54:33.446635-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2024-04-02T13:33:23.260102821-04:00[America/New_York]")
 public class EmailAddressNames extends ArrayList<EmailAddressName> implements EmailAddressesTypes  {
 
 

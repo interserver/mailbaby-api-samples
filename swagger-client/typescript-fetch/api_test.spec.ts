@@ -68,7 +68,9 @@ describe("HistoryApi", () => {
     const limit: number = 56
     const startDate: number = 789
     const endDate: number = 789
-    return expect(instance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, {})).resolves.toBe(null)
+    const replyto: string = "replyto_example"
+    const headerfrom: string = "headerfrom_example"
+    return expect(instance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, {})).resolves.toBe(null)
   })
 })
 

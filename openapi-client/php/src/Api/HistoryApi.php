@@ -456,15 +456,17 @@ class HistoryApi
      * @param  int $limit maximum number of records to return (optional, default to 100)
      * @param  int $startDate earliest date to get emails in unix timestamp format (optional)
      * @param  int $endDate earliest date to get emails in unix timestamp format (optional)
+     * @param  string $replyto Reply-To Email Address (optional)
+     * @param  string $headerfrom Header From Email Address (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['viewMailLog'] to see the possible values for this operation
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\MailLog
      */
-    public function viewMailLog($id = null, $origin = null, $mx = null, $from = null, $to = null, $subject = null, $mailid = null, $skip = 0, $limit = 100, $startDate = null, $endDate = null, string $contentType = self::contentTypes['viewMailLog'][0])
+    public function viewMailLog($id = null, $origin = null, $mx = null, $from = null, $to = null, $subject = null, $mailid = null, $skip = 0, $limit = 100, $startDate = null, $endDate = null, $replyto = null, $headerfrom = null, string $contentType = self::contentTypes['viewMailLog'][0])
     {
-        list($response) = $this->viewMailLogWithHttpInfo($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate, $contentType);
+        list($response) = $this->viewMailLogWithHttpInfo($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate, $replyto, $headerfrom, $contentType);
         return $response;
     }
 
@@ -484,15 +486,17 @@ class HistoryApi
      * @param  int $limit maximum number of records to return (optional, default to 100)
      * @param  int $startDate earliest date to get emails in unix timestamp format (optional)
      * @param  int $endDate earliest date to get emails in unix timestamp format (optional)
+     * @param  string $replyto Reply-To Email Address (optional)
+     * @param  string $headerfrom Header From Email Address (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['viewMailLog'] to see the possible values for this operation
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\MailLog, HTTP status code, HTTP response headers (array of strings)
      */
-    public function viewMailLogWithHttpInfo($id = null, $origin = null, $mx = null, $from = null, $to = null, $subject = null, $mailid = null, $skip = 0, $limit = 100, $startDate = null, $endDate = null, string $contentType = self::contentTypes['viewMailLog'][0])
+    public function viewMailLogWithHttpInfo($id = null, $origin = null, $mx = null, $from = null, $to = null, $subject = null, $mailid = null, $skip = 0, $limit = 100, $startDate = null, $endDate = null, $replyto = null, $headerfrom = null, string $contentType = self::contentTypes['viewMailLog'][0])
     {
-        $request = $this->viewMailLogRequest($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate, $contentType);
+        $request = $this->viewMailLogRequest($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate, $replyto, $headerfrom, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -594,14 +598,16 @@ class HistoryApi
      * @param  int $limit maximum number of records to return (optional, default to 100)
      * @param  int $startDate earliest date to get emails in unix timestamp format (optional)
      * @param  int $endDate earliest date to get emails in unix timestamp format (optional)
+     * @param  string $replyto Reply-To Email Address (optional)
+     * @param  string $headerfrom Header From Email Address (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['viewMailLog'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function viewMailLogAsync($id = null, $origin = null, $mx = null, $from = null, $to = null, $subject = null, $mailid = null, $skip = 0, $limit = 100, $startDate = null, $endDate = null, string $contentType = self::contentTypes['viewMailLog'][0])
+    public function viewMailLogAsync($id = null, $origin = null, $mx = null, $from = null, $to = null, $subject = null, $mailid = null, $skip = 0, $limit = 100, $startDate = null, $endDate = null, $replyto = null, $headerfrom = null, string $contentType = self::contentTypes['viewMailLog'][0])
     {
-        return $this->viewMailLogAsyncWithHttpInfo($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate, $contentType)
+        return $this->viewMailLogAsyncWithHttpInfo($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate, $replyto, $headerfrom, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -625,15 +631,17 @@ class HistoryApi
      * @param  int $limit maximum number of records to return (optional, default to 100)
      * @param  int $startDate earliest date to get emails in unix timestamp format (optional)
      * @param  int $endDate earliest date to get emails in unix timestamp format (optional)
+     * @param  string $replyto Reply-To Email Address (optional)
+     * @param  string $headerfrom Header From Email Address (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['viewMailLog'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function viewMailLogAsyncWithHttpInfo($id = null, $origin = null, $mx = null, $from = null, $to = null, $subject = null, $mailid = null, $skip = 0, $limit = 100, $startDate = null, $endDate = null, string $contentType = self::contentTypes['viewMailLog'][0])
+    public function viewMailLogAsyncWithHttpInfo($id = null, $origin = null, $mx = null, $from = null, $to = null, $subject = null, $mailid = null, $skip = 0, $limit = 100, $startDate = null, $endDate = null, $replyto = null, $headerfrom = null, string $contentType = self::contentTypes['viewMailLog'][0])
     {
         $returnType = '\Interserver\Mailbaby\Model\MailLog';
-        $request = $this->viewMailLogRequest($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate, $contentType);
+        $request = $this->viewMailLogRequest($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate, $replyto, $headerfrom, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -685,12 +693,14 @@ class HistoryApi
      * @param  int $limit maximum number of records to return (optional, default to 100)
      * @param  int $startDate earliest date to get emails in unix timestamp format (optional)
      * @param  int $endDate earliest date to get emails in unix timestamp format (optional)
+     * @param  string $replyto Reply-To Email Address (optional)
+     * @param  string $headerfrom Header From Email Address (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['viewMailLog'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function viewMailLogRequest($id = null, $origin = null, $mx = null, $from = null, $to = null, $subject = null, $mailid = null, $skip = 0, $limit = 100, $startDate = null, $endDate = null, string $contentType = self::contentTypes['viewMailLog'][0])
+    public function viewMailLogRequest($id = null, $origin = null, $mx = null, $from = null, $to = null, $subject = null, $mailid = null, $skip = 0, $limit = 100, $startDate = null, $endDate = null, $replyto = null, $headerfrom = null, string $contentType = self::contentTypes['viewMailLog'][0])
     {
 
 
@@ -725,6 +735,8 @@ class HistoryApi
             throw new \InvalidArgumentException('invalid value for "$endDate" when calling HistoryApi.viewMailLog, must be bigger than or equal to 0.');
         }
         
+
+
 
         $resourcePath = '/mail/log';
         $formParams = [];
@@ -828,6 +840,24 @@ class HistoryApi
             $endDate,
             'endDate', // param base name
             'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $replyto,
+            'replyto', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $headerfrom,
+            'headerfrom', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required

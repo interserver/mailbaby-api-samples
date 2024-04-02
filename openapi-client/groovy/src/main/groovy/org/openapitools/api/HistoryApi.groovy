@@ -30,7 +30,7 @@ class HistoryApi {
 
     }
 
-    def viewMailLog ( Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, Closure onSuccess, Closure onFailure)  {
+    def viewMailLog ( Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/log"
 
         // params
@@ -72,6 +72,12 @@ class HistoryApi {
         }
         if (endDate != null) {
             queryParams.put("endDate", endDate)
+        }
+        if (replyto != null) {
+            queryParams.put("replyto", replyto)
+        }
+        if (headerfrom != null) {
+            queryParams.put("headerfrom", headerfrom)
         }
 
 

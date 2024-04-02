@@ -157,6 +157,8 @@ Get a listing of the emails sent through this system
      * @param "Limit" (optional.Int32) -  maximum number of records to return
      * @param "StartDate" (optional.Int64) -  earliest date to get emails in unix timestamp format
      * @param "EndDate" (optional.Int64) -  earliest date to get emails in unix timestamp format
+     * @param "Replyto" (optional.String) -  Reply-To Email Address
+     * @param "Headerfrom" (optional.String) -  Header From Email Address
 @return MailLog
 */
 
@@ -172,6 +174,8 @@ type HistoryApiViewMailLogOpts struct {
     Limit optional.Int32
     StartDate optional.Int64
     EndDate optional.Int64
+    Replyto optional.String
+    Headerfrom optional.String
 }
 
 func (a *HistoryApiService) ViewMailLog(ctx context.Context, localVarOptionals *HistoryApiViewMailLogOpts) (MailLog, *http.Response, error) {
@@ -222,6 +226,12 @@ func (a *HistoryApiService) ViewMailLog(ctx context.Context, localVarOptionals *
 	}
 	if localVarOptionals != nil && localVarOptionals.EndDate.IsSet() {
 		localVarQueryParams.Add("endDate", parameterToString(localVarOptionals.EndDate.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Replyto.IsSet() {
+		localVarQueryParams.Add("replyto", parameterToString(localVarOptionals.Replyto.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Headerfrom.IsSet() {
+		localVarQueryParams.Add("headerfrom", parameterToString(localVarOptionals.Headerfrom.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}

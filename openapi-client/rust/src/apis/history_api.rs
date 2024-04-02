@@ -70,7 +70,7 @@ pub async fn get_stats(configuration: &configuration::Configuration, ) -> Result
 }
 
 /// Get a listing of the emails sent through this system 
-pub async fn view_mail_log(configuration: &configuration::Configuration, id: Option<i64>, origin: Option<&str>, mx: Option<&str>, from: Option<&str>, to: Option<&str>, subject: Option<&str>, mailid: Option<&str>, skip: Option<i32>, limit: Option<i32>, start_date: Option<i64>, end_date: Option<i64>) -> Result<crate::models::MailLog, Error<ViewMailLogError>> {
+pub async fn view_mail_log(configuration: &configuration::Configuration, id: Option<i64>, origin: Option<&str>, mx: Option<&str>, from: Option<&str>, to: Option<&str>, subject: Option<&str>, mailid: Option<&str>, skip: Option<i32>, limit: Option<i32>, start_date: Option<i64>, end_date: Option<i64>, replyto: Option<&str>, headerfrom: Option<&str>) -> Result<crate::models::MailLog, Error<ViewMailLogError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -110,6 +110,12 @@ pub async fn view_mail_log(configuration: &configuration::Configuration, id: Opt
     }
     if let Some(ref local_var_str) = end_date {
         local_var_req_builder = local_var_req_builder.query(&[("endDate", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = replyto {
+        local_var_req_builder = local_var_req_builder.query(&[("replyto", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = headerfrom {
+        local_var_req_builder = local_var_req_builder.query(&[("headerfrom", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());

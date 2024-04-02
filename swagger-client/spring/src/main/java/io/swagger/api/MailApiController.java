@@ -44,7 +44,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-02-20T06:54:43.467691-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-04-02T13:33:33.953471686-04:00[America/New_York]")
 @RestController
 public class MailApiController implements MailApi {
 
@@ -212,14 +212,16 @@ public class MailApiController implements MailApi {
 ,@Parameter(in = ParameterIn.QUERY, description = "to/destination email address" ,schema=@Schema()) @Valid @RequestParam(value = "to", required = false) String to
 ,@Parameter(in = ParameterIn.QUERY, description = "subject containing this string" ,schema=@Schema()) @Valid @RequestParam(value = "subject", required = false) String subject
 ,@Parameter(in = ParameterIn.QUERY, description = "mail id" ,schema=@Schema()) @Valid @RequestParam(value = "mailid", required = false) String mailid
-,@Min(0)@Parameter(in = ParameterIn.QUERY, description = "number of records to skip for pagination" ,schema=@Schema(allowableValues={  }
+,@Min(0)@Parameter(in = ParameterIn.QUERY, description = "number of records to skip for pagination" ,schema=@Schema(allowableValues={ "0" }
 , defaultValue="0")) @Valid @RequestParam(value = "skip", required = false, defaultValue="0") Integer skip
-,@Min(1) @Max(10000) @Parameter(in = ParameterIn.QUERY, description = "maximum number of records to return" ,schema=@Schema(allowableValues={  }, minimum="1", maximum="10000"
+,@Min(1) @Max(10000) @Parameter(in = ParameterIn.QUERY, description = "maximum number of records to return" ,schema=@Schema(allowableValues={ "1", "10000" }, minimum="1", maximum="10000"
 , defaultValue="100")) @Valid @RequestParam(value = "limit", required = false, defaultValue="100") Integer limit
-,@Min(0L) @Max(9999999999L) @Parameter(in = ParameterIn.QUERY, description = "earliest date to get emails in unix timestamp format" ,schema=@Schema(allowableValues={  }, maximum="9999999999"
+,@Min(0L) @Max(9999999999L) @Parameter(in = ParameterIn.QUERY, description = "earliest date to get emails in unix timestamp format" ,schema=@Schema(allowableValues={ "0", "9999999999" }, maximum="9999999999"
 )) @Valid @RequestParam(value = "startDate", required = false) Long startDate
-,@Min(0L) @Max(9999999999L) @Parameter(in = ParameterIn.QUERY, description = "earliest date to get emails in unix timestamp format" ,schema=@Schema(allowableValues={  }, maximum="9999999999"
+,@Min(0L) @Max(9999999999L) @Parameter(in = ParameterIn.QUERY, description = "earliest date to get emails in unix timestamp format" ,schema=@Schema(allowableValues={ "0", "9999999999" }, maximum="9999999999"
 )) @Valid @RequestParam(value = "endDate", required = false) Long endDate
+,@Parameter(in = ParameterIn.QUERY, description = "Reply-To Email Address" ,schema=@Schema()) @Valid @RequestParam(value = "replyto", required = false) String replyto
+,@Parameter(in = ParameterIn.QUERY, description = "Header From Email Address" ,schema=@Schema()) @Valid @RequestParam(value = "headerfrom", required = false) String headerfrom
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {

@@ -184,12 +184,14 @@ public class HistoryApi {
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call viewMailLogCall(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call viewMailLogCall(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -219,6 +221,10 @@ public class HistoryApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("startDate", startDate));
         if (endDate != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("endDate", endDate));
+        if (replyto != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("replyto", replyto));
+        if (headerfrom != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("headerfrom", headerfrom));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -253,9 +259,9 @@ public class HistoryApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call viewMailLogValidateBeforeCall(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call viewMailLogValidateBeforeCall(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        com.squareup.okhttp.Call call = viewMailLogCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = viewMailLogCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, progressListener, progressRequestListener);
         return call;
 
         
@@ -278,11 +284,13 @@ public class HistoryApi {
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
      * @return MailLog
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public MailLog viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate) throws ApiException {
-        ApiResponse<MailLog> resp = viewMailLogWithHttpInfo(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+    public MailLog viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom) throws ApiException {
+        ApiResponse<MailLog> resp = viewMailLogWithHttpInfo(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
         return resp.getData();
     }
 
@@ -300,11 +308,13 @@ public class HistoryApi {
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
      * @return ApiResponse&lt;MailLog&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<MailLog> viewMailLogWithHttpInfo(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate) throws ApiException {
-        com.squareup.okhttp.Call call = viewMailLogValidateBeforeCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, null, null);
+    public ApiResponse<MailLog> viewMailLogWithHttpInfo(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom) throws ApiException {
+        com.squareup.okhttp.Call call = viewMailLogValidateBeforeCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, null, null);
         Type localVarReturnType = new TypeToken<MailLog>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -323,11 +333,13 @@ public class HistoryApi {
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call viewMailLogAsync(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, final ApiCallback<MailLog> callback) throws ApiException {
+    public com.squareup.okhttp.Call viewMailLogAsync(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom, final ApiCallback<MailLog> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -348,7 +360,7 @@ public class HistoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = viewMailLogValidateBeforeCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = viewMailLogValidateBeforeCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<MailLog>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

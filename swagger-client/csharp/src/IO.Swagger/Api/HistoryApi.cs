@@ -60,8 +60,10 @@ namespace IO.Swagger.Api
         /// <param name="limit">maximum number of records to return (optional, default to 100)</param>
         /// <param name="startDate">earliest date to get emails in unix timestamp format (optional)</param>
         /// <param name="endDate">earliest date to get emails in unix timestamp format (optional)</param>
+        /// <param name="replyto">Reply-To Email Address (optional)</param>
+        /// <param name="headerfrom">Header From Email Address (optional)</param>
         /// <returns>MailLog</returns>
-        MailLog ViewMailLog (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null);
+        MailLog ViewMailLog (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null, string replyto = null, string headerfrom = null);
 
         /// <summary>
         /// displays the mail log
@@ -81,8 +83,10 @@ namespace IO.Swagger.Api
         /// <param name="limit">maximum number of records to return (optional, default to 100)</param>
         /// <param name="startDate">earliest date to get emails in unix timestamp format (optional)</param>
         /// <param name="endDate">earliest date to get emails in unix timestamp format (optional)</param>
+        /// <param name="replyto">Reply-To Email Address (optional)</param>
+        /// <param name="headerfrom">Header From Email Address (optional)</param>
         /// <returns>ApiResponse of MailLog</returns>
-        ApiResponse<MailLog> ViewMailLogWithHttpInfo (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null);
+        ApiResponse<MailLog> ViewMailLogWithHttpInfo (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null, string replyto = null, string headerfrom = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -122,8 +126,10 @@ namespace IO.Swagger.Api
         /// <param name="limit">maximum number of records to return (optional, default to 100)</param>
         /// <param name="startDate">earliest date to get emails in unix timestamp format (optional)</param>
         /// <param name="endDate">earliest date to get emails in unix timestamp format (optional)</param>
+        /// <param name="replyto">Reply-To Email Address (optional)</param>
+        /// <param name="headerfrom">Header From Email Address (optional)</param>
         /// <returns>Task of MailLog</returns>
-        System.Threading.Tasks.Task<MailLog> ViewMailLogAsync (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null);
+        System.Threading.Tasks.Task<MailLog> ViewMailLogAsync (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null, string replyto = null, string headerfrom = null);
 
         /// <summary>
         /// displays the mail log
@@ -143,8 +149,10 @@ namespace IO.Swagger.Api
         /// <param name="limit">maximum number of records to return (optional, default to 100)</param>
         /// <param name="startDate">earliest date to get emails in unix timestamp format (optional)</param>
         /// <param name="endDate">earliest date to get emails in unix timestamp format (optional)</param>
+        /// <param name="replyto">Reply-To Email Address (optional)</param>
+        /// <param name="headerfrom">Header From Email Address (optional)</param>
         /// <returns>Task of ApiResponse (MailLog)</returns>
-        System.Threading.Tasks.Task<ApiResponse<MailLog>> ViewMailLogAsyncWithHttpInfo (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null);
+        System.Threading.Tasks.Task<ApiResponse<MailLog>> ViewMailLogAsyncWithHttpInfo (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null, string replyto = null, string headerfrom = null);
         #endregion Asynchronous Operations
     }
 
@@ -400,10 +408,12 @@ namespace IO.Swagger.Api
         /// <param name="limit">maximum number of records to return (optional, default to 100)</param>
         /// <param name="startDate">earliest date to get emails in unix timestamp format (optional)</param>
         /// <param name="endDate">earliest date to get emails in unix timestamp format (optional)</param>
+        /// <param name="replyto">Reply-To Email Address (optional)</param>
+        /// <param name="headerfrom">Header From Email Address (optional)</param>
         /// <returns>MailLog</returns>
-        public MailLog ViewMailLog (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null)
+        public MailLog ViewMailLog (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null, string replyto = null, string headerfrom = null)
         {
-             ApiResponse<MailLog> localVarResponse = ViewMailLogWithHttpInfo(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+             ApiResponse<MailLog> localVarResponse = ViewMailLogWithHttpInfo(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
              return localVarResponse.Data;
         }
 
@@ -422,8 +432,10 @@ namespace IO.Swagger.Api
         /// <param name="limit">maximum number of records to return (optional, default to 100)</param>
         /// <param name="startDate">earliest date to get emails in unix timestamp format (optional)</param>
         /// <param name="endDate">earliest date to get emails in unix timestamp format (optional)</param>
+        /// <param name="replyto">Reply-To Email Address (optional)</param>
+        /// <param name="headerfrom">Header From Email Address (optional)</param>
         /// <returns>ApiResponse of MailLog</returns>
-        public ApiResponse< MailLog > ViewMailLogWithHttpInfo (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null)
+        public ApiResponse< MailLog > ViewMailLogWithHttpInfo (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null, string replyto = null, string headerfrom = null)
         {
 
             var localVarPath = "/mail/log";
@@ -458,6 +470,8 @@ namespace IO.Swagger.Api
             if (limit != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
             if (startDate != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "startDate", startDate)); // query parameter
             if (endDate != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "endDate", endDate)); // query parameter
+            if (replyto != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "replyto", replyto)); // query parameter
+            if (headerfrom != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "headerfrom", headerfrom)); // query parameter
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
@@ -497,10 +511,12 @@ namespace IO.Swagger.Api
         /// <param name="limit">maximum number of records to return (optional, default to 100)</param>
         /// <param name="startDate">earliest date to get emails in unix timestamp format (optional)</param>
         /// <param name="endDate">earliest date to get emails in unix timestamp format (optional)</param>
+        /// <param name="replyto">Reply-To Email Address (optional)</param>
+        /// <param name="headerfrom">Header From Email Address (optional)</param>
         /// <returns>Task of MailLog</returns>
-        public async System.Threading.Tasks.Task<MailLog> ViewMailLogAsync (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null)
+        public async System.Threading.Tasks.Task<MailLog> ViewMailLogAsync (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null, string replyto = null, string headerfrom = null)
         {
-             ApiResponse<MailLog> localVarResponse = await ViewMailLogAsyncWithHttpInfo(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+             ApiResponse<MailLog> localVarResponse = await ViewMailLogAsyncWithHttpInfo(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
              return localVarResponse.Data;
 
         }
@@ -520,8 +536,10 @@ namespace IO.Swagger.Api
         /// <param name="limit">maximum number of records to return (optional, default to 100)</param>
         /// <param name="startDate">earliest date to get emails in unix timestamp format (optional)</param>
         /// <param name="endDate">earliest date to get emails in unix timestamp format (optional)</param>
+        /// <param name="replyto">Reply-To Email Address (optional)</param>
+        /// <param name="headerfrom">Header From Email Address (optional)</param>
         /// <returns>Task of ApiResponse (MailLog)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<MailLog>> ViewMailLogAsyncWithHttpInfo (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null)
+        public async System.Threading.Tasks.Task<ApiResponse<MailLog>> ViewMailLogAsyncWithHttpInfo (long? id = null, string origin = null, string mx = null, string from = null, string to = null, string subject = null, string mailid = null, int? skip = null, int? limit = null, long? startDate = null, long? endDate = null, string replyto = null, string headerfrom = null)
         {
 
             var localVarPath = "/mail/log";
@@ -556,6 +574,8 @@ namespace IO.Swagger.Api
             if (limit != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
             if (startDate != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "startDate", startDate)); // query parameter
             if (endDate != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "endDate", endDate)); // query parameter
+            if (replyto != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "replyto", replyto)); // query parameter
+            if (headerfrom != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "headerfrom", headerfrom)); // query parameter
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {

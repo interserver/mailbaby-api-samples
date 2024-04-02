@@ -27,7 +27,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2024-02-20T06:54:22.480466-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2024-04-02T13:33:11.099558065-04:00[America/New_York]")
 public interface MailApiService {
       public Response addRule(String user, String type, String data, SecurityContext securityContext);
       public Response addRule(DenyRuleNew body, SecurityContext securityContext);
@@ -41,5 +41,5 @@ public interface MailApiService {
       public Response sendAdvMail(SendMailAdv body, SecurityContext securityContext);
       public Response sendMail(String to, String from, String subject, String body, SecurityContext securityContext);
       public Response sendMail(SendMail body, SecurityContext securityContext);
-      public Response viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, SecurityContext securityContext);
+      public Response viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom, SecurityContext securityContext);
 }

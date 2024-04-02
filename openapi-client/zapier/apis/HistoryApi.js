@@ -107,6 +107,16 @@ module.exports = {
                     label: 'earliest date to get emails in unix timestamp format',
                     type: 'number',
                 },
+                {
+                    key: 'replyto',
+                    label: 'Reply-To Email Address',
+                    type: 'string',
+                },
+                {
+                    key: 'headerfrom',
+                    label: 'Header From Email Address',
+                    type: 'string',
+                },
             ],
             outputFields: [
                 ...MailLog.fields('', false),
@@ -133,6 +143,8 @@ module.exports = {
                         'limit': bundle.inputData?.['limit'],
                         'startDate': bundle.inputData?.['startDate'],
                         'endDate': bundle.inputData?.['endDate'],
+                        'replyto': bundle.inputData?.['replyto'],
+                        'headerfrom': bundle.inputData?.['headerfrom'],
                     },
                     body: {
                     },

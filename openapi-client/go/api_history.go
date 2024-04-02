@@ -171,6 +171,8 @@ type ApiViewMailLogRequest struct {
 	limit *int32
 	startDate *int64
 	endDate *int64
+	replyto *string
+	headerfrom *string
 }
 
 // The ID of your mail order this will be sent through.
@@ -236,6 +238,18 @@ func (r ApiViewMailLogRequest) StartDate(startDate int64) ApiViewMailLogRequest 
 // earliest date to get emails in unix timestamp format
 func (r ApiViewMailLogRequest) EndDate(endDate int64) ApiViewMailLogRequest {
 	r.endDate = &endDate
+	return r
+}
+
+// Reply-To Email Address
+func (r ApiViewMailLogRequest) Replyto(replyto string) ApiViewMailLogRequest {
+	r.replyto = &replyto
+	return r
+}
+
+// Header From Email Address
+func (r ApiViewMailLogRequest) Headerfrom(headerfrom string) ApiViewMailLogRequest {
+	r.headerfrom = &headerfrom
 	return r
 }
 
@@ -318,6 +332,12 @@ func (a *HistoryAPIService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLo
 	}
 	if r.endDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "endDate", r.endDate, "")
+	}
+	if r.replyto != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "replyto", r.replyto, "")
+	}
+	if r.headerfrom != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "headerfrom", r.headerfrom, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -112,8 +112,8 @@ public class MailApiController implements MailApi {
     }
 
     @Override
-    public Single<HttpResponse<MailLog>> viewMailLog(@Nullable Long id, @Nullable String origin, @Nullable String mx, @Nullable String from, @Nullable String to, @Nullable String subject, @Nullable String mailid, @Nullable @Min(0)Integer skip, @Nullable @Min(1) @Max(10000) Integer limit, @Nullable @Min(0L) @Max(9999999999L) Long startDate, @Nullable @Min(0L) @Max(9999999999L) Long endDate) {
+    public Single<HttpResponse<MailLog>> viewMailLog(@Nullable Long id, @Nullable String origin, @Nullable String mx, @Nullable String from, @Nullable String to, @Nullable String subject, @Nullable String mailid, @Nullable @Min(0)Integer skip, @Nullable @Min(1) @Max(10000) Integer limit, @Nullable @Min(0L) @Max(9999999999L) Long startDate, @Nullable @Min(0L) @Max(9999999999L) Long endDate, @Nullable String replyto, @Nullable String headerfrom) {
         // TODO: Implement me
-        return MailApi.super.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+        return MailApi.super.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
     }
 }

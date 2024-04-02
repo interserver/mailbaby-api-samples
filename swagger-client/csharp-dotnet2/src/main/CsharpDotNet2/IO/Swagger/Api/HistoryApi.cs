@@ -30,8 +30,10 @@ namespace IO.Swagger.Api
         /// <param name="limit">maximum number of records to return</param>
         /// <param name="startDate">earliest date to get emails in unix timestamp format</param>
         /// <param name="endDate">earliest date to get emails in unix timestamp format</param>
+        /// <param name="replyto">Reply-To Email Address</param>
+        /// <param name="headerfrom">Header From Email Address</param>
         /// <returns>MailLog</returns>
-        MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, int? skip, int? limit, long? startDate, long? endDate);
+        MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, int? skip, int? limit, long? startDate, long? endDate, string replyto, string headerfrom);
     }
   
     /// <summary>
@@ -132,8 +134,10 @@ namespace IO.Swagger.Api
         /// <param name="limit">maximum number of records to return</param>
         /// <param name="startDate">earliest date to get emails in unix timestamp format</param>
         /// <param name="endDate">earliest date to get emails in unix timestamp format</param>
+        /// <param name="replyto">Reply-To Email Address</param>
+        /// <param name="headerfrom">Header From Email Address</param>
         /// <returns>MailLog</returns>
-        public MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, int? skip, int? limit, long? startDate, long? endDate)
+        public MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, int? skip, int? limit, long? startDate, long? endDate, string replyto, string headerfrom)
         {
     
             var path = "/mail/log";
@@ -156,6 +160,8 @@ namespace IO.Swagger.Api
  if (limit != null) queryParams.Add("limit", ApiClient.ParameterToString(limit)); // query parameter
  if (startDate != null) queryParams.Add("startDate", ApiClient.ParameterToString(startDate)); // query parameter
  if (endDate != null) queryParams.Add("endDate", ApiClient.ParameterToString(endDate)); // query parameter
+ if (replyto != null) queryParams.Add("replyto", ApiClient.ParameterToString(replyto)); // query parameter
+ if (headerfrom != null) queryParams.Add("headerfrom", ApiClient.ParameterToString(headerfrom)); // query parameter
                         
             // authentication setting, if any
             String[] authSettings = new String[] { "apiKeyAuth" };

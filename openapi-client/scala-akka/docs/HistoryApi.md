@@ -144,8 +144,12 @@ object Example extends App {
     val startDate: Long = 1641781008 // Long | earliest date to get emails in unix timestamp format
 
     val endDate: Long = 1673317008 // Long | earliest date to get emails in unix timestamp format
+
+    val replyto: String = replyto_example // String | Reply-To Email Address
+
+    val headerfrom: String = headerfrom_example // String | Header From Email Address
     
-    val request = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
+    val request = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom)
     val response = apiInvoker.execute(request)
 
     response.onComplete {
@@ -184,6 +188,8 @@ Name | Type | Description  | Notes
  **limit** | **Int**| maximum number of records to return | [optional]
  **startDate** | **Long**| earliest date to get emails in unix timestamp format | [optional]
  **endDate** | **Long**| earliest date to get emails in unix timestamp format | [optional]
+ **replyto** | **String**| Reply-To Email Address | [optional]
+ **headerfrom** | **String**| Header From Email Address | [optional]
 
 ### Return type
 

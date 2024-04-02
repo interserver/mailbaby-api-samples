@@ -671,6 +671,18 @@ Get a listing of the emails sent through this system
 | null
 | 
 
+| replyto
+| Reply-To Email Address 
+| -
+| null
+| 
+
+| headerfrom
+| Header From Email Address 
+| -
+| null
+| 
+
 |===
 
 

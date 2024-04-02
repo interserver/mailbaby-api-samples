@@ -56,10 +56,12 @@ class HistoryApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
      * @return MailLog
      */
     @Suppress("UNCHECKED_CAST")
-    fun viewMailLog(id: kotlin.Long? = null, origin: kotlin.String? = null, mx: kotlin.String? = null, from: kotlin.String? = null, to: kotlin.String? = null, subject: kotlin.String? = null, mailid: kotlin.String? = null, skip: kotlin.Int? = null, limit: kotlin.Int? = null, startDate: kotlin.Long? = null, endDate: kotlin.Long? = null): MailLog {
+    fun viewMailLog(id: kotlin.Long? = null, origin: kotlin.String? = null, mx: kotlin.String? = null, from: kotlin.String? = null, to: kotlin.String? = null, subject: kotlin.String? = null, mailid: kotlin.String? = null, skip: kotlin.Int? = null, limit: kotlin.Int? = null, startDate: kotlin.Long? = null, endDate: kotlin.Long? = null, replyto: kotlin.String? = null, headerfrom: kotlin.String? = null): MailLog {
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>().apply {
             if (id != null) {
                 put("id", listOf(id.toString()))
@@ -93,6 +95,12 @@ class HistoryApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
             }
             if (endDate != null) {
                 put("endDate", listOf(endDate.toString()))
+            }
+            if (replyto != null) {
+                put("replyto", listOf(replyto.toString()))
+            }
+            if (headerfrom != null) {
+                put("headerfrom", listOf(headerfrom.toString()))
             }
         }
         val localVariableConfig = RequestConfig(

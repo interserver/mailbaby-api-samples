@@ -16,32 +16,32 @@ class HistoryApi(
   import historyMarshaller._
 
   lazy val route: Route =
-    path() { () => 
+    path() { 
       get {
-        parameters() { () =>
+        
           
-            formFields() { () =>
+            
               
                 
                   historyService.getStats()
                
              
-            }
+           
          
-        }
+       
       }
     } ~
-    path() { () => 
+    path() { 
       get {
-        parameters("id".as[Long].?, "origin".as[String].?, "mx".as[String].?, "from".as[String].?, "to".as[String].?, "subject".as[String].?, "mailid".as[String].?, "skip".as[Int].?, "limit".as[Int].?, "startDate".as[Long].?, "endDate".as[Long].?) { (id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate) =>
+        parameters("id".as[Long].?, "origin".as[String].?, "mx".as[String].?, "from".as[String].?, "to".as[String].?, "subject".as[String].?, "mailid".as[String].?, "skip".as[Int].?, "limit".as[Int].?, "startDate".as[Long].?, "endDate".as[Long].?, "replyto".as[String].?, "headerfrom".as[String].?) { (id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom) =>
           
-            formFields() { () =>
+            
               
                 
-                  historyService.viewMailLog(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, skip = skip, limit = limit, startDate = startDate, endDate = endDate)
+                  historyService.viewMailLog(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, skip = skip, limit = limit, startDate = startDate, endDate = endDate, replyto = replyto, headerfrom = headerfrom)
                
              
-            }
+           
          
         }
       }
@@ -72,7 +72,7 @@ trait HistoryApiService {
    * Code: 200, Message: search results matching criteria, DataType: MailLog
    * Code: 400, Message: bad input parameter
    */
-  def viewMailLog(id: Option[Long], origin: Option[String], mx: Option[String], from: Option[String], to: Option[String], subject: Option[String], mailid: Option[String], skip: Option[Int], limit: Option[Int], startDate: Option[Long], endDate: Option[Long])
+  def viewMailLog(id: Option[Long], origin: Option[String], mx: Option[String], from: Option[String], to: Option[String], subject: Option[String], mailid: Option[String], skip: Option[Int], limit: Option[Int], startDate: Option[Long], endDate: Option[Long], replyto: Option[String], headerfrom: Option[String])
       (implicit toEntityMarshallerMailLog: ToEntityMarshaller[MailLog]): Route
 
 }

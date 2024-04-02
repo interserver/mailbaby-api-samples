@@ -15,19 +15,19 @@ class ServicesApi(
   import servicesMarshaller._
 
   lazy val route: Route =
-    path() { () => 
+    path() { 
       get {
-        parameters() { () =>
+        
           
-            formFields() { () =>
+            
               
                 
                   servicesService.getMailOrders()
                
              
-            }
+           
          
-        }
+       
       }
     }
 }

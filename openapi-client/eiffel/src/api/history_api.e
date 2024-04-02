@@ -57,7 +57,7 @@ feature -- API Access
 			end
 		end
 
-	view_mail_log (id: INTEGER_64; origin: STRING_32; mx: STRING_32; var_from: STRING_32; to: STRING_32; subject: STRING_32; mailid: STRING_32; skip: INTEGER_32; limit: INTEGER_32; start_date: INTEGER_64; end_date: INTEGER_64): detachable MAIL_LOG
+	view_mail_log (id: INTEGER_64; origin: STRING_32; mx: STRING_32; var_from: STRING_32; to: STRING_32; subject: STRING_32; mailid: STRING_32; skip: INTEGER_32; limit: INTEGER_32; start_date: INTEGER_64; end_date: INTEGER_64; replyto: STRING_32; headerfrom: STRING_32): detachable MAIL_LOG
 			-- displays the mail log
 			-- Get a listing of the emails sent through this system 
 			-- 
@@ -82,6 +82,10 @@ feature -- API Access
 			-- argument: start_date earliest date to get emails in unix timestamp format (optional, default to null)
 			-- 
 			-- argument: end_date earliest date to get emails in unix timestamp format (optional, default to null)
+			-- 
+			-- argument: replyto Reply-To Email Address (optional, default to null)
+			-- 
+			-- argument: headerfrom Header From Email Address (optional, default to null)
 			-- 
 			-- 
 			-- Result MAIL_LOG
@@ -113,6 +117,8 @@ feature -- API Access
 			l_request.fill_query_params(api_client.parameter_to_tuple("", "limit", limit));
 			l_request.fill_query_params(api_client.parameter_to_tuple("", "startDate", start_date));
 			l_request.fill_query_params(api_client.parameter_to_tuple("", "endDate", end_date));
+			l_request.fill_query_params(api_client.parameter_to_tuple("", "replyto", replyto));
+			l_request.fill_query_params(api_client.parameter_to_tuple("", "headerfrom", headerfrom));
 
 
 			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"application/json">>)  as l_accept then

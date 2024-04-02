@@ -28,7 +28,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2024-02-20T06:54:27.687095-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2024-04-02T13:33:16.911044268-04:00[America/New_York]")
 public abstract class MailApiService {
     public abstract Response addRule(String user,String type,String data,SecurityContext securityContext) throws NotFoundException;
     public abstract Response addRule(DenyRuleNew body,SecurityContext securityContext) throws NotFoundException;
@@ -42,5 +42,5 @@ public abstract class MailApiService {
     public abstract Response sendAdvMail(SendMailAdv body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response sendMail(String to,String from,String subject,String body,SecurityContext securityContext) throws NotFoundException;
     public abstract Response sendMail(SendMail body,SecurityContext securityContext) throws NotFoundException;
-    public abstract Response viewMailLog( Long id, String origin, String mx, String from, String to, String subject, String mailid, @Min(0) Integer skip, @Min(1) @Max(10000) Integer limit, @Min(0L) @Max(9999999999L) Long startDate, @Min(0L) @Max(9999999999L) Long endDate,SecurityContext securityContext) throws NotFoundException;
+    public abstract Response viewMailLog( Long id, String origin, String mx, String from, String to, String subject, String mailid, @Min(0) Integer skip, @Min(1) @Max(10000) Integer limit, @Min(0L) @Max(9999999999L) Long startDate, @Min(0L) @Max(9999999999L) Long endDate, String replyto, String headerfrom,SecurityContext securityContext) throws NotFoundException;
 }

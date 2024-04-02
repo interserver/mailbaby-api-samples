@@ -149,6 +149,8 @@ package body .Clients is
        Limit : in Swagger.Nullable_Integer;
        Start_Date : in Swagger.Nullable_Long;
        End_Date : in Swagger.Nullable_Long;
+       Replyto : in Swagger.Nullable_UString;
+       Headerfrom : in Swagger.Nullable_UString;
        Result : out .Models.MailLog_Type) is
       URI   : Swagger.Clients.URI_Type;
       Reply : Swagger.Value_Type;
@@ -167,6 +169,8 @@ package body .Clients is
       URI.Add_Param ("limit", Limit);
       URI.Add_Param ("startDate", Start_Date);
       URI.Add_Param ("endDate", End_Date);
+      URI.Add_Param ("replyto", Replyto);
+      URI.Add_Param ("headerfrom", Headerfrom);
       URI.Set_Path ("/mail/log");
       Client.Call (Swagger.Clients.GET, URI, Reply);
       .Models.Deserialize (Reply, "", Result);

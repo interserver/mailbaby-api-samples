@@ -277,7 +277,7 @@ void OAIHistoryApi::getStatsCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, const ::OpenAPI::OptionalParam<QString> &origin, const ::OpenAPI::OptionalParam<QString> &mx, const ::OpenAPI::OptionalParam<QString> &from, const ::OpenAPI::OptionalParam<QString> &to, const ::OpenAPI::OptionalParam<QString> &subject, const ::OpenAPI::OptionalParam<QString> &mailid, const ::OpenAPI::OptionalParam<qint32> &skip, const ::OpenAPI::OptionalParam<qint32> &limit, const ::OpenAPI::OptionalParam<qint64> &start_date, const ::OpenAPI::OptionalParam<qint64> &end_date) {
+void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, const ::OpenAPI::OptionalParam<QString> &origin, const ::OpenAPI::OptionalParam<QString> &mx, const ::OpenAPI::OptionalParam<QString> &from, const ::OpenAPI::OptionalParam<QString> &to, const ::OpenAPI::OptionalParam<QString> &subject, const ::OpenAPI::OptionalParam<QString> &mailid, const ::OpenAPI::OptionalParam<qint32> &skip, const ::OpenAPI::OptionalParam<qint32> &limit, const ::OpenAPI::OptionalParam<qint64> &start_date, const ::OpenAPI::OptionalParam<qint64> &end_date, const ::OpenAPI::OptionalParam<QString> &replyto, const ::OpenAPI::OptionalParam<QString> &headerfrom) {
     QString fullPath = QString(_serverConfigs["viewMailLog"][_serverIndices.value("viewMailLog")].URL()+"/mail/log");
     
     if (_apiKeys.contains("apiKeyAuth")) {
@@ -449,6 +449,36 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
             fullPath.append("?");
 
         fullPath.append(QUrl::toPercentEncoding("endDate")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(end_date.value())));
+    }
+    if (replyto.hasValue())
+    {
+        queryStyle = "form";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "replyto", true);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("replyto")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(replyto.value())));
+    }
+    if (headerfrom.hasValue())
+    {
+        queryStyle = "form";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "headerfrom", true);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("headerfrom")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(headerfrom.value())));
     }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);

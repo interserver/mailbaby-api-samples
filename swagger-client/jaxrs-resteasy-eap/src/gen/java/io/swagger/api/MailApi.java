@@ -38,7 +38,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2024-02-20T06:54:33.446635-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2024-04-02T13:33:23.260102821-04:00[America/New_York]")
 public interface MailApi  {
    
     @POST
@@ -216,6 +216,6 @@ public interface MailApi  {
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailLog.class))),
                 @ApiResponse(responseCode = "400", description = "bad input parameter")
          })
-    Response viewMailLog( @QueryParam("id") Long id, @QueryParam("origin") String origin, @QueryParam("mx") String mx, @QueryParam("from") String from, @QueryParam("to") String to, @QueryParam("subject") String subject, @QueryParam("mailid") String mailid, @Min(0) @QueryParam("skip") Integer skip, @Min(1) @Max(10000) @QueryParam("limit") Integer limit, @Min(0) @Max(9999999999) @QueryParam("startDate") Long startDate, @Min(0) @Max(9999999999) @QueryParam("endDate") Long endDate,@Context SecurityContext securityContext);
+    Response viewMailLog( @QueryParam("id") Long id, @QueryParam("origin") String origin, @QueryParam("mx") String mx, @QueryParam("from") String from, @QueryParam("to") String to, @QueryParam("subject") String subject, @QueryParam("mailid") String mailid, @Min(0) @QueryParam("skip") Integer skip, @Min(1) @Max(10000) @QueryParam("limit") Integer limit, @Min(0) @Max(9999999999) @QueryParam("startDate") Long startDate, @Min(0) @Max(9999999999) @QueryParam("endDate") Long endDate, @QueryParam("replyto") String replyto, @QueryParam("headerfrom") String headerfrom,@Context SecurityContext securityContext);
 
 }

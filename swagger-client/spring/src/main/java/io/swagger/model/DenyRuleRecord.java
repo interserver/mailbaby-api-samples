@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "The data for a email deny rule record.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-02-20T06:54:43.467691-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-04-02T13:33:33.953471686-04:00[America/New_York]")
 
 
 public class DenyRuleRecord   {

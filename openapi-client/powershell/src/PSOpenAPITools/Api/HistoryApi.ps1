@@ -116,6 +116,12 @@ earliest date to get emails in unix timestamp format
 .PARAMETER EndDate
 earliest date to get emails in unix timestamp format
 
+.PARAMETER Replyto
+Reply-To Email Address
+
+.PARAMETER Headerfrom
+Header From Email Address
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -160,6 +166,12 @@ function Invoke-ViewMailLog {
         [Parameter(Position = 10, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [System.Nullable[Int64]]
         ${EndDate},
+        [Parameter(Position = 11, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Replyto},
+        [Parameter(Position = 12, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [String]
+        ${Headerfrom},
         [Switch]
         $WithHttpInfo
     )
@@ -225,6 +237,14 @@ function Invoke-ViewMailLog {
 
         if ($EndDate) {
             $LocalVarQueryParameters['endDate'] = $EndDate
+        }
+
+        if ($Replyto) {
+            $LocalVarQueryParameters['replyto'] = $Replyto
+        }
+
+        if ($Headerfrom) {
+            $LocalVarQueryParameters['headerfrom'] = $Headerfrom
         }
 
         if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {

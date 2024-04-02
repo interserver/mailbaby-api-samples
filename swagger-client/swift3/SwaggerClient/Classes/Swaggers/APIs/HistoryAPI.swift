@@ -68,10 +68,12 @@ open class HistoryAPI: APIBase {
      - parameter limit: (query) maximum number of records to return (optional, default to 100)
      - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
      - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
+     - parameter replyto: (query) Reply-To Email Address (optional)
+     - parameter headerfrom: (query) Header From Email Address (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int32? = nil, limit: Int32? = nil, startDate: Int64? = nil, endDate: Int64? = nil, completion: @escaping ((_ data: MailLog?, _ error: ErrorResponse?) -> Void)) {
-        viewMailLogWithRequestBuilder(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate).execute { (response, error) -> Void in
+    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int32? = nil, limit: Int32? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, completion: @escaping ((_ data: MailLog?, _ error: ErrorResponse?) -> Void)) {
+        viewMailLogWithRequestBuilder(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, replyto: replyto, headerfrom: headerfrom).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -125,9 +127,11 @@ open class HistoryAPI: APIBase {
      - parameter limit: (query) maximum number of records to return (optional, default to 100)
      - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
      - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
+     - parameter replyto: (query) Reply-To Email Address (optional)
+     - parameter headerfrom: (query) Header From Email Address (optional)
      - returns: RequestBuilder<MailLog> 
      */
-    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int32? = nil, limit: Int32? = nil, startDate: Int64? = nil, endDate: Int64? = nil) -> RequestBuilder<MailLog> {
+    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int32? = nil, limit: Int32? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil) -> RequestBuilder<MailLog> {
         let path = "/mail/log"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -143,7 +147,9 @@ open class HistoryAPI: APIBase {
                         "skip": skip?.encodeToJSON(),
                         "limit": limit?.encodeToJSON(),
                         "startDate": startDate?.encodeToJSON(),
-                        "endDate": endDate?.encodeToJSON()
+                        "endDate": endDate?.encodeToJSON(),
+                        "replyto": replyto,
+                        "headerfrom": headerfrom
         ])
 
         let requestBuilder: RequestBuilder<MailLog>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()

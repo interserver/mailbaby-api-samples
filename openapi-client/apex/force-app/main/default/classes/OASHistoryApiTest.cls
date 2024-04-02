@@ -54,7 +54,9 @@ private class OASHistoryApiTest {
             'skip' => 1000,
             'r_limit' => 1000,
             'startDate' => 1641781008,
-            'endDate' => 1673317008
+            'endDate' => 1673317008,
+            'replyto' => 'null',
+            'headerfrom' => 'null'
         };
 
         OASClient client;

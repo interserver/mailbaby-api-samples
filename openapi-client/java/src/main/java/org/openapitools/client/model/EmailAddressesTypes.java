@@ -51,7 +51,7 @@ import com.google.gson.JsonParseException;
 
 import org.openapitools.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-02-20T06:51:54.074744-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
 public class EmailAddressesTypes extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(EmailAddressesTypes.class.getName());
 

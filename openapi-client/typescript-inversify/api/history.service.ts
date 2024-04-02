@@ -76,11 +76,13 @@ export class HistoryService {
      * @param limit maximum number of records to return
      * @param startDate earliest date to get emails in unix timestamp format
      * @param endDate earliest date to get emails in unix timestamp format
+     * @param replyto Reply-To Email Address
+     * @param headerfrom Header From Email Address
      
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, observe?: 'body', headers?: Headers): Observable<MailLog>;
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, observe?: 'response', headers?: Headers): Observable<HttpResponse<MailLog>>;
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, observe: any = 'body', headers: Headers = {}): Observable<any> {
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, observe?: 'body', headers?: Headers): Observable<MailLog>;
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, observe?: 'response', headers?: Headers): Observable<HttpResponse<MailLog>>;
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, observe: any = 'body', headers: Headers = {}): Observable<any> {
         let queryParameters: string[] = [];
         if (id !== undefined) {
             queryParameters.push('id='+encodeURIComponent(String(id)));
@@ -114,6 +116,12 @@ export class HistoryService {
         }
         if (endDate !== undefined) {
             queryParameters.push('endDate='+encodeURIComponent(String(endDate)));
+        }
+        if (replyto !== undefined) {
+            queryParameters.push('replyto='+encodeURIComponent(String(replyto)));
+        }
+        if (headerfrom !== undefined) {
+            queryParameters.push('headerfrom='+encodeURIComponent(String(headerfrom)));
         }
 
         // authentication (apiKeyAuth) required

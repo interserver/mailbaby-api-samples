@@ -63,9 +63,11 @@ public class HistoryApiTest {
         Integer limit = 100;
         Long startDate = 1641781008L;
         Long endDate = 1673317008L;
+        String replyto = "example";
+        String headerfrom = "example";
 
         // when
-        MailLog body = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate).block();
+        MailLog body = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom).block();
 
         // then
         // TODO implement the viewMailLogTest()

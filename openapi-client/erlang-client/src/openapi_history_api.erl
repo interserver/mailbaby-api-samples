@@ -39,7 +39,7 @@ view_mail_log(Ctx, Optional) ->
 
     Method = get,
     Path = [?BASE_URL, "/mail/log"],
-    QS = lists:flatten([])++openapi_utils:optional_params(['id', 'origin', 'mx', 'from', 'to', 'subject', 'mailid', 'skip', 'limit', 'startDate', 'endDate'], _OptionalParams),
+    QS = lists:flatten([])++openapi_utils:optional_params(['id', 'origin', 'mx', 'from', 'to', 'subject', 'mailid', 'skip', 'limit', 'startDate', 'endDate', 'replyto', 'headerfrom'], _OptionalParams),
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),

@@ -44,7 +44,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2024-02-20T06:54:22.480466-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2024-04-02T13:33:11.099558065-04:00[America/New_York]")
 
 public class MailApi  {
 
@@ -263,18 +263,22 @@ public class MailApi  {
 ,  
 @Parameter(description = "mail id")  @QueryParam("mailid") String mailid
 ,  @Min(0) 
-@Parameter(description = "number of records to skip for pagination", schema=@Schema(allowableValues={  })
+@Parameter(description = "number of records to skip for pagination", schema=@Schema(allowableValues={ "0" })
 ) @DefaultValue("0") @QueryParam("skip") Integer skip
 ,  @Min(1) @Max(10000) 
-@Parameter(description = "maximum number of records to return", schema=@Schema(allowableValues={  }, minimum="1", maximum="10000")
+@Parameter(description = "maximum number of records to return", schema=@Schema(allowableValues={ "1", "10000" }, minimum="1", maximum="10000")
 ) @DefaultValue("100") @QueryParam("limit") Integer limit
 ,  @Min(0L) @Max(9999999999L) 
-@Parameter(description = "earliest date to get emails in unix timestamp format", schema=@Schema(allowableValues={  }, maximum="9999999999")
+@Parameter(description = "earliest date to get emails in unix timestamp format", schema=@Schema(allowableValues={ "0", "9999999999" }, maximum="9999999999")
 )  @QueryParam("startDate") Long startDate
 ,  @Min(0L) @Max(9999999999L) 
-@Parameter(description = "earliest date to get emails in unix timestamp format", schema=@Schema(allowableValues={  }, maximum="9999999999")
+@Parameter(description = "earliest date to get emails in unix timestamp format", schema=@Schema(allowableValues={ "0", "9999999999" }, maximum="9999999999")
 )  @QueryParam("endDate") Long endDate
+,  
+@Parameter(description = "Reply-To Email Address")  @QueryParam("replyto") String replyto
+,  
+@Parameter(description = "Header From Email Address")  @QueryParam("headerfrom") String headerfrom
 ) {
-        return delegate.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, securityContext);
+        return delegate.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, securityContext);
     }
 }

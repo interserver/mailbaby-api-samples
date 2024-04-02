@@ -61,9 +61,13 @@ export class HistoryApiRequestFactory extends BaseAPIRequestFactory {
      * @param limit maximum number of records to return
      * @param startDate earliest date to get emails in unix timestamp format
      * @param endDate earliest date to get emails in unix timestamp format
+     * @param replyto Reply-To Email Address
+     * @param headerfrom Header From Email Address
      */
-    public async viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, _options?: Configuration): Promise<RequestContext> {
+    public async viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
+
 
 
 
@@ -136,6 +140,16 @@ export class HistoryApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (endDate !== undefined) {
             requestContext.setQueryParam("endDate", ObjectSerializer.serialize(endDate, "number", "int64"));
+        }
+
+        // Query Params
+        if (replyto !== undefined) {
+            requestContext.setQueryParam("replyto", ObjectSerializer.serialize(replyto, "string", ""));
+        }
+
+        // Query Params
+        if (headerfrom !== undefined) {
+            requestContext.setQueryParam("headerfrom", ObjectSerializer.serialize(headerfrom, "string", ""));
         }
 
 

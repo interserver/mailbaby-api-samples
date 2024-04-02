@@ -89,7 +89,7 @@ _()
     operation_parameters["getMailBlocks"]=""
     operation_parameters["getRules"]=""
     operation_parameters["getStats"]=""
-    operation_parameters["viewMailLog"]="id= origin= mx= from= to= subject= mailid= skip= limit= startDate= endDate= "
+    operation_parameters["viewMailLog"]="id= origin= mx= from= to= subject= mailid= skip= limit= startDate= endDate= replyto= headerfrom= "
     operation_parameters["sendAdvMail"]=""
     operation_parameters["sendMail"]=""
     operation_parameters["getMailOrders"]=""

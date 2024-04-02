@@ -52,11 +52,11 @@
   "displays the mail log
   Get a listing of the emails sent through this system"
   ([] (view-mail-log-with-http-info nil))
-  ([{:keys [id origin mx from to subject mailid skip limit startDate endDate]} (s/map-of keyword? any?)]
+  ([{:keys [id origin mx from to subject mailid skip limit startDate endDate replyto headerfrom]} (s/map-of keyword? any?)]
    (call-api "/mail/log" :get
              {:path-params   {}
               :header-params {}
-              :query-params  {"id" id "origin" origin "mx" mx "from" from "to" to "subject" subject "mailid" mailid "skip" skip "limit" limit "startDate" startDate "endDate" endDate }
+              :query-params  {"id" id "origin" origin "mx" mx "from" from "to" to "subject" subject "mailid" mailid "skip" skip "limit" limit "startDate" startDate "endDate" endDate "replyto" replyto "headerfrom" headerfrom }
               :form-params   {}
               :content-types []
               :accepts       ["application/json"]

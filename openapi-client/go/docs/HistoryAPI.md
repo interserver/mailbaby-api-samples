@@ -72,7 +72,7 @@ Other parameters are passed through a pointer to a apiGetStatsRequest struct via
 
 ## ViewMailLog
 
-> MailLog ViewMailLog(ctx).Id(id).Origin(origin).Mx(mx).From(from).To(to).Subject(subject).Mailid(mailid).Skip(skip).Limit(limit).StartDate(startDate).EndDate(endDate).Execute()
+> MailLog ViewMailLog(ctx).Id(id).Origin(origin).Mx(mx).From(from).To(to).Subject(subject).Mailid(mailid).Skip(skip).Limit(limit).StartDate(startDate).EndDate(endDate).Replyto(replyto).Headerfrom(headerfrom).Execute()
 
 displays the mail log
 
@@ -102,10 +102,12 @@ func main() {
     limit := int32(1000) // int32 | maximum number of records to return (optional) (default to 100)
     startDate := int64(1641781008) // int64 | earliest date to get emails in unix timestamp format (optional)
     endDate := int64(1673317008) // int64 | earliest date to get emails in unix timestamp format (optional)
+    replyto := "replyto_example" // string | Reply-To Email Address (optional)
+    headerfrom := "headerfrom_example" // string | Header From Email Address (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.HistoryAPI.ViewMailLog(context.Background()).Id(id).Origin(origin).Mx(mx).From(from).To(to).Subject(subject).Mailid(mailid).Skip(skip).Limit(limit).StartDate(startDate).EndDate(endDate).Execute()
+    resp, r, err := apiClient.HistoryAPI.ViewMailLog(context.Background()).Id(id).Origin(origin).Mx(mx).From(from).To(to).Subject(subject).Mailid(mailid).Skip(skip).Limit(limit).StartDate(startDate).EndDate(endDate).Replyto(replyto).Headerfrom(headerfrom).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `HistoryAPI.ViewMailLog``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -137,6 +139,8 @@ Name | Type | Description  | Notes
  **limit** | **int32** | maximum number of records to return | [default to 100]
  **startDate** | **int64** | earliest date to get emails in unix timestamp format | 
  **endDate** | **int64** | earliest date to get emails in unix timestamp format | 
+ **replyto** | **string** | Reply-To Email Address | 
+ **headerfrom** | **string** | Header From Email Address | 
 
 ### Return type
 

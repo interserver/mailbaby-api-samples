@@ -142,8 +142,10 @@ class MailApiControllerTest {
         Integer limit = null;
         Long startDate = null;
         Long endDate = null;
+        String replyto = null;
+        String headerfrom = null;
         try {
-            //TODO: api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate).blockingGet();
+            //TODO: api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

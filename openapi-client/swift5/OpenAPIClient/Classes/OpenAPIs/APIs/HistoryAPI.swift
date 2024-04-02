@@ -71,12 +71,14 @@ open class HistoryAPI {
      - parameter limit: (query) maximum number of records to return (optional, default to 100)
      - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
      - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
+     - parameter replyto: (query) Reply-To Email Address (optional)
+     - parameter headerfrom: (query) Header From Email Address (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: MailLog?, _ error: Error?) -> Void)) -> RequestTask {
-        return viewMailLogWithRequestBuilder(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate).execute(apiResponseQueue) { result in
+    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: MailLog?, _ error: Error?) -> Void)) -> RequestTask {
+        return viewMailLogWithRequestBuilder(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, replyto: replyto, headerfrom: headerfrom).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -104,9 +106,11 @@ open class HistoryAPI {
      - parameter limit: (query) maximum number of records to return (optional, default to 100)
      - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
      - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
+     - parameter replyto: (query) Reply-To Email Address (optional)
+     - parameter headerfrom: (query) Header From Email Address (optional)
      - returns: RequestBuilder<MailLog> 
      */
-    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil) -> RequestBuilder<MailLog> {
+    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil) -> RequestBuilder<MailLog> {
         let localVariablePath = "/mail/log"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -124,6 +128,8 @@ open class HistoryAPI {
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "startDate": (wrappedValue: startDate?.encodeToJSON(), isExplode: true),
             "endDate": (wrappedValue: endDate?.encodeToJSON(), isExplode: true),
+            "replyto": (wrappedValue: replyto?.encodeToJSON(), isExplode: true),
+            "headerfrom": (wrappedValue: headerfrom?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

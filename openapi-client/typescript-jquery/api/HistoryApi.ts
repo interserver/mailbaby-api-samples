@@ -121,8 +121,10 @@ export class HistoryApi {
      * @param limit maximum number of records to return
      * @param startDate earliest date to get emails in unix timestamp format
      * @param endDate earliest date to get emails in unix timestamp format
+     * @param replyto Reply-To Email Address
+     * @param headerfrom Header From Email Address
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: models.MailLog;  },
     { response: JQueryXHR; errorThrown: string }
     > {
@@ -162,6 +164,12 @@ export class HistoryApi {
         }
         if (endDate !== null && endDate !== undefined) {
             queryParameters['endDate'] = <string><any>endDate;
+        }
+        if (replyto !== null && replyto !== undefined) {
+            queryParameters['replyto'] = <string><any>replyto;
+        }
+        if (headerfrom !== null && headerfrom !== undefined) {
+            queryParameters['headerfrom'] = <string><any>headerfrom;
         }
 
         localVarPath = localVarPath + "?" + $.param(queryParameters);

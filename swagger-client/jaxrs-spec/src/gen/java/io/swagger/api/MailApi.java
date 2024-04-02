@@ -33,7 +33,7 @@ import javax.validation.Valid;
 
 @Path("/mail")
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2024-02-20T06:54:25.170366-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2024-04-02T13:33:14.159493812-04:00[America/New_York]")
 public class MailApi {
 
     @POST
@@ -251,6 +251,12 @@ public class MailApi {
 , @Min(0L) @Max(9999999999L)  @QueryParam("endDate") 
 
  @Parameter(description = "earliest date to get emails in unix timestamp format")  Long endDate
+,  @QueryParam("replyto") 
+
+ @Parameter(description = "Reply-To Email Address")  String replyto
+,  @QueryParam("headerfrom") 
+
+ @Parameter(description = "Header From Email Address")  String headerfrom
 ) {
         return Response.ok().entity("magic!").build();
     }}

@@ -60,6 +60,8 @@ public class OASHistoryApi {
      * @param r_limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
      * @return OASMailLog
      * @throws OAS.ApiException if fails to make API call
      */
@@ -78,6 +80,8 @@ public class OASHistoryApi {
         query.addAll(client.makeParam('limit', (Integer) params.get('r_limit')));
         query.addAll(client.makeParam('startDate', (Long) params.get('startDate')));
         query.addAll(client.makeParam('endDate', (Long) params.get('endDate')));
+        query.addAll(client.makeParam('replyto', (String) params.get('replyto')));
+        query.addAll(client.makeParam('headerfrom', (String) params.get('headerfrom')));
 
         List<OAS.Param> form = new List<OAS.Param>();
 

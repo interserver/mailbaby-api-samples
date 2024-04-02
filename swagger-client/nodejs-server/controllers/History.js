@@ -13,8 +13,8 @@ module.exports.getStats = function getStats (req, res, next) {
     });
 };
 
-module.exports.viewMailLog = function viewMailLog (req, res, next, id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate) {
-  History.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
+module.exports.viewMailLog = function viewMailLog (req, res, next, id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom) {
+  History.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom)
     .then(function (response) {
       utils.writeJson(res, response);
     })

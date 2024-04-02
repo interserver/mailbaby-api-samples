@@ -70,6 +70,8 @@ package .Clients is
        Limit : in Swagger.Nullable_Integer;
        Start_Date : in Swagger.Nullable_Long;
        End_Date : in Swagger.Nullable_Long;
+       Replyto : in Swagger.Nullable_UString;
+       Headerfrom : in Swagger.Nullable_UString;
        Result : out .Models.MailLog_Type);
 
    --  Sends an Email with Advanced Options

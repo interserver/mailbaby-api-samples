@@ -170,8 +170,10 @@ export class HistoryApi {
      * @param limit maximum number of records to return
      * @param startDate earliest date to get emails in unix timestamp format
      * @param endDate earliest date to get emails in unix timestamp format
+     * @param replyto Reply-To Email Address
+     * @param headerfrom Header From Email Address
      */
-    public async viewMailLog (id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: MailLog;  }> {
+    public async viewMailLog (id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: MailLog;  }> {
         const localVarPath = this.basePath + '/mail/log';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -226,6 +228,14 @@ export class HistoryApi {
 
         if (endDate !== undefined) {
             localVarQueryParameters['endDate'] = ObjectSerializer.serialize(endDate, "number");
+        }
+
+        if (replyto !== undefined) {
+            localVarQueryParameters['replyto'] = ObjectSerializer.serialize(replyto, "string");
+        }
+
+        if (headerfrom !== undefined) {
+            localVarQueryParameters['headerfrom'] = ObjectSerializer.serialize(headerfrom, "string");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);

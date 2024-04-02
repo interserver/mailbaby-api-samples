@@ -208,6 +208,8 @@ public class HistoryApi {
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -218,7 +220,7 @@ public class HistoryApi {
         <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call viewMailLogCall(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call viewMailLogCall(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -287,6 +289,14 @@ public class HistoryApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("endDate", endDate));
         }
 
+        if (replyto != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("replyto", replyto));
+        }
+
+        if (headerfrom != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("headerfrom", headerfrom));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -307,8 +317,8 @@ public class HistoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call viewMailLogValidateBeforeCall(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, final ApiCallback _callback) throws ApiException {
-        return viewMailLogCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, _callback);
+    private okhttp3.Call viewMailLogValidateBeforeCall(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom, final ApiCallback _callback) throws ApiException {
+        return viewMailLogCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, _callback);
 
     }
 
@@ -326,6 +336,8 @@ public class HistoryApi {
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
      * @return MailLog
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -335,8 +347,8 @@ public class HistoryApi {
         <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
      </table>
      */
-    public MailLog viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate) throws ApiException {
-        ApiResponse<MailLog> localVarResp = viewMailLogWithHttpInfo(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+    public MailLog viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom) throws ApiException {
+        ApiResponse<MailLog> localVarResp = viewMailLogWithHttpInfo(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
         return localVarResp.getData();
     }
 
@@ -354,6 +366,8 @@ public class HistoryApi {
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
      * @return ApiResponse&lt;MailLog&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -363,8 +377,8 @@ public class HistoryApi {
         <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MailLog> viewMailLogWithHttpInfo(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate) throws ApiException {
-        okhttp3.Call localVarCall = viewMailLogValidateBeforeCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, null);
+    public ApiResponse<MailLog> viewMailLogWithHttpInfo(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom) throws ApiException {
+        okhttp3.Call localVarCall = viewMailLogValidateBeforeCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, null);
         Type localVarReturnType = new TypeToken<MailLog>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -383,6 +397,8 @@ public class HistoryApi {
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -393,9 +409,9 @@ public class HistoryApi {
         <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call viewMailLogAsync(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, final ApiCallback<MailLog> _callback) throws ApiException {
+    public okhttp3.Call viewMailLogAsync(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom, final ApiCallback<MailLog> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = viewMailLogValidateBeforeCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, _callback);
+        okhttp3.Call localVarCall = viewMailLogValidateBeforeCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, _callback);
         Type localVarReturnType = new TypeToken<MailLog>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

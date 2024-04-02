@@ -65,8 +65,10 @@ class HistoryApi(baseUrl: String) {
    * @param limit maximum number of records to return
    * @param startDate earliest date to get emails in unix timestamp format
    * @param endDate earliest date to get emails in unix timestamp format
+   * @param replyto Reply-To Email Address
+   * @param headerfrom Header From Email Address
    */
-  def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[Long] = None, endDate: Option[Long] = None)(implicit apiKey: ApiKeyValue): ApiRequest[MailLog] =
+  def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[Long] = None, endDate: Option[Long] = None, replyto: Option[String] = None, headerfrom: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[MailLog] =
     ApiRequest[MailLog](ApiMethods.GET, baseUrl, "/mail/log", "application/json")
       .withApiKey(apiKey, "X-API-KEY", HEADER)
       .withQueryParam("id", id)
@@ -80,6 +82,8 @@ class HistoryApi(baseUrl: String) {
       .withQueryParam("limit", limit)
       .withQueryParam("startDate", startDate)
       .withQueryParam("endDate", endDate)
+      .withQueryParam("replyto", replyto)
+      .withQueryParam("headerfrom", headerfrom)
       .withSuccessResponse[MailLog](200)
       .withErrorResponse[Unit](400)
       

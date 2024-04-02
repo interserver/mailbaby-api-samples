@@ -80,6 +80,8 @@ module SwaggerClient
     # @option opts [Integer] :limit maximum number of records to return (default to 100)
     # @option opts [Integer] :start_date earliest date to get emails in unix timestamp format
     # @option opts [Integer] :end_date earliest date to get emails in unix timestamp format
+    # @option opts [String] :replyto Reply-To Email Address
+    # @option opts [String] :headerfrom Header From Email Address
     # @return [MailLog]
     def view_mail_log(opts = {})
       data, _status_code, _headers = view_mail_log_with_http_info(opts)
@@ -100,6 +102,8 @@ module SwaggerClient
     # @option opts [Integer] :limit maximum number of records to return
     # @option opts [Integer] :start_date earliest date to get emails in unix timestamp format
     # @option opts [Integer] :end_date earliest date to get emails in unix timestamp format
+    # @option opts [String] :replyto Reply-To Email Address
+    # @option opts [String] :headerfrom Header From Email Address
     # @return [Array<(MailLog, Integer, Hash)>] MailLog data, response status code and response headers
     def view_mail_log_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -121,6 +125,8 @@ module SwaggerClient
       query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
       query_params[:'startDate'] = opts[:'start_date'] if !opts[:'start_date'].nil?
       query_params[:'endDate'] = opts[:'end_date'] if !opts[:'end_date'].nil?
+      query_params[:'replyto'] = opts[:'replyto'] if !opts[:'replyto'].nil?
+      query_params[:'headerfrom'] = opts[:'headerfrom'] if !opts[:'headerfrom'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

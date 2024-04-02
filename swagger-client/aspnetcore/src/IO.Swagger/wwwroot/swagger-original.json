@@ -644,6 +644,26 @@
             "format" : "int64"
           },
           "example" : 1673317008
+        }, {
+          "name" : "replyto",
+          "in" : "query",
+          "description" : "Reply-To Email Address",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "headerfrom",
+          "in" : "query",
+          "description" : "Header From Email Address",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
         } ],
         "responses" : {
           "200" : {

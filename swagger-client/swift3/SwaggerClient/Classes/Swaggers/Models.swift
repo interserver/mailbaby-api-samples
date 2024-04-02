@@ -354,11 +354,10 @@ class Decoders {
 
         // Decoder for EmailAddress
         Decoders.addDecoder(clazz: EmailAddress.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<EmailAddress> in
-            if let sourceDictionary = source as? [AnyHashable: Any] {
-                let _result = instance == nil ? EmailAddress() : instance as! EmailAddress
-                return .success(_result)
+            if let source = source as? EmailAddress {
+                return .success(source)
             } else {
-                return .failure(.typeMismatch(expected: "EmailAddress", actual: "\(source)"))
+                return .failure(.typeMismatch(expected: "Typealias EmailAddress", actual: "\(source)"))
             }
         }
         // Decoder for [EmailAddressName]
@@ -390,11 +389,10 @@ class Decoders {
 
         // Decoder for EmailAddressTypes
         Decoders.addDecoder(clazz: EmailAddressTypes.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<EmailAddressTypes> in
-            if let sourceDictionary = source as? [AnyHashable: Any] {
-                let _result = instance == nil ? EmailAddressTypes() : instance as! EmailAddressTypes
-                return .success(_result)
+            if let source = source as? EmailAddressTypes {
+                return .success(source)
             } else {
-                return .failure(.typeMismatch(expected: "EmailAddressTypes", actual: "\(source)"))
+                return .failure(.typeMismatch(expected: "Typealias EmailAddressTypes", actual: "\(source)"))
             }
         }
         // Decoder for [EmailAddressesTypes]
@@ -404,11 +402,10 @@ class Decoders {
 
         // Decoder for EmailAddressesTypes
         Decoders.addDecoder(clazz: EmailAddressesTypes.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<EmailAddressesTypes> in
-            if let sourceDictionary = source as? [AnyHashable: Any] {
-                let _result = instance == nil ? EmailAddressesTypes() : instance as! EmailAddressesTypes
-                return .success(_result)
+            if let source = source as? EmailAddressesTypes {
+                return .success(source)
             } else {
-                return .failure(.typeMismatch(expected: "EmailAddressesTypes", actual: "\(source)"))
+                return .failure(.typeMismatch(expected: "Typealias EmailAddressesTypes", actual: "\(source)"))
             }
         }
         // Decoder for [ErrorMessage]

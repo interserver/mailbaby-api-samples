@@ -361,6 +361,8 @@ case $state in
 "limit=:[QUERY] maximum number of records to return"
 "startDate=:[QUERY] earliest date to get emails in unix timestamp format"
 "endDate=:[QUERY] earliest date to get emails in unix timestamp format"
+"replyto=:[QUERY] Reply-To Email Address"
+"headerfrom=:[QUERY] Header From Email Address"
           )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;

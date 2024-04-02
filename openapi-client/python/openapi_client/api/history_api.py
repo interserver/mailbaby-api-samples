@@ -206,6 +206,8 @@ class HistoryApi:
         limit: Annotated[Optional[Annotated[int, Field(le=10000, strict=True, ge=1)]], Field(description="maximum number of records to return")] = None,
         start_date: Annotated[Optional[Annotated[int, Field(le=9999999999, strict=True, ge=0)]], Field(description="earliest date to get emails in unix timestamp format")] = None,
         end_date: Annotated[Optional[Annotated[int, Field(le=9999999999, strict=True, ge=0)]], Field(description="earliest date to get emails in unix timestamp format")] = None,
+        replyto: Annotated[Optional[StrictStr], Field(description="Reply-To Email Address")] = None,
+        headerfrom: Annotated[Optional[StrictStr], Field(description="Header From Email Address")] = None,
         **kwargs,
     ) -> MailLog:
         """displays the mail log  # noqa: E501
@@ -214,7 +216,7 @@ class HistoryApi:
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.view_mail_log(id, origin, mx, var_from, to, subject, mailid, skip, limit, start_date, end_date, async_req=True)
+        >>> thread = api.view_mail_log(id, origin, mx, var_from, to, subject, mailid, skip, limit, start_date, end_date, replyto, headerfrom, async_req=True)
         >>> result = thread.get()
 
         :param id: The ID of your mail order this will be sent through.
@@ -239,6 +241,10 @@ class HistoryApi:
         :type start_date: int
         :param end_date: earliest date to get emails in unix timestamp format
         :type end_date: int
+        :param replyto: Reply-To Email Address
+        :type replyto: str
+        :param headerfrom: Header From Email Address
+        :type headerfrom: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -267,6 +273,8 @@ class HistoryApi:
             limit,
             start_date,
             end_date,
+            replyto,
+            headerfrom,
             **kwargs,
         )
 
@@ -284,6 +292,8 @@ class HistoryApi:
         limit: Annotated[Optional[Annotated[int, Field(le=10000, strict=True, ge=1)]], Field(description="maximum number of records to return")] = None,
         start_date: Annotated[Optional[Annotated[int, Field(le=9999999999, strict=True, ge=0)]], Field(description="earliest date to get emails in unix timestamp format")] = None,
         end_date: Annotated[Optional[Annotated[int, Field(le=9999999999, strict=True, ge=0)]], Field(description="earliest date to get emails in unix timestamp format")] = None,
+        replyto: Annotated[Optional[StrictStr], Field(description="Reply-To Email Address")] = None,
+        headerfrom: Annotated[Optional[StrictStr], Field(description="Header From Email Address")] = None,
         **kwargs,
     ) -> ApiResponse:
         """displays the mail log  # noqa: E501
@@ -292,7 +302,7 @@ class HistoryApi:
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.view_mail_log_with_http_info(id, origin, mx, var_from, to, subject, mailid, skip, limit, start_date, end_date, async_req=True)
+        >>> thread = api.view_mail_log_with_http_info(id, origin, mx, var_from, to, subject, mailid, skip, limit, start_date, end_date, replyto, headerfrom, async_req=True)
         >>> result = thread.get()
 
         :param id: The ID of your mail order this will be sent through.
@@ -317,6 +327,10 @@ class HistoryApi:
         :type start_date: int
         :param end_date: earliest date to get emails in unix timestamp format
         :type end_date: int
+        :param replyto: Reply-To Email Address
+        :type replyto: str
+        :param headerfrom: Header From Email Address
+        :type headerfrom: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -355,7 +369,9 @@ class HistoryApi:
             'skip',
             'limit',
             'start_date',
-            'end_date'
+            'end_date',
+            'replyto',
+            'headerfrom'
         ]
         _all_params.extend(
             [
@@ -418,6 +434,12 @@ class HistoryApi:
 
         if _params.get('end_date') is not None:  # noqa: E501
             _query_params.append(('endDate', _params['end_date']))
+
+        if _params.get('replyto') is not None:  # noqa: E501
+            _query_params.append(('replyto', _params['replyto']))
+
+        if _params.get('headerfrom') is not None:  # noqa: E501
+            _query_params.append(('headerfrom', _params['headerfrom']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))

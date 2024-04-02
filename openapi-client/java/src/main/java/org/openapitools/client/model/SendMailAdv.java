@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Details for an Email
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-02-20T06:51:54.074744-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
 public class SendMailAdv {
   public static final String SERIALIZED_NAME_SUBJECT = "subject";
   @SerializedName(SERIALIZED_NAME_SUBJECT)

@@ -20,9 +20,9 @@ class SendingApi(
   import sendingMarshaller._
 
   lazy val route: Route =
-    path() { () => 
+    path() { 
       post {
-        parameters() { () =>
+        
           
             formFields("subject".as[String], "body".as[String], "from".as[String], "to".as[String], "replyto".as[String], "cc".as[String], "bcc".as[String], "attachments".as[String], "id".as[Long]) { (subject, body, from, to, replyto, cc, bcc, attachments, id) =>
               
@@ -32,12 +32,12 @@ class SendingApi(
              
             }
          
-        }
+       
       }
     } ~
-    path() { () => 
+    path() { 
       post {
-        parameters() { () =>
+        
           
             formFields("to".as[String], "from".as[String], "subject".as[String], "body".as[String]) { (to, from, subject, body) =>
               
@@ -47,7 +47,7 @@ class SendingApi(
              
             }
          
-        }
+       
       }
     }
 }

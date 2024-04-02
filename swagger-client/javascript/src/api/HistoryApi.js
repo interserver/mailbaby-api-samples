@@ -102,6 +102,8 @@ export default class HistoryApi {
      * @param {Number} opts.limit maximum number of records to return (default to <.>)
      * @param {Number} opts.startDate earliest date to get emails in unix timestamp format
      * @param {Number} opts.endDate earliest date to get emails in unix timestamp format
+     * @param {String} opts.replyto Reply-To Email Address
+     * @param {String} opts.headerfrom Header From Email Address
      * @param {module:api/HistoryApi~viewMailLogCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
@@ -113,7 +115,7 @@ export default class HistoryApi {
         
       };
       let queryParams = {
-        'id': opts['id'],'origin': opts['origin'],'mx': opts['mx'],'from': opts['from'],'to': opts['to'],'subject': opts['subject'],'mailid': opts['mailid'],'skip': opts['skip'],'limit': opts['limit'],'startDate': opts['startDate'],'endDate': opts['endDate']
+        'id': opts['id'],'origin': opts['origin'],'mx': opts['mx'],'from': opts['from'],'to': opts['to'],'subject': opts['subject'],'mailid': opts['mailid'],'skip': opts['skip'],'limit': opts['limit'],'startDate': opts['startDate'],'endDate': opts['endDate'],'replyto': opts['replyto'],'headerfrom': opts['headerfrom']
       };
       let headerParams = {
         

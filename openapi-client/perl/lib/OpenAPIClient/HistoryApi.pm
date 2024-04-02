@@ -113,6 +113,8 @@ sub get_stats {
 # @param int $limit maximum number of records to return (optional, default to 100)
 # @param int $start_date earliest date to get emails in unix timestamp format (optional)
 # @param int $end_date earliest date to get emails in unix timestamp format (optional)
+# @param string $replyto Reply-To Email Address (optional)
+# @param string $headerfrom Header From Email Address (optional)
 {
     my $params = {
     'id' => {
@@ -168,6 +170,16 @@ sub get_stats {
     'end_date' => {
         data_type => 'int',
         description => 'earliest date to get emails in unix timestamp format',
+        required => '0',
+    },
+    'replyto' => {
+        data_type => 'string',
+        description => 'Reply-To Email Address',
+        required => '0',
+    },
+    'headerfrom' => {
+        data_type => 'string',
+        description => 'Header From Email Address',
         required => '0',
     },
     };
@@ -250,6 +262,16 @@ sub view_mail_log {
     # query params
     if ( exists $args{'end_date'}) {
         $query_params->{'endDate'} = $self->{api_client}->to_query_value($args{'end_date'});
+    }
+
+    # query params
+    if ( exists $args{'replyto'}) {
+        $query_params->{'replyto'} = $self->{api_client}->to_query_value($args{'replyto'});
+    }
+
+    # query params
+    if ( exists $args{'headerfrom'}) {
+        $query_params->{'headerfrom'} = $self->{api_client}->to_query_value($args{'headerfrom'});
     }
 
     my $_body_data;

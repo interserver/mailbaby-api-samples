@@ -40,6 +40,8 @@ export interface ViewMailLogRequest {
     limit?: number;
     startDate?: number;
     endDate?: number;
+    replyto?: string;
+    headerfrom?: string;
 }
 
 /**
@@ -128,6 +130,14 @@ export class HistoryApi extends runtime.BaseAPI {
 
         if (requestParameters.endDate !== undefined) {
             queryParameters['endDate'] = requestParameters.endDate;
+        }
+
+        if (requestParameters.replyto !== undefined) {
+            queryParameters['replyto'] = requestParameters.replyto;
+        }
+
+        if (requestParameters.headerfrom !== undefined) {
+            queryParameters['headerfrom'] = requestParameters.headerfrom;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

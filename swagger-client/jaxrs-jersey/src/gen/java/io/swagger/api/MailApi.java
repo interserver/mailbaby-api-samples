@@ -48,7 +48,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2024-02-20T06:54:27.687095-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2024-04-02T13:33:16.911044268-04:00[America/New_York]")
 public class MailApi  {
    private final MailApiService delegate;
 
@@ -239,12 +239,12 @@ public class MailApi  {
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailLog.class))),
         
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
-    public Response viewMailLog(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through.") @QueryParam("id") Long id,@Parameter(in = ParameterIn.QUERY, description = "originating ip address sending mail") @QueryParam("origin") String origin,@Parameter(in = ParameterIn.QUERY, description = "mx record mail was sent to") @QueryParam("mx") String mx,@Parameter(in = ParameterIn.QUERY, description = "from email address") @QueryParam("from") String from,@Parameter(in = ParameterIn.QUERY, description = "to/destination email address") @QueryParam("to") String to,@Parameter(in = ParameterIn.QUERY, description = "subject containing this string") @QueryParam("subject") String subject,@Parameter(in = ParameterIn.QUERY, description = "mail id") @QueryParam("mailid") String mailid,@Parameter(in = ParameterIn.QUERY, description = "number of records to skip for pagination", schema=@Schema(allowableValues={  })
-) @DefaultValue("0") @QueryParam("skip") Integer skip,@Parameter(in = ParameterIn.QUERY, description = "maximum number of records to return", schema=@Schema(allowableValues={  }, minimum="1", maximum="10000")
-) @DefaultValue("100") @QueryParam("limit") Integer limit,@Parameter(in = ParameterIn.QUERY, description = "earliest date to get emails in unix timestamp format", schema=@Schema(allowableValues={  }, maximum="9999999999")
-) @QueryParam("startDate") Long startDate,@Parameter(in = ParameterIn.QUERY, description = "earliest date to get emails in unix timestamp format", schema=@Schema(allowableValues={  }, maximum="9999999999")
-) @QueryParam("endDate") Long endDate,@Context SecurityContext securityContext)
+    public Response viewMailLog(@Parameter(in = ParameterIn.QUERY, description = "The ID of your mail order this will be sent through.") @QueryParam("id") Long id,@Parameter(in = ParameterIn.QUERY, description = "originating ip address sending mail") @QueryParam("origin") String origin,@Parameter(in = ParameterIn.QUERY, description = "mx record mail was sent to") @QueryParam("mx") String mx,@Parameter(in = ParameterIn.QUERY, description = "from email address") @QueryParam("from") String from,@Parameter(in = ParameterIn.QUERY, description = "to/destination email address") @QueryParam("to") String to,@Parameter(in = ParameterIn.QUERY, description = "subject containing this string") @QueryParam("subject") String subject,@Parameter(in = ParameterIn.QUERY, description = "mail id") @QueryParam("mailid") String mailid,@Parameter(in = ParameterIn.QUERY, description = "number of records to skip for pagination", schema=@Schema(allowableValues={ "0" })
+) @DefaultValue("0") @QueryParam("skip") Integer skip,@Parameter(in = ParameterIn.QUERY, description = "maximum number of records to return", schema=@Schema(allowableValues={ "1", "10000" }, minimum="1", maximum="10000")
+) @DefaultValue("100") @QueryParam("limit") Integer limit,@Parameter(in = ParameterIn.QUERY, description = "earliest date to get emails in unix timestamp format", schema=@Schema(allowableValues={ "0", "9999999999" }, maximum="9999999999")
+) @QueryParam("startDate") Long startDate,@Parameter(in = ParameterIn.QUERY, description = "earliest date to get emails in unix timestamp format", schema=@Schema(allowableValues={ "0", "9999999999" }, maximum="9999999999")
+) @QueryParam("endDate") Long endDate,@Parameter(in = ParameterIn.QUERY, description = "Reply-To Email Address") @QueryParam("replyto") String replyto,@Parameter(in = ParameterIn.QUERY, description = "Header From Email Address") @QueryParam("headerfrom") String headerfrom,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return delegate.viewMailLog(id,origin,mx,from,to,subject,mailid,skip,limit,startDate,endDate,securityContext);
+        return delegate.viewMailLog(id,origin,mx,from,to,subject,mailid,skip,limit,startDate,endDate,replyto,headerfrom,securityContext);
     }
 }

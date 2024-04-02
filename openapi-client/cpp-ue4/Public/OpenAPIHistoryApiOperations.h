@@ -78,6 +78,10 @@ public:
 	TOptional<int64> StartDate;
 	/* earliest date to get emails in unix timestamp format */
 	TOptional<int64> EndDate;
+	/* Reply-To Email Address */
+	TOptional<FString> Replyto;
+	/* Header From Email Address */
+	TOptional<FString> Headerfrom;
 };
 
 class OPENAPI_API OpenAPIHistoryApi::ViewMailLogResponse : public Response

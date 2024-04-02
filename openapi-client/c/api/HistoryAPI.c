@@ -98,7 +98,7 @@ end:
 // Get a listing of the emails sent through this system 
 //
 mail_log_t*
-HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * mx , char * from , char * to , char * subject , char * mailid , int skip , int limit , long startDate , long endDate )
+HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * mx , char * from , char * to , char * subject , char * mailid , int skip , int limit , long startDate , long endDate , char * replyto , char * headerfrom )
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -247,6 +247,30 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * 
         valueQuery_endDate = (endDate);
         keyPairQuery_endDate = keyValuePair_create(keyQuery_endDate, &valueQuery_endDate);
         list_addElement(localVarQueryParameters,keyPairQuery_endDate);
+    }
+
+    // query parameters
+    char *keyQuery_replyto = NULL;
+    char * valueQuery_replyto = NULL;
+    keyValuePair_t *keyPairQuery_replyto = 0;
+    if (replyto)
+    {
+        keyQuery_replyto = strdup("replyto");
+        valueQuery_replyto = strdup((replyto));
+        keyPairQuery_replyto = keyValuePair_create(keyQuery_replyto, valueQuery_replyto);
+        list_addElement(localVarQueryParameters,keyPairQuery_replyto);
+    }
+
+    // query parameters
+    char *keyQuery_headerfrom = NULL;
+    char * valueQuery_headerfrom = NULL;
+    keyValuePair_t *keyPairQuery_headerfrom = 0;
+    if (headerfrom)
+    {
+        keyQuery_headerfrom = strdup("headerfrom");
+        valueQuery_headerfrom = strdup((headerfrom));
+        keyPairQuery_headerfrom = keyValuePair_create(keyQuery_headerfrom, valueQuery_headerfrom);
+        list_addElement(localVarQueryParameters,keyPairQuery_headerfrom);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     apiClient_invoke(apiClient,
@@ -406,6 +430,30 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * 
     if(keyPairQuery_endDate){
         keyValuePair_free(keyPairQuery_endDate);
         keyPairQuery_endDate = NULL;
+    }
+    if(keyQuery_replyto){
+        free(keyQuery_replyto);
+        keyQuery_replyto = NULL;
+    }
+    if(valueQuery_replyto){
+        free(valueQuery_replyto);
+        valueQuery_replyto = NULL;
+    }
+    if(keyPairQuery_replyto){
+        keyValuePair_free(keyPairQuery_replyto);
+        keyPairQuery_replyto = NULL;
+    }
+    if(keyQuery_headerfrom){
+        free(keyQuery_headerfrom);
+        keyQuery_headerfrom = NULL;
+    }
+    if(valueQuery_headerfrom){
+        free(valueQuery_headerfrom);
+        valueQuery_headerfrom = NULL;
+    }
+    if(keyPairQuery_headerfrom){
+        keyValuePair_free(keyPairQuery_headerfrom);
+        keyPairQuery_headerfrom = NULL;
     }
     return elementToReturn;
 end:

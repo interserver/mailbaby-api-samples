@@ -82,10 +82,12 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
          * @param {number} [limit] maximum number of records to return
          * @param {number} [startDate] earliest date to get emails in unix timestamp format
          * @param {number} [endDate] earliest date to get emails in unix timestamp format
+         * @param {string} [replyto] Reply-To Email Address
+         * @param {string} [headerfrom] Header From Email Address
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLog: async (id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        viewMailLog: async (id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/mail/log`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -149,6 +151,14 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['endDate'] = endDate;
             }
 
+            if (replyto !== undefined) {
+                localVarQueryParameter['replyto'] = replyto;
+            }
+
+            if (headerfrom !== undefined) {
+                localVarQueryParameter['headerfrom'] = headerfrom;
+            }
+
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -201,11 +211,13 @@ export const HistoryApiFp = function(configuration?: Configuration) {
          * @param {number} [limit] maximum number of records to return
          * @param {number} [startDate] earliest date to get emails in unix timestamp format
          * @param {number} [endDate] earliest date to get emails in unix timestamp format
+         * @param {string} [replyto] Reply-To Email Address
+         * @param {string} [headerfrom] Header From Email Address
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<MailLog>>> {
-            const localVarAxiosArgs = await HistoryApiAxiosParamCreator(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, options);
+        async viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<MailLog>>> {
+            const localVarAxiosArgs = await HistoryApiAxiosParamCreator(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -243,11 +255,13 @@ export const HistoryApiFactory = function (configuration?: Configuration, basePa
          * @param {number} [limit] maximum number of records to return
          * @param {number} [startDate] earliest date to get emails in unix timestamp format
          * @param {number} [endDate] earliest date to get emails in unix timestamp format
+         * @param {string} [replyto] Reply-To Email Address
+         * @param {string} [headerfrom] Header From Email Address
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, options?: AxiosRequestConfig): Promise<AxiosResponse<MailLog>> {
-            return HistoryApiFp(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, options).then((request) => request(axios, basePath));
+        async viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: AxiosRequestConfig): Promise<AxiosResponse<MailLog>> {
+            return HistoryApiFp(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -283,11 +297,13 @@ export class HistoryApi extends BaseAPI {
      * @param {number} [limit] maximum number of records to return
      * @param {number} [startDate] earliest date to get emails in unix timestamp format
      * @param {number} [endDate] earliest date to get emails in unix timestamp format
+     * @param {string} [replyto] Reply-To Email Address
+     * @param {string} [headerfrom] Header From Email Address
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HistoryApi
      */
-    public async viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<MailLog>> {
-        return HistoryApiFp(this.configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, options).then((request) => request(this.axios, this.basePath));
+    public async viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<MailLog>> {
+        return HistoryApiFp(this.configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, options).then((request) => request(this.axios, this.basePath));
     }
 }

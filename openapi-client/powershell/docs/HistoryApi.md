@@ -67,6 +67,8 @@ This endpoint does not need any parameter.
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Limit] <System.Nullable[Int32]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-StartDate] <System.Nullable[Int64]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-EndDate] <System.Nullable[Int64]><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Replyto] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Headerfrom] <String><br>
 
 displays the mail log
 
@@ -92,10 +94,12 @@ $Skip = 1000 # Int32 | number of records to skip for pagination (optional) (defa
 $Limit = 1000 # Int32 | maximum number of records to return (optional) (default to 100)
 $StartDate = 1641781008 # Int64 | earliest date to get emails in unix timestamp format (optional)
 $EndDate = 1673317008 # Int64 | earliest date to get emails in unix timestamp format (optional)
+$Replyto = "MyReplyto" # String | Reply-To Email Address (optional)
+$Headerfrom = "MyHeaderfrom" # String | Header From Email Address (optional)
 
 # displays the mail log
 try {
-    $Result = Invoke-ViewMailLog -Id $Id -Origin $Origin -Mx $Mx -From $From -To $To -Subject $Subject -Mailid $Mailid -Skip $Skip -Limit $Limit -StartDate $StartDate -EndDate $EndDate
+    $Result = Invoke-ViewMailLog -Id $Id -Origin $Origin -Mx $Mx -From $From -To $To -Subject $Subject -Mailid $Mailid -Skip $Skip -Limit $Limit -StartDate $StartDate -EndDate $EndDate -Replyto $Replyto -Headerfrom $Headerfrom
 } catch {
     Write-Host ("Exception occurred when calling Invoke-ViewMailLog: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -117,6 +121,8 @@ Name | Type | Description  | Notes
  **Limit** | **Int32**| maximum number of records to return | [optional] [default to 100]
  **StartDate** | **Int64**| earliest date to get emails in unix timestamp format | [optional] 
  **EndDate** | **Int64**| earliest date to get emails in unix timestamp format | [optional] 
+ **Replyto** | **String**| Reply-To Email Address | [optional] 
+ **Headerfrom** | **String**| Header From Email Address | [optional] 
 
 ### Return type
 

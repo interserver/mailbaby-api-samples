@@ -99,13 +99,13 @@ function history_api:get_stats()
 	end
 end
 
-function history_api:view_mail_log(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date)
+function history_api:view_mail_log(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date, replyto, headerfrom)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
 		port = self.port;
-		path = string.format("%s/mail/log?id=%s&origin=%s&mx=%s&from=%s&to=%s&subject=%s&mailid=%s&skip=%s&limit=%s&startDate=%s&endDate=%s",
-			self.basePath, http_util.encodeURIComponent(id), http_util.encodeURIComponent(origin), http_util.encodeURIComponent(mx), http_util.encodeURIComponent(from), http_util.encodeURIComponent(to), http_util.encodeURIComponent(subject), http_util.encodeURIComponent(mailid), http_util.encodeURIComponent(skip), http_util.encodeURIComponent(limit), http_util.encodeURIComponent(start_date), http_util.encodeURIComponent(end_date));
+		path = string.format("%s/mail/log?id=%s&origin=%s&mx=%s&from=%s&to=%s&subject=%s&mailid=%s&skip=%s&limit=%s&startDate=%s&endDate=%s&replyto=%s&headerfrom=%s",
+			self.basePath, http_util.encodeURIComponent(id), http_util.encodeURIComponent(origin), http_util.encodeURIComponent(mx), http_util.encodeURIComponent(from), http_util.encodeURIComponent(to), http_util.encodeURIComponent(subject), http_util.encodeURIComponent(mailid), http_util.encodeURIComponent(skip), http_util.encodeURIComponent(limit), http_util.encodeURIComponent(start_date), http_util.encodeURIComponent(end_date), http_util.encodeURIComponent(replyto), http_util.encodeURIComponent(headerfrom));
 	})
 
 	-- set HTTP verb

@@ -55,7 +55,7 @@ This endpoint does not need any parameter.
 | **404** | Unauthorized |  -  |
 
 # **ViewMailLog**
-> MailLog ViewMailLog(id = var.id, origin = var.origin, mx = var.mx, from = var.from, to = var.to, subject = var.subject, mailid = var.mailid, skip = 0, limit = 100, start_date = var.start_date, end_date = var.end_date)
+> MailLog ViewMailLog(id = var.id, origin = var.origin, mx = var.mx, from = var.from, to = var.to, subject = var.subject, mailid = var.mailid, skip = 0, limit = 100, start_date = var.start_date, end_date = var.end_date, replyto = var.replyto, headerfrom = var.headerfrom)
 
 displays the mail log
 
@@ -79,13 +79,15 @@ var_skip <- 0 # integer | number of records to skip for pagination (Optional)
 var_limit <- 100 # integer | maximum number of records to return (Optional)
 var_start_date <- 1641781008 # integer | earliest date to get emails in unix timestamp format (Optional)
 var_end_date <- 1673317008 # integer | earliest date to get emails in unix timestamp format (Optional)
+var_replyto <- "replyto_example" # character | Reply-To Email Address (Optional)
+var_headerfrom <- "headerfrom_example" # character | Header From Email Address (Optional)
 
 api_instance <- HistoryApi$new()
 # Configure API key authorization: apiKeyAuth
 api_instance$api_client$api_keys["X-API-KEY"] <- Sys.getenv("API_KEY")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$ViewMailLog(id = var_id, origin = var_origin, mx = var_mx, from = var_from, to = var_to, subject = var_subject, mailid = var_mailid, skip = var_skip, limit = var_limit, start_date = var_start_date, end_date = var_end_datedata_file = "result.txt")
-result <- api_instance$ViewMailLog(id = var_id, origin = var_origin, mx = var_mx, from = var_from, to = var_to, subject = var_subject, mailid = var_mailid, skip = var_skip, limit = var_limit, start_date = var_start_date, end_date = var_end_date)
+# result <- api_instance$ViewMailLog(id = var_id, origin = var_origin, mx = var_mx, from = var_from, to = var_to, subject = var_subject, mailid = var_mailid, skip = var_skip, limit = var_limit, start_date = var_start_date, end_date = var_end_date, replyto = var_replyto, headerfrom = var_headerfromdata_file = "result.txt")
+result <- api_instance$ViewMailLog(id = var_id, origin = var_origin, mx = var_mx, from = var_from, to = var_to, subject = var_subject, mailid = var_mailid, skip = var_skip, limit = var_limit, start_date = var_start_date, end_date = var_end_date, replyto = var_replyto, headerfrom = var_headerfrom)
 dput(result)
 ```
 
@@ -104,6 +106,8 @@ Name | Type | Description  | Notes
  **limit** | **integer**| maximum number of records to return | [optional] [default to 100]
  **start_date** | **integer**| earliest date to get emails in unix timestamp format | [optional] 
  **end_date** | **integer**| earliest date to get emails in unix timestamp format | [optional] 
+ **replyto** | **character**| Reply-To Email Address | [optional] 
+ **headerfrom** | **character**| Header From Email Address | [optional] 
 
 ### Return type
 

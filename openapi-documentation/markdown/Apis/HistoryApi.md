@@ -34,7 +34,7 @@ This endpoint does not need any parameter.
 
 <a name="viewMailLog"></a>
 # **viewMailLog**
-> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
+> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom)
 
 displays the mail log
 
@@ -55,6 +55,8 @@ displays the mail log
 | **limit** | **Integer**| maximum number of records to return | [optional] [default to 100] |
 | **startDate** | **Long**| earliest date to get emails in unix timestamp format | [optional] [default to null] |
 | **endDate** | **Long**| earliest date to get emails in unix timestamp format | [optional] [default to null] |
+| **replyto** | **String**| Reply-To Email Address | [optional] [default to null] |
+| **headerfrom** | **String**| Header From Email Address | [optional] [default to null] |
 
 ### Return type
 

@@ -33,6 +33,8 @@ export interface ViewMailLogRequest {
     limit?: number;
     startDate?: number;
     endDate?: number;
+    replyto?: string;
+    headerfrom?: string;
 }
 
 /**
@@ -62,9 +64,9 @@ export class HistoryApi extends BaseAPI {
      * Get a listing of the emails sent through this system 
      * displays the mail log
      */
-    viewMailLog({ id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate }: ViewMailLogRequest): Observable<MailLog>
-    viewMailLog({ id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate }: ViewMailLogRequest, opts?: OperationOpts): Observable<AjaxResponse<MailLog>>
-    viewMailLog({ id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate }: ViewMailLogRequest, opts?: OperationOpts): Observable<MailLog | AjaxResponse<MailLog>> {
+    viewMailLog({ id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom }: ViewMailLogRequest): Observable<MailLog>
+    viewMailLog({ id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom }: ViewMailLogRequest, opts?: OperationOpts): Observable<AjaxResponse<MailLog>>
+    viewMailLog({ id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom }: ViewMailLogRequest, opts?: OperationOpts): Observable<MailLog | AjaxResponse<MailLog>> {
 
         const headers: HttpHeaders = {
             ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication
@@ -83,6 +85,8 @@ export class HistoryApi extends BaseAPI {
         if (limit != null) { query['limit'] = limit; }
         if (startDate != null) { query['startDate'] = startDate; }
         if (endDate != null) { query['endDate'] = endDate; }
+        if (replyto != null) { query['replyto'] = replyto; }
+        if (headerfrom != null) { query['headerfrom'] = headerfrom; }
 
         return this.request<MailLog>({
             url: '/mail/log',

@@ -61,7 +61,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **view_mail_log**
-> MailLog view_mail_log(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, skip => $skip, limit => $limit, start_date => $start_date, end_date => $end_date)
+> MailLog view_mail_log(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, skip => $skip, limit => $limit, start_date => $start_date, end_date => $end_date, replyto => $replyto, headerfrom => $headerfrom)
 
 displays the mail log
 
@@ -90,9 +90,11 @@ my $skip = 1000; # int | number of records to skip for pagination
 my $limit = 1000; # int | maximum number of records to return
 my $start_date = 1641781008; # int | earliest date to get emails in unix timestamp format
 my $end_date = 1673317008; # int | earliest date to get emails in unix timestamp format
+my $replyto = "replyto_example"; # string | Reply-To Email Address
+my $headerfrom = "headerfrom_example"; # string | Header From Email Address
 
 eval {
-    my $result = $api_instance->view_mail_log(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, skip => $skip, limit => $limit, start_date => $start_date, end_date => $end_date);
+    my $result = $api_instance->view_mail_log(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, skip => $skip, limit => $limit, start_date => $start_date, end_date => $end_date, replyto => $replyto, headerfrom => $headerfrom);
     print Dumper($result);
 };
 if ($@) {
@@ -115,6 +117,8 @@ Name | Type | Description  | Notes
  **limit** | **int**| maximum number of records to return | [optional] [default to 100]
  **start_date** | **int**| earliest date to get emails in unix timestamp format | [optional] 
  **end_date** | **int**| earliest date to get emails in unix timestamp format | [optional] 
+ **replyto** | **string**| Reply-To Email Address | [optional] 
+ **headerfrom** | **string**| Header From Email Address | [optional] 
 
 ### Return type
 

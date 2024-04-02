@@ -56,7 +56,7 @@ This endpoint does not need any parameter.
 
 # **viewMailLog**
 ```swift
-    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, completion: @escaping (_ data: MailLog?, _ error: Error?) -> Void)
+    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, completion: @escaping (_ data: MailLog?, _ error: Error?) -> Void)
 ```
 
 displays the mail log
@@ -79,9 +79,11 @@ let skip = 987 // Int | number of records to skip for pagination (optional) (def
 let limit = 987 // Int | maximum number of records to return (optional) (default to 100)
 let startDate = 987 // Int64 | earliest date to get emails in unix timestamp format (optional)
 let endDate = 987 // Int64 | earliest date to get emails in unix timestamp format (optional)
+let replyto = "replyto_example" // String | Reply-To Email Address (optional)
+let headerfrom = "headerfrom_example" // String | Header From Email Address (optional)
 
 // displays the mail log
-HistoryAPI.viewMailLog(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate) { (response, error) in
+HistoryAPI.viewMailLog(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, replyto: replyto, headerfrom: headerfrom) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -108,6 +110,8 @@ Name | Type | Description  | Notes
  **limit** | **Int** | maximum number of records to return | [optional] [default to 100]
  **startDate** | **Int64** | earliest date to get emails in unix timestamp format | [optional] 
  **endDate** | **Int64** | earliest date to get emails in unix timestamp format | [optional] 
+ **replyto** | **String** | Reply-To Email Address | [optional] 
+ **headerfrom** | **String** | Header From Email Address | [optional] 
 
 ### Return type
 

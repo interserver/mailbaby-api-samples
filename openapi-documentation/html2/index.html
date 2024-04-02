@@ -4872,7 +4872,7 @@ pub fn main() {
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
 -H "X-API-KEY: [[apiKey]]" \
  -H "Accept: application/json" \
- "https://api.mailbaby.net/mail/log?id=2604&origin=1.2.3.4&mx=mx.google.com&from=me@sender.com&to=you@receiver.com&subject=Support&mailid=185997065c60008840&skip=1000&limit=1000&startDate=1641781008&endDate=1673317008"
+ "https://api.mailbaby.net/mail/log?id=2604&origin=1.2.3.4&mx=mx.google.com&from=me@sender.com&to=you@receiver.com&subject=Support&mailid=185997065c60008840&skip=1000&limit=1000&startDate=1641781008&endDate=1673317008&replyto=replyto_example&headerfrom=headerfrom_example"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-History-viewMailLog-0-java">
@@ -4907,9 +4907,11 @@ public class HistoryApiExample {
         Integer limit = 1000; // Integer | maximum number of records to return
         Long startDate = 1641781008; // Long | earliest date to get emails in unix timestamp format
         Long endDate = 1673317008; // Long | earliest date to get emails in unix timestamp format
+        String replyto = replyto_example; // String | Reply-To Email Address
+        String headerfrom = headerfrom_example; // String | Header From Email Address
 
         try {
-            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling HistoryApi#viewMailLog");
@@ -4936,9 +4938,11 @@ final Integer skip = new Integer(); // Integer | number of records to skip for p
 final Integer limit = new Integer(); // Integer | maximum number of records to return
 final Long startDate = new Long(); // Long | earliest date to get emails in unix timestamp format
 final Long endDate = new Long(); // Long | earliest date to get emails in unix timestamp format
+final String replyto = new String(); // String | Reply-To Email Address
+final String headerfrom = new String(); // String | Header From Email Address
 
 try {
-    final result = await api_instance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+    final result = await api_instance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->viewMailLog: $e\n');
@@ -4964,9 +4968,11 @@ public class HistoryApiExample {
         Integer limit = 1000; // Integer | maximum number of records to return
         Long startDate = 1641781008; // Long | earliest date to get emails in unix timestamp format
         Long endDate = 1673317008; // Long | earliest date to get emails in unix timestamp format
+        String replyto = replyto_example; // String | Reply-To Email Address
+        String headerfrom = headerfrom_example; // String | Header From Email Address
 
         try {
-            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling HistoryApi#viewMailLog");
@@ -5001,6 +5007,8 @@ Integer *skip = 1000; // number of records to skip for pagination (optional) (de
 Integer *limit = 1000; // maximum number of records to return (optional) (default to 100)
 Long *startDate = 1641781008; // earliest date to get emails in unix timestamp format (optional) (default to null)
 Long *endDate = 1673317008; // earliest date to get emails in unix timestamp format (optional) (default to null)
+String *replyto = replyto_example; // Reply-To Email Address (optional) (default to null)
+String *headerfrom = headerfrom_example; // Header From Email Address (optional) (default to null)
 
 // displays the mail log
 [apiInstance viewMailLogWith:id
@@ -5014,6 +5022,8 @@ Long *endDate = 1673317008; // earliest date to get emails in unix timestamp for
     limit:limit
     startDate:startDate
     endDate:endDate
+    replyto:replyto
+    headerfrom:headerfrom
               completionHandler: ^(MailLog output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -5048,7 +5058,9 @@ var opts = {
   'skip': 1000, // {Integer} number of records to skip for pagination
   'limit': 1000, // {Integer} maximum number of records to return
   'startDate': 1641781008, // {Long} earliest date to get emails in unix timestamp format
-  'endDate': 1673317008 // {Long} earliest date to get emails in unix timestamp format
+  'endDate': 1673317008, // {Long} earliest date to get emails in unix timestamp format
+  'replyto': replyto_example, // {String} Reply-To Email Address
+  'headerfrom': headerfrom_example // {String} Header From Email Address
 };
 
 var callback = function(error, data, response) {
@@ -5096,10 +5108,12 @@ namespace Example
             var limit = 1000;  // Integer | maximum number of records to return (optional)  (default to 100)
             var startDate = 1641781008;  // Long | earliest date to get emails in unix timestamp format (optional)  (default to null)
             var endDate = 1673317008;  // Long | earliest date to get emails in unix timestamp format (optional)  (default to null)
+            var replyto = replyto_example;  // String | Reply-To Email Address (optional)  (default to null)
+            var headerfrom = headerfrom_example;  // String | Header From Email Address (optional)  (default to null)
 
             try {
                 // displays the mail log
-                MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+                MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling HistoryApi.viewMailLog: " + e.Message );
@@ -5132,9 +5146,11 @@ $skip = 1000; // Integer | number of records to skip for pagination
 $limit = 1000; // Integer | maximum number of records to return
 $startDate = 1641781008; // Long | earliest date to get emails in unix timestamp format
 $endDate = 1673317008; // Long | earliest date to get emails in unix timestamp format
+$replyto = replyto_example; // String | Reply-To Email Address
+$headerfrom = headerfrom_example; // String | Header From Email Address
 
 try {
-    $result = $api_instance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate);
+    $result = $api_instance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate, $replyto, $headerfrom);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling HistoryApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
@@ -5165,9 +5181,11 @@ my $skip = 1000; # Integer | number of records to skip for pagination
 my $limit = 1000; # Integer | maximum number of records to return
 my $startDate = 1641781008; # Long | earliest date to get emails in unix timestamp format
 my $endDate = 1673317008; # Long | earliest date to get emails in unix timestamp format
+my $replyto = replyto_example; # String | Reply-To Email Address
+my $headerfrom = headerfrom_example; # String | Header From Email Address
 
 eval {
-    my $result = $api_instance->viewMailLog(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate);
+    my $result = $api_instance->viewMailLog(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate, replyto => $replyto, headerfrom => $headerfrom);
     print Dumper($result);
 };
 if ($@) {
@@ -5200,10 +5218,12 @@ skip = 1000 # Integer | number of records to skip for pagination (optional) (def
 limit = 1000 # Integer | maximum number of records to return (optional) (default to 100)
 startDate = 1641781008 # Long | earliest date to get emails in unix timestamp format (optional) (default to null)
 endDate = 1673317008 # Long | earliest date to get emails in unix timestamp format (optional) (default to null)
+replyto = replyto_example # String | Reply-To Email Address (optional) (default to null)
+headerfrom = headerfrom_example # String | Header From Email Address (optional) (default to null)
 
 try:
     # displays the mail log
-    api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, from=from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, startDate=startDate, endDate=endDate)
+    api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, from=from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, startDate=startDate, endDate=endDate, replyto=replyto, headerfrom=headerfrom)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling HistoryApi->viewMailLog: %s\n" % e)</code></pre>
@@ -5224,9 +5244,11 @@ pub fn main() {
     let limit = 1000; // Integer
     let startDate = 1641781008; // Long
     let endDate = 1673317008; // Long
+    let replyto = replyto_example; // String
+    let headerfrom = headerfrom_example; // String
 
     let mut context = HistoryApi::Context::default();
-    let result = client.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, &context).wait();
+    let result = client.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, &context).wait();
 
     println!("{:?}", result);
 }
@@ -5479,6 +5501,46 @@ earliest date to get emails in unix timestamp format
 
                     <div class="inner description marked">
 earliest date to get emails in unix timestamp format
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">replyto</td>
+<td>
+
+
+    <div id="d2e199_viewMailLog_replyto">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+Reply-To Email Address
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">headerfrom</td>
+<td>
+
+
+    <div id="d2e199_viewMailLog_headerfrom">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+Header From Email Address
                     </div>
             </div>
         </div>

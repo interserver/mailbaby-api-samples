@@ -38,7 +38,7 @@ This endpoint does not need any parameter.
 
 ## view_mail_log
 
-> crate::models::MailLog view_mail_log(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date)
+> crate::models::MailLog view_mail_log(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date, replyto, headerfrom)
 displays the mail log
 
 Get a listing of the emails sent through this system 
@@ -59,6 +59,8 @@ Name | Type | Description  | Required | Notes
 **limit** | Option<**i32**> | maximum number of records to return |  |[default to 100]
 **start_date** | Option<**i64**> | earliest date to get emails in unix timestamp format |  |
 **end_date** | Option<**i64**> | earliest date to get emails in unix timestamp format |  |
+**replyto** | Option<**String**> | Reply-To Email Address |  |
+**headerfrom** | Option<**String**> | Header From Email Address |  |
 
 ### Return type
 

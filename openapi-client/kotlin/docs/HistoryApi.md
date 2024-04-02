@@ -56,7 +56,7 @@ Configure apiKeyAuth:
 
 <a id="viewMailLog"></a>
 # **viewMailLog**
-> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
+> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom)
 
 displays the mail log
 
@@ -80,8 +80,10 @@ val skip : kotlin.Int = 1000 // kotlin.Int | number of records to skip for pagin
 val limit : kotlin.Int = 1000 // kotlin.Int | maximum number of records to return
 val startDate : kotlin.Long = 1641781008 // kotlin.Long | earliest date to get emails in unix timestamp format
 val endDate : kotlin.Long = 1673317008 // kotlin.Long | earliest date to get emails in unix timestamp format
+val replyto : kotlin.String = replyto_example // kotlin.String | Reply-To Email Address
+val headerfrom : kotlin.String = headerfrom_example // kotlin.String | Header From Email Address
 try {
-    val result : MailLog = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
+    val result : MailLog = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling HistoryApi#viewMailLog")
@@ -107,6 +109,8 @@ Name | Type | Description  | Notes
  **limit** | **kotlin.Int**| maximum number of records to return | [optional] [default to 100]
  **startDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional]
  **endDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional]
+ **replyto** | **kotlin.String**| Reply-To Email Address | [optional]
+ **headerfrom** | **kotlin.String**| Header From Email Address | [optional]
 
 ### Return type
 

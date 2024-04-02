@@ -116,6 +116,8 @@ class HistoryApi {
   /// * [limit] - maximum number of records to return
   /// * [startDate] - earliest date to get emails in unix timestamp format
   /// * [endDate] - earliest date to get emails in unix timestamp format
+  /// * [replyto] - Reply-To Email Address
+  /// * [headerfrom] - Header From Email Address
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -137,6 +139,8 @@ class HistoryApi {
     int? limit = 100,
     int? startDate,
     int? endDate,
+    String? replyto,
+    String? headerfrom,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -176,6 +180,8 @@ class HistoryApi {
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
       if (startDate != null) r'startDate': encodeQueryParameter(_serializers, startDate, const FullType(int)),
       if (endDate != null) r'endDate': encodeQueryParameter(_serializers, endDate, const FullType(int)),
+      if (replyto != null) r'replyto': encodeQueryParameter(_serializers, replyto, const FullType(String)),
+      if (headerfrom != null) r'headerfrom': encodeQueryParameter(_serializers, headerfrom, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

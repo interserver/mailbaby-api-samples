@@ -237,6 +237,18 @@ export interface HistoryApiViewMailLogRequest {
      * @memberof HistoryApiviewMailLog
      */
     endDate?: number
+    /**
+     * Reply-To Email Address
+     * @type string
+     * @memberof HistoryApiviewMailLog
+     */
+    replyto?: string
+    /**
+     * Header From Email Address
+     * @type string
+     * @memberof HistoryApiviewMailLog
+     */
+    headerfrom?: string
 }
 
 export class ObjectHistoryApi {
@@ -270,7 +282,7 @@ export class ObjectHistoryApi {
      * @param param the request object
      */
     public viewMailLogWithHttpInfo(param: HistoryApiViewMailLogRequest = {}, options?: Configuration): Promise<HttpInfo<MailLog>> {
-        return this.api.viewMailLogWithHttpInfo(param.id, param.origin, param.mx, param._from, param.to, param.subject, param.mailid, param.skip, param.limit, param.startDate, param.endDate,  options).toPromise();
+        return this.api.viewMailLogWithHttpInfo(param.id, param.origin, param.mx, param._from, param.to, param.subject, param.mailid, param.skip, param.limit, param.startDate, param.endDate, param.replyto, param.headerfrom,  options).toPromise();
     }
 
     /**
@@ -279,7 +291,7 @@ export class ObjectHistoryApi {
      * @param param the request object
      */
     public viewMailLog(param: HistoryApiViewMailLogRequest = {}, options?: Configuration): Promise<MailLog> {
-        return this.api.viewMailLog(param.id, param.origin, param.mx, param._from, param.to, param.subject, param.mailid, param.skip, param.limit, param.startDate, param.endDate,  options).toPromise();
+        return this.api.viewMailLog(param.id, param.origin, param.mx, param._from, param.to, param.subject, param.mailid, param.skip, param.limit, param.startDate, param.endDate, param.replyto, param.headerfrom,  options).toPromise();
     }
 
 }

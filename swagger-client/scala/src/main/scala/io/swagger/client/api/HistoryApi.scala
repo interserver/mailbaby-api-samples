@@ -119,10 +119,12 @@ class HistoryApi(
    * @param limit maximum number of records to return (optional, default to 100)
    * @param startDate earliest date to get emails in unix timestamp format (optional)
    * @param endDate earliest date to get emails in unix timestamp format (optional)
+   * @param replyto Reply-To Email Address (optional)
+   * @param headerfrom Header From Email Address (optional)
    * @return MailLog
    */
-  def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Integer] = Option(0), limit: Option[Integer] = Option(100), startDate: Option[Long] = None, endDate: Option[Long] = None): Option[MailLog] = {
-    val await = Try(Await.result(viewMailLogAsync(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate), Duration.Inf))
+  def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Integer] = Option(0), limit: Option[Integer] = Option(100), startDate: Option[Long] = None, endDate: Option[Long] = None, replyto: Option[String] = None, headerfrom: Option[String] = None): Option[MailLog] = {
+    val await = Try(Await.result(viewMailLogAsync(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -144,10 +146,12 @@ class HistoryApi(
    * @param limit maximum number of records to return (optional, default to 100)
    * @param startDate earliest date to get emails in unix timestamp format (optional)
    * @param endDate earliest date to get emails in unix timestamp format (optional)
+   * @param replyto Reply-To Email Address (optional)
+   * @param headerfrom Header From Email Address (optional)
    * @return Future(MailLog)
    */
-  def viewMailLogAsync(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Integer] = Option(0), limit: Option[Integer] = Option(100), startDate: Option[Long] = None, endDate: Option[Long] = None): Future[MailLog] = {
-      helper.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
+  def viewMailLogAsync(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Integer] = Option(0), limit: Option[Integer] = Option(100), startDate: Option[Long] = None, endDate: Option[Long] = None, replyto: Option[String] = None, headerfrom: Option[String] = None): Future[MailLog] = {
+      helper.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom)
   }
 
 }
@@ -179,7 +183,9 @@ class HistoryApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     skip: Option[Integer] = Option(0),
     limit: Option[Integer] = Option(100),
     startDate: Option[Long] = None,
-    endDate: Option[Long] = None
+    endDate: Option[Long] = None,
+    replyto: Option[String] = None,
+    headerfrom: Option[String] = None
     )(implicit reader: ClientResponseReader[MailLog]): Future[MailLog] = {
     // create path and map variables
     val path = (addFmt("/mail/log"))
@@ -230,6 +236,14 @@ class HistoryApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
     endDate match {
       case Some(param) => queryParams += "endDate" -> param.toString
+      case _ => queryParams
+    }
+    replyto match {
+      case Some(param) => queryParams += "replyto" -> param.toString
+      case _ => queryParams
+    }
+    headerfrom match {
+      case Some(param) => queryParams += "headerfrom" -> param.toString
       case _ => queryParams
     }
 

@@ -25,7 +25,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2024-02-20T06:54:33.446635-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2024-04-02T13:33:23.260102821-04:00[America/New_York]")
 public class MailApiServiceImpl implements MailApi {
       public Response addRule(String user,String type,String data,SecurityContext securityContext) {
       // do some magic!
@@ -75,7 +75,7 @@ public class MailApiServiceImpl implements MailApi {
       // do some magic!
       return Response.ok().build();
   }
-      public Response viewMailLog(Long id,String origin,String mx,String from,String to,String subject,String mailid,Integer skip,Integer limit,Long startDate,Long endDate,SecurityContext securityContext) {
+      public Response viewMailLog(Long id,String origin,String mx,String from,String to,String subject,String mailid,Integer skip,Integer limit,Long startDate,Long endDate,String replyto,String headerfrom,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }

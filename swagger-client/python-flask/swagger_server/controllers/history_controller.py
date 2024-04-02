@@ -18,7 +18,7 @@ def get_stats():  # noqa: E501
     return 'do some magic!'
 
 
-def view_mail_log(id=None, origin=None, mx=None, _from=None, to=None, subject=None, mailid=None, skip=None, limit=None, start_date=None, end_date=None):  # noqa: E501
+def view_mail_log(id=None, origin=None, mx=None, _from=None, to=None, subject=None, mailid=None, skip=None, limit=None, start_date=None, end_date=None, replyto=None, headerfrom=None):  # noqa: E501
     """displays the mail log
 
     Get a listing of the emails sent through this system  # noqa: E501
@@ -45,6 +45,10 @@ def view_mail_log(id=None, origin=None, mx=None, _from=None, to=None, subject=No
     :type start_date: int
     :param end_date: earliest date to get emails in unix timestamp format
     :type end_date: int
+    :param replyto: Reply-To Email Address
+    :type replyto: str
+    :param headerfrom: Header From Email Address
+    :type headerfrom: str
 
     :rtype: MailLog
     """

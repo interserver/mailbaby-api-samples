@@ -50,6 +50,8 @@ public:
     * \param limit maximum number of records to return
     * \param startDate earliest date to get emails in unix timestamp format
     * \param endDate earliest date to get emails in unix timestamp format
+    * \param replyto Reply-To Email Address
+    * \param headerfrom Header From Email Address
     */
     Response<
                 MailLog
@@ -87,6 +89,12 @@ public:
             , 
             
             long endDate
+            , 
+            
+            std::string replyto
+            , 
+            
+            std::string headerfrom
             
     );
 }; 

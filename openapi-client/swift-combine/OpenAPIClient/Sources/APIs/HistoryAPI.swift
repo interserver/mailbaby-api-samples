@@ -123,8 +123,10 @@ open class HistoryAPI {
     /// - parameter limit: (query) maximum number of records to return (optional, default to 100)
     /// - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
     /// - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
+    /// - parameter replyto: (query) Reply-To Email Address (optional)
+    /// - parameter headerfrom: (query) Header From Email Address (optional)
     /// - returns: AnyPublisher<MailLog, Error> 
-    open func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil) -> AnyPublisher<MailLog, Error> {
+    open func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil) -> AnyPublisher<MailLog, Error> {
         Deferred {
             Result<URLRequest, Error> {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
@@ -145,6 +147,8 @@ open class HistoryAPI {
                 if let limit = limit { queryItems.append(URLQueryItem(name: "limit", value: "\(limit)")) } 
                 if let startDate = startDate { queryItems.append(URLQueryItem(name: "startDate", value: "\(startDate)")) } 
                 if let endDate = endDate { queryItems.append(URLQueryItem(name: "endDate", value: "\(endDate)")) } 
+                if let replyto = replyto { queryItems.append(URLQueryItem(name: "replyto", value: replyto)) } 
+                if let headerfrom = headerfrom { queryItems.append(URLQueryItem(name: "headerfrom", value: headerfrom)) } 
                 components?.queryItems = queryItems
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()

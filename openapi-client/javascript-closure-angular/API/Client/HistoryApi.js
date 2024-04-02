@@ -90,10 +90,12 @@ API.Client.HistoryApi.prototype.getStats = function(opt_extraHttpRequestParams) 
  * @param {!number=} opt_limit maximum number of records to return
  * @param {!number=} opt_startDate earliest date to get emails in unix timestamp format
  * @param {!number=} opt_endDate earliest date to get emails in unix timestamp format
+ * @param {!string=} opt_replyto Reply-To Email Address
+ * @param {!string=} opt_headerfrom Header From Email Address
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.MailLog>}
  */
-API.Client.HistoryApi.prototype.viewMailLog = function(opt_id, opt_origin, opt_mx, opt_from, opt_to, opt_subject, opt_mailid, opt_skip, opt_limit, opt_startDate, opt_endDate, opt_extraHttpRequestParams) {
+API.Client.HistoryApi.prototype.viewMailLog = function(opt_id, opt_origin, opt_mx, opt_from, opt_to, opt_subject, opt_mailid, opt_skip, opt_limit, opt_startDate, opt_endDate, opt_replyto, opt_headerfrom, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/mail/log';
 
@@ -144,6 +146,14 @@ API.Client.HistoryApi.prototype.viewMailLog = function(opt_id, opt_origin, opt_m
 
   if (opt_endDate !== undefined) {
     queryParameters['endDate'] = opt_endDate;
+  }
+
+  if (opt_replyto !== undefined) {
+    queryParameters['replyto'] = opt_replyto;
+  }
+
+  if (opt_headerfrom !== undefined) {
+    queryParameters['headerfrom'] = opt_headerfrom;
   }
 
   /** @type {!Object} */

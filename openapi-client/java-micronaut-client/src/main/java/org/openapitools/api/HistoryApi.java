@@ -28,7 +28,7 @@ import java.util.Map;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-02-20T06:51:57.216817-05:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-02T13:30:31.050992336-04:00[America/New_York]")
 @Client("${openapi-micronaut-client-base-path}")
 public interface HistoryApi {
     /**
@@ -56,6 +56,8 @@ public interface HistoryApi {
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
      * @return MailLog
      */
     @Get(uri="/mail/log")
@@ -71,7 +73,9 @@ public interface HistoryApi {
         @QueryValue(value="skip", defaultValue="0") @Nullable @Min(0) Integer skip, 
         @QueryValue(value="limit", defaultValue="100") @Nullable @Min(1) @Max(10000) Integer limit, 
         @QueryValue(value="startDate") @Nullable @Min(0L) @Max(9999999999L) Long startDate, 
-        @QueryValue(value="endDate") @Nullable @Min(0L) @Max(9999999999L) Long endDate
+        @QueryValue(value="endDate") @Nullable @Min(0L) @Max(9999999999L) Long endDate, 
+        @QueryValue(value="replyto") @Nullable String replyto, 
+        @QueryValue(value="headerfrom") @Nullable String headerfrom
     );
 
 }

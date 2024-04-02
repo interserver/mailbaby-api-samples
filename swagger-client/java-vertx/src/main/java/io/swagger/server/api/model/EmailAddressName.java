@@ -10,7 +10,7 @@ import io.vertx.codegen.annotations.DataObject;
  * An email contact.
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaVertXServerCodegen", date = "2024-02-20T06:54:38.872250-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaVertXServerCodegen", date = "2024-04-02T13:33:29.016974336-04:00[America/New_York]")
 
 
 

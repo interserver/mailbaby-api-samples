@@ -73,15 +73,15 @@ module OpenAPIClient
     # displays the mail log
     # Get a listing of the emails sent through this system 
     # @return [MailLog]
-    def view_mail_log(id : Int64?, origin : String?, mx : String?, from : String?, to : String?, subject : String?, mailid : String?, skip : Int32?, limit : Int32?, start_date : Int64?, end_date : Int64?)
-      data, _status_code, _headers = view_mail_log_with_http_info(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date)
+    def view_mail_log(id : Int64?, origin : String?, mx : String?, from : String?, to : String?, subject : String?, mailid : String?, skip : Int32?, limit : Int32?, start_date : Int64?, end_date : Int64?, replyto : String?, headerfrom : String?)
+      data, _status_code, _headers = view_mail_log_with_http_info(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date, replyto, headerfrom)
       data
     end
 
     # displays the mail log
     # Get a listing of the emails sent through this system 
     # @return [Array<(MailLog, Integer, Hash)>] MailLog data, response status code and response headers
-    def view_mail_log_with_http_info(id : Int64?, origin : String?, mx : String?, from : String?, to : String?, subject : String?, mailid : String?, skip : Int32?, limit : Int32?, start_date : Int64?, end_date : Int64?)
+    def view_mail_log_with_http_info(id : Int64?, origin : String?, mx : String?, from : String?, to : String?, subject : String?, mailid : String?, skip : Int32?, limit : Int32?, start_date : Int64?, end_date : Int64?, replyto : String?, headerfrom : String?)
       if @api_client.config.debugging
         Log.debug {"Calling API: HistoryApi.view_mail_log ..."}
       end
@@ -129,6 +129,8 @@ module OpenAPIClient
       query_params["limit"] = limit.to_s unless limit.nil?
       query_params["startDate"] = start_date.to_s unless start_date.nil?
       query_params["endDate"] = end_date.to_s unless end_date.nil?
+      query_params["replyto"] = replyto.to_s unless replyto.nil?
+      query_params["headerfrom"] = headerfrom.to_s unless headerfrom.nil?
 
       # header parameters
       header_params = Hash(String, String).new

@@ -1194,10 +1194,12 @@ export const HistoryApiFetchParamCreator = function (configuration?: Configurati
          * @param {number} [limit] maximum number of records to return
          * @param {number} [startDate] earliest date to get emails in unix timestamp format
          * @param {number} [endDate] earliest date to get emails in unix timestamp format
+         * @param {string} [replyto] Reply-To Email Address
+         * @param {string} [headerfrom] Header From Email Address
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, options: any = {}): FetchArgs {
+        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options: any = {}): FetchArgs {
             const localVarPath = `/mail/log`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1256,6 +1258,14 @@ export const HistoryApiFetchParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['endDate'] = endDate;
             }
 
+            if (replyto !== undefined) {
+                localVarQueryParameter['replyto'] = replyto;
+            }
+
+            if (headerfrom !== undefined) {
+                localVarQueryParameter['headerfrom'] = headerfrom;
+            }
+
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             localVarUrlObj.search = null;
@@ -1307,11 +1317,13 @@ export const HistoryApiFp = function(configuration?: Configuration) {
          * @param {number} [limit] maximum number of records to return
          * @param {number} [startDate] earliest date to get emails in unix timestamp format
          * @param {number} [endDate] earliest date to get emails in unix timestamp format
+         * @param {string} [replyto] Reply-To Email Address
+         * @param {string} [headerfrom] Header From Email Address
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<MailLog> {
-            const localVarFetchArgs = HistoryApiFetchParamCreator(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, options);
+        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<MailLog> {
+            const localVarFetchArgs = HistoryApiFetchParamCreator(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1354,11 +1366,13 @@ export const HistoryApiFactory = function (configuration?: Configuration, fetch?
          * @param {number} [limit] maximum number of records to return
          * @param {number} [startDate] earliest date to get emails in unix timestamp format
          * @param {number} [endDate] earliest date to get emails in unix timestamp format
+         * @param {string} [replyto] Reply-To Email Address
+         * @param {string} [headerfrom] Header From Email Address
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, options?: any) {
-            return HistoryApiFp(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, options)(fetch, basePath);
+        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: any) {
+            return HistoryApiFp(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, options)(fetch, basePath);
         },
     };
 };
@@ -1395,12 +1409,14 @@ export class HistoryApi extends BaseAPI {
      * @param {number} [limit] maximum number of records to return
      * @param {number} [startDate] earliest date to get emails in unix timestamp format
      * @param {number} [endDate] earliest date to get emails in unix timestamp format
+     * @param {string} [replyto] Reply-To Email Address
+     * @param {string} [headerfrom] Header From Email Address
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HistoryApi
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, options?: any) {
-        return HistoryApiFp(this.configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, options)(this.fetch, this.basePath);
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: any) {
+        return HistoryApiFp(this.configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, options)(this.fetch, this.basePath);
     }
 
 }

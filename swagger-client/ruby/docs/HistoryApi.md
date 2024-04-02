@@ -86,7 +86,9 @@ opts = {
   skip: 0, # Integer | number of records to skip for pagination
   limit: 100, # Integer | maximum number of records to return
   start_date: 789, # Integer | earliest date to get emails in unix timestamp format
-  end_date: 789 # Integer | earliest date to get emails in unix timestamp format
+  end_date: 789, # Integer | earliest date to get emails in unix timestamp format
+  replyto: 'replyto_example', # String | Reply-To Email Address
+  headerfrom: 'headerfrom_example' # String | Header From Email Address
 }
 
 begin
@@ -113,6 +115,8 @@ Name | Type | Description  | Notes
  **limit** | **Integer**| maximum number of records to return | [optional] [default to 100]
  **start_date** | **Integer**| earliest date to get emails in unix timestamp format | [optional] 
  **end_date** | **Integer**| earliest date to get emails in unix timestamp format | [optional] 
+ **replyto** | **String**| Reply-To Email Address | [optional] 
+ **headerfrom** | **String**| Header From Email Address | [optional] 
 
 ### Return type
 

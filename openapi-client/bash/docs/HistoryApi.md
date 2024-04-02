@@ -50,7 +50,7 @@ Get a listing of the emails sent through this system
 ### Example
 
 ```bash
- viewMailLog  id=value  origin=value  mx=value  from=value  to=value  subject=value  mailid=value  skip=value  limit=value  startDate=value  endDate=value
+ viewMailLog  id=value  origin=value  mx=value  from=value  to=value  subject=value  mailid=value  skip=value  limit=value  startDate=value  endDate=value  replyto=value  headerfrom=value
 ```
 
 ### Parameters
@@ -69,6 +69,8 @@ Name | Type | Description  | Notes
  **limit** | **integer** | maximum number of records to return | [optional] [default to 100]
  **startDate** | **integer** | earliest date to get emails in unix timestamp format | [optional] [default to null]
  **endDate** | **integer** | earliest date to get emails in unix timestamp format | [optional] [default to null]
+ **replyto** | **string** | Reply-To Email Address | [optional] [default to null]
+ **headerfrom** | **string** | Header From Email Address | [optional] [default to null]
 
 ### Return type
 

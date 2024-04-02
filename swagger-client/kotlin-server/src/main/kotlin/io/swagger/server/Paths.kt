@@ -88,8 +88,10 @@ object Paths {
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
      */
-    @Location("/mail/log") class viewMailLog(val id: kotlin.Long, val origin: kotlin.String, val mx: kotlin.String, val from: kotlin.String, val to: kotlin.String, val subject: kotlin.String, val mailid: kotlin.String, val skip: kotlin.Int, val limit: kotlin.Int, val startDate: kotlin.Long, val endDate: kotlin.Long)
+    @Location("/mail/log") class viewMailLog(val id: kotlin.Long, val origin: kotlin.String, val mx: kotlin.String, val from: kotlin.String, val to: kotlin.String, val subject: kotlin.String, val mailid: kotlin.String, val skip: kotlin.Int, val limit: kotlin.Int, val startDate: kotlin.Long, val endDate: kotlin.Long, val replyto: kotlin.String, val headerfrom: kotlin.String)
 
     /**
      * Sends an Email with Advanced Options

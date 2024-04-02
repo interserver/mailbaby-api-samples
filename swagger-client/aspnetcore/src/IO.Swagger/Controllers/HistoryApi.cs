@@ -76,6 +76,8 @@ namespace IO.Swagger.Controllers
         /// <param name="limit">maximum number of records to return</param>
         /// <param name="startDate">earliest date to get emails in unix timestamp format</param>
         /// <param name="endDate">earliest date to get emails in unix timestamp format</param>
+        /// <param name="replyto">Reply-To Email Address</param>
+        /// <param name="headerfrom">Header From Email Address</param>
         /// <response code="200">search results matching criteria</response>
         /// <response code="400">bad input parameter</response>
         [HttpGet]
@@ -84,7 +86,7 @@ namespace IO.Swagger.Controllers
         [ValidateModelState]
         [SwaggerOperation("ViewMailLog")]
         [SwaggerResponse(statusCode: 200, type: typeof(MailLog), description: "search results matching criteria")]
-        public virtual IActionResult ViewMailLog([FromQuery]long? id, [FromQuery]string origin, [FromQuery]string mx, [FromQuery]string from, [FromQuery]string to, [FromQuery]string subject, [FromQuery]string mailid, [FromQuery]int? skip, [FromQuery][Range(1, 10000)]int? limit, [FromQuery][Range(0, 9999999999)]long? startDate, [FromQuery][Range(0, 9999999999)]long? endDate)
+        public virtual IActionResult ViewMailLog([FromQuery]long? id, [FromQuery]string origin, [FromQuery]string mx, [FromQuery]string from, [FromQuery]string to, [FromQuery]string subject, [FromQuery]string mailid, [FromQuery]int? skip, [FromQuery][Range(1, 10000)]int? limit, [FromQuery][Range(0, 9999999999)]long? startDate, [FromQuery][Range(0, 9999999999)]long? endDate, [FromQuery]string replyto, [FromQuery]string headerfrom)
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default(MailLog));

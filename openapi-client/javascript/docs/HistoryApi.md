@@ -87,7 +87,9 @@ let opts = {
   'skip': 1000, // Number | number of records to skip for pagination
   'limit': 1000, // Number | maximum number of records to return
   'startDate': 1641781008, // Number | earliest date to get emails in unix timestamp format
-  'endDate': 1673317008 // Number | earliest date to get emails in unix timestamp format
+  'endDate': 1673317008, // Number | earliest date to get emails in unix timestamp format
+  'replyto': "replyto_example", // String | Reply-To Email Address
+  'headerfrom': "headerfrom_example" // String | Header From Email Address
 };
 apiInstance.viewMailLog(opts, (error, data, response) => {
   if (error) {
@@ -114,6 +116,8 @@ Name | Type | Description  | Notes
  **limit** | **Number**| maximum number of records to return | [optional] [default to 100]
  **startDate** | **Number**| earliest date to get emails in unix timestamp format | [optional] 
  **endDate** | **Number**| earliest date to get emails in unix timestamp format | [optional] 
+ **replyto** | **String**| Reply-To Email Address | [optional] 
+ **headerfrom** | **String**| Header From Email Address | [optional] 
 
 ### Return type
 

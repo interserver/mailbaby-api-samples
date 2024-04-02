@@ -58,7 +58,7 @@ class HistoryApi {
   /// displays the mail log
   ///
   /// Get a listing of the emails sent through this system 
-  Future<MailLog> viewMailLog({ int id, String origin, String mx, String from, String to, String subject, String mailid, int skip, int limit, int startDate, int endDate }) async {
+  Future<MailLog> viewMailLog({ int id, String origin, String mx, String from, String to, String subject, String mailid, int skip, int limit, int startDate, int endDate, String replyto, String headerfrom }) async {
     Object postBody = null;
 
     // verify required params are set
@@ -102,6 +102,12 @@ class HistoryApi {
     }
     if(endDate != null) {
       queryParams.addAll(_convertParametersForCollectionFormat("", "endDate", endDate));
+    }
+    if(replyto != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "replyto", replyto));
+    }
+    if(headerfrom != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "headerfrom", headerfrom));
     }
     
     List<String> contentTypes = [];

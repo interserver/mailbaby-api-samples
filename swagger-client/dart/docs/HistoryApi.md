@@ -56,7 +56,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **viewMailLog**
-> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
+> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom)
 
 displays the mail log
 
@@ -82,9 +82,11 @@ var skip = 56; // int | number of records to skip for pagination
 var limit = 56; // int | maximum number of records to return
 var startDate = 789; // int | earliest date to get emails in unix timestamp format
 var endDate = 789; // int | earliest date to get emails in unix timestamp format
+var replyto = replyto_example; // String | Reply-To Email Address
+var headerfrom = headerfrom_example; // String | Header From Email Address
 
 try {
-    var result = api_instance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+    var result = api_instance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
     print(result);
 } catch (e) {
     print("Exception when calling HistoryApi->viewMailLog: $e\n");
@@ -106,6 +108,8 @@ Name | Type | Description  | Notes
  **limit** | **int**| maximum number of records to return | [optional] [default to 100]
  **startDate** | **int**| earliest date to get emails in unix timestamp format | [optional] 
  **endDate** | **int**| earliest date to get emails in unix timestamp format | [optional] 
+ **replyto** | **String**| Reply-To Email Address | [optional] 
+ **headerfrom** | **String**| Header From Email Address | [optional] 
 
 ### Return type
 

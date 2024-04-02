@@ -47,9 +47,11 @@ exports.getStats = function() {
  * limit Integer maximum number of records to return (optional)
  * startDate Long earliest date to get emails in unix timestamp format (optional)
  * endDate Long earliest date to get emails in unix timestamp format (optional)
+ * replyto String Reply-To Email Address (optional)
+ * headerfrom String Header From Email Address (optional)
  * returns MailLog
  **/
-exports.viewMailLog = function(id,origin,mx,from,to,subject,mailid,skip,limit,startDate,endDate) {
+exports.viewMailLog = function(id,origin,mx,from,to,subject,mailid,skip,limit,startDate,endDate,replyto,headerfrom) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {

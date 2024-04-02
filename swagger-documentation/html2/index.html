@@ -4425,7 +4425,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
-"https://api.mailbaby.net/mail/log?id=&origin=&mx=&from=&to=&subject=&mailid=&skip=&limit=&startDate=&endDate="</code></pre>
+"https://api.mailbaby.net/mail/log?id=&origin=&mx=&from=&to=&subject=&mailid=&skip=&limit=&startDate=&endDate=&replyto=&headerfrom="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-History-viewMailLog-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -4459,8 +4459,10 @@ public class HistoryApiExample {
         Integer limit = 56; // Integer | maximum number of records to return
         Long startDate = 789; // Long | earliest date to get emails in unix timestamp format
         Long endDate = 789; // Long | earliest date to get emails in unix timestamp format
+        String replyto = replyto_example; // String | Reply-To Email Address
+        String headerfrom = headerfrom_example; // String | Header From Email Address
         try {
-            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling HistoryApi#viewMailLog");
@@ -4488,8 +4490,10 @@ public class HistoryApiExample {
         Integer limit = 56; // Integer | maximum number of records to return
         Long startDate = 789; // Long | earliest date to get emails in unix timestamp format
         Long endDate = 789; // Long | earliest date to get emails in unix timestamp format
+        String replyto = replyto_example; // String | Reply-To Email Address
+        String headerfrom = headerfrom_example; // String | Header From Email Address
         try {
-            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling HistoryApi#viewMailLog");
@@ -4519,6 +4523,8 @@ Integer *skip = 56; // number of records to skip for pagination (optional) (defa
 Integer *limit = 56; // maximum number of records to return (optional) (default to 100)
 Long *startDate = 789; // earliest date to get emails in unix timestamp format (optional)
 Long *endDate = 789; // earliest date to get emails in unix timestamp format (optional)
+String *replyto = replyto_example; // Reply-To Email Address (optional)
+String *headerfrom = headerfrom_example; // Header From Email Address (optional)
 
 HistoryApi *apiInstance = [[HistoryApi alloc] init];
 
@@ -4534,6 +4540,8 @@ HistoryApi *apiInstance = [[HistoryApi alloc] init];
     limit:limit
     startDate:startDate
     endDate:endDate
+    replyto:replyto
+    headerfrom:headerfrom
               completionHandler: ^(MailLog output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -4567,7 +4575,9 @@ var opts = {
   'skip': 56, // {{Integer}} number of records to skip for pagination
   'limit': 56, // {{Integer}} maximum number of records to return
   'startDate': 789, // {{Long}} earliest date to get emails in unix timestamp format
-  'endDate': 789 // {{Long}} earliest date to get emails in unix timestamp format
+  'endDate': 789, // {{Long}} earliest date to get emails in unix timestamp format
+  'replyto': replyto_example, // {{String}} Reply-To Email Address
+  'headerfrom': headerfrom_example // {{String}} Header From Email Address
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -4614,11 +4624,13 @@ namespace Example
             var limit = 56;  // Integer | maximum number of records to return (optional)  (default to 100)
             var startDate = 789;  // Long | earliest date to get emails in unix timestamp format (optional) 
             var endDate = 789;  // Long | earliest date to get emails in unix timestamp format (optional) 
+            var replyto = replyto_example;  // String | Reply-To Email Address (optional) 
+            var headerfrom = headerfrom_example;  // String | Header From Email Address (optional) 
 
             try
             {
                 // displays the mail log
-                MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+                MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -4652,9 +4664,11 @@ $skip = 56; // Integer | number of records to skip for pagination
 $limit = 56; // Integer | maximum number of records to return
 $startDate = 789; // Long | earliest date to get emails in unix timestamp format
 $endDate = 789; // Long | earliest date to get emails in unix timestamp format
+$replyto = replyto_example; // String | Reply-To Email Address
+$headerfrom = headerfrom_example; // String | Header From Email Address
 
 try {
-    $result = $api_instance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate);
+    $result = $api_instance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate, $replyto, $headerfrom);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling HistoryApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
@@ -4684,9 +4698,11 @@ my $skip = 56; # Integer | number of records to skip for pagination
 my $limit = 56; # Integer | maximum number of records to return
 my $startDate = 789; # Long | earliest date to get emails in unix timestamp format
 my $endDate = 789; # Long | earliest date to get emails in unix timestamp format
+my $replyto = replyto_example; # String | Reply-To Email Address
+my $headerfrom = headerfrom_example; # String | Header From Email Address
 
 eval { 
-    my $result = $api_instance->viewMailLog(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate);
+    my $result = $api_instance->viewMailLog(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate, replyto => $replyto, headerfrom => $headerfrom);
     print Dumper($result);
 };
 if ($@) {
@@ -4719,10 +4735,12 @@ skip = 56 # Integer | number of records to skip for pagination (optional) (defau
 limit = 56 # Integer | maximum number of records to return (optional) (default to 100)
 startDate = 789 # Long | earliest date to get emails in unix timestamp format (optional)
 endDate = 789 # Long | earliest date to get emails in unix timestamp format (optional)
+replyto = replyto_example # String | Reply-To Email Address (optional)
+headerfrom = headerfrom_example # String | Header From Email Address (optional)
 
 try: 
     # displays the mail log
-    api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, from=from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, startDate=startDate, endDate=endDate)
+    api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, from=from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, startDate=startDate, endDate=endDate, replyto=replyto, headerfrom=headerfrom)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling HistoryApi->viewMailLog: %s\n" % e)</code></pre>
@@ -4959,6 +4977,44 @@ except ApiException as e:
                                 
                                                     <div class="inner description">
                                                         earliest date to get emails in unix timestamp format
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">replyto</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_replyto">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Reply-To Email Address
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">headerfrom</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_headerfrom">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Header From Email Address
                                                     </div>
                                             </div>
                                         </div>

@@ -90,7 +90,9 @@ namespace IO.Swagger.Test
             //int? limit = null;
             //long? startDate = null;
             //long? endDate = null;
-            //var response = instance.ViewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+            //string replyto = null;
+            //string headerfrom = null;
+            //var response = instance.ViewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
             //Assert.IsInstanceOf<MailLog> (response, "response is MailLog");
         }
     }

@@ -989,7 +989,7 @@ export const HistoryApiFetchParamCreator = function (configuration?: Configurati
          * @summary displays the mail log
          * @throws {RequiredError}
          */
-        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, options: RequestOptions): FetchArgs {
+        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options: RequestOptions): FetchArgs {
             const localVarPath = `/mail/log`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
@@ -1048,6 +1048,14 @@ export const HistoryApiFetchParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['endDate'] = ((endDate:any):string);
             }
 
+            if (replyto !== undefined) {
+                localVarQueryParameter['replyto'] = ((replyto:any):string);
+            }
+
+            if (headerfrom !== undefined) {
+                localVarQueryParameter['headerfrom'] = ((headerfrom:any):string);
+            }
+
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             localVarUrlObj.search = null;
@@ -1064,7 +1072,7 @@ export const HistoryApiFetchParamCreator = function (configuration?: Configurati
 export type HistoryApiType = { 
     getStats(options?: RequestOptions): Promise<Array<GetStats200ResponseInner>>,
 
-    viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, options?: RequestOptions): Promise<MailLog>,
+    viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: RequestOptions): Promise<MailLog>,
 }
 
 /**
@@ -1094,8 +1102,8 @@ export const HistoryApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary displays the mail log
          * @throws {RequiredError}
          */
-        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, options?: RequestOptions = {}): Promise<MailLog> {
-            const localVarFetchArgs = HistoryApiFetchParamCreator(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, options);
+        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: RequestOptions = {}): Promise<MailLog> {
+            const localVarFetchArgs = HistoryApiFetchParamCreator(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();

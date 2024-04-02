@@ -49,6 +49,8 @@ describe "HistoryApi" do
   # @option opts [Int32] :limit maximum number of records to return
   # @option opts [Int64] :start_date earliest date to get emails in unix timestamp format
   # @option opts [Int64] :end_date earliest date to get emails in unix timestamp format
+  # @option opts [String] :replyto Reply-To Email Address
+  # @option opts [String] :headerfrom Header From Email Address
   # @return [MailLog]
   describe "view_mail_log test" do
     it "should work" do

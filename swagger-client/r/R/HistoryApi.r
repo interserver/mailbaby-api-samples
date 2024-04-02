@@ -62,7 +62,7 @@ HistoryApi <- R6::R6Class(
       }
 
     }
-    view_mail_log = function(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date, ...){
+    view_mail_log = function(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date, replyto, headerfrom, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()
@@ -109,6 +109,14 @@ HistoryApi <- R6::R6Class(
 
       if (!missing(`end_date`)) {
         queryParams['endDate'] <- end_date
+      }
+
+      if (!missing(`replyto`)) {
+        queryParams['replyto'] <- replyto
+      }
+
+      if (!missing(`headerfrom`)) {
+        queryParams['headerfrom'] <- headerfrom
       }
 
       urlPath <- "/mail/log"

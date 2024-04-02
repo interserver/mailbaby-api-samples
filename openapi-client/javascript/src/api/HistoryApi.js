@@ -96,6 +96,8 @@ export default class HistoryApi {
      * @param {Number} [limit = 100)] maximum number of records to return
      * @param {Number} [startDate] earliest date to get emails in unix timestamp format
      * @param {Number} [endDate] earliest date to get emails in unix timestamp format
+     * @param {String} [replyto] Reply-To Email Address
+     * @param {String} [headerfrom] Header From Email Address
      * @param {module:api/HistoryApi~viewMailLogCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/MailLog}
      */
@@ -116,7 +118,9 @@ export default class HistoryApi {
         'skip': opts['skip'],
         'limit': opts['limit'],
         'startDate': opts['startDate'],
-        'endDate': opts['endDate']
+        'endDate': opts['endDate'],
+        'replyto': opts['replyto'],
+        'headerfrom': opts['headerfrom']
       };
       let headerParams = {
       };

@@ -42,7 +42,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2024-02-20T06:54:36.129415-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2024-04-02T13:33:26.045791402-04:00[America/New_York]")
 public class MailApi  {
 
     @Inject MailApiService service;
@@ -287,8 +287,8 @@ public class MailApi  {
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailLog.class))),
         
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
-    public Response viewMailLog(  @QueryParam("id") Long id,  @QueryParam("origin") String origin,  @QueryParam("mx") String mx,  @QueryParam("from") String from,  @QueryParam("to") String to,  @QueryParam("subject") String subject,  @QueryParam("mailid") String mailid, @Min(0)  @DefaultValue("0") @QueryParam("skip") Integer skip, @Min(1) @Max(10000)  @DefaultValue("100") @QueryParam("limit") Integer limit, @Min(0L) @Max(9999999999L)  @QueryParam("startDate") Long startDate, @Min(0L) @Max(9999999999L)  @QueryParam("endDate") Long endDate,@Context SecurityContext securityContext)
+    public Response viewMailLog(  @QueryParam("id") Long id,  @QueryParam("origin") String origin,  @QueryParam("mx") String mx,  @QueryParam("from") String from,  @QueryParam("to") String to,  @QueryParam("subject") String subject,  @QueryParam("mailid") String mailid, @Min(0)  @DefaultValue("0") @QueryParam("skip") Integer skip, @Min(1) @Max(10000)  @DefaultValue("100") @QueryParam("limit") Integer limit, @Min(0L) @Max(9999999999L)  @QueryParam("startDate") Long startDate, @Min(0L) @Max(9999999999L)  @QueryParam("endDate") Long endDate,  @QueryParam("replyto") String replyto,  @QueryParam("headerfrom") String headerfrom,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return service.viewMailLog(id,origin,mx,from,to,subject,mailid,skip,limit,startDate,endDate,securityContext);
+        return service.viewMailLog(id,origin,mx,from,to,subject,mailid,skip,limit,startDate,endDate,replyto,headerfrom,securityContext);
     }
 }

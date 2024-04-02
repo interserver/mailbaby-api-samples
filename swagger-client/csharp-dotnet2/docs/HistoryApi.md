@@ -72,7 +72,7 @@ This endpoint does not need any parameter.
 
 <a name="viewmaillog"></a>
 # **ViewMailLog**
-> MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, int? skip, int? limit, long? startDate, long? endDate)
+> MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, int? skip, int? limit, long? startDate, long? endDate, string replyto, string headerfrom)
 
 displays the mail log
 
@@ -110,11 +110,13 @@ namespace Example
             var limit = 56;  // int? | maximum number of records to return (optional)  (default to 100)
             var startDate = 789;  // long? | earliest date to get emails in unix timestamp format (optional) 
             var endDate = 789;  // long? | earliest date to get emails in unix timestamp format (optional) 
+            var replyto = replyto_example;  // string | Reply-To Email Address (optional) 
+            var headerfrom = headerfrom_example;  // string | Header From Email Address (optional) 
 
             try
             {
                 // displays the mail log
-                MailLog result = apiInstance.ViewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+                MailLog result = apiInstance.ViewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -141,6 +143,8 @@ Name | Type | Description  | Notes
  **limit** | **int?**| maximum number of records to return | [optional] [default to 100]
  **startDate** | **long?**| earliest date to get emails in unix timestamp format | [optional] 
  **endDate** | **long?**| earliest date to get emails in unix timestamp format | [optional] 
+ **replyto** | **string**| Reply-To Email Address | [optional] 
+ **headerfrom** | **string**| Header From Email Address | [optional] 
 
 ### Return type
 

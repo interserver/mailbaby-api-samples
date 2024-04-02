@@ -61,7 +61,7 @@ Returns information about the usage on your mail accounts.
 <a id="viewMailLog"></a>
 # **viewMailLog**
 ```java
-Mono<MailLog> HistoryApi.viewMailLog(idoriginmxfromtosubjectmailidskiplimitstartDateendDate)
+Mono<MailLog> HistoryApi.viewMailLog(idoriginmxfromtosubjectmailidskiplimitstartDateendDatereplytoheaderfrom)
 ```
 
 displays the mail log
@@ -82,6 +82,8 @@ Get a listing of the emails sent through this system
 | **limit** | `Integer`| maximum number of records to return | [optional parameter] [default to `100`] |
 | **startDate** | `Long`| earliest date to get emails in unix timestamp format | [optional parameter] |
 | **endDate** | `Long`| earliest date to get emails in unix timestamp format | [optional parameter] |
+| **replyto** | `String`| Reply-To Email Address | [optional parameter] |
+| **headerfrom** | `String`| Header From Email Address | [optional parameter] |
 
 
 ### Return type
